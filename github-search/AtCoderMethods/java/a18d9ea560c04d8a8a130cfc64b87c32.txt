@@ -1,0 +1,31 @@
+void run() {
+    int n, m;
+    n = ni();
+    m = ni();
+    int[][] adj = new int[m][2];
+    for (int i = 0; i < m; ++i) {
+        for (int j = 0; j < 2; ++j) {
+            adj[i][j] = ni();
+        }
+    }
+    int cnt = 0;
+    for (int i = 0; i < m; ++i) {
+        
+        
+        UnionFind uf = new UnionFind(n + 1);
+        for (int j = 0; j < m; ++j) {
+            if (i == j) {
+                continue;
+            }
+            uf.union(adj[j][0], adj[j][1]);
+        }
+        boolean flag = true;
+        for (int j = 1; j <= n; ++j) {
+            flag &= uf.same(1, j);
+        }
+        if (!flag) {
+            ++cnt;
+        }
+    }
+    System.out.println(cnt);
+}

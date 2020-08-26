@@ -1,0 +1,15 @@
+public static void main(String[] args) throws Exception {
+    
+    Scanner in = new Scanner(System.in);
+    double p = in.nextDouble();
+    double result;
+    if (1.5 - p * Math.log(2) > 0) {
+        result = p;
+    } else {
+        double y = Math.log(p * Math.log(2) / 1.5) / Math.log(2);
+        result = 1.5 / Math.log(2) + 1.5 * y;
+    }
+    StringBuilder sb = new StringBuilder();
+    sb.append(result);
+    System.out.println(sb.toString());
+}

@@ -1,0 +1,5 @@
+def split_3(h, w):
+    cand = []
+    cand.extend([(h // 3 + i, w, h - (h // 3 + i), w) for i in range(3)])
+    cand.extend([(h, w // 3 + i, h, w - (w // 3 + i)) for i in range(3)])
+    return cand

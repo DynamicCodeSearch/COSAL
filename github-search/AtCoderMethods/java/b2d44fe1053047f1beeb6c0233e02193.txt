@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int N = in.nextInt();
+    int K = in.nextInt();
+    int[] a = new int[N];
+    int sum = 0;
+    for (int cnt = 0; cnt < N; cnt++) {
+        a[cnt] = in.nextInt();
+    }
+    for (int cnt = 0; cnt < N; cnt++) {
+        int A = a[cnt];
+        int B = K - a[cnt];
+        if (A < B) {
+            sum = sum + A;
+        } else {
+            sum = sum + B;
+        }
+    }
+    System.out.println(sum * 2);
+}

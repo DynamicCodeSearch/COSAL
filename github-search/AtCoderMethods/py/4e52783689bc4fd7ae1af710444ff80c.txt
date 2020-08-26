@@ -1,0 +1,22 @@
+def trace_path(ps, s, cnt, num):
+    res = 0
+
+    s2 = []
+    ps2 = []
+    for i in range(0, len(ps)):
+        p = ps[i]
+        if p.getA() == s or p.getB() == s:
+            s2.append(p)
+        else:
+            ps2.append(p)
+    if len(ps2) == 0:
+        if cnt == num:
+            res += 1
+    else:
+        for i in range(0, len(s2)):
+            p = s2[i]
+            if p.a == s:
+                res += trace_path(ps2, p.getB(), cnt+1, num)
+            else:
+                res += trace_path(ps2, p.getA(), cnt+1, num)
+    return res

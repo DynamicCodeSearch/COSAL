@@ -1,0 +1,27 @@
+public static void quickSort(long[][] a, int index, int from, int to) {
+    if (to - from <= 1) {
+        return;
+    }
+    int i = from;
+    int j = to - 1;
+    long x = a[from + (new Random()).nextInt(to - from)][index];
+    while (i <= j) {
+        while (a[i][index] < x) {
+            i++;
+        }
+        while (a[j][index] > x) {
+            j--;
+        }
+        if (i <= j) {
+            for (int k = 0; k < 3; k++) {
+                long t = a[i][k];
+                a[i][k] = a[j][k];
+                a[j][k] = t;
+            }
+            i++;
+            j--;
+        }
+    }
+    quickSort(a, index, from, j + 1);
+    quickSort(a, index, j + 1, to);
+}

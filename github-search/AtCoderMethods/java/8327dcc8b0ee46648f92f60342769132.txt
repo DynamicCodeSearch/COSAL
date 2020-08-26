@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    Scanner scn = new Scanner(System.in);
+    String[] s = scn.nextLine().split(" ");
+    scn.close();
+    int n = Integer.parseInt(s[0]);
+    int m = Integer.parseInt(s[1]);
+    double m_pct = m / 60.0;
+    String res;
+    if (n > 12) {
+        n -= 12;
+    }
+    
+    double deg_h = (n * 30.0) + (30 * m_pct);
+    double deg_m = m * 6.0;
+    double[] gap = { Math.abs(deg_h - deg_m), Math.abs(deg_m - deg_h), Math.abs(deg_h + (360 - deg_m)), Math.abs(deg_m + (360 - deg_h)) };
+    double min = gap[0];
+    for (int i = 1; i < gap.length; i++) {
+        if (gap[i] < min) {
+            min = gap[i];
+        }
+    }
+    res = String.valueOf(min);
+    
+    if (res.endsWith(".0")) {
+        res = res.substring(0, res.length() - 2);
+    }
+    System.out.println(res);
+}

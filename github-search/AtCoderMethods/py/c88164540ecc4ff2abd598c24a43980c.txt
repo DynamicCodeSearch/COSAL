@@ -1,0 +1,16 @@
+def main():
+    A_MAX = 10 ** 5
+
+    N = get_ln_int_inputs()[0]
+    a = get_ln_int_inputs()
+    counts = [0 for _ in range(A_MAX)]
+
+    for num in a:
+        counts[num] += 1
+
+    max_count = 0
+    for target in range(1, A_MAX - 1):
+        count = counts[target - 1] + counts[target] + counts[target + 1]
+        max_count = max(count, max_count)
+
+    print(max_count)

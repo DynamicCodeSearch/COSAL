@@ -1,0 +1,12 @@
+public static int[] times(int n, int k) {
+    int[] a = new int[n];
+    int m = Math.min(n - k + 1, k);
+    for (int i = 0; i < n; i++) {
+        if (i < n - k) {
+            a[i] = Math.min(m, i + 1);
+        } else {
+            a[i] = Math.min(m, n - i);
+        }
+    }
+    return a;
+}

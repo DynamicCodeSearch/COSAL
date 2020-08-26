@@ -1,0 +1,58 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    prec(1500);
+    long[][] ncr = new long[1200][1200];
+    for (int i = 0; i < ncr.length; i++) {
+        ncr[i][0] = ncr[i][i] = 1;
+        for (int j = 1; j < i; j++) {
+            ncr[i][j] = (ncr[i - 1][j - 1] + ncr[i - 1][j]) % MOD;
+        }
+    }
+    int n = in.nextInt();
+    int a = in.nextInt();
+    int b = in.nextInt();
+    int c = in.nextInt();
+    int d = in.nextInt();
+    long[][] choose = new long[b + 1][d + 1];
+    for (int i = 1; i <= b; i++) {
+        choose[i][0] = 1;
+        for (int x = 1; x <= d; x++) {
+            int fr = x * i;
+            if (fr > n) {
+                break;
+            }
+            choose[i][x] = choose[i][x - 1] * ncr[fr][i] % MOD;
+        }
+    }
+    for (int i = 0; i <= b; i++) {
+        for (int x = 1; x <= d; x++) {
+            choose[i][x] *= _invfact[x];
+            choose[i][x] %= MOD;
+        }
+    }
+    int l = b - a + 1;
+    long[][] dp = new long[l + 1][n + 1];
+    dp[0][n] = 1;
+    for (int i = 0; i < l; i++) {
+        for (int s = 0; s <= n; s++) {
+            if (dp[i][s] == 0) {
+                continue;
+            }
+            long base = dp[i][s];
+            dp[i + 1][s] += base;
+            dp[i + 1][s] %= MOD;
+            for (int x = c; x <= d; x++) {
+                int cho = x * (a + i);
+                int ts = s - cho;
+                if (ts < 0) {
+                    break;
+                }
+                dp[i + 1][ts] += base * ncr[s][cho] % MOD * choose[a + i][x] % MOD;
+                dp[i + 1][ts] %= MOD;
+            }
+        }
+    }
+    out.println(dp[l][0]);
+    out.flush();
+}

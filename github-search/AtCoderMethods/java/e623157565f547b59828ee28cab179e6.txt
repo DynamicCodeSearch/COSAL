@@ -1,0 +1,41 @@
+@SuppressWarnings("unchecked")
+public void solve() {
+    N = nextInt();
+    M = nextInt();
+    graph = new ArrayList[N];
+    for (int i = 0; i < N; i++) {
+        graph[i] = new ArrayList<Integer>();
+    }
+    for (int i = 0; i < M; i++) {
+        int a = nextInt() - 1;
+        int b = nextInt() - 1;
+        graph[a].add(b);
+        graph[b].add(a);
+    }
+    boolean flag = false;
+    ArrayDeque<Long> q = new ArrayDeque<Long>();
+    int[] dis = new int[N];
+    Arrays.fill(dis, Integer.MAX_VALUE);
+    q.add(0L);
+    dis[0] = 0;
+    while (q.size() > 0) {
+        long d = q.poll();
+        int v = (int) (d / 1000000);
+        int c = (int) (d % 1000000);
+        if (c == 2 && v == N - 1) {
+            flag = true;
+            break;
+        }
+        if (c >= 3)
+            continue;
+        if (dis[v] < c)
+            continue;
+        dis[v] = c;
+        for (int next : graph[v]) {
+            if (dis[next] > dis[v] + 1) {
+                q.add(next * 1000000L + (dis[v] + 1));
+            }
+        }
+    }
+    out.println(flag ? "POSSIBLE" : "IMPOSSIBLE");
+}

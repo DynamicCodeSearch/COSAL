@@ -1,0 +1,17 @@
+private void paint(int v, int p, int c) {
+    a[v] = c;
+    for (int u : adj[v]) {
+        if (u == p) {
+            continue;
+        }
+        if (!fixed[u]) {
+            for (int nc = c - 1; nc <= c + 1; nc += 2) {
+                if (nc >= ls[u] && nc <= rs[u]) {
+                    fixed[u] = true;
+                    paint(u, v, nc);
+                    break;
+                }
+            }
+        }
+    }
+}

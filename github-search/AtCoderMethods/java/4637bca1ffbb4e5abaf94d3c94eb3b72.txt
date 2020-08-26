@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    InputStreamReader ichan = new InputStreamReader(System.in);
+    BufferedReader bchan = new BufferedReader(ichan);
+    try {
+        String schan = bchan.readLine().trim();
+        int slen = schan.length();
+        String lastchar = schan.substring(slen - 1, slen);
+        if (lastchar.equals("T")) {
+            System.out.print("YES");
+        } else {
+            System.out.print("NO");
+        }
+    } catch (Exception e) {
+        System.out.println(e);
+    }
+}

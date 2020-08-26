@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int N = scan.nextInt();
+    long sum = 0;
+    List<Integer> s_array = new ArrayList<>();
+    for (int i = 0; i < N; i++) {
+        int s = scan.nextInt();
+        sum += s;
+        s_array.add(s);
+    }
+    if (sum % 10 != 0) {
+        System.out.println(sum);
+        return;
+    }
+    s_array.sort(Integer::compareTo);
+    Optional<Integer> first = s_array.stream().filter(data -> data % 10 != 0).findFirst();
+    if (first.isPresent()) {
+        System.out.println(sum - first.get());
+    } else {
+        System.out.println(0);
+    }
+}

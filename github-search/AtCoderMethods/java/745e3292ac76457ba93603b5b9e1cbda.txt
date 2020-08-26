@@ -1,0 +1,33 @@
+public static void solve() {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int k = sc.nextInt();
+    long[] x = new long[n];
+    long[] y = new long[n];
+    for (int i = 0; i < n; i++) {
+        x[i] = sc.nextInt();
+        y[i] = sc.nextInt();
+    }
+    sc.close();
+    long area = Long.MAX_VALUE;
+    for (int x1 = 0; x1 < n; x1++) {
+        for (int x2 = 0; x2 < n; x2++) {
+            for (int y1 = 0; y1 < n; y1++) {
+                for (int y2 = 0; y2 < n; y2++) {
+                    int count = 0;
+                    for (int idx = 0; idx < n; idx++) {
+                        if (x[idx] < x[x1] || x[idx] > x[x2] || y[idx] < y[y1] || y[idx] > y[y2]) {
+                            continue;
+                        } else {
+                            count++;
+                        }
+                    }
+                    if (count >= k) {
+                        area = Math.min(area, (x[x2] - x[x1]) * (y[y2] - y[y1]));
+                    }
+                }
+            }
+        }
+    }
+    System.out.println(area);
+}

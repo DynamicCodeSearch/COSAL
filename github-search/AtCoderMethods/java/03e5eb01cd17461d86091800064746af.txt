@@ -1,0 +1,11 @@
+private static int dfs(boolean[][] island, boolean[][] visited, int i, int j) {
+    if (!island[i][j] || visited[i][j]) {
+        return 0;
+    }
+    visited[i][j] = true;
+    int area = 1;
+    for (int k = 0; k < DI.length; k++) {
+        area += dfs(island, visited, i + DI[k], j + DJ[k]);
+    }
+    return area;
+}

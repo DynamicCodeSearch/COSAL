@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int n = scanner.nextInt();
+    scanner.nextLine();
+    String s = scanner.nextLine();
+    char[] ch = s.toCharArray();
+    Stack<Integer> left = new Stack<>();
+    Stack<Integer> right = new Stack<>();
+    for (int i = 0; i < n; i++) {
+        if (ch[i] == '(') {
+            left.push(i);
+        } else {
+            if (!left.isEmpty())
+                left.pop();
+            else
+                right.push(i);
+        }
+    }
+    String ret = "";
+    for (int j = 0; j < right.size(); j++) ret += '(';
+    ret += s;
+    for (int j = 0; j < left.size(); j++) ret += ')';
+    System.out.println(ret);
+}

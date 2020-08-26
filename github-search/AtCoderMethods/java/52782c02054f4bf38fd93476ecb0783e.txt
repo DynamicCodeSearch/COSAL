@@ -1,0 +1,11 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String s = sc.next();
+    int k = sc.nextInt();
+    ArrayList<String> str = new ArrayList<>();
+    for (int i = 0; i < s.length() - k + 1; i++) {
+        str.add(s.substring(i, i + k));
+    }
+    List<String> listA = new ArrayList<>(new HashSet<>(str));
+    System.out.println(listA.size());
+}

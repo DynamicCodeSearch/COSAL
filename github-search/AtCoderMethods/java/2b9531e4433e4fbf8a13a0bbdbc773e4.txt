@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    char[] s = sc.next().toCharArray();
+    int count = 0;
+    for (int i = 0; i < s.length; i++) {
+        if (s[i] != 'B') {
+            count = 0;
+        }
+        if (s[i] == 'B' && 0 <= i - (1 + count * 2)) {
+            s[i - (1 + count * 2)] = 'N';
+            count += 1;
+        }
+    }
+    for (int i = 0; i < s.length; i++) {
+        if (s[i] != 'B' && s[i] != 'N') {
+            System.out.print(s[i]);
+        }
+    }
+}

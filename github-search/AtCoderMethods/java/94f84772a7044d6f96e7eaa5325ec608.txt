@@ -1,0 +1,15 @@
+public int rangeSum(int index, int l, int r, int x, int y) {
+    if (y <= l || r <= x) {
+        return 0;
+    } else if (x <= l && r <= y) {
+        return b[index];
+    } else {
+        int mid = (l + r) / 2;
+        int g1 = 0, g2 = 0;
+        if (x < mid)
+            g1 = rangeSum(index * 2, l, mid, x, Math.min(y, mid));
+        if (mid < y)
+            g2 = rangeSum(index * 2 + 1, mid, r, Math.max(x, mid), y);
+        return g1 + g2;
+    }
+}

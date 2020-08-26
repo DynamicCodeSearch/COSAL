@@ -1,0 +1,26 @@
+boolean insert(long key) {
+    if (root == null) {
+        root = new Node(key, null);
+        return true;
+    }
+    Node cur = root;
+    Node parent = null;
+    while (true) {
+        if (cur.key == key) {
+            return false;
+        }
+        parent = cur;
+        boolean goLeft = key < cur.key;
+        cur = goLeft ? cur.left : cur.right;
+        if (cur == null) {
+            if (goLeft) {
+                parent.left = new Node(key, parent);
+            } else {
+                parent.right = new Node(key, parent);
+            }
+            rebalance(parent);
+            break;
+        }
+    }
+    return true;
+}

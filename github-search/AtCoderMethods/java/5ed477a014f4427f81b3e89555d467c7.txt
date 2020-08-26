@@ -1,0 +1,66 @@
+public static void main(String[] args) {
+    IO io = new IO();
+    int n = io.nextInt();
+    int[] x = io.nextIntArray(n);
+    int l = io.nextInt();
+    int[][] left = new int[n][MAXLOGN + 1];
+    int[][] right = new int[n][MAXLOGN + 1];
+    int i = 0, j = 0;
+    for (i = 0; i < n; i++) {
+        while (j < n - 1 && x[j + 1] - x[i] <= l) {
+            j++;
+        }
+        right[i][0] = j;
+    }
+    i = n - 1;
+    for (j = n - 1; j >= 0; j--) {
+        while (i >= 1 && x[j] - x[i - 1] <= l) {
+            i--;
+        }
+        left[j][0] = i;
+    }
+    for (j = 1; j <= MAXLOGN; j++) {
+        for (i = 0; i < n; i++) {
+            left[i][j] = left[left[i][j - 1]][j - 1];
+            right[i][j] = right[right[i][j - 1]][j - 1];
+        }
+    }
+    int[] debug = new int[n];
+    for (i = 0; i < n; i++) {
+        debug[i] = right[i][0];
+    }
+    
+    int q = io.nextInt();
+    for (int qq = 0; qq < q; qq++) {
+        int a = io.nextInt() - 1;
+        int b = io.nextInt() - 1;
+        int now = a;
+        int t = 0;
+        int ans = -1;
+        if (a < b) {
+            int dt = 1 << MAXLOGN;
+            for (j = MAXLOGN; j >= 0; j--) {
+                if (right[now][j] >= b) {
+                    ans = t + dt;
+                } else {
+                    t += dt;
+                    now = right[now][j];
+                }
+                dt >>>= 1;
+            }
+        } else {
+            int dt = 1 << MAXLOGN;
+            for (j = MAXLOGN; j >= 0; j--) {
+                if (left[now][j] <= b) {
+                    ans = t + dt;
+                } else {
+                    t += dt;
+                    now = left[now][j];
+                }
+                dt >>>= 1;
+            }
+        }
+        io.println(ans);
+    }
+    io.flush();
+}

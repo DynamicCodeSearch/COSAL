@@ -1,0 +1,14 @@
+def solve(init, point):
+    w, h, N = init
+    rect = [0, w, 0, h]
+
+    for p in point:
+        x, y, a = p
+
+        if [1, -1][a % 2] * ([x, y][a > 2] - rect[a - 1]) < 0:
+            rect[a - 1] = [x, y][a > 2]
+
+        if (rect[1] <= rect[0]) if a <= 2 else (rect[3] <= rect[2]):
+            return 0
+
+    return (rect[1] - rect[0]) * (rect[3] - rect[2])

@@ -1,0 +1,32 @@
+void solve() {
+    int N = sc.nextInt();
+    int[] minNum = new int[26];
+    Arrays.fill(minNum, 10000);
+    boolean[] canUse = new boolean[26];
+    Arrays.fill(canUse, true);
+    for (int i = 0; i < N; i++) {
+        String s = sc.next();
+        int[] cnt = new int[26];
+        Arrays.fill(cnt, 0);
+        boolean[] ok = new boolean[26];
+        for (int j = 0; j < s.length(); j++) {
+            char c = s.charAt(j);
+            ok[c - 'a'] = true;
+            cnt[c - 'a']++;
+        }
+        for (int j = 0; j < 26; j++) {
+            if (!ok[j])
+                canUse[j] = false;
+            minNum[j] = Math.min(minNum[j], cnt[j]);
+        }
+    }
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < 26; i++) {
+        if (canUse[i]) {
+            for (int j = 0; j < minNum[i]; j++) {
+                sb.append((char) ('a' + i));
+            }
+        }
+    }
+    System.out.println(sb.toString());
+}

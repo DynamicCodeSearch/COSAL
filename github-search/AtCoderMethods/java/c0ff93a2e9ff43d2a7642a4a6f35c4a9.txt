@@ -1,0 +1,34 @@
+private void doit() {
+    Scanner sc = new Scanner(System.in);
+    while (sc.hasNext()) {
+        int n = sc.nextInt();
+        int[][] data = new int[n][2];
+        C[] data1 = new C[n];
+        D[] data2 = new D[n];
+        for (int i = 0; i < n; i++) {
+            data[i][0] = sc.nextInt();
+            data[i][1] = sc.nextInt();
+            data1[i] = new C(data[i][0], data[i][1], i);
+            data2[i] = new D(data[i][0], data[i][1], i);
+        }
+        Arrays.sort(data1);
+        Arrays.sort(data2);
+        ArrayList<Edge> list = new ArrayList<>();
+        C prev = data1[0];
+        for (int i = 1; i < data1.length; i++) {
+            int cost = Math.min(Math.abs(prev.x - data1[i].x), Math.abs(prev.y - data1[i].y));
+            list.add(new Edge(prev.ind, data1[i].ind, cost));
+            list.add(new Edge(data1[i].ind, prev.ind, cost));
+            prev = data1[i];
+        }
+        D prevD = data2[0];
+        for (int i = 1; i < data2.length; i++) {
+            int cost = Math.min(Math.abs(prevD.x - data2[i].x), Math.abs(prevD.y - data2[i].y));
+            list.add(new Edge(prevD.ind, data2[i].ind, cost));
+            list.add(new Edge(data2[i].ind, prevD.ind, cost));
+            prevD = data2[i];
+        }
+        int res = kruskal(list, n);
+        System.out.println(res);
+    }
+}

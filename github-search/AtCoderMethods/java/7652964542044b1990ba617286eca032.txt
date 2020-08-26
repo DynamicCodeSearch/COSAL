@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    String s = scan.next();
+    if (s.length() % 2 != 0) {
+        s = s.substring(0, s.length() - 1);
+    } else {
+        s = s.substring(0, s.length() - 2);
+    }
+    boolean jdg = false;
+    int n = s.length();
+    while (!jdg) {
+        n = s.length();
+        for (int i = 0; i < n / 2; i++) {
+            if (s.charAt(i) != s.charAt(i + n / 2)) {
+                s = s.substring(0, n - 2);
+                break;
+            }
+            if (i == n / 2 - 1) {
+                jdg = true;
+            }
+        }
+    }
+    System.out.println(s.length());
+}

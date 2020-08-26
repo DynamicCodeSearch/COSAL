@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int m = sc.nextInt();
+    String vv;
+    final int cm = 1000;
+    int km = m / cm;
+    if (m > 70 * cm) {
+        vv = "89";
+    } else if (35 * cm <= m && m <= 70 * cm) {
+        vv = String.valueOf((km - 30) / 5 + 80);
+    } else if (6 * cm <= m && m <= 30 * cm) {
+        vv = String.valueOf(km + 50);
+    } else if ((int) (0.1 * cm) <= m && m <= 5 * cm) {
+        int tmp_vv = m * 10 / cm;
+        if (tmp_vv < 10) {
+            vv = String.valueOf("0" + tmp_vv);
+        } else {
+            vv = String.valueOf(tmp_vv);
+        }
+    } else {
+        vv = "00";
+    }
+    System.out.println(vv);
+}

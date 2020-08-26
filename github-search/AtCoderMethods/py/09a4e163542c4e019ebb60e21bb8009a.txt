@@ -1,0 +1,24 @@
+def C_coin(N, C):
+
+    divisor = [None for i in range(len(C))]
+
+    for idx, c in enumerate(C):
+        tmp = 0
+        for i in range(len(C)):
+            if i == idx:
+                pass
+            else:
+                if c % C[i] == 0:
+                    tmp += 1
+        divisor[idx] = tmp
+
+
+
+
+    ans = 0
+    for d in divisor:
+        if d % 2 == 0:
+            ans += (d + 2) / (2 * (d + 1))
+        else:
+            ans += 0.5
+    return ans

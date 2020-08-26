@@ -1,0 +1,16 @@
+def dijkstra(adjList, s):
+    num = len(adjList)
+    dist = [float("INF") for i in range(num)]
+    queue = []
+    heappush(queue,(0,s))
+    dist[s] = 0
+
+    while queue != []:
+        v_cost, v = heappop(queue)
+        if dist[v] < v_cost:
+            continue
+        for u_cost, u in adjList[v]:
+            if u != v and u_cost + dist[v] < dist[u]:
+                dist[u] = u_cost + dist[v]
+                heappush(queue, (dist[u], u))
+    return dist

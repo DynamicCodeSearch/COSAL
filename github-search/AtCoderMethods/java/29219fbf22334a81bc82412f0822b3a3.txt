@@ -1,0 +1,18 @@
+private static long solve2(int H, int W, int A, int B) {
+    int h = H - A - 1;
+    int w = B;
+    long ret = 0;
+    long x = C(h + w, w);
+    long y = C(W - 1 - B + A, W - 1 - w);
+    for (int i = w; i < W; i++) {
+        
+        ret += x * y;
+        int n = i + 1;
+        x *= (h + w - n + 1) * inverse(n) % mod;
+        y *= inverse((W - 1 - B + A) - (W - 1 - n)) * (W - 1 - n + 1) % mod;
+        x %= mod;
+        y %= mod;
+        ret %= mod;
+    }
+    return ret;
+}

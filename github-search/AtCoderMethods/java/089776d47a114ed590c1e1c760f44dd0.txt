@@ -1,0 +1,19 @@
+public void solve(int testNumber, FastScanner in, PrintWriter out) {
+    int n = in.nextInt();
+    long T = in.nextInt();
+    long ans = 0;
+    long prev = -1;
+    for (int i = 0; i < n; i++) {
+        int t = in.nextInt();
+        if (prev >= 0) {
+            if (prev + T < t) {
+                ans += T;
+            } else {
+                ans += t - prev;
+            }
+        }
+        prev = t;
+    }
+    ans += T;
+    out.println(ans);
+}

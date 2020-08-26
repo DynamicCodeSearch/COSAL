@@ -1,0 +1,10 @@
+def solve():
+    S = [int(i) for i in input()]
+    N = len(S)
+    sac = [0] + list(accumulate(S))
+    ans = 0
+
+    for i in range(N):
+        ans += (int(sac[i] * 2**(i - 1)) + 2**i * S[i]) * 10**(N - 1 - i)
+
+    print(ans)

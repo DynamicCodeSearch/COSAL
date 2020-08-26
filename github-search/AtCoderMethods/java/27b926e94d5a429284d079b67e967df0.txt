@@ -1,0 +1,30 @@
+public static void main(String[] args) throws Exception {
+    
+    
+    Scanner scan = new Scanner(System.in);
+    int a = scan.nextInt();
+    int count = -1;
+    int[] ana = new int[3];
+    if (a >= 8) {
+        count++;
+        ana[count] = 8;
+        a = a - 8;
+    }
+    if (a >= 4) {
+        count++;
+        ana[count] = 4;
+        a = a - 4;
+    }
+    if (a >= 2) {
+        count++;
+        ana[count] = 2;
+        a = a - 2;
+    }
+    if (a >= 1) {
+        count++;
+        ana[count] = 1;
+        a = a - 1;
+    }
+    System.out.println(count + 1);
+    for (int i = count; i >= 0; i--) System.out.println(ana[i]);
+}

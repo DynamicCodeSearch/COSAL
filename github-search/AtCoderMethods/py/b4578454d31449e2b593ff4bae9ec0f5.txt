@@ -1,0 +1,30 @@
+def main():
+    win = set(map(int, input().split()))
+    bonus = int(input())
+    nums = set(map(int, input().split()))
+    if 0:
+        print(win)
+        print(bonus)
+        print(nums)
+
+    nmatch = len(win & nums)
+    remain = nums - win
+    if 0:
+        print(nmatch)
+        print(remain)
+
+    if nmatch == 6:
+        rank = 1
+    elif nmatch == 5:
+        if bonus in remain:
+            rank = 2
+        else:
+            rank = 3
+    elif nmatch == 4:
+        rank = 4
+    elif nmatch == 3:
+        rank = 5
+    else:
+        rank = 0
+
+    print(rank)

@@ -1,0 +1,17 @@
+def main():
+    n = I()
+    a = sorted([I() for _ in range(n)])
+    r = 0
+    c = 0
+    d = collections.defaultdict(int)
+    for b in a:
+        r += b+c
+        c += b
+        d[b] += 1
+
+    c = 1
+    for t in d.values():
+        c *= kai(t)
+        c %= mod
+
+    return '{}\n{}'.format(r,c)

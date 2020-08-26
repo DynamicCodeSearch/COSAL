@@ -1,0 +1,16 @@
+def main():
+    N = int(input())
+    p_list = list(map(int, input().split()))
+    a_list = list(range(1, N + 1))
+    ans = 0
+    i = 0
+    while i < N:
+        if i + 1 < N and p_list[i] == a_list[i] and p_list[i + 1] == a_list[i + 1]:
+            ans += 1
+            i += 2
+        elif p_list[i] == a_list[i]:
+            ans += 1
+            i += 2
+        else:
+            i += 1
+    print(ans)

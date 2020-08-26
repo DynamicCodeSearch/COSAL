@@ -1,0 +1,13 @@
+private static long solve(long w, long h) {
+    long r = Integer.MAX_VALUE;
+    for (int i = 0; i <= w; i++) {
+        long sg = h * i;
+        long sb = (h + 1) / 2 * (w - i);
+        long sr = h / 2 * (w - i);
+        r = Math.min(r, Math.abs(Math.max(sg, sb) - Math.min(sg, sr)));
+        sb = (w - i + 1) / 2 * h;
+        sr = (w - i) / 2 * h;
+        r = Math.min(r, Math.abs(Math.max(sg, sb) - Math.min(sg, sr)));
+    }
+    return r;
+}

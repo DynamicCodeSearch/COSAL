@@ -1,0 +1,69 @@
+public static void main(String[] args) throws Exception {
+    int n = sc.nextInt();
+    long[] a = new long[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = sc.nextLong();
+    }
+    long counter = 0;
+    long total = a[0];
+    if (a[0] == 0) {
+        total++;
+        counter++;
+    }
+    for (int i = 1; i < n; i++) {
+        if (total > 0 && total + a[i] < 0) {
+            total += a[i];
+        } else if (total < 0 && total + a[i] > 0) {
+            total += a[i];
+        } else {
+            long x = 0;
+            if (total > 0) {
+                x = -1 - total - a[i];
+                total = -1;
+            } else {
+                x = 1 - total - a[i];
+                total = 1;
+            }
+            counter += (long) Math.abs(x);
+        }
+    
+    }
+    long total1 = 0;
+    long counter1 = 0;
+    if (a[0] < 0) {
+        total1 = 1;
+        counter1 = 1 - a[0];
+    } else if (a[0] > 0) {
+        total1 = -1;
+        counter1 = 1 + a[0];
+    } else {
+        total1 = -1;
+        counter1 = 1;
+    }
+    for (int i = 1; i < n; i++) {
+        if (total1 > 0 && total1 + a[i] < 0) {
+            total1 += a[i];
+        } else if (total1 < 0 && total1 + a[i] > 0) {
+            total1 += a[i];
+        } else {
+            long x = 0;
+            if (total1 > 0) {
+                x = -1 - total1 - a[i];
+                total1 = -1;
+            } else {
+                x = 1 - total1 - a[i];
+                total1 = 1;
+            }
+            counter1 += (long) Math.abs(x);
+        }
+    
+    }
+    if (counter > counter1) {
+        out.println(counter1);
+    } else {
+        out.println(counter);
+    }
+    out.flush();
+    sc.close();
+    out.close();
+}

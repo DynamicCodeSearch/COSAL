@@ -1,0 +1,22 @@
+public static double[] dijk(double[][] g, int from) {
+    int n = g.length;
+    double[] td = new double[n];
+    Arrays.fill(td, Double.POSITIVE_INFINITY);
+    td[from] = 0;
+    boolean[] fixed = new boolean[n];
+    for (int i = 0; i < n; i++) {
+        double min = Double.POSITIVE_INFINITY;
+        int arg = -1;
+        for (int j = 0; j < n; j++) {
+            if (!fixed[j] && td[j] < min) {
+                min = td[j];
+                arg = j;
+            }
+        }
+        fixed[arg] = true;
+        for (int j = 0; j < n; j++) {
+            td[j] = Math.min(td[j], td[arg] + g[arg][j]);
+        }
+    }
+    return td;
+}

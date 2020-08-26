@@ -1,0 +1,12 @@
+def unite(self, a, b):
+    a = self.root(a)
+    b = self.root(b)
+    if a == b:
+        return 0
+    if self.data[a] < self.data[b]:
+        self.data[a] += self.data[b]
+        self.data[b] = a
+    else:
+        self.data[b] += self.data[a]
+        self.data[a] = b
+    return 1

@@ -1,0 +1,29 @@
+void solve() throws IOException {
+    int n = ni(), m = ni();
+    int[][] d = new int[n][n];
+    for (int i = 0; i < n; i++) {
+        Arrays.fill(d[i], INF);
+    }
+    for (int i = 0; i < n; i++) {
+        d[i][i] = 0;
+    }
+    int[] a = new int[m];
+    int[] b = new int[m];
+    int[] c = new int[m];
+    for (int i = 0; i < m; i++) {
+        a[i] = ni() - 1;
+        b[i] = ni() - 1;
+        c[i] = ni();
+    }
+    for (int i = 0; i < m; i++) {
+        d[a[i]][b[i]] = d[b[i]][a[i]] = c[i];
+    }
+    warshallFloyd(d);
+    int ans = 0;
+    for (int i = 0; i < m; i++) {
+        if (d[a[i]][b[i]] < c[i]) {
+            ans++;
+        }
+    }
+    out.println(ans);
+}

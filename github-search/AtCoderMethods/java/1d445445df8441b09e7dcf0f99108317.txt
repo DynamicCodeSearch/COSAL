@@ -1,0 +1,29 @@
+public void solve() {
+    N = nextInt();
+    ps = new P[N];
+    for (int i = 0; i < N; i++) {
+        int W = nextInt();
+        int H = nextInt();
+        ps[i] = new P(W, -H);
+    }
+    Arrays.sort(ps);
+    int[] dp = new int[N];
+    Arrays.fill(dp, INF);
+    for (int i = 0; i < N; i++) {
+        int it = Arrays.binarySearch(dp, -ps[i].h);
+        if (it < 0) {
+            it = (~it);
+        }
+        dp[it] = -ps[i].h;
+    }
+    int l = -1, r = N;
+    while (r - l > 1) {
+        int m = (l + r) / 2;
+        if (dp[m] < INF) {
+            l = m;
+        } else {
+            r = m;
+        }
+    }
+    out.println(r);
+}

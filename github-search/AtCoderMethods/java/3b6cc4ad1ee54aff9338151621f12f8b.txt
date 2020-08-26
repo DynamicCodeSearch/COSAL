@@ -1,0 +1,12 @@
+public static void main(String[] args) {
+    try (Scanner sc = new Scanner(System.in)) {
+        long price = sc.nextLong();
+        long setPrice = sc.nextLong();
+        long totalQty = sc.nextLong();
+        long setQty = sc.nextLong();
+        long setGroupNum = totalQty / setQty;
+        long setMod = totalQty % setQty;
+        long totalPrice = Math.min(setPrice * (setGroupNum + 1), setPrice * setGroupNum + price * setMod);
+        System.out.println(totalPrice);
+    }
+}

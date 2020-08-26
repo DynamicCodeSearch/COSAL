@@ -1,0 +1,48 @@
+void run() {
+    long min = Long.MAX_VALUE;
+    int n, k;
+    n = ni();
+    k = ni();
+    int[] xs = new int[n];
+    int[] ys = new int[n];
+    TreeSet<Integer> setx = new TreeSet<>();
+    TreeSet<Integer> sety = new TreeSet<>();
+    for (int i = 0; i < n; ++i) {
+        int x, y;
+        x = ni();
+        y = ni();
+        xs[i] = x;
+        ys[i] = y;
+        setx.add(x);
+        sety.add(y);
+    }
+    ArrayList<Integer> xlist = new ArrayList<>(setx);
+    ArrayList<Integer> ylist = new ArrayList<>(sety);
+    int xn = xlist.size();
+    int yn = ylist.size();
+    for (int minx : xlist) {
+        for (int miny : ylist) {
+            for (int maxx : xlist) {
+                if (maxx < minx) {
+                    continue;
+                }
+                for (int maxy : ylist) {
+                    if (maxy < miny) {
+                        continue;
+                    }
+                    
+                    int cnt = 0;
+                    for (int i = 0; i < n; ++i) {
+                        if (minx <= xs[i] && xs[i] <= maxx && miny <= ys[i] && ys[i] <= maxy) {
+                            ++cnt;
+                        }
+                    }
+                    if (cnt >= k) {
+                        min = Math.min(min, (long) (maxx - minx) * (long) (maxy - miny));
+                    }
+                }
+            }
+        }
+    }
+    System.out.println(min);
+}

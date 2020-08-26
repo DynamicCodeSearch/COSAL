@@ -1,0 +1,12 @@
+public static void main(String[] args) {
+    Sc sc = new Sc(System.in);
+    String s = sc.n();
+    int wins = 0;
+    for (int i = 0; i < s.length(); i++) {
+        if (i % 2 == 0 && s.charAt(i) == 'p')
+            wins--;
+        if (i % 2 == 1 && s.charAt(i) == 'g')
+            wins++;
+    }
+    System.out.println(wins);
+}

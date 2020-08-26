@@ -1,0 +1,17 @@
+private long calc(int[] a) {
+    long q = 1, w = 0;
+    for (int i = a.length - 1; i >= 0; i--) {
+        long qq = 0, ww = 0;
+        if (a[i] != 1) {
+            qq += q;
+            ww += (q + w);
+        }
+        if (a[i] != 0) {
+            qq += (q + w);
+            ww += w;
+        }
+        q = qq % MOD;
+        w = ww % MOD;
+    }
+    return q;
+}

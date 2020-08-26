@@ -1,0 +1,19 @@
+public static void main(String[] args) throws java.lang.Exception {
+    Scanner in = new Scanner(System.in);
+    int n = in.nextInt();
+    int[] nums = new int[n];
+    for (int i = 0; i < n; i++) {
+        nums[i] = in.nextInt();
+    }
+    double answer = 0;
+    for (int i = 0; i < n; i++) {
+        int count = 0;
+        for (int j = 0; j < n; j++) {
+            if (i != j && nums[i] % nums[j] == 0) {
+                count++;
+            }
+        }
+        answer += 1.0 * (count / 2 + 1) / (count + 1);
+    }
+    System.out.println(answer);
+}

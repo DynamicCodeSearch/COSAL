@@ -1,0 +1,32 @@
+public void calc() {
+    int N = in.nextInt(), M = in.nextInt();
+    int[] a = new int[M];
+    int[] b = new int[M];
+    
+    
+    Map<Integer, List<Integer>> map = new HashMap<Integer, List<Integer>>();
+    for (int i = 0; i < M; i++) {
+        a[i] = in.nextInt() - 1;
+        b[i] = in.nextInt() - 1;
+        
+        List<Integer> list = map.getOrDefault(a[i], new ArrayList<Integer>());
+        list.add(b[i]);
+        map.put(a[i], list);
+    }
+    
+    List<Integer> viaList = map.get(0);
+    String ans = "IMPOSSIBLE";
+    
+    outside: for (Integer via : viaList) {
+        
+        for (Integer dest : map.getOrDefault(via, new ArrayList<Integer>())) {
+            
+            if (dest == N - 1) {
+                ans = "POSSIBLE";
+                break outside;
+            }
+        }
+    }
+    out.println(ans);
+    out.close();
+}

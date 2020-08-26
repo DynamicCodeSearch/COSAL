@@ -1,0 +1,19 @@
+public void solve() {
+    N = nextInt();
+    A = nextInt();
+    B = nextInt();
+    C = nextInt();
+    D = nextInt();
+    fact[0] = 1;
+    for (int i = 1; i < fact.length; i++) {
+        fact[i] = mod(fact[i - 1] * i);
+    }
+    for (int i = 0; i < ncr.length; i++) {
+        for (int j = 0; j < ncr.length; j++) {
+            ncr[i][j] = -1;
+            ncr2[i][j] = -1;
+            dp[i][j] = -1;
+        }
+    }
+    out.println(dfs(N, A));
+}

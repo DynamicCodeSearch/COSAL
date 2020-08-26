@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    PrintWriter out = new PrintWriter(System.out);
+    int n = sc.nextInt();
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    int ans = 0;
+    for (int i = 0; i < n; i++) {
+        String s = sc.next();
+        int d = sc.nextInt();
+        switch(s) {
+            case "East":
+                ans += d < a ? a : d > b ? b : d;
+                break;
+            case "West":
+                ans -= d < a ? a : d > b ? b : d;
+                break;
+        }
+    }
+    out.println(ans > 0 ? "East " + ans : ans < 0 ? "West " + (-ans) : ans);
+    out.flush();
+}

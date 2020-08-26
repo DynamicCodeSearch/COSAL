@@ -1,0 +1,20 @@
+def main():
+    N, M = map(int, input().split())
+    A = []
+    for _ in range(N):
+        a, b = map(int, input().split())
+        A.append((a,b))
+    B = []
+    for _ in range(M):
+        c, d = map(int, input().split())
+        B.append((c,d))
+
+    for i, a in enumerate(A):
+        argmin = 0
+        dmin = dist(a, B[0])
+        for j, b in enumerate(B):
+            d = dist(a, b)
+            if d < dmin:
+                argmin = j
+                dmin   = d
+        print(argmin+1)

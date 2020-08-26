@@ -1,0 +1,20 @@
+private void solve(Scanner sc, PrintWriter out) {
+    int N = sc.nextInt();
+    sc.nextLine();
+    String[] s = new String[N];
+    for (int i = 0; i < N; ++i) {
+        s[i] = sc.nextLine();
+    }
+    char[][] ans = new char[N][N];
+    for (int i = 0; i < N; ++i) {
+        for (int j = 0; j < N; ++j) {
+            ans[j][N - i - 1] = s[i].charAt(j);
+        }
+    }
+    for (int i = 0; i < N; ++i) {
+        for (int j = 0; j < N; ++j) {
+            out.print(ans[i][j]);
+        }
+        out.println();
+    }
+}

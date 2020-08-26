@@ -1,0 +1,19 @@
+def main():
+    n, m = list(map(int, input().split(' ')))
+
+    mid1 = [False]*(n+1)
+    mid2 = [False]*(n+1)
+
+    for _ in range(m):
+        a, b = list(map(int, input().split(' ')))
+        if a == 1:
+            mid1[b] = True
+        if b == n:
+            mid2[a] = True
+
+    for i in range(n+1):
+        if mid1[i] and mid2[i]:
+            print('POSSIBLE')
+            return
+
+    print('IMPOSSIBLE')

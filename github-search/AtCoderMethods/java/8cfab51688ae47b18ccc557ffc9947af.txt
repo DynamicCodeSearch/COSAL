@@ -1,0 +1,14 @@
+public void solve() {
+    int n = in.nextInt();
+    int[] a = in.nextIntArray(n);
+    HashSet<Integer> colors = new HashSet<>();
+    int pro = 0;
+    for (int i = 0; i < n; i++) {
+        if (a[i] >= 3200) {
+            pro++;
+        } else {
+            colors.add(a[i] / 400);
+        }
+    }
+    System.out.println((colors.size() == 0 ? 1 : colors.size()) + " " + (colors.size() + pro));
+}

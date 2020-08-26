@@ -1,0 +1,34 @@
+
+public void run() throws IOException {
+    
+    
+    
+    
+    int TEST_CASE = 1;
+    while (TEST_CASE-- != 0) {
+        
+        long low = 0, high = 1_000_000_000;
+        while (high - low > 1) {
+            long mid = (low + high) / 2;
+            
+            boolean q1 = query(nth(mid, 9, 1) + "000000000") == 'N';
+            if (q1) {
+                low = mid;
+            } else {
+                high = mid;
+            }
+        }
+        String cur = nth(high, 9, 1);
+        if (cur.length() == 1) {
+            for (; ; ) {
+                String test = cur.charAt(0) == '9' ? cur.replace("9", "10") : (Long.parseLong(cur) + 1) + "";
+                boolean q1 = query(test) == 'N';
+                
+                if (cur.charAt(0) == '9' ^ !q1)
+                    break;
+                cur += "0";
+            }
+        }
+        io.out.println("! " + cur);
+    }
+}

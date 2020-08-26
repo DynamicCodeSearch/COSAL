@@ -1,0 +1,24 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    int sum = 0;
+    if (b > 1) {
+        for (int i = 0; i < a; i++) {
+            int c = sc.nextInt();
+            if (b - c >= c) {
+                sum += c * 2;
+            } else if (c >= b - c) {
+                sum += (b - c) * 2;
+            }
+        }
+        System.out.println(sum);
+    } else if (b == 1) {
+        int d = sc.nextInt();
+        if (b - d >= d) {
+            System.out.println(d * 2);
+        } else if (d >= b - d) {
+            System.out.println((b - d) * 2);
+        }
+    }
+}

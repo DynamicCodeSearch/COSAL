@@ -1,0 +1,11 @@
+static long binSearch() {
+    long l = -1, r = Math.max(R, B);
+    while (r - l > 1) {
+        long m = (l + r) / 2;
+        if (f(m))
+            l = m;
+        else
+            r = m;
+    }
+    return r;
+}

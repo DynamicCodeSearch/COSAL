@@ -1,0 +1,40 @@
+def get_color_type_num(a_list):
+
+    c_list = [0 for i in range(9)]
+
+    for a in a_list:
+        if 1 <= a <= 399:
+            c_list[0] += 1
+        elif 400 <= a <= 799:
+            c_list[1] += 1
+        elif 800 <= a <= 1199:
+            c_list[2] += 1
+        elif 1200 <= a <= 1599:
+            c_list[3] += 1
+        elif 1600 <= a <= 1999:
+            c_list[4] += 1
+        elif 2000 <= a <= 2399:
+            c_list[5] += 1
+        elif 2400 <= a <= 2799:
+            c_list[6] += 1
+        elif 2800 <= a <= 3199:
+            c_list[7] += 1
+        else:
+            c_list[8] += 1
+
+    c_num = 0
+    c_free = c_list[8]
+    for i, c in enumerate(c_list):
+        if i == 8:
+            c_free = c
+        elif c:
+            c_num += 1
+
+    min_c = c_num
+    max_c = min_c + c_free
+
+
+    if min_c == 0:
+        min_c = 1
+
+    return min_c, max_c

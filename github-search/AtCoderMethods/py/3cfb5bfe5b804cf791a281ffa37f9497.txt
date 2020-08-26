@@ -1,0 +1,30 @@
+def calc_score(N, A, m):
+    res = (-100) * 50
+    ao_max = (-100) * 50
+
+    for j in range(N):
+        if j == m:
+            continue
+
+        taka, ao = 0, 0
+
+        if j < m:
+            for k in range(j, m + 1):
+                if (k - j) % 2:
+                    ao += A[k]
+                else:
+                    taka += A[k]
+        else:
+            for k in range(m, j + 1):
+                if (k - m) % 2:
+                    ao += A[k]
+                else:
+                    taka += A[k]
+
+        if ao > ao_max:
+            ao_max = ao
+            res = taka
+
+    assert res > (-100) * 50
+
+    return res

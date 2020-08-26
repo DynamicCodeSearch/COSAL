@@ -1,0 +1,12 @@
+static void solve() {
+    long a = in.nextInt();
+    long b = in.nextInt();
+    long k = in.nextInt();
+    long l = in.nextInt();
+    if ((double) b / l > a) {
+        out.println(a * k);
+    } else {
+        long c = k / l;
+        out.println(Math.min((c * b + a * (k - c * l)), (c + 1) * b));
+    }
+}

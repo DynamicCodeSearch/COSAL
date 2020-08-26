@@ -1,0 +1,26 @@
+void solve() throws IOException {
+    int n = in.nextInt();
+    int m = in.nextInt();
+    boolean[] reach = new boolean[n];
+    List<Integer> from1 = new ArrayList<>();
+    for (int i = 0; i < m; i++) {
+        int a = in.nextInt() - 1;
+        int b = in.nextInt() - 1;
+        if (a > b) {
+            int tmp = a;
+            a = b;
+            b = tmp;
+        }
+        if (b == n - 1)
+            reach[a] = true;
+        if (a == 0)
+            from1.add(b);
+    }
+    for (int v : from1) {
+        if (reach[v]) {
+            System.out.println("POSSIBLE");
+            return;
+        }
+    }
+    System.out.println("IMPOSSIBLE");
+}

@@ -1,0 +1,29 @@
+
+public void run() throws IOException {
+    
+    int TEST_CASE = 1;
+    while (TEST_CASE-- != 0) {
+        int n = io.nextInt();
+        final int[][] p = io.nextIntArray2DWithIndex(n, 2);
+        List<int[]> es = new ArrayList<>();
+        Arrays.sort(p, (a, b) -> a[0] - b[0]);
+        for (int i = 1; i < n; i++) {
+            es.add(new int[] { p[i - 1][2], p[i][2], Math.abs(p[i - 1][0] - p[i][0]) });
+        }
+        Arrays.sort(p, (a, b) -> a[1] - b[1]);
+        for (int i = 1; i < n; i++) {
+            es.add(new int[] { p[i - 1][2], p[i][2], Math.abs(p[i - 1][1] - p[i][1]) });
+        }
+        Collections.sort(es, (a, b) -> a[2] - b[2]);
+        long ans = 0;
+        UnionFind uf = new UnionFind(n);
+        for (int[] e : es) {
+            
+            if (!uf.same(e[0], e[1])) {
+                uf.union(e[0], e[1]);
+                ans += e[2];
+            }
+        }
+        io.out.println(ans);
+    }
+}

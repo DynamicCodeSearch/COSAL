@@ -1,0 +1,31 @@
+private boolean bellman() {
+    dist = new long[n];
+    Arrays.fill(dist, INF);
+    dist[0] = 0;
+    boolean[] flg = new boolean[n];
+    flg[0] = true;
+    for (int i = 0; i < n + 1; i++) {
+        for (ArrayList<Edge> ls : es) {
+            for (Edge e : ls) {
+                if (flg[e.a] && dist[e.b] > dist[e.a] + e.c) {
+                    dist[e.b] = dist[e.a] + e.c;
+                    flg[e.b] = true;
+                }
+            }
+        }
+    }
+    boolean[] nflg = new boolean[n];
+    for (int i = 0; i < n; i++) {
+        for (ArrayList<Edge> ls : es) {
+            for (Edge e : ls) {
+                if (flg[e.a] && dist[e.b] > dist[e.a] + e.c) {
+                    dist[e.b] = dist[e.a] + e.c;
+                    nflg[e.b] = true;
+                }
+                if (nflg[e.a])
+                    nflg[e.b] = true;
+            }
+        }
+    }
+    return nflg[n - 1];
+}

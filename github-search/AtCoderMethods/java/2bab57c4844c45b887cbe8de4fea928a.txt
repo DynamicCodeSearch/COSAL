@@ -1,0 +1,7 @@
+public void add(Edge edge) {
+    edges[edge.from()].add(edge);
+    Edge rev = edge.reversed();
+    if (rev != null) {
+        edges[rev.from()].add(rev);
+    }
+}

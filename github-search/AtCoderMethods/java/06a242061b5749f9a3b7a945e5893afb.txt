@@ -1,0 +1,18 @@
+static int upperBound(ArrayList<Pair> a, int fromIndex, int toIndex, long key) {
+    if (a.get(toIndex - 1).y <= key) {
+        return toIndex - 1;
+    } else if (a.get(fromIndex).y > key) {
+        return fromIndex - 1;
+    }
+    int l = fromIndex;
+    int r = toIndex - 1;
+    while (l + 1 < r) {
+        int c = (l + r) >>> 1;
+        if (a.get(c).y > key) {
+            r = c;
+        } else {
+            l = c;
+        }
+    }
+    return l;
+}

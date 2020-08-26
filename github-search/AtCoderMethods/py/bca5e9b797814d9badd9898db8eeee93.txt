@@ -1,0 +1,30 @@
+def main():
+    line = sys.stdin.readline()
+    lst = line.split(' ')
+    a = int(lst[0])
+    b = int(lst[1])
+    n = min(a,b)
+    m = max(a,b)
+
+    if (m == n+1):
+
+
+        ans = 1
+        for i in range(1,n+1):
+            ans = (ans * i) % 1000000007
+
+        for i in range(1,m+1):
+            ans = (ans * i) % 1000000007
+
+        print(ans)
+    elif (m == n):
+        ans = 2
+        for i in range(1,n+1):
+            ans = (ans * i) % 1000000007
+
+        for i in range(1,m+1):
+            ans = (ans * i) % 1000000007
+        print(ans)
+    else:
+        print(0)
+    return 0

@@ -1,0 +1,9 @@
+def main(argv):
+    for line in sys.stdin:
+        X, A, B = map(lambda x: int(x), line.split(" ", 3))
+        if B <= A:
+            print("delicious")
+        elif (B - A) <= X:
+            print("safe")
+        else:
+            print("dangerous")

@@ -1,0 +1,17 @@
+static List<Node> dfs(Node[] nodes, Edge[] edges, List<Node> path, Node destination, boolean[] looked) {
+    Node current = path.get(path.size() - 1);
+    if (current == destination) {
+        return path;
+    } else {
+        looked[current.no] = true;
+        for (Edge e : current.edges) {
+            Node next = e.from == current ? e.to : e.from;
+            if (!looked[next.no]) {
+                path.add(next);
+                return dfs(nodes, edges, path, destination, looked);
+            }
+        }
+        path.remove(path.size() - 1);
+        return dfs(nodes, edges, path, destination, looked);
+    }
+}

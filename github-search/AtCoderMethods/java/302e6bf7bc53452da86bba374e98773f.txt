@@ -1,0 +1,25 @@
+private static void solve() {
+    int h = nei();
+    int w = nei();
+    int b = nei();
+    int a = nei();
+    long MOD = 1000000007L;
+    BigInteger mod = BigInteger.valueOf(MOD);
+    BigInteger res = BigInteger.ZERO;
+    BigInteger o = null;
+    BigInteger p = null;
+    for (int i = 0; i < h - b; i++) {
+        int W = a - 1;
+        int H = i;
+        if (o == null)
+            o = combination(W + H, W, mod);
+        W = w - a - 1;
+        H = h - 1 - i;
+        if (p == null)
+            p = combination(W + H, W, mod);
+        res = res.add(o.multiply(p).mod(mod)).mod(mod);
+        o = o.multiply(BigInteger.valueOf(a + i)).multiply(BigInteger.valueOf(i + 1).modInverse(mod)).mod(mod);
+        p = p.multiply(BigInteger.valueOf(H)).multiply(BigInteger.valueOf(W + H).modInverse(mod)).mod(mod);
+    }
+    System.out.println(res);
+}

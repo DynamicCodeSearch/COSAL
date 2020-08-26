@@ -1,0 +1,22 @@
+public static Object[] shrinkXI(final long[] a) {
+    int n = a.length;
+    Integer[] b = new Integer[n];
+    for (int i = 0; i < n; i++) b[i] = i;
+    Arrays.sort(b, new Comparator<Integer>() {
+
+        public int compare(Integer x, Integer y) {
+            return Long.signum(a[x] - a[y]);
+        }
+    });
+    int[] ret = new int[n];
+    long[] interval = new long[n];
+    int p = 0;
+    for (int i = 0; i < n; i++) {
+        if (i > 0 && a[b[i]] > a[b[i - 1]]) {
+            interval[p] = a[b[i]] - a[b[i - 1]];
+            p++;
+        }
+        ret[b[i]] = p;
+    }
+    return new Object[] { ret, Arrays.copyOf(interval, p) };
+}

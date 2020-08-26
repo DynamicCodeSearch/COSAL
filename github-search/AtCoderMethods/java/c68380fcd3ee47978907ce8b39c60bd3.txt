@@ -1,0 +1,27 @@
+public void run() {
+    
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    long[] ary = new long[n];
+    for (int i = 0; i < n; i++) {
+        ary[i] = sc.nextLong();
+    }
+    HashMap<Long, Integer> map = new HashMap<Long, Integer>();
+    long[] tmp = ary.clone();
+    Arrays.sort(ary);
+    int count = 1;
+    map.put(ary[0], 0);
+    for (int i = 1; i < n; i++) {
+        if (ary[i - 1] < ary[i]) {
+            map.put(ary[i], count);
+            count++;
+        }
+    }
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < n; i++) {
+        sb.append(map.get(tmp[i]));
+        sb.append("\n");
+    }
+    System.out.println(sb.toString());
+    sc.close();
+}

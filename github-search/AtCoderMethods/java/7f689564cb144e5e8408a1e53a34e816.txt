@@ -1,0 +1,34 @@
+public static void main(String[] args) throws IOException {
+    final Scanner sc = new Scanner(System.in);
+    final int n = sc.nextInt();
+    final int m = sc.nextInt();
+    final int s = sc.nextInt() - 1;
+    ArrayList<HashSet<Integer>> adj = new ArrayList<HashSet<Integer>>();
+    for (int i = 0; i < n; i++) {
+        adj.add(new HashSet<Integer>());
+    }
+    for (int i = 0; i < m; i++) {
+        final int u = sc.nextInt() - 1;
+        final int v = sc.nextInt() - 1;
+        adj.get(u).add(v);
+        adj.get(v).add(u);
+    }
+    UnionFind uf = new UnionFind(n);
+    LinkedList<String> answer = new LinkedList<String>();
+    for (int i = n - 1; i >= 0; i--) {
+        for (final int next : adj.get(i)) {
+            if (next < i) {
+                continue;
+            }
+            uf.union(i, next);
+        }
+        if (uf.same(s, i)) {
+            answer.addFirst("" + (i + 1));
+        }
+    }
+    try (PrintWriter pw = new PrintWriter(System.out)) {
+        for (final String ss : answer) {
+            pw.println(ss);
+        }
+    }
+}

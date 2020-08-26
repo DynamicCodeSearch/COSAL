@@ -1,0 +1,14 @@
+public void solve(int testNumber, Scanner in, PrintWriter out) {
+    int n = in.nextInt();
+    int k = in.nextInt();
+    int[] length = new int[n];
+    for (int i = 0; i < n; ++i) {
+        length[i] = in.nextInt();
+    }
+    Arrays.sort(length);
+    int result = 0;
+    for (int i = n - k; i < n; ++i) {
+        result += length[i];
+    }
+    out.println(result);
+}

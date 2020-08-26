@@ -1,0 +1,17 @@
+public void solveD() {
+    int n = in.nextInt();
+    List<Pair<Integer, Integer>> list = new ArrayList<Pair<Integer, Integer>>(n);
+    SegmentTree t = new SegmentTree(100000);
+    t.add(0, 0);
+    for (int i = 0; i < n; i++) {
+        Pair<Integer, Integer> box = new Pair(in.nextInt(), -1 * in.nextInt());
+        list.add(box);
+    }
+    Collections.sort(list);
+    for (int i = 0; i < n; i++) {
+        int h = -list.get(i).second;
+        int now = t.get(0, h) + 1;
+        t.add(h, now);
+    }
+    System.out.println(t.get(0, t.size()));
+}

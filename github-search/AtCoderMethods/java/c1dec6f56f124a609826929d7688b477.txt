@@ -1,0 +1,12 @@
+private static List<Grid> getSquare(Grid grid) {
+    int a = grid.a;
+    int b = grid.b;
+    List<Grid> result = new ArrayList<Grid>();
+    for (int i = -1; i < 2; i++) {
+        for (int j = -1; j < 2; j++) {
+            if (isValid(a + i, b + j))
+                result.add(new Grid(a + i, b + j));
+        }
+    }
+    return result;
+}

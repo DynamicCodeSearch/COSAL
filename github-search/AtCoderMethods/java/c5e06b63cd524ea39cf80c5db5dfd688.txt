@@ -1,0 +1,78 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    char[] A = sc.next().toCharArray();
+    char[] B = sc.next().toCharArray();
+    char[] C = sc.next().toCharArray();
+    
+    int a = 0;
+    int b = 0;
+    int c = 0;
+    boolean play1 = true;
+    boolean play2 = true;
+    boolean play3 = true;
+    int ans = 0;
+    for (; ; ) {
+        if (ans == 1)
+            break;
+        while (play1) {
+            if (a >= A.length) {
+                System.out.println("A");
+                ans++;
+                break;
+            }
+            if (A[a] == 'a') {
+                a++;
+            } else if (A[a] == 'b') {
+                play1 = false;
+                play2 = true;
+                play3 = false;
+                a++;
+            } else if (A[a] == 'c') {
+                play1 = false;
+                play2 = false;
+                play3 = true;
+                a++;
+            }
+        }
+        while (play2) {
+            if (b >= B.length) {
+                System.out.println("B");
+                ans++;
+                break;
+            }
+            if (B[b] == 'b') {
+                b++;
+            } else if (B[b] == 'a') {
+                play1 = true;
+                play2 = false;
+                play3 = false;
+                b++;
+            } else if (B[b] == 'c') {
+                play1 = false;
+                play2 = false;
+                play3 = true;
+                b++;
+            }
+        }
+        while (play3) {
+            if (c >= C.length) {
+                System.out.println("C");
+                ans++;
+                break;
+            }
+            if (C[c] == 'c') {
+                c++;
+            } else if (C[c] == 'a') {
+                play1 = true;
+                play2 = false;
+                play3 = false;
+                c++;
+            } else if (C[c] == 'b') {
+                play1 = false;
+                play2 = true;
+                play3 = false;
+                c++;
+            }
+        }
+    }
+}

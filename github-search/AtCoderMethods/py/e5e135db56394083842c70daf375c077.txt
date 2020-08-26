@@ -1,0 +1,18 @@
+def main(args):
+    N = int(input())
+    scores = [int(input()) for _ in range(N)]
+
+    possible_results = set([0])
+    for s in scores:
+        temp = set()
+        for p in possible_results:
+            temp.add(p + s)
+            temp.add(p)
+        possible_results = temp
+
+    results = [x for x in possible_results if x%10 != 0]
+    results.sort()
+    if len(results) == 0:
+        print(0)
+    else:
+        print(results[-1])

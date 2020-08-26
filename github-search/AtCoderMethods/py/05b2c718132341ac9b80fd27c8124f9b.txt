@@ -1,0 +1,24 @@
+def main():
+    N = int(input())
+    a = [int(i) for i in input().split()]
+
+    multi_2 = 0
+    multi_4 = 0
+
+    for num in a:
+        if(num % 2 == 0):
+            if(num % 4 == 0):
+                multi_4 += 1
+            else:
+                multi_2 += 1
+
+
+
+    pair_2 = int(multi_2 / 2)
+
+    permitrange = 3 + (multi_4 - 1) * 2 + pair_2 * 2
+
+    if(N <= permitrange):
+        print("Yes")
+    else:
+        print("No")

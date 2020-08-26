@@ -1,0 +1,77 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    double d = scan.nextDouble() / 10;
+    double w = scan.nextDouble() / 60;
+    BigDecimal D = new BigDecimal(String.valueOf(d));
+    BigDecimal W = new BigDecimal(String.valueOf(w));
+    D = D.setScale(2, BigDecimal.ROUND_HALF_UP);
+    W = W.setScale(1, BigDecimal.ROUND_HALF_UP);
+    d = D.doubleValue();
+    w = W.doubleValue();
+    String ansD;
+    int ansW = 0;
+    if ((d >= 11.25) && (d < 33.75)) {
+        ansD = "NNE";
+    } else if ((d >= 33.75) && (d < 56.25)) {
+        ansD = "NE";
+    } else if ((d >= 56.25) && (d < 78.75)) {
+        ansD = "ENE";
+    } else if ((d >= 78.75) && (d < 101.25)) {
+        ansD = "E";
+    } else if ((d >= 101.25) && (d < 123.75)) {
+        ansD = "ESE";
+    } else if ((d >= 123.75) && (d < 146.25)) {
+        ansD = "SE";
+    } else if ((d >= 146.25) && (d < 168.75)) {
+        ansD = "SSE";
+    } else if ((d >= 168.75) && (d < 191.25)) {
+        ansD = "S";
+    } else if ((d >= 191.25) && (d < 213.75)) {
+        ansD = "SSW";
+    } else if ((d >= 213.75) && (d < 236.25)) {
+        ansD = "SW";
+    } else if ((d >= 236.25) && (d < 258.75)) {
+        ansD = "WSW";
+    } else if ((d >= 258.75) && (d < 281.25)) {
+        ansD = "W";
+    } else if ((d >= 281.25) && (d < 303.75)) {
+        ansD = "WNW";
+    } else if ((d >= 303.75) && (d < 326.25)) {
+        ansD = "NW";
+    } else if ((d >= 326.25) && (d < 348.75)) {
+        ansD = "NNW";
+    } else {
+        ansD = "N";
+    }
+    if ((w >= 0.0) && (w <= 0.2)) {
+        ansW = 0;
+    } else if ((w >= 0.3) && (w <= 1.5)) {
+        ansW = 1;
+    } else if ((w >= 1.6) && (w <= 3.3)) {
+        ansW = 2;
+    } else if ((w >= 3.4) && (w <= 5.4)) {
+        ansW = 3;
+    } else if ((w >= 5.5) && (w <= 7.9)) {
+        ansW = 4;
+    } else if ((w >= 8.0) && (w <= 10.7)) {
+        ansW = 5;
+    } else if ((w >= 10.8) && (w <= 13.8)) {
+        ansW = 6;
+    } else if ((w >= 13.9) && (w <= 17.1)) {
+        ansW = 7;
+    } else if ((w >= 17.2) && (w <= 20.7)) {
+        ansW = 8;
+    } else if ((w >= 20.8) && (w <= 24.4)) {
+        ansW = 9;
+    } else if ((w >= 24.5) && (w <= 28.4)) {
+        ansW = 10;
+    } else if ((w >= 28.5) && (w <= 32.6)) {
+        ansW = 11;
+    } else if (w >= 32.7) {
+        ansW = 12;
+    }
+    if (ansW == 0) {
+        ansD = "C";
+    }
+    System.out.println(ansD + " " + ansW);
+}

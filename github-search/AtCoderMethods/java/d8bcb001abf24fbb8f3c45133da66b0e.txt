@@ -1,0 +1,24 @@
+double main() {
+    double sumW = 0;
+    double maxp = 0;
+    double maxp_;
+    int maxid = 0;
+    for (int i = 0; i < K; i++) {
+        
+        maxp_ = 0;
+        for (int j = 0; j < N; j++) {
+            if (!used[j]) {
+                
+                double nd = (sumW * maxp + w[j] * p[j]) / (sumW + w[j]);
+                if (nd > maxp_) {
+                    maxid = j;
+                    maxp_ = nd;
+                }
+            }
+        }
+        used[maxid] = true;
+        sumW += w[maxid];
+        maxp = maxp_;
+    }
+    return maxp;
+}

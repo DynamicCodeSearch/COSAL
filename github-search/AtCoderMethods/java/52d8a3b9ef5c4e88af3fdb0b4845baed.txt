@@ -1,0 +1,32 @@
+static int LCA(int v_, int s_) {
+    
+    int v, s;
+    if (V[v_].rank > V[s_].rank) {
+        v = numr(v_, V[s_].rank);
+        s = s_;
+    } else {
+        s = numr(s_, V[v_].rank);
+        v = v_;
+    }
+    int cnt = V[s].tree.size() - 1;
+    int ans;
+    while (true) {
+        if (cnt < 1) {
+            if (V[v].tree.get(cnt) != V[s].tree.get(cnt)) {
+                
+                ans = V[v].rank - 1;
+            } else {
+                ans = V[v].rank;
+            }
+            break;
+        }
+        if (V[v].tree.get(cnt) != V[s].tree.get(cnt)) {
+            v = V[v].tree.get(cnt);
+            s = V[s].tree.get(cnt);
+            cnt = V[s].tree.size() - 1;
+            continue;
+        }
+        cnt--;
+    }
+    return ans;
+}

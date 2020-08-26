@@ -1,0 +1,16 @@
+public void union(int p, int q) {
+    int i = find(p);
+    int j = find(q);
+    if (i == j)
+        return;
+    
+    if (rank[i] < rank[j]) {
+        id[i] = j;
+    } else if (rank[i] > rank[j]) {
+        id[j] = i;
+    } else {
+        id[j] = i;
+        rank[i]++;
+    }
+    count--;
+}

@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    String in = scan.next();
+    int last = in.length();
+    LABEL: while (true) {
+        
+        if (last == 0) {
+            System.out.println("YES");
+            return;
+        }
+        for (String com : checkArr) {
+            int dum = in.lastIndexOf(com, last - 1);
+            
+            if (dum >= 0 && last - dum == com.length()) {
+                last -= com.length();
+                continue LABEL;
+            }
+        }
+        System.out.println("NO");
+        return;
+    }
+}

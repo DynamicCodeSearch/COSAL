@@ -1,0 +1,28 @@
+def main():
+    N, Ma, Mb = map(int, input().split())
+    l = []
+    for _ in range(N):
+        l.append(tuple(map(int, input().split())))
+
+    ans = INF
+    dp = [[[INF] * 401 for i in range(401)] for j in range(N + 1)]
+    dp[0][0][0] = 0
+
+    max_a, max_b = 1, 1
+    for i in range(N):
+
+        for a in range(max_a, -1, -1):
+            for b in range(max_b, -1, -1):
+                if dp[i][a][b] != INF:
+                    dp[i + 1][a + l[i][0]][b + l[i][1]] = min(dp[i + 1][a + l[i][0]][b + l[i][1]], dp[i][a][b] + l[i][2])
+                    dp[i + 1][a][b] = min(dp[i + 1][a][b], dp[i][a][b])
+
+                    max_a = max(max_a, a + l[i][0])
+                    max_b = max(max_b, b + l[i][1])
+
+    for a in range(1, len(dp[0])):
+        for b in range(1, len(dp[1])):
+            if a * Mb == b * Ma:
+                ans = min(ans, dp[N][a][b])
+
+    print((-1 if ans == INF else ans))

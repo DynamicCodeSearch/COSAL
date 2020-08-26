@@ -1,0 +1,25 @@
+private static void solve() {
+    int N = ni();
+    int K = ni();
+    Set<Integer> set = new HashSet<Integer>();
+    for (int i = 0; i < K; i++) {
+        set.add(ni());
+    }
+    while (true) {
+        boolean flag = true;
+        String s = String.valueOf(N);
+        for (Integer i : set) {
+            if (s.contains(String.valueOf(i))) {
+                flag = false;
+            } else {
+                flag = flag && true;
+            }
+        }
+        if (flag) {
+            System.out.println(N);
+            break;
+        } else {
+            N++;
+        }
+    }
+}

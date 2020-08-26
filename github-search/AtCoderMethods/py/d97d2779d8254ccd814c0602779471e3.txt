@@ -1,0 +1,20 @@
+def solve(x, y):
+    if (x, y) in solution:
+        return solution[(x, y)]
+    for j in range(2, x + 1, 2):
+        i = j // 2
+        if not solve(x - 2 * i, y + i):
+            res = True
+            solution[(x, y)] = res
+            choice[x, y] = x - 2 * i, y + i
+            return res
+    for j in range(2, y + 1, 2):
+        i = j // 2
+        if not solve(x + i, y - 2 * i):
+            res = True
+            solution[(x, y)] = res
+            choice[x, y] = x + i, y - 2 * i
+            return res
+    res = False
+    solution[(x, y)] = res
+    return res

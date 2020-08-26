@@ -1,0 +1,33 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    StringTokenizer st = new StringTokenizer(br.readLine());
+    int n = Integer.parseInt(st.nextToken());
+    int m = Integer.parseInt(st.nextToken());
+    ArrayList<Node>[] list = new ArrayList[m + 1];
+    for (int i = 1; i <= m; i++) list[i] = new ArrayList<>();
+    for (int i = 1; i <= n; i++) {
+        st = new StringTokenizer(br.readLine());
+        int start = Integer.parseInt(st.nextToken());
+        int end = Integer.parseInt(st.nextToken());
+        list[end - start + 1].add(new Node(start, end));
+    }
+    int[] bit = new int[m + 1];
+    int fix = n;
+    StringBuilder sb = new StringBuilder();
+    for (int i = 1; i <= m; i++) {
+        int ans = 0;
+        for (int j = i; j <= m; j += i) {
+            ans += find(bit, j);
+        
+        }
+        for (Node temp : list[i]) {
+            update(temp.start, 1, bit);
+            update(temp.end + 1, -1, bit);
+        
+        }
+        sb.append(ans + fix);
+        sb.append('\n');
+        fix -= list[i].size();
+    }
+    System.out.println(sb);
+}

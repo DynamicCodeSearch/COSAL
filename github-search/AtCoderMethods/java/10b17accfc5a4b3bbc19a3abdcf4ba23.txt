@@ -1,0 +1,16 @@
+public static void dfs(int n, int mask) {
+    if (n == R) {
+        int s = 0;
+        for (int i = 0; i < R - 1; i++) {
+            s += (dp[mach[i]][mach[i + 1]]);
+        }
+        ans = Math.min(ans, s);
+    } else {
+        for (int j = 0; j < R; j++) {
+            if ((mask & (1 << j)) == 0) {
+                mach[n] = r[j];
+                dfs(n + 1, (mask + (1 << j)));
+            }
+        }
+    }
+}

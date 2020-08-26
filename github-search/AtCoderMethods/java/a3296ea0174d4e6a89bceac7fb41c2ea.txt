@@ -1,0 +1,27 @@
+public static void main(String[] args) throws IOException {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int Q = sc.nextInt();
+    int[] l = new int[Q + 1];
+    int[] r = new int[Q + 1];
+    int[] a = new int[N + 2];
+    Arrays.fill(a, 0);
+    Arrays.fill(l, 0);
+    Arrays.fill(r, 0);
+    for (int i = 1; i <= Q; i++) {
+        l[i] = sc.nextInt();
+        r[i] = sc.nextInt();
+    }
+    for (int j = 1; j <= Q; j++) {
+        a[l[j]] += 1;
+        a[r[j] + 1] += -1;
+    }
+    for (int k = 1; k <= N + 1; k++) {
+        a[k] = a[k] + a[k - 1];
+    }
+    StringBuilder buf = new StringBuilder("");
+    for (int i = 1; i <= N; i++) {
+        buf.append(String.valueOf(a[i] % 2));
+    }
+    System.out.println(buf.toString());
+}

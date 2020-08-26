@@ -1,0 +1,29 @@
+public static void main(String[] args) throws InterruptedException {
+    
+    Scanner sc = new Scanner(System.in);
+    
+    String str = sc.next();
+    
+    sc.close();
+    
+    ArrayList<String> list = new ArrayList<String>();
+    for (int i = 0; i < str.length(); i++) {
+        
+        if ("B".equals(Character.toString((str.charAt(i))))) {
+            
+            if (!list.isEmpty()) {
+                
+                list.remove(list.size() - 1);
+            }
+        } else {
+            
+            list.add(Character.toString(str.charAt(i)));
+        }
+    }
+    
+    String output = "";
+    for (String obj : list) {
+        output = output.concat(obj);
+    }
+    System.out.println(output);
+}

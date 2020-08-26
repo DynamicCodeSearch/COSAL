@@ -1,0 +1,17 @@
+public static void main(String[] args) throws Exception {
+    Scanner scan = new Scanner(System.in);
+    String S = scan.next();
+    String T = scan.next();
+    String wild = "atcoder";
+    for (int i = 0; i < S.length(); i++) {
+        char _s = S.charAt(i);
+        char _t = T.charAt(i);
+        if ((_s == '@' && wild.contains(String.valueOf(_t))) || (_t == '@' && wild.contains(String.valueOf(_s))) || (_t == _s)) {
+            continue;
+        } else {
+            System.out.println("You will lose");
+            return;
+        }
+    }
+    System.out.println("You can win");
+}

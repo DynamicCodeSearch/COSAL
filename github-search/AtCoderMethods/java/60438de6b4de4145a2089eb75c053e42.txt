@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    Point[] pn = new Point[n];
+    Point[] pm = new Point[m];
+    for (int i = 0; i < n; i++) pn[i] = new Point(i, sc.nextInt(), sc.nextInt());
+    for (int i = 0; i < m; i++) pm[i] = new Point(i, sc.nextInt(), sc.nextInt());
+    int[] ret = new int[n];
+    for (int i = 0; i < n; i++) {
+        int d = Integer.MAX_VALUE;
+        for (int j = 0; j < m; j++) {
+            int tmp = Math.abs(pn[i].x - pm[j].x) + Math.abs(pn[i].y - pm[j].y);
+            if (tmp < d) {
+                d = Math.min(d, tmp);
+                ret[i] = j + 1;
+            }
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        System.out.println(ret[i]);
+    }
+}

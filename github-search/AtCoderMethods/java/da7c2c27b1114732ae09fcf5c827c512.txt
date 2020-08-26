@@ -1,0 +1,8 @@
+int query(int node, int s, int e, int l, int r) {
+    if (s >= l && e <= r)
+        return t[node];
+    if (s > r || e < l)
+        return Integer.MAX_VALUE;
+    int mid = (s + e) >> 1;
+    return Math.min(query(node << 1, s, mid, l, r), query(node << 1 | 1, mid + 1, e, l, r));
+}

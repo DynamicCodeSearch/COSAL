@@ -1,0 +1,10 @@
+static void Method(ArrayList<Integer> num, ArrayList<String> param) {
+    ArrayList<Long> fib = new ArrayList<Long>();
+    fib.add(0l);
+    fib.add(0l);
+    fib.add(1l);
+    for (int i = 3; i < num.get(0); i++) {
+        fib.add((fib.get(i - 1) + fib.get(i - 2) + fib.get(i - 3)) % 10007);
+    }
+    System.out.println(fib.get(num.get(0) - 1));
+}

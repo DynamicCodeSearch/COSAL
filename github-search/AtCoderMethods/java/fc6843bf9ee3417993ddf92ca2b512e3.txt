@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int L, H, N, i, A;
+    L = sc.nextInt();
+    H = sc.nextInt();
+    N = sc.nextInt();
+    int[] lack = new int[N];
+    for (i = 0; i < N; i++) {
+        A = sc.nextInt();
+        if (A < L)
+            lack[i] = L - A;
+        if (A > L)
+            lack[i] = -1;
+        if (A >= L && A <= H)
+            lack[i] = 0;
+    }
+    for (i = 0; i < N; i++) {
+        System.out.println(lack[i]);
+    }
+}

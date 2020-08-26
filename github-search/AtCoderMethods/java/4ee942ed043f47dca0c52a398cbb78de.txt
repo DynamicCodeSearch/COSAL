@@ -1,0 +1,13 @@
+void dfs2(boolean mode) {
+    visited = true;
+    if (mode) {
+        black++;
+    } else {
+        white++;
+    }
+    for (int x : nbr) {
+        if (!V[x].visited) {
+            V[x].dfs2(mode);
+        }
+    }
+}

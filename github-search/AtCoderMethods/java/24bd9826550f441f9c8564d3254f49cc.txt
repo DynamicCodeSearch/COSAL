@@ -1,0 +1,15 @@
+public long dfs(int n, int sum, int c) {
+    if (n == N) {
+        if (c > 0 && sum % c == 0 && sum / c == A) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+    if (dp[n][sum][c] != -1)
+        return dp[n][sum][c];
+    long ret = 0;
+    ret += dfs(n + 1, sum + x[n], c + 1);
+    ret += dfs(n + 1, sum, c);
+    return dp[n][sum][c] = ret;
+}

@@ -1,0 +1,25 @@
+public static void main(String[] args) throws IOException {
+    InputStreamReader isr = new InputStreamReader(System.in);
+    BufferedReader br = new BufferedReader(isr);
+    String buf = br.readLine();
+    String[] ary = buf.split(" ");
+    int m = Integer.parseInt(ary[0]);
+    int n = Integer.parseInt(ary[1]);
+    int N = Integer.parseInt(ary[2]);
+    int rest = 0, sum = 0;
+    while (true) {
+        sum = sum + N;
+        
+        if (N < m) {
+            if (N + rest < m)
+                break;
+            N = N + rest;
+            rest = 0;
+        }
+        rest = rest + (N % m);
+        
+        N = (N / m) * n;
+    
+    }
+    System.out.println(sum);
+}

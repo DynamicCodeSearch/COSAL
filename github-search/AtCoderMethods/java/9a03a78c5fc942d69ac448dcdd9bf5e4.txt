@@ -1,0 +1,14 @@
+public static void main(String[] args) throws Exception {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int[] freq = new int[100005];
+    int n = in.ii();
+    int[] A = in.iia(n);
+    for (int i = 1; i <= n; i++) freq[A[i]]++;
+    int ans = Integer.MIN_VALUE;
+    for (int i = 1; i < 100004; i++) {
+        ans = Math.max(freq[i - 1] + freq[i] + freq[i + 1], ans);
+    }
+    out.println(ans);
+    out.close();
+}

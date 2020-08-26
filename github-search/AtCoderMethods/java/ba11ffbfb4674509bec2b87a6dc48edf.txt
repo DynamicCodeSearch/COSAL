@@ -1,0 +1,38 @@
+public static void main(String[] args) {
+    int N = in.nextInt(), M = in.nextInt();
+    r = new boolean[N][N];
+    for (int i = 0; i < N; i++) {
+        Arrays.fill(r[i], false);
+    }
+    for (int i = 0; i < M; i++) {
+        int a = in.nextInt() - 1, b = in.nextInt() - 1;
+        r[a][b] = true;
+        r[b][a] = true;
+    }
+    boolean[] v = new boolean[N];
+    v[0] = true;
+    Deque<P> q = new ArrayDeque<>();
+    q.push(new P(1, v));
+    int sum = 0;
+    while (q.size() > 0) {
+        P p = q.pop();
+        boolean all = true;
+        for (int i = 0; i < N; i++) {
+            if (!p.v[i])
+                all = false;
+        }
+        if (all) {
+            sum++;
+            continue;
+        }
+        for (int i = 0; i < N; i++) {
+            if (!p.v[i] && r[p.pos - 1][i]) {
+                boolean[] nv = new boolean[N];
+                nv = Arrays.copyOf(p.v, p.v.length);
+                nv[i] = true;
+                q.push(new P(i + 1, nv));
+            }
+        }
+    }
+    System.out.println(sum);
+}

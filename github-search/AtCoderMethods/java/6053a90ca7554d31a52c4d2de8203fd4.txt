@@ -1,0 +1,61 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    sc.nextLine();
+    String given = sc.nextLine();
+    
+    ArrayList<Character> problem = new ArrayList<Character>();
+    for (int i = 0; i < given.length(); i++) {
+        problem.add(given.charAt(i));
+    }
+    
+    
+    ArrayList<Character> answer = new ArrayList<Character>();
+    for (int i = 0; i < given.length(); i++) {
+        answer.add(given.charAt(i));
+    }
+    
+    
+    
+    int index = 0;
+    while (true) {
+        if (problem.size() == 0) {
+            break;
+        }
+        if (index == problem.size()) {
+            break;
+        }
+        if (index == 0) {
+            index++;
+            continue;
+        }
+        if (problem.get(index - 1) == '(' && problem.get(index) == ')') {
+            problem.remove(index);
+            problem.remove(index - 1);
+            
+            index = 0;
+            continue;
+        }
+        index++;
+    }
+    
+    int left = 0;
+    int right = 0;
+    for (int i = 0; i < problem.size(); i++) {
+        if (problem.get(i) == '(') {
+            left++;
+        } else {
+            right++;
+        }
+    }
+    
+    for (int i = 0; i < right; i++) {
+        answer.add(0, '(');
+    }
+    for (int i = 0; i < left; i++) {
+        answer.add(')');
+    }
+    for (int i = 0; i < answer.size(); i++) {
+        System.out.print(answer.get(i));
+    }
+}

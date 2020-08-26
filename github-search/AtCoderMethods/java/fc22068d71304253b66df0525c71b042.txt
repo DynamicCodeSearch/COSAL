@@ -1,0 +1,25 @@
+public void solve() {
+    N = nextInt();
+    K = nextInt();
+    D = new int[K];
+    notUse = new boolean[10];
+    for (int i = 0; i < K; i++) {
+        D[i] = nextInt();
+        notUse[D[i]] = true;
+    }
+    for (int i = N; i <= 100000; i++) {
+        int j = i;
+        boolean flag = true;
+        while (j > 0) {
+            if (notUse[j % 10]) {
+                flag = false;
+                break;
+            }
+            j /= 10;
+        }
+        if (flag) {
+            out.println(i);
+            break;
+        }
+    }
+}

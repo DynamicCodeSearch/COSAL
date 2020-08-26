@@ -1,0 +1,15 @@
+def find_all_paths(graph, start, rest, path=[]):
+    path = path + [start]
+    rest2 = rest.copy()
+    rest2.remove(start)
+    if len(rest2) == 0:
+        return [path]
+    if start not in graph:
+        return []
+    paths = []
+    for node in graph[start]:
+        if node not in path:
+            newpaths = find_all_paths(graph, node, rest2, path)
+            for newpath in newpaths:
+                paths.append(newpath)
+    return paths

@@ -1,0 +1,30 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    int c = sc.nextInt();
+    int d = sc.nextInt();
+    int e = sc.nextInt();
+    int f = sc.nextInt();
+    double water = 0;
+    double suger = 0;
+    double max_w = 0;
+    double max_s = 0;
+    double max_d = 0;
+    for (int i = 0; 100 * a * i <= f; i++) {
+        for (int j = 0; 100 * (a * i + b * j) <= f; j++) {
+            water = 100 * (a * i + b * j);
+            for (int k = 0; k * c <= f - water; k++) {
+                for (int l = 0; k * c + l * d <= f - water; l++) {
+                    suger = k * c + l * d;
+                    if (water / 100 >= suger / (double) e && max_d <= suger / (water + suger)) {
+                        max_w = water;
+                        max_s = suger;
+                        max_d = suger / (water + suger);
+                    }
+                }
+            }
+        }
+    }
+    System.out.println((int) (max_w + max_s) + " " + (int) max_s);
+}

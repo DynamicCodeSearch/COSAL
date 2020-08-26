@@ -1,0 +1,7 @@
+def select_min(l):
+    if len(l) == 0:
+        return 0
+    cand = min(l)
+    if cand % 10 > 0:
+        return cand
+    return select_min([i for i in l if i != cand])

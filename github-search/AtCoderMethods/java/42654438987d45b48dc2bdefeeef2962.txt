@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    InputStream inputStream = System.in;
+    OutputStream outputStream = System.out;
+    InputReader in = new InputReader(inputStream);
+    PrintWriter out = new PrintWriter(outputStream);
+    String s = in.next();
+    int count = 0;
+    for (int i = 0; i < s.length(); ++i) {
+        if (s.charAt(i) == 'p') {
+            count++;
+        }
+    }
+    int canUse = s.length() / 2;
+    out.println(canUse - count);
+    out.close();
+}

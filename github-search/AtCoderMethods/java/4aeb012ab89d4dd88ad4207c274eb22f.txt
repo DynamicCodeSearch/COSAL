@@ -1,0 +1,11 @@
+public static long pow(long a, long n, long mod) {
+    
+    long ret = 1;
+    int x = 63 - Long.numberOfLeadingZeros(n);
+    for (; x >= 0; x--) {
+        ret = ret * ret % mod;
+        if (n << 63 - x < 0)
+            ret = ret * a % mod;
+    }
+    return ret;
+}

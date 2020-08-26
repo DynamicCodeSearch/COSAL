@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    
+    
+    final int n;
+    
+    final int[] a;
+    try (Scanner scan = new Scanner(System.in)) {
+        n = scan.nextInt();
+        a = new int[n];
+        for (int i = 0; i < n; i++) {
+            a[i] = scan.nextInt();
+        }
+    }
+    
+    int result = IntStream.rangeClosed(-100, 100).map(y -> Arrays.stream(a).map(e -> (e - y) * (e - y)).sum()).min().getAsInt();
+    
+    out.println(result);
+    out.close();
+}

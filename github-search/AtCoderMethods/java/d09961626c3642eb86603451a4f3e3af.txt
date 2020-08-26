@@ -1,0 +1,25 @@
+public static void main(String[] args) throws java.lang.Exception {
+    InputReader in = new InputReader(System.in);
+    PrintWriter w = new PrintWriter(System.out);
+    int n = in.nextInt(), m = in.nextInt();
+    graph = new int[n][n];
+    visited = new boolean[n];
+    int[] from = new int[m];
+    int[] to = new int[m];
+    for (int i = 0; i < m; i++) {
+        from[i] = in.nextInt() - 1;
+        to[i] = in.nextInt() - 1;
+        graph[from[i]][to[i]] = graph[to[i]][from[i]] = 1;
+    }
+    int ans = 0;
+    for (int i = 0; i < m; i++) {
+        visited = new boolean[n];
+        graph[from[i]][to[i]] = graph[to[i]][from[i]] = 0;
+        dfs(0);
+        if (!is_all_visited())
+            ans++;
+        graph[from[i]][to[i]] = graph[to[i]][from[i]] = 1;
+    }
+    w.println(ans);
+    w.close();
+}

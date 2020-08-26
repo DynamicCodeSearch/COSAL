@@ -1,0 +1,40 @@
+private static char play(char[][] player) {
+    int i = 0, j = 0;
+    try {
+        int a = 0, b = 0, c = 0;
+        while (true) {
+            switch(player[i][j]) {
+                case 'a':
+                    i = 0;
+                    j = a++;
+                    break;
+                case 'b':
+                    i = 1;
+                    j = b++;
+                    break;
+                case 'c':
+                    i = 2;
+                    j = c++;
+                    break;
+                default:
+                    break;
+            }
+        }
+    } catch (Exception e) {
+        char p = ' ';
+        switch(i) {
+            case 0:
+                p = 'A';
+                break;
+            case 1:
+                p = 'B';
+                break;
+            case 2:
+                p = 'C';
+                break;
+            default:
+                break;
+        }
+        return p;
+    }
+}

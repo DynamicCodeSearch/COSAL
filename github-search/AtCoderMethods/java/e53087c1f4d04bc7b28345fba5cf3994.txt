@@ -1,0 +1,39 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int n = in.nextInt();
+    in.nextLine();
+    
+    int[] letters = new int[26];
+    for (int z = 0; z < 26; z++) {
+        letters[z] = 50;
+    }
+    for (int x = 0; x < n; x++) {
+        String s = in.nextLine();
+        int[] nletters = new int[26];
+        for (int y = 0; y < s.length(); y++) {
+            int a = alphabetExchange(s.charAt(y)) - 1;
+            if (letters[a] != -1) {
+                nletters[a]++;
+            }
+        }
+        for (int z = 0; z < 26; z++) {
+            if (nletters[z] == 0) {
+                letters[z] = -1;
+            } else {
+                if (nletters[z] < letters[z]) {
+                    letters[z] = nletters[z];
+                }
+            }
+        }
+    }
+    String result = "";
+    for (int x = 0; x < 26; x++) {
+        if (letters[x] > 0) {
+            String letter = alphabetExchangeOpp(x + 1);
+            for (int y = 0; y < letters[x]; y++) {
+                result += letter;
+            }
+        }
+    }
+    System.out.println(result);
+}

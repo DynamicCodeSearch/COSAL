@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int h = scanner.nextInt(), w = scanner.nextInt();
+    char[][] picture = new char[h * 2][w];
+    for (int i = 0; i < h * 2; i++) {
+        String s = scanner.next();
+        picture[i] = s.toCharArray();
+        picture[i + 1] = s.toCharArray();
+        i++;
+    }
+    for (int i = 0; i < h * 2; i++) {
+        for (int j = 0; j < w; j++) {
+            System.out.print(picture[i][j]);
+        }
+        System.out.println();
+    }
+}

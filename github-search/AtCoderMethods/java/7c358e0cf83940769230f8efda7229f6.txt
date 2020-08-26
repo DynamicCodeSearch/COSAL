@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    String[] S = new String[n];
+    for (int i = 0; i < n; i++) {
+        S[i] = sc.next();
+    }
+    String word = "";
+    for (char c = 'a'; c <= 'z'; c++) {
+        int min = 10000007;
+        for (int i = 0; i < n; i++) {
+            int cnt = 0;
+            for (int j = 0; j < S[i].length(); j++) {
+                if (S[i].charAt(j) == c) {
+                    cnt++;
+                }
+            }
+            min = Math.min(min, cnt);
+        }
+        for (int i = 0; i < min; i++) {
+            word += String.valueOf(c);
+        }
+    }
+    System.out.println(word);
+}

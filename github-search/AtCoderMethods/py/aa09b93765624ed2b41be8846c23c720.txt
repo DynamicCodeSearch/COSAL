@@ -1,0 +1,13 @@
+def solve(N, T, t):
+    ans = 0
+    t_dif = [t[i + 1] - t[i] for i in range(N - 1)]
+
+    for i in t_dif:
+        if i >= T:
+            ans += T
+        else:
+            ans += i
+
+    ans += T
+
+    return ans

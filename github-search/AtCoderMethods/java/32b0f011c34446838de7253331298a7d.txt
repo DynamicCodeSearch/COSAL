@@ -1,0 +1,11 @@
+long modfib(long n, long mod, long[][] f, long[][] a) {
+    n--;
+    while (n > 0) {
+        if ((n & 1) == 1) {
+            f = mult(f, a, mod);
+        }
+        a = mult(a, a, mod);
+        n >>= 1;
+    }
+    return f[0][1];
+}

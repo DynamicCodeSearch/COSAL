@@ -1,0 +1,16 @@
+public void solve() {
+    String s = next();
+    int len = (1 << (s.length() - 1));
+    long ans = 0;
+    for (int i = 0; i < len; i++) {
+        int prev = 0;
+        for (int j = 0; j < s.length() - 1; j++) {
+            if ((i & (1 << j)) != 0) {
+                ans += Long.parseLong(s.substring(prev, j + 1));
+                prev = j + 1;
+            }
+        }
+        ans += Long.parseLong(s.substring(prev));
+    }
+    out.println(ans);
+}

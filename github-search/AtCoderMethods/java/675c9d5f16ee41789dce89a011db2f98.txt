@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    long t = in.nextInt();
+    long a = in.nextInt();
+    for (int i = 0; i < n - 1; i++) {
+        long T = in.nextInt();
+        long A = in.nextInt();
+        long needMul = Math.max((t + (T - 1)) / T, (a + (A - 1)) / A);
+        t = T * needMul;
+        a = A * needMul;
+    }
+    out.println(t + a);
+    out.flush();
+}

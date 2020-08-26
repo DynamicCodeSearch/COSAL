@@ -1,0 +1,11 @@
+def power(a, n):
+    if (n == 0):
+        return 1
+    res = 1
+    while (n > 0):
+        if ((n & 1) == 1):
+            res = res * a % MOD
+        a = a * a % MOD
+        n >>= 1
+
+    return res

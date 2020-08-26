@@ -1,0 +1,22 @@
+public void solve() {
+    N = nextLong();
+    S = nextLong();
+    if (N == S) {
+        out.println(N + 1);
+        return;
+    }
+    long ans = Long.MAX_VALUE;
+    for (int i = 2; (long) i * i <= N; i++) {
+        long res = f(i, N);
+        if (res == S) {
+            ans = Math.min(ans, i);
+        }
+    }
+    for (int i = 1; (long) i * i <= N - S; i++) {
+        long B = (N - S) / i + 1;
+        if (f(B, N) == S) {
+            ans = Math.min(ans, B);
+        }
+    }
+    out.println(ans == Long.MAX_VALUE ? -1 : ans);
+}

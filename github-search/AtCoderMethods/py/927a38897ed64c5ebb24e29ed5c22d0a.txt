@@ -1,0 +1,16 @@
+def C_investigation(ta, tb, T, V, girl):
+
+    import math
+    def dist(a, b):
+
+        x1, y1 = a[0], a[1]
+        x2, y2 = b[0], b[1]
+        return math.sqrt(pow((x2 - x1), 2) + pow((y2 - y1), 2))
+
+    ans = 'NO'
+    for g in girl:
+        ta2girl = dist(ta, g)  
+        tb2girl = dist(tb, g)  
+        if ta2girl + tb2girl <= T*V:
+            ans = 'YES'
+    return ans

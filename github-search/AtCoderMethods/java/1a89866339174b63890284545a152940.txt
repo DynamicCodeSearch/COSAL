@@ -1,0 +1,24 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    int A = sc.nextInt();
+    int B = sc.nextInt();
+    int count = 0;
+    while (A != B) {
+        count++;
+        int diff = Math.abs(B - A);
+        int operation;
+        if (diff >= 8) {
+            operation = 10;
+        } else if (diff > 3) {
+            operation = 5;
+        } else {
+            operation = 1;
+        }
+        if (B - A > 0) {
+            A += operation;
+        } else {
+            A -= operation;
+        }
+    }
+    System.out.println(count);
+}

@@ -1,0 +1,21 @@
+private void runA(long num) {
+    if (num == 1) {
+        System.out.println("1");
+        return;
+    }
+    long min = 1;
+    long max = num;
+    while (min + 1 < max) {
+        long now = (min + max) / 2;
+        long x = now * (now + 1) / 2;
+        if (x > num) {
+            max = now;
+        } else if (x == num) {
+            System.out.println(now);
+            return;
+        } else {
+            min = now;
+        }
+    }
+    System.out.println(min + 1);
+}

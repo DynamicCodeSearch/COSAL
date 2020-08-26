@@ -1,0 +1,56 @@
+void solve(FastScanner in, PrintWriter out) throws Exception {
+    double xs = in.nextInt();
+    double ys = in.nextInt();
+    double xt = in.nextInt();
+    double yt = in.nextInt();
+    int N = in.nextInt();
+    
+    double[][] dist = new double[N + 2][N + 2];
+    double[] x = new double[N + 2];
+    double[] y = new double[N + 2];
+    double[] r = new double[N + 2];
+    for (int i = 0; i < N; i++) {
+        x[i] = in.nextInt();
+        y[i] = in.nextInt();
+        r[i] = in.nextInt();
+    }
+    x[N] = xs;
+    y[N] = ys;
+    x[N + 1] = xt;
+    y[N + 1] = yt;
+    for (int i = 0; i < N + 2; i++) {
+        for (int j = i + 1; j < N + 2; j++) {
+            double dx = x[i] - x[j];
+            double dy = y[i] - y[j];
+            double d = Math.sqrt(dx * dx + dy * dy) - r[i] - r[j];
+            d = Math.max(0, d);
+            dist[i][j] = d;
+            dist[j][i] = d;
+        }
+    }
+    double[] costs = new double[N + 2];
+    Arrays.fill(costs, 1e14);
+    PriorityQueue<State> queue = new PriorityQueue<>();
+    costs[N] = 0.0;
+    queue.add(new State(N, 0.0));
+    boolean[] vis = new boolean[N + 2];
+    while (!queue.isEmpty()) {
+        State state = queue.poll();
+        int v = state.v;
+        if (v == N + 1) {
+            out.println(costs[N + 1]);
+            return;
+        }
+        if (vis[v])
+            continue;
+        vis[v] = true;
+        for (int i = 0; i < N + 2; i++) {
+            if (v == i)
+                continue;
+            if (costs[i] <= costs[v] + dist[v][i])
+                continue;
+            costs[i] = costs[v] + dist[v][i];
+            queue.add(new State(i, costs[i]));
+        }
+    }
+}

@@ -1,0 +1,65 @@
+static void solve() {
+    int n = ni(), m = ni();
+    int[] from = new int[m];
+    int[] to = new int[m];
+    int[] type = new int[m];
+    for (int i = 0; i < m; i++) {
+        type[i] = ni();
+        from[i] = ni();
+        to[i] = ni();
+    }
+    int[][][] g = packWU(n, from, to, type);
+    Deque<Integer> dq = new ArrayDeque<Integer>();
+    dq.add(0);
+    int[] bds = new int[n];
+    int I = 999999999;
+    Arrays.fill(bds, I);
+    bds[0] = 0;
+    while (!dq.isEmpty()) {
+        int cur = dq.pollFirst();
+        for (int[] e : g[cur]) {
+            if (e[1] == 0) {
+                if (bds[e[0]] > bds[cur]) {
+                    bds[e[0]] = bds[cur];
+                    dq.addFirst(e[0]);
+                }
+            } else {
+                if (bds[e[0]] > bds[cur] + 1) {
+                    bds[e[0]] = bds[cur] + 1;
+                    dq.addLast(e[0]);
+                }
+            }
+        }
+    }
+    int M = 200;
+    long[] td = new long[n * M];
+    Arrays.fill(td, Long.MAX_VALUE / 2);
+    MinHeapL q = new MinHeapL(n * M);
+    q.add(0, 0);
+    td[0] = 0;
+    while (q.size() > 0) {
+        int cur = q.argmin();
+        int pos = cur / M, lv = bds[pos] + cur % M;
+        q.remove(cur);
+        for (int[] e : g[pos]) {
+            int npos = e[0];
+            int nlv = lv + e[1];
+            int llv = nlv - bds[e[0]];
+            if (llv < M) {
+                int next = npos * M + llv;
+                long nd = td[cur] + (e[1] == 1 ? nlv : 1);
+                if (nd < td[next]) {
+                    td[next] = nd;
+                    q.update(next, nd);
+                }
+            }
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        long min = Long.MAX_VALUE;
+        for (int j = 0; j < M; j++) {
+            min = Math.min(min, td[i * M + j]);
+        }
+        out.println(min);
+    }
+}

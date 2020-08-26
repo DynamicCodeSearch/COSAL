@@ -1,0 +1,96 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    n = sc.nextInt();
+    a = new int[3 * n];
+    for (int i = 0; i < 3 * n; i++) {
+        a[i] = sc.nextInt();
+    }
+    int[] b = new int[3 * n];
+    for (int i = 0; i < 3 * n; i++) {
+        b[i] = a[3 * n - i - 1];
+    }
+    long[] dp1 = new long[3 * n + 1];
+    int min = INF;
+    TreeSet<Integer> s1 = new TreeSet<>();
+    Map<Integer, Integer> c1 = new HashMap<>();
+    for (int i = 0; i < n; i++) {
+        min = Math.min(min, a[i]);
+        dp1[n] += (long) a[i];
+        s1.add(a[i]);
+        if (!c1.containsKey(a[i])) {
+            c1.put(a[i], 1);
+        } else {
+            c1.put(a[i], c1.get(a[i]) + 1);
+        }
+    }
+    for (int i = n + 1; i <= 3 * n; i++) {
+        s1.add(a[i - 1]);
+        if (!c1.containsKey(a[i - 1])) {
+            c1.put(a[i - 1], 1);
+        } else {
+            c1.put(a[i - 1], c1.get(a[i - 1]) + 1);
+        }
+        if (a[i - 1] > min) {
+            dp1[i] = dp1[i - 1] - (long) min + (long) a[i - 1];
+            if (c1.get(min) == 1) {
+                c1.remove(min);
+                min = s1.higher(min);
+            } else {
+                c1.put(min, c1.get(min) - 1);
+            }
+        } else {
+            dp1[i] = dp1[i - 1];
+        }
+    }
+    long[] dp2 = new long[3 * n + 1];
+    int max = 0;
+    TreeSet<Integer> s2 = new TreeSet<>();
+    Map<Integer, Integer> c2 = new HashMap<>();
+    for (int i = 0; i < n; i++) {
+        max = Math.max(max, b[i]);
+        dp2[n] += (long) b[i];
+        s2.add(b[i]);
+        if (!c2.containsKey(b[i])) {
+            c2.put(b[i], 1);
+        } else {
+            c2.put(b[i], c2.get(b[i]) + 1);
+        }
+    }
+    for (int i = n + 1; i <= 3 * n; i++) {
+        s2.add(b[i - 1]);
+        if (!c2.containsKey(b[i - 1])) {
+            c2.put(b[i - 1], 1);
+        } else {
+            c2.put(b[i - 1], c2.get(b[i - 1]) + 1);
+        }
+        if (b[i - 1] < max) {
+            dp2[i] = dp2[i - 1] - (long) max + (long) b[i - 1];
+            if (c2.get(max) == 1) {
+                c2.remove(max);
+                max = s2.lower(max);
+            } else {
+                c2.put(max, c2.get(max) - 1);
+            }
+        } else {
+            dp2[i] = dp2[i - 1];
+        }
+    }
+    if (DEBUG) {
+        for (int i = n; i <= 3 * n; i++) {
+            System.out.println("dp1[" + i + "] = " + dp1[i]);
+        }
+        for (int i = n; i <= 3 * n; i++) {
+            System.out.println("dp2[" + i + "] = " + dp2[i]);
+        }
+    }
+    long ans = Long.MIN_VALUE / 2;
+    for (int i = n; i <= 2 * n; i++) {
+        ans = Math.max(ans, dp1[i] - dp2[3 * n - i]);
+        if (DEBUG) {
+            System.out.println("i = " + i);
+            System.out.println("3 * n - i = " + (3 * n - i));
+            System.out.println(dp1[i] - dp2[3 * n - i]);
+        }
+    }
+    System.out.println(ans);
+}

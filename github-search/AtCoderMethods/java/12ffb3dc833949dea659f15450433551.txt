@@ -1,0 +1,13 @@
+private void solve(FastScanner in, PrintWriter out) {
+    int N = in.nextInt();
+    int[] A = in.nextIntArray(N);
+    int[] count = new int[100010];
+    for (int a : A) {
+        count[a]++;
+    }
+    int ans = 0;
+    for (int i = 1; i < 100009; i++) {
+        ans = Math.max(ans, count[i - 1] + count[i] + count[i + 1]);
+    }
+    out.println(ans);
+}

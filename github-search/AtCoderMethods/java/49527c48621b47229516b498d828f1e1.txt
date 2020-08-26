@@ -1,0 +1,11 @@
+private long jdg(int t, int[] frags) {
+    long res = (long) t;
+    if (frags.length == 1)
+        return res;
+    int dlt = 0;
+    for (int i = 0; i < frags.length - 1; i++) {
+        dlt = frags[i + 1] - frags[i];
+        res += (long) ((dlt < t) ? dlt : t);
+    }
+    return res;
+}

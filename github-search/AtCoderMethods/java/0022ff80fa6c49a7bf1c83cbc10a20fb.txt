@@ -1,0 +1,31 @@
+public static void main(String[] args) throws IOException {
+    final Scanner sc = new Scanner(System.in);
+    final char[] input = sc.next().toCharArray();
+    LinkedList<Character> list = new LinkedList<Character>();
+    for (final char ch : input) {
+        list.addLast(ch);
+    }
+    int answer = 0;
+    while (!list.isEmpty()) {
+        boolean all_same = true;
+        char prev = 0;
+        for (final char ch : list) {
+            if (prev == 0) {
+                prev = ch;
+            } else if (prev != ch) {
+                all_same = false;
+                break;
+            }
+        }
+        if (all_same) {
+            break;
+        } else {
+            final char top = list.poll();
+            while (list.peek() == top) {
+                list.poll();
+            }
+        }
+        answer += 1;
+    }
+    System.out.println(answer);
+}

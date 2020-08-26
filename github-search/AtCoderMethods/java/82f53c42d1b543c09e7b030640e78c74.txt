@@ -1,0 +1,14 @@
+static boolean koreOkerukana(int n, boolean[][] board) {
+    int x = n % 8;
+    int y = n / 8;
+    for (int i = 0; i < 8; i++) {
+        int _x = x, _y = y;
+        while (0 <= _x && _x < 8 && 0 <= _y && _y < 8) {
+            if (board[_y][_x])
+                return false;
+            _x += dx[i];
+            _y += dy[i];
+        }
+    }
+    return true;
+}

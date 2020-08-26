@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    
+    HashMap<Integer, Integer> lines = new HashMap<Integer, Integer>();
+    Scanner sc = new Scanner(System.in);
+    
+    int lenght = Integer.parseInt(sc.nextLine());
+    int[] lineWeights = new int[lenght];
+    int i = 0;
+    while (sc.hasNextLine()) {
+        lineWeights[i] = Integer.parseInt(sc.nextLine());
+        lines.put(lineWeights[i], 1);
+        i++;
+    }
+    
+    Object[] sortedLines = lines.keySet().toArray();
+    Arrays.sort(sortedLines);
+    int weighting = 0;
+    for (Object key : sortedLines) {
+        lines.put((Integer) key, weighting);
+        weighting++;
+    }
+    
+    for (int j = 0; j < lenght; j++) {
+        System.out.println(lines.get(lineWeights[j]));
+    }
+}

@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    
+    Scanner scan = new Scanner(System.in);
+    int N = scan.nextInt();
+    int K = scan.nextInt();
+    int[] R = new int[N];
+    BigDecimal C = BigDecimal.valueOf(0);
+    BigDecimal ad;
+    for (int i = 0; i < N; i++) {
+        R[i] = scan.nextInt();
+    }
+    Arrays.sort(R);
+    for (int i = 0; i < K; i++) {
+        ad = BigDecimal.valueOf(R[N - 1 - i]);
+        
+        for (int j = 0; j < i + 1; j++) {
+            ad = ad.divide(BigDecimal.valueOf(2), 8, BigDecimal.ROUND_HALF_UP);
+        
+        }
+        C = C.add(ad);
+    }
+    System.out.println(C.doubleValue());
+}

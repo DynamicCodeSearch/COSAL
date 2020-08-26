@@ -1,0 +1,22 @@
+static void solve() {
+    int n = ni(), D = ni();
+    int[] a = na(n);
+    long[] ok = new long[n + 1];
+    ok[n] = 0;
+    for (int i = n - 1; i >= 0; i--) {
+        if (a[i] <= ok[i + 1] * 2 + 1) {
+            ok[i] = ok[i + 1] + a[i];
+        } else {
+            ok[i] = ok[i + 1];
+        }
+    }
+    int[] ds = new int[n + 1];
+    ds[0] = D;
+    for (int i = 0; i < n; i++) {
+        ds[i + 1] = Math.min(ds[i], Math.abs(ds[i] - a[i]));
+    }
+    for (int Q = ni(); Q > 0; Q--) {
+        int x = ni();
+        out.println(ds[x - 1] <= ok[x] ? "NO" : "YES");
+    }
+}

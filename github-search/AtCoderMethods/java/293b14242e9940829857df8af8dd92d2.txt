@@ -1,0 +1,15 @@
+public static void pwf(long[][] d, int x, int y, int w) {
+    int n = d.length;
+    if (d[x][y] > w)
+        d[x][y] = d[y][x] = w;
+    int[] l = { x, y };
+    for (int k : l) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (d[i][j] > d[i][k] + d[k][j]) {
+                    d[i][j] = d[i][k] + d[k][j];
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner scn = new Scanner(System.in);
+    String nm = scn.nextLine();
+    String nStr = nm.split(" ", 0)[0];
+    String mStr = nm.split(" ", 0)[1];
+    int n = Integer.parseInt(nStr);
+    int m = Integer.parseInt(mStr);
+    int[] toshi = new int[n];
+    for (int i = 0; i < m; i++) {
+        String oneLine = scn.nextLine();
+        String fromStr = oneLine.split(" ", 0)[0];
+        String toStr = oneLine.split(" ", 0)[1];
+        int from = Integer.parseInt(fromStr);
+        int to = Integer.parseInt(toStr);
+        toshi[from - 1]++;
+        toshi[to - 1]++;
+    }
+    for (int i = 0; i < n; i++) {
+        System.out.println(toshi[i]);
+    }
+}

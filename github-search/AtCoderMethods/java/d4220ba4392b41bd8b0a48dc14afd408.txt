@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    InputStream inputStream = System.in;
+    OutputStream outputStream = System.out;
+    InputReader in = new InputReader(inputStream);
+    PrintWriter out = new PrintWriter(outputStream);
+    int n = in.nextInt();
+    Graph g = new Graph(n + 1);
+    while (n > 1) {
+        int a = in.nextInt();
+        int b = in.nextInt();
+        int c = in.nextInt();
+        g.addEdge(a, b, c);
+        n--;
+    }
+    int q = in.nextInt();
+    int k = in.nextInt();
+    map.put(k, 0L);
+    g.BFS(k);
+    while (q > 0) {
+        int x = in.nextInt();
+        int y = in.nextInt();
+        System.out.println(map.get(x) + map.get(y));
+        q--;
+    }
+}

@@ -1,0 +1,11 @@
+static long doit(int f, int l, int r) {
+    long cnt = 0;
+    int min = f == 0 ? 1 : 0;
+    for (int X = f == 0 ? 1 : 0; X <= 9; X++) {
+        int Y = X + r;
+        if (Y + l == X && min <= Y && Y <= 9) {
+            cnt++;
+        }
+    }
+    return cnt;
+}

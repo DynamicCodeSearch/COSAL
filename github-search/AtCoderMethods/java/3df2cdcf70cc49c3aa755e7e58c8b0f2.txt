@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int n = scanner.nextInt();
+    int[] ng = new int[3];
+    for (int i = 0; i < 3; i++) {
+        ng[i] = scanner.nextInt();
+    }
+    for (int i = 0; i < 100; i++) {
+        if (n == ng[0] || n == ng[1] || n == ng[2]) {
+            break;
+        }
+        if (n - 3 != ng[0] && n - 3 != ng[1] && n - 3 != ng[2]) {
+            n -= 3;
+        } else if (n - 2 != ng[0] && n - 2 != ng[1] && n - 2 != ng[2]) {
+            n -= 2;
+        } else if (n - 1 != ng[0] && n - 1 != ng[1] && n - 1 != ng[2]) {
+            n -= 1;
+        }
+        if (n < 1) {
+            break;
+        }
+    }
+    System.out.println(n < 1 ? "YES" : "NO");
+}

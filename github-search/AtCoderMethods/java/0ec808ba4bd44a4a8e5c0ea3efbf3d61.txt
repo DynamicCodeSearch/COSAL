@@ -1,0 +1,60 @@
+public static void main(String[] args) {
+    Scanner cin = new Scanner(System.in);
+    n = cin.nextInt();
+    k = cin.nextInt();
+    Arrays.fill(can, true);
+    for (int i = 0; i < k; i++) {
+        can[cin.nextInt()] = false;
+    }
+    String num = String.valueOf(n);
+    int[] nums = new int[num.length() + 1];
+    nums[0] = 0;
+    for (int i = 0; i < num.length(); i++) {
+        nums[i + 1] = num.charAt(i) - '0';
+    }
+    int index = 1;
+    for (; index < nums.length; ) {
+        int a = nums[index];
+        if (can[a]) {
+            index++;
+            continue;
+        }
+        
+        int b = increment(a);
+        if (b > a) {
+            nums[index] = b;
+            index++;
+            break;
+        }
+        if (index == 1) {
+            int c = increment(0);
+            nums[index - 1] = c;
+            
+            break;
+        } else {
+            while (index > 0) {
+                index--;
+                int e = increment(nums[index]);
+                if (e > nums[index]) {
+                    nums[index] = e;
+                    index++;
+                    break;
+                }
+            }
+            break;
+        }
+    }
+    int d = increment(-1);
+    while (index < nums.length) {
+        nums[index] = d;
+        index++;
+    }
+    
+    for (int i = 0; i < nums.length; i++) {
+        if (i == 0 && nums[0] == 0) {
+            continue;
+        }
+        System.out.print(nums[i]);
+    }
+    System.out.println();
+}

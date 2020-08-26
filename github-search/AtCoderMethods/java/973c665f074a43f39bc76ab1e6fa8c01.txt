@@ -1,0 +1,16 @@
+boolean solve(int v, int val) {
+    int[] h = Arrays.copyOf(f, n);
+    h[v] = val;
+    for (int u = p[v]; u != v; u = p[u]) {
+        ArrayList<Integer> lis = new ArrayList<>();
+        for (int dst : g[u]) {
+            lis.add(h[dst]);
+        }
+        h[u] = fgrundy(lis);
+    }
+    ArrayList<Integer> lis = new ArrayList<>();
+    for (int d : g[v]) {
+        lis.add(h[d]);
+    }
+    return fgrundy(lis) == val;
+}

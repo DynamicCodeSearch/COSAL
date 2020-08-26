@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    final long N = sc.nextLong();
+    sc.close();
+    for (int s = 0; s < MAX_SIZE; s++) {
+        for (int d = 0; d < 10; d++) {
+            if (s == 0) {
+                dp[s][d] = d == 1 ? 1 : 0;
+            } else {
+                for (int bd = 0; bd < 10; bd++) {
+                    dp[s][d] += dp[s - 1][bd];
+                }
+                if (d == 1)
+                    dp[s][d] += (long) Math.pow(10, s);
+            }
+        }
+    }
+    System.out.println(getCount(N));
+}

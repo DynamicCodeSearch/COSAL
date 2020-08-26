@@ -1,0 +1,38 @@
+private static int dfs(int i, int j, int h, int w, int[][] a, int MOD) {
+    if (dp[i][j] > 0) {
+        return dp[i][j];
+    }
+    Deque<Integer> stx = new ArrayDeque<>();
+    Deque<Integer> sty = new ArrayDeque<>();
+    stx.push(j);
+    sty.push(i);
+    while (!stx.isEmpty()) {
+        int x = stx.peek();
+        int y = sty.peek();
+        boolean flag = true;
+        int ret = 1;
+        for (int k = 0; k < dx.length; k++) {
+            int nx = x + dx[k];
+            int ny = y + dy[k];
+            if (nx < 0 || nx >= w || ny < 0 || ny >= h) {
+                continue;
+            }
+            if (a[ny][nx] <= a[y][x]) {
+                continue;
+            }
+            if (dp[ny][nx] > 0) {
+                ret = (ret + dp[ny][nx]) % MOD;
+            } else {
+                flag = false;
+                stx.push(nx);
+                sty.push(ny);
+            }
+        }
+        if (flag) {
+            dp[y][x] = ret;
+            stx.pop();
+            sty.pop();
+        }
+    }
+    return dp[i][j];
+}

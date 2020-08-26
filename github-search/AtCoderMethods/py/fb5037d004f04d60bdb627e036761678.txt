@@ -1,0 +1,9 @@
+def count(row, column, board, H, W):
+    n = 0
+    rs, re = judge_row(row, H)
+    cs, ce = judge_col(column, W)
+    for r in range(rs, re):
+        for c in range(cs, ce):
+            if board[r][c] == "#":
+                n += 1
+    return n

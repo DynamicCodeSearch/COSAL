@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    try {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int lineN = Integer.parseInt(br.readLine());
+        String[] lines = new String[lineN];
+        for (int i = 0; i < lines.length; i += 1) {
+            lines[i] = br.readLine();
+        }
+        for (int i = 0; i < lineN; i += 1) {
+            for (int j = lines.length - 1; 0 <= j; j -= 1) {
+                System.out.print(lines[j].charAt(i));
+            }
+            System.out.println();
+        }
+        System.out.println();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}

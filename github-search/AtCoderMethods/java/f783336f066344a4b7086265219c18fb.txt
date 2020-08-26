@@ -1,0 +1,12 @@
+public static boolean hasDuplcate(char[] arr) {
+    int[] counts = new int['z' - 'a' + 1];
+    Arrays.fill(counts, 0);
+    for (char c : arr) {
+        if (c < 'a' || 'z' < c)
+            continue;
+        counts[c - 'a']++;
+        if (counts[c - 'a'] > 1)
+            return true;
+    }
+    return false;
+}

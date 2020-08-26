@@ -1,0 +1,12 @@
+def dfs(n, p):
+    tmp_f = 1
+    tmp_g = 1
+    for c in es[n]:
+        if c != p:
+            dfs(c, n)
+            tmp_f *= g[c] % MOD
+            tmp_g *= f[c] % MOD
+    if g[n] == -1:
+        g[n] = tmp_g % MOD
+    if f[n] == -1:
+        f[n] = (g[n] + tmp_f) %MOD

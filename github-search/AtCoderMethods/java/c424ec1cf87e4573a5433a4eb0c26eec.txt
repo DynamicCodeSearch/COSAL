@@ -1,0 +1,34 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    ArrayList<TaskD.Edge>[] g = new ArrayList[n];
+    for (int i = 0; i < n; i++) {
+        g[i] = new ArrayList<>();
+    }
+    for (int i = 0; i < n - 1; i++) {
+        int a = in.nextInt() - 1;
+        int b = in.nextInt() - 1;
+        int c = in.nextInt();
+        g[a].add(new TaskD.Edge(b, c));
+        g[b].add(new TaskD.Edge(a, c));
+    }
+    int Q = in.nextInt();
+    int k = in.nextInt() - 1;
+    Queue<Integer> q = new LinkedList<>();
+    q.add(k);
+    long[] dist = new long[n];
+    Arrays.fill(dist, Long.MAX_VALUE);
+    dist[k] = 0;
+    while (!q.isEmpty()) {
+        int from = q.poll();
+        for (TaskD.Edge e : g[from]) {
+            if (dist[e.to] == Long.MAX_VALUE)
+                q.add(e.to);
+            dist[e.to] = Math.min(dist[from] + e.w, dist[e.to]);
+        }
+    }
+    for (int i = 0; i < Q; i++) {
+        int x = in.nextInt() - 1;
+        int y = in.nextInt() - 1;
+        out.println(dist[x] + dist[y]);
+    }
+}

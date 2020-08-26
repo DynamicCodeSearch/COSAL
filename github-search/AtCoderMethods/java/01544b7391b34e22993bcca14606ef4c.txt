@@ -1,0 +1,13 @@
+private static void solve() {
+    int k = sc.nextInt();
+    int s = sc.nextInt();
+    long ret = 0;
+    for (int x = 0; x <= Math.min(k, s); x++) {
+        for (int y = 0; y <= Math.min(k, s - x); y++) {
+            if (s - x - y <= k) {
+                ret++;
+            }
+        }
+    }
+    pr.println(ret);
+}

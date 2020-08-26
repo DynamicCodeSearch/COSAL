@@ -1,0 +1,13 @@
+public void setRoot(int cur, int parent) {
+    p[cur] = parent;
+    if (parent != -1)
+        depth[cur] = depth[parent] + 1;
+    childNum[cur] = 1;
+    for (int i = 0; i < G.get(cur).size(); i++) {
+        int next = G.get(cur).get(i).to;
+        if (next != parent) {
+            setRoot(next, cur);
+            childNum[cur] += childNum[next];
+        }
+    }
+}

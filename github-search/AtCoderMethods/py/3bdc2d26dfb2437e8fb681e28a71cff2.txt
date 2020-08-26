@@ -1,0 +1,21 @@
+def main():
+    n, k = map(int, input().split())
+    l = list(map(int, input().split()))
+    if n == k:
+        return sum(l)
+
+    if n <= 10 ** 3:
+        return solve(l, n, k)
+
+    ans = 0
+    for i, x in enumerate(l, start=1):
+        if k <= i <= n - k + 1:
+
+            ans += x * k
+        else:
+            m = min(i, n - k + 1)
+            m = min(m, n - i + 1)
+
+            ans += x * m
+
+    return ans

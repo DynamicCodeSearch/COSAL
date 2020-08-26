@@ -1,0 +1,21 @@
+public void solve() {
+    int n = in.nextInt(), m = in.nextInt(), S = in.nextInt() - 1;
+    ArrayList<Integer>[] g = new ArrayList[n];
+    for (int i = 0; i < n; i++) g[i] = new ArrayList<Integer>();
+    for (int i = 0; i < m; i++) {
+        int a = in.nextInt() - 1, b = in.nextInt() - 1;
+        g[a].add(b);
+        g[b].add(a);
+    }
+    UnionFindTree uft = new UnionFindTree(n);
+    List<Integer> ans = new ArrayList<>();
+    for (int u = n - 1; u >= 0; u--) {
+        for (int v : g[u]) if (v > u)
+            uft.unite(u, v);
+        if (uft.same(u, S)) {
+            ans.add(u + 1);
+        }
+    }
+    for (int idx = ans.size() - 1; idx >= 0; idx--) out.println(ans.get(idx));
+    out.close();
+}

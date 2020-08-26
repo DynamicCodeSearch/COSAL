@@ -1,0 +1,15 @@
+def solve(K):
+    N = 50
+    a = [49] * N
+    div, mod = divmod(K, N)
+    for i in range(N):
+        a[i] += div
+    if mod != 0:
+        for i in range(mod):
+            a[i] += N - (mod - 1)
+        for i in range(mod, N):
+            a[i] += -mod
+
+    ans = "50\n" + " ".join(map(str, a))
+
+    return ans

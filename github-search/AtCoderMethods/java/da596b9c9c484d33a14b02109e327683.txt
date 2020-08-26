@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    try {
+        
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+        String str = br.readLine();
+        for (int i = 1; i < str.length(); i++) {
+            String tmpStr = str.substring(0, str.length() - i);
+            int tmpLen = tmpStr.length();
+            if (tmpLen % 2 != 0) {
+                continue;
+            }
+            String tmp1 = tmpStr.substring(0, tmpLen / 2);
+            String tmp2 = tmpStr.substring(tmpLen / 2, tmpLen);
+            if (tmp1.equals(tmp2)) {
+                System.out.println(tmpLen);
+                break;
+            }
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

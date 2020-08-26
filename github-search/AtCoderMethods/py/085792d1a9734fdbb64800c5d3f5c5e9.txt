@@ -1,0 +1,19 @@
+def c():
+    n = int(input())
+    a = [int(ai) for ai in input().split()]
+    div = {4:0, 2:0, 1:0}
+    for i in a:
+        if i % 4 == 0:
+            div[4] += 1
+        elif i % 2 == 0:
+            div[2] += 1
+        else:
+            div[1] += 1
+    if div[2] == 0:
+        need = -1
+    else:
+        need = 0
+    if div[4] - div[1] >= need:
+        print('Yes')
+    else:
+        print('No')

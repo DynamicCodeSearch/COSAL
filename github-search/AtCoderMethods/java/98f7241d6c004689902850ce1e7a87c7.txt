@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner io = new Scanner(System.in);
+    int N = io.nextInt();
+    long K = io.nextLong();
+    PriorityQueue<Point> array = new PriorityQueue<Point>();
+    for (int i = 0; i < N; i++) {
+        Point n = new Point(io.nextInt(), io.nextInt());
+        array.offer(n);
+    }
+    int ans = 0;
+    long sum = 0;
+    while (sum < K) {
+        Point now = array.poll();
+        ans = now.a;
+        sum += now.b;
+    
+    }
+    System.out.println(ans);
+}

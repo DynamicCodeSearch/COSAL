@@ -1,0 +1,36 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    
+    int masuNum = scan.nextInt();
+    ArrayList<Masu> masuList = new ArrayList<Masu>();
+    Main main = new Main();
+    for (int i = 0; i < masuNum; i++) {
+        masuList.add(main.new Masu(i));
+    }
+    for (int i = 0; i < masuNum - 1; i++) {
+        main.inputMasu(scan.nextInt(), scan.nextInt(), masuList);
+    }
+    int[] fennecList = new int[masuNum];
+    fennecList[0] = -1;
+    int[] snukeList = new int[masuNum];
+    snukeList[masuNum - 1] = -1;
+    
+    
+    main.tansa(masuList, fennecList, 0, 0);
+    
+    main.tansa(masuList, snukeList, masuNum - 1, 0);
+    int fennecWinMasu = 0;
+    int snukeWinMasu = 0;
+    for (int i = 0; i < masuNum; i++) {
+        if (fennecList[i] <= snukeList[i]) {
+            fennecWinMasu++;
+        } else {
+            snukeWinMasu++;
+        }
+    }
+    if (fennecWinMasu > snukeWinMasu) {
+        System.out.println("Fennec");
+    } else {
+        System.out.println("Snuke");
+    }
+}

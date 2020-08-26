@@ -1,0 +1,10 @@
+def f(S, c):
+    ret = deepcopy(S)
+    for i, line in enumerate(S):
+        for j, pixel in enumerate(line):
+            if pixel == c:
+                for k in range(i-1, i+2):
+                    for l in range(j-1, j+2):
+                        if 0<=k<len(S) and 0<=l<len(line):
+                            ret[k][l] = c
+    return ret

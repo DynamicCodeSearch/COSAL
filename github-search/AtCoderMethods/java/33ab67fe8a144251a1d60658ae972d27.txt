@@ -1,0 +1,13 @@
+public static Line getLine(Point a, Point b) {
+    if (a.x == b.x)
+        return new Line(Fraction.INFINITE, new Fraction(a.x, 1));
+    if (a.x > b.x)
+        return getLine(b, a);
+    else {
+        int sn = b.y - a.y;
+        int sd = b.x - a.x;
+        int in = sd * a.y - sn * a.x;
+        int id = sd;
+        return new Line(sn, sd, in, id);
+    }
+}

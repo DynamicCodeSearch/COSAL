@@ -1,0 +1,33 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int m = in.nextInt();
+    boolean s = false, e = false;
+    String possible = "POSSIBLE", impossible = "IMPOSSIBLE";
+    Set<Integer> destination = new HashSet<>();
+    Set<Integer> origin = new HashSet<>();
+    for (int i = 0; i < m; i++) {
+        int u = in.nextInt();
+        int v = in.nextInt();
+        if ((u == 1 && v == n)) {
+            out.print(possible);
+            return;
+        }
+        if (u == 1)
+            origin.add(v);
+        if (v == 1)
+            origin.add(u);
+        if (u == n)
+            destination.add(v);
+        if (v == n)
+            destination.add(u);
+    }
+    Iterator<Integer> destinationIterator = destination.iterator();
+    while (destinationIterator.hasNext()) {
+        int next = destinationIterator.next();
+        if (origin.contains(next)) {
+            out.println(possible);
+            return;
+        }
+    }
+    out.println(impossible);
+}

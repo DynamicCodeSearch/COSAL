@@ -1,0 +1,9 @@
+def solve(n, ss):
+    if all(s % 10 == 0 for s in ss):
+        return 0
+    t = sum(ss)
+    if t % 10 != 0:
+        return t
+    else:
+        m = min(s for s in ss if s % 10 != 0)
+        return t - m

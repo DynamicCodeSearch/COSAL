@@ -1,0 +1,14 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    int n = in.nextInt(), m = in.nextInt();
+    if (n > m + 1 || m > n + 1) {
+        out.println(0);
+        return;
+    }
+    long[][] x = Factorials.getFIF(n + m, mod);
+    long[] fact = x[0];
+    if (n == m) {
+        out.println(2 * fact[n] % mod * fact[n] % mod);
+    } else {
+        out.println(fact[n] * fact[m] % mod);
+    }
+}

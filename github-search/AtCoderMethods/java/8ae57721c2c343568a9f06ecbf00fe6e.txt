@@ -1,0 +1,16 @@
+public void solve() {
+    X = nextInt();
+    out.println(lowerBound(0, X + 1, v -> {
+        int cur = X;
+        int vv = v;
+        while (cur > 0 && vv > 0) {
+            if (cur >= vv) {
+                cur -= vv;
+                vv = Math.min(cur, vv - 1);
+            } else {
+                vv = cur;
+            }
+        }
+        return cur == 0;
+    }));
+}

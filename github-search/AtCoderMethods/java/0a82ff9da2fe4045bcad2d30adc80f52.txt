@@ -1,0 +1,9 @@
+double calc2(double X, double R, double H, double A) {
+    if (A < X)
+        A = X;
+    if (X + H <= A)
+        return 0;
+    double h = (X + H - A);
+    double r = R * (X + H - A) / (H);
+    return r * r * Math.PI * h / 3;
+}

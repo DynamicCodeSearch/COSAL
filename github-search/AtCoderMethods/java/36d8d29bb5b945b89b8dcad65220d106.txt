@@ -1,0 +1,7 @@
+public T reduce(int i, T defaultValue) {
+    T ret = defaultValue;
+    for (int x = i; x > 0; x -= x & -x) {
+        ret = bif.apply(ret, bit.get(x));
+    }
+    return ret;
+}

@@ -1,0 +1,16 @@
+public void solve(int testNumber, Scanner in, PrintWriter out) {
+    int n = in.nextInt();
+    int[] arr = new int[n + 1];
+    for (int i = 1; i <= n; ++i) {
+        arr[i] = in.nextInt();
+    }
+    boolean[] vis = new boolean[n + 1];
+    int cur = 1;
+    int ans = 0;
+    while (cur != 2 && !vis[cur]) {
+        vis[cur] = true;
+        cur = arr[cur];
+        ++ans;
+    }
+    out.println(cur != 2 ? -1 : ans);
+}

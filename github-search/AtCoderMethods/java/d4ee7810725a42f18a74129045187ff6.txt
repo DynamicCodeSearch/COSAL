@@ -1,0 +1,23 @@
+int[] Zalgo(char[] s) {
+    int[] ret = new int[s.length];
+    ret[0] = ret.length;
+    int i = 1, j = 0;
+    while (i < s.length) {
+        while (i + j < s.length && s[j] == s[i + j]) {
+            j++;
+        }
+        ret[i] = j;
+        if (j == 0) {
+            i++;
+            continue;
+        }
+        int k = 1;
+        while (i + k < s.length && k + ret[k] < j) {
+            ret[i + k] = k;
+            k++;
+        }
+        i += k;
+        j -= k;
+    }
+    return ret;
+}

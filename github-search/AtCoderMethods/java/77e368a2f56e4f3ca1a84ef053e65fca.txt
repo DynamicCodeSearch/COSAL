@@ -1,0 +1,20 @@
+public double nextDouble() {
+    loadBuffer();
+    long result = 0;
+    int i = buffer[0] == '-' || buffer[0] == '+' ? 1 : 0;
+    long round = 1;
+    final int radix = 10;
+    boolean hasPoint = false;
+    for (checkValidNumber(pos > i); i < pos; i++) {
+        int digit = buffer[i] - '0';
+        checkValidNumber((0 <= digit && digit <= radix - 1) || (!hasPoint && digit == -2));
+        if (digit == -2)
+            hasPoint = true;
+        else {
+            if (hasPoint)
+                round *= radix;
+            result = result * radix + digit;
+        }
+    }
+    return buffer[0] == '-' ? -result / (1.0 * round) : result / (1.0 * round);
+}

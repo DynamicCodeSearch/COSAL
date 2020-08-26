@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int arrayNum = sc.nextInt();
+    int loopNum = sc.nextInt();
+    int[] array = new int[arrayNum];
+    Arrays.fill(array, 0);
+    for (int i = 0; i < loopNum; i++) {
+        int start = sc.nextInt() - 1;
+        int end = sc.nextInt();
+        int replaceValue = sc.nextInt();
+        for (; start < end; start++) {
+            array[start] = replaceValue;
+        }
+    }
+    for (int i = 0; i < arrayNum; i++) {
+        System.out.println(array[i]);
+    }
+}

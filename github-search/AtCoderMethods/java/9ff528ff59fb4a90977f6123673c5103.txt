@@ -1,0 +1,30 @@
+private void solve(FastScanner sc) {
+    int n = sc.nextInt();
+    int k = sc.nextInt();
+    int l = sc.nextInt();
+    UnionFind kuf = new UnionFind(n);
+    UnionFind luf = new UnionFind(n);
+    for (int i = 0; i < k; i++) {
+        int p = sc.nextInt() - 1;
+        int q = sc.nextInt() - 1;
+        kuf.unite(p, q);
+    }
+    for (int i = 0; i < l; i++) {
+        int s = sc.nextInt() - 1;
+        int t = sc.nextInt() - 1;
+        luf.unite(s, t);
+    }
+    StringBuilder sb = new StringBuilder();
+    Map<Long, Integer> count = new HashMap<>();
+    for (int i = 0; i < n; i++) {
+        long key = (long) kuf.find(i) << 32 | luf.find(i);
+        count.merge(key, 1, Integer::sum);
+    }
+    for (int i = 0; i < n; i++) {
+        long key = (long) kuf.find(i) << 32 | luf.find(i);
+        sb.append(count.get(key));
+        if (i < n - 1)
+            sb.append(" ");
+    }
+    System.out.println(sb.toString());
+}

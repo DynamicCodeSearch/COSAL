@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String[] str = { sc.next(), sc.next(), sc.next() };
+    int[] len = new int[3];
+    int turn = 0;
+    while (true) {
+        len[turn]++;
+        if (len[turn] > str[turn].length())
+            break;
+        turn = str[turn].charAt(len[turn] - 1) - 'a';
+    }
+    String c = "" + (char) ('a' + turn - 32);
+    System.out.println(c);
+}

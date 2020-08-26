@@ -1,0 +1,10 @@
+def solve():
+    N, M, L = map(int, input().split())
+    P, Q, R = map(int, input().split())
+    ans = (N//P) * (M//Q) * (L//R)
+    ans = max(ans, (N//Q) * (M//P) * (L//R))
+    ans = max(ans, (N//R) * (M//P) * (L//Q))
+    ans = max(ans, (N//P) * (M//R) * (L//Q))
+    ans = max(ans, (N//Q) * (M//R) * (L//P))
+    ans = max(ans, (N//R) * (M//Q) * (L//P))
+    print(ans)

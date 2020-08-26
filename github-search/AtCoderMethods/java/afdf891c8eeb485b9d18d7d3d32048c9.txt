@@ -1,0 +1,47 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    char[] s = sc.next().toCharArray();
+    int t = sc.nextInt();
+    int q = 0;
+    int x = 0;
+    int y = 0;
+    for (int i = 0; i < s.length; i++) {
+        if (s[i] == 'L')
+            x--;
+        else if (s[i] == 'R')
+            x++;
+        else if (s[i] == 'U')
+            y++;
+        else if (s[i] == 'D')
+            y--;
+        else if (s[i] == '?')
+            q++;
+    }
+    if (t == 1) {
+        if (x >= 0)
+            x += q;
+        else {
+            x -= q;
+        }
+    } else {
+        if (x != 0) {
+            int tmp = Math.min(q, Math.abs(x));
+            q -= tmp;
+            if (x > 0)
+                x -= tmp;
+            else
+                x += tmp;
+        }
+        if (y != 0) {
+            int tmp = Math.min(q, Math.abs(y));
+            q -= tmp;
+            if (y > 0)
+                y -= tmp;
+            else
+                y += tmp;
+        }
+        if (q != 0)
+            x = (q % 2 == 0) ? 0 : 1;
+    }
+    System.out.println((Math.abs(x) + Math.abs(y)));
+}

@@ -1,0 +1,16 @@
+public void solve(int test_number, InputReader in, PrintWriter out) throws IOException {
+    long n = in.nextLong();
+    int k = in.nextInt();
+    int[] a = new int[k];
+    for (int i = 0; i < k; i++) {
+        a[i] = in.nextInt();
+    }
+    Arrays.sort(a);
+    while (true) {
+        if (check(a, n)) {
+            out.println(n);
+            return;
+        }
+        n++;
+    }
+}

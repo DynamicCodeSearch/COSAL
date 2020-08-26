@@ -1,0 +1,14 @@
+def search(x,n):
+	curPos=0
+ log2=int(math.log(n,2))
+ newPos=0
+ if s[curPos]==x:
+		return True
+ while log2 >=0:
+		newPos=curPos + (1 << log2)
+  if newPos < n and s[newPos]<=x:
+			curPos=newPos
+  if s[curPos]==x:
+			return True
+  log2-=1
+ return False

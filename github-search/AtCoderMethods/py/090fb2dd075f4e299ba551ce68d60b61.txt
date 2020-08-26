@@ -1,0 +1,19 @@
+def main():
+    N = int(input())
+    A = tuple(map(int, input().split()))
+
+    people, mod_ = divmod(sum(A), N)
+    if mod_ != 0:
+        print(-1)
+        sys.exit()
+
+    island = list(A)
+    bridge = 0
+    i = 0
+    while i < N - 1:
+        if island[i] != people:
+            island[i+1] += island[i] - people
+            bridge += 1
+        i += 1
+
+    print(bridge)

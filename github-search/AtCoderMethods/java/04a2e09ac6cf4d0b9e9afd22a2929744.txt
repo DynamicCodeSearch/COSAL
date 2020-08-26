@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int num = sc.nextInt();
+    long[] series = new long[num];
+    long count = 0;
+    long sum = num;
+    series[0] = sc.nextInt();
+    for (int i = 1; i < num; i++) {
+        series[i] = sc.nextInt();
+        if (series[i] > series[i - 1]) {
+            count++;
+        } else {
+            sum += natural_sum(count);
+            count = 0;
+        }
+    }
+    sum += natural_sum(count);
+    System.out.println(sum);
+}

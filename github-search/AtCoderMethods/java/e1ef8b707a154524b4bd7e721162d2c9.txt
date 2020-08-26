@@ -1,0 +1,18 @@
+private static void downHeap(long[] heap, int index) {
+    int left = 2 * index + 1;
+    int right = left + 1;
+    if (left < heap.length) {
+        if (right < heap.length) {
+            int biggerIndex = (heap[left] > heap[right] ? left : right);
+            if (heap[index] < heap[biggerIndex]) {
+                swap(heap, index, biggerIndex);
+                downHeap(heap, biggerIndex);
+            }
+        } else {
+            if (heap[index] < heap[left]) {
+                swap(heap, index, left);
+                downHeap(heap, left);
+            }
+        }
+    }
+}

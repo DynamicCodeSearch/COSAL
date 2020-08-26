@@ -1,0 +1,37 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = in.nextInt();
+    }
+    int[] even = new int[n];
+    int[] odd = new int[n];
+    for (int i = 0; i < n; i++) {
+        even[i] = i % 2 == 0 ? a[i] : INF;
+        odd[i] = i % 2 == 0 ? INF : a[i];
+    }
+    zero = new SegmentTreePURMQ(even);
+    one = new SegmentTreePURMQ(odd);
+    Queue<Seg> q = new PriorityQueue<>();
+    q.add(new Seg(0, n));
+    int[] ans = new int[n];
+    int ai = 0;
+    while (q.size() >= 1) {
+        Seg seg = q.poll();
+        ans[ai++] = seg.L;
+        ans[ai++] = seg.R;
+        for (int[] nextRange : seg.childSegPair) {
+            q.add(new Seg(nextRange[0], nextRange[1]));
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        if (i >= 1) {
+            out.print(' ');
+        }
+        out.print(ans[i]);
+    }
+    out.println();
+    out.flush();
+}

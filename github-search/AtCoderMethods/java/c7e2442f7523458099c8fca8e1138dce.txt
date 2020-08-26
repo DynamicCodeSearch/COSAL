@@ -1,0 +1,19 @@
+long count(long bit, int[] outdegrees, boolean[] confirmed) {
+    if (Long.bitCount(bit) == 1) {
+        return 1;
+    }
+    if (dp[(int) bit] > 0) {
+        return dp[(int) bit];
+    }
+    long count = 0;
+    for (int id : getNoOutdegreeIds(outdegrees)) {
+        if (confirmed[id])
+            continue;
+        long newBit = removeFlag(bit, id);
+        int[] newOutdegrees = updateOutdegrees(outdegrees, id);
+        boolean[] newConfirmed = Arrays.copyOf(confirmed, confirmed.length);
+        newConfirmed[id] = true;
+        count += count(newBit, newOutdegrees, newConfirmed);
+    }
+    return dp[(int) bit] = count;
+}

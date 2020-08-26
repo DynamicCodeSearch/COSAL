@@ -1,0 +1,9 @@
+T _reduce(int a, int b, int k, int l, int r) {
+    if (r <= a || b <= l)
+        return sup.get();
+    if (a <= l && r <= b)
+        return dat.get(k);
+    T vl = _reduce(a, b, k * 2 + 1, l, (l + r) / 2);
+    T vr = _reduce(a, b, k * 2 + 2, (l + r) / 2, r);
+    return bif.apply(vl, vr);
+}

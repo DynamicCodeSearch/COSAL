@@ -1,0 +1,10 @@
+def rec(s, start, d):
+    if d == 0:
+        return [s[start:]]
+
+    cand = []
+    for i in range(start + 1, len(s)):
+        c = rec(s, i, d - 1)
+        for cc in c:
+            cand.append(s[start:i] + '+' + cc)
+    return cand

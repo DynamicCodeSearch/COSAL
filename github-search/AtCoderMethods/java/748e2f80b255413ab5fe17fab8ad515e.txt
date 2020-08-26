@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int tx1 = scan.nextInt();
+    int ty1 = scan.nextInt();
+    int tx2 = scan.nextInt();
+    int ty2 = scan.nextInt();
+    int T = scan.nextInt();
+    int V = scan.nextInt();
+    int n = scan.nextInt();
+    int[] x = new int[n];
+    int[] y = new int[n];
+    double[] dis = new double[n];
+    boolean flag = true;
+    for (int i = 0; i < n; i++) {
+        x[i] = scan.nextInt();
+        y[i] = scan.nextInt();
+    }
+    for (int i = 0; i < n; i++) {
+        dis[i] = Math.sqrt(Math.pow(x[i] - tx1, 2) + Math.pow(y[i] - ty1, 2));
+        dis[i] += Math.sqrt(Math.pow(tx2 - x[i], 2) + Math.pow(ty2 - y[i], 2));
+        if (dis[i] <= T * V) {
+            flag = true;
+            System.out.println("YES");
+            break;
+        } else {
+            flag = false;
+        }
+    }
+    if (!flag) {
+        System.out.println("NO");
+    }
+}

@@ -1,0 +1,29 @@
+public static void main(String[] args) throws IOException {
+    final Scanner sc = new Scanner(System.in);
+    final int N = sc.nextInt();
+    final int M = sc.nextInt();
+    long[] xs = new long[N];
+    long[] ys = new long[N];
+    for (int i = 0; i < N; i++) {
+        xs[i] = sc.nextLong();
+        ys[i] = sc.nextLong();
+    }
+    long[] cs = new long[M];
+    long[] ds = new long[M];
+    for (int i = 0; i < M; i++) {
+        cs[i] = sc.nextLong();
+        ds[i] = sc.nextLong();
+    }
+    for (int i = 0; i < N; i++) {
+        long dist = Long.MAX_VALUE;
+        int min_j = -1;
+        for (int j = 0; j < M; j++) {
+            final long d = Math.abs(xs[i] - cs[j]) + Math.abs(ys[i] - ds[j]);
+            if (d < dist) {
+                dist = d;
+                min_j = j;
+            }
+        }
+        System.out.println(min_j + 1);
+    }
+}

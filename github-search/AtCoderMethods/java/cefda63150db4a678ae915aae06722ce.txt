@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int i, N;
+    int man = 0;
+    String name = "atcoder";
+    N = sc.nextInt();
+    String[] S = new String[N];
+    int[] P = new int[N];
+    for (i = 0; i < N; i++) {
+        S[i] = sc.next();
+        P[i] = sc.nextInt();
+        man += P[i];
+    }
+    man = man / 2;
+    for (i = 0; i < N; i++) {
+        if (P[i] > man) {
+            name = S[i];
+        }
+    }
+    System.out.println(name);
+}

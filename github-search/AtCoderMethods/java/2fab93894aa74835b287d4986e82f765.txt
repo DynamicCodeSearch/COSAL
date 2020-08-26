@@ -1,0 +1,13 @@
+long[] queryMax(double x) {
+    int min = -1;
+    int max = tail - 1;
+    while (max - min > 1) {
+        int med = (max + min) / 2;
+        if (val(med, x) <= val(med + 1, x)) {
+            min = med;
+        } else {
+            max = med;
+        }
+    }
+    return stk[max];
+}

@@ -1,0 +1,13 @@
+
+public void update(int a, int b, long v, int k, int l, int r) {
+    if (b <= l || a >= r)
+        return;
+    if (a <= l && r <= b) {
+        val[k] += v;
+        maxi[k] += v;
+    } else {
+        update(a, b, v, 2 * k + 1, l, (l + r) / 2);
+        update(a, b, v, 2 * k + 2, (l + r) / 2, r);
+        maxi[k] = Math.max(maxi[2 * k + 1], maxi[2 * k + 2]) + val[k];
+    }
+}

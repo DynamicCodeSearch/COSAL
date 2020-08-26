@@ -1,0 +1,20 @@
+public int ri() {
+    try {
+        int r = 0;
+        boolean start = false;
+        boolean neg = false;
+        while (true) {
+            int c = br.read();
+            if (c >= '0' && c <= '9') {
+                r = r * 10 + c - '0';
+                start = true;
+            } else if (!start && c == '-') {
+                start = true;
+                neg = true;
+            } else if (start || c == -1)
+                return neg ? -r : r;
+        }
+    } catch (Exception ex) {
+        return -1;
+    }
+}

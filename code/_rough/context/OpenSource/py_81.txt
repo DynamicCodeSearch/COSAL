@@ -1,0 +1,283 @@
+### Py Tokens: object, getfield, text, arg, vformat, argument, formatstring, parse, literaltext, references, result, exceeded, recursiondepth, find, append, conversion, formatspec, needed, recursion, format, literal, field, add, argused, fieldname, formatter, valueerror, resulting, used, string, get, max, error, none, join, given, expand, convert, obj, name, markup, value, spec, depth, formatting, formatfield, convertfield, output, usedargs, came 
+
+### Py functions
+
+def _vformat(self, format_string, args, kwargs, used_args, recursion_depth):
+  if recursion_depth < 0:
+    raise ValueError('Max string recursion exceeded')
+  result = []
+  for literal_text, field_name, format_spec, conversion in            self.parse(format_string):
+
+
+    if literal_text:
+      result.append(literal_text)
+
+
+    if field_name is not None:
+
+
+
+
+
+      obj, arg_used = self.get_field(field_name, args, kwargs)
+      used_args.add(arg_used)
+
+
+      obj = self.convert_field(obj, conversion)
+
+
+      format_spec = self._vformat(format_spec, args, kwargs,
+                                  used_args, recursion_depth-1)
+
+
+      result.append(self.format_field(obj, format_spec))
+
+  return ''.join(result)
+*********************************
+
+#### Score: 14.41427
+
+
+#### Java Tokens: 4.000, eager, gwt, padchar, reach, zero, pad, character, copies, java, always, check, resulting, formatter, input, null, util, padded, reached, returns, must, formatting, minlength, code, string, beginning, checknotnull, least, link, 2010, padend, example, result, see, negative, min, strings, appended, param, builder, end, set, capabilities, necessary, length, many, consisting, appear, richer, char, stringbuilder, returned, tostring, minimum, append 
+
+
+public static String padEnd(String string, int minLength, char padChar) {
+    
+    checkNotNull(string);
+    if (string.length() >= minLength) {
+        return string;
+    }
+    StringBuilder sb = new StringBuilder(minLength);
+    sb.append(string);
+    for (int i = string.length(); i < minLength; i++) {
+        sb.append(padChar);
+    }
+    return sb.toString();
+}
+*********************************
+
+#### Score: 14.15509
+
+
+#### Java Tokens: eager, gwt, padchar, reach, zero, pad, character, copies, java, always, check, resulting, formatter, input, null, util, padded, 007, reached, returns, must, formatting, padstart, prepended, minlength, code, string, beginning, checknotnull, least, link, insert, 2010, example, result, see, negative, min, strings, param, builder, end, set, capabilities, necessary, start, length, many, consisting, appear, richer, char, stringbuilder, returned, tostring, minimum, append 
+
+
+public static String padStart(String string, int minLength, char padChar) {
+    
+    checkNotNull(string);
+    if (string.length() >= minLength) {
+        return string;
+    }
+    StringBuilder sb = new StringBuilder(minLength);
+    for (int i = string.length(); i < minLength; i++) {
+        sb.append(padChar);
+    }
+    sb.append(string);
+    return sb.toString();
+}
+*********************************
+
+#### Score: 12.72248
+
+
+#### Java Tokens: exception, com, code, string, nullable, log, valueof, logger, another, integer, tohexstring, lenient, proguard, default, see, common, strings, identity, get, warning, create, hex, lenientformat, behavior, value, class, threw, getclass, identityhashcode, created, format, google, getlogger, getname, forcing, system, lenienttostring, inline, name, com.google.common.base.strings, fixed, avoid, objecttostring, tostring, hash, object, base 
+
+private static String lenientToString(@Nullable Object o) {
+    try {
+        return String.valueOf(o);
+    } catch (Exception e) {
+        
+        String objectToString = o.getClass().getName() + '@' + Integer.toHexString(System.identityHashCode(o));
+        
+        Logger.getLogger("com.google.common.base.Strings").log(WARNING, "Exception during lenientFormat for " + objectToString, e);
+        return "<" + objectToString + " threw " + e.getClass().getName() + ">";
+    }
+}
+*********************************
+
+#### Score: 12.19856
+
+
+#### Java Tokens: template, string, nullable, valueof, placeholders, run, lenient, braces, strings, extra, builder, lenientformat, placeholder, value, (object[])null, placeholderstart, format, length, start, index, substituting, args, square, lenienttostring, templatestart, arguments, stringbuilder, indexof, tostring, append, object 
+
+
+
+public static String lenientFormat(@Nullable String template, @Nullable Object@Nullable ... args) {
+    
+    template = String.valueOf(template);
+    if (args == null) {
+        args = new Object[] { "(Object[])null" };
+    } else {
+        for (int i = 0; i < args.length; i++) {
+            args[i] = lenientToString(args[i]);
+        }
+    }
+    
+    StringBuilder builder = new StringBuilder(template.length() + 16 * args.length);
+    int templateStart = 0;
+    int i = 0;
+    while (i < args.length) {
+        int placeholderStart = template.indexOf("%s", templateStart);
+        if (placeholderStart == -1) {
+            break;
+        }
+        builder.append(template, templateStart, placeholderStart);
+        builder.append(args[i++]);
+        templateStart = placeholderStart + 2;
+    }
+    builder.append(template, templateStart, template.length());
+    
+    if (i < args.length) {
+        builder.append(" [");
+        builder.append(args[i++]);
+        while (i < args.length) {
+            builder.append(", ");
+            builder.append(args[i++]);
+        }
+        builder.append(']');
+    }
+    return builder.toString();
+}
+*********************************
+
+#### Score: 12.02593
+
+
+#### Java Tokens: exception, joins, sanitizedseparator, argument, added, use, objects, empty, iterator, character, java, utils, delimiter, a,b,, join, hasnext, varargs, treated, pre, sanitized, containing, list, separator, illegal, defaultstring, must, arrays, object, since, next, illegalargumentexception, providing, code, string, provided, values, a,,b, result, strings, param, a,b, builder, lang, aslist, value, together, joined, stringutils, single, joinwith, elements, stringbuilder, tostring, append 
+
+
+public static String joinWith(final String separator, final Object... objects) {
+    if (objects == null) {
+        throw new IllegalArgumentException("Object varargs must not be null");
+    }
+    final String sanitizedSeparator = defaultString(separator);
+    final StringBuilder result = new StringBuilder();
+    final Iterator<Object> iterator = Arrays.asList(objects).iterator();
+    while (iterator.hasNext()) {
+        final String value = Objects.toString(iterator.next(), "");
+        result.append(value);
+        if (iterator.hasNext()) {
+            result.append(sanitizedSeparator);
+        }
+    }
+    return result.toString();
+}
+*********************************
+
+#### Score: 11.45045
+
+
+#### Java Tokens: exception, software, release, deprecated, javadocs, insensitive, via, score, character, https://commons.apache.org/proper/commons-text/javadocs/api-release/org/apache/commons/text/similarity/fuzzyscore.html, utils, scanned, normalize, english, text, href, https, api, case, algorithm, similar, termlowercase, lower, querylowercase, index, matches, resulting, accept, commons-text, input, mate, turning, must, matched, algorithms, illegalargumentexception, fuzzyscore, querychar, foundation, two, charsequence, commons, matching, result, characters, min, found, strings, indicates, termchar, get, yield, tolowercase, subsequent, term, necessary, one, unfortunately, right, stringutils, min_value, asf, char, logic, atom, argument, bonus, use, textmate, simple, integer, nested, queryindex, points, either, apache, find, leave, loop, html, potential, others, given, pre, termcharactermatchfound, workshop, query, insufficient, illegal, sequence, improve, position, termindex, sublime, higher, full, since, next, code, distance, string, getfuzzydistance, proper, locale, point, previously, param, similarity, value, every, fuzzy, charat, editors, previousmatchingcharacterindex, previous, org, length, match, start, room, tostring 
+
+
+@Deprecated
+public static int getFuzzyDistance(final CharSequence term, final CharSequence query, final Locale locale) {
+    if (term == null || query == null) {
+        throw new IllegalArgumentException("Strings must not be null");
+    } else if (locale == null) {
+        throw new IllegalArgumentException("Locale must not be null");
+    }
+    
+    
+    
+    
+    final String termLowerCase = term.toString().toLowerCase(locale);
+    final String queryLowerCase = query.toString().toLowerCase(locale);
+    
+    int score = 0;
+    
+    
+    int termIndex = 0;
+    
+    int previousMatchingCharacterIndex = Integer.MIN_VALUE;
+    for (int queryIndex = 0; queryIndex < queryLowerCase.length(); queryIndex++) {
+        final char queryChar = queryLowerCase.charAt(queryIndex);
+        boolean termCharacterMatchFound = false;
+        for (; termIndex < termLowerCase.length() && !termCharacterMatchFound; termIndex++) {
+            final char termChar = termLowerCase.charAt(termIndex);
+            if (queryChar == termChar) {
+                
+                score++;
+                
+                if (previousMatchingCharacterIndex + 1 == termIndex) {
+                    score += 2;
+                }
+                previousMatchingCharacterIndex = termIndex;
+                
+                
+                termCharacterMatchFound = true;
+            }
+        }
+    }
+    return score;
+}
+*********************************
+
+#### Score: 11.29689
+
+
+#### Java Tokens: exception, small, argument, used, ab.., good, number, utils, else, max-abbrevmarker, specifically, greater, defined, given, using, pre, abcd., abbrevmarker, less, check, illegal, str, input, marker, must, abbrev, replacement, since, maxwidth, illegalargumentexception, code, string, another, least, turn, abbreviates, substring, result, characters, param, men, for..., a.., abbreviate, may, max, length, ..., abcd, stringutils, equal, width, maximum, time, abcdefg, abbreviated 
+
+
+public static String abbreviate(final String str, final String abbrevMarker, final int maxWidth) {
+    return abbreviate(str, abbrevMarker, 0, maxWidth);
+}
+*********************************
+
+#### Score: 10.72349
+
+
+#### Java Tokens: ab-!-cd-!-ef, splits, whole, used, substrings, cd-!-ef, zero, number, split, utils, delimiter, limit, -!-, text, worker, treated, pre, containing, separator, splitbywholeseparatorworker, str, input, returns, parsed, code, string, provided, specified, ab:cd:ef, negative, strings, array, param, included, value, include, may, max, one, splitbywholeseparator, adjacent, parse, stringutils, elements, maximum, cd:ef, returned, whitespace, implies, separators 
+
+
+public static String[] splitByWholeSeparator(final String str, final String separator, final int max) {
+    return splitByWholeSeparatorWorker(str, separator, max, false);
+}
+*********************************
+
+#### Score: 10.60725
+
+
+#### Java Tokens: joins, small, added, use, objects, building, empty, zero, iterator, character, java, utils, delimiter, string_builder_size, join, hasnext, buffer, treated, containing, handle, list, separator, input, size, examples, object, next, code, string, probably, provided, values, link, two, see, param, builder, together, may, joined, one, stringutils, single, buf, obj, elements, stringbuilder, tostring, first, append 
+
+
+public static String join(final Iterator<?> iterator, final String separator) {
+    
+    if (iterator == null) {
+        return null;
+    }
+    if (!iterator.hasNext()) {
+        return EMPTY;
+    }
+    final Object first = iterator.next();
+    if (!iterator.hasNext()) {
+        return Objects.toString(first, "");
+    }
+    
+    
+    final StringBuilder buf = new StringBuilder(STRING_BUILDER_SIZE);
+    if (first != null) {
+        buf.append(first);
+    }
+    while (iterator.hasNext()) {
+        if (separator != null) {
+            buf.append(separator);
+        }
+        final Object obj = iterator.next();
+        if (obj != null) {
+            buf.append(obj);
+        }
+    }
+    return buf.toString();
+}
+*********************************
+
+#### Score: 10.52850
+
+
+#### Java Tokens: splits, used, substrings, zero, number, split, utils, limit, text, worker, treated, pre, including, last, includes, separator, str, input, returns, parsed, code, string, separatorchars, provided, specified, ab:cd:ef, characters, negative, found, strings, splitworker, array, param, delimiters, included, value, include, may, max, one, length, delimited, adjacent, parse, stringutils, elements, maximum, cd:ef, returned, whitespace, implies, separators, chars, first 
+
+
+public static String[] split(final String str, final String separatorChars, final int max) {
+    return splitWorker(str, separatorChars, max, false);
+}

@@ -1,0 +1,49 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[][] D = new int[N][N];
+    int[][] takoyaki = new int[N][N];
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            D[i][j] = sc.nextInt();
+        }
+    }
+    takoyaki[0][0] = D[0][0];
+    for (int j = 1; j < N; j++) {
+        takoyaki[0][j] = takoyaki[0][j - 1] + D[0][j];
+    }
+    for (int i = 1; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            if (j == 0) {
+                takoyaki[i][j] = takoyaki[i - 1][j] + D[i][j];
+            } else {
+                takoyaki[i][j] = takoyaki[i][j - 1] + takoyaki[i - 1][j] - takoyaki[i - 1][j - 1] + D[i][j];
+            }
+        }
+    }
+    int Q = sc.nextInt();
+    for (int i = 0; i < Q; i++) {
+        int p = sc.nextInt();
+        int tasteSum = 0;
+        for (int j = 1; j <= N; j++) {
+            int c = Math.min(N, p / j);
+            if (c > 0) {
+                for (int k = 0; k <= N - j; k++) {
+                    for (int l = 0; l <= N - c; l++) {
+                        int s = 0;
+                        int t = 0;
+                        int u = 0;
+                        if (l > 0)
+                            s = takoyaki[k + j - 1][l - 1];
+                        if (k > 0)
+                            t = takoyaki[k - 1][l + c - 1];
+                        if (k > 0 && l > 0)
+                            u = takoyaki[k - 1][l - 1];
+                        tasteSum = Math.max(tasteSum, takoyaki[k + j - 1][l + c - 1] - s - t + u);
+                    }
+                }
+            }
+        }
+        System.out.println(tasteSum);
+    }
+}

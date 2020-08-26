@@ -1,0 +1,79 @@
+public static void main(String[] args) {
+    long r = 0;
+    long b = 0;
+    long x = 0;
+    long y = 0;
+    long n = 0;
+    
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] s1;
+    try {
+        s1 = br.readLine().split(" ");
+        r = Long.parseLong(s1[0]);
+        b = Long.parseLong(s1[1]);
+        String[] s2 = br.readLine().split(" ");
+        x = Long.parseLong(s2[0]);
+        y = Long.parseLong(s2[1]);
+    } catch (IOException e) {
+        
+        e.printStackTrace();
+    }
+    if (r < x && b < y) {
+        System.out.println("0");
+        return;
+    }
+    int count = 0;
+    long nMin = 0;
+    while (true) {
+        
+        long mb = b / y;
+        long mr = r / x;
+        nMin = Math.min(mb, mr);
+        if (nMin < 1000)
+            break;
+        
+        long nb = (b - mr) / y < r ? (b - mr) / y : r;
+        long nr = (r - mb) / x < b ? (r - mb) / x : b;
+        n += nb;
+        n += nr;
+        r -= nb;
+        r -= nr * x;
+        b -= nr;
+        b -= nb * y;
+        if (count > 100000)
+            break;
+    }
+    long nMax = 0;
+    long temp = 0;
+    if (b / y == nMin) {
+        for (int i = 0; i <= nMin; i++) {
+            if (r - i < 0 || b - i * y < 0)
+                break;
+            long mMax = (r - i) / x < b - i * y ? (r - i) / x : b - i * y;
+            if (mMax + i >= nMax) {
+                nMax = mMax + i;
+                temp = i;
+            }
+        }
+        r -= temp;
+        r -= (nMax - temp) * x;
+        b -= nMax - temp;
+        b -= temp * y;
+    } else {
+        for (int i = 0; i <= nMin; i++) {
+            if (b - i < 0 || r - i * x < 0)
+                break;
+            long mMax = (b - i) / y < r - i * x ? (b - i) / y : r - i * x;
+            if (mMax + i >= nMax) {
+                nMax = mMax + i;
+                temp = i;
+            }
+        }
+        r -= nMax - temp;
+        r -= temp * x;
+        b -= temp;
+        b -= (nMax - temp) * y;
+    }
+    n += nMax;
+    System.out.println(n);
+}

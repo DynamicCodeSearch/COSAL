@@ -1,0 +1,11 @@
+def inplace_convert(h, w, stage):
+    for r0, c0 in itertools.product(range(h), range(w)):
+        if stage[r0][c0] == ".":
+            stage[r0][c0] = 0
+            for dr, dc in itertools.product((-1, 0, 1), repeat=2):
+                r, c = r0 + dr, c0 + dc
+                if (r, c) != (r0, c0) and 0 <= r < h and 0 <= c < w:
+                    cell = stage[r][c]
+                    if cell == "#":
+                        stage[r0][c0] += 1
+            stage[r0][c0] = str(stage[r0][c0])

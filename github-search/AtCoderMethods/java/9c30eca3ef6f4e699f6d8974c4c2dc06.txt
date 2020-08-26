@@ -1,0 +1,12 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    String str = input.readLine();
+    String[] list = str.split(" ");
+    Long a = Long.parseLong(list[0]);
+    Long b = Long.parseLong(list[1]);
+    Long c = Long.parseLong(list[2]);
+    int x = (int) (Math.pow(10, 9) + 7);
+    Long answer = (a * b) % x;
+    answer = answer * c % x;
+    System.out.println(answer);
+}

@@ -1,0 +1,30 @@
+public void solve(int testNumber, FastScanner in, PrintWriter out) {
+    n = in.nextInt();
+    adj = readTree(n, in);
+    int k = in.nextInt();
+    a = new int[n];
+    Arrays.fill(a, -1);
+    fixed = new boolean[n];
+    for (int i = 0; i < k; i++) {
+        int v = in.nextInt() - 1;
+        a[v] = in.nextInt();
+        fixed[v] = true;
+    }
+    ls = new int[n];
+    rs = new int[n];
+    for (int v = 0; v < n; v++) {
+        if (!fixed[v]) {
+            continue;
+        }
+        int[] seg = dfs(v, -1, a[v], a[v]);
+        if (seg == null) {
+            out.println("No");
+            return;
+        }
+        paint(v, -1, a[v]);
+    }
+    out.println("Yes");
+    for (int i = 0; i < n; i++) {
+        out.println(a[i]);
+    }
+}

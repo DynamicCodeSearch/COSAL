@@ -1,0 +1,15 @@
+def main():
+    N = int(input())
+    S = [int(input()) for i in range(N)]
+
+    ans = sum(S)
+    if str(ans)[-1] == '0':
+        s = sorted(S)
+        for i in s:
+            if str(i)[-1] != '0':
+                ans -= i
+                break
+        else:
+            ans = 0
+
+    print(ans)

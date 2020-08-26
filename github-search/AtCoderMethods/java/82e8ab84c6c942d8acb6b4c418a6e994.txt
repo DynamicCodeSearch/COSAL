@@ -1,0 +1,9 @@
+void advance(int pos, boolean[] through) {
+    if (through[pos]) {
+        return;
+    }
+    through[pos] = true;
+    for (Node node : nodes[pos].linkeds) {
+        advance(node.num, through);
+    }
+}

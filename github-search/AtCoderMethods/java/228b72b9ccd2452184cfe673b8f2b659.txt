@@ -1,0 +1,9 @@
+private static int count(int now, int pre, int[][] g) {
+    int ret = 1;
+    for (int v : g[now]) {
+        if (v != pre) {
+            ret += count(v, now, g);
+        }
+    }
+    return ret;
+}

@@ -1,0 +1,21 @@
+def main():
+    n,m = LI()
+    a = [0] + [I() for _ in range(n)]
+    r = [0] * (n+1)
+    r[0] = 1
+    la = [0] * (m+1)
+    l = 0
+    ls = 1
+    for i in range(1,n+1):
+        if l < la[a[i]]:
+            for j in range(l,la[a[i]]):
+                ls -= r[j]
+            l = la[a[i]]
+
+        la[a[i]] = i
+        r[i] = ls
+        ls += r[i]
+        ls %= mod
+        r[i] %= mod
+
+    return r[-1]

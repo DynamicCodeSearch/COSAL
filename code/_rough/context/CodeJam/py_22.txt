@@ -1,0 +1,923 @@
+### Py Tokens: nxu, min, area, sqrt, part, len, cuts, nxl, true, append, math 
+
+### Py functions
+
+def func_171ec7eec6a34fc2b6b3892482370bc5(G, L, U, area):
+    part = area * 1.0 / G
+    cuts = []
+    iL = 0
+    iU = 0
+    w = U[0][1] - L[0][1]
+    a = 0
+    x = 0
+    while True:
+        sL = (L[iL + 1][1] - L[iL][1]) * 1.0 / (L[iL + 1][0] - L[iL][0])
+        sU = (U[iU + 1][1] - U[iU][1]) * 1.0 / (U[iU + 1][0] - U[iU][0])
+        s = sU - sL
+        nxL = L[iL + 1][0]
+        nxU = U[iU + 1][0]
+        nx = min(nxL, nxU)
+        na = 2 * w * (nx - x) + s * (nx - x) * (nx - x)
+        if a + na >= part:
+            dx = (part - a) * 1.0 / (w + math.sqrt(w * w + (part - a) * s))
+            x += dx
+            a += 2 * w * dx + s * dx * dx
+            cuts.append(x)
+            w += s * dx
+            a = 0
+        else:
+            dx = nx - x
+            a += 2 * w * dx + s * dx * dx
+            x = nx
+            w += s * dx
+            if nx == nxL:
+                iL += 1
+            if nx == nxU:
+                iU += 1
+            if iL >= len(L) - 1:
+                break
+            if iU >= len(U) - 1:
+                break
+    return U
+
+def func_66ea9b52d1d4499e95ae320088ea3587(G, L, U, area):
+    part = area * 1.0 / G
+    cuts = []
+    iL = 0
+    iU = 0
+    w = U[0][1] - L[0][1]
+    a = 0
+    x = 0
+    while True:
+        sL = (L[iL + 1][1] - L[iL][1]) * 1.0 / (L[iL + 1][0] - L[iL][0])
+        sU = (U[iU + 1][1] - U[iU][1]) * 1.0 / (U[iU + 1][0] - U[iU][0])
+        s = sU - sL
+        nxL = L[iL + 1][0]
+        nxU = U[iU + 1][0]
+        nx = min(nxL, nxU)
+        na = 2 * w * (nx - x) + s * (nx - x) * (nx - x)
+        if a + na >= part:
+            dx = (part - a) * 1.0 / (w + math.sqrt(w * w + (part - a) * s))
+            x += dx
+            a += 2 * w * dx + s * dx * dx
+            cuts.append(x)
+            w += s * dx
+            a = 0
+        else:
+            dx = nx - x
+            a += 2 * w * dx + s * dx * dx
+            x = nx
+            w += s * dx
+            if nx == nxL:
+                iL += 1
+            if nx == nxU:
+                iU += 1
+            if iL >= len(L) - 1:
+                break
+            if iU >= len(U) - 1:
+                break
+    return s
+
+def func_ce6fb31c289c4b478df99f167b719a0e(G, L, U, area):
+    part = area * 1.0 / G
+    cuts = []
+    iL = 0
+    iU = 0
+    w = U[0][1] - L[0][1]
+    a = 0
+    x = 0
+    while True:
+        sL = (L[iL + 1][1] - L[iL][1]) * 1.0 / (L[iL + 1][0] - L[iL][0])
+        sU = (U[iU + 1][1] - U[iU][1]) * 1.0 / (U[iU + 1][0] - U[iU][0])
+        s = sU - sL
+        nxL = L[iL + 1][0]
+        nxU = U[iU + 1][0]
+        nx = min(nxL, nxU)
+        na = 2 * w * (nx - x) + s * (nx - x) * (nx - x)
+        if a + na >= part:
+            dx = (part - a) * 1.0 / (w + math.sqrt(w * w + (part - a) * s))
+            x += dx
+            a += 2 * w * dx + s * dx * dx
+            cuts.append(x)
+            w += s * dx
+            a = 0
+        else:
+            dx = nx - x
+            a += 2 * w * dx + s * dx * dx
+            x = nx
+            w += s * dx
+            if nx == nxL:
+                iL += 1
+            if nx == nxU:
+                iU += 1
+            if iL >= len(L) - 1:
+                break
+            if iU >= len(U) - 1:
+                break
+    return nxU
+
+def func_1bf656e97f334c1eb97002e9b25cc070(G, L, U, area):
+    part = area * 1.0 / G
+    cuts = []
+    iL = 0
+    iU = 0
+    w = U[0][1] - L[0][1]
+    a = 0
+    x = 0
+    while True:
+        sL = (L[iL + 1][1] - L[iL][1]) * 1.0 / (L[iL + 1][0] - L[iL][0])
+        sU = (U[iU + 1][1] - U[iU][1]) * 1.0 / (U[iU + 1][0] - U[iU][0])
+        s = sU - sL
+        nxL = L[iL + 1][0]
+        nxU = U[iU + 1][0]
+        nx = min(nxL, nxU)
+        na = 2 * w * (nx - x) + s * (nx - x) * (nx - x)
+        if a + na >= part:
+            dx = (part - a) * 1.0 / (w + math.sqrt(w * w + (part - a) * s))
+            x += dx
+            a += 2 * w * dx + s * dx * dx
+            cuts.append(x)
+            w += s * dx
+            a = 0
+        else:
+            dx = nx - x
+            a += 2 * w * dx + s * dx * dx
+            x = nx
+            w += s * dx
+            if nx == nxL:
+                iL += 1
+            if nx == nxU:
+                iU += 1
+            if iL >= len(L) - 1:
+                break
+            if iU >= len(U) - 1:
+                break
+    return w
+
+def func_61ad17e13d00424c9bf7eccf26033f8e(G, L, U, area):
+    part = area * 1.0 / G
+    cuts = []
+    iL = 0
+    iU = 0
+    w = U[0][1] - L[0][1]
+    a = 0
+    x = 0
+    while True:
+        sL = (L[iL + 1][1] - L[iL][1]) * 1.0 / (L[iL + 1][0] - L[iL][0])
+        sU = (U[iU + 1][1] - U[iU][1]) * 1.0 / (U[iU + 1][0] - U[iU][0])
+        s = sU - sL
+        nxL = L[iL + 1][0]
+        nxU = U[iU + 1][0]
+        nx = min(nxL, nxU)
+        na = 2 * w * (nx - x) + s * (nx - x) * (nx - x)
+        if a + na >= part:
+            dx = (part - a) * 1.0 / (w + math.sqrt(w * w + (part - a) * s))
+            x += dx
+            a += 2 * w * dx + s * dx * dx
+            cuts.append(x)
+            w += s * dx
+            a = 0
+        else:
+            dx = nx - x
+            a += 2 * w * dx + s * dx * dx
+            x = nx
+            w += s * dx
+            if nx == nxL:
+                iL += 1
+            if nx == nxU:
+                iU += 1
+            if iL >= len(L) - 1:
+                break
+            if iU >= len(U) - 1:
+                break
+    return L
+
+*********************************
+
+#### Score: 10.25834
+
+
+#### Java Tokens: area, println, abs, len, sqrt, remain, format, math, e-6 
+
+public static double func_3aca2783a0c64127adcb2478cfc80d07(int x0, double area, double x, double[] len, PrintWriter out) { 
+ double remain = area;
+x0 = (int) x;
+int x1 = x0 + 1;
+double k = 1.0 * (len[x1] - len[x0]);
+double y = k * (x - x0) + len[x0];
+while (remain > (y + len[x1]) * (x1 - x) / 2) {
+    remain -= (y + len[x1]) * (x1 - x) / 2;
+    x = x1;
+    x0 = (int) x;
+    x1 = x0 + 1;
+    k = 1.0 * (len[x1] - len[x0]);
+    y = k * (x - x0) + len[x0];
+}
+if (Math.abs(k) > 10e-6) {
+    double a = k;
+    double b = 2 * (y - k * x);
+    double c = k * x * x - 2 * x * y - 2 * remain;
+    double d = Math.sqrt(b * b - 4 * a * c);
+    double x2 = (d - b) / (2 * a);
+    double x3 = -1.0 * (d + b) / (2 * a);
+    if (x2 > x && x2 <= x1) {
+        out.println(A.format(x2));
+        x = x2;
+    } else {
+        out.println(A.format(x3));
+        x = x3;
+    }
+} else {
+    x += remain / y;
+    out.println(A.format(x));
+}
+return y;
+}
+
+
+public static PrintWriter func_8fd9c4ad44ae4808929992e6a20bed2c(int x0, int g, double area, double[] len, PrintWriter out) { 
+ double x = 0;
+for (int i = 1; i < g; i++) {
+    double remain = area;
+    x0 = (int) x;
+    int x1 = x0 + 1;
+    double k = 1.0 * (len[x1] - len[x0]);
+    double y = k * (x - x0) + len[x0];
+    while (remain > (y + len[x1]) * (x1 - x) / 2) {
+        remain -= (y + len[x1]) * (x1 - x) / 2;
+        x = x1;
+        x0 = (int) x;
+        x1 = x0 + 1;
+        k = 1.0 * (len[x1] - len[x0]);
+        y = k * (x - x0) + len[x0];
+    }
+    if (Math.abs(k) > 10e-6) {
+        double a = k;
+        double b = 2 * (y - k * x);
+        double c = k * x * x - 2 * x * y - 2 * remain;
+        double d = Math.sqrt(b * b - 4 * a * c);
+        double x2 = (d - b) / (2 * a);
+        double x3 = -1.0 * (d + b) / (2 * a);
+        if (x2 > x && x2 <= x1) {
+            out.println(A.format(x2));
+            x = x2;
+        } else {
+            out.println(A.format(x3));
+            x = x3;
+        }
+    } else {
+        x += remain / y;
+        out.println(A.format(x));
+    }
+}
+return out;
+}
+
+
+public static int func_5190f15114ae4acf9979e272b2fb9a80(int x0, double area, double x, double[] len, PrintWriter out) { 
+ double remain = area;
+x0 = (int) x;
+int x1 = x0 + 1;
+double k = 1.0 * (len[x1] - len[x0]);
+double y = k * (x - x0) + len[x0];
+while (remain > (y + len[x1]) * (x1 - x) / 2) {
+    remain -= (y + len[x1]) * (x1 - x) / 2;
+    x = x1;
+    x0 = (int) x;
+    x1 = x0 + 1;
+    k = 1.0 * (len[x1] - len[x0]);
+    y = k * (x - x0) + len[x0];
+}
+if (Math.abs(k) > 10e-6) {
+    double a = k;
+    double b = 2 * (y - k * x);
+    double c = k * x * x - 2 * x * y - 2 * remain;
+    double d = Math.sqrt(b * b - 4 * a * c);
+    double x2 = (d - b) / (2 * a);
+    double x3 = -1.0 * (d + b) / (2 * a);
+    if (x2 > x && x2 <= x1) {
+        out.println(A.format(x2));
+        x = x2;
+    } else {
+        out.println(A.format(x3));
+        x = x3;
+    }
+} else {
+    x += remain / y;
+    out.println(A.format(x));
+}
+return x0;
+}
+
+
+*********************************
+
+#### Score: 9.46511
+
+
+#### Java Tokens: sqrt, math 
+
+public static double func_44a352339d634cb29891c263f0e6249b(double a, double c, double b) { 
+ double d = Math.sqrt(b * b - 4 * a * c);
+double x2 = (d - b) / (2 * a);
+double x3 = -1.0 * (d + b) / (2 * a);
+return d;
+}
+
+
+public static double func_0ce2725bd9c9403191aa2321c702c0d8(double a, double c, double b) { 
+ double d = Math.sqrt(b * b - 4 * a * c);
+double x2 = (d - b) / (2 * a);
+return x2;
+}
+
+
+public static double func_0d9ce693d3f6403b889833d31e64791f(double a, double c, double b) { 
+ double d = Math.sqrt(b * b - 4 * a * c);
+double x2 = (d - b) / (2 * a);
+double x3 = -1.0 * (d + b) / (2 * a);
+return x2;
+}
+
+
+*********************************
+
+#### Score: 8.82362
+
+
+#### Java Tokens: sqrt, remain, math 
+
+public static double func_06fca538ae86406d98f30b655404918a(double k, double remain, double x, double y, double a) { 
+ double b = 2 * (y - k * x);
+double c = k * x * x - 2 * x * y - 2 * remain;
+double d = Math.sqrt(b * b - 4 * a * c);
+double x2 = (d - b) / (2 * a);
+return x2;
+}
+
+
+public static double func_974990c63beb4acbb6815638e81568f9(double k, double remain, double x, double y) { 
+ double a = k;
+double b = 2 * (y - k * x);
+double c = k * x * x - 2 * x * y - 2 * remain;
+double d = Math.sqrt(b * b - 4 * a * c);
+double x2 = (d - b) / (2 * a);
+double x3 = -1.0 * (d + b) / (2 * a);
+return x2;
+}
+
+
+public static double func_da939346f93c492bb76d8e9a0b5bbeff(double k, double remain, double x, double y, double a) { 
+ double b = 2 * (y - k * x);
+double c = k * x * x - 2 * x * y - 2 * remain;
+double d = Math.sqrt(b * b - 4 * a * c);
+double x2 = (d - b) / (2 * a);
+double x3 = -1.0 * (d + b) / (2 * a);
+return c;
+}
+
+
+*********************************
+
+#### Score: 8.82362
+
+
+#### Java Tokens: sqrt, math, discr 
+
+public static double func_737b9027879e41dc875f37a059f5ad46(double g, double a, double b, double c) { 
+ double discr = b * b - 4 * a * c;
+g = (-b + Math.sqrt(discr)) / (2 * a);
+return discr;
+}
+
+
+public static double func_d0c5b7ceb5694757bc1ecef11d924fa7(double g, double a, double b, double c) { 
+ double discr = b * b - 4 * a * c;
+g = (-b + Math.sqrt(discr)) / (2 * a);
+return g;
+}
+
+
+*********************************
+
+#### Score: 8.78245
+
+
+#### Java Tokens: println, abs, len, sqrt, remain, format, math, e-6 
+
+public static double func_7100e4ce730d40e1834f53761e5581b9(int x0, double remain, double x, double[] len, PrintWriter out) { 
+ x0 = (int) x;
+int x1 = x0 + 1;
+double k = 1.0 * (len[x1] - len[x0]);
+double y = k * (x - x0) + len[x0];
+while (remain > (y + len[x1]) * (x1 - x) / 2) {
+    remain -= (y + len[x1]) * (x1 - x) / 2;
+    x = x1;
+    x0 = (int) x;
+    x1 = x0 + 1;
+    k = 1.0 * (len[x1] - len[x0]);
+    y = k * (x - x0) + len[x0];
+}
+if (Math.abs(k) > 10e-6) {
+    double a = k;
+    double b = 2 * (y - k * x);
+    double c = k * x * x - 2 * x * y - 2 * remain;
+    double d = Math.sqrt(b * b - 4 * a * c);
+    double x2 = (d - b) / (2 * a);
+    double x3 = -1.0 * (d + b) / (2 * a);
+    if (x2 > x && x2 <= x1) {
+        out.println(A.format(x2));
+        x = x2;
+    } else {
+        out.println(A.format(x3));
+        x = x3;
+    }
+} else {
+    x += remain / y;
+    out.println(A.format(x));
+}
+return y;
+}
+
+
+public static int func_d8119613097546cab8b47a3b0b86e8af(int x0, double remain, double x, double[] len, PrintWriter out) { 
+ int x1 = x0 + 1;
+double k = 1.0 * (len[x1] - len[x0]);
+double y = k * (x - x0) + len[x0];
+while (remain > (y + len[x1]) * (x1 - x) / 2) {
+    remain -= (y + len[x1]) * (x1 - x) / 2;
+    x = x1;
+    x0 = (int) x;
+    x1 = x0 + 1;
+    k = 1.0 * (len[x1] - len[x0]);
+    y = k * (x - x0) + len[x0];
+}
+if (Math.abs(k) > 10e-6) {
+    double a = k;
+    double b = 2 * (y - k * x);
+    double c = k * x * x - 2 * x * y - 2 * remain;
+    double d = Math.sqrt(b * b - 4 * a * c);
+    double x2 = (d - b) / (2 * a);
+    double x3 = -1.0 * (d + b) / (2 * a);
+    if (x2 > x && x2 <= x1) {
+        out.println(A.format(x2));
+        x = x2;
+    } else {
+        out.println(A.format(x3));
+        x = x3;
+    }
+} else {
+    x += remain / y;
+    out.println(A.format(x));
+}
+return x0;
+}
+
+
+public static int func_57070f84d6ad40ae8674b147daff33b5(int x0, double remain, double x, double[] len, PrintWriter out) { 
+ x0 = (int) x;
+int x1 = x0 + 1;
+double k = 1.0 * (len[x1] - len[x0]);
+double y = k * (x - x0) + len[x0];
+while (remain > (y + len[x1]) * (x1 - x) / 2) {
+    remain -= (y + len[x1]) * (x1 - x) / 2;
+    x = x1;
+    x0 = (int) x;
+    x1 = x0 + 1;
+    k = 1.0 * (len[x1] - len[x0]);
+    y = k * (x - x0) + len[x0];
+}
+if (Math.abs(k) > 10e-6) {
+    double a = k;
+    double b = 2 * (y - k * x);
+    double c = k * x * x - 2 * x * y - 2 * remain;
+    double d = Math.sqrt(b * b - 4 * a * c);
+    double x2 = (d - b) / (2 * a);
+    double x3 = -1.0 * (d + b) / (2 * a);
+    if (x2 > x && x2 <= x1) {
+        out.println(A.format(x2));
+        x = x2;
+    } else {
+        out.println(A.format(x3));
+        x = x3;
+    }
+} else {
+    x += remain / y;
+    out.println(A.format(x));
+}
+return x0;
+}
+
+
+*********************************
+
+#### Score: 7.80915
+
+
+#### Java Tokens: next, area, nextint, remain, upper, format, int, e-6, println, system, abs, len, low, sqrt, math, case 
+
+public static double func_9ba710cbd4874fd5adb9c18f5dd0e3fa(int t, int w, PrintWriter out, Scanner in) { 
+ int l = in.nextInt();
+int u = in.nextInt();
+int g = in.nextInt();
+if (t == 5) {
+    System.out.println(w + " " + l + " " + u + " " + g);
+}
+double[] len = new double[w + 1];
+double[] low = new double[w + 1];
+int x0 = in.nextInt();
+int y0 = in.nextInt();
+low[x0] = y0;
+for (int i = 1; i < l; i++) {
+    int x = in.nextInt();
+    int y = in.nextInt();
+    double k = 1.0 * (y - y0) / (x - x0);
+    for (int j = x0 + 1; j <= x; j++) {
+        low[j] = k * (j - x0) + y0;
+    }
+    x0 = x;
+    y0 = y;
+}
+double[] upper = new double[w + 1];
+x0 = in.nextInt();
+y0 = in.nextInt();
+upper[x0] = y0;
+for (int i = 1; i < u; i++) {
+    int x = in.nextInt();
+    int y = in.nextInt();
+    double k = 1.0 * (y - y0) / (x - x0);
+    for (int j = x0 + 1; j <= x; j++) {
+        upper[j] = k * (j - x0) + y0;
+    }
+    x0 = x;
+    y0 = y;
+}
+for (int i = 0; i <= w; i++) {
+    len[i] = upper[i] - low[i];
+}
+double area = 0;
+for (int i = 1; i <= w; i++) {
+    area += (len[i - 1] + len[i]) / 2;
+}
+area /= g;
+out.println("Case #" + (t + 1) + ":");
+double x = 0;
+for (int i = 1; i < g; i++) {
+    double remain = area;
+    x0 = (int) x;
+    int x1 = x0 + 1;
+    double k = 1.0 * (len[x1] - len[x0]);
+    double y = k * (x - x0) + len[x0];
+    while (remain > (y + len[x1]) * (x1 - x) / 2) {
+        remain -= (y + len[x1]) * (x1 - x) / 2;
+        x = x1;
+        x0 = (int) x;
+        x1 = x0 + 1;
+        k = 1.0 * (len[x1] - len[x0]);
+        y = k * (x - x0) + len[x0];
+    }
+    if (Math.abs(k) > 10e-6) {
+        double a = k;
+        double b = 2 * (y - k * x);
+        double c = k * x * x - 2 * x * y - 2 * remain;
+        double d = Math.sqrt(b * b - 4 * a * c);
+        double x2 = (d - b) / (2 * a);
+        double x3 = -1.0 * (d + b) / (2 * a);
+        if (x2 > x && x2 <= x1) {
+            out.println(A.format(x2));
+            x = x2;
+        } else {
+            out.println(A.format(x3));
+            x = x3;
+        }
+    } else {
+        x += remain / y;
+        out.println(A.format(x));
+    }
+}
+return area;
+}
+
+
+public static int func_8fff445f09c24c9ab094f88e8b0da3a1(int t, PrintWriter out, Scanner in) { 
+ int w = in.nextInt();
+int l = in.nextInt();
+int u = in.nextInt();
+int g = in.nextInt();
+if (t == 5) {
+    System.out.println(w + " " + l + " " + u + " " + g);
+}
+double[] len = new double[w + 1];
+double[] low = new double[w + 1];
+int x0 = in.nextInt();
+int y0 = in.nextInt();
+low[x0] = y0;
+for (int i = 1; i < l; i++) {
+    int x = in.nextInt();
+    int y = in.nextInt();
+    double k = 1.0 * (y - y0) / (x - x0);
+    for (int j = x0 + 1; j <= x; j++) {
+        low[j] = k * (j - x0) + y0;
+    }
+    x0 = x;
+    y0 = y;
+}
+double[] upper = new double[w + 1];
+x0 = in.nextInt();
+y0 = in.nextInt();
+upper[x0] = y0;
+for (int i = 1; i < u; i++) {
+    int x = in.nextInt();
+    int y = in.nextInt();
+    double k = 1.0 * (y - y0) / (x - x0);
+    for (int j = x0 + 1; j <= x; j++) {
+        upper[j] = k * (j - x0) + y0;
+    }
+    x0 = x;
+    y0 = y;
+}
+for (int i = 0; i <= w; i++) {
+    len[i] = upper[i] - low[i];
+}
+double area = 0;
+for (int i = 1; i <= w; i++) {
+    area += (len[i - 1] + len[i]) / 2;
+}
+area /= g;
+out.println("Case #" + (t + 1) + ":");
+double x = 0;
+for (int i = 1; i < g; i++) {
+    double remain = area;
+    x0 = (int) x;
+    int x1 = x0 + 1;
+    double k = 1.0 * (len[x1] - len[x0]);
+    double y = k * (x - x0) + len[x0];
+    while (remain > (y + len[x1]) * (x1 - x) / 2) {
+        remain -= (y + len[x1]) * (x1 - x) / 2;
+        x = x1;
+        x0 = (int) x;
+        x1 = x0 + 1;
+        k = 1.0 * (len[x1] - len[x0]);
+        y = k * (x - x0) + len[x0];
+    }
+    if (Math.abs(k) > 10e-6) {
+        double a = k;
+        double b = 2 * (y - k * x);
+        double c = k * x * x - 2 * x * y - 2 * remain;
+        double d = Math.sqrt(b * b - 4 * a * c);
+        double x2 = (d - b) / (2 * a);
+        double x3 = -1.0 * (d + b) / (2 * a);
+        if (x2 > x && x2 <= x1) {
+            out.println(A.format(x2));
+            x = x2;
+        } else {
+            out.println(A.format(x3));
+            x = x3;
+        }
+    } else {
+        x += remain / y;
+        out.println(A.format(x));
+    }
+}
+return x0;
+}
+
+
+public static int func_33bccb09195143f58ce73b137a66ca29(int t, PrintWriter out, Scanner in) { 
+ int w = in.nextInt();
+int l = in.nextInt();
+int u = in.nextInt();
+int g = in.nextInt();
+if (t == 5) {
+    System.out.println(w + " " + l + " " + u + " " + g);
+}
+double[] len = new double[w + 1];
+double[] low = new double[w + 1];
+int x0 = in.nextInt();
+int y0 = in.nextInt();
+low[x0] = y0;
+for (int i = 1; i < l; i++) {
+    int x = in.nextInt();
+    int y = in.nextInt();
+    double k = 1.0 * (y - y0) / (x - x0);
+    for (int j = x0 + 1; j <= x; j++) {
+        low[j] = k * (j - x0) + y0;
+    }
+    x0 = x;
+    y0 = y;
+}
+double[] upper = new double[w + 1];
+x0 = in.nextInt();
+y0 = in.nextInt();
+upper[x0] = y0;
+for (int i = 1; i < u; i++) {
+    int x = in.nextInt();
+    int y = in.nextInt();
+    double k = 1.0 * (y - y0) / (x - x0);
+    for (int j = x0 + 1; j <= x; j++) {
+        upper[j] = k * (j - x0) + y0;
+    }
+    x0 = x;
+    y0 = y;
+}
+for (int i = 0; i <= w; i++) {
+    len[i] = upper[i] - low[i];
+}
+double area = 0;
+for (int i = 1; i <= w; i++) {
+    area += (len[i - 1] + len[i]) / 2;
+}
+area /= g;
+out.println("Case #" + (t + 1) + ":");
+double x = 0;
+for (int i = 1; i < g; i++) {
+    double remain = area;
+    x0 = (int) x;
+    int x1 = x0 + 1;
+    double k = 1.0 * (len[x1] - len[x0]);
+    double y = k * (x - x0) + len[x0];
+    while (remain > (y + len[x1]) * (x1 - x) / 2) {
+        remain -= (y + len[x1]) * (x1 - x) / 2;
+        x = x1;
+        x0 = (int) x;
+        x1 = x0 + 1;
+        k = 1.0 * (len[x1] - len[x0]);
+        y = k * (x - x0) + len[x0];
+    }
+    if (Math.abs(k) > 10e-6) {
+        double a = k;
+        double b = 2 * (y - k * x);
+        double c = k * x * x - 2 * x * y - 2 * remain;
+        double d = Math.sqrt(b * b - 4 * a * c);
+        double x2 = (d - b) / (2 * a);
+        double x3 = -1.0 * (d + b) / (2 * a);
+        if (x2 > x && x2 <= x1) {
+            out.println(A.format(x2));
+            x = x2;
+        } else {
+            out.println(A.format(x3));
+            x = x3;
+        }
+    } else {
+        x += remain / y;
+        out.println(A.format(x));
+    }
+}
+return g;
+}
+
+
+*********************************
+
+#### Score: 7.78004
+
+
+#### Java Tokens: res, sqrt, max, want, math 
+
+public static double func_737e0ce9fc5148b78da051589cd67681(double k, double d1, double want) { 
+ double t = Math.sqrt(Math.max(d1 * d1 + 2 * k * want, 0));
+double res = (t - d1) / k;
+return res;
+}
+
+
+public static double func_c0a4fa8d79514ba0bfe32dfe2ddab429(double k, double d1, double want) { 
+ double t = Math.sqrt(Math.max(d1 * d1 + 2 * k * want, 0));
+double res = (t - d1) / k;
+return t;
+}
+
+
+*********************************
+
+#### Score: 7.55553
+
+
+#### Java Tokens: next, area, nextint, remain, upper, format, int, e-6, println, tests, system, abs, len, low, sqrt, math, case 
+
+public static PrintWriter func_3cb830f231dc4159b5d3a1f6cdd0ed55(int tests, PrintWriter out, Scanner in) { 
+ for (int t = 0; t < tests; t++) {
+    int w = in.nextInt();
+    int l = in.nextInt();
+    int u = in.nextInt();
+    int g = in.nextInt();
+    if (t == 5) {
+        System.out.println(w + " " + l + " " + u + " " + g);
+    }
+    double[] len = new double[w + 1];
+    double[] low = new double[w + 1];
+    int x0 = in.nextInt();
+    int y0 = in.nextInt();
+    low[x0] = y0;
+    for (int i = 1; i < l; i++) {
+        int x = in.nextInt();
+        int y = in.nextInt();
+        double k = 1.0 * (y - y0) / (x - x0);
+        for (int j = x0 + 1; j <= x; j++) {
+            low[j] = k * (j - x0) + y0;
+        }
+        x0 = x;
+        y0 = y;
+    }
+    double[] upper = new double[w + 1];
+    x0 = in.nextInt();
+    y0 = in.nextInt();
+    upper[x0] = y0;
+    for (int i = 1; i < u; i++) {
+        int x = in.nextInt();
+        int y = in.nextInt();
+        double k = 1.0 * (y - y0) / (x - x0);
+        for (int j = x0 + 1; j <= x; j++) {
+            upper[j] = k * (j - x0) + y0;
+        }
+        x0 = x;
+        y0 = y;
+    }
+    for (int i = 0; i <= w; i++) {
+        len[i] = upper[i] - low[i];
+    }
+    double area = 0;
+    for (int i = 1; i <= w; i++) {
+        area += (len[i - 1] + len[i]) / 2;
+    }
+    area /= g;
+    out.println("Case #" + (t + 1) + ":");
+    double x = 0;
+    for (int i = 1; i < g; i++) {
+        double remain = area;
+        x0 = (int) x;
+        int x1 = x0 + 1;
+        double k = 1.0 * (len[x1] - len[x0]);
+        double y = k * (x - x0) + len[x0];
+        while (remain > (y + len[x1]) * (x1 - x) / 2) {
+            remain -= (y + len[x1]) * (x1 - x) / 2;
+            x = x1;
+            x0 = (int) x;
+            x1 = x0 + 1;
+            k = 1.0 * (len[x1] - len[x0]);
+            y = k * (x - x0) + len[x0];
+        }
+        if (Math.abs(k) > 10e-6) {
+            double a = k;
+            double b = 2 * (y - k * x);
+            double c = k * x * x - 2 * x * y - 2 * remain;
+            double d = Math.sqrt(b * b - 4 * a * c);
+            double x2 = (d - b) / (2 * a);
+            double x3 = -1.0 * (d + b) / (2 * a);
+            if (x2 > x && x2 <= x1) {
+                out.println(A.format(x2));
+                x = x2;
+            } else {
+                out.println(A.format(x3));
+                x = x3;
+            }
+        } else {
+            x += remain / y;
+            out.println(A.format(x));
+        }
+    }
+}
+return out;
+}
+
+
+*********************************
+
+#### Score: 7.34991
+
+
+#### Java Tokens: abs, sqrt, e-11, math, discr 
+
+public static double func_01531d58c343421fbdf74789256cf7e4(double a, double b, double c) { 
+ double g = 0;
+if (Math.abs(a) >= 1e-11) {
+    double discr = b * b - 4 * a * c;
+    g = (-b + Math.sqrt(discr)) / (2 * a);
+} else {
+    g = -c / b;
+}
+return g;
+}
+
+
+*********************************
+
+#### Score: 7.34991
+
+
+#### Java Tokens: sqrt, sumsquares, squares, sum, math, value 
+
+public static double func_74051525cd4f41fca60d8accf85c6091(double sumSquares, double[] x) { 
+ for (double value : x) sumSquares += value * value;
+return Math.sqrt(sumSquares);
+
+}
+
+
+public static double func_b9c6f5c4da284a55ae288840ab4dddbc(double[] x) { 
+ double sumSquares = 0;
+for (double value : x) sumSquares += value * value;
+return Math.sqrt(sumSquares);
+
+}
+

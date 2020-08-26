@@ -1,0 +1,10 @@
+public MatrixMod multiply(long k) {
+    k = (k % MOD + MOD) % MOD;
+    long[][] c = new long[n][m];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            c[i][j] = e[i][j] * k % MOD;
+        }
+    }
+    return new MatrixMod(c);
+}

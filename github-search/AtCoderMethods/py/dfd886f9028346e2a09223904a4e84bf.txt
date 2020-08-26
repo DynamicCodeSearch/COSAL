@@ -1,0 +1,12 @@
+def f(x, p):
+    if x in f_memo:
+        return f_memo[x]
+    res = g(x, p)
+    r = 1
+    for y in graph[x]:
+        if y == p:
+            continue
+        r *= g(y, x)
+    res += r 
+    f_memo[x] = res
+    return f_memo[x] % mod

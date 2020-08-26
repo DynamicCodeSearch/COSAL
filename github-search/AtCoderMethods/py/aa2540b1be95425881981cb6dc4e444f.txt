@@ -1,0 +1,15 @@
+def frustum_volume(self, lower, upper):
+    if self.x_bottom >= upper or self.x_top <= lower:
+
+        return 0.0
+
+    x_upper_bottom = min(self.x_top, upper)
+
+    x_lower_bottom = max(self.x_bottom, lower)
+
+    r_u = (self.x_top - x_upper_bottom) * self.tan_theta
+
+    r_l = (self.x_top - x_lower_bottom) * self.tan_theta
+
+    v = math.pi * (r_l * r_l + r_l * r_u + r_u * r_u) / 3.0
+    return v

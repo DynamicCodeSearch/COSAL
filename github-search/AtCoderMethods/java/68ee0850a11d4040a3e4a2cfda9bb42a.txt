@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    PrintWriter out = new PrintWriter(System.out);
+    int n = sc.nextInt();
+    char[] s = sc.next().toCharArray();
+    int[] num = new int[3];
+    for (int i = 0; i < n; i++) {
+        switch(s[i]) {
+            case 'R':
+                num[0]++;
+                break;
+            case 'G':
+                num[1]++;
+                break;
+            case 'B':
+                num[2]++;
+                break;
+        }
+    }
+    int ans = 0;
+    for (int i = 0; i < 3; i++) {
+        ans += num[i] % 2;
+    }
+    out.println(ans);
+    out.flush();
+}

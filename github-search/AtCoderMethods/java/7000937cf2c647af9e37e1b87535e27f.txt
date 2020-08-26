@@ -1,0 +1,18 @@
+private static int rec(int i, int j) {
+    if (used[i][j] > 0) {
+        return used[i][j];
+    }
+    int ret = 1;
+    for (int k = 0; k < dx.length; k++) {
+        int nx = j + dx[k];
+        int ny = i + dy[k];
+        if (nx < 0 || nx >= w || ny < 0 || ny >= h) {
+            continue;
+        }
+        if (a[ny][nx] >= a[i][j]) {
+            continue;
+        }
+        ret = (ret + rec(ny, nx)) % MOD;
+    }
+    return used[i][j] = ret;
+}

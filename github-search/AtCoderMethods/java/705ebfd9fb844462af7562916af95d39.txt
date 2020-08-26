@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    int n, k;
+    Scanner sc = new Scanner(System.in);
+    n = sc.nextInt();
+    k = sc.nextInt();
+    int[] d = new int[k];
+    boolean[] v = new boolean[10];
+    for (int i = 0; i < 10; i++) v[i] = true;
+    for (int i = 0; i < k; i++) {
+        d[i] = sc.nextInt();
+        v[d[i]] = false;
+    }
+    int m = n;
+    while (true) {
+        String str = String.valueOf(m);
+        boolean fg = true;
+        for (int j = 0; j < str.length(); j++) {
+            if (!v[Character.getNumericValue(str.charAt(j))])
+                fg = false;
+        }
+        if (fg) {
+            System.out.println(str);
+            return;
+        }
+        m++;
+    }
+}

@@ -1,0 +1,5 @@
+static final long[] fal_rnd(long[] ar, LongSupplier sp) {
+    int l = -1, r = ar.length;
+    while (l + 1 != r) ar[Math.random() < 0.5 ? ++l : --r] = sp.getAsLong();
+    return ar;
+}

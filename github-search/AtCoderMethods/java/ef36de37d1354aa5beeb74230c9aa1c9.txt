@@ -1,0 +1,22 @@
+public void solve(int testNumber, FastScanner in, PrintWriter out) {
+    int n = in.nextInt();
+    long a = in.nextLong();
+    long b = in.nextLong();
+    int[] h = new int[n];
+    int hmax = 0;
+    for (int i = 0; i < n; i++) {
+        h[i] = in.nextInt();
+        hmax = Math.max(hmax, h[i]);
+    }
+    long l = 0;
+    long r = hmax;
+    while (r - l > 1) {
+        long m = l + (r - l) / 2;
+        if (can(n, a, b, h, m)) {
+            r = m;
+        } else {
+            l = m;
+        }
+    }
+    out.println(r);
+}

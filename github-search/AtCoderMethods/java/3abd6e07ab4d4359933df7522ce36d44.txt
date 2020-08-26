@@ -1,0 +1,30 @@
+void run() {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[] a = new int[n - 1];
+    int[] b = new int[n - 1];
+    int[] c = new int[n - 1];
+    HLDecomposition hl = new HLDecomposition(n);
+    for (int i = 0; i < n - 1; ++i) {
+        a[i] = sc.nextInt();
+        b[i] = sc.nextInt();
+        c[i] = sc.nextInt();
+        --a[i];
+        --b[i];
+        hl.ae(a[i], b[i], c[i]);
+    }
+    int Q = sc.nextInt();
+    int K = sc.nextInt();
+    --K;
+    int[] x = new int[Q];
+    int[] y = new int[Q];
+    hl.root = K;
+    hl.pre();
+    for (int i = 0; i < Q; ++i) {
+        x[i] = sc.nextInt();
+        y[i] = sc.nextInt();
+        --x[i];
+        --y[i];
+        System.out.println(hl.depth2[x[i]] + hl.depth2[y[i]]);
+    }
+}

@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    char[] A = new char[200000];
+    A = sc.next().toCharArray();
+    int max = 1;
+    int count = 0;
+    boolean flag = false;
+    for (int i = 0; i < A.length; i++) {
+        if (A[i] == 'A') {
+            flag = true;
+        }
+        if (A[i] == 'Z' && flag) {
+            count++;
+            if (max < count)
+                max = count;
+        } else if (flag) {
+            count++;
+        }
+    }
+    System.out.println(max);
+}

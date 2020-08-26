@@ -1,0 +1,8 @@
+void addEdge(int fr, int to, long cap) {
+    Edge e1 = new Edge(fr, to, cap);
+    Edge e2 = new Edge(to, fr, 0);
+    e1.rev = e2;
+    e2.rev = e1;
+    g[fr].add(e1);
+    g[to].add(e2);
+}

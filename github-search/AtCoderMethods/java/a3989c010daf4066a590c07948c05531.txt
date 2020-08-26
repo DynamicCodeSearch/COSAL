@@ -1,0 +1,16 @@
+static long pow(long n, long p, long m) {
+    long result = 1;
+    if (p == 0)
+        return 1;
+    while (p != 0) {
+        if (p % 2 == 1)
+            result *= n;
+        if (result >= m)
+            result %= m;
+        p >>= 1;
+        n *= n;
+        if (n >= m)
+            n %= m;
+    }
+    return result;
+}

@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    long x1 = sc.nextInt();
+    long y1 = sc.nextInt();
+    long r = sc.nextInt();
+    long x2 = sc.nextInt();
+    long y2 = sc.nextInt();
+    long x3 = sc.nextInt();
+    long y3 = sc.nextInt();
+    long r2 = r * r;
+    if (x1 - x2 >= r && x3 - x1 >= r && y1 - y2 >= r && y3 - y1 >= r) {
+        System.out.println("NO");
+        System.out.println("YES");
+    } else if (d(x1, y1, x2, y2) <= r2 && d(x1, y1, x2, y3) <= r2 && d(x1, y1, x3, y2) <= r2 && d(x1, y1, x3, y3) <= r2) {
+        System.out.println("YES");
+        System.out.println("NO");
+    } else {
+        System.out.println("YES");
+        System.out.println("YES");
+    }
+}

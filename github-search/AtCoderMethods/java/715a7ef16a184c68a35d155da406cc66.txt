@@ -1,0 +1,12 @@
+private static boolean solve(int n, int m, int[][] abs) {
+    int[] ships = new int[n + 1];
+    for (int[] ab : abs) {
+        Arrays.sort(ab);
+        if (ab[0] == 1)
+            ships[ab[1]] += 1;
+        if (ab[1] == n)
+            ships[ab[0]] += 1;
+    }
+    boolean ans = 2 == Arrays.stream(ships).max().getAsInt();
+    return ans;
+}

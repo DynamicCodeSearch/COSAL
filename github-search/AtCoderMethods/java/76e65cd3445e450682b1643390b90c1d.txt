@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    int N = NI();
+    int W = NI();
+    int[][] item = new int[N][2];
+    for (int i = 0; i < N; i++) {
+        item[i][0] = NI();
+        item[i][1] = NI();
+    }
+    Arrays.sort(item, (a, b) -> a[0] != b[0] ? a[0] - b[0] : b[1] - a[1]);
+    int[] id = new int[5];
+    int pop = 1;
+    for (int i = 1; i < N; i++) {
+        if (item[i][0] != item[i - 1][0]) {
+            id[pop++] = i;
+        }
+    }
+    id[pop++] = N;
+    id = Arrays.copyOf(id, pop);
+    long ans = search(item, id, 0, W);
+    System.out.println(ans);
+}

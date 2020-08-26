@@ -1,0 +1,22 @@
+public void solve(int testNumber, Scanner in, PrintWriter out) {
+    int N = in.nextInt();
+    int[] A = new int[N];
+    long width = 0, breadth = 0;
+    int i = 0;
+    while (N > i) {
+        A[i] = in.nextInt();
+        i++;
+    }
+    Arrays.sort(A);
+    long num1 = 0, num2 = 0;
+    for (i = N - 1; i > 0; i--) {
+        if (A[i] == A[i - 1]) {
+            num2 = num1;
+            num1 = A[i];
+            i--;
+        }
+        if (num2 != 0)
+            break;
+    }
+    out.println(num1 * num2);
+}

@@ -1,0 +1,14 @@
+public void solve(int testNumber, Scanner in, PrintWriter out) {
+    String s = in.next();
+    s = s.substring(0, s.length() - 1);
+    while (!s.isEmpty()) {
+        String s1 = s.substring(0, s.length() / 2);
+        String s2 = s.substring(s.length() / 2);
+        
+        if (s1.equals(s2)) {
+            out.println(s.length());
+            return;
+        }
+        s = s.substring(0, s.length() - 1);
+    }
+}

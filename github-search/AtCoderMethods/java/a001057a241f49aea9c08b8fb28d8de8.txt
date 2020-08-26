@@ -1,0 +1,24 @@
+void run() {
+    Scanner sc = new Scanner(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = sc.nextInt();
+    Integer[] a = new Integer[n];
+    Integer[] b = new Integer[n];
+    for (int i = 0; i < n; i++) {
+        int k = sc.nextInt();
+        a[i] = b[i] = k;
+    }
+    Arrays.sort(b);
+    Map<Integer, Integer> map = new TreeMap<Integer, Integer>();
+    int num = 0;
+    for (int i = 0; i < n; i++) {
+        if (map.containsKey(b[i])) {
+            continue;
+        }
+        map.put(b[i], num++);
+    }
+    for (int i = 0; i < n; i++) {
+        out.println(map.get(a[i]));
+    }
+    out.flush();
+}

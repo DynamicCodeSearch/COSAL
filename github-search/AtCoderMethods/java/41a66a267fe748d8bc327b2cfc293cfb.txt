@@ -1,0 +1,13 @@
+public static void main(String[] args) {
+    String a = s.next(), b = s.next();
+    char ca, cb;
+    for (int i = 0; i < a.length(); i++) {
+        ca = a.charAt(i);
+        cb = b.charAt(i);
+        if (!(ca == cb || (ca == '@' && isAtcoder(cb)) || (cb == '@' && isAtcoder(ca)))) {
+            System.out.println("You will lose");
+            return;
+        }
+    }
+    System.out.println("You can win");
+}

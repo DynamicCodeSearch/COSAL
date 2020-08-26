@@ -1,0 +1,27 @@
+public static void main(String[] args) throws IOException {
+    Integer in1 = null;
+    Integer aa = 0;
+    Integer bb = 0;
+    String ans1 = "";
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    try {
+        String temp = br.readLine();
+        for (String str : temp.split(" ")) {
+            if (in1 == null) {
+                in1 = 1;
+                aa = Integer.parseInt(str);
+            } else {
+                bb = Integer.parseInt(str);
+            }
+        }
+        if (aa < bb) {
+            ans1 = "" + bb;
+        } else {
+            ans1 = "" + aa;
+        }
+        System.out.println(ans1);
+    } catch (Exception e) {
+        System.out.println(e.getMessage());
+        System.exit(0);
+    }
+}

@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    PrintWriter out = new PrintWriter(System.out);
+    int n = sc.nextInt();
+    char[] s = sc.next().toCharArray();
+    int c = 0, l = 0;
+    for (int i = 0; i < n; i++) {
+        switch(s[i]) {
+            case '(':
+                c++;
+                break;
+            case ')':
+                if (c > 0)
+                    c--;
+                else
+                    l++;
+                break;
+        }
+    }
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < l; i++) sb.append('(');
+    sb.append(s);
+    for (int i = 0; i < c; i++) sb.append(')');
+    out.println(sb.toString());
+    out.flush();
+}

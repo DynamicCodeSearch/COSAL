@@ -1,0 +1,24 @@
+public static void main(String[] args) throws Exception {
+    int n = sc.nextInt();
+    int l = sc.nextInt();
+    String[] s = new String[n];
+    for (int i = 0; i < n; i++) {
+        s[i] = sc.next();
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {
+            if (s[i].compareTo(s[j]) > 0) {
+                String x = s[i];
+                s[i] = s[j];
+                s[j] = x;
+            }
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        out.print(s[i]);
+    }
+    out.println();
+    out.flush();
+    sc.close();
+    out.close();
+}

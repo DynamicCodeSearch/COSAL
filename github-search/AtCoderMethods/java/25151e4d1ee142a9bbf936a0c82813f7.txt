@@ -1,0 +1,25 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] ss0 = br.readLine().trim().split(" ", 0);
+    int N = Integer.parseInt(ss0[0]);
+    long T = Integer.parseInt(ss0[1]);
+    ss0 = br.readLine().trim().split(" ", 0);
+    long[] t = new long[N];
+    for (int i = 0; i < N; i++) {
+        t[i] = Long.parseLong(ss0[i]);
+    }
+    long ans = 0;
+    for (int i = 0; i < N - 1; i++) {
+        
+        if ((t[i] + T) > t[i + 1]) {
+            ans += t[i + 1] - t[i];
+        } else {
+            ans += T;
+        }
+    
+    
+    }
+    ans += T;
+    System.out.println(ans);
+    return;
+}

@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    FastReader sc = new FastReader();
+    StringBuilder sb = new StringBuilder("");
+    int n = sc.nextInt();
+    int[][] a = new int[n][26];
+    for (int i = 0; i < n; i++) {
+        String x = sc.next();
+        for (int ii = 0; ii < x.length(); ii++) {
+            a[i][x.charAt(ii) - 'a']++;
+        }
+    }
+    for (int i = 0; i < 26; i++) {
+        if (there(a, i, n)) {
+            int k = func(a, i, n);
+            for (int ii = 0; ii < k; ii++) {
+                sb.append((char) (97 + i));
+            }
+        }
+    }
+    System.out.println(sb);
+}

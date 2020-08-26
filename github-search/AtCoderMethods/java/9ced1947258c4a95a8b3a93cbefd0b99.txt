@@ -1,0 +1,7 @@
+public void initPath(int[] pathA, int[] pathB) {
+    if (pathA.length != pathB.length)
+        throw new IllegalArgumentException("different array length :pathA, pathB");
+    for (int i = 0; i < pathA.length; i++) {
+        get(pathA[i]).connectDual(get(pathB[i]));
+    }
+}

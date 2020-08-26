@@ -1,0 +1,33 @@
+static long minimum(boolean h, long X, boolean h2, long H, long W) {
+    if (h) {
+        S[0] = X * W;
+        H -= X;
+        if (h2) {
+            long H_ = H / 2;
+            S[1] = W * (H_);
+            H -= H_;
+            S[2] = W * H;
+        } else {
+            long W_ = W / 2;
+            S[1] = H * W_;
+            W -= W_;
+            S[2] = W * H;
+        }
+    } else {
+        S[0] = X * H;
+        W -= X;
+        if (h2) {
+            long H_ = H / 2;
+            S[1] = W * (H_);
+            H -= H_;
+            S[2] = W * H;
+        } else {
+            long W_ = W / 2;
+            S[1] = H * W_;
+            W -= W_;
+            S[2] = W * H;
+        }
+    }
+    Arrays.sort(S);
+    return S[2] - S[0];
+}

@@ -1,0 +1,23 @@
+public void solve() {
+    N = nextInt();
+    M = nextInt();
+    first = new boolean[N];
+    second = new boolean[N];
+    for (int i = 0; i < M; i++) {
+        int a = nextInt() - 1;
+        int b = nextInt() - 1;
+        if (a == 0) {
+            first[b] = true;
+        }
+        if (b == N - 1) {
+            second[a] = true;
+        }
+    }
+    for (int i = 1; i < N - 1; i++) {
+        if (first[i] && second[i]) {
+            out.println("POSSIBLE");
+            return;
+        }
+    }
+    out.println("IMPOSSIBLE");
+}

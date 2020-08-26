@@ -1,0 +1,15 @@
+private void doit() {
+    Scanner sc = new Scanner(System.in);
+    while (sc.hasNext()) {
+        int n = sc.nextInt();
+        long[] data = new long[n];
+        for (int i = 0; i < n; i++) {
+            data[i] = sc.nextLong();
+        }
+        long res = 1;
+        for (int i = 0; i < n; i++) {
+            res = lcm(res, data[i]);
+        }
+        System.out.println(res);
+    }
+}

@@ -1,0 +1,9 @@
+def get_set(_max, a, b):
+    ans = set()
+    g = _max // a
+    for h in range(g + 1):
+        k = (_max - a * h) // b
+        for l in range(k + 1):
+            ans.add(a * h + b * l)
+    ans.discard(0)
+    return ans

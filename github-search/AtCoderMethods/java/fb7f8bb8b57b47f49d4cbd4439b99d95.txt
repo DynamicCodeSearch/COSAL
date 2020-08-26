@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    char[][] aa = new char[n][n];
+    for (int x = 0; x < n; x++) {
+        String aaa = sc.next();
+        for (int y = 0; y < n; y++) {
+            aa[x][y] = aaa.charAt(y);
+        }
+    }
+    sc.close();
+    for (int y = 0; y < n; y++) {
+        for (int x = n - 1; x >= 0; x--) {
+            System.out.print(aa[x][y]);
+        }
+        System.out.println();
+    }
+}

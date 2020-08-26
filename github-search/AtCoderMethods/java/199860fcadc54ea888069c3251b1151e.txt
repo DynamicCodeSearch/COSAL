@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int min = 400000001;
+    int count = 0;
+    int n = scan.nextInt();
+    int m = scan.nextInt();
+    int[] a = new int[n];
+    int[] b = new int[n];
+    int[] c = new int[m];
+    int[] d = new int[m];
+    for (int i = 0; i < n; i++) {
+        a[i] = scan.nextInt();
+        b[i] = scan.nextInt();
+    }
+    for (int i = 0; i < m; i++) {
+        c[i] = scan.nextInt();
+        d[i] = scan.nextInt();
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            int x = Math.abs(a[i] - c[j]);
+            int y = Math.abs(b[i] - d[j]);
+            int z = x + y;
+            if (z < min) {
+                min = z;
+                count = j + 1;
+            }
+        }
+        min = 400000001;
+        System.out.println(count);
+    }
+}

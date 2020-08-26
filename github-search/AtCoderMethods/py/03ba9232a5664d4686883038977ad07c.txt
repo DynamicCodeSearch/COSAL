@@ -1,0 +1,5 @@
+def nCr(self, n, k):
+    assert 0 < n < len(self.fact) and 0 < k
+    a = self.fact[n]
+    b = (self.inv[k] * self.inv[n - k]) % self.mod
+    return a * b % self.mod

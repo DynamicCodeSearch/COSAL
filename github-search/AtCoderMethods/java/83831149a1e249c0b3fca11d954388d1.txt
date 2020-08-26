@@ -1,0 +1,25 @@
+public static boolean xyz(ArrayList<Integer> head, int tail, int x, int y, int z) {
+    z -= tail;
+    if (z < 0) {
+        return false;
+    }
+    for (int i = head.size() - 1; i >= 0; i--) {
+        int a = head.get(i);
+        if (z > 0) {
+            z -= a;
+            if (z < 0)
+                return false;
+        } else if (y > 0) {
+            y -= a;
+            if (y < 0)
+                return false;
+        } else {
+            x -= a;
+            if (x < 0)
+                return false;
+            if (x == 0)
+                return true;
+        }
+    }
+    return false;
+}

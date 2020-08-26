@@ -1,0 +1,22 @@
+private void solve(int h, int w) {
+    if (dp[h][w] != -1)
+        return;
+    int[] dw = { 0, 1, 0, -1 };
+    int[] dh = { 1, 0, -1, 0 };
+    for (int i = 0; i < 4; i++) {
+        int hnext = h + dh[i];
+        int wnext = w + dw[i];
+        if (0 <= hnext && hnext < H && 0 <= wnext && wnext < W && field[h][w] < field[hnext][wnext]) {
+            if (dp[hnext][wnext] == -1)
+                solve(hnext, wnext);
+            if (dp[h][w] == -1)
+                dp[h][w] = dp[hnext][wnext] + 1;
+            else
+                dp[h][w] += dp[hnext][wnext];
+            dp[h][w] %= p;
+        }
+    }
+    dp[h][w] %= p;
+    if (dp[h][w] == -1)
+        dp[h][w] = 1;
+}

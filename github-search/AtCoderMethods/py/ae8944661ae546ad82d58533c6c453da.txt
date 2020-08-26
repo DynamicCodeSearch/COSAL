@@ -1,0 +1,15 @@
+def make_output(kanulist):
+    kanulist.sort(key = lambda x:x.startMinute)
+    tmp = kanulist.pop(0)
+    output_kanulist = []
+    for i in range(len(kanulist)):
+        pop_tmp = kanulist.pop(0)
+        if pop_tmp.startMinute <= tmp.endMinute:
+            if pop_tmp.endMinute > tmp.endMinute:
+                tmp.endMinute = pop_tmp.endMinute
+        else:
+            output_kanulist.append(tmp)
+            tmp = pop_tmp
+
+    output_kanulist.append(tmp)
+    return output_kanulist

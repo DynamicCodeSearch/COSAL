@@ -1,0 +1,171 @@
+### Py Tokens: return, string, sep, none, done, words, specified, front, using, rsplit, splits, given, end, whitespace, working, maxsplit, list, delimiter, separator, starting, strings 
+
+### Py functions
+
+def rsplit(s, sep=None, maxsplit=-1):
+
+  return s.rsplit(sep, maxsplit)
+*********************************
+
+#### Score: 13.49261
+
+
+#### Java Tokens: splits, use, used, empty, character, split, utils, delimiter, text, worker, strtokenizer, treated, using, pre, including, created, a.b.c, stringtokenizer, preserve, separator, str, input, returns, parsed, preserving, since, a:b:c, code, string, provided, specified, strings, splitworker, array, param, tokens, included, may, alternative, separatorchar, adjacent, control, parse, splitpreservealltokens, tokenizer, stringutils, a..b.c, char, returned, whitespace, separators 
+
+
+public static String[] splitPreserveAllTokens(final String str, final char separatorChar) {
+    return splitWorker(str, separatorChar, true);
+}
+*********************************
+
+#### Score: 12.93069
+
+
+#### Java Tokens: ab-!-cd-!-ef, splits, code, string, provided, whole, used, specified, ab:cd:ef, split, strings, array, param, utils, delimiter, -!-, text, worker, included, treated, pre, may, containing, one, splitbywholeseparator, adjacent, parse, separator, splitbywholeseparatorworker, str, stringutils, input, returns, parsed, returned, whitespace, separators 
+
+
+public static String[] splitByWholeSeparator(final String str, final String separator) {
+    return splitByWholeSeparatorWorker(str, separator, -1, false);
+}
+*********************************
+
+#### Score: 12.65764
+
+
+#### Java Tokens: a:b:c, splits, code, string, use, provided, used, specified, character, split, strings, splitworker, array, param, utils, delimiter, text, worker, included, strtokenizer, treated, using, pre, may, one, a.b.c, alternative, stringtokenizer, separatorchar, adjacent, control, parse, separator, tokenizer, str, stringutils, input, a..b.c, char, returns, parsed, returned, separators, since 
+
+
+public static String[] split(final String str, final char separatorChar) {
+    return splitWorker(str, separatorChar, false);
+}
+*********************************
+
+#### Score: 12.63564
+
+
+#### Java Tokens: splits, code, string, def, separatorchars, use, provided, used, specified, ab:cd:ef, characters, split, strings, splitworker, array, param, utils, delimiters, text, worker, included, strtokenizer, treated, using, pre, abc, may, one, alternative, stringtokenizer, adjacent, control, parse, separator, tokenizer, str, stringutils, input, returns, parsed, returned, whitespace, separators, chars 
+
+
+public static String[] split(final String str, final String separatorChars) {
+    return splitWorker(str, separatorChars, -1, false);
+}
+*********************************
+
+#### Score: 12.14870
+
+
+#### Java Tokens: ab-!-cd-!-ef, splits, code, string, use, provided, whole, used, splitbywholeseparatorpreservealltokens, specified, ab:cd:ef, empty, split, strings, array, param, utils, delimiter, -!-, tokens, text, worker, included, strtokenizer, treated, pre, may, containing, adjacent, control, preserve, parse, separator, splitbywholeseparatorworker, tokenizer, str, stringutils, input, returns, parsed, returned, whitespace, separators, since 
+
+
+public static String[] splitByWholeSeparatorPreserveAllTokens(final String str, final String separator) {
+    return splitByWholeSeparatorWorker(str, separator, -1, true);
+}
+*********************************
+
+#### Score: 12.03398
+
+
+#### Java Tokens: calculation, performs, equivalent, splits, excludes, beg, arrayutils, whole, used, substrings, splitbywholeseparatorpreservealltokens, empty_string_array, empty, zero, mos, number, character, split, separatorlength, len, utils, delimiter, limit, numberofsubstrings, worker, add, treated, containing, goes, index, preserve, list, splitbywholeseparatorworker, separator, str, input, size, following, parsed, position, starting, since, next, code, string, methods, skip, occurrence, substring, point, negative, search, found, strings, array, splitworker, param, preservealltokens, tokens, end, value, include, set, may, max, one, length, adjacent, arraylist, parse, right, consecutive, token, stringutils, equals, toarray, elements, maximum, logic, whitespace, returned, implies, indexof, separators 
+
+
+private static String[] splitByWholeSeparatorWorker(final String str, final String separator, final int max, final boolean preserveAllTokens) {
+    if (str == null) {
+        return null;
+    }
+    final int len = str.length();
+    if (len == 0) {
+        return ArrayUtils.EMPTY_STRING_ARRAY;
+    }
+    if (separator == null || EMPTY.equals(separator)) {
+        
+        return splitWorker(str, null, max, preserveAllTokens);
+    }
+    final int separatorLength = separator.length();
+    final ArrayList<String> substrings = new ArrayList<>();
+    int numberOfSubstrings = 0;
+    int beg = 0;
+    int end = 0;
+    while (end < len) {
+        end = str.indexOf(separator, beg);
+        if (end > -1) {
+            if (end > beg) {
+                numberOfSubstrings += 1;
+                if (numberOfSubstrings == max) {
+                    end = len;
+                    substrings.add(str.substring(beg));
+                } else {
+                    
+                    
+                    substrings.add(str.substring(beg, end));
+                    
+                    
+                    
+                    beg = end + separatorLength;
+                }
+            } else {
+                
+                if (preserveAllTokens) {
+                    numberOfSubstrings += 1;
+                    if (numberOfSubstrings == max) {
+                        end = len;
+                        substrings.add(str.substring(beg));
+                    } else {
+                        substrings.add(EMPTY);
+                    }
+                }
+                beg = end + separatorLength;
+            }
+        } else {
+            
+            substrings.add(str.substring(beg));
+            end = len;
+        }
+    }
+    return substrings.toArray(new String[substrings.size()]);
+}
+*********************************
+
+#### Score: 11.39757
+
+
+#### Java Tokens: splits, code, string, def, use, provided, link, character, split, strings, array, param, utils, text, included, strtokenizer, defined, treated, using, pre, abc, may, one, adjacent, control, parse, separator, tokenizer, str, stringutils, input, returns, parsed, whitespace, returned, iswhitespace, separators 
+
+
+
+
+public static String[] split(final String str) {
+    return split(str, null, -1);
+}
+*********************************
+
+#### Score: 11.27651
+
+
+#### Java Tokens: splits, def, use, used, empty, split, utils, text, worker, strtokenizer, treated, using, pre, including, created, stringtokenizer, preserve, separator, str, input, returns, parsed, preserving, ab::cd:ef, since, code, string, separatorchars, provided, specified, ab:cd:ef, ab:cd:ef:, characters, strings, splitworker, array, param, delimiters, ab:cd:ef::, ::cd:ef, tokens, included, abc, may, alternative, adjacent, control, parse, splitpreservealltokens, :cd:ef:, tokenizer, stringutils, :cd:ef, returned, whitespace, separators, chars 
+
+
+public static String[] splitPreserveAllTokens(final String str, final String separatorChars) {
+    return splitWorker(str, separatorChars, -1, true);
+}
+*********************************
+
+#### Score: 11.24520
+
+
+#### Java Tokens: ab-!-cd-!-ef, splits, whole, used, substrings, cd-!-ef, zero, number, split, utils, delimiter, limit, -!-, text, worker, treated, pre, containing, separator, splitbywholeseparatorworker, str, input, returns, parsed, code, string, provided, specified, ab:cd:ef, negative, strings, array, param, included, value, include, may, max, one, splitbywholeseparator, adjacent, parse, stringutils, elements, maximum, cd:ef, returned, whitespace, implies, separators 
+
+
+public static String[] splitByWholeSeparator(final String str, final String separator, final int max) {
+    return splitByWholeSeparatorWorker(str, separator, max, false);
+}
+*********************************
+
+#### Score: 10.84323
+
+
+#### Java Tokens: ab-!-cd-!-ef, splits, use, whole, used, splitbywholeseparatorpreservealltokens, substrings, cd-!-ef, empty, zero, number, split, utils, delimiter, limit, -!-, text, worker, strtokenizer, treated, pre, containing, preserve, separator, splitbywholeseparatorworker, str, input, returns, parsed, since, code, string, provided, specified, ab:cd:ef, negative, strings, array, param, tokens, included, value, include, may, max, adjacent, control, parse, tokenizer, stringutils, elements, maximum, cd:ef, returned, whitespace, implies, separators 
+
+
+public static String[] splitByWholeSeparatorPreserveAllTokens(final String str, final String separator, final int max) {
+    return splitByWholeSeparatorWorker(str, separator, max, true);
+}

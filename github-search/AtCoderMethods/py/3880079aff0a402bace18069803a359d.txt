@@ -1,0 +1,13 @@
+def main():
+    N = int(input())
+    A_list = list(map(int, input().split()))
+    c = Counter(A_list)
+
+    x = []
+    for length, n in sorted(c.items(), key=lambda x: x[0], reverse=True):
+        if n >= 4:
+            x += [length] * 4
+        elif n >= 2:
+            x += [length] * 2
+    x += [0] * 4
+    print(x[0] * x[2])

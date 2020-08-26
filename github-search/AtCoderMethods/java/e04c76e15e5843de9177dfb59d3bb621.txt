@@ -1,0 +1,20 @@
+int query(int a, int b) {
+    int ans = 0;
+    if (a < b) {
+        for (int i = 16; i >= 0; --i) {
+            if (right[i][a] < b) {
+                a = right[i][a];
+                ans += 1 << i;
+            }
+        }
+    } else {
+        for (int i = 16; i >= 0; --i) {
+            if (left[i][a] > b) {
+                a = left[i][a];
+                ans += 1 << i;
+            }
+        }
+    }
+    ++ans;
+    return ans;
+}

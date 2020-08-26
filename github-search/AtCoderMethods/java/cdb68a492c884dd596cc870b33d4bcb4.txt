@@ -1,0 +1,23 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    try {
+        String str = br.readLine();
+        String[] a = str.split(" ", 0);
+        int N = Integer.parseInt(a[0]);
+        int K = Integer.parseInt(a[1]);
+        str = br.readLine();
+        a = str.split(" ", 0);
+        int[] n = new int[N];
+        for (int i = 0; i < N; i++) {
+            n[i] = Integer.parseInt(a[i]);
+        }
+        Arrays.sort(n);
+        int ans = 0;
+        for (int i = 0; i < K; i++) {
+            ans += n[N - 1 - i];
+        }
+        System.out.println(ans);
+    } catch (Exception e) {
+        System.exit(0);
+    }
+}

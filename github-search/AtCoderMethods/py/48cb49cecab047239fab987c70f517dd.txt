@@ -1,0 +1,21 @@
+def dfs(start=0):
+    queue = [[start]]
+    visited = []
+    while len(queue) > 0:
+        history = queue.pop(-1)
+        edge = history[-1]
+        visited.append(edge)
+        for node, conn in enumerate(conn_mat[edge]):
+            if conn == 0 or node in visited:
+                continue
+
+            next_hist = history + [node]
+
+            if node == N:
+                for i in range(len(next_hist) - 1):
+                    conn_mat[next_hist[i]][next_hist[i+1]] = 0
+                return 1
+
+            queue.append(next_hist)
+
+    return 0

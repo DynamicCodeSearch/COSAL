@@ -1,0 +1,12 @@
+public void update(int fr, int to, int val) {
+    if (fr <= this.from && this.to <= to) {
+        this.val += val;
+        return;
+    }
+    if (this.to < fr || to < this.from)
+        return;
+    if (left != null)
+        left.update(fr, to, val);
+    if (right != null)
+        right.update(fr, to, val);
+}

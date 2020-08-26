@@ -1,0 +1,16 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    index = 0;
+    s = br.readLine();
+    len = s.length();
+    int n = (int) Math.pow(2, len - 1);
+    x = new long[n];
+    long result = 0;
+    for (int i = 0; i <= s.length(); i++) {
+        f(i, 0, s);
+    }
+    for (int i = 0; i < n; i++) {
+        result += x[i];
+    }
+    System.out.println(result);
+}

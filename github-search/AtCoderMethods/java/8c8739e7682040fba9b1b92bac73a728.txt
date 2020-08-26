@@ -1,0 +1,17 @@
+void search(int i, int j) {
+    System.out.println(i + " " + j);
+    int sum = white * i + green * j;
+    if (money < sum) {
+        return;
+    }
+    search(i + 1, j);
+    int tmp = i + j;
+    if (best < tmp) {
+        best = tmp;
+    }
+    search(i, j + 1);
+    tmp = i + j;
+    if (best < tmp) {
+        best = tmp;
+    }
+}

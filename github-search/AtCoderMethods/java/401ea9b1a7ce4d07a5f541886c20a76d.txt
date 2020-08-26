@@ -1,0 +1,33 @@
+private void doit() {
+    Scanner sc = new Scanner(System.in);
+    while (sc.hasNext()) {
+        int h = sc.nextInt();
+        int w = sc.nextInt();
+        int n = sc.nextInt();
+        int[] data = new int[n];
+        for (int i = 0; i < n; i++) {
+            data[i] = sc.nextInt();
+        }
+        int[][] ans = new int[h][w];
+        int ind = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < data[i]; j++) {
+                ans[ind / w][ind % w] = i + 1;
+                ind++;
+            }
+        }
+        for (int i = 1; i < h; i += 2) {
+            for (int j = 0; j < w / 2; j++) {
+                int temp = ans[i][j];
+                ans[i][j] = ans[i][w - 1 - j];
+                ans[i][w - 1 - j] = temp;
+            }
+        }
+        for (int i = 0; i < h; i++) {
+            for (int j = 0; j < w - 1; j++) {
+                System.out.print(ans[i][j] + " ");
+            }
+            System.out.println(ans[i][w - 1]);
+        }
+    }
+}

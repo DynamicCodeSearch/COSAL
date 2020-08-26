@@ -1,0 +1,11 @@
+private long rep(int[] color) {
+    long value = Long.MAX_VALUE;
+    long current = hash(color);
+    for (int i = 0; i < 4; ++i) {
+        value = Math.min(value, current);
+        current -= ((long) color[i]) << 30L;
+        current <<= 10L;
+        current += color[i];
+    }
+    return value;
+}

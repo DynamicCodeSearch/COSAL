@@ -1,0 +1,45 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String a = sc.next();
+    String b = sc.next();
+    String c = sc.next();
+    char[] ah = a.toCharArray();
+    char[] bh = b.toCharArray();
+    char[] ch = c.toCharArray();
+    List<Character> alist = new ArrayList<>();
+    List<Character> blist = new ArrayList<>();
+    List<Character> clist = new ArrayList<>();
+    for (int i = 0; i < ah.length; i++) {
+        alist.add(ah[i]);
+    }
+    for (int i = 0; i < bh.length; i++) {
+        blist.add(bh[i]);
+    }
+    for (int i = 0; i < ch.length; i++) {
+        clist.add(ch[i]);
+    }
+    char temp = alist.get(0);
+    for (; ; ) {
+        if ('a' == temp) {
+            if (alist.isEmpty()) {
+                System.out.println("A");
+                return;
+            }
+            temp = alist.remove(0);
+        }
+        if ('b' == temp) {
+            if (blist.isEmpty()) {
+                System.out.println("B");
+                return;
+            }
+            temp = blist.remove(0);
+        }
+        if ('c' == temp) {
+            if (clist.isEmpty()) {
+                System.out.println("C");
+                return;
+            }
+            temp = clist.remove(0);
+        }
+    }
+}

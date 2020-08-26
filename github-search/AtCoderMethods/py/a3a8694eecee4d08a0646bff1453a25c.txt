@@ -1,0 +1,10 @@
+@memoize
+def number_of_ranking(numbers):
+    if len(numbers) == 1:
+       return 1
+
+    result = 0
+    for i in range(len(numbers)):
+        if all([x[0] not in numbers for x in info if numbers[i] == x[1]]):
+            result += number_of_ranking(numbers[:i] + numbers[i + 1:])
+    return result

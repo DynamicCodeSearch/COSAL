@@ -1,0 +1,29 @@
+public double[] dijkstra(final int s) {
+    final double[] dist = new double[head.length];
+    final PriorityQueue<State> q = new PriorityQueue<State>();
+    Arrays.fill(dist, Double.POSITIVE_INFINITY);
+    dist[s] = 0;
+    q.add(new State(0, s));
+    while (!q.isEmpty()) {
+        final State xs = q.poll();
+        final int v = xs.v;
+        final double d = xs.c;
+        if (dist[v] < d)
+            continue;
+        for (int e = head[v]; e != -1; e = next[e]) {
+            final int t = to[e];
+            final double w = d + cost[e];
+            
+            if (w + eps < dist[t]) {
+                dist[t] = w;
+                q.add(new State(w, t));
+            }
+        }
+    }
+    for (int i = 0; i < dist.length; i++) {
+        if (dist[i] == Double.POSITIVE_INFINITY) {
+            dist[i] = -1;
+        }
+    }
+    return dist;
+}

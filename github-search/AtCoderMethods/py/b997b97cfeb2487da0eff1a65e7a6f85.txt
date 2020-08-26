@@ -1,0 +1,18 @@
+def __main__():
+    n = int(input())
+    if n == 1:
+        print(1)
+        return
+    i = 2
+    prime_factors_count = [0] * 1001
+    while i <= n:
+        prime_factors = prime_decomposition(i)
+        for j in range(prime_factors[-1] + 1):
+            c = prime_factors.count(j)
+            prime_factors_count[j] += c
+        i += 1
+    c = 1
+    for i in range(1001):
+        if prime_factors_count[i] != 0:
+            c *= prime_factors_count[i] + 1
+    print(c % (10**9 + 7))

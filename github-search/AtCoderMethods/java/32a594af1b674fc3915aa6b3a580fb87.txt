@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    String s = sc.next();
+    for (int i = 1; i < s.length(); i++) {
+        if (i % 2 == 1)
+            continue;
+        int checkLen = s.length() - i;
+        String check = s.substring(0, checkLen);
+        String mae = check.substring(0, check.length() / 2);
+        String usiro = check.substring(check.length() / 2, check.length());
+        if (mae.equals(usiro)) {
+            System.out.println(s.length() - i);
+            break;
+        }
+    }
+    sc.close();
+}

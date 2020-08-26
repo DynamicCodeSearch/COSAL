@@ -1,0 +1,26 @@
+private long[] computeStep(int N, int M) {
+    int[][] stepDp = new int[2][N + 1];
+    int cur = 0, nxt = 1;
+    stepDp[cur][0] = 1;
+    long[] step = new long[N + 1];
+    for (int i = 0; i <= N; i++) {
+        step[i] = stepDp[cur][M];
+        Arrays.fill(stepDp[nxt], 0);
+        for (int j = 0; j < N; j++) {
+            if (stepDp[cur][j] == 0)
+                continue;
+            stepDp[nxt][j + 1] += stepDp[cur][j];
+            if (stepDp[nxt][j + 1] >= MOD) {
+                stepDp[nxt][j + 1] -= MOD;
+            }
+            stepDp[nxt][Math.max(0, j - 1)] += stepDp[cur][j];
+            if (stepDp[nxt][Math.max(0, j - 1)] >= MOD) {
+                stepDp[nxt][Math.max(0, j - 1)] -= MOD;
+            }
+        }
+        int tmp = cur;
+        cur = nxt;
+        nxt = tmp;
+    }
+    return step;
+}

@@ -1,0 +1,25 @@
+public void solve(int testNumber, MyInput in, PrintWriter out) {
+    int n = in.nextInt();
+    char[] a = in.next();
+    char[] b = in.next();
+    int m = a.length;
+    long[][][] dp = new long[m + 1][3][3];
+    dp[0][0][0] = 1;
+    for (int i = 0; i < a.length; i++) {
+        for (int j = 0; j < 3; j++) for (int k = 0; k < 3; k++) {
+            if (j == k ^ a[i] == b[i])
+                continue;
+            for (int u = 0; u < 3; u++) for (int v = 0; v < 3; v++) {
+                if (i > 0 && j == u ^ a[i] == a[i - 1])
+                    continue;
+                if (i > 0 && k == v ^ b[i] == b[i - 1])
+                    continue;
+                dp[i + 1][j][k] += dp[i][u][v];
+                dp[i + 1][j][k] %= mod;
+            }
+        }
+    }
+    long ans = 0;
+    for (int j = 0; j < 3; j++) for (int k = 0; k < 3; k++) ans += dp[m][j][k];
+    out.println(ans % mod);
+}

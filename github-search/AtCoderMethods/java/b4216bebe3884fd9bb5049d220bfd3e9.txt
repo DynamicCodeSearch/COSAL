@@ -1,0 +1,35 @@
+public static boolean dfs(int i, int j) {
+    for (int k = 0; k < 8; k++) {
+        if (k == i)
+            continue;
+        if (field[k][j] == 'Q')
+            return false;
+    }
+    for (int k = 0; k < 8; k++) {
+        if (k == j)
+            continue;
+        if (field[i][k] == 'Q')
+            return false;
+    }
+    for (int k = 1; k <= i; k++) {
+        if (j - k >= 0) {
+            if (field[i - k][j - k] == 'Q')
+                return false;
+        }
+        if (j + k < 8) {
+            if (field[i - k][j + k] == 'Q')
+                return false;
+        }
+    }
+    for (int k = 1; k < (8 - i); k++) {
+        if (j - k >= 0) {
+            if (field[i + k][j - k] == 'Q')
+                return false;
+        }
+        if (j + k < 8) {
+            if (field[i + k][j + k] == 'Q')
+                return false;
+        }
+    }
+    return true;
+}

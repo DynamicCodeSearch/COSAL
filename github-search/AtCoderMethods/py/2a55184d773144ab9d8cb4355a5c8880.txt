@@ -1,0 +1,15 @@
+def main():
+
+    N = int(input())
+    K = int(input())
+    xs = map(int, input().split())
+
+    mov_dist = 0
+    for y, x in enumerate(xs, 1):
+        a_dist = x
+        b_dist = abs(K - x)
+        dist = min(a_dist, b_dist)
+
+        mov_dist += dist * 2
+
+    print(mov_dist)

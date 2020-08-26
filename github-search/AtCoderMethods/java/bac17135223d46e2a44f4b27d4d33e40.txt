@@ -1,0 +1,19 @@
+public void solve(int testNumber, InputReader sc, PrintWriter w) {
+    String str = sc.next();
+    int flag = 0;
+    String temp = str;
+    int max = 0;
+    while (temp.length() > 0) {
+        if (flag != 0 && temp.length() % 2 == 0) {
+            int mid = temp.length() / 2;
+            String str1 = temp.substring(0, mid);
+            String str2 = temp.substring(mid);
+            if (str1.equals(str2)) {
+                max = Math.max(temp.length(), max);
+            }
+        }
+        temp = temp.substring(0, temp.length() - 1);
+        flag++;
+    }
+    w.println(max);
+}

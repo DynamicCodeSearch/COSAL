@@ -1,0 +1,12 @@
+def update(v, w, length_pattern, now_pattern):
+    if sum([length_pattern[x] for x in v]) != len(w):
+        return None
+
+    for n in v:
+        length = length_pattern[n]
+        s, w = w[:length], w[length:]
+        if n in now_pattern and now_pattern[n] != s:
+            return None
+        now_pattern[n] = s
+
+    return now_pattern

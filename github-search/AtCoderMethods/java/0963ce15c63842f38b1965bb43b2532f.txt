@@ -1,0 +1,42 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] str = br.readLine().split(" ");
+    int n = Integer.parseInt(str[0]);
+    int m = Integer.parseInt(str[1]);
+    ArrayList[] nodes = new ArrayList[n];
+    for (int i = 0; i < n; i++) nodes[i] = new ArrayList();
+    for (int i = 0; i < m; i++) {
+        str = br.readLine().split(" ");
+        int a = Integer.parseInt(str[0]) - 1;
+        int b = Integer.parseInt(str[1]) - 1;
+        nodes[a].add(b);
+        nodes[b].add(a);
+    }
+    PriorityQueue que = new PriorityQueue<>((int[] l, int[] r) -> (l[1] - r[1]));
+    int[] vertex = new int[2];
+    vertex[0] = 0;
+    vertex[0] = 0;
+    que.add(vertex);
+    int[] dist = new int[n];
+    Arrays.fill(dist, Integer.MAX_VALUE / 2);
+    dist[0] = 0;
+    while (!que.isEmpty()) {
+        vertex = (int[]) que.poll();
+        int recent = vertex[0];
+        for (Object v : nodes[vertex[0]]) {
+            int next = (int) v;
+            if (dist[recent] < Integer.MAX_VALUE / 3 && dist[recent] + 1 < dist[next]) {
+                dist[next] = dist[recent] + 1;
+                int[] tmp = new int[2];
+                tmp[0] = next;
+                tmp[1] = dist[next];
+                que.add(tmp);
+            }
+        }
+    }
+    if (dist[n - 1] > 2) {
+        System.out.println("IMPOSSIBLE");
+    } else {
+        System.out.println("POSSIBLE");
+    }
+}

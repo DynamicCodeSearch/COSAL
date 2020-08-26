@@ -1,0 +1,24 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    String[] s = in.nextStringArray(n);
+    int[] cnt = new int[26];
+    for (int i = 0; i < s[0].length(); i++) {
+        cnt[s[0].charAt(i) - 'a']++;
+    }
+    for (int i = 1; i < n; i++) {
+        int[] tmp = new int[26];
+        for (int j = 0; j < s[i].length(); j++) {
+            tmp[s[i].charAt(j) - 'a']++;
+        }
+        for (int j = 0; j < 26; j++) {
+            cnt[j] = Math.min(cnt[j], tmp[j]);
+        }
+    }
+    String ans = "";
+    for (int i = 0; i < 26; i++) {
+        for (int j = 0; j < cnt[i]; j++) {
+            ans += (char) (i + 'a');
+        }
+    }
+    out.println(ans);
+}

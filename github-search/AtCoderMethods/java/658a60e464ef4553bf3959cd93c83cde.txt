@@ -1,0 +1,19 @@
+
+public E kthLowest(int k) {
+    if (k < 0 || Node.size(root) <= k) {
+        return null;
+    }
+    Node<E> x = root;
+    while (x != null) {
+        int sizeLeft = Node.size(x.left);
+        if (sizeLeft < k) {
+            k -= sizeLeft + 1;
+            x = x.right;
+        } else if (sizeLeft > k) {
+            x = x.left;
+        } else {
+            return x.value;
+        }
+    }
+    throw new RuntimeException("?????");
+}

@@ -1,0 +1,20 @@
+void run() {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[][] x = new int[N][2];
+    for (int i = 0; i < N; ++i) {
+        x[i][0] = sc.nextInt();
+        x[i][1] = sc.nextInt();
+    }
+    int ng = 1_000_000_000 + 1;
+    int ok = 0;
+    while (ng - ok > 1) {
+        int middle = (ok + ng) / 2;
+        if (f(N, x, middle)) {
+            ok = middle;
+        } else {
+            ng = middle;
+        }
+    }
+    System.out.println(ok);
+}

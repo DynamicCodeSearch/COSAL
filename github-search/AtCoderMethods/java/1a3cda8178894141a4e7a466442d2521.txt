@@ -1,0 +1,14 @@
+public static int process(int n) {
+    int rest = 0;
+    int score = 100000;
+    int before = score;
+    int height = n / 2;
+    for (int width = 1; width * width <= n; width++) {
+        height = n / width;
+        rest = n % width;
+        score = Math.abs(width - height) + rest;
+        
+        before = Math.min(score, before);
+    }
+    return before;
+}

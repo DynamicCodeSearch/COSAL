@@ -1,0 +1,18 @@
+public static void main(String[] args) throws IOException {
+    
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String input = br.readLine();
+    String newStr = "";
+    for (int i = input.length() - 1; i >= 0; i--) {
+        if (i % 2 == 1) {
+            continue;
+        }
+        String tmp1 = input.substring(0, i / 2);
+        String tmp2 = input.substring(i / 2, i);
+        if (tmp1.equals(tmp2)) {
+            newStr = new String(tmp1);
+            break;
+        }
+    }
+    System.out.println(newStr.length() * 2);
+}

@@ -1,0 +1,14 @@
+public void solve() {
+    long A = nextLong();
+    long K = nextLong();
+    if (K == 0 && A < 2 * 1000000000000L) {
+        out.println(2 * 1000000000000L - A);
+    } else {
+        int cnt = 0;
+        while (A < 2 * 1000000000000L) {
+            A = 1 + (K + 1) * A;
+            cnt++;
+        }
+        out.println(cnt);
+    }
+}

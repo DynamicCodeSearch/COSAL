@@ -1,0 +1,23 @@
+private void rec(int prev) {
+    if (nvis == 0) {
+        min = Math.min(acc, min);
+        return;
+    }
+    for (int i : rs) {
+        if (!vis[i]) {
+            if (prev == -1 || dist[i][prev] != INF) {
+                nvis--;
+                vis[i] = true;
+                if (prev != -1) {
+                    acc += dist[i][prev];
+                }
+                rec(i);
+                nvis++;
+                vis[i] = false;
+                if (prev != -1) {
+                    acc -= dist[i][prev];
+                }
+            }
+        }
+    }
+}

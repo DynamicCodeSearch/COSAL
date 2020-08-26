@@ -1,0 +1,23 @@
+public static void main(String[] args) throws IOException {
+    br = new BufferedReader(new InputStreamReader(System.in));
+    int N = Integer.parseInt(br.readLine());
+    int[] a = new int[N];
+    int[] b = new int[N];
+    for (int i = 0; i < N; i++) {
+        a[i] = Integer.parseInt(br.readLine());
+        b[i] = a[i];
+    }
+    Arrays.sort(b);
+    HashMap<Integer, Integer> hm = new HashMap<Integer, Integer>();
+    int crt = 0;
+    int tmp = -1;
+    for (int i : b) {
+        if (tmp == i)
+            continue;
+        tmp = i;
+        hm.put(i, crt++);
+    }
+    StringBuilder sb = new StringBuilder();
+    for (int n : a) sb.append(hm.get(n) + "\n");
+    System.out.println(sb);
+}

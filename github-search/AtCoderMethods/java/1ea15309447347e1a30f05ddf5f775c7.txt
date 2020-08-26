@@ -1,0 +1,41 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int W = sc.nextInt();
+    int[] w = new int[N];
+    int[] v = new int[N];
+    sc.fill(w, v);
+    long[] weight = new long[4];
+    for (int i = 0; i < weight.length; i++) {
+        weight[i] = w[0] + i;
+    }
+    List<List<Integer>> tmp = new ArrayList<>(4);
+    for (int i = 0; i < 4; i++) {
+        tmp.add(new ArrayList<>());
+    }
+    for (int i = 0; i < N; i++) {
+        tmp.get(w[i] - w[0]).add(v[i]);
+    }
+    int[][] group = new int[4][];
+    for (int i = 0; i < 4; i++) {
+        group[i] = tmp.get(i).stream().sorted(Comparator.reverseOrder()).mapToInt(Integer::intValue).toArray();
+    }
+    long max = 0;
+    for (int i = 0; i <= group[0].length; i++) {
+        for (int j = 0; j <= group[1].length; j++) {
+            for (int k = 0; k <= group[2].length; k++) {
+                for (int l = 0; l <= group[3].length; l++) {
+                    long weightSum = weight[0] * i + weight[1] * j + weight[2] * k + weight[3] * l;
+                    if (W < weightSum) {
+                        break;
+                    }
+                    long value = (long) IntStream.of(group[0]).limit(i).sum() + IntStream.of(group[1]).limit(j).sum() + IntStream.of(group[2]).limit(k).sum() + IntStream.of(group[3]).limit(l).sum();
+                    if (max < value) {
+                        max = value;
+                    }
+                }
+            }
+        }
+    }
+    System.out.println(max);
+}

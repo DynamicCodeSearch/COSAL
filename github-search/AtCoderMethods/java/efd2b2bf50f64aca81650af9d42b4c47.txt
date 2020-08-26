@@ -1,0 +1,17 @@
+long[][] matMul(int n, long[][] arr, long y) {
+    long[][] iden = new long[n][n];
+    for (int i = 0; i < n; i++) iden[i][i] = 1;
+    
+    while (y > 0) {
+        if (y % 2 == 1) {
+            iden = mul(n, iden, arr);
+            
+            y--;
+        } else {
+            arr = mul(n, arr, arr);
+            
+            y /= 2;
+        }
+    }
+    return iden;
+}

@@ -1,0 +1,13 @@
+def f(n):
+    needed_attacks = 0
+    for h in H:
+        r = h - B * n
+        if r < 0:
+            r = 0
+
+        if r % D == 0:
+            needed_attacks += r // D
+        else:
+            needed_attacks += r // D + 1
+
+    return needed_attacks <= n

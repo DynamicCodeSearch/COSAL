@@ -1,0 +1,37 @@
+private int maxRectangleOfOnes(boolean[][] a) {
+    
+    int height = a.length;
+    int width = a[0].length;
+    int[] prevMaxUp = new int[width + 1];
+    int[] maxUp = new int[width + 1];
+    int[] stack = new int[width + 1];
+    
+    maxUp[width] = -1;
+    prevMaxUp[width] = -1;
+    int maxArea = 0;
+    for (int r = 0; r < height; r++) {
+        for (int c = 0; c < width; c++) {
+            if (a[r][c]) {
+                maxUp[c] = 1 + prevMaxUp[c];
+            } else {
+                maxUp[c] = 0;
+            }
+        }
+        int sp = 0;
+        for (int c = 0; c <= width; c++) {
+            while (sp > 0 && maxUp[c] < maxUp[stack[sp - 1]]) {
+                int dx = c - (sp >= 2 ? stack[sp - 2] + 1 : 0);
+                int dy = maxUp[stack[sp - 1]];
+                ++dx;
+                ++dy;
+                maxArea = Math.max(maxArea, dx * dy);
+                --sp;
+            }
+            stack[sp++] = c;
+        }
+        int[] tmp = maxUp;
+        maxUp = prevMaxUp;
+        prevMaxUp = tmp;
+    }
+    return maxArea;
+}

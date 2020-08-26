@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String x = sc.next();
+    sc.close();
+    boolean ans = true;
+    while (!x.isEmpty()) {
+        if (x.endsWith("ch")) {
+            x = x.substring(0, x.length() - 2);
+        } else if (x.endsWith("o") || x.endsWith("k") || x.endsWith("u")) {
+            x = x.substring(0, x.length() - 1);
+        } else {
+            ans = false;
+            break;
+        }
+    }
+    System.out.println(ans ? "YES" : "NO");
+}

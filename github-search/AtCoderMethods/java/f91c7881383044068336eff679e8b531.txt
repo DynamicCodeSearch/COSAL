@@ -1,0 +1,13 @@
+boolean Union(Node x, Node y) {
+    Node xR = x.find(), yR = y.find();
+    if (xR == yR)
+        return false;
+    if (xR.sz > yR.sz) {
+        yR.p = xR;
+        xR.sz += yR.sz;
+    } else {
+        xR.p = yR;
+        yR.sz += xR.sz;
+    }
+    return true;
+}

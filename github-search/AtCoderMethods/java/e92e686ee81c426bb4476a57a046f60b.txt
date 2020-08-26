@@ -1,0 +1,36 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    long[][] dp = new long[N][N];
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            if (i != j)
+                dp[i][j] = Integer.MAX_VALUE;
+        }
+    }
+    ArrayList<Edge> edgeList = new ArrayList<Edge>();
+    for (int i = 0; i < M; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        long c = sc.nextLong();
+        dp[a][b] = c;
+        dp[b][a] = c;
+        edgeList.add(new Edge(a, b, c));
+    }
+    
+    for (int k = 1; k <= N; k++) {
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                dp[i][j] = Math.min(dp[i][j], dp[i][k - 1] + dp[k - 1][j]);
+            }
+        }
+    }
+    int ans = 0;
+    for (int i = 0; i < M; i++) {
+        Edge e = edgeList.get(i);
+        if (dp[e.u][e.v] < e.cost)
+            ans++;
+    }
+    System.out.println(ans);
+}

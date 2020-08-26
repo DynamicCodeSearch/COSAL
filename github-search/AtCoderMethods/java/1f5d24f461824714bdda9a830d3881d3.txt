@@ -1,0 +1,18 @@
+public void solve() {
+    N = nextInt();
+    memo = new int[N + 1];
+    for (int i = 2; i <= N; i++) {
+        int num = i;
+        for (int j = 2; j <= num; j++) {
+            while (num % j == 0) {
+                memo[j]++;
+                num /= j;
+            }
+        }
+    }
+    long ans = 1;
+    for (int i = 0; i < memo.length; i++) {
+        ans = (ans * (memo[i] + 1)) % mod;
+    }
+    out.println(ans);
+}

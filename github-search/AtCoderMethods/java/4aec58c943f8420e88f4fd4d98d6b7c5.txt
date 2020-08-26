@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String s = sc.nextLine();
+    sc.close();
+    char[] array = s.toCharArray();
+    Arrays.sort(array);
+    StringBuilder sb = new StringBuilder();
+    boolean isNone = true;
+    for (int c = 'a'; c <= 'z'; c++) {
+        if (Arrays.binarySearch(array, (char) c) < 0) {
+            sb.append((char) c);
+            isNone = false;
+            break;
+        }
+    }
+    if (isNone) {
+        System.out.println("None");
+    } else {
+        System.out.println(sb.toString());
+    }
+}

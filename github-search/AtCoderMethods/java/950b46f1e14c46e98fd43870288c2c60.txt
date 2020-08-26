@@ -1,0 +1,28 @@
+static int countMine(int i, int j, int H, int W, char[][] map) {
+    int count = 0;
+    
+    if (i != 0 && j != 0 && map[i - 1][j - 1] == '#')
+        count++;
+    
+    if (i != 0 && map[i - 1][j] == '#')
+        count++;
+    
+    if (i != 0 && j != W - 1 && map[i - 1][j + 1] == '#')
+        count++;
+    
+    if (j != 0 && map[i][j - 1] == '#')
+        count++;
+    
+    if (j != W - 1 && map[i][j + 1] == '#')
+        count++;
+    
+    if (i != H - 1 && j != 0 && map[i + 1][j - 1] == '#')
+        count++;
+    
+    if (i != H - 1 && map[i + 1][j] == '#')
+        count++;
+    
+    if (i != H - 1 && j != W - 1 && map[i + 1][j + 1] == '#')
+        count++;
+    return count;
+}

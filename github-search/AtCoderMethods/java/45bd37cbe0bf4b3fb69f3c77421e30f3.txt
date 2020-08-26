@@ -1,0 +1,24 @@
+public void run() {
+    if (__FILE_DEBUG_FLAG__ == __t__) {
+        try {
+            is = new FileInputStream(__DEBUG_FILE_NAME__);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        System.out.println("FILE_INPUT!");
+    } else {
+        is = System.in;
+    }
+    in = new FastScanner(is);
+    out = new PrintWriter(System.out);
+    if (__STACKSIZE_CHANGE_FLAG__ == __t__)
+        new Thread(null, new Runnable() {
+
+            @Override
+            public void run() {
+                solve();
+            }
+        }, "main", 1 << 30).start();
+    else
+        solve();
+}

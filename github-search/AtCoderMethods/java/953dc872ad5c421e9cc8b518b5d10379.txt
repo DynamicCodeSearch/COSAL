@@ -1,0 +1,13 @@
+public ArrayList<Integer> factors(int n) {
+    ArrayList<Integer> f = new ArrayList<>();
+    for (int x = 2; x * x <= n; x++) {
+        while (n % x == 0) {
+            if (x % 2 == 0)
+                f.add(x);
+            n /= x;
+        }
+    }
+    if (n > 1 && n % 2 == 0)
+        f.add(n);
+    return f;
+}

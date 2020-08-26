@@ -1,0 +1,42 @@
+
+public void run() throws IOException {
+    
+    int TEST_CASE = 1;
+    while (TEST_CASE-- != 0) {
+        int n = io.nextInt();
+        int[] cnt = new int[n];
+        for (int a : io.nextIntArray(n)) cnt[a]++;
+        int t = 0;
+        if (n % 2 == 0) {
+            for (int i = 0; i < n; i += 2) if (cnt[i] != 0) {
+                io.out.println(0);
+                return;
+            }
+            for (int i = 1; i < n; i += 2) {
+                if (cnt[i] != 2) {
+                    io.out.println(0);
+                    return;
+                }
+                t++;
+            }
+        } else {
+            for (int i = 1; i < n; i += 2) if (cnt[i] != 0) {
+                io.out.println(0);
+                return;
+            }
+            for (int i = 0; i < n; i += 2) {
+                if (i == 0 && cnt[i] != 1) {
+                    io.out.println(0);
+                    return;
+                }
+                if (i != 0 && cnt[i] != 2) {
+                    io.out.println(0);
+                    return;
+                }
+                if (i != 0)
+                    t++;
+            }
+        }
+        io.out.println(powmod(2, t, mod));
+    }
+}

@@ -1,0 +1,13 @@
+def solve():  
+    N = int(input())
+    a = [int(x) for x in input().split(" ")]
+    X = sum(a)
+    sum_val = 0
+    min_sum = 2 * 1e20
+
+    for i in range(N-1):
+        sum_val += a[i]
+        y = X - sum_val
+        min_sum = min(min_sum, abs(sum_val - y))
+
+    print(min_sum)

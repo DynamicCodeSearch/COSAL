@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int data = sc.nextInt();
+    int[] sequence = new int[2];
+    long count = data;
+    int continuance = 0;
+    sequence[0] = sc.nextInt();
+    for (int i = 1; i < data; i++) {
+        sequence[1] = sc.nextInt();
+        if (sequence[0] < sequence[1]) {
+            continuance++;
+            count += continuance;
+        } else {
+            continuance = 0;
+        }
+        sequence[0] = sequence[1];
+    }
+    System.out.println(count);
+}

@@ -1,0 +1,43 @@
+private static void dijkstra(int node) {
+    boolean[] fix = new boolean[N];
+    int rest = 0;
+    for (int i = 0; i < N; i++) {
+        if (data[node][i] < INF)
+            fix[i] = true;
+        else
+            rest++;
+    }
+    List<List<Integer>> pre = new ArrayList<List<Integer>>(N);
+    for (int i = 0; i < N; i++) {
+        pre.add(new ArrayList<Integer>());
+    }
+    for (int step = 0; step < rest; step++) {
+        int min = INF;
+        int index = 0;
+        for (int i = 0; i < N; i++) {
+            if (!fix[i]) {
+                for (int j = 0; j < N; j++) {
+                    if (fix[j] && edge[j][i] > 0) {
+                        int tmp = data[node][j] + edge[j][i];
+                        if (tmp < data[node][i]) {
+                            pre.get(i).clear();
+                            pre.get(i).add(j);
+                            data[node][i] = tmp;
+                        } else if (tmp == data[node][i]) {
+                            pre.get(i).add(j);
+                        }
+                    }
+                }
+                if (data[node][i] < min) {
+                    min = data[node][i];
+                    index = i;
+                }
+            }
+        }
+        fix[index] = true;
+        for (Integer p : pre.get(index)) {
+            used[p][index] = used[index][p] = true;
+        }
+        data[index][node] = data[node][index];
+    }
+}

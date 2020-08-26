@@ -1,0 +1,44 @@
+private static void solve() {
+    long x = nl();
+    int k = ni();
+    long[] r = nal(k);
+    int qq = ni();
+    long[][] query = new long[qq + k][2];
+    for (int i = 0; i < qq; i++) {
+        query[i][0] = nl();
+        query[i][1] = nl();
+    }
+    for (int i = 0; i < k; i++) {
+        query[i + qq][0] = r[i];
+        query[i + qq][1] = -1;
+    }
+    Arrays.sort(query, (o1, o2) -> Long.compare(o1[0], o2[0]));
+    
+    
+    
+    
+    long a = 0;
+    long b = x;
+    long c = 0;
+    long t = 0;
+    boolean up = true;
+    for (long[] q : query) {
+        long[] next = f(q[0] - t, a, b, c, x, up);
+        if (q[1] < 0) {
+            up = !up;
+        } else {
+            if (q[1] < next[0]) {
+                out.println(next[0] + next[2]);
+            } else if (q[1] > next[1]) {
+                out.println(next[1] + next[2]);
+            } else {
+                out.println(q[1] + next[2]);
+            }
+            out.flush();
+        }
+        t = q[0];
+        a = next[0];
+        b = next[1];
+        c = next[2];
+    }
+}

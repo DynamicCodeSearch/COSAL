@@ -1,0 +1,16 @@
+static boolean dfsHK(int[] d, boolean[][] g, int n, int m, int[] to, int[] from, int cur) {
+    if (cur == n)
+        return true;
+    for (int adj = 0; adj < m; adj++) {
+        if (g[cur][adj]) {
+            int nex = from[adj];
+            if (d[nex] == d[cur] + 1 && dfsHK(d, g, n, m, to, from, nex)) {
+                to[cur] = adj;
+                from[adj] = cur;
+                return true;
+            }
+        }
+    }
+    d[cur] = -1;
+    return false;
+}

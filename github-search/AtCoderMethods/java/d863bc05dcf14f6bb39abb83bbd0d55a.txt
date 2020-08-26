@@ -1,0 +1,12 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    int n = in.nextInt();
+    long[] arr = in.nextSumLongArray(n);
+    int i = 0;
+    int j = n - 1;
+    long total = Long.MAX_VALUE;
+    while (i < j) {
+        total = Math.min(Math.abs(arr[j] - arr[i] - arr[i]), total);
+        i++;
+    }
+    out.print(total);
+}

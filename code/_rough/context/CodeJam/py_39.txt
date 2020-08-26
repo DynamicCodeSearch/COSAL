@@ -1,0 +1,493 @@
+### Py Tokens: range, part, area, cuts, len 
+
+### Py functions
+
+def func_504d0e78dcea4975a53c4b1d9927ac12(G, L, U, area):
+    for i in range(len(L) - 1):
+        area -= (L[i + 1][0] - L[i][0]) * (L[i + 1][1] + L[i][1])
+    for i in range(len(U) - 1):
+        area += (U[i + 1][0] - U[i][0]) * (U[i + 1][1] + U[i][1])
+    part = area * 1.0 / G
+    cuts = []
+    iL = 0
+    iU = 0
+    w = U[0][1] - L[0][1]
+    a = 0
+    x = 0
+    return cuts
+
+def func_b6c0c45b4c82407da92d3b9b2a8ce7a1(G, L, U, area, i):
+    for i in range(len(U) - 1):
+        area += (U[i + 1][0] - U[i][0]) * (U[i + 1][1] + U[i][1])
+    part = area * 1.0 / G
+    cuts = []
+    iL = 0
+    iU = 0
+    w = U[0][1] - L[0][1]
+    return cuts
+
+def func_b6c92a77c4924c5e88847ad5ab124ae1(G, L, U, area):
+    for i in range(len(L) - 1):
+        area -= (L[i + 1][0] - L[i][0]) * (L[i + 1][1] + L[i][1])
+    for i in range(len(U) - 1):
+        area += (U[i + 1][0] - U[i][0]) * (U[i + 1][1] + U[i][1])
+    part = area * 1.0 / G
+    cuts = []
+    iL = 0
+    return part
+
+def func_76853b94ff1d43f787b9def5355c88d2(G, L, U):
+    area = 0
+    for i in range(len(L) - 1):
+        area -= (L[i + 1][0] - L[i][0]) * (L[i + 1][1] + L[i][1])
+    for i in range(len(U) - 1):
+        area += (U[i + 1][0] - U[i][0]) * (U[i + 1][1] + U[i][1])
+    part = area * 1.0 / G
+    cuts = []
+    iL = 0
+    iU = 0
+    w = U[0][1] - L[0][1]
+    return part
+
+def func_e3e48af002834bdf9cf125e27f525c10(G, L, U, area):
+    for i in range(len(L) - 1):
+        area -= (L[i + 1][0] - L[i][0]) * (L[i + 1][1] + L[i][1])
+    for i in range(len(U) - 1):
+        area += (U[i + 1][0] - U[i][0]) * (U[i + 1][1] + U[i][1])
+    part = area * 1.0 / G
+    cuts = []
+    iL = 0
+    return cuts
+
+*********************************
+
+#### Score: 7.23716
+
+
+#### Java Tokens: area, len 
+
+public static double func_0cca408bacb8461d9c71e56a7ce2a31a(int w, double[] len) { 
+ double area = 0;
+for (int i = 1; i <= w; i++) {
+    area += (len[i - 1] + len[i]) / 2;
+}
+return area;
+}
+
+
+public static double func_b9a757e01d78459e9902918ef38284f9(int w, int g, double[] len) { 
+ double area = 0;
+for (int i = 1; i <= w; i++) {
+    area += (len[i - 1] + len[i]) / 2;
+}
+area /= g;
+return area;
+}
+
+
+public static double func_b99cd0dbdc854271bb5de21037cf33f2(int w, int g, double area, double[] len) { 
+ for (int i = 1; i <= w; i++) {
+    area += (len[i - 1] + len[i]) / 2;
+}
+area /= g;
+return area;
+}
+
+
+*********************************
+
+#### Score: 7.08858
+
+
+#### Java Tokens: cuts 
+
+public static double[] func_64be54931961469088c39fcfd74dd253(int G) { 
+ double g = G;
+double[] cuts = new double[G - 1];
+return cuts;
+}
+
+
+public static double func_5d36dad2b4a84f3990d6eb4eabab939b(int G) { 
+ double g = G;
+double[] cuts = new double[G - 1];
+return g;
+}
+
+
+*********************************
+
+#### Score: 6.75393
+
+
+#### Java Tokens: area, len, remain 
+
+public static double func_1cc02f7351a940d7beee273556182bf6(int x0, double area, double x, double[] len) { 
+ double remain = area;
+x0 = (int) x;
+int x1 = x0 + 1;
+double k = 1.0 * (len[x1] - len[x0]);
+return remain;
+}
+
+
+public static int func_2d2e5b31507e4e37bebac719fc1af207(int x0, double area, double x, double[] len) { 
+ double remain = area;
+x0 = (int) x;
+int x1 = x0 + 1;
+double k = 1.0 * (len[x1] - len[x0]);
+double y = k * (x - x0) + len[x0];
+return x0;
+}
+
+
+public static int func_49ca744cc2ec4eb2a0c6841d185043f5(int x0, double area, double x, double[] len) { 
+ double remain = area;
+x0 = (int) x;
+int x1 = x0 + 1;
+double k = 1.0 * (len[x1] - len[x0]);
+return x0;
+}
+
+
+*********************************
+
+#### Score: 6.68259
+
+
+#### Java Tokens: next, area, irregularcakes, part, irregular, cakes 
+
+public static double func_386dfd5ef651466aa98eb4421ec18eeb(int W, double part, double lb) { 
+ double ub = W;
+while (ub - lb > 0.000000001) {
+    double next = (ub + lb) / 2;
+    double area = IrregularCakes.area(next);
+    if (area > part) {
+        ub = next;
+    } else {
+        lb = next;
+    }
+}
+return ub;
+}
+
+
+public static double func_fb5d1c92fc3d4c2c9e8b55182fe10d34(double ub, double part, double lb) { 
+ double next = (ub + lb) / 2;
+double area = IrregularCakes.area(next);
+if (area > part) {
+    ub = next;
+} else {
+    lb = next;
+}
+return lb;
+}
+
+
+public static double func_ff491e0fb39e481289101fb09fc197be(double ub, double part, double lb) { 
+ double next = (ub + lb) / 2;
+double area = IrregularCakes.area(next);
+if (area > part) {
+    ub = next;
+} else {
+    lb = next;
+}
+return next;
+}
+
+
+*********************************
+
+#### Score: 6.68259
+
+
+#### Java Tokens: area, next, irregularcakes, part, irregular, cakes 
+
+public static double func_6d38dbc96dec474a81035726e14b7944(double part, double ub, double next, double lb) { 
+ double area = IrregularCakes.area(next);
+if (area > part) {
+    ub = next;
+} else {
+    lb = next;
+}
+return area;
+}
+
+
+public static double func_26dd9d1a130b4e269d5ebcbae7da52ea(double part, double ub, double next, double lb) { 
+ double area = IrregularCakes.area(next);
+if (area > part) {
+    ub = next;
+} else {
+    lb = next;
+}
+return ub;
+}
+
+
+public static double func_ba0e41066e6343f3a66c32e5e2437f7a(double part, double ub, double next, double lb) { 
+ double area = IrregularCakes.area(next);
+if (area > part) {
+    ub = next;
+} else {
+    lb = next;
+}
+return lb;
+}
+
+
+*********************************
+
+#### Score: 6.33696
+
+
+#### Java Tokens: next, area, println, irregularcakes, part, irregular, cakes 
+
+public static double func_9b932effc3ed4da4b1b5fcd52925f5d3(int W, double part) { 
+ double lb = 0;
+double ub = W;
+while (ub - lb > 0.000000001) {
+    double next = (ub + lb) / 2;
+    double area = IrregularCakes.area(next);
+    if (area > part) {
+        ub = next;
+    } else {
+        lb = next;
+    }
+}
+IrregularCakes.out.println(lb);
+return ub;
+}
+
+
+public static double func_9e53938a4375458c87dac84506b255ef(double ub, double part, double lb) { 
+ while (ub - lb > 0.000000001) {
+    double next = (ub + lb) / 2;
+    double area = IrregularCakes.area(next);
+    if (area > part) {
+        ub = next;
+    } else {
+        lb = next;
+    }
+}
+IrregularCakes.out.println(lb);
+return lb;
+}
+
+
+public static double func_d734fc60f73449708bc872e3e25b145a(double ub, double part, double lb) { 
+ while (ub - lb > 0.000000001) {
+    double next = (ub + lb) / 2;
+    double area = IrregularCakes.area(next);
+    if (area > part) {
+        ub = next;
+    } else {
+        lb = next;
+    }
+}
+IrregularCakes.out.println(lb);
+return ub;
+}
+
+
+*********************************
+
+#### Score: 6.33696
+
+
+#### Java Tokens: next, area, total, irregularcakes, part, irregular, cakes 
+
+public static double func_1bcb304d80b8422f8aee62141f731d0a(int W, int G, int g, double total) { 
+ double part = g * total / G;
+double lb = 0;
+double ub = W;
+while (ub - lb > 0.000000001) {
+    double next = (ub + lb) / 2;
+    double area = IrregularCakes.area(next);
+    if (area > part) {
+        ub = next;
+    } else {
+        lb = next;
+    }
+}
+return lb;
+}
+
+
+public static double func_7118c492a8304fe1a95f0f83f7955d5d(int W, int G, int g, double total) { 
+ double part = g * total / G;
+double lb = 0;
+double ub = W;
+while (ub - lb > 0.000000001) {
+    double next = (ub + lb) / 2;
+    double area = IrregularCakes.area(next);
+    if (area > part) {
+        ub = next;
+    } else {
+        lb = next;
+    }
+}
+return part;
+}
+
+
+public static double func_b5455c33cf404db1b3a9dba0ea66e545(int W, int G, int g, double total) { 
+ double part = g * total / G;
+double lb = 0;
+double ub = W;
+while (ub - lb > 0.000000001) {
+    double next = (ub + lb) / 2;
+    double area = IrregularCakes.area(next);
+    if (area > part) {
+        ub = next;
+    } else {
+        lb = next;
+    }
+}
+return ub;
+}
+
+
+*********************************
+
+#### Score: 6.33480
+
+
+#### Java Tokens: area, println, len, case 
+
+public static double func_a21e8618134542b9ab33543074aa2a18(int t, int w, int g, double[] len, PrintWriter out) { 
+ double area = 0;
+for (int i = 1; i <= w; i++) {
+    area += (len[i - 1] + len[i]) / 2;
+}
+area /= g;
+out.println("Case #" + (t + 1) + ":");
+double x = 0;
+return x;
+}
+
+
+public static PrintWriter func_83d94f4241bd4237a36f3d1fb6912871(int t, int w, int g, double[] len, PrintWriter out) { 
+ double area = 0;
+for (int i = 1; i <= w; i++) {
+    area += (len[i - 1] + len[i]) / 2;
+}
+area /= g;
+out.println("Case #" + (t + 1) + ":");
+return out;
+}
+
+
+public static double func_8a5cfb41d63e417ab41bcacdb2f39e28(int t, int w, int g, double[] len, PrintWriter out) { 
+ double area = 0;
+for (int i = 1; i <= w; i++) {
+    area += (len[i - 1] + len[i]) / 2;
+}
+area /= g;
+out.println("Case #" + (t + 1) + ":");
+double x = 0;
+return area;
+}
+
+
+*********************************
+
+#### Score: 6.33480
+
+
+#### Java Tokens: area, len, low, upper 
+
+public static double func_b5fde597de7944ecba1ad3edaf9525b5(int w, double[] len, double[] upper, double[] low) { 
+ for (int i = 0; i <= w; i++) {
+    len[i] = upper[i] - low[i];
+}
+double area = 0;
+return area;
+}
+
+
+public static double func_cd3e869e391a46a8b0bc42288a030043(int w, int g, double[] len, double[] upper, double[] low) { 
+ for (int i = 0; i <= w; i++) {
+    len[i] = upper[i] - low[i];
+}
+double area = 0;
+for (int i = 1; i <= w; i++) {
+    area += (len[i - 1] + len[i]) / 2;
+}
+area /= g;
+return area;
+}
+
+
+public static double func_19bd7e074d0f4f9e90b2ec34ca11e5d0(int w, double[] len, double[] upper, double[] low) { 
+ for (int i = 0; i <= w; i++) {
+    len[i] = upper[i] - low[i];
+}
+double area = 0;
+for (int i = 1; i <= w; i++) {
+    area += (len[i - 1] + len[i]) / 2;
+}
+return area;
+}
+
+
+*********************************
+
+#### Score: 6.02756
+
+
+#### Java Tokens: next, area, total, println, irregularcakes, part, irregular, cakes 
+
+public static double func_fa9e0a8e1da9488b9bcb2165cb9739e7(int W, int G, int g, double total) { 
+ double part = g * total / G;
+double lb = 0;
+double ub = W;
+while (ub - lb > 0.000000001) {
+    double next = (ub + lb) / 2;
+    double area = IrregularCakes.area(next);
+    if (area > part) {
+        ub = next;
+    } else {
+        lb = next;
+    }
+}
+IrregularCakes.out.println(lb);
+return part;
+}
+
+
+public static double func_907d05fbcd7c4999a97c527a1af230d5(int W, int G, int g, double total) { 
+ double part = g * total / G;
+double lb = 0;
+double ub = W;
+while (ub - lb > 0.000000001) {
+    double next = (ub + lb) / 2;
+    double area = IrregularCakes.area(next);
+    if (area > part) {
+        ub = next;
+    } else {
+        lb = next;
+    }
+}
+IrregularCakes.out.println(lb);
+return lb;
+}
+
+
+public static double func_d05e63bd1df24c90b3ad080760f98401(int W, int G, int g, double total) { 
+ double part = g * total / G;
+double lb = 0;
+double ub = W;
+while (ub - lb > 0.000000001) {
+    double next = (ub + lb) / 2;
+    double area = IrregularCakes.area(next);
+    if (area > part) {
+        ub = next;
+    } else {
+        lb = next;
+    }
+}
+IrregularCakes.out.println(lb);
+return ub;
+}
+

@@ -1,0 +1,10 @@
+protected void init(int cap) {
+    if (Farray != null)
+        return;
+    Farray = new int[cap + 1];
+    FInvarray = new int[cap + 1];
+    for (int n = 0; n < Farray.length; n++) {
+        Farray[n] = (n == 0) ? 1 : modInt.multiple(n, Farray[n - 1]);
+        FInvarray[n] = modInt.divide(1, Farray[n]);
+    }
+}

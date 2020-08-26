@@ -1,0 +1,21 @@
+void solve() throws IOException {
+    int N = ni();
+    int Q = ni();
+    int[] a = new int[N];
+    int[] L = new int[Q];
+    int[] R = new int[Q];
+    int[] T = new int[Q];
+    for (int i = 0; i < Q; i++) {
+        L[i] = ni();
+        R[i] = ni();
+        T[i] = ni();
+    }
+    for (int i = 0; i < Q; i++) {
+        for (int j = L[i] - 1; j < R[i]; j++) {
+            a[j] = T[i];
+        }
+    }
+    for (int i = 0; i < N; i++) {
+        out.println(a[i]);
+    }
+}

@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter w = new PrintWriter(System.out);
+    int[] a = new int[13];
+    for (int i = 1; i < a.length; i++) {
+        a[i] = i;
+    }
+    a[0] = 13;
+    
+    int f = in.nextInt(), s = in.nextInt();
+    if (f == s)
+        w.println("Draw");
+    else if (a[f - 1] > a[s - 1])
+        w.println("Alice");
+    else
+        w.println("Bob");
+    w.close();
+}

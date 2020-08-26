@@ -1,0 +1,12 @@
+def main():
+    d = defaultdict(lambda: 0)
+    n = int(input())
+    for _ in range(n):
+        x = int(input())
+        d[x] += 1
+
+    cnt = 0
+    for key, value in sorted(d.items(), key=lambda x: x[1], reverse=True):
+        if value%2 == 1:
+            cnt += 1
+    print(cnt)

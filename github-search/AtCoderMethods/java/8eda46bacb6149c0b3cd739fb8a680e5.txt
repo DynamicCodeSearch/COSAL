@@ -1,0 +1,31 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    int[][] cup = sc.nextIntTable(N - 1, 2);
+    SegmentTreeRMQ st = new SegmentTreeRMQ(100001);
+    st.update(0, 0);
+    int[] grundy = new int[N];
+    for (int i = 1; i < N; i++) {
+        int C = cup[i - 1][0];
+        int left = 0;
+        int right = 100001;
+        while (right - left > 1) {
+            int k = left + right >> 1;
+            if (st.min(0, k) >= i - C) {
+                left = k;
+            } else {
+                right = k;
+            }
+        }
+        grundy[i] = left;
+        st.update(left, i);
+    }
+    int g = 0;
+    for (int i = 1; i < N; i++) {
+        int A = cup[i - 1][1];
+        if (A % 2 == 1) {
+            g ^= grundy[i];
+        }
+    }
+    System.out.println(g == 0 ? "Second" : "First");
+}

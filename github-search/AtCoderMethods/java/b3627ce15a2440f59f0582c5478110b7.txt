@@ -1,0 +1,22 @@
+private void solve(Scanner sc, PrintWriter out) {
+    N = sc.nextInt();
+    A = new int[N];
+    for (int i = 0; i < N; ++i) {
+        A[i] = sc.nextInt();
+    }
+    boolean[] b = new boolean[N];
+    long total = 1;
+    for (int i = 0; i < N; ++i) {
+        if (!b[(N - A[i]) / 2]) {
+            b[(N - A[i]) / 2] = true;
+        } else if (!b[N - ((N - A[i]) / 2) - 1]) {
+            b[N - ((N - A[i]) / 2) - 1] = true;
+            total <<= 1;
+            total %= MOD;
+        } else {
+            out.println(0);
+            return;
+        }
+    }
+    out.println(total);
+}

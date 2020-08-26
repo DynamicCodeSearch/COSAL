@@ -1,0 +1,259 @@
+### Py Tokens: string, format, object, vformat, argument, formatstring, pop, index, needs, typeerror, indexerror, keyword, allow, required, positional, descriptor, passed, error, formatter, type, missing 
+
+### Py functions
+
+def format(*args, **kwargs):
+  if not args:
+    raise TypeError("descriptor 'format' of 'Formatter' object "
+                    "needs an argument")
+  self, args = args[0], args[1:]  
+  try:
+    format_string, args = args[0], args[1:] 
+  except IndexError:
+    if 'format_string' in kwargs:
+      format_string = kwargs.pop('format_string')
+    else:
+      raise TypeError("format() missing 1 required positional "
+                      "argument: 'format_string'")
+  return self.vformat(format_string, args, kwargs)
+*********************************
+
+#### Score: 9.34371
+
+
+#### Java Tokens: template, string, nullable, valueof, placeholders, run, lenient, braces, strings, extra, builder, lenientformat, placeholder, value, (object[])null, placeholderstart, format, length, start, index, substituting, args, square, lenienttostring, templatestart, arguments, stringbuilder, indexof, tostring, append, object 
+
+
+
+public static String lenientFormat(@Nullable String template, @Nullable Object@Nullable ... args) {
+    
+    template = String.valueOf(template);
+    if (args == null) {
+        args = new Object[] { "(Object[])null" };
+    } else {
+        for (int i = 0; i < args.length; i++) {
+            args[i] = lenientToString(args[i]);
+        }
+    }
+    
+    StringBuilder builder = new StringBuilder(template.length() + 16 * args.length);
+    int templateStart = 0;
+    int i = 0;
+    while (i < args.length) {
+        int placeholderStart = template.indexOf("%s", templateStart);
+        if (placeholderStart == -1) {
+            break;
+        }
+        builder.append(template, templateStart, placeholderStart);
+        builder.append(args[i++]);
+        templateStart = placeholderStart + 2;
+    }
+    builder.append(template, templateStart, template.length());
+    
+    if (i < args.length) {
+        builder.append(" [");
+        builder.append(args[i++]);
+        while (i < args.length) {
+            builder.append(", ");
+            builder.append(args[i++]);
+        }
+        builder.append(']');
+    }
+    return builder.toString();
+}
+*********************************
+
+#### Score: 6.95499
+
+
+#### Java Tokens: exception, argument, eager, gwt, large:, integer, repeated, required, empty, zero, number, copies, checkargument, len, longsize, hey, large, containing, count, index, heyheyhey, check, illegal, benchmark, input, system, null, size, invalid, bounds, returns, must, illegalargumentexception, getchars, code, string, stringsrepeatbenchmark, checknotnull, count:, update, arrayindexoutofboundsexception, non, example, times, negative, concatenated, strings, array, param, arraycopy, repeat, get, length, nonnegative, specific, non-null, consisting, modify, chars 
+
+
+public static String repeat(String string, int count) {
+    
+    checkNotNull(string);
+    if (count <= 1) {
+        checkArgument(count >= 0, "invalid count: %s", count);
+        return (count == 0) ? "" : string;
+    }
+    
+    final int len = string.length();
+    final long longSize = (long) len * (long) count;
+    final int size = (int) longSize;
+    if (size != longSize) {
+        throw new ArrayIndexOutOfBoundsException("Required array size too large: " + longSize);
+    }
+    final char[] array = new char[size];
+    string.getChars(0, len, array, 0);
+    int n;
+    for (n = len; n < size - n; n <<= 1) {
+        System.arraycopy(array, 0, array, n, n);
+    }
+    System.arraycopy(array, 0, array, n, size - n);
+    return new String(array);
+}
+*********************************
+
+#### Score: 6.68243
+
+
+#### Java Tokens: allow, forwards, thru, string, beyond, charsequence, search, found, utils, end, ordinalindexof, charsequenceutils, set, last, initial, index_not_found, length, index, backwards, str, stringutils, sequence, searchstr, lastindex, decrement, char, lastindexof, step, indexof, ordinal 
+
+
+
+private static int ordinalIndexOf(final CharSequence str, final CharSequence searchStr, final int ordinal, final boolean lastIndex) {
+    if (str == null || searchStr == null || ordinal <= 0) {
+        return INDEX_NOT_FOUND;
+    }
+    if (searchStr.length() == 0) {
+        return lastIndex ? str.length() : 0;
+    }
+    int found = 0;
+    
+    
+    int index = lastIndex ? str.length() : INDEX_NOT_FOUND;
+    do {
+        if (lastIndex) {
+            
+            index = CharSequenceUtils.lastIndexOf(str, searchStr, index - 1);
+        } else {
+            
+            index = CharSequenceUtils.indexOf(str, searchStr, index + 1);
+        }
+        if (index < 0) {
+            return index;
+        }
+        found++;
+    } while (found < ordinal);
+    return index;
+}
+*********************************
+
+#### Score: 6.67786
+
+
+#### Java Tokens: pre, code, string, may, valueof, objectutils, check, empty, str, stringutils, either, see, bat, param, utils, defaultstring, returns, passed, tostring, value, object 
+
+
+public static String defaultString(final String str) {
+    return defaultString(str, EMPTY);
+}
+*********************************
+
+#### Score: 6.50983
+
+
+#### Java Tokens: pre, defaultstr, code, string, may, valueof, objectutils, check, str, stringutils, input, either, see, null, bat, param, utils, defaultstring, returns, passed, value, tostring, object 
+
+
+public static String defaultString(final String str, final String defaultStr) {
+    return str == null ? defaultStr : str;
+}
+*********************************
+
+#### Score: 6.00890
+
+
+#### Java Tokens: exception, leading, sign, integer, isempty, empty, numberformatexception, parseint, 12-3, number, character, either, u0967u0968u0969, utils, isdigit, generate, digit, still, pre, method, test, format, check, sequence, 12.3, contains, 123, checks, +123, outside, unicode, returns, parsed, decimal, since, changed, allow, note, code, string, signature, numeric, range, respectively, non, charsequence, point, long, negative, passes, param, value, charat, isnumeric, may, parselong, length, also, positive, parse, int, stringutils, -123, non-null, char, digits, ab2c 
+
+
+public static boolean isNumeric(final CharSequence cs) {
+    if (isEmpty(cs)) {
+        return false;
+    }
+    final int sz = cs.length();
+    for (int i = 0; i < sz; i++) {
+        if (!Character.isDigit(cs.charAt(i))) {
+            return false;
+        }
+    }
+    return true;
+}
+*********************************
+
+#### Score: 5.82164
+
+
+#### Java Tokens: exception, com, code, string, nullable, log, valueof, logger, another, integer, tohexstring, lenient, proguard, default, see, common, strings, identity, get, warning, create, hex, lenientformat, behavior, value, class, threw, getclass, identityhashcode, created, format, google, getlogger, getname, forcing, system, lenienttostring, inline, name, com.google.common.base.strings, fixed, avoid, objecttostring, tostring, hash, object, base 
+
+private static String lenientToString(@Nullable Object o) {
+    try {
+        return String.valueOf(o);
+    } catch (Exception e) {
+        
+        String objectToString = o.getClass().getName() + '@' + Integer.toHexString(System.identityHashCode(o));
+        
+        Logger.getLogger("com.google.common.base.Strings").log(WARNING, "Exception during lenientFormat for " + objectToString, e);
+        return "<" + objectToString + " threw " + e.getClass().getName() + ">";
+    }
+}
+*********************************
+
+#### Score: 5.74332
+
+
+#### Java Tokens: joins, ;;a, noofitems, added, use, objects, empty, character, utils, delimiter, exclusive, represented, join, pre, pass, containing, past, newstringbuilder, index, list, separator, input, endindex, null, stop, items, object, since, joining, a;b;c, code, string, provided, values, error, strings, array, param, builder, end, together, abc, may, within, joined, start, stringutils, single, buf, startindex, elements, stringbuilder, tostring, append, first 
+
+
+public static String join(final Object[] array, final char separator, final int startIndex, final int endIndex) {
+    if (array == null) {
+        return null;
+    }
+    final int noOfItems = endIndex - startIndex;
+    if (noOfItems <= 0) {
+        return EMPTY;
+    }
+    final StringBuilder buf = newStringBuilder(noOfItems);
+    if (array[startIndex] != null) {
+        buf.append(array[startIndex]);
+    }
+    for (int i = startIndex + 1; i < endIndex; i++) {
+        buf.append(separator);
+        if (array[i] != null) {
+            buf.append(array[i]);
+        }
+    }
+    return buf.toString();
+}
+*********************************
+
+#### Score: 5.26403
+
+
+#### Java Tokens: exception, code, string, available, substring, without, required, empty, characters, negative, len, param, utils, get, pre, abc, may, length, gets, str, stringutils, input, leftmost, left, returned 
+
+
+
+
+public static String left(final String str, final int len) {
+    if (str == null) {
+        return null;
+    }
+    if (len < 0) {
+        return EMPTY;
+    }
+    if (str.length() <= len) {
+        return str;
+    }
+    return str.substring(0, len);
+}
+*********************************
+
+#### Score: 5.26403
+
+
+#### Java Tokens: exception, code, string, available, substring, without, required, empty, characters, negative, len, param, utils, get, rightmost, pre, abc, may, length, right, gets, str, stringutils, input, returned 
+
+
+public static String right(final String str, final int len) {
+    if (str == null) {
+        return null;
+    }
+    if (len < 0) {
+        return EMPTY;
+    }
+    if (str.length() <= len) {
+        return str;
+    }
+    return str.substring(str.length() - len);
+}

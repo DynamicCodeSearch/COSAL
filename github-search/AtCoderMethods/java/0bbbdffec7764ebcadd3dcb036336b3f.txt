@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    InputStream sys = System.in;
+    InputReader in = new InputReader(sys);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    long ans = 1, gc = 1;
+    BigInteger sum = BigInteger.valueOf(1);
+    for (int i = 1; i <= n; i++) {
+        long t = in.nextLong();
+        if (i == 1)
+            ans = t;
+        else {
+            gc = gcd(ans, t);
+            ans = ans / gc * t;
+        }
+    }
+    
+    out.println(ans);
+    out.flush();
+}

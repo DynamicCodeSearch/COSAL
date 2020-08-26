@@ -1,0 +1,13 @@
+def main():
+    A, B, C, D = map(int, input().split())
+
+    sw = [0] * 101
+    sw[A] = 1
+    sw[B] = -1
+    sw[C] += 1
+    sw[D] += -1
+    for i in range(1, 101):
+        sw[i] = sw[i-1] + sw[i]
+
+    ans = sw.count(2)
+    print(ans)

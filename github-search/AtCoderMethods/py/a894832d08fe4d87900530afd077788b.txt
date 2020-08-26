@@ -1,0 +1,11 @@
+def calc_diff(L):
+    result = 0
+
+    for i,l in enumerate(L):
+        if i==len(L)-1:
+            break
+
+        result += (i+1)*(len(L)-i-1)* (L[i+1]-L[i])
+        result = result %1000000007
+
+    return result

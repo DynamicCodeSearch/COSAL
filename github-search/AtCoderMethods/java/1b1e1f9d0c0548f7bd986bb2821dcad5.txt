@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    Map<Integer, Integer> entities = new HashMap<>();
+    for (int i = 0; i < n; i++) {
+        entities.put(sc.nextInt(), i);
+    }
+    List<Integer> keys = new ArrayList<>(entities.keySet());
+    Collections.sort(keys);
+    Collections.reverse(keys);
+    for (int i = 0; i < n; i++) {
+        System.out.println(entities.get(keys.get(i)) + 1);
+    }
+}

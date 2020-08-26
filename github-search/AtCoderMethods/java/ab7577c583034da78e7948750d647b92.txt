@@ -1,0 +1,8 @@
+public void calc() {
+    sb = new StringBuilder();
+    FastScanner sc = new FastScanner();
+    int n = sc.nextInt();
+    int[][] a = IntStream.rangeClosed(1, n).mapToObj(e -> new int[] { e, sc.nextInt() }).toArray(int[][]::new);
+    Arrays.sort(a, (b, c) -> c[1] - b[1]);
+    System.out.println(arrayToString(a));
+}

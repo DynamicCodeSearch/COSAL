@@ -1,0 +1,16 @@
+static void solve() {
+    int[] st = new int[] { ni(), ni(), 0 };
+    int[] go = new int[] { ni(), ni(), 0 };
+    int n = ni() + 2;
+    int[][] cis = new int[n][];
+    cis[0] = st;
+    cis[1] = go;
+    for (int i = 0; i < n - 2; i++) cis[i + 2] = na(3);
+    double[][] g = new double[n][n];
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {
+            g[i][j] = g[j][i] = Math.max(0, Point2D.distance(cis[i][0], cis[i][1], cis[j][0], cis[j][1]) - cis[i][2] - cis[j][2]);
+        }
+    }
+    out.printf("%.14f\n", dijk(g, 0)[1]);
+}

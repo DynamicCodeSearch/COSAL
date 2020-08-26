@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    
+    boolean flg = true;
+    int counter = 1;
+    int value = 0;
+    int w1 = 4;
+    int h1 = 3;
+    int w2 = 16;
+    int h2 = 9;
+    while (flg) {
+        int e = w1 * counter;
+        int f = h1 * counter;
+        int g = w2 * counter;
+        int h = h2 * counter;
+        if (a == e && b == f) {
+            flg = false;
+            System.out.println(w1 + ":" + h1);
+        } else if (a == g && b == h) {
+            flg = false;
+            System.out.println(w2 + ":" + h2);
+        }
+        counter++;
+    }
+}

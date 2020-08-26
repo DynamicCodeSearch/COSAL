@@ -1,0 +1,12 @@
+def route2(sx, sy, tx, ty):
+    dx = tx - sx
+    dy = ty - sy
+    if dx >= 0 and dy >= 0:
+        buf = "L" + route_y(sy, ty+1) + route_x(sx-1, tx) + "D"
+    if dx >= 0 and dy < 0:
+        buf = "U" + route_x(sx, tx+1) + route_y(sy+1, ty) + "L"
+    if dx < 0 and dy >= 0:
+        buf = "D" + route_x(sx, tx-1) + route_y(sy-1, ty) + "R"
+    if dx < 0 and dy < 0:
+        buf = "R" + route_y(sy, ty-1) + route_x(sx+1, tx) + "U"
+    return buf

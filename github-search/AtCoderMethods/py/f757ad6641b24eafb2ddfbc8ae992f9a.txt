@@ -1,0 +1,13 @@
+def dp(D, record, l, r, b, u):
+    if (l, r, b, u) in record:
+        return record[(l, r, b, u)]
+    record[(l, r, b, u)] = 0
+    if l > r or b > u:
+        return 0
+    for X, Y in D:
+        if l <= X <= r and b <= Y <= u:
+            num = r - l + u - b + 1 + dp(D, record, l, X - 1, b, Y - 1) + dp(D, record, X + 1, r, b, Y - 1)
+            num += dp(D, record, l, X - 1, Y + 1, u) + dp(D, record, X + 1, r, Y + 1, u)
+            if num > record[(l, r, b, u)]:
+                record[(l, r, b, u)] = num
+    return record[(l, r, b, u)]

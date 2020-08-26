@@ -1,0 +1,35 @@
+public static void main(String[] args) {
+    int[] scoreList;
+    int totalMult = 0;
+    int totalNotMult = 0;
+    ArrayList<Integer> mult10 = new ArrayList<Integer>();
+    ArrayList<Integer> notMult10 = new ArrayList<Integer>();
+    Scanner in = new Scanner(System.in);
+    int iter = in.nextInt();
+    scoreList = new int[iter];
+    for (int i = 0; i < iter; i++) {
+        scoreList[i] = in.nextInt();
+        if (scoreList[i] % 10 == 0) {
+            mult10.add(scoreList[i]);
+            totalMult += scoreList[i];
+        } else {
+            notMult10.add(scoreList[i]);
+            totalNotMult += scoreList[i];
+        }
+    }
+    if (totalNotMult % 10 == 0 && notMult10.size() > 0) {
+        int min = 101;
+        for (int i = 0; i < notMult10.size(); i++) {
+            int score = notMult10.get(i);
+            if (score < min)
+                min = score;
+        }
+        totalNotMult -= min;
+    }
+    int totalScore = totalNotMult + totalMult;
+    if (totalScore % 10 == 0)
+        System.out.println(0);
+    else
+        System.out.println(totalScore);
+    in.close();
+}

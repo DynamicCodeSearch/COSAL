@@ -1,0 +1,36 @@
+public static void main(String[] args) {
+    IO io = new IO();
+    int n = io.nextInt();
+    int m = io.nextInt();
+    int[] x2 = io.nextIntArray(n);
+    int[] y2 = io.nextIntArray(m);
+    Arrays.sort(x2);
+    Arrays.sort(y2);
+    n--;
+    m--;
+    int[] x = new int[n];
+    int[] y = new int[m];
+    for (int i = 0; i < n; i++) {
+        x[i] = x2[i + 1] - x2[i];
+    }
+    for (int i = 0; i < m; i++) {
+        y[i] = y2[i + 1] - y2[i];
+    }
+    long xsum = 0;
+    for (int i = 0; i < n; i++) {
+        long w = (long) (i + 1) * (n - i) % MOD;
+        xsum += x[i] * w % MOD;
+        if (xsum >= MOD) {
+            xsum -= MOD;
+        }
+    }
+    long ysum = 0;
+    for (int i = 0; i < m; i++) {
+        long w = (long) (i + 1) * (m - i) % MOD;
+        ysum += y[i] * w % MOD;
+        if (ysum >= MOD) {
+            ysum -= MOD;
+        }
+    }
+    System.out.println(xsum * ysum % MOD);
+}

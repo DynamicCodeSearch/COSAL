@@ -1,0 +1,16 @@
+def main():
+    N, K = map(int, input().split())
+    ab = []
+    i = 0
+    while i < N:
+        a, b = map(int, input().split())
+        ab.append([a, b])
+        i += 1
+
+    ary = sorted(ab)
+    j = 0
+    for i in ary:
+        j += i[1]
+        if j >= K:
+            print(i[0])
+            break

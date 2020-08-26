@@ -1,0 +1,12 @@
+public String nextLine() {
+    while (hasNextByte() && (buf[ptr] == '\n' || buf[ptr] == '\r')) ptr++;
+    if (!hasNextByte())
+        throw new NoSuchElementException();
+    StringBuilder sb = new StringBuilder();
+    int b = readByte();
+    while (b != '\n' && b != '\r') {
+        sb.appendCodePoint(b);
+        b = readByte();
+    }
+    return sb.toString();
+}

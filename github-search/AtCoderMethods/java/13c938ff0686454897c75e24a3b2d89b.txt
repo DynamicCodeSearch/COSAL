@@ -1,0 +1,16 @@
+long dfs(int v, long flow) {
+    if (v == n - 1 || flow == 0)
+        return flow;
+    for (; cur[v] < g[v].size(); cur[v]++) {
+        Edge e = g[v].get(cur[v]);
+        if (h[e.to] != h[e.fr] + 1 || e.flow == e.cap)
+            continue;
+        long add = dfs(e.to, Math.min(flow, e.cap - e.flow));
+        if (add == 0)
+            continue;
+        e.flow += add;
+        e.rev.flow -= add;
+        return add;
+    }
+    return 0;
+}

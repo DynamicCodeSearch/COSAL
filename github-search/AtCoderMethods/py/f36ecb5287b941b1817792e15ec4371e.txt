@@ -1,0 +1,16 @@
+def main():
+    n = int(input())
+    adj_list = [set() for _ in range(n)]
+    for _ in range(n - 1):
+        a, b, c = (int(z) for z in input().split())
+        a -= 1
+        b -= 1
+        adj_list[a].add((b, c))
+        adj_list[b].add((a, c))
+    q, k = (int(z) for z in input().split())
+    k -= 1
+    dist = dijkstra(n, adj_list, k)
+    for _ in range(q):
+        x, y = (int(z) - 1 for z in input().split())
+        res = dist[x] + dist[y]
+        print(res)

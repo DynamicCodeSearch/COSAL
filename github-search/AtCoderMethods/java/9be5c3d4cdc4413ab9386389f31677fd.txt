@@ -1,0 +1,19 @@
+static int solve(int startIndex, int numLeft, int totalW) {
+    if (startIndex >= v.length) {
+        return 0;
+    }
+    int vi = 0;
+    int wi = totalW;
+    int max_v = 0;
+    for (int n = 0; n <= numLeft && n <= v[startIndex].size(); ++n) {
+        if (n >= 1) {
+            vi += v[startIndex].get(n - 1);
+            wi += w0 + startIndex;
+        }
+        if (wi > W) {
+            break;
+        }
+        max_v = Integer.max(max_v, vi + solve(startIndex + 1, numLeft - n, wi));
+    }
+    return max_v;
+}

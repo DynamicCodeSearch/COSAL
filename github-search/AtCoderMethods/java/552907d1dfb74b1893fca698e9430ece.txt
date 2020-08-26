@@ -1,0 +1,23 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int numberOfFour = 0, numberOfTwo = 0, numberOfOtherElements = 0;
+    for (int i = 0; i < n; i++) {
+        int cn = in.nextInt();
+        if (cn % 4 == 0) {
+            numberOfFour++;
+        } else if (cn % 2 == 0) {
+            numberOfTwo++;
+        } else {
+            numberOfOtherElements++;
+        }
+    }
+    if (numberOfFour >= numberOfOtherElements) {
+        out.println("Yes");
+    } else {
+        if (numberOfTwo == 0 && numberOfFour + 1 == numberOfOtherElements) {
+            out.println("Yes");
+            return;
+        }
+        out.println("No");
+    }
+}

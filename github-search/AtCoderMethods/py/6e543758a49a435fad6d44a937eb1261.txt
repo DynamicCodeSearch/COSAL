@@ -1,0 +1,19 @@
+def main():
+    _ = get_ln_inputs()
+    S = get_ln_inputs()[0]
+
+    level = 0
+    index = 0
+    while index < len(S):
+        if S[index] == "(":
+            index += 1
+            level += 1
+            continue
+        if S[index] == ")":
+            if level > 0:
+                index += 1
+                level -= 1
+                continue
+            S = "(" + S
+            index += 2
+    print(S + (")" * level))

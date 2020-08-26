@@ -1,0 +1,22 @@
+static public long count(int id, int parent) {
+    
+    if (parent != -1 && map.get(id).size() == 1) {
+        black[id] = 1;
+        white[id] = 1;
+        return 2;
+    }
+    black[id] = 1;
+    white[id] = 1;
+    long tmp_black = 1;
+    long tmp_white = 1;
+    for (int i : map.get(id)) {
+        if (i == parent)
+            continue;
+        count(i, id);
+        tmp_black = (tmp_black * white[i]) % eps;
+        tmp_white = (tmp_white * (white[i] + black[i])) % eps;
+    }
+    black[id] = tmp_black;
+    white[id] = tmp_white;
+    return white[id] + black[id];
+}

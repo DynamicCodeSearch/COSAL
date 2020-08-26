@@ -1,0 +1,25 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+private long getLcm(long[] T) {
+    long ans = 0;
+    for (int i = 1; i < T.length; i++) {
+        ans = lcm(((ans == 0) ? T[i - 1] : ans), T[i]);
+    }
+    return ans;
+}

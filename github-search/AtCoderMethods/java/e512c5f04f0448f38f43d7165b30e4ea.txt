@@ -1,0 +1,9 @@
+public void solve() {
+    long[] minDp = new long[N];
+    Arrays.fill(minDp, 0);
+    minDp[1] = Math.abs(ai[1] - ai[0]);
+    for (int i = 2; i < N; i++) {
+        minDp[i] = Math.min(Math.abs(ai[i] - ai[i - 1]) + minDp[i - 1], Math.abs(ai[i] - ai[i - 2]) + minDp[i - 2]);
+    }
+    System.out.println(minDp[N - 1]);
+}

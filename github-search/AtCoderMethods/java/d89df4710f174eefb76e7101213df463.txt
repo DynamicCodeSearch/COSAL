@@ -1,0 +1,13 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    int h = in.readInt();
+    int w = in.readInt();
+    int a = in.readInt();
+    int b = in.readInt();
+    BinomialCalculator c = new BinomialCalculator(h + w, MiscUtils.MOD7);
+    long answer = 0;
+    for (int i = 0; i < h - a; i++) {
+        answer += c.c(b - 1 + i, i) * c.c(w - b - 1 + h - i - 1, w - b - 1) % MiscUtils.MOD7;
+    }
+    answer %= MiscUtils.MOD7;
+    out.printLine(answer);
+}

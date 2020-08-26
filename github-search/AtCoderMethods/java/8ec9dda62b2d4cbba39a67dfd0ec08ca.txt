@@ -1,0 +1,20 @@
+void solve(FastScanner in, PrintWriter out) throws Exception {
+    int N = in.nextInt();
+    long cur = 2;
+    long T = 1;
+    long A = 1;
+    for (int i = 0; i < N; i++) {
+        long t = in.nextInt();
+        T = (T + t - 1) / t * t;
+        long a = in.nextInt();
+        A = (A + a - 1) / a * a;
+        long sum = t + a;
+        cur = (cur + sum - 1) / sum * sum;
+        long x = Math.max(T / t, A / a);
+        x = Math.max(x, cur / sum);
+        T = t * x;
+        A = a * x;
+        cur = sum * x;
+    }
+    out.println(cur);
+}

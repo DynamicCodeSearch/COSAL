@@ -1,0 +1,12 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String w = sc.next();
+    Map<Character, Integer> counter = new HashMap<>();
+    for (char c : w.toCharArray()) {
+        int count = counter.getOrDefault(c, 0);
+        counter.put(c, count + 1);
+    }
+    boolean isBeautiful = counter.values().stream().allMatch(i -> i % 2 == 0);
+    String result = isBeautiful ? "Yes" : "No";
+    System.out.println(result);
+}

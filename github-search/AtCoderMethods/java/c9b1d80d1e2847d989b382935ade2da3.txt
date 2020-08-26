@@ -1,0 +1,43 @@
+private static void solve() {
+    int n = sc.nextInt();
+    List<List<Integer>> edges = new ArrayList<>(n);
+    for (int i = 0; i < n; i++) {
+        edges.add(new ArrayList<>());
+    }
+    for (int i = 0; i < n - 1; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        edges.get(a).add(b);
+        edges.get(b).add(a);
+    }
+    int[] cnt = new int[n];
+    Queue<Integer> q = new ArrayDeque<>();
+    q.add(0);
+    cnt[0] = 1;
+    q.add(n - 1);
+    cnt[n - 1] = 2;
+    while (!q.isEmpty()) {
+        int e = q.remove();
+        for (int next : edges.get(e)) {
+            if (cnt[next] > 0) {
+                continue;
+            }
+            q.add(next);
+            cnt[next] = cnt[e];
+        }
+    }
+    int cntf = 0;
+    int cnts = 0;
+    for (int i = 0; i < n; i++) {
+        if (cnt[i] == 1) {
+            cntf++;
+        } else if (cnt[i] == 2) {
+            cnts++;
+        }
+    }
+    if (cnts >= cntf) {
+        pr.println("Snuke");
+    } else {
+        pr.println("Fennec");
+    }
+}

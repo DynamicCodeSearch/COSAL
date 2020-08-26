@@ -1,0 +1,15 @@
+public static void main(String[] args) throws Exception {
+    PrintWriter out = new PrintWriter(System.out);
+    Scanner in = new Scanner(System.in);
+    
+    int k = in.nextInt();
+    int n = in.nextInt();
+    long cnt = 0;
+    
+    for (int a = 0; a <= k; a++) for (int b = 0; b <= k; b++) {
+        if (n - a - b <= k && n - a - b >= 0)
+            cnt++;
+    }
+    out.println(cnt);
+    out.close();
+}

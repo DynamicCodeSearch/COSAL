@@ -1,0 +1,12 @@
+public void solve(int testNumber, FastReader in, PrintWriter out) {
+    int n = in.nextInt();
+    BigInteger[] arr = new BigInteger[n];
+    for (int i = 0; i < n; i++) {
+        arr[i] = new BigInteger(in.next());
+    }
+    BigInteger lcm = arr[0];
+    for (int i = 1; i < n; i++) {
+        lcm = lcm(lcm, arr[i]);
+    }
+    out.println(lcm);
+}

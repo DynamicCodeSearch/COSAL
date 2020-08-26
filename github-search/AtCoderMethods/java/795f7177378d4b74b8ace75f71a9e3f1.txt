@@ -1,0 +1,11 @@
+private int lowerBound(int x, int low, int high) {
+    while (high - low > 1) {
+        int mid = (high + low) / 2;
+        if (l[mid] >= x) {
+            high = mid;
+        } else {
+            low = mid;
+        }
+    }
+    return high;
+}

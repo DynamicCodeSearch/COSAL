@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    H = sc.nextInt();
+    W = sc.nextInt();
+    char[][] origin = new char[H][W];
+    for (int i = 0; i < H; i++) {
+        String line = sc.next();
+        for (int j = 0; j < W; j++) {
+            origin[i][j] = line.charAt(j);
+        }
+    }
+    char[][] compressed = new char[H][W];
+    for (char[] line : compressed) {
+        Arrays.fill(line, '#');
+    }
+    compress(origin, '.', compressed);
+    char[][] thawed = new char[H][W];
+    for (char[] line : thawed) {
+        Arrays.fill(line, '.');
+    }
+    compress(compressed, '#', thawed);
+    if (equal(origin, thawed)) {
+        System.out.println("possible");
+        printImage(compressed);
+    } else {
+        System.out.println("impossible");
+    }
+}

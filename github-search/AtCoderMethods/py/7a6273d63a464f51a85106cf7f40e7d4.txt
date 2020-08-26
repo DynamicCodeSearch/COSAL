@@ -1,0 +1,13 @@
+def pfact(x):
+  res = dict()
+  while x > 1:
+    for p in PRIMES:
+      if p >= x**0.5 + 1:
+        res[x] = res.get(x, 0) + 1
+        x = 1
+        break
+      if x % p == 0:
+        res[p] = res.get(p, 0) + 1
+        x //= p
+        break
+  return res

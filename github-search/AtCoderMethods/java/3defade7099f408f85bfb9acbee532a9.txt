@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    long n = sc.nextLong();
+    int res = (int) Math.floor(Math.log10(n) + 1);
+    for (int i = 1; i <= Math.sqrt(n); i++) {
+        if (n % i == 0) {
+            long b = n / i;
+            int current = (int) Math.max(Math.floor(Math.log10(i) + 1), Math.floor(Math.log10(b) + 1));
+            if (res > current) {
+                res = current;
+            
+            }
+        }
+    }
+    System.out.println(res);
+}

@@ -1,0 +1,17 @@
+static long combination(int n, int k) {
+    
+    int k_ = n - k;
+    long ans = 1;
+    int temp = 1;
+    for (int i = 1; i <= k_; i++) {
+        ans *= temp;
+        ans /= i;
+        temp++;
+    }
+    for (int i = 1; i <= k; i++) {
+        ans *= temp;
+        ans /= i;
+        temp++;
+    }
+    return ans;
+}

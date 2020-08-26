@@ -1,0 +1,26 @@
+public void run() throws IOException {
+    int n = ni();
+    int m = ni();
+    Pair[] p1 = new Pair[n];
+    Pair[] p2 = new Pair[m];
+    for (int i = 0; i < n; i++) {
+        p1[i] = new Pair(ni(), ni());
+    }
+    for (int i = 0; i < m; i++) {
+        p2[i] = new Pair(ni(), ni());
+    }
+    for (int i = 0; i < n; i++) {
+        int ind1 = -1;
+        int ind2 = -1;
+        int mindis = Integer.MAX_VALUE;
+        for (int j = 0; j < m; j++) {
+            int dist = dst(p1[i], p2[j]);
+            if (dist < mindis) {
+                ind1 = i + 1;
+                ind2 = j + 1;
+                mindis = dist;
+            }
+        }
+        out.println(ind2);
+    }
+}

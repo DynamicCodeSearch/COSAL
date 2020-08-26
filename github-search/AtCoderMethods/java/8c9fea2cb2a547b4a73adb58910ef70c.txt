@@ -1,0 +1,19 @@
+void solveD(Scanner sc) throws Throwable {
+    int h = sc.nextInt();
+    int w = sc.nextInt();
+    map = new int[h + 2][w + 2];
+    for (int i = 1; i <= h; i++) {
+        for (int j = 1; j <= w; j++) {
+            map[i][j] = sc.nextInt();
+        }
+    }
+    dp = new int[h + 2][w + 2];
+    long sum = 0;
+    for (int i = 1; i <= h; i++) {
+        for (int j = 1; j <= w; j++) {
+            sum += search(i, j);
+            sum %= div;
+        }
+    }
+    System.out.println(sum);
+}

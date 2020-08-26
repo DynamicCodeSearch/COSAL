@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    while (sc.hasNext()) {
+        int n = sc.nextInt();
+        int a = sc.nextInt();
+        int l = 1;
+        LinkedList<Integer> list = new LinkedList<Integer>();
+        for (int i = 1; i < n; i++) {
+            int temp = sc.nextInt();
+            if (a < temp) {
+                l++;
+                a = temp;
+                if (i == n - 1)
+                    list.add(l);
+            } else {
+                list.add(l);
+                l = 1;
+                a = temp;
+                if (i == n - 1)
+                    list.add(l);
+            }
+        }
+        long res = 0;
+        for (Iterator<Integer> it = list.iterator(); it.hasNext(); ) {
+            int now = it.next();
+            res += (long) (now + 1) * (long) now / 2;
+        }
+        System.out.println(res);
+    }
+}

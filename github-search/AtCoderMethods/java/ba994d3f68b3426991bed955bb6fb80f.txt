@@ -1,0 +1,19 @@
+void make(Node node, int n) {
+    boolean[] done = new boolean[n + 1];
+    done[node.id] = true;
+    Queue<Node> queue = new LinkedList<>();
+    queue.add(node);
+    node.depth = 0;
+    while (queue.size() > 0) {
+        Node atom = queue.poll();
+        for (Node next : atom.adj) {
+            if (done[next.id]) {
+                continue;
+            }
+            done[next.id] = true;
+            atom.list.add(next);
+            queue.add(next);
+            next.depth = atom.depth + 1;
+        }
+    }
+}

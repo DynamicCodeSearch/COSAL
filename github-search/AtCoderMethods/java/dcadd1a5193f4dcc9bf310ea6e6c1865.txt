@@ -1,0 +1,12 @@
+public static byte[] nse(int n) {
+    byte[] buf = new byte[n];
+    try {
+        int b = skip();
+        if (b == -1)
+            return null;
+        is.read(buf);
+        return buf;
+    } catch (IOException e) {
+    }
+    return null;
+}

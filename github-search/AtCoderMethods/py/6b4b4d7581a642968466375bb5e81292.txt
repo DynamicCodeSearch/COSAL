@@ -1,0 +1,8 @@
+def powmod(a, b, p):
+    if b == 0:
+        return 1
+    if b & 1:
+        return (a * powmod(a, b - 1, p)) % p
+    else:
+        d = powmod(a, b // 2, p)
+        return (d * d) % p

@@ -1,0 +1,28 @@
+public static void revert(char[][] arr, int h, int w) {
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            if (arr[i][j] == '.') {
+                if (i < h - 1) {
+                    if (j < w - 1 && arr[i + 1][j + 1] != '.')
+                        arr[i + 1][j + 1] = '$';
+                    if (0 < j && arr[i + 1][j - 1] != '.')
+                        arr[i + 1][j - 1] = '$';
+                    if (arr[i + 1][j] != '.')
+                        arr[i + 1][j] = '$';
+                }
+                if (0 < j && arr[i][j - 1] != '.')
+                    arr[i][j - 1] = '$';
+                if (j < w - 1 && arr[i][j + 1] != '.')
+                    arr[i][j + 1] = '$';
+                if (0 < i) {
+                    if (j < w - 1 && arr[i - 1][j + 1] != '.')
+                        arr[i - 1][j + 1] = '$';
+                    if (0 < j && arr[i - 1][j - 1] != '.')
+                        arr[i - 1][j - 1] = '$';
+                    if (arr[i - 1][j] != '.')
+                        arr[i - 1][j] = '$';
+                }
+            }
+        }
+    }
+}

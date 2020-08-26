@@ -1,0 +1,14 @@
+int readByte() {
+    if (ptr >= len) {
+        ptr = 0;
+        try {
+            len = is.read(input);
+        } catch (IOException e) {
+            throw new InputMismatchException();
+        }
+        if (len <= 0) {
+            return -1;
+        }
+    }
+    return input[ptr++];
+}

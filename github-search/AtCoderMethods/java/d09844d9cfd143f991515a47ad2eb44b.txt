@@ -1,0 +1,17 @@
+public static Node insertb(Node root, Node x) {
+    int ind = search(root, x.id);
+    if (ind < 0) {
+        
+        ind = -ind - 1;
+        return insert(root, ind, x);
+    } else {
+        
+        Node t = get(root, ind);
+        t.v += x.v;
+        while (t != null) {
+            update(t);
+            t = t.parent;
+        }
+        return root;
+    }
+}

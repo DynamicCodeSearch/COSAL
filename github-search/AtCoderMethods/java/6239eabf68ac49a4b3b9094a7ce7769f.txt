@@ -1,0 +1,14 @@
+private void read() {
+    Scanner sc = new Scanner(System.in);
+    n = sc.nextInt();
+    as = new int[n];
+    for (int i = 0; i < n; i++) {
+        as[i] = sc.nextInt();
+    }
+    ans = new int[n];
+    queue = new PriorityQueue<>((v1, v2) -> Integer.compare(as[v1.st], as[v2.st]));
+    evenTree = new SegmentTree(n);
+    oddTree = new SegmentTree(n);
+    evenTree.init(0);
+    oddTree.init(1);
+}

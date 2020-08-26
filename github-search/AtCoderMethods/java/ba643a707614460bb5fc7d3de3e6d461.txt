@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String S = sc.next();
+    int count = 0;
+    int zero = 0;
+    for (int i = 0; i < S.length(); i++) {
+        if (i % 2 == 0) {
+            int calc = Integer.parseInt(String.valueOf(S.charAt(i)));
+            if (calc == 0)
+                zero++;
+            if ((i == S.length() - 1) || (S.charAt(i + 1) == '+')) {
+                if (zero == 0) {
+                    count++;
+                }
+                zero = 0;
+            }
+        }
+    }
+    System.out.println(count);
+}

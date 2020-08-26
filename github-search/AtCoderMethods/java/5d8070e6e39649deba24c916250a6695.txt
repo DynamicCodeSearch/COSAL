@@ -1,0 +1,45 @@
+public static int doBipartiteMatchingHK(boolean[][] g) {
+    int n = g.length;
+    if (n == 0)
+        return 0;
+    int m = g[0].length;
+    int[] from = new int[m];
+    int[] to = new int[n];
+    Arrays.fill(to, -1);
+    Arrays.fill(from, n);
+    int[] d = new int[n + 1];
+    int mat = 0;
+    while (true) {
+        Arrays.fill(d, -1);
+        int[] q = new int[n];
+        int r = 0;
+        for (int i = 0; i < n; i++) {
+            if (to[i] == -1) {
+                d[i] = 0;
+                q[r++] = i;
+            }
+        }
+        for (int p = 0; p < r; p++) {
+            int cur = q[p];
+            for (int adj = 0; adj < m; adj++) {
+                if (g[cur][adj]) {
+                    int nex = from[adj];
+                    if (d[nex] == -1) {
+                        if (nex != n)
+                            q[r++] = nex;
+                        d[nex] = d[cur] + 1;
+                    }
+                }
+            }
+        }
+        if (d[n] == -1)
+            break;
+        for (int i = 0; i < n; i++) {
+            if (to[i] == -1) {
+                if (dfsHK(d, g, n, m, to, from, i))
+                    mat++;
+            }
+        }
+    }
+    return mat;
+}

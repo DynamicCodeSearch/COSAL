@@ -1,0 +1,12 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    char[] c = sc.next().toCharArray();
+    N = c.length;
+    code = new int[N];
+    code[0] = encode(c);
+    for (int i = 1; i < N; i++) {
+        code[i] = rot(code[i - 1]);
+    }
+    int ret = dfs(code[0], 0, 1);
+    System.out.println(ret);
+}

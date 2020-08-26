@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    List<seito> list = new ArrayList<seito>();
+    int n = sc.nextInt();
+    for (int i = 0; i < n; i++) {
+        int a = Integer.parseInt(sc.next());
+        seito s = new seito(i + 1, a);
+        list.add(s);
+    }
+    Collections.sort(list, new Comparator<seito>() {
+
+        @Override
+        public int compare(seito s1, seito s2) {
+            return s2.height - s1.height;
+        }
+    });
+    PrintWriter pr = new PrintWriter(System.out);
+    for (int i = 0; i < n; i++) {
+        pr.println(list.get(i).num);
+    }
+    pr.flush();
+}

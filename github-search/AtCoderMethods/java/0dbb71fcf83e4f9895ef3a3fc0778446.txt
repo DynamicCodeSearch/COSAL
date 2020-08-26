@@ -1,0 +1,23 @@
+private static long[][] build(int[] a) {
+    int n = a.length;
+    long[][] ret = new long[n][n + 1];
+    for (int i = 0; i < n; i++) {
+        Arrays.fill(ret[i], -INF);
+    }
+    for (int i = 0; i < n; i++) {
+        ret[i][0] = 0;
+        int sum = 0;
+        int len = 0;
+        for (int fi = i; fi >= 0; fi--) {
+            sum += a[fi];
+            len++;
+            ret[i][len] = Math.max(ret[i][len], sum);
+        }
+        if (i + 1 < n) {
+            for (int j = 0; j <= n; j++) {
+                ret[i + 1][j] = Math.max(ret[i + 1][j], ret[i][j]);
+            }
+        }
+    }
+    return ret;
+}

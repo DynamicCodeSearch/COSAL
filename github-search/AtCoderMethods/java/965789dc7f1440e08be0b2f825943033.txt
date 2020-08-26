@@ -1,0 +1,43 @@
+private static long solveSmallK(int k, long m) {
+    int[] digits = String.format("%d", m).chars().map(c -> c - '0').toArray();
+    int[] ten = new int[digits.length];
+    ten[ten.length - 1] = 1 % k;
+    for (int i = ten.length - 2; i >= 0; i--) {
+        ten[i] = (ten[i + 1] * 10) % k;
+    }
+    long[][][][] dp = new long[2][2][101][k];
+    dp[0][0][0][0] = 1;
+    for (int i = 0; i < digits.length; i++) {
+        int upto = Math.min(100, i * 10);
+        int fi = i % 2;
+        int ti = 1 - fi;
+        for (int s = 0; s <= 1; s++) {
+            for (int d = 0; d <= upto; d++) {
+                Arrays.fill(dp[ti][s][d], 0);
+            }
+        }
+        for (int s = 0; s <= 1; s++) {
+            for (int d = 0; d <= upto; d++) {
+                for (int mod = 0; mod < k; mod++) {
+                    long base = dp[fi][s][d][mod];
+                    if (base == 0) {
+                        continue;
+                    }
+                    for (int ud = 0; ud <= (s == 0 ? digits[i] : 9); ud++) {
+                        int ts = (s == 0 && ud == digits[i]) ? 0 : 1;
+                        int td = (d + ud) % k;
+                        int tmod = (mod + ten[i] * ud) % k;
+                        dp[ti][ts][td][tmod] += base;
+                    }
+                }
+            }
+        }
+    }
+    long ret = 0;
+    for (int s = 0; s <= 1; s++) {
+        for (int d = 0; d <= 100 && d < k; d++) {
+            ret += dp[digits.length % 2][s][d][d];
+        }
+    }
+    return ret - 1;
+}

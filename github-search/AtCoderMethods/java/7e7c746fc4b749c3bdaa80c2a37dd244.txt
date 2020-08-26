@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int maxCnt = 0;
+    int ans = 1;
+    for (int i = 1; i <= n; i++) {
+        int num = i;
+        int cnt = 0;
+        while (true) {
+            if (num % 2 == 0 && num != 0) {
+                num = num / 2;
+                cnt++;
+            } else {
+                if (maxCnt < cnt) {
+                    maxCnt = cnt;
+                    ans = i;
+                }
+                break;
+            }
+        }
+    }
+    System.out.println(ans);
+}

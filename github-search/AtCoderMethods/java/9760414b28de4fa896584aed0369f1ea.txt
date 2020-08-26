@@ -1,0 +1,25 @@
+public void run() {
+    Scanner sc = new Scanner(System.in);
+    int H = sc.nextInt();
+    int W = sc.nextInt();
+    char[][] picture = new char[H][W];
+    for (int i = 0; i < H; i++) {
+        picture[i] = sc.next().toCharArray();
+    }
+    char[][] before = beforeReduction(picture, H, W);
+    boolean bool = check(picture, before, H, W);
+    StringBuilder sb = new StringBuilder();
+    if (bool) {
+        sb.append("possible\n");
+        for (int i = 0; i < H; i++) {
+            for (int j = 0; j < W; j++) {
+                sb.append(before[i][j]);
+            }
+            sb.append("\n");
+        }
+    } else {
+        sb.append("impossible\n");
+    }
+    System.out.println(sb.toString());
+    sc.close();
+}

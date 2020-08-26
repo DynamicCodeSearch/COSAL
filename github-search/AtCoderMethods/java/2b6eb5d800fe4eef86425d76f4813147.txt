@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int Q = sc.nextInt();
+    int[] a = new int[Q];
+    int[] t = new int[N];
+    for (int j = 0; j < N; j++) {
+        t[j] = 0;
+    }
+    for (int i = 0; i < Q; i++) {
+        int l1 = sc.nextInt();
+        int r1 = sc.nextInt();
+        int val = sc.nextInt();
+        for (int j = l1 - 1; j < r1; j++) {
+            t[j] = val;
+        }
+    }
+    for (int i = 0; i < N; i++) {
+        System.out.println(t[i]);
+    }
+}

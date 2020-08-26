@@ -1,0 +1,13 @@
+static void dfs(int v, long cnt, int r) {
+    vis[v] = true;
+    int cc = 0;
+    for (int i = 1; i <= r; i++) if (vis[a[i]])
+        cc++;
+    if (cc == r)
+        ans = Math.min(ans, cnt);
+    for (int i = 1; i <= r; i++) {
+        if (!vis[a[i]])
+            dfs(a[i], cnt + dist[v][a[i]], r);
+    }
+    vis[v] = false;
+}

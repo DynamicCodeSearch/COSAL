@@ -1,0 +1,19 @@
+static int bfs(Map<Integer, Set<Integer>> tree, int N) {
+    int[] nodes = new int[N + 1];
+    nodes[1] = 1;
+    nodes[N] = -1;
+    LinkedList<List<Integer>> deque = new LinkedList<>();
+    deque.addFirst(Arrays.asList(1, 1));
+    deque.addFirst(Arrays.asList(N, -1));
+    while (!deque.isEmpty()) {
+        List<Integer> node = deque.removeLast();
+        for (int next : tree.get(node.get(0))) {
+            if (nodes[next] != 0) {
+                continue;
+            }
+            nodes[next] = node.get(1);
+            deque.addFirst(Arrays.asList(next, node.get(1)));
+        }
+    }
+    return Arrays.stream(nodes).sum();
+}

@@ -1,0 +1,33 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    String[] first = input.readLine().split(" ");
+    int N = Integer.parseInt(first[0]);
+    int M = Integer.parseInt(first[1]);
+    int[] ls = new int[N];
+    int[] rs = new int[N];
+    int[] ss = new int[N];
+    int sum = 0;
+    for (int i = 0; i < N; i++) {
+        String[] line = input.readLine().split(" ");
+        int l = Integer.parseInt(line[0]);
+        int r = Integer.parseInt(line[1]);
+        int s = Integer.parseInt(line[2]);
+        ls[i] = l;
+        rs[i] = r;
+        ss[i] = s;
+        sum += s;
+    }
+    int[] imos = new int[M + 2];
+    for (int i = 0; i < N; i++) {
+        imos[ls[i]] += ss[i];
+        imos[rs[i] + 1] -= ss[i];
+    }
+    for (int i = 1; i <= M; i++) {
+        imos[i] += imos[i - 1];
+    }
+    int min = imos[1];
+    for (int i = 1; i <= M; i++) {
+        min = Math.min(min, imos[i]);
+    }
+    System.out.println(sum - min);
+}

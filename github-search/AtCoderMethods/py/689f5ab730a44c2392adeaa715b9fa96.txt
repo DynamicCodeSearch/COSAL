@@ -1,0 +1,19 @@
+def calc(tmp):
+    ans = 0
+    for a in A[1:]:
+        if tmp > 0:
+            tmp += a
+            if tmp >= 0:
+                ans += abs(tmp)+1
+                tmp = -1
+            else:
+                continue
+
+        elif tmp < 0:
+            tmp += a
+            if tmp > 0:
+                continue
+            else:
+                ans += abs(tmp)+1
+                tmp = 1
+    return ans

@@ -1,0 +1,24 @@
+public static void main(String[] args) throws Exception {
+    int n = sc.nextInt();
+    K = sc.nextInt();
+    point = new long[n][2];
+    for (int i = 0; i < n; i++) {
+        point[i][0] = sc.nextLong();
+        point[i][1] = sc.nextLong();
+    }
+    for (int x1 = 0; x1 < n; x1++) {
+        for (int x2 = x1 + 1; x2 < n; x2++) {
+            long[][] px = { point[x1], point[x2] };
+            helper(px);
+            for (int x3 = x2 + 1; x3 < n; x3++) {
+                long[][] px1 = { point[x1], point[x2], point[x3] };
+                helper(px1);
+                for (int x4 = x3 + 1; x4 < n; x4++) {
+                    long[][] px2 = { point[x1], point[x2], point[x3], point[x4] };
+                    helper(px2);
+                }
+            }
+        }
+    }
+    System.out.println(res);
+}

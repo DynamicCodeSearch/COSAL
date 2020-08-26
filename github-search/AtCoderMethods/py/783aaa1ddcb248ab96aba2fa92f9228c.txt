@@ -1,0 +1,18 @@
+def closest_path_lens(idx___neigh_idxes__dists, idx1):
+    INF = 100001 * 201 * 200
+    nodes_nr = len(idx___neigh_idxes__dists)
+    idx___visited = [False] * nodes_nr
+    idx___dist = [INF] * nodes_nr
+    idx___dist[idx1] = 0
+    for _ in range(nodes_nr):
+        curr_idx = -1
+        curr_dist = INF
+        for idx, dist in enumerate(idx___dist):
+            if dist < curr_dist and not idx___visited[idx]:
+                curr_idx = idx
+                curr_dist = dist
+        idx___visited[curr_idx] = True
+        for neigh_idx, dist in idx___neigh_idxes__dists[curr_idx]:
+
+            idx___dist[neigh_idx] = min(idx___dist[neigh_idx], curr_dist + dist)
+    return idx___dist

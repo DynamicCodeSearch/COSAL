@@ -1,0 +1,39 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int m = in.nextInt();
+    long[] A = new long[n - 1];
+    for (int i = 0; i < n - 1; ++i) {
+        A[i] = in.nextInt();
+    }
+    LinkedList<W>[] queue = new LinkedList[m];
+    for (int i = 0; i < m; ++i) {
+        queue[i] = new LinkedList<W>();
+        queue[i].add(new W((int) (1e9 + 10), -1));
+    }
+    int[] B = new int[m];
+    long ret = 0;
+    for (int i = 0; i < n; ++i) {
+        long total = 0;
+        for (int j = 0; j < m; ++j) {
+            B[j] = in.nextInt();
+            total += B[j];
+        }
+        ret = max(ret, total);
+        for (int j = 0; j < m; ++j) {
+            while (B[j] >= queue[j].getLast().val) {
+                
+                W e = queue[j].pollLast();
+                
+                
+                modify(1, 0, n - 1, queue[j].getLast().idx + 1, e.idx, -e.val);
+            }
+            modify(1, 0, n - 1, queue[j].getLast().idx + 1, i, B[j]);
+            queue[j].add(new W(B[j], i));
+        }
+        if (i > 0) {
+            modify(1, 0, n - 1, 0, i - 1, -A[i - 1]);
+        }
+        ret = max(ret, ask(1, 0, n - 1, 0, i));
+    }
+    out.println(ret);
+}

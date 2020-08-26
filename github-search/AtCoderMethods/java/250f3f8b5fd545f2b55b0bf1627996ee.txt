@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int[] array = new int[4];
+    int ans = -1;
+    for (int i = 0; i < 4; i++) {
+        array[i] = scanner.nextInt();
+    }
+    if (array[0] <= array[2]) {
+        if (array[1] <= array[3])
+            ans = array[1] - array[2];
+        if (array[3] <= array[1])
+            ans = array[3] - array[2];
+    }
+    if (array[2] < array[0]) {
+        if (array[1] <= array[3])
+            ans = array[1] - array[0];
+        if (array[3] <= array[1])
+            ans = array[3] - array[0];
+    }
+    if (ans < 0)
+        ans = 0;
+    System.out.println(ans);
+}

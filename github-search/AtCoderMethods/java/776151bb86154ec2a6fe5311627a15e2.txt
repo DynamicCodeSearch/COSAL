@@ -1,0 +1,29 @@
+public static void main(String[] args) throws Exception {
+    String s = sc.next();
+    String[] ss = { "Do", "Do#", "Re", "Re#", "Mi", "Fa", "Fa#", "So", "So#", "La", "La#", "Si" };
+    int n = -9;
+    boolean flag = true;
+    for (int i = 0; i < s.length(); i++) {
+        if (s.charAt(i) == 'W') {
+            if (n + 1 == i) {
+                n = i;
+                if (s.charAt(i + 5) == 'B') {
+                    flag = true;
+                } else {
+                    flag = false;
+                }
+                break;
+            } else {
+                n = i;
+            }
+        }
+    }
+    if (flag) {
+        out.println(ss[(5 + 12 - n) % 12]);
+    } else {
+        out.println(ss[(12 - n) % 12]);
+    }
+    out.flush();
+    sc.close();
+    out.close();
+}

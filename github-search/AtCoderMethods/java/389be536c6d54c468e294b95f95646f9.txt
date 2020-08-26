@@ -1,0 +1,13 @@
+private int getAns(boolean[] town, int[][] edge, int prev) {
+    int plus = Integer.MAX_VALUE;
+    boolean active = false;
+    for (int i = 0; i < town.length; i++) {
+        if (town[i]) {
+            active = true;
+            town[i] = false;
+            plus = Math.min(plus, ((prev == -1) ? 0 : edge[prev][i]) + getAns(town, edge, i));
+            town[i] = true;
+        }
+    }
+    return (active) ? plus : 0;
+}

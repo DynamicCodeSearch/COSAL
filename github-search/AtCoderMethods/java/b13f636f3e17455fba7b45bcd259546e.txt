@@ -1,0 +1,34 @@
+public long solve1() {
+    PriorityQueue<Integer> mae = new PriorityQueue<Integer>();
+    TreeSet<Pair> ushiro = new TreeSet<>();
+    long sum = 0;
+    for (int i = 0; i < N; i++) {
+        mae.add(A[i]);
+        sum += A[i];
+    }
+    Pair[] pairs = new Pair[3 * N];
+    for (int i = N; i < 3 * N; i++) {
+        ushiro.add(pairs[i] = new Pair(i, A[i]));
+    }
+    Iterator<Pair> ite = ushiro.iterator();
+    long sum2 = 0;
+    Pair last = null;
+    for (int i = 0; i < N; i++) {
+        last = ite.next();
+        sum2 += last.value;
+    }
+    long ans = sum - sum2;
+    for (int i = N; i < 2 * N; i++) {
+        mae.add(A[i]);
+        int v = mae.poll();
+        sum += A[i] - v;
+        ushiro.remove(pairs[i]);
+        if (pairs[i].compareTo(last) <= 0) {
+            sum2 -= pairs[i].value;
+            last = ushiro.higher(last);
+            sum2 += last.value;
+        }
+        ans = Math.max(ans, sum - sum2);
+    }
+    return ans;
+}

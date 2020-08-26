@@ -1,0 +1,12 @@
+static void Method(ArrayList<Integer> num, ArrayList<String> param) {
+    double answer = 0;
+    num.remove(0);
+    Collections.sort(num, Comparator.reverseOrder());
+    for (int i = 0; i < num.size(); i++) {
+        if (i % 2 == 0)
+            answer += num.get(i) * num.get(i);
+        if (i % 2 == 1)
+            answer -= num.get(i) * num.get(i);
+    }
+    System.out.println(answer * Math.PI);
+}

@@ -1,0 +1,12 @@
+public boolean hasNext() throws IOException {
+    if (ptr < buflen)
+        return true;
+    else {
+        ptr = 0;
+        buflen = in.read(buffer);
+        if (buflen < 1) {
+            return false;
+        }
+    }
+    return true;
+}

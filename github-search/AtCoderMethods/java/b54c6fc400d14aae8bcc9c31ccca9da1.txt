@@ -1,0 +1,14 @@
+public void solve(String[] args) {
+    MyScanner scanner = new MyScanner();
+    String s = scanner.next();
+    int N = s.length();
+    Set<String> set = new HashSet<String>();
+    for (int i = 0; i < N; i++) {
+        if (set.contains("" + s.charAt(i))) {
+            System.out.println("no");
+            return;
+        }
+        set.add("" + s.charAt(i));
+    }
+    System.out.println("yes");
+}

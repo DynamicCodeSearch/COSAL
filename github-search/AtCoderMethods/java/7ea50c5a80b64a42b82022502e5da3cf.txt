@@ -1,0 +1,35 @@
+void solve() throws IOException {
+    int n = in.nextInt();
+    int a = in.nextInt();
+    int b = in.nextInt();
+    int c = in.nextInt();
+    int d = in.nextInt();
+    long[][] comb = pascalT(2000);
+    long[][] dp = new long[b - a + 2][n + 1];
+    dp[0][n] = 1;
+    for (int i = 0; i <= b - a; i++) {
+        final int p = i + a;
+        for (int j = p; j <= n; j++) {
+            if (dp[i][j] == 0)
+                continue;
+            final int max = Math.min(j / p, d);
+            if (max == 0 || p * c > j)
+                continue;
+            int r = j;
+            long s = 1;
+            for (int k = 1; k < c; k++) {
+                s = s * comb[r][p] % mod * modinv(k, mod) % mod;
+                r -= p;
+            }
+            for (int k = c; k <= max; k++) {
+                s = s * comb[r][p] % mod * modinv(k, mod) % mod;
+                r -= p;
+                dp[i + 1][j - k * p] = (dp[i + 1][j - k * p] + dp[i][j] * s) % mod;
+            }
+        }
+        for (int j = 0; j <= n; j++) {
+            dp[i + 1][j] = (dp[i + 1][j] + dp[i][j]) % mod;
+        }
+    }
+    System.out.println(dp[b - a + 1][0]);
+}

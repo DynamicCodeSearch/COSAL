@@ -1,0 +1,19 @@
+def main():
+    s=input()
+    n=len(s)
+    if n == 1:
+        print(0)
+        return
+    t=s[0]
+    for _ in range(n-1):
+        i = _ + 1
+        if s[i] != s[i-1]:
+            t += s[i]
+
+    w,b = 0,0
+    for c in t:
+        if c == 'W':
+            w = w + 1
+        else:
+            b = b + 1
+    print(w+b-1)

@@ -1,0 +1,28 @@
+private void dfs(int ind, int start, int max) {
+    if (max == ind) {
+        long nowsum = 0;
+        long temp = 0;
+        for (int i = 0; i < data.length; i++) {
+            nowsum += (long) (data[i] - '0');
+            if (i == data.length - 1)
+                break;
+            if (!flg[i]) {
+                nowsum *= 10;
+            } else {
+                temp += nowsum;
+                nowsum = 0;
+            }
+        }
+        temp += nowsum;
+        dfsres += temp;
+        return;
+    }
+    for (int i = start; i < data.length - 1; i++) {
+        if (flg[i])
+            continue;
+        flg[i] = true;
+        dfs(ind + 1, i + 1, max);
+        flg[i] = false;
+    }
+    return;
+}

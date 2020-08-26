@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    long r = sc.nextInt();
+    long t = sc.nextInt();
+    List<Edge>[] node = new List[N];
+    for (int i = 0; i < N; i++) node[i] = new ArrayList<>();
+    for (int i = 0; i < M; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        int c = sc.nextInt();
+        node[a].add(new Edge(b, c));
+        node[b].add(new Edge(a, c));
+    }
+    long sum = 0;
+    for (int i = 0; i < N; i++) {
+        int[] dist = dijkstra(node, i);
+        for (int j = 1; j < N; j++) {
+            final int d = (int) ((dist[j] * r + t) / t);
+            final int idx = binarySearch(dist, d);
+            if (idx < 0)
+                break;
+            sum += N - idx - (r < t ? 1 : 0);
+        }
+    }
+    System.out.println(sum);
+}

@@ -1,0 +1,32 @@
+public static void main(String[] args) throws Throwable {
+    MyScanner sc = new MyScanner();
+    PrintWriter pw = new PrintWriter(System.out);
+    n = sc.nextInt();
+    adj = new ArrayList[n];
+    for (int i = 0; i < n; i++) adj[i] = new ArrayList<Integer>();
+    int[] x = new int[n - 1];
+    int[] y = new int[n - 1];
+    int[] z = new int[n - 1];
+    for (int i = 0; i < n - 1; i++) {
+        x[i] = sc.nextInt() - 1;
+        y[i] = sc.nextInt() - 1;
+        z[i] = sc.nextInt();
+        adj[x[i]].add(y[i]);
+        adj[y[i]].add(x[i]);
+    }
+    preProcessing();
+    for (int i = 0; i < n - 1; i++) if (level[x[i]] > level[y[i]])
+        cost[x[i]] = z[i];
+    else
+        cost[y[i]] = z[i];
+    dfs2(0);
+    int q = sc.nextInt();
+    k = sc.nextInt() - 1;
+    while (q-- > 0) {
+        int u = sc.nextInt() - 1;
+        int v = sc.nextInt() - 1;
+        pw.println(min_dis(u, v));
+    }
+    pw.flush();
+    pw.close();
+}

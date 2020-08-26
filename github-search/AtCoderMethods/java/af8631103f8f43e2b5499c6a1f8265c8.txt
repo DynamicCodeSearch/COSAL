@@ -1,0 +1,11 @@
+public static final long modPow(long x, long n, long modulo) {
+    long res = 1L;
+    while (n > 0) {
+        if ((n & 1L) != 0) {
+            res = res * x % modulo;
+        }
+        x = x * x % modulo;
+        n >>= 1;
+    }
+    return res;
+}

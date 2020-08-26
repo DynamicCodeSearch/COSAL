@@ -1,0 +1,16 @@
+def f():
+  z =list(map(int,input().split(" ")))
+  n=min(z)
+  m=max(z)
+  p=1000000000+7
+  if m-n >1:
+    print("0")
+    return 0
+  cnt= 1
+  for i in range(1,1+m):
+    cnt =( cnt*i)%p
+  for i in range(1,1+n):
+    cnt =(cnt*i)%p
+  if m==n:
+    cnt = (cnt*2)%p
+  print(cnt)

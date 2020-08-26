@@ -1,0 +1,15 @@
+static void dfs(ArrayList<ArrayList<Integer>> order, ArrayList<Integer> cur, int[] r, int i, int R, boolean[] used) {
+    if (i == R) {
+        order.add(cur);
+        return;
+    }
+    for (int j = 0; j < R; j++) {
+        if (!used[r[j]]) {
+            ArrayList<Integer> cp = (ArrayList<Integer>) cur.clone();
+            cp.add(r[j]);
+            used[r[j]] = true;
+            dfs(order, cp, r, i + 1, R, used);
+            used[r[j]] = false;
+        }
+    }
+}

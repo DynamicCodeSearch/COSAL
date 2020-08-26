@@ -1,0 +1,12 @@
+private boolean can(int d) {
+    solver.clear();
+    initTree(0, 0, ps.length - 1, false);
+    int j = 0;
+    for (int i = 0; i < ps.length; i++) {
+        while (j < ps.length && ps[j].x - ps[i].x < d) {
+            ++j;
+        }
+        block(0, 0, ps.length - 1, i + 1, j - 1, i);
+    }
+    return solver.solve();
+}

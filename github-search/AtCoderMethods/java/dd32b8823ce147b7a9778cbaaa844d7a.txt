@@ -1,0 +1,66 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int[] dx = { 1, 0, -1 };
+    int[] dy = { 1, 0, -1 };
+    int h = sc.nextInt();
+    int w = sc.nextInt();
+    sc.nextLine();
+    String[] s = new String[h];
+    boolean[][] table = new boolean[h][w];
+    for (int i = 0; i < h; i++) {
+        s[i] = sc.nextLine();
+    }
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            table[i][j] = true;
+        }
+    }
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            if (s[i].charAt(j) == '.') {
+                for (int k = 0; k < 3; k++) {
+                    if (i + dy[k] >= h || i + dy[k] < 0)
+                        continue;
+                    for (int l = 0; l < 3; l++) {
+                        if (j + dx[l] >= w || j + dx[l] < 0)
+                            continue;
+                        table[i + dy[k]][j + dx[l]] = false;
+                    }
+                }
+            }
+        }
+    }
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            if (s[i].charAt(j) == '#') {
+                boolean flag = false;
+                for (int k = 0; k < 3; k++) {
+                    if (i + dy[k] >= h || i + dy[k] < 0)
+                        continue;
+                    for (int l = 0; l < 3; l++) {
+                        if (j + dx[l] >= w || j + dx[l] < 0)
+                            continue;
+                        if (table[i + dy[k]][j + dx[l]])
+                            flag = true;
+                    }
+                }
+                if (!flag) {
+                    System.out.println("impossible\n");
+                    return;
+                }
+            }
+        }
+    }
+    System.out.println("possible\n");
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            if (table[i][j]) {
+                System.out.print("#");
+            } else {
+                System.out.print(".");
+            }
+        }
+        System.out.println("");
+    }
+    return;
+}

@@ -1,0 +1,37 @@
+void solve() throws IOException {
+    int n = ni();
+    int k = ni();
+    long[] a = nla(n);
+    long tmp = 0;
+    long[] sum = new long[n + 1];
+    for (int i = 0; i < n; i++) {
+        tmp += a[i];
+        sum[i + 1] = tmp;
+    }
+    if (tmp == k) {
+        out.println(1);
+        return;
+    }
+    long[][] dp = new long[n + 1][n + 1];
+    for (int i = 0; i <= n; i++) {
+        Arrays.fill(dp[i], INF);
+    }
+    dp[0][0] = 0;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (dp[i][j] == INF)
+                continue;
+            dp[i + 1][j] = Math.min(dp[i + 1][j], dp[i][j]);
+            long need = sum[i] == 0 ? 1 : (a[i] * dp[i][j] / sum[i] + 1);
+            if (need <= a[i]) {
+                dp[i + 1][j + 1] = Math.min(dp[i + 1][j + 1], dp[i][j] + need);
+            }
+        }
+    }
+    int ans = 0;
+    for (int i = 0; i <= n; i++) {
+        if (dp[n][i] <= k)
+            ans = i;
+    }
+    out.println(ans);
+}

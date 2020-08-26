@@ -1,0 +1,8 @@
+
+static long nCk(int n, int k) {
+    if (n < k)
+        return 0;
+    else {
+        return (fact[n] * inv(fact[n - k], MOD) % MOD * inv(fact[k], MOD) % MOD);
+    }
+}

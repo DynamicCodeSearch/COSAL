@@ -1,0 +1,18 @@
+public void solve() {
+    int a = io.ri();
+    int b = io.ri();
+    if (Math.abs(a - b) > 1) {
+        io.writeLine("0");
+        return;
+    }
+    long res = 1;
+    for (int i = 2; i <= a; i++) {
+        res = (res * i) % MOD;
+    }
+    for (int i = 2; i <= b; i++) {
+        res = (res * i) % MOD;
+    }
+    if (a == b)
+        res = (res * 2) % MOD;
+    io.writeLine(res + "");
+}

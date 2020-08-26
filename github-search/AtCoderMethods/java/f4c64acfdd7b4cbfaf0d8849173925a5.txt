@@ -1,0 +1,18 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    ArrayList<BigInteger> num = new ArrayList<BigInteger>();
+    ArrayList<String> param = new ArrayList<String>();
+    
+    int system = 0;
+    while (sc.hasNext()) {
+        if (sc.hasNextBigInteger()) {
+            num.add(sc.nextBigInteger());
+        } else {
+            if (system == 0)
+                param.add(sc.next());
+            if (system == 1)
+                param.add(sc.nextLine());
+        }
+    }
+    Method(num, param);
+}

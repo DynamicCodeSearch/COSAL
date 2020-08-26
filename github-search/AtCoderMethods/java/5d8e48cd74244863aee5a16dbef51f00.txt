@@ -1,0 +1,83 @@
+
+public static void main(String[] args) throws IOException {
+    BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+    String str = in.readLine();
+    Deque<Integer> a = new ArrayDeque();
+    for (int i = 0; i < str.length(); i++) {
+        char buf = str.charAt(i);
+        switch(buf) {
+            case 'a':
+                a.addLast(0);
+                break;
+            case 'b':
+                a.addLast(1);
+                break;
+            case 'c':
+                a.add(2);
+                break;
+        }
+    }
+    str = in.readLine();
+    Deque<Integer> b = new ArrayDeque();
+    for (int i = 0; i < str.length(); i++) {
+        char buf = str.charAt(i);
+        switch(buf) {
+            case 'a':
+                b.addLast(0);
+                break;
+            case 'b':
+                b.addLast(1);
+                break;
+            case 'c':
+                b.add(2);
+                break;
+        }
+    }
+    str = in.readLine();
+    Deque<Integer> c = new ArrayDeque();
+    for (int i = 0; i < str.length(); i++) {
+        char buf = str.charAt(i);
+        switch(buf) {
+            case 'a':
+                c.addLast(0);
+                break;
+            case 'b':
+                c.addLast(1);
+                break;
+            case 'c':
+                c.add(2);
+                break;
+        }
+    }
+    String anser;
+    if (a.isEmpty()) {
+        anser = "A";
+    } else {
+        int g = a.pop();
+        while (true) {
+            if (g == 0) {
+                if (a.isEmpty()) {
+                    anser = "A";
+                    break;
+                } else {
+                    g = a.pop();
+                }
+            } else if (g == 1) {
+                if (b.isEmpty()) {
+                    anser = "B";
+                    break;
+                } else {
+                    g = b.pop();
+                }
+            } else {
+                if (c.isEmpty()) {
+                    anser = "C";
+                    break;
+                } else {
+                    g = c.pop();
+                }
+            }
+        }
+    }
+    System.out.println(anser);
+}

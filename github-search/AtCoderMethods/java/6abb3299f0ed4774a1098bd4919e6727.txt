@@ -1,0 +1,15 @@
+public static int[][] ch(String st, int b, int n) {
+    int[][] c = new int[n][26];
+    for (int f = 0; f < 26; f++) {
+        int count = 0;
+        int a = 'a';
+        a = a + f;
+        for (int i = 0; i < st.length(); i++) {
+            if ((char) a == st.charAt(i)) {
+                count++;
+            }
+        }
+        c[b][f] = count;
+    }
+    return c;
+}

@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    final int N = sc.nextInt();
+    long[] a = new long[N];
+    for (int i = 0; i < N; i++) {
+        a[i] = sc.nextLong();
+    }
+    sc.close();
+    Arrays.sort(a);
+    long max = 0;
+    for (int i = N - 1; i > 0; i--) {
+        if (a[i] == a[i - 1]) {
+            max = a[i];
+            a[i] = -1;
+            a[i - 1] = -1;
+            break;
+        }
+    }
+    Arrays.sort(a);
+    long max2 = 0;
+    for (int i = N - 1; i > 0; i--) {
+        if (a[i] == a[i - 1]) {
+            max2 = a[i];
+            break;
+        }
+    }
+    System.out.println(max * max2);
+}

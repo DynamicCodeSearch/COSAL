@@ -1,0 +1,16 @@
+public static void main(String[] args) throws IOException {
+    MyScanner sc = new MyScanner(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = sc.nextInt(), sum = 0;
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) sum += a[i] = sc.nextInt();
+    Arrays.sort(a);
+    if (sum % 10 == 0)
+        for (int i = 0; i < n; i++) if ((sum - a[i]) % 10 != 0) {
+            sum -= a[i];
+            break;
+        }
+    out.println(sum % 10 == 0 ? 0 : sum);
+    out.flush();
+    out.close();
+}

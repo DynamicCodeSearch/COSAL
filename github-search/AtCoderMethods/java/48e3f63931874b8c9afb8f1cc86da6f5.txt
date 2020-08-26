@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    int m, n, i;
+    Scanner scanner = new Scanner(System.in);
+    n = scanner.nextInt();
+    m = scanner.nextInt();
+    int[][] students = new int[n][2], coordinates = new int[m][2];
+    for (i = 0; i < n; i++) {
+        students[i][0] = scanner.nextInt();
+        students[i][1] = scanner.nextInt();
+    }
+    for (i = 0; i < m; i++) {
+        coordinates[i][0] = scanner.nextInt();
+        coordinates[i][1] = scanner.nextInt();
+    }
+    scanner.close();
+    int distance;
+    int minDis;
+    int[] result = new int[n];
+    for (i = 0; i < n; i++) {
+        minDis = Integer.MAX_VALUE;
+        for (int j = 0; j < m; j++) {
+            distance = Math.abs(students[i][0] - coordinates[j][0]) + Math.abs(students[i][1] - coordinates[j][1]);
+            if (distance < minDis) {
+                result[i] = j;
+                minDis = distance;
+            }
+        }
+    }
+    for (i = 0; i < n; i++) {
+        System.out.println(result[i] + 1);
+    }
+}

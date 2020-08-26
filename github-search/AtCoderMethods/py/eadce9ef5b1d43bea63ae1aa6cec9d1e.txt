@@ -1,0 +1,14 @@
+def main():
+    N, Q = map(int, input().split())
+    lr = [tuple(map(int, input().split())) for _ in range(Q)]
+    a = [0] * (N + 1)
+    for x in lr:
+        a[x[0]-1] += 1
+        a[x[1]] -= 1
+    ans = ['0'] * N
+    cur = 0
+    for i, x in enumerate(a):
+        cur += x
+        if cur & 1 == 1:
+            ans[i] = '1'
+    print(''.join(ans))

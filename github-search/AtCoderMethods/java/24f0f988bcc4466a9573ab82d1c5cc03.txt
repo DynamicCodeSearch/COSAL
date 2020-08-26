@@ -1,0 +1,16 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int n = Integer.parseInt(br.readLine());
+    StringTokenizer st = new StringTokenizer(br.readLine());
+    int[] array = new int[n + 1];
+    for (int i = 1; i <= n; i++) array[i] = Integer.parseInt(st.nextToken());
+    int ans = (int) 1E9;
+    for (int i = -100; i <= 100; i++) {
+        int cost = 0;
+        for (int j = 1; j <= n; j++) {
+            cost += (array[j] - i) * (array[j] - i);
+        }
+        ans = Math.min(cost, ans);
+    }
+    System.out.println(ans);
+}

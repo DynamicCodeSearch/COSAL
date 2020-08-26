@@ -1,0 +1,236 @@
+### Py Tokens: pairs, ordered, iterator, value, dict, key, iteritems, ordereddict 
+
+### Py functions
+
+def iteritems(self):
+
+  for k in self:
+    yield (k, self[k])
+*********************************
+
+#### Score: 4.55063
+
+
+#### Java Tokens: exception, joins, sanitizedseparator, argument, added, use, objects, empty, iterator, character, java, utils, delimiter, a,b,, join, hasnext, varargs, treated, pre, sanitized, containing, list, separator, illegal, defaultstring, must, arrays, object, since, next, illegalargumentexception, providing, code, string, provided, values, a,,b, result, strings, param, a,b, builder, lang, aslist, value, together, joined, stringutils, single, joinwith, elements, stringbuilder, tostring, append 
+
+
+public static String joinWith(final String separator, final Object... objects) {
+    if (objects == null) {
+        throw new IllegalArgumentException("Object varargs must not be null");
+    }
+    final String sanitizedSeparator = defaultString(separator);
+    final StringBuilder result = new StringBuilder();
+    final Iterator<Object> iterator = Arrays.asList(objects).iterator();
+    while (iterator.hasNext()) {
+        final String value = Objects.toString(iterator.next(), "");
+        result.append(value);
+        if (iterator.hasNext()) {
+            result.append(sanitizedSeparator);
+        }
+    }
+    return result.toString();
+}
+*********************************
+
+#### Score: 4.28859
+
+
+#### Java Tokens: sub, startswith, longest, code, string, checknotnull, prefix, validsurrogatepairat, charsequence, pairs, empty, valid, p--, min, split, commonprefix, common, strings, surrogate, starts, charat, maxprefixlength, max, length, check, pair, subsequence, sequence, null, char, returns, math, tostring, taking, care, since 
+
+
+public static String commonPrefix(CharSequence a, CharSequence b) {
+    checkNotNull(a);
+    checkNotNull(b);
+    int maxPrefixLength = Math.min(a.length(), b.length());
+    int p = 0;
+    while (p < maxPrefixLength && a.charAt(p) == b.charAt(p)) {
+        p++;
+    }
+    if (validSurrogatePairAt(a, p - 1) || validSurrogatePairAt(b, p - 1)) {
+        p--;
+    }
+    return a.subSequence(0, p).toString();
+}
+*********************************
+
+#### Score: 4.28859
+
+
+#### Java Tokens: sub, longest, code, string, checknotnull, maxsuffixlength, endswith, suffix, validsurrogatepairat, commonsuffix, charsequence, pairs, empty, valid, s--, min, split, common, strings, ends, surrogate, charat, max, length, check, pair, subsequence, sequence, null, char, returns, math, tostring, taking, care, since 
+
+
+public static String commonSuffix(CharSequence a, CharSequence b) {
+    checkNotNull(a);
+    checkNotNull(b);
+    int maxSuffixLength = Math.min(a.length(), b.length());
+    int s = 0;
+    while (s < maxSuffixLength && a.charAt(a.length() - s - 1) == b.charAt(b.length() - s - 1)) {
+        s++;
+    }
+    if (validSurrogatePairAt(a, a.length() - s - 1) || validSurrogatePairAt(b, b.length() - s - 1)) {
+        s--;
+    }
+    return a.subSequence(a.length() - s, a.length()).toString();
+}
+*********************************
+
+#### Score: 3.95936
+
+
+#### Java Tokens: code, string, isolated, arrayutils, units, convert, codepointat, charsequence, point, pairs, points, empty, codepointcount, result, valid, character, high, array, low, param, utils, supplementary, surrogate, preceded, pre, charcount, length, count, index, converts, followed, empty_int_array, int, as-is, str, stringutils, single, sequence, converted, char, tocodepoints, returned, tostring, since 
+
+
+public static int[] toCodePoints(final CharSequence str) {
+    if (str == null) {
+        return null;
+    }
+    if (str.length() == 0) {
+        return ArrayUtils.EMPTY_INT_ARRAY;
+    }
+    final String s = str.toString();
+    final int[] result = new int[s.codePointCount(0, s.length())];
+    int index = 0;
+    for (int i = 0; i < result.length; i++) {
+        result[i] = s.codePointAt(index);
+        index += Character.charCount(result[i]);
+    }
+    return result;
+}
+*********************************
+
+#### Score: 3.87481
+
+
+#### Java Tokens: joins, providing, code, string, added, use, provided, values, link, iterable, empty, iterator, see, character, param, utils, delimiter, join, together, treated, may, containing, joined, list, separator, stringutils, single, input, examples, elements, object, since 
+
+
+public static String join(final Iterable<?> iterable, final String separator) {
+    if (iterable == null) {
+        return null;
+    }
+    return join(iterable.iterator(), separator);
+}
+*********************************
+
+#### Score: 3.67604
+
+
+#### Java Tokens: joins, providing, code, string, added, use, provided, objects, values, link, iterable, empty, iterator, see, character, strings, param, utils, delimiter, iteration, represented, join, together, may, within, containing, joined, list, separator, stringutils, single, input, null, examples, elements, object, since 
+
+
+public static String join(final Iterable<?> iterable, final char separator) {
+    if (iterable == null) {
+        return null;
+    }
+    return join(iterable.iterator(), separator);
+}
+*********************************
+
+#### Score: 3.24962
+
+
+#### Java Tokens: joins, small, added, use, objects, building, empty, zero, iterator, character, java, utils, delimiter, string_builder_size, join, hasnext, buffer, treated, containing, handle, list, separator, input, size, examples, object, next, code, string, probably, provided, values, link, two, see, param, builder, together, may, joined, one, stringutils, single, buf, obj, elements, stringbuilder, tostring, first, append 
+
+
+public static String join(final Iterator<?> iterator, final String separator) {
+    
+    if (iterator == null) {
+        return null;
+    }
+    if (!iterator.hasNext()) {
+        return EMPTY;
+    }
+    final Object first = iterator.next();
+    if (!iterator.hasNext()) {
+        return Objects.toString(first, "");
+    }
+    
+    
+    final StringBuilder buf = new StringBuilder(STRING_BUILDER_SIZE);
+    if (first != null) {
+        buf.append(first);
+    }
+    while (iterator.hasNext()) {
+        if (separator != null) {
+            buf.append(separator);
+        }
+        final Object obj = iterator.next();
+        if (obj != null) {
+            buf.append(obj);
+        }
+    }
+    return buf.toString();
+}
+*********************************
+
+#### Score: 3.19339
+
+
+#### Java Tokens: joins, ;;a, noofitems, added, use, objects, empty, iterator, character, utils, delimiter, exclusive, represented, join, pre, pass, containing, past, index, list, separator, input, endindex, null, stop, items, since, sub, joining, code, a;b;c, string, provided, values, error, strings, array, param, end, together, abc, may, within, joined, start, stringutils, single, startindex, sublist, elements, first 
+
+
+public static String join(final List<?> list, final char separator, final int startIndex, final int endIndex) {
+    if (list == null) {
+        return null;
+    }
+    final int noOfItems = endIndex - startIndex;
+    if (noOfItems <= 0) {
+        return EMPTY;
+    }
+    final List<?> subList = list.subList(startIndex, endIndex);
+    return join(subList.iterator(), separator);
+}
+*********************************
+
+#### Score: 3.19339
+
+
+#### Java Tokens: joins, ;;a, noofitems, added, use, objects, empty, iterator, character, utils, delimiter, exclusive, represented, join, pre, pass, containing, past, index, list, separator, input, endindex, null, stop, items, since, sub, joining, code, a;b;c, string, provided, values, error, strings, array, param, end, together, abc, may, within, joined, start, stringutils, single, startindex, sublist, elements, first 
+
+
+public static String join(final List<?> list, final String separator, final int startIndex, final int endIndex) {
+    if (list == null) {
+        return null;
+    }
+    final int noOfItems = endIndex - startIndex;
+    if (noOfItems <= 0) {
+        return EMPTY;
+    }
+    final List<?> subList = list.subList(startIndex, endIndex);
+    return join(subList.iterator(), separator);
+}
+*********************************
+
+#### Score: 3.13928
+
+
+#### Java Tokens: joins, small, added, use, objects, building, empty, zero, iterator, character, java, utils, delimiter, string_builder_size, represented, join, hasnext, buffer, containing, handle, list, separator, input, size, null, examples, object, since, next, code, string, probably, provided, values, link, two, see, strings, param, builder, iteration, together, may, within, joined, one, stringutils, single, buf, obj, elements, stringbuilder, tostring, first, append 
+
+
+public static String join(final Iterator<?> iterator, final char separator) {
+    
+    if (iterator == null) {
+        return null;
+    }
+    if (!iterator.hasNext()) {
+        return EMPTY;
+    }
+    final Object first = iterator.next();
+    if (!iterator.hasNext()) {
+        return Objects.toString(first, EMPTY);
+    }
+    
+    
+    final StringBuilder buf = new StringBuilder(STRING_BUILDER_SIZE);
+    if (first != null) {
+        buf.append(first);
+    }
+    while (iterator.hasNext()) {
+        buf.append(separator);
+        final Object obj = iterator.next();
+        if (obj != null) {
+            buf.append(obj);
+        }
+    }
+    return buf.toString();
+}

@@ -1,0 +1,9 @@
+int dfs2(int cur, int par) {
+    int sum = 0;
+    for (int v : node[cur]) {
+        if (v == par)
+            continue;
+        sum += dfs2(v, cur);
+    }
+    return sum + 1;
+}

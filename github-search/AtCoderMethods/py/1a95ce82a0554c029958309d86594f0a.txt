@@ -1,0 +1,27 @@
+def bellman_ford():
+    for i in range(n - 1):
+        updated = False
+        for j in range(n):
+            dj = dists[j]
+            if dj == NINF:
+                continue
+            for b, c in edges[j]:
+                if dists[b] >= dj + c:
+                    continue
+                dists[b] = dj + c
+                updated = True
+        if not updated:
+            return dists[-1]
+
+    n_updated = [False] * n
+    for j in range(n):
+        if n_updated[j]:
+            continue
+        dj = dists[j]
+        if dj == NINF:
+            continue
+        for b, c in edges[j]:
+            if dists[b] < dj + c:
+                trace(b, n_updated)
+
+    return 'inf' if n_updated[-1] else dists[-1]

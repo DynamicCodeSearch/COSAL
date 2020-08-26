@@ -1,0 +1,54 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    int A = sc.nextInt();
+    int B = sc.nextInt();
+    long[] v = sc.nextLongList(N);
+    Arrays.sort(v);
+    double ave = 0;
+    for (int i = 0; i < A; i++) {
+        ave += v[v.length - i - 1];
+    }
+    ave /= A;
+    int idx = 0;
+    for (; idx < v.length; idx++) {
+        if (v[idx] > v[v.length - A]) {
+            break;
+        }
+    }
+    long s = v[v.length - A];
+    if (s < v[v.length - 1]) {
+        long n = 0;
+        for (int i = 0; i < v.length; i++) {
+            if (s == v[i]) {
+                n++;
+            }
+        }
+        long r = idx - (v.length - A);
+        long ret = 1;
+        for (int i = 0; i < r; i++) {
+            ret *= (n - i);
+            ret /= (i + 1);
+        }
+        System.out.printf("%f\n", ave);
+        System.out.println(ret);
+    } else {
+        long n = 0;
+        for (int i = 0; i < N; i++) {
+            if (s == v[i]) {
+                n++;
+            }
+        }
+        long ret = 0;
+        for (long r = A; r <= B; r++) {
+            long c = 1;
+            for (int i = 0; i < r; i++) {
+                c *= (n - i);
+                c /= (i + 1);
+            }
+            ret += c;
+        }
+        System.out.printf("%f\n", ave);
+        System.out.println(ret);
+    }
+}

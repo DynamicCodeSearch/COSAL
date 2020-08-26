@@ -1,0 +1,23 @@
+void solve() {
+    String atcoder = "atcoder";
+    char[] S = sc.next().toCharArray();
+    char[] T = sc.next().toCharArray();
+    for (int i = 0; i < S.length; i++) {
+        char s = S[i];
+        char t = T[i];
+        if (s == '@' && t == '@') {
+            continue;
+        } else if (s == '@') {
+            if (atcoder.indexOf(t) == -1) {
+                lose();
+            }
+        } else if (t == '@') {
+            if (atcoder.indexOf(s) == -1) {
+                lose();
+            }
+        } else if (s != t) {
+            lose();
+        }
+    }
+    win();
+}

@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    int n = ni(), m = ni();
+    long[] x = nla(n), y = nla(m);
+    long mod = 1000000007;
+    long sx = 0;
+    for (int i = 1; i <= n - 1; i++) {
+        long d = x[i] - x[i - 1];
+        d %= mod;
+        long nn = n - i;
+        sx += (nn * i % mod) * d % mod;
+        sx %= mod;
+    }
+    long sy = 0;
+    for (int i = 1; i <= m - 1; i++) {
+        long d = y[i] - y[i - 1];
+        d %= mod;
+        long nn = m - i;
+        sy += (nn * i % mod) * d % mod;
+        sy %= mod;
+    }
+    long res = sx * sy % mod;
+    pl(res);
+    flush();
+}

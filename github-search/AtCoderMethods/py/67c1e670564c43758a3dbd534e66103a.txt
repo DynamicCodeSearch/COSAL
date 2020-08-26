@@ -1,0 +1,16 @@
+def solve():
+    N = int(input())
+    visit = [0] * (N + 1)
+
+    a, b = map(int, input().split())
+    visit[a] = visit[b] = 1
+
+    K = int(input())
+    P = [int(i) for i in input().split()]
+
+    for pi in P:
+        visit[pi] += 1
+
+    ans = 'YES' if all(vi < 2 for vi in visit) else 'NO'
+
+    print(ans)

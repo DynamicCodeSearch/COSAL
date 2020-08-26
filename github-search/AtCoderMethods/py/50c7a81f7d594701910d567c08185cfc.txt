@@ -1,0 +1,18 @@
+def calc(sa, sb, sc, player):
+    if player == 'a':
+        if len(sa) == 0:
+            return 'A'
+        else:
+            return calc(sa[1:], sb, sc, sa[0])
+
+    elif player == 'b':
+        if len(sb) == 0:
+            return 'B'
+        else:
+            return calc(sa, sb[1:], sc, sb[0])
+
+    elif player == 'c':
+        if len(sc) == 0:
+            return 'C'
+        else:
+            return calc(sa, sb, sc[1:], sc[0])

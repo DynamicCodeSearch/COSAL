@@ -1,0 +1,44 @@
+public void solve(String[] args) {
+    MyScanner scanner = new MyScanner();
+    int H = scanner.nextInt();
+    int W = scanner.nextInt();
+    List<String> list = new ArrayList<>();
+    for (int i = 0; i < H; i++) {
+        list.add(scanner.next());
+    }
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            if (list.get(i).charAt(j) == '#') {
+                System.out.print("#");
+                continue;
+            }
+            int c = 0;
+            if (i > 0 && j > 0 && list.get(i - 1).charAt(j - 1) == '#') {
+                c++;
+            }
+            if (i > 0 && list.get(i - 1).charAt(j) == '#') {
+                c++;
+            }
+            if (i > 0 && j < W - 1 && list.get(i - 1).charAt(j + 1) == '#') {
+                c++;
+            }
+            if (j > 0 && list.get(i).charAt(j - 1) == '#') {
+                c++;
+            }
+            if (j < W - 1 && list.get(i).charAt(j + 1) == '#') {
+                c++;
+            }
+            if (i < H - 1 && j > 0 && list.get(i + 1).charAt(j - 1) == '#') {
+                c++;
+            }
+            if (i < H - 1 && list.get(i + 1).charAt(j) == '#') {
+                c++;
+            }
+            if (i < H - 1 && j < W - 1 && list.get(i + 1).charAt(j + 1) == '#') {
+                c++;
+            }
+            System.out.print(c);
+        }
+        System.out.println("");
+    }
+}

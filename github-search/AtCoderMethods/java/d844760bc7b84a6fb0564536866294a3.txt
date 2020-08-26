@@ -1,0 +1,22 @@
+static void solve() {
+    int n = in.nextInt();
+    int[] a = new int[n];
+    int[] x = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = in.nextInt();
+        if ((n + 1) % 2 != a[i] % 2) {
+            out.println(0);
+            return;
+        }
+        x[a[i]]++;
+        if (x[a[i]] > 2) {
+            out.println(0);
+            return;
+        }
+    }
+    if (x[0] > 1) {
+        out.println(0);
+        return;
+    }
+    out.println(modPow(2, n / 2, MOD));
+}

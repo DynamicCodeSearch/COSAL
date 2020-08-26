@@ -1,0 +1,61 @@
+void solve() throws IOException {
+    int n = ni();
+    int m = ni();
+    int[] p = new int[m];
+    int[] q = new int[m];
+    int[] c = new int[m];
+    for (int i = 0; i < m; i++) {
+        p[i] = ni() - 1;
+        q[i] = ni() - 1;
+        c[i] = ni();
+    }
+    HashMap<Long, Integer> map = new HashMap<>();
+    ArrayList<Integer> s = new ArrayList<>();
+    int idx = 0;
+    for (int i = 0; i < m; i++) {
+        long pc = iitol(p[i], c[i]);
+        if (!map.containsKey(pc)) {
+            s.add(p[i]);
+            map.put(pc, idx);
+            idx++;
+        }
+        long qc = iitol(q[i], c[i]);
+        if (!map.containsKey(qc)) {
+            s.add(q[i]);
+            map.put(qc, idx);
+            idx++;
+        }
+    }
+    UnionFind uf = new UnionFind(idx);
+    for (int i = 0; i < m; i++) {
+        uf.union(map.get(iitol(p[i], c[i])), map.get(iitol(q[i], c[i])));
+    }
+    ArrayList<ArrayList<Integer>> groups = uf.groups();
+    ArrayList<ArrayList<Integer>> G = new ArrayList<>();
+    for (int i = 0; i < n + groups.size(); i++) {
+        G.add(new ArrayList<>());
+    }
+    for (int i = 0; i < groups.size(); i++) {
+        for (int x : groups.get(i)) {
+            G.get(n + i).add(s.get(x));
+            G.get(s.get(x)).add(n + i);
+        }
+    }
+    ArrayDeque<Pair> Q = new ArrayDeque<>();
+    Q.add(new Pair(0, 0));
+    boolean[] used = new boolean[n + groups.size()];
+    while (!Q.isEmpty()) {
+        Pair t = Q.poll();
+        if (t.x == n - 1) {
+            out.println(t.y / 2);
+            return;
+        }
+        if (used[t.x])
+            continue;
+        used[t.x] = true;
+        for (int next : G.get(t.x)) {
+            Q.add(new Pair(next, t.y + 1));
+        }
+    }
+    out.println(-1);
+}

@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    int[][] abN = new int[N][2];
+    int[][] cdM = new int[M][2];
+    for (int i = 0; i < N; i++) {
+        abN[i][0] = sc.nextInt();
+        abN[i][1] = sc.nextInt();
+    }
+    for (int i = 0; i < M; i++) {
+        cdM[i][0] = sc.nextInt();
+        cdM[i][1] = sc.nextInt();
+    }
+    for (int i = 0; i < N; i++) {
+        int distance = Math.abs(abN[i][0] - cdM[0][0]) + Math.abs(abN[i][1] - cdM[0][1]);
+        int ans = 0;
+        for (int j = 0; j < M; j++) {
+            if (Math.abs(abN[i][0] - cdM[j][0]) + Math.abs(abN[i][1] - cdM[j][1]) < distance) {
+                distance = Math.abs(abN[i][0] - cdM[j][0]) + Math.abs(abN[i][1] - cdM[j][1]);
+                ans = j;
+            }
+        }
+        System.out.println(ans + 1);
+    }
+}

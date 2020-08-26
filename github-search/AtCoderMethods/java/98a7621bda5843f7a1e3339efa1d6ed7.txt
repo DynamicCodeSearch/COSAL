@@ -1,0 +1,19 @@
+private void solve(Scanner sc, PrintWriter out) {
+    int N = sc.nextInt();
+    int[] a = new int[N];
+    for (int i = 0; i < N; ++i) {
+        a[i] = sc.nextInt();
+    }
+    
+    int[] dp = new int[N];
+    dp[0] = 0;
+    for (int i = 1; i < N; ++i) {
+        int r1 = dp[i - 1] + Math.abs(a[i] - a[i - 1]);
+        int r2 = Integer.MAX_VALUE;
+        if (i >= 2) {
+            r2 = dp[i - 2] + Math.abs(a[i] - a[i - 2]);
+        }
+        dp[i] = Math.min(r1, r2);
+    }
+    out.println(dp[N - 1]);
+}

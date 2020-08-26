@@ -1,0 +1,31 @@
+boolean f(int x, int y, boolean a) {
+    Pair<Boolean, Pair<Integer, Integer>> p = new Pair<>(a, new Pair<>(x, y));
+    if (map.containsKey(p)) {
+        return map.get(p);
+    }
+    if (Math.max(x, y) < 2) {
+        map.put(p, !a);
+        return !a;
+    }
+    if (a) {
+        boolean flag = false;
+        for (int i = 1; 2 * i <= x; ++i) {
+            flag |= f(x - 2 * i, y + i, false);
+        }
+        for (int i = 1; 2 * i <= y; ++i) {
+            flag |= f(x + i, y - 2 * i, false);
+        }
+        map.put(p, flag);
+        return flag;
+    } else {
+        boolean flag = true;
+        for (int i = 1; 2 * i <= x; ++i) {
+            flag &= f(x - 2 * i, y + i, true);
+        }
+        for (int i = 1; 2 * i <= y; ++i) {
+            flag &= f(x + i, y - 2 * i, true);
+        }
+        map.put(p, flag);
+        return flag;
+    }
+}

@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    String S = scanner.nextLine().replace("WB", "A");
+    String[] SArray = S.split(" ");
+    int[] wIdx = new int[2];
+    wIdx[0] = S.indexOf("W");
+    wIdx[1] = S.indexOf("W", wIdx[0] + 1);
+    String ans = "";
+    switch(wIdx[0]) {
+        case 0:
+            if (wIdx[1] == 4)
+                ans = "Mi";
+            else
+                ans = "Si";
+            break;
+        case 1:
+            if (wIdx[1] == 5)
+                ans = "Re";
+            else
+                ans = "La";
+            break;
+        case 2:
+            if (wIdx[1] == 6)
+                ans = "Do";
+            else
+                ans = "So";
+            break;
+        case 3:
+            ans = "Fa";
+    }
+    System.out.println(ans);
+}

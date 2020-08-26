@@ -1,0 +1,7 @@
+def dfs(root, parent):
+    state[root] = 1
+    p[root] = parent
+    for i in adj[root]:
+        if i != parent:
+            dfs(i, root)
+    state[root] = 2

@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    long A = sc.nextLong();
+    long K = sc.nextLong();
+    final long GOAL = 2000000000000L;
+    long ans = 0;
+    if (K == 0) {
+        ans = GOAL - A;
+    } else {
+        long t = A;
+        while (t < GOAL) {
+            t += 1 + K * t;
+            ans++;
+        }
+    }
+    System.out.println(ans);
+}

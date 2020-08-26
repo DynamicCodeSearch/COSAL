@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    int N = Integer.parseInt(scan.next());
+    int M = Integer.parseInt(scan.next());
+    String[] A = new String[N];
+    for (int i = 0; i < N; i++) {
+        A[i] = scan.next();
+    }
+    String[] B = new String[M];
+    for (int i = 0; i < M; i++) {
+        B[i] = scan.next();
+    }
+    boolean ans = false;
+    for (int i = 0; i + M - 1 < N; i++) {
+        for (int j = 0; j + M - 1 < N; j++) {
+            if (A[i].startsWith(B[0], j)) {
+                for (int k = 0; k < M; k++) {
+                    ans = A[i + k].startsWith(B[k], j);
+                    if (!ans)
+                        break;
+                }
+                if (ans)
+                    break;
+            }
+        }
+        if (ans)
+            break;
+    }
+    System.out.println(ans ? "Yes" : "No");
+    scan.close();
+}

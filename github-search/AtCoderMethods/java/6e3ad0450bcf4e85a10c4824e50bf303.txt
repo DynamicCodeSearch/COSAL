@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int v = sc.nextInt();
+    int e = sc.nextInt();
+    Map<Integer, List<Integer>> G = new HashMap<>();
+    for (int i = 1; i <= v; i++) {
+        G.put(i, new ArrayList<Integer>());
+    }
+    for (int j = 0; j < e; j++) {
+        int u = sc.nextInt();
+        int w = sc.nextInt();
+        G.get(u).add(w);
+        G.get(w).add(u);
+    }
+    low = new int[v];
+    pre = new int[v];
+    for (int i = 0; i < v; i++) {
+        low[i] = -1;
+        pre[i] = -1;
+    }
+    for (int k = 1; k <= v; k++) {
+        if (pre[k - 1] == -1)
+            dfs(G, k, k);
+    }
+    System.out.println(bridge);
+}

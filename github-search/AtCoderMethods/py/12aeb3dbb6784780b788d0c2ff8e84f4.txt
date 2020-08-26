@@ -1,0 +1,10 @@
+def dfs(now,par):
+    for to in g[now]:
+        if to==par:continue
+        ans[now]+=dfs(to,now)
+    if h[now]==1:return ans[now]+1
+    else:
+        if ans[now]==0:
+            return 0
+        else:
+            return ans[now]+1

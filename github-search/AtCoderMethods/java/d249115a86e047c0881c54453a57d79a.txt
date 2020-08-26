@@ -1,0 +1,18 @@
+public static boolean solve(String s) {
+    
+    int[] memo = new int[26];
+    for (int i = 0; i < 26; i++) {
+        memo[i] = 0;
+    }
+    int index = -1;
+    for (int i = 0; i < s.length(); i++) {
+        index = (int) s.charAt(i) - 97;
+        memo[index] += 1;
+    }
+    for (int i = 0; i < memo.length; i++) {
+        if (memo[i] > 1) {
+            return false;
+        }
+    }
+    return true;
+}

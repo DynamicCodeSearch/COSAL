@@ -1,0 +1,39 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    Printer pr = new Printer(System.out);
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    List<Set<Integer>> hs = new ArrayList<>(n);
+    for (int i = 0; i < n; i++) {
+        hs.add(new HashSet<Integer>());
+    }
+    for (int i = 0; i < m; i++) {
+        int x = sc.nextInt() - 1;
+        int y = sc.nextInt() - 1;
+        hs.get(y).add(x);
+    }
+    long[] dp = new long[0x1 << n];
+    dp[0] = 1;
+    for (int i = 0; i < 0x1 << n; i++) {
+        List<Integer> bits = new ArrayList<>();
+        for (int j = 0; j < n; j++) {
+            if ((i & 0x1 << j) != 0) {
+                bits.add(j);
+            }
+        }
+        out: for (int j = 0; j < n; j++) {
+            if ((i & 0x1 << j) != 0) {
+                continue;
+            }
+            for (int e : bits) {
+                if (hs.get(j).contains(e)) {
+                    continue out;
+                }
+            }
+            dp[i | 0x1 << j] += dp[i];
+        }
+    }
+    pr.println(dp[(0x1 << n) - 1]);
+    pr.close();
+    sc.close();
+}

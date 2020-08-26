@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int N = scanner.nextInt();
+    int K = scanner.nextInt();
+    int[] A = new int[N];
+    for (int i = 0; i < N; i++) {
+        A[i] = scanner.nextInt();
+    }
+    long X = 0;
+    long Y = 0;
+    for (int i = 0; i < (N - K + 1); i++) {
+        for (int k = i; k < (K + i); k++) {
+            X += A[k];
+        }
+        Y += X;
+        X = 0;
+    }
+    System.out.println(Y);
+}

@@ -1,0 +1,19 @@
+def GridColoring(H, W, N, a):
+    a = np.array(map(int, a))
+
+    c = np.zeros((H,W))
+    direct = True
+    x = 0
+    y = 0
+    for color in np.argsort(a)[::-1]:
+        for i in range(a[color]):
+            c[y,x] = color+1
+            if ((x == 0) and not(direct)) or ((x == (W-1)) and direct):
+                y += 1
+                direct = not(direct)
+            else:
+                if direct:
+                    x += 1
+                else:
+                    x -= 1
+    return c

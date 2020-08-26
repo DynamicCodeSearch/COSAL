@@ -1,0 +1,8 @@
+static void dfs(int u, int p) {
+    for (Node x : al[u]) {
+        if (x.val != p) {
+            sum[x.val] = sum[u] + x.cost;
+            dfs(x.val, u);
+        }
+    }
+}

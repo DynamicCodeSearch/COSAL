@@ -1,0 +1,53 @@
+void solve() throws IOException {
+    int n = ni();
+    int[] a = new int[n];
+    int[] b = new int[n];
+    for (int i = 0; i < n - 1; i++) {
+        a[i] = ni() - 1;
+        b[i] = ni() - 1;
+    }
+    int k = ni();
+    int[] v = new int[k];
+    int[] p = new int[k];
+    for (int i = 0; i < k; i++) {
+        v[i] = ni() - 1;
+        p[i] = ni();
+    }
+    ArrayList<ArrayList<Edge>> G = new ArrayList<>();
+    for (int i = 0; i < n; i++) {
+        G.add(new ArrayList<>());
+    }
+    for (int i = 0; i < n - 1; i++) {
+        G.get(a[i]).add(new Edge(b[i], 1));
+        G.get(b[i]).add(new Edge(a[i], 1));
+    }
+    G.add(new ArrayList<>());
+    for (int i = 0; i < k; i++) {
+        G.get(n).add(new Edge(v[i], p[i]));
+    }
+    Dijkstra d = new Dijkstra(G);
+    int[] dist = d.getDist(n);
+    boolean flg = true;
+    for (int i = 0; i < n - 1; i++) {
+        if (Math.abs(dist[a[i]] - dist[b[i]]) != 1) {
+            flg = false;
+            break;
+        }
+    }
+    if (flg) {
+        for (int i = 0; i < k; i++) {
+            if (dist[v[i]] != p[i]) {
+                flg = false;
+                break;
+            }
+        }
+    }
+    if (flg) {
+        out.println("Yes");
+        for (int i = 0; i < n; i++) {
+            out.println(dist[i]);
+        }
+    } else {
+        out.println("No");
+    }
+}

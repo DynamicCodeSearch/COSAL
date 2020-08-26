@@ -1,0 +1,33 @@
+public boolean check() {
+    for (int i = 2; i < N; i++) {
+        int l = (i - 1 + N) % N;
+        int r = (i + 1) % N;
+        if (s[i] == 'o') {
+            if (a[i] == 0)
+                a[r] = a[l];
+            else
+                a[r] = (a[l] == 0 ? 1 : 0);
+        } else {
+            if (a[i] == 0)
+                a[r] = (a[l] == 0 ? 1 : 0);
+            else
+                a[r] = a[l];
+        }
+    }
+    for (int i = 0; i < N; i++) {
+        int l = (i - 1 + N) % N;
+        int r = (i + 1) % N;
+        if (s[i] == 'o') {
+            if (a[i] == 0 && a[l] != a[r])
+                return false;
+            if (a[i] == 1 && a[l] == a[r])
+                return false;
+        } else {
+            if (a[i] == 0 && a[l] == a[r])
+                return false;
+            if (a[i] == 1 && a[l] != a[r])
+                return false;
+        }
+    }
+    return true;
+}

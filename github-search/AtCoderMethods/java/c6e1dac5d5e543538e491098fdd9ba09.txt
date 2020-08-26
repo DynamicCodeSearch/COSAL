@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    IO io = new IO();
+    int n = io.nextInt();
+    int k = io.nextInt();
+    int[] a = io.nextIntArray(n);
+    long psum = 0;
+    for (int i = 0; i < k; i++) {
+        psum += a[i];
+    }
+    long sum = 0;
+    for (int i = 0; i < n - k + 1; i++) {
+        sum += psum;
+        psum -= a[i];
+        if (k + i < n) {
+            psum += a[k + i];
+        }
+    }
+    System.out.println(sum);
+}

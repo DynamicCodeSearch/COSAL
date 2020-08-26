@@ -1,0 +1,16 @@
+void run() {
+    Scanner sc = new Scanner(System.in);
+    N = sc.nextInt();
+    G = new E[N];
+    for (int i = 0; i < N; i++) {
+        G[i] = new E();
+    }
+    for (int i = 0; i < N - 1; i++) {
+        int a = sc.nextInt() - 1, b = sc.nextInt() - 1;
+        G[a].add(b);
+        G[b].add(a);
+    }
+    long[][] dp = new long[N][2];
+    for (long[] a : dp) fill(a, -1);
+    System.out.println((solve(-1, 0, 0, dp) + solve(-1, 0, 1, dp)) % EPS);
+}

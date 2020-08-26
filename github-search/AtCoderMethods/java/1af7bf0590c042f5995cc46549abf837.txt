@@ -1,0 +1,28 @@
+static void go(int l1, int r1, int l2, int r2, int idx) {
+    if (l1 > l2 || r1 > r2) {
+        return;
+    }
+    if (l1 == l2) {
+        for (int i = r1; i <= r2; i++) {
+            arr[l1][i] = a[idx++];
+        }
+    } else if (r1 == r2) {
+        for (int i = l1; i <= l2; i++) {
+            arr[i][r1] = a[idx++];
+        }
+    } else {
+        for (int i = l1; i <= l2; i++) {
+            arr[i][r1] = a[idx++];
+        }
+        for (int i = r1 + 1; i <= r2; i++) {
+            arr[l2][i] = a[idx++];
+        }
+        for (int i = l2 - 1; i >= l1; i--) {
+            arr[i][r2] = a[idx++];
+        }
+        for (int i = r2 - 1; i > r1; i--) {
+            arr[l1][i] = a[idx++];
+        }
+    }
+    go(l1 + 1, r1 + 1, l2 - 1, r2 - 1, idx);
+}

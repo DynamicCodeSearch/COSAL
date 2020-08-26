@@ -1,0 +1,26 @@
+private static void solve() {
+    int N = nei();
+    int k = nei();
+    boolean[] dl = new boolean[10];
+    for (int i = 0; i < k; i++) {
+        dl[nei()] = true;
+    }
+    int n = N;
+    while (true) {
+        int i = n;
+        boolean flg = true;
+        while (i > 0) {
+            int t = i % 10;
+            if (dl[t]) {
+                flg = false;
+                break;
+            }
+            i /= 10;
+        }
+        if (flg) {
+            out(n);
+            return;
+        }
+        n++;
+    }
+}

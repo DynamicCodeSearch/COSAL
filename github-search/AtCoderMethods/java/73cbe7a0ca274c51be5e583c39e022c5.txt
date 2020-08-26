@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner sn = new Scanner(System.in);
+    int N = sn.nextInt();
+    long A = 1L, B = 1L;
+    for (int i = 0; i < N; ++i) {
+        long x = sn.nextLong();
+        long y = sn.nextLong();
+        long A_x = A / x;
+        long B_y = B / y;
+        A_x += (A % x == 0) ? 0 : 1;
+        B_y += (B % y == 0) ? 0 : 1;
+        long n = Math.max(A_x, B_y);
+        A = n * x;
+        B = n * y;
+    }
+    System.out.println(A + B);
+}

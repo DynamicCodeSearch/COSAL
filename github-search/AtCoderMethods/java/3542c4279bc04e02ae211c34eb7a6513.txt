@@ -1,0 +1,22 @@
+public static void main(String[] args) throws Exception {
+    String x = sc.next();
+    boolean flag = false;
+    int right = 0;
+    int left = 0;
+    for (int i = 0; i < x.length(); i++) {
+        if (x.charAt(i) == 'A') {
+            left = i;
+            break;
+        }
+    }
+    for (int i = x.length() - 1; i >= 0; i--) {
+        if (x.charAt(i) == 'Z') {
+            right = i;
+            break;
+        }
+    }
+    out.println(right - left + 1);
+    out.flush();
+    sc.close();
+    out.close();
+}

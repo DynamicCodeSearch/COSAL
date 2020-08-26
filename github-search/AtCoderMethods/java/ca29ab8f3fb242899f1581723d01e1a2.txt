@@ -1,0 +1,15 @@
+static void solve() {
+    int n = ni();
+    int[] primes = sieveEratosthenes(1000);
+    long ret = 1;
+    int mod = 1000000007;
+    for (int p : primes) {
+        int e = 0;
+        for (int m = n / p; m > 0; m /= p) {
+            e += m;
+        }
+        ret *= e + 1;
+        ret %= mod;
+    }
+    out.println(ret);
+}

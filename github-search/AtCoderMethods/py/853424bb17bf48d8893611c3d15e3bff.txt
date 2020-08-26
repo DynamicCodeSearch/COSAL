@@ -1,0 +1,9 @@
+def solve():
+    N = int(input())
+    a = list(map(int, input().split()))
+    count = [0]*100000
+
+    for i in a:
+        count[i] += 1
+
+    print(max(map(sum,zip(count,count[1:],count[2:]))))

@@ -1,0 +1,16 @@
+def main():
+    _ = int(input())
+    p_list = [int(p) for p in input().split()]
+
+    cnt = 0
+    for i in range(len(p_list)):
+        if i == 0 and i+1 == p_list[i]:
+            cnt += 1
+            p_list[i], p_list[i+1] = p_list[i+1], p_list[i]
+            continue
+        elif i == len(p_list)-1 and i+1 == p_list[i]:
+            cnt += 1
+        elif i+1 == p_list[i]:
+            cnt += 1
+            p_list[i], p_list[i+1] = p_list[i+1], p_list[i]
+    print(cnt)

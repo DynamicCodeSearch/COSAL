@@ -1,0 +1,13 @@
+public void solve(int testNumber, FastReader in, PrintWriter out) {
+    int n = in.nextInt();
+    Set<String> set = new HashSet<>();
+    for (int i = 0; i < n; ++i) {
+        String s = in.nextString();
+        if (set.contains(s)) {
+            set.remove(s);
+        } else {
+            set.add(s);
+        }
+    }
+    out.println(set.size());
+}

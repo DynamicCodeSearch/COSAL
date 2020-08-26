@@ -1,0 +1,16 @@
+public String readWord() {
+    try {
+        boolean start = false;
+        StringBuilder sb = new StringBuilder();
+        while (true) {
+            int c = br.read();
+            if (c != ' ' && c != '\r' && c != '\n' && c != '\t') {
+                sb.append((char) c);
+                start = true;
+            } else if (start || c == -1)
+                return sb.toString();
+        }
+    } catch (Exception ex) {
+        return "";
+    }
+}

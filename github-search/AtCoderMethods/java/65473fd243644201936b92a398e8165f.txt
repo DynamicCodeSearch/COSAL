@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = Integer.parseInt(sc.next());
+    int[] T = new int[N];
+    for (int i = 0; i < N; i++) {
+        T[i] = Integer.parseInt(sc.next());
+    }
+    int M = Integer.parseInt(sc.next());
+    int[] P = new int[M];
+    int[] X = new int[M];
+    for (int i = 0; i < M; i++) {
+        P[i] = Integer.parseInt(sc.next());
+        X[i] = Integer.parseInt(sc.next());
+    }
+    for (int i = 0; i < M; i++) {
+        int s = 0;
+        for (int k = 0; k < N; k++) {
+            if (P[i] - 1 == k)
+                s += X[i];
+            else
+                s += T[k];
+        }
+        System.out.println(s);
+    }
+    System.out.println();
+}

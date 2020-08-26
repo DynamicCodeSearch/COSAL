@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    int[] a = sc.nextIntList(N);
+    long ret = Long.MAX_VALUE;
+    for (int k = -100; k <= 100; k++) {
+        long now = 0;
+        for (int x : a) {
+            now += (k - x) * (k - x);
+        }
+        ret = Math.min(ret, now);
+    }
+    System.out.println(ret);
+}

@@ -1,0 +1,9 @@
+def num_switch(diff):
+    diff = abs(diff)
+
+    if 0<=diff and diff<=5:
+        return [0,1,2,3,2,1][diff]
+    elif diff > 10:
+        return diff // 10 + num_switch(diff % 10)
+    else:
+        return min( num_switch(diff - 5) + 1 , num_switch(diff - 10) + 1)

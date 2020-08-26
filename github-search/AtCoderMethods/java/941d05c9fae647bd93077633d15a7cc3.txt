@@ -1,0 +1,26 @@
+void submit() {
+    int x = nextInt();
+    int k = nextInt();
+    int[] flip = new int[k];
+    for (int i = 0; i < k; i++) {
+        flip[i] = nextInt();
+    }
+    int q = nextInt();
+    Function func = new Function(x);
+    int dir = -1;
+    int ptr = 0;
+    int curT = 0;
+    while (q-- > 0) {
+        int t = nextInt();
+        int qx = nextInt();
+        while (ptr < k && flip[ptr] <= t) {
+            func.modify(flip[ptr] - curT, dir);
+            curT = flip[ptr];
+            dir *= -1;
+            ptr++;
+        }
+        func.modify(t - curT, dir);
+        curT = t;
+        out.println(func.getAt(qx));
+    }
+}

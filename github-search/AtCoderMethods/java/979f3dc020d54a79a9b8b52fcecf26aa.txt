@@ -1,0 +1,22 @@
+public static void main(String[] args) throws IOException {
+    FastScanner in = new FastScanner(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    int[] a = new int[n];
+    int[] f = new int[(int) (1e5 + 10)];
+    int numneg = 0;
+    for (int i = 0; i < a.length; i++) {
+        a[i] = in.nextInt();
+        f[a[i]]++;
+        f[a[i] + 1]++;
+        if (a[i] == 0)
+            numneg++;
+        else
+            f[a[i] - 1]++;
+    }
+    int res = numneg;
+    for (int i = 0; i < f.length; i++) {
+        res = Math.max(res, f[i]);
+    }
+    System.out.println(res);
+}

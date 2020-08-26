@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int m = scanner.nextInt();
+    int n = scanner.nextInt();
+    int N = scanner.nextInt();
+    int ans = N, re = N, not = 0;
+    while (re != 0) {
+        not = not + re % m;
+        if (not / m != 0) {
+            re = re + m;
+            not = not - m;
+        }
+        ans = ans + (re / m) * n;
+        re = (re / m) * n;
+    }
+    System.out.println(ans);
+}

@@ -1,0 +1,53 @@
+private void solve(Scanner sc) {
+    N = sc.nextInt();
+    K = sc.nextInt();
+    a = new int[N];
+    long sum = 0;
+    for (int i = 0; i < N; ++i) {
+        a[i] = sc.nextInt();
+        sum += a[i];
+    }
+    if (sum < K) {
+        _out.println(N);
+        return;
+    }
+    Arrays.sort(a);
+    long ans = 0;
+    int left = 0;
+    int right = N;
+    while (left < right) {
+        int c = (left + right) / 2;
+        boolean flg = true;
+        if (a[c] < K) {
+            boolean[][] dp = new boolean[N][K];
+            dp[0][0] = true;
+            if (c != 0) {
+                dp[0][a[0]] = true;
+            }
+            for (int i = 1; i < N; ++i) {
+                dp[i][0] = true;
+                for (int j = 0; j < K; ++j) {
+                    if (i != c && a[i] <= j) {
+                        dp[i][j] = dp[i - 1][j] || dp[i - 1][j - a[i]];
+                    } else {
+                        dp[i][j] = dp[i - 1][j];
+                    }
+                }
+            }
+            flg = false;
+            for (int i = K - a[c]; i < K; ++i) {
+                if (dp[N - 1][i]) {
+                    flg = true;
+                    break;
+                }
+            }
+        }
+        if (flg) {
+            right = c;
+        } else {
+            ans = c + 1;
+            left = c + 1;
+        }
+    }
+    _out.println(ans);
+}

@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int N = scan.nextInt();
+    ArrayList<Integer> array = new ArrayList<Integer>();
+    for (int i = 0; i < N; i++) {
+        array.add(scan.nextInt());
+    }
+    Collections.sort(array);
+    for (int i = array.size() - 2; i >= 0; i--) {
+        if (array.get(i) < array.get(N - 1)) {
+            System.out.println(array.get(i));
+            break;
+        }
+    }
+}

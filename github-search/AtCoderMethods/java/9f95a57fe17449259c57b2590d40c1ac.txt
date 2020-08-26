@@ -1,0 +1,8 @@
+boolean delete(long key) {
+    int id = hash(key);
+    boolean ret = list[id].remove(key);
+    if (sz >= 3 * cnt) {
+        changeSize(sz / 2);
+    }
+    return ret;
+}

@@ -1,0 +1,11 @@
+
+void addLine(long a, long b) {
+    stk[tail][0] = a;
+    stk[tail][1] = b;
+    tail++;
+    while (tail >= 3 && compare(stk[tail - 3], stk[tail - 2], stk[tail - 1])) {
+        stk[tail - 2][0] = stk[tail - 1][0];
+        stk[tail - 2][1] = stk[tail - 1][1];
+        tail--;
+    }
+}

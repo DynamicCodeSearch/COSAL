@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String s = sc.next();
+    String[] c = s.split("");
+    int ans = 0;
+    boolean isAns = false;
+    for (int i = c.length / 2 - 1; i >= 1; i--) {
+        if (c[0].equals(c[i])) {
+            isAns = true;
+            for (int j = 1; j < i - 1; j++) {
+                if (!c[j].equals(c[i + j])) {
+                    isAns = false;
+                }
+            }
+            if (isAns) {
+                ans = i * 2;
+                break;
+            }
+        }
+    }
+    System.out.print(ans);
+}

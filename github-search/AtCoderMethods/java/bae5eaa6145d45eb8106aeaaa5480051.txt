@@ -1,0 +1,18 @@
+
+public void run() throws IOException {
+    
+    int TEST_CASE = 1;
+    while (TEST_CASE-- != 0) {
+        int n = io.nextInt();
+        long[] as = io.nextLongArray(n);
+        long ans = Long.MAX_VALUE;
+        for (int i = -100; i <= 100; i++) {
+            long v = 0;
+            for (long x : as) {
+                v += (x - i) * (x - i);
+            }
+            ans = Math.min(ans, v);
+        }
+        io.out.println(ans);
+    }
+}

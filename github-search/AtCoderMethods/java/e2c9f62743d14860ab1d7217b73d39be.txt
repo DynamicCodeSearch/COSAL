@@ -1,0 +1,35 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    N = sc.nextInt();
+    int[] from = new int[N - 1];
+    int[] to = new int[N - 1];
+    for (int i = 0; i < N - 1; i++) {
+        from[i] = sc.nextInt() - 1;
+        to[i] = sc.nextInt() - 1;
+    }
+    g = packU(N, from, to);
+    low = new int[N];
+    high = new int[N];
+    Arrays.fill(low, 0);
+    Arrays.fill(high, 1000000);
+    int K = sc.nextInt();
+    int s = -1;
+    for (int i = 0; i < K; i++) {
+        int v = sc.nextInt() - 1;
+        int p = sc.nextInt();
+        low[v] = p;
+        high[v] = p;
+        if (s < 0)
+            s = v;
+    }
+    boolean ret = dfs(-1, s, low[s] % 2);
+    if (ret) {
+        dfs2(-1, s);
+        System.out.println("Yes");
+        for (int v : high) {
+            System.out.println(v);
+        }
+    } else {
+        System.out.println("No");
+    }
+}

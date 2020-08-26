@@ -1,0 +1,81 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    Printer pr = new Printer(System.out);
+    int h = sc.nextInt();
+    int w = sc.nextInt();
+    char[][] s = new char[h][];
+    for (int i = 0; i < h; i++) {
+        s[i] = sc.next().toCharArray();
+    }
+    int[][] p = new int[h][w];
+    int[] dx = { 1, -1, 0, 0, 1, 1, -1, -1 };
+    int[] dy = { 0, 0, 1, -1, 1, -1, 1, -1 };
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            if (s[i][j] != '#') {
+                continue;
+            }
+            boolean bflag = true;
+            for (int k = 0; k < dx.length; k++) {
+                int ni = i + dy[k];
+                int nj = j + dx[k];
+                if (ni < 0 || ni >= h || nj < 0 || nj >= w) {
+                    continue;
+                }
+                if (s[ni][nj] == '.') {
+                    bflag = false;
+                }
+            }
+            if (bflag) {
+                p[i][j] = 1;
+            }
+        }
+    }
+    int[][] ret = new int[h][w];
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            if (p[i][j] != 1) {
+                continue;
+            }
+            ret[i][j] = 1;
+            for (int k = 0; k < dx.length; k++) {
+                int ni = i + dy[k];
+                int nj = j + dx[k];
+                if (ni < 0 || ni >= h || nj < 0 || nj >= w) {
+                    continue;
+                }
+                ret[ni][nj] = 1;
+            }
+        }
+    }
+    boolean flag = true;
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            if (s[i][j] == '#' && ret[i][j] != 1) {
+                flag = false;
+                break;
+            }
+            if (s[i][j] == '.' && ret[i][j] != 0) {
+                flag = false;
+                break;
+            }
+        }
+    }
+    if (flag) {
+        pr.println("possible");
+        for (int i = 0; i < h; i++) {
+            for (int j = 0; j < w; j++) {
+                if (p[i][j] == 0) {
+                    pr.print(".");
+                } else {
+                    pr.print("#");
+                }
+            }
+            pr.println();
+        }
+    } else {
+        pr.println("impossible");
+    }
+    pr.close();
+    sc.close();
+}

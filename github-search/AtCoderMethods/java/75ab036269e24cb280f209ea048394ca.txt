@@ -1,0 +1,27 @@
+public static void main(String[] $) {
+    int n = getInt();
+    ArrayList<ArrayList<Edge>> edges = new ArrayList<>();
+    for (int i = 0; i < n; ++i) edges.add(new ArrayList<>());
+    for (int i = 0; i < n - 1; ++i) {
+        int a = getInt() - 1, b = getInt() - 1, c = getInt();
+        edges.get(a).add(new Edge(a, b, c));
+        edges.get(b).add(new Edge(b, a, c));
+    }
+    int q = getInt(), k = getInt() - 1;
+    long[] dist = new long[n];
+    {
+        PriorityQueue<Edge> p = new PriorityQueue<>(edges.get(k));
+        Arrays.fill(dist, Integer.MAX_VALUE);
+        dist[k] = 0;
+        int filled = 1;
+        while (filled != n) {
+            Edge poll = p.poll();
+            if (dist[poll.t] == Integer.MAX_VALUE) {
+                dist[poll.t] = dist[poll.f] + poll.c;
+                p.addAll(edges.get(poll.t));
+                ++filled;
+            }
+        }
+    }
+    for (int i = 0; i < q; ++i) System.out.println(dist[getInt() - 1] + dist[getInt() - 1]);
+}

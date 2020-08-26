@@ -1,0 +1,18 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] input = br.readLine().split(" ");
+    int n = Integer.parseInt(input[0]);
+    long k = Long.parseLong(input[1]);
+    long[] cnt = new long[100000 + 1];
+    for (int i = 0; i < n; i++) {
+        input = br.readLine().split(" ");
+        cnt[Integer.parseInt(input[0])] += Integer.parseInt(input[1]);
+    }
+    for (int i = 1; i <= 100000; i++) {
+        if (k <= cnt[i]) {
+            System.out.println(i);
+            break;
+        }
+        k -= cnt[i];
+    }
+}

@@ -1,0 +1,23 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String line = br.readLine();
+    char[] alpha = line.toCharArray();
+    int n = alpha.length - 2;
+    int m = n / 2;
+    boolean b = true;
+    while (n != 0) {
+        b = true;
+        for (int i = 0; i < m; i++) {
+            if (alpha[i] != alpha[m + i]) {
+                b = false;
+                break;
+            }
+        }
+        if (b) {
+            break;
+        }
+        n = n - 2;
+        m = n / 2;
+    }
+    System.out.println(n);
+}

@@ -1,0 +1,45 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String sa = br.readLine();
+    String sb = br.readLine();
+    String sc = br.readLine();
+    Queue<Character>[] a = new LinkedList[3];
+    a[0] = new LinkedList<>();
+    a[1] = new LinkedList<>();
+    a[2] = new LinkedList<>();
+    for (int i = 0; i < sa.length(); i++) {
+        a[0].add(sa.charAt(i));
+    }
+    for (int i = 0; i < sb.length(); i++) {
+        a[1].add(sb.charAt(i));
+    }
+    for (int i = 0; i < sc.length(); i++) {
+        a[2].add(sc.charAt(i));
+    }
+    int turn = 0;
+    while (a[turn].size() > 0) {
+        char c = a[turn].poll();
+        switch(c) {
+            case 'a':
+                turn = 0;
+                break;
+            case 'b':
+                turn = 1;
+                break;
+            case 'c':
+                turn = 2;
+                break;
+        }
+    }
+    switch(turn) {
+        case 0:
+            System.out.println("A");
+            break;
+        case 1:
+            System.out.println("B");
+            break;
+        case 2:
+            System.out.println("C");
+            break;
+    }
+}

@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int i, k, A, N;
+    int num = 100001;
+    int count = 0;
+    N = sc.nextInt();
+    int[] number = new int[num];
+    for (i = 0; i < N; i++) {
+        A = sc.nextInt();
+        number[A]++;
+    }
+    for (i = 0; i < num; i++) {
+        if (number[i] > 1) {
+            count += number[i] - 1;
+        }
+    }
+    System.out.println(count);
+}

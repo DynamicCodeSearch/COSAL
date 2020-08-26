@@ -1,0 +1,38 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+public static int lca(int[][] p, int a, int b) {
+    if (level[a] < level[b]) {
+        int x = a;
+        a = b;
+        b = x;
+    }
+    int log = p[0].length;
+    for (int i = log - 1; i >= 0; i--) {
+        if (1 << i <= level[a] - level[b]) {
+            a = p[a][i];
+        }
+    }
+    if (a == b)
+        return a;
+    for (int i = log - 1; i >= 0; i--) {
+        if (p[a][i] != p[b][i]) {
+            a = p[a][i];
+            b = p[b][i];
+        }
+    }
+    return p[a][0];
+}

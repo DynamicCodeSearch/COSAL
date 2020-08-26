@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(new BufferedInputStream(System.in));
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    int[] cnt = new int[N];
+    boolean ok = false;
+    for (int i = 0; i < M; i++) {
+        int x = sc.nextInt() - 1;
+        int y = sc.nextInt() - 1;
+        if ((x == 0) || (y == 0)) {
+            cnt[x + y] += 1;
+            if (cnt[x + y] == 2) {
+                ok = true;
+            }
+        }
+        if ((x == N - 1) || (y == N - 1)) {
+            cnt[x + y - N + 1] += 1;
+            if (cnt[x + y - N + 1] == 2) {
+                ok = true;
+            }
+        }
+    }
+    if (ok) {
+        System.out.println("POSSIBLE");
+    } else {
+        System.out.println("IMPOSSIBLE");
+    }
+}

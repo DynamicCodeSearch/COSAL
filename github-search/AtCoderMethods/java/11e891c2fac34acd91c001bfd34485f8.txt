@@ -1,0 +1,16 @@
+public void solve(int testNumber, FastScanner in, PrintWriter out) {
+    char[] s = in.next().toCharArray();
+    char[] t = in.next().toCharArray();
+    int[][] sumsS = partialSums(s);
+    int[][] sumsT = partialSums(t);
+    int numQueries = in.nextInt();
+    for (int query = 0; query < numQueries; query++) {
+        int a = in.nextInt() - 1;
+        int b = in.nextInt() - 1;
+        int c = in.nextInt() - 1;
+        int d = in.nextInt() - 1;
+        int is = getInvariant(sumsS, a, b);
+        int it = getInvariant(sumsT, c, d);
+        out.println(is == it ? "YES" : "NO");
+    }
+}

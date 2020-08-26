@@ -1,0 +1,45 @@
+private static void solve() {
+    int n = sc.nextInt();
+    List<Integer> a1 = new ArrayList<>(n);
+    List<Integer> a2 = new ArrayList<>(n);
+    List<Integer> a3 = new ArrayList<>(n);
+    long sum1 = 0;
+    for (int i = 0; i < n; i++) {
+        a1.add(sc.nextInt());
+        sum1 += a1.get(i);
+    }
+    for (int i = 0; i < n; i++) {
+        a2.add(sc.nextInt());
+    }
+    long sum3 = 0;
+    for (int i = 0; i < n; i++) {
+        a3.add(sc.nextInt());
+        sum3 += a3.get(i);
+    }
+    PriorityQueue<Integer> pq1 = new PriorityQueue<>(a1);
+    long[] max = new long[n + 1];
+    Arrays.fill(max, sum1);
+    for (int i = 0; i < n; i++) {
+        if (pq1.peek() < a2.get(i)) {
+            sum1 += a2.get(i) - pq1.remove();
+            pq1.add(a2.get(i));
+        }
+        max[i + 1] = Math.max(max[i + 1], sum1);
+    }
+    PriorityQueue<Integer> pq3 = new PriorityQueue<>(Collections.reverseOrder());
+    pq3.addAll(a3);
+    long[] min = new long[n + 1];
+    Arrays.fill(min, sum3);
+    for (int i = 0; i < n; i++) {
+        if (pq3.peek() > a2.get(n - 1 - i)) {
+            sum3 += a2.get(n - 1 - i) - pq3.remove();
+            pq3.add(a2.get(n - 1 - i));
+        }
+        min[i + 1] = Math.min(min[i + 1], sum3);
+    }
+    long ret = Long.MIN_VALUE;
+    for (int i = 0; i <= n; i++) {
+        ret = Math.max(ret, max[i] - min[n - i]);
+    }
+    pr.println(ret);
+}

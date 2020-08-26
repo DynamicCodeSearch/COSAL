@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    InputStream inputStream = System.in;
+    OutputStream outputStream = System.out;
+    InputReader in = new InputReader(inputStream);
+    PrintWriter out = new PrintWriter(outputStream);
+    int n = in.nextInt();
+    long t = in.nextLong();
+    BigInteger b = new BigInteger("" + t);
+    while (n > 1) {
+        t = in.nextLong();
+        BigInteger c = new BigInteger("" + t);
+        BigInteger mul = b.multiply(c);
+        mul = mul.divide(b.gcd(c));
+        b = mul;
+        n--;
+    }
+    System.out.println(b.toString());
+}

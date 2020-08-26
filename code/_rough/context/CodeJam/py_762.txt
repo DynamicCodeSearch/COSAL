@@ -1,0 +1,642 @@
+### Py Tokens: bhi, alo, midrange, max, ahi, solveig, atry, minmaxmidhi, hirange, minsolveigscore, min, mid, btry, range, score, blo, lorange 
+
+### Py functions
+
+def func_a36d0f00c2944f7eacb3879b10b8829e(N, S, a_lo):
+    a_lo = 0
+    a_hi = N - 1
+    min_solveig_score = S[N] + 1
+    while a_lo <= a_hi:
+        a_try = (a_lo + a_hi) // 2
+        lo_range = S[a_try]
+        b_lo = a_try
+        b_hi = N - 1
+        min_max_mid_hi = S[N] + 1
+        while b_lo <= b_hi:
+            b_try = (b_lo + b_hi) // 2
+            mid_range = S[b_try + 1] - S[a_try]
+            hi_range = S[N] - S[b_try + 1]
+            min_max_mid_hi = min(min_max_mid_hi, max(mid_range, hi_range))
+            if mid_range > hi_range:
+                b_hi = b_try - 1
+            elif mid_range < hi_range:
+                b_lo = b_try + 1
+            else:
+                break
+        min_solveig_score = min(min_solveig_score, max(lo_range,
+            min_max_mid_hi))
+        if lo_range > min_max_mid_hi:
+            a_hi = a_try - 1
+        elif lo_range < min_max_mid_hi:
+            a_lo = a_try + 1
+        else:
+            break
+    return a_try
+
+def func_74509c8f623a459b8ba9652ec8514c42(N, S, a_hi, a_lo, min_solveig_score):
+    min_solveig_score = S[N] + 1
+    while a_lo <= a_hi:
+        a_try = (a_lo + a_hi) // 2
+        lo_range = S[a_try]
+        b_lo = a_try
+        b_hi = N - 1
+        min_max_mid_hi = S[N] + 1
+        while b_lo <= b_hi:
+            b_try = (b_lo + b_hi) // 2
+            mid_range = S[b_try + 1] - S[a_try]
+            hi_range = S[N] - S[b_try + 1]
+            min_max_mid_hi = min(min_max_mid_hi, max(mid_range, hi_range))
+            if mid_range > hi_range:
+                b_hi = b_try - 1
+            elif mid_range < hi_range:
+                b_lo = b_try + 1
+            else:
+                break
+        min_solveig_score = min(min_solveig_score, max(lo_range,
+            min_max_mid_hi))
+        if lo_range > min_max_mid_hi:
+            a_hi = a_try - 1
+        elif lo_range < min_max_mid_hi:
+            a_lo = a_try + 1
+        else:
+            break
+    return '%1.10f' % (1 - min_solveig_score / S[N])
+
+def func_09c00a796bf84fd49cd8ca2d3b41345b(N, S, a_hi, a_lo, min_solveig_score):
+    min_solveig_score = S[N] + 1
+    while a_lo <= a_hi:
+        a_try = (a_lo + a_hi) // 2
+        lo_range = S[a_try]
+        b_lo = a_try
+        b_hi = N - 1
+        min_max_mid_hi = S[N] + 1
+        while b_lo <= b_hi:
+            b_try = (b_lo + b_hi) // 2
+            mid_range = S[b_try + 1] - S[a_try]
+            hi_range = S[N] - S[b_try + 1]
+            min_max_mid_hi = min(min_max_mid_hi, max(mid_range, hi_range))
+            if mid_range > hi_range:
+                b_hi = b_try - 1
+            elif mid_range < hi_range:
+                b_lo = b_try + 1
+            else:
+                break
+        min_solveig_score = min(min_solveig_score, max(lo_range,
+            min_max_mid_hi))
+        if lo_range > min_max_mid_hi:
+            a_hi = a_try - 1
+        elif lo_range < min_max_mid_hi:
+            a_lo = a_try + 1
+        else:
+            break
+    return min_solveig_score
+
+def func_454eeb2220a44e738eef562626942c2a(N, S, a_lo):
+    a_lo = 0
+    a_hi = N - 1
+    min_solveig_score = S[N] + 1
+    while a_lo <= a_hi:
+        a_try = (a_lo + a_hi) // 2
+        lo_range = S[a_try]
+        b_lo = a_try
+        b_hi = N - 1
+        min_max_mid_hi = S[N] + 1
+        while b_lo <= b_hi:
+            b_try = (b_lo + b_hi) // 2
+            mid_range = S[b_try + 1] - S[a_try]
+            hi_range = S[N] - S[b_try + 1]
+            min_max_mid_hi = min(min_max_mid_hi, max(mid_range, hi_range))
+            if mid_range > hi_range:
+                b_hi = b_try - 1
+            elif mid_range < hi_range:
+                b_lo = b_try + 1
+            else:
+                break
+        min_solveig_score = min(min_solveig_score, max(lo_range,
+            min_max_mid_hi))
+        if lo_range > min_max_mid_hi:
+            a_hi = a_try - 1
+        elif lo_range < min_max_mid_hi:
+            a_lo = a_try + 1
+        else:
+            break
+    return a_hi
+
+def func_3d412ac69ead4d5582a6f1e16c3e19b6(N, S, a_hi, a_lo, min_solveig_score):
+    min_solveig_score = S[N] + 1
+    while a_lo <= a_hi:
+        a_try = (a_lo + a_hi) // 2
+        lo_range = S[a_try]
+        b_lo = a_try
+        b_hi = N - 1
+        min_max_mid_hi = S[N] + 1
+        while b_lo <= b_hi:
+            b_try = (b_lo + b_hi) // 2
+            mid_range = S[b_try + 1] - S[a_try]
+            hi_range = S[N] - S[b_try + 1]
+            min_max_mid_hi = min(min_max_mid_hi, max(mid_range, hi_range))
+            if mid_range > hi_range:
+                b_hi = b_try - 1
+            elif mid_range < hi_range:
+                b_lo = b_try + 1
+            else:
+                break
+        min_solveig_score = min(min_solveig_score, max(lo_range,
+            min_max_mid_hi))
+        if lo_range > min_max_mid_hi:
+            a_hi = a_try - 1
+        elif lo_range < min_max_mid_hi:
+            a_lo = a_try + 1
+        else:
+            break
+    return b_hi
+
+*********************************
+
+#### Score: 8.64813
+
+
+#### Java Tokens: solveig, middle, max, start, count, mid, right, long, rightcount, min, left, minsolveig, midcount, value, sums, max_value 
+
+public static long func_60da854ca29b429d993100b9af9988f5(int start, int N, long[] sums) { 
+ int left = start;
+int right = N;
+while (left <= right) {
+    final int middle = (left + right) >> 1;
+    final long midCount = sums[middle] - sums[start];
+    final long rightCount = sums[N] - sums[middle];
+    if (midCount < rightCount) {
+        left = middle + 1;
+    } else {
+        right = middle - 1;
+    }
+}
+long minSolveig = Long.MAX_VALUE;
+return minSolveig;
+}
+
+
+public static int func_ff2a8435f7c64c469ddf393f3f2eb072(int start, int N, long[] sums) { 
+ int left = start;
+int right = N;
+while (left <= right) {
+    final int middle = (left + right) >> 1;
+    final long midCount = sums[middle] - sums[start];
+    final long rightCount = sums[N] - sums[middle];
+    if (midCount < rightCount) {
+        left = middle + 1;
+    } else {
+        right = middle - 1;
+    }
+}
+long minSolveig = Long.MAX_VALUE;
+return right;
+}
+
+
+public static int func_1f942c39ffb24de7956f9c067cf443c7(int start, int N, long[] sums) { 
+ int left = start;
+int right = N;
+while (left <= right) {
+    final int middle = (left + right) >> 1;
+    final long midCount = sums[middle] - sums[start];
+    final long rightCount = sums[N] - sums[middle];
+    if (midCount < rightCount) {
+        left = middle + 1;
+    } else {
+        right = middle - 1;
+    }
+}
+long minSolveig = Long.MAX_VALUE;
+return left;
+}
+
+
+*********************************
+
+#### Score: 8.64813
+
+
+#### Java Tokens: solveig, middle, max, count, start, mid, right, long, rightcount, min, left, minsolveig, midcount, value, sums, max_value 
+
+public static int func_f8956746a63741d1b7aaa24c96877aef(int start, int N, int left, long[] sums) { 
+ int right = N;
+while (left <= right) {
+    final int middle = (left + right) >> 1;
+    final long midCount = sums[middle] - sums[start];
+    final long rightCount = sums[N] - sums[middle];
+    if (midCount < rightCount) {
+        left = middle + 1;
+    } else {
+        right = middle - 1;
+    }
+}
+long minSolveig = Long.MAX_VALUE;
+return right;
+}
+
+
+public static int func_76c6fdf860c74edfbfcd099afbae5a10(int start, int N, int left, long[] sums) { 
+ int right = N;
+while (left <= right) {
+    final int middle = (left + right) >> 1;
+    final long midCount = sums[middle] - sums[start];
+    final long rightCount = sums[N] - sums[middle];
+    if (midCount < rightCount) {
+        left = middle + 1;
+    } else {
+        right = middle - 1;
+    }
+}
+long minSolveig = Long.MAX_VALUE;
+return left;
+}
+
+
+public static int func_b1cb5569cafc49408e7b9f212690655b(int right, int start, int N, int left, long[] sums) { 
+ while (left <= right) {
+    final int middle = (left + right) >> 1;
+    final long midCount = sums[middle] - sums[start];
+    final long rightCount = sums[N] - sums[middle];
+    if (midCount < rightCount) {
+        left = middle + 1;
+    } else {
+        right = middle - 1;
+    }
+}
+long minSolveig = Long.MAX_VALUE;
+return left;
+}
+
+
+*********************************
+
+#### Score: 8.54761
+
+
+#### Java Tokens: min, max, mid 
+
+public static double func_5fad18642ff14066a6fe74641ea01af6(int W) { 
+ double min = 0.0;
+double max = W + 0.00000001337;
+double mid = 0;
+return max;
+}
+
+
+public static double func_edd0616014f744f682c50158dd9ae2d1(int W) { 
+ double min = 0.0;
+double max = W + 0.00000001337;
+double mid = 0;
+return min;
+}
+
+
+public static double func_fb4410dc2df54416acebfee479ecc07e(int W) { 
+ double min = 0.0;
+double max = W + 0.00000001337;
+double mid = 0;
+return mid;
+}
+
+
+*********************************
+
+#### Score: 8.35559
+
+
+#### Java Tokens: leftcount, solveig, middle, max, count, start, mid, right, long, rightcount, min, left, minsolveig, midcount, value, sums, max_value 
+
+public static long func_3765df1d9cde42d6a7e63d237e8a0aa6(int start, int N, long[] sums) { 
+ final long leftCount = sums[start];
+int left = start;
+int right = N;
+while (left <= right) {
+    final int middle = (left + right) >> 1;
+    final long midCount = sums[middle] - sums[start];
+    final long rightCount = sums[N] - sums[middle];
+    if (midCount < rightCount) {
+        left = middle + 1;
+    } else {
+        right = middle - 1;
+    }
+}
+long minSolveig = Long.MAX_VALUE;
+return leftCount;
+}
+
+
+public static int func_43aaab78c4674843a2bc9c2eaca68b58(int start, int N, long[] sums) { 
+ final long leftCount = sums[start];
+int left = start;
+int right = N;
+while (left <= right) {
+    final int middle = (left + right) >> 1;
+    final long midCount = sums[middle] - sums[start];
+    final long rightCount = sums[N] - sums[middle];
+    if (midCount < rightCount) {
+        left = middle + 1;
+    } else {
+        right = middle - 1;
+    }
+}
+long minSolveig = Long.MAX_VALUE;
+return left;
+}
+
+
+public static long func_379a893bd7584ba7a6760b00ea240ee2(int start, int N, long[] sums) { 
+ final long leftCount = sums[start];
+int left = start;
+int right = N;
+while (left <= right) {
+    final int middle = (left + right) >> 1;
+    final long midCount = sums[middle] - sums[start];
+    final long rightCount = sums[N] - sums[middle];
+    if (midCount < rightCount) {
+        left = middle + 1;
+    } else {
+        right = middle - 1;
+    }
+}
+long minSolveig = Long.MAX_VALUE;
+return minSolveig;
+}
+
+
+*********************************
+
+#### Score: 8.00952
+
+
+#### Java Tokens: min, max, poly, mid 
+
+public static double func_c31f447a3b494b5cb1466be318d28632(double min, double max) { 
+ double mid = (min + max) / 2;
+double[] poly = new double[8];
+poly[0] = mid;
+return mid;
+}
+
+
+public static double func_8bf44cf1b2554240ba07201da3eba62a(double min, double max) { 
+ double mid = (min + max) / 2;
+double[] poly = new double[8];
+poly[0] = mid;
+poly[1] = 1001;
+poly[2] = mid;
+return mid;
+}
+
+
+public static double[] func_5ecdfbf0421c4640bd87b3945acc54ef(double min, double max) { 
+ double mid = (min + max) / 2;
+double[] poly = new double[8];
+poly[0] = mid;
+return poly;
+}
+
+
+*********************************
+
+#### Score: 8.00952
+
+
+#### Java Tokens: min, max, need, mid 
+
+public static long func_b3a1a1946e8d499dbcd49c3f4bbc3ad8(long min, long max) { 
+ long mid = (min + max) / 2;
+long need = 0;
+return need;
+}
+
+
+public static long func_e9dbe619b28d4fe685aeb331612419d4(long min, long max) { 
+ long mid = (min + max) / 2;
+long need = 0;
+return mid;
+}
+
+
+*********************************
+
+#### Score: 7.12239
+
+
+#### Java Tokens: min, left, max, mid, math, psum 
+
+public static long func_92bd099942ec46329016ff46546f28cb(int N, int i, long[] psum) { 
+ int lo = i + 1, hi = N;
+long left = psum[N] - psum[i];
+while (lo < hi) {
+    int mid = (lo + hi) >> 1;
+    long s1 = psum[mid] - psum[i];
+    long s2 = left - s1;
+    if (s1 >= s2) {
+        hi = mid;
+    } else {
+        lo = mid + 1;
+    }
+}
+long t = psum[lo] - psum[i];
+long a = Math.max(t, left - t);
+if (lo > i + 1) {
+    t = psum[lo - 1] - psum[i];
+    a = Math.min(a, Math.max(t, left - t));
+}
+return a;
+}
+
+
+public static long func_fde39c123b7e43bda8869ac46339627e(int lo, int N, int i, int hi, long[] psum) { 
+ long left = psum[N] - psum[i];
+while (lo < hi) {
+    int mid = (lo + hi) >> 1;
+    long s1 = psum[mid] - psum[i];
+    long s2 = left - s1;
+    if (s1 >= s2) {
+        hi = mid;
+    } else {
+        lo = mid + 1;
+    }
+}
+long t = psum[lo] - psum[i];
+long a = Math.max(t, left - t);
+if (lo > i + 1) {
+    t = psum[lo - 1] - psum[i];
+    a = Math.min(a, Math.max(t, left - t));
+}
+return left;
+}
+
+
+public static int func_479876891d4f4151846a481484bed6bd(int N, int i, long[] psum) { 
+ int lo = i + 1, hi = N;
+long left = psum[N] - psum[i];
+while (lo < hi) {
+    int mid = (lo + hi) >> 1;
+    long s1 = psum[mid] - psum[i];
+    long s2 = left - s1;
+    if (s1 >= s2) {
+        hi = mid;
+    } else {
+        lo = mid + 1;
+    }
+}
+long t = psum[lo] - psum[i];
+long a = Math.max(t, left - t);
+if (lo > i + 1) {
+    t = psum[lo - 1] - psum[i];
+    a = Math.min(a, Math.max(t, left - t));
+}
+return lo;
+}
+
+
+*********************************
+
+#### Score: 7.12239
+
+
+#### Java Tokens: min, max, need, length, mid, bets 
+
+public static long func_de542dcb5cab4d5a9b75ce7361c4b9d0(long min, long max, long[] bets) { 
+ long mid = (min + max) / 2;
+long need = 0;
+for (int i = 0; i < bets.length; i++) {
+    if (bets[i] < mid) {
+        need += mid - bets[i];
+    }
+}
+return mid;
+}
+
+
+public static long func_3f52bc1f3660404e95b908abc8ae0fe8(long min, long max, long[] bets) { 
+ long mid = (min + max) / 2;
+long need = 0;
+for (int i = 0; i < bets.length; i++) {
+    if (bets[i] < mid) {
+        need += mid - bets[i];
+    }
+}
+return need;
+}
+
+
+*********************************
+
+#### Score: 7.12239
+
+
+#### Java Tokens: area, cut, min, max, mid, cutarea 
+
+public static double func_b07fc4f911724a4a913e309c45e1b985(int W, int i, double g, double firstArea) { 
+ double cutArea = (i + 1) / g * firstArea;
+double min = 0.0;
+double max = W + 0.00000001337;
+double mid = 0;
+return min;
+}
+
+
+public static double func_1beee2e7837146ad98b21343e5d10398(int W, int i, double g, double firstArea) { 
+ double cutArea = (i + 1) / g * firstArea;
+double min = 0.0;
+double max = W + 0.00000001337;
+double mid = 0;
+return max;
+}
+
+
+public static double func_50676bc621fd47399c305dfe33e168cd(int W, int i, double g, double firstArea) { 
+ double cutArea = (i + 1) / g * firstArea;
+double min = 0.0;
+double max = W + 0.00000001337;
+double mid = 0;
+return cutArea;
+}
+
+
+*********************************
+
+#### Score: 6.75243
+
+
+#### Java Tokens: min, left, max, get, mid, math, psum 
+
+public static int func_b4c6456ae3794439b9dc11ee152e9158(int N, int i, long max, long[] psum) { 
+ int lo = i + 1, hi = N;
+long left = psum[N] - psum[i];
+while (lo < hi) {
+    int mid = (lo + hi) >> 1;
+    long s1 = psum[mid] - psum[i];
+    long s2 = left - s1;
+    if (s1 >= s2) {
+        hi = mid;
+    } else {
+        lo = mid + 1;
+    }
+}
+long t = psum[lo] - psum[i];
+long a = Math.max(t, left - t);
+if (lo > i + 1) {
+    t = psum[lo - 1] - psum[i];
+    a = Math.min(a, Math.max(t, left - t));
+}
+long get = psum[N] - Math.max(psum[i], a);
+if (get > max)
+    max = get;
+return hi;
+}
+
+
+public static long func_9f6aef59b6774b75b8a2fe218a3b96d3(int N, int i, long[] psum) { 
+ int lo = i + 1, hi = N;
+long left = psum[N] - psum[i];
+while (lo < hi) {
+    int mid = (lo + hi) >> 1;
+    long s1 = psum[mid] - psum[i];
+    long s2 = left - s1;
+    if (s1 >= s2) {
+        hi = mid;
+    } else {
+        lo = mid + 1;
+    }
+}
+long t = psum[lo] - psum[i];
+long a = Math.max(t, left - t);
+if (lo > i + 1) {
+    t = psum[lo - 1] - psum[i];
+    a = Math.min(a, Math.max(t, left - t));
+}
+long get = psum[N] - Math.max(psum[i], a);
+return a;
+}
+
+
+public static long func_5ade80b4a79640b39f855afb5e203cb7(int N, int i, long max, long[] psum) { 
+ int lo = i + 1, hi = N;
+long left = psum[N] - psum[i];
+while (lo < hi) {
+    int mid = (lo + hi) >> 1;
+    long s1 = psum[mid] - psum[i];
+    long s2 = left - s1;
+    if (s1 >= s2) {
+        hi = mid;
+    } else {
+        lo = mid + 1;
+    }
+}
+long t = psum[lo] - psum[i];
+long a = Math.max(t, left - t);
+if (lo > i + 1) {
+    t = psum[lo - 1] - psum[i];
+    a = Math.min(a, Math.max(t, left - t));
+}
+long get = psum[N] - Math.max(psum[i], a);
+if (get > max)
+    max = get;
+return left;
+}
+

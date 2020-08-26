@@ -1,0 +1,33 @@
+static void solve() {
+    int n = ni();
+    int[] a = na(n);
+    int[] is = new int[n];
+    int p = 0;
+    for (int i = 0; i < n; i++) {
+        if (i == 0 || a[is[p - 1]] < a[i]) {
+            is[p++] = i;
+        }
+    }
+    int[] sa = Arrays.copyOf(a, n);
+    Arrays.sort(sa);
+    long[] cum = new long[n + 1];
+    for (int i = 0; i < n; i++) cum[i + 1] = cum[i] + sa[i];
+    long[] f = new long[p + 1];
+    for (int i = p - 1; i >= 1; i--) {
+        int b = a[is[i - 1]];
+        int ind = Arrays.binarySearch(sa, b);
+        if (ind < 0)
+            ind = -ind - 1;
+        f[i] = cum[n] - cum[ind] - (long) b * (n - ind);
+    }
+    f[0] = cum[n];
+    int q = 0;
+    for (int i = 0; i < n; i++) {
+        if (q < p && is[q] == i) {
+            out.println(f[q] - f[q + 1]);
+            q++;
+        } else {
+            out.println(0);
+        }
+    }
+}

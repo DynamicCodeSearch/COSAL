@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    String s = scan.next();
+    int a = -1;
+    int b = -1;
+    for (int i = 1; i < s.length(); i++) {
+        if (s.charAt(i - 1) == s.charAt(i)) {
+            a = i;
+            b = i + 1;
+            break;
+        }
+    }
+    for (int i = 2; i < s.length(); i++) {
+        if (s.charAt(i - 2) == s.charAt(i)) {
+            a = i - 1;
+            b = i + 1;
+            break;
+        }
+    }
+    System.out.println(a + " " + b);
+    scan.close();
+}

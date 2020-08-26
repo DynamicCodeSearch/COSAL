@@ -1,0 +1,48 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    long A = in.nextLong();
+    long B = in.nextLong();
+    long[] a = new long[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = in.nextInt();
+    }
+    for (int i = 0; i < n; i++) {
+        long min = 0;
+        long max = B + 1;
+        while (max - min > 1) {
+            long med = (max + min) / 2;
+            long sum = med;
+            for (int j = 0; j < n; j++) {
+                if (i == j) {
+                    continue;
+                }
+                sum += count(a[i], med, a[j], A);
+            }
+            if (sum > B) {
+                max = med;
+            } else {
+                min = med;
+            }
+        }
+        long sum = 0;
+        long[] cts = new long[n];
+        for (int j = 0; j < n; j++) {
+            cts[j] = (i == j) ? min : count(a[i], min, a[j], A);
+            sum += cts[j];
+        }
+        if (sum == B) {
+            Integer[] idx = new Integer[n];
+            for (int j = 0; j < n; j++) {
+                idx[j] = j;
+            }
+            Arrays.sort(idx, (o1, o2) -> compare(a[o1], cts[o1], a[o2], cts[o2], A));
+            for (int j = 0; j < n; j++) {
+                out.println(a[idx[j]] * pow(A, cts[idx[j]], MOD) % MOD);
+            }
+            break;
+        }
+    }
+    out.flush();
+}

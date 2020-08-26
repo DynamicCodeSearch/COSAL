@@ -1,0 +1,24 @@
+static void quicksort(Pair[] a, int st, int ed) {
+    if (st >= ed)
+        return;
+    int l = st;
+    int r = ed;
+    Pair mid = a[(l + r) / 2];
+    while (l <= r) {
+        while (l <= ed && a[l].small(mid)) l++;
+        while (r >= st && a[r].large(mid)) r--;
+        if (l <= r) {
+            Pair temp = a[l];
+            a[l] = a[r];
+            a[r] = temp;
+            l++;
+            r--;
+        }
+    }
+    if (st < r) {
+        quicksort(a, st, r);
+    }
+    if (l < ed) {
+        quicksort(a, l, ed);
+    }
+}

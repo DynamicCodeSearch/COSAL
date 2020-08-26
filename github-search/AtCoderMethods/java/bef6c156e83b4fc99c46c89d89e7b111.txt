@@ -1,0 +1,19 @@
+static int[][] dfs(int[][] board, int turn) {
+    int maxScore = -1;
+    int[][] maxBoard = null;
+    for (int y = 0; y < N; y++) {
+        for (int x = 0; x < N; x++) {
+            if (board[y][x] == 0) {
+                int[][] next = getCopy(board);
+                next[y][x] = turn;
+                int[][] last = dfs(next, turn == B ? W : B);
+                int score = getScore(last, turn);
+                if (score > maxScore) {
+                    maxScore = score;
+                    maxBoard = getCopy(last);
+                }
+            }
+        }
+    }
+    return maxBoard == null ? board : maxBoard;
+}

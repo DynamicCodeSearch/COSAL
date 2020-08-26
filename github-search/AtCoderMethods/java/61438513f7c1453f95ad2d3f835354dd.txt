@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    String c_i = sc.next();
+    String[] comm = { "A", "B", "X", "Y" };
+    int min = n;
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            for (int k = 0; k < 4; k++) {
+                for (int l = 0; l < 4; l++) {
+                    String L = comm[i] + comm[j];
+                    String R = comm[k] + comm[l];
+                    int count = Main.count(n, c_i, L, R);
+                    if (count < min) {
+                        min = count;
+                    }
+                }
+            }
+        }
+    }
+    System.out.println(min);
+}

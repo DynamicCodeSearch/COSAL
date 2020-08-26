@@ -1,0 +1,47 @@
+public static void main(String[] args) {
+    
+    Scanner scan = new Scanner(System.in);
+    int N = Integer.parseInt(scan.next());
+    String s;
+    int start;
+    int end;
+    int[] rain = new int[12 * 24 + 1];
+    int[] S = new int[2];
+    int index;
+    for (int i = 0; i < N; i++) {
+        s = scan.next();
+        start = Integer.parseInt(s.substring(0, 4)) + 1000;
+        end = Integer.parseInt(s.substring(5, 9)) + 1000;
+        start -= start % 5;
+        end += (5 - end % 5) % 5;
+        if (end % 100 == 60) {
+            end += 40;
+        }
+        
+        S[0] = start / 100 - 10;
+        S[1] = (start % 100) / 5;
+        index = S[0] * 12 + S[1];
+        rain[index] += 1;
+        
+        S[0] = end / 100 - 10;
+        S[1] = (end % 100) / 5;
+        index = S[0] * 12 + S[1];
+        rain[index] -= 1;
+    }
+    int sum = 0;
+    for (int i = 0; i < 24 * 12 + 1; i++) {
+        sum += rain[i];
+        rain[i] = sum;
+    }
+    boolean rainy = false;
+    for (int i = 0; i < 24 * 12 + 1; i++) {
+        if (!rainy && rain[i] > 0) {
+            System.out.print(String.format("%04d", (i / 12) * 100 + (i % 12) * 5));
+            rainy = true;
+        }
+        if (rainy && rain[i] == 0) {
+            System.out.println("-" + String.format("%04d", (i / 12) * 100 + (i % 12) * 5));
+            rainy = false;
+        }
+    }
+}

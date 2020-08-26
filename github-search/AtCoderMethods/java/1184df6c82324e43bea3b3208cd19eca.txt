@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int n = scanner.nextInt();
+    String[] s = new String[n];
+    int[][] charCount = new int[26][n];
+    for (int i = 0; i < n; i++) {
+        s[i] = scanner.next();
+    }
+    char[] sc;
+    for (int i = 0; i < n; i++) {
+        sc = s[i].toCharArray();
+        for (char c : sc) {
+            charCount[c - 'a'][i]++;
+        }
+    }
+    StringBuilder buf = new StringBuilder();
+    for (int i = 0; i < 26; i++) {
+        Arrays.sort(charCount[i]);
+        for (int j = 0; j < charCount[i][0]; j++) {
+            buf.append((char) (i + 'a'));
+        }
+    }
+    System.out.println(buf.toString());
+}

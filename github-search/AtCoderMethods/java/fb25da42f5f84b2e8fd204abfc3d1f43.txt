@@ -1,0 +1,36 @@
+
+public void run() throws IOException {
+    
+    int TEST_CASE = 1;
+    while (TEST_CASE-- != 0) {
+        int n = io.nextInt();
+        int W = io.nextInt();
+        long[] ws = new long[n];
+        int[] vs = new int[n];
+        for (int i = 0; i < n; i++) {
+            ws[i] = io.nextInt();
+            vs[i] = io.nextInt();
+        }
+        int[][] dp = new int[n + 1][4 * n];
+        for (int[] d : dp) Arrays.fill(d, -1);
+        dp[0][0] = 0;
+        for (int i = 0; i < n; i++) {
+            for (int k = i; k >= 0; k--) {
+                for (int j = dp[i].length - 1; j >= 0; j--) if (dp[k][j] != -1) {
+                    long w = k * ws[0] + j;
+                    int d = (int) (ws[i] - ws[0]);
+                    if (w + ws[i] <= W) {
+                        dp[k + 1][j + d] = Math.max(dp[k + 1][j + d], dp[k][j] + vs[i]);
+                    }
+                }
+            }
+        }
+        long ans = -1;
+        for (int k = n; k >= 0; k--) {
+            for (int j = dp[0].length - 1; j >= 0; j--) if (dp[k][j] != -1) {
+                ans = Math.max(ans, dp[k][j]);
+            }
+        }
+        io.out.println(ans);
+    }
+}

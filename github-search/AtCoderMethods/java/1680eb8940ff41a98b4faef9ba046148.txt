@@ -1,0 +1,16 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int[] cnt = new int[100001];
+    for (int i = 0; i < n; ++i) {
+        int x = in.nextInt();
+        cnt[x]++;
+        if (x > 0)
+            cnt[x - 1]++;
+        cnt[x + 1]++;
+    }
+    int ans = 0;
+    for (int i = 0; i <= 100000; ++i) {
+        ans = Math.max(ans, cnt[i]);
+    }
+    out.println(ans);
+}

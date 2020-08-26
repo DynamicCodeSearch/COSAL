@@ -1,0 +1,27 @@
+def main():
+    A, B, C, D, E, F = map(int, input().split())
+
+    w_list, s_list = [False] * 3001, [False] * 3001
+    for i in range(F // (A * 100) + 1):
+        for j in range(F // (B * 100) + 1):
+            w = 100 * A * i + 100 * B * j
+            if w <= 3000:
+                w_list[w] = True
+    for i in range(F // C + 1):
+        for j in range(F // D + 1):
+            s = C * i + D * j
+            if s <= 3000:
+                s_list[s] = True
+
+    best = -INF
+    ans = 0, 0
+    for s in range(len(s_list)):
+        for w in range(len(w_list)):
+            if s + w <= F and s_list[s] and w_list[w]:
+                total = s + w
+                if total > 0 and s <= w // 100 * E:
+                    if s / total > best:
+                        best = s / total
+                        ans = total, s
+
+    print(ans[0], ans[1])

@@ -1,0 +1,13 @@
+public void solve(int testNumber, FastReader fs, PrintWriter pw) {
+    int k = fs.nextInt(), Sum = fs.nextInt();
+    int ans = 0;
+    for (int i = 0; i <= k; i++) {
+        for (int j = 0; j <= k; j++) {
+            int p = Sum - i - j;
+            if (p < 0 || p > k)
+                continue;
+            ans += 1;
+        }
+    }
+    pw.println(ans);
+}

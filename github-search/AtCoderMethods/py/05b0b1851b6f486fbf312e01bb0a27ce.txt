@@ -1,0 +1,18 @@
+def is_reach(n):
+    dist = [0 for i in range(N+1)]
+    is_visit = [False for i in range(N+1)]
+    is_visit[1] = True
+    q = Queue()
+    q.put(1)
+    while not q.empty():
+        v = q.get()
+        for u in graph[v]:
+            if not is_visit[u]:
+                is_visit[u] = True
+                q.put(u)
+                dist[u] = dist[v] + 1
+                if u == n and dist[u] == 2:
+                    return True
+                if dist[u] > 2:
+                    return False
+    return False

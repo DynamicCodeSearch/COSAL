@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String S1 = sc.next(), S2 = sc.next(), S3 = sc.next();
+    int cnt1 = 0, cnt2 = 0, cnt3 = 0;
+    char turn = 'a';
+    for (; ; ) {
+        if (turn == 'a') {
+            if (cnt1 == S1.length()) {
+                System.out.println("A");
+                return;
+            }
+            turn = S1.charAt(cnt1);
+            cnt1++;
+        } else if (turn == 'b') {
+            if (cnt2 == S2.length()) {
+                System.out.println("B");
+                return;
+            }
+            turn = S2.charAt(cnt2);
+            cnt2++;
+        } else {
+            if (cnt3 == S3.length()) {
+                System.out.println("C");
+                return;
+            }
+            turn = S3.charAt(cnt3);
+            cnt3++;
+        }
+    }
+}

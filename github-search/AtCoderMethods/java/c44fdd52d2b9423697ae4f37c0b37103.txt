@@ -1,0 +1,49 @@
+private void solve(Scanner sc) {
+    int N = sc.nextInt();
+    List<Point> list = new ArrayList<>();
+    for (int i = 0; i < N; ++i) {
+        int x = sc.nextInt();
+        int y = sc.nextInt();
+        list.add(new Point(x, y));
+    }
+    long ct1 = 0;
+    long ct2 = 0;
+    long ct3 = 0;
+    for (int i = 0; i < N; ++i) {
+        int ct = 0;
+        double[] atan2 = new double[N + N - 2];
+        Point p1 = list.get(i);
+        for (int j = 0; j < N; ++j) {
+            if (i != j) {
+                Point p2 = list.get(j);
+                atan2[ct] = Math.atan2(p2.y - p1.y, p2.x - p1.x);
+                if (atan2[ct] < 0) {
+                    atan2[ct] += Math.PI * 2;
+                }
+                ++ct;
+            }
+        }
+        for (int j = 0; j < N - 1; ++j) {
+            atan2[ct++] = atan2[j] + Math.PI * 2;
+        }
+        Arrays.sort(atan2);
+        for (int j = 0; j < N - 1; ++j) {
+            int tmp1 = 0;
+            for (int k = 0; k < ct && atan2[tmp1] < atan2[j] + Math.PI / 2 - 1e-9; ++k) {
+                ++tmp1;
+            }
+            int tmp2 = tmp1;
+            for (int k = tmp1; k < ct && atan2[tmp2] < atan2[j] + Math.PI / 2 + 1e-9; ++k) {
+                ++tmp2;
+            }
+            int tmp3 = tmp2;
+            for (int k = tmp2; k < ct && atan2[tmp3] < atan2[j] + Math.PI - 1e-9; ++k) {
+                ++tmp3;
+            }
+            ct2 += tmp2 - tmp1;
+            ct3 += tmp3 - tmp2;
+        }
+    }
+    ct1 = (long) N * (N - 1) * (N - 2) / 6 - ct2 - ct3;
+    _out.printf("%d %d %d%n", ct1, ct2, ct3);
+}

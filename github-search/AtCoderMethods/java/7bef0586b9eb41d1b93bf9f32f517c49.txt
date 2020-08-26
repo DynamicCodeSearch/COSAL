@@ -1,0 +1,30 @@
+void run() {
+    String str = sc.next();
+    for (int i = 0; i < str.length() - 2; ++i) {
+        int[] cnt = new int[256];
+        for (int j = 0; j < 3; ++j) {
+            cnt[str.charAt(i + j)]++;
+        }
+        for (int j = 0; j < 256; ++j) {
+            if (cnt[j] >= 2) {
+                ++i;
+                System.out.println(i + " " + (i + 2));
+                return;
+            }
+        }
+    }
+    for (int i = 0; i < str.length() - 1; ++i) {
+        int[] cnt = new int[256];
+        for (int j = 0; j < 2; ++j) {
+            cnt[str.charAt(i + j)]++;
+        }
+        for (int j = 0; j < 256; ++j) {
+            if (cnt[j] == 2) {
+                ++i;
+                System.out.println(i + " " + (i + 1));
+                return;
+            }
+        }
+    }
+    System.out.println(-1 + " " + -1);
+}

@@ -1,0 +1,32 @@
+void solve() {
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    V[] vs = new V[N];
+    for (int i = 0; i < N; i++) vs[i] = new V(i);
+    for (int i = 0; i < M; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        int c = sc.nextInt();
+        vs[a].add(vs[b], c);
+    }
+    long INF = 1L << 58;
+    for (V v : vs) v.score = -INF;
+    vs[0].score = 0;
+    for (int step = 0; step < 3 * N + 10; step++) {
+        for (V v : vs) {
+            for (E e : v.es) {
+                if (e.to.score < (v.score + e.w)) {
+                    e.to.score = v.score + e.w;
+                    if (step >= N) {
+                        e.to.score = INF;
+                    }
+                }
+            }
+        }
+    }
+    long ans = vs[N - 1].score;
+    if (ans >= INF / 2)
+        out.println("inf");
+    else
+        out.println(ans);
+}

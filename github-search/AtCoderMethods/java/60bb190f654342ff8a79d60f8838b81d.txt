@@ -1,0 +1,46 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    n = sc.nextInt();
+    m = sc.nextInt();
+    Edge[] v = new Edge[m];
+    for (int i = 0; i < m; i++) {
+        v[i] = new Edge();
+        v[i].from = sc.nextInt();
+        v[i].to = sc.nextInt();
+        v[i].cost = -sc.nextInt();
+    }
+    
+    dist = new long[n + 1];
+    Arrays.fill(dist, INF);
+    
+    dist[1] = 0;
+    
+    boolean flag = true;
+    long ans = 0;
+    int cnt = 0;
+    while (flag) {
+        flag = false;
+        for (int i = 0; i < m; i++) {
+            if (dist[v[i].from] + v[i].cost < dist[v[i].to]) {
+                dist[v[i].to] = dist[v[i].from] + v[i].cost;
+                flag = true;
+            }
+        }
+        if (cnt == n) {
+            ans = dist[n];
+        }
+        if (cnt == 2 * n) {
+            if (ans > dist[n]) {
+                System.out.println("inf");
+                return;
+            } else {
+                System.out.println(-dist[n]);
+                return;
+            }
+        }
+        cnt++;
+        if (!flag)
+            break;
+    }
+    System.out.println(-dist[n]);
+}

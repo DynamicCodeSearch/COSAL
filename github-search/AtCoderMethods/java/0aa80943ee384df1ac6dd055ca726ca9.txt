@@ -1,0 +1,8 @@
+public static void main(String[] __) {
+    int n = s.nextInt();
+    Point[] ps = new Point[n];
+    for (int i = 0; i < n; i++) ps[i] = new Point(s.nextInt(), s.nextInt());
+    double res = -114514;
+    for (int i = 0; i < n; i++) for (int j = i + 1; j < n; j++) res = Math.max(res, ps[i].distance(ps[j]));
+    System.out.printf("%.5f\n", res);
+}

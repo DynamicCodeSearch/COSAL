@@ -1,0 +1,22 @@
+void solve() {
+    char[] s = sc.next().toCharArray();
+    int n = s.length;
+    if (n == 2) {
+        if (s[0] == s[1]) {
+            out.println("1 2");
+        } else {
+            out.println("-1 -1");
+        }
+        return;
+    }
+    for (int i = 0; i + 3 < n; i++) {
+        char c0 = s[i];
+        char c1 = s[i + 1];
+        char c2 = s[i + 2];
+        if (c0 == c1 || c1 == c2 || c0 == c2) {
+            out.println((i + 1) + " " + (i + 3));
+            return;
+        }
+    }
+    out.println("-1 -1");
+}

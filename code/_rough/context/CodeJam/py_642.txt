@@ -1,0 +1,505 @@
+### Py Tokens: sort, ans, len, otherbetinthisbucket, otherbet, remove, enumerate, totalbet, true, bigger, remainx, reverse, myadditionbet, addition, myremovebet, sum, bucket, remain, removebucket, start, range, mybet, total, profit, removebet, bet 
+
+### Py functions
+
+def func_dcaba01aa1c8471d926a28b6edf0ec93(B, X, ans):
+    ans = 0
+    for i in range(1, 1002):
+        bigger = [j for j in X if j > i]
+        remain = 37 - len(bigger)
+        if remain == 0:
+            continue
+        other_bet = sum(j for j in X if j <= i)
+        total_bet = remain * i
+        my_bet = total_bet - other_bet
+        if my_bet > B:
+            break
+        profit = 1.0 * my_bet * (36.0 / remain) - my_bet
+        if profit > ans:
+            ans = profit
+        remain_X = [j for j in X if j <= i]
+        remain_X.sort(reverse=True)
+        my_remove_bet = 0
+        print i, remain_X
+        for remove_bucket, other_bet_in_this_bucket in enumerate(remain_X,
+            start=1):
+            my_remove_bet += i - other_bet_in_this_bucket
+            if remove_bucket == remain:
+                break
+            my_addition_bet = remove_bucket
+            if my_bet + my_addition_bet > B:
+                continue
+            profit = 1.0 * (my_bet - my_remove_bet) * 36.0 / (remain -
+                remove_bucket) - my_bet - my_addition_bet
+            if profit > ans:
+                print 'remove bucket ', remove_bucket, ' :', other_bet_in_this_bucket
+                print 'my bet', my_bet
+                print 'my remove_bet ', my_remove_bet
+                print 'profit', profit
+                ans = profit
+    return my_bet
+
+def func_9c5acc688b5840c0b0697bc30ece53a8(B, X, ans):
+    ans = 0
+    for i in range(1, 1002):
+        bigger = [j for j in X if j > i]
+        remain = 37 - len(bigger)
+        if remain == 0:
+            continue
+        other_bet = sum(j for j in X if j <= i)
+        total_bet = remain * i
+        my_bet = total_bet - other_bet
+        if my_bet > B:
+            break
+        profit = 1.0 * my_bet * (36.0 / remain) - my_bet
+        if profit > ans:
+            ans = profit
+        remain_X = [j for j in X if j <= i]
+        remain_X.sort(reverse=True)
+        my_remove_bet = 0
+        print i, remain_X
+        for remove_bucket, other_bet_in_this_bucket in enumerate(remain_X,
+            start=1):
+            my_remove_bet += i - other_bet_in_this_bucket
+            if remove_bucket == remain:
+                break
+            my_addition_bet = remove_bucket
+            if my_bet + my_addition_bet > B:
+                continue
+            profit = 1.0 * (my_bet - my_remove_bet) * 36.0 / (remain -
+                remove_bucket) - my_bet - my_addition_bet
+            if profit > ans:
+                print 'remove bucket ', remove_bucket, ' :', other_bet_in_this_bucket
+                print 'my bet', my_bet
+                print 'my remove_bet ', my_remove_bet
+                print 'profit', profit
+                ans = profit
+    return bigger
+
+def func_a8780250d2364bbfb20c898c43a50322(B, X, ans):
+    ans = 0
+    for i in range(1, 1002):
+        bigger = [j for j in X if j > i]
+        remain = 37 - len(bigger)
+        if remain == 0:
+            continue
+        other_bet = sum(j for j in X if j <= i)
+        total_bet = remain * i
+        my_bet = total_bet - other_bet
+        if my_bet > B:
+            break
+        profit = 1.0 * my_bet * (36.0 / remain) - my_bet
+        if profit > ans:
+            ans = profit
+        remain_X = [j for j in X if j <= i]
+        remain_X.sort(reverse=True)
+        my_remove_bet = 0
+        print i, remain_X
+        for remove_bucket, other_bet_in_this_bucket in enumerate(remain_X,
+            start=1):
+            my_remove_bet += i - other_bet_in_this_bucket
+            if remove_bucket == remain:
+                break
+            my_addition_bet = remove_bucket
+            if my_bet + my_addition_bet > B:
+                continue
+            profit = 1.0 * (my_bet - my_remove_bet) * 36.0 / (remain -
+                remove_bucket) - my_bet - my_addition_bet
+            if profit > ans:
+                print 'remove bucket ', remove_bucket, ' :', other_bet_in_this_bucket
+                print 'my bet', my_bet
+                print 'my remove_bet ', my_remove_bet
+                print 'profit', profit
+                ans = profit
+    return total_bet
+
+def func_6d5d1f5d98a449869c6d5ee86179a350(B, X, ans):
+    ans = 0
+    for i in range(1, 1002):
+        bigger = [j for j in X if j > i]
+        remain = 37 - len(bigger)
+        if remain == 0:
+            continue
+        other_bet = sum(j for j in X if j <= i)
+        total_bet = remain * i
+        my_bet = total_bet - other_bet
+        if my_bet > B:
+            break
+        profit = 1.0 * my_bet * (36.0 / remain) - my_bet
+        if profit > ans:
+            ans = profit
+        remain_X = [j for j in X if j <= i]
+        remain_X.sort(reverse=True)
+        my_remove_bet = 0
+        print i, remain_X
+        for remove_bucket, other_bet_in_this_bucket in enumerate(remain_X,
+            start=1):
+            my_remove_bet += i - other_bet_in_this_bucket
+            if remove_bucket == remain:
+                break
+            my_addition_bet = remove_bucket
+            if my_bet + my_addition_bet > B:
+                continue
+            profit = 1.0 * (my_bet - my_remove_bet) * 36.0 / (remain -
+                remove_bucket) - my_bet - my_addition_bet
+            if profit > ans:
+                print 'remove bucket ', remove_bucket, ' :', other_bet_in_this_bucket
+                print 'my bet', my_bet
+                print 'my remove_bet ', my_remove_bet
+                print 'profit', profit
+                ans = profit
+    return ans
+
+def func_db7c2360c18b482e8d91e85534fbfa4a(B, X, ans):
+    ans = 0
+    for i in range(1, 1002):
+        bigger = [j for j in X if j > i]
+        remain = 37 - len(bigger)
+        if remain == 0:
+            continue
+        other_bet = sum(j for j in X if j <= i)
+        total_bet = remain * i
+        my_bet = total_bet - other_bet
+        if my_bet > B:
+            break
+        profit = 1.0 * my_bet * (36.0 / remain) - my_bet
+        if profit > ans:
+            ans = profit
+        remain_X = [j for j in X if j <= i]
+        remain_X.sort(reverse=True)
+        my_remove_bet = 0
+        print i, remain_X
+        for remove_bucket, other_bet_in_this_bucket in enumerate(remain_X,
+            start=1):
+            my_remove_bet += i - other_bet_in_this_bucket
+            if remove_bucket == remain:
+                break
+            my_addition_bet = remove_bucket
+            if my_bet + my_addition_bet > B:
+                continue
+            profit = 1.0 * (my_bet - my_remove_bet) * 36.0 / (remain -
+                remove_bucket) - my_bet - my_addition_bet
+            if profit > ans:
+                print 'remove bucket ', remove_bucket, ' :', other_bet_in_this_bucket
+                print 'my bet', my_bet
+                print 'my remove_bet ', my_remove_bet
+                print 'profit', profit
+                ans = profit
+    return remain_X
+
+*********************************
+
+#### Score: 12.28823
+
+
+#### Java Tokens: result, money, size, startresult, get, start, profit, remove 
+
+public static double func_ebfdf9a5e9a0409984fcf9b1da0fdda0(long money, double startResult, ArrayList<Long> profit) { 
+ // remaining
+double result = startResult + money;
+for (int i = 0; i < profit.size(); i++) {
+    result += 36.0 * (profit.get(i)) * (1.0 / profit.size());
+}
+profit.remove(0);
+return result;
+}
+
+
+*********************************
+
+#### Score: 11.69783
+
+
+#### Java Tokens: result, money, size, startresult, get, start, profit, remove, money-- 
+
+public static double func_0e522de0b7504912b9baff5ca18bf89a(long money, double startResult, ArrayList<Long> profit) { 
+ // remaining
+double result = startResult + money;
+for (int i = 0; i < profit.size(); i++) {
+    result += 36.0 * (profit.get(i)) * (1.0 / profit.size());
+}
+profit.remove(0);
+money--;
+return result;
+}
+
+
+*********************************
+
+#### Score: 11.45801
+
+
+#### Java Tokens: len, remain 
+
+public static double func_74867c6a4e8e4664a162f2eb7c17373d(int x0, double remain, double x, double[] len) { 
+ x0 = (int) x;
+int x1 = x0 + 1;
+double k = 1.0 * (len[x1] - len[x0]);
+double y = k * (x - x0) + len[x0];
+while (remain > (y + len[x1]) * (x1 - x) / 2) {
+    remain -= (y + len[x1]) * (x1 - x) / 2;
+    x = x1;
+    x0 = (int) x;
+    x1 = x0 + 1;
+    k = 1.0 * (len[x1] - len[x0]);
+    y = k * (x - x0) + len[x0];
+}
+return x;
+}
+
+
+public static double func_18715806bb554c2eb4a17e5faaaf0bff(int x0, int x1, double remain, double x, double[] len) { 
+ double k = 1.0 * (len[x1] - len[x0]);
+double y = k * (x - x0) + len[x0];
+while (remain > (y + len[x1]) * (x1 - x) / 2) {
+    remain -= (y + len[x1]) * (x1 - x) / 2;
+    x = x1;
+    x0 = (int) x;
+    x1 = x0 + 1;
+    k = 1.0 * (len[x1] - len[x0]);
+    y = k * (x - x0) + len[x0];
+}
+return x;
+}
+
+
+public static double func_1ccda13042e8435393c51ca90ab3ac65(int x0, double remain, double x, double[] len) { 
+ x0 = (int) x;
+int x1 = x0 + 1;
+double k = 1.0 * (len[x1] - len[x0]);
+double y = k * (x - x0) + len[x0];
+while (remain > (y + len[x1]) * (x1 - x) / 2) {
+    remain -= (y + len[x1]) * (x1 - x) / 2;
+    x = x1;
+    x0 = (int) x;
+    x1 = x0 + 1;
+    k = 1.0 * (len[x1] - len[x0]);
+    y = k * (x - x0) + len[x0];
+}
+return y;
+}
+
+
+*********************************
+
+#### Score: 10.92118
+
+
+#### Java Tokens: bestresult, max, startresult, start, best, sort, remove, money--, result, size, money, collections, get, math, profit 
+
+public static double func_e7ec3c235d2b46fd9a35141af4e84f15(long money, double startResult, ArrayList<Long> profit) { 
+ // out.println("get profit " + l + " " + money);
+Collections.sort(profit);
+double bestResult = 0;
+while (profit.size() > 0 && money >= 0) {
+    // remaining
+    double result = startResult + money;
+    for (int i = 0; i < profit.size(); i++) {
+        result += 36.0 * (profit.get(i)) * (1.0 / profit.size());
+    }
+    profit.remove(0);
+    money--;
+    bestResult = Math.max(bestResult, result);
+}
+return bestResult;
+}
+
+
+*********************************
+
+#### Score: 10.67496
+
+
+#### Java Tokens: area, len, remain 
+
+public static double func_1cc02f7351a940d7beee273556182bf6(int x0, double area, double x, double[] len) { 
+ double remain = area;
+x0 = (int) x;
+int x1 = x0 + 1;
+double k = 1.0 * (len[x1] - len[x0]);
+return remain;
+}
+
+
+public static int func_2d2e5b31507e4e37bebac719fc1af207(int x0, double area, double x, double[] len) { 
+ double remain = area;
+x0 = (int) x;
+int x1 = x0 + 1;
+double k = 1.0 * (len[x1] - len[x0]);
+double y = k * (x - x0) + len[x0];
+return x0;
+}
+
+
+public static int func_49ca744cc2ec4eb2a0c6841d185043f5(int x0, double area, double x, double[] len) { 
+ double remain = area;
+x0 = (int) x;
+int x1 = x0 + 1;
+double k = 1.0 * (len[x1] - len[x0]);
+return x0;
+}
+
+
+*********************************
+
+#### Score: 10.61551
+
+
+#### Java Tokens: result, size, get, profit, remove 
+
+public static double func_e06d228fd6fd481bbd83086243020dff(double result, ArrayList<Long> profit) { 
+ for (int i = 0; i < profit.size(); i++) {
+    result += 36.0 * (profit.get(i)) * (1.0 / profit.size());
+}
+profit.remove(0);
+return result;
+}
+
+
+*********************************
+
+#### Score: 10.53390
+
+
+#### Java Tokens: add, bestresult, max, startresult, start, best, sort, remove, money--, result, money, size, collections, get, math, profit 
+
+public static long func_9c3e3d6d30544c8a957540405ee7cbfc(long l, long money, long[] a, double startResult, ArrayList<Long> profit) { 
+ for (long x : a) {
+    if (x < l) {
+        money -= (l - x);
+        profit.add(l - x);
+    } else if (x == l) {
+        profit.add(0L);
+    }
+}
+// out.println("get profit " + l + " " + money);
+Collections.sort(profit);
+double bestResult = 0;
+while (profit.size() > 0 && money >= 0) {
+    // remaining
+    double result = startResult + money;
+    for (int i = 0; i < profit.size(); i++) {
+        result += 36.0 * (profit.get(i)) * (1.0 / profit.size());
+    }
+    profit.remove(0);
+    money--;
+    bestResult = Math.max(bestResult, result);
+}
+return money;
+}
+
+
+public static double func_5da68e943d804a1c85429c29bdb5e585(long l, long money, long[] a, double startResult, ArrayList<Long> profit) { 
+ for (long x : a) {
+    if (x < l) {
+        money -= (l - x);
+        profit.add(l - x);
+    } else if (x == l) {
+        profit.add(0L);
+    }
+}
+// out.println("get profit " + l + " " + money);
+Collections.sort(profit);
+double bestResult = 0;
+while (profit.size() > 0 && money >= 0) {
+    // remaining
+    double result = startResult + money;
+    for (int i = 0; i < profit.size(); i++) {
+        result += 36.0 * (profit.get(i)) * (1.0 / profit.size());
+    }
+    profit.remove(0);
+    money--;
+    bestResult = Math.max(bestResult, result);
+}
+return bestResult;
+}
+
+
+*********************************
+
+#### Score: 9.82665
+
+
+#### Java Tokens: bestresult, max, startresult, start, best, remove, money--, result, money, size, get, math, profit 
+
+public static double func_3416cddd3f024f12931171afe75f8f3e(long money, double startResult, double bestResult, ArrayList<Long> profit) { 
+ // remaining
+double result = startResult + money;
+for (int i = 0; i < profit.size(); i++) {
+    result += 36.0 * (profit.get(i)) * (1.0 / profit.size());
+}
+profit.remove(0);
+money--;
+bestResult = Math.max(bestResult, result);
+return bestResult;
+}
+
+
+public static double func_1f76bedb69c444e3bddf6a112e664678(long money, double startResult, double bestResult, ArrayList<Long> profit) { 
+ // remaining
+double result = startResult + money;
+for (int i = 0; i < profit.size(); i++) {
+    result += 36.0 * (profit.get(i)) * (1.0 / profit.size());
+}
+profit.remove(0);
+money--;
+bestResult = Math.max(bestResult, result);
+return result;
+}
+
+
+*********************************
+
+#### Score: 9.82665
+
+
+#### Java Tokens: bestresult, max, startresult, start, best, remove, money--, result, size, money, get, math, profit 
+
+public static double func_f90d3f80403549adb840dcbdf52cab2c(long money, double startResult, ArrayList<Long> profit) { 
+ double bestResult = 0;
+while (profit.size() > 0 && money >= 0) {
+    // remaining
+    double result = startResult + money;
+    for (int i = 0; i < profit.size(); i++) {
+        result += 36.0 * (profit.get(i)) * (1.0 / profit.size());
+    }
+    profit.remove(0);
+    money--;
+    bestResult = Math.max(bestResult, result);
+}
+return bestResult;
+}
+
+
+public static double func_9a85917bba6549a09cc9386595f49646(long money, double startResult, double bestResult, ArrayList<Long> profit) { 
+ while (profit.size() > 0 && money >= 0) {
+    // remaining
+    double result = startResult + money;
+    for (int i = 0; i < profit.size(); i++) {
+        result += 36.0 * (profit.get(i)) * (1.0 / profit.size());
+    }
+    profit.remove(0);
+    money--;
+    bestResult = Math.max(bestResult, result);
+}
+return bestResult;
+
+}
+
+
+*********************************
+
+#### Score: 9.48914
+
+
+#### Java Tokens: result, size, money, get, profit, remove, money-- 
+
+public static double func_ad338e6c6933429fae04a9d043fbc370(long money, double result, ArrayList<Long> profit) { 
+ for (int i = 0; i < profit.size(); i++) {
+    result += 36.0 * (profit.get(i)) * (1.0 / profit.size());
+}
+profit.remove(0);
+money--;
+return result;
+}
+

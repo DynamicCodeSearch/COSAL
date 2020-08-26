@@ -1,0 +1,17 @@
+private void solve(Scanner sc) {
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    if (Math.abs(N - M) > 1) {
+        _out.println(0);
+        return;
+    }
+    BigInteger res;
+    if (N > M) {
+        res = P(N, N).multiply(P(N - 1, M)).remainder(MOD_BI);
+    } else if (N < M) {
+        res = P(M, M).multiply(P(M - 1, N)).remainder(MOD_BI);
+    } else {
+        res = P(N, N).multiply(P(N, M)).multiply(BigInteger.valueOf(2)).remainder(MOD_BI);
+    }
+    _out.println(res);
+}

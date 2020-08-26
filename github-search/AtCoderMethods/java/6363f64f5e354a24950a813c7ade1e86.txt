@@ -1,0 +1,25 @@
+public void solveC() {
+    int N = in.nextInt();
+    int[] a = new int[N];
+    for (int i = 0; i < N; i++) a[i] = in.nextInt();
+    int b = 1;
+    long res = 0;
+    for (int i = 1; i < N; i++) {
+        if (a[i - 1] < a[i]) {
+            b++;
+        } else {
+            if (b >= 1) {
+                for (int j = 1; j <= b; j++) {
+                    res += j;
+                }
+            }
+            b = 1;
+        }
+    }
+    if (b >= 1) {
+        for (int j = 1; j <= b; j++) {
+            res += j;
+        }
+    }
+    System.out.println(res);
+}

@@ -1,0 +1,24 @@
+public void solve(int testNumber, FastScanner in, PrintWriter out) {
+    int N = in.nextInt();
+    int K = in.nextInt();
+    Long[] sum = new Long[N + 1];
+    sum[0] = 0L;
+    for (int i = 1; i <= N; i++) {
+        sum[i] = in.nextLong();
+        sum[i] -= K;
+        sum[i] += sum[i - 1];
+    }
+    HashSet<Long> hash = new HashSet<>(Arrays.asList(sum));
+    List<Long> mean = new ArrayList<>();
+    mean.addAll(hash);
+    Collections.sort(mean);
+    BIT = new int[MAXN];
+    long ans = 0;
+    for (int i = 0; i <= N; i++) {
+        int pos = Collections.binarySearch(mean, sum[i]);
+        ans += get(pos + 1);
+        
+        add(pos + 1, 1);
+    }
+    out.println(ans);
+}

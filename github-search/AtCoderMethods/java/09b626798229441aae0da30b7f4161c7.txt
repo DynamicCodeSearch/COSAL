@@ -1,0 +1,27 @@
+private void solve(Scanner in, PrintWriter out) {
+    int N = in.nextInt();
+    int[] primes = getPrimes(N + 1);
+    TreeMap<Integer, Integer> count = new TreeMap<>();
+    for (int n = 1; n <= N; n++) {
+        int x = n;
+        for (int prime : primes) {
+            while (x % prime == 0) {
+                Integer c = count.get(prime);
+                if (c == null)
+                    count.put(prime, 1);
+                else
+                    count.put(prime, c + 1);
+                x /= prime;
+            }
+            if (x == 1)
+                break;
+        }
+    }
+    int MOD = (int) (1e9 + 7);
+    long ans = 1;
+    for (Map.Entry<Integer, Integer> entry : count.entrySet()) {
+        ans *= (entry.getValue() + 1);
+        ans %= MOD;
+    }
+    out.println(ans);
+}

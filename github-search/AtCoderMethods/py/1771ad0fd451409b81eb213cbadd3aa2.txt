@@ -1,0 +1,12 @@
+def erode(height, width, pict):
+    result = copy.deepcopy(pict)
+    for r0, c0 in itertools.product(range(height), range(width)):
+        for dr, dc in DELTAS:
+            r = r0 + dr
+            c = c0 + dc
+            if out_of_pict(height, width, r, c):
+                continue
+            elif pict[r][c] == BLACK:
+                result[r0][c0] = BLACK
+                break
+    return result

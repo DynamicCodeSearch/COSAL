@@ -1,0 +1,13 @@
+def main():
+    N, M = map(int, input().split())
+    m = [None, None] * M
+    i = 0
+    while i < M * 2:
+        a, b = map(int, input().split())
+        m[i] = a
+        m[i+1] = b
+        i += 2
+
+    for s in range(1, N + 1):
+        ans = m.count(s)
+        print(ans)

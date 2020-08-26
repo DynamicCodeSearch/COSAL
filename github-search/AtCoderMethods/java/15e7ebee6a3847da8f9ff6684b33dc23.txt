@@ -1,0 +1,17 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    long x = in.readLong(), a = in.readLong(), b = in.readLong();
+    if (b - a >= x + 1) {
+        out.printLine("dangerous");
+        return;
+    }
+    if (a - b <= x) {
+        if (a - b < 0) {
+            out.printLine("safe");
+            return;
+        }
+        out.printLine("delicious");
+        return;
+    }
+    out.printLine("safe");
+
+}

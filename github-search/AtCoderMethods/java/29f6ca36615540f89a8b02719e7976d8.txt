@@ -1,0 +1,51 @@
+public void solve() {
+    int n = in.nextInt();
+    int[] x = in.nextIntArray(n);
+    int L = in.nextInt(), Q = in.nextInt();
+    long[] sum = new long[n];
+    for (int i = 0; i < n - 1; i++) {
+        sum[i + 1] = sum[i + 1] + x[i + 1] - x[i];
+    }
+    int[][] R = new int[n][TWO_MAX];
+    for (int from = 0; from < n; from++) {
+        int lo = from, hi = n;
+        while (hi - lo > 1) {
+            int mid = (lo + hi) / 2;
+            long d = x[mid] - x[from];
+            
+            if (d <= L)
+                lo = mid;
+            else
+                hi = mid;
+        }
+        R[from][0] = lo;
+    
+    }
+    for (int two = 1; two < TWO_MAX; two++) {
+        for (int i = 0; i < n; i++) {
+            int neighbor = R[i][two - 1];
+            if (neighbor >= n - 1)
+                R[i][two] = n;
+            else
+                R[i][two] = R[neighbor][two - 1];
+        }
+    }
+    for (int i = 0; i < Q; i++) {
+        int a = in.nextInt() - 1, b = in.nextInt() - 1;
+        if (a > b) {
+            int tmp = a;
+            a = b;
+            b = tmp;
+        }
+        int cur = a;
+        int res = 0;
+        while (cur < b) {
+            int two = 0;
+            while (R[cur][two + 1] <= b) two++;
+            cur = R[cur][two];
+            res += (1 << two);
+        }
+        out.println(res);
+    }
+    out.close();
+}

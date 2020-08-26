@@ -1,0 +1,23 @@
+long doit(long R, long B, long x, long y) {
+    long lo = 0, hi = Math.min(R / x, B);
+    long res = 0;
+    res = Math.max(res, Math.min(R / x, B));
+    res = Math.max(res, Math.min(B / y, R));
+    while (hi - lo > 2) {
+        long mid1 = lo + (hi - lo) / 3;
+        long mid2 = lo + 2 * ((hi - lo) / 3);
+        long a1 = calc(R, B, x, y, mid1);
+        long a2 = calc(R, B, x, y, mid2);
+        if (a1 < a2) {
+            lo = mid1;
+        } else {
+            hi = mid2;
+        }
+    }
+    for (long a = Math.max(0, lo - 1000000); a <= lo + 1000000; a++) {
+        if (a <= R / x && a <= B) {
+            res = Math.max(res, calc(R, B, x, y, a));
+        }
+    }
+    return res;
+}

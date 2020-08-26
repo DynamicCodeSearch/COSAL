@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    double len_max = 0;
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] x = new int[N];
+    int[] y = new int[N];
+    for (int i = 0; i < N; i++) {
+        x[i] = sc.nextInt();
+        y[i] = sc.nextInt();
+    }
+    for (int i = 0; i < N - 1; i++) {
+        for (int j = i + 1; j < N; j++) {
+            len_max = Math.max(len_max, Math.sqrt((x[i] - x[j]) * (x[i] - x[j]) + (y[i] - y[j]) * (y[i] - y[j])));
+        }
+    }
+    System.out.println(len_max);
+}

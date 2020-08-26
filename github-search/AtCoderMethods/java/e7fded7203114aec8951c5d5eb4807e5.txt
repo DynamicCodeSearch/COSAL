@@ -1,0 +1,10 @@
+public int rsq(int ind) {
+    assert ind > 0;
+    int sum = 0;
+    while (ind > 0) {
+        sum += array[ind];
+        
+        ind -= ind & (-ind);
+    }
+    return sum;
+}

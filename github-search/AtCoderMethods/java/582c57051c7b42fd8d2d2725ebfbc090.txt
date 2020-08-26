@@ -1,0 +1,90 @@
+void solve(int testNumber, InputReader in, PrintWriter out) {
+    n = in.nextInt();
+    c = new int[n][4];
+    for (int i = 0; i < n; ++i) for (int j = 0; j < 4; ++j) c[i][j] = in.nextInt();
+    int ptr = 0;
+    Map<Long, Integer> table = new TreeMap<Long, Integer>();
+    for (int i = 0; i < n; ++i) {
+        long mask = pack(c[i][3], c[i][2], c[i][1], c[i][0]);
+        for (int j = 0; j < 4; ++j) {
+            if (!table.containsKey(mask))
+                table.put(mask, ptr++);
+            mask = rotater(mask);
+        }
+    }
+    int[] count = new int[ptr];
+    for (int i = 0; i < n; ++i) {
+        long mask = pack(c[i][3], c[i][2], c[i][1], c[i][0]);
+        for (int j = 0; j < 4; ++j) {
+            ++count[table.get(mask)];
+            mask = rotater(mask);
+        }
+    }
+    long acc = 0, ans = 0;
+    for (int i = 0; i < n; ++i) {
+        long lmask = pack(c[i][3], c[i][2], c[i][1], c[i][0]);
+        long bk1 = lmask;
+        for (int j = 0; j < 4; ++j) {
+            int idx = table.get(bk1);
+            --count[idx];
+            bk1 = rotater(bk1);
+        }
+        for (int k = 0; k < n; ++k) if (k != i) {
+            long rmask = pack(c[k][3], c[k][2], c[k][1], c[k][0]);
+            long bk2 = rmask;
+            for (int p = 0; p < 4; ++p) {
+                int idx = table.get(bk2);
+                --count[idx];
+                bk2 = rotater(bk2);
+            }
+            for (int p = 0; p < 4; ++p) {
+                long prod = 1;
+                long rrmask = rmask;
+                long llmask = lmask;
+                boolean okay = true;
+                Deque<Integer> queue = new ArrayDeque<Integer>();
+                for (int q = 0; q < 4; ++q) {
+                    long mask = pack(extract(llmask, 16, 16), extract(rrmask, 0, 16), extract(rrmask, 16, 16), extract(llmask, 0, 16));
+                    if (table.containsKey(mask)) {
+                        prod *= count[table.get(mask)];
+                        long bk3 = mask;
+                        for (int r = 0; r < 4; ++r) {
+                            int idx = table.get(bk3);
+                            --count[idx];
+                            queue.add(idx);
+                            bk3 = rotater(bk3);
+                        }
+                    } else
+                        okay = false;
+                    llmask = rotater(llmask);
+                    rrmask = rotatel(rrmask);
+                }
+                if (okay) {
+                    acc += prod;
+                    if (acc > Long.MAX_VALUE / 12 && acc % 6 == 0) {
+                        ans += acc / 6;
+                        acc = 0;
+                    }
+                }
+                while (!queue.isEmpty()) {
+                    int idx = queue.poll();
+                    ++count[idx];
+                }
+                rmask = rotater(rmask);
+            }
+            for (int p = 0; p < 4; ++p) {
+                int idx = table.get(bk2);
+                ++count[idx];
+                bk2 = rotater(bk2);
+            }
+        }
+        lmask = rotater(lmask);
+        for (int j = 0; j < 4; ++j) {
+            int idx = table.get(bk1);
+            ++count[idx];
+            bk1 = rotater(bk1);
+        }
+    }
+    ans += acc / 6;
+    out.println(ans);
+}

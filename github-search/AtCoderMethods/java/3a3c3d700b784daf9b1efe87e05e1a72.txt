@@ -1,0 +1,25 @@
+@SuppressWarnings("unchecked")
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    PrintWriter out = new PrintWriter(System.out);
+    while (sc.hasNext()) {
+        v = sc.nextInt();
+        e = sc.nextInt();
+        int s = sc.nextInt();
+        --s;
+        g = new LinkedList[v];
+        for (int i = 0; i < v; i++) g[i] = new LinkedList<Integer>();
+        for (int i = 0; i < e; i++) {
+            int u = sc.nextInt();
+            int v = sc.nextInt();
+            --u;
+            --v;
+            g[u].add(v);
+            g[v].add(u);
+        }
+        int[] res = dijkstra(s);
+        for (int i = 0; i < v; i++) if (res[i] == i)
+            out.println(i + 1);
+        out.flush();
+    }
+}

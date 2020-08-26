@@ -1,0 +1,43 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    PrintWriter out = new PrintWriter(System.out);
+    String s = sc.next();
+    boolean flag = false;
+    int len = s.length();
+    while (len > 0) {
+        if (len > 7) {
+            if (s.substring(len - 7, len).equals("dreamer")) {
+                len -= 7;
+            } else if (s.substring(len - 6, len).equals("eraser")) {
+                len -= 6;
+            } else {
+                String ss = s.substring(len - 5, len);
+                if (ss.equals("erase") || ss.equals("dream")) {
+                    len -= 5;
+                } else {
+                    break;
+                }
+            }
+        } else if (len == 7) {
+            if (s.substring(0, len).equals("dreamer")) {
+                flag = true;
+            }
+            break;
+        } else if (len == 6) {
+            if (s.substring(0, len).equals("eraser")) {
+                flag = true;
+            }
+            break;
+        } else if (len == 5) {
+            String ss = s.substring(0, len);
+            if (ss.equals("dream") || ss.equals("erase")) {
+                flag = true;
+            }
+            break;
+        } else if (len < 5) {
+            break;
+        }
+    }
+    out.println(flag ? "YES" : "NO");
+    out.flush();
+}

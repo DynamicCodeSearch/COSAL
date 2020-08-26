@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    Printer pr = new Printer(System.out);
+    double p = sc.nextDouble();
+    double l = 0;
+    double r = 1.0e18;
+    for (int i = 0; i < 100; i++) {
+        double mid = l + (r - l) / 2;
+        if (fd(mid, p) > 0) {
+            r = mid;
+        } else {
+            l = mid;
+        }
+    }
+    pr.printf("%.9f\n", f2(l, p));
+    pr.close();
+    sc.close();
+}

@@ -1,0 +1,24 @@
+private static boolean contains(int x, int[] D) {
+    boolean ans = false;
+    while (x / 10 > 0) {
+        int r = x % 10;
+        x = x / 10;
+        for (int i = 0; i < D.length; i++) {
+            if (r == D[i]) {
+                ans = true;
+                break;
+            }
+        }
+        if (ans)
+            break;
+    }
+    if (ans == false) {
+        for (int i = 0; i < D.length; i++) {
+            if (x == D[i]) {
+                ans = true;
+                break;
+            }
+        }
+    }
+    return ans;
+}

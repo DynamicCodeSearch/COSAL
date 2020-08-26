@@ -1,0 +1,15 @@
+def calc(x, y, z):
+	if dp[x][z] >= 0:
+		return dp[x][z]
+ a = 1
+ b = 1
+ for i in vv[x]:
+		if i == y:
+			continue
+  c = calc(i, x, 0)
+  d = calc(i, x, 1)
+  a = (a * c) % MOD
+  b = (b * (c + d)) % MOD
+ dp[x][0] = b
+ dp[x][1] = a
+ return dp[x][z]

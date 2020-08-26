@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int N = scan.nextInt();
+    int k = N - 1;
+    int j;
+    String[] str = new String[N];
+    char[][] newMatrix = new char[N][N];
+    for (int i = 0; i < N; i++) {
+        str[i] = scan.next();
+    }
+    for (int i = 0; i < N; i++) {
+        for (j = 0, k = N - 1; j < N; j++, k--) {
+            newMatrix[i][k] = str[j].charAt(i);
+        }
+    }
+    for (int i = 0; i < N; i++) {
+        for (j = 0; j < N; j++) {
+            System.out.print(newMatrix[i][j]);
+        }
+        System.out.println("");
+    }
+}

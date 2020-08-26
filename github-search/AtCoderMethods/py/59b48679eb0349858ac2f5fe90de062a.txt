@@ -1,0 +1,12 @@
+def solve(n, m):
+    d = abs(n - m)
+    if d > 1:
+        return 0
+
+    DIV = int(1e9 + 7)
+    if d == 1:
+        l = min(n, m)
+        f = factorial(l) % DIV
+        return f ** 2 * (l + 1) % DIV
+    f = factorial(n) % DIV
+    return f ** 2 * 2 % DIV

@@ -1,0 +1,32 @@
+def main():
+    N = int(input())
+    S = input()
+    ans = [None] * N
+    ans[0] = 1
+    ans[1] = 1
+    if solve(S, ans):
+        print(*["S" if x == 1 else "W" for x in ans], sep="")
+        return
+
+    ans = [None] * N
+    ans[0] = 1
+    ans[1] = -1
+    if solve(S, ans):
+        print(*["S" if x == 1 else "W" for x in ans], sep="")
+        return
+
+    ans = [None] * N
+    ans[0] = -1
+    ans[1] = 1
+    if solve(S, ans):
+        print(*["S" if x == 1 else "W" for x in ans], sep="")
+        return
+
+    ans = [None] * N
+    ans[0] = -1
+    ans[1] = -1
+    if solve(S, ans):
+        print(*["S" if x == 1 else "W" for x in ans], sep="")
+        return
+
+    print(-1)

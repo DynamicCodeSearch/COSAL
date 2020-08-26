@@ -1,0 +1,20 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] input = br.readLine().split(" ");
+    int h = Integer.parseInt(input[0]);
+    int w = Integer.parseInt(input[1]);
+    long result = 0;
+    
+    if (w == 2) {
+        result += h;
+    } else if (2 < w) {
+        result += h * (w - 1);
+    }
+    
+    if (h == 2) {
+        result += w;
+    } else if (2 < h) {
+        result += w * (h - 1);
+    }
+    System.out.println(result);
+}

@@ -1,0 +1,30 @@
+public static void main(String[] args) throws IOException {
+    
+    final String[][] a;
+    final int n;
+    String[][] anw;
+    String firestData;
+    Scanner scan = new Scanner(System.in);
+    n = Integer.parseInt(scan.nextLine().trim().split("\\s+")[0]);
+    a = new String[n][n];
+    anw = new String[n][n];
+    for (int i = 0; i < n; i++) {
+        firestData = scan.nextLine();
+        for (int j = 0; j < n; j++) {
+            a[i][j] = String.valueOf(firestData.charAt(j));
+        }
+    }
+    List<String> anw2 = new ArrayList<String>();
+    String str;
+    for (int i = n; i > 0; i--) {
+        for (int j = n; j > 0; j--) {
+            
+            str = a[j - 1][n - i];
+            anw2.add(str);
+        }
+        anw2.add("\n");
+    }
+    for (int i = 0; i < anw2.size(); i++) {
+        System.out.print(anw2.get(i));
+    }
+}

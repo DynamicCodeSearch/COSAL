@@ -1,0 +1,11 @@
+def main():
+    N, K = map(int, input().split())
+    T = []
+    for _ in range(N):
+        T.append(list(map(int, input().split())))
+    for p in product(*T):
+        if reduce(lambda a, b: a ^ b, p) == 0:
+            print("Found")
+            break
+    else:
+        print("Nothing")

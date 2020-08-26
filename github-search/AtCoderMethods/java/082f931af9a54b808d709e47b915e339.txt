@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    while (sc.hasNext()) {
+        a = sc.nextLong();
+        k = sc.nextLong();
+        if (k == 0)
+            System.out.println(Long.toString((long) (inf - a)));
+        else {
+            long ans = (long) (Math.log10((double) (k * inf + 1) / (double) (a * k + 1)) / Math.log10((double) (k + 1)) + 1);
+            for (long i = Math.max(ans - 20, 1); i <= ans + 5; i++) {
+                if (cal(i) >= inf) {
+                    System.out.println(Long.toString(i));
+                    break;
+                }
+            }
+        }
+    }
+}

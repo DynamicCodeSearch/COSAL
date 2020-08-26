@@ -1,0 +1,18 @@
+boolean bfs(int from) {
+    int qIt = 0, qSz = 0;
+    q[qSz++] = from;
+    Arrays.fill(h, -1);
+    h[from] = 0;
+    while (qIt < qSz) {
+        int v = q[qIt++];
+        for (Edge e : g[v]) {
+            if (e.flow == e.cap)
+                continue;
+            if (h[e.to] == -1) {
+                h[e.to] = h[e.fr] + 1;
+                q[qSz++] = e.to;
+            }
+        }
+    }
+    return h[n - 1] != -1;
+}

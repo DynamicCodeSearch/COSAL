@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    Scanner input = new Scanner(System.in);
+    int N = input.nextInt();
+    input.nextLine();
+    s = new boolean[N][N];
+    for (int i = 0; i < N; i++) {
+        String str = input.nextLine();
+        for (int j = 0; j < N; j++) {
+            if (str.charAt(j) == 'o') {
+                s[i][j] = true;
+            } else {
+                s[i][j] = false;
+            }
+        }
+    }
+    for (int j = 0; j < N; j++) {
+        for (int i = N - 1; i > -1; i--) {
+            if (s[i][j]) {
+                System.out.print("o");
+            } else {
+                System.out.print("x");
+            }
+        }
+        System.out.println();
+    }
+}

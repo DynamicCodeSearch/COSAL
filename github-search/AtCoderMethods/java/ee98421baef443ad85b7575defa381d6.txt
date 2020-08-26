@@ -1,0 +1,9 @@
+static int dfsCount(int v, int p, int c) {
+    int sum = 0;
+    for (int w : graph.get(v)) {
+        if (w != p && (color[w] == 0 || color[w] == c)) {
+            sum += dfsCount(w, v, c);
+        }
+    }
+    return sum + 1;
+}

@@ -1,0 +1,11 @@
+def f1():
+    l = r = 0
+    ans = 0
+    while l < N:
+        while r + 1 < N and a_list[r] < a_list[r + 1]:
+            r += 1
+        ans += (r - l + 1)
+        l += 1
+        if r < l:
+            r = l
+    return ans

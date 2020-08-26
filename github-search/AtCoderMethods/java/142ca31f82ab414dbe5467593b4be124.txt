@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    try (Scanner sc = new Scanner(System.in)) {
+        int n = sc.nextInt();
+        TreeMap<Long, Long> map = new TreeMap<Long, Long>();
+        for (long i = 0; i < n; i++) {
+            long a = sc.nextLong();
+            if (map.keySet().contains(a)) {
+                map.put(a, map.get(a) + 1);
+            } else {
+                map.put(a, 1l);
+            }
+        }
+        int count = 0;
+        long result = 1l;
+        Long[] tmp = map.keySet().toArray(new Long[map.size()]);
+        for (int i = tmp.length - 1; 0 <= i; i--) {
+            if (2 <= map.get(tmp[i])) {
+                if (count == 0 && 4 <= map.get(tmp[i])) {
+                    System.out.println(tmp[i] * tmp[i]);
+                    return;
+                }
+                result *= tmp[i];
+                count++;
+                if (count == 2) {
+                    System.out.println(result);
+                    return;
+                }
+            }
+        }
+        System.out.println(0);
+    }
+}

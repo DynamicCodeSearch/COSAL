@@ -1,0 +1,11 @@
+void solve() {
+    int h = ni(), w = ni(), a = ni(), b = ni();
+    long res = 0, mod = 1000000007;
+    Combination2 c = new Combination2(100100 * 2, mod);
+    for (int i = 0; i < h - a; ++i) {
+        long x = c.combination(b + i - 1, b - 1);
+        long y = c.combination(h - i - 1 + w - b - 1, w - b - 1);
+        res = (res + (x * y % mod)) % mod;
+    }
+    out.println(res);
+}

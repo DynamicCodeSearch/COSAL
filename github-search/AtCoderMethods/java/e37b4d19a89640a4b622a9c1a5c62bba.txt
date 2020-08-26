@@ -1,0 +1,15 @@
+public static void dfs(int n) {
+    if (n == N) {
+        int p = 0;
+        for (int i = 0; i < N; i++) {
+            p = p ^ question[i][answer[i]];
+        }
+        if (p == 0)
+            ret = "Found";
+    } else {
+        for (int i = 0; i < K; i++) {
+            answer[n] = i;
+            dfs(n + 1);
+        }
+    }
+}

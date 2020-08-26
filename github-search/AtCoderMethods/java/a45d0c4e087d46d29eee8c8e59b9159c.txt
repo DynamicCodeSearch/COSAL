@@ -1,0 +1,24 @@
+public static void main(String[] args) throws Exception {
+    
+    InputStream in = System.in;
+    sc = new Scanner(in);
+    H = sc.nextInt();
+    W = sc.nextInt();
+    map = new char[H][W];
+    for (int h = 0; h < H; h++) {
+        String line = sc.next();
+        for (int w = 0; w < W; w++) {
+            map[h][w] = line.charAt(w);
+        }
+    }
+    for (int h = 0; h < H; h++) {
+        for (int w = 0; w < W; w++) {
+            if (map[h][w] == '#') {
+                System.out.print("#");
+            } else {
+                System.out.print(count(h, w));
+            }
+        }
+        System.out.println();
+    }
+}

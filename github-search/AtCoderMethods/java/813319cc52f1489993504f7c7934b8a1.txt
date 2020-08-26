@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    long N = sc.nextLong();
+    long K = sc.nextLong();
+    long[] A = new long[100001];
+    Arrays.fill(A, 0);
+    long sum = 0;
+    for (int i = 0; i < N; i++) {
+        int a = sc.nextInt();
+        long B = sc.nextLong();
+        A[a] += B;
+    }
+    for (int i = 0; i < 100001; i++) {
+        sum += A[i];
+        if (sum >= K) {
+            System.out.println(i);
+            break;
+        }
+    }
+}

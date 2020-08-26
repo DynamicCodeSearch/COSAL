@@ -1,0 +1,27 @@
+public void exe() throws Exception {
+    int id = 1;
+    IO io = new IO();
+    int cityNum = io.nextInt();
+    int roadNum = io.nextInt();
+    Road[] roads = new Road[roadNum];
+    for (int i = 0; i < roadNum; i++) {
+        roads[i] = new Road(id++, io.nextInt(), io.nextInt(), io.nextInt());
+    }
+    int personNum = io.nextInt();
+    Person[] persons = new Person[personNum];
+    for (int i = 0; i < personNum; i++) {
+        persons[i] = new Person(id++, io.nextInt(), io.nextInt());
+    }
+    CityMap map = new CityMap(cityNum);
+    YearSorted[] targets = new YearSorted[roads.length + persons.length];
+    System.arraycopy(roads, 0, targets, 0, roadNum);
+    System.arraycopy(persons, 0, targets, roadNum, personNum);
+    Arrays.sort(targets);
+    for (YearSorted target : targets) {
+        target.process(map);
+    }
+    for (Person person : persons) {
+        io.println(person.availableCityNum);
+    }
+    io.flush();
+}

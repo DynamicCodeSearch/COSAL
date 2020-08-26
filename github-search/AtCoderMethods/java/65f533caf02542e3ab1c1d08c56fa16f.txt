@@ -1,0 +1,5 @@
+static long comb(int a, int b) {
+    if (a < 0 || b < 0 || a < b)
+        return 0;
+    return (((fac[a] * revfac[a - b]) % MOD) * revfac[b]) % MOD;
+}

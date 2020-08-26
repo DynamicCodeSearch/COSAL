@@ -1,0 +1,15 @@
+public void doit() {
+    for (int i = 0; i < vn; i++) {
+        if (!visited[i]) {
+            dfs(i);
+        }
+    }
+    Arrays.fill(visited, false);
+    int id = 0;
+    for (int i = rvn - 1; i >= 0; i--) {
+        if (!visited[rev[i]]) {
+            rdfs(rev[i], id);
+            id++;
+        }
+    }
+}

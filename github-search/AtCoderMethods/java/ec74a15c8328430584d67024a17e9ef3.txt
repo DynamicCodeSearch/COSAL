@@ -1,0 +1,11 @@
+public static boolean dfs(int numberOfQuestion, int value) {
+    if (numberOfQuestion == N) {
+        return value == 0;
+    }
+    for (int i = 0; i < K; i++) {
+        if (dfs(numberOfQuestion + 1, value ^ a[numberOfQuestion][i])) {
+            return true;
+        }
+    }
+    return false;
+}

@@ -1,0 +1,21 @@
+def dijkstra(edges, N,source):
+
+  import heapq
+  inf=float("inf")
+  dist=[inf for i in range(N)]
+  prev=[inf for i in range(N)]
+  dist[source]=0
+
+  que=[]
+  heapq.heappush(que, (0, source))
+
+  while que!=[]:
+    prev_cost, prev_place = heapq.heappop(que)
+    if dist[prev_place] < prev_cost: continue
+
+    for next_place, next_dist in edges[prev_place]:
+      if next_dist +dist[prev_place] < dist[next_place]:
+        dist[next_place] = dist[prev_place] + next_dist
+        heapq.heappush(que, (dist[next_place], next_place))
+
+  return dist

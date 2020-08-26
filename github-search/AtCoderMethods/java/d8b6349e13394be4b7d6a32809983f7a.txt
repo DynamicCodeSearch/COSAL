@@ -1,0 +1,31 @@
+@Override
+public void readInput() throws IOException {
+    int N = scanner.nextInt();
+    int M = scanner.nextInt();
+    char[][] A = new char[N][];
+    for (int i = 0; i < N; i++) {
+        A[i] = scanner.nextToken().toCharArray();
+    }
+    char[][] B = new char[M][];
+    for (int i = 0; i < M; i++) {
+        B[i] = scanner.nextToken().toCharArray();
+    }
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            boolean local = true;
+            for (int i2 = 0; i2 < M; i2++) {
+                for (int j2 = 0; j2 < M; j2++) {
+                    if (i + i2 >= N || j + j2 >= N || A[i + i2][j + j2] != B[i2][j2]) {
+                        local = false;
+                        break;
+                    }
+                }
+            }
+            if (local) {
+                res = "Yes";
+                return;
+            }
+        }
+    }
+    res = "No";
+}

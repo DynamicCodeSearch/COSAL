@@ -1,0 +1,8 @@
+def solve(s, c):
+
+    a = (c / 2 - s) / 2
+    if a < 0:
+        a = 0
+    al = int(a)
+    ar = int(a) + 1
+    return max(min(s + a, c//2 - a) for a in (al, ar))

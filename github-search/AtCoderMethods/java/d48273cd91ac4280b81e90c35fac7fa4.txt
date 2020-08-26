@@ -1,0 +1,33 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    int deg = sc.nextInt();
+    double dis = sc.nextInt();
+    String[] d = { "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW" };
+    int[] a = { 2, 15, 33, 54, 79, 107, 138, 171, 207, 244, 284, 326 };
+    double w = Math.round(dis / 6);
+    if (w <= a[0]) {
+        System.out.println("C 0");
+    } else {
+        int c = 0;
+        for (double i = 112.5; i < 3487.5; i += 225) {
+            if (i <= deg && deg < i + 225) {
+                System.out.print(d[c] + " ");
+                break;
+            } else {
+                c++;
+            }
+        }
+        if (c == 15)
+            System.out.print("N ");
+        if (w >= 327) {
+            System.out.println("12");
+        } else {
+            for (int i = 1; i < 12; i++) {
+                if (w <= a[i]) {
+                    System.out.println(i);
+                    break;
+                }
+            }
+        }
+    }
+}

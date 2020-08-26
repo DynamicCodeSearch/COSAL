@@ -1,0 +1,39 @@
+
+
+
+
+public static void main(String[] args) throws Exception, IOException {
+    Reader sc = new Reader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    
+    
+    
+    int n = sc.nextInt();
+    int W = sc.nextInt();
+    long[][][] dp = new long[2][103][310];
+    long[] v = new long[n];
+    long w[] = new long[n], a = 0;
+    for (int i = 0; i < n; i++) {
+        w[i] = sc.nextInt();
+        v[i] = sc.nextInt();
+    }
+    for (int i = 0; i < n; i++) {
+        int cur = i % 2, pr = (i + 1) % 2;
+        int wx = (int) (w[i] - w[0]);
+        for (int t = 1; t <= i + 1; t++) {
+            for (int j = 0; j < 305; j++) {
+                dp[cur][t][j + wx] = max(dp[cur][t][j + wx], dp[pr][t - 1][j] + v[i]);
+            }
+        }
+        for (int t = 1; t <= i + 1; t++) {
+            for (int j = 0; j <= 305; j++) {
+                if (w[0] * t + j > W)
+                    break;
+                dp[cur][t][j] = max(dp[cur][t][j], dp[pr][t][j]);
+                a = max(a, dp[cur][t][j]);
+            }
+        }
+    }
+    out.println(a);
+    out.flush();
+}

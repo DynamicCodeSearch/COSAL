@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    int rankNum = 9;
+    int[] count = new int[rankNum];
+    Arrays.fill(count, 0);
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    for (int i = 0; i < n; i++) count[getRank(sc.nextInt())]++;
+    sc.close();
+    int colorNum = 0;
+    for (int i = 0; i < count.length - 1; i++) {
+        if (count[i] != 0)
+            colorNum++;
+    }
+    int minColorNum = (int) Math.max(colorNum, 1);
+    int maxColorNum = colorNum + count[count.length - 1];
+    System.out.println(minColorNum + " " + maxColorNum);
+}

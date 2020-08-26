@@ -1,0 +1,14 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int[] a = new int[n];
+    long[] acc = new long[n];
+    for (int i = 0; i < n; ++i) {
+        a[i] = in.nextInt();
+        acc[i] = (i == 0 ? a[i] : acc[i - 1] + a[i]);
+    }
+    long bst = (long) 1e18;
+    for (int i = 0; i < n - 1; ++i) {
+        bst = Math.min(bst, Math.abs(acc[i] - (acc[n - 1] - acc[i])));
+    }
+    out.println(bst);
+}

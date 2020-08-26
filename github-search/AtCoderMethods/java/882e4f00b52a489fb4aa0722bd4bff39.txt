@@ -1,0 +1,17 @@
+public static void main(String[] args) throws IOException {
+    
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String line = br.readLine();
+    String[] text = line.split(" ");
+    long DIV = 0;
+    DIV = (long) (1e9 + 7);
+    long[] num = new long[3];
+    long[] num1 = new long[3];
+    for (int i = 0; i < 3; i++) {
+        num[i] = Integer.parseInt(text[i]);
+        num1[i] = num[i] % DIV;
+    }
+    long num2 = (num1[0] * num1[1]) % DIV;
+    num2 = (num2 * num1[2]) % DIV;
+    System.out.println(num2);
+}

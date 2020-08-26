@@ -1,0 +1,22 @@
+public void run() {
+    
+    String input = cin.nextLine();
+    
+    int n = input.length();
+    int result1 = -1;
+    int result2 = -1;
+    for (int i = 0; i < n - 1; i++) {
+        char ch = input.charAt(i);
+        if (ch == input.charAt(i + 1)) {
+            result1 = i + 1;
+            result2 = i + 1 + 1;
+            break;
+        }
+        if (i + 2 < n && ch == input.charAt(i + 2)) {
+            result1 = i + 1;
+            result2 = i + 2 + 1;
+        }
+    }
+    
+    System.out.println(result1 + " " + result2);
+}

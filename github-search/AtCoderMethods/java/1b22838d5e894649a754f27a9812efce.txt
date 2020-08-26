@@ -1,0 +1,20 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    String S = sc.next();
+    Deque<Box> queue = new ArrayDeque<>();
+    long total = 0;
+    queue.push(new Box(0, 0, 1));
+    while (!queue.isEmpty()) {
+        Box box = queue.pop();
+        if (box.end < S.length()) {
+            queue.add(new Box(box));
+            System.err.println(box.begin + "," + box.end);
+            long sum = box.sum + Long.parseLong(S.substring(box.begin, box.end));
+            queue.add(new Box(sum, box.end, box.end + 1));
+        } else {
+            box.sum += Long.parseLong(S.substring(box.begin, box.end));
+            total += box.sum;
+        }
+    }
+    System.out.println(total);
+}

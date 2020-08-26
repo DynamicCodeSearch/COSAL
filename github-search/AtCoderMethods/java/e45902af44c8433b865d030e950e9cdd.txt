@@ -1,0 +1,17 @@
+private static BigInteger comb(int n, int k) {
+    if (n < 2 * k) {
+        k = n - k;
+    }
+    if (dp[n][k] != null) {
+        return dp[n][k];
+    }
+    BigInteger m = BigInteger.ONE;
+    for (int i : IntStream.range(1, k + 1).toArray()) {
+        m = m.multiply(BigInteger.valueOf((n - i + 1)));
+    }
+    for (int i : IntStream.range(1, k + 1).toArray()) {
+        m = m.divide(BigInteger.valueOf(i));
+    }
+    dp[n][k] = m;
+    return m;
+}

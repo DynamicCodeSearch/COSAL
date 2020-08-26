@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] A = new int[N];
+    int i = 0, haveBug = 0, bug = 0;
+    for (i = 0; i < N; i++) {
+        A[i] = sc.nextInt();
+        if (A[i] != 0) {
+            haveBug += 1;
+            bug += A[i];
+        }
+    }
+    System.out.println((int) Math.ceil((double) bug / (double) haveBug));
+}

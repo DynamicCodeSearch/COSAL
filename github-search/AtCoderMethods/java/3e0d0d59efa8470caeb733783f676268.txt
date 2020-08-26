@@ -1,0 +1,18 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] temp = br.readLine().split("\\s");
+    int over = Integer.parseInt(temp[0]);
+    int before = Integer.parseInt(temp[1]);
+    int after = Integer.parseInt(temp[2]);
+    int safe_line = before + over + 1;
+    int day = before + after;
+    if (day < safe_line) {
+        System.out.println("delicious");
+    } else {
+        if (over < -before + after) {
+            System.out.println("dangerous");
+        } else {
+            System.out.println("safe");
+        }
+    }
+}

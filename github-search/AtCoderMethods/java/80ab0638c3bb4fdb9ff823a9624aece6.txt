@@ -1,0 +1,15 @@
+public static void bfs(int k) {
+    Queue<Integer> q = new LinkedList<>();
+    vis[k] = true;
+    q.add(k);
+    while (!q.isEmpty()) {
+        int u = q.poll();
+        for (edge e : adj[u]) {
+            if (!vis[e.v]) {
+                dist[e.v] = dist[u] + e.w;
+                vis[e.v] = true;
+                q.add(e.v);
+            }
+        }
+    }
+}

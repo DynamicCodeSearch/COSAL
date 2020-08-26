@@ -1,0 +1,13 @@
+public void solve(InputReader in, PrintWriter out) {
+    String s = in.next();
+    int len = s.length();
+    int posa = -1, posz = 0;
+    for (int i = 0; i < len; ++i) {
+        if (posa < 0 && s.charAt(i) == 'A')
+            posa = i;
+        if (s.charAt(i) == 'Z')
+            posz = i;
+    }
+    int ans = posz - posa + 1;
+    out.println(ans);
+}

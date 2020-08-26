@@ -1,0 +1,28 @@
+public void solve() {
+    int H = in.nextInt(), W = in.nextInt(), N = in.nextInt();
+    HashMap<Long, Integer> hash = new HashMap<>();
+    for (int i = 0; i < N; i++) {
+        int a = in.nextInt() - 1, b = in.nextInt() - 1;
+        for (int vx = -1; vx <= 1; vx++) {
+            for (int vy = -1; vy <= 1; vy++) {
+                int nx = b + vx, ny = a + vy;
+                if (inside(nx, ny, W, H)) {
+                    long k = key(nx, ny);
+                    if (hash.containsKey(k))
+                        hash.put(k, hash.get(k) + 1);
+                    else
+                        hash.put(k, 1);
+                }
+            }
+        }
+    }
+    long[] cnt = new long[10];
+    cnt[0] = ((long) W - 2) * ((long) H - 2);
+    for (Entry<Long, Integer> e : hash.entrySet()) {
+        cnt[0]--;
+        cnt[e.getValue()]++;
+    }
+    for (int i = 0; i < 10; i++) {
+        System.out.println(cnt[i]);
+    }
+}

@@ -1,0 +1,16 @@
+public void solve(int testNumber, FastScanner in, PrintWriter out) {
+    int n = in.nextInt();
+    int m = in.nextInt();
+    List<Integer>[] adj = new List[n];
+    for (int i = 0; i < n; i++) {
+        adj[i] = new ArrayList<>();
+    }
+    for (int i = 0; i < m; i++) {
+        int a = in.nextInt() - 1;
+        int b = in.nextInt() - 1;
+        adj[a].add(b);
+        adj[b].add(a);
+    }
+    int[] d = bfs(0, adj);
+    out.println(d[n - 1] <= 2 ? "POSSIBLE" : "IMPOSSIBLE");
+}

@@ -1,0 +1,22 @@
+def main():
+    N = int(input())
+    a_list = list(map(int, input().split()))
+
+    ans = -10 ** 10
+    for t in range(N):
+
+        max_a_score = - 10 ** 10
+        t_score = None
+        for a in range(N):
+            if t == a:
+                continue
+            T = a_list[min(t, a):max(t, a) + 1]
+
+            a_score = sum(T[1::2])
+            if a_score > max_a_score:
+                max_a_score = a_score
+                t_score = sum(T[::2])
+
+        ans = max(ans, t_score)
+
+    print(ans)

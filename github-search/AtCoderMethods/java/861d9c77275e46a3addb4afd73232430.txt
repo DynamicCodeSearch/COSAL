@@ -1,0 +1,8 @@
+int QueryIndex(int l, int r, int a, int b, int k) {
+    if (l <= a && b <= r)
+        return ys[k];
+    if (b <= l || r <= a)
+        return -1;
+    final int m = (a + b) / 2;
+    return minIndex(QueryIndex(l, r, a, m, 2 * k + 1), QueryIndex(l, r, m, b, 2 * k + 2));
+}

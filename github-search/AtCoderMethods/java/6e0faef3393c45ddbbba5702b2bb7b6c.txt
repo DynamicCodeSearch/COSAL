@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String O = sc.next();
+    String B = sc.next();
+    String[] strO = O.split("");
+    String[] strB = B.split("");
+    String[] ans = new String[strO.length + strB.length];
+    for (int i = 0; i < strB.length; i++) {
+        ans[2 * i] = strO[i];
+        ans[2 * i + 1] = strB[i];
+    }
+    if (strO.length > strB.length) {
+        ans[2 * strB.length] = strO[strO.length - 1];
+    }
+    for (int i = 0; i < ans.length; i++) {
+        System.out.print(ans[i]);
+    }
+}

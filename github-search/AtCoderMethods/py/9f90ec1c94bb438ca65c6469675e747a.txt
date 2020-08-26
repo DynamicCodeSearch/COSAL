@@ -1,0 +1,25 @@
+def main():
+    N, K = map(int, input().split())
+    items = []
+    for _ in range(N):
+        w, p = map(int, input().split())
+        items.append((w, p * w))
+
+    used = [False] * N
+    total = [0, 0]
+    while sum(used) < K:
+        best_i = used.index(False)
+        for i in range(len(items)):
+            if used[i]:
+                continue
+            tmp = [total[0] + items[i][0], total[1] + items[i][1]]
+            best = [total[0] + items[best_i][0], total[1] + items[best_i][1]]
+
+            if tmp[1] * best[0] > best[1] * tmp[0]:
+                best_i = i
+
+        used[best_i] = True
+        total[0] += items[best_i][0]
+        total[1] += items[best_i][1]
+
+    print(total[1] / total[0])

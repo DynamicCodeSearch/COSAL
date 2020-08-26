@@ -1,0 +1,26 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int m = in.nextInt();
+    boolean[] connectedToSource = new boolean[n];
+    boolean[] connectedToDest = new boolean[n];
+    while (m-- > 0) {
+        int x = in.nextInt() - 1;
+        int y = in.nextInt() - 1;
+        if (x == 0) {
+            connectedToSource[y] = true;
+        } else if (x == n - 1) {
+            connectedToDest[y] = true;
+        } else if (y == 0) {
+            connectedToSource[x] = true;
+        } else if (y == n - 1) {
+            connectedToDest[x] = true;
+        }
+    }
+    for (int i = 0; i < n; ++i) {
+        if (connectedToDest[i] && connectedToSource[i]) {
+            out.println("POSSIBLE");
+            return;
+        }
+    }
+    out.println("IMPOSSIBLE");
+}

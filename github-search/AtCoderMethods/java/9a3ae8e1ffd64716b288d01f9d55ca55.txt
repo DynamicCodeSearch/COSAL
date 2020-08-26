@@ -1,0 +1,21 @@
+public int[] nextInt(int[] result) throws IOException {
+    readBuf();
+    for (int i = 0; i < result.length; i++) {
+        int sign = 1;
+        int res = 0;
+        char c;
+        while (!isNum(c = buf[ptr]) && !isMinus(c)) next();
+        if (isMinus(buf[ptr])) {
+            sign = -1;
+            next();
+        }
+        while (isNum(c = buf[ptr])) {
+            res *= 10;
+            res += c - '0';
+            next();
+        }
+        next();
+        result[i] = sign * res;
+    }
+    return result;
+}

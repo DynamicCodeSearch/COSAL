@@ -1,0 +1,18 @@
+public static void main(String[] args) throws NumberFormatException, IOException {
+    Scanner sc = new Scanner();
+    int N = sc.nextInt();
+    int[] c = new int[100000 + 5];
+    for (int i = 0; i < N; i++) {
+        int n = sc.nextInt();
+        c[n - 1 + 1]++;
+        c[n + 0 + 1]++;
+        c[n + 1 + 1]++;
+    }
+    int max = 0;
+    int number = -1;
+    for (int i = 0; i < c.length; i++) if (c[i] > max) {
+        max = c[i];
+        number = i - 1;
+    }
+    System.out.println(max);
+}

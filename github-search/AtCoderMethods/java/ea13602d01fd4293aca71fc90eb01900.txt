@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    int sum = 0;
+    List<Integer> nonTen = new ArrayList<>();
+    for (int i = 0; i < n; i++) {
+        int a = in.nextInt();
+        sum += a;
+        if (a % 10 != 0) {
+            nonTen.add(a);
+        }
+    }
+    Collections.sort(nonTen);
+    if (sum % 10 == 0) {
+        if (nonTen.size() >= 1) {
+            sum -= nonTen.get(0);
+        } else {
+            sum = 0;
+        }
+    }
+    out.println(sum);
+    out.flush();
+}

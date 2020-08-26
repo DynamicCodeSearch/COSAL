@@ -1,0 +1,51 @@
+void solve(FastScanner in, PrintWriter out) {
+    int N = in.nextInt();
+    int M = in.nextInt();
+    for (int i = 0; i < M; i++) {
+        int a = in.nextInt();
+        int b = in.nextInt();
+        int c = in.nextInt();
+        int a0Id = getId(a, 0);
+        int b0Id = getId(b, 0);
+        ArrayList<Edge> a0 = graph.get(a0Id);
+        ArrayList<Edge> b0 = graph.get(b0Id);
+        int acId = getId(a, c);
+        int bcId = getId(b, c);
+        ArrayList<Edge> ac = graph.get(acId);
+        if (ac.isEmpty()) {
+            a0.add(new Edge(acId, 1));
+            ac.add(new Edge(a0Id, 0));
+        }
+        ac.add(new Edge(bcId, 0));
+        ArrayList<Edge> bc = graph.get(bcId);
+        if (bc.isEmpty()) {
+            b0.add(new Edge(bcId, 1));
+            bc.add(new Edge(b0Id, 0));
+        }
+        bc.add(new Edge(acId, 0));
+    }
+    int start = getId(1, 0);
+    int goal = getId(N, 0);
+    ArrayDeque<Integer> deque = new ArrayDeque<>();
+    deque.add(start);
+    int[] dist = new int[idMap.size()];
+    Arrays.fill(dist, INF);
+    dist[start] = 0;
+    while (!deque.isEmpty()) {
+        int v = deque.pollFirst();
+        if (v == goal) {
+            out.println(dist[v]);
+            return;
+        }
+        for (Edge edge : graph.get(v)) {
+            if (dist[edge.to] <= dist[v] + edge.weight)
+                continue;
+            dist[edge.to] = dist[v] + edge.weight;
+            if (edge.weight == 0)
+                deque.addFirst(edge.to);
+            else
+                deque.addLast(edge.to);
+        }
+    }
+    out.println(-1);
+}

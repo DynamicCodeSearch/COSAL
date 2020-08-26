@@ -1,0 +1,33 @@
+public static void main(String[] args) {
+    Scanner s = new Scanner(System.in);
+    final int N = s.nextInt();
+    int[] inputCards = new int[N];
+    for (int i = 0; i < N; i++) {
+        inputCards[i] = s.nextInt();
+    }
+    s.close();
+    
+    int[] sorted_parts_last_cards_min_number = new int[N];
+    sorted_parts_last_cards_min_number[0] = inputCards[0];
+    int maxPartLength = 1;
+    for (int i = 1; i < N; i++) {
+        if (sorted_parts_last_cards_min_number[maxPartLength - 1] < inputCards[i]) {
+            sorted_parts_last_cards_min_number[maxPartLength] = inputCards[i];
+            maxPartLength++;
+        } else {
+            int min = 0;
+            int max = maxPartLength - 1;
+            int med = (min + max) / 2;
+            while (min < max) {
+                if (sorted_parts_last_cards_min_number[med] > inputCards[i]) {
+                    max = med;
+                } else {
+                    min = med + 1;
+                }
+                med = (min + max) / 2;
+            }
+            sorted_parts_last_cards_min_number[med] = inputCards[i];
+        }
+    }
+    System.out.println(N - maxPartLength);
+}

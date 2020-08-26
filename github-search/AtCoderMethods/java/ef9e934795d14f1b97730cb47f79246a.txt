@@ -1,0 +1,15 @@
+
+int getKthSmallestNumber(long k) {
+    
+    int ret;
+    
+    long cur = 0;
+    for (Entry<Integer, Long> e : map.entrySet()) {
+        ret = e.getKey();
+        cur += e.getValue();
+        if (cur >= k) {
+            return ret;
+        }
+    }
+    return -1;
+}

@@ -1,0 +1,11 @@
+public final void answer() {
+    int ans = end[N - 1];
+    int blank = 0;
+    for (int i = 1; i < N; i++) {
+        int tmp = start[i] - end[i - 1];
+        if (tmp > 0)
+            blank += tmp;
+    }
+    ans -= blank;
+    System.out.println(ans);
+}

@@ -1,0 +1,227 @@
+### Py Tokens: set, string, format, vformat, formatstring, unused, used, result, checkunusedargs, formatter, usedargs, check 
+
+### Py functions
+
+def vformat(self, format_string, args, kwargs):
+  used_args = set()
+  result = self._vformat(format_string, args, kwargs, used_args, 2)
+  self.check_unused_args(used_args, args, kwargs)
+  return result
+*********************************
+
+#### Score: 8.81757
+
+
+#### Java Tokens: 4.000, eager, gwt, padchar, reach, zero, pad, character, copies, java, always, check, resulting, formatter, input, null, util, padded, reached, returns, must, formatting, minlength, code, string, beginning, checknotnull, least, link, 2010, padend, example, result, see, negative, min, strings, appended, param, builder, end, set, capabilities, necessary, length, many, consisting, appear, richer, char, stringbuilder, returned, tostring, minimum, append 
+
+
+public static String padEnd(String string, int minLength, char padChar) {
+    
+    checkNotNull(string);
+    if (string.length() >= minLength) {
+        return string;
+    }
+    StringBuilder sb = new StringBuilder(minLength);
+    sb.append(string);
+    for (int i = string.length(); i < minLength; i++) {
+        sb.append(padChar);
+    }
+    return sb.toString();
+}
+*********************************
+
+#### Score: 8.66116
+
+
+#### Java Tokens: eager, gwt, padchar, reach, zero, pad, character, copies, java, always, check, resulting, formatter, input, null, util, padded, 007, reached, returns, must, formatting, padstart, prepended, minlength, code, string, beginning, checknotnull, least, link, insert, 2010, example, result, see, negative, min, strings, param, builder, end, set, capabilities, necessary, start, length, many, consisting, appear, richer, char, stringbuilder, returned, tostring, minimum, append 
+
+
+public static String padStart(String string, int minLength, char padChar) {
+    
+    checkNotNull(string);
+    if (string.length() >= minLength) {
+        return string;
+    }
+    StringBuilder sb = new StringBuilder(minLength);
+    for (int i = string.length(); i < minLength; i++) {
+        sb.append(padChar);
+    }
+    sb.append(string);
+    return sb.toString();
+}
+*********************************
+
+#### Score: 6.84847
+
+
+#### Java Tokens: exception, small, argument, ghijklmno, ...is, abbrevmarkerlength, !ghijklmno, used, source, isempty, good, somewhere, ---, empty, minabbrevwidthoffset, edge, character, abcdefghij, utils, abcdefg---, greater, defined, given, isnotempty, using, pre, offset, like, going, format, specify, abbrevmarker, check, illegal, str, input, left, marker, following, ...ghij..., must, abbrev, replacement, 'ghijklmno, abra, since, note, maxwidth, illegalargumentexception, works, code, string, efghij, ::efghij::, least, turn, abbreviates, substring, necessarily, result, min, param, abcdefghi,, men, for..., allows, abbreviate, may, max, length, abcdefghi, abcdefghijklmno, abbreviation, ..., stringutils, appear, leftmost, ghij, equals, *ghijklmno, width, maximum, time, minabbrevwidth, minimum, abcdefg, abbreviated, first 
+
+
+public static String abbreviate(final String str, final String abbrevMarker, int offset, final int maxWidth) {
+    if (isEmpty(str) && isEmpty(abbrevMarker)) {
+        return str;
+    } else if (isNotEmpty(str) && EMPTY.equals(abbrevMarker) && maxWidth > 0) {
+        return str.substring(0, maxWidth);
+    } else if (isEmpty(str) || isEmpty(abbrevMarker)) {
+        return str;
+    }
+    final int abbrevMarkerLength = abbrevMarker.length();
+    final int minAbbrevWidth = abbrevMarkerLength + 1;
+    final int minAbbrevWidthOffset = abbrevMarkerLength + abbrevMarkerLength + 1;
+    if (maxWidth < minAbbrevWidth) {
+        throw new IllegalArgumentException(String.format("Minimum abbreviation width is %d", minAbbrevWidth));
+    }
+    if (str.length() <= maxWidth) {
+        return str;
+    }
+    if (offset > str.length()) {
+        offset = str.length();
+    }
+    if (str.length() - offset < maxWidth - abbrevMarkerLength) {
+        offset = str.length() - (maxWidth - abbrevMarkerLength);
+    }
+    if (offset <= abbrevMarkerLength + 1) {
+        return str.substring(0, maxWidth - abbrevMarkerLength) + abbrevMarker;
+    }
+    if (maxWidth < minAbbrevWidthOffset) {
+        throw new IllegalArgumentException(String.format("Minimum abbreviation width with offset is %d", minAbbrevWidthOffset));
+    }
+    if (offset + maxWidth - abbrevMarkerLength < str.length()) {
+        return abbrevMarker + abbreviate(str.substring(offset), abbrevMarker, maxWidth - abbrevMarkerLength);
+    }
+    return abbrevMarker + str.substring(str.length() - (maxWidth - abbrevMarkerLength));
+}
+*********************************
+
+#### Score: 5.74526
+
+
+#### Java Tokens: exception, small, argument, used, ab.., good, number, utils, else, max-abbrevmarker, specifically, greater, defined, given, using, pre, abcd., abbrevmarker, less, check, illegal, str, input, marker, must, abbrev, replacement, since, maxwidth, illegalargumentexception, code, string, another, least, turn, abbreviates, substring, result, characters, param, men, for..., a.., abbreviate, may, max, length, ..., abcd, stringutils, equal, width, maximum, time, abcdefg, abbreviated 
+
+
+public static String abbreviate(final String str, final String abbrevMarker, final int maxWidth) {
+    return abbreviate(str, abbrevMarker, 0, maxWidth);
+}
+*********************************
+
+#### Score: 5.64896
+
+
+#### Java Tokens: note, strong, code, string, independent, link, used, locale, platform, result, current, cased, platform-independent, param, utils, tolowercase, english, per, case, pre, abc, lowercase, method, may, lower, converts, specific, affected, str, stringutils, input, transformations, returns 
+
+
+public static String lowerCase(final String str) {
+    if (str == null) {
+        return null;
+    }
+    return str.toLowerCase();
+}
+*********************************
+
+#### Score: 5.52865
+
+
+#### Java Tokens: uppercase, note, strong, code, string, independent, upper, link, used, locale, platform, result, current, cased, platform-independent, param, utils, english, per, case, pre, abc, method, lowercase, may, lower, converts, specific, affected, str, stringutils, input, transformations, returns, touppercase 
+
+
+
+
+public static String upperCase(final String str) {
+    if (str == null) {
+        return null;
+    }
+    return str.toUpperCase();
+}
+*********************************
+
+#### Score: 4.72841
+
+
+#### Java Tokens: zzabyycdxx, code, string, signature, containsany, charsequence, mos, characters, search, character, tochararray, found, array, param, utils, charsequenceutils, given, aba, pre, set, may, match, check, stringutils, sequence, input, contains, checks, $.#yf, char, searchchars, chars, since, changed 
+
+
+public static boolean containsAny(final CharSequence cs, final CharSequence searchChars) {
+    if (searchChars == null) {
+        return false;
+    }
+    return containsAny(cs, CharSequenceUtils.toCharArray(searchChars));
+}
+*********************************
+
+#### Score: 4.72714
+
+
+#### Java Tokens: replacechars, replace, used, isempty, strlength, empty, mos, utils, modified, shorter, ignored, pre, method, abcba, index, str, input, longer, returns, searchchars, hello, quot, since, code, string, ayzya, delete, example, replacecharslength, characters, search, param, extra, builder, jelly, charat, set, abc, may, replaces, one, length, multiple, also, ayya, stringutils, equal, buf, deleted, yzx, stringbuilder, indexof, tostring, chars, append, normally 
+
+
+public static String replaceChars(final String str, final String searchChars, String replaceChars) {
+    if (isEmpty(str) || isEmpty(searchChars)) {
+        return str;
+    }
+    if (replaceChars == null) {
+        replaceChars = EMPTY;
+    }
+    boolean modified = false;
+    final int replaceCharsLength = replaceChars.length();
+    final int strLength = str.length();
+    final StringBuilder buf = new StringBuilder(strLength);
+    for (int i = 0; i < strLength; i++) {
+        final char ch = str.charAt(i);
+        final int index = searchChars.indexOf(ch);
+        if (index >= 0) {
+            modified = true;
+            if (index < replaceCharsLength) {
+                buf.append(replaceChars.charAt(index));
+            }
+        } else {
+            buf.append(ch);
+        }
+    }
+    if (modified) {
+        return buf.toString();
+    }
+    return str;
+}
+*********************************
+
+#### Score: 4.62881
+
+
+#### Java Tokens: indexofany, zzabyycdxx, code, string, signature, isempty, charsequence, empty, mos, characters, search, character, found, tochararray, array, param, utils, find, given, aba, pre, set, may, index_not_found, match, index, check, stringutils, sequence, input, char, searchchars, chars, first, since, changed 
+
+
+public static int indexOfAny(final CharSequence cs, final String searchChars) {
+    if (isEmpty(cs) || isEmpty(searchChars)) {
+        return INDEX_NOT_FOUND;
+    }
+    return indexOfAny(cs, searchChars.toCharArray());
+}
+*********************************
+
+#### Score: 4.19120
+
+
+#### Java Tokens: zzabyycdxx, code, string, signature, isempty, charsequence, empty, mos, strlen, characters, search, character, high, found, len, param, utils, find, ishighsurrogate, surrogate, indexofanybut, seq, charat, charsequenceutils, given, aba, pre, set, may, index_not_found, length, match, index, check, ch2, chfound, str, stringutils, sequence, input, char, searchchars, indexof, chars, first, since, changed 
+
+
+public static int indexOfAnyBut(final CharSequence seq, final CharSequence searchChars) {
+    if (isEmpty(seq) || isEmpty(searchChars)) {
+        return INDEX_NOT_FOUND;
+    }
+    final int strLen = seq.length();
+    for (int i = 0; i < strLen; i++) {
+        final char ch = seq.charAt(i);
+        final boolean chFound = CharSequenceUtils.indexOf(searchChars, ch, 0) >= 0;
+        if (i + 1 < strLen && Character.isHighSurrogate(ch)) {
+            final char ch2 = seq.charAt(i + 1);
+            if (chFound && CharSequenceUtils.indexOf(searchChars, ch2, 0) < 0) {
+                return i;
+            }
+        } else {
+            if (!chFound) {
+                return i;
+            }
+        }
+    }
+    return INDEX_NOT_FOUND;
+}

@@ -1,0 +1,21 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < n; ++i) a[i] = in.nextInt();
+    Deque<Integer> res = new ArrayDeque<>();
+    for (int i = 0; i < n; ++i) {
+        if (i % 2 == 0) {
+            res.addLast(a[i]);
+        } else {
+            res.addFirst(a[i]);
+        }
+    }
+    if (n % 2 == 0) {
+        for (Object x : res.toArray()) out.print(x + " ");
+    } else {
+        for (int i = 0; i < n; ++i) {
+            out.print(res.getLast() + " ");
+            res.removeLast();
+        }
+    }
+}

@@ -1,0 +1,16 @@
+static long dfs(int idx, int left) {
+    if (idx == n) {
+        return (left == 0) ? 1 : 0;
+    }
+    if (memo[idx][left] != -1) {
+        return memo[idx][left];
+    }
+    long sum = 0;
+    for (int use = 0; use <= left; use++) {
+        long po = (powTbl[use][b[idx] + 1] - powTbl[use][a[idx]] + MOD) % MOD;
+        sum += po * dfs(idx + 1, left - use) % MOD;
+    }
+    sum %= MOD;
+    memo[idx][left] = sum;
+    return sum;
+}

@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    String s1 = scanner.next();
+    String s2 = scanner.next();
+    if (s1.length() > s2.length()) {
+        System.out.println("GREATER");
+    } else if (s1.length() < s2.length()) {
+        System.out.println("LESS");
+    } else {
+        for (int i = 0; i < s1.length(); ++i) {
+            if ((int) s1.charAt(i) > (int) s2.charAt(i)) {
+                System.out.println("GREATER");
+                break;
+            } else if ((int) s1.charAt(i) < (int) s2.charAt(i)) {
+                System.out.println("LESS");
+                break;
+            } else if (i + 1 == s1.length()) {
+                System.out.println("EQUAL");
+            }
+        }
+    }
+}

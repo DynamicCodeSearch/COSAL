@@ -1,0 +1,23 @@
+void gen(String s, int d) {
+    if (d == 0 || !set.add(s))
+        return;
+    for (int i = 0, j; i >= 0; i = j + 1) {
+        j = s.indexOf("AAA", i);
+        if (j < 0)
+            break;
+        gen(s.substring(0, j) + s.substring(j + 3), d - 1);
+    }
+    for (int i = 0, j; i >= 0; i = j + 1) {
+        j = s.indexOf("BBB", i);
+        if (j < 0)
+            break;
+        gen(s.substring(0, j) + s.substring(j + 3), d - 1);
+    }
+    for (int i = 0; i < s.length(); i++) {
+        if (s.charAt(i) == 'A') {
+            gen(s.substring(0, i) + "BB" + s.substring(i + 1), d - 1);
+        } else {
+            gen(s.substring(0, i) + "AA" + s.substring(i + 1), d - 1);
+        }
+    }
+}

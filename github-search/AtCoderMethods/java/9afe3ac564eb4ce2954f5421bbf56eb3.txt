@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    
+    
+    final String s;
+    try (Scanner scan = new Scanner(System.in)) {
+        s = scan.next();
+    }
+    StringBuilder result = new StringBuilder();
+    for (char c : s.toCharArray()) {
+        switch(c) {
+            case '0':
+                result.append(c);
+                break;
+            case '1':
+                result.append(c);
+                break;
+            case 'B':
+                if (result.length() != 0) {
+                    result.deleteCharAt(result.length() - 1);
+                }
+                break;
+            default:
+                break;
+        }
+    }
+    
+    out.println(result.toString());
+    out.close();
+}

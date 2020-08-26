@@ -1,0 +1,10 @@
+public static void main(String[] __) {
+    int n = s.nextInt(), t = s.nextInt(), count = 0;
+    ArrayDeque<Integer> d = new ArrayDeque<>(n + 1);
+    REP(n, i -> d.add(s.nextInt()));
+    while (d.size() != 1) {
+        count += Math.min(-(d.poll() - d.peek()), t);
+    }
+    count += t;
+    System.out.println(count);
+}

@@ -1,0 +1,12 @@
+static int comb_add(long n, int[] X) {
+    int count = 0;
+    int sum = 0;
+    while (n > 0) {
+        if ((n & 0x01) == 1) {
+            sum = sum + X[count];
+        }
+        count++;
+        n = n >> 1;
+    }
+    return sum;
+}

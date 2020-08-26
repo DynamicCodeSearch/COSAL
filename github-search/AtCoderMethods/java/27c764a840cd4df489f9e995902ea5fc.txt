@@ -1,0 +1,8 @@
+private static ByteArrayInputStream testCaseToInputStream(String ex) {
+    try {
+        return new ByteArrayInputStream(ex.getBytes("utf-8"));
+    } catch (UnsupportedEncodingException e) {
+        e.printStackTrace();
+        throw new RuntimeException();
+    }
+}

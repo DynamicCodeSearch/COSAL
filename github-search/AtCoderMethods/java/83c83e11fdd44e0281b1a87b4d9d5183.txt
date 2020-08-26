@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    char[][] strs = new char[n][];
+    for (int i = 0; i < n; i++) {
+        strs[i] = in.nextToken().toCharArray();
+    }
+    int[][] counts = new int[n][26];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < strs[i].length; j++) {
+            counts[i][strs[i][j] - 'a']++;
+        }
+    }
+    int[] min = new int[26];
+    Arrays.fill(min, Integer.MAX_VALUE);
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < 26; j++) {
+            min[j] = Math.min(min[j], counts[i][j]);
+        }
+    }
+    StringBuilder line = new StringBuilder();
+    for (int i = 0; i < 26; i++) {
+        for (int j = 0; j < min[i]; j++) {
+            line.append((char) ('a' + i));
+        }
+    }
+    out.println(line.toString());
+    out.flush();
+}

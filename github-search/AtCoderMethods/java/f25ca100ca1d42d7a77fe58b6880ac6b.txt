@@ -1,0 +1,80 @@
+public void solve() {
+    int N = in.nextInt();
+    int K = in.nextInt();
+    int[] a = in.nextIntArray(N);
+    Arrays.sort(a);
+    int n = N;
+    int moreK = 0;
+    while (n > 0 && a[n - 1] >= K) {
+        moreK++;
+        n--;
+    }
+    if (n == 0) {
+        System.out.println(0);
+        return;
+    }
+    
+    a = Arrays.copyOf(a, n);
+    
+    boolean[] dpL = new boolean[K + 1];
+    int[][] listL = new int[n][];
+    dpL[0] = true;
+    for (int i = 0; i < n; i++) {
+        int size = 0;
+        for (int j = K; j >= 0; j--) {
+            if (dpL[j])
+                size++;
+        }
+        listL[i] = new int[size];
+        for (int ptr = 0, j = K; j >= 0; j--) {
+            if (!dpL[j])
+                continue;
+            listL[i][ptr++] = j;
+            if (j + a[i] <= K)
+                dpL[j + a[i]] = true;
+        }
+    }
+    
+    boolean[] dpR = new boolean[K + 1];
+    int[][] listR = new int[n][];
+    dpR[0] = true;
+    for (int i = n - 1; i >= 0; i--) {
+        int size = 0;
+        for (int j = K; j >= 0; j--) {
+            if (dpR[j])
+                size++;
+        }
+        listR[i] = new int[size];
+        for (int ptr = 0, j = K; j >= 0; j--) {
+            if (!dpR[j])
+                continue;
+            listR[i][ptr++] = j;
+            if (j + a[i] <= K)
+                dpR[j + a[i]] = true;
+        }
+    }
+    
+    int res = 0;
+    for (int i = 0; i < n; i++) {
+        res++;
+        
+        for (int next : listL[i]) {
+            int d = K - next;
+            int lo = -1, hi = listR[i].length - 1;
+            while (hi - lo > 1) {
+                int mid = (lo + hi) / 2;
+                if (listR[i][mid] >= d)
+                    lo = mid;
+                else
+                    hi = mid;
+            }
+            int s = next + listR[i][hi];
+            if (s + a[i] >= K) {
+                
+                res--;
+                break;
+            }
+        }
+    }
+    System.out.println(res);
+}

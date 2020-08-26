@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    boolean hasR = true;
+    boolean hasB = false;
+    int cx = in.nextInt();
+    int cy = in.nextInt();
+    int cr = in.nextInt();
+    int x1 = in.nextInt();
+    int y1 = in.nextInt();
+    int x2 = in.nextInt();
+    int y2 = in.nextInt();
+    for (int[] p : new int[][] { { x1, y1 }, { x1, y2 }, { x2, y1 }, { x2, y2 } }) {
+        if (dist2(p[0], p[1], cx, cy) > cr * cr) {
+            hasB = true;
+        }
+    }
+    int x3 = cx - cr;
+    int y3 = cy - cr;
+    int x4 = cx + cr;
+    int y4 = cy + cr;
+    if (x1 <= x3 && x4 <= x2 && y1 <= y3 && y4 <= y2) {
+        hasR = false;
+    }
+    out.println(hasR ? "YES" : "NO");
+    out.println(hasB ? "YES" : "NO");
+    out.flush();
+}

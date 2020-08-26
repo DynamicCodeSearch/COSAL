@@ -1,0 +1,20 @@
+public static void main(String[] args) throws IOException {
+    PrintWriter out = new PrintWriter(System.out);
+    Scanner sc = new Scanner(System.in);
+    int n = Integer.parseInt(sc.next());
+    int k = Integer.parseInt(sc.next());
+    List<Integer> d_lst = new ArrayList<>();
+    for (int i = 0; i < k; i++) {
+        d_lst.add(Integer.parseInt(sc.next()));
+    }
+    int cand_n = n;
+    while (true) {
+        if (like(cand_n, d_lst)) {
+            out.println(cand_n);
+            break;
+        }
+        cand_n++;
+    }
+    out.flush();
+    sc.close();
+}

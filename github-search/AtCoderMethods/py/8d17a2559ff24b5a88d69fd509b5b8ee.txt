@@ -1,0 +1,13 @@
+def solve(s):
+	if len(s) == 0:
+		return 0, 1
+ l = len(s)
+ ans = 0
+ cnt = 0
+ for i in range(1, l+1):
+		left = s[:i]
+  right = s[i:]
+  a, b = solve(right)
+  ans += int(left) * b + a
+  cnt += b
+ return ans, cnt

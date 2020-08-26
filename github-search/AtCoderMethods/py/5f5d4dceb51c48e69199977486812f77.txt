@@ -1,0 +1,14 @@
+def solve():
+    if N in NGS: return False
+    n = N
+    for i in range(100):
+        if n <= 3: return True
+        if n-3 not in NGS:
+            n -= 3
+        elif n-2 not in NGS:
+            n -= 2
+        elif n-1 not in NGS:
+            n -= 1
+        else:
+            return False
+    return False

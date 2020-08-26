@@ -1,0 +1,42 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    int q = in.nextInt();
+    int a = in.nextInt() - 1;
+    int b = in.nextInt() - 1;
+    long[] tblL = new long[Math.max(n, 16)];
+    long[] tblR = new long[Math.max(n, 16)];
+    Arrays.fill(tblL, INF);
+    Arrays.fill(tblR, INF);
+    for (int i = 0; i < n; i++) {
+        tblL[i] = i;
+        tblR[n - i - 1] = i;
+    }
+    SegmentTreeRARMQ segL = new SegmentTreeRARMQ(tblL);
+    SegmentTreeRARMQ segR = new SegmentTreeRARMQ(tblR);
+    segL.add(0, b, INF / 10);
+    segL.add(b + 1, n, INF / 10);
+    segR.add(0, b, INF / 10);
+    segR.add(b + 1, n, INF / 10);
+    int last = a;
+    while (--q >= 0) {
+        int pos = in.nextInt() - 1;
+        long toLast = segL.min(last, last + 1) - last + Math.abs(last - pos);
+        long possibleMinLast = Math.min(segR.min(0, pos + 1) - (n - pos - 1), segL.min(pos, n) - pos);
+        segL.add(0, n, Math.abs(last - pos));
+        segR.add(0, n, Math.abs(last - pos));
+        if (toLast > possibleMinLast) {
+            long save = toLast - possibleMinLast;
+            segL.add(last, last + 1, -save);
+            segR.add(last, last + 1, -save);
+        }
+        last = pos;
+    }
+    long min = INF;
+    for (int i = 0; i < n; i++) {
+        min = Math.min(min, segL.min(i, i + 1) - i);
+    }
+    out.println(min);
+    out.flush();
+}

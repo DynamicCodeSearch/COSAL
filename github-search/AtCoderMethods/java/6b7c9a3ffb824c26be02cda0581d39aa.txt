@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    
+    int n = sc.nextInt();
+    
+    int m = sc.nextInt();
+    n = n % 12;
+    
+    
+    
+    double S = ((n * 60 + m) * 0.5);
+    
+    double L = (m * 6);
+    if (L < S) {
+        if (S - L > 180) {
+            System.out.println((360 - S) + L);
+        } else {
+            System.out.println(S - L);
+        }
+    } else {
+        if (L - S > 180) {
+            System.out.println((360 - L) + S);
+        } else {
+            System.out.println(L - S);
+        }
+    }
+}

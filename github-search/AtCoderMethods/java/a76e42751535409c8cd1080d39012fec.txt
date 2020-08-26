@@ -1,0 +1,15 @@
+private static int second(int h, int w) {
+    int w1, w2, w3;
+    w1 = w / 3;
+    w2 = w / 3;
+    w3 = w / 3;
+    if (w % 3 == 1) {
+        w1 += 1;
+    } else if (w % 3 == 2) {
+        w1 += 1;
+        w2 += 1;
+    }
+    long max_area = max_of_area((long) h * w1, (long) h * w2, (long) h * w3);
+    long min_area = min_of_area((long) h * w1, (long) h * w2, (long) h * w3);
+    return (int) (max_area - min_area);
+}

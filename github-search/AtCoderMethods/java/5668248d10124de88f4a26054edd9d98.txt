@@ -1,0 +1,11 @@
+public void solve(int testNumber, MyInput in, PrintWriter out) {
+    int n = in.nextInt();
+    int[] a = in.nextIntArray(n);
+    Arrays.sort(a);
+    int ans = 0;
+    for (int i = 0, j = 0; i < n; i++) {
+        while (j < n && a[j] - a[i] <= 2) j++;
+        ans = Math.max(ans, j - i);
+    }
+    out.println(ans);
+}

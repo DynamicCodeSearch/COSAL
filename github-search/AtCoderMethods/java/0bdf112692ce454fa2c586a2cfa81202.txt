@@ -1,0 +1,42 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    long d = (int) Math.pow(10, 9) + 7;
+    sc.close();
+    int[] prime = new int[1001];
+    int[] primes = new int[1001];
+    int k = 0;
+    for (int i = 2; i < 1001; i++) {
+        prime[i] = 1;
+        primes[i] = 0;
+    }
+    for (int i = 2; i < 1001; i++) {
+        if (prime[i] == 0)
+            continue;
+        primes[k++] = i;
+        int j = 2;
+        while (i * j < 1001) {
+            prime[i * j] = 0;
+            j++;
+        }
+    }
+    long[] factorials = new long[k];
+    for (int i = 0; i < k; i++) factorials[i] = 1;
+    for (int i = 2; i <= n; i++) {
+        int num = i;
+        for (int j = 0; j < k; j++) {
+            while (num % primes[j] == 0) {
+                factorials[j]++;
+                num /= primes[j];
+                if (num == 1)
+                    break;
+            }
+        }
+    }
+    long answer = 1;
+    for (int i = 0; i < k; i++) {
+        answer *= factorials[i];
+        answer %= d;
+    }
+    System.out.println(answer);
+}

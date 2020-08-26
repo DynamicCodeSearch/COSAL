@@ -1,0 +1,14 @@
+def main():
+    n = read_int()
+    res = 1
+    for p in range(2, n + 1):
+        if is_prime(p):
+            np = 0
+            for i in range(1, n + 1):
+                j = i
+                while j % p == 0:
+                    j //= p
+                    np += 1
+            res *= np + 1
+            res %= M
+    print(res)

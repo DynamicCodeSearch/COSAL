@@ -1,0 +1,15 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    long ans = -1;
+    while (n-- > 0) {
+        long t = in.nextLong();
+        if (ans == -1)
+            ans = t;
+        else if (t % ans == 0)
+            ans = t;
+        else if (ans % t == 0) {
+        } else
+            ans = lcm(ans, t);
+    }
+    out.println(ans);
+}

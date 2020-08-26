@@ -1,0 +1,13 @@
+
+long[][] mxProduct(long[][] a, long[][] b) {
+    long[][] result = new long[a.length][a.length];
+    for (int i = 0; i < a.length; i++) {
+        for (int j = 0; j < a.length; j++) {
+            for (int k = 0; k < a.length; k++) {
+                result[i][j] += (a[i][k] * b[k][j]) % m;
+                result[i][j] %= m;
+            }
+        }
+    }
+    return result;
+}

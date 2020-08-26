@@ -1,0 +1,9 @@
+def f(heap, body, sign, initial):
+    answer = [initial]
+    acc = initial
+    for b in body:
+        heapq.heappush(heap, (sign*b, b))
+        _, x = heapq.heappop(heap)
+        acc = acc + b - x
+        answer.append(acc)
+    return answer

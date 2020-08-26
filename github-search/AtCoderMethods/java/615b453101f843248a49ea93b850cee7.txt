@@ -1,0 +1,63 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    int V = sc.nextInt();
+    int E = sc.nextInt();
+    int[][] dist = new int[V][V];
+    for (int i = 0; i < V; i++) {
+        for (int j = 0; j < V; j++) {
+            dist[i][j] = -1;
+        
+        }
+    }
+    int[] a = new int[E];
+    int[] b = new int[E];
+    int[] c = new int[E];
+    for (int i = 0; i < E; i++) {
+        int x = sc.nextInt();
+        int y = sc.nextInt();
+        a[i] = x - 1;
+        b[i] = y - 1;
+        dist[x - 1][y - 1] = sc.nextInt();
+        dist[y - 1][x - 1] = dist[x - 1][y - 1];
+        c[i] = dist[x - 1][y - 1];
+    }
+    for (int i = 0; i < V; i++) {
+        for (int j = 0; j < V; j++) {
+            for (int k = 0; k < V; k++) {
+                int tmp = dist[j][i] + dist[i][k];
+                if (dist[j][i] >= 0 && dist[i][k] >= 0) {
+                    if (tmp < dist[j][k] || dist[j][k] == -1) {
+                        dist[j][k] = tmp;
+                    
+                    }
+                }
+            }
+        }
+    }
+    int ans = 0;
+    for (int i = 0; i < E; i++) {
+        if (dist[a[i]][b[i]] < c[i]) {
+            ans++;
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    System.out.println(ans);
+    sc.close();
+}

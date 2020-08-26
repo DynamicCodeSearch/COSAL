@@ -1,0 +1,33 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    int n = in.readInt();
+    HashMap<Integer, Integer> map = new HashMap<>();
+    HashMap<Integer, Boolean> pressed = new HashMap<>();
+    for (int i = 1; i <= n; i++) {
+        map.put(i, in.readInt());
+        pressed.put(i, false);
+    }
+    boolean possible = false;
+    for (int i : map.values()) {
+        if (i == 2) {
+            possible = true;
+        }
+    }
+    if (!possible) {
+        out.printLine(-1);
+        return;
+    }
+    int current = 1;
+    int counter = 0;
+    while (current != 2) {
+        current = map.get(current);
+        if (pressed.get(current)) {
+            out.printLine(-1);
+            return;
+        } else {
+            pressed.put(current, true);
+        }
+        counter++;
+    }
+    out.printLine(counter);
+
+}

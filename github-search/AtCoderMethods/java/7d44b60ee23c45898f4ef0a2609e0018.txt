@@ -1,0 +1,23 @@
+public void solve() {
+    int N = in.nextInt(), M = in.nextInt();
+    int MOD = 1000000007;
+    long[] fact = new long[100100];
+    fact[0] = 1;
+    for (int i = 0; i < fact.length - 1; i++) {
+        fact[i + 1] = (fact[i] * (i + 1)) % MOD;
+    }
+    if (N == M) {
+        long res = 1;
+        res = (res * fact[N]) % MOD;
+        res = (res * fact[M]) % MOD;
+        res = (res * 2) % MOD;
+        System.out.println(res);
+    } else if (Math.abs(N - M) == 1) {
+        long res = 1;
+        res = (res * fact[N]) % MOD;
+        res = (res * fact[M]) % MOD;
+        System.out.println(res);
+    } else {
+        System.out.println(0);
+    }
+}

@@ -1,0 +1,39 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int N = scanner.nextInt();
+    int M = scanner.nextInt();
+    int[][] map = new int[N][N];
+    int[][] mado = new int[N][N];
+    for (int i = 0; i < N; i++) {
+        String s = scanner.next();
+        for (int j = 0; j < N; j++) {
+            map[i][j] = s.charAt(j) == '#' ? 0 : 1;
+        }
+    }
+    for (int i = 0; i < M; i++) {
+        String s = scanner.next();
+        for (int j = 0; j < M; j++) {
+            mado[i][j] = s.charAt(j) == '#' ? 0 : 1;
+        }
+    }
+    int ok = 0;
+    for (int i = 0; i <= N - M; i++) {
+        for (int j = 0; j <= N - M; j++) {
+            int ans = 0;
+            for (int k = 0; k < M; k++) {
+                for (int l = 0; l < M; l++) {
+                    if (map[i + k][j + l] != mado[k][l])
+                        break;
+                    ans++;
+                }
+            }
+            if (ans == M * M)
+                ok = 1;
+        }
+    }
+    if (ok == 1) {
+        System.out.println("Yes");
+    } else {
+        System.out.println("No");
+    }
+}

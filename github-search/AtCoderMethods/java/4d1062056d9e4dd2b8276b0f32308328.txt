@@ -1,0 +1,31 @@
+void run() {
+    HashMap<Point, Long> map = new HashMap<Point, Long>();
+    for (Point point : points) {
+        for (int i = -1; i <= 1; i++) {
+            for (int j = -1; j <= 1; j++) {
+                Point target = new Point(point.x + i, point.y + j);
+                if (target.invalid()) {
+                    continue;
+                }
+                if (map.containsKey(target)) {
+                    long count = map.get(target);
+                    map.put(target, count + 1);
+                } else {
+                    map.put(target, (long) 1);
+                }
+            }
+        }
+    }
+    Collection<Long> values = map.values();
+    long[] ans = new long[10];
+    long allCount = 0;
+    for (long num : values) {
+        ans[(int) num]++;
+        allCount++;
+    }
+    long all = (long) (H - 2) * (W - 2);
+    ans[0] = all - allCount;
+    for (long a : ans) {
+        System.out.println(a);
+    }
+}

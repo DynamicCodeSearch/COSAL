@@ -1,0 +1,11 @@
+def solve(n, ps):
+    base = list(range(1, n + 1))
+    res = 0
+    for i in range(n):
+        if base[i] == ps[i]:
+            if i < n - 1:
+                ps[i], ps[i + 1] = ps[i + 1], ps[i]
+            else:
+                ps[i], ps[i - 1] = ps[i - 1], ps[i]
+            res += 1
+    return res

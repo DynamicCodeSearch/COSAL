@@ -1,0 +1,12 @@
+public void solve() {
+    char[] c = io.readLine().toCharArray();
+    int a = 0;
+    for (int i = 0; i < c.length; i++) if (c[i] == 'A') {
+        a = i;
+        break;
+    }
+    int b = c.length - 1;
+    for (; b >= 0; b--) if (c[b] == 'Z')
+        break;
+    io.writeLine("" + (b - a + 1));
+}

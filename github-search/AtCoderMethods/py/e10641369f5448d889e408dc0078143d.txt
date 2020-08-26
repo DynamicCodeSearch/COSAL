@@ -1,0 +1,17 @@
+def ql():
+    ans = (0,A)
+    for a in range(0,F,A):
+        for b in range(0,F,B):
+            for c in range(0,F,C):
+                for d in range(0,F,D):
+                    wat = (a + b)
+                    sug = (c + d)
+                    if wat == 0:
+                        break
+                    if wat+sug > F or 100*sug > E*wat:
+                        break
+                    elif 100*sug == E*wat:
+                        return (sug,wat)
+                    elif sug*ans[1] > ans[0]*wat:
+                        ans = (sug,wat)  
+    return ans

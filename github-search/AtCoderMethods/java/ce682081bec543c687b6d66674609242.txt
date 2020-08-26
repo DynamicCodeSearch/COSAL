@@ -1,0 +1,28 @@
+boolean distance() {
+    int cnt = 0;
+    boolean goal = false;
+    while (true) {
+        boolean updata = false;
+        for (int i = 0; i < M; i++) {
+            Edge e = es[i];
+            if (d[e.from] != INF && d[e.to] < d[e.from] + e.cost) {
+                d[e.to] = d[e.from] + e.cost;
+                updata = true;
+                if (cnt >= N && e.to == N - 1) {
+                    
+                    goal = true;
+                }
+            }
+        }
+        if (!updata) {
+            return true;
+        }
+        if (cnt == 2 * N) {
+            if (!goal) {
+                return true;
+            }
+            return false;
+        }
+        cnt++;
+    }
+}

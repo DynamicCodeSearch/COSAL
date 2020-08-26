@@ -1,0 +1,9 @@
+static long solve(int i, int j, int k) {
+    if (i == N)
+        return j != 0 && j * A == k ? 1 : 0;
+    if (dp[i][j][k] != -1)
+        return dp[i][j][k];
+    long take = solve(i + 1, j + 1, k + a[i]);
+    long leave = solve(i + 1, j, k);
+    return dp[i][j][k] = take + leave;
+}

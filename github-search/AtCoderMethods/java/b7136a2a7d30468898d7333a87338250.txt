@@ -1,0 +1,11 @@
+static void dfs(int now, int p) {
+    par[now] = p;
+    cnt[now] = 1;
+    for (int to : graph[now]) {
+        if (to == p) {
+            continue;
+        }
+        dfs(to, now);
+        cnt[now] += cnt[to];
+    }
+}

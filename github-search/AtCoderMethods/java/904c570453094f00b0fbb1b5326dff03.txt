@@ -1,0 +1,31 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    long N = sc.nextLong() % mod;
+    long K = sc.nextLong();
+    long n = 1;
+    long r = 1;
+    for (long i = 0; i < K; i++) {
+        n *= (N - i);
+        n %= mod;
+        r *= (i + 1);
+        r %= mod;
+    }
+    long a1 = 0;
+    long a2 = 1;
+    long a = 0;
+    if (K == 1) {
+        a = a1;
+    } else if (K == 2) {
+        a = a2;
+    } else {
+        for (int i = 3; i <= K; i++) {
+            a = (i - 1) * (a1 + a2);
+            a %= mod;
+            a1 = a2;
+            a2 = a;
+        }
+    }
+    long c = n * inverse(r, mod) % mod;
+    long ret = c * a % mod;
+    System.out.println(ret);
+}

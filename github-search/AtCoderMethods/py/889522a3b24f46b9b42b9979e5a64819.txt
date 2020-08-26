@@ -1,0 +1,43 @@
+def D_Coloring_Dominoes(N, S1, S2):
+    from collections import deque
+    S1, S2 = deque(S1), deque(S2)
+
+    def decisionBlock(s1, s2):
+
+        if s1[0] == s2[0]:
+            block = 'X'  
+            s1.popleft()
+            s2.popleft()
+        elif s1[0] == s1[1] and s2[0] == s2[1]:
+            block = 'Y'
+            s1.popleft()
+            s1.popleft()
+            s2.popleft()
+            s2.popleft()
+        else:
+            tmp = 'NotBlock'  
+        return block
+
+    combination = 0
+
+
+    firstblock = decisionBlock(S1, S2)
+    if firstblock == 'X':
+        combination += 3
+    else:
+        combination += 6
+
+
+    leftblock = firstblock
+    while S1 != deque([]):
+        block = decisionBlock(S1, S2)
+        if (leftblock, block) == ('X', 'X'):
+            combination *= 2
+        elif (leftblock, block) == ('Y', 'X'):
+            combination *= 1
+        elif (leftblock, block) == ('X', 'Y'):
+            combination *= 2
+        elif (leftblock, block) == ('Y', 'Y'):
+            combination *= 3
+        leftblock = block
+    return combination%(10**9+7)

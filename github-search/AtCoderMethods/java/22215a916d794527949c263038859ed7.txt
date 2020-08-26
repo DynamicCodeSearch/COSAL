@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    String[] input = scan.nextLine().split("");
+    scan.close();
+    boolean same = false;
+    for (int i = 0; i < input.length - 1; i++) {
+        String str1 = input[i];
+        for (int j = i + 1; j < input.length; j++) {
+            String str2 = input[j];
+            if (str1.equals(str2)) {
+                same = true;
+            }
+        }
+        if (same) {
+            break;
+        }
+    }
+    if (same) {
+        System.out.println("no");
+    } else {
+        System.out.println("yes");
+    }
+}

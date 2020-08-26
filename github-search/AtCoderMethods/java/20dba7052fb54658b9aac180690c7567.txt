@@ -1,0 +1,13 @@
+public static void main(String[] args) throws Exception {
+    Scanner scan = new Scanner(System.in);
+    int N = scan.nextInt();
+    int n = N % 30;
+    int[] card = { 1, 2, 3, 4, 5, 6 };
+    for (int i = 0; i < n; i++) {
+        int temp = card[i % 5];
+        card[i % 5] = card[i % 5 + 1];
+        card[i % 5 + 1] = temp;
+    }
+    for (int i = 0; i < 6; i++) System.out.print(card[i]);
+    System.out.println();
+}

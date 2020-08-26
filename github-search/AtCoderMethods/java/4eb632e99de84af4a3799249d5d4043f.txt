@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    String o = scan.next();
+    String e = scan.next();
+    StringBuilder sb = new StringBuilder();
+    boolean jdg = false;
+    int iend = 0;
+    if (o.length() == e.length()) {
+        iend = o.length();
+        jdg = true;
+    } else {
+        iend = Math.min(o.length(), e.length());
+    }
+    for (int i = 0; i < iend; i++) {
+        sb.append(o.charAt(i));
+        sb.append(e.charAt(i));
+    }
+    if (!jdg) {
+        if (o.length() > e.length())
+            sb.append(o.charAt(o.length() - 1));
+        else
+            sb.append(e.charAt(e.length() - 1));
+    }
+    System.out.println(sb);
+}

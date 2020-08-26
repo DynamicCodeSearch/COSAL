@@ -1,0 +1,18 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    Dijkstra dijkstra = new Dijkstra(n);
+    for (int i = 0; i < n - 1; i++) {
+        int from = in.nextInt() - 1;
+        int to = in.nextInt() - 1;
+        int cost = in.nextInt();
+        dijkstra.addUndirectedEdge(from, to, cost);
+    }
+    int q = in.nextInt();
+    int k = in.nextInt() - 1;
+    long[] dist = dijkstra.getDist(k);
+    for (int i = 0; i < q; i++) {
+        int x = in.nextInt() - 1;
+        int y = in.nextInt() - 1;
+        out.println(dist[x] + dist[y]);
+    }
+}

@@ -1,0 +1,11 @@
+public long C(int n, int r) {
+    if (r < 0 || r > n) {
+        return 0;
+    }
+    long res = modf[n];
+    res *= modinv[n - r];
+    res %= mod;
+    res *= modinv[r];
+    res %= mod;
+    return res;
+}

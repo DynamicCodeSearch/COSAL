@@ -1,0 +1,20 @@
+public void solve() {
+    int N = in.nextInt();
+    State[] st = new State[N];
+    for (int i = 0; i < N; i++) {
+        st[i] = new State(i, in.nextInt());
+    }
+    Arrays.sort(st);
+    int[] res = new int[N];
+    int cur = 0;
+    for (int i = 0; i < N; i++) {
+        res[st[i].id] = cur;
+        if (i != N - 1 && st[i].val != st[i + 1].val) {
+            cur++;
+        }
+    }
+    for (int i = 0; i < N; i++) {
+        out.println(res[i]);
+    }
+    out.close();
+}

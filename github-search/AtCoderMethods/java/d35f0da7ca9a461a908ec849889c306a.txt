@@ -1,0 +1,22 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String x = br.readLine();
+    String y = br.readLine();
+    int a = Integer.parseInt(x);
+    int b = Integer.parseInt(y);
+    int c;
+    if (a < b) {
+        if (Math.abs(a - b) <= 5) {
+            c = Math.abs(a) - Math.abs(b);
+        } else {
+            c = 10 - b + a;
+        }
+    } else {
+        if (Math.abs(a - b) <= 5) {
+            c = Math.abs(a) - Math.abs(b);
+        } else {
+            c = 10 - a + b;
+        }
+    }
+    System.out.println(Math.abs(c));
+}

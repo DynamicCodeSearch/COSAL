@@ -1,0 +1,13 @@
+public void solve() {
+    int n = in.nextInt();
+    int[] a = in.nextIntArray(n);
+    int ans = Integer.MAX_VALUE;
+    for (int i = -200; i < 200; i++) {
+        int cur = 0;
+        for (int j = 0; j < n; j++) {
+            cur += (i - a[j]) * (i - a[j]);
+        }
+        ans = Math.min(ans, cur);
+    }
+    System.out.println(ans);
+}

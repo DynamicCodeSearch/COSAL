@@ -1,0 +1,24 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    String[] s = new String[] { "a", "b", "c" };
+    double max = Math.pow(3, n);
+    for (int i = 0; i < max; i++) {
+        String ans = "";
+        String res = Integer.toString(i, 3);
+        for (int j = 0; j < n - res.length(); j++) {
+            ans += "0";
+        }
+        ans += res;
+        for (int j = 0; j < n; j++) {
+            if (ans.charAt(j) == '0') {
+                System.out.print("a");
+            } else if (ans.charAt(j) == '1') {
+                System.out.print("b");
+            } else {
+                System.out.print("c");
+            }
+        }
+        System.out.println();
+    }
+}

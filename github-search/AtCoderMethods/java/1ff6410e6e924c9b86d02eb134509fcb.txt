@@ -1,0 +1,19 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    char[] line = br.readLine().toCharArray();
+    Map<Character, Integer> map = new HashMap<Character, Integer>();
+    for (char c : line) {
+        if (!map.containsKey(c)) {
+            map.put(c, 1);
+        } else {
+            map.put(c, map.get(c) + 1);
+        }
+    }
+    for (int i : map.values()) {
+        if (i % 2 != 0) {
+            System.out.println("No");
+            return;
+        }
+    }
+    System.out.println("Yes");
+}

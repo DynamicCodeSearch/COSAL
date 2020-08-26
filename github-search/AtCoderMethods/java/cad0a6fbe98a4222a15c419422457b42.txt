@@ -1,0 +1,18 @@
+private void solve() {
+    try {
+        int N = sc.nextInt();
+        long A = sc.nextInt();
+        long B = sc.nextInt();
+        long[] ary = new long[N];
+        for (int i = 0; i < N; i++) {
+            ary[i] = sc.nextLong();
+        }
+        long ret = 0;
+        for (int i = 0; i < N - 1; i++) {
+            ret += Math.min((ary[i + 1] - ary[i]) * A, B);
+        }
+        System.out.println(ret);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}

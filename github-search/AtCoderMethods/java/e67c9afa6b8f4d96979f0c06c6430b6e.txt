@@ -1,0 +1,15 @@
+static void bfs(int ny, int nx) {
+    Deque<int[]> q = new ArrayDeque<>();
+    int[] c = { ny, nx };
+    q.offerLast(c);
+    while (!q.isEmpty()) {
+        int[] b = q.pollFirst();
+        for (int i = 0; i < 4; i++) {
+            if (m[b[0] + y[i]][b[1] + x[i]] == -1) {
+                m[b[0] + y[i]][b[1] + x[i]] = m[b[0]][b[1]] + 1;
+                int[] a = { b[0] + y[i], b[1] + x[i] };
+                q.offerLast(a);
+            }
+        }
+    }
+}

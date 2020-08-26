@@ -1,0 +1,21 @@
+public static void main(String[] args) throws Exception {
+    int n = sc.nextInt();
+    int[] ary = new int[n];
+    int min = 100;
+    int max = -100;
+    for (int i = 0; i < n; i++) {
+        int a = sc.nextInt();
+        ary[i] = a;
+        min = Math.min(min, a);
+        max = Math.max(max, a);
+    }
+    long res = 4000000;
+    for (int i = min; i <= max; i++) {
+        long tmp = 0;
+        for (int j = 0; j < n; j++) {
+            tmp += Math.pow(ary[j] - i, 2);
+        }
+        res = Math.min(res, tmp);
+    }
+    System.out.println(res);
+}

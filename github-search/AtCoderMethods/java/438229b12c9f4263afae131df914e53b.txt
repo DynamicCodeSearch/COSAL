@@ -1,0 +1,21 @@
+private void read() {
+    Scanner sc = new Scanner(System.in);
+    n = sc.nextInt();
+    es = new ArrayList[n];
+    for (int i = 0; i < n; i++) es[i] = new ArrayList<>();
+    for (int i = 1; i < n; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        long c = sc.nextLong();
+        es[a].add(new Edge(a, b, c));
+        es[b].add(new Edge(b, a, c));
+    }
+    q = sc.nextInt();
+    k = sc.nextInt() - 1;
+    xs = new int[q];
+    ys = new int[q];
+    for (int i = 0; i < q; i++) {
+        xs[i] = sc.nextInt() - 1;
+        ys[i] = sc.nextInt() - 1;
+    }
+}

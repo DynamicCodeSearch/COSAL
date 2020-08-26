@@ -1,0 +1,38 @@
+String shortestPath() {
+    ArrayQueue<XY> que = new ArrayQueue<XY>();
+    que.enqueue(new XY(sx, sy));
+    c_ij[sx][sy] = 0 + "";
+    XY xy;
+    for (; ; ) {
+        if (que.size() == 0) {
+            break;
+        }
+        xy = que.dequeue();
+        if (c_ij[xy.x][xy.y - 1].equals(".")) {
+            que.enqueue(new XY(xy.x, xy.y - 1));
+            c_ij[xy.x][xy.y - 1] = (Integer.parseInt(c_ij[xy.x][xy.y]) + 1) + "";
+        }
+        if (c_ij[xy.x][xy.y + 1].equals(".")) {
+            que.enqueue(new XY(xy.x, xy.y + 1));
+            c_ij[xy.x][xy.y + 1] = (Integer.parseInt(c_ij[xy.x][xy.y]) + 1) + "";
+        }
+        if (c_ij[xy.x - 1][xy.y].equals(".")) {
+            que.enqueue(new XY(xy.x - 1, xy.y));
+            c_ij[xy.x - 1][xy.y] = (Integer.parseInt(c_ij[xy.x][xy.y]) + 1) + "";
+        }
+        if (c_ij[xy.x + 1][xy.y].equals(".")) {
+            que.enqueue(new XY(xy.x + 1, xy.y));
+            c_ij[xy.x + 1][xy.y] = (Integer.parseInt(c_ij[xy.x][xy.y]) + 1) + "";
+        }
+    
+    
+    
+    
+    
+    
+    
+    
+    }
+    
+    return c_ij[gy][gx];
+}

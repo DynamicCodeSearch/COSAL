@@ -1,0 +1,18 @@
+private int cntBlack(int x, int y) {
+    int[] dx = new int[] { 0, 0, 0, 1, 1, 1, 2, 2, 2 };
+    int[] dy = new int[] { 0, 1, 2, 0, 1, 2, 0, 1, 2 };
+    int count = 0;
+    for (int i = 0; i < 9; i++) {
+        int nx = x + dx[i];
+        int ny = y + dy[i];
+        if ((nx > 0 && nx <= H) && (ny > 0 && ny <= W)) {
+            if (map.containsKey(new Points(nx, ny))) {
+                count++;
+            }
+        } else {
+            count = -1;
+            break;
+        }
+    }
+    return count;
+}

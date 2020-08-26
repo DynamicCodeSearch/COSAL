@@ -1,0 +1,9 @@
+long pow(long l, long p) {
+    if (p == 0)
+        return 1;
+    long a = pow(l, p / 2);
+    long b = a * a % MOD;
+    if (p % 2 != 0)
+        b = b * l % MOD;
+    return b;
+}

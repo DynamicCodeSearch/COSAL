@@ -1,0 +1,9 @@
+def find(self, x):
+    path = [x]
+    v = x
+    while self.parents[v]!=v:
+        v = self.parents[v]
+        path.append(v)
+    for p in path:
+        self.parents[p] = v
+    return v

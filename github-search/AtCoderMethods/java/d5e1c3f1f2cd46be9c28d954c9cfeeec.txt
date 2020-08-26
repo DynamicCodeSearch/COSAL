@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    PrintWriter out = new PrintWriter(System.out);
+    int n = sc.nextInt();
+    int a = sc.nextInt();
+    int[] x = new int[n];
+    for (int i = 0; i < n; i++) {
+        x[i] = sc.nextInt();
+    }
+    
+    long[][] dp = new long[n + 1][n * 50 + 1];
+    dp[0][0] = 1;
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j > 0; j--) {
+            for (int k = n * 50; k >= x[i]; k--) {
+                dp[j][k] += dp[j - 1][k - x[i]];
+            }
+        }
+    }
+    long ans = 0;
+    for (int i = 1; i <= n; i++) {
+        ans += dp[i][a * i];
+    }
+    out.println(ans);
+    out.flush();
+}

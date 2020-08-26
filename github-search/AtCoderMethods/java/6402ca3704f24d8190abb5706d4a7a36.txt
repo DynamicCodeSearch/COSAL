@@ -1,0 +1,16 @@
+public void solve() {
+    for (int i = 1; i <= N; i++) {
+        int cp = 1;
+        int d = Integer.MAX_VALUE;
+        for (int j = 1; j <= M; j++) {
+            int dx = SX[i] > CX[j] ? SX[i] - CX[j] : CX[j] - SX[i];
+            int dy = SY[i] > CY[j] ? SY[i] - CY[j] : CY[j] - SY[i];
+            
+            if (d > dx + dy) {
+                d = dx + dy;
+                cp = j;
+            }
+        }
+        System.out.println(cp);
+    }
+}

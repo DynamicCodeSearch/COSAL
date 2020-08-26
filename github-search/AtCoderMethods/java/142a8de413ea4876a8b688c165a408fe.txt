@@ -1,0 +1,22 @@
+void solve() throws IOException {
+    int n = ni(), m = ni();
+    String[] a = nsa(n);
+    String[] b = nsa(m);
+    for (int i = 0; i <= n - m; i++) {
+        for (int j = 0; j <= n - m; j++) {
+            boolean flg = true;
+            for (int k = 0; k < m; k++) {
+                for (int l = 0; l < m; l++) {
+                    if (a[i + k].charAt(j + l) != b[k].charAt(l)) {
+                        flg = false;
+                    }
+                }
+            }
+            if (flg) {
+                out.println("Yes");
+                return;
+            }
+        }
+    }
+    out.println("No");
+}

@@ -1,0 +1,36 @@
+public static void output() throws IOException {
+    int n = ri();
+    int[][] x = new int[n][2];
+    int[][] y = new int[n][2];
+    for (int i = 0; i < n; i++) {
+        x[i][0] = ri();
+        x[i][1] = i;
+        y[i][0] = ri();
+        y[i][1] = i;
+    }
+    java.util.Arrays.sort(x, new java.util.Comparator<int[]>() {
+
+        public int compare(int[] a, int[] b) {
+            return (a[0] < b[0] ? -1 : (a[0] == b[0] ? 0 : 1));
+        }
+    });
+    java.util.Arrays.sort(y, new java.util.Comparator<int[]>() {
+
+        public int compare(int[] a, int[] b) {
+            return (a[0] < b[0] ? -1 : (a[0] == b[0] ? 0 : 1));
+        }
+    });
+    List<Edge>[] edges = new List[n];
+    for (int i = 0; i < n; i++) {
+        edges[i] = new ArrayList<>();
+    }
+    for (int i = 1; i < n; i++) {
+        edges[x[i][1]].add(new Edge(x[i - 1][1], Math.abs(x[i][0] - x[i - 1][0])));
+        edges[x[i - 1][1]].add(new Edge(x[i][1], Math.abs(x[i][0] - x[i - 1][0])));
+    }
+    for (int i = 1; i < n; i++) {
+        edges[y[i][1]].add(new Edge(y[i - 1][1], Math.abs(y[i][0] - y[i - 1][0])));
+        edges[y[i - 1][1]].add(new Edge(y[i][1], Math.abs(y[i][0] - y[i - 1][0])));
+    }
+    println(mst(edges, new int[n]));
+}

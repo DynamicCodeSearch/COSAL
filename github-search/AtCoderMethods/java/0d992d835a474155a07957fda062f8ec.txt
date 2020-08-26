@@ -1,0 +1,14 @@
+static long fun(int currentNode, boolean[] done) {
+    long ans = Integer.MAX_VALUE;
+    for (int i = 0; i < done.length; i++) {
+        if (!done[i]) {
+            done[i] = true;
+            ans = Math.min(ans, fun(c[i], done) + d[currentNode][c[i]]);
+            done[i] = false;
+        }
+    }
+    if (ans == Integer.MAX_VALUE) {
+        ans = 0;
+    }
+    return ans;
+}

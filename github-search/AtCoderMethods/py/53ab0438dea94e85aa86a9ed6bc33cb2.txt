@@ -1,0 +1,6 @@
+def set_enable_goal(cur_node, back_paths, enable_goal):
+    if cur_node in back_paths:
+        for next_node in back_paths[cur_node]:
+            if enable_goal[next_node - 1] == 0:
+                enable_goal[next_node - 1] = 1
+                set_enable_goal(next_node, back_paths, enable_goal)

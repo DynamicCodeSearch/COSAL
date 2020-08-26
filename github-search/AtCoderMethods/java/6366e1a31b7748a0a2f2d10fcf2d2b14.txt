@@ -1,0 +1,19 @@
+void union(int x, int y) {
+    int rootX = find(x);
+    int rootY = find(y);
+    if (rootX == rootY) {
+        
+        return;
+    }
+    if (height[rootX] > height[rootY]) {
+        parent[rootY] = rootX;
+        size[rootX] += size[rootY];
+    } else if (height[rootX] < height[rootY]) {
+        parent[rootX] = rootY;
+        size[rootY] += size[rootX];
+    } else {
+        parent[rootY] = rootX;
+        size[rootX] += size[rootY];
+        height[rootX]++;
+    }
+}

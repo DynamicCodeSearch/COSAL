@@ -1,0 +1,20 @@
+void run() {
+    int N = sc.nextInt();
+    int x = sc.nextInt();
+    int[] a = sc.nextIntArray(N);
+    long cost = 0;
+    for (int i = 1; i < N; i++) {
+        long sum = a[i - 1] + a[i];
+        if (sum > x) {
+            long needcut = sum - x;
+            cost += needcut;
+            if (needcut <= a[i]) {
+                a[i] -= needcut;
+            } else {
+                needcut -= a[i];
+                a[i] = 0;
+            }
+        }
+    }
+    System.out.println(cost);
+}

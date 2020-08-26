@@ -1,0 +1,17 @@
+def solve(m, A):
+    count = 0
+    c = A[0]
+    if m == 0 and c <= 0:
+        c = 1
+        count = abs(A[0]) + 1
+    elif m == 1 and c >= 0:
+        c = -1
+        count = abs(A[0]) + 1
+
+    for a in A[1:]:
+        if c * (c+a) >= 0:
+            count += abs(a+c) + 1
+            c = -1 * c//abs(c);
+        else:
+            c += a
+    return count

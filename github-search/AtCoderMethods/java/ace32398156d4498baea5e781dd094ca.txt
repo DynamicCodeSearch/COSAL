@@ -1,0 +1,22 @@
+static void solve() {
+    double l = in.nextInt();
+    double x = in.nextInt();
+    double y = in.nextInt();
+    double s = in.nextInt();
+    double d = in.nextInt();
+    if (s < d) {
+        if (x < y) {
+            out.printf("%.10f\n", Math.min((d - s) / (x + y), (l - (d - s)) / (y - x)));
+        } else {
+            out.printf("%.10f\n", (d - s) / (x + y));
+        }
+    } else if (s > d) {
+        if (x < y) {
+            out.printf("%.10f\n", Math.min((l - (s - d)) / (x + y), (s - d) / (y - x)));
+        } else {
+            out.printf("%.10f\n", (l - (s - d)) / (x + y));
+        }
+    } else {
+        out.println("0");
+    }
+}

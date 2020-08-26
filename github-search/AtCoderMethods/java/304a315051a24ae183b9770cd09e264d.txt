@@ -1,0 +1,20 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] a = sc.nextInt(N);
+    long count = 0;
+    int left = 0;
+    while (left < N) {
+        int length = 1;
+        int prev = a[left];
+        int right = left + 1;
+        while (right < N && prev < a[right]) {
+            length++;
+            prev = a[right];
+            right++;
+        }
+        count += ((long) length * (length + 1)) / 2;
+        left = right;
+    }
+    System.out.println(count);
+}

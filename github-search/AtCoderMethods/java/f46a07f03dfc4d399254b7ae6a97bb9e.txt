@@ -1,0 +1,16 @@
+static long[][] pow(long[][] a, long N) {
+    int n = a.length, m = a[0].length;
+    if (n != m)
+        throw new RuntimeException();
+    long[][] tmp = new long[n][n];
+    long[][] res = new long[n][n];
+    for (int i = 0; i < n; i++) res[i][i] = 1;
+    for (int i = 0; i < n; i++) for (int j = 0; j < n; j++) tmp[i][j] = a[i][j];
+    while (N > 0) {
+        if (N % 2 == 1)
+            res = mult(res, a);
+        N /= 2;
+        a = mult(a, a);
+    }
+    return res;
+}

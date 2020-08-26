@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int a, sum = 0;
+    HashMap<Integer, Integer> map = new HashMap<>();
+    for (int i = 0; i < n; i++) {
+        a = sc.nextInt();
+        if (map.containsKey(a)) {
+            map.put(a, map.get(a) + 1);
+        } else {
+            map.put(a, 1);
+        }
+    }
+    for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+        sum += entry.getValue() % 2;
+    }
+    System.out.println(sum);
+}

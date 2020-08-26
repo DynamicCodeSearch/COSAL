@@ -1,0 +1,22 @@
+public static void main(String[] __) {
+    n = s.nextInt();
+    long[] a = new long[n];
+    for (int i = 0; i < n; i++) a[i] = s.nextInt();
+    if (a[0] != 0) {
+        long r1 = solve(Arrays.copyOf(a, a.length));
+        long r2 = Math.abs(a[0]) + 1;
+        a[0] = -a[0] / Math.abs(a[0]);
+        r2 += solve(Arrays.copyOf(a, a.length));
+        
+        
+        System.out.println(Math.min(r1, r2));
+    } else {
+        a[0] = 1;
+        long r1 = 1 + solve(Arrays.copyOf(a, a.length));
+        a[0] = -1;
+        long r2 = 1 + solve(Arrays.copyOf(a, a.length));
+        
+        
+        System.out.println(Math.min(r1, r2));
+    }
+}

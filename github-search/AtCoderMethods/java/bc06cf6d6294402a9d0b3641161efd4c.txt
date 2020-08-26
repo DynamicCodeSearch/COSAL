@@ -1,0 +1,12 @@
+
+double distance(double x0, double y0) {
+    
+    if (GeomUtils.dot(x2 - x1, y2 - y1, x0 - x1, y0 - y1) < EPS) {
+        return GeomUtils.abs(x0 - x1, y0 - y1);
+    }
+    if (GeomUtils.dot(x1 - x2, y1 - y2, x0 - x2, y0 - y2) < EPS) {
+        return GeomUtils.abs(x0 - x2, y0 - y2);
+    }
+    
+    return Math.abs(GeomUtils.cross(x2 - x1, y2 - y1, x0 - x1, y0 - y1)) / GeomUtils.abs(x2 - x1, y2 - y1);
+}

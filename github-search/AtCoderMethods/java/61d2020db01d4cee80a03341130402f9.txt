@@ -1,0 +1,41 @@
+static void solve() {
+    int n = ni();
+    int[][] ms = new int[n][];
+    for (int i = 0; i < n; i++) {
+        ms[i] = new int[] { ni(), ni() };
+    }
+    Arrays.sort(ms, new Comparator<int[]>() {
+
+        public int compare(int[] a, int[] b) {
+            return Integer.compare(a[0] - a[1], b[0] - b[1]);
+        }
+    });
+    int sp = n;
+    for (int i = 0; i < n; i++) {
+        if (ms[i][1] < ms[i][0]) {
+            sp = i;
+            break;
+        }
+    }
+    Arrays.sort(ms, 0, sp, new Comparator<int[]>() {
+
+        public int compare(int[] a, int[] b) {
+            return a[0] - b[0];
+        }
+    });
+    
+    Arrays.sort(ms, sp, n, new Comparator<int[]>() {
+
+        public int compare(int[] a, int[] b) {
+            return Long.compare(Math.max(a[0], (long) a[0] - a[1] + b[0]), Math.max(b[0], (long) b[0] - b[1] + a[0]));
+        }
+    });
+    
+    long h = 0;
+    long max = 0;
+    for (int[] m : ms) {
+        max = Math.max(max, h + m[0]);
+        h = h + m[0] - m[1];
+    }
+    out.println(max);
+}

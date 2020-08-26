@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    a = sc.nextInt();
+    b = sc.nextInt();
+    c = sc.nextInt();
+    d = sc.nextInt();
+    e = sc.nextInt();
+    f = sc.nextInt();
+    
+    int sum = 100;
+    int sug = 0;
+    for (int i = 0; i <= f; i += 100 * a) {
+        for (int j = 0; i + j <= f; j += 100 * b) {
+            for (int k = 0; i + j + k <= f; k += c) {
+                for (int l = 0; i + j + k + l <= f; l += d) {
+                    
+                    if ((100 + e) * (k + l) <= e * ((i + j) + k + l)) {
+                        
+                        if (sum * (k + l) >= ((i + j) + k + l) * sug) {
+                            sum = (i + j) + k + l;
+                            sug = k + l;
+                        
+                        }
+                    }
+                }
+            }
+        }
+    }
+    System.out.println(sum + " " + sug);
+}

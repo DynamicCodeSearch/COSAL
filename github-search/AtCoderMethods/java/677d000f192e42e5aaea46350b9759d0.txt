@@ -1,0 +1,62 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    long k = in.nextLong();
+    long[] a = new long[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = in.nextLong();
+    }
+    long[] imos = new long[n + 1];
+    for (int i = 0; i < n; i++) {
+        imos[i + 1] = imos[i] + a[i];
+    }
+    long[][] dp = new long[n + 1][n + 1];
+    for (int i = 0; i <= n; i++) {
+        Arrays.fill(dp[i], -1);
+    }
+    dp[n][0] = k;
+    for (int i = n; i >= 1; i--) {
+        for (int j = 0; j <= n; j++) {
+            long up = dp[i][j];
+            if (up == -1) {
+                continue;
+            }
+            long dw = imos[i];
+            long tdw = imos[i - 1];
+            if (up <= tdw) {
+                dp[i - 1][j] = Math.max(dp[i - 1][j], up);
+            }
+            long tup = (up * tdw);
+            if (tup >= 1) {
+                if (tup % dw == 0) {
+                    tup /= dw;
+                    tup--;
+                } else {
+                    tup /= dw;
+                }
+                if (tup > tdw) {
+                    tup = tdw;
+                }
+                if (up - tup > a[i - 1]) {
+                    tup = up - a[i - 1];
+                }
+            }
+            int tj = j;
+            if (i - 1 == 0) {
+                tj += up >= 1 ? 1 : 0;
+            } else if (tup * dw < up * tdw) {
+                tj++;
+            }
+            dp[i - 1][tj] = Math.max(dp[i - 1][tj], tup);
+        }
+    }
+    int max = 0;
+    for (int i = 0; i <= n; i++) {
+        if (dp[0][i] >= 0) {
+            max = Math.max(max, i);
+        }
+    }
+    out.println(max);
+    out.flush();
+}

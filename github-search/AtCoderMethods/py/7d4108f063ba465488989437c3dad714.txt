@@ -1,0 +1,26 @@
+def solve():
+    from itertools import combinations as comb
+    from bisect import bisect_left, bisect_right
+    N, K = map(int, input().split())
+    points = sorted([tuple(map(int, input().split())) for _ in [0]*N])
+    result = float("inf")
+
+    for l in comb(points, min(4, K)):
+        maxx = maxy = float("-inf")
+        minx = miny = float("inf")
+        for x, y in l:
+            maxx = x if x > maxx else maxx
+            minx = x if x < minx else minx
+            maxy = y if y > maxy else maxy
+            miny = y if y < miny else miny
+        if K > 4:
+            i, j = bisect_left(points, (minx, miny)), bisect_right(points, (maxx, maxy))
+            inner_p = sum((1 for x, y in points[i:j] if miny <= y <= maxy))
+            if inner_p < K:
+                continue
+
+        s = (maxx-minx)*(maxy-miny)
+        if s < result:
+            result = s
+
+    print(result)

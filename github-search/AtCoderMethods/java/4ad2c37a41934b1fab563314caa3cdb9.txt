@@ -1,0 +1,55 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int n = Integer.parseInt(br.readLine());
+    
+    ArrayList<edge>[] es = new ArrayList[n];
+    for (int i = 0; i < n; i++) es[i] = (new ArrayList<>());
+    for (int i = 0; i < n - 1; i++) {
+        String[] str = br.readLine().split(" ");
+        edge ed_f = new edge();
+        int a = Integer.parseInt(str[0]) - 1;
+        int b = Integer.parseInt(str[1]) - 1;
+        long c = Long.parseLong(str[2]);
+        ed_f.from = a;
+        ed_f.to = b;
+        ed_f.cost = c;
+        es[a].add(ed_f);
+        edge ed_b = new edge();
+        ed_b.from = b;
+        ed_b.to = a;
+        ed_b.cost = c;
+        es[b].add(ed_b);
+    }
+    String[] str = br.readLine().split(" ");
+    int q = Integer.parseInt(str[0]);
+    int k = Integer.parseInt(str[1]);
+    PriorityQueue<long[]> dist = new PriorityQueue<>((long[] le, long[] ri) -> (int) (le[0] - ri[0]));
+    long[] vertex = new long[2];
+    vertex[0] = 0;
+    vertex[1] = k - 1;
+    dist.add(vertex);
+    long[] len = new long[n];
+    Arrays.fill(len, Long.MAX_VALUE);
+    len[k - 1] = 0;
+    while (!dist.isEmpty()) {
+        vertex = dist.poll();
+        long u = vertex[1];
+        for (Object ed : es[(int) u]) {
+            if (len[((edge) ed).from] + ((edge) ed).cost < len[((edge) ed).to]) {
+                len[((edge) ed).to] = len[((edge) ed).from] + ((edge) ed).cost;
+                long[] p = new long[2];
+                p[0] = len[((edge) ed).to];
+                p[1] = ((edge) ed).to;
+                dist.add(p);
+            }
+        }
+    }
+    for (int i = 0; i < q; i++) {
+        long length = 0;
+        str = br.readLine().split(" ");
+        int st = Integer.parseInt(str[0]);
+        int ed = Integer.parseInt(str[1]);
+        length += len[st - 1] + len[ed - 1];
+        System.out.println(length);
+    }
+}

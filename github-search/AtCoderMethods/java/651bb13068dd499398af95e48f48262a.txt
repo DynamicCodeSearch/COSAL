@@ -1,0 +1,29 @@
+static void solve(FastScanner sc, PrintWriter out) {
+    int W = sc.ni();
+    int H = sc.ni();
+    int N = sc.ni();
+    long minX = 0;
+    long maxX = W;
+    long minY = 0;
+    long maxY = H;
+    for (int i = 0; i < N; i++) {
+        int x = sc.ni();
+        int y = sc.ni();
+        int a = sc.ni();
+        switch(a) {
+            case 1:
+                minX = Math.max(minX, x);
+                break;
+            case 2:
+                maxX = Math.min(maxX, x);
+                break;
+            case 3:
+                minY = Math.max(minY, y);
+                break;
+            case 4:
+                maxY = Math.min(maxY, y);
+                break;
+        }
+    }
+    out.println(Math.max(maxX - minX, 0) * Math.max(maxY - minY, 0));
+}

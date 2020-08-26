@@ -1,0 +1,18 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    long[] t = new long[N];
+    long max = 0;
+    for (int i = 0; i < N; i++) {
+        t[i] = sc.nextLong();
+        if (t[i] > max)
+            max = t[i];
+    }
+    long ans = max;
+    for (int i = 0; i < N; i++) {
+        if (ans % t[i] != 0) {
+            ans = gcd(ans, t[i]);
+        }
+    }
+    System.out.println(ans);
+}

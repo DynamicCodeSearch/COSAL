@@ -1,0 +1,17 @@
+private void solve(Scanner sc, PrintWriter out) {
+    N = sc.nextInt();
+    K = sc.nextInt();
+    a = new long[N];
+    long[] s = new long[N];
+    long sum = 0;
+    for (int i = 0; i < N; ++i) {
+        a[i] = sc.nextInt();
+        sum += a[i];
+        s[i] = sum;
+    }
+    long total = s[K - 1];
+    for (int i = 0; i < N - K; ++i) {
+        total += s[i + K] - s[i];
+    }
+    out.println(total);
+}

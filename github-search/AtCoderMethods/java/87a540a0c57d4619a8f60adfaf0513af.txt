@@ -1,0 +1,27 @@
+int[][] doreal(int from) {
+    int[][] dp = new int[n][MAXB];
+    for (int i = 0; i < n; i++) {
+        Arrays.fill(dp[i], INF);
+    }
+    Queue<State> q = new PriorityQueue<>((o1, o2) -> o1.usedA - o2.usedA);
+    q.add(new State(from, 0, 0));
+    dp[from][0] = 0;
+    while (q.size() >= 1) {
+        State st = q.poll();
+        if (dp[st.now][st.usedB] < st.usedA) {
+            continue;
+        }
+        for (int[] e : graph[st.now]) {
+            int ta = e[1] == 0 ? st.usedA + 1 : st.usedA;
+            int tb = e[1] == 1 ? st.usedB + 1 : st.usedB;
+            if (tb >= MAXB) {
+                continue;
+            }
+            if (dp[e[0]][tb] > ta) {
+                dp[e[0]][tb] = ta;
+                q.add(new State(e[0], ta, tb));
+            }
+        }
+    }
+    return dp;
+}

@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    Scanner io = new Scanner(System.in);
+    String S = io.next();
+    boolean[] alph = new boolean[26];
+    for (int i = 0; i < S.length(); i++) {
+        boolean cha = alph[S.charAt(i) - 97];
+        if (cha) {
+            System.out.println("no");
+            return;
+        }
+        alph[S.charAt(i) - 97] = true;
+    }
+    System.out.println("yes");
+}

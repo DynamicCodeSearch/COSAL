@@ -1,0 +1,21 @@
+def addPlus(inp, n):
+    total = 0
+    possible = [inp]
+    orig = inp
+
+    for i in range(1, len(orig)):
+        possible.append(orig[:i] + '+' + perm[i:])
+
+    for i in range(1, n):
+        curr = possible[:]
+        for item in curr:
+            for j in range(1, len(item)):
+                processed = item[:j] + '+' + item[j:]
+                if processed not in possible:
+                    if '++' not in processed:
+                        possible.append(processed)
+
+    for item in possible:
+        total += eval(item)
+
+    return total

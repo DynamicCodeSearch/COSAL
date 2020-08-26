@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    int[] a = new int[M + 1];
+    int[] b = new int[M + 1];
+    int[] count = new int[N + 1];
+    for (int i = 0; i < M; i++) {
+        a[i + 1] = sc.nextInt();
+        b[i + 1] = sc.nextInt();
+    }
+    for (int i = 0; i < N; i++) {
+        count[i + 1] = 0;
+    }
+    for (int i = 0; i < M; i++) {
+        count[a[i + 1]]++;
+        count[b[i + 1]]++;
+    }
+    for (int i = 0; i < N; i++) {
+        System.out.println(count[i + 1]);
+    }
+}

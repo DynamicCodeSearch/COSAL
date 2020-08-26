@@ -1,0 +1,26 @@
+public void solve(int testNumber, Scanner in, PrintWriter out) {
+    int n = in.nextInt();
+    int[] arr = new int[n];
+    int sum = 0;
+    for (int i = 0; i < n; i++) {
+        arr[i] = in.nextInt();
+        sum += arr[i];
+    }
+    
+    Arrays.sort(arr);
+    if (sum % 10 != 0) {
+        out.println(sum);
+    } else {
+        for (int i = 0; i < arr.length; i++) {
+            
+            if (arr[i] % 10 != 0) {
+                sum -= arr[i];
+                out.println(sum);
+                break;
+            }
+        }
+    }
+    if (sum % 10 == 0) {
+        out.println(0);
+    }
+}

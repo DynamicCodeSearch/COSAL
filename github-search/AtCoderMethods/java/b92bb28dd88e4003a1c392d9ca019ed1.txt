@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int A = sc.nextInt();
+    int B = sc.nextInt();
+    int b = 1;
+    int P = 0;
+    for (int i = 0; i < N; i++) {
+        String s = sc.next();
+        int d = sc.nextInt();
+        if (s.equals("East")) {
+            b = 1;
+        } else if (s.equals("West")) {
+            b = -1;
+        }
+        if (d < A) {
+            P = b * A + P;
+        } else if (B < d) {
+            P = b * B + P;
+        } else {
+            P = b * d + P;
+        }
+    }
+    if (P > 0) {
+        System.out.println("East " + P);
+    } else if (P < 0) {
+        P = -P;
+        System.out.println("West " + P);
+    } else {
+        System.out.println("0");
+    }
+}

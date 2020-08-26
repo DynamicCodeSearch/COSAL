@@ -1,0 +1,43 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[] t = new int[n];
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        t[i] = sc.nextInt();
+        a[i] = sc.nextInt();
+    }
+    sc.close();
+    long t_now = t[0], a_now = a[0], t_next1 = 0, a_next1 = 0, t_next2 = 0, a_next2 = 0;
+    for (int i = 1; i < n; i++) {
+        if (t_now % t[i] == 0) {
+            t_next1 = t_now;
+            a_next1 = (t_next1 / t[i]) * a[i];
+        } else {
+            t_next1 = t_now + t[i] - t_now % t[i];
+            a_next1 = (t_next1 / t[i]) * a[i];
+        }
+        if (a_now % a[i] == 0) {
+            a_next2 = a_now;
+            t_next2 = (a_next2 / a[i]) * t[i];
+        } else {
+            a_next2 = a_now + a[i] - a_now % a[i];
+            t_next2 = (a_next2 / a[i]) * t[i];
+        }
+        if (t_now + a_now > t_next1 + a_next1 || t_now > t_next1 || a_now > a_next1) {
+            t_now = t_next2;
+            a_now = a_next2;
+        } else if (t_now + a_now > t_next2 + a_next2 || t_now > t_next2 || a_now > a_next2) {
+            t_now = t_next1;
+            a_now = a_next1;
+        } else if (t_next1 + a_next1 > t_next2 + a_next2) {
+            t_now = t_next2;
+            a_now = a_next2;
+        } else {
+            t_now = t_next1;
+            a_now = a_next1;
+        }
+    }
+    System.out.println(t_now + a_now);
+    return;
+}

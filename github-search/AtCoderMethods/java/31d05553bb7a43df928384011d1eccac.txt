@@ -1,0 +1,21 @@
+public static void solve(PrintWriter out, FastScanner in) {
+    int N = in.nextInt();
+    int[] A = in.nextIntArray(N);
+    int[] set = new int[N];
+    int which = N % 2;
+    for (int i = 0; i < N; i++) {
+        int a = A[i];
+        if (set[a] > 1 || a % 2 == which || (set[a] > 0 && a == 0)) {
+            
+            System.out.println(0);
+            return;
+        } else {
+            set[a]++;
+        }
+    }
+    int s = N / 2;
+    BigInteger res;
+    BigInteger big = new BigInteger("2");
+    res = big.pow(s).mod(BigInteger.valueOf(1000000000 + 7));
+    System.out.println(res.toString());
+}

@@ -1,0 +1,59 @@
+
+public void run() throws IOException {
+    
+    int TEST_CASE = 1;
+    while (TEST_CASE-- != 0) {
+        int n = io.nextInt();
+        int K = io.nextInt();
+        int L = io.nextInt();
+        UnionFind uf1 = new UnionFind(n);
+        UnionFind uf2 = new UnionFind(n);
+        UnionFind uf3 = new UnionFind(n);
+        for (int i = 0; i < K; i++) {
+            int a = io.nextInt() - 1;
+            int b = io.nextInt() - 1;
+            uf1.union(a, b);
+        }
+        for (int i = 0; i < L; i++) {
+            int a = io.nextInt() - 1;
+            int b = io.nextInt() - 1;
+            uf2.union(a, b);
+        }
+        TreeSet<Integer>[] s1 = new TreeSet[n];
+        TreeSet<Integer>[] s2 = new TreeSet[n];
+        for (int i = 0; i < n; i++) if (uf1.root(i) == i) {
+            TreeSet<Integer> s = new TreeSet<>();
+            for (int j = i; j != -1; j = uf1.next[j]) {
+                s.add(j);
+            }
+            s1[i] = s;
+        }
+        for (int i = 0; i < n; i++) if (uf2.root(i) == i) {
+            TreeSet<Integer> s = new TreeSet<>();
+            for (int j = i; j != -1; j = uf2.next[j]) {
+                s.add(j);
+            }
+            s2[i] = s;
+        }
+        int[] ans = new int[n];
+        for (int i = 0; i < n; i++) {
+            int r1 = uf1.root(i);
+            int r2 = uf2.root(i);
+            if (!s1[r1].contains(i))
+                continue;
+            TreeSet<Integer> a = s1[r1].size() < s2[r2].size() ? s1[r1] : s2[r2];
+            TreeSet<Integer> b = s1[r1].size() < s2[r2].size() ? s2[r2] : s1[r1];
+            List<Integer> same = new ArrayList<>();
+            for (int t : a) {
+                if (b.contains(t))
+                    same.add(t);
+            }
+            for (int t : same) {
+                s1[r1].remove(t);
+                s2[r2].remove(t);
+                ans[t] = same.size();
+            }
+        }
+        printArrayLn(ans);
+    }
+}

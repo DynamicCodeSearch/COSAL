@@ -1,0 +1,34 @@
+public int[] dijkstra(final int s) {
+    final int[] dist = new int[head.length];
+    final PriorityQueue<int[]> q = new PriorityQueue<int[]>(10, new Comparator<int[]>() {
+
+        @Override
+        public int compare(int[] o1, int[] o2) {
+            return o1[0] - o2[0];
+        }
+    });
+    Arrays.fill(dist, Integer.MAX_VALUE);
+    dist[s] = 0;
+    q.add(new int[] { 0, s });
+    while (!q.isEmpty()) {
+        final int[] xs = q.poll();
+        final int v = xs[1];
+        final int d = xs[0];
+        if (dist[v] < d)
+            continue;
+        for (int e = head[v]; e != -1; e = next[e]) {
+            final int t = to[e];
+            final int w = d + cost[e];
+            if (w < dist[t]) {
+                dist[t] = w;
+                q.add(new int[] { w, t });
+            }
+        }
+    }
+    for (int i = 0; i < dist.length; i++) {
+        if (dist[i] == Integer.MAX_VALUE) {
+            dist[i] = -1;
+        }
+    }
+    return dist;
+}

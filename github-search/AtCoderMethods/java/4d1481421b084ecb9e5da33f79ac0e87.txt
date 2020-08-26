@@ -1,0 +1,40 @@
+private static void decode(String timeRange) {
+    int startHour, startMin, endHour, endMin;
+    startHour = Integer.parseInt(timeRange.substring(0, 2));
+    startMin = Integer.parseInt(timeRange.substring(2, 4));
+    endHour = Integer.parseInt(timeRange.substring(5, 7));
+    endMin = Integer.parseInt(timeRange.substring(7, 9));
+    startMin -= startMin % 5;
+    if (endMin % 5 != 0) {
+        endMin += 5 - endMin % 5;
+    }
+    if (startMin == 60) {
+        startMin = 0;
+        startHour++;
+    }
+    if (endMin == 60) {
+        endMin = 0;
+        endHour++;
+    }
+    startMin /= 5;
+    endMin /= 5;
+    int tt = startMin;
+    for (int i = startHour; i < endHour + 1; i++) {
+        if (i == 24) {
+            continue;
+        }
+        short temp = 0;
+        for (int j = tt; j < 12; j++) {
+            if (i == endHour && j == endMin) {
+                break;
+            }
+            temp |= 1 << j;
+            tt = 0;
+        }
+        rainTime[i] |= temp;
+    }
+
+
+
+
+}

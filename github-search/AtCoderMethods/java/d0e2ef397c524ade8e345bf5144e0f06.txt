@@ -1,0 +1,24 @@
+public static void main(String[] args) throws IOException {
+    try (Scanner sc = new Scanner(System.in)) {
+        final int n = sc.nextInt();
+        final long n_value = n;
+        long[] memo = new long[n + 1];
+        memo[0] = (n) % MOD;
+        memo[1] = ((long) (n) * (long) (n)) % MOD;
+        long sum = 0;
+        for (int i = 2; i <= n; i++) {
+            memo[i] += memo[i - 1];
+            memo[i] %= MOD;
+            memo[i] += sum + (n_value - (i - 1));
+            memo[i] %= MOD;
+            memo[i] += (n_value - 1) * (n_value - 1);
+            memo[i] %= MOD;
+            sum += memo[i - 2];
+            sum %= MOD;
+        
+        }
+        
+        System.out.println(memo[n - 1]);
+    
+    }
+}

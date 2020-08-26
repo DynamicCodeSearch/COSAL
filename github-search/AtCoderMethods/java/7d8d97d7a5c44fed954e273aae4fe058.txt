@@ -1,0 +1,8 @@
+long read(int idx) {
+    long sum = 0;
+    while (idx > 0) {
+        sum += tree[idx];
+        idx -= (idx & -idx);
+    }
+    return sum;
+}

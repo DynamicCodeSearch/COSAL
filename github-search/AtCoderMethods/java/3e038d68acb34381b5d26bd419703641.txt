@@ -1,0 +1,9 @@
+public static long foldin(long[] belt, long sum) {
+    long ans = 0;
+    for (int i = 0; i < (belt.length + 1) / 2; i++) {
+        ans = (ans + sum * (belt.length - 2 * i)) % MOD_SEED;
+        sum -= belt[i];
+        sum -= belt[belt.length - 1 - i];
+    }
+    return ans;
+}

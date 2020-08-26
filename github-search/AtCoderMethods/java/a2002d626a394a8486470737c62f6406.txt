@@ -1,0 +1,9 @@
+private void flat(int idx, int len, long add) {
+    value[idx] += add * len;
+    final long next = add + hold[idx];
+    if ((idx << 1) >= length)
+        return;
+    hold[idx] = 0;
+    flat(idx << 1, len >> 1, next);
+    flat(idx << 1 | 1, len >> 1, next);
+}

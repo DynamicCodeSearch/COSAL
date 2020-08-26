@@ -1,0 +1,66 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    Map<Integer, List<int[]>> colorMap = new HashMap<>();
+    for (int i = 0; i < M; i++) {
+        int l = sc.nextInt();
+        int r = sc.nextInt();
+        int x = sc.nextInt();
+        if (!colorMap.containsKey(r)) {
+            colorMap.put(r, new ArrayList<>());
+        }
+        colorMap.get(r).add(new int[] { l, r, x, r - l });
+    }
+    int[][][] color = new int[N + 1][0][];
+    for (Map.Entry<Integer, List<int[]>> entry : colorMap.entrySet()) {
+        int key = entry.getKey();
+        List<int[]> value = entry.getValue();
+        color[key] = new int[value.size()][];
+        int ptr = 0;
+        for (int[] v : value) {
+            color[key][ptr++] = v;
+        }
+    }
+    int mod = 1_000_000_007;
+    int[][][] dp = new int[2][N + 2][N + 2];
+    dp[0][0][0] = 1;
+    for (int max = 0; max <= N; max++) {
+        int from = max % 2;
+        int to = (max + 1) % 2;
+        for (int[] v : dp[to]) Arrays.fill(v, 0);
+        for (int med = 0; med == 0 || med < max; med++) {
+            for (int min = 0; min == 0 || min < med; min++) {
+                for (int[] v : color[max]) {
+                    if (v[2] == 1) {
+                        if (max - med <= v[3]) {
+                            dp[from][med][min] = 0;
+                        }
+                    } else if (v[2] == 2) {
+                        if (max - med > v[3] || max - min <= v[3]) {
+                            dp[from][med][min] = 0;
+                        }
+                    } else {
+                        if (max - min > v[3]) {
+                            dp[from][med][min] = 0;
+                        }
+                    }
+                }
+                if (max == 0 && min == 0 && med == 0) {
+                    dp[to][0][0] = 1;
+                } else {
+                    dp[to][med][min] = (dp[to][med][min] + dp[from][med][min]) % mod;
+                    dp[to][max][min] = (dp[to][max][min] + dp[from][med][min]) % mod;
+                    dp[to][max][med] = (dp[to][max][med] + dp[from][med][min]) % mod;
+                }
+            }
+        }
+    }
+    int ret = 0;
+    for (int i = 0; i <= N; i++) {
+        for (int j = 0; j <= N; j++) {
+            ret = (ret + dp[(N + 1) % 2][i][j]) % mod;
+        }
+    }
+    System.out.println(ret);
+}

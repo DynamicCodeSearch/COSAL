@@ -1,0 +1,28 @@
+def main():
+    n, m, r = [int(i) for i in sys.stdin.readline().rstrip().split(" ")]
+    target = set([int(i) for i in sys.stdin.readline().rstrip().split(" ")])
+    roads = defaultdict(lambda: defaultdict(lambda: 100001))
+    for line in sys.stdin:
+        a, b, l = map(int, line.rstrip().split(" "))
+        if roads[a][b] <= l:
+            continue
+        else:
+            roads[a][b] = l
+            roads[b][a] = l
+
+    m_roads = defaultdict(lambda: defaultdict(lambda: 100001))
+    for a, b in itertools.combinations(target, 2):
+        l = dijkstra(roads, a, b, n)
+        m_roads[a][b] = l
+        m_roads[b][a] = l
+
+    ans = float("inf")
+    for seq in itertools.permutations(target):
+        l = 0
+        for i in range(len(seq) - 1):
+            a = seq[i]
+            b = seq[i + 1]
+            l += m_roads[a][b]
+        ans = min(ans, l)
+
+    print(ans)

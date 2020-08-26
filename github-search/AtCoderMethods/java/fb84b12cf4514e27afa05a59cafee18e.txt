@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    N = sc.nextInt();
+    sum = new int[N];
+    s = sc.next().toCharArray();
+    for (int i = 0; i < N; ++i) {
+        if (s[i] == 'o') {
+            sum[i] = 0;
+        } else {
+            sum[i] = 1;
+        }
+    }
+    for (int i = 0; i < 2; ++i) {
+        for (int j = 0; j < 2; ++j) {
+            int[] arr = new int[N];
+            arr[0] = i;
+            arr[1] = j;
+            for (int k = 2; k < N; ++k) {
+                arr[k] = (sum[k - 1] - arr[k - 1] - arr[k - 2] + 2) % 2;
+            }
+            if (sum[0] == (arr[0] + arr[1] + arr[N - 1]) % 2 && sum[N - 1] == (arr[N - 1] + arr[N - 2] + arr[0]) % 2) {
+                for (int k = 0; k < N; ++k) {
+                    System.out.print(arr[k] == 0 ? 'S' : 'W');
+                }
+                System.out.println();
+                return;
+            }
+        }
+    }
+    System.out.println(-1);
+    return;
+}

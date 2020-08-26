@@ -1,0 +1,12 @@
+
+public static final int modPow(long x, int n, int modulo) {
+    long res = 1;
+    while (n > 0) {
+        if ((n & 1) != 0) {
+            res = res * x % modulo;
+        }
+        x = x * x % modulo;
+        n >>= 1;
+    }
+    return (int) res;
+}

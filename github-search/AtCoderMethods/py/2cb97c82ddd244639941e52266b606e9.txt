@@ -1,0 +1,14 @@
+def main(argv):
+    line = sys.stdin.readline()
+
+    while line:
+        N = int(line)
+        K = int(sys.stdin.readline())
+        X = map(int, sys.stdin.readline().rstrip("\n").split(" ", N))
+
+        distance = 0
+        for x in X:
+            distance += min(x - 0, K - x) * 2
+        print(distance)
+
+        line = sys.stdin.readline()

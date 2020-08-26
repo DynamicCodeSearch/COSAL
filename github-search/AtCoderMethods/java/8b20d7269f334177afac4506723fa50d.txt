@@ -1,0 +1,22 @@
+boolean put(long key, long value) {
+    int id = -1;
+    for (int i = 0; i < sz; ++i) {
+        id = id(key, i);
+        if (flag[id] == 1) {
+            if (array[id].key == key) {
+                array[id].value = value;
+                return true;
+            }
+        }
+        if (flag[id] == 0 || flag[id] == 2) {
+            array[id] = new Pair(key, value);
+            flag[id] = 1;
+            ++cnt;
+            if (2 * cnt == sz) {
+                changeSize(2 * sz);
+            }
+            return true;
+        }
+    }
+    throw new AssertionError();
+}

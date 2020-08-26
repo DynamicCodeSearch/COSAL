@@ -1,0 +1,25 @@
+
+void run() {
+    Scanner sc = new Scanner(System.in);
+    
+    int n = sc.nextInt();
+    Magic[] magics = new Magic[n];
+    for (int i = 0; i < n; i++) {
+        magics[i] = new Magic();
+    }
+    for (int i = 0; i < n; i++) {
+        magics[i].up = sc.nextInt();
+        magics[i].down = sc.nextInt();
+    }
+    
+    Arrays.sort(magics);
+    long max = 0;
+    long tmp = 0;
+    for (int i = 0; i < n; i++) {
+        tmp += magics[i].up;
+        max = Math.max(tmp, max);
+        tmp -= magics[i].down;
+        max = Math.max(tmp, max);
+    }
+    System.out.println(max);
+}

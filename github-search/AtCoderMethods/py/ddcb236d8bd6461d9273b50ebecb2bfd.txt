@@ -1,0 +1,22 @@
+@lru_cache(maxsize=None)
+def dfs(y1, y2, x1, x2):
+    global machines
+
+    if y1 > y2 or x1 > x2:
+        return 0
+
+    ans = 0
+    for m in machines:
+        y, x = m[0], m[1]
+        if y1 <= y <= y2 and x1 <= x <= x2:
+
+            total = (y2 - y1) + (x2 - x1) + 1
+
+            total += dfs(y1, y - 1, x1, x - 1)
+            total += dfs(y1, y - 1, x + 1, x2)
+            total += dfs(y + 1, y2, x1, x - 1)
+            total += dfs(y + 1, y2, x + 1, x2)
+
+            ans = max(ans, total)
+
+    return ans

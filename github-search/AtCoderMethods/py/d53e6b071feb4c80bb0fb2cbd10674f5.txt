@@ -1,0 +1,11 @@
+def getsum(x, n):
+    ans = 0
+    acu = 0
+    for i in range(n // 2):
+        acu += (x[n - i - 1] - x[i])
+        ans = (ans + acu) % 1000000007
+    if n % 2 == 0:
+        ans = ans * 2 - acu
+    else:
+        ans = ans * 2
+    return ans % 1000000007

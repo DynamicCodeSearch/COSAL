@@ -1,0 +1,18 @@
+void solve() {
+    int n = ni();
+    int[] a = na(n);
+    int s = n % 2;
+    Deque<Integer> deque = new ArrayDeque<>();
+    for (int x : a) {
+        if (s++ % 2 == 1) {
+            deque.addFirst(x);
+        } else {
+            deque.addLast(x);
+        }
+    }
+    for (Integer x : deque) {
+        out.print(x);
+        out.print(" ");
+    }
+    out.println();
+}

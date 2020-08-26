@@ -1,0 +1,14 @@
+
+public static void main(String[] args) {
+    try {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder Sb = new StringBuilder(br.readLine());
+        int[] a = strToIntArray(br.readLine());
+        for (int i = 0; i < a.length; i++) {
+            Sb.insert(a[i] + i, "\"");
+        }
+        System.out.println(Sb);
+    } catch (Exception e) {
+        System.err.println("Error:" + e.getMessage());
+    }
+}

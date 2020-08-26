@@ -1,0 +1,24 @@
+public static void main(String[] args) throws java.lang.Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    StringTokenizer st = new StringTokenizer(br.readLine());
+    int n = Integer.parseInt(st.nextToken()), m = Integer.parseInt(st.nextToken());
+    if (Math.abs(n - m) > 1) {
+        System.out.println(0);
+        return;
+    }
+    long a = 1, b = 1;
+    int mod = 1000000007;
+    for (int i = 2; i <= n; i++) {
+        a *= i;
+        a = a % mod;
+    }
+    for (int i = 2; i <= m; i++) {
+        b *= i;
+        b = b % mod;
+    }
+    if (Math.abs(n - m) == 1) {
+        System.out.println((a * b) % mod);
+        return;
+    }
+    System.out.println(2 * ((a * b) % mod) % mod);
+}

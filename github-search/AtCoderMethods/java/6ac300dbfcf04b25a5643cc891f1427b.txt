@@ -1,0 +1,27 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    String str = input.readLine();
+    int n = Integer.parseInt(str);
+    ArrayList<Integer> list = new ArrayList();
+    int sum = 0;
+    int temp;
+    for (int i = 0; i < n; i++) {
+        str = input.readLine();
+        temp = Integer.parseInt(str);
+        sum = sum + temp;
+        if (temp % 10 != 0) {
+            list.add(temp);
+        }
+    }
+    if (list.size() == 0) {
+        sum = 0;
+    } else {
+        Collections.sort(list);
+        int j = 0;
+        while (sum % 10 == 0 && j < list.size()) {
+            sum = sum - list.get(j);
+            j++;
+        }
+    }
+    System.out.println(sum);
+}

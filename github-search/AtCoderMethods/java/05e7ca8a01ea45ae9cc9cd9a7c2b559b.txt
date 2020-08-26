@@ -1,0 +1,34 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String A = br.readLine();
+    String B = br.readLine();
+    String C = br.readLine();
+    int Ai = 0;
+    int Bi = 0;
+    int Ci = 0;
+    int Al = A.length();
+    int Bl = B.length();
+    int Cl = C.length();
+    char turn = A.charAt(Ai++);
+    while (true) {
+        if (turn == 'a') {
+            if (Ai == Al) {
+                System.out.println('A');
+                break;
+            }
+            turn = A.charAt(Ai++);
+        } else if (turn == 'b') {
+            if (Bi == Bl) {
+                System.out.println('B');
+                break;
+            }
+            turn = B.charAt(Bi++);
+        } else if (turn == 'c') {
+            if (Ci == Cl) {
+                System.out.println('C');
+                break;
+            }
+            turn = C.charAt(Ci++);
+        }
+    }
+}

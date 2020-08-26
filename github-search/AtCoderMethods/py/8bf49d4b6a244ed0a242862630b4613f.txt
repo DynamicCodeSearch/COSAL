@@ -1,0 +1,12 @@
+def get_minimum_distance(result):
+    p = max(result.x0, result.y0)
+    q = min(result.x0, result.y0)
+    r = result.rest
+    dp = min(p, r)
+    p -= dp
+    r -= dp
+    dq = min(q, r)
+    q -= dq
+    r -= dq
+    r %= 2
+    return p + q + r

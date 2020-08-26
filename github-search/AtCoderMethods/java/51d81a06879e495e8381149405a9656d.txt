@@ -1,0 +1,57 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    PrintWriter out = new PrintWriter(System.out);
+    int H = sc.nextInt();
+    int W = sc.nextInt();
+    char[][] map = new char[H][W];
+    for (int i = 0; i < H; i++) {
+        map[i] = sc.next().toCharArray();
+    }
+    boolean[][] check = new boolean[H][W];
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            if (map[i][j] == '.') {
+                for (int k = 0; k < 9; k++) {
+                    int tx = vx_9[k] + j;
+                    int ty = vy_9[k] + i;
+                    if (rCheck(tx, ty, H, W))
+                        check[ty][tx] = true;
+                }
+            }
+        }
+    }
+    boolean ok = true;
+    char[][] ans = new char[H][W];
+    for (int i = 0; i < H; i++) {
+        Arrays.fill(ans[i], '.');
+    }
+    IN: for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            if (map[i][j] == '#') {
+                boolean c = false;
+                for (int k = 0; k < 9; k++) {
+                    int tx = vx_9[k] + j;
+                    int ty = vy_9[k] + i;
+                    if (rCheck(tx, ty, H, W) && !check[ty][tx]) {
+                        ans[ty][tx] = '#';
+                        c = true;
+                        break;
+                    }
+                }
+                if (!c) {
+                    ok = false;
+                    break IN;
+                }
+            }
+        }
+    }
+    if (ok) {
+        System.out.println("possible");
+        for (int i = 0; i < H; i++) {
+            out.println(String.valueOf(ans[i]));
+        }
+    } else {
+        System.out.println("impossible");
+    }
+    out.flush();
+}

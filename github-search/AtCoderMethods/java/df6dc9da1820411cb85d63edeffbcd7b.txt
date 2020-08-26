@@ -1,0 +1,22 @@
+public void solve(int testNumber, FastReader in, PrintWriter out) {
+    int n = in.nextInt(), m = in.nextInt();
+    CheckPoints.Student[] students = new CheckPoints.Student[n];
+    CheckPoints.CheckPoint[] checkpoints = new CheckPoints.CheckPoint[m];
+    for (int i = 0; i < n; i++) {
+        students[i] = new CheckPoints.Student(in.nextInt(), in.nextInt());
+    }
+    for (int i = 0; i < m; i++) {
+        checkpoints[i] = new CheckPoints.CheckPoint(in.nextInt(), in.nextInt());
+    }
+    for (int i = 0; i < n; i++) {
+        int min = manhatan(students[i], checkpoints[0]);
+        int minIndex = 1;
+        for (int j = 1; j < m; ++j) {
+            if (manhatan(students[i], checkpoints[j]) < min) {
+                min = manhatan(students[i], checkpoints[j]);
+                minIndex = j + 1;
+            }
+        }
+        out.println(minIndex);
+    }
+}

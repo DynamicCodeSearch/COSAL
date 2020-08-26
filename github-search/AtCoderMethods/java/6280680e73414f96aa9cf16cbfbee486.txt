@@ -1,0 +1,25 @@
+public void solve(int testNumber, FastScanner in, PrintWriter out) {
+    int n = in.nextInt();
+    adj = new List[n];
+    for (int i = 0; i < n; i++) {
+        adj[i] = new ArrayList<>();
+    }
+    for (int i = 0; i < n - 1; i++) {
+        int a = in.nextInt() - 1;
+        int b = in.nextInt() - 1;
+        adj[a].add(b);
+        adj[b].add(a);
+    }
+    p = new int[n];
+    p[0] = -1;
+    dfs1(0);
+    List<Integer> path = new ArrayList<>();
+    for (int v = n - 1; v >= 0; v = p[v]) {
+        path.add(v);
+    }
+    Collections.reverse(path);
+    int bad = path.get((path.size() + 1) / 2);
+    int a = dfs2(0, bad, -1);
+    int b = n - a;
+    out.println(a > b ? "Fennec" : "Snuke");
+}

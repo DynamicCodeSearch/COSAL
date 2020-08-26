@@ -1,0 +1,27 @@
+static int[] lis(int[] s) {
+    int n = s.length;
+    int[] dp = new int[n];
+    int[] ids = new int[n];
+    int[] pids = new int[n];
+    dp[0] = s[0];
+    int len = 1;
+    int lidx = 0;
+    for (int i = 1; i < n; i++) {
+        int idx = bs(s[i], dp, 0, len);
+        dp[idx] = s[i];
+        ids[idx] = i;
+        if (idx == len) {
+            lidx = i;
+            len++;
+        }
+        if (idx > 0)
+            pids[i] = ids[idx - 1];
+    }
+    int[] lis = new int[len];
+    lis[len - 1] = s[lidx];
+    for (int i = len - 1; i >= 0; i--) {
+        lis[i] = s[lidx];
+        lidx = pids[lidx];
+    }
+    return lis;
+}

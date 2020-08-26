@@ -1,0 +1,24 @@
+def count_unmatch(S, T, c):
+
+
+    s_done = S[:len(T) + 1]
+    t_done = T + c
+    count = 0
+
+
+    for i in range(len(s_done)):
+        if s_done[i] != t_done[i]:
+            count += 1
+
+
+
+
+    match = 0  
+    for i in range(ord('a'), ord('a') + 26):
+        c = chr(i)  
+
+        match += min(S.count(c) - s_done.count(c),
+                     S.count(c) - t_done.count(c))
+
+    count += (N - len(T) - 1) - match
+    return count

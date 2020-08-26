@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    H = sc.nextInt();
+    W = sc.nextInt();
+    A = sc.nextInt();
+    B = sc.nextInt();
+    fact = new long[H + W + 1];
+    ifact = new long[H + W + 1];
+    fact[0] = 1;
+    fact[1] = 1;
+    ifact[0] = 1;
+    ifact[1] = 1;
+    for (int i = 2; i <= H + W; i++) {
+        fact[i] = i * fact[i - 1] % MOD;
+        ifact[i] = modInv(fact[i]);
+    }
+    long n = 0;
+    for (int i = 1; i <= H - A; i++) {
+        n += (path(i, B) * path(H - i + 1, W - B)) % MOD;
+        n %= MOD;
+    }
+    System.out.println(n);
+}

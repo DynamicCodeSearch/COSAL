@@ -1,0 +1,9 @@
+long ask(int rt, int l, int r, int L, int R) {
+    if (R < l || L > r)
+        return 0;
+    if (L <= l && R >= r)
+        return mx[rt];
+    push(rt);
+    int mid = (l + r) >> 1;
+    return max(ask(lson(rt), l, mid, L, R), ask(rson(rt), mid + 1, r, L, R));
+}

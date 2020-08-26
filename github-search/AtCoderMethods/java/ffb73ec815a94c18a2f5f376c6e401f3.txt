@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int N = scan.nextInt();
+    int Q = scan.nextInt();
+    int[] a = new int[N];
+    int L, R, T;
+    Arrays.fill(a, 0);
+    while (Q - 1 >= 0) {
+        L = scan.nextInt() - 1;
+        R = scan.nextInt() - 1;
+        T = scan.nextInt();
+        for (int i = L; i <= R; i++) a[i] = T;
+        Q--;
+    }
+    for (int j = 0; j < N; j++) System.out.println(a[j]);
+}

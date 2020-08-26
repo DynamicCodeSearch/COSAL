@@ -1,0 +1,32 @@
+static void solve() {
+    int R = ni(), C = ni(), n = ni();
+    int[][] es = new int[n * 2][];
+    int p = 0;
+    for (int i = 0; i < n; i++) {
+        int x1 = ni(), y1 = ni();
+        int x2 = ni(), y2 = ni();
+        int e1 = epos(x1, y1, R, C);
+        int e2 = epos(x2, y2, R, C);
+        if (e1 >= 0 && e2 >= 0) {
+            es[p++] = new int[] { e1, i };
+            es[p++] = new int[] { e2, i };
+        }
+    }
+    es = Arrays.copyOf(es, p);
+    Arrays.sort(es, new Comparator<int[]>() {
+
+        public int compare(int[] a, int[] b) {
+            return a[0] - b[0];
+        }
+    });
+    int[] stands = new int[n * 2];
+    int sp = 0;
+    for (int[] e : es) {
+        if (sp > 0 && stands[sp - 1] == e[1]) {
+            sp--;
+        } else {
+            stands[sp++] = e[1];
+        }
+    }
+    out.println(sp > 0 ? "NO" : "YES");
+}

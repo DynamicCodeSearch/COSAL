@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    try {
+        br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuffer sb = new StringBuffer(br.readLine());
+        StringBuffer a = new StringBuffer("");
+        String[] A = br.readLine().split(" ");
+        int cnt = 0;
+        for (String s : A) {
+            int i = Integer.valueOf(s);
+            a.append(sb.substring(cnt, i));
+            a.append('"');
+            cnt = i;
+        }
+        System.out.println(a.append(sb.substring(Integer.valueOf(A[A.length - 1]), sb.length())));
+    } catch (Exception e) {
+        System.err.println("Error : " + e.getMessage());
+    }
+}

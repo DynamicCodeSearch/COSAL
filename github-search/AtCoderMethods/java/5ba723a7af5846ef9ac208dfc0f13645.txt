@@ -1,0 +1,35 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    PrintWriter out = new PrintWriter(System.out);
+    int q = 8;
+    boolean flag = false;
+    boolean[][] board = new boolean[8][8];
+    loop: for (int i = 0; i < 8; i++) {
+        char[] c = sc.next().toCharArray();
+        for (int j = 0; j < 8; j++) {
+            if (c[j] == 'Q') {
+                if (koreOkerukana(i * 8 + j, board)) {
+                    board[i][j] = true;
+                    q--;
+                } else {
+                    flag = true;
+                    break loop;
+                }
+            }
+        }
+    }
+    if (flag || !dfs(0, q, board)) {
+        out.println("No Answer");
+    } else {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (board[i][j])
+                    out.print('Q');
+                else
+                    out.print('.');
+            }
+            out.println();
+        }
+    }
+    out.flush();
+}

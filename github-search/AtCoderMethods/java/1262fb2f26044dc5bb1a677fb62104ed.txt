@@ -1,0 +1,14 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+    Long[] XAB = Arrays.stream(in.readLine().split(" ")).map(Long::parseLong).toArray(Long[]::new);
+    long X = XAB[0];
+    long A = XAB[1];
+    long B = XAB[2];
+    if (A >= B) {
+        System.out.println("delicious");
+    } else if (B <= X + A) {
+        System.out.println("safe");
+    } else {
+        System.out.println("dangerous");
+    }
+}

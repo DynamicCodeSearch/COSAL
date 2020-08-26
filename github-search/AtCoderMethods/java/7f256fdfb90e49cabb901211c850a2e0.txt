@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    final Scanner sc = new Scanner(System.in);
+    final char[] S = sc.next().toCharArray();
+    final int T = sc.nextInt();
+    int fix_x = 0, fix_y = 0;
+    int questions = 0;
+    for (final char s : S) {
+        switch(s) {
+            case 'L':
+                fix_x--;
+                break;
+            case 'R':
+                fix_x++;
+                break;
+            case 'U':
+                fix_y--;
+                break;
+            case 'D':
+                fix_y++;
+                break;
+            default:
+                questions++;
+                break;
+        }
+    }
+    if (T == 1) {
+        System.out.println(Math.abs(fix_x) + Math.abs(fix_y) + questions);
+    } else {
+        final int rest = questions - (Math.abs(fix_x) + Math.abs(fix_y));
+        System.out.println(rest < 0 ? Math.abs(rest) : (Math.abs(rest) % 2));
+    }
+}

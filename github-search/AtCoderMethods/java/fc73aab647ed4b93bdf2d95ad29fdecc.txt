@@ -1,0 +1,9 @@
+public static void dfs(int v, int parent, long d) {
+    depth[v] = d;
+    ArrayList<Edge> elist = edge[v];
+    for (int i = 0; i < elist.size(); i++) {
+        Edge e = elist.get(i);
+        if (e.to != parent)
+            dfs(e.to, v, e.cost + depth[v]);
+    }
+}

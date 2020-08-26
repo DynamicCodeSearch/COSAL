@@ -1,0 +1,23 @@
+
+
+public static void main(String[] args) throws Exception, IOException {
+    Reader sc = new Reader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    
+    
+    int n = sc.nextInt();
+    long k = sc.nextLong();
+    long d[] = new long[100010], s = 0, ans = 0;
+    for (int i = 0; i < n; i++) {
+        d[sc.nextInt()] += sc.nextInt();
+    }
+    for (int i = 1; i < d.length; i++) {
+        s += d[i];
+        if (s >= k) {
+            ans = i;
+            break;
+        }
+    }
+    out.println(ans);
+    out.flush();
+}

@@ -1,0 +1,39 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    String s = sc.next();
+    if (n % 2 == 0) {
+        System.out.println(-1);
+        return;
+    } else {
+        if (n % 3 == 0) {
+            String t = "";
+            for (int i = 0; i < n / 3; i++) {
+                t += "abc";
+            }
+            if (s.equals(t)) {
+                System.out.println((n - 1) / 2);
+                return;
+            }
+        } else if (n % 3 == 1) {
+            String t = "b";
+            for (int i = 0; i < n / 3; i++) {
+                t += "cab";
+            }
+            if (s.equals(t)) {
+                System.out.println((n - 1) / 2);
+                return;
+            }
+        } else if (n % 3 == 2) {
+            String t = "ca";
+            for (int i = 0; i < n / 3; i++) {
+                t += "bca";
+            }
+            if (s.equals(t)) {
+                System.out.println((n - 1) / 2);
+                return;
+            }
+        }
+    }
+    System.out.println(-1);
+}

@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    while (sc.hasNext()) {
+        String str = sc.next();
+        int[] c = new int['z' - 'a' + 1];
+        for (int i = 0; i < str.length(); i++) c[str.charAt(i) - 'a']++;
+        int one = 0;
+        int pair = 0;
+        for (int i = 0; i < c.length; i++) {
+            if (c[i] == 1)
+                one++;
+            else if (c[i] % 2 == 0 && c[i] != 0)
+                pair += c[i] / 2;
+            else if (c[i] >= 3) {
+                one++;
+                pair += (c[i] - 1) / 2;
+            }
+        }
+        if (one > pair)
+            System.out.println(1);
+        else if (one == pair)
+            System.out.println(3);
+        else if (one == 0)
+            System.out.println(pair * 2);
+        else {
+            System.out.println((pair / one) * 2 + 1);
+        
+        }
+    }
+}

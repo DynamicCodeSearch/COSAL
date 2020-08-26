@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    int num = 0;
+    int result1 = 1;
+    int result2 = 0;
+    boolean flag;
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    try {
+        num = Integer.parseInt(br.readLine());
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    for (int i = 1; i <= num; i++) {
+        int count = 0;
+        int temp = i;
+        flag = true;
+        do {
+            if (temp % 2 != 0) {
+                if (result2 < count) {
+                    result1 = i;
+                    result2 = count;
+                }
+                flag = false;
+            } else {
+                temp = temp / 2;
+                count++;
+            }
+        } while (flag);
+    }
+    System.out.println(result1);
+}

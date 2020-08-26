@@ -1,0 +1,7 @@
+protected boolean sieve(int v) {
+    final long sievestart = 1L * v * v;
+    if (4 > sievestart || sievestart > limit)
+        return false;
+    IntStream.iterate(v * v, i -> i + v).limit(limit / v - v + 1).forEach(bs::clear);
+    return true;
+}

@@ -1,0 +1,35 @@
+public static void main(String[] args) {
+    StdIn in = new StdIn();
+    int n = in.nextInt();
+    int[] a = in.readIntArray(n);
+    TreeMap<Integer, Integer> cnt = new TreeMap<Integer, Integer>();
+    for (int i = 0; i < n; ++i) {
+        if (!cnt.containsKey(a[i]))
+            cnt.put(a[i], 0);
+        cnt.put(a[i], cnt.get(a[i]) + 1);
+    }
+    int first = -1, second = -1;
+    while (first == -1) {
+        Map.Entry<Integer, Integer> entry = cnt.lastEntry();
+        if (entry == null) {
+            System.out.println(0);
+            return;
+        }
+        if (entry.getValue() >= 2)
+            first = entry.getKey();
+        if (entry.getValue() >= 4)
+            second = entry.getKey();
+        cnt.remove(entry.getKey());
+    }
+    while (second == -1) {
+        Map.Entry<Integer, Integer> entry = cnt.lastEntry();
+        if (entry == null) {
+            System.out.println(0);
+            return;
+        }
+        if (entry.getValue() >= 2)
+            second = entry.getKey();
+        cnt.remove(entry.getKey());
+    }
+    System.out.println((long) first * second);
+}

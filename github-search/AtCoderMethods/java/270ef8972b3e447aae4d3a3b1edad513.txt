@@ -1,0 +1,12 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    StringTokenizer st = new StringTokenizer(br.readLine());
+    long x = Long.parseLong(st.nextToken());
+    long ways = (x / 11) * 2;
+    long left = x % 11;
+    if (left <= 6 && left > 0)
+        ++ways;
+    else if (left > 6 && left <= 10)
+        ways += 2;
+    System.out.println(ways);
+}

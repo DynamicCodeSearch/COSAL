@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    InputStreamReader is = new InputStreamReader(System.in);
+    BufferedReader br = new BufferedReader(is);
+    try {
+        int n = Integer.parseInt(br.readLine().trim());
+        String[] str = br.readLine().trim().split(" ", n);
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++) {
+            a[i] = Integer.parseInt(str[i]);
+        }
+        long res = 0l;
+        long cnt = 1l;
+        for (int i = 1; i < n; i++) {
+            if (a[i] > a[i - 1]) {
+                cnt++;
+            } else {
+                res += cnt * (cnt + 1l) * 0.5;
+                cnt = 1l;
+            }
+        }
+        res += cnt * (cnt + 1l) * 0.5;
+        System.out.println(String.valueOf(res));
+    } catch (Exception e) {
+        System.out.println(e);
+    }
+}

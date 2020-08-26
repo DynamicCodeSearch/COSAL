@@ -1,0 +1,11 @@
+private long calcDistCore(LinkedHashSet<Integer> perm, long[][] dist, Integer[] r) {
+    int pre = -1;
+    long distSum = 0;
+    for (int now : perm) {
+        if (pre != -1) {
+            distSum += dist[r[pre]][r[now]];
+        }
+        pre = now;
+    }
+    return distSum;
+}

@@ -1,0 +1,8 @@
+private void populateFactorialCache() {
+    nominatorFactorialCache = new long[(int) this.capacity + 1];
+    inverseFactorialCache = new long[(int) this.capacity + 1];
+    for (int i = 0; i < nominatorFactorialCache.length; i++) {
+        nominatorFactorialCache[i] = (i == 0) ? 1 : multiplyWithMod(nominatorFactorialCache[i - 1], i);
+        inverseFactorialCache[i] = divideWithMod(1, nominatorFactorialCache[i]);
+    }
+}

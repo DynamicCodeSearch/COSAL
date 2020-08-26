@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    int n = Fs.nextInt();
+    long zenkai = 2;
+    long pt = 1;
+    long pa = 1;
+    while (Fs.hasNext()) {
+        long t = Fs.nextLong();
+        long a = Fs.nextLong();
+        long wa = t + a;
+        long sho1 = pt % t == 0 ? pt / t : pt / t + 1;
+        long sho2 = pa % a == 0 ? pa / a : pa / a + 1;
+        long sho = sho1 > sho2 ? sho1 : sho2;
+        pa = sho * a;
+        pt = sho * t;
+        zenkai = pa + pt;
+    }
+    System.out.println(zenkai);
+}

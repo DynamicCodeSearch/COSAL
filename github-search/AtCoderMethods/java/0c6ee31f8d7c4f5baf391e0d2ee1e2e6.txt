@@ -1,0 +1,48 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    PrintWriter pw = new PrintWriter(System.out);
+    int n = sc.nextInt();
+    int q = sc.nextInt();
+    PriorityQueue<Integer> lq = new PriorityQueue<>();
+    PriorityQueue<Integer> rq = new PriorityQueue<>();
+    for (int i = 0; i < q; i++) {
+        lq.add(sc.nextInt() - 1);
+        rq.add(sc.nextInt() - 1);
+    }
+    int color = 0;
+    int ll = lq.poll();
+    int rr = rq.poll();
+    for (int i = 0; i < n; i++) {
+        while (i == ll) {
+            color = (color + 1) % 2;
+            if (!lq.isEmpty()) {
+                ll = lq.poll();
+            } else {
+                ll = -1;
+            }
+        }
+        pw.print(color);
+        while (i == rr) {
+            color = (color + 1) % 2;
+            if (!rq.isEmpty()) {
+                rr = rq.poll();
+            } else {
+                rr = -1;
+            }
+        }
+    }
+    pw.println();
+    pw.close();
+
+
+
+
+
+
+
+
+
+
+
+
+}

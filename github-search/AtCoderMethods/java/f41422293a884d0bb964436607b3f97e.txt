@@ -1,0 +1,14 @@
+public static void main(String[] $) {
+    int n = getInt();
+    long r = 1;
+    PrimeIterator pr = new PrimeIterator(n);
+    for (int p : pr) {
+        int c = 1;
+        for (int j = p; j <= n; j *= p) {
+            c += n / j;
+        }
+        r *= c;
+        r %= 1000000007;
+    }
+    System.out.println(r);
+}

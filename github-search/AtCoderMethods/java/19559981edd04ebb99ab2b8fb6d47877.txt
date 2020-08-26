@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int n = scanner.nextInt(), m = scanner.nextInt();
+    char[][] a = new char[n][n];
+    char[][] b = new char[m][m];
+    for (int i = 0; i < n; i++) {
+        a[i] = scanner.next().toCharArray();
+    }
+    for (int i = 0; i < m; i++) {
+        b[i] = scanner.next().toCharArray();
+    }
+    for (int i = 0; i < n - m + 1; i++) {
+        for (int j = 0; j < n - m + 1; j++) {
+            boolean check = true;
+            for (int k = 0; k < m; k++) {
+                for (int l = 0; l < m; l++) {
+                    if (a[i + k][j + l] != b[k][l]) {
+                        check = false;
+                    }
+                }
+            }
+            if (check) {
+                System.out.println("Yes");
+                return;
+            }
+        }
+    }
+    System.out.println("No");
+}

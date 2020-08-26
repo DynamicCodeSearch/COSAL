@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    String s = in.next();
+    int N = s.length();
+    int count_p = 0, count_g = 0, score = 0;
+    for (int i = 0; i < N; i++) {
+        char top = s.charAt(i);
+        if (count_p < count_g) {
+            count_p++;
+            if (top == 'g')
+                score++;
+        } else {
+            count_g++;
+            if (top == 'p')
+                score--;
+        }
+    }
+    System.out.println(score);
+}

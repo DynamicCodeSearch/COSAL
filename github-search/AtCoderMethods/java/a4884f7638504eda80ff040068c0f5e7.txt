@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String[] letters = sc.nextLine().split("");
+    HashMap<String, Integer> pairs = new HashMap<String, Integer>();
+    for (String l : letters) {
+        if (pairs.containsKey(l))
+            pairs.replace(l, pairs.get(l) + 1);
+        else {
+            pairs.put(l, 1);
+        }
+    }
+    boolean beau = true;
+    for (Map.Entry<String, Integer> m : pairs.entrySet()) {
+        if (m.getValue() % 2 != 0) {
+            System.out.println("No");
+            beau = false;
+            break;
+        }
+    }
+    if (beau)
+        System.out.println("Yes");
+}

@@ -1,0 +1,27 @@
+public static void counting(long[] input, long[] result, long count, int index, boolean sign) {
+    if (index > 0) {
+        result[index] = result[index - 1] + input[index];
+    } else {
+        result[index] = input[index];
+    }
+    if (sign) {
+        if (result[index] <= 0) {
+            count += Math.abs(result[index]) + 1;
+            result[index] = result[index] + Math.abs(result[index]) + 1;
+        }
+        sign = false;
+    } else {
+        if (result[index] >= 0) {
+            count += Math.abs(result[index]) + 1;
+            result[index] = result[index] - Math.abs(result[index]) - 1;
+        }
+        sign = true;
+    }
+    if (index < result.length - 1) {
+        counting(input, result, count, index + 1, sign);
+    } else {
+        if (result1 > count) {
+            result1 = count;
+        }
+    }
+}

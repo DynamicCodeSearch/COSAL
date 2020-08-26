@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    Integer player = 0;
+    List<List<String>> s = new ArrayList<>();
+    s.add(Arrays.asList(sc.next().split("")));
+    s.add(Arrays.asList(sc.next().split("")));
+    s.add(Arrays.asList(sc.next().split("")));
+    Integer[] currentPos = { 0, 0, 0 };
+    while (true) {
+        if (currentPos[player].equals(s.get(player).size())) {
+            if (player == 0) {
+                System.out.println("A");
+            } else if (player == 1) {
+                System.out.println("B");
+            } else if (player == 2) {
+                System.out.println("C");
+            }
+            return;
+        }
+        String next = s.get(player).get(currentPos[player]);
+        currentPos[player]++;
+        if (next.equals("a")) {
+            player = 0;
+        } else if (next.equals("b")) {
+            player = 1;
+        } else if (next.equals("c")) {
+            player = 2;
+        }
+    }
+}

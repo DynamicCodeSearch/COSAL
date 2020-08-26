@@ -1,0 +1,38 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int sx = scanner.nextInt();
+    int sy = scanner.nextInt();
+    int tx = scanner.nextInt();
+    int ty = scanner.nextInt();
+    int dv = ty - sy;
+    int dx = tx - sx;
+    StringBuilder builder = new StringBuilder();
+    for (int i = 0; i < dv; i++) {
+        builder.append("U");
+    }
+    for (int i = 0; i < dx; i++) {
+        builder.append("R");
+    }
+    for (int i = 0; i < dv; i++) {
+        builder.append("D");
+    }
+    for (int i = 0; i < dx; i++) {
+        builder.append("L");
+    }
+    builder.append("L");
+    for (int i = 0; i <= dv; i++) {
+        builder.append("U");
+    }
+    for (int i = 0; i <= dx; i++) {
+        builder.append("R");
+    }
+    builder.append("DR");
+    for (int i = 0; i <= dv; i++) {
+        builder.append("D");
+    }
+    for (int i = 0; i <= dx; i++) {
+        builder.append("L");
+    }
+    builder.append("U");
+    System.out.println(builder.toString());
+}

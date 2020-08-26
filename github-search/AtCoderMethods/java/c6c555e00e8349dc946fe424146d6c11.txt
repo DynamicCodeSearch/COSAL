@@ -1,0 +1,9 @@
+private long goSum(int n, int lim) {
+    if (sum[n][lim] != -1) {
+        return sum[n][lim];
+    }
+    if (lim <= 1) {
+        return sum[n][lim] = 0;
+    }
+    return sum[n][lim] = (go(n, lim) + goSum(n, lim - 1)) % MiscUtils.MOD7;
+}

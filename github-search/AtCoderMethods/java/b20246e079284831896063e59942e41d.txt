@@ -1,0 +1,57 @@
+public static void main(String[] args) {
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    int k = sc.nextInt();
+    char[] c = new char[n];
+    for (int i = 0; i < n; i++) {
+        c[i] = sc.next().toCharArray()[0];
+    }
+    int[][] graph = buildDirectedGraph(n, m);
+    SCC scc = new SCC(graph);
+    scc.scc();
+    int[][] groups = scc.groups();
+    int[][] groupGraph = scc.groupGraph();
+    int gn = groups.length;
+    String[] gs = new String[gn];
+    for (int i = 0; i < gn; i++) {
+        gs[i] = "";
+        for (int v : groups[i]) {
+            gs[i] += c[v];
+        }
+        char[] x = gs[i].toCharArray();
+        Arrays.sort(x);
+        gs[i] = String.valueOf(x);
+    }
+    String best = "~";
+    String[][] dp = new String[gn][k + 1];
+    for (int i = 0; i < gn; i++) {
+        Arrays.fill(dp[i], "~");
+    }
+    Queue<State> q = new PriorityQueue<>();
+    for (int i = 0; i < gn; i++) {
+        dp[i][0] = "";
+        q.add(new State(i, ""));
+    }
+    while (q.size() >= 1) {
+        State s = q.poll();
+        int now = s.gi;
+        int len = gs[now].length();
+        for (int take = 0; take <= len; take++) {
+            String tx = s.x + gs[now].substring(0, take);
+            int tl = tx.length();
+            if (tl > k) {
+                break;
+            }
+            if (tl == k && tx.compareTo(best) < 0) {
+                best = tx;
+            }
+            for (int to : groupGraph[now]) {
+                if (tx.compareTo(dp[to][tl]) < 0) {
+                    dp[to][tl] = tx;
+                    q.add(new State(to, tx));
+                }
+            }
+        }
+    }
+    System.out.println(best.equals("~") ? -1 : best);
+}

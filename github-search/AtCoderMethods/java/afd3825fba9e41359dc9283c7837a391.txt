@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int n = in.nextInt();
+    int[] a = new int[100_001];
+    for (int i = 0; i < n; i++) {
+        int X = in.nextInt();
+        ++a[X];
+        if (X < 100_001 - 1)
+            ++a[X + 1];
+        if (X > 0)
+            ++a[X - 1];
+    }
+    int wynik = 0;
+    for (int b : a) wynik = Math.max(wynik, b);
+    System.out.println(wynik);
+}

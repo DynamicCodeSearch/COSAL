@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    FastScanner scanner = new FastScanner();
+    int N = scanner.nextInt();
+    int Q = scanner.nextInt();
+    int[] L = new int[Q];
+    int[] R = new int[Q];
+    int[] T = new int[Q];
+    for (int i = 0; i < Q; i++) {
+        L[i] = scanner.nextInt();
+        R[i] = scanner.nextInt();
+        T[i] = scanner.nextInt();
+    }
+    int[] a = new int[N + 1];
+    for (int i = 0; i < Q; i++) {
+        for (int j = L[i]; j <= R[i]; j++) {
+            a[j] = T[i];
+        }
+    }
+    StringJoiner sj = new StringJoiner("\n");
+    for (int i = 1; i <= N; i++) {
+        sj.add(String.valueOf(a[i]));
+    }
+    System.out.println(sj.toString());
+}

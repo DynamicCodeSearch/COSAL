@@ -1,0 +1,23 @@
+
+public int[] minDistQueue(int s) {
+    int[] d = new int[n];
+    Arrays.fill(d, INF);
+    ArrayDeque<Integer> q = new ArrayDeque<Integer>();
+    q.add(s);
+    d[s] = 0;
+    while (!q.isEmpty()) {
+        int v = q.pollFirst();
+        for (Edge e : graph[v]) {
+            int u = e.to;
+            if (d[v] + e.cost < d[u]) {
+                d[u] = d[v] + e.cost;
+                if (e.cost == 0) {
+                    q.addFirst(u);
+                } else {
+                    q.addLast(u);
+                }
+            }
+        }
+    }
+    return d;
+}

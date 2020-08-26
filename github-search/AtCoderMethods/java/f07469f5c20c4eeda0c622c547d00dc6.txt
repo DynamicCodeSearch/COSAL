@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    StringBuilder str = new StringBuilder();
+    final int n = Integer.parseInt(sc.next());
+    final int q = Integer.parseInt(sc.next());
+    BitSet b = new BitSet(n);
+    for (int i = 0; i < q; i++) {
+        final int s = Integer.parseInt(sc.next());
+        final int r = Integer.parseInt(sc.next());
+        b.flip(s - 1, r);
+    }
+    for (int i = 0; i < n; i++) {
+        if (b.get(i)) {
+            str.append(1);
+        } else {
+            str.append(0);
+        }
+    }
+    System.out.println(str.toString());
+}

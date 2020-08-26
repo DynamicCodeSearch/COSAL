@@ -1,0 +1,72 @@
+public void solve() {
+    int n = io.ri();
+    Point[] xx = new Point[n];
+    Point[] yy = new Point[n];
+    for (int i = 0; i < n; i++) {
+        int x = io.ri();
+        int y = io.ri();
+        xx[i] = new Point(i, x);
+        yy[i] = new Point(i, y);
+    }
+    Arrays.sort(xx, (p1, p2) -> p1.val - p2.val);
+    Arrays.sort(yy, (p1, p2) -> p1.val - p2.val);
+    int[] xid = new int[n];
+    int[] yid = new int[n];
+    for (int i = 0; i < n; i++) {
+        xid[xx[i].id] = i;
+        yid[yy[i].id] = i;
+    }
+    long res = 0;
+    Queue<Point> queue = new PriorityQueue<>((p1, p2) -> p1.val - p2.val);
+    queue.add(new Point(0, 0));
+    boolean[] visited = new boolean[n];
+    while (queue.size() > 0) {
+        Point cur = queue.poll();
+        int id = cur.id;
+        if (visited[id])
+            continue;
+        visited[id] = true;
+        res += cur.val;
+        int x = xid[id];
+        int y = yid[id];
+        Point pointX = xx[x];
+        Point pointY = yy[y];
+        int tx = x - 1;
+        while (tx >= 0) {
+            Point p = xx[tx];
+            if (visited[p.id])
+                break;
+            int val = Math.abs(p.val - pointX.val);
+            queue.add(new Point(p.id, val));
+            break;
+        }
+        tx = x + 1;
+        while (tx < n) {
+            Point p = xx[tx];
+            if (visited[p.id])
+                break;
+            int val = Math.abs(p.val - pointX.val);
+            queue.add(new Point(p.id, val));
+            break;
+        }
+        int ty = y - 1;
+        while (ty >= 0) {
+            Point p = yy[ty];
+            if (visited[p.id])
+                break;
+            int val = Math.abs(p.val - pointY.val);
+            queue.add(new Point(p.id, val));
+            break;
+        }
+        ty = y + 1;
+        while (ty < n) {
+            Point p = yy[ty];
+            if (visited[p.id])
+                break;
+            int val = Math.abs(p.val - pointY.val);
+            queue.add(new Point(p.id, val));
+            break;
+        }
+    }
+    io.writeLine(res + "");
+}

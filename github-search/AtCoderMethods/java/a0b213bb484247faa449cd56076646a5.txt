@@ -1,0 +1,26 @@
+public static void main(String[] args) throws Exception {
+    double p = sc.nextDouble();
+    double l = 0.0;
+    double r = 100.0;
+    double c = 0.0;
+    double m = 100000.0;
+    double mc = 0.0;
+    double ans = 0.0;
+    for (int i = 0; i < 1; i++) {
+        double x = (r - l) / 5000000.0;
+        for (int j = 0; j < 5000000; j++) {
+            c = x * j;
+            double a = c + p / Math.pow(2, c / 1.5);
+            if (a < m) {
+                m = a;
+                mc = c;
+            }
+        }
+        l = c - x;
+        r = c + x;
+    }
+    out.println(m);
+    out.flush();
+    sc.close();
+    out.close();
+}

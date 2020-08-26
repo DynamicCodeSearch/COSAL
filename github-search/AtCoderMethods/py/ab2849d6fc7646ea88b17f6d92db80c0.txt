@@ -1,0 +1,15 @@
+def main():
+    n, m = read()
+    G = [[] for j in range(n)]
+    edge = []
+    for i in range(m):
+        a, b = read()
+        a -= 1; b -= 1
+        edge.append([a,b])
+        G[a].append(b)
+        G[b].append(a)
+
+    cnt = 0
+    for e in edge:
+        cnt += bfs(e,G)
+    print(cnt)

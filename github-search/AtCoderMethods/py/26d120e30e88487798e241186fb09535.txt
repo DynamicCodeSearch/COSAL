@@ -1,0 +1,21 @@
+def solve():
+    N, A, B = map(int, input().split())
+    v = [int(i) for i in input().split()]
+    v.sort(reverse=True)
+
+    ave_max = sum(v[:A]) / A
+
+    onaji = v.count(v[0])
+
+    if onaji < A:
+        k = v[:A].count(v[A - 1])
+        n = v.count(v[A - 1])
+        cnt = binom(n, k)
+    else:
+        cnt = 0
+
+        for i in range(A, min(onaji, B) + 1):
+            cnt += binom(onaji, i)
+
+    print('{:.8f}'.format(ave_max))
+    print(cnt)

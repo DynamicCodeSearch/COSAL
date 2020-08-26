@@ -1,0 +1,12 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String line;
+    String[] words;
+    long N = parseLong(br.readLine());
+    int min = String.valueOf(N).length();
+    for (int i = 1; i <= Math.sqrt(N); i++) {
+        if (N % i == 0)
+            min = Math.min(min, String.valueOf(N / i).length());
+    }
+    System.out.println(min);
+}

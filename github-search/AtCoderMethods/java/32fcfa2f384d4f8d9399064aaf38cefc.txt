@@ -1,0 +1,17 @@
+private static boolean dfs(int[][] g, int now, boolean[] flg, boolean[] visited) {
+    if (now == g.length - 1) {
+        flg[now] = true;
+        return true;
+    }
+    visited[now] = true;
+    for (int next : g[now]) {
+        if (!visited[next]) {
+            boolean ret = dfs(g, next, flg, visited);
+            if (ret) {
+                flg[now] = true;
+                break;
+            }
+        }
+    }
+    return flg[now];
+}

@@ -1,0 +1,33 @@
+void solve(ContestScanner in, Writer out) throws IOException {
+    int n = in.nextInt();
+    int m = in.nextInt();
+    int s = in.nextInt() - 1;
+    List<Integer>[] node = new List[n];
+    for (int i = 0; i < n; i++) node[i] = new ArrayList<>();
+    for (int i = 0; i < m; i++) {
+        int u = in.nextInt() - 1;
+        int v = in.nextInt() - 1;
+        node[u].add(v);
+        node[v].add(u);
+    }
+    Queue<Pos> qu = new PriorityQueue<>();
+    qu.add(new Pos(s, s));
+    BitSet used = new BitSet(n);
+    BitSet fill = new BitSet(n);
+    while (!qu.isEmpty()) {
+        Pos p = qu.poll();
+        if (used.get(p.p))
+            continue;
+        used.set(p.p);
+        if (p.p == p.min)
+            fill.set(p.p);
+        for (int v : node[p.p]) {
+            final int nm = Math.min(p.min, v);
+            qu.add(new Pos(v, nm));
+        }
+    }
+    
+    for (int i = fill.nextSetBit(0); i != -1; i = fill.nextSetBit(i + 1)) {
+        out.println(i + 1);
+    }
+}

@@ -1,0 +1,42 @@
+def Travel():
+
+    raw_data = read_data()
+    N, M, R = list(map(int, raw_data[0].split()))
+    town_list = list(map(int, raw_data[1].split()))
+    road_set = set([])
+
+    MAX = 200000
+
+
+    D = [[float('inf')]*(N+1) for _ in range(N+1)]
+
+
+    for i in range(2, M+2):
+        a, b, c = list(map(int, raw_data[i].split()))
+        D[a][b] = c
+        D[b][a] = c
+
+
+
+
+
+
+
+
+
+
+
+    for k in range(1, N+1):
+        for i in range(1, N+1):
+            for j in range(1, N+1):
+                dis_two_node = D[i][k] + D[k][j]
+                if dis_two_node < D[i][j]:
+                    D[i][j] = dis_two_node
+                    D[j][i] = dis_two_node
+
+
+    min_dis = float('inf')
+    for each in itertools.permutations(town_list):
+        min_dis = min(dis(D, each), min_dis)
+
+    print(min_dis)

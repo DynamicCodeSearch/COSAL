@@ -1,0 +1,20 @@
+def main():
+    input()
+    s = input()
+
+    responseArray = list(map(lambda c: c == "o", list(s)))
+
+    for i in range(2):
+        for j in range(2):
+            firstIsSheep = bool(i)
+            lastIsSheep = bool(j)
+            res = resolve_hypothesis(firstIsSheep, lastIsSheep, responseArray)
+
+            if res == -1:
+                continue
+
+            print(res)
+            return
+
+    print(-1)
+    return

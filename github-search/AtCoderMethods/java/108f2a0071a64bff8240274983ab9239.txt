@@ -1,0 +1,36 @@
+void run() {
+    int n = ni();
+    int m = ni();
+    long[] dp = new long[1 << n];
+    int[] xs = new int[m];
+    int[] ys = new int[m];
+    for (int i = 0; i < m; ++i) {
+        int x = ni() - 1;
+        int y = ni() - 1;
+        xs[i] = x;
+        ys[i] = y;
+    }
+    dp[0] = 1;
+    
+    for (int i = 0; i < 1 << n; ++i) {
+        
+        for (int j = 0; j < n; ++j) {
+            if (((i >> j) & 1) == 1) {
+                continue;
+            }
+            
+            boolean flag = true;
+            for (int k = 0; k < m; ++k) {
+                
+                if (xs[k] == j) {
+                    flag &= ((i >> ys[k]) & 1) == 0;
+                }
+            }
+            if (flag) {
+                dp[i | 1 << j] += dp[i];
+            
+            }
+        }
+    }
+    System.out.println(dp[(1 << n) - 1]);
+}

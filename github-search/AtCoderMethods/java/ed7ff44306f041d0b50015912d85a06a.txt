@@ -1,0 +1,24 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    final int n = in.nextInt();
+    int[] a = in.nextIntArray(n);
+    boolean[] colors = new boolean[8];
+    int g3200 = 0;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < 8; j++) {
+            if (a[i] >= 400 * j && a[i] < 400 * (j + 1))
+                colors[j] = true;
+        }
+        if (a[i] >= 3200)
+            g3200++;
+    }
+    int disColors = 0;
+    for (boolean color : colors) {
+        if (color)
+            disColors++;
+    }
+    int min = disColors;
+    if (disColors == 0)
+        min = 1;
+    int max = disColors + g3200;
+    out.println(min + " " + max);
+}

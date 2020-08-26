@@ -1,0 +1,18 @@
+def B(S, T):
+    import re
+    ans = 'You can win'
+    for i in range(len(S)):
+        if S[i] == T[i]:
+            continue
+        elif S[i] == '@' or T[i] == '@':
+            if S[i] == '@' and re.match('[atcoder]', T[i]):
+                continue
+            elif T[i] == '@' and re.match('[atcoder]', S[i]):
+                continue
+            else:
+                ans = 'You will lose'
+                return ans
+        else:
+            ans = 'You will lose'
+            return ans
+    return ans

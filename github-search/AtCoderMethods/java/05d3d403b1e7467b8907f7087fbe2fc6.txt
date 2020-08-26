@@ -1,0 +1,16 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    StringTokenizer st = new StringTokenizer(br.readLine());
+    int h = Integer.parseInt(st.nextToken());
+    int w = Integer.parseInt(st.nextToken());
+    int a = Integer.parseInt(st.nextToken());
+    int b = Integer.parseInt(st.nextToken());
+    init(h + w);
+    int sum = 0;
+    for (int i = 1; a + i <= h && b + i <= w; i++) {
+        int w1 = solve(a + i, w + 1 - (b + i));
+        int w2 = solve(h + 1 - (a + i), b + i);
+        sum = (int) ((sum + (long) w1 * w2) % M);
+    }
+    System.out.println(sum);
+}

@@ -1,0 +1,10 @@
+Data up(int value) {
+    if (leftConst + value >= max) {
+        return new Data(0, 0, max, max);
+    } else if (rightConst + value >= max) {
+        int diff = rightConst + value - max;
+        return new Data(leftX, rightX - diff, leftConst + value, max);
+    } else {
+        return new Data(leftX, rightX, leftConst + value, rightConst + value);
+    }
+}

@@ -1,0 +1,20 @@
+public void union(Node other) {
+    Node parent1 = this.findParent();
+    Node parent2 = other.findParent();
+    if (parent1.equals(parent2)) {
+        return;
+    }
+    if (parent1.index > parent2.index) {
+        parent2.parent = parent1;
+        parent2.children.forEach(node -> {
+            node.parent = parent1;
+        });
+        parent1.children.addAll(parent2.children);
+    } else {
+        parent1.parent = parent2;
+        parent1.children.forEach(node -> {
+            node.parent = parent2;
+        });
+        parent2.children.addAll(parent1.children);
+    }
+}

@@ -1,0 +1,8 @@
+public final void answer() {
+    int[] cost = new int[N];
+    cost[1] = Math.abs(a[1] - a[0]);
+    for (int i = 2; i < N; i++) {
+        cost[i] = Integer.min(cost[i - 2] + Math.abs(a[i] - a[i - 2]), cost[i - 1] + Math.abs(a[i] - a[i - 1]));
+    }
+    System.out.println(cost[N - 1]);
+}

@@ -1,0 +1,26 @@
+public static void main(String[] args) throws Exception {
+    int n = sc.nextInt();
+    int t = sc.nextInt();
+    int[] ary = new int[n + 1];
+    for (int i = 1; i <= n; i++) {
+        ary[i] = sc.nextInt();
+    }
+    int max = 0;
+    int min = Integer.MAX_VALUE;
+    int cnt = 0;
+    for (int i = 1; i <= n; i++) {
+        int tmp = ary[i];
+        if (tmp < min) {
+            min = tmp;
+        } else {
+            int diff = tmp - min;
+            if (max == diff) {
+                cnt++;
+            } else if (max < diff) {
+                max = diff;
+                cnt = 1;
+            }
+        }
+    }
+    System.out.println(cnt);
+}

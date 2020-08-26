@@ -1,0 +1,9 @@
+int compareNode(int i, int j, int k) {
+    if (rank[i] != rank[j]) {
+        return rank[i] - rank[j];
+    } else {
+        int ri = i + k <= n ? rank[i + k] : -1;
+        int rj = j + k <= n ? rank[j + k] : -1;
+        return ri - rj;
+    }
+}

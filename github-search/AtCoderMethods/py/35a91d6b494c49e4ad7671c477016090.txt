@@ -1,0 +1,11 @@
+def get_cnt(mat, i, j, h, w):
+    cnt = 0
+    for ii in range(i-1, i+2):
+        if ii < 0 or ii > h-1:
+            continue
+        for jj in range(j-1, j+2):
+            if jj < 0 or jj > w-1:
+                continue
+            if mat[ii][jj] == '#':
+                cnt += 1
+    return cnt

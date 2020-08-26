@@ -1,0 +1,21 @@
+int dinic(V s, V t) {
+    int flow = 0;
+    for (int p = 1; ; p++) {
+        Queue<V> que = new LinkedList<V>();
+        s.level = 0;
+        s.p = p;
+        que.offer(s);
+        while (!que.isEmpty()) {
+            V v = que.poll();
+            v.iter = v.es.size() - 1;
+            for (E e : v.es) if (e.to.p < p && e.cap > 0) {
+                e.to.level = v.level + 1;
+                e.to.p = p;
+                que.offer(e.to);
+            }
+        }
+        if (t.p < p)
+            return flow;
+        for (int f; (f = dfs(s, t, INF)) > 0; ) flow += f;
+    }
+}

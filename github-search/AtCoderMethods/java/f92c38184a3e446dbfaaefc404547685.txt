@@ -1,0 +1,11 @@
+public static boolean solve(double r) {
+    for (int i = 0; i < N; ++i) for (int j = i + 1; j < N; ++j) {
+        double dy = Math.abs(y[i] - y[j]);
+        if (dy > r / c[i] + r / c[j])
+            return false;
+        double dx = Math.abs(x[i] - x[j]);
+        if (dx > r / c[i] + r / c[j])
+            return false;
+    }
+    return true;
+}

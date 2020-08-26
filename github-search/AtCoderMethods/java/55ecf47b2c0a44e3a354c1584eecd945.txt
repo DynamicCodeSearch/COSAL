@@ -1,0 +1,39 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = Integer.parseInt(sc.next());
+    String S = sc.next();
+    String ans = S;
+    int openCount = 0;
+    int closeCount = 0;
+    int c = 0;
+    if (S.charAt(0) == '(')
+        openCount++;
+    else
+        closeCount++;
+    while (++c < S.length()) {
+        if (S.charAt(c) == '(') {
+            if (closeCount > 0) {
+                for (int i = 0; i < closeCount; i++) {
+                    ans = '(' + ans;
+                }
+                closeCount = 0;
+                openCount = 1;
+            } else {
+                openCount++;
+            }
+        } else {
+            if (openCount > 0) {
+                openCount--;
+            } else {
+                closeCount++;
+            }
+        }
+    }
+    for (int i = 0; i < openCount; i++) {
+        ans = ans + ')';
+    }
+    for (int i = 0; i < closeCount; i++) {
+        ans = '(' + ans;
+    }
+    System.out.println(ans);
+}

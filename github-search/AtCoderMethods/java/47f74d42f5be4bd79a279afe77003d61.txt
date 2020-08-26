@@ -1,0 +1,28 @@
+private void solve() throws IOException {
+    int n = readInt();
+    String s = readString();
+    if (s == null) {
+        out.println();
+        return;
+    }
+    char[] a = s.toCharArray();
+    int minBalance = 0;
+    int balance = 0;
+    for (char x : a) {
+        if (x == '(') {
+            balance++;
+        } else {
+            balance--;
+        }
+        minBalance = Math.min(minBalance, balance);
+    }
+    for (int i = 0; i < -minBalance; i++) {
+        out.print("(");
+    }
+    balance -= minBalance;
+    out.print(s);
+    for (int i = 0; i < balance; i++) {
+        out.print(")");
+    }
+    out.println();
+}

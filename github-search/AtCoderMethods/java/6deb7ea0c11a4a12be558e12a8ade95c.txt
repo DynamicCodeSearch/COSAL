@@ -1,0 +1,35 @@
+static void solver() {
+    int N = ni();
+    int[] w = new int[N];
+    for (int i = 0; i < N; i++) {
+        w[i] = ni();
+    }
+    ArrayList<Integer>[] drink = new ArrayList[500010];
+    for (int i = 0; i < drink.length; i++) {
+        drink[i] = new ArrayList<>();
+    }
+    for (int i = 0; i < N; i++) {
+        int M = ni();
+        for (int j = 0; j < M; j++) {
+            int t = ni();
+            drink[t / 2].add(i);
+        }
+    }
+    long ans = 0;
+    Segtree seg = new Segtree(500001);
+    long[] dp = new long[500003];
+    int[] pre = new int[500001];
+    Arrays.fill(dp, -INF);
+    dp[0] = 0;
+    seg.update(0, 1, INF);
+    for (int t = 1; t <= 500_000; t++) {
+        for (int d : drink[t]) {
+            seg.update(pre[d], t, w[d]);
+            pre[d] = t;
+        }
+        dp[t] = seg.maxi[0];
+        seg.update(t, t + 1, dp[t] + INF);
+        ans = Math.max(ans, dp[t]);
+    }
+    out.println(ans);
+}

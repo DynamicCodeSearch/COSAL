@@ -1,0 +1,34 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+public static final long modComb(long n, long k, long p) {
+    if (n < 0 || k < 0 || n < k) {
+        Utils.debug("modComb(long " + n + ", long " + k + ", long " + p + ") = " + 0);
+        return 0;
+    }
+    long[] e1 = new long[1];
+    long[] e2 = new long[1];
+    long[] e3 = new long[1];
+    long a1 = modFact(n, p, e1);
+    long a2 = modFact(k, p, e2);
+    long a3 = modFact(n - k, p, e3);
+    if (e1[0] > e2[0] + e3[0]) {
+        Utils.debug("modComb(long " + n + ", long " + k + ", long " + p + ") = " + 0);
+        return 0;
+    }
+    Utils.debug("modComb(long " + n + ", long " + k + ", long " + p + ") = " + "" + a1 + " / (" + a2 + "*" + a3 + ")" + " = " + ((a1 * modInverseByFermatsLittleTheorem((a2 * a3) % p, p)) % p));
+    return (a1 * modInverseByFermatsLittleTheorem((a2 * a3) % p, p)) % p;
+}

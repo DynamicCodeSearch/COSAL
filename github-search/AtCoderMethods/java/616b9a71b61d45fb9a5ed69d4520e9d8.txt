@@ -1,0 +1,16 @@
+void solve() {
+    int n = sc.nextInt();
+    P[] ps = new P[n];
+    for (int i = 0; i < n; i++) {
+        ps[i] = new P(sc.nextInt(), sc.nextInt());
+    }
+    sort(ps);
+    long t = 0;
+    long max_t = 0;
+    for (P p : ps) {
+        t += p.a;
+        max_t = Math.max(max_t, t);
+        t -= p.b;
+    }
+    out.println(max_t);
+}

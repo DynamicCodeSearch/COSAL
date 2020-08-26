@@ -1,0 +1,11 @@
+String nextToken() {
+    while (st == null || !st.hasMoreTokens()) {
+        try {
+            st = new StringTokenizer(br.readLine());
+        } catch (Exception e) {
+            eof = true;
+            return null;
+        }
+    }
+    return st.nextToken();
+}

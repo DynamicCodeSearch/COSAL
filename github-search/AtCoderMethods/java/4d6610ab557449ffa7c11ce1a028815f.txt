@@ -1,0 +1,20 @@
+public void solve() throws IOException {
+    n = nextInt();
+    used = new boolean[n];
+    g = new ArrayList[n];
+    for (int i = 0; i < n; i++) {
+        g[i] = new ArrayList<>();
+    }
+    int m = nextInt();
+    for (int i = 0; i < m; i++) {
+        int x = nextInt() - 1, y = nextInt() - 1;
+        g[x].add(y);
+        g[y].add(x);
+    }
+    dfs(0, 0);
+    if (flag) {
+        out.print("POSSIBLE");
+    } else {
+        out.print("IMPOSSIBLE");
+    }
+}

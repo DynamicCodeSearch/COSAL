@@ -1,0 +1,19 @@
+public void shiftDown(int index) {
+    if (index < 0 || index >= size) {
+        throw new IllegalArgumentException();
+    }
+    while (true) {
+        int child = (index << 1) + 1;
+        if (child >= size) {
+            return;
+        }
+        if (child + 1 < size && comparator.compare(elements[child], elements[child + 1]) > 0) {
+            child++;
+        }
+        if (comparator.compare(elements[index], elements[child]) <= 0) {
+            return;
+        }
+        swap(index, child);
+        index = child;
+    }
+}

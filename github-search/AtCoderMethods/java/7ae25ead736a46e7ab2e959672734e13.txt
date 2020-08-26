@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    
+    Scanner scan = new Scanner(System.in);
+    double p = scan.nextDouble();
+    scan.close();
+    
+    double calctime = p;
+    for (double x = 0; x <= p; x += 0.00001) {
+        double ctime = x + p / Math.pow(2, x / 1.5);
+        if (ctime <= calctime) {
+            calctime = ctime;
+        } else {
+            break;
+        }
+    }
+    System.out.println(calctime);
+}

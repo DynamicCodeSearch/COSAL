@@ -1,0 +1,8 @@
+def solve():
+    N, T = map(int, input().split())
+    ts = list(map(int, input().split()))
+
+    ans = T
+    ans += sum(min(T, ts[i + 1] - ts[i]) for i in range(N - 1))
+
+    print(ans)

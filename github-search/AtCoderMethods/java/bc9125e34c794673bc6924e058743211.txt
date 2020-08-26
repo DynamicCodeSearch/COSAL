@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    pair = new Point[n][2];
+    pt = new ArrayList<>();
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < 2; j++) {
+            pair[i][j] = new Point(in.nextInt(), i * 2 + j);
+            pt.add(pair[i][j]);
+        }
+    }
+    Collections.sort(pt, (p, q) -> Long.compare(p.sortValue(), q.sortValue()));
+    foundIds = new int[1000];
+    M = Integer.highestOneBit(2 * n - 1) << 1;
+    for (int i = 0; i < pt.size(); i++) {
+        pt.get(i).id = M - 1 + i;
+    }
+    sat = new SAT2(2 * M);
+    int ok = 0;
+    int ng = 1000000000;
+    while (ng - ok > 1) {
+        int med = (ng + ok) / 2;
+        if (canBuild(med)) {
+            ok = med;
+        } else {
+            ng = med;
+        }
+    }
+    out.println(ok);
+    out.flush();
+}

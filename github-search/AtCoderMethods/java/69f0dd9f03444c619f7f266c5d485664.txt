@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    N = Integer.parseInt(scan.next());
+    M = Integer.parseInt(scan.next());
+    edge = new int[N][N];
+    data = new int[N][N];
+    used = new boolean[N][N];
+    for (int i = 0; i < M; i++) {
+        int s = Integer.parseInt(scan.next()) - 1;
+        int d = Integer.parseInt(scan.next()) - 1;
+        int c = Integer.parseInt(scan.next());
+        edge[s][d] = edge[d][s] = c;
+    }
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            data[i][j] = (i == j ? 0 : INF);
+        }
+    }
+    for (int node = 0; node < N; node++) {
+        dijkstra(node);
+    }
+    int count = 0;
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            if (used[i][j])
+                count++;
+        }
+    }
+    System.out.println(M - count / 2);
+    scan.close();
+}

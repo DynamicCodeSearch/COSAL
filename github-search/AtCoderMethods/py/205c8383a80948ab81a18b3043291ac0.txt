@@ -1,0 +1,17 @@
+def main():
+    n,m = LI()
+    b = [0] * n
+    for _ in range(m):
+        x,y = LI()
+        b[x-1] |= 2**(y-1)
+    a = [0] * (2**n)
+    a[0] = 1
+    ii = [[i,2**i] for i in range(n)]
+    for i in range(2**n-1):
+        if a[i] < 1:
+            continue
+        for j,bj in ii:
+            if i & bj or i & b[j]:
+                continue
+            a[i+bj] += a[i]
+    return a[-1]

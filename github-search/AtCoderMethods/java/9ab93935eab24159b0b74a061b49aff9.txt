@@ -1,0 +1,24 @@
+private static boolean solveInner(Scanner scanner) {
+    String line = scanner.nextLine();
+    int N = Integer.parseInt(line.split(" ")[0]);
+    int M = Integer.parseInt(line.split(" ")[1]);
+    HashMap<Integer, HashSet<Integer>> islandToIslands = new HashMap<>();
+    for (int i = 0; i < M; i++) {
+        line = scanner.nextLine();
+        String[] split = line.split(" ");
+        int a = Integer.parseInt(split[0]);
+        int b = Integer.parseInt(split[1]);
+        HashSet<Integer> set = islandToIslands.getOrDefault(a, new HashSet<>());
+        set.add(b);
+        islandToIslands.put(a, set);
+    }
+    HashSet<Integer> neighbors = islandToIslands.getOrDefault(1, new HashSet<>());
+    for (Integer n : neighbors) {
+        HashSet<Integer> set = islandToIslands.get(n);
+        if (set == null)
+            continue;
+        if (set.contains(N))
+            return true;
+    }
+    return false;
+}

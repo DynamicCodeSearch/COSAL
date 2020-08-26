@@ -1,0 +1,32 @@
+public static void main(String[] args) throws Exception {
+    st = new StringTokenizer(br.readLine());
+    int N = Integer.parseInt(st.nextToken());
+    int M = Integer.parseInt(st.nextToken());
+    HashSet<Integer> A = new HashSet<Integer>();
+    HashSet<Integer> B = new HashSet<Integer>();
+    for (int i = 0; i < M; i++) {
+        st = new StringTokenizer(br.readLine());
+        int a = Integer.parseInt(st.nextToken());
+        int b = Integer.parseInt(st.nextToken());
+        if (a == 1) {
+            A.add(b);
+        } else if (a == N) {
+            B.add(b);
+        }
+        if (b == 1) {
+            A.add(a);
+        } else if (b == N) {
+            B.add(a);
+        }
+    }
+    boolean f = false;
+    for (int a : A) {
+        if (B.contains(a)) {
+            f = true;
+            break;
+        }
+    }
+    pw.print(f ? "POSSIBLE\n" : "IMPOSSIBLE\n");
+    pw.close();
+    br.close();
+}

@@ -1,0 +1,11 @@
+
+static void moveUp(int[] result, int[] like, int i) {
+    OptionalInt temp = Arrays.stream(like).filter(likevalue -> likevalue > result[i]).min();
+    result[i + 1] = like[0];
+    if (temp.isPresent()) {
+        
+        result[i] = temp.getAsInt();
+    } else {
+        moveUp(result, like, i - 1);
+    }
+}

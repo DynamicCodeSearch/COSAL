@@ -1,0 +1,13 @@
+def dijkstra(edges, start):
+    dist = [int(1e20)] * len(edges)
+    heap = list()
+    dist[start] = 0
+    heapq.heappush(heap, (0, start))
+    while len(heap) > 0:
+        d, cur = heapq.heappop(heap)
+        if dist[cur] == d:
+            for ne, cost in edges[cur]:
+                if d + cost < dist[ne]:
+                    dist[ne] = d + cost
+                    heapq.heappush(heap, (dist[ne], ne))
+    return dist

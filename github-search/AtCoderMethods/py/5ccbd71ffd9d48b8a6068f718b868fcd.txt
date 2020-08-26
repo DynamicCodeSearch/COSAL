@@ -1,0 +1,29 @@
+def main():
+    N = int(input())
+    ax_list, ay_list, bx_list, by_list = [], [], [], []
+    ax, ay = 0, 0
+    for _ in range(N):
+        x, y = map(int, input().split())
+        ax_list.append(x)
+        ay_list.append(y)
+        ax += x
+        ay += y
+    ax /= N
+    ay /= N
+
+    bx, by = 0, 0
+    for _ in range(N):
+        x, y = map(int, input().split())
+        bx_list.append(x)
+        by_list.append(y)
+        bx += x
+        by += y
+    bx /= N
+    by /= N
+
+    da, db = 0, 0
+    for i in range(N):
+        da = max(da, dist(ax, ay, ax_list[i], ay_list[i]))
+        db = max(db, dist(bx, by, bx_list[i], by_list[i]))
+
+    print("{0:0.6f}".format(db / da))

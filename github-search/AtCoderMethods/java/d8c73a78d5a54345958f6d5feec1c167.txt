@@ -1,0 +1,12 @@
+public static void main(String[] args) {
+    Scanner s = new Scanner(System.in);
+    int n = s.nextInt();
+    s.close();
+    String[] hhmmss = new String[3];
+    for (int i = 2; i >= 0; i--) {
+        hhmmss[i] = String.format("%02d", n % 60);
+        n /= 60;
+    }
+    String ans = String.join(":", hhmmss);
+    System.out.println(ans);
+}

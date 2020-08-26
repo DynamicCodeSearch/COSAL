@@ -1,0 +1,20 @@
+
+
+public static void main(String[] args) throws IOException {
+    MyScanner scanner = new MyScanner();
+    PrintStream out = System.out;
+    Main main = new Main();
+    int n = scanner.nextInt();
+    int k = scanner.nextInt();
+    int x = scanner.nextInt();
+    int y = scanner.nextInt();
+    long price;
+    if (n <= k) {
+        price = n * x;
+    } else {
+        price = k * x + (n - k) * y;
+    }
+    out.println(price);
+    scanner.reader.close();
+    out.close();
+}

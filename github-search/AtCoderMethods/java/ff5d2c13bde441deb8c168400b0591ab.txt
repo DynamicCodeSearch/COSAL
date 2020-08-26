@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    int k = in.nextInt();
+    boolean[] ok = new boolean[255];
+    Arrays.fill(ok, true);
+    for (int i = 0; i < k; i++) {
+        int c = in.nextInt() + '0';
+        ok[c] = false;
+    }
+    for (int l = n; l <= 999999; l++) {
+        if (isOK(l, ok)) {
+            out.println(l);
+            break;
+        }
+    }
+    out.flush();
+}

@@ -1,0 +1,14 @@
+private static boolean[][] contract(boolean[][] d) {
+    boolean[][] r = new boolean[d.length][d[0].length];
+    for (int i = 0; i < r.length; ++i) {
+        for (int j = 0; j < r[i].length; ++j) {
+            r[i][j] = false;
+            for (int x = i - 1; x <= i + 1; ++x) for (int y = j - 1; y <= j + 1; ++y) {
+                if (contains(d, x, y)) {
+                    r[i][j] = r[i][j] || d[x][y];
+                }
+            }
+        }
+    }
+    return (r);
+}

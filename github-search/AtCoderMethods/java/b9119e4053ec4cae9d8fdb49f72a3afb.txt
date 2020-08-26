@@ -1,0 +1,12 @@
+private static String poyo(int N, String[] S) {
+    for (int i = N; i >= 1; i--) {
+        for (int j = 0; j <= N - 1; j++) {
+            String name = S[j];
+            int x = count(name, S);
+            if (x == i) {
+                return name;
+            }
+        }
+    }
+    return "";
+}

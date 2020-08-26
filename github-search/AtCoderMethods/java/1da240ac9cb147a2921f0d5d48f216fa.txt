@@ -1,0 +1,18 @@
+public static void core(final Scanner in) {
+    long A = in.nextLong();
+    long B = in.nextLong();
+    long K = in.nextLong();
+    long L = in.nextLong();
+    long n;
+    long cost;
+    
+    long Lcost = A * K;
+    for (long m = 1; m * L < K + L; m++) {
+        n = Math.max(0L, K - L * m);
+        cost = A * n + B * m;
+        if (Lcost > cost) {
+            Lcost = cost;
+        }
+    }
+    System.out.println(Lcost);
+}

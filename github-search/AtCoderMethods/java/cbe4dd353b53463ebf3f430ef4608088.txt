@@ -1,0 +1,14 @@
+public static void sub2(int[] a, int[] b, int pass, int pos) {
+    if (pass == 0) {
+        result++;
+        return;
+    }
+    for (int i = 0; i < N; i++) {
+        if ((pass / (int) Math.pow(2, i)) % 2 == 1) {
+            if (sub1(a, b, pos, i)) {
+                sub2(a, b, pass - (int) Math.pow(2, i), i);
+            }
+        }
+    }
+    return;
+}

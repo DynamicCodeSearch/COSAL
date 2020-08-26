@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    FastScanner fs = new FastScanner();
+    long a = fs.nextInt2();
+    long b = fs.nextInt2();
+    long k = fs.nextInt2();
+    long l = fs.nextInt2();
+    long result = 0;
+    if (k % l == 0) {
+        result = b * (k / l);
+    } else if (b * (k / l) + a * (k % l) <= b * (1 + k / l)) {
+        result = b * (k / l) + a * (k % l);
+    } else {
+        result = b * (1 + k / l);
+    }
+    StringBuilder sb = new StringBuilder();
+    sb.append(result);
+    System.out.println(sb.toString());
+}

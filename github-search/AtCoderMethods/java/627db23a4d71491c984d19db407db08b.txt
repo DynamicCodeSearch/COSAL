@@ -1,0 +1,26 @@
+static void solve() {
+    int n = ni(), Q = ni();
+    int A = ni(), B = ni();
+    int[] x = na(Q);
+    SegmentTreeRMQL sta = new SegmentTreeRMQL(n + 2);
+    SegmentTreeRMQL std = new SegmentTreeRMQL(n + 2);
+    sta.update(B, 0 - B);
+    std.update(B, 0 + B);
+    long base = 0;
+    for (int v : x) {
+        long del = Math.abs(v - A);
+        long ov = sta.minx(A, A + 1) + base + A + del;
+        long nv = Math.min(sta.minx(0, v + 1) + base + v, std.minx(v, n + 2) + base - v);
+        if (nv < ov) {
+            sta.update(A, nv - base - del - A);
+            std.update(A, nv - base - del + A);
+        }
+        A = v;
+        base += del;
+    }
+    long min = Long.MAX_VALUE;
+    for (int i = 1; i <= n; i++) {
+        min = Math.min(min, sta.minx(i, i + 1) + base + i);
+    }
+    out.println(min);
+}

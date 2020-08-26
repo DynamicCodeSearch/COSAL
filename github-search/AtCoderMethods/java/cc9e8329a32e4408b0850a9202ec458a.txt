@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    
+    Scanner scan = new Scanner(System.in);
+    String str = scan.next();
+    scan.close();
+    
+    int[] alphabets = new int[26];
+    int odd = 0;
+    for (char c : str.toCharArray()) {
+        alphabets[c - 'a']++;
+    }
+    for (int num : alphabets) {
+        if (num % 2 == 1)
+            odd++;
+    }
+    
+    if (odd <= 1) {
+        System.out.println(str.length());
+    } else {
+        System.out.println(((str.length() - odd) / (2 * odd)) * 2 + 1);
+    }
+}

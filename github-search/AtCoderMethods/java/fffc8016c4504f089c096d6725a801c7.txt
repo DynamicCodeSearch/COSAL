@@ -1,0 +1,36 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    String S = sc.next();
+    int one = 0;
+    int two = 0;
+    int three = 0;
+    int four = 0;
+    for (int i = 0; i < N; i++) {
+        switch(S.charAt(i)) {
+            case '4':
+                four++;
+                break;
+            case '3':
+                three++;
+                break;
+            case '2':
+                two++;
+                break;
+            case '1':
+                one++;
+                break;
+        }
+    }
+    int min = Integer.MAX_VALUE;
+    min = Math.min(min, one);
+    min = Math.min(min, two);
+    min = Math.min(min, three);
+    min = Math.min(min, four);
+    int max = Integer.MIN_VALUE;
+    max = Math.max(max, one);
+    max = Math.max(max, two);
+    max = Math.max(max, three);
+    max = Math.max(max, four);
+    System.out.println(max + " " + min);
+}

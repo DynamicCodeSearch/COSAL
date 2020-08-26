@@ -1,0 +1,14 @@
+public long sum(int n, int k, long[] ary) {
+    long res = 0;
+    long add = 0;
+    for (int i = 0; i < k; i++) {
+        res += ary[i];
+    }
+    add = res;
+    for (int i = 0; i < n - k; i++) {
+        add -= ary[i];
+        add += ary[k + i];
+        res += add;
+    }
+    return res;
+}

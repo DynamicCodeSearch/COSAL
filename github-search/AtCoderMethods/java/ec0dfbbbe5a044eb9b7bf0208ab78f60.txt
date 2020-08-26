@@ -1,0 +1,16 @@
+public void solve() {
+    P = nextDouble();
+    double low = 0;
+    double high = P;
+    
+    for (int i = 0; i < 1000; i++) {
+        double x = (high + high + low) / 3.0;
+        double y = (high + low + low) / 3.0;
+        if (x + (P / Math.pow(2, x / 1.5)) > y + (P / Math.pow(2, y / 1.5))) {
+            high = x;
+        } else {
+            low = y;
+        }
+    }
+    out.println(String.format("%.10f", (low + P / Math.pow(2, low / 1.5))));
+}

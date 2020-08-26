@@ -1,0 +1,16 @@
+void solve() throws IOException {
+    n = in.nextInt();
+    int m = in.nextInt();
+    node = new List[n];
+    for (int i = 0; i < n; i++) {
+        node[i] = new ArrayList<>();
+    }
+    for (int i = 0; i < m; i++) {
+        int a = in.nextInt() - 1;
+        int b = in.nextInt() - 1;
+        node[a].add(b);
+        node[b].add(a);
+    }
+    dfs(0, 0);
+    System.out.println(ans);
+}

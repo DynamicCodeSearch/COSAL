@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    HashMap<Integer, ArrayList<Integer>> map = new HashMap<Integer, ArrayList<Integer>>();
+    int N = sc.nextInt();
+    for (int i = 0; i < N; i++) {
+        int a = sc.nextInt();
+        if (map.containsKey(a)) {
+            ArrayList<Integer> list = map.get(a);
+            list.add(i);
+            map.put(a, list);
+        } else {
+            ArrayList<Integer> list = new ArrayList<Integer>();
+            list.add(i);
+            map.put(a, list);
+        }
+    }
+    ArrayList<Integer> key = new ArrayList<>(map.keySet());
+    Collections.sort(key);
+    int[] b = new int[N];
+    for (int i = 0; i < key.size(); i++) {
+        int value = key.get(i);
+        ArrayList<Integer> list = map.get(value);
+        for (int j = 0; j < list.size(); j++) {
+            b[list.get(j)] = i;
+        }
+    }
+    for (int i = 0; i < N; i++) {
+        System.out.println(b[i]);
+    }
+}

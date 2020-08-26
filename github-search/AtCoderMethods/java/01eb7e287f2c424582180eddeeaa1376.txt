@@ -1,0 +1,9 @@
+@Override
+public long applyAsLong(Integer n, Integer r) {
+    if (n > MAX_N)
+        throw new IllegalArgumentException();
+    if (0 > r || r > n)
+        return 0;
+    long ans = factorial[n] * modularInverse[n - r] % MOD * modularInverse[r] % MOD;
+    return ans;
+}

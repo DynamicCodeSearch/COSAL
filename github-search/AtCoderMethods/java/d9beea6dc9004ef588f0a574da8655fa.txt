@@ -1,0 +1,19 @@
+public final void answer() {
+    Arrays.sort(A);
+    int ans = 0;
+    boolean add = false;
+    int number = 0;
+    for (int i = 0; i < N; i++) {
+        if (A[i] != number) {
+            if (add)
+                ans++;
+            number = A[i];
+            add = true;
+        } else {
+            add = !add;
+        }
+    }
+    if (add)
+        ans++;
+    System.out.println(ans);
+}

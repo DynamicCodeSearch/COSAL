@@ -1,0 +1,7 @@
+private int dfs1(boolean[] used, int[] order, int pos, int node) {
+    used[node] = true;
+    for (int p = firstEdge[node]; p != -1; p = nextEdge[p]) if (!used[edgeTo[p]])
+        pos = dfs1(used, order, pos, edgeTo[p]);
+    order[pos++] = node;
+    return pos;
+}

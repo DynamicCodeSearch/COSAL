@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String S = sc.next();
+    int N = sc.nextInt();
+    for (int i = 0; i < N; i++) {
+        int l = sc.nextInt() - 1;
+        int r = sc.nextInt() - 1;
+        String sub = S.substring(l, r + 1);
+        String s = "";
+        for (int j = 0; j < l; j++) {
+            s += String.valueOf(S.charAt(j));
+        }
+        for (int j = sub.length() - 1; j >= 0; j--) {
+            s += String.valueOf(sub.charAt(j));
+        }
+        for (int j = r + 1; j < S.length(); j++) {
+            s += String.valueOf(S.charAt(j));
+        }
+        S = s;
+    }
+    System.out.println(S);
+}

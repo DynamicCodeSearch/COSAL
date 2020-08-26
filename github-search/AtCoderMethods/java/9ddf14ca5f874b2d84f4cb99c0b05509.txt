@@ -1,0 +1,17 @@
+public void solve(int testNumber, FastReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int[] from = new int[n - 1];
+    int[] to = new int[n - 1];
+    int[] w = new int[n - 1];
+    in.nextIntArrays(from, to, w);
+    MiscUtils.decreaseByOne(from, to);
+    int[][][] g = GraphUtils.packWU(n, from, to, w);
+    int Q = in.nextInt();
+    int K = in.nextInt() - 1;
+    long[] dist = GraphUtils.Dijkstra(g, K);
+    for (int q = 0; q < Q; q++) {
+        int u = in.nextInt() - 1;
+        int v = in.nextInt() - 1;
+        out.println(dist[u] + dist[v]);
+    }
+}

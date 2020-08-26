@@ -1,0 +1,20 @@
+public static void main(String[] args) throws Exception {
+    
+    
+    Scanner scan = new Scanner(System.in);
+    int a = scan.nextInt();
+    int b = scan.nextInt();
+    int n = scan.nextInt();
+    int s = a;
+    for (int i = 1; i <= 20000; i++) {
+        if (s * i % b == 0) {
+            s = s * i;
+            break;
+        }
+    }
+    for (int h = 1; h < 20000; h++) if (s * h >= n) {
+        s = s * h;
+        break;
+    }
+    System.out.println(s);
+}

@@ -1,0 +1,13 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    PrintWriter pw = new PrintWriter(System.out);
+    int N = sc.nextInt();
+    int[] ans = new int[N];
+    for (int i = 0; i < N; i++) if ((N - i - 1) % 2 == 0)
+        ans[(N - i - 1) / 2] = sc.nextInt();
+    else
+        ans[(N + i) / 2] = sc.nextInt();
+    for (int i = 0; i < N; i++) pw.print(ans[i] + (i == N - 1 ? "\n" : " "));
+    sc.close();
+    pw.close();
+}

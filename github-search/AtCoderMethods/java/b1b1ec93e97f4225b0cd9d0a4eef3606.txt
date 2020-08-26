@@ -1,0 +1,15 @@
+long rec(int n, int m) {
+    if (n < 0)
+        return 0;
+    if (m == A - 1)
+        return n == 0 ? 1 : 0;
+    if (memo[n][m] != -1)
+        return memo[n][m];
+    long ans = rec(n, m - 1);
+    for (int i = C; i <= D; i++) if (m * i <= n) {
+        
+        ans += comb[n][m * i] * f(m * i, m) % mod * powmod(fact[i], mod - 2, mod) % mod * rec(n - i * m, m - 1) % mod;
+    }
+    
+    return memo[n][m] = ans % mod;
+}

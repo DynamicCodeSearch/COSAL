@@ -1,0 +1,10 @@
+public final String nextLine() throws IOException {
+    int c = read();
+    while (isSpaceChar(c)) c = read();
+    StringBuilder res = new StringBuilder();
+    do {
+        res.append((char) c);
+        c = read();
+    } while (c != '\n' && c != -1);
+    return res.toString();
+}

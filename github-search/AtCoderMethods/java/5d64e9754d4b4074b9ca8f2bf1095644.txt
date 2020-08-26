@@ -1,0 +1,16 @@
+@Override
+public String toString() {
+    int N = fenwick.length;
+    long[] raw = new long[N];
+    long[] acc = new long[N];
+    for (int i = 1; i < N; i++) {
+        acc[i] = accum(i);
+        raw[i] = acc[i] - acc[i - 1];
+    }
+    StringBuilder s = new StringBuilder();
+    s.append("Fenwick [\n");
+    s.append(" fenwick=" + Arrays.toString(fenwick) + "\n");
+    s.append(" accum  =" + Arrays.toString(acc) + "\n");
+    s.append(" raw    =" + Arrays.toString(raw) + "\n]");
+    return s.toString();
+}

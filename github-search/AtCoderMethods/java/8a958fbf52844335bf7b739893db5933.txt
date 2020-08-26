@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    int m = sc.nextInt();
+    int ret = 0;
+    if (100 <= m && m <= 5000) {
+        ret = m / 100;
+    } else if (6000 <= m && m <= 30000) {
+        ret = m / 1000 + 50;
+    } else if (35000 <= m && m <= 70000) {
+        ret = (m / 1000 - 30) / 5 + 80;
+    } else if (70000 <= m) {
+        ret = 89;
+    }
+    System.out.println(String.format("%02d", ret));
+}

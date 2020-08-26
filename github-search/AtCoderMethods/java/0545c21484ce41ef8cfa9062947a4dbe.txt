@@ -1,0 +1,25 @@
+public static void main(String[] args) throws NumberFormatException, IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] vals = br.readLine().split(" ");
+    Integer XA = Integer.valueOf(vals[0]);
+    Integer YA = Integer.valueOf(vals[1]);
+    Integer XB = Integer.valueOf(vals[2]);
+    Integer YB = Integer.valueOf(vals[3]);
+    Integer XC = Integer.valueOf(vals[4]);
+    Integer YC = Integer.valueOf(vals[5]);
+    if (XA != 0) {
+        XB = XB + (XA * -1);
+        XC = XC + (XA * -1);
+    }
+    if (YA != 0) {
+        YB = YB + (YA * -1);
+        YC = YC + (YA * -1);
+    }
+    BigDecimal a = BigDecimal.valueOf(XB).multiply(BigDecimal.valueOf(YC));
+    BigDecimal b = BigDecimal.valueOf(XC).multiply(BigDecimal.valueOf(YB));
+    BigDecimal result = a.subtract(b).divide(new BigDecimal("2.00"));
+    if (result.compareTo(new BigDecimal("0.00")) == -1) {
+        result = result.multiply(new BigDecimal("-1.00"));
+    }
+    System.out.println(String.format("%.1f", result));
+}

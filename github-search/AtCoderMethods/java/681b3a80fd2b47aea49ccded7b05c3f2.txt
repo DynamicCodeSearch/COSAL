@@ -1,0 +1,20 @@
+
+private static ArrayList<Integer> getPrimeNumbers(int upperLimit) {
+    ArrayList<Integer> ret = new ArrayList<Integer>();
+    ret.add(2);
+    ret.add(3);
+    for (int i = 5; i <= upperLimit; i += 2) {
+        boolean isPrime = true;
+        
+        for (int j = 2; j * j <= i; j++) {
+            if (i % j == 0) {
+                isPrime = false;
+                break;
+            }
+        }
+        if (isPrime) {
+            ret.add(i);
+        }
+    }
+    return ret;
+}

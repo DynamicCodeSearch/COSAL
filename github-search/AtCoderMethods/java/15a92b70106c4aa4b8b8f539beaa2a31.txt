@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    try (Scanner sc = new Scanner(System.in)) {
+        long n = sc.nextInt();
+        long k = sc.nextInt();
+        long result = 0;
+        for (int i = 0; i < n; i++) {
+            int x = sc.nextInt();
+            if (Math.abs(k - x) < x) {
+                result += Math.abs(k - x) * 2;
+            } else {
+                result += x * 2;
+            }
+        }
+        System.out.println(result);
+    }
+}

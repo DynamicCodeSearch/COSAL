@@ -1,0 +1,44 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+public static Node merge(Node a, Node b) {
+    if (b == null)
+        return a;
+    if (a == null)
+        return b;
+    if (a.priority > b.priority) {
+        setParent(a.right, null);
+        setParent(b, null);
+        a.right = merge(a.right, b);
+        setParent(a.right, a);
+        return update(a);
+    } else {
+        setParent(a, null);
+        setParent(b.left, null);
+        b.left = merge(a, b.left);
+        setParent(b.left, b);
+        return update(b);
+    }
+}

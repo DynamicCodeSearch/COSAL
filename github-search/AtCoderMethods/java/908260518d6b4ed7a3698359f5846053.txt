@@ -1,0 +1,47 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    
+    char[] string = new char[20];
+    Arrays.fill(string, '@');
+    String menu = sc.nextLine();
+    boolean judge = false;
+    int wm = -1;
+    int ws = -1;
+    string = menu.toCharArray();
+    for (int i = 0; ; i++) {
+        if (string[i] == 'W' && string[i + 1] == 'W') {
+            if (string[i + 5] == 'W' && string[i + 6] == 'W') {
+                ws = i;
+                break;
+            } else {
+                wm = i;
+                break;
+            }
+        }
+    }
+    switch(wm) {
+        case 0:
+            System.out.println("Mi");
+            break;
+        case 2:
+            System.out.println("Re");
+            break;
+        case 4:
+            System.out.println("Do");
+            break;
+    }
+    switch(ws) {
+        case 0:
+            System.out.println("Si");
+            break;
+        case 2:
+            System.out.println("La");
+            break;
+        case 4:
+            System.out.println("So");
+            break;
+        case 6:
+            System.out.println("Fa");
+            break;
+    }
+}

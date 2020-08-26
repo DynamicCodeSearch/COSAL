@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int deg = sc.nextInt();
+    double dis = sc.nextDouble();
+    sc.close();
+    int w = 0;
+    dis = ((double) Math.round(dis / 6)) / 10;
+    while (dis > MAX_DIS[w]) {
+        w++;
+        if (w == 12)
+            break;
+    }
+    String dir = w == 0 ? "C" : DIR[((deg + 112) / 225) % 16];
+    System.out.println(String.format("%s %d", dir, w));
+}

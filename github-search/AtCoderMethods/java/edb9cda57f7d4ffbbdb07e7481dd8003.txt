@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter w = new PrintWriter(System.out);
+    
+    long n = in.nextInt();
+    long mul = 1;
+    if (n == 0)
+        w.println(1);
+    else {
+        for (int i = 1; i <= n; i++) {
+            mul = (mul % mod) * (i % mod);
+            mul = mul % mod;
+        }
+        w.println(mul);
+    }
+    w.close();
+}

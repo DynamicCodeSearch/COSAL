@@ -1,0 +1,33 @@
+static long doit() {
+    long base = 1;
+    while (query(base)) {
+        base *= 10;
+        if (base >= 1e11) {
+            return power10();
+        }
+    }
+    long K = base / 10;
+    long geta = 999999999_999999999L;
+    int dec = 17;
+    long who = 0;
+    for (long k = K; k >= 1; k /= 10) {
+        long B = (long) Math.pow(10, dec);
+        long min = (k == K) ? 0 : -1;
+        long max = 9;
+        while (max - min > 1) {
+            long med = (max + min) / 2;
+            long Q = geta - 9 * B + med * B;
+            if (query(Q)) {
+                max = med;
+            } else {
+                min = med;
+            }
+        }
+        geta -= 9 * B;
+        geta += max * B;
+        who *= 10;
+        who += max;
+        dec--;
+    }
+    return who;
+}

@@ -1,0 +1,27 @@
+def merge(A, left, mid, right, num):
+    n1 = mid - left
+    n2 = right - mid
+    L = []
+    L_num = []
+    R = []
+    R_num = []
+    for i in range(n1):
+        L.append(A[left + i])
+        L_num.append(num[left + i])
+    for i in range(n2):
+        R.append(A[mid + i])
+        R_num.append(num[mid + i])
+    L.append(0)
+    R.append(0)
+    i = 0
+    j = 0
+    for k in range(left, right):
+        if(L[i] <= R[j]):
+            A[k] = R[j]
+
+            num[k] = R_num[j]
+            j += 1
+        else:
+            A[k] = L[i]
+            num[k] = L_num[i]
+            i += 1

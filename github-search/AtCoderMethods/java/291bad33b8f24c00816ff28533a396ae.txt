@@ -1,0 +1,21 @@
+void solve() throws IOException {
+    int n = ni();
+    int x = ni();
+    int[] a = nia(n);
+    long ans = 0;
+    if (a[0] + a[1] > x || a[0] + a[1] - x > a[1]) {
+        int s = a[0] + a[1] - x;
+        int tmp = a[0] + -x;
+        a[1] = 0;
+        a[0] -= tmp;
+        ans += s;
+    }
+    for (int i = 1; i < n; i++) {
+        if (a[i - 1] + a[i] > x) {
+            int s = a[i - 1] + a[i] - x;
+            a[i] -= s;
+            ans += s;
+        }
+    }
+    out.println(ans);
+}

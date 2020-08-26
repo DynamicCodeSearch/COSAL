@@ -1,0 +1,18 @@
+public static void main(String[] args) throws IOException {
+    FastScanner in = new FastScanner(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    long[] c = new long[n];
+    c[0] = in.nextLong();
+    for (int i = 1; i < c.length; i++) {
+        c[i] = in.nextInt() + c[i - 1];
+    }
+    long best = Long.MAX_VALUE;
+    for (int i = 0; i < n - 1; i++) {
+        long x = c[i];
+        long y = c[n - 1] - c[i];
+        long dif = Math.abs(x - y);
+        best = Math.min(best, dif);
+    }
+    System.out.println(best);
+}

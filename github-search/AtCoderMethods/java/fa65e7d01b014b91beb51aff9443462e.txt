@@ -1,0 +1,29 @@
+void compute() {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    long[] a = new long[N];
+    long[] b = new long[N];
+    long[] c = new long[M];
+    long[] d = new long[M];
+    for (int i = 0; i < N; i++) {
+        a[i] = sc.nextInt();
+        b[i] = sc.nextInt();
+    }
+    for (int i = 0; i < M; i++) {
+        c[i] = sc.nextInt();
+        d[i] = sc.nextInt();
+    }
+    for (int i = 0; i < N; i++) {
+        int check = -1;
+        long minDistance = 4 * (long) 1000000000 + 1;
+        for (int j = 0; j < M; j++) {
+            long currentDistance = Math.abs(a[i] - c[j]) + Math.abs(b[i] - d[j]);
+            if (minDistance > currentDistance) {
+                minDistance = currentDistance;
+                check = j;
+            }
+        }
+        System.out.println(check + 1);
+    }
+}

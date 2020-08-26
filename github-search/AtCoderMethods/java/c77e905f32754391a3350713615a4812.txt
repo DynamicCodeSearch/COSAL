@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    try (Scanner scan = new Scanner(new InputStreamReader(System.in))) {
+        int N = scan.nextInt();
+        int Q = scan.nextInt();
+        double[] memo = new double[20001];
+        for (int i = 0; i < N; i++) {
+            int x = scan.nextInt();
+            int r = scan.nextInt();
+            double h = scan.nextInt();
+            for (int j = 1; j <= h; j++) {
+                memo[j + x] += (j - (j * j) / h + (j * j * j) / (3 * h * h)) * Math.PI * r * r;
+                memo[j + x] -= ((j - 1) - ((j - 1) * (j - 1)) / h + ((j - 1) * (j - 1) * (j - 1)) / (3 * h * h)) * Math.PI * r * r;
+            }
+        }
+        for (int i = 0; i < Q; i++) {
+            int a = scan.nextInt();
+            int b = scan.nextInt();
+            double ans = 0;
+            for (int j = a + 1; j <= b; j++) {
+                ans += memo[j];
+            }
+            System.out.println(ans);
+        }
+    }
+}

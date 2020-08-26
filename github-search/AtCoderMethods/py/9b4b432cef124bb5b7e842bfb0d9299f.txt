@@ -1,0 +1,12 @@
+def main():
+    N,Q = map(int,input().split())
+    sum = [0 for i in range(N+1)]
+    for i in range(Q):
+        l,r = map(int,input().split())
+        sum[l-1] += 1
+        sum[r] -= 1
+    for i in range(N-1):
+        sum[i+1] += sum[i]
+    for i in range(N):
+        print("01"[sum[i]%2],end='')
+    print()

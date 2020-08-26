@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    String[] onkai = { "Do", "Re", "Mi", "Fa", "So", "La", "Si" };
+    Scanner stdIn = new Scanner(System.in);
+    char[] S = stdIn.nextLine().toCharArray();
+    String oto;
+    int count = 0;
+    for (int i = 1; i < S.length; i++) {
+        if (S[i] == 'W')
+            count++;
+        if (S[i] == S[i - 1]) {
+            int j;
+            for (j = 1; j <= 6; j++) {
+                if (S[i + j] == S[i + j - 1])
+                    break;
+            }
+            if (j == 5) {
+                System.out.println(onkai[7 - count]);
+            } else {
+                System.out.println(onkai[3 - count]);
+            }
+            break;
+        }
+    }
+}

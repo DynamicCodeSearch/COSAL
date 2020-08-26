@@ -1,0 +1,20 @@
+void run() {
+    Scanner scan = new Scanner(System.in);
+    long k = scan.nextLong();
+    long[] a = new long[MAX_LEN];
+    for (int i = 0; i < MAX_LEN; i++) a[i] = i;
+    long n = k / MAX_LEN;
+    for (int i = 0; i < MAX_LEN; i++) a[i] += n;
+    n = k % MAX_LEN;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < MAX_LEN; j++) {
+            if (j == i)
+                a[j] += MAX_LEN;
+            else
+                a[j] -= 1;
+        }
+    }
+    System.out.println(MAX_LEN);
+    for (int i = 0; i < MAX_LEN - 1; i++) System.out.print(a[i] + " ");
+    System.out.println(a[MAX_LEN - 1]);
+}

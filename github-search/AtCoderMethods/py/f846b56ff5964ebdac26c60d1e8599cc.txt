@@ -1,0 +1,8 @@
+def sum_len(A):
+    all_sum = 0
+    previous_sum = 0
+    for i in range(1, len(A)):
+        now_sum = previous_sum + i * (A[i] - A[i-1])
+        all_sum += now_sum
+        previous_sum = now_sum
+    return all_sum

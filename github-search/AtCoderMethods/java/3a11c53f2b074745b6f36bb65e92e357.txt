@@ -1,0 +1,13 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    Integer o = null;
+    for (int i = 1; i <= n; i++) {
+        int temp = Math.abs(n / i - i) + n % i;
+        if (o == null || o.intValue() > temp) {
+            o = temp;
+        }
+    }
+    System.out.println(o);
+    sc.close();
+}

@@ -1,0 +1,48 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    int k = in.nextInt();
+    int[] a = in.nextInts(n);
+    Arrays.sort(a);
+    BitVector[] leftDP = new BitVector[n + 1];
+    leftDP[0] = new BitVector(5010);
+    leftDP[0].set(0);
+    for (int i = 0; i < n; i++) {
+        leftDP[i + 1] = leftDP[i].shiftLeft(Math.min(5005, a[i])).or(leftDP[i]);
+    }
+    BitVector[] rightDP = new BitVector[n + 1];
+    rightDP[n] = new BitVector(5010);
+    rightDP[n].set(0);
+    for (int i = n - 1; i >= 0; i--) {
+        rightDP[i] = rightDP[i + 1].shiftLeft(Math.min(5005, a[i])).or(rightDP[i + 1]);
+    }
+    int[] imos = new int[5010];
+    int ans = 0;
+    for (int i = 0; i < n; i++) {
+        if (a[i] >= k) {
+            continue;
+        }
+        for (int j = 0; j <= 5005; j++) {
+            imos[j + 1] = imos[j] + (rightDP[i + 1].get(j) ? 1 : 0);
+        }
+        boolean found = false;
+        int wantFrom = k - a[i];
+        int wantTo = k - 1;
+        for (int sum = 0; sum <= k - 1; sum++) {
+            if (leftDP[i].get(sum)) {
+                int wf = Math.max(0, wantFrom - sum);
+                int wt = Math.max(0, wantTo - sum) + 1;
+                if (imos[wt] - imos[wf] >= 1) {
+                    found = true;
+                    break;
+                }
+            }
+        }
+        if (!found) {
+            ans++;
+        }
+    }
+    out.println(ans);
+    out.flush();
+}

@@ -1,0 +1,25 @@
+void run() {
+    MyScanner sc = new MyScanner();
+    int n = sc.nextInt();
+    int k = sc.nextInt();
+    long[] a = new long[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = sc.nextInt();
+    }
+    long[] b = new long[n];
+    long tmp = 1;
+    for (int i = 0; i < n; i++) {
+        b[i] = tmp;
+        tmp = Math.min(tmp + 1, Math.min(k, n - k + 1));
+    }
+    tmp = 1;
+    for (int i = n - 1; 0 <= i; i--) {
+        b[i] = Math.min(b[i], tmp);
+        tmp = Math.min(tmp + 1, Math.min(k, n - k + 1));
+    }
+    long sum = 0;
+    for (int i = 0; i < n; i++) {
+        sum += a[i] * b[i];
+    }
+    System.out.println(sum);
+}

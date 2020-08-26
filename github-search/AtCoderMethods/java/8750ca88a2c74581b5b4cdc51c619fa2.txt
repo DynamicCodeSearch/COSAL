@@ -1,0 +1,40 @@
+public void solve() {
+    N = nextInt();
+    a = new int[3 * N];
+    for (int i = 0; i < 3 * N; i++) {
+        a[i] = nextInt();
+    }
+    long firstSum = 0;
+    long secondSum = 0;
+    PriorityQueue<Integer> minPq = new PriorityQueue<Integer>();
+    PriorityQueue<Integer> maxPq = new PriorityQueue<Integer>((a, b) -> b - a);
+    for (int i = 0; i < N; i++) {
+        minPq.add(a[i]);
+        firstSum += a[i];
+    }
+    for (int i = 0; i < N; i++) {
+        maxPq.add(a[2 * N + i]);
+        secondSum += a[2 * N + i];
+    }
+    long ans = Long.MIN_VALUE;
+    long[] firstSums = new long[N + 1];
+    long[] secondSums = new long[N + 1];
+    firstSums[0] = firstSum;
+    secondSums[N] = secondSum;
+    for (int i = 0; i < N; i++) {
+        minPq.add(a[N + i]);
+        firstSum -= minPq.poll();
+        firstSum += a[N + i];
+        firstSums[i + 1] = firstSum;
+    }
+    for (int i = 0; i < N; i++) {
+        maxPq.add(a[3 * N - N - 1 - i]);
+        secondSum -= maxPq.poll();
+        secondSum += a[3 * N - N - 1 - i];
+        secondSums[N - i - 1] = secondSum;
+    }
+    for (int i = 0; i <= N; i++) {
+        ans = Math.max(ans, firstSums[i] - secondSums[i]);
+    }
+    out.println(ans);
+}

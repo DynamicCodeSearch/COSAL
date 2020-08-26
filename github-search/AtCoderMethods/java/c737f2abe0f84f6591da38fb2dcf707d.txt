@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int T = sc.nextInt();
+    Deque<Integer> A = new ArrayDeque<Integer>();
+    Deque<Integer> B = new ArrayDeque<Integer>();
+    int N = sc.nextInt();
+    for (int i = 0; i < N; i++) {
+        A.add(sc.nextInt());
+    }
+    int M = sc.nextInt();
+    for (int i = 0; i < M; i++) {
+        B.add(sc.nextInt());
+    }
+    while (!A.isEmpty() && !B.isEmpty()) {
+        int now = A.poll();
+        int time = B.peek();
+        if (now <= time && time <= now + T) {
+            B.poll();
+        }
+    }
+    if (B.isEmpty()) {
+        System.out.println("yes");
+    } else {
+        System.out.println("no");
+    }
+}

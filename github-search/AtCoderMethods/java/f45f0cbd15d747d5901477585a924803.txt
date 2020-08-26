@@ -1,0 +1,15 @@
+void run() {
+    for (int i = 0; i < N; i++) {
+        long t = rates[i].T;
+        long a = rates[i].A;
+        long n = 1;
+        n = Math.max(n, numOfT / t);
+        n = Math.max(n, numOfA / a);
+        while (t * n < numOfT || a * n < numOfA) {
+            n++;
+        }
+        numOfT = n * t;
+        numOfA = n * a;
+    }
+    System.out.println(numOfT + numOfA);
+}

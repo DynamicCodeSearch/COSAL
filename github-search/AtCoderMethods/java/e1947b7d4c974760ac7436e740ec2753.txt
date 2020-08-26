@@ -1,0 +1,37 @@
+void run() {
+    int n = ni();
+    ArrayList<Pair<Integer, Integer>> list = new ArrayList<>();
+    for (int i = 0; i < n; ++i) {
+        int x = ni();
+        int y = ni();
+        Pair<Integer, Integer> p = new Pair<>(x, y);
+        list.add(p);
+    }
+    for (int i = 0; i < n; ++i) {
+        Pair<Integer, Integer> p = list.get(i);
+        if (p.f > p.s) {
+            Integer tmp = p.f;
+            p.f = p.s;
+            p.s = tmp;
+        }
+    }
+    Collections.sort(list);
+    debug(list);
+    
+    
+    int max = list.stream().mapToInt(p -> Math.max(p.f, p.s)).max().orElse(-1);
+    int min = list.stream().mapToInt(p -> Math.min(p.f, p.s)).min().orElse(-1);
+    long ans = Long.MAX_VALUE;
+    
+    int max2 = list.stream().max(Comparator.comparingInt(a -> a.f)).orElse(new Pair<>(-1, -1)).f;
+    int min2 = list.stream().min(Comparator.comparingInt(a -> a.s)).orElse(new Pair<>(-1, -1)).s;
+    
+    ans = Math.min(ans, (long) (max2 - min) * (max - min2));
+    
+    for (int i = 0; i < n; ++i) {
+        Pair<Integer, Integer> p = list.get(i);
+        ans = Math.min(ans, (long) (max - min) * (max2 - Math.min(p.f, min2)));
+        max2 = Math.max(max2, p.s);
+    }
+    System.out.println(ans);
+}

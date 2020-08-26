@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int num = sc.nextInt();
+    int[] prices = new int[num];
+    for (int i = 0; i < num; ++i) {
+        prices[i] = sc.nextInt();
+    }
+    int max = 0;
+    for (int i = 0; i < num; ++i) {
+        if (max < prices[i]) {
+            max = prices[i];
+        }
+    }
+    int secondary = 0;
+    for (int i = 0; i < num; ++i) {
+        if (prices[i] == max) {
+            continue;
+        }
+        if (secondary < prices[i]) {
+            secondary = prices[i];
+        }
+    }
+    System.out.println(secondary);
+}

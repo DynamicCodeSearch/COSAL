@@ -1,0 +1,8 @@
+private static BigInteger mult(BigInteger x) {
+    BigInteger result = new BigInteger("1");
+    while (x.intValue() > 1) {
+        result = result.multiply(x).mod(new BigInteger("1000000007"));
+        x = x.add(new BigInteger("1").negate());
+    }
+    return result;
+}

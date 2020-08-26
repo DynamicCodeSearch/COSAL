@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int n = scan.nextInt();
+    int[][] arr = new int[n][201];
+    int[] input = new int[n];
+    for (int i = 0; i < n; i++) input[i] = scan.nextInt() + 100;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < 201; j++) {
+            int dummy = input[i] - j;
+            arr[i][j] = dummy * dummy;
+        }
+    }
+    int min = 1 << 30;
+    for (int j = 0; j < 201; j++) {
+        int sum = 0;
+        for (int i = 0; i < n; i++) {
+            sum += arr[i][j];
+        }
+        min = Math.min(sum, min);
+    }
+    System.out.println(min);
+}

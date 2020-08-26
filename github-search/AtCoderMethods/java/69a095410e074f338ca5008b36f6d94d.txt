@@ -1,0 +1,22 @@
+static void solve() {
+    String s = in.next();
+    String t = "WBWBWWBWBWBW";
+    String[] ans = { "Do", "Re", "Mi", "Fa", "So", "La", "Si" };
+    int cnt = 0;
+    for (int i = 0; i < t.length(); i++) {
+        if (t.charAt(i) == 'B')
+            continue;
+        boolean f = true;
+        for (int j = 0; j < 20; j++) {
+            if (s.charAt(j) != t.charAt((i + j) % t.length())) {
+                f = false;
+                break;
+            }
+        }
+        if (f) {
+            out.println(ans[cnt]);
+            return;
+        }
+        cnt++;
+    }
+}

@@ -1,0 +1,21 @@
+def search(ypos, xpos, depth):
+    if (
+            ypos < 1 or y < ypos
+            or
+            xpos < 1 or x < xpos
+            or
+            m[ypos][xpos] == "#"
+        ):
+        return
+
+    if ypos == gy and xpos == gx:
+        q.queue = False
+        print(depth)
+        return 
+
+    depth += 1
+    m[ypos][xpos] = "#"
+    q.put([ypos + 1, xpos, depth])
+    q.put([ypos - 1, xpos, depth])
+    q.put([ypos, xpos + 1, depth])
+    q.put([ypos, xpos - 1, depth])

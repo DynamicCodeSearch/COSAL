@@ -1,0 +1,30 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] x = br.readLine().split("");
+    int i = x.length - 1;
+    boolean flag = true;
+    while (flag) {
+        if (x[i].equals("h")) {
+            if (x[i - 1].equals("c")) {
+                i -= 2;
+            } else {
+                flag = false;
+            }
+        } else if (x[i].equals("o")) {
+            i -= 1;
+        } else if (x[i].equals("k")) {
+            i -= 1;
+        } else if (x[i].equals("u")) {
+            i -= 1;
+        } else {
+            flag = false;
+        }
+        if (i <= 0) {
+            System.out.println("YES");
+            flag = false;
+        }
+    }
+    if (i > 0) {
+        System.out.println("NO");
+    }
+}

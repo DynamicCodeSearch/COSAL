@@ -1,0 +1,18 @@
+private void solve(Scanner sc) {
+    int L = sc.nextInt();
+    int H = sc.nextInt();
+    int N = sc.nextInt();
+    int[] A = new int[N];
+    for (int i = 0; i < N; ++i) {
+        A[i] = sc.nextInt();
+    }
+    for (int i = 0; i < N; ++i) {
+        if (L <= A[i] && A[i] <= H) {
+            _out.println(0);
+        } else if (H < A[i]) {
+            _out.println(-1);
+        } else {
+            _out.println(L - A[i]);
+        }
+    }
+}

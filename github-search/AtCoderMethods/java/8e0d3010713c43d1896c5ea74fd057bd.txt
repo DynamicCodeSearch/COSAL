@@ -1,0 +1,9 @@
+private static int min(int[] range) {
+    long hash = range[0] * 10000000L + range[1];
+    if (memo.containsKey(hash))
+        return memo.get(hash);
+    int flg = range[0] % 2;
+    st[flg].min(range[0], range[1]);
+    memo.put(hash, st[flg].minpos);
+    return st[flg].minpos;
+}

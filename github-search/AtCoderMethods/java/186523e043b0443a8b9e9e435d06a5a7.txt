@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String A = sc.next();
+    String B = sc.next();
+    String ans = "GREATER";
+    if (A.length() < B.length()) {
+        ans = "LESS";
+    } else if (A.length() == B.length()) {
+        boolean flg = true;
+        for (int i = 0; i < A.length(); i++) {
+            int a = Integer.parseInt(String.valueOf(A.charAt(i)));
+            int b = Integer.parseInt(String.valueOf(B.charAt(i)));
+            if (a > b) {
+                flg = false;
+                break;
+            } else if (a < b) {
+                flg = false;
+                ans = "LESS";
+                break;
+            }
+        }
+        if (flg)
+            ans = "EQUAL";
+    }
+    System.out.println(ans);
+}

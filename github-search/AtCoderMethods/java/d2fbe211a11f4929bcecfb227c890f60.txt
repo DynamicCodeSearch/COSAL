@@ -1,0 +1,56 @@
+public void solve(int testNumber, FastScanner in, PrintWriter out) {
+    int n = in.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = in.nextInt();
+    }
+    List<Integer> b = new ArrayList<>();
+    {
+        int l = -1;
+        int r = -1;
+        for (int x : a) {
+            if (x == r + 1) {
+                ++r;
+            } else {
+                if (l >= 0) {
+                    b.add(l);
+                    b.add(r + 1);
+                }
+                l = x;
+                r = x;
+            }
+        }
+        if (l >= 0) {
+            b.add(l);
+            b.add(r + 1);
+        }
+    }
+    List<Integer> even = new ArrayList<>();
+    List<Integer> odd = new ArrayList<>();
+    for (int x : b) {
+        if (x % 2 == 0) {
+            even.add(x);
+        } else {
+            odd.add(x);
+        }
+    }
+    boolean[][] g = new boolean[even.size()][odd.size()];
+    for (int i = 0; i < even.size(); i++) {
+        for (int j = 0; j < odd.size(); j++) {
+            if (f(Math.abs(even.get(i) - odd.get(j))) == 1) {
+                g[i][j] = true;
+            }
+        }
+    }
+    int k = matching(g);
+    if (b.size() % 2 != 0) {
+        throw new AssertionError();
+    }
+    int ans = k;
+    ans += ((even.size() - k) / 2) * 2;
+    ans += ((odd.size() - k) / 2) * 2;
+    if ((even.size() - k) % 2 != 0) {
+        ans += 3;
+    }
+    out.println(ans);
+}

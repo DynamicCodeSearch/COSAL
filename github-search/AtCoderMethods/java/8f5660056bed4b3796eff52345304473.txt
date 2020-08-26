@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    try {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String[] str = br.readLine().split(" ");
+        int N = Integer.parseInt(str[0]);
+        int K = Integer.parseInt(str[1]);
+        String[] st = br.readLine().split(" ");
+        char[] D = new char[K];
+        for (int i = 0; i < K; i++) {
+            D[i] = st[i].charAt(0);
+        }
+        int count = N;
+        boolean flag = true;
+        String strc;
+        while (true) {
+            strc = Integer.toString(count);
+            flag = true;
+            for (int i = 0; i < strc.length(); i++) {
+                for (int j = 0; j < K; j++) {
+                    if (strc.charAt(i) == D[j])
+                        flag = false;
+                }
+            }
+            if (flag)
+                break;
+            count++;
+        }
+        System.out.println(count);
+    } catch (Exception e) {
+    
+    }
+}

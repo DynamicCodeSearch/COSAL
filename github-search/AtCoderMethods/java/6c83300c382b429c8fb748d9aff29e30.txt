@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int txa = sc.nextInt();
+    int tya = sc.nextInt();
+    int txb = sc.nextInt();
+    int tyb = sc.nextInt();
+    int t = sc.nextInt();
+    int v = sc.nextInt();
+    int michinori = t * v;
+    int n = sc.nextInt();
+    int[][] xy = new int[2][n];
+    for (int i = 0; i < n; i++) {
+        xy[0][i] = sc.nextInt();
+        xy[1][i] = sc.nextInt();
+    }
+    for (int i = 0; i < n; i++) {
+        
+        double yorimichi1 = (xy[0][i] - txa) * (xy[0][i] - txa) + (xy[1][i] - tya) * (xy[1][i] - tya);
+        double yorimichi2 = (xy[0][i] - txb) * (xy[0][i] - txb) + (xy[1][i] - tyb) * (xy[1][i] - tyb);
+        double soukyori = Math.sqrt(yorimichi1) + Math.sqrt(yorimichi2);
+        
+        if (michinori >= soukyori) {
+            System.out.println("YES");
+            return;
+        }
+    }
+    System.out.println("NO");
+}

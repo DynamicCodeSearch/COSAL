@@ -1,0 +1,6 @@
+def warshal_floyd(adj_mat, n, inf):
+  d = adj_mat.copy()
+  d[d == 0] = inf
+  for k in range(n):
+    d = np.minimum(d, d[:,k,None]+d[None,k,:])
+  return d

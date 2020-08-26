@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String A = sc.nextLine();
+    String B = sc.nextLine();
+    sc.close();
+    if (A.length() > B.length()) {
+        System.out.println("GREATER");
+    } else if (A.length() < B.length()) {
+        System.out.println("LESS");
+    } else if (A.equalsIgnoreCase(B)) {
+        System.out.println("EQUAL");
+    } else {
+        BigInteger BgA = new BigInteger(A);
+        BigInteger BgB = new BigInteger(B);
+        int cmp = BgA.compareTo(BgB);
+        if (cmp > 0) {
+            System.out.println("GREATER");
+        } else {
+            System.out.println("LESS");
+        }
+    }
+}

@@ -1,0 +1,69 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    int m = in.nextInt();
+    int[][] edges = new int[m][3];
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < 3; j++) {
+            edges[i][j] = in.nextInt() - 1;
+        }
+    }
+    Arrays.sort(edges, (a, b) -> a[2] - b[2]);
+    int V = 0;
+    int[][] newEdges = new int[m][3];
+    for (int i = 0; i < m; ) {
+        int j = i;
+        while (j < m && edges[i][2] == edges[j][2]) {
+            j++;
+        }
+        Map<Integer, Integer> localMap = new HashMap<>();
+        for (int k = i; k < j; k++) {
+            for (int l = 0; l <= 1; l++) {
+                if (!localMap.containsKey(edges[k][l])) {
+                    localMap.put(edges[k][l], V++);
+                }
+                newEdges[k][l] = localMap.get(edges[k][l]);
+            }
+        }
+        i = j;
+    }
+    List<int[]>[] graph = new List[V + n];
+    for (int i = 0; i < graph.length; i++) {
+        graph[i] = new ArrayList<>();
+    }
+    Set<Integer> touched = new HashSet<>();
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j <= 1; j++) {
+            if (!touched.contains(newEdges[i][j])) {
+                touched.add(newEdges[i][j]);
+                int centerV = V + edges[i][j];
+                graph[centerV].add(new int[] { newEdges[i][j], 1 });
+                graph[newEdges[i][j]].add(new int[] { centerV, 0 });
+            }
+        }
+        graph[newEdges[i][0]].add(new int[] { newEdges[i][1], 0 });
+        graph[newEdges[i][1]].add(new int[] { newEdges[i][0], 0 });
+    }
+    int[] dp = new int[V + n];
+    Arrays.fill(dp, INF);
+    dp[V] = 0;
+    Deque<Integer> deq = new ArrayDeque<>((V + n) * 2);
+    deq.push(V);
+    while (deq.size() >= 1) {
+        int now = deq.pollFirst();
+        for (int[] e : graph[now]) {
+            int to = dp[now] + e[1];
+            if (dp[e[0]] > to) {
+                dp[e[0]] = to;
+                if (e[1] == 0) {
+                    deq.addFirst(e[0]);
+                } else {
+                    deq.addLast(e[0]);
+                }
+            }
+        }
+    }
+    out.println(dp[V + n - 1] == INF ? -1 : dp[V + n - 1]);
+    out.flush();
+}

@@ -1,0 +1,15 @@
+private int min(int l, int r, int cl, int cr, int cur) {
+    if (l <= cl && cr <= r) {
+        return st[cur];
+    } else {
+        int mid = cl + cr >>> 1;
+        int ret = Integer.MAX_VALUE;
+        if (cl < r && l < mid) {
+            ret = Math.min(ret, min(l, r, cl, mid, 2 * cur));
+        }
+        if (mid < r && l < cr) {
+            ret = Math.min(ret, min(l, r, mid, cr, 2 * cur + 1));
+        }
+        return ret;
+    }
+}

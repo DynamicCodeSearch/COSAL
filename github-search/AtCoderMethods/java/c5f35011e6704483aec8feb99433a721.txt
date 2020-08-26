@@ -1,0 +1,5 @@
+static long lcm(long x, long y) {
+    x = (x ^ x >> 63) - (x >> 63);
+    y = (y ^ y >> 63) - (y >> 63);
+    return x / gcd(x, y) * y;
+}

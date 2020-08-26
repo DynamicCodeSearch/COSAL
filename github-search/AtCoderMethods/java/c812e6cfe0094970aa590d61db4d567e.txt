@@ -1,0 +1,15 @@
+void run() {
+    long count = 0;
+    long prev = nums[0];
+    for (int i = 1; i < N; i++) {
+        long next = nums[i];
+        if (prev + next > x) {
+            long sum = prev + next;
+            long k = sum - x;
+            count += k;
+            nums[i] = Math.max(0, nums[i] - k);
+        }
+        prev = nums[i];
+    }
+    System.out.println(count);
+}

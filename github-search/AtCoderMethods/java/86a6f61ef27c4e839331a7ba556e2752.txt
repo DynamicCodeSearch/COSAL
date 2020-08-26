@@ -1,0 +1,22 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    String str = input.readLine();
+    int n = Integer.parseInt(str);
+    int max = (int) Math.sqrt(n);
+    int[] answer = new int[max + 1];
+    for (int i = 1; i <= max; i++) {
+        int w = n / i;
+        if (i - w > 0) {
+            answer[i] = n - (i * w) + (i - w);
+        } else {
+            answer[i] = n - (i * w) - (i - w);
+        }
+    }
+    Arrays.sort(answer);
+    for (int i = 1; i < max + 1; i++) {
+        if (answer[i] >= 0) {
+            System.out.println(answer[i]);
+            System.exit(0);
+        }
+    }
+}

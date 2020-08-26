@@ -1,0 +1,17 @@
+static boolean match(int i) {
+    int flag = 0;
+    int ptr2 = ptr;
+    for (int k = len[i] - 1; 0 <= k; k--) {
+        if (s[ptr2] == c[i][k]) {
+            ptr2--;
+            continue;
+        } else {
+            flag = -1;
+            break;
+        }
+    }
+    if (flag == -1)
+        return false;
+    else
+        return true;
+}

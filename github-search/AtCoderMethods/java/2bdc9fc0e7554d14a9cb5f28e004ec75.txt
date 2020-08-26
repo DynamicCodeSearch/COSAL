@@ -1,0 +1,8 @@
+private void dfs(ArrayList<Integer>[] l, int[] depth1, int source, int depth, int last) {
+    depth1[source] = depth;
+    for (int e : l[source]) {
+        if (e != last) {
+            dfs(l, depth1, e, depth + 1, source);
+        }
+    }
+}

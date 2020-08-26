@@ -1,0 +1,17 @@
+public void solve(int testNumber, FastReader in, PrintWriter out) {
+    int n = in.nextInt(), t = in.nextInt();
+    long[] push = new long[n];
+    for (int i = 0; i < n; i++) {
+        push[i] = in.nextLong();
+    }
+    long last = 0, ans = 0;
+    for (int i = 0; i < n; i++) {
+        if (push[i] < last) {
+            ans = ans + t - (last - push[i]);
+        } else {
+            ans += t;
+        }
+        last = push[i] + t;
+    }
+    out.println(ans);
+}

@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int num = sc.nextInt();
+    String[] vote = new String[num];
+    for (int i = 0; i < num; ++i) {
+        vote[i] = sc.next();
+    }
+    int[] vote_num = new int[num];
+    Arrays.fill(vote_num, 0);
+    for (int i = 0; i < num; ++i) {
+        for (int k = 0; k < num; ++k) {
+            if (vote[i].equals(vote[k])) {
+                ++vote_num[i];
+            }
+        }
+    }
+    int max = 0, max_idx = 0;
+    for (int i = 0; i < num; ++i) {
+        if (max < vote_num[i]) {
+            max = vote_num[i];
+            max_idx = i;
+        }
+    }
+    System.out.println(vote[max_idx]);
+}

@@ -1,0 +1,33 @@
+def solve():
+    from collections import deque
+    from copy import deepcopy
+
+    N, M = map(int, input().split())
+    edges = [[None]*N for _ in [0]*N]
+    routes = []
+    for _ in [0]*M:
+        a, b = map(int, input().split())
+        routes.append((a-1,b-1))
+        edges[a-1][b-1] = 1
+        edges[b-1][a-1] = 1
+
+    bridges = 0
+    for a, b in routes:
+        dq = deque()
+        ap, pop = dq.append, dq.pop
+        _edges = deepcopy(edges)
+        _edges[a][b] = _edges[b][a] = None
+        ap(0)
+        aa = [1]*N
+        aa[0] = 0
+        while dq:
+            v = pop()
+            for dest, _ in enumerate(_edges[v]):
+                if _ is not None and aa[dest] == 1:
+                    aa[dest] = 0
+                    ap(dest)
+        if sum(aa) > 0:
+            bridges += 1
+
+
+    print(bridges)

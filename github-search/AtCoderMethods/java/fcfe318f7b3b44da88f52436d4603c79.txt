@@ -1,0 +1,31 @@
+public static void main(String[] args) {
+    StdIn in = new StdIn();
+    int n = in.nextInt();
+    p = in.readIntArray(n);
+    int[] p0 = new int[n / 2], p1 = new int[n / 2];
+    for (int i = 0; i < n; ++i) if (i % 2 == 0)
+        p0[i / 2] = p[i];
+    else
+        p1[i / 2] = p[i];
+    rmq[0] = new RmqSparseTable(p0);
+    rmq[1] = new RmqSparseTable(p1);
+    
+    
+    PriorityQueue<Range> ranges = new PriorityQueue<Range>();
+    StringBuilder output = new StringBuilder();
+    ranges.add(new Range(0, n - 1, 2 * rmq[0].minPos(0, (n - 1) / 2)));
+    while (!ranges.isEmpty()) {
+        Range range = ranges.poll();
+        int min2 = 2 * rmq[range.e % 2].minPos((range.min + 1) / 2, range.e / 2) + range.e % 2;
+        output.append(p[range.min]).append(' ').append(p[min2]).append(' ');
+        if (range.min + 1 < min2) {
+            ranges.add(new Range(range.min + 1, min2 - 1, 2 * rmq[range.e % 2].minPos((range.min + 1) / 2, min2 / 2 - 1) + range.e % 2));
+        
+        }
+        if (range.min != range.s)
+            ranges.add(new Range(range.s, range.min - 1, 2 * rmq[range.s % 2].minPos(range.s / 2, range.min / 2 - 1) + range.s % 2));
+        if (min2 != range.e)
+            ranges.add(new Range(min2 + 1, range.e, 2 * rmq[range.s % 2].minPos((min2 + 1) / 2, (range.e - 1) / 2) + range.s % 2));
+    }
+    System.out.println(output);
+}

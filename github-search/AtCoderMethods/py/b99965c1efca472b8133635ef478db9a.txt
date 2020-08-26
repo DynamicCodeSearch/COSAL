@@ -1,0 +1,15 @@
+def main():
+    board = [0]*9
+    b = list(map(int,input().split()))
+    b.extend(list(map(int,input().split())))
+    c = list(map(int,input().split()))
+    c.extend(list(map(int,input().split())))
+    c.extend(list(map(int,input().split())))
+    score = 0
+    for i in range(6):
+        score += b[i] + c[i]
+    sa = dai(board,1,b,c,score)
+    dais = (score + sa)//2
+    kos = (score - sa)//2
+    print(dais)
+    print(kos)

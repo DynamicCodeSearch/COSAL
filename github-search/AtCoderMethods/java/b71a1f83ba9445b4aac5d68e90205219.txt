@@ -1,0 +1,17 @@
+private long calc(int cur, int prev, int color) {
+    if (dp[cur][color] > 0) {
+        return dp[cur][color];
+    }
+    long res = 1;
+    for (int next : bridgeList.get(cur)) {
+        if (prev != next) {
+            if (color == 0) {
+                res = (res * ((calc(next, cur, 0) + calc(next, cur, 1)) % MOD)) % MOD;
+            } else {
+                res = (res * (calc(next, cur, 0)) % MOD) % MOD;
+            }
+        }
+    }
+    dp[cur][color] = res;
+    return res;
+}

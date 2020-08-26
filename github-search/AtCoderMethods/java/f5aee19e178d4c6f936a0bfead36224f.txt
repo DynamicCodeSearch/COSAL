@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    int h = sc.nextInt();
+    int vv = 0;
+    if (h < 100)
+        vv = 0;
+    else if (h >= 100 && h <= 5000)
+        vv = h / 100;
+    else if (h >= 6000 && h <= 30000)
+        vv = (h / 1000) + 50;
+    else if (h >= 35000 && h <= 70000)
+        vv = ((h / 1000) - 30) / 5 + 80;
+    else
+        vv = 89;
+    System.out.println(String.format("%02d", vv));
+}

@@ -1,0 +1,16 @@
+private int dfs2(int pos) {
+    if (pos == end) {
+        return 0;
+    }
+    ArrayList<Integer> now = data.get(pos);
+    int res = 0;
+    for (int i = 0; i < now.size(); i++) {
+        int next = now.get(i);
+        if (used[next])
+            continue;
+        used[next] = true;
+        res += dfs2(next);
+        used[next] = false;
+    }
+    return res + 1;
+}

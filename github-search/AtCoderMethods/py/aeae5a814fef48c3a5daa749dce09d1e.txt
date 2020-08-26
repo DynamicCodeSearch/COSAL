@@ -1,0 +1,15 @@
+def rec(i, rest, dic4calc):
+    if rest<w[i]:
+        cond.append(dic4calc)
+        return
+
+    if i+1<len(w):
+        new_dic4calc = copy.deepcopy(dic4calc)
+        rec(i+1, rest, new_dic4calc)
+    if not dic_num[w[i]]-dic4calc[w[i]]==0:
+        new_dic4calc = copy.deepcopy(dic4calc)
+        new_dic4calc[w[i]] += 1
+        rec(i, rest-w[i], new_dic4calc)
+    if i+1>=len(w):
+        cond.append(dic4calc)
+        return

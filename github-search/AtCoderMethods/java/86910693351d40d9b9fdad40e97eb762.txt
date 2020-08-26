@@ -1,0 +1,29 @@
+public static void main(String[] args) throws IOException {
+    Scanner scanner = new Scanner(System.in);
+    int w = scanner.nextInt();
+    int h = scanner.nextInt();
+    int n = scanner.nextInt();
+    int w_l = 0;
+    int w_r = w;
+    int h_l = 0;
+    int h_h = h;
+    for (int i = 0; i < n; i++) {
+        int x = scanner.nextInt();
+        int y = scanner.nextInt();
+        int a = scanner.nextInt();
+        if (a == 1) {
+            w_l = Math.max(x, w_l);
+        } else if (a == 2) {
+            w_r = Math.min(x, w_r);
+        } else if (a == 3) {
+            h_l = Math.max(y, h_l);
+        } else {
+            h_h = Math.min(y, h_h);
+        }
+    }
+    if (w_l >= w_r || h_l >= h_h) {
+        System.out.println(0);
+    } else {
+        System.out.println((w_r - w_l) * (h_h - h_l));
+    }
+}

@@ -1,0 +1,17 @@
+void solve() {
+    long target = 2000000000000L;
+    long A = sc.nextLong();
+    long K = sc.nextLong();
+    
+    
+    long days = 0;
+    if (K == 0) {
+        days = target - A;
+    } else {
+        while (A < target) {
+            A += 1 + K * A;
+            days++;
+        }
+    }
+    System.out.println(days);
+}

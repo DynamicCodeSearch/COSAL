@@ -1,0 +1,33 @@
+public static void main(String[] args) {
+    @SuppressWarnings("resource")
+    Scanner sc = new Scanner(System.in);
+    String ans = "IMPOSSIBLE";
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    int a;
+    int b;
+    int[][] list = new int[m][2];
+    HashSet<Integer> hash = new HashSet<Integer>();
+    for (int i = 0; m > i; i++) {
+        a = sc.nextInt();
+        b = sc.nextInt();
+        list[i][0] = a;
+        list[i][1] = b;
+        if (b == n) {
+            if (a == 1 && hash.contains(b)) {
+                ans = "POSSIBLE";
+                break;
+            }
+            hash.add(a);
+        }
+    }
+    if (ans != "POSSIBLE") {
+        for (int i = 0; m > i; i++) {
+            if (list[i][0] == 1 && hash.contains(list[i][1])) {
+                ans = "POSSIBLE";
+                break;
+            }
+        }
+    }
+    System.out.println(ans);
+}

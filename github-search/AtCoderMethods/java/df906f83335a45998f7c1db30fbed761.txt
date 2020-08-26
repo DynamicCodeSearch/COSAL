@@ -1,0 +1,28 @@
+
+static int comp(int x1, boolean s1, int x2, boolean s2, int[] z, int slen, char[] cst) {
+    if (x1 < x2) {
+        return -comp(x2, s2, x1, s1, z, slen, cst);
+    }
+    
+    if (!s2)
+        return 0;
+    if (x1 == x2) {
+        return 0;
+    }
+    if (!s1 || x1 >= x2 + slen) {
+        if (z[x2 + slen] >= slen || x2 + z[x2 + slen] >= x1)
+            return 0;
+        return cst[x2 + slen + z[x2 + slen]] - cst[z[x2 + slen]];
+    } else {
+        
+        if (x2 + z[x2 + slen] >= x1) {
+            if (z[x1 - x2] >= slen - (x1 - x2)) {
+                return 0;
+            } else {
+                return cst[z[x1 - x2]] - cst[x1 - x2 + z[x1 - x2]];
+            }
+        } else {
+            return cst[x2 + slen + z[x2 + slen]] - cst[z[x2 + slen]];
+        }
+    }
+}

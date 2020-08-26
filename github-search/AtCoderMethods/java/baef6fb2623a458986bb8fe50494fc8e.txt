@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    try {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String w = br.readLine();
+        int size = w.length();
+        char[] ch = new char[size];
+        for (int i = 0; i < size; i++) {
+            ch[i] = w.charAt(i);
+        }
+        int[] a = new int[26];
+        for (int i = 0; i < size; i++) {
+            a[ch[i] - 'a']++;
+        }
+        boolean flag = true;
+        for (int i = 0; i < 26; i++) {
+            if (a[i] % 2 != 0)
+                flag = false;
+        }
+        System.out.println((flag) ? "Yes" : "No");
+    } catch (Exception e) {
+    }
+}

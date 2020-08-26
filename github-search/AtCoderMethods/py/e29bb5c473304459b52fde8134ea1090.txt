@@ -1,0 +1,27 @@
+def main():
+    s1 = sys.stdin.readline()
+    lst = s1.split(' ')
+    h = int(lst[0])
+    w = int(lst[1])
+
+    rows = []
+    for i in range(h):
+        s = sys.stdin.readline()
+        row = []
+        for ch in s:
+            if ch == '#':
+                row.append(1)
+            else:
+                row.append(0)
+
+        rows.append(row)
+
+    ans = solve(h, w, rows)
+    for ans_nums in ans:
+        for num in ans_nums:
+            if num == -1:
+                sys.stdout.write('#')
+            else:
+                sys.stdout.write(str(num))
+        print()
+    return 0

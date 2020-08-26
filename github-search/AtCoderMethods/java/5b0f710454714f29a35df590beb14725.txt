@@ -1,0 +1,11 @@
+protected int searchAlen(final RollingHash rh, final int length, final int rp) {
+    int low = 0, high = length - rp + 1;
+    while (high - low > 1) {
+        final int med = (low + high) / 2;
+        if (rh.hash(med).equals(rh.hash(rp, rp + med)))
+            low = med;
+        else
+            high = med;
+    }
+    return Math.min(low, length - rp - 1);
+}

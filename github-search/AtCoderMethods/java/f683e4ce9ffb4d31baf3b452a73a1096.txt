@@ -1,0 +1,14 @@
+public static void main(String[] args) throws java.lang.Exception {
+    InputReader in = new InputReader(System.in);
+    PrintWriter w = new PrintWriter(System.out);
+    int n = in.nextInt();
+    int[] a = in.nextIntArray(n);
+    long min = Long.MAX_VALUE;
+    for (int i = -100; i <= 100; i++) {
+        long temp = 0;
+        for (int x : a) temp += Math.abs(x - i) * Math.abs(x - i);
+        min = Math.min(min, temp);
+    }
+    w.println(min);
+    w.close();
+}

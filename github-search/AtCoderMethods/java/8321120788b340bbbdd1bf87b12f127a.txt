@@ -1,0 +1,14 @@
+private void solve(Scanner sc) {
+    int W = sc.nextInt();
+    int H = sc.nextInt();
+    long n = W + H - 2;
+    long r = W - 1;
+    long res = 1;
+    for (long i = n; i > n - r; --i) {
+        res = (res * i) % MOD;
+    }
+    for (long i = r; i > 1; --i) {
+        res = (res * calc(i, MOD - 2, MOD)) % MOD;
+    }
+    _out.println(res);
+}

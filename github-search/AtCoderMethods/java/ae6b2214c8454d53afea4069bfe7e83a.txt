@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int K = sc.nextInt();
+    int[] l = new int[N];
+    
+    for (int i = 0; i < N; i++) {
+        int next = sc.nextInt();
+        
+        if (i > 0) {
+            for (int j = 0; j < i; j++) {
+                
+                if (next > l[j]) {
+                    System.arraycopy(l, j, l, j + 1, i - j);
+                    l[j] = next;
+                    break;
+                } else if (j + 1 == i) {
+                    l[i] = next;
+                }
+            }
+        } else {
+            l[i] = next;
+        }
+    }
+    
+    int sum = 0;
+    for (int i = 0; i < K; i++) {
+        sum += l[i];
+    }
+    
+    System.out.println(sum);
+}

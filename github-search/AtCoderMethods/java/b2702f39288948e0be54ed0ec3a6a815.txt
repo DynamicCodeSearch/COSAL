@@ -1,0 +1,17 @@
+public void solve() {
+    N = nextInt();
+    A = new int[N];
+    long sum = 0;
+    for (int i = 0; i < N; i++) {
+        A[i] = nextInt();
+        sum += A[i];
+    }
+    long min = Long.MAX_VALUE;
+    long sum2 = 0;
+    for (int i = 0; i < N - 1; i++) {
+        sum -= A[i];
+        sum2 += A[i];
+        min = Math.min(min, Math.abs(sum - sum2));
+    }
+    out.println(min);
+}

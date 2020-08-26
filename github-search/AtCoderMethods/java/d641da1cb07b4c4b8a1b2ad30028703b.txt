@@ -1,0 +1,11 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    long[] T = sc.nextLongList(N);
+    long lcm = T[0];
+    for (long v : T) {
+        long gcd = gcd(lcm, v);
+        lcm *= v / gcd;
+    }
+    System.out.println(lcm);
+}

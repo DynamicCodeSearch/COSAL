@@ -1,0 +1,24 @@
+void run() {
+    int N = sc.nextInt();
+    int K = sc.nextInt();
+    int[] a = sc.nextIntArray(N);
+    Arrays.sort(a);
+    long sum = 0;
+    for (int i = 0; i < N; i++) {
+        sum += a[i];
+    }
+    if (sum < K) {
+        System.out.println(N);
+        return;
+    }
+    int l = -1;
+    int r = N;
+    while (r - l > 1) {
+        int mid = (l + r) / 2;
+        if (isNeed(N, K, a, mid))
+            r = mid;
+        else
+            l = mid;
+    }
+    System.out.println(l + 1);
+}

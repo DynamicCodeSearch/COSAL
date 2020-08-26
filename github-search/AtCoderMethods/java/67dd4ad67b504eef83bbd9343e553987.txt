@@ -1,0 +1,21 @@
+static void solve() {
+    int n = in.nextInt();
+    int t = in.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = in.nextInt();
+    }
+    int min = Integer.MAX_VALUE;
+    int d = 0;
+    for (int i = 0; i < n; i++) {
+        min = Math.min(min, a[i]);
+        d = Math.max(d, a[i] - min);
+    }
+    int cnt = 0;
+    HashMap<Integer, Integer> map = new HashMap<>();
+    for (int i = 0; i < n; i++) {
+        cnt += map.getOrDefault(a[i] - d, 0);
+        map.put(a[i], map.getOrDefault(a[i], 0) + 1);
+    }
+    out.println(cnt);
+}

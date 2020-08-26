@@ -1,0 +1,39 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String line = br.readLine();
+    String oder = line;
+    line = br.readLine();
+    int t = Integer.valueOf(line);
+    int x = 0;
+    int y = 0;
+    int count = 0;
+    for (int i = 0; i < oder.length(); i++) {
+        char o = oder.charAt(i);
+        if (o == 'U') {
+            y++;
+        } else if (o == 'D') {
+            y--;
+        } else if (o == 'R') {
+            x++;
+        } else if (o == 'L') {
+            x--;
+        } else {
+            count++;
+        }
+    }
+    int fin = Math.abs(x) + Math.abs(y);
+    if (t == 1) {
+        System.out.println(fin + count);
+    } else {
+        int min = fin - count;
+        if (min < 0) {
+            if (min % 2 == 0) {
+                System.out.println("0");
+            } else {
+                System.out.println("1");
+            }
+        } else {
+            System.out.println(min);
+        }
+    }
+}

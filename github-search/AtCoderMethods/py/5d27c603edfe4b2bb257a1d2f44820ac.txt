@@ -1,0 +1,27 @@
+def main():
+    N, M = tuple(map(int, input().split(' ')))
+    man_list = []
+    point_list = []
+    for i in range(N):
+        man_list.append(tuple(map(int, input().split(' '))))
+    for i in range(M):
+        point_list.append(tuple(map(int, input().split(' '))))
+
+    result = []
+    for i, man in enumerate(man_list):
+        a, b = man
+        min_ = float('inf')
+        for j, point in enumerate(point_list):
+            c, d = point
+            v = abs(a-c)+ abs(b-d)
+            if len(result) < i+1:
+                min_ = v
+                result.append(j+1)
+                continue
+            if v < min_:
+                result[i] = j+1
+                min_ = v
+
+
+    for r in result:
+        print('{}'.format(r))

@@ -1,0 +1,10 @@
+void recur(int i, int k, long sum) {
+    if (k > K)
+        return;
+    if (k == K) {
+        ans = Math.max(ans, sum);
+    }
+    for (int j = i; j < N; j++) {
+        recur(j + 1, k + 1, sum);
+    }
+}

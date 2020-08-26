@@ -1,0 +1,11 @@
+def unite(self, node1, node2):  
+    x = self.root(node1)
+    y = self.root(node2)
+    if x == y:
+        pass
+    elif self.rank[x] < self.rank[y]:
+        self.par[x] = y
+    else:
+        self.par[y] = x
+        if self.rank[x] == self.rank[y]:
+            self.rank[x] += 1

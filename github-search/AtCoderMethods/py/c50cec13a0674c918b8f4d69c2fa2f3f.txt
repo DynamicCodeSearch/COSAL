@@ -1,0 +1,20 @@
+def main():
+
+
+    N, M = map(int, input().split())
+    sA = ''.join([input() for i in range(N)])
+    sB = ''.join([input() for i in range(M)])
+    A = np.array([s for s in sA]).reshape(N,N)
+    B = np.array([s for s in sB]).reshape(M,M)
+
+
+    result = np.zeros((N-M+1,N-M+1), dtype=bool)
+    for i in range(N-M+1):
+        for j in range(N-M+1):
+            result[i,j] = (A[i:i+M, j:j+M] == B).all()
+
+
+    if result.any():
+        print('Yes')
+    else:
+        print('No')

@@ -1,0 +1,12 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    String[] s = sc.nextLine().split(" ");
+    int[] price = new int[3];
+    price[0] = Integer.parseInt(s[0]) + Integer.parseInt(s[1]);
+    price[1] = Integer.parseInt(s[0]) + Integer.parseInt(s[2]);
+    price[2] = Integer.parseInt(s[1]) + Integer.parseInt(s[2]);
+    int min = price[0];
+    for (int i = 1; i < 3; i++) if (price[i] < min)
+        min = price[i];
+    System.out.println(min);
+}

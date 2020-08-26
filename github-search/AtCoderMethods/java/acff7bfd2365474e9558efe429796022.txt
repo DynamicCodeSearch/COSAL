@@ -1,0 +1,31 @@
+public void exec() throws IOException {
+    InputUtil in = new InputUtil();
+    PrintWriter out = new PrintWriter(System.out);
+    int N = in.nextInt();
+    int[] array_a = in.nextInt(new int[N]);
+    int count_not_multiple_2 = 0;
+    boolean exists_multiple_2 = false;
+    int count_multiple_4 = 0;
+    for (int a : array_a) {
+        if (a % 4 == 0)
+            count_multiple_4++;
+        else if (a % 2 == 0)
+            exists_multiple_2 = true;
+        else
+            count_not_multiple_2++;
+    }
+    if (exists_multiple_2) {
+        if (count_not_multiple_2 <= count_multiple_4) {
+            out.println("Yes");
+        } else {
+            out.println("No");
+        }
+    } else {
+        if (count_not_multiple_2 <= count_multiple_4 + 1) {
+            out.println("Yes");
+        } else {
+            out.println("No");
+        }
+    }
+    out.flush();
+}

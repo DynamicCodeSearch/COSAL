@@ -1,0 +1,35 @@
+public static void main(String[] args) {
+    try (Scanner sc = new Scanner(System.in)) {
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        HashMap<Integer, HashSet<Integer>> map = new HashMap<Integer, HashSet<Integer>>(n);
+        for (int i = 0; i < m; i++) {
+            int a = sc.nextInt();
+            int b = sc.nextInt();
+            if (map.keySet().contains(a)) {
+                map.get(a).add(b);
+            } else {
+                HashSet<Integer> tmp = new HashSet<Integer>();
+                tmp.add(b);
+                map.put(a, tmp);
+            }
+            if (map.keySet().contains(b)) {
+                map.get(b).add(a);
+            } else {
+                HashSet<Integer> tmp = new HashSet<Integer>();
+                tmp.add(a);
+                map.put(b, tmp);
+            }
+        }
+        for (int i : map.get(1)) {
+            
+            for (int j : map.get(i)) {
+                if (j == n) {
+                    System.out.println("POSSIBLE");
+                    return;
+                }
+            }
+        }
+        System.out.println("IMPOSSIBLE");
+    }
+}

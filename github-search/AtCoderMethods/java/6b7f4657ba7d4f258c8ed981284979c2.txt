@@ -1,0 +1,19 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] lineStr = br.readLine().split(" ");
+    int ax = Integer.parseInt(lineStr[0]);
+    int ay = Integer.parseInt(lineStr[1]);
+    int bx = Integer.parseInt(lineStr[2]);
+    int by = Integer.parseInt(lineStr[3]);
+    int cx = Integer.parseInt(lineStr[4]);
+    int cy = Integer.parseInt(lineStr[5]);
+    bx = bx - ax;
+    by = by - ay;
+    cx = cx - ax;
+    cy = cy - ay;
+    double ans = (bx * cy - by * cx) / 2.0;
+    if (ans < 0) {
+        ans = ans * -1;
+    }
+    System.out.println(ans);
+}

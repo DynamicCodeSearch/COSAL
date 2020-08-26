@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    int[] a = sc.nextIntList(N);
+    ArrayDeque<Integer> q = new ArrayDeque<>();
+    for (int i = 0; i < N; i++) {
+        if (i % 2 == 0) {
+            q.addFirst(a[i]);
+        } else {
+            q.addLast(a[i]);
+        }
+    }
+    List<Integer> list = new ArrayList<>(q);
+    if (N % 2 == 0) {
+        Collections.reverse(list);
+    }
+    StringBuilder sb = new StringBuilder();
+    for (int v : list) {
+        sb.append(v);
+        sb.append(" ");
+    }
+    System.out.println(sb.substring(0, sb.length() - 1));
+}

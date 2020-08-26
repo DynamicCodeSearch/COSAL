@@ -1,0 +1,17 @@
+public static void main(String[] __) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] a = new int[N];
+    int equal_checker = 1;
+    double total = 0;
+    int total_cost = 0;
+    for (int x = 0; x < N; x++) {
+        a[x] = sc.nextInt();
+        total += a[x];
+    }
+    double equal_integer = (Math.round(total / N));
+    for (int y : a) {
+        total_cost += Math.pow((y - equal_integer), 2);
+    }
+    System.out.println(total_cost);
+}

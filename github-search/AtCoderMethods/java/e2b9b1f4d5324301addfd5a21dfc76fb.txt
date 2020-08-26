@@ -1,0 +1,43 @@
+private void solve(Scanner sc, PrintWriter out) {
+    H = sc.nextInt();
+    W = sc.nextInt();
+    sc.nextLine();
+    char[][] s = new char[H][W];
+    for (int i = 0; i < H; ++i) {
+        s[i] = sc.nextLine().toCharArray();
+    }
+    char[][] m = new char[H][W];
+    for (int i = 0; i < H; ++i) {
+        for (int j = 0; j < W; ++j) {
+            m[i][j] = s[i][j];
+        }
+    }
+    char[][] o = new char[H][W];
+    for (int i = 0; i < H; ++i) {
+        for (int j = 0; j < W; ++j) {
+            if (check(s, i, j)) {
+                o[i][j] = '#';
+                recover(m, i, j);
+            } else {
+                o[i][j] = '.';
+            }
+        }
+    }
+    for (int i = 0; i < H; ++i) {
+        for (int j = 0; j < W; ++j) {
+            if (m[i][j] != o[i][j]) {
+                if (!check(s, i, j)) {
+                    out.println("impossible");
+                    return;
+                }
+            }
+        }
+    }
+    out.println("possible");
+    for (int i = 0; i < H; ++i) {
+        for (int j = 0; j < W; ++j) {
+            out.print(o[i][j]);
+        }
+        out.println();
+    }
+}

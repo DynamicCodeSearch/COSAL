@@ -1,0 +1,40 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    String S = sc.next();
+    String[] answers = new String[] { "Do", "Re", "Mi", "Fa", "So", "La", "Si" };
+    String keys = "WBWBWWBWBWBW";
+    for (int i = 0; i < answers.length; i++) {
+        int start = 0;
+        switch(i) {
+            case 0:
+                start = 0;
+                break;
+            case 1:
+                start = 2;
+                break;
+            case 2:
+                start = 4;
+                break;
+            case 3:
+                start = 5;
+                break;
+            case 4:
+                start = 7;
+                break;
+            case 5:
+                start = 9;
+                break;
+            case 6:
+                start = 11;
+                break;
+        }
+        String tmp = (keys.substring(start) + keys + keys).substring(0, 20);
+        System.err.println(S);
+        System.err.println(tmp);
+        System.err.println();
+        if (S.equals(tmp)) {
+            System.out.println(answers[i]);
+            break;
+        }
+    }
+}

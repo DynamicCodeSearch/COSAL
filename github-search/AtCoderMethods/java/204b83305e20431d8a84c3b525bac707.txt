@@ -1,0 +1,36 @@
+public static boolean judge() {
+    for (int i = 0; i < s.length(); i++) {
+        if (s.charAt(i) != t.charAt(i)) {
+            if (s.charAt(i) == '@') {
+                switch(t.charAt(i)) {
+                    case 'a':
+                    case 't':
+                    case 'c':
+                    case 'o':
+                    case 'd':
+                    case 'e':
+                    case 'r':
+                        break;
+                    default:
+                        return false;
+                }
+            } else if (t.charAt(i) == '@') {
+                switch(s.charAt(i)) {
+                    case 'a':
+                    case 't':
+                    case 'c':
+                    case 'o':
+                    case 'd':
+                    case 'e':
+                    case 'r':
+                        break;
+                    default:
+                        return false;
+                }
+            } else
+                return false;
+        } else
+            ;
+    }
+    return true;
+}

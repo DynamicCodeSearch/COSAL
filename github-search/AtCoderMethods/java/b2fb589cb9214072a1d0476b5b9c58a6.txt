@@ -1,0 +1,28 @@
+public static void b_problem() {
+    String s;
+    int t;
+    int x = 0, y = 0, u = 0;
+    Scanner stdin = new Scanner(System.in);
+    s = stdin.next();
+    t = stdin.nextInt();
+    for (int i = 0; i < s.length(); i++) {
+        if (s.charAt(i) == 'L') {
+            x--;
+        } else if (s.charAt(i) == 'R') {
+            x++;
+        } else if (s.charAt(i) == 'U') {
+            y++;
+        } else if (s.charAt(i) == 'D') {
+            y--;
+        } else {
+            u++;
+        }
+    }
+    if (t == 1) {
+        
+        System.out.println(Math.abs(x) + Math.abs(y) + u);
+    } else {
+        
+        System.out.println(Math.max(Math.abs(s.length()) % 2, Math.abs(x) + Math.abs(y) - u));
+    }
+}

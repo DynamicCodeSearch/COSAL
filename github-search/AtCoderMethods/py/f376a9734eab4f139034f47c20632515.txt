@@ -1,0 +1,12 @@
+def main():
+    n,a,b = LI()
+    s = [I() for _ in range(n)]
+    sa = max(s)
+    si = min(s)
+    if sa-si == 0:
+        if b != 0:
+            return -1
+        return '{} {}'.format(0,a)
+    p = b / (sa-si)
+    q = a - sum(c*p for c in s) / len(s)
+    return '{} {}'.format(p,q)

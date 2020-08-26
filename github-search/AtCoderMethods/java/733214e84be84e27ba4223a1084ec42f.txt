@@ -1,0 +1,46 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String line;
+    String[] item;
+    HashMap<Integer, Map<Integer, Integer>> map = new HashMap<Integer, Map<Integer, Integer>>();
+    line = br.readLine();
+    item = line.split(" ");
+    H = Integer.parseInt(item[0]);
+    W = Integer.parseInt(item[1]);
+    N = Integer.parseInt(item[2]);
+    int h, w;
+    h = H - 1;
+    w = W - 1;
+    Arrays.fill(score, 0);
+    score[0] = (long) (H - 2) * (W - 2);
+    for (int i = 0; i < N; i++) {
+        line = br.readLine();
+        item = line.split(" ");
+        int a = Integer.parseInt(item[0]), b = Integer.parseInt(item[1]);
+        for (int k = 0; k < va.length; k++) {
+            int adja = a + va[k];
+            int adjb = b + vb[k];
+            if (!(2 <= adja && adja <= h && 2 <= adjb && adjb <= w))
+                continue;
+            if (!map.containsKey(adja)) {
+                map.put(adja, new HashMap<Integer, Integer>());
+            }
+            if (!map.get(adja).containsKey(adjb)) {
+                map.get(adja).put(adjb, 0);
+            }
+            map.get(adja).put(adjb, map.get(adja).get(adjb) + 1);
+        }
+    }
+    for (Entry<Integer, Map<Integer, Integer>> e1 : map.entrySet()) {
+        int a = e1.getKey();
+        for (Entry<Integer, Integer> e2 : map.get(a).entrySet()) {
+            
+            int sc = e2.getValue();
+            if (sc != 0) {
+                score[sc]++;
+                score[0]--;
+            }
+        }
+    }
+    for (int i = 0; i < score.length; i++) System.out.println(score[i]);
+}

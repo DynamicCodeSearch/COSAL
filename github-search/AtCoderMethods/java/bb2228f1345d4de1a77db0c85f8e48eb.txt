@@ -1,0 +1,7 @@
+public int get(int a, int b) {
+    long res = hash[b] - (long) hash[a] * (pw[b - a]);
+    res %= MOD;
+    if (res < 0)
+        res += MOD;
+    return (int) res;
+}

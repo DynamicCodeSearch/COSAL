@@ -1,0 +1,16 @@
+int getLCA(int u, int v) {
+    if (depth[u] > depth[v]) {
+        int tu = u;
+        u = v;
+        v = tu;
+    }
+    for (int k = 0; k < logV; ++k) if (((depth[v] - depth[u]) >> k & 1) != 0)
+        v = parent[k][v];
+    if (u == v)
+        return u;
+    for (int k = logV - 1; k >= 0; --k) if (parent[k][u] != parent[k][v]) {
+        u = parent[k][u];
+        v = parent[k][v];
+    }
+    return parent[0][u];
+}

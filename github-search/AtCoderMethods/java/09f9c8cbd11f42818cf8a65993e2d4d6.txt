@@ -1,0 +1,10 @@
+public static void main(String[] __) {
+    long[] in = new long[s.nextInt()];
+    for (int i = 0; i < in.length; i++) in[i] = s.nextInt();
+    long min = 9114514114514114514L;
+    for (int i = -100; i <= 100; i++) {
+        final int v = i;
+        min = Math.min(min, Arrays.stream(in).parallel().map(o -> (o - v) * (o - v)).sum());
+    }
+    System.out.println(min);
+}

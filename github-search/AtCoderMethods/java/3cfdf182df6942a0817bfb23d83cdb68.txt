@@ -1,0 +1,17 @@
+void dijk(V[] vs, V start) {
+    final int INF = 1001001001;
+    for (int i = 0; i < vs.length; i++) vs[i].dist = INF;
+    PriorityQueue<V> pq = new PriorityQueue<>();
+    start.dist = 0;
+    pq.add(start);
+    while (!pq.isEmpty()) {
+        V cur = pq.poll();
+        for (E e : cur.es) {
+            int nw = cur.dist + e.w;
+            if (e.to.dist > nw) {
+                e.to.dist = nw;
+                pq.add(e.to);
+            }
+        }
+    }
+}

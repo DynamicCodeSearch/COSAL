@@ -1,0 +1,6 @@
+def f(s):
+    if len(s)==1:
+        return [s]
+    def add(st,ls):
+        return [st+s for s in ls]
+    return add(s[0],f(s[1:])) +add(s[0]+'+',f(s[1:]))

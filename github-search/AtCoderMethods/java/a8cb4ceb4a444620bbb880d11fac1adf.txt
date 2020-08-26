@@ -1,0 +1,20 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    char[] arr = in.next().toCharArray();
+    int[] alphabet = new int[26];
+    boolean[] got = new boolean[26];
+    int ans = 0;
+    for (int i = 0; i < arr.length; i++) {
+        char tmp = arr[i];
+        alphabet[tmp - 'a']++;
+        got[tmp - 'a'] = true;
+    }
+    for (int i = 0; i < alphabet.length; i++) {
+        if (got[i] == false)
+            continue;
+        if (alphabet[i] % 2 != 0) {
+            out.println("No");
+            return;
+        }
+    }
+    out.println("Yes");
+}

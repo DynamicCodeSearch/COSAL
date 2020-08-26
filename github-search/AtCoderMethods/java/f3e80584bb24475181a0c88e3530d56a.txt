@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner sn = new Scanner(System.in);
+    int N = sn.nextInt();
+    int min = N + 1;
+    int H, r, tmp;
+    if (N == 1)
+        System.out.println(0);
+    else {
+        for (int W = 1; W < N; ++W) {
+            H = N / W;
+            r = N - (W * H);
+            tmp = Math.abs(H - W) + Math.abs(r);
+            if (tmp < min)
+                min = tmp;
+        }
+        System.out.println(min);
+    }
+}

@@ -1,0 +1,20 @@
+def Q3(x):
+    def gcd(a, b):
+        if b > a:
+            a, b = b, a
+        while b > 0:
+            a, b = b, a % b
+        return a
+
+    def lcm(a, b):
+        return (a * b) // gcd(a, b)
+
+    N = x[0]
+    lst = x[1:]
+    if N == 1:
+        return lst[0]
+    else:
+        l = lcm(lst[0], lst[1])
+        for x in lst:
+            l = lcm(l, x)
+        return l

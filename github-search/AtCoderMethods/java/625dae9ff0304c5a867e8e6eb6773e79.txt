@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    while (sc.hasNext()) {
+        int n = sc.nextInt();
+        char[][] s = new char[n][n];
+        for (int i = 0; i < n; i++) {
+            String str = sc.next();
+            for (int j = 0; j < n; j++) s[i][j] = str.charAt(j);
+        }
+        for (int i = 0; i < n; i++) {
+            for (int j = n - 1; j >= 0; j--) {
+                System.out.print(s[j][i]);
+            }
+            System.out.println();
+        }
+    }
+}

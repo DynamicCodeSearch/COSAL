@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int n = in.nextInt();
+    int tmp = 100000;
+    int k = (int) Math.sqrt(n);
+    for (int i = 1; i < k + 1; i++) {
+        int tile = Math.abs(n / i - i) + n - (i * (n / i));
+        if (tmp > tile) {
+            tmp = tile;
+        }
+    }
+    System.out.println(tmp);
+    in.close();
+}

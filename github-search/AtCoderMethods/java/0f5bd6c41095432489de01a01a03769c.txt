@@ -1,0 +1,12 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    long W = sc.nextLong();
+    long H = sc.nextLong();
+    long r1 = 1;
+    long r2 = 1;
+    for (int i = 0; i < H - 1; i++) {
+        r1 = (r1 * (W + (long) i)) % MOD;
+        r2 = (r2 * (long) (i + 1)) % MOD;
+    }
+    System.out.println((r1 * func(r2, MOD - 2)) % MOD);
+}

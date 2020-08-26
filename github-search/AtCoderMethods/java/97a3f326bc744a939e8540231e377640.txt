@@ -1,0 +1,17 @@
+public int max_flow(int s, int t) {
+    int flow = 0;
+    while (true) {
+        bfs(s);
+        if (level[t] < 0) {
+            return flow;
+        }
+        Arrays.fill(itr, 0);
+        while (true) {
+            int f = dfs(s, t, Integer.MAX_VALUE);
+            if (f <= 0) {
+                break;
+            }
+            flow += f;
+        }
+    }
+}

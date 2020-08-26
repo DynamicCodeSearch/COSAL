@@ -1,0 +1,41 @@
+void solve() {
+    int N = sc.nextInt();
+    boolean[] used = new boolean[8];
+    int joker = 0;
+    for (int i = 0; i < N; i++) {
+        int a = sc.nextInt();
+        if (a <= 399) {
+            used[0] = true;
+        } else if (a <= 799) {
+            used[1] = true;
+        } else if (a <= 1199) {
+            used[2] = true;
+        } else if (a <= 1599) {
+            used[3] = true;
+        } else if (a <= 1999) {
+            used[4] = true;
+        } else if (a <= 2399) {
+            used[5] = true;
+        } else if (a <= 2799) {
+            used[6] = true;
+        } else if (a <= 3199) {
+            used[7] = true;
+        } else {
+            joker++;
+        }
+    }
+    int ans = 0;
+    for (int i = 0; i < 8; i++) if (used[i])
+        ans++;
+    
+    if (ans == 0) {
+        if (joker > 0)
+            System.out.println(1);
+        else
+            System.out.println(0);
+    } else {
+        System.out.println(ans);
+    }
+    
+    System.out.println(ans + joker);
+}

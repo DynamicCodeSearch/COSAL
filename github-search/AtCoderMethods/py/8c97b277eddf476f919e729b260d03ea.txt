@@ -1,0 +1,24 @@
+def main():
+    n_m = sys.stdin.readline().split()
+    n = int(n_m[0])
+    m = int(n_m[1])
+
+    people_points = []
+    check_points = []
+
+    for i in range(n):
+        a_b = sys.stdin.readline().split()
+        a = int(a_b[0])
+        b = int(a_b[1])
+        people_points.append((a, b))
+
+    for i in range(m):
+        c_d = sys.stdin.readline().split()
+        c = int(c_d[0])
+        d = int(c_d[1])
+        check_points.append((c, d))
+
+    ans = [ind + 1 for ind, dist in calc(people_points, check_points)]
+    print("\n".join([str(i) for i in ans]))
+
+    return 0

@@ -1,0 +1,13 @@
+public static double search(int[] x, int[] c) {
+    double l = -100001, r = 100001;
+    int L = 100;
+    while (L-- >= 0) {
+        double ll = (l * 2 + r) / 3;
+        double rr = (l + r * 2) / 3;
+        if (f(x, c, ll) > f(x, c, rr))
+            l = ll;
+        else
+            r = rr;
+    }
+    return l;
+}

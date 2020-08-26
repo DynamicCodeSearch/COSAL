@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    long a = scan.nextLong();
+    long b = scan.nextLong();
+    long k = scan.nextLong();
+    long l = scan.nextLong();
+    boolean flag = (a > b / l);
+    long result = 0;
+    if (a > b / l) {
+        result += b * (k / l);
+        result += Math.min(a * (k % l), b);
+    } else {
+        result += a * k;
+    }
+    System.out.println(result);
+}

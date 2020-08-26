@@ -1,0 +1,22 @@
+private static long solve(int[] a) {
+    long ans = 0;
+    long sum = a[0];
+    for (int i = 1; i < a.length; i++) {
+        if (sum > 0) {
+            if (sum + a[i] >= 0) {
+                ans += sum + a[i] + 1;
+                sum = -1;
+            } else {
+                sum += a[i];
+            }
+        } else {
+            if (sum + a[i] <= 0) {
+                ans += -sum - a[i] + 1;
+                sum = 1;
+            } else {
+                sum += a[i];
+            }
+        }
+    }
+    return ans;
+}

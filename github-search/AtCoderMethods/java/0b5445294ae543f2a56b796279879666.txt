@@ -1,0 +1,15 @@
+private static long dfs(int[][] table, int nowX, int nowY) {
+    if (memo[nowY][nowX] > 0) {
+        return memo[nowY][nowX];
+    }
+    int v = table[nowY][nowX];
+    long ret = 1;
+    for (int[] d : DIR) {
+        if (v < table[nowY + d[0]][nowX + d[1]]) {
+            ret += dfs(table, nowX + d[1], nowY + d[0]);
+            ret %= MOD;
+        }
+    }
+    memo[nowY][nowX] = ret;
+    return ret;
+}

@@ -1,0 +1,15 @@
+private static String solve(int n, int m, int[][] abcs) {
+    
+    long[] dist = new long[n + 1];
+    Arrays.fill(dist, Long.MAX_VALUE / 2);
+    dist[1] = 0;
+    int[][] edges = new int[abcs.length][];
+    for (int i = 0; i < abcs.length; i++) edges[i] = new int[] { abcs[i][0], abcs[i][1], -abcs[i][2] };
+    for (int i = 2; i < dist.length; i++) for (int[] e : edges) dist[e[1]] = Math.min(dist[e[1]], dist[e[0]] + e[2]);
+    long ans = dist[n];
+    
+    for (int[] e : edges) dist[e[1]] = Math.min(dist[e[1]], dist[e[0]] + e[2]);
+    if (ans != dist[n])
+        return "inf";
+    return Long.toString(-ans);
+}

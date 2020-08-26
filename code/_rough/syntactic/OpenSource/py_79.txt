@@ -1,0 +1,668 @@
+### Py functions
+
+def _vformat(self, format_string, args, kwargs, used_args, recursion_depth):
+    if recursion_depth < 0:
+        raise ValueError('Max string recursion exceeded')
+    result = []
+    for literal_text, field_name, format_spec, conversion in self.parse(
+        format_string):
+        if literal_text:
+            result.append(literal_text)
+        if field_name is not None:
+            obj, arg_used = self.get_field(field_name, args, kwargs)
+            used_args.add(arg_used)
+            obj = self.convert_field(obj, conversion)
+            format_spec = self._vformat(format_spec, args, kwargs,
+                used_args, recursion_depth - 1)
+            result.append(self.format_field(obj, format_spec))
+    return ''.join(result)
+
+*********************************
+
+#### Score: 88.92957
+
+
+/**
+ * Returns the given {@code template} string with each occurrence of {@code "%s"} replaced with
+ * the corresponding argument value from {@code args}; or, if the placeholder and argument counts
+ * do not match, returns a best-effort form of that string. Will not throw an exception under
+ * normal conditions.
+ *
+ * <p><b>Note:</b> For most string-formatting needs, use {@link String#format String.format},
+ * {@link java.io.PrintWriter#format PrintWriter.format}, and related methods. These support the
+ * full range of <a
+ * href="https://docs.oracle.com/javase/9/docs/api/java/util/Formatter.html#syntax">format
+ * specifiers</a>, and alert you to usage errors by throwing {@link
+ * java.util.IllegalFormatException}.
+ *
+ * <p>In certain cases, such as outputting debugging information or constructing a message to be
+ * used for another unchecked exception, an exception during string formatting would serve little
+ * purpose except to supplant the real information you were trying to provide. These are the cases
+ * this method is made for; it instead generates a best-effort string with all supplied argument
+ * values present. This method is also useful in environments such as GWT where {@code
+ * String.format} is not available. As an example, method implementations of the {@link
+ * Preconditions} class use this formatter, for both of the reasons just discussed.
+ *
+ * <p><b>Warning:</b> Only the exact two-character placeholder sequence {@code "%s"} is
+ * recognized.
+ *
+ * @param template a string containing zero or more {@code "%s"} placeholder sequences. {@code
+ *     null} is treated as the four-character string {@code "null"}.
+ * @param args the arguments to be substituted into the message template. The first argument
+ *     specified is substituted for the first occurrence of {@code "%s"} in the template, and so
+ *     forth. A {@code null} argument is converted to the four-character string {@code "null"};
+ *     non-null values are converted to strings using {@link Object#toString()}.
+ * @since 25.1
+ */
+// TODO(diamondm) consider using Arrays.toString() for array parameters
+public static String lenientFormat(@Nullable String template, @Nullable Object@Nullable ... args) {
+    // null -> "null"
+    template = String.valueOf(template);
+    if (args == null) {
+        args = new Object[] { "(Object[])null" };
+    } else {
+        for (int i = 0; i < args.length; i++) {
+            args[i] = lenientToString(args[i]);
+        }
+    }
+    // start substituting the arguments into the '%s' placeholders
+    StringBuilder builder = new StringBuilder(template.length() + 16 * args.length);
+    int templateStart = 0;
+    int i = 0;
+    while (i < args.length) {
+        int placeholderStart = template.indexOf("%s", templateStart);
+        if (placeholderStart == -1) {
+            break;
+        }
+        builder.append(template, templateStart, placeholderStart);
+        builder.append(args[i++]);
+        templateStart = placeholderStart + 2;
+    }
+    builder.append(template, templateStart, template.length());
+    // if we run out of placeholders, append the extra args in square braces
+    if (i < args.length) {
+        builder.append(" [");
+        builder.append(args[i++]);
+        while (i < args.length) {
+            builder.append(", ");
+            builder.append(args[i++]);
+        }
+        builder.append(']');
+    }
+    return builder.toString();
+}
+*********************************
+
+#### Score: 86.71066
+
+
+/**
+ * <p>Joins the elements of the provided array into a single String
+ * containing the provided list of elements.</p>
+ *
+ * <p>No delimiter is added before or after the list.
+ * Null objects or empty strings within the array are represented by
+ * empty strings.</p>
+ *
+ * <pre>
+ * StringUtils.join(null, *)               = null
+ * StringUtils.join([], *)                 = ""
+ * StringUtils.join([null], *)             = ""
+ * StringUtils.join(["a", "b", "c"], ';')  = "a;b;c"
+ * StringUtils.join(["a", "b", "c"], null) = "abc"
+ * StringUtils.join([null, "", "a"], ';')  = ";;a"
+ * </pre>
+ *
+ * @param array  the array of values to join together, may be null
+ * @param separator  the separator character to use
+ * @param startIndex the first index to start joining from.  It is
+ * an error to pass in a start index past the end of the array
+ * @param endIndex the index to stop joining from (exclusive). It is
+ * an error to pass in an end index past the end of the array
+ * @return the joined String, {@code null} if null array input
+ * @since 2.0
+ */
+public static String join(final Object[] array, final char separator, final int startIndex, final int endIndex) {
+    if (array == null) {
+        return null;
+    }
+    final int noOfItems = endIndex - startIndex;
+    if (noOfItems <= 0) {
+        return EMPTY;
+    }
+    final StringBuilder buf = newStringBuilder(noOfItems);
+    if (array[startIndex] != null) {
+        buf.append(array[startIndex]);
+    }
+    for (int i = startIndex + 1; i < endIndex; i++) {
+        buf.append(separator);
+        if (array[i] != null) {
+            buf.append(array[i]);
+        }
+    }
+    return buf.toString();
+}
+*********************************
+
+#### Score: 85.78551
+
+
+/**
+ * <p>Joins the elements of the provided array into a single String
+ * containing the provided list of elements.</p>
+ *
+ * <p>No delimiter is added before or after the list.
+ * A {@code null} separator is the same as an empty String ("").
+ * Null objects or empty strings within the array are represented by
+ * empty strings.</p>
+ *
+ * <pre>
+ * StringUtils.join(null, *, *, *)                = null
+ * StringUtils.join([], *, *, *)                  = ""
+ * StringUtils.join([null], *, *, *)              = ""
+ * StringUtils.join(["a", "b", "c"], "--", 0, 3)  = "a--b--c"
+ * StringUtils.join(["a", "b", "c"], "--", 1, 3)  = "b--c"
+ * StringUtils.join(["a", "b", "c"], "--", 2, 3)  = "c"
+ * StringUtils.join(["a", "b", "c"], "--", 2, 2)  = ""
+ * StringUtils.join(["a", "b", "c"], null, 0, 3)  = "abc"
+ * StringUtils.join(["a", "b", "c"], "", 0, 3)    = "abc"
+ * StringUtils.join([null, "", "a"], ',', 0, 3)   = ",,a"
+ * </pre>
+ *
+ * @param array  the array of values to join together, may be null
+ * @param separator  the separator character to use, null treated as ""
+ * @param startIndex the first index to start joining from.
+ * @param endIndex the index to stop joining from (exclusive).
+ * @return the joined String, {@code null} if null array input; or the empty string
+ * if {@code endIndex - startIndex <= 0}. The number of joined entries is given by
+ * {@code endIndex - startIndex}
+ * @throws ArrayIndexOutOfBoundsException ife<br>
+ * {@code startIndex < 0} or <br>
+ * {@code startIndex >= array.length()} or <br>
+ * {@code endIndex < 0} or <br>
+ * {@code endIndex > array.length()}
+ */
+public static String join(final Object[] array, String separator, final int startIndex, final int endIndex) {
+    if (array == null) {
+        return null;
+    }
+    if (separator == null) {
+        separator = EMPTY;
+    }
+    // endIndex - startIndex > 0:   Len = NofStrings *(len(firstString) + len(separator))
+    // (Assuming that all Strings are roughly equally long)
+    final int noOfItems = endIndex - startIndex;
+    if (noOfItems <= 0) {
+        return EMPTY;
+    }
+    final StringBuilder buf = newStringBuilder(noOfItems);
+    if (array[startIndex] != null) {
+        buf.append(array[startIndex]);
+    }
+    for (int i = startIndex + 1; i < endIndex; i++) {
+        buf.append(separator);
+        if (array[i] != null) {
+            buf.append(array[i]);
+        }
+    }
+    return buf.toString();
+}
+*********************************
+
+#### Score: 85.16738
+
+
+/**
+ * <p>
+ * Wraps a string with a char if that char is missing from the start or end of the given string.
+ * </p>
+ *
+ * <pre>
+ * StringUtils.wrapIfMissing(null, *)        = null
+ * StringUtils.wrapIfMissing("", *)          = ""
+ * StringUtils.wrapIfMissing("ab", '\0')     = "ab"
+ * StringUtils.wrapIfMissing("ab", 'x')      = "xabx"
+ * StringUtils.wrapIfMissing("ab", '\'')     = "'ab'"
+ * StringUtils.wrapIfMissing("\"ab\"", '\"') = "\"ab\""
+ * StringUtils.wrapIfMissing("/", '/')  = "/"
+ * StringUtils.wrapIfMissing("a/b/c", '/')  = "/a/b/c/"
+ * StringUtils.wrapIfMissing("/a/b/c", '/')  = "/a/b/c/"
+ * StringUtils.wrapIfMissing("a/b/c/", '/')  = "/a/b/c/"
+ * </pre>
+ *
+ * @param str
+ *            the string to be wrapped, may be {@code null}
+ * @param wrapWith
+ *            the char that will wrap {@code str}
+ * @return the wrapped string, or {@code null} if {@code str==null}
+ * @since 3.5
+ */
+public static String wrapIfMissing(final String str, final char wrapWith) {
+    if (isEmpty(str) || wrapWith == CharUtils.NUL) {
+        return str;
+    }
+    final StringBuilder builder = new StringBuilder(str.length() + 2);
+    if (str.charAt(0) != wrapWith) {
+        builder.append(wrapWith);
+    }
+    builder.append(str);
+    if (str.charAt(str.length() - 1) != wrapWith) {
+        builder.append(wrapWith);
+    }
+    return builder.toString();
+}
+*********************************
+
+#### Score: 84.78666
+
+
+/**
+ * <p>
+ * Joins the elements of the provided array into a single String containing the provided list of elements.
+ * </p>
+ *
+ * <p>
+ * No delimiter is added before or after the list. Null objects or empty strings within the array are represented
+ * by empty strings.
+ * </p>
+ *
+ * <pre>
+ * StringUtils.join(null, *)               = null
+ * StringUtils.join([], *)                 = ""
+ * StringUtils.join([null], *)             = ""
+ * StringUtils.join([1, 2, 3], ';')  = "1;2;3"
+ * StringUtils.join([1, 2, 3], null) = "123"
+ * </pre>
+ *
+ * @param array
+ *            the array of values to join together, may be null
+ * @param separator
+ *            the separator character to use
+ * @param startIndex
+ *            the first index to start joining from. It is an error to pass in a start index past the end of the
+ *            array
+ * @param endIndex
+ *            the index to stop joining from (exclusive). It is an error to pass in an end index past the end of
+ *            the array
+ * @return the joined String, {@code null} if null array input
+ * @since 3.2
+ */
+public static String join(final byte[] array, final char separator, final int startIndex, final int endIndex) {
+    if (array == null) {
+        return null;
+    }
+    final int noOfItems = endIndex - startIndex;
+    if (noOfItems <= 0) {
+        return EMPTY;
+    }
+    final StringBuilder buf = newStringBuilder(noOfItems);
+    buf.append(array[startIndex]);
+    for (int i = startIndex + 1; i < endIndex; i++) {
+        buf.append(separator);
+        buf.append(array[i]);
+    }
+    return buf.toString();
+}
+/**
+ * <p>
+ * Joins the elements of the provided array into a single String containing the provided list of elements.
+ * </p>
+ *
+ * <p>
+ * No delimiter is added before or after the list. Null objects or empty strings within the array are represented
+ * by empty strings.
+ * </p>
+ *
+ * <pre>
+ * StringUtils.join(null, *)               = null
+ * StringUtils.join([], *)                 = ""
+ * StringUtils.join([null], *)             = ""
+ * StringUtils.join([1, 2, 3], ';')  = "1;2;3"
+ * StringUtils.join([1, 2, 3], null) = "123"
+ * </pre>
+ *
+ * @param array
+ *            the array of values to join together, may be null
+ * @param separator
+ *            the separator character to use
+ * @param startIndex
+ *            the first index to start joining from. It is an error to pass in a start index past the end of the
+ *            array
+ * @param endIndex
+ *            the index to stop joining from (exclusive). It is an error to pass in an end index past the end of
+ *            the array
+ * @return the joined String, {@code null} if null array input
+ * @since 3.2
+ */
+public static String join(final short[] array, final char separator, final int startIndex, final int endIndex) {
+    if (array == null) {
+        return null;
+    }
+    final int noOfItems = endIndex - startIndex;
+    if (noOfItems <= 0) {
+        return EMPTY;
+    }
+    final StringBuilder buf = newStringBuilder(noOfItems);
+    buf.append(array[startIndex]);
+    for (int i = startIndex + 1; i < endIndex; i++) {
+        buf.append(separator);
+        buf.append(array[i]);
+    }
+    return buf.toString();
+}
+/**
+ * <p>
+ * Joins the elements of the provided array into a single String containing the provided list of elements.
+ * </p>
+ *
+ * <p>
+ * No delimiter is added before or after the list. Null objects or empty strings within the array are represented
+ * by empty strings.
+ * </p>
+ *
+ * <pre>
+ * StringUtils.join(null, *)               = null
+ * StringUtils.join([], *)                 = ""
+ * StringUtils.join([null], *)             = ""
+ * StringUtils.join([1, 2, 3], ';')  = "1;2;3"
+ * StringUtils.join([1, 2, 3], null) = "123"
+ * </pre>
+ *
+ * @param array
+ *            the array of values to join together, may be null
+ * @param separator
+ *            the separator character to use
+ * @param startIndex
+ *            the first index to start joining from. It is an error to pass in a start index past the end of the
+ *            array
+ * @param endIndex
+ *            the index to stop joining from (exclusive). It is an error to pass in an end index past the end of
+ *            the array
+ * @return the joined String, {@code null} if null array input
+ * @since 3.2
+ */
+public static String join(final float[] array, final char separator, final int startIndex, final int endIndex) {
+    if (array == null) {
+        return null;
+    }
+    final int noOfItems = endIndex - startIndex;
+    if (noOfItems <= 0) {
+        return EMPTY;
+    }
+    final StringBuilder buf = newStringBuilder(noOfItems);
+    buf.append(array[startIndex]);
+    for (int i = startIndex + 1; i < endIndex; i++) {
+        buf.append(separator);
+        buf.append(array[i]);
+    }
+    return buf.toString();
+}
+*********************************
+
+#### Score: 77.86652
+
+
+/**
+ * <p>Replaces multiple characters in a String in one go.
+ * This method can also be used to delete characters.</p>
+ *
+ * <p>For example:<br>
+ * <code>replaceChars(&quot;hello&quot;, &quot;ho&quot;, &quot;jy&quot;) = jelly</code>.</p>
+ *
+ * <p>A {@code null} string input returns {@code null}.
+ * An empty ("") string input returns an empty string.
+ * A null or empty set of mos.search characters returns the input string.</p>
+ *
+ * <p>The length of the mos.search characters should normally equal the length
+ * of the replace characters.
+ * If the mos.search characters is longer, then the extra mos.search characters
+ * are deleted.
+ * If the mos.search characters is shorter, then the extra replace characters
+ * are ignored.</p>
+ *
+ * <pre>
+ * StringUtils.replaceChars(null, *, *)           = null
+ * StringUtils.replaceChars("", *, *)             = ""
+ * StringUtils.replaceChars("abc", null, *)       = "abc"
+ * StringUtils.replaceChars("abc", "", *)         = "abc"
+ * StringUtils.replaceChars("abc", "b", null)     = "ac"
+ * StringUtils.replaceChars("abc", "b", "")       = "ac"
+ * StringUtils.replaceChars("abcba", "bc", "yz")  = "ayzya"
+ * StringUtils.replaceChars("abcba", "bc", "y")   = "ayya"
+ * StringUtils.replaceChars("abcba", "bc", "yzx") = "ayzya"
+ * </pre>
+ *
+ * @param str  String to replace characters in, may be null
+ * @param searchChars  a set of characters to mos.search for, may be null
+ * @param replaceChars  a set of characters to replace, may be null
+ * @return modified String, {@code null} if null string input
+ * @since 2.0
+ */
+public static String replaceChars(final String str, final String searchChars, String replaceChars) {
+    if (isEmpty(str) || isEmpty(searchChars)) {
+        return str;
+    }
+    if (replaceChars == null) {
+        replaceChars = EMPTY;
+    }
+    boolean modified = false;
+    final int replaceCharsLength = replaceChars.length();
+    final int strLength = str.length();
+    final StringBuilder buf = new StringBuilder(strLength);
+    for (int i = 0; i < strLength; i++) {
+        final char ch = str.charAt(i);
+        final int index = searchChars.indexOf(ch);
+        if (index >= 0) {
+            modified = true;
+            if (index < replaceCharsLength) {
+                buf.append(replaceChars.charAt(index));
+            }
+        } else {
+            buf.append(ch);
+        }
+    }
+    if (modified) {
+        return buf.toString();
+    }
+    return str;
+}
+*********************************
+
+#### Score: 75.37106
+
+
+/**
+ * <p>Checks if a String {@code str} contains Unicode digits,
+ * if yes then concatenate all the digits in {@code str} and return it as a String.</p>
+ *
+ * <p>An empty ("") String will be returned if no digits found in {@code str}.</p>
+ *
+ * <pre>
+ * StringUtils.getDigits(null)  = null
+ * StringUtils.getDigits("")    = ""
+ * StringUtils.getDigits("abc") = ""
+ * StringUtils.getDigits("1000$") = "1000"
+ * StringUtils.getDigits("1123~45") = "112345"
+ * StringUtils.getDigits("(541) 754-3010") = "5417543010"
+ * StringUtils.getDigits("\u0967\u0968\u0969") = "\u0967\u0968\u0969"
+ * </pre>
+ *
+ * @param str the String to extract digits from, may be null
+ * @return String with only digits,
+ *           or an empty ("") String if no digits found,
+ *           or {@code null} String if {@code str} is null
+ * @since 3.6
+ */
+public static String getDigits(final String str) {
+    if (isEmpty(str)) {
+        return str;
+    }
+    final int sz = str.length();
+    final StringBuilder strDigits = new StringBuilder(sz);
+    for (int i = 0; i < sz; i++) {
+        final char tempChar = str.charAt(i);
+        if (Character.isDigit(tempChar)) {
+            strDigits.append(tempChar);
+        }
+    }
+    return strDigits.toString();
+}
+*********************************
+
+#### Score: 74.34416
+
+
+// Rotating (circular shift)
+// -----------------------------------------------------------------------
+/**
+ * <p>Rotate (circular shift) a String of {@code shift} characters.</p>
+ * <ul>
+ *  <li>If {@code shift > 0}, right circular shift (ex : ABCDEF =&gt; FABCDE)</li>
+ *  <li>If {@code shift < 0}, left circular shift (ex : ABCDEF =&gt; BCDEFA)</li>
+ * </ul>
+ *
+ * <pre>
+ * StringUtils.rotate(null, *)        = null
+ * StringUtils.rotate("", *)          = ""
+ * StringUtils.rotate("abcdefg", 0)   = "abcdefg"
+ * StringUtils.rotate("abcdefg", 2)   = "fgabcde"
+ * StringUtils.rotate("abcdefg", -2)  = "cdefgab"
+ * StringUtils.rotate("abcdefg", 7)   = "abcdefg"
+ * StringUtils.rotate("abcdefg", -7)  = "abcdefg"
+ * StringUtils.rotate("abcdefg", 9)   = "fgabcde"
+ * StringUtils.rotate("abcdefg", -9)  = "cdefgab"
+ * </pre>
+ *
+ * @param str  the String to rotate, may be null
+ * @param shift  number of time to shift (positive : right shift, negative : left shift)
+ * @return the rotated String,
+ *          or the original String if {@code shift == 0},
+ *          or {@code null} if null String input
+ * @since 3.5
+ */
+public static String rotate(final String str, final int shift) {
+    if (str == null) {
+        return null;
+    }
+    final int strLen = str.length();
+    if (shift == 0 || strLen == 0 || shift % strLen == 0) {
+        return str;
+    }
+    final StringBuilder builder = new StringBuilder(strLen);
+    final int offset = -(shift % strLen);
+    builder.append(substring(str, offset));
+    builder.append(substring(str, 0, offset));
+    return builder.toString();
+}
+*********************************
+
+#### Score: 73.56121
+
+
+/**
+ * <p>
+ * Wraps a string with a string if that string is missing from the start or end of the given string.
+ * </p>
+ *
+ * <pre>
+ * StringUtils.wrapIfMissing(null, *)         = null
+ * StringUtils.wrapIfMissing("", *)           = ""
+ * StringUtils.wrapIfMissing("ab", null)      = "ab"
+ * StringUtils.wrapIfMissing("ab", "x")       = "xabx"
+ * StringUtils.wrapIfMissing("ab", "\"")      = "\"ab\""
+ * StringUtils.wrapIfMissing("\"ab\"", "\"")  = "\"ab\""
+ * StringUtils.wrapIfMissing("ab", "'")       = "'ab'"
+ * StringUtils.wrapIfMissing("'abcd'", "'")   = "'abcd'"
+ * StringUtils.wrapIfMissing("\"abcd\"", "'") = "'\"abcd\"'"
+ * StringUtils.wrapIfMissing("'abcd'", "\"")  = "\"'abcd'\""
+ * StringUtils.wrapIfMissing("/", "/")  = "/"
+ * StringUtils.wrapIfMissing("a/b/c", "/")  = "/a/b/c/"
+ * StringUtils.wrapIfMissing("/a/b/c", "/")  = "/a/b/c/"
+ * StringUtils.wrapIfMissing("a/b/c/", "/")  = "/a/b/c/"
+ * </pre>
+ *
+ * @param str
+ *            the string to be wrapped, may be {@code null}
+ * @param wrapWith
+ *            the char that will wrap {@code str}
+ * @return the wrapped string, or {@code null} if {@code str==null}
+ * @since 3.5
+ */
+public static String wrapIfMissing(final String str, final String wrapWith) {
+    if (isEmpty(str) || isEmpty(wrapWith)) {
+        return str;
+    }
+    final StringBuilder builder = new StringBuilder(str.length() + wrapWith.length() + wrapWith.length());
+    if (!str.startsWith(wrapWith)) {
+        builder.append(wrapWith);
+    }
+    builder.append(str);
+    if (!str.endsWith(wrapWith)) {
+        builder.append(wrapWith);
+    }
+    return builder.toString();
+}
+*********************************
+
+#### Score: 73.21048
+
+
+/**
+ * <p>Replaces a String with another String inside a larger String,
+ * for the first {@code max} values of the mos.search String,
+ * case sensitively/insensisitively based on {@code ignoreCase} value.</p>
+ *
+ * <p>A {@code null} reference passed to this method is a no-op.</p>
+ *
+ * <pre>
+ * StringUtils.replace(null, *, *, *, false)         = null
+ * StringUtils.replace("", *, *, *, false)           = ""
+ * StringUtils.replace("any", null, *, *, false)     = "any"
+ * StringUtils.replace("any", *, null, *, false)     = "any"
+ * StringUtils.replace("any", "", *, *, false)       = "any"
+ * StringUtils.replace("any", *, *, 0, false)        = "any"
+ * StringUtils.replace("abaa", "a", null, -1, false) = "abaa"
+ * StringUtils.replace("abaa", "a", "", -1, false)   = "b"
+ * StringUtils.replace("abaa", "a", "z", 0, false)   = "abaa"
+ * StringUtils.replace("abaa", "A", "z", 1, false)   = "abaa"
+ * StringUtils.replace("abaa", "A", "z", 1, true)   = "zbaa"
+ * StringUtils.replace("abAa", "a", "z", 2, true)   = "zbza"
+ * StringUtils.replace("abAa", "a", "z", -1, true)  = "zbzz"
+ * </pre>
+ *
+ * @param text  text to mos.search and replace in, may be null
+ * @param searchString  the String to mos.search for (case insensitive), may be null
+ * @param replacement  the String to replace it with, may be null
+ * @param max  maximum number of values to replace, or {@code -1} if no maximum
+ * @param ignoreCase if true replace is case insensitive, otherwise case sensitive
+ * @return the text with any replacements processed,
+ *  {@code null} if null String input
+ */
+private static String replace(final String text, String searchString, final String replacement, int max, final boolean ignoreCase) {
+    if (isEmpty(text) || isEmpty(searchString) || replacement == null || max == 0) {
+        return text;
+    }
+    if (ignoreCase) {
+        searchString = searchString.toLowerCase();
+    }
+    int start = 0;
+    int end = ignoreCase ? indexOfIgnoreCase(text, searchString, start) : indexOf(text, searchString, start);
+    if (end == INDEX_NOT_FOUND) {
+        return text;
+    }
+    final int replLength = searchString.length();
+    int increase = replacement.length() - replLength;
+    increase = increase < 0 ? 0 : increase;
+    increase *= max < 0 ? 16 : max > 64 ? 64 : max;
+    final StringBuilder buf = new StringBuilder(text.length() + increase);
+    while (end != INDEX_NOT_FOUND) {
+        buf.append(text, start, end).append(replacement);
+        start = end + replLength;
+        if (--max == 0) {
+            break;
+        }
+        end = ignoreCase ? indexOfIgnoreCase(text, searchString, start) : indexOf(text, searchString, start);
+    }
+    buf.append(text, start, text.length());
+    return buf.toString();
+}

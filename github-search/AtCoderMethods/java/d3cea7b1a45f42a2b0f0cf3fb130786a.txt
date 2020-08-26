@@ -1,0 +1,10 @@
+public static long lcm(long... arr) {
+    if (arr.length == 1)
+        return arr[0];
+    if (arr.length == 2)
+        return lcmImpl(arr[0], arr[1]);
+    long[] newArr = new long[arr.length - 1];
+    System.arraycopy(arr, 2, newArr, 1, arr.length - 2);
+    newArr[0] = lcmImpl(arr[0], arr[1]);
+    return lcm(newArr);
+}

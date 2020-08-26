@@ -1,0 +1,10 @@
+
+void makeParent(int i) {
+    for (Integer next : list[i]) {
+        if (parent[next] != -1) {
+            continue;
+        }
+        parent[next] = i;
+        makeParent(next);
+    }
+}

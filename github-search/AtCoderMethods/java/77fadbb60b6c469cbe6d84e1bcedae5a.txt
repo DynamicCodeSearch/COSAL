@@ -1,0 +1,12 @@
+public static void main(String[] args) throws java.lang.Exception {
+    InputReader in = new InputReader(System.in);
+    PrintWriter w = new PrintWriter(System.out);
+    int n = in.nextInt();
+    long[] a = in.nextLongArray(n);
+    long ans = a[0];
+    for (int i = 1; i < n; i++) {
+        ans = lcm(ans, a[i]);
+    }
+    w.println(ans);
+    w.close();
+}

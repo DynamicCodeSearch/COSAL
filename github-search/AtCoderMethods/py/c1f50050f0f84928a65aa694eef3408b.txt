@@ -1,0 +1,10 @@
+def solve(person):
+
+    friends = graph[person]
+    fof = set()
+    for friend in friends:
+        for ff in graph[friend]:
+            fof.add(ff)
+    [fof.discard(friend) for friend in friends]
+    fof.discard(person)
+    return len(fof)

@@ -1,0 +1,26 @@
+static boolean[][] converge(boolean[][] b, boolean flag) {
+    int h = b.length;
+    int w = b[0].length;
+    boolean[][] b2 = new boolean[h][w];
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            b2[i][j] = b[i][j];
+        }
+    }
+    for (int i = 0; i < b.length; i++) {
+        for (int j = 0; j < b[i].length; j++) {
+            if (b[i][j] == flag) {
+                
+                for (int newi = i - 1; newi <= i + 1; newi++) {
+                    for (int newj = j - 1; newj <= j + 1; newj++) {
+                        if (newi >= 0 && newi < b.length && newj >= 0 && newj < b[i].length) {
+                            b2[newi][newj] = flag;
+                        
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return b2;
+}

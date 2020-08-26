@@ -1,0 +1,9 @@
+def walk(n):
+  children[n] = list(edges[n])
+  if n != 0:
+    children[n].remove(parent[n])
+  for i in children[n]:
+    parent[i] = n
+    walk(i)
+
+  d[n] = reduce(imin, (inc(d[i]) for i in children[n]), d[n])

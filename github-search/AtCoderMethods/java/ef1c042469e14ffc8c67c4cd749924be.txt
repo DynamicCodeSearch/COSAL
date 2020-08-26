@@ -1,0 +1,22 @@
+public static Node insert(Node a, int K, Node b) {
+    if (a == null)
+        return b;
+    fall(a);
+    if (b.priority < a.priority) {
+        if (K <= count(a.left)) {
+            a.left = insert(a.left, K, b);
+            setParent(a.left, a);
+        } else {
+            a.right = insert(a.right, K - count(a.left) - 1, b);
+            setParent(a.right, a);
+        }
+        return update(a);
+    } else {
+        Node[] ch = split(a, K);
+        b.left = ch[0];
+        b.right = ch[1];
+        setParent(b.left, b);
+        setParent(b.right, b);
+        return update(b);
+    }
+}

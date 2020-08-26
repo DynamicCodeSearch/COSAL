@@ -1,0 +1,14 @@
+def solve():
+    N, Q = map(int, sys.stdin.readline().split())
+    ban = [0] * N
+
+    for i in range(Q):
+        l, r = map(int, sys.stdin.readline().split())
+        l -= 1
+        ban[l] += 1
+        if r < N:
+            ban[r] -= 1
+
+    ban = [d % 2 for d in accumulate(ban)]
+
+    print(*ban, sep='')

@@ -1,0 +1,13 @@
+public static void main(String[] ard) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    PrintWriter pw = new PrintWriter(System.out);
+    String[] s = br.readLine().trim().split("\\s++");
+    int a = Integer.valueOf(s[0]);
+    int b = Integer.valueOf(s[1]);
+    int c = Integer.valueOf(s[2]);
+    int d = Integer.valueOf(s[3]);
+    int upper = Math.min(b, d);
+    int lower = Math.max(a, c);
+    pw.println(Math.max(0, upper - lower));
+    pw.close();
+}

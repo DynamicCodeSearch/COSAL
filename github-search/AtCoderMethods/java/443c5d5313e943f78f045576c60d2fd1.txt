@@ -1,0 +1,41 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    String[] numberOfRowAndColumn = reader.readLine().split(" ");
+    int numberOfRows = Integer.parseInt(numberOfRowAndColumn[0]);
+    int numberOfColumns = Integer.parseInt(numberOfRowAndColumn[1]);
+    String[] startAsString = reader.readLine().split(" ");
+    int startY = Integer.parseInt(startAsString[0]) - 1;
+    int startX = Integer.parseInt(startAsString[1]) - 1;
+    Point start = new Point(startX, startY);
+    String[] goalAsString = reader.readLine().split(" ");
+    int goalY = Integer.parseInt(goalAsString[0]) - 1;
+    int goalX = Integer.parseInt(goalAsString[1]) - 1;
+    Point goal = new Point(goalX, goalY);
+    String[][] maze = new String[numberOfRows][numberOfColumns];
+    for (int i = 0; i < numberOfRows; i++) {
+        String[] row = reader.readLine().split("");
+        for (int j = 0; j < numberOfColumns; j++) {
+            maze[i][j] = row[j];
+        }
+    }
+    boolean[][] visited = new boolean[numberOfRows][numberOfColumns];
+    Queue<Point> queue = new LinkedList<>();
+    queue.add(start);
+    while (!queue.isEmpty()) {
+        Point currentPoint = queue.poll();
+        if (reachGoal(currentPoint, goal)) {
+            goal.setParent(currentPoint.getParent());
+            break;
+        } else {
+            List<Point> neighbourPoints = getNeighbourPoints(currentPoint);
+            for (Point point : neighbourPoints) {
+                if (isInStage(point, numberOfRows, numberOfColumns) && !isVisisted(point, visited) && !isWall(maze[point.getY()][point.getX()])) {
+                    point.setParent(currentPoint);
+                    visited[point.getY()][point.getX()] = true;
+                    queue.add(point);
+                }
+            }
+        }
+    }
+    System.out.println(getShortestPath(goal).size() - 1);
+}

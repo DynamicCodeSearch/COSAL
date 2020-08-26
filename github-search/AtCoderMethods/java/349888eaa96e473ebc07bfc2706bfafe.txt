@@ -1,0 +1,14 @@
+public static void main(String[] args) throws Exception {
+    FastScanner sc = new FastScanner();
+    int l, x, y, s, d;
+    l = sc.nextInt();
+    x = sc.nextInt();
+    y = sc.nextInt();
+    s = sc.nextInt();
+    d = sc.nextInt();
+    int distF = d - s >= 0 ? d - s : l - (s - d);
+    int distB = d - s >= 0 ? l - (d - s) : s - d;
+    double res = (double) distF / (double) (x + y);
+    res = Math.min(res, y - x > 0 ? (double) distB / (double) (y - x) : Double.MAX_VALUE);
+    System.out.println(String.format("%.10f", res));
+}

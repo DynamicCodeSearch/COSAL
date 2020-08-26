@@ -1,0 +1,11 @@
+
+long calc(int a, int b, int p) {
+    if (b == 0)
+        return 1;
+    else if (b % 2 == 0) {
+        long d = calc(a, b / 2, p);
+        return (d * d) % p;
+    } else {
+        return (a * calc(a, b - 1, p)) % p;
+    }
+}

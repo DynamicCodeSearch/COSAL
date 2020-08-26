@@ -1,0 +1,37 @@
+public static void main(String[] args) throws FileNotFoundException {
+    InputReader in = new InputReader(System.in);
+    OutputStream outputStream = System.out;
+    PrintWriter out = new PrintWriter(outputStream);
+    
+    double xs = in.nextInt();
+    double ys = in.nextInt();
+    double xt = in.nextInt();
+    double yt = in.nextInt();
+    int n = in.nextInt();
+    double[][] p = new double[n + 2][3];
+    for (int i = 0; i < n; i++) {
+        p[i][0] = in.nextInt();
+        p[i][1] = in.nextInt();
+        p[i][2] = in.nextInt();
+    }
+    p[n][0] = xs;
+    p[n][1] = ys;
+    p[n][2] = 0;
+    p[n + 1][0] = xt;
+    p[n + 1][1] = yt;
+    p[n + 1][2] = 0;
+    List<Edge>[] edges = new List[n + 2];
+    for (int i = 0; i < n + 2; i++) {
+        edges[i] = new ArrayList<>();
+    }
+    for (int i = 0; i < n + 2; i++) {
+        for (int j = 0; j < n + 2; j++) {
+            edges[i].add(new Edge(j, md(p[i], p[j])));
+        }
+    }
+    double[] ans = new double[n + 2];
+    shortestPaths(edges, n, ans);
+    out.printf("%.10f\n", ans[n + 1]);
+    out.close();
+
+}

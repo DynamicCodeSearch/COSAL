@@ -1,0 +1,9 @@
+def solve():
+    for c in alp:
+        cand = S.find(c*2)
+        if cand != -1:
+            return (cand, cand+1)
+        for i in alp:
+            cand = S.find(c+i+c)
+            if cand != -1:
+                return (cand, cand+2)

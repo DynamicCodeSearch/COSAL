@@ -1,0 +1,17 @@
+def D_TrumpInsertionSort(N, c):
+    from bisect import bisect
+    lis = []  
+
+    for i in range(N):
+
+
+        idx = bisect(lis, c[i])
+        if idx >= len(lis):
+
+            lis.append(c[i])
+        else:
+
+            lis[idx] = c[i]
+
+    ans = N - len(lis)
+    return ans

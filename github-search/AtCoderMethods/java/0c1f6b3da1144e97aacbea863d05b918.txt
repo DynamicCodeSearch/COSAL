@@ -1,0 +1,9 @@
+public boolean equals(Object o) {
+    if (o instanceof Pair) {
+        Pair that = (Pair) o;
+        boolean res = (this.a == null && this.a == that.a || this.a != null && this.a.equals(that.a));
+        res = res && (this.b == null && this.b == that.b || this.b != null && this.b.equals(that.b));
+        return res;
+    }
+    return false;
+}

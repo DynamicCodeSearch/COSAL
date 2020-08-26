@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    int a = 0, b = 0, gar = 0, count = 0;
+    Scanner sc = new Scanner(System.in);
+    int m = sc.nextInt();
+    int n = sc.nextInt();
+    int N = sc.nextInt();
+    count = N;
+    a = N;
+    while (a >= m) {
+        gar += a % m;
+        a = a / m;
+        b = a * n;
+        count += b;
+        a = b;
+        if (a < m) {
+            a += gar;
+            gar = 0;
+        }
+    }
+    System.out.println(count + gar);
+}

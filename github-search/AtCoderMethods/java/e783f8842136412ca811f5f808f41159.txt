@@ -1,0 +1,15 @@
+public static void main(String[] args) throws IOException {
+    found = false;
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String line = br.readLine();
+    String[][] board = new String[8][8];
+    for (int i = 0; i < 8; i++) {
+        board[i] = line.split("");
+        line = br.readLine();
+    }
+    Search(board, 1);
+    if (!found) {
+        System.out.println("No Answer");
+        return;
+    }
+}

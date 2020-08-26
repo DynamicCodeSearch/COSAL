@@ -1,0 +1,24 @@
+def main():
+    s = sys.stdin.readline().rstrip()
+    lst = s.split(' ')
+    n = int(lst[0])
+    m = int(lst[1])
+
+    adj = defaultdict(list)
+    edges = []
+
+    for i in range(m):
+        s = sys.stdin.readline().rstrip()
+        lst = s.split(' ')
+        a = int(lst[0])
+        b = int(lst[1])
+        edges.append((a,b))
+        if not b in adj[a]:
+            adj[a].append(b)
+
+        if not a in adj[b]:
+            adj[b].append(a)
+
+    ans = solve(n,m,adj,edges)
+    print(ans)
+    return 0

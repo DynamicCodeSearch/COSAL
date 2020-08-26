@@ -1,0 +1,30 @@
+public void run() {
+    Scanner sc = new Scanner(System.in);
+    char[] clist = sc.next().toCharArray();
+    HashMap<Character, Boolean> hash = new HashMap<Character, Boolean>();
+    int odd = 0, even = 0;
+    for (char c : clist) {
+        if (hash.containsKey(c)) {
+            if (hash.get(c))
+                even++;
+            hash.put(c, !hash.get(c));
+        } else
+            hash.put(c, true);
+    }
+    for (boolean b : hash.values()) {
+        if (b)
+            odd++;
+    }
+    int ans = 0;
+    if (odd == 0)
+        ans = even * 2;
+    else if (even < odd)
+        ans = 1;
+    else if (even == odd)
+        ans = 3;
+    else {
+        ans = 1 + even / odd * 2;
+    }
+    System.out.println(ans);
+    sc.close();
+}

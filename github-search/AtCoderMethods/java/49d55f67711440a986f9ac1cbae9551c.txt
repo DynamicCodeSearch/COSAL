@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    InputReader sc = new InputReader(System.in);
+    int n = sc.nextInt();
+    int q = sc.nextInt();
+    int[] nums = new int[n];
+    for (int i = 0; i < n; i++) {
+        nums[i] = 0;
+    }
+    for (int i = 0; i < q; i++) {
+        int left = sc.nextInt();
+        int right = sc.nextInt();
+        int newnum = sc.nextInt();
+        for (int j = left - 1; j <= right - 1; j++) {
+            nums[j] = newnum;
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        System.out.println(nums[i]);
+    }
+}

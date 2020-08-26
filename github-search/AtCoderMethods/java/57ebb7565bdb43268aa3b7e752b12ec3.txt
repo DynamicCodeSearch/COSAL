@@ -1,0 +1,16 @@
+public int count(int a, int b) {
+    if (a == b) {
+        return 0;
+    }
+    if (Xn[a][0] >= b) {
+        return 1;
+    }
+    int base = 1;
+    for (int d = 1; d < Xn[a].length; d++) {
+        if (Xn[a][d] >= b) {
+            return base + count(Xn[a][d - 1], b);
+        }
+        base *= 2;
+    }
+    throw new RuntimeException();
+}

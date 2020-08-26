@@ -1,0 +1,44 @@
+void solve() {
+    S = sc.next();
+    Sarray = S.toCharArray();
+    T = sc.nextInt();
+    for (int i = 0; i < S.length(); i++) {
+        if (Sarray[i] == 'L') {
+            x--;
+        } else if (Sarray[i] == 'R') {
+            x++;
+        } else if (Sarray[i] == 'U') {
+            y++;
+        } else if (Sarray[i] == 'D') {
+            y--;
+        } else {
+            Count++;
+        }
+    }
+    for (int i = 0; i < Count; i++) {
+        if (T == 1) {
+            if (x >= 0) {
+                x++;
+            } else if (x < 0) {
+                x--;
+            }
+        } else {
+            if (x != 0) {
+                if (x > 0) {
+                    x--;
+                } else if (x < 0) {
+                    x++;
+                }
+            } else {
+                if (y > 0) {
+                    y--;
+                } else if (y < 0) {
+                    y++;
+                } else {
+                    x++;
+                }
+            }
+        }
+    }
+    System.out.println(Math.abs(x) + Math.abs(y));
+}

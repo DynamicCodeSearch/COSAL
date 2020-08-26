@@ -1,0 +1,9 @@
+static double dist(Tuple a, Tuple b) {
+    double p = Math.sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
+    p -= a.r + b.r;
+    if (p < 0) {
+        p = 0;
+    }
+    p += a.cost;
+    return p;
+}

@@ -1,0 +1,13 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int D = in.nextInt();
+    long res = 0;
+    for (int d = 1; d <= 20; d++) {
+        long[] vs = buildValues(d);
+        long next = calc(vs, D);
+        if (d % 2 == 1)
+            next *= 10;
+        res += next;
+    }
+    System.out.println(res);
+}

@@ -1,0 +1,10 @@
+public static String ns() throws IOException {
+    while (tok == null || !tok.hasMoreTokens()) {
+        try {
+            tok = new StringTokenizer(br.readLine());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    return tok.nextToken();
+}

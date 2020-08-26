@@ -1,0 +1,20 @@
+char[][] change(int i, int j, char[][] table) {
+    int H = table.length;
+    int W = table[0].length;
+    for (int k = -1; k <= 1; k++) {
+        for (int l = -1; l <= 1; l++) {
+            if (k == 0 && l == 0) {
+                table[i][j] = '*';
+                continue;
+            }
+            int ni = i + k;
+            int nj = j + l;
+            if (ni < 0 || nj < 0 || ni >= H || nj >= W)
+                continue;
+            if (table[ni][nj] == '#') {
+                table[ni][nj] = '&';
+            }
+        }
+    }
+    return table;
+}

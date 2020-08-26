@@ -1,0 +1,26 @@
+public static void main(String[] args) throws NumberFormatException, IOException {
+    try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
+        String line;
+        int aoki = 1;
+        int takahashi = 1;
+        int low_num = 0;
+        while ((line = br.readLine()) != null) {
+            if (low_num == 0) {
+                aoki = Integer.parseInt(line);
+                low_num++;
+            } else if (low_num == 1) {
+                takahashi = Integer.parseInt(line);
+                low_num++;
+            } else {
+                low_num = Integer.parseInt(line);
+                break;
+            }
+        }
+        for (int i = low_num; i <= Integer.MAX_VALUE; i++) {
+            if (i % aoki == 0 && i % takahashi == 0) {
+                System.out.println(i);
+                break;
+            }
+        }
+    }
+}

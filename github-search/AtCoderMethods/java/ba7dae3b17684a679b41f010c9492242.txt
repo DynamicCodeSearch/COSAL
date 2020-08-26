@@ -1,0 +1,21 @@
+static void solve() {
+    int n = ni();
+    int m = ni();
+    int[] a = new int[m];
+    int[] b = new int[m];
+    for (int i = 0; i < m; i++) {
+        a[i] = ni() - 1;
+        b[i] = ni() - 1;
+    }
+    int res = 0;
+    for (int i = 0; i < m; i++) {
+        UnionFind map = new UnionFind(n);
+        for (int j = 0; j < m; j++) {
+            if (j == i)
+                continue;
+            map.union(a[j], b[j]);
+        }
+        res += map.count(n) - 1;
+    }
+    out.println(res);
+}

@@ -1,0 +1,12 @@
+void run() {
+    s = sc.next();
+    n = s.length();
+    c = new char[n + (n - 1)];
+    for (int i = 0, j = 0; i < c.length; i++) {
+        if (i % 2 == 0)
+            c[i] = s.charAt(j++);
+    }
+    ans = 0;
+    dfs(1);
+    System.out.println(ans);
+}

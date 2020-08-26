@@ -1,0 +1,18 @@
+def main():
+    T = int(input())
+    N = int(input())
+    A_list = list(map(int, input().split()))
+    M = int(input())
+    B_list = list(map(int, input().split()))
+
+    used = [False] * N
+    for b in B_list:
+        for i, a in enumerate(A_list):
+            if 0 <= b - a <= T and not used[i]:
+                used[i] = True
+                break
+        else:
+            print("no")
+            return
+
+    print("yes")

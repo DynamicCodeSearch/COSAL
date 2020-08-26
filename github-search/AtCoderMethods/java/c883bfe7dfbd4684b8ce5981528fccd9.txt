@@ -1,0 +1,41 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    n = sc.nextInt();
+    arr = new int[n];
+    pos = new int[(int) 1e5 * 2 + 3];
+    int[] even = new int[n], odd = new int[n];
+    for (int i = 0; i < n; i++) {
+        arr[i] = sc.nextInt();
+        pos[arr[i]] = i;
+        if (i % 2 == 0) {
+            even[i] = arr[i];
+            odd[i] = Integer.MAX_VALUE;
+        } else {
+            odd[i] = arr[i];
+            even[i] = Integer.MAX_VALUE;
+        }
+    }
+    stEven = new SegmentTree(even);
+    stOdd = new SegmentTree(odd);
+    ArrayList<Integer> res = new ArrayList<>();
+    Quadruple first = solve(0, n - 1);
+    PriorityQueue<Quadruple> pq = new PriorityQueue<>();
+    pq.add(first);
+    for (int i = 0; i < n / 2; i++) {
+        Quadruple cur = pq.poll();
+        res.add(cur.first);
+        res.add(cur.second);
+        int pos1 = pos[cur.first], pos2 = pos[cur.second];
+        pq.add(solve(cur.l, pos1 - 1));
+        pq.add(solve(pos1 + 1, pos2 - 1));
+        pq.add(solve(pos2 + 1, cur.r));
+    }
+    for (int i = 0; i < res.size(); i++) {
+        if (i > 0)
+            out.print(" ");
+        out.print(res.get(i));
+    }
+    out.println();
+    out.close();
+}

@@ -1,0 +1,6 @@
+def is_valid_group(pairs, group):
+    for i in range(len(group)):
+        for j in range(i + 1, len(group)):
+            if [group[i] + 1, group[j] + 1] not in pairs and [group[j] + 1, group[i] + 1] not in pairs:
+                return False
+    return True

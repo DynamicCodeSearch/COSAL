@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] coin = new int[N];
+    for (int i = 0; i < N; i++) {
+        coin[i] = sc.nextInt();
+    }
+    int[] divisor = new int[N];
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            if (j != i && coin[i] % coin[j] == 0)
+                divisor[i]++;
+        }
+    }
+    double ans = 0;
+    for (int i = 0; i < N; i++) {
+        if (divisor[i] % 2 == 0) {
+            ans += (double) (divisor[i] + 2) / (double) (2 * (divisor[i] + 1));
+        } else {
+            ans += 0.5;
+        }
+    }
+    System.out.println(ans);
+}

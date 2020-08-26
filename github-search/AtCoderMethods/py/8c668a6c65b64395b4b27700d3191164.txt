@@ -1,0 +1,12 @@
+def step(xsrc, ysrc, wsrc):
+    w = list(wsrc)
+    xdst, ydst = xsrc+w[0], ysrc+w[1]
+
+    if xdst < 0 or 9 <= xdst:
+        w[0] *= -1
+        xdst = xsrc+w[0]
+    if ydst < 0 or 9 <= ydst:
+        w[1] *= -1
+        ydst = ysrc+w[1]
+
+    return xdst, ydst, tuple(w)

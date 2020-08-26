@@ -1,0 +1,50 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int R = sc.nextInt();
+    int C = sc.nextInt();
+    int K = sc.nextInt();
+    char[][] board = new char[R][C];
+    for (int i = 0; i < R; i++) {
+        String s = sc.next();
+        for (int j = 0; j < C; j++) {
+            board[i][j] = s.charAt(j);
+        }
+    }
+    int[][] up = new int[R][C];
+    for (int j = 0; j < C; j++) {
+        if (board[0][j] == 'o')
+            up[0][j] = 1;
+    }
+    for (int i = 1; i < R; i++) {
+        for (int j = 0; j < C; j++) {
+            if (board[i][j] == 'o')
+                up[i][j] = up[i - 1][j] + 1;
+        }
+    }
+    int[][] down = new int[R][C];
+    for (int j = 0; j < C; j++) {
+        if (board[R - 1][j] == 'o')
+            down[R - 1][j] = 1;
+    }
+    for (int i = R - 2; i >= 0; i--) {
+        for (int j = 0; j < C; j++) {
+            if (board[i][j] == 'o')
+                down[i][j] = down[i + 1][j] + 1;
+        }
+    }
+    int ans = 0;
+    for (int x = K - 1; x <= R - K; x++) {
+        for (int y = K - 1; y <= C - K; y++) {
+            boolean flg = true;
+            for (int z = y - (K - 1); z <= y + (K - 1); z++) {
+                if ((up[x][z] < K - Math.abs(z - y)) || (down[x][z] < K - Math.abs(z - y))) {
+                    flg = false;
+                    break;
+                }
+            }
+            if (flg)
+                ans++;
+        }
+    }
+    System.out.println(ans);
+}

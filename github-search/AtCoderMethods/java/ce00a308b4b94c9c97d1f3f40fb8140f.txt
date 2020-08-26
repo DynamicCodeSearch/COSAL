@@ -1,0 +1,37 @@
+void run() {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    long W = sc.nextLong();
+    long[] w = new long[N];
+    long[] v = new long[N];
+    ArrayList<Long>[] lis = new ArrayList[4];
+    for (int i = 0; i < 4; ++i) lis[i] = new ArrayList<>();
+    for (int i = 0; i < N; ++i) {
+        w[i] = sc.nextLong();
+        v[i] = sc.nextLong();
+        lis[(int) (w[i] - w[0])].add(-v[i]);
+    }
+    for (int i = 0; i < 4; ++i) {
+        Collections.sort(lis[i]);
+    }
+    long[][] value = new long[4][];
+    for (int i = 0; i < 4; ++i) {
+        value[i] = new long[lis[i].size() + 1];
+        for (int j = 0; j < lis[i].size(); ++j) {
+            value[i][j + 1] = value[i][j] + (-lis[i].get(j));
+        }
+    }
+    long ans = 0;
+    for (int i = 0; i <= lis[0].size(); ++i) {
+        for (int j = 0; j <= lis[1].size(); ++j) {
+            for (int k = 0; k <= lis[2].size(); ++k) {
+                for (int l = 0; l <= lis[3].size(); ++l) {
+                    if (w[0] * (i + j + k + l) + j + 2 * k + 3 * l > W)
+                        continue;
+                    ans = Math.max(ans, value[0][i] + value[1][j] + value[2][k] + value[3][l]);
+                }
+            }
+        }
+    }
+    System.out.println(ans);
+}

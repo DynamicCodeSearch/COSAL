@@ -1,0 +1,33 @@
+void run() {
+    int n = ni();
+    int q = ni();
+    int[] x = new int[n];
+    int[] r = new int[n];
+    int[] h = new int[n];
+    for (int i = 0; i < n; ++i) {
+        x[i] = ni() + 1;
+        r[i] = ni();
+        h[i] = ni();
+    }
+    BIT<Double> bit = new BIT<>(2 * 10000 + 1, (a, b) -> a + b, () -> 0.0);
+    for (int i = 1; i <= 2 * 10000 + 1; ++i) {
+        double sum = 0;
+        for (int j = 0; j < n; ++j) {
+            if (x[j] <= i && i < x[j] + h[j]) {
+                double h1 = h[j] - (i - x[j]);
+                double h2 = h[j] - (i + 1 - x[j]);
+                double r1 = (double) r[j] * h1 / h[j];
+                double r2 = (double) r[j] * h2 / h[j];
+                double v1 = 1.0 / 3.0 * Math.PI * r1 * r1 * h1;
+                double v2 = 1.0 / 3.0 * Math.PI * r2 * r2 * h2;
+                sum += v1 - v2;
+            }
+        }
+        bit.update(i, sum);
+    }
+    for (int i = 0; i < q; ++i) {
+        int a = ni();
+        int b = ni();
+        System.out.printf("%.6f\n", bit.reduce(b, () -> 0.0) - bit.reduce(a, () -> 0.0));
+    }
+}

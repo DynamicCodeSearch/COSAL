@@ -1,0 +1,9 @@
+public static int getGroup(int[] _checked, int _index) {
+    if (_index == _checked[_index]) {
+        return _index;
+    } else {
+        int result = getGroup(_checked, _checked[_index]);
+        _checked[_index] = result;
+        return result;
+    }
+}

@@ -1,0 +1,37 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int D = sc.nextInt();
+    int K = sc.nextInt();
+    int[] l = new int[D];
+    int[] r = new int[D];
+    int[] s = new int[K];
+    int[] t = new int[K];
+    for (int i = 0; i < D; i++) {
+        l[i] = sc.nextInt();
+        r[i] = sc.nextInt();
+    }
+    for (int i = 0; i < K; i++) {
+        s[i] = sc.nextInt();
+        t[i] = sc.nextInt();
+    }
+    int[] ans = new int[K];
+    for (int i = 0; i < K; i++) {
+        int move = s[i];
+        int count = 0;
+        for (int j = 0; j < D; j++) {
+            count++;
+            if (l[j] <= move && move <= r[j]) {
+                if (s[i] < t[i]) {
+                    move = Math.min(r[j], t[i]);
+                } else {
+                    move = Math.max(l[j], t[i]);
+                }
+            }
+            if (move == t[i]) {
+                break;
+            }
+        }
+        System.out.println(count);
+    }
+}

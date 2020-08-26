@@ -1,0 +1,44 @@
+public static void main(String[] args) {
+    try {
+        
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+        String[] strArr = br.readLine().split(" ");
+        int n = Integer.parseInt(strArr[0]);
+        int m = Integer.parseInt(strArr[1]);
+        int[][] st = new int[n][2];
+        for (int i = 0; i < n; i++) {
+            String[] strArr2 = br.readLine().split(" ");
+            st[i][0] = Integer.parseInt(strArr2[0]);
+            st[i][1] = Integer.parseInt(strArr2[1]);
+        }
+        int[][] check = new int[m][2];
+        for (int i = 0; i < m; i++) {
+            String[] strArr2 = br.readLine().split(" ");
+            check[i][0] = Integer.parseInt(strArr2[0]);
+            check[i][1] = Integer.parseInt(strArr2[1]);
+        }
+        for (int i = 0; i < n; i++) {
+            int min = -1;
+            int ansTemp = 0;
+            for (int j = 0; j < m; j++) {
+                int xNum = st[i][0] - check[j][0];
+                if (xNum < 0) {
+                    xNum = xNum * -1;
+                }
+                int yNum = st[i][1] - check[j][1];
+                if (yNum < 0) {
+                    yNum = yNum * -1;
+                }
+                int temp = xNum + yNum;
+                if (j == 0 || min > temp) {
+                    min = temp;
+                    ansTemp = j + 1;
+                }
+            }
+            System.out.println(ansTemp);
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

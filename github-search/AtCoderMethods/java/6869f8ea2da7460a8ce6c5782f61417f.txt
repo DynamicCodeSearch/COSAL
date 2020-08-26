@@ -1,0 +1,14 @@
+static int canTakeFrom(int head) {
+    if (head > n) {
+        return -1;
+    }
+    int tk = 0;
+    for (int c = 18; c >= 0; c--) {
+        int th = nextAny[c][head];
+        if (th <= n) {
+            tk += 1 << c;
+            head = th;
+        }
+    }
+    return tk;
+}

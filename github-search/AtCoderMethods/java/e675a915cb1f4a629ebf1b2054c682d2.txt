@@ -1,0 +1,43 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int h = sc.nextInt();
+    int w = sc.nextInt();
+    String[][] map = new String[h][w];
+    for (int i = 0; i < h; i++) {
+        String s = sc.next();
+        String[] tmp = s.split("");
+        for (int j = 0; j < w; j++) {
+            map[i][j] = tmp[j];
+        }
+    }
+    int[] posx = { -1, -1, -1, 0, 0, 1, 1, 1 };
+    int[] posy = { -1, 0, 1, -1, 1, -1, 0, 1 };
+    int count = 0;
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            if (map[i][j].equals(".")) {
+                for (int k = 0; k < 8; k++) {
+                    int tmpx = i + posx[k];
+                    int tmpy = j + posy[k];
+                    if (tmpx < 0 || tmpx >= h) {
+                        continue;
+                    } else if (tmpy < 0 || tmpy >= w) {
+                        continue;
+                    } else {
+                        if (map[tmpx][tmpy].equals("#")) {
+                            count++;
+                        }
+                    }
+                }
+                map[i][j] = String.valueOf(count);
+            }
+            count = 0;
+        }
+    }
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            System.out.print(map[i][j]);
+        }
+        System.out.println();
+    }
+}

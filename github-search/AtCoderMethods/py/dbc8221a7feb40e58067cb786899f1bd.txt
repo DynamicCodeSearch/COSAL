@@ -1,0 +1,16 @@
+def main():
+    n = I()
+    a = [I() for _ in range(n)]
+    r = [-inf] + [inf] * (n+1)
+    r[1] = a[0]
+    m = 2
+    for c in a[1:]:
+        def f(x):
+            return r[x] < c
+        t = bs(f,0,m)
+        if r[t] > c:
+            r[t] = c
+        if t >= m:
+            m = t+1
+
+    return n - m + 1

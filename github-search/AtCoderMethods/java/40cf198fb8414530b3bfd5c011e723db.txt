@@ -1,0 +1,42 @@
+public static void solve() throws IOException {
+    
+    FastReader sc = new FastReader();
+    int n = sc.I();
+    int m = sc.I();
+    int r = sc.I();
+    a = new int[r + 1];
+    for (int i = 1; i <= r; i++) {
+        a[i] = sc.I();
+    }
+    graph = new long[n + 1][n + 1];
+    dist = new long[n + 1][n + 1];
+    for (int i = 0; i <= n; i++) {
+        Arrays.fill(graph[i], Integer.MAX_VALUE);
+        Arrays.fill(dist[i], Integer.MAX_VALUE);
+    }
+    for (int i = 1; i <= m; i++) {
+        int x = sc.I();
+        int y = sc.I();
+        long cost = sc.L();
+        graph[x][y] = cost;
+        graph[y][x] = cost;
+    }
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= n; j++) {
+            dist[i][j] = graph[i][j];
+        }
+    }
+    for (int k = 1; k <= n; k++) {
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n; j++) {
+                dist[i][j] = Math.min(dist[i][j], dist[i][k] + dist[k][j]);
+            }
+        }
+    }
+    vis = new boolean[n + 1];
+    for (int i = 1; i <= r; i++) {
+        dfs(a[i], 0, r);
+    }
+    pw.println(ans);
+    pw.close();
+}

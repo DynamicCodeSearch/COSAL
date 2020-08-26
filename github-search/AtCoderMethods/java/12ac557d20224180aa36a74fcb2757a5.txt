@@ -1,0 +1,46 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int N = 0, M = 0;
+    N = scan.nextInt();
+    M = scan.nextInt();
+    int K = 0;
+    int[] arr = new int[100000];
+    K = scan.nextInt();
+    int l = 0;
+    for (int i = 0; i < K; i++) {
+        arr[i] = scan.nextInt();
+    }
+    int[][] A = new int[N][M];
+    int flag = 1;
+    for (int i = 0; i < N; i++) {
+        if (flag == 1) {
+            for (int j = M - 1; j >= 0; j--) {
+                if (arr[l] == 0) {
+                    l++;
+                    arr[l]--;
+                } else {
+                    arr[l]--;
+                }
+                A[i][j] = l + 1;
+            }
+        } else {
+            for (int j = 0; j < M; j++) {
+                if (arr[l] == 0) {
+                    l++;
+                    arr[l]--;
+                } else {
+                    arr[l]--;
+                }
+                A[i][j] = l + 1;
+            }
+        }
+        flag *= -1;
+    }
+    flag = 1;
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < M; j++) {
+            System.out.print(A[i][j] + " ");
+        }
+        System.out.println();
+    }
+}

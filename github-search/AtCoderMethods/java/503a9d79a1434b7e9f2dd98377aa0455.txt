@@ -1,0 +1,8 @@
+static long[][] mul(long[][] a, long[][] b) {
+    long[][] res = new long[2][2];
+    for (int i = 0; i < 2; i++) for (int j = 0; j < 2; j++) for (int k = 0; k < 2; k++) {
+        res[i][j] += (a[i][k] * b[k][j]) % m;
+        res[i][j] %= m;
+    }
+    return res;
+}

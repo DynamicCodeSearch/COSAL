@@ -1,0 +1,15 @@
+public static void main(String[] __) {
+    h = s.nextInt();
+    w = s.nextInt();
+    f = new int[h][w];
+    res = new int[h][w];
+    checked = new boolean[h][w];
+    for (int i = 0; i < h; i++) for (int j = 0; j < w; j++) f[i][j] = Integer.parseInt(s.next());
+    for (int i = 0; i < h; i++) for (int j = 0; j < w; j++) rec(new MyPoint(i, j));
+    long sum = 0;
+    for (int i = 0; i < h; i++) for (int j = 0; j < w; j++) {
+        sum += res[i][j];
+        sum %= mod;
+    }
+    System.out.println(sum);
+}

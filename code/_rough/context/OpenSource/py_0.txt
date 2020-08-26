@@ -1,0 +1,289 @@
+### Py Tokens: node, map, ordered, dictionary, root, attribute, object, argument, len, update, sentinel, regular, insertion, initialize, ordereddict, signature, needs, typeerror, keyword, type, arbitrary, dictionaries, descriptor, recommended, dict, arguments, none, error, expected, got, attributeerror, order 
+
+### Py functions
+
+def __init__(*args, **kwds):
+
+  if not args:
+    raise TypeError("descriptor '__init__' of 'OrderedDict' object "
+                    "needs an argument")
+  self = args[0]
+  args = args[1:]
+  if len(args) > 1:
+    raise TypeError('expected at most 1 arguments, got %d' % len(args))
+  try:
+    self.__root
+  except AttributeError:
+    self.__root = root = []                     
+    root[:] = [root, root, None]
+    self.__map = {}
+  self.__update(*args, **kwds)
+*********************************
+
+#### Score: 7.37630
+
+
+#### Java Tokens: template, string, nullable, valueof, placeholders, run, lenient, braces, strings, extra, builder, lenientformat, placeholder, value, (object[])null, placeholderstart, format, length, start, index, substituting, args, square, lenienttostring, templatestart, arguments, stringbuilder, indexof, tostring, append, object 
+
+
+
+public static String lenientFormat(@Nullable String template, @Nullable Object@Nullable ... args) {
+    
+    template = String.valueOf(template);
+    if (args == null) {
+        args = new Object[] { "(Object[])null" };
+    } else {
+        for (int i = 0; i < args.length; i++) {
+            args[i] = lenientToString(args[i]);
+        }
+    }
+    
+    StringBuilder builder = new StringBuilder(template.length() + 16 * args.length);
+    int templateStart = 0;
+    int i = 0;
+    while (i < args.length) {
+        int placeholderStart = template.indexOf("%s", templateStart);
+        if (placeholderStart == -1) {
+            break;
+        }
+        builder.append(template, templateStart, placeholderStart);
+        builder.append(args[i++]);
+        templateStart = placeholderStart + 2;
+    }
+    builder.append(template, templateStart, template.length());
+    
+    if (i < args.length) {
+        builder.append(" [");
+        builder.append(args[i++]);
+        while (i < args.length) {
+            builder.append(", ");
+            builder.append(args[i++]);
+        }
+        builder.append(']');
+    }
+    return builder.toString();
+}
+*********************************
+
+#### Score: 7.13886
+
+
+#### Java Tokens: exception, argument, eager, gwt, large:, integer, repeated, required, empty, zero, number, copies, checkargument, len, longsize, hey, large, containing, count, index, heyheyhey, check, illegal, benchmark, input, system, null, size, invalid, bounds, returns, must, illegalargumentexception, getchars, code, string, stringsrepeatbenchmark, checknotnull, count:, update, arrayindexoutofboundsexception, non, example, times, negative, concatenated, strings, array, param, arraycopy, repeat, get, length, nonnegative, specific, non-null, consisting, modify, chars 
+
+
+public static String repeat(String string, int count) {
+    
+    checkNotNull(string);
+    if (count <= 1) {
+        checkArgument(count >= 0, "invalid count: %s", count);
+        return (count == 0) ? "" : string;
+    }
+    
+    final int len = string.length();
+    final long longSize = (long) len * (long) count;
+    final int size = (int) longSize;
+    if (size != longSize) {
+        throw new ArrayIndexOutOfBoundsException("Required array size too large: " + longSize);
+    }
+    final char[] array = new char[size];
+    string.getChars(0, len, array, 0);
+    int n;
+    for (n = len; n < size - n; n <<= 1) {
+        System.arraycopy(array, 0, array, n, n);
+    }
+    System.arraycopy(array, 0, array, n, size - n);
+    return new String(array);
+}
+*********************************
+
+#### Score: 5.92882
+
+
+#### Java Tokens: plane, none, cslen, searchlast, empty, searchlen, character, high, len, fine, utils, ishighsurrogate, always, pre, last, like, index, check, abab, sequence, ab1, contains, checks, invalid, returns, searchchars, basic, containsnone, since, changed, code, string, signature, charsequence, characters, search, array, param, low, missing, surrogate, charat, multilingual, contain, may, length, cslast, stringutils, char, abz, certain, indexof, chars 
+
+
+
+
+public static boolean containsNone(final CharSequence cs, final char... searchChars) {
+    if (cs == null || searchChars == null) {
+        return true;
+    }
+    final int csLen = cs.length();
+    final int csLast = csLen - 1;
+    final int searchLen = searchChars.length;
+    final int searchLast = searchLen - 1;
+    for (int i = 0; i < csLen; i++) {
+        final char ch = cs.charAt(i);
+        for (int j = 0; j < searchLen; j++) {
+            if (searchChars[j] == ch) {
+                if (Character.isHighSurrogate(ch)) {
+                    if (j == searchLast) {
+                        
+                        return false;
+                    }
+                    if (i < csLast && searchChars[j + 1] == cs.charAt(i + 1)) {
+                        return false;
+                    }
+                } else {
+                    
+                    return false;
+                }
+            }
+        }
+    }
+    return true;
+}
+*********************************
+
+#### Score: 5.36576
+
+
+#### Java Tokens: joins, code, string, added, signature, use, provided, objects, values, type, empty, safevarargs, strings, array, param, utils, represented, join, varargs, together, pre, abc, may, within, containing, joined, list, specific, separator, stringutils, single, input, null, elements, safe, since, changed 
+
+
+
+
+@SafeVarargs
+public static <T> String join(final T... elements) {
+    return join(elements, null);
+}
+*********************************
+
+#### Score: 4.87876
+
+
+#### Java Tokens: exception, softwx, release, deprecated, upper, javadocs, http://blog.softwx.net/2014/12/optimizing-levenshtein-algorithm-in-c.html, number, character, deletion, tmp, utils, https://commons.apache.org/proper/commons-text/javadocs/api-release/org/apache/commons/text/similarity/levenshteindistance.html, optimizing, href, text, https, api, algorithm, hippo, zzzzzzzz, single-dimensional, commons-text, input, left, must, math, hello, illegalargumentexception, signature, iterates, another, getlevenshteindistance, consume, cell, two, charsequence, commons, result, see, min, strings, upper_left, top, get, t_j, jth, change, one, stringutils, single, fly, char, minimum, first, argument, dimensional, use, blog, aaapppp, second, either, apache, frog, find, html, net, pre, swap, less, illegal, modification, sequence, hallo, http, insertion, elephant, fog, since, changed, levenshtein, substitution, code, memory, distance, string, needed, changes, proper, indexes, array, param, similarity, diagonally, charat, cost, org, ant, implementation, length, levenshteindistance, uses 
+
+
+
+
+@Deprecated
+public static int getLevenshteinDistance(CharSequence s, CharSequence t) {
+    if (s == null || t == null) {
+        throw new IllegalArgumentException("Strings must not be null");
+    }
+    int n = s.length();
+    int m = t.length();
+    if (n == 0) {
+        return m;
+    } else if (m == 0) {
+        return n;
+    }
+    if (n > m) {
+        
+        final CharSequence tmp = s;
+        s = t;
+        t = tmp;
+        n = m;
+        m = t.length();
+    }
+    final int[] p = new int[n + 1];
+    
+    
+    int i;
+    
+    int j;
+    int upper_left;
+    int upper;
+    
+    char t_j;
+    int cost;
+    for (i = 0; i <= n; i++) {
+        p[i] = i;
+    }
+    for (j = 1; j <= m; j++) {
+        upper_left = p[0];
+        t_j = t.charAt(j - 1);
+        p[0] = j;
+        for (i = 1; i <= n; i++) {
+            upper = p[i];
+            cost = s.charAt(i - 1) == t_j ? 0 : 1;
+            
+            p[i] = Math.min(Math.min(p[i - 1] + 1, p[i] + 1), upper_left + cost);
+            upper_left = upper;
+        }
+    }
+    return p[n];
+}
+*********************************
+
+#### Score: 4.86289
+
+
+#### Java Tokens: given, using, string, lower-case, lower, torootlowercase, link, source, converts, manner, locale, stringutils, param, utils, root, tolowercase, safe, case, null-safe, since 
+
+
+public static String toRootLowerCase(final String source) {
+    return source == null ? null : source.toLowerCase(Locale.ROOT);
+}
+*********************************
+
+#### Score: 4.86289
+
+
+#### Java Tokens: given, using, string, upper, link, source, converts, manner, torootuppercase, locale, stringutils, upper-case, param, utils, root, safe, touppercase, case, null-safe, since 
+
+
+public static String toRootUpperCase(final String source) {
+    return source == null ? null : source.toUpperCase(Locale.ROOT);
+}
+*********************************
+
+#### Score: 4.84730
+
+
+#### Java Tokens: code, string, signature, none, charsequence, empty, characters, character, tochararray, array, param, utils, xyz, invalidchars, always, pre, contain, may, check, abab, stringutils, sequence, ab1, contains, checks, char, invalid, abz, returns, containsnone, certain, chars, since, changed 
+
+
+public static boolean containsNone(final CharSequence cs, final String invalidChars) {
+    if (cs == null || invalidChars == null) {
+        return true;
+    }
+    return containsNone(cs, invalidChars.toCharArray());
+}
+*********************************
+
+#### Score: 4.63077
+
+
+#### Java Tokens: blank, code, string, signature, link, charsequence, empty, strlen, character, len, param, utils, charat, defined, pre, may, length, isblank, check, str, stringutils, sequence, checks, bob, char, whitespace, iswhitespace, since, changed 
+
+
+
+
+public static boolean isBlank(final CharSequence cs) {
+    int strLen = length(cs);
+    if (strLen == 0) {
+        return true;
+    }
+    for (int i = 0; i < strLen; i++) {
+        if (!Character.isWhitespace(cs.charAt(i))) {
+            return false;
+        }
+    }
+    return true;
+}
+*********************************
+
+#### Score: 4.60901
+
+
+#### Java Tokens: larger, exception, illegalargumentexception, argument, code, string, centered, isempty, space, empty, rightpad, zero, strlen, yayz, pad, negative, len, param, utils, centers, padstr, value, treated, leftpad, pre, abc, may, supplied, center, length, right, less, illegal, abcd, str, stringutils, input, size, pads, left, uses, returns, must, returned 
+
+
+public static String center(String str, final int size, String padStr) {
+    if (str == null || size <= 0) {
+        return str;
+    }
+    if (isEmpty(padStr)) {
+        padStr = SPACE;
+    }
+    final int strLen = str.length();
+    final int pads = size - strLen;
+    if (pads <= 0) {
+        return str;
+    }
+    str = leftPad(str, strLen + pads / 2, padStr);
+    str = rightPad(str, size, padStr);
+    return str;
+}

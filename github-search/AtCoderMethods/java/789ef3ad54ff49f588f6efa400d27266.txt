@@ -1,0 +1,13 @@
+public long cNPickK(long n, long k) {
+    if (n < 0 || k < 0 || n < k) {
+        return 0;
+    }
+    if (n == 0 || n == 1) {
+        return 1;
+    }
+    if (n - k < k) {
+        
+        k = n - k;
+    }
+    return divideFactorial(divideFactorial(nominatorFactorialCache[(int) n], k), n - k);
+}

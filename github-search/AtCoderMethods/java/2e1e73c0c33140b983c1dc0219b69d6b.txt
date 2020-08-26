@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] s = new int[N];
+    int sum = 0;
+    for (int i = 0; i < N; i++) {
+        s[i] = sc.nextInt();
+        sum += s[i];
+    }
+    if (sum % 10 == 0) {
+        Arrays.sort(s);
+        for (int i = 0; i < N; i++) {
+            if (s[i] % 10 != 0) {
+                sum -= s[i];
+                System.out.println(String.valueOf(sum));
+                return;
+            }
+        }
+        System.out.println("0");
+    } else {
+        System.out.println(String.valueOf(sum));
+    }
+}

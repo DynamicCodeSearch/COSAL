@@ -1,0 +1,17 @@
+private static void makePrimeList(int n) {
+    List<Integer> searchList = new ArrayList<>();
+    for (int i = 2; i <= n; ++i) {
+        searchList.add(i);
+    }
+    primeList = new ArrayList<>(n);
+    do {
+        int prime = searchList.remove(0);
+        primeList.add(prime);
+        int i = 2;
+        while (prime * i <= n) {
+            searchList.remove((Integer) (prime * i));
+            ++i;
+        }
+    } while (searchList.size() > 0 && searchList.get(0) <= Math.sqrt(n));
+    primeList.addAll(searchList);
+}

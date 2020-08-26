@@ -1,0 +1,26 @@
+private static void solve() throws IOException {
+    Arrays.sort(A, 1, N + 1);
+    int a = 0, cnta = 0, b = 0, cntb = 0;
+    for (int i = N; i >= 1; --i) {
+        if (a == A[i]) {
+            ++cnta;
+        } else if (a == 0 || cnta < 2) {
+            a = A[i];
+            cnta = 1;
+        } else if (b == A[i]) {
+            ++cntb;
+        } else if (b == 0 || cntb < 2) {
+            b = A[i];
+            cntb = 1;
+        }
+        if (cnta >= 4) {
+            output.println((long) a * a);
+            return;
+        }
+        if (cnta >= 2 && cntb >= 2) {
+            output.println((long) a * b);
+            return;
+        }
+    }
+    output.println(0);
+}

@@ -1,0 +1,17 @@
+def main():
+    N, M = map(int, input().split())
+    a, b = [0] * N, [0] * N
+    for i in range(N):
+        a[i], b[i] = map(int, input().split())
+    c, d = [0] * M, [0] * M
+    for i in range(M):
+        c[i], d[i] = map(int, input().split())
+    for i in range(N):
+        min_d = 2 * 10 ** 8
+        min_d_j = 0
+        for j in range(M):
+            md = abs(a[i] - c[j]) + abs(b[i] - d[j])
+            if md < min_d:
+                min_d = md
+                min_d_j = j
+        print(min_d_j + 1)

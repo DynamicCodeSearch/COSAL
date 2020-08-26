@@ -1,0 +1,21 @@
+def solve(S):
+    array = [0 for _ in range(26)]
+    for s in S:
+        array[ord(s)-97] += 1
+    even = 0
+    for a in array:
+        even += int(a/2)
+    odd = 0
+    for a in array:
+        if a % 2 == 1:
+            odd += 1
+
+
+    result = 0
+    if odd == 0:
+        result = even * 2
+    elif odd == 1:
+        result = even * 2 + 1
+    else:
+        result = int(even/odd) * 2 + 1
+    return result

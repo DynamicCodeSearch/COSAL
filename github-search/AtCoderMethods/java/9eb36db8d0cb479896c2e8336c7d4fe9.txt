@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    final int N = sc.nextInt();
+    final int K = sc.nextInt();
+    long[] s = new long[N];
+    int ans = 0;
+    for (int i = 0; i < N; i++) {
+        s[i] = sc.nextLong();
+        if (s[i] == 0)
+            ans = N;
+    }
+    sc.close();
+    if (ans == 0) {
+        int l = 0;
+        int r = 0;
+        long current = 1;
+        while (true) {
+            ans = Math.max(ans, r - l);
+            if (r >= N)
+                break;
+            if (current * s[r] <= K) {
+                current *= s[r++];
+            } else if (l == r) {
+                r++;
+                l++;
+            } else {
+                current /= s[l++];
+            }
+        }
+    }
+    System.out.println(ans);
+}

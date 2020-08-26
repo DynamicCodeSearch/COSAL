@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    try {
+        
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+        int a = Integer.parseInt(br.readLine());
+        int b = Integer.parseInt(br.readLine());
+        if (a < b) {
+            int tmp1 = b - a;
+            int tmp2 = (a + 10) - b;
+            if (tmp1 < tmp2) {
+                System.out.println(tmp1);
+            } else {
+                System.out.println(tmp2);
+            }
+        } else {
+            int tmp1 = a - b;
+            int tmp2 = (b + 10) - a;
+            if (tmp1 < tmp2) {
+                System.out.println(tmp1);
+            } else {
+                System.out.println(tmp2);
+            }
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

@@ -1,0 +1,8 @@
+public static long[] factorialInverseArray(int maxN, long modP, long[] inverseArray) {
+    long[] factInv = new long[maxN + 1];
+    factInv[0] = 1;
+    for (int i = 1; i <= maxN; i++) {
+        factInv[i] = factInv[i - 1] * inverseArray[i] % modP;
+    }
+    return factInv;
+}

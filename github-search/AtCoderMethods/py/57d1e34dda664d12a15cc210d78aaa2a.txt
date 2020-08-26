@@ -1,0 +1,9 @@
+def combi(n):
+  cmb = []
+  end = 2 ** n
+  for i in range(end):
+    b = list(bin(i).replace('0b', ''))
+    b = '0' * n + ''.join(b)
+    b = b[-n:]
+    cmb.append(list(b))
+  return cmb

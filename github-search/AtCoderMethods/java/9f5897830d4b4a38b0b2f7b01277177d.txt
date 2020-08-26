@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter w = new PrintWriter(System.out);
+    String s = in.readString();
+    int st = -1;
+    boolean sf = false;
+    int end = -1;
+    for (int i = 0; i < s.length(); i++) {
+        if (s.charAt(i) == 'A' && !sf) {
+            st = i;
+            sf = true;
+        } else if (s.charAt(i) == 'Z')
+            end = i;
+    }
+    
+    if (st == -1 || end == -1)
+        w.println(0);
+    else
+        w.println(end - st + 1);
+    w.close();
+}

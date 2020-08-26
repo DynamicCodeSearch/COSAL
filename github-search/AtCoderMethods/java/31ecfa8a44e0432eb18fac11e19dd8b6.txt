@@ -1,0 +1,20 @@
+public static void main(String[] args) throws java.lang.Exception {
+    InputReader in = new InputReader(System.in);
+    PrintWriter w = new PrintWriter(System.out);
+    int n = in.nextInt();
+    int[] a = in.nextIntArray(n);
+    int ans = 0;
+    for (int i = 0; i < n; ) {
+        if (a[i] == i + 1) {
+            if (i + 1 < n && a[i + 1] == i + 2) {
+                ans++;
+            } else {
+                ans++;
+            }
+            i += 2;
+        } else
+            i++;
+    }
+    w.println(ans);
+    w.close();
+}

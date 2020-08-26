@@ -1,0 +1,15 @@
+private void solve() {
+    List<Long> list = new ArrayList<>();
+    long cb = 0;
+    for (int i = 0; cb <= 1e9; i++) {
+        cb = ((long) i * (i + 1)) / 2;
+        list.add(cb);
+    }
+    long b = in.nextLong();
+    for (int i = 0; i < list.size(); i++) {
+        if (list.get(i) >= b) {
+            out.print(i);
+            return;
+        }
+    }
+}

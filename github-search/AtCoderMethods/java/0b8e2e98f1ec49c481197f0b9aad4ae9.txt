@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner sn = new Scanner(System.in);
+    int numNight = sn.nextInt();
+    int firstKNight = sn.nextInt();
+    int priceK = sn.nextInt();
+    int pricePostK = sn.nextInt();
+    int rate1 = 0;
+    int rate2 = 0;
+    if (numNight >= firstKNight) {
+        rate1 = firstKNight * priceK;
+        rate2 = Math.max(0, (numNight - firstKNight) * pricePostK);
+    } else {
+        rate1 = numNight * priceK;
+    }
+    System.out.println(rate1 + rate2);
+}

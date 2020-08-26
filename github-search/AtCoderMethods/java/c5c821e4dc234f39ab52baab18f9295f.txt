@@ -1,0 +1,13 @@
+boolean check() {
+    for (int i = 0; i < n; i++) {
+        int count = 0;
+        int vi = v[i];
+        while (vi > 0) {
+            count += table[vi % 10];
+            vi /= 10;
+        }
+        if (count != w[i].length())
+            return false;
+    }
+    return true;
+}

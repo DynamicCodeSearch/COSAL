@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    long n = nl(), m = nl();
+    long cn = n, cm = m / 2;
+    long res = 0;
+    if (cm <= cn)
+        pl(cm);
+    else {
+        res += cn;
+        cn = 0;
+        m -= res * 2;
+        res += m / 4;
+        pl(res);
+    }
+    flush();
+}

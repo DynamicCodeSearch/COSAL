@@ -1,0 +1,49 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int A = sc.nextInt();
+    int B = sc.nextInt();
+    long[] v = new long[N];
+    for (int i = 0; i <= 50; i++) {
+        Arrays.fill(comb[i], -1);
+    }
+    TreeMap<Long, Integer> map = new TreeMap<>();
+    for (int i = 0; i < N; i++) {
+        v[i] = sc.nextLong();
+        int cnt = map.getOrDefault(v[i], 0);
+        map.put(v[i], cnt + 1);
+    }
+    long[] V = new long[map.size()];
+    int K = map.size() - 1;
+    for (Long vv : map.keySet()) {
+        V[K--] = vv;
+    }
+    long[] sum = new long[N + 1];
+    long[] num = new long[N + 1];
+    for (int k = A; k <= B; k++) {
+        int rest = k;
+        for (int i = 0; i < V.length; i++) {
+            int cnt = map.get(V[i]);
+            if (rest > cnt) {
+                sum[k] += V[i] * cnt;
+                rest -= cnt;
+            } else {
+                sum[k] += V[i] * (rest);
+                num[k] = comb(cnt, rest);
+                break;
+            }
+        }
+    }
+    int ans = A;
+    long pat = 0;
+    for (int k = A; k <= B; k++) {
+        if (sum[k] * ans > sum[ans] * k) {
+            pat = num[k];
+            ans = k;
+        } else if (sum[k] * ans == sum[ans] * k) {
+            pat += num[k];
+        }
+    }
+    System.out.printf("%.8f\n", sum[ans] * 1. / ans);
+    System.out.println(pat);
+}

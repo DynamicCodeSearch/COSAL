@@ -1,0 +1,19 @@
+public static void main(String[] $) {
+    int n = getInt();
+    ArrayDeque<Integer> d = new ArrayDeque<>();
+    for (int i = 0; i < n; i++) {
+        int v = getInt();
+        if (i % 2 == 0) {
+            d.addLast(v);
+        } else {
+            d.addFirst(v);
+        }
+    }
+    StringJoiner j = new StringJoiner(" ");
+    if (n % 2 == 1) {
+        while (!d.isEmpty()) j.add(String.valueOf(d.pollLast()));
+    } else {
+        while (!d.isEmpty()) j.add(String.valueOf(d.pollFirst()));
+    }
+    System.out.println(j.toString());
+}

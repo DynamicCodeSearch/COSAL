@@ -1,0 +1,18 @@
+def main():
+  N,M = map(int,input().split())
+  MOD = 10**9 + 7
+  if abs(N-M) > 1:
+    print(0)
+    return
+  if N == M:
+    ret = 2
+    for i in range(2,N+1):
+      ret = (ret*i*i)%MOD
+  else:
+    ret = 1
+    M,N = min(M,N),max(M,N)
+    for i in range(2,M+1):
+      ret = (ret*i*i)%MOD
+    for i in range(M+1,N+1):
+      ret = (ret*i)%MOD
+  print(ret)

@@ -1,0 +1,33 @@
+void solver2() {
+    int n = ni();
+    int m = ni();
+    int s = ni() - 1;
+    ArrayList<Integer>[] e = new ArrayList[n];
+    for (int i = 0; i < n; i++) {
+        e[i] = new ArrayList<>();
+    }
+    for (int i = 0; i < m; i++) {
+        int u = ni() - 1;
+        int v = ni() - 1;
+        e[u].add(v);
+        e[v].add(u);
+    }
+    boolean[] d = new boolean[n];
+    DJSet ds = new DJSet(n);
+    for (int i = n - 1; i >= 0; i--) {
+        for (int j = 0; j < e[i].size(); j++) {
+            int u = e[i].get(j);
+            if (u > i) {
+                ds.setUnion(u, i);
+            }
+        }
+        if (ds.equiv(i, s)) {
+            d[i] = true;
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        if (d[i]) {
+            out.println(i + 1);
+        }
+    }
+}

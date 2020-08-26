@@ -1,0 +1,5 @@
+long C(long n, long k) {
+    if (n < 0 || k < 0 || n < k)
+        return 0;
+    return fact[(int) n] * fact_inv[(int) (n - k)] % MOD * fact_inv[(int) k] % MOD;
+}

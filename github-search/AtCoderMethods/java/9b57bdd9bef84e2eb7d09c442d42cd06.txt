@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int d = sc.nextInt();
+    String vv = "";
+    if (d < 100) {
+        vv = "00";
+    } else if (d >= 100 && d <= 5000) {
+        vv = String.valueOf(d * 10 / 1000);
+        if (vv.length() == 1)
+            vv = "0" + vv;
+    } else if (d >= 6000 && d <= 30000) {
+        vv = String.valueOf(d / 1000 + 50);
+    } else if (d >= 35000 && d <= 70000) {
+        vv = String.valueOf((d / 1000 - 30) / 5 + 80);
+    } else
+        vv = "89";
+    System.out.println(vv);
+}

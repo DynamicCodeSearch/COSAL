@@ -1,0 +1,35 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int R = sc.nextInt();
+    int C = sc.nextInt();
+    int K = sc.nextInt();
+    int N = sc.nextInt();
+    int[] rr = new int[N];
+    int[] cc = new int[N];
+    int[] rows = new int[R];
+    int[] cols = new int[C];
+    for (int i = 0; i < N; i++) {
+        rr[i] = sc.nextInt() - 1;
+        cc[i] = sc.nextInt() - 1;
+        rows[rr[i]]++;
+        cols[cc[i]]++;
+    }
+    Map<Integer, Integer> map = new HashMap<>();
+    for (int c = 0; c < C; c++) {
+        int cnt = map.containsKey(cols[c]) ? map.get(cols[c]) : 0;
+        map.put(cols[c], cnt + 1);
+    }
+    long ans = 0;
+    for (int r = 0; r < R; r++) {
+        if (map.containsKey(K - rows[r]))
+            ans += map.get(K - rows[r]);
+    }
+    for (int i = 0; i < N; i++) {
+        if (cols[cc[i]] + rows[rr[i]] == K)
+            ans--;
+        if (cols[cc[i]] + rows[rr[i]] == K + 1)
+            ans++;
+    }
+    System.out.println(ans);
+    sc.close();
+}

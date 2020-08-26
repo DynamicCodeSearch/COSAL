@@ -1,0 +1,20 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] params = br.readLine().split(" ");
+    Integer a = Integer.valueOf(params[0]);
+    Integer b = Integer.valueOf(params[1]);
+    Integer c = Integer.valueOf(params[2]);
+    List<Integer> sortList = new ArrayList<Integer>();
+    sortList.add(a);
+    sortList.add(b);
+    sortList.add(c);
+    Collections.sort(sortList);
+    int cnt = 0;
+    for (Integer s : sortList) {
+        if (cnt == 1) {
+            System.out.println(s);
+            return;
+        }
+        cnt++;
+    }
+}

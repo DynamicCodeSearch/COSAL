@@ -1,0 +1,19 @@
+public static void main(String[] args) throws java.lang.Exception {
+    InputReader in = new InputReader(System.in);
+    PrintWriter w = new PrintWriter(System.out);
+    int n = in.nextInt();
+    long[] a = in.nextLongArray(n);
+    int four_mul = 0, tows = 0;
+    for (long x : a) {
+        if (x % 4 == 0)
+            four_mul++;
+        else if (x % 2 == 0)
+            tows++;
+    }
+    int non_mul = n - four_mul - tows + ((tows > 0) ? 1 : 0);
+    if (four_mul + 1 >= non_mul)
+        w.println("Yes");
+    else
+        w.println("No");
+    w.close();
+}

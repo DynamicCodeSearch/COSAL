@@ -1,0 +1,16 @@
+public static void output() throws IOException {
+    int n = ri();
+    long[] a = new long[n];
+    long sum = 0;
+    for (int i = 0; i < n; i++) {
+        a[i] = rl();
+        sum += a[i];
+    }
+    long ans = Long.MAX_VALUE;
+    long cum = 0;
+    for (int i = 0; i < (n - 1); i++) {
+        cum += a[i];
+        ans = Math.min(Math.abs((sum - cum) - cum), ans);
+    }
+    println(ans);
+}

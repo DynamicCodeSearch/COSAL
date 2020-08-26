@@ -1,0 +1,15 @@
+def calc(H, W):
+    global ans
+
+    for a in range(1, W):
+        s0 = a * H
+
+        s1 = H * ((W - a + 1) // 2)
+        s2 = H * ((W - a) // 2)
+
+        ans = min(ans, max(s0, s1, s2) - min(s0, s1, s2))
+
+        s1 = (W - a) * ((H + 1) // 2)
+        s2 = (W - a) * (H // 2)
+
+        ans = min(ans, max(s0, s1, s2) - min(s0, s1, s2))

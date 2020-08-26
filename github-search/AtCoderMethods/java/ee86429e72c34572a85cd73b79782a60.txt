@@ -1,0 +1,14 @@
+long a(int k) {
+    if (a[k] != 0) {
+        return a[k];
+    }
+    a[k] = 1;
+    for (Integer child : e[k]) {
+        if (child == parent[k]) {
+            continue;
+        }
+        a[k] *= b(child);
+        a[k] %= MOD;
+    }
+    return a[k];
+}

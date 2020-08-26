@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = Integer.parseInt(sc.next());
+    int[] A = new int[N];
+    int[] num = new int[N];
+    boolean collect = true;
+    for (int i = 0; i < N; i++) {
+        num[i] = 0;
+    }
+    for (int i = 0; i < N; i++) {
+        A[i] = Integer.parseInt(sc.next());
+        if (N % 2 == A[i] % 2)
+            collect = false;
+        if (A[i] == 0) {
+            if (++num[A[i]] > 1)
+                collect = false;
+        } else {
+            if (++num[A[i]] > 2)
+                collect = false;
+        }
+    }
+    int res;
+    if (collect) {
+        res = 1;
+        for (int i = 0; i < N / 2; i++) {
+            res = (res * 2) % 1000000007;
+        }
+    } else {
+        res = 0;
+    }
+    System.out.println(res);
+}

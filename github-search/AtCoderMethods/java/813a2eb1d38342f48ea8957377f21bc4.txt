@@ -1,0 +1,38 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int a = scan.nextInt();
+    int b = scan.nextInt();
+    int c = scan.nextInt();
+    int ans = 0;
+    boolean flagA = false;
+    boolean flagB = false;
+    boolean flagC = false;
+    if (a >= b) {
+        flagB = true;
+    } else {
+        flagA = true;
+    }
+    if (flagA) {
+        if (b >= c) {
+            flagC = true;
+        } else {
+            flagB = true;
+        }
+    } else {
+        if (a >= c) {
+            flagC = true;
+        } else {
+            flagA = true;
+        }
+    }
+    if (flagA) {
+        ans = ans + a;
+    }
+    if (flagB) {
+        ans = ans + b;
+    }
+    if (flagC) {
+        ans = ans + c;
+    }
+    System.out.println(ans);
+}

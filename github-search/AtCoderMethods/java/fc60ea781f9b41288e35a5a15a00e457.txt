@@ -1,0 +1,18 @@
+private static long solve(int n, int[] a) {
+    Arrays.sort(a);
+    long ans = 1;
+    long sides = 0;
+    for (int i = n - 2; i >= 0; i--) {
+        if (a[i] != a[i + 1])
+            continue;
+        sides += 2;
+        ans *= a[i];
+        i -= 1;
+        if (sides == 4)
+            break;
+    }
+    if (sides == 4)
+        return ans;
+    else
+        return 0;
+}

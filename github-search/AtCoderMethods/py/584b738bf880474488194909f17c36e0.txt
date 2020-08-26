@@ -1,0 +1,11 @@
+def count_paths(n, adj_list):
+    res = 0
+    for vs in itertools.permutations(range(n)):
+        if vs[0] != 0:
+            continue
+        for i in range(n - 1):
+            if vs[i] not in adj_list[vs[i + 1]]:
+                break
+        else:
+            res += 1
+    return res

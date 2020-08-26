@@ -1,0 +1,19 @@
+public static Node update(Node a, int K, int v) {
+    int p = 0;
+    while (a != null) {
+        Q[p++] = a;
+        if (K < count(a.left)) {
+            a = a.left;
+        } else if (K == count(a.left)) {
+            break;
+        } else {
+            K = K - count(a.left) - 1;
+            a = a.right;
+        }
+    }
+    a.id = v;
+    while (p > 0) {
+        update(Q[--p]);
+    }
+    return a;
+}

@@ -1,0 +1,10 @@
+public void makechildren() {
+    for (int i = 0; i < str.length(); i++) {
+        String buf = new String(str);
+        long a = Long.parseLong(buf.substring(0, i + 1));
+        Main child = new Main(buf.substring(i + 1));
+        child.num = a + num;
+        child.parent = this;
+        this.children.add(child);
+    }
+}

@@ -1,0 +1,31 @@
+void compute() {
+    int N = scanner.nextInt();
+    List<Integer> a = new ArrayList<>();
+    for (int i = 0; i < N; i++) {
+        a.add(scanner.nextInt());
+    }
+    a.sort((o1, o2) -> o1 - o2);
+    a.add(-2);
+    List<Integer> nList = new ArrayList<>();
+    int prev = -2, current = 0;
+    for (int ai : a) {
+        if (prev == ai) {
+            current++;
+        } else {
+            nList.add(current);
+            if (prev + 1 != ai) {
+                nList.add(0);
+                nList.add(0);
+            }
+            current = 1;
+        }
+        prev = ai;
+    }
+    nList = nList.subList(3, nList.size());
+    int max = 0;
+    for (int i = 0; i < nList.size() - 2; i++) {
+        int c = nList.get(i) + nList.get(i + 1) + nList.get(i + 2);
+        max = max > c ? max : c;
+    }
+    System.out.println(max);
+}

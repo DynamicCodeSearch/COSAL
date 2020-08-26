@@ -1,0 +1,14 @@
+static void AtoZString(String[] param) {
+    
+    int K = Integer.parseInt(param[0]);
+    int S = Integer.parseInt(param[1]);
+    int count = 0;
+    for (int i = 0; i <= K; i++) {
+        for (int j = 0; j <= K; j++) {
+            int k = S - (i + j);
+            if (k >= 0 && k <= K)
+                count++;
+        }
+    }
+    System.out.println(count);
+}

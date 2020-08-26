@@ -1,0 +1,49 @@
+public static void main(String[] args) {
+    int N = sc.nextInt();
+    char[] c = sc.next().toCharArray();
+    ArrayList<Character> str = new ArrayList<>();
+    for (int i = 0; i < N; i++) {
+        str.add(c[i]);
+    }
+    int kakko = 0;
+    int kakko_l = 0;
+    int kakko_r = 0;
+    int kakko_max = 0;
+    int kakko_min = 0;
+    for (int i = 0; i < N; i++) {
+        if (str.get(i) == '(') {
+            kakko++;
+            kakko_l++;
+            if (kakko > kakko_max) {
+                kakko_max = kakko;
+            }
+        } else if (str.get(i) == ')') {
+            kakko--;
+            kakko_r++;
+            if (kakko < kakko_min) {
+                kakko_min = kakko;
+            }
+        }
+    }
+    for (int i = 1; i <= kakko_min * (0 - 1); i++) {
+        str.add(0, '(');
+        kakko_l++;
+        kakko++;
+    }
+    for (int i = 1; i <= kakko; i++) {
+        str.add(')');
+        kakko_r++;
+    }
+    if (kakko_l < kakko_r) {
+        for (int i = 1; i <= kakko_r - kakko_l; i++) {
+            str.add(0, '(');
+        }
+    } else if (kakko_l > kakko_r) {
+        for (int i = 1; i <= kakko_l - kakko_r; i++) {
+            str.add(')');
+        }
+    }
+    for (int i = 0; i < str.size(); i++) {
+        System.out.print(str.get(i));
+    }
+}

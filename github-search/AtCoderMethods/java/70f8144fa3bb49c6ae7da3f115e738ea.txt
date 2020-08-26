@@ -1,0 +1,8 @@
+String readWord(int LEN) throws java.io.IOException {
+    byte[] s = new byte[LEN];
+    byte c;
+    while ((c = read()) == '\n' || c == ' ' || c == '\r') ;
+    s[0] = c;
+    for (int i = 1; (c = read()) != ' ' && c != '\n' && c != '\r' && c != 0; s[i++] = c) ;
+    return new String(s);
+}

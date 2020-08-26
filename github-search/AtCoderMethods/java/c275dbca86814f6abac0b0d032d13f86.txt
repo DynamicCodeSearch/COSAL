@@ -1,0 +1,16 @@
+public void union(int p, int q) {
+    
+    int pRoot = find(p);
+    int qRoot = find(q);
+    if (pRoot == qRoot)
+        return;
+    
+    if (weight[pRoot] < weight[qRoot])
+        id[pRoot] = qRoot;
+    else {
+        id[qRoot] = pRoot;
+        if (weight[pRoot] == weight[qRoot])
+            weight[pRoot]++;
+    }
+
+}

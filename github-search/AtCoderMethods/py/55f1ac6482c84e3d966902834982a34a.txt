@@ -1,0 +1,11 @@
+def main():
+    w = input()
+    d = defaultdict(int)
+    for c in w:
+        d[c] += 1
+    ans = 'Yes'
+    for cnt in d.values():
+        if cnt & 1 == 1:
+            ans = 'No'
+            break
+    print(ans)

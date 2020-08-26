@@ -1,0 +1,11 @@
+def rec(v, prev, can):
+    if memo[v][can] > 0:
+        return memo[v][can]
+    use, notuse = can, 1
+    for child in E[v]:
+        if child != prev:
+            notuse = (notuse * rec(child, v, 1)) % Mod
+            if can:
+                use = (use * rec(child, v, 0)) % Mod
+    res = memo[v][can] = (use + notuse) % Mod
+    return res

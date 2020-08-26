@@ -1,0 +1,15 @@
+long sum(long[] arr) {
+    int n = arr.length;
+    long ret = 0;
+    long s = 0;
+    for (long v : arr) {
+        s = (s + v - arr[0]) % MODULO;
+    }
+    for (int i = 0; i < arr.length; ++i) {
+        ret = (ret + s) % MODULO;
+        if (i + 1 < arr.length)
+            s = (s - (n - 1) * (arr[i + 1] - arr[i]) % MODULO + MODULO) % MODULO;
+        --n;
+    }
+    return ret;
+}

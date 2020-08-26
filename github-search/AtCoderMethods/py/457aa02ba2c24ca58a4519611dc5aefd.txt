@@ -1,0 +1,28 @@
+def calc_answer(H, W, answer=None):
+    if answer is None:
+        answer = float("inf")
+
+    for _w in range(1, math.ceil(W / 2) + 1):
+
+        S = [
+            H * _w,
+            H * math.ceil((W - _w) / 2),
+            H * int((W - _w) // 2),
+        ]
+        if not 0 in S:
+            S_diff = max(S) - min(S)
+
+            answer = min(answer, S_diff)
+
+
+        S = [
+            H * _w,
+            (W - _w) * math.ceil(H / 2),
+            (W - _w) * int(H // 2),
+        ]
+        if not 0 in S:
+            S_diff = max(S) - min(S)
+
+            answer = min(answer, S_diff)
+
+    return answer

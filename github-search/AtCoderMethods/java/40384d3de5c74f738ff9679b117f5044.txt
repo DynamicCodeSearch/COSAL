@@ -1,0 +1,43 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    long k = in.nextLong();
+    if (k == 0) {
+        out.println("2");
+        out.println("0 0");
+        return;
+    }
+    if (k == 1) {
+        out.println("2");
+        out.println("2 0");
+        return;
+    }
+    if (k <= 50) {
+        out.println(k);
+        for (int i = 0; i < k - 1; i++) {
+            out.print(k + " ");
+        }
+        out.println(k);
+        return;
+    }
+    out.println("50");
+    long[] arr = new long[50];
+    for (int i = 0; i < 50; i++) {
+        arr[i] = 49;
+    }
+    long mod = k % 50;
+    for (int i = 0; i < mod; i++) {
+        arr[i] += 50;
+        for (int j = 0; j < 50; j++) {
+            if (j != i) {
+                arr[j]--;
+            }
+        }
+    }
+    long k50 = (k - mod) / 50;
+    for (int i = 0; i < 50; i++) {
+        arr[i] += k50;
+    }
+    for (int i = 0; i < 49; i++) {
+        out.print(arr[i] + " ");
+    }
+    out.println(arr[49]);
+}

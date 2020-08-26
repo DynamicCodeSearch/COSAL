@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    int K = sc.nextInt();
+    int[] P = new int[K + 2];
+    P[0] = a;
+    P[K + 1] = b;
+    for (int i = 1; i < K + 1; i++) {
+        P[i] = sc.nextInt();
+    }
+    Arrays.sort(P);
+    for (int i = 0; i < K + 1; i++) {
+        for (int j = i + 1; j < K + 2; j++) {
+            if (P[i] == P[j]) {
+                System.out.println("NO");
+                return;
+            }
+        }
+    }
+    System.out.println("YES");
+}

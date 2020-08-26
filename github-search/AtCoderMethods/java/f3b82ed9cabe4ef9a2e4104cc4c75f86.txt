@@ -1,0 +1,16 @@
+public static long inverse(long a, long mod) {
+    long b = mod, u = 1, v = 0;
+    while (b > 0) {
+        long temp;
+        long t = a / b;
+        a -= t * b;
+        temp = a;
+        a = b;
+        b = temp;
+        u -= t * v;
+        temp = u;
+        u = v;
+        v = temp;
+    }
+    return (u % mod + mod) % mod;
+}

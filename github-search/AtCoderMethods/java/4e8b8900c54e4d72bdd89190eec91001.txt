@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    for (int i = 0; i < H; ++i) {
+        for (int j = 0; j < W; ++j) {
+            a[i][j] = sn.nextInt();
+            Pair tmp = new Pair(i, j, a[i][j]);
+            aa.add(tmp);
+        }
+    }
+    Collections.sort(aa);
+    for (int i = 0; i < aa.size(); ++i) {
+        Pair p = aa.get(i);
+        solve(p);
+    }
+    long ans = 0;
+    for (int i = 0; i < H; ++i) {
+        for (int j = 0; j < W; ++j) {
+            ans = (ans + r[i][j]) % M;
+        }
+    }
+    System.out.println(ans % M);
+}

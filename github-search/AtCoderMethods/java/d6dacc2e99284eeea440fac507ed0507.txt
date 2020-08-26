@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    InputReader s = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    
+    int n = s.nextInt();
+    boolean[] arr = new boolean[n + 1];
+    int[] inp = new int[n + 1];
+    for (int i = 1; i <= n; i++) inp[i] = s.nextInt();
+    int flg = 0, count = 0;
+    int i = 1;
+    while (true) {
+        int k = inp[i];
+        if (arr[k]) {
+            flg = -1;
+            break;
+        }
+        arr[i] = true;
+        count++;
+        if (inp[i] == 2) {
+            break;
+        }
+        i = inp[i];
+    }
+    if (flg == -1)
+        out.println("-1");
+    else
+        out.println(count);
+    
+    out.close();
+}

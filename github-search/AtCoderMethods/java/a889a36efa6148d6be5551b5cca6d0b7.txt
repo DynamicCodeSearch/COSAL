@@ -1,0 +1,16 @@
+static void build() {
+    table = new int[logN + 1][N];
+    for (int i = 0; i < N; ++i) {
+        int pos = Arrays.binarySearch(X, X[i] + L);
+        if (pos < 0) {
+            pos = -pos - 2;
+        }
+        table[0][i] = pos;
+    }
+    for (int i = 1; i <= logN; ++i) {
+        for (int j = 0; j < N; ++j) {
+            int next = table[i - 1][j];
+            table[i][j] = table[i - 1][next];
+        }
+    }
+}

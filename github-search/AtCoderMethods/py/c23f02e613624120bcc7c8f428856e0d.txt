@@ -1,0 +1,41 @@
+def main():
+    n = int(input())
+    x = []
+    y = []
+    c = []
+    for i in range(n):
+        ts = input().split()
+        x.append(int(ts[0]))
+        y.append(int(ts[1]))
+        c.append(int(ts[2]))
+
+    def fn1(m):
+        return max(c[i] * abs(x[i] - m) for i in range(n))
+
+    lb = -100000
+    ub = 100000
+    for i in range(100):
+        left = (2 * lb + ub) / 3
+        right = (lb + 2 * ub) / 3
+        if fn1(left) < fn1(right):
+            ub = right
+        else:
+            lb = left
+
+    ans = fn1(lb)
+
+    def fn2(m):
+        return max(c[i] * abs(y[i] - m) for i in range(n))
+
+    lb = -100000
+    ub = 100000
+    for i in range(100):
+        left = (2 * lb + ub) / 3
+        right = (lb + 2 * ub) / 3
+        if fn2(left) < fn2(right):
+            ub = right
+        else:
+            lb = left
+
+    ans = max(ans, fn2(lb))
+    print('{:.4f}'.format(ans))

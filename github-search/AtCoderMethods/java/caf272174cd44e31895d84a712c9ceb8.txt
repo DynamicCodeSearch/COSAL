@@ -1,0 +1,27 @@
+public static void main(String[] args) throws Exception {
+    int n = sc.nextInt();
+    char[] a = sc.next().toCharArray();
+    ArrayDeque<Character> ad = new ArrayDeque<>();
+    int curr = 0;
+    for (int i = 0; i < n; i++) {
+        if (a[i] == ')') {
+            curr--;
+        } else {
+            curr++;
+        }
+        if (curr < 0) {
+            ad.addFirst('(');
+            curr++;
+        }
+        ad.addLast(a[i]);
+    }
+    while (curr > 0) {
+        ad.addLast(')');
+        curr--;
+    }
+    for (char ch : ad) {
+        out.print(ch);
+    }
+    out.println("");
+    out.close();
+}

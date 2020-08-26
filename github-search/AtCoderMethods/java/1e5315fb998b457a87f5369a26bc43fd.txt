@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    try (Scanner scan = new Scanner(new InputStreamReader(System.in))) {
+        int N = scan.nextInt();
+        int M = scan.nextInt();
+        long ans = 1;
+        int min = N;
+        int max = M;
+        if (N > M) {
+            min = M;
+            max = N;
+        }
+        if (min + 1 < max) {
+            System.out.println(0);
+            return;
+        }
+        for (int i = min; i > 0; i--) {
+            ans = (ans * i) % sosu;
+        }
+        if (min == max) {
+            ans = (((ans * ans) % sosu) * 2) % sosu;
+            System.out.println(ans);
+            return;
+        }
+        ans = (((ans * ans) % sosu) * max) % sosu;
+        System.out.println(ans);
+    }
+}

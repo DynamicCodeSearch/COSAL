@@ -1,0 +1,32 @@
+void solve(int testNumber, InputReader in, PrintWriter out) {
+    n = in.nextInt();
+    c = in.nextInt();
+    ai = new int[n];
+    bi = new int[n];
+    for (int i = 0; i < n; ++i) {
+        ai[i] = in.nextInt();
+    }
+    for (int i = 0; i < n; ++i) {
+        bi[i] = in.nextInt();
+    }
+    pow = new int[401][401];
+    for (int i = 0; i <= 400; ++i) {
+        for (int j = 0; j <= 400; ++j) {
+            pow[i][j] = (int) pow(i, j);
+        }
+    }
+    sum = new int[n][401];
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j <= 400; ++j) {
+            for (int k = ai[i]; k <= bi[i]; ++k) {
+                sum[i][j] = (int) add(sum[i][j], pow[k][j]);
+            }
+        }
+    }
+    state = new int[n][c + 1];
+    for (int[] i : state) {
+        Arrays.fill(i, -1);
+    }
+    long ans = go(n - 1, c);
+    out.println(ans);
+}

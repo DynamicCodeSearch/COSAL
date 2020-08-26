@@ -1,0 +1,13 @@
+Treap<T> merge(final Treap<T> t2) {
+    if (this.isEmpty()) {
+        return t2;
+    } else if (t2.isEmpty()) {
+        return this;
+    } else if (this.priority >= t2.priority) {
+        right = right.merge(t2);
+        return this.update();
+    } else {
+        t2.left = merge(t2.left);
+        return t2.update();
+    }
+}

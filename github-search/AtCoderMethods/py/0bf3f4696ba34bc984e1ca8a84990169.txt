@@ -1,0 +1,37 @@
+def solve():
+    H, W, N = map(int, sys.stdin.readline().split())
+    nb = [0] * 10
+    dx = (1, 0, -1, 0, 1, 1, -1, -1)
+    dy = (0, 1, 0, -1, 1, -1, 1, -1)
+    bb = []
+
+    for lp in range(N):
+        a, b = map(int, sys.stdin.readline().split())
+        a, b = a-1, b-1
+
+        if in_field(H, W, a, b):
+            bb.append((a,b))
+
+        for i in range(len(dx)):
+            if in_field(H, W, a+dx[i], b+dy[i]):
+                bb.append((a+dx[i], b+dy[i]))
+
+    bb.sort()
+    cnt = 0
+
+    for i, box in enumerate(bb):
+        if i == 0:
+            cnt += 1
+            continue
+        if box != bb[i-1]:
+            nb[cnt] += 1
+            cnt = 1
+        else:
+            cnt += 1
+
+    if cnt > 0:
+        nb[cnt] += 1
+
+    nb[0] = (W-2)*(H-2) - sum(nb)
+
+    print(*nb, sep='\n')

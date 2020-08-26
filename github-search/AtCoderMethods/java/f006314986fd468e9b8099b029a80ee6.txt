@@ -1,0 +1,35 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String line = br.readLine();
+    String[] split = line.split(" ");
+    int N = Integer.parseInt(split[0]);
+    int A = Integer.parseInt(split[1]);
+    line = br.readLine();
+    split = line.split(" ");
+    int[] arr = new int[N];
+    for (int i = 0; i < N; i++) arr[i] = Integer.parseInt(split[i]);
+    boolean[][] dp = new boolean[N + 1][50 * N + 1];
+    long[][] times = new long[N + 1][50 * N + 1];
+    for (int i = 0; i <= N; i++) {
+        Arrays.fill(times[i], 0);
+        Arrays.fill(dp[i], false);
+    }
+    dp[0][0] = true;
+    times[0][0] = 1;
+    long total = 0;
+    for (int i = 0; i < N; i++) {
+        for (int j = i; j >= 0; j--) {
+            for (int k = 50 * N - arr[i]; k >= 0; k--) {
+                if (dp[j][k]) {
+                    int index = k + arr[i];
+                    dp[j + 1][index] = true;
+                    times[j + 1][index] += times[j][k];
+                    if ((A * (j + 1)) == index) {
+                        total += times[j][k];
+                    }
+                }
+            }
+        }
+    }
+    System.out.println(total);
+}

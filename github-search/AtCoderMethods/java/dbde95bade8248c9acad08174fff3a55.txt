@@ -1,0 +1,43 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    StringTokenizer st = new StringTokenizer(br.readLine());
+    int n = Integer.parseInt(st.nextToken());
+    int t = Integer.parseInt(st.nextToken());
+    int[] min = new int[n + 1];
+    min[0] = Integer.MAX_VALUE / 2;
+    int[] max = new int[n + 1];
+    int[] array = new int[n + 1];
+    int netmax = 0;
+    ArrayList<Integer> list = new ArrayList<>();
+    st = new StringTokenizer(br.readLine());
+    for (int i = 1; i <= n; i++) {
+        array[i] = Integer.parseInt(st.nextToken());
+        if (array[i] < min[i - 1]) {
+            min[i] = array[i];
+            list.add(i);
+        } else
+            min[i] = min[i - 1];
+        max[i] = array[i] - min[i];
+        netmax = Math.max(netmax, max[i]);
+    }
+    list.add(n + 1);
+    int ans = 0;
+    
+    for (int i = 0; i < list.size() - 1; i++) {
+        ;
+        int start = list.get(i);
+        int end = list.get(i + 1) - 1;
+        int curmin = min[end];
+        int cntmin = 0, cntmax = 0;
+        while (array[end] == min[end]) --end;
+        for (int j = start; j <= end; j++) {
+            if (array[j] == curmin)
+                ++cntmin;
+            if (max[j] == netmax)
+                ++cntmax;
+        }
+        
+        ans += Math.min(cntmin, cntmax);
+    }
+    System.out.println(ans);
+}

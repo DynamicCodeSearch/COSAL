@@ -1,0 +1,15 @@
+private static int donyoku(int[][] movePlan, int now, int goal) {
+    boolean goUp = now < goal;
+    int index = goUp ? 1 : 0;
+    int ans = -1;
+    for (int i = 0; i < D; i++) {
+        if (movePlan[i][0] <= now && now <= movePlan[i][1]) {
+            now = movePlan[i][index];
+            if ((goUp && now >= goal) || (!goUp && now <= goal)) {
+                ans = i + 1;
+                break;
+            }
+        }
+    }
+    return ans;
+}

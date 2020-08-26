@@ -1,0 +1,22 @@
+public static boolean isDayDreamInternal(char[] s, int current) {
+    if (current == s.length)
+        return true;
+    if (current >= s.length - 4)
+        return false;
+    if (startsWith(DREAMER, s, current)) {
+        if (isDayDreamInternal(s, current + 7)) {
+            return true;
+        }
+    }
+    if (startsWith(ERASER, s, current)) {
+        if (isDayDreamInternal(s, current + 6)) {
+            return true;
+        }
+    }
+    if (startsWith(ERASE, s, current) || startsWith(DREAM, s, current)) {
+        if (isDayDreamInternal(s, current + 5)) {
+            return true;
+        }
+    }
+    return false;
+}

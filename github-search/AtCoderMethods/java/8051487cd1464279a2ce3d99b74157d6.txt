@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    try (Scanner sc = new Scanner(System.in)) {
+        StringBuffer sbNum = new StringBuffer();
+        String str = sc.next();
+        int len = str.length();
+        if (len < 3 || 10 < len)
+            throw new IllegalStateException("len=" + len);
+        boolean preNum = false;
+        String[] fields = str.split("");
+        for (String c : fields) {
+            if (c.equals("0")) {
+                if (preNum) {
+                    sbNum.append(c);
+                }
+            } else if (c.matches("^[1-9]$")) {
+                sbNum.append(c);
+                if (!preNum) {
+                    preNum = true;
+                }
+            }
+        }
+        System.out.println(sbNum);
+    } finally {
+    }
+}

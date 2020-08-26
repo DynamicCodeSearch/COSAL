@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] a = new int[N];
+    for (int i = 0; i < N; i++) {
+        a[i] = sc.nextInt();
+    }
+    int ret = 0;
+    for (int i = 0; i < N; i++) {
+        int temp;
+        
+        if (i + 1 == a[i]) {
+            ret++;
+            
+            if (i + 1 == 1) {
+                a[i] = a[i + 1];
+                a[i + 1] = 1;
+            } else 
+            if (i == N - 1) {
+                temp = a[i - 1];
+                a[i - 1] = a[i];
+                a[i] = temp;
+            } else 
+            {
+                temp = a[i + 1];
+                a[i + 1] = a[i];
+                a[i] = temp;
+            }
+        }
+    }
+    System.out.println(ret);
+}

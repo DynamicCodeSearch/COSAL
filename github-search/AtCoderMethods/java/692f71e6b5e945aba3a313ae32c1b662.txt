@@ -1,0 +1,31 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    int t = sc.nextInt();
+    long[] A = new long[n];
+    int[] a = new int[m];
+    int[] b = new int[m];
+    long[] c = new long[m];
+    for (int i = 0; i < n; i++) {
+        A[i] = sc.nextInt();
+    }
+    for (int i = 0; i < m; i++) {
+        a[i] = sc.nextInt() - 1;
+        b[i] = sc.nextInt() - 1;
+        c[i] = sc.nextInt();
+    }
+    Dijkstra d1 = new Dijkstra(n);
+    Dijkstra d2 = new Dijkstra(n);
+    for (int i = 0; i < m; i++) {
+        d1.addEdge(a[i], b[i], c[i]);
+        d2.addEdge(b[i], a[i], c[i]);
+    }
+    long max = 0;
+    for (int i = 0; i < n; i++) {
+        long rem = t - d1.getShortestPath(0, i) - d2.getShortestPath(0, i);
+        if (rem > 0)
+            max = Math.max(rem * A[i], max);
+    }
+    System.out.println((long) max);
+}

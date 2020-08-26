@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    TreeSet<String> ts = new TreeSet<>();
+    String s = scan.next();
+    int k = scan.nextInt();
+    if (s.length() < k) {
+        System.out.println(0);
+        return;
+    }
+    for (int i = 0; i <= s.length() - k; i++) {
+        String temp = "";
+        for (int j = 0; j < k; j++) {
+            temp = temp + s.charAt(i + j);
+        }
+        ts.add(temp);
+    }
+    System.out.println(ts.size());
+}

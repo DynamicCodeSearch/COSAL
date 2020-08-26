@@ -1,0 +1,12 @@
+private static long binarySearch(long T, long A, long ac, long tc) {
+    long low = -1L, high = INF;
+    while (high - low > 1L) {
+        long mid = (high + low) / 2L;
+        if (f(mid, T, A, ac, tc)) {
+            high = mid;
+        } else {
+            low = mid;
+        }
+    }
+    return high;
+}

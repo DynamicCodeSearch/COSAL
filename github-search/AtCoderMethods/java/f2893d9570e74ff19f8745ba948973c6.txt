@@ -1,0 +1,31 @@
+static void genPerm(int s, int e, Node parent) {
+    int modS = s % 2, modE = e % 2;
+    
+    
+    int i1, i2;
+    if (modS == 0) {
+        i1 = 2 * rmq[0].minPos(s / 2, e / 2);
+        i2 = 2 * rmq[1].minPos(i1 / 2, e / 2) + 1;
+    } else {
+        i1 = 2 * rmq[1].minPos(s / 2, e / 2 - 1) + 1;
+        i2 = 2 * rmq[0].minPos(i1 / 2 + 1, e / 2);
+    }
+    if (i1 + 1 == i2) {
+        queue.add(new Node(p[i1], p[i2], parent));
+        if (parent != null)
+            ++parent.children;
+    } else {
+        
+        queue.add(new Node(p[i1], p[i2], parent));
+        if (parent != null)
+            ++parent.children;
+        
+        genPerm(i1 + 1, i2 - 1, null);
+    }
+    if (i1 != s) {
+        genPerm(s, i1 - 1, parent);
+    }
+    if (i2 != e) {
+        genPerm(i2 + 1, e, parent);
+    }
+}

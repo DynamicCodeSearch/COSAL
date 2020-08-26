@@ -1,0 +1,10 @@
+private static long solve(int n, int[] a) {
+    long total = Arrays.stream(a).mapToLong(x -> x).sum();
+    long ans = Long.MAX_VALUE;
+    long s = 0;
+    for (int i = 0; i < n - 1; i++) {
+        s += a[i];
+        ans = Math.min(ans, Math.abs(total - 2 * s));
+    }
+    return ans;
+}

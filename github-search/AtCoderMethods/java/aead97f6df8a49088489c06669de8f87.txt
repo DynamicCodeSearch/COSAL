@@ -1,0 +1,11 @@
+public static long[] buildValues(int d) {
+    long[] res = new long[d / 2];
+    long high = (long) Math.pow(10, d - 1);
+    long low = 1L;
+    for (int i = 0; i < d / 2; i++) {
+        res[i] = high - low;
+        high /= 10;
+        low *= 10;
+    }
+    return res;
+}

@@ -1,0 +1,26 @@
+public void solve(InputReader in, PrintWriter out) {
+    int[] c = new int[26];
+    int[] cc = new int[26];
+    int n = in.nextInt();
+    for (int i = 0; i < n; ++i) {
+        String s = in.next();
+        int len = s.length();
+        Arrays.fill(cc, 0);
+        for (int j = 0; j < len; ++j) {
+            ++cc[s.charAt(j) - 'a'];
+        }
+        if (i == 0) {
+            for (int j = 0; j < 26; ++j) c[j] = cc[j];
+        } else {
+            for (int j = 0; j < 26; ++j) c[j] = Math.min(c[j], cc[j]);
+        }
+    }
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < 26; ++i) {
+        char ch = (char) (i + 'a');
+        for (int j = 0; j < c[i]; ++j) {
+            sb.append(ch);
+        }
+    }
+    out.println(sb.toString());
+}

@@ -1,0 +1,9 @@
+def solve():
+    n, m = map(int, input().split())
+    x = [int(i) for i in input().split()]
+    y = [int(i) for i in input().split()]
+
+    ans = calc_all_section_length_sum(x)
+    ans = (ans * calc_all_section_length_sum(y)) % mod
+
+    print(ans)

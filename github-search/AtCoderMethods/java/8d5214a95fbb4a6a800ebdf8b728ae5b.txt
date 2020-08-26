@@ -1,0 +1,22 @@
+public String play(StringBuilder target) {
+    if (target.length() == 0)
+        return mTurn;
+    char what = target.charAt(0);
+    StringBuilder next = null;
+    target.deleteCharAt(0);
+    switch(what) {
+        case 'a':
+            mTurn = "A";
+            next = mBa;
+            break;
+        case 'b':
+            mTurn = "B";
+            next = mBb;
+            break;
+        case 'c':
+            mTurn = "C";
+            next = mBc;
+            break;
+    }
+    return play(next);
+}

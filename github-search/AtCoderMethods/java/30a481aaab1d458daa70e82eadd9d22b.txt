@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    long N = sc.nextLong();
+    long H = sc.nextLong();
+    long A = sc.nextLong();
+    long B = sc.nextLong();
+    long C = sc.nextLong();
+    long D = sc.nextLong();
+    long E = sc.nextLong();
+    long ans = Long.MAX_VALUE;
+    for (long x = 0; x <= N; x++) {
+        long y = (E * N - E * x - B * x - H + D + E) / (D + E);
+        if (x + y <= N) {
+            ans = Math.min(ans, Math.max(A * x, A * x + C * y));
+        }
+    }
+    System.out.println(ans);
+}

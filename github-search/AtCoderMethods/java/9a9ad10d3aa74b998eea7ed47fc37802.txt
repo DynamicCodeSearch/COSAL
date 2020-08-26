@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    final String S = sc.nextLine();
+    final int N = sc.nextInt();
+    final int[] l = new int[N];
+    final int[] r = new int[N];
+    for (int i = 0; i < N; i++) {
+        l[i] = sc.nextInt();
+        r[i] = sc.nextInt();
+    }
+    sc.close();
+    char[] ans = S.toCharArray();
+    for (int i = 0; i < N; i++) {
+        int left = l[i] - 1;
+        int right = r[i] - 1;
+        while (left < right) {
+            char tmp = ans[left];
+            ans[left] = ans[right];
+            ans[right] = tmp;
+            left++;
+            right--;
+        }
+    }
+    System.out.println(String.valueOf(ans));
+}

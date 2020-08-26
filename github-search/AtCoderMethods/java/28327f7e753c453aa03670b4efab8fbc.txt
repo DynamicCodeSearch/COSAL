@@ -1,0 +1,17 @@
+void main() {
+    Queue<Point> q = new LinkedList<Point>();
+    q.add(start);
+    while (!q.isEmpty()) {
+        Point curr = q.poll();
+        LinkedList<Point> nextPoints = getNextPoints(curr);
+        for (Point nextPoint : nextPoints) {
+            nextPoint.distance = curr.distance + 1;
+            if (nextPoint.isGoal()) {
+                System.out.println(nextPoint.distance);
+                return;
+            }
+            makeVisited(nextPoint);
+            q.add(nextPoint);
+        }
+    }
+}

@@ -1,0 +1,33 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    n = sc.nextInt();
+    m = sc.nextInt();
+    G = new ArrayList<List<Edge>>(n);
+    for (int i = 0; i < n; i++) {
+        G.add(new ArrayList<Edge>());
+    }
+    for (int i = 0; i < m; i++) {
+        int s = sc.nextInt() - 1, t = sc.nextInt() - 1;
+        G.get(t).add(new Edge(t, s));
+    }
+    dp = new long[1 << n];
+    dp[0] = 1;
+    for (int s = 1; s < (1 << n); s++) {
+        for (int v = 0; v < n; v++) {
+            if ((s & (1 << v)) != 0) {
+                boolean notin = true;
+                for (Edge e : G.get(v)) {
+                    int w = e.w;
+                    if ((s & (1 << w)) != 0) {
+                        notin = false;
+                        break;
+                    }
+                }
+                if (notin) {
+                    dp[s] += dp[s ^ (1 << v)];
+                }
+            }
+        }
+    }
+    System.out.println(dp[(1 << n) - 1]);
+}

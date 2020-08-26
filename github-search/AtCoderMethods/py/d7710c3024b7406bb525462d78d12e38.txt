@@ -1,0 +1,15 @@
+def main():
+    s = input()
+    unbalance = True
+
+    if len(s) == 2 and s[0:1] == s[1:2]:
+        unbalance = False
+        print(1, 2)
+    else:
+        for i in range(len(s) - 2):
+            if s[i:i+1] == s[i+1:i+2] or s[i:i+1] == s[i+2:i+3]:
+                unbalance = False
+                print(i+1, i+3)
+                break
+
+    if unbalance: print(-1, -1)

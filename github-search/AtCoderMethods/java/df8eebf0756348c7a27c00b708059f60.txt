@@ -1,0 +1,22 @@
+private static void solve() {
+    Scanner sc = new Scanner(System.in);
+    PrintWriter pr = new PrintWriter(System.out);
+    String S = sc.next();
+    String s = "WBWBWWBWBWBW";
+    String[] ans = new String[12];
+    S = S.substring(0, 12) + S.substring(0, 12) + S.substring(0, 12);
+    
+    ans[0] = "Do";
+    ans[2] = "Re";
+    ans[4] = "Mi";
+    ans[5] = "Fa";
+    ans[7] = "So";
+    ans[9] = "La";
+    ans[11] = "Si";
+    int d = 0;
+    while (!S.substring(d, d + 12).equals(s)) {
+        d++;
+    }
+    System.out.println(d > 0 ? ans[12 - d] : ans[0]);
+    sc.close();
+}

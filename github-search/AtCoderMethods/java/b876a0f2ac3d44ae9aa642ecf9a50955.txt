@@ -1,0 +1,9 @@
+void run() {
+    long n = sc.nextLong();
+    long min = Integer.MAX_VALUE;
+    for (long i = 1; i * i <= n; i++) {
+        long j = n / i;
+        min = Math.min(min, Math.abs(j - i) + (n - i * j));
+    }
+    System.out.println(min);
+}

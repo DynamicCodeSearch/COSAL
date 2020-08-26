@@ -1,0 +1,22 @@
+public void solve(int testNumber, FastScanner in, PrintWriter out) {
+    int n = in.nextInt();
+    int[] a = new int[n + 1];
+    int sum = 0;
+    for (int i = 1; i <= n; i++) {
+        a[i] = in.nextInt();
+        sum += a[i];
+    }
+    if (sum % 10 != 0) {
+        out.print(sum);
+        return;
+    }
+    Arrays.sort(a, 1, n + 1);
+    for (int i = 1; i <= n; i++) {
+        if (a[i] % 10 != 0) {
+            sum -= a[i];
+            out.print(sum);
+            return;
+        }
+    }
+    out.print(0);
+}

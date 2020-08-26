@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int i = 0, j = 0, output = 0;
+    int N = sc.nextInt();
+    int[] flower = new int[N];
+    for (i = 0; i < N; i++) {
+        flower[i] = sc.nextInt();
+        for (j = 0; j < i; j++) {
+            if (flower[i] == flower[j]) {
+                output += 1;
+                break;
+            }
+        }
+    }
+    System.out.println(output);
+}

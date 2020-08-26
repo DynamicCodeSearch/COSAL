@@ -1,0 +1,25 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] line = br.readLine().split(" ");
+    int[] abc = new int[3];
+    int max = 0;
+    int maxi = -1;
+    for (int i = 0; i < line.length; i++) {
+        abc[i] = Integer.parseInt(line[i]);
+        if (abc[i] > max) {
+            max = abc[i];
+            maxi = i;
+        }
+    }
+    int sum = 0;
+    for (int i = 0; i < line.length; i++) {
+        if (i != maxi) {
+            sum += abc[i];
+        }
+    }
+    if (sum == max) {
+        System.out.println("Yes");
+    } else {
+        System.out.println("No");
+    }
+}

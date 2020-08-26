@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    MyInput in = new MyInput();
+    int n = in.nextInt();
+    char[][] map = new char[n][n];
+    for (int i = 0; i < n; i++) {
+        for (int h = 0; h < n; h++) {
+            map[i][h] = (char) in.readByte();
+        }
+        in.readByte();
+    }
+    for (int i = 0; i < n; i++) {
+        for (int h = 0; h < n; h++) {
+            System.out.print(map[n - h - 1][i]);
+        }
+        System.out.println();
+    }
+}

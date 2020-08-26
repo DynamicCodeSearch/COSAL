@@ -1,0 +1,45 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt(), m = in.nextInt();
+    Segment[] a = new Segment[n];
+    for (int i = 0; i < a.length; ++i) {
+        int left = in.nextInt();
+        int right = in.nextInt();
+        a[i] = new Segment(left, right, i);
+    }
+    Arrays.sort(a, (o1, o2) -> o1.left - o2.left);
+    TreeSet<Segment> s = new TreeSet<>();
+    TreeSet<Segment> s2 = new TreeSet<>();
+    int ans = 0;
+    int last = 1;
+    for (Segment e : a) {
+        if (last > m)
+            break;
+        if (last <= e.left) {
+            s.add(e);
+            last++;
+            ans++;
+        } else if (!s.isEmpty()) {
+            Segment v = s.first();
+            if (e.right > v.right) {
+                s.pollFirst();
+                s.add(e);
+                s2.add(v);
+            } else {
+                s2.add(e);
+            }
+        } else {
+            s2.add(e);
+        }
+    }
+    int right = m;
+    for (Segment e : s2.descendingSet()) {
+        if (right < last) {
+            break;
+        }
+        if (right >= e.right) {
+            ans++;
+            right--;
+        }
+    }
+    out.println(n - ans);
+}

@@ -1,0 +1,10 @@
+private static boolean enough(int T) {
+    long count = 0;
+    for (int i = 0; i < N; i++) {
+        int rest = h[i] - T * B;
+        if (rest > 0) {
+            count += (rest % (A - B) == 0 ? rest / (A - B) : rest / (A - B) + 1);
+        }
+    }
+    return count <= T;
+}

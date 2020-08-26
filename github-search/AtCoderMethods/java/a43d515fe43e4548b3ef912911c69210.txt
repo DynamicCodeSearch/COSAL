@@ -1,0 +1,23 @@
+public void run() {
+    try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
+        String[] args = br.readLine().split(" ");
+        int n = Integer.parseInt(args[0]);
+        int m = Integer.parseInt(args[1]);
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            list.add(br.readLine());
+        }
+        for (int i = 0; i < m + 2; i++) {
+            System.out.print("#");
+        }
+        System.out.println();
+        for (int i = 0; i < n; i++) {
+            System.out.println("#" + list.get(i) + "#");
+        }
+        for (int i = 0; i < m + 2; i++) {
+            System.out.print("#");
+        }
+        System.out.println();
+    } catch (Exception e) {
+    }
+}

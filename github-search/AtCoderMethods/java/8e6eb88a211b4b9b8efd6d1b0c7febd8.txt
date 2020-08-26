@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    try {
+        
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+        int m = Integer.parseInt(br.readLine());
+        if (m < 100) {
+            System.out.println("00");
+        } else if (m >= 100 && m <= 5000) {
+            int temp = (int) ((double) m / 1000 * 10);
+            if (temp < 10) {
+                System.out.println("0" + temp);
+            } else {
+                System.out.println(temp);
+            }
+        } else if (m >= 6000 && m <= 30000) {
+            int temp = m / 1000;
+            temp = temp + 50;
+            System.out.println(temp);
+        } else if (m >= 35000 && m <= 70000) {
+            int temp = m / 1000;
+            temp = ((temp - 30) / 5) + 80;
+            System.out.println(temp);
+        } else if (m > 70000) {
+            System.out.println(89);
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

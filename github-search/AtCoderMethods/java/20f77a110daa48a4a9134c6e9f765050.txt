@@ -1,0 +1,6 @@
+int minPos(int i, int j) {
+    int k = logTable[j - i];
+    int x = rmq[k][i];
+    int y = rmq[k][j - (1 << k) + 1];
+    return a[x] <= a[y] ? x : y;
+}

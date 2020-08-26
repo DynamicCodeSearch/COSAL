@@ -1,0 +1,39 @@
+public static void main(String[] args) throws java.lang.Exception {
+    Scanner in = new Scanner(System.in);
+    int n = in.nextInt();
+    int[][] freq = new int[n][26];
+    int[] answer = new int[26];
+    for (int i = 0; i < n; i++) {
+        char[] c = in.next().toCharArray();
+        for (int j = 0; j < c.length; j++) {
+            freq[i][c[j] - 'a']++;
+            if (i == 0) {
+                answer[c[j] - 'a'] = freq[i][c[j] - 'a'];
+            }
+        }
+    }
+    for (int i = 1; i < n; i++) {
+        for (int j = 0; j < 26; j++) {
+            answer[j] = Math.min(answer[j], freq[i][j]);
+        }
+    }
+    for (int i = 0; i < 26; i++) {
+        if (answer[i] > 0) {
+            for (int j = 0; j < answer[i]; j++) {
+                System.out.printf("%c", i + 'a');
+            }
+        }
+    }
+    System.out.println();
+
+
+
+
+
+
+
+
+
+
+
+}

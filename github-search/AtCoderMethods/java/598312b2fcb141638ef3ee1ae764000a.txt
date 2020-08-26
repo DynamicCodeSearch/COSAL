@@ -1,0 +1,17 @@
+public void solve(int testNumber, FastScanner in, PrintWriter out) {
+    int n = in.nextInt();
+    int[] a = new int[n];
+    long s = 0;
+    for (int i = 0; i < n; i++) {
+        a[i] = in.nextInt();
+        s += a[i];
+    }
+    long ans = Long.MAX_VALUE;
+    long t = 0;
+    for (int i = 0; i + 1 < n; i++) {
+        s -= a[i];
+        t += a[i];
+        ans = Math.min(ans, Math.abs(s - t));
+    }
+    out.println(ans);
+}

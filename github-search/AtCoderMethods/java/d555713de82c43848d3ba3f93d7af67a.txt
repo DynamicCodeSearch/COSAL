@@ -1,0 +1,10 @@
+public static void main(String[] __) {
+    int x[] = new int[1114_514], n = s.nextInt(), t = s.nextInt(), buf;
+    for (int i = 0; i < n; i++) {
+        buf = Integer.parseInt(s.next());
+        x[buf]++;
+        x[buf + t]--;
+    }
+    Arrays.parallelPrefix(x, (a, b) -> a + b);
+    System.out.println(Arrays.stream(x).parallel().filter(i -> i > 0).count());
+}

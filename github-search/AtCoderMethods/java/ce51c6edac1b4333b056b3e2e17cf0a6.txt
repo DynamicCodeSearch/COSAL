@@ -1,0 +1,22 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    StringBuilder sb = new StringBuilder();
+    int n = Integer.parseInt(br.readLine());
+    String[] s = br.readLine().split(" ");
+    long sum = 0;
+    long[] partials = new long[n];
+    for (int i = 0; i < n; i++) {
+        if (i == 0)
+            partials[i] = Long.parseLong(s[i]);
+        else
+            partials[i] = partials[i - 1] + Long.parseLong(s[i]);
+    }
+    sum = partials[n - 1];
+    long minDiff = Long.MAX_VALUE;
+    for (int i = 0; i < n - 1; i++) {
+        long diff = Math.abs((sum - partials[i]) - partials[i]);
+        if (diff < minDiff)
+            minDiff = diff;
+    }
+    System.out.println(minDiff);
+}

@@ -1,0 +1,53 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int H = scanner.nextInt();
+    int W = scanner.nextInt();
+    int N = scanner.nextInt();
+    int[] a = new int[N];
+    int[][] grid = new int[H][W];
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            grid[i][j] = -1;
+        }
+    }
+    int tmp = -1;
+    for (int i = 0; i < a.length; i++) {
+        a[i] = scanner.nextInt();
+    }
+    for (int i = 1; i <= a.length; i++) {
+        tmp = a[i - 1];
+        while (tmp > 0) {
+            for (int h = 0; h < H; h++) {
+                if (h % 2 == 0) {
+                    for (int w = 0; w < W; w++) {
+                        if (grid[h][w] == -1) {
+                            grid[h][w] = i;
+                            tmp--;
+                        }
+                        if (tmp == 0)
+                            break;
+                    }
+                } else {
+                    for (int w = W - 1; w >= 0; w--) {
+                        if (grid[h][w] == -1) {
+                            grid[h][w] = i;
+                            tmp--;
+                        }
+                        if (tmp == 0)
+                            break;
+                    }
+                }
+                if (tmp == 0)
+                    break;
+            }
+            if (tmp == 0)
+                break;
+        }
+    }
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            System.out.print(grid[i][j] + " ");
+        }
+        System.out.println();
+    }
+}

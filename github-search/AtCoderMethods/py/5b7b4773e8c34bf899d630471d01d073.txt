@@ -1,0 +1,25 @@
+def main():
+    line = sys.stdin.readline()
+    lst = line.split()
+    n = int(lst[0])
+    k = int(lst[1])
+
+    cnt_dic = defaultdict(int)
+    for line in sys.stdin:
+        lst = line.split()
+        a = int(lst[0])
+        b = int(lst[1])
+
+        cnt_dic[a] += b
+
+    cnt = 0
+    for key in sorted(cnt_dic.keys()):
+        val = cnt_dic[key]
+        cnt += val
+
+
+        if cnt >= k:
+            print("%d" % key)
+            break
+
+    return 0

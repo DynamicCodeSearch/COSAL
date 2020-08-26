@@ -1,0 +1,21 @@
+int[] makeGroup(int[] gid1, int[] gid2) {
+    final int n = gid1.length;
+    int[] res = new int[n];
+    HashMap<Long, Integer> map = new HashMap<>();
+    int gid = 0;
+    int[] group = new int[n];
+    for (int i = 0; i < n; i++) {
+        final long id = (long) gid1[i] * n + gid2[i];
+        if (!map.containsKey(id))
+            map.put(id, gid++);
+        group[i] = map.get(id);
+    }
+    int[] count = new int[gid];
+    for (int i = 0; i < n; i++) {
+        count[group[i]]++;
+    }
+    for (int i = 0; i < n; i++) {
+        res[i] = count[group[i]];
+    }
+    return res;
+}

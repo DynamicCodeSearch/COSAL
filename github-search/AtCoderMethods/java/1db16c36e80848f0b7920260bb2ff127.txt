@@ -1,0 +1,11 @@
+private static void dfs2(int before, int now) {
+    if (before >= 0) {
+        low[now] = Math.max(low[now], low[before] - 1);
+        high[now] = Math.min(high[now], high[before] + 1);
+    }
+    for (int p : g[now]) {
+        if (p != before) {
+            dfs2(now, p);
+        }
+    }
+}

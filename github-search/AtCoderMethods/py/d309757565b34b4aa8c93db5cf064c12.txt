@@ -1,0 +1,21 @@
+def main():
+    N = int(input())
+    A = list(map(int, input().split()))
+
+    A.sort(reverse=True)
+
+    p = 0
+    q = 0
+    pre = A[0]
+    for a in range(1, len(A)):
+        bpre = dcopy(pre)
+        pre = A[a]
+        if A[a] == bpre:
+            if p == 0:
+                p = A[a]
+                pre = 0
+            else:
+                q = A[a]
+                break
+
+    print(p*q)

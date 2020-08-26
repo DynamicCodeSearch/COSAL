@@ -1,0 +1,33 @@
+public static void main(String[] args) {
+    sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    double s6 = 0;
+    double s5 = 0;
+    double m4 = 0;
+    double m3 = 0;
+    double h2 = 0;
+    double h1 = 0;
+    if (N >= 3600) {
+        h2 = N / 3600;
+        h1 = Math.floor(h2 / 10);
+        h2 = h2 - h1 * 10;
+        N = N % 3600;
+    }
+    if (N >= 60) {
+        m4 = N / 60;
+        m3 = Math.floor(m4 / 10);
+        m4 = m4 - m3 * 10;
+        N = N % 60;
+    }
+    if (N < 60) {
+        s6 = N;
+        s5 = Math.floor(s6 / 10);
+        s6 = s6 - s5 * 10;
+    }
+    System.out.print((int) h1);
+    System.out.print((int) h2);
+    System.out.print(":" + (int) m3);
+    System.out.print((int) m4);
+    System.out.print(":" + (int) s5);
+    System.out.println((int) s6);
+}

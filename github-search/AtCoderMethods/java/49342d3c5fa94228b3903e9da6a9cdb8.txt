@@ -1,0 +1,19 @@
+private void solve(Scanner sc, PrintWriter out) {
+    String s = sc.nextLine();
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < s.length(); ++i) {
+        char ch = s.charAt(i);
+        switch(ch) {
+            case '0':
+            case '1':
+                sb.append(ch);
+                break;
+            case 'B':
+                if (sb.length() > 0) {
+                    sb.deleteCharAt(sb.length() - 1);
+                }
+                break;
+        }
+    }
+    out.println(sb.toString());
+}

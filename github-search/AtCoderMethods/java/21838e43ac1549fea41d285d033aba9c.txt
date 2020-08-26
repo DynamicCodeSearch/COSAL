@@ -1,0 +1,48 @@
+public void calc() {
+    int N = in.nextInt();
+    char[] S1 = in.next().toCharArray();
+    char[] S2 = in.next().toCharArray();
+    final int MOD = 1000000007;
+    long ans = 0;
+    
+    boolean portrait = false;
+    
+    for (int i = 0; i < S1.length; i++) {
+        char c = S1[i];
+        
+        if (c == S2[i]) {
+            if (i == 0) {
+                
+                ans = 3;
+            } else {
+                if (portrait) {
+                    
+                    ans = ((ans % MOD) * 2) % MOD;
+                } else {
+                
+                }
+            }
+            
+            portrait = true;
+        } else 
+        {
+            if (i == 0) {
+                
+                ans = 6;
+            } else {
+                if (portrait) {
+                    
+                    ans = ((ans % MOD) * 2) % MOD;
+                } else {
+                    
+                    ans = ((ans % MOD) * 3) % MOD;
+                }
+            }
+            
+            portrait = false;
+            i++;
+        }
+    }
+    out.println(ans);
+    out.close();
+}

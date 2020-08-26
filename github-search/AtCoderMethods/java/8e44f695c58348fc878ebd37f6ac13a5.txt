@@ -1,0 +1,41 @@
+void solve() throws IOException {
+    int n = in.nextInt();
+    int m = in.nextInt();
+    HashMap<Long, Integer> id_map = new HashMap<>(m);
+    int[] x = new int[m];
+    int[] y = new int[m];
+    int[] c = new int[m];
+    int[] vtx = new int[m * 2];
+    int idx = 0;
+    for (int i = 0; i < m; i++) {
+        x[i] = in.nextInt() - 1;
+        y[i] = in.nextInt() - 1;
+        c[i] = in.nextInt();
+        final long v1 = (long) x[i] << 32 | c[i];
+        final long v2 = (long) y[i] << 32 | c[i];
+        if (!id_map.containsKey(v1)) {
+            vtx[idx] = x[i];
+            id_map.put(v1, idx++);
+        }
+        if (!id_map.containsKey(v2)) {
+            vtx[idx] = y[i];
+            id_map.put(v2, idx++);
+        }
+    }
+    UnionFind uf = new UnionFind(idx);
+    for (int i = 0; i < m; i++) {
+        uf.unite(id_map.get((long) x[i] << 32 | c[i]), id_map.get((long) y[i] << 32 | c[i]));
+    }
+    List<Integer>[] node = new List[n + uf.group];
+    for (int i = 0; i < node.length; i++) node[i] = new ArrayList<>();
+    int[] table = new int[idx];
+    int[] par = uf.par;
+    int vi = n;
+    for (int i = 0; i < idx; i++) {
+        uf.find(i);
+        final int v = table[par[i]] == 0 ? (table[par[i]] = vi++) : table[par[i]];
+        node[v].add(vtx[i]);
+        node[vtx[i]].add(v);
+    }
+    System.out.println(bfs(node, 0, n - 1));
+}

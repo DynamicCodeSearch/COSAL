@@ -1,0 +1,42 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int H = in.nextInt();
+    int W = in.nextInt();
+    int N = in.nextInt();
+    int[] a = new int[N];
+    for (int i = 0; i < N; i++) {
+        a[i] = in.nextInt();
+    }
+    int[][] c = new int[H][W];
+    int j = 0;
+    int i = 0;
+    int k = 0;
+    while (i < H) {
+        if (i % 2 == 0) {
+            c[i][j] = k;
+            a[k]--;
+            if (a[k] == 0)
+                k++;
+            j++;
+            if (j == W) {
+                j--;
+                i++;
+            }
+        } else if (i % 2 == 1) {
+            c[i][j] = k;
+            a[k]--;
+            if (a[k] == 0)
+                k++;
+            j--;
+            if (j == -1) {
+                j++;
+                i++;
+            }
+        }
+    }
+    for (int r = 0; r < H; r++) {
+        for (int h = 0; h < W; h++) {
+            out.print((c[r][h] + 1) + " ");
+        }
+        out.println();
+    }
+}

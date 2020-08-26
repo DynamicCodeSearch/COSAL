@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    n = in.nextInt();
+    K = in.nextInt();
+    memo = new int[1 << n];
+    Arrays.fill(memo, -1);
+    int[][] re = new int[n][n];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            re[i][j] = in.nextInt();
+        }
+    }
+    rel = new int[1 << n];
+    for (int ptn = 0; ptn < (1 << n); ptn++) {
+        for (int j = 0; j < n; j++) {
+            if ((ptn & (1 << j)) == 0) {
+                continue;
+            }
+            for (int k = j + 1; k < n; k++) {
+                if ((ptn & (1 << k)) >= 1) {
+                    rel[ptn] += re[j][k];
+                }
+            }
+        }
+    }
+    out.println(dfs((1 << n) - 1) - rel[(1 << n) - 1]);
+    out.flush();
+}

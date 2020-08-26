@@ -1,0 +1,21 @@
+public static void main(String[] arg) {
+    Scanner scanner = new Scanner(System.in);
+    String[] input = scanner.nextLine().split("/");
+    double year = Double.valueOf(input[0]);
+    double month = Double.valueOf(input[1]);
+    double day = Double.valueOf(input[2]);
+    Calendar calendar = Calendar.getInstance();
+    calendar.set((int) year, (int) month - 1, (int) day);
+    while (true) {
+        year = Double.valueOf(calendar.get(Calendar.YEAR));
+        month = Double.valueOf(calendar.get(Calendar.MONTH)) + 1;
+        day = Double.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
+        double surplus = year / month % day;
+        if (surplus == 0) {
+            System.out.println(calendar.get(Calendar.YEAR) + "/" + String.format("%02d", calendar.get(Calendar.MONTH) + 1) + "/" + String.format("%02d", calendar.get(Calendar.DAY_OF_MONTH)));
+            return;
+        } else {
+            calendar.add(Calendar.DAY_OF_MONTH, 1);
+        }
+    }
+}

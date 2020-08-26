@@ -1,0 +1,15 @@
+def solve():
+    if N < M: return False
+    bi = loss = 0
+    for a in A:
+        if a > B[bi]:
+            return False
+        if a + T < B[bi]:
+            loss += 1
+            if loss + M > N:
+                return False
+        else:
+            bi += 1
+            if bi >= M:
+                return True
+    return True

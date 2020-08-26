@@ -1,0 +1,21 @@
+public static void main(String[] args) throws NumberFormatException, IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int number = Integer.parseInt(br.readLine());
+    int[][] coordinate = new int[number][2];
+    for (int i = 0; i < number; i++) {
+        String[] arr = br.readLine().split(" ");
+        coordinate[i][0] = Integer.parseInt(arr[0]);
+        coordinate[i][1] = Integer.parseInt(arr[1]);
+    }
+    int combination = number * (number - 1) / 2;
+    double max = 0;
+    for (int i = 0; i < number; i++) {
+        for (int j = i + 1; j < number; j++) {
+            double length = Math.sqrt(Math.pow((coordinate[i][0] - coordinate[j][0]), 2) + Math.pow((coordinate[i][1] - coordinate[j][1]), 2));
+            if (length > max) {
+                max = length;
+            }
+        }
+    }
+    System.out.println(max);
+}

@@ -1,0 +1,23 @@
+public static void main(String[] args) throws IOException {
+    final Scanner sc = new Scanner(System.in);
+    final int N = sc.nextInt();
+    final int K = sc.nextInt();
+    long[] arr = new long[N];
+    for (int i = 0; i < N; i++) {
+        arr[i] = sc.nextLong();
+    }
+    long cur_sum = 0;
+    for (int i = 0; i < K; i++) {
+        cur_sum += arr[i];
+    }
+    long all_sum = 0;
+    for (int i = K - 1; i < N; i++) {
+        
+        all_sum += cur_sum;
+        cur_sum -= arr[i - K + 1];
+        if (i + 1 < N) {
+            cur_sum += arr[i + 1];
+        }
+    }
+    System.out.println(all_sum);
+}

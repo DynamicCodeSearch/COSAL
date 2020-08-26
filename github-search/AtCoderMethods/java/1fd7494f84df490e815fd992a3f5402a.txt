@@ -1,0 +1,36 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    char[] s = scan.next().toCharArray();
+    boolean wwflag = false;
+    char last = ' ';
+    int kuro = 0;
+    int siro = 0;
+    boolean isDo = false;
+    for (int i = 0; i < s.length; i++) {
+        if (s[i] == 'W')
+            siro++;
+        if (last == 'W' && s[i] == 'W') {
+            if (wwflag) {
+                if (kuro == 3) {
+                    
+                    isDo = true;
+                } else if (kuro == 2) {
+                
+                }
+                break;
+            } else {
+                wwflag = true;
+            }
+        }
+        if (s[i] == 'B' && wwflag) {
+            kuro++;
+        }
+        last = s[i];
+    
+    }
+    if (isDo) {
+        System.out.println(onkai[(15 - siro) % 7]);
+    } else {
+        System.out.println(onkai[(11 - siro) % 7]);
+    }
+}

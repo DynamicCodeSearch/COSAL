@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    long[] a = new long[N];
+    long[] sum = new long[N];
+    for (int i = 0; i < N; i++) {
+        a[i] = sc.nextLong();
+        if (i == 0) {
+            sum[i] = a[i];
+        } else {
+            sum[i] = sum[i - 1] + a[i];
+        }
+    }
+    long ans = Long.MAX_VALUE;
+    for (int i = 0; i < N - 1; i++) {
+        long x = sum[i];
+        long y = sum[N - 1] - sum[i];
+        ans = Math.min(ans, Math.abs(x - y));
+    }
+    System.out.println(ans);
+}

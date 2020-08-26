@@ -1,0 +1,8 @@
+private byte read() throws IOException {
+    if (bufP == bytR) {
+        bytR = din.read(buffer, bufP = 0, 1024);
+        if (bytR == -1)
+            buffer[0] = -1;
+    }
+    return buffer[bufP++];
+}

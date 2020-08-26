@@ -1,0 +1,16 @@
+def main():
+    n = int(input())
+    a_list = [int(i) for i in input().split()]
+
+    b_list = [-1 for i in range(512345)]
+    left = 212345
+    right = left+1
+    for i in range(n):
+        if (i+1)%2 == n%2:
+            b_list[left] = a_list[i]
+            left -= 1
+        else:
+            b_list[right] = a_list[i]
+            right += 1
+
+    print(' '.join([str(i) for i in b_list[left+1:right]]))

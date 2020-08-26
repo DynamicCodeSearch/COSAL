@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    double xa = sc.nextDouble();
+    double ya = sc.nextDouble();
+    double xb = sc.nextDouble();
+    double yb = sc.nextDouble();
+    double xc = sc.nextDouble();
+    double yc = sc.nextDouble();
+    sc.close();
+    double da = getDistance(xa, ya, xb, yb);
+    double db = getDistance(xb, yb, xc, yc);
+    double dc = getDistance(xc, yc, xa, ya);
+    double s = (da + db + dc) / 2;
+    double ans = Math.sqrt(s * (s - da) * (s - db) * (s - dc));
+    System.out.println(ans);
+}

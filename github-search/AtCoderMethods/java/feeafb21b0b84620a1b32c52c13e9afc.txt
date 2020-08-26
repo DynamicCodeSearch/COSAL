@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int K = sc.nextInt();
+    int[] r = new int[N];
+    for (int i = 0; i < N; i++) {
+        r[i] = sc.nextInt();
+    }
+    Arrays.sort(r);
+    float rate = 0.0f;
+    for (int i = r.length - 1 - K + 1; i <= r.length - 1; i++) {
+        rate = (float) ((rate + r[i]) / 2);
+    }
+    System.out.println(rate);
+}

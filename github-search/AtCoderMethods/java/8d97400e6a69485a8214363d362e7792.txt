@@ -1,0 +1,13 @@
+private static long solve(int n, int m) {
+    if (n + 1 != m && n != m + 1 && n != m)
+        return 0;
+    long mod = (int) 1e9 + 7;
+    long dogs = 1;
+    long monkeys = 1;
+    for (int i = 1; i <= n; i++) dogs = (dogs * i) % mod;
+    for (int i = 1; i <= m; i++) monkeys = (monkeys * i) % mod;
+    long ans = (dogs * monkeys) % mod;
+    if (n == m)
+        ans = (2 * ans) % mod;
+    return ans;
+}

@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    long t = 1, a = 1;
+    for (int i = 0; i < N; i++) {
+        int T = sc.nextInt();
+        int A = sc.nextInt();
+        long nt = (t + T - 1) / T * T;
+        long na = (t + T - 1) / T * A;
+        if ((t + T - 1) / T * A <= a) {
+            nt = (a + A - 1) / A * T;
+            na = (a + A - 1) / A * A;
+        }
+        t = nt;
+        a = na;
+    }
+    System.out.println(t + a);
+    sc.close();
+}

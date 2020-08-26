@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    int n = sc.nextInt();
+    char[][] a = new char[n][n];
+    for (int i = 0; i < n; i++) {
+        String s = sc.next();
+        a[i] = s.toCharArray();
+    }
+    char[][] ret = new char[n][n];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            ret[j][n - i - 1] = a[i][j];
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        System.out.println(ret[i]);
+    }
+}

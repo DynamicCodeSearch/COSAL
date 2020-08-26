@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    final int n = sc.nextInt();
+    List<Integer> se = new ArrayList();
+    final int range = 24 * 60 / 5 + 1;
+    int[] schedule = new int[range];
+    for (int i = 0; i < n; i++) {
+        String[] tmp = sc.next().split("-");
+        int start = (Integer.parseInt(tmp[0].substring(0, 2)) * 60 + Integer.parseInt(tmp[0].substring(2, 4))) / 5;
+        int end = (Integer.parseInt(tmp[1].substring(0, 2)) * 60 + Integer.parseInt(tmp[1].substring(2, 4)) + 4) / 5;
+        schedule[start]++;
+        schedule[end]--;
+    }
+    int now = 0;
+    for (int i = 0; i < range; i++) {
+        if (now == 0 && now + schedule[i] > 0) {
+            System.out.print(String.format("%02d", i * 5 / 60));
+            System.out.print(String.format("%02d-", i * 5 % 60));
+        } else if (now != 0 && now + schedule[i] == 0) {
+            System.out.print(String.format("%02d", i * 5 / 60));
+            System.out.println(String.format("%02d", i * 5 % 60));
+        }
+        now += schedule[i];
+        schedule[i] = now;
+    }
+}

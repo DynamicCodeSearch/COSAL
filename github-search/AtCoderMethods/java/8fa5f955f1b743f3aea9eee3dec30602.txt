@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int min;
+    int[] n = new int[100];
+    for (int i = 0; i < N; i++) {
+        n[i] = sc.nextInt();
+    }
+    int[] a = IntStream.of(n).distinct().toArray();
+    Arrays.sort(a);
+    min = a[a.length - 2];
+    System.out.println(min);
+}

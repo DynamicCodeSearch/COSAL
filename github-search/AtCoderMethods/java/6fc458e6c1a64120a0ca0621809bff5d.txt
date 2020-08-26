@@ -1,0 +1,46 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    long[][] table = new long[n][];
+    for (int i = 0; i < n; i++) {
+        table[i] = new long[n];
+        for (int j = 0; j < n; j++) table[i][j] = 1000000007;
+        table[i][i] = 0;
+    }
+    boolean[][][] using = new boolean[n][][];
+    for (int i = 0; i < n; i++) {
+        using[i] = new boolean[n][];
+        for (int j = 0; j < n; j++) using[i][j] = new boolean[m];
+    }
+    int a, b, c;
+    for (int i = 0; i < m; i++) {
+        a = sc.nextInt() - 1;
+        b = sc.nextInt() - 1;
+        c = sc.nextInt();
+        table[a][b] = c;
+        using[a][b][i] = true;
+        table[b][a] = c;
+        using[b][a][i] = true;
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            for (int k = 0; k < n; k++) {
+                if (table[j][i] + table[i][k] < table[j][k]) {
+                    table[j][k] = table[j][i] + table[i][k];
+                    for (int l = 0; l < m; l++) using[j][k][l] = using[j][i][l] || using[i][k][l];
+                }
+            }
+        }
+    }
+    boolean result;
+    int counter = 0;
+    for (int i = 0; i < m; i++) {
+        result = false;
+        for (int j = 0; j < n; j++) {
+            for (int k = 0; k < n; k++) result = result || using[j][k][i];
+        }
+        counter += result ? 0 : 1;
+    }
+    System.out.println(String.valueOf(counter));
+}

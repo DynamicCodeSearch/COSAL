@@ -1,0 +1,38 @@
+def solve(N, M, xy):
+
+    memo = init_memo(N)
+    faster = [[0] * N for i in range(N)]
+    Es = [[] for i in range(N)]
+    for x, y in xy:
+        faster[x][y] = 1
+        faster[y][x] = -1
+        Es[x].append(y)
+    for x in range(N):
+        f = [x]
+        visited = [False] * N
+        visited[x] = True
+        while f:
+            new_f = []
+            for u in f:
+                for v in Es[u]:
+                    if visited[v]:
+                        continue
+                    visited[v] = True
+                    new_f.append(v)
+                    faster[x][v] = 1
+                    faster[v][x] = -1
+            f = new_f
+    dp = [0] * (1 << N)
+    for mask in range(1, 1 << N):
+        if len(memo[mask]) == 1:
+            dp[mask] = 1
+            continue
+        members = memo[mask]
+        for idx0 in members:
+            faster0 = faster[idx0]
+            for idx1 in members:
+                if faster0[idx1] == -1:
+                    break
+            else:
+                dp[mask] += dp[mask - (1 << idx0)]
+    return dp[(1 << N) - 1]

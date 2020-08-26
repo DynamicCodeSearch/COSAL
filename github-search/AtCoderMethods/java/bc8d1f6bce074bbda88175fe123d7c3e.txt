@@ -1,0 +1,12 @@
+
+
+protected void initF() {
+    if (Farray != null)
+        return;
+    Farray = new int[capacity + 1];
+    FInvarray = new int[capacity + 1];
+    for (int n = 0; n < Farray.length; n++) {
+        Farray[n] = (n == 0) ? 1 : multiple(n, Farray[n - 1]);
+        FInvarray[n] = divide(1, Farray[n]);
+    }
+}

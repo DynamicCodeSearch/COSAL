@@ -1,0 +1,22 @@
+private void solve(Scanner sc) {
+    int N = sc.nextInt();
+    int maxIdx = -1;
+    int max = 0;
+    int sum = 0;
+    String[] S = new String[N];
+    int[] P = new int[N];
+    for (int i = 0; i < N; ++i) {
+        S[i] = sc.next();
+        P[i] = sc.nextInt();
+        if (P[i] > max) {
+            max = P[i];
+            maxIdx = i;
+        }
+        sum += P[i];
+    }
+    if (P[maxIdx] > sum / 2) {
+        _out.println(S[maxIdx]);
+    } else {
+        _out.println("atcoder");
+    }
+}

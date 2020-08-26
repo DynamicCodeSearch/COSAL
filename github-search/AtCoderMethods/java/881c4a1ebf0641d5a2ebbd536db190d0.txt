@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String in = sc.nextLine();
+    String[] inArray = in.split(" ");
+    long a = Long.parseLong(inArray[0]);
+    long b = Long.parseLong(inArray[1]);
+    long k = Long.parseLong(inArray[2]);
+    long l = Long.parseLong(inArray[3]);
+    long sum1 = 0l;
+    long sum2 = 0l;
+    long set = (long) Math.ceil((double) k / (double) l);
+    sum1 = set * b;
+    long set1 = k / l;
+    long mod = k % l;
+    long setSum = set1 * b;
+    long modSum = mod * a;
+    sum2 = setSum + modSum;
+    if (sum2 <= sum1) {
+        System.out.println(sum2);
+    } else {
+        System.out.println(sum1);
+    }
+    sc.close();
+}

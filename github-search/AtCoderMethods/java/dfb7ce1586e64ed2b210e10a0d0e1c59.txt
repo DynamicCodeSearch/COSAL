@@ -1,0 +1,12 @@
+private boolean check(double m) {
+    List<Pair<Double>> s = new ArrayList<>();
+    for (int i = 0; i < N; ++i) {
+        s.add(new Pair<>(w[i] * (p[i] - m), 1d * w[i]));
+    }
+    Collections.sort(s);
+    double sum = 0d;
+    for (int i = N - 1; i >= N - K; --i) {
+        sum += s.get(i).a;
+    }
+    return (sum > 0d);
+}

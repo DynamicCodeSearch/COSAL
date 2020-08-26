@@ -1,0 +1,61 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    List<String> list = new ArrayList();
+    for (int i = 0; i < n; i++) {
+        String line = sc.next();
+        String[] vals = line.split("-");
+        String start = vals[0];
+        int start3 = Integer.parseInt(start.substring(2, 3));
+        int start4 = Integer.parseInt(start.substring(3, 4));
+        if (start4 <= 4) {
+            start4 = 0;
+        } else if (start4 <= 9) {
+            start4 = 5;
+        }
+        String startHM = start.substring(0, 2) + start3 + start4;
+        String end = vals[1];
+        int endHour = Integer.parseInt(end.substring(0, 2));
+        int end3 = Integer.parseInt(end.substring(2, 3));
+        int end4 = Integer.parseInt(end.substring(3, 4));
+        if (end4 >= 6 && end3 == 5) {
+            endHour += 1;
+            end3 = 0;
+            end4 = 0;
+        } else if (end4 >= 6) {
+            end3 += 1;
+            end4 = 0;
+        } else if (end4 >= 1 && end4 <= 4) {
+            end4 = 5;
+        }
+        String endHM = endHour < 10 ? "0" + endHour : String.valueOf(endHour);
+        endHM += end3 + "" + end4;
+        list.add(startHM + "-" + endHM);
+    }
+    Collections.sort(list);
+    String prevStart = "";
+    String prevEnd = "";
+    for (String val : list) {
+        String[] vals = val.split("-");
+        if ("".equals(prevStart)) {
+            prevStart = vals[0];
+            prevEnd = vals[1];
+        } else {
+            int prevEndInt = Integer.parseInt(prevEnd);
+            int curStartInt = Integer.parseInt(vals[0]);
+            if (prevEndInt >= curStartInt) {
+                int curEndInt = Integer.parseInt(vals[1]);
+                if (curEndInt > prevEndInt) {
+                    prevEnd = vals[1];
+                }
+            } else {
+                System.out.println(prevStart + "-" + prevEnd);
+                prevStart = vals[0];
+                prevEnd = vals[1];
+            }
+        }
+    }
+    if (!"".equals(prevStart)) {
+        System.out.println(prevStart + "-" + prevEnd);
+    }
+}

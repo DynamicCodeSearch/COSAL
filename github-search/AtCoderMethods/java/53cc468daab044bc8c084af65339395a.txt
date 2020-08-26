@@ -1,0 +1,13 @@
+
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    int n = Integer.parseInt(sc.next());
+    int k = Integer.parseInt(sc.next());
+    long sum = 0L;
+    for (int i = 0; i < n; i++) {
+        int j = Math.min(n - k + 1, Math.min(k, Math.min(i + 1, n - i)));
+        sum = sum + j * Long.parseLong(sc.next());
+    }
+    System.out.println(sum);
+}

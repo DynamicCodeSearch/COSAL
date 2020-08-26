@@ -1,0 +1,9 @@
+static long GCDnew(long a, long b) {
+    long candidate = a;
+    while (b % a != 0) {
+        candidate = b % a;
+        b = a;
+        a = candidate;
+    }
+    return candidate;
+}

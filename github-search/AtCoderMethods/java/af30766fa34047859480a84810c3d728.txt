@@ -1,0 +1,23 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int m = in.nextInt();
+    int t = in.nextInt();
+    long[] a = in.nextLongArray(n);
+    Dijkstra dijkstra1 = new Dijkstra(n);
+    Dijkstra dijkstra2 = new Dijkstra(n);
+    for (int i = 0; i < m; i++) {
+        int from = in.nextInt() - 1;
+        int to = in.nextInt() - 1;
+        int cost = in.nextInt();
+        dijkstra1.addDirectedEdge(from, to, cost);
+        dijkstra2.addDirectedEdge(to, from, cost);
+    }
+    long[] dist1 = dijkstra1.getDist(0);
+    long[] dist2 = dijkstra2.getDist(0);
+    long ans = 0;
+    for (int i = 0; i < n; i++) {
+        if (t >= dist1[i] + dist2[i])
+            ans = Math.max(ans, a[i] * (t - (dist1[i] + dist2[i])));
+    }
+    out.println(ans);
+}

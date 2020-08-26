@@ -1,0 +1,8 @@
+public void add(int index, int value) {
+    b[index + N] += value;
+    int i = (index + N) / 2;
+    while (i > 0) {
+        b[i] = b[i * 2] + b[i * 2 + 1];
+        i /= 2;
+    }
+}

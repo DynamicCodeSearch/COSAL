@@ -1,0 +1,8 @@
+private static int getWindPower(int dis) {
+    int ms = (int) Math.round(dis / 6.0);
+    for (int i = 0; i < THRESHOLD.length; i++) {
+        if (ms <= THRESHOLD[i])
+            return i;
+    }
+    return THRESHOLD.length;
+}

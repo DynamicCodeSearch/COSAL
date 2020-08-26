@@ -1,0 +1,57 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    int x = sc.nextInt() - 1;
+    int y = sc.nextInt() - 1;
+    String W = sc.next();
+    String[] c = new String[9];
+    for (int i = 0; i < 9; i++) {
+        c[i] = sc.next();
+    }
+    for (int i = 0; i < 4; i++) {
+        int xx = x;
+        if (xx < 0) {
+            xx = -xx;
+        } else if (xx >= 9) {
+            xx = 16 - xx;
+        }
+        int yy = y;
+        if (yy < 0) {
+            yy = -yy;
+        } else if (yy >= 9) {
+            yy = 16 - yy;
+        }
+        debug(x, xx, y, yy);
+        System.out.print(c[yy].charAt(xx));
+        switch(W) {
+            case "R":
+                x++;
+                break;
+            case "L":
+                x--;
+                break;
+            case "U":
+                y--;
+                break;
+            case "D":
+                y++;
+                break;
+            case "RU":
+                x++;
+                y--;
+                break;
+            case "RD":
+                x++;
+                y++;
+                break;
+            case "LU":
+                x--;
+                y--;
+                break;
+            case "LD":
+                x--;
+                y++;
+                break;
+        }
+    }
+    System.out.println();
+}

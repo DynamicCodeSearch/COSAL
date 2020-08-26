@@ -1,0 +1,15 @@
+def solve():
+    ans = (100*A , 0)
+    for a in range(0,F,100*A):
+        for b in range(0,F,100*B):
+            water = a + b
+            for c in range(0,F,C):
+                for d in range(0,F,D):
+                    sugar = c + d
+                    if water + sugar > F or 100*sugar > E*water or water ==0:
+                        break
+                    elif 100*sugar == E*water:
+                        return (water,sugar)
+                    elif sugar*ans[0] > ans[1]*water:
+                        ans = (water , sugar)
+    return ans

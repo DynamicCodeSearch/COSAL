@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int n = scanner.nextInt();
+    Prime prime = new Prime();
+    prime.addPrime(n);
+    
+    List<Integer> list = new ArrayList<>();
+    for (int i = 1; i <= n; i++) {
+        list.addAll(prime.getPrimeFactor(i));
+    }
+    Map<Integer, List<Integer>> map = list.stream().collect(Collectors.groupingBy(i -> i));
+    List<Integer> list2 = map.keySet().stream().map(e -> map.get(e).size()).collect(Collectors.toList());
+    long ans = 1l;
+    for (Integer integer : list2) {
+        ans = (ans * (integer + 1)) % 1000000007;
+    }
+    System.out.println(ans);
+}

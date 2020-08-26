@@ -1,0 +1,14 @@
+private static String[] solve(int H, int W, String[] S) {
+    String[] ans = new String[H];
+    for (int h = 0; h < H; h++) {
+        ans[h] = "";
+        for (int w = 0; w < W; w++) {
+            if (S[h].charAt(w) == '#') {
+                ans[h] = ans[h] + S[h].charAt(w);
+            } else {
+                ans[h] = ans[h] + count(h, w, H, W, S);
+            }
+        }
+    }
+    return ans;
+}

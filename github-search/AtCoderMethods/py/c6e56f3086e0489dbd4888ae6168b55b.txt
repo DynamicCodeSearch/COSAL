@@ -1,0 +1,64 @@
+def D_takoyaki(N, D, Q, P):
+    from itertools import product
+
+    square_memo = [[-1] * N for _ in range(N)]
+
+    def rectangleFromOrigin(x, y):
+
+        if x < 0 or y < 0:
+            return 0
+        if square_memo[x][y] == -1:
+
+
+
+
+
+
+
+
+            s = 0
+            s += rectangleFromOrigin(x - 1, y)  
+            s += rectangleFromOrigin(x, y - 1)  
+            s -= rectangleFromOrigin(x - 1, y - 1)  
+            s += D[x][y]  
+            square_memo[x][y] = s
+        return square_memo[x][y]
+
+    def rectangle(x, y, w, h):
+
+        s = 0
+
+
+
+
+
+
+
+        s += rectangleFromOrigin(w, h)  
+        s -= rectangleFromOrigin(x - 1, h)  
+        s -= rectangleFromOrigin(w, y - 1)  
+        s += rectangleFromOrigin(x - 1, y - 1)  
+        return s
+
+    ans = [0] * (N**2)
+
+    for w, h in product(range(N), repeat=2):
+        x_max = N - w
+        y_max = N - h
+        idx = (w + 1) * (h + 1) - 1
+        for x, y in product(range(x_max), range(y_max)):
+            tmp = rectangle(x, y, x + w, y + h)
+            ans[idx] = max(ans[idx], tmp)  
+
+
+
+    tmp = 0
+    for i in range(N**2):
+        if ans[i] > tmp:
+            tmp = ans[i]
+        else:
+            ans[i] = tmp
+
+    for i in P:
+        print(ans[i - 1])
+    return None

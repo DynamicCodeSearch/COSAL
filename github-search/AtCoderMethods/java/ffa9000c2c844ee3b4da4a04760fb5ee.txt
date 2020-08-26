@@ -1,0 +1,11 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    long N = sc.nextLong();
+    long ret = Integer.MAX_VALUE;
+    for (long i = 1; i <= Math.sqrt(N) + 0.1; i++) {
+        if (N % i == 0) {
+            ret = Math.min(ret, (int) Math.log10(N / i));
+        }
+    }
+    System.out.println(ret + 1);
+}

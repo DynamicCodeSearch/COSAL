@@ -1,0 +1,57 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int R = Integer.parseInt(scanner.next());
+    int C = Integer.parseInt(scanner.next());
+    int sy = Integer.parseInt(scanner.next());
+    int sx = Integer.parseInt(scanner.next());
+    int gy = Integer.parseInt(scanner.next());
+    int gx = Integer.parseInt(scanner.next());
+    int[][] maze = new int[R][C];
+    ArrayList<int[]> queue = new ArrayList<>();
+    for (int i = 0; i < R; i++) {
+        String str = scanner.next();
+        for (int j = 0; j < C; j++) {
+            String subStr = str.substring(j, j + 1);
+            if (subStr.equals("#")) {
+                maze[i][j] = -1;
+            } else {
+                maze[i][j] = 0;
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    int x, y, tmp;
+    queue.add(new int[] { sy - 1, sx - 1 });
+    while (true) {
+        y = queue.get(0)[0];
+        x = queue.get(0)[1];
+        queue.remove(0);
+        if (y == gy - 1 && x == gx - 1) {
+            System.out.println(maze[y][x]);
+            
+            return;
+        }
+        tmp = maze[y][x];
+        if (maze[y - 1][x] == 0) {
+            maze[y - 1][x] = tmp + 1;
+            queue.add(new int[] { y - 1, x });
+        }
+        if (maze[y + 1][x] == 0) {
+            maze[y + 1][x] = tmp + 1;
+            queue.add(new int[] { y + 1, x });
+        }
+        if (maze[y][x - 1] == 0) {
+            maze[y][x - 1] = tmp + 1;
+            queue.add(new int[] { y, x - 1 });
+        }
+        if (maze[y][x + 1] == 0) {
+            maze[y][x + 1] = tmp + 1;
+            queue.add(new int[] { y, x + 1 });
+        }
+    }
+}

@@ -1,0 +1,11 @@
+def idou(route,vector):
+    global kotae
+    if len(route) == n:
+        kotae += 1
+        return 0
+    for vec in vector:
+        if vec[0] == route[-1] and vec[1] not in route:
+            route.append(vec[1])
+            idou(route,vector)
+            route.remove(vec[1])
+    return 0

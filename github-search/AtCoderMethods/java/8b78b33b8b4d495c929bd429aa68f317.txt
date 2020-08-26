@@ -1,0 +1,56 @@
+public static void main(String[] args) {
+    try {
+        
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+        String[] str = br.readLine().split(" ");
+        int h = Integer.parseInt(str[0]);
+        int w = Integer.parseInt(str[1]);
+        String[] masu = new String[h];
+        for (int i = 0; i < h; i++) {
+            masu[i] = br.readLine();
+        }
+        for (int i = 0; i < h; i++) {
+            for (int j = 0; j < w; j++) {
+                int num = 0;
+                char ch = masu[i].charAt(j);
+                if (ch == '#') {
+                    System.out.print(ch);
+                } else {
+                    if (j > 0) {
+                        if (masu[i].charAt(j - 1) == '#') {
+                            num++;
+                        }
+                        if (i > 0 && masu[i - 1].charAt(j - 1) == '#') {
+                            num++;
+                        }
+                        if (h - 1 > i && masu[i + 1].charAt(j - 1) == '#') {
+                            num++;
+                        }
+                    }
+                    if (i > 0 && masu[i - 1].charAt(j) == '#') {
+                        num++;
+                    }
+                    if (h - 1 > i && masu[i + 1].charAt(j) == '#') {
+                        num++;
+                    }
+                    if (w - 1 > j) {
+                        if (masu[i].charAt(j + 1) == '#') {
+                            num++;
+                        }
+                        if (i > 0 && masu[i - 1].charAt(j + 1) == '#') {
+                            num++;
+                        }
+                        if (h - 1 > i && masu[i + 1].charAt(j + 1) == '#') {
+                            num++;
+                        }
+                    }
+                    System.out.print(num);
+                }
+            }
+            System.out.println();
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

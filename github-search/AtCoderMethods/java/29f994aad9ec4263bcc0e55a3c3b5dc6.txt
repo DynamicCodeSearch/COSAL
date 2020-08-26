@@ -1,0 +1,17 @@
+int Union(int x, int y) {
+    int xset = find(x);
+    int yset = find(y);
+    if (xset != yset)
+        cnt--;
+    if (rank[xset] < rank[yset]) {
+        parent[xset] = yset;
+        rank[yset] += rank[xset];
+        rank[xset] = 0;
+        return yset;
+    } else {
+        parent[yset] = xset;
+        rank[xset] += rank[yset];
+        rank[yset] = 0;
+        return xset;
+    }
+}

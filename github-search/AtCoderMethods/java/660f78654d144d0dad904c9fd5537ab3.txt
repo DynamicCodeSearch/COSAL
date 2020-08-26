@@ -1,0 +1,37 @@
+void solve() {
+    n = in.nextInt();
+    g = new ArrayList[n];
+    type = new int[n];
+    for (int i = 0; i < n; i++) g[i] = new ArrayList<>();
+    for (int i = 1; i < n; i++) {
+        int a = in.nextInt() - 1;
+        int b = in.nextInt() - 1;
+        g[a].add(b);
+        g[b].add(a);
+    }
+    ArrayBlockingQueue<Integer> q = new ArrayBlockingQueue<Integer>(n);
+    type[0] = 1;
+    type[n - 1] = 2;
+    q.add(0);
+    q.add(n - 1);
+    int f = 0;
+    int s = 0;
+    while (!q.isEmpty()) {
+        int now = q.remove();
+        if (type[now] == 1)
+            f++;
+        else
+            s++;
+        for (int i = 0; i < g[now].size(); i++) {
+            int to = g[now].get(i);
+            if (type[to] == 0) {
+                q.add(to);
+                type[to] = type[now];
+            }
+        }
+    }
+    if (f > s)
+        out.println("Fennec");
+    else
+        out.println("Snuke");
+}

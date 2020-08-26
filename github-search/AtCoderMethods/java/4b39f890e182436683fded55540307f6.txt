@@ -1,0 +1,10 @@
+static long min_dis(int u, int v) {
+    int l = query(u, v);
+    int uk = query(u, k);
+    int vk = query(v, k);
+    int lk = query(l, k);
+    if (lk == l && (uk == k || vk == k))
+        return path_len(u, v, l);
+    else
+        return path_len(u, k, uk) + path_len(v, k, vk);
+}

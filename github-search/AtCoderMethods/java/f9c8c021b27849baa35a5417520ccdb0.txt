@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    String[] s = new String[N];
+    for (int i = 0; i < N; i++) {
+        s[i] = sc.next();
+    }
+    String[] ans = new String[N];
+    for (int i = 0; i < N; i++) {
+        char[] ch = new char[N];
+        for (int j = 0; j < N; j++) {
+            ch[j] = s[N - j - 1].charAt(i);
+        }
+        String str = new String(ch);
+        ans[i] = str;
+    }
+    for (int i = 0; i < N; i++) {
+        System.out.println(ans[i]);
+    }
+}

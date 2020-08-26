@@ -1,0 +1,17 @@
+def bfs(M,SX,SY,GX,GY,H,W):
+    dxy4 = [1,0,-1,0,1]
+    Q = deque()
+    Q.append([SX,SY])
+    while len(Q):
+        X,Y = Q.popleft()
+        T = M[Y][X] + 1
+        for i in range(4):
+            nx = X + dxy4[i]
+            ny = Y + dxy4[i+1]
+            if [nx,ny] == [GX,GY]:
+                M[ny][nx] = T
+                return T
+            if 0<= nx < W and 0 <= ny < H and T < M[ny][nx]:
+                M[ny][nx] = T
+                Q.append([nx,ny])
+    return -1

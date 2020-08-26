@@ -1,0 +1,47 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    double L = sc.nextInt();
+    double X = sc.nextInt();
+    double Y = sc.nextInt();
+    double S = sc.nextInt();
+    double D = sc.nextInt();
+    double Pos;
+    double rsp = 0;
+    double tsp = 0;
+    boolean jud;
+    if (D > S) {
+        Pos = D - S;
+        tsp = Pos / (X + Y);
+        if (X < Y) {
+            rsp = (L - Pos) / (Y - X);
+            jud = true;
+        } else {
+            jud = false;
+        }
+    } else if (D < S) {
+        Pos = (L - S) + D;
+        tsp = Pos / (X + Y);
+        if (X < Y) {
+            rsp = (L - Pos) / (Y - X);
+            jud = true;
+        } else {
+            jud = false;
+        }
+    } else {
+        tsp = 0;
+        jud = false;
+    }
+    if (jud == true) {
+        if (rsp > 0) {
+            if (tsp > rsp) {
+                System.out.println(rsp);
+            } else {
+                System.out.println(tsp);
+            }
+        } else {
+            System.out.println(tsp);
+        }
+    } else {
+        System.out.println(tsp);
+    }
+}

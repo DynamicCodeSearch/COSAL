@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int distance = sc.nextInt();
+    sc.close();
+    int result = 0;
+    if (distance < 100) {
+        result = 0;
+    } else if (100 <= distance && distance <= 5000) {
+        result = distance / 100;
+    } else if (6000 <= distance && distance <= 30000) {
+        result = distance / 1000 + 50;
+    } else if (35000 <= distance && distance <= 70000) {
+        result = (distance / 1000 - 30) / 5 + 80;
+    } else if (70000 < distance) {
+        result = 89;
+    }
+    System.out.format("%02d\n", result);
+}

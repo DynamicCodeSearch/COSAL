@@ -1,0 +1,13 @@
+public static void main(String[] args) throws Exception {
+    FastScanner fs = new FastScanner();
+    PrintWriter out = new PrintWriter(System.out);
+    long n = fs.nextLong();
+    int res = (int) 1e9;
+    for (long i = 1; i <= Math.sqrt(n); i++) {
+        if (n % i == 0) {
+            res = Math.min(res, Math.max(Long.toString(i).length(), Long.toString(n / i).length()));
+        }
+    }
+    out.println(res);
+    out.close();
+}

@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int m = scan.nextInt();
+    int n = scan.nextInt();
+    int N = scan.nextInt();
+    int amari = 0;
+    int sum = N;
+    while (true) {
+        int s = 0;
+        s = N / m * n;
+        amari += N % m;
+        s += amari / m * n;
+        amari = amari % m;
+        N = s;
+        sum += N;
+        if (s == 0)
+            break;
+    }
+    System.out.println(sum);
+}

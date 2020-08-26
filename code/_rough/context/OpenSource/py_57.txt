@@ -1,0 +1,183 @@
+### Py Tokens: return, string, characters, chars, none, unicode, strip, removed, trailing, given, copy, whitespace, leading, remove, stripping, instead, converted 
+
+### Py functions
+
+def strip(s, chars=None):
+
+  return s.strip(chars)
+*********************************
+
+#### Score: 12.24825
+
+
+#### Java Tokens: note, code, string, use, deprecated, foo, link, endswith, remove, substring, without, bar, foobar, trailing, feature, param, utils, ends, end, baz, perl, substringbeforelast, behavior, lang, pre, closely, method, previous, last, may, chomp, instead, separator, version, matches, str, stringutils, input, removed, foooo, removeend, uses, removes, changed 
+
+
+@Deprecated
+public static String chomp(final String str, final String separator) {
+    return removeEnd(str, separator);
+}
+*********************************
+
+#### Score: 12.14733
+
+
+#### Java Tokens: code, string, abcyx, use, link, stripped, isempty, strips, remove, empty, characters, character, strip, trim, param, utils, stripstart, xyz, end, defined, allows, similar, treated, pre, set, alternatively, abc, may, start, str, stringutils, controlled, input, stripchars, returns, whitespace, stripend, iswhitespace, chars 
+
+
+public static String strip(String str, final String stripChars) {
+    if (isEmpty(str)) {
+        return str;
+    }
+    str = stripStart(str, stripChars);
+    return stripEnd(str, stripChars);
+}
+*********************************
+
+#### Score: 12.01982
+
+
+#### Java Tokens: code, string, abcyx, link, stripped, isempty, substring, strips, remove, empty, characters, character, strip, found, param, utils, xyz, end, charat, defined, treated, pre, set, abc, may, index_not_found, length, index, 120.00, str, stringutils, input, stripchars, end--, returns, whitespace, stripend, iswhitespace, indexof, chars 
+
+
+public static String stripEnd(final String str, final String stripChars) {
+    int end = length(str);
+    if (end == 0) {
+        return str;
+    }
+    if (stripChars == null) {
+        while (end != 0 && Character.isWhitespace(str.charAt(end - 1))) {
+            end--;
+        }
+    } else if (stripChars.isEmpty()) {
+        return str;
+    } else {
+        while (end != 0 && stripChars.indexOf(str.charAt(end - 1)) != INDEX_NOT_FOUND) {
+            end--;
+        }
+    }
+    return str.substring(0, end);
+}
+*********************************
+
+#### Score: 12.01982
+
+
+#### Java Tokens: yxabc, code, string, link, stripped, isempty, substring, strips, remove, empty, strlen, characters, character, strip, found, len, param, utils, stripstart, xyz, charat, defined, treated, pre, set, abc, may, index_not_found, start, length, index, str, stringutils, input, stripchars, returns, whitespace, iswhitespace, indexof, chars 
+
+
+public static String stripStart(final String str, final String stripChars) {
+    int strLen = length(str);
+    if (strLen == 0) {
+        return str;
+    }
+    int start = 0;
+    if (stripChars == null) {
+        while (start != strLen && Character.isWhitespace(str.charAt(start))) {
+            start++;
+        }
+    } else if (stripChars.isEmpty()) {
+        return str;
+    } else {
+        while (start != strLen && stripChars.indexOf(str.charAt(start)) != INDEX_NOT_FOUND) {
+            start++;
+        }
+    }
+    return str.substring(start);
+}
+*********************************
+
+#### Score: 11.77286
+
+
+#### Java Tokens: code, string, yabcz, link, stripped, strips, remove, empty, zero, characters, character, strip, strs, len, strings, array, param, utils, end, every, defined, arr, ignored, treated, pre, set, abc, may, strslen, length, start, stringutils, entry, input, stripchars, stripall, newarr, except, time, whitespace, returned, iswhitespace, chars 
+
+
+public static String[] stripAll(final String[] strs, final String stripChars) {
+    int strsLen;
+    if (strs == null || (strsLen = strs.length) == 0) {
+        return strs;
+    }
+    final String[] newArr = new String[strsLen];
+    for (int i = 0; i < strsLen; i++) {
+        newArr[i] = strip(strs[i], stripChars);
+    }
+    return newArr;
+}
+*********************************
+
+#### Score: 10.50965
+
+
+#### Java Tokens: trimtonull, code, string, use, link, isempty, striptonull, empty, characters, strip, trim, param, utils, ends, end, using, pre, abc, may, start, control, str, stringutils, input, null, returning, removes, trimmed, whitespace, chars, since 
+
+
+public static String trimToNull(final String str) {
+    final String ts = trim(str);
+    return isEmpty(ts) ? null : ts;
+}
+*********************************
+
+#### Score: 9.60556
+
+
+#### Java Tokens: code, string, link, stripped, strips, remove, character, strip, trim, param, utils, end, defined, similar, pre, abc, may, start, str, stringutils, input, returns, removes, whitespace, iswhitespace 
+
+
+
+
+public static String strip(final String str) {
+    return strip(str, null);
+}
+*********************************
+
+#### Score: 8.91015
+
+
+#### Java Tokens: occurrences, code, string, queued, qeed, source, isempty, remove, substring, empty, mos, character, search, found, tochararray, array, pos, param, utils, pre, may, within, index_not_found, length, index, str, stringutils, input, removed, char, removes, indexof, chars, since 
+
+
+public static String remove(final String str, final char remove) {
+    if (isEmpty(str) || str.indexOf(remove) == INDEX_NOT_FOUND) {
+        return str;
+    }
+    final char[] chars = str.toCharArray();
+    int pos = 0;
+    for (int i = 0; i < chars.length; i++) {
+        if (chars[i] != remove) {
+            chars[pos++] = chars[i];
+        }
+    }
+    return new String(chars, 0, pos);
+}
+*********************************
+
+#### Score: 8.74813
+
+
+#### Java Tokens: note, code, string, eee, http://www.unicode.org/glossary/#supplementary_character, i--, link, needing, repeated, specified, empty, zero, characters, number, character, times, negative, see, param, utils, delimiter, www, repeat, supplementary, represented, href, consider, padding, given, treated, using, pre, method, org, length, require, instead, pair, i18n, stringutils, glossary, buf, http, unicode, returns, support, full, applications 
+
+
+public static String repeat(final char ch, final int repeat) {
+    if (repeat <= 0) {
+        return EMPTY;
+    }
+    final char[] buf = new char[repeat];
+    for (int i = repeat - 1; i >= 0; i--) {
+        buf[i] = ch;
+    }
+    return new String(buf);
+}
+*********************************
+
+#### Score: 8.73905
+
+
+#### Java Tokens: code, string, link, stripped, strips, remove, empty, zero, character, strip, strs, strings, array, param, utils, end, every, defined, ignored, pre, abc, may, start, length, stringutils, entry, input, stripall, except, time, whitespace, returned, iswhitespace 
+
+
+
+
+public static String[] stripAll(final String... strs) {
+    return stripAll(strs, null);
+}

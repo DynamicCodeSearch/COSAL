@@ -1,0 +1,42 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    N = sc.nextInt();
+    M = sc.nextInt();
+    R = sc.nextInt();
+    r = new int[R];
+    for (int i = 0; i < R; i++) {
+        r[i] = sc.nextInt() - 1;
+    }
+    A = new int[M];
+    B = new int[M];
+    C = new int[M];
+    d = new int[N][N];
+    for (int i = 0; i < M; i++) {
+        A[i] = sc.nextInt() - 1;
+        B[i] = sc.nextInt() - 1;
+        C[i] = sc.nextInt();
+    }
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            d[i][j] = INF;
+        }
+    }
+    for (int i = 0; i < M; i++) {
+        d[A[i]][B[i]] = C[i];
+        d[B[i]][A[i]] = C[i];
+    }
+    for (int k = 0; k < N; k++) {
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                d[i][j] = Math.min(d[i][j], d[i][k] + d[k][j]);
+            }
+        }
+    }
+    int ans = INF;
+    for (int i = 0; i < R; i++) {
+        boolean[] a = new boolean[R];
+        a[i] = true;
+        ans = Math.min(dfs(r[i], a, 0), ans);
+    }
+    System.out.println(ans);
+}

@@ -1,0 +1,22 @@
+public static void setNext(PriorityQueue<Tuple> queue, Tuple a, double[] dp) {
+    for (int i = 0; i < data.length; i++) {
+        Tuple t = new Tuple();
+        t.x = data[i].x;
+        t.y = data[i].y;
+        t.index = i;
+        t.r = data[i].r;
+        t.cost = dist(a, data[i]);
+        if (dp[i] > t.cost) {
+            queue.add(t);
+        }
+    }
+    Tuple end = new Tuple();
+    end.x = xt;
+    end.y = yt;
+    end.r = 0;
+    end.cost = dist(a, end);
+    end.index = N;
+    if (dp[N] > end.cost) {
+        queue.add(end);
+    }
+}

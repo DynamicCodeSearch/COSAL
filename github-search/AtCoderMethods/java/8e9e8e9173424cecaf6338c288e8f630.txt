@@ -1,0 +1,42 @@
+public static void main(String[] args) throws Exception {
+    
+    Scanner sc = new Scanner(System.in);
+    String[] S = new String[3];
+    for (int i = 0; i < 3; i++) {
+        S[i] = sc.next();
+    }
+    int next = 0;
+    boolean end = false;
+    String winner = null;
+    while (!end) {
+        if (S[next].equals("")) {
+            switch(next) {
+                case 0:
+                    winner = "A";
+                    break;
+                case 1:
+                    winner = "B";
+                    break;
+                case 2:
+                    winner = "C";
+                    break;
+            }
+            end = true;
+        } else {
+            int x = next;
+            switch(S[next].substring(0, 1)) {
+                case "a":
+                    next = 0;
+                    break;
+                case "b":
+                    next = 1;
+                    break;
+                case "c":
+                    next = 2;
+                    break;
+            }
+            S[x] = S[x].substring(1, S[x].length());
+        }
+    }
+    System.out.println(winner);
+}

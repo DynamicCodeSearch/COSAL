@@ -1,0 +1,19 @@
+private Map<Integer, Long> buildCostData(int root, Map<Integer, List<NodeWithCost>> tree) {
+    Map<Integer, Long> result = new HashMap<>();
+    Queue<NodeWithCost> q = new LinkedList<>();
+    Map<Integer, Object> visited = new HashMap<>();
+    q.add(new NodeWithCost(root, 0));
+    while (!q.isEmpty()) {
+        NodeWithCost toSearch = q.poll();
+        long costSoFar = toSearch.cost;
+        visited.put(toSearch.id, new Object());
+        for (NodeWithCost neighbor : tree.get(toSearch.id)) {
+            if (!visited.containsKey(neighbor.id)) {
+                long costFromRootToNeighbor = costSoFar + neighbor.cost;
+                result.put(neighbor.id, costFromRootToNeighbor);
+                q.add(new NodeWithCost(neighbor.id, costFromRootToNeighbor));
+            }
+        }
+    }
+    return result;
+}

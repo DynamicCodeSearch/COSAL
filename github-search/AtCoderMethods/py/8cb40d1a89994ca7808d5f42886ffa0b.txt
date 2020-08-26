@@ -1,0 +1,17 @@
+def dfs(N, Adj, f, g, visited, v):
+    visited[v] = True
+    res_f = 1
+    res_g = 1
+
+    for u in Adj[v]:
+        if not visited[u]:
+            fc, gc = dfs(N, Adj, f, g, visited, u)
+            res_f = (res_f * gc) % MOD
+            res_g = (res_g * fc) % MOD
+
+    res_f = (res_f + res_g) % MOD
+
+    f[v] = res_f
+    g[v] = res_g
+
+    return f[v], g[v]

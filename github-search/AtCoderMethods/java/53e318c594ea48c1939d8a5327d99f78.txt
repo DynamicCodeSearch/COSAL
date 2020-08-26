@@ -1,0 +1,38 @@
+void run() {
+    Scanner sc = new Scanner(System.in);
+    n = sc.nextInt();
+    ma = sc.nextInt();
+    mb = sc.nextInt();
+    a = new int[n];
+    b = new int[n];
+    c = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = sc.nextInt();
+        b[i] = sc.nextInt();
+        c[i] = sc.nextInt();
+    }
+    dp = new int[n][401][401];
+    f = new boolean[n][401][401];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < 401; j++) {
+            Arrays.fill(dp[i][j], 1 << 20);
+            Arrays.fill(f[i][j], false);
+        }
+    }
+    int min = 1 << 20;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < 401; j++) {
+            for (int k = 0; k < 401; k++) {
+                int tmp = dp(i, j, k);
+                if (i != 0 && j != 0 && ma * k == mb * j) {
+                    min = Math.min(min, tmp);
+                }
+            }
+        }
+    }
+    if (min < (1 << 20)) {
+        System.out.println(min);
+    } else {
+        System.out.println(-1);
+    }
+}

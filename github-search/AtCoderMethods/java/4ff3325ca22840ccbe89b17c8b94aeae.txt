@@ -1,0 +1,41 @@
+private void solve() throws IOException {
+    long N = nextLong();
+    long M = nextLong();
+    long MOD = 1_000_000_007L;
+    if (Math.abs(N - M) > 1) {
+        writer.println(0);
+    } else {
+        long pA = 1L;
+        long pB = 1L;
+        
+        long A = N;
+        long B = M;
+        while (A > 0 && B > 0) {
+            pA *= (A);
+            pA %= MOD;
+            pA *= (B);
+            pA %= MOD;
+            --A;
+            --B;
+        }
+        boolean isValidA = (B >= 0 && (A == 0));
+        A = N;
+        B = M;
+        while (A > 0 && B > 0) {
+            pB *= (A);
+            pB %= MOD;
+            pB *= (B);
+            pB %= MOD;
+            --A;
+            --B;
+        }
+        boolean isValidB = (A >= 0 && (B == 0));
+        long ret = 0L;
+        if (isValidA)
+            ret += pA;
+        if (isValidB)
+            ret += pB;
+        ret %= MOD;
+        writer.println(ret);
+    }
+}

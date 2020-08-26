@@ -1,0 +1,19 @@
+public static void main(String[] args) throws Exception {
+    int A = sc.nextInt();
+    int B = sc.nextInt();
+    int C = sc.nextInt();
+    int sum = 0;
+    Set<Integer> s = new HashSet();
+    while (true) {
+        int res = sum % B;
+        if (res == C) {
+            System.out.println("YES");
+            break;
+        } else if (s.contains(res)) {
+            System.out.println("NO");
+            break;
+        }
+        s.add(res);
+        sum += A;
+    }
+}

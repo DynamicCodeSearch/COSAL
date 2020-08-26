@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    IO io = new IO();
+    int n = io.nextInt();
+    int[] a = io.nextIntArray(n);
+    int[] count = new int[n];
+    for (int i = 0; i < n; i++) {
+        count[a[i]]++;
+    }
+    for (int i = 0; i < n; i++) {
+        int abs = Math.abs((i) - (n - 1 - i));
+        count[abs]--;
+        if (count[abs] < 0) {
+            System.out.println(0);
+            return;
+        }
+    }
+    System.out.println(pow(2, n / 2, MOD));
+}

@@ -1,0 +1,10 @@
+static long modpow(long a, long b, long mod) {
+    if (b == 0)
+        return 1;
+    if (b % 2 == 0) {
+        long d = modpow(a, b / 2, mod);
+        return (d * d) % mod;
+    } else {
+        return (a * modpow(a, b - 1, mod)) % mod;
+    }
+}

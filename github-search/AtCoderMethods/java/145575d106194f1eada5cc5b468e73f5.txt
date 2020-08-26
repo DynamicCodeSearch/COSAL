@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    PrintWriter pw = new PrintWriter(System.out);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    int S = sc.nextInt() - 1;
+    ArrayList<ArrayList<Integer>> list = new ArrayList<>();
+    for (int i = 0; i < N; i++) list.add(new ArrayList<Integer>());
+    for (int i = 0; i < M; i++) {
+        int u = sc.nextInt() - 1;
+        int v = sc.nextInt() - 1;
+        list.get(u).add(v);
+        list.get(v).add(u);
+    }
+    UnionFind uf = new UnionFind(N + 1);
+    uf.unite(N, S);
+    boolean[] ans = new boolean[N];
+    for (int i = N - 1; i >= 0; i--) {
+        for (int j : list.get(i)) if (j > i)
+            uf.unite(i, j);
+        if (uf.same(N, i))
+            ans[i] = true;
+    }
+    for (int i = 0; i < N; i++) if (ans[i])
+        pw.println(i + 1);
+    sc.close();
+    pw.close();
+}

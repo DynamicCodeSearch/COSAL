@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    Scanner io = new Scanner(System.in);
+    int N = io.nextInt();
+    String s = io.next();
+    s = s + s.charAt(0);
+    int[] exp = new int[N + 2];
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 2; j++) {
+            exp[0] = (i == 0) ? 1 : -1;
+            exp[1] = (j == 0) ? 1 : -1;
+            for (int k = 2; k <= N + 1; k++) {
+                if (exp[k - 1] == 1) {
+                    exp[k] = (s.charAt(k - 1) == 'o') ? exp[k - 2] : -exp[k - 2];
+                } else {
+                    exp[k] = (s.charAt(k - 1) == 'o') ? -exp[k - 2] : exp[k - 2];
+                }
+            }
+            if (exp[0] == exp[N] && exp[1] == exp[N + 1]) {
+                StringBuffer ans = new StringBuffer();
+                for (int l = 0; l < N; l++) {
+                    ans.append((exp[l] == 1) ? 'S' : 'W');
+                }
+                System.out.println(ans);
+                return;
+            }
+        }
+    }
+    System.out.println(-1);
+}

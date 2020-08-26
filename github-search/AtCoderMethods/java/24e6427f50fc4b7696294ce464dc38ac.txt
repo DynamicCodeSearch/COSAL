@@ -1,0 +1,50 @@
+void solve() {
+    int N = sc.nextInt();
+    Segment[] ss = new Segment[N];
+    for (int i = 0; i < N; i++) {
+        String[] in = sc.next().split("-");
+        String s = in[0];
+        int sHour = Integer.parseInt(s.substring(0, 2));
+        int sMinute = Integer.parseInt(s.substring(2, 4));
+        if (sMinute % 10 <= 4)
+            sMinute = sMinute / 10 * 10;
+        else
+            sMinute = sMinute / 10 * 10 + 5;
+        String e = in[1];
+        int eHour = Integer.parseInt(e.substring(0, 2));
+        int eMinute = Integer.parseInt(e.substring(2, 4));
+        if (eMinute % 10 == 0) {
+        
+        } else if (eMinute % 10 <= 5)
+            eMinute = eMinute / 10 * 10 + 5;
+        else {
+            if (eMinute >= 56) {
+                eHour += 1;
+                eMinute = 0;
+            } else
+                eMinute = (eMinute / 10 + 1) * 10;
+        }
+        ss[i] = new Segment(new TimePoint(sHour, sMinute), new TimePoint(eHour, eMinute));
+    }
+    Arrays.sort(ss);
+    int size = N;
+    for (int i = 0; i < size - 1; i++) {
+        Segment seg0 = ss[i];
+        Segment seg1 = ss[i + 1];
+        if (seg0.e.compareTo(seg1.s) >= 0) {
+            if (!seg0.contains(seg1))
+                seg0.e = seg1.e;
+            for (int j = i + 1; j < size - 1; j++) {
+                ss[j] = ss[j + 1];
+            }
+            i--;
+            size--;
+        }
+    }
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < size; i++) {
+        sb.append(ss[i].toString());
+        sb.append("\n");
+    }
+    System.out.print(sb.toString());
+}

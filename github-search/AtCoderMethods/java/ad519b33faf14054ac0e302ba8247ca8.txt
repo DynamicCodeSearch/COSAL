@@ -1,0 +1,22 @@
+private static long solve(int n, int[] a) {
+    TreeMap<Integer, Integer> map = new TreeMap<>(Collections.reverseOrder());
+    for (int x : a) map.put(x, 1 + map.getOrDefault(x, 0));
+    long area = 1;
+    long sides = 0;
+    outer: for (Map.Entry<Integer, Integer> e : map.entrySet()) {
+        int len = e.getKey();
+        int cnt = e.getValue();
+        for (int i = 0; i < 2; i++) {
+            if (cnt < 2)
+                break;
+            cnt -= 2;
+            sides += 2;
+            area *= len;
+            if (sides == 4)
+                break outer;
+        }
+    }
+    if (sides != 4)
+        return 0;
+    return area;
+}

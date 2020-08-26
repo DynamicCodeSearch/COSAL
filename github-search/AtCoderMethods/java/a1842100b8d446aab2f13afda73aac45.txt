@@ -1,0 +1,13 @@
+public long nextLong() throws IOException {
+    long num = 0;
+    int sign = 1;
+    int read = skip();
+    if (read == '-') {
+        sign = -1;
+        read = inputStream.read();
+    }
+    do {
+        num = num * 10 + sign * (read - 0x30);
+    } while ((read = inputStream.read()) > 0x20);
+    return num;
+}

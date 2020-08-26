@@ -1,0 +1,19 @@
+public static void main(String[] args) throws IOException {
+    FastScanner in = new FastScanner();
+    long k = in.nextLong();
+    long[] list = new long[50];
+    for (int i = 0; i < 50; i++) {
+        list[i] = k / 50 + 49;
+    }
+    for (int i = 0; i < k % 50; i++) {
+        for (int j = 0; j < 50; j++) {
+            if (j == 49 - i)
+                list[j] += 50;
+            else
+                list[j]--;
+        }
+    }
+    System.out.println(50);
+    for (int i = 0; i < 50; i++) System.out.print(list[i] + " ");
+    System.out.println();
+}

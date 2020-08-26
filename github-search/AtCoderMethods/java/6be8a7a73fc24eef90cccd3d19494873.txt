@@ -1,0 +1,22 @@
+public int[][] bfs(final int src) {
+    final int[] dist = new int[head.length];
+    final int[] prev = new int[head.length];
+    final int[] q = new int[2 * head.length + 10];
+    int s = 0, t = 0;
+    Arrays.fill(dist, -1);
+    Arrays.fill(prev, -1);
+    dist[src] = 0;
+    q[t++] = src;
+    while (s != t) {
+        final int v = q[s++];
+        for (int e = head[v]; e != -1; e = next[e]) {
+            final int u = to[e];
+            if (dist[u] == -1) {
+                dist[u] = dist[v] + 1;
+                prev[u] = v;
+                q[t++] = u;
+            }
+        }
+    }
+    return new int[][] { dist, prev };
+}

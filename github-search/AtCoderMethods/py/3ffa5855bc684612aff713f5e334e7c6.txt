@@ -1,0 +1,14 @@
+def dfs(cur, prev):
+    global counter
+    prenum[cur] = lowest[cur] = counter
+    counter += 1
+    for edge in g[cur]:
+        if prenum[edge] is not None:
+            if edge != prev:
+                lowest[cur] = min(lowest[cur], prenum[edge])
+            continue
+        parent[edge] = cur
+        dfs(edge, cur)
+        lowest[cur] = min(lowest[cur], lowest[edge])
+    if prenum[cur] == lowest[cur]:
+        bridges.add((cur, prev) if cur < prev else (prev, cur))

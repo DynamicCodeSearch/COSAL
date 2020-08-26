@@ -1,0 +1,19 @@
+void bfs() {
+    ArrayDeque<Integer> pend = new ArrayDeque<>();
+    int gen = 0;
+    pend.add(0);
+    while (!pend.isEmpty()) {
+        int v = pend.pollFirst();
+        int top = v;
+        for (; v != -1; v = heavy[v]) {
+            id[v] = gen++;
+            head[v] = top;
+            for (int d : g[v]) {
+                if (d == parent[v] || d == heavy[v]) {
+                    continue;
+                }
+                pend.add(d);
+            }
+        }
+    }
+}

@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    String s = sc.next();
+    String t = sc.next();
+    int q = sc.nextInt();
+    int[] as = new int[s.length() + 1];
+    int[] at = new int[t.length() + 1];
+    for (int i = 0; i < s.length(); i++) {
+        if (s.charAt(i) == 'A') {
+            as[i + 1] = as[i] + 1;
+        } else {
+            as[i + 1] = as[i] + 2;
+        }
+    }
+    for (int i = 0; i < t.length(); i++) {
+        if (t.charAt(i) == 'A') {
+            at[i + 1] = at[i] + 1;
+        } else {
+            at[i + 1] = at[i] + 2;
+        }
+    }
+    for (int i = 1; i <= q; i++) {
+        if ((as[sc.nextInt() - 1] * -1 + as[sc.nextInt()]) % 3 == (at[sc.nextInt() - 1] * -1 + at[sc.nextInt()]) % 3) {
+            System.out.println("YES");
+        } else {
+            System.out.println("NO");
+        }
+    }
+    return;
+}

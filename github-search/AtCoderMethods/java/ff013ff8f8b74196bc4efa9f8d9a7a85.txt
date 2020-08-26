@@ -1,0 +1,39 @@
+void run() throws Exception {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[] alist = new int[n];
+    for (int i = 0; i < n; i++) {
+        alist[i] = sc.nextInt();
+    }
+    LinkedList<Integer> bList = new LinkedList<Integer>();
+    for (int i = 0; i < n; i++) {
+        if (i % 2 == 0) {
+            bList.add(alist[i]);
+        } else {
+            bList.addFirst(alist[i]);
+        }
+    }
+    if (n % 2 == 1) {
+        boolean isFirst = true;
+        for (ListIterator<Integer> it = bList.listIterator(bList.size()); it.hasPrevious(); ) {
+            if (isFirst) {
+                isFirst = false;
+            } else {
+                System.out.print(" ");
+            }
+            System.out.print(it.previous());
+        }
+        System.out.println();
+    } else {
+        boolean isFirst = true;
+        for (ListIterator<Integer> it = bList.listIterator(); it.hasNext(); ) {
+            if (isFirst) {
+                isFirst = false;
+            } else {
+                System.out.print(" ");
+            }
+            System.out.print(it.next());
+        }
+        System.out.println();
+    }
+}

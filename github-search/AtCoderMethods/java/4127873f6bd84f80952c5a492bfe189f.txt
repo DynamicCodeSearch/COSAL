@@ -1,0 +1,25 @@
+void solve() {
+    if (ask((long) 1e12)) {
+        for (int i = 0; i <= 10; i++) {
+            long ans = (long) (Math.pow(10, i) + 1);
+            if (ask(ans)) {
+                answer(ans - 1);
+                return;
+            }
+        }
+        throw new AssertionError();
+    }
+    for (int len = 10; len >= 0; len--) {
+        out.print("? 1");
+        for (int i = 0; i < len; i++) {
+            out.print('0');
+        }
+        out.println();
+        out.flush();
+        boolean res = get();
+        if (res) {
+            go(len + 1);
+            return;
+        }
+    }
+}

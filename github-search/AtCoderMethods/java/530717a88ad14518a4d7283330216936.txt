@@ -1,0 +1,31 @@
+private long[] getFront(int[] a, int sz) {
+    TreeMap<Integer, Integer> mm = new TreeMap<>();
+    long sum = 0;
+    for (int i = 0; i < sz; ++i) {
+        if (mm.containsKey(a[i])) {
+            mm.put(a[i], mm.get(a[i]) + 1);
+        } else {
+            mm.put(a[i], 1);
+        }
+        sum += a[i];
+    }
+    long[] front = new long[3 * sz];
+    front[sz - 1] = sum;
+    for (int i = sz; i < 2 * sz; ++i) {
+        if (a[i] > mm.firstKey()) {
+            sum += a[i] - mm.firstKey();
+            if (mm.containsKey(a[i])) {
+                mm.put(a[i], mm.get(a[i]) + 1);
+            } else {
+                mm.put(a[i], 1);
+            }
+            if (mm.get(mm.firstKey()) == 1) {
+                mm.remove(mm.firstKey());
+            } else {
+                mm.put(mm.firstKey(), mm.get(mm.firstKey()) - 1);
+            }
+        }
+        front[i] = sum;
+    }
+    return front;
+}

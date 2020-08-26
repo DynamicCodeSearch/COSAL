@@ -1,0 +1,15 @@
+public static int solve(int start) {
+    int count = 0;
+    ArrayList<Integer> counted = new ArrayList<Integer>();
+    for (int i = 0; i < n; i++) {
+        if (map[start][i] == 1) {
+            for (int j = 0; j < n; j++) {
+                if (map[i][j] == 1 && start != j && map[start][j] == 0 && !counted.contains(j)) {
+                    count++;
+                    counted.add(j);
+                }
+            }
+        }
+    }
+    return count;
+}

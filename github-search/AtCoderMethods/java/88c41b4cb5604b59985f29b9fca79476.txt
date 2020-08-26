@@ -1,0 +1,58 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int W = sc.nextInt();
+    long w1 = sc.nextLong();
+    long v1 = sc.nextLong();
+    ArrayList<Long> w0s = new ArrayList<>();
+    ArrayList<Long> w1s = new ArrayList<>();
+    ArrayList<Long> w2s = new ArrayList<>();
+    ArrayList<Long> w3s = new ArrayList<>();
+    w0s.add(v1);
+    for (int i = 1; i < N; i++) {
+        long w = sc.nextLong();
+        long v = sc.nextLong();
+        if (w == w1)
+            w0s.add(v);
+        if (w == w1 + 1)
+            w1s.add(v);
+        if (w == w1 + 2)
+            w2s.add(v);
+        if (w == w1 + 3)
+            w3s.add(v);
+    }
+    Collections.sort(w0s, Comparator.reverseOrder());
+    Collections.sort(w1s, Comparator.reverseOrder());
+    Collections.sort(w2s, Comparator.reverseOrder());
+    Collections.sort(w3s, Comparator.reverseOrder());
+    for (int i = 1; w0s.size() > 1 && i < w0s.size(); i++) {
+        w0s.set(i, w0s.get(i) + w0s.get(i - 1));
+    }
+    for (int i = 1; w1s.size() > 1 && i < w1s.size(); i++) {
+        w1s.set(i, w1s.get(i) + w1s.get(i - 1));
+    }
+    for (int i = 1; w2s.size() > 1 && i < w2s.size(); i++) {
+        w2s.set(i, w2s.get(i) + w2s.get(i - 1));
+    }
+    for (int i = 1; w3s.size() > 1 && i < w3s.size(); i++) {
+        w3s.set(i, w3s.get(i) + w3s.get(i - 1));
+    }
+    w0s.add(0, (long) 0);
+    w1s.add(0, (long) 0);
+    w2s.add(0, (long) 0);
+    w3s.add(0, (long) 0);
+    long ans = 0;
+    for (int i = 0; i < w0s.size(); i++) {
+        for (int j = 0; j < w1s.size(); j++) {
+            for (int k = 0; k < w2s.size(); k++) {
+                for (int l = 0; l < w3s.size(); l++) {
+                    if (w1 * i + (w1 + 1) * j + (w1 + 2) * k + (w1 + 3) * l <= W) {
+                        ans = Math.max(ans, w0s.get(i) + w1s.get(j) + w2s.get(k) + w3s.get(l));
+                    }
+                }
+            }
+        }
+    }
+    System.out.println(ans);
+}

@@ -1,0 +1,13 @@
+void solve() {
+    int n = in.nextInt();
+    long res = Long.MAX_VALUE;
+    for (int left = 1; left <= n; left++) {
+        for (int right = 1; right <= n; right++) {
+            long all = (long) left * right;
+            if (all > n)
+                break;
+            res = Math.min(res, Math.abs(right - left) + n - all);
+        }
+    }
+    System.out.println(res);
+}

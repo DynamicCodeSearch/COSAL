@@ -1,0 +1,18 @@
+public Tree dfsTree(int r) {
+    Tree tree = new Tree(V, r);
+    int[] st = new int[V];
+    int sp = 0;
+    int len = 0;
+    boolean[] vis = new boolean[V];
+    vis[r] = true;
+    st[sp++] = r;
+    while (sp > 0) {
+        int v = st[--sp];
+        for (Edge e : vertex[v].edges) if (!vis[e.to]) {
+            vis[e.to] = true;
+            st[sp++] = e.to;
+            tree.addEdge(v, e);
+        }
+    }
+    return tree;
+}

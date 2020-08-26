@@ -1,0 +1,12 @@
+def solve():
+    N, M = map(int, input().split())
+
+    deg = [0] * N
+
+    for i in range(M):
+        ai, bi = map(int, input().split())
+        ai, bi = ai - 1, bi - 1
+        deg[ai] += 1
+        deg[bi] += 1
+
+    print(*deg, sep='\n')

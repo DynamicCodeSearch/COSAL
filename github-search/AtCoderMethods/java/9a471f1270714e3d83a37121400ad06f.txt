@@ -1,0 +1,11 @@
+static int check(ArrayList<ArrayList<Integer>> list, int start, boolean[] flagMap, int groupNum, int[] group) {
+    if (flagMap[start])
+        return 0;
+    flagMap[start] = true;
+    group[start] = groupNum;
+    int sum = 0;
+    for (int next : list.get(start)) {
+        sum += check(list, next, flagMap, groupNum, group);
+    }
+    return 1 + sum;
+}

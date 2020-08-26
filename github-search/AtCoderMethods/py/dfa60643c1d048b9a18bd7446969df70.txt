@@ -1,0 +1,8 @@
+def main():
+    count = 0
+    for line in sys.stdin:
+        if len(line.rstrip().split(" ")) == 1:
+            continue
+        start, end = map(int, line.rstrip().split(" "))
+        count += end - start + 1
+    print(count)

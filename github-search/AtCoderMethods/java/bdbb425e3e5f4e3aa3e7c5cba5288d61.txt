@@ -1,0 +1,44 @@
+
+public static void execute() {
+    Scanner sc = new Scanner(System.in);
+    int h = nextInt(sc);
+    int w = nextInt(sc);
+    char[][] result = new char[h][w];
+    for (int i = 0; i < h; i++) {
+        Arrays.fill(result[i], '0');
+    }
+    for (int i = 0; i < h; i++) {
+        char[] s = nextString(sc).toCharArray();
+        for (int j = 0; j < w; j++) {
+            if (s[j] == '#') {
+                
+                for (int k = j - 1; k <= j + 1; k++) {
+                    if (k < 0 || k >= w) {
+                        continue;
+                    }
+                    if (i >= 1) {
+                        if (result[i - 1][k] != '#') {
+                            result[i - 1][k]++;
+                        }
+                    }
+                    if (k == j) {
+                        result[i][k] = '#';
+                    } else {
+                        if (result[i][k] != '#') {
+                            result[i][k]++;
+                        }
+                    }
+                    if (i < h - 1) {
+                        if (result[i + 1][k] != '#') {
+                            result[i + 1][k]++;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    for (char[] c : result) {
+        out(String.valueOf(c));
+    }
+}

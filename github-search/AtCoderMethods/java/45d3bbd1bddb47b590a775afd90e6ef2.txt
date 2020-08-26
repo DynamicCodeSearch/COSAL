@@ -1,0 +1,14 @@
+public static int backtrack(int i, int j) {
+    if (dp[i][j] != 0)
+        return dp[i][j];
+    int tmp = 1;
+    for (int m = 0; m < 4; m++) {
+        if (!(i + dy[m] >= 1 && i + dy[m] <= h) || !(j + dx[m] >= 1 && j + dx[m] <= w))
+            continue;
+        if (table[i][j] < table[i + dy[m]][j + dx[m]]) {
+            tmp += (backtrack(i + dy[m], j + dx[m]) % bignum);
+            tmp %= bignum;
+        }
+    }
+    return dp[i][j] = tmp;
+}

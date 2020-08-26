@@ -1,0 +1,18 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] in = br.readLine().split(" ");
+    int n = Integer.parseInt(in[0]);
+    int t = Integer.parseInt(in[1]);
+    int close = 0;
+    int start = Integer.parseInt(br.readLine());
+    int before = start;
+    int a = 0;
+    for (int i = 0; i < n - 1; i++) {
+        a = Integer.parseInt(br.readLine());
+        if (a - before > t) {
+            close += a - before - t;
+        }
+        before = a;
+    }
+    System.out.println(a - start - close + t);
+}

@@ -1,0 +1,17 @@
+def dfs(v):
+
+    global one_stroke_num
+
+    if visited.count(True) == N:
+        one_stroke_num += 1
+        return
+    else:
+
+        for next_i in E[v]:
+            if not visited[next_i]:
+
+                visited[next_i] = True
+                dfs(next_i)
+                visited[next_i] = False
+
+        return

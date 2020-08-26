@@ -1,0 +1,14 @@
+public static void main(String[] args) throws FileNotFoundException {
+    Scanner sc = new Scanner(System.in);
+    int n = readI(sc);
+    int[] num = readlnI(sc, " ");
+    int mn = 1000;
+    int mx = 0;
+    for (int i = 0; i < n; i++) {
+        if (mn > num[i])
+            mn = num[i];
+        if (mx < num[i])
+            mx = num[i];
+    }
+    puts(mx - mn);
+}

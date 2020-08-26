@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter w = new PrintWriter(System.out);
+    int n = in.nextInt(), t = in.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) a[i] = in.nextInt();
+    long ttime = t;
+    for (int i = 1; i < n; i++) {
+        if ((a[i - 1] + t) - a[i] > 0) {
+            ttime = ttime + t - ((a[i - 1] + t) - a[i]);
+        
+        } else
+            ttime += t;
+    }
+    w.println(ttime);
+    w.close();
+}

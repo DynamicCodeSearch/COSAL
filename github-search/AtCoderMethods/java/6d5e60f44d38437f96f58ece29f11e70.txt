@@ -1,0 +1,33 @@
+void solve() {
+    int a = ni();
+    int b = ni();
+    int c = ni();
+    int d = ni();
+    int e = ni();
+    int f = ni();
+    TreeSet<Integer> ts = new TreeSet<Integer>();
+    for (int i = 0; c * i <= f; i++) {
+        for (int j = 0; c * i + d * j <= f; j++) {
+            ts.add(c * i + d * j);
+        }
+    }
+    double max = 0;
+    int t = 0;
+    int s = 0;
+    for (int i = 0; i * 100 * a <= f; i++) {
+        for (int j = 0; j * 100 * b + i * 100 * a <= f; j++) {
+            int w = j * 100 * b + i * 100 * a;
+            double ns = (w * e) / 100.0;
+            if (ns + w > f) {
+                ns = f - w;
+            }
+            int gs = ts.floor((int) ns);
+            if ((gs * 1.0) / (gs + w) >= max) {
+                max = (gs * 1.0) / (gs + w);
+                t = gs + w;
+                s = gs;
+            }
+        }
+    }
+    out.println(t + " " + s);
+}

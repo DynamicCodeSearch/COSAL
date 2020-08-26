@@ -1,0 +1,27 @@
+static public void main(String[] Args) {
+    Scanner sc = new Scanner(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = sc.nextInt();
+    int[] list = new int[n];
+    int[] orig = new int[n];
+    for (int i = 0; i < n; i++) {
+        int e = Integer.parseInt(sc.next());
+        list[i] = orig[i] = e;
+    }
+    Arrays.sort(list);
+    HashMap<Integer, Integer> cog = new HashMap<Integer, Integer>();
+    int tmp = list[0];
+    cog.put(list[0], 0);
+    int cnt = 0;
+    for (int i = 0; i < n; i++) {
+        if (list[i] == tmp)
+            continue;
+        cnt += 1;
+        tmp = list[i];
+        cog.put(tmp, cnt);
+    }
+    for (int i = 0; i < n; i++) {
+        out.println(cog.get(orig[i]));
+    }
+    out.flush();
+}

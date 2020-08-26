@@ -1,0 +1,20 @@
+public void solve(int testNumber, Scanner in, PrintWriter out) {
+    int n = in.nextInt();
+    ArrayDeque<Integer> q = new ArrayDeque<>();
+    boolean f = false;
+    for (int i = 0; i < n; ++i) {
+        if (f)
+            q.addFirst(in.nextInt());
+        else
+            q.addLast(in.nextInt());
+        f = !f;
+    }
+    Iterator<Integer> it;
+    if (n % 2 == 0)
+        it = q.iterator();
+    else
+        it = q.descendingIterator();
+    while (it.hasNext()) {
+        out.print(it.next() + " ");
+    }
+}

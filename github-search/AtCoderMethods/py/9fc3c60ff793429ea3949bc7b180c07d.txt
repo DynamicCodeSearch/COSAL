@@ -1,0 +1,6 @@
+def combi(l, r):
+    if l == 0 or r == 0 or l == r:
+        return 0.0
+    plus = np.log(np.arange(l - r + 1, l + 1))
+    minus = np.log(np.arange(1, r + 1))
+    return np.sum(plus) - np.sum(minus)

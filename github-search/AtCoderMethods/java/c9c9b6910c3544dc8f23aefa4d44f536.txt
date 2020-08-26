@@ -1,0 +1,14 @@
+long g(int x, int p) {
+    if (dpG[x] > 0)
+        return dpG[x];
+    if (adj[x].size() == 1 && adj[x].get(0) == p)
+        return 1;
+    long count = 1;
+    for (int child : adj[x]) {
+        if (child == p)
+            continue;
+        count *= f(child, x) % MOD;
+        count %= MOD;
+    }
+    return dpG[x] = count;
+}

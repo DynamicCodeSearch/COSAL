@@ -1,0 +1,9 @@
+private static Pair bf(int K) {
+    for (int a = 1; a <= 1_000_000_000; a++) {
+        for (int b = 1; b <= a; b++) {
+            if (gcd(a, b, 0) == K)
+                return new Pair(a, b);
+        }
+    }
+    return null;
+}

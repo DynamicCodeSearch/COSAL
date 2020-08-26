@@ -1,0 +1,8 @@
+private static void dfs(int v, int[] a, int c, List<List<Integer>> G) {
+    a[v] = c;
+    for (Integer w : G.get(v)) {
+        if (a[w] == 0) {
+            dfs(w, a, c, G);
+        }
+    }
+}

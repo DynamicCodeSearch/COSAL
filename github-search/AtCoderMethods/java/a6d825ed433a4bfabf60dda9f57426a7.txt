@@ -1,0 +1,55 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = in.nextInt();
+    }
+    List<Integer> even = new ArrayList<>();
+    List<Integer> odd = new ArrayList<>();
+    for (int i = 0; i < n; i++) {
+        if (i >= 1 && a[i - 1] + 1 == a[i]) {
+        
+        } else {
+            if (a[i] % 2 == 1) {
+                odd.add(a[i]);
+            } else {
+                even.add(a[i]);
+            }
+        }
+        if (i + 1 == n || a[i] + 1 < a[i + 1]) {
+            if (a[i] % 2 == 1) {
+                even.add(a[i] + 1);
+            } else {
+                odd.add(a[i] + 1);
+            }
+        }
+    }
+    int nodes = even.size() + odd.size() + 2;
+    int source = nodes - 2;
+    int sink = source + 1;
+    MaxFlowDinic dinic = new MaxFlowDinic();
+    dinic.init(nodes);
+    for (int i = 0; i < even.size(); i++) {
+        dinic.edge(source, i, 1);
+    }
+    for (int i = 0; i < odd.size(); i++) {
+        dinic.edge(even.size() + i, sink, 1);
+    }
+    boolean[] isp = generatePrimes(10000010);
+    for (int i = 0; i < even.size(); i++) {
+        for (int j = 0; j < odd.size(); j++) {
+            int diff = Math.abs(even.get(i) - odd.get(j));
+            if (isp[diff]) {
+                dinic.edge(i, even.size() + j, 1);
+            }
+        }
+    }
+    int flow = dinic.max_flow(source, sink);
+    int evenLeft = even.size() - flow;
+    int oddLeft = odd.size() - flow;
+    int ans = flow + ((evenLeft / 2) + (oddLeft / 2)) * 2 + ((evenLeft % 2 == 1) ? 3 : 0);
+    out.println(ans);
+    out.flush();
+}

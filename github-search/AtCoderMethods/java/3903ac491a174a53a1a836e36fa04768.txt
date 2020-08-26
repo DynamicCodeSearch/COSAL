@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    String s = scan.next();
+    char[] arr = s.toCharArray();
+    int len = s.length();
+    if (len == 0) {
+        System.out.println("a");
+        return;
+    }
+    HashSet<Character> set = new HashSet<>();
+    for (int i = 0; i < len; i++) {
+        set.add(arr[i]);
+    }
+    for (char x = 'a'; x <= 'z'; x++) {
+        if (!set.contains((Object) (x))) {
+            System.out.println(x);
+            return;
+        }
+    }
+    System.out.println("None");
+}

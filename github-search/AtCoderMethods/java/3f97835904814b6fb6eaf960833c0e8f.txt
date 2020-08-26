@@ -1,0 +1,41 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int sx = sc.nextInt();
+    int sy = sc.nextInt();
+    int tx = sc.nextInt();
+    int ty = sc.nextInt();
+    StringBuilder sb = new StringBuilder();
+    char cx1 = sx < tx ? 'R' : 'L';
+    char cx2 = sx < tx ? 'L' : 'R';
+    char cy1 = sy < ty ? 'U' : 'D';
+    char cy2 = sy < ty ? 'D' : 'U';
+    for (int i = sx; i < tx; i++) {
+        sb.append(cx1);
+    }
+    for (int i = sy; i < ty; i++) {
+        sb.append(cy1);
+    }
+    for (int i = sx; i < tx; i++) {
+        sb.append(cx2);
+    }
+    for (int i = sy; i < ty; i++) {
+        sb.append(cy2);
+    }
+    sb.append(cy2);
+    for (int i = sx; i < tx + 1; i++) {
+        sb.append(cx1);
+    }
+    for (int i = sy; i < ty + 1; i++) {
+        sb.append(cy1);
+    }
+    sb.append(cx2);
+    sb.append(cy1);
+    for (int i = sx; i < tx + 1; i++) {
+        sb.append(cx2);
+    }
+    for (int i = sy; i < ty + 1; i++) {
+        sb.append(cy2);
+    }
+    sb.append(cx1);
+    System.out.println(sb);
+}

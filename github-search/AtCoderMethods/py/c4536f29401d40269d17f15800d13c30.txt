@@ -1,0 +1,25 @@
+def get_min(X, Y):
+    left = 0
+    right = 10 ** 50
+    res_N = -1
+    while (right - left > 1):
+        med = (right + left) // 2
+        if (med == 0):
+            break
+        y = med * Y
+        x = med * X
+        res = y * (y + 1) // 2
+        l = res - y
+        r = res - 1
+
+        if l <= x and x <= r:
+            right = med
+            res_N = med
+            continue
+        if x < l:
+            right = med
+            continue
+        if x > r:
+            left = med
+            continue
+    return res_N

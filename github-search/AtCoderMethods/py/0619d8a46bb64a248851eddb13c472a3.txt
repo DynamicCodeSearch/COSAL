@@ -1,0 +1,36 @@
+def dijkstra(self,start, goal=None):
+    import heapq
+
+
+    N = len(self.adj)          
+
+    dist = {k:float('inf') for k in self.nodes}
+
+
+    dist[start] = 0
+    visited = []
+
+    koho=[]
+    heapq.heappush(koho,(0,start))
+
+    vtx=list(self.nodes)
+    vtx.remove(start)
+
+    while len(koho)!=0:
+        d,mini=heapq.heappop(koho)
+
+        if d>2:
+            break
+
+        if dist[mini]<d:
+            continue
+
+
+        for k in list(self.adj[mini]):
+            cost=self.adj[mini][k]
+            if cost != float('inf') and dist[k]>dist[mini]+cost:
+                dist[k]=dist[mini]+cost
+                heapq.heappush(koho,(dist[k],k))
+
+
+    return dist

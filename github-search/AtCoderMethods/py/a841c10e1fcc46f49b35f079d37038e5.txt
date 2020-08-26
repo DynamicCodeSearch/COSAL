@@ -1,0 +1,14 @@
+def constantstep_syakutori(seq,step,func,invfunc):
+    if len(seq)<step:
+        return None
+    else:
+        returned=[]
+        firststep=seq[0]
+        for i in range(1,step):
+            firststep=func(firststep,seq[i])
+        returned.append(firststep)
+        for i in range(len(seq)-step):
+            firststep=func(firststep,seq[step+i])
+            firststep=invfunc(firststep,seq[i])
+            returned.append(firststep)
+        return returned

@@ -1,0 +1,30 @@
+def solve():
+    sa = input()
+    sb = input()
+    sc = input()
+    state = 0
+    ai,bi,ci = 0,0,0
+
+    while ai <= len(sa) and bi <= len(sb) and ci <= len(sc):
+        if state == 0:
+            if ai == len(sa):
+                print('A')
+                return None
+            state = ord(sa[ai])
+            ai += 1
+
+        elif state == 1:
+            if bi == len(sb):
+                print('B')
+                return None
+            state = ord(sb[bi])
+            bi += 1
+
+        else:
+            if ci == len(sc):
+                print('C')
+                return None
+            state = ord(sc[ci])
+            ci += 1
+
+        state -= ord('a')

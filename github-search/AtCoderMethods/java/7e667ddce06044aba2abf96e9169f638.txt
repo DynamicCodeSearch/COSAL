@@ -1,0 +1,16 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    long[] a = in.nextLongArray(3 * n);
+    long[] array1 = Arrays.copyOf(a, 2 * n);
+    long[] pre = ArrayUtils.calcMaxSum(array1, n);
+    long[] array2 = new long[2 * n];
+    for (int i = 0; i < 2 * n; i++) {
+        array2[i] = a[3 * n - 1 - i];
+    }
+    long[] post = ArrayUtils.calcMinSum(array2, n);
+    long ans = Long.MIN_VALUE;
+    for (int i = 0; i < n + 1; i++) {
+        ans = Math.max(ans, pre[n - 1 + i] - post[2 * n - 1 - i]);
+    }
+    out.println(ans);
+}

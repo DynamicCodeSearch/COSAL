@@ -1,0 +1,12 @@
+static void Method(ArrayList<Integer> num, ArrayList<String> param) {
+    BigInteger n1 = BigInteger.valueOf(num.get(0));
+    BigInteger n2 = BigInteger.valueOf(num.get(1));
+    int lcm = n1.multiply(n2).divide(n1.gcd(n2)).intValue();
+    int ansewr = 0;
+    while (true) {
+        if (ansewr >= num.get(2))
+            break;
+        ansewr += lcm;
+    }
+    System.out.println(ansewr);
+}

@@ -1,0 +1,21 @@
+public static int play(int n) {
+    if (str[n].length() == 0) {
+        return n - 3;
+    }
+    char nextPlayer = str[n].charAt(0);
+    str[n] = str[n].substring(1, str[n].length());
+    switch(nextPlayer) {
+        case 'a':
+            n = 0;
+            break;
+        case 'b':
+            n = 1;
+            break;
+        case 'c':
+            n = 2;
+            break;
+        default:
+            break;
+    }
+    return n;
+}

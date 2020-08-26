@@ -1,0 +1,33 @@
+public void solve(int testNumber, Scanner in, PrintWriter out) {
+    N = in.nextInt();
+    x = new int[N + 1];
+    for (int i = 1; i <= N; i++) {
+        x[i] = in.nextInt();
+    }
+    L = in.nextInt();
+    Q = in.nextInt();
+    right = new int[MAX][N + 1];
+    for (int i = 1; i <= N; i++) {
+        int idx = Arrays.binarySearch(x, x[i] + L);
+        right[0][i] = (idx >= 0) ? idx : -idx - 1 - 1;
+    }
+    for (int i = 1; i < MAX; i++) {
+        for (int j = 0; j <= N; j++) {
+            right[i][j] = right[i - 1][right[i - 1][j]];
+        }
+    }
+    for (int q = 1; q <= Q; q++) {
+        int _u = in.nextInt();
+        int _v = in.nextInt();
+        int u = Math.min(_u, _v);
+        int v = Math.max(_u, _v);
+        int r = 0;
+        for (int i = MAX - 1; i >= 0; i--) {
+            if (right[i][u] < v) {
+                u = right[i][u];
+                r += (1 << i);
+            }
+        }
+        out.println(r + 1);
+    }
+}

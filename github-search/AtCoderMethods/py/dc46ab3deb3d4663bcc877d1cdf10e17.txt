@@ -1,0 +1,16 @@
+def solve():
+    n, t = map(int, input().split())
+    ans = 0
+    cur = -(1<<30)
+
+    for i in range(n):
+        a = int(sys.stdin.readline())
+
+        if a >= cur + t:
+            ans += t
+        else:
+            ans += a - cur
+
+        cur = a
+
+    print(ans)

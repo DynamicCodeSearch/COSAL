@@ -1,0 +1,8 @@
+def main():
+    n, X = map(int, input().split())
+    a_list = list(map(int, input().split()))
+    ans = 0
+    for i, b in enumerate(format(X, "b").zfill(n)[::-1]):
+        if b == "1":
+            ans += a_list[i]
+    print(ans)

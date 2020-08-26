@@ -1,0 +1,54 @@
+private static void solve() {
+    int n = ni();
+    PriorityQueue<int[]> q = new PriorityQueue<>((o1, o2) -> {
+        return o2[1] == o1[1] ? o1[0] - o2[0] : o2[1] - o1[1];
+    });
+    int[][] work = new int[n][3];
+    for (int i = 0; i < n; i++) {
+        work[i][0] = i;
+        work[i][1] = ni();
+        work[i][2] = ni();
+        q.add(work[i]);
+    }
+    int count = 0;
+    int[] now = { -1, Integer.MAX_VALUE, Integer.MAX_VALUE };
+    List<Integer> list = new ArrayList<>();
+    while (q.size() > 0) {
+        while (q.size() > 0 && q.peek()[2] > now[1]) {
+            q.poll();
+        }
+        if (q.size() > 0) {
+            now = q.poll();
+            list.add(now[0]);
+            count++;
+        }
+    }
+    Collections.reverse(list);
+    list.add(-1);
+    PriorityQueue<int[]> q2 = new PriorityQueue<>((o1, o2) -> {
+        return o1[2] == o2[2] ? o1[0] - o2[0] : o1[2] - o2[2];
+    });
+    for (int[] v : work) q2.add(v);
+    int[] ret = new int[count];
+    int ptr = 0;
+    for (int i = 0; i < count; i++) {
+        int next = list.get(i + 1);
+        int min = Integer.MAX_VALUE;
+        while (q2.size() > 0 && (next < 0 || q2.peek()[2] <= work[next][1])) {
+            int[] v = q2.poll();
+            if (ptr == 0 || v[1] >= work[ret[ptr - 1]][2]) {
+                min = Math.min(min, v[0]);
+            }
+        }
+        ret[ptr++] = min;
+    }
+    out.println(count);
+    int i = 0;
+    for (int v : ret) {
+        i++;
+        out.print(v + 1);
+        if (i < count)
+            out.print(" ");
+    }
+    out.println();
+}

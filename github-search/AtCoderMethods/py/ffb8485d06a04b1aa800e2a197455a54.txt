@@ -1,0 +1,19 @@
+def search(array,index):
+	if check[index]!=-1:
+		return check[index]
+ if index>=len(array)-1:
+		return 0
+ d1=search(array,index+1)+abs(array[index]-array[index+1])
+ d2=0
+ if index<=len(array)-3:
+		d2=search(array,index+2)+abs(array[index]-array[index+2])
+
+  if(d1<d2):
+			check[index]=d1
+   return d1
+  else:
+			check[index]=d2
+   return d2
+ else:
+		check[index]=d1
+  return d1

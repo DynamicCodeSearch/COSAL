@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] x = new int[N];
+    int[] y = new int[N];
+    for (int i = 0; i < N; i++) {
+        x[i] = sc.nextInt();
+        y[i] = sc.nextInt();
+    }
+    double l, max = 0;
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            l = Math.sqrt((x[i] - x[j]) * (x[i] - x[j]) + (y[i] - y[j]) * (y[i] - y[j]));
+            if (l > max)
+                max = l;
+        }
+    }
+    System.out.printf("%.6f\n", max);
+}

@@ -1,0 +1,9 @@
+static double distal(Point o, Line l) {
+    double res = 0;
+    res = (l.a * o.x) + (l.b * o.y) + l.c;
+    if (res < 0) {
+        res = -res;
+    }
+    res = res / (Math.sqrt((l.a * l.a) + (l.b * l.b)));
+    return res;
+}

@@ -1,0 +1,34 @@
+public static void main(String[] args) {
+    
+    
+    int SL;
+    
+    int group;
+    
+    char s;
+    
+    char bs;
+    
+    String S;
+    Scanner scan = new Scanner(System.in);
+    
+    S = scan.nextLine();
+    scan.close();
+    
+    
+    SL = S.length();
+    
+    group = 1;
+    for (int i = 1; i < SL; i++) {
+        
+        s = S.charAt(i);
+        
+        bs = S.charAt(i - 1);
+        
+        if (s != bs) {
+            group++;
+        }
+    }
+    
+    System.out.println(group - 1);
+}

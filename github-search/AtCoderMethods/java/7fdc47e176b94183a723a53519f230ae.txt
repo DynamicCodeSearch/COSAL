@@ -1,0 +1,38 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int N = Integer.parseInt(scanner.next());
+    int count = 1;
+    ArrayList<String> names = new ArrayList<>();
+    ArrayList<String> names2 = new ArrayList<>();
+    ArrayList<Integer> counts = new ArrayList<>();
+    int maxCount = 1;
+    if (N == 1) {
+        System.out.println(scanner.next());
+        return;
+    }
+    for (int i = 0; i < N; i++) {
+        names.add(scanner.next());
+    }
+    names.sort(Comparator.naturalOrder());
+    names2.add(names.get(0));
+    for (int i = 0; i < N - 1; i++) {
+        String tmp = names.get(i);
+        if (tmp.equals(names.get(i + 1))) {
+            count++;
+            if (i == N - 2) {
+                counts.add(count);
+                if (count > maxCount) {
+                    maxCount = count;
+                }
+            }
+        } else {
+            names2.add(names.get(i + 1));
+            counts.add(count);
+            if (count > maxCount) {
+                maxCount = count;
+            }
+            count = 1;
+        }
+    }
+    System.out.println(names2.get(counts.indexOf(maxCount)));
+}

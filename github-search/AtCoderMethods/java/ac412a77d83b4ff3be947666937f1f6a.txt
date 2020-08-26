@@ -1,0 +1,47 @@
+public static void main(String[] args) {
+    
+    Scanner scan = new Scanner(System.in);
+    int n = scan.nextInt();
+    int m = scan.nextInt();
+    long[] relation = new long[n];
+    for (int i = 0; i < n; i++) {
+        relation[i] = 1 << i;
+    }
+    int x = 0;
+    int y = 0;
+    for (int i = 0; i < m; i++) {
+        x = scan.nextInt();
+        x -= 1;
+        y = scan.nextInt();
+        y -= 1;
+        relation[x] |= (1 << y);
+        relation[y] |= (1 << x);
+    }
+    long bit = 0;
+    long bit2 = 0;
+    int cnt = 0;
+    int max = 2;
+    String strBit = "";
+    for (int i = 1; i < Math.pow(2, n); i++) {
+        bit = i;
+        cnt = 0;
+        strBit = Integer.toBinaryString((int) bit);
+        bit2 = bit;
+        
+        for (int j = strBit.length() - 1; j >= 0; j--) {
+            if (strBit.charAt(j) == '1') {
+                bit2 &= relation[strBit.length() - 1 - j];
+            }
+        }
+        if (bit2 == bit) {
+            max = Math.max(max, Integer.bitCount((int) bit));
+        
+        }
+    }
+    scan.close();
+    int ans = max;
+    if (m == 0) {
+        ans = 1;
+    }
+    System.out.println(ans);
+}

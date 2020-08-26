@@ -1,0 +1,14 @@
+void solver() {
+    for (int i = 0; i < 900; i++) {
+        for (int j = 0; j < 900; j++) {
+            memo[i][j] = new HashMap<>();
+        }
+    }
+    N = ni();
+    for (int i = 0; i < N - 1; i++) {
+        yes[ni()] = true;
+    }
+    ArrayList<Integer> V = new ArrayList<>();
+    for (int i = 0; i < N; i++) V.add(1);
+    out.println(dfs(V, 1, 0));
+}

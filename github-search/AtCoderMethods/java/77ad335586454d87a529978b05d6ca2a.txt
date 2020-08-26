@@ -1,0 +1,24 @@
+public static void solve(Scanner s) {
+    int W = s.nextInt();
+    int H = s.nextInt();
+    int N = s.nextInt();
+    boolean[][] rect = new boolean[W][H];
+    for (boolean[] array : rect) {
+        Arrays.fill(array, true);
+    }
+    for (int i = 0; i < N; i++) {
+        int x = s.nextInt();
+        int y = s.nextInt();
+        int a = s.nextInt();
+        paint(rect, x, y, a);
+    }
+    int count = 0;
+    for (int i = 0; i < rect.length; i++) {
+        for (int j = 0; j < rect[i].length; j++) {
+            if (rect[i][j]) {
+                count++;
+            }
+        }
+    }
+    System.out.println(count);
+}

@@ -1,0 +1,12 @@
+static boolean isNotIncludingSameArrays(int x, int y, int[] numArrays) {
+    boolean xflag = false, yflag = false;
+    for (int i = 0; i < numArrays.length; i++) {
+        if (x == numArrays[i]) {
+            xflag = true;
+        }
+        if (y == numArrays[i]) {
+            yflag = true;
+        }
+    }
+    return xflag ^ yflag;
+}

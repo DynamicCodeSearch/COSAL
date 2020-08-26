@@ -1,0 +1,13 @@
+def dijkstra(num_vertices, adj_list, source=0):
+    dist = [INF for _ in range(num_vertices)]
+    dist[source] = 0
+    pq = [(dist[u], u) for u in range(num_vertices)]
+    heapq.heapify(pq)
+    while pq:
+        _, u = heapq.heappop(pq)
+        for v, cost in adj_list[u]:
+            new_length = dist[u] + cost
+            if new_length < dist[v]:
+                dist[v] = new_length
+                heapq.heappush(pq, (new_length, v))
+    return dist

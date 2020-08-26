@@ -1,0 +1,18 @@
+long nextLong() throws IOException {
+    int c;
+    long x = 0;
+    boolean sign = true;
+    while ((c = nextChar()) <= 32) ;
+    if (c == '-') {
+        sign = false;
+        c = nextChar();
+    }
+    if (c == '+') {
+        c = nextChar();
+    }
+    while (c >= '0') {
+        x = x * 10 + (c - '0');
+        c = nextChar();
+    }
+    return sign ? x : -x;
+}

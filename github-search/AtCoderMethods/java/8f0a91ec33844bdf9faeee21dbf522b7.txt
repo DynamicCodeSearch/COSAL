@@ -1,0 +1,13 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+    String a = in.readLine();
+    String s = a.substring(0, a.length() - 1);
+    int n = s.length() % 2;
+    for (int i = s.length(); i >= 0; i--) {
+        String sub = s.substring(0, i - n);
+        if (sub.substring(0, sub.length() / 2).equals(sub.substring(sub.length() / 2, sub.length()))) {
+            System.out.println(sub.length());
+            return;
+        }
+    }
+}

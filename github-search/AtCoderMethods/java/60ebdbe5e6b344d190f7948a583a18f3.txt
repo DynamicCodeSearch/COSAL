@@ -1,0 +1,13 @@
+public void unite(int a, int b) {
+    a = getRoot(a);
+    b = getRoot(b);
+    if (a == b)
+        return;
+    if (rank[a] < rank[b]) {
+        param[a] = b;
+    } else {
+        param[b] = a;
+        if (rank[a] == rank[b])
+            rank[a]++;
+    }
+}

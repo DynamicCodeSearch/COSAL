@@ -1,0 +1,15 @@
+def main():
+    N, x = map(int, input().split())
+    c = list(map(int, input().split()))
+    pre = sum(c)
+
+    c = [min(i, x) for i in c]
+    ans = pre - sum(c)
+
+    for i in range(len(c) - 1):
+        if c[i] + c[i + 1] > x:
+            n = (c[i] + c[i + 1]) - x
+            c[i + 1] -= n
+            ans += n
+
+    print(ans)

@@ -1,0 +1,12 @@
+boolean contain(int delKey) {
+    if (root == null)
+        return false;
+    Node node = root;
+    while (node != null) {
+        if (delKey == node.key) {
+            return true;
+        }
+        node = delKey >= node.key ? node.right : node.left;
+    }
+    return false;
+}

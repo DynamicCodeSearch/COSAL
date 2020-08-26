@@ -1,0 +1,8 @@
+def createRelations():
+    created_relation = [[False] * n for _ in range(n)]
+    for i in range(m):
+        rel1i, rel2i = map(int, input().split())
+        rel1, rel2 = rel1i - 1, rel2i - 1
+        created_relation[rel1][rel2] = True
+        created_relation[rel2][rel1] = True
+    return created_relation

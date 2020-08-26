@@ -1,0 +1,54 @@
+private static void solve() {
+    n = ni();
+    p = ntable(n, 2);
+    f[0] = 0;
+    for (int i = 1; i < M; i++) {
+        f[i] = f[i - 1] + Math.log(i);
+    }
+    SegmentTreeRSQ st = new SegmentTreeRSQ(n);
+    for (int i = 0; i < n - 1; i++) {
+        int w = Math.abs(p[i][0] - p[i + 1][0]);
+        int h = Math.abs(p[i][1] - p[i + 1][1]);
+        
+        double v = f[w + h] - f[w] - f[h];
+        st.add(i, v);
+    }
+    int q = ni();
+    for (int i = 0; i < q; i++) {
+        int t = ni();
+        if (t == 1) {
+            int k = ni() - 1;
+            int a = ni();
+            int b = ni();
+            if (k > 0) {
+                int w = Math.abs(p[k - 1][0] - a);
+                int h = Math.abs(p[k - 1][1] - b);
+                double nd = f[w + h] - f[w] - f[h];
+                st.add(k - 1, nd - st.sum(k - 1, k));
+            
+            }
+            if (k < n - 1) {
+                int w = Math.abs(p[k + 1][0] - a);
+                int h = Math.abs(p[k + 1][1] - b);
+                double nd = f[w + h] - f[w] - f[h];
+                st.add(k, nd - st.sum(k, k + 1));
+            
+            }
+            p[k][0] = a;
+            p[k][1] = b;
+        } else {
+            int l1 = ni() - 1;
+            int r1 = ni() - 1;
+            int l2 = ni() - 1;
+            int r2 = ni() - 1;
+            double d1 = st.sum(l1, r1);
+            double d2 = st.sum(l2, r2);
+            
+            if (d1 < d2) {
+                out.println("SECOND");
+            } else {
+                out.println("FIRST");
+            }
+        }
+    }
+}

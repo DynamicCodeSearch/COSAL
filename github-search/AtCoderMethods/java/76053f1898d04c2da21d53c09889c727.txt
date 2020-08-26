@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    ;
+    int n = scan.nextInt();
+    int[] x = new int[n], y = new int[n], t = new int[n], r = new int[n];
+    for (int i = 0; i < n; i++) {
+        x[i] = scan.nextInt();
+        y[i] = scan.nextInt();
+        t[i] = scan.nextInt();
+        r[i] = scan.nextInt();
+    }
+    scan.close();
+    if (n == 1) {
+        System.out.println(0.0);
+        return;
+    }
+    double[][] G = new double[n][n];
+    for (int i = 0; i < n; i++) for (
+    int j = 0; 
+    j < n; 
+    j++) G[i][j] = Math.sqrt((double) Math.pow(x[i] - x[j], 2.0) + (double) Math.pow(y[i] - y[j], 2.0)) / (double) Math.min(t[i], r[j]);
+    double[] d = daikd(G, 0);
+    Arrays.sort(d);
+    double max = 0.0;
+    for (int i = 1; i < n; i++) max = Math.max(max, d[i] + n - i - 1);
+    System.out.printf("%10.10f\n", max);
+}

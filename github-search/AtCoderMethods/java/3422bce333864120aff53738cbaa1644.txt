@@ -1,0 +1,21 @@
+static double solve(int N, int[] x, int[] c) {
+    double l = -1e5;
+    double r = 1e5;
+    double m1max = 0;
+    double m2max = 0;
+    for (int t = 0; t < 100; t++) {
+        double m1 = (l * 2 + r) / 3;
+        double m2 = (l + r * 2) / 3;
+        m1max = 0;
+        m2max = 0;
+        for (int i = 0; i < N; i++) {
+            m1max = Math.max(m1max, Math.abs(x[i] - m1) * c[i]);
+            m2max = Math.max(m2max, Math.abs(x[i] - m2) * c[i]);
+        }
+        if (m1max < m2max)
+            r = m2;
+        else
+            l = m1;
+    }
+    return m1max;
+}

@@ -1,0 +1,9 @@
+def main():
+    n, k = reads()
+    a = reads()
+    s = r = sum(a[:k])
+
+    for i in range(k, n):
+        s = s - a[i-k] + a[i]
+        r += s
+    print(r)

@@ -1,0 +1,14 @@
+
+static long pow(long a, long n) {
+    long s = 1;
+    while (n > 0) {
+        if ((n & 1) == 1) {
+            s *= a;
+            s %= MOD;
+        }
+        n >>= 1L;
+        a *= a;
+        a %= MOD;
+    }
+    return s;
+}

@@ -1,0 +1,10 @@
+private static int dfs(int i, int j) {
+    if (i < 0 || 10 <= i || j < 0 || 10 <= j)
+        return 0;
+    if (visited[i][j])
+        return 0;
+    visited[i][j] = true;
+    if (A[i][j] == 'x')
+        return 0;
+    return dfs(i - 1, j) + dfs(i, j - 1) + dfs(i + 1, j) + dfs(i, j + 1) + 1;
+}

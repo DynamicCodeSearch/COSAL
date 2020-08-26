@@ -1,0 +1,18 @@
+public E kthHighest(int k) {
+    if (k < 0 || Node.size(root) <= k) {
+        return null;
+    }
+    Node<E> x = root;
+    while (x != null) {
+        int sizeRight = Node.size(x.right);
+        if (sizeRight < k) {
+            k -= sizeRight + 1;
+            x = x.left;
+        } else if (sizeRight > k) {
+            x = x.right;
+        } else {
+            return x.value;
+        }
+    }
+    return null;
+}

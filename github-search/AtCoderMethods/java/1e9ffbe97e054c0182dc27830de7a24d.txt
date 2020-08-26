@@ -1,0 +1,24 @@
+static void solve() {
+    int n = ni(), K = ni(), L = ni();
+    DJSet ds = new DJSet(n);
+    for (int i = 0; i < K; i++) {
+        ds.union(ni() - 1, ni() - 1);
+    }
+    DJSet ds2 = new DJSet(n);
+    for (int i = 0; i < L; i++) {
+        int x = ni() - 1, y = ni() - 1;
+        ds2.union(x, y);
+    }
+    Map<Long, Integer> roots = new HashMap<>();
+    for (int i = 0; i < n; i++) {
+        long code = (long) ds.root(i) << 32 | ds2.root(i);
+        roots.merge(code, 1, Integer::sum);
+    }
+    for (int i = 0; i < n; i++) {
+        if (i > 0)
+            out.print(" ");
+        long code = (long) ds.root(i) << 32 | ds2.root(i);
+        out.print(roots.get(code));
+    }
+    out.println();
+}

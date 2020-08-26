@@ -1,0 +1,31 @@
+private static void solve(BufferedReader in) throws IOException {
+    StringTokenizer st = new StringTokenizer(in.readLine());
+    int N = Integer.parseInt(st.nextToken()), M = Integer.parseInt(st.nextToken());
+    @SuppressWarnings("unchecked")
+    List<LR>[] nByLen = new List[M + 1];
+    for (int i = 1; i < M + 1; i++) {
+        nByLen[i] = new ArrayList<>();
+    }
+    for (int n = 1; n < N + 1; n++) {
+        st = new StringTokenizer(in.readLine());
+        
+        int l = Integer.parseInt(st.nextToken());
+        int r = Integer.parseInt(st.nextToken());
+        LR lr = new LR(l, r);
+        nByLen[lr.len].add(lr);
+    }
+    int accum = N;
+    fenwick = new int[M + 1];
+    for (int d = 1; d < M + 1; d++) {
+        int sum = accum;
+        for (int e = d; e < M + 1; e += d) {
+            sum += faccum(e);
+        }
+        System.out.println(sum);
+        accum -= nByLen[d].size();
+        for (LR lr : nByLen[d]) {
+            fadd(lr.l, 1);
+            fadd(lr.r + 1, -1);
+        }
+    }
+}

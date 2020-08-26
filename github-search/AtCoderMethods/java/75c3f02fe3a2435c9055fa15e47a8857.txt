@@ -1,0 +1,108 @@
+public void run() {
+    try {
+        Scanner s = new Scanner();
+        int h = s.nextInt();
+        int w = s.nextInt();
+        String[][] gaso = new String[h][w];
+        boolean[][] map = new boolean[h][w];
+        for (int i = 0; i < h; i++) {
+            s.reset();
+            gaso[i] = s.nextString().split("");
+        }
+        for (int i = 0; i < h; i++) {
+            for (int j = 0; j < w; j++) {
+                if (gaso[i][j].equals(".")) {
+                    map[i][j] = true;
+                    if (i + 1 < h) {
+                        map[i + 1][j] = true;
+                        if (j + 1 < w) {
+                            map[i + 1][j + 1] = true;
+                        }
+                        if (j - 1 >= 0) {
+                            map[i + 1][j - 1] = true;
+                        }
+                    }
+                    if (i - 1 >= 0) {
+                        map[i - 1][j] = true;
+                        if (j + 1 < w) {
+                            map[i - 1][j + 1] = true;
+                        }
+                        if (j - 1 >= 0) {
+                            map[i - 1][j - 1] = true;
+                        }
+                    }
+                    if (j + 1 < w) {
+                        map[i][j + 1] = true;
+                    }
+                    if (j - 1 >= 0) {
+                        map[i][j - 1] = true;
+                    }
+                } else {
+                }
+            }
+        }
+        
+        boolean[][] sub_map = new boolean[h][w];
+        for (int i = 0; i < h; i++) {
+            for (int j = 0; j < w; j++) {
+                if (!map[i][j]) {
+                    sub_map[i][j] = true;
+                    if (i + 1 < h) {
+                        sub_map[i + 1][j] = true;
+                        if (j + 1 < w) {
+                            sub_map[i + 1][j + 1] = true;
+                        }
+                        if (j - 1 >= 0) {
+                            sub_map[i + 1][j - 1] = true;
+                        }
+                    }
+                    if (i - 1 >= 0) {
+                        sub_map[i - 1][j] = true;
+                        if (j + 1 < w) {
+                            sub_map[i - 1][j + 1] = true;
+                        }
+                        if (j - 1 >= 0) {
+                            sub_map[i - 1][j - 1] = true;
+                        }
+                    }
+                    if (j + 1 < w) {
+                        sub_map[i][j + 1] = true;
+                    }
+                    if (j - 1 >= 0) {
+                        sub_map[i][j - 1] = true;
+                    }
+                } else {
+                }
+            }
+        }
+        
+        StringBuilder sb = new StringBuilder();
+        boolean flag = false;
+        for (int i = 0; i < h; i++) {
+            for (int j = 0; j < w; j++) {
+                String v = ".";
+                if (sub_map[i][j])
+                    v = "#";
+                if (gaso[i][j].equals(v)) {
+                    String vv = ".";
+                    if (!map[i][j])
+                        vv = "#";
+                    sb.append(vv);
+                } else {
+                    flag = true;
+                    break;
+                }
+            }
+            sb.append("\n");
+        }
+        if (flag) {
+            System.out.println("impossible");
+            return;
+        } else {
+            System.out.println("possible");
+            System.out.print(sb.toString());
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}

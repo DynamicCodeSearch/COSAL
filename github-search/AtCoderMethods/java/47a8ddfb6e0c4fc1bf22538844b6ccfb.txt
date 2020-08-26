@@ -1,0 +1,19 @@
+static void example() {
+    
+    for (int N : new int[] { 1, 7, 9, 10, 11, 50, 51, 99, 100 }) {
+        String strN = Integer.toString(N);
+        LinkedHashMap<Integer, Character> map = new LinkedHashMap<>();
+        for (int n = 1; n <= 1000; n++) {
+            String strn = Integer.toString(n);
+            Character ans;
+            if (n >= N && strn.compareTo(strN) >= 0)
+                ans = 'Y';
+            else if (n < N && strn.compareTo(strN) < 0)
+                ans = 'Y';
+            else
+                ans = 'N';
+            map.put(n, ans);
+        }
+        System.out.println(N + " " + map);
+    }
+}

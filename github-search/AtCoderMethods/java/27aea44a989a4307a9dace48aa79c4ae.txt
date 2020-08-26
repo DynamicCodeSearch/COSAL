@@ -1,0 +1,13 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    sc.close();
+    int size = (int) Math.sqrt(n);
+    int[] answers = new int[size + 1];
+    int ans = 100000;
+    for (int i = 1; i <= size; i++) {
+        answers[i] = n / i - i + n % i;
+        ans = Math.min(ans, answers[i]);
+    }
+    System.out.println(ans);
+}

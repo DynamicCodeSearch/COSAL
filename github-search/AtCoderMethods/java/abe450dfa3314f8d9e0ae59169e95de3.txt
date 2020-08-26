@@ -1,0 +1,27 @@
+private static boolean solve(int n, int[][] abs) {
+    
+    int[] vis = new int[n + 1];
+    Arrays.fill(vis, -1);
+    int FEN = 1;
+    int SNU = 2;
+    int[][] adj = adjacentList(abs);
+    ArrayDeque<Integer> q = new ArrayDeque<>();
+    
+    q.add(1);
+    vis[1] = FEN;
+    
+    q.add(n);
+    vis[n] = SNU;
+    while (!q.isEmpty()) {
+        int v = q.poll();
+        for (int u : adj[v]) {
+            if (vis[u] != -1)
+                continue;
+            vis[u] = vis[v];
+            q.add(u);
+        }
+    }
+    long fen = Arrays.stream(vis).filter(x -> x == FEN).count();
+    long snu = Arrays.stream(vis).filter(x -> x == SNU).count();
+    return fen > snu;
+}

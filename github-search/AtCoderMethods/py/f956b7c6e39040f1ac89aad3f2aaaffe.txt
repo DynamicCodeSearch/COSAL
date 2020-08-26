@@ -1,0 +1,10 @@
+def main():
+    N = int(sys.stdin.readline())
+    a = list(map(int, input().split()))
+    n = [0 for i in range(0, max(a)+1)]
+    for i in a:
+        n[i] += 1
+    if len(n) < 3:
+        print(sum(n))
+    else:
+        print(max([i+j+k for i, j, k in zip(n[:-2], n[1:-1], n[2:])]))

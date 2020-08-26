@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    try {
+        
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+        int n = Integer.parseInt(br.readLine());
+        int min = 0;
+        for (int i = 0; i < n; i++) {
+            int tmp = Integer.parseInt(br.readLine());
+            if (i == 0 || min > tmp) {
+                min = tmp;
+            }
+        }
+        System.out.println(min);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

@@ -1,0 +1,46 @@
+void solve(FastScanner in, PrintWriter out) throws Exception {
+    int N = in.nextInt();
+    long T = in.nextInt();
+    long[] A = in.nextLongArray(N);
+    RMQ rmq = new RMQ(N);
+    TreeMap<Long, ArrayList<Integer>> cnt = new TreeMap<>();
+    for (int i = 0; i < N; i++) {
+        rmq.update(i, A[i]);
+        ArrayList<Integer> list = cnt.get(A[i]);
+        if (list == null) {
+            cnt.put(A[i], list = new ArrayList<>());
+        }
+        list.add(i);
+    }
+    long max = 0;
+    for (int i = 0; i < N - 1; i++) {
+        long sell = rmq.query(i + 1, N);
+        long x = Math.max(0, sell - A[i]);
+        max = Math.max(max, x);
+    }
+    int ans = 0;
+    for (long key : cnt.keySet()) {
+        long up = key + max;
+        ArrayList<Integer> children = cnt.get(key);
+        ArrayList<Integer> parents = cnt.get(up);
+        if (parents == null)
+            continue;
+        int c = 0;
+        int p = parents.size() - 1;
+        while (c < children.size() && p >= 0) {
+            int childNum = ~Collections.binarySearch(children, parents.get(p));
+            childNum = childNum - c;
+            int parentNum = ~Collections.binarySearch(parents, children.get(c));
+            parentNum = Math.max(p + 1 - parentNum, 0);
+            if (childNum == 0)
+                break;
+            if (childNum > parentNum) {
+                p--;
+            } else {
+                c++;
+            }
+            ans++;
+        }
+    }
+    out.println(ans);
+}

@@ -1,0 +1,58 @@
+
+
+public static void main(String[] args) throws Exception, IOException {
+    Reader sc = new Reader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    
+    
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    long d[] = new long[n], ans = 0;
+    int[] ed = new int[n];
+    int[] from = new int[m];
+    int[] to = new int[m];
+    long c[] = new long[m], inf = (1L << 55);
+    for (int i = 0; i < n; i++) {
+        d[i] = inf;
+    }
+    for (int i = 0; i < m; i++) {
+        int x = sc.nextInt() - 1;
+        int y = sc.nextInt() - 1;
+        from[i] = x;
+        to[i] = y;
+        c[i] = -sc.nextLong();
+    }
+    d[0] = 0;
+    int lp = 0;
+    long q = -1, p = q;
+    while (true) {
+        boolean b = false;
+        lp++;
+        for (int i = 0; i < m; i++) {
+            int fr = from[i];
+            int t = to[i];
+            if (d[fr] != inf && d[t] > d[fr] + c[i]) {
+                d[t] = d[fr] + c[i];
+                b = true;
+            }
+        }
+        q = d[n - 1];
+        if (!b) {
+            ans = -d[n - 1];
+            break;
+        }
+        if (lp > 2010) {
+            if (q < p)
+                out.println("inf");
+            else
+                out.println(-d[n - 1]);
+            out.flush();
+            return;
+        }
+        p = q;
+    
+    }
+    
+    out.println(ans);
+    out.flush();
+}

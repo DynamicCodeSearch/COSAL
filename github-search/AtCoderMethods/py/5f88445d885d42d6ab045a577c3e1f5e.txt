@@ -1,0 +1,9 @@
+def KCS(relation, max_members, k):
+    for members in comb(max_members, k):
+        for r in comb(members, 2):
+            if r not in relation:
+                break
+        else:
+            return True
+    else:
+        return False

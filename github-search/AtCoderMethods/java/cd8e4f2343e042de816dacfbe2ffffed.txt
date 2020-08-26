@@ -1,0 +1,17 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    n = in.nextInt();
+    t = in.nextInt();
+    res = in.nextInt();
+    prev = res;
+    for (int i = 1; i < n; i++) {
+        int time = in.nextInt() - prev;
+        if (time <= t) {
+            res += time;
+        } else {
+            res += t;
+        }
+        prev += time;
+    }
+    res += t;
+    out.print(res);
+}

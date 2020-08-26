@@ -1,0 +1,10 @@
+private static long dfs(String input, long sum, int index) {
+    if (index >= input.length()) {
+        return sum;
+    }
+    long total = 0;
+    for (int i = index + 1; i <= input.length(); i++) {
+        total += dfs(input, sum + Long.parseLong(input.substring(index, i)), i);
+    }
+    return total;
+}

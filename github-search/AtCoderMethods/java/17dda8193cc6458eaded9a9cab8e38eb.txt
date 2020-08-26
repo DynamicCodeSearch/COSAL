@@ -1,0 +1,16 @@
+public static void main(String[] args) throws Exception {
+    in = INPUT.isEmpty() ? new Scanner(System.in) : new Scanner(INPUT);
+    out = new PrintWriter(System.out);
+    int N = ni();
+    int T = ni();
+    int[] t = new int[N + 1];
+    int i;
+    for (i = 0; i < N; i++) t[i] = ni();
+    t[N] = 2000000000;
+    long total = 0L;
+    for (i = 0; i < N; i++) {
+        total += t[i + 1] - t[i] < T ? t[i + 1] - t[i] : T;
+    }
+    out.println(total);
+    out.flush();
+}

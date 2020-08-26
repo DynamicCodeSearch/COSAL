@@ -1,0 +1,18 @@
+def main():
+    p = F()
+    r = p
+    mi = 0
+    ma = 100
+    while ma - mi > 1e-9:
+        mm = (ma+mi) / 2
+        tr = mm + p/(2**(mm/1.5))
+        mp = mm+1e-9
+        tp = mp + p/(2**(mp/1.5))
+        if tr > tp:
+            mi = mm
+        else:
+            ma = mm
+        if tr < r:
+            r = tr
+
+    return r

@@ -1,0 +1,11 @@
+static long modPow(long base, long exp, long mod) {
+    long ans = 1L;
+    while (exp != 0) {
+        if (exp % 2 != 0)
+            ans = ans * base % mod;
+        exp >>= 1;
+        base %= mod;
+        base = base * base % mod;
+    }
+    return ans;
+}

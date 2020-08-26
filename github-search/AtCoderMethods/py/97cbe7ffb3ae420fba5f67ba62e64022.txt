@@ -1,0 +1,8 @@
+def solve(s, t, l_r_list):
+    for ans, (l, r) in enumerate(l_r_list, start=1):
+        if not l <= s <= r:
+            continue
+
+        if l <= t <= r:
+            return ans
+        s = r if t > r else l

@@ -1,0 +1,25 @@
+def dp(l, r, t, b):
+
+    if l > r or t > b:
+
+        return 0
+
+    key = (l, r, t, b)
+    if key in memo:
+
+        return memo[key]
+
+    memo[key] = 0  
+    for i in range(N):
+        if X[i] >= l and X[i] <= r and Y[i] >= t and Y[i] <= b:
+
+            memo[key] = max(memo[key],
+                            r - l + b - t + 1
+                            + dp(l, X[i] - 1, t, Y[i] - 1)
+                            + dp(X[i] + 1, r, t, Y[i] - 1)
+                            + dp(l, X[i] - 1, Y[i] + 1, b)
+                            + dp(X[i] + 1, r, Y[i] + 1, b))
+
+
+
+    return memo[key]

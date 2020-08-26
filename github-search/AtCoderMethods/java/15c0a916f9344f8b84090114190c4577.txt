@@ -1,0 +1,26 @@
+
+
+
+
+
+
+
+public static void main(String[] args) throws Exception, IOException {
+    Reader sc = new Reader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = sc.nextInt();
+    int[] d = new int[n];
+    for (int i = 0; i < n; i++) {
+        d[i] = sc.nextInt();
+    }
+    for (int t = n - 1; -1 < t; t -= 2) {
+        out.print(d[t] + " ");
+    }
+    for (int i = n % 2 == 1 ? 1 : 0; i < n; i += 2) {
+        out.print(d[i]);
+        if (i + 2 < n)
+            out.print(" ");
+    }
+    out.println();
+    out.flush();
+}

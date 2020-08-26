@@ -1,0 +1,27 @@
+public void solve() {
+    int n = in.nextInt();
+    BigInteger a = new BigInteger(in.next());
+    BigInteger b = new BigInteger(in.next());
+    BigInteger g = a.gcd(b);
+    a = a.divide(g);
+    b = b.divide(g);
+    
+    for (int i = 1; i < n; i++) {
+        BigInteger x = new BigInteger(in.next());
+        BigInteger y = new BigInteger(in.next());
+        g = x.gcd(y);
+        x = x.divide(g);
+        y = y.divide(g);
+        BigInteger k1 = a.divide(x);
+        if (k1.multiply(x).compareTo(a) < 0)
+            k1 = k1.add(BigInteger.ONE);
+        BigInteger k2 = b.divide(y);
+        if (k2.multiply(y).compareTo(b) < 0)
+            k2 = k2.add(BigInteger.ONE);
+        BigInteger k = k1.compareTo(k2) >= 0 ? k1 : k2;
+        a = x.multiply(k);
+        b = y.multiply(k);
+    
+    }
+    out.println(a.add(b));
+}

@@ -1,0 +1,48 @@
+public static void main(String[] args) {
+    Scanner s = new Scanner(System.in);
+    int n = s.nextInt();
+    int m = s.nextInt();
+    Node.dest = new ArrayList<ArrayList<Integer>>();
+    Node.typeB = new ArrayList<ArrayList<Boolean>>();
+    for (int i = 0; i < n; i++) {
+        Node.dest.add(new ArrayList<Integer>());
+        Node.typeB.add(new ArrayList<Boolean>());
+    }
+    for (int i = 0; i < m; i++) {
+        int c = s.nextInt();
+        int a = s.nextInt();
+        int b = s.nextInt();
+        Node.dest.get(a).add(b);
+        Node.dest.get(b).add(a);
+        Node.typeB.get(a).add(c == 1);
+        Node.typeB.get(b).add(c == 1);
+    }
+    int[] cost = new int[n];
+    int[] typeBCount = new int[n];
+    Arrays.fill(cost, Integer.MAX_VALUE);
+    Arrays.fill(typeBCount, Integer.MAX_VALUE);
+    HashSet<Node> visited = new HashSet<Node>();
+    PriorityQueue<Node> queue = new PriorityQueue<Node>();
+    queue.add(new Node(0, 0, 0));
+    while (!queue.isEmpty()) {
+        Node node = queue.poll();
+        if (visited.contains(node)) {
+            continue;
+        }
+        if (typeBCount[node.index] < node.typeBCount) {
+            continue;
+        }
+        cost[node.index] = Math.min(cost[node.index], node.cost);
+        typeBCount[node.index] = node.typeBCount;
+        visited.add(node);
+        for (Node next : node.getNextNode()) {
+            if (visited.contains(next)) {
+                continue;
+            }
+            queue.add(next);
+        }
+    }
+    for (int c : cost) {
+        System.out.println(c);
+    }
+}

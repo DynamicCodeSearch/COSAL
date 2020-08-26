@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int H = sc.nextInt();
+    long A = sc.nextLong();
+    long B = sc.nextLong();
+    long C = sc.nextLong();
+    long D = sc.nextLong();
+    long E = sc.nextLong();
+    long minCost = Long.MAX_VALUE;
+    for (int x = 0; x <= N; x++) {
+        long y = 0;
+        if (E * N - (B + E) * x - H >= 0) {
+            y = (E * N - (B + E) * x - H + D + E) / (D + E);
+        } else {
+            y = 0;
+        }
+        minCost = Math.min(minCost, A * x + C * y);
+    }
+    System.out.println(minCost);
+}

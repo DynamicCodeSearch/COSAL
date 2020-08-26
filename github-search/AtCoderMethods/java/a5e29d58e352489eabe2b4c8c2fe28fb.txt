@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    n = sc.nextInt();
+    t = new long[n];
+    a = new long[n];
+    for (int i = 0; i < n; i++) {
+        t[i] = sc.nextInt();
+        a[i] = sc.nextInt();
+    }
+    long tc = t[0], ac = a[0];
+    for (int i = 1; i < n; i++) {
+        long d = binarySearch(t[i], a[i], ac, tc);
+        ac += d;
+        if (ac % a[i] != 0) {
+            ac = ((long) (ac / a[i]) + 1) * a[i];
+        }
+        tc = t[i] * (ac / a[i]);
+    }
+    long sum = (tc + ac);
+    System.out.println(sum);
+}

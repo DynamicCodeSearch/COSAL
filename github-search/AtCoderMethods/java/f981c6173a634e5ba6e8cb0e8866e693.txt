@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int V = sc.nextInt();
+    adj = new LinkedList[V];
+    for (int i = 0; i < V; i++) {
+        adj[i] = new LinkedList<>();
+    }
+    for (int i = 0; i < V - 1; i++) {
+        int u = sc.nextInt();
+        int v = sc.nextInt();
+        u--;
+        v--;
+        addEdge(u, v);
+    }
+    System.out.println(VertexColoring(V));
+}

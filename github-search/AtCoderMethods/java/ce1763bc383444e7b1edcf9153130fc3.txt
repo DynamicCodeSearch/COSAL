@@ -1,0 +1,23 @@
+private static long solveB(long[][] balls) {
+    int n = balls.length;
+    long[] yminUp = new long[n + 1];
+    long[] ymaxUp = new long[n + 1];
+    long[] yminDw = new long[n + 1];
+    long[] ymaxDw = new long[n + 1];
+    yminUp[0] = yminDw[0] = Long.MAX_VALUE;
+    for (int i = 0; i < n; i++) {
+        yminUp[i + 1] = Math.min(yminUp[i], balls[i][1]);
+        ymaxUp[i + 1] = Math.max(ymaxUp[i], balls[i][1]);
+        yminDw[i + 1] = Math.min(yminDw[i], balls[n - 1 - i][1]);
+        ymaxDw[i + 1] = Math.max(ymaxDw[i], balls[n - 1 - i][1]);
+    }
+    long best = Long.MAX_VALUE;
+    for (int take = 1; take < n; take++) {
+        long bmin = Math.min(yminUp[take], balls[take][0]);
+        long bmax = Math.max(ymaxUp[take], balls[n - 1][0]);
+        long rmin = Math.min(yminDw[n - take], balls[0][0]);
+        long rmax = Math.max(ymaxDw[n - take], balls[take - 1][0]);
+        best = Math.min(best, (rmax - rmin) * (bmax - bmin));
+    }
+    return best;
+}

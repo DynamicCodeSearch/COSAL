@@ -1,0 +1,35 @@
+void solve(FastScanner in, PrintWriter out) {
+    int N = in.nextInt();
+    int M = in.nextInt();
+    int S = in.nextInt() - 1;
+    ArrayList<Integer>[] graph = new ArrayList[N];
+    for (int i = 0; i < N; i++) graph[i] = new ArrayList<Integer>();
+    for (int i = 0; i < M; i++) {
+        int u = in.nextInt() - 1, v = in.nextInt() - 1;
+        graph[v].add(u);
+        graph[u].add(v);
+    }
+    ArrayDeque<Pair> deque = new ArrayDeque<>();
+    boolean[] ok = new boolean[N];
+    ok[S] = true;
+    int[] vis = new int[N];
+    Arrays.fill(vis, -1);
+    deque.add(new Pair(S, S));
+    while (!deque.isEmpty()) {
+        Pair p = deque.poll();
+        for (int u : graph[p.pos]) {
+            if (u < p.min) {
+                ok[u] = true;
+            }
+            int min = Math.min(p.min, u);
+            if (vis[u] < min) {
+                deque.add(new Pair(u, min));
+                vis[u] = min;
+            }
+        }
+    }
+    for (int i = 0; i < N; i++) {
+        if (ok[i])
+            out.println(i + 1);
+    }
+}

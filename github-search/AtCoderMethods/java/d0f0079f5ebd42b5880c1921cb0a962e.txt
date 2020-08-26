@@ -1,0 +1,13 @@
+static boolean isGood(long k, long[] arr, long a, long b) {
+    long offset = k * b;
+    long diff = a - b;
+    long nCentres = 0;
+    int n = arr.length;
+    for (int i = 0; i < n; i++) {
+        long rem = arr[i] - offset;
+        if (rem > 0) {
+            nCentres += rem / diff + ((rem % diff == 0) ? 0 : 1);
+        }
+    }
+    return nCentres <= k;
+}

@@ -1,0 +1,64 @@
+
+public void run() throws IOException {
+    
+    int TEST_CASE = 1;
+    while (TEST_CASE-- != 0) {
+        int n = io.nextInt();
+        int[] x = new int[n];
+        int[] y = new int[n];
+        int[][] pos = new int[n * 2][];
+        for (int i = 0; i < n; i++) {
+            x[i] = io.nextInt();
+            y[i] = io.nextInt();
+            
+            
+            pos[2 * i + 0] = new int[] { x[i], 2 * i + 0 };
+            pos[2 * i + 1] = new int[] { y[i], 2 * i + 1 };
+        }
+        Arrays.sort(pos, (a, b) -> a[0] - b[0]);
+        int[] idx = new int[2 * n];
+        int[] pos2 = new int[n * 2];
+        for (int i = 0; i < 2 * n; i++) {
+            idx[pos[i][1]] = i;
+            pos2[i] = pos[i][0];
+        }
+        int times = 0;
+        int m = Integer.highestOneBit(pos.length) << 1;
+        sat = new Sat2(2 * m - 1);
+        int low = 0, high = (int) 1e9;
+        while (high - low > 1) {
+            int mid = (low + high) / 2;
+            sat.clear();
+            if (times++ == 16)
+                System.gc();
+            for (int i = 0; i < m - 1; i++) {
+                for (int j = 1; j <= 2; j++) {
+                    final int c = 2 * i + j;
+                    
+                    
+                    
+                    
+                    
+                    
+                    sat.Implication(sat.Not(i), sat.Not(c));
+                }
+            }
+            for (int i = 0; i < idx.length; i += 2) {
+                
+                sat.Or(idx[i + 0] + m - 1, idx[i + 1] + m - 1);
+                sat.Or(sat.Not(idx[i + 0] + m - 1), sat.Not(idx[i + 1] + m - 1));
+            }
+            for (int i = 0; i < pos.length; i++) {
+                int j = lowerBound(pos2, pos2[i] - mid + 1);
+                int k = upperBound(pos2, pos2[i] + mid - 1);
+                addEdge(j, i, 0, m, 0, i + m - 1);
+                addEdge(i + 1, k, 0, m, 0, i + m - 1);
+            }
+            if (sat.satisfy())
+                low = mid;
+            else
+                high = mid;
+        }
+        io.out.println(low);
+    }
+}

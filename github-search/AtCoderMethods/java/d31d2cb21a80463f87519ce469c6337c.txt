@@ -1,0 +1,15 @@
+static int[] measureDistance(int x, int y, int[] arrx, int[] arry) {
+    int[] arrDistance = new int[arrx.length];
+    for (int i = 0; i < arrx.length; i++) {
+        int dx = x - arrx[i];
+        int dy = y - arry[i];
+        if (dx < 0) {
+            dx = -1 * dx;
+        }
+        if (dy < 0) {
+            dy = -1 * dy;
+        }
+        arrDistance[i] = dx + dy;
+    }
+    return arrDistance;
+}

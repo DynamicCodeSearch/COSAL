@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    long sum = 0, j = 0;
+    List<Long> list = new ArrayList();
+    BigInteger min;
+    int N = in.nextInt();
+    for (int i = 0; i < N; i++) {
+        list.add(in.nextLong());
+    }
+    long summ = list.parallelStream().mapToLong(x -> x).sum();
+    sum += list.get(0);
+    if (N > 2) {
+        min = BigInteger.valueOf(Math.abs(2 * sum - summ));
+        for (int i = 1; i < N - 1; i++) {
+            sum += list.get(i);
+            if (BigInteger.valueOf(Math.abs(2 * sum - summ)).compareTo(min) == -1) {
+                min = BigInteger.valueOf(Math.abs(2 * sum - summ));
+            }
+        }
+        System.out.println(min);
+    } else
+        System.out.println(Math.abs(list.get(0) - list.get(1)));
+}

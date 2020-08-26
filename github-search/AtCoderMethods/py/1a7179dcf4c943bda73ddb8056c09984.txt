@@ -1,0 +1,22 @@
+def solve(H, W):
+    s = [0]*3
+    ans = H*W
+    for h in range(H):
+        s[0] = W * h
+        s[1] = (H - h) * (W // 2)
+        s[2] = H * W - s[0] - s[1]
+        if max(s) - min(s) < ans:
+            ans = max(s) - min(s)
+        if ans == 0:
+            print(ans)
+            exit()
+    for h in range(H):
+        s[0] = h * W
+        s[1] = (H - h) // 2 * W
+        s[2] = H * W - s[0] - s[1]
+        if max(s) - min(s) < ans:
+            ans = max(s) - min(s)
+        if ans == 0:
+            print(ans)
+            exit()
+    return ans

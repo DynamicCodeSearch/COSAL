@@ -1,0 +1,9 @@
+def enough(t, hp_list, a, b):
+    damaged_list = [i - b * t for i in hp_list]
+    remain = 0
+    for i in damaged_list:
+        if i > 0:
+            remain += math.ceil(i / (a - b))
+    if remain <= t:
+        return True
+    return False

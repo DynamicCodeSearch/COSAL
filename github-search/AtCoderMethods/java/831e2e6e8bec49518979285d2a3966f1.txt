@@ -1,0 +1,7 @@
+void init(Object buf, int value) {
+    if (buf instanceof int[]) {
+        Arrays.fill((int[]) buf, value);
+    } else if (buf instanceof Object[]) {
+        for (Object o : (Object[]) buf) init(o, value);
+    }
+}

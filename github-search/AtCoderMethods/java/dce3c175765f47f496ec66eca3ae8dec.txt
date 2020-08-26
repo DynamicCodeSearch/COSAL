@@ -1,0 +1,22 @@
+private static long calc(String s, int value) {
+    String t = Integer.toBinaryString(value);
+    StringBuilder str = new StringBuilder();
+    str.append(s.substring(0, s.length() - t.length()));
+    for (int i = 0; i < t.length(); i++) {
+        if (t.charAt(i) == '1')
+            str.append('+');
+        str.append(s.charAt(s.length() - t.length() + i));
+    }
+    long result = 0;
+    long tmp = 0;
+    for (int i = 0; i < str.length(); i++) {
+        if (str.charAt(i) == '+') {
+            result = result + tmp;
+            tmp = 0;
+        } else {
+            tmp = tmp * 10 + str.charAt(i) - '0';
+        }
+    }
+    result = result + tmp;
+    return result;
+}

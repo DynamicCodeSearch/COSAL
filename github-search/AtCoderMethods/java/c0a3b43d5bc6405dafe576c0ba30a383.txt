@@ -1,0 +1,17 @@
+private void compute() throws IOException {
+    int[] a = intarr();
+    int[] c = new int[111];
+    for (int i = a[0]; i <= a[1]; i++) {
+        c[i]++;
+    }
+    for (int i = a[2]; i <= a[3]; i++) {
+        c[i]++;
+    }
+    int res = 0;
+    for (int x : c) {
+        if (x == 2) {
+            res++;
+        }
+    }
+    out(max(0, res - 1));
+}

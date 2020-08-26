@@ -1,0 +1,24 @@
+def main():
+    n,m = na()
+    g = []
+    for i in range(n):
+        g.append([99999999]*n)
+    for i in range(n):
+        g[i][i] = 0
+    es = []
+    for i in range(m):
+        a,b,c = na()
+        es.append((a-1,b-1,c))
+        g[a-1][b-1] = c
+        g[b - 1][a - 1] = c
+
+    for k in range(n):
+        for i in range(n):
+            for j in range(n):
+                g[i][j] = min(g[i][j], g[i][k] + g[k][j])
+    ct = 0
+    for e in es:
+        if g[e[0]][e[1]] != e[2]:
+            ct += 1
+    print(ct)
+    pass

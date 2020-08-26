@@ -1,0 +1,20 @@
+void dijkstra1(int from) {
+    for (int i = 0; i < n; i++) {
+        ns.get(i).dist = Long.MAX_VALUE;
+    }
+    Queue<Node> q = new ArrayDeque<Node>();
+    Node st = ns.get(from);
+    st.dist = 0;
+    q.add(st);
+    while (!q.isEmpty()) {
+        Node n = q.poll();
+        long dist = n.dist;
+        for (Edge e : n.es) {
+            Node to = ns.get(e.to);
+            if (to.dist > dist + 1) {
+                to.dist = dist + 1;
+                q.add(to);
+            }
+        }
+    }
+}

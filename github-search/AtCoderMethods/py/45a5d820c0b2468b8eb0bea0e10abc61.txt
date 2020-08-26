@@ -1,0 +1,27 @@
+def main():
+    n = int(input())
+    ng1 = int(input())
+    ng2 = int(input())
+    ng3 = int(input())
+    ng = sorted([ng1,ng2,ng3])
+    if n in ng:
+        return "NO"
+    if ng[0]+1 == ng[1] and ng[0]+2 == ng[2] and ng[0] < n:
+        return "NO"
+
+    nm = [-1]*3
+
+    nm[ng[0]%3] = max(ng[0],nm[ng[0]%3])
+    nm[ng[1]%3] = max(ng[1],nm[ng[1]%3])
+    nm[ng[2]%3] = max(ng[2],nm[ng[2]%3])
+
+    if n==298:
+        if nm[1] > nm[2] > nm[0] > 0:
+            return "NO"
+    if n==299:
+        if nm[2] > nm[0] > 0:
+            return "NO"
+    if n==300:
+        if nm[0] > 0:
+            return "NO"
+    return "YES"

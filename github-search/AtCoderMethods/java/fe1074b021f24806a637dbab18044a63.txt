@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner s = new Scanner(System.in);
+    BigInteger A = s.nextBigInteger();
+    
+    BigInteger B = A.add(BigInteger.ONE);
+    BigInteger A2 = A.multiply(A);
+    BigInteger B2 = B.multiply(B).subtract(BigInteger.ONE);
+    String a = A2.toString();
+    String b = B2.toString();
+    
+    
+    int at = 0;
+    String ret = "";
+    while (at < a.length()) {
+        ret += a.charAt(at);
+        if ((a.length() - at) % 2 == 1 && a.charAt(at) != b.charAt(at))
+            break;
+        at++;
+    }
+    BigInteger ans = new BigInteger(ret).add(BigInteger.ONE);
+    while (A.mod(new BigInteger("10")).equals(BigInteger.ZERO)) A = A.divide(new BigInteger("10"));
+    if (ans.compareTo(A.multiply(A)) > 0)
+        ans = A.multiply(A);
+    System.out.println(ans.toString());
+}

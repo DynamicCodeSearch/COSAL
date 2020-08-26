@@ -1,0 +1,3 @@
+int nextInt() throws NumberFormatException, IOException {
+    return Integer.parseInt(next());
+}

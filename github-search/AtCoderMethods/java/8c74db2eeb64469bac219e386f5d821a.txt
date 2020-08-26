@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    final long x = 2000000000000L;
+    long a, k;
+    long t = 0;
+    long count = 0;
+    Scanner in = new Scanner(System.in);
+    a = in.nextLong();
+    k = in.nextLong();
+    t = a;
+    while (k > 0) {
+        count++;
+        t += 1 + k * t;
+        if (t >= x) {
+            break;
+        }
+    }
+    while (k == 0) {
+        count = x - t;
+        break;
+    }
+    System.out.println(count);
+}

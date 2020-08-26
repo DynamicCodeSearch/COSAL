@@ -1,0 +1,12 @@
+static double plmn(Point[] ar, int n) {
+    double s = 0;
+    for (int i = 1; i < n - 1; i++) {
+        Vector a = new Vector(ar[0], ar[i]);
+        Vector b = new Vector(ar[0], ar[i + 1]);
+        s = s + nappl(ar[i + 1], ar[i], ar[0]);
+    }
+    if (s < 0) {
+        s = -s;
+    }
+    return s;
+}

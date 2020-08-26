@@ -1,0 +1,15 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    int n;
+    n = in.nextInt();
+    long[] arr = new long[n];
+    HashSet<Long> set = new HashSet<>();
+    for (int i = 0; i < n; i++) {
+        arr[i] = in.nextLong();
+        if (set.contains(arr[i])) {
+            set.remove(arr[i]);
+        } else {
+            set.add(arr[i]);
+        }
+    }
+    out.println(set.size());
+}

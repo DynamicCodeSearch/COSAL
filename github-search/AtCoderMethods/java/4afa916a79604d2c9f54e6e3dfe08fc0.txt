@@ -1,0 +1,18 @@
+public static void dfs(int[][] route, int start, boolean[] used) {
+    boolean check = true;
+    for (int i = 0; i < used.length; i++) {
+        check = check & used[i];
+    }
+    if (check) {
+        ans++;
+    } else {
+        for (int i = 0; i < route.length; i++) {
+            if (route[i][0] == start && !used[route[i][1] - 1]) {
+                used[route[i][1] - 1] = true;
+                dfs(route, route[i][1], used);
+                used[route[i][1] - 1] = false;
+            }
+        }
+    }
+    return;
+}

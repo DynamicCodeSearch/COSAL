@@ -1,0 +1,29 @@
+public static void main(String[] args) throws Exception {
+    int n = sc.nextInt();
+    String[] s = new String[n];
+    int[] count = new int[26];
+    String t = "abcdefghijklmnopqrstuvwxyz";
+    for (int i = 0; i < n; i++) {
+        s[i] = sc.next();
+    }
+    for (int i = 0; i < s[0].length(); i++) {
+        count[(int) s[0].charAt(i) - (int) 'a']++;
+    }
+    for (int i = 1; i < n; i++) {
+        int[] counter = new int[26];
+        for (int j = 0; j < s[i].length(); j++) {
+            counter[(int) s[i].charAt(j) - (int) 'a']++;
+        }
+        for (int k = 0; k < 26; k++) {
+            count[k] = (int) Math.min(count[k], counter[k]);
+        }
+    }
+    for (int i = 0; i < 26; i++) {
+        for (int k = 0; k < count[i]; k++) {
+            out.print(t.charAt(i));
+        }
+    }
+    out.flush();
+    sc.close();
+    out.close();
+}

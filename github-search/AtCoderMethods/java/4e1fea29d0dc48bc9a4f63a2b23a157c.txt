@@ -1,0 +1,28 @@
+static long solve(long N, long S) {
+    for (long b = 2; b * b <= N; ++b) {
+        long sum = 0;
+        long v = N;
+        while (v > 0) {
+            sum += v % b;
+            v /= b;
+        }
+        if (sum == S) {
+            return b;
+        }
+    }
+    long ans = Long.MAX_VALUE;
+    for (long i = 1; i * i <= N - S; ++i) {
+        if ((N - S) % i != 0)
+            continue;
+        long x = i;
+        long b = (N - S) / i + 1;
+        long y = N - x * b;
+        if (0 <= y && y < b) {
+            ans = Math.min(ans, b);
+        }
+    }
+    if (N == S) {
+        ans = Math.min(ans, N + 1);
+    }
+    return ans == Long.MAX_VALUE ? -1 : ans;
+}

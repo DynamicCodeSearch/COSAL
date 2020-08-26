@@ -1,0 +1,10 @@
+def f(i):
+    if i in dp:
+        return dp[i]
+    if i == N-1:
+        dp[i] = 0
+    elif i == N-2:
+        dp[i] = abs(a[N-1]-a[N-2])
+    else:
+        dp[i] = min(f(i+1)+abs(a[i+1]-a[i]), f(i+2)+abs(a[i+2]-a[i]))
+    return dp[i]

@@ -1,0 +1,19 @@
+public static void main(String[] args) throws Exception {
+    int n = sc.nextInt();
+    int k = sc.nextInt();
+    int[] ary = new int[n + 1];
+    for (int i = 1; i <= n; i++) {
+        ary[i] = sc.nextInt();
+    }
+    long sum = 0;
+    for (int i = 1; i <= k; i++) {
+        sum += ary[i];
+    }
+    long ret = sum;
+    for (int i = k + 1; i <= n; i++) {
+        sum -= ary[i - k];
+        sum += ary[i];
+        ret += sum;
+    }
+    System.out.println(ret);
+}

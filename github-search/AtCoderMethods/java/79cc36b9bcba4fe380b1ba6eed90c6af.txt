@@ -1,0 +1,19 @@
+public static void main(String[] args) throws Exception {
+    in = INPUT.isEmpty() ? new Scanner(System.in) : new Scanner(INPUT);
+    out = new PrintWriter(System.out);
+    long N = nl();
+    int halfN = (int) Math.sqrt(N);
+    int min = 10;
+    int A;
+    long B;
+    for (A = 1; A <= halfN; A++) {
+        if (N % A == 0) {
+            B = N / A;
+            int F = (int) Math.log10(B) + 1;
+            if (min > F)
+                min = F;
+        }
+    }
+    out.println(min);
+    out.flush();
+}

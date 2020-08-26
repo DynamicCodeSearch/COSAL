@@ -1,0 +1,19 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    int[] res = new int[C];
+    Arrays.fill(res, Integer.MAX_VALUE);
+    int n = in.readInt();
+    for (int strIdx = 0; strIdx < n; strIdx++) {
+        char[] s = in.next().toCharArray();
+        int[] here = new int[C];
+        for (char c : s) here[c - 'a']++;
+        for (int i = 0; i < here.length; i++) {
+            res[i] = Math.min(res[i], here[i]);
+        }
+    }
+    for (int i = 0; i < res.length; i++) {
+        for (int j = 0; j < res[i]; j++) {
+            out.print((char) ('a' + i));
+        }
+    }
+    out.printLine();
+}

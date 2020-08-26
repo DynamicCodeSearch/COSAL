@@ -1,0 +1,44 @@
+private static void solve() {
+    int n = sc.nextInt();
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    int c = sc.nextInt();
+    int d = sc.nextInt();
+    PC pc = new PC(n, MOD);
+    long[] dp = new long[n + 1];
+    {
+        int min = Math.min(d, n / a);
+        long[] tmp = new long[min + 1];
+        tmp[0] = 1;
+        for (int k = 1; k <= min; k++) {
+            tmp[k] = tmp[k - 1] * pc.C(a * k, a) % MOD;
+            tmp[k] *= pc.fact[k - 1];
+            tmp[k] %= MOD;
+            tmp[k] *= pc.ifact[k];
+            tmp[k] %= MOD;
+        }
+        dp[0] = tmp[0];
+        for (int k = c; k <= d && a * k <= n; k++) {
+            dp[k * a] = tmp[k];
+        }
+    }
+    for (int i = a + 1; i <= b; i++) {
+        for (int j = n; j >= 0; j--) {
+            int min = Math.min(d, j / i);
+            long[] tmp = new long[min + 1];
+            tmp[0] = 1;
+            for (int k = 1; k <= min; k++) {
+                tmp[k] = tmp[k - 1] * pc.C(j - i * (k - 1), i) % MOD;
+                tmp[k] *= pc.fact[k - 1];
+                tmp[k] %= MOD;
+                tmp[k] *= pc.ifact[k];
+                tmp[k] %= MOD;
+            }
+            for (int k = c; k <= d && i * k <= j; k++) {
+                dp[j] += dp[j - i * k] * tmp[k] % MOD;
+                dp[j] %= MOD;
+            }
+        }
+    }
+    pr.println(dp[n]);
+}

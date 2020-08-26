@@ -1,0 +1,43 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    String str_A = scan.next();
+    String str_B = scan.next();
+    String str_C = scan.next();
+    check_input(str_A);
+    check_input(str_B);
+    check_input(str_C);
+    int pos_A = 0;
+    int pos_B = 0;
+    int pos_C = 0;
+    char ch = str_A.charAt(pos_A);
+    pos_A++;
+    while (pos_A <= str_A.length() || pos_B <= str_B.length() || pos_C <= str_C.length()) {
+        if (ch == 'a') {
+            if (pos_A == str_A.length()) {
+                System.out.println('A');
+                break;
+            } else {
+                ch = str_A.charAt(pos_A);
+                pos_A++;
+            }
+        } else if (ch == 'b') {
+            if (pos_B == str_B.length()) {
+                System.out.println('B');
+                break;
+            } else {
+                ch = str_B.charAt(pos_B);
+                pos_B++;
+            }
+        } else if (ch == 'c') {
+            if (pos_C == str_C.length()) {
+                System.out.println('C');
+                break;
+            } else {
+                ch = str_C.charAt(pos_C);
+                pos_C++;
+            }
+        } else {
+            System.exit(-1);
+        }
+    }
+}

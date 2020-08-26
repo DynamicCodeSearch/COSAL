@@ -1,0 +1,17 @@
+def solve(n, a):
+    b = collections.deque([])
+    if n % 2 == 0:
+        for i, ele in enumerate(a):
+            if i % 2 == 0:
+                b.append(ele)
+            else:
+                b.appendleft(ele)
+    else:
+        for i, ele in enumerate(a):
+            if i % 2 == 0:
+                b.appendleft(ele)
+            else:
+                b.append(ele)
+
+    ans = " ".join(list(b))
+    return ans

@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[] block = new int[n];
+    int[] dp = new int[n];
+    for (int i = 0; i < n; i++) {
+        block[i] = sc.nextInt();
+        if (i == 1)
+            dp[i] = Math.abs(block[i] - block[i - 1]);
+        if (i > 1) {
+            dp[i] = Math.min(dp[i - 2] + Math.abs(block[i] - block[i - 2]), dp[i - 1] + Math.abs(block[i] - block[i - 1]));
+        }
+    }
+    System.out.println(dp[n - 1]);
+}

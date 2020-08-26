@@ -1,0 +1,11 @@
+def next(i):
+    global N
+    ns='{0:0>5}'.format(N)
+    t=nex[int(ns[i])]
+    pp=int(ns[i])+t
+    if pp >=10:
+        t=t-10
+        N+=t*(10**(4-i))
+        next(i-1)
+    else:
+        N+=t*(10**(4-i))

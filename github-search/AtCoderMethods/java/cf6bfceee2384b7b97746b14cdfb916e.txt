@@ -1,0 +1,25 @@
+private long[] c(long[] v, long[] a) {
+    long min = 1;
+    long max = (INF / Math.max(a[0], a[1])) + 1;
+    while (max - min > 1) {
+        long mid = (min + max) / 2;
+        long z1 = a[0] * mid;
+        long z2 = a[1] * mid;
+        if (z1 >= v[0] && z2 >= v[1]) {
+            max = mid;
+        } else {
+            min = mid + 1;
+        }
+    }
+    for (long k = -3; k <= 3; k++) {
+        long u = min + k;
+        if (u >= 1) {
+            long z1 = a[0] * u;
+            long z2 = a[1] * u;
+            if (z1 >= v[0] && z2 >= v[1]) {
+                return new long[] { z1, z2 };
+            }
+        }
+    }
+    return new long[2];
+}

@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = sc.nextInt();
+    int[] a = new int[n];
+    int[] b = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = Integer.parseInt(sc.next());
+        b[i] = a[i];
+    }
+    Arrays.sort(b);
+    HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+    int count = 0;
+    map.put(b[0], 0);
+    for (int i = 1; i < n; i++) {
+        if (b[i] == b[i - 1])
+            continue;
+        map.put(b[i], ++count);
+    }
+    for (int i = 0; i < n; i++) {
+        a[i] = map.get(a[i]);
+    }
+    for (int i = 0; i < n; i++) {
+        out.println(a[i]);
+    }
+    out.flush();
+}

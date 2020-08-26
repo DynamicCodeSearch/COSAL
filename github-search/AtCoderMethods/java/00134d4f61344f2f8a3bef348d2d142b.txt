@@ -1,0 +1,35 @@
+void solve() {
+    int N = sc.nextInt();
+    int Q = sc.nextInt();
+    int A = sc.nextInt();
+    int B = sc.nextInt();
+    long addToAll = 0;
+    PointUpdateRangeMin rmq = new PointUpdateRangeMin(200000 + 10);
+    PointUpdateRangeMin rmqmj = new PointUpdateRangeMin(200000 + 10);
+    PointUpdateRangeMin rmqpj = new PointUpdateRangeMin(200000 + 10);
+    rmq.fill(INF);
+    rmqmj.fill(INF);
+    rmqpj.fill(INF);
+    {
+        rmq.update(B, 0);
+        rmqmj.update(B, -B);
+        rmqpj.update(B, B);
+    }
+    int s = A;
+    for (int q = 0; q < Q; q++) {
+        int t = sc.nextInt();
+        long d = Math.abs(s - t);
+        long m1 = rmqmj.getMin(1, t) + t;
+        long m2 = rmqpj.getMin(t, N + 1) - t;
+        long m3 = rmq.getMin(s, s + 1) + d;
+        long m = min(m1, min(m2, m3));
+        long v = (m - d);
+        rmq.update(s, v);
+        rmqmj.update(s, v - s);
+        rmqpj.update(s, v + s);
+        addToAll += d;
+        s = t;
+    }
+    long ans = rmq.getMin(1, N + 1) + addToAll;
+    out.println(ans);
+}

@@ -1,0 +1,13 @@
+public static void main(String[] args) throws IOException {
+    FastScanner in;
+    boolean isLocalRun = args.length >= 1 && "local_run".equals(args[0]);
+    if (isLocalRun)
+        in = new FastScanner(new FileInputStream("input"));
+    else
+        in = new FastScanner(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int testsCount = 1;
+    for (int testNum = 0; testNum < testsCount; testNum++) new Main(in, out).solve();
+    in.close();
+    out.close();
+}

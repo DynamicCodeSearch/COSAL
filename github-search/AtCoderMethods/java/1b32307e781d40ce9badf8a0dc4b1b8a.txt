@@ -1,0 +1,15 @@
+public static boolean dfs(int i) {
+    if (i == 8)
+        return true;
+    for (int j = 0; j < 8; j++) if (board[i][j] == 'Q')
+        return dfs(i + 1);
+    for (int j = 0; j < 8; j++) {
+        if (!canPut(i, j))
+            continue;
+        board[i][j] = 'Q';
+        if (dfs(i + 1))
+            return true;
+        board[i][j] = '.';
+    }
+    return false;
+}

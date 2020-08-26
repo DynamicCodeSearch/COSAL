@@ -1,0 +1,12 @@
+def solve(s,e):
+    if s < e:s,e = e,s
+    n = m = s
+    cnt_1 = cnt_2 = 0 
+    while n != e:
+        n = (n+1)%10
+        cnt_1 += 1
+    while m != e:
+        m -= 1
+        cnt_2 += 1
+
+    return min(cnt_1,cnt_2)

@@ -1,0 +1,12 @@
+private static long[] solveSame(long r, char[] s) {
+    long cur = r / s.length;
+    long mod = r % s.length;
+    long[] ret = new long[26];
+    for (int i = 0; i < s.length; i++) {
+        ret[s[i] - 'a'] += cur;
+    }
+    for (int i = 0; i < mod; i++) {
+        ret[s[i] - 'a']++;
+    }
+    return ret;
+}

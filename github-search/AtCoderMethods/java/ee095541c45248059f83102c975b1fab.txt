@@ -1,0 +1,21 @@
+static boolean decrease() {
+    boolean ok = true;
+    for (int i = 0; i < N; i++) {
+        if (A[i] >= N) {
+            ok = false;
+        }
+    }
+    
+    if (ok)
+        return false;
+    int p = 0;
+    for (int i = 0; i < N; i++) {
+        if (A[i] > A[p]) {
+            p = i;
+        }
+    }
+    for (int i = 0; i < N; i++) A[i] = A[i] + 1;
+    A[p] = A[p] - N - 1;
+    K = K + 1;
+    return true;
+}

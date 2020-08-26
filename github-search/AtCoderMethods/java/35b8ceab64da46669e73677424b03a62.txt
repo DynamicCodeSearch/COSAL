@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    
+    int otheroNum = sc.nextInt();
+    int changeNum = sc.nextInt();
+    
+    int[] otheroArray = new int[otheroNum + 1];
+    
+    
+    int start = 0;
+    int end = 0;
+    for (int i = 0; i < changeNum; i++) {
+        start = sc.nextInt();
+        end = sc.nextInt();
+        
+        otheroArray[start - 1]++;
+        otheroArray[end]--;
+    }
+    for (int i = 1; i < otheroNum + 1; i++) {
+        otheroArray[i] = otheroArray[i - 1] + otheroArray[i];
+    }
+    
+    for (int k = 0; k < otheroNum; k++) {
+        System.out.print(otheroArray[k] % 2);
+    }
+    System.out.println("");
+}

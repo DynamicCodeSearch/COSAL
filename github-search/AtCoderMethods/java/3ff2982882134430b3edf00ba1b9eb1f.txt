@@ -1,0 +1,25 @@
+public static void main(String[] args) throws Exception {
+    int n = sc.nextInt();
+    Map<Long, Integer> m1 = new HashMap<>();
+    for (int i = 0; i < n; i++) {
+        long curr = sc.nextLong();
+        m1.put(curr, m1.getOrDefault(curr, 0) + 1);
+    }
+    long max = 0, curr = 0;
+    List<Long> list = new ArrayList<Long>();
+    for (Map.Entry<Long, Integer> en : m1.entrySet()) {
+        if (en.getValue() >= 4) {
+            max = Math.max(max, en.getKey() * en.getKey());
+        }
+        if (en.getValue() >= 2) {
+            list.add(en.getKey());
+        }
+    }
+    Collections.sort(list);
+    if (list.size() >= 2) {
+        int s = list.size();
+        max = Math.max(max, list.get(s - 1) * list.get(s - 2));
+    }
+    out.println(max);
+    out.close();
+}

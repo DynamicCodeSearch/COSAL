@@ -1,0 +1,10 @@
+public static void main(String[] args) {
+    String input = getInput();
+    int[] cnt = count(input);
+    int sum = sum(cnt);
+    int asynCnt = countOdd(cnt);
+    int synCnt = (sum - asynCnt) / 2;
+    int ans = asynCnt > 0 ? (synCnt / asynCnt) * 2 + 1 : sum;
+    System.out.println(ans);
+    return;
+}

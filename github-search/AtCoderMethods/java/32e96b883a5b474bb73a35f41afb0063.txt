@@ -1,0 +1,11 @@
+long euclid(long a, long b) {
+    long temp;
+    if (a < b) {
+        temp = a;
+        a = b;
+        b = temp;
+    }
+    if (a % b == 0)
+        return b;
+    return euclid(b, a % b);
+}

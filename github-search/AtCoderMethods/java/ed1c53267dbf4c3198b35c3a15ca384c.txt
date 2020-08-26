@@ -1,0 +1,21 @@
+public static long[] Dijkstra(int[][][] g, int from) {
+    int n = g.length;
+    long[] totalDistance = new long[n];
+    ArrayUtils.fill(totalDistance, Long.MAX_VALUE / 2);
+    MinHeapL q = new MinHeapL(n);
+    q.add(from, 0);
+    totalDistance[from] = 0;
+    while (q.size() > 0) {
+        int cur = q.argmin();
+        q.remove(cur);
+        for (int[] e : g[cur]) {
+            int next = e[0];
+            long nd = totalDistance[cur] + e[1];
+            if (nd < totalDistance[next]) {
+                totalDistance[next] = nd;
+                q.update(next, nd);
+            }
+        }
+    }
+    return totalDistance;
+}

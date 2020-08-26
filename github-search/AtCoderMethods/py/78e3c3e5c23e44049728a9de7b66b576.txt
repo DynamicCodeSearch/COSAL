@@ -1,0 +1,12 @@
+def main():
+    A, B, C, D = map(int, input().split())
+
+    alice = [A <= t < B for t in range(100)]
+    bob   = [C <= t < D for t in range(100)]
+
+    cnt = 0
+    for t in range(100):
+        if alice[t] and bob[t]:
+            cnt += 1
+
+    print(cnt)

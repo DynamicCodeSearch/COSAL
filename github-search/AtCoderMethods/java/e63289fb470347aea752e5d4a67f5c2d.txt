@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int k = sc.nextInt();
+    String[] d = new String[k];
+    for (int i = 0; i < k; i++) {
+        d[i] = sc.next();
+    }
+    for (int i = n; i <= 100000; i++) {
+        boolean find = false;
+        for (int j = 0; j < k; j++) {
+            if (Integer.toString(i).contains(d[j])) {
+                find = true;
+                break;
+            }
+        }
+        if (find) {
+            continue;
+        }
+        System.out.println(i);
+        System.exit(0);
+    }
+}

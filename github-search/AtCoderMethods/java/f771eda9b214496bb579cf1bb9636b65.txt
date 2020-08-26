@@ -1,0 +1,33 @@
+public static void main(String[] args) {
+    try {
+        
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+        String x = br.readLine();
+        boolean flag = true;
+        for (int i = 0; i < x.length(); i++) {
+            String tmp = x.substring(i, i + 1);
+            if ("c".equals(tmp)) {
+                if (i + 1 < x.length() && "h".equals(x.substring(i + 1, i + 2))) {
+                    i++;
+                    continue;
+                } else {
+                    flag = false;
+                    break;
+                }
+            } else if ("o".equals(tmp) || "k".equals(tmp) || "u".equals(tmp)) {
+                continue;
+            } else {
+                flag = false;
+                break;
+            }
+        }
+        if (flag) {
+            System.out.println("YES");
+        } else {
+            System.out.println("NO");
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

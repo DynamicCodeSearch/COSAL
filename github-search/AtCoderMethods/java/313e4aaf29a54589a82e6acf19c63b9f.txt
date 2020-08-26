@@ -1,0 +1,12 @@
+void main() {
+    int sum = getSumDistance();
+    
+    int maxDistance = 0;
+    for (int distance : distances) {
+        maxDistance = Math.max(maxDistance, distance);
+    }
+    int min = maxDistance - (sum - maxDistance);
+    min = min < 0 ? 0 : min;
+    System.out.println(sum);
+    System.out.println(min);
+}

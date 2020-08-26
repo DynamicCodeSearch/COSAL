@@ -1,0 +1,27 @@
+static void solve() {
+    int n = ni();
+    long[] a = new long[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = nl();
+    }
+    long ans = 0;
+    while (true) {
+        boolean ch = false;
+        for (int i = 0; i < n; i++) {
+            if (a[i] >= n) {
+                long v = a[i] / n;
+                ans += v;
+                ch = true;
+                a[i] %= n;
+                for (int j = 0; j < n; j++) {
+                    if (j != i) {
+                        a[j] += v;
+                    }
+                }
+            }
+        }
+        if (!ch)
+            break;
+    }
+    out.println(ans);
+}

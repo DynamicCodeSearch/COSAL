@@ -1,0 +1,19 @@
+public static void main(String[] args) throws java.lang.Exception {
+    Scanner in = new Scanner(System.in);
+    int m = in.nextInt();
+    if (m < 100) {
+        System.out.println("00");
+    } else if (m <= 5000) {
+        m = m / 100;
+        System.out.printf("%02d\n", m);
+    } else if (m <= 30000) {
+        m /= 1000;
+        System.out.println(m + 50);
+    } else if (m <= 70000) {
+        m /= 1000;
+        m = (m - 30) / 5 + 80;
+        System.out.println(m);
+    } else {
+        System.out.println(89);
+    }
+}

@@ -1,0 +1,13 @@
+def dfs(v, c, p):
+  global dp
+  if ~dp[v][c]:
+    return dp[v][c]
+  s, t = 1, [1, 0][c]
+  for to in g[v]:
+    if p != to:
+      s *= dfs(to, 0, v)
+      t *= dfs(to, 1, v)
+      s %= 1000000007
+      t %= 1000000007
+  dp[v][c] = (s + t) % 1000000007
+  return dp[v][c]

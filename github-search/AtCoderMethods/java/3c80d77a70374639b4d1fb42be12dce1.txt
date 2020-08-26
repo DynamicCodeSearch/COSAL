@@ -1,0 +1,11 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    long a = sc.nextLong();
+    for (int i = 1; i < N; i++) {
+        long b = sc.nextLong();
+        long gcd = getGCD(a, b);
+        a = getLCM(a, b, gcd);
+    }
+    System.out.println(a);
+}

@@ -1,0 +1,14 @@
+int reads(char[] cs, int len, boolean[] accept) throws IOException {
+    try {
+        while (true) {
+            final int c = read();
+            if (accept[c]) {
+                break;
+            }
+            cs[len++] = (char) c;
+        }
+    } catch (EndOfFileRuntimeException e) {
+        ;
+    }
+    return len;
+}

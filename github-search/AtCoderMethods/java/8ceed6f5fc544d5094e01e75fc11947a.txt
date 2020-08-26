@@ -1,0 +1,17 @@
+private void dfs(int index, int ignore) {
+    check[index] = true;
+    for (int i = 0; i < list.size(); i++) {
+        if (i == ignore || used[i]) {
+            continue;
+        }
+        List<Integer> p = list.get(i);
+        if (p.get(0) == index) {
+            used[i] = true;
+            dfs(p.get(1), ignore);
+        }
+        if (p.get(1) == index) {
+            used[i] = true;
+            dfs(p.get(0), ignore);
+        }
+    }
+}

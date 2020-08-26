@@ -1,0 +1,10 @@
+public static void main(String[] args) throws java.lang.Exception {
+    Scanner in = new Scanner(System.in);
+    int n = in.nextInt();
+    int answer = Integer.MAX_VALUE;
+    for (int i = 1; i <= Math.sqrt(n); i++) {
+        int x = n / i;
+        answer = Math.min(answer, n - i * x + Math.abs(i - x));
+    }
+    System.out.println(answer);
+}

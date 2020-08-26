@@ -1,0 +1,31 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    StringBuilder sb = new StringBuilder();
+    String[] str = br.readLine().split(" ");
+    int n = Integer.parseInt(str[0]);
+    int t = Integer.parseInt(str[1]);
+    int[] a = new int[n];
+    String[] str1 = br.readLine().split(" ");
+    int maxdiff = 0;
+    int min = Integer.MAX_VALUE;
+    int cnt = 0;
+    boolean minf = false;
+    for (int i = 0; i < n; i++) {
+        a[i] = Integer.parseInt(str1[i]);
+        if (a[i] < min) {
+            min = a[i];
+            minf = true;
+        } else {
+            int diff = a[i] - min;
+            if (maxdiff < diff) {
+                maxdiff = diff;
+                cnt = 1;
+                minf = false;
+            } else if (maxdiff == diff && minf) {
+                cnt++;
+            }
+        }
+    }
+    sb.append(cnt);
+    System.out.println(sb);
+}

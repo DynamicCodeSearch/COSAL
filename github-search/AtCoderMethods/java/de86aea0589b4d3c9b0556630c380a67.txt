@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    N = sc.nextInt();
+    cycle = new boolean[N];
+    cycle2 = new boolean[N];
+    M = sc.nextInt();
+    UnionFind uf = new UnionFind(N);
+    for (int i = 0; i < M; i++) {
+        int u = sc.nextInt() - 1;
+        int v = sc.nextInt() - 1;
+        if (uf.same(u, v)) {
+            cycle[u] = true;
+            cycle[v] = true;
+        }
+        uf.unite(u, v);
+    }
+    for (int i = 0; i < N; i++) {
+        if (cycle[i]) {
+            int root = uf.find(i);
+            cycle2[root] = true;
+        }
+    }
+    System.out.println(uf.count());
+}

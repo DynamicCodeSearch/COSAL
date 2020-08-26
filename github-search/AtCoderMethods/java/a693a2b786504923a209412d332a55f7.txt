@@ -1,0 +1,21 @@
+private static boolean isDoubled(String st) {
+    int st_len = st.length();
+    if (st_len == 1) {
+        return true;
+    }
+    if (st_len % 2 != 0) {
+        return false;
+    }
+    int start1 = 0;
+    int start2 = st_len / 2;
+    while (start1 < st_len / 2) {
+        char st1 = st.charAt(start1);
+        char st2 = st.charAt(start2);
+        if (st1 != st2) {
+            return false;
+        }
+        start1++;
+        start2++;
+    }
+    return true;
+}

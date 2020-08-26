@@ -1,0 +1,6 @@
+def modc(a,b,m):
+    c = 1
+    for i in xrange(b):
+        c = c * (a - i) % m
+        c = c * modinv(i + 1,m) % m
+    return c

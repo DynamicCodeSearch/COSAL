@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    String content = sc.next();
+    int LPCount = 0;
+    int RPCount = 0;
+    for (int i = 0; i < content.length(); i++) {
+        if (content.charAt(i) == '(') {
+            LPCount++;
+        } else if (content.charAt(i) == ')') {
+            if (LPCount > 0) {
+                LPCount--;
+            } else {
+                RPCount++;
+            }
+        }
+    }
+    for (int i = 0; i < RPCount; i++) {
+        content = "(" + content;
+    }
+    for (int i = 0; i < LPCount; i++) {
+        content = content + ")";
+    }
+    System.out.println(content);
+}

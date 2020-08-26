@@ -1,0 +1,24 @@
+def Q4(H, W, N, lst):
+    l = []
+    for (x, i) in zip(lst, range(1, len(lst) + 1)):
+        l += [i] * x
+    for i in range(H):
+        if i % 2 == 0:
+            m = []
+            for j in range(W):
+                m += [l.pop(0)]
+            for j in range(W):
+                print('{}'.format(m[j]), end="")
+                if j!=W-1:
+                    print(' ',end="")
+            print('\n')
+        else:
+            m = []
+            for j in range(W):
+                m += [l.pop(0)]
+            m = m[::-1]
+            for j in range(W):
+                print('{}'.format(m[j]), end="")
+                if j!=W-1:
+                    print(' ',end="")
+            print('\n')

@@ -1,0 +1,9 @@
+def unite(a, b):
+    a, b = get_root(a), get_root(b)
+    if a != b:
+        if unyontree[a] < unyontree[b]:
+            unyontree[a] += unyontree[b]
+            unyontree[b] = a
+        else:
+            unyontree[b] += unyontree[a]
+            unyontree[a] = b

@@ -1,0 +1,14 @@
+def main():
+    s, c = map(int, input().split())
+
+    lo, hi = 0, int(1e18)
+
+    while hi - lo > 1:
+        mi = lo + (hi - lo) // 2
+
+        free = c - 2 * mi
+        if free < 0 or s + free // 2 < mi:
+            hi = mi
+        else:
+            lo = mi
+    print(lo)

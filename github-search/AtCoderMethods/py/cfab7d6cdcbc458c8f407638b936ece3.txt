@@ -1,0 +1,14 @@
+def main(args):
+    H, W = map(int, input().split())
+    data = []
+    for _ in range(H):
+        data.append(input().strip())
+
+    frame = ['#' * (W+2)]
+
+    for d in data:
+        frame.append('#' + d + '#')
+    frame.append('#' * (W+2))
+
+    for line in frame:
+        print(line)

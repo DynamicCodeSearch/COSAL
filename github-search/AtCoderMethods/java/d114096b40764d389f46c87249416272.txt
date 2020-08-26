@@ -1,0 +1,30 @@
+private static void solve() {
+    final int MOD = 1_000_000_007;
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    long factn = 1;
+    for (int i = 2; i <= n; i++) {
+        factn *= i;
+        factn %= MOD;
+    }
+    long factm = 1;
+    for (int i = 2; i <= m; i++) {
+        factm *= i;
+        factm %= MOD;
+    }
+    if (Math.abs(n - m) > 1) {
+        pr.println(0);
+    } else {
+        long ret;
+        if (m == n) {
+            ret = 2;
+        } else {
+            ret = 1;
+        }
+        ret *= factn;
+        ret %= MOD;
+        ret *= factm;
+        ret %= MOD;
+        pr.println(ret);
+    }
+}

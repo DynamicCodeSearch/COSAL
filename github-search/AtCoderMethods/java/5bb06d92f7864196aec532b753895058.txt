@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[] num = new int[n];
+    int total = 0;
+    for (int i = 0; i < n; i++) {
+        int m = sc.nextInt();
+        num[i] = m;
+        total += m;
+    }
+    int average = total / n;
+    int ans1 = 0, ans2 = 0;
+    for (int i = 0; i < n; i++) {
+        if (num[i] != average) {
+            ans1 += Math.pow(num[i] - average, 2);
+        }
+        if (num[i] != (average + 1)) {
+            ans2 += Math.pow(num[i] - (average + 1), 2);
+        }
+    }
+    System.out.println(Math.min(ans1, ans2));
+}

@@ -1,0 +1,30 @@
+def main():
+    def floyd_warshall():
+        for k in range(n):
+            for i in range(n):
+                for j in range(n):
+                    dd = d[i][k] + d[k][j]
+                    if dd < d[i][j]:
+                        d[i][j] = dd
+
+    n, m, r = read_int_list()
+    v = read_int_list()
+    v = [x - 1 for x in v]
+    d = [[float('inf')] * n for i in range(n)]
+    for i in range(n):
+        d[i][i] = 0
+    for i in range(m):
+        a, b, c = read_int_list()
+        a -= 1
+        b -= 1
+        d[a][b] = c
+        d[b][a] = c
+    floyd_warshall()
+    res = float('inf')
+    for p in permutations(v):
+        s = 0
+        for i in range(r - 1):
+            s += d[p[i]][p[i + 1]]
+        if s < res:
+            res = s
+    print(res)

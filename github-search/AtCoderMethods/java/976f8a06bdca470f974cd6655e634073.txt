@@ -1,0 +1,16 @@
+public static void main(String... args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int K = sc.nextInt();
+    long a;
+    long[] b = new long[N + 1];
+    long sum = 0;
+    for (int i = 1; i < N + 1; i++) {
+        a = sc.nextLong();
+        b[i] = a + b[i - 1];
+    }
+    for (int i = 1; i < N - K + 2; i++) {
+        sum += b[K + i - 1] - b[i - 1];
+    }
+    System.out.println(sum);
+}

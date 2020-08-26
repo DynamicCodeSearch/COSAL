@@ -1,0 +1,8 @@
+int[] makeSum(char[] s) {
+    int[] a = new int[s.length];
+    a[0] = s[0] == 'A' ? 1 : 0;
+    for (int i = 1; i < s.length; i++) {
+        a[i] = a[i - 1] + (s[i] == 'A' ? 1 : 0);
+    }
+    return a;
+}

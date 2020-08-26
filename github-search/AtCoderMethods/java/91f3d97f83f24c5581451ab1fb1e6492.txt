@@ -1,0 +1,32 @@
+public static boolean canReachGoalWithX(int x) {
+    PriorityQueue<CustomClass> q = new PriorityQueue<CustomClass>();
+    q.add(new CustomClass(startr, startc, 0));
+    int[][] visited = new int[h][w];
+    int[][] dist = new int[h][w];
+    for (int i = 0; i < h; i++) {
+        Arrays.fill(dist[i], Integer.MAX_VALUE / 2 - 1);
+    }
+    dist[startr][startc] = 0;
+    while (q.size() > 0) {
+        CustomClass curr = q.poll();
+        if (curr.r == goalr && curr.c == goalc) {
+            break;
+        }
+        if (visited[curr.r][curr.c] == 1) {
+            continue;
+        }
+        visited[curr.r][curr.c] = 1;
+        for (int i = 0; i < 4; i++) {
+            int newr = curr.r + dx[i];
+            int newc = curr.c + dy[i];
+            if (0 <= newr && newr < h && 0 <= newc && newc < w && visited[newr][newc] == 0) {
+                int cost = map[newr][newc] == '#' ? x : 1;
+                if (dist[curr.r][curr.c] + cost < dist[newr][newc]) {
+                    dist[newr][newc] = dist[curr.r][curr.c] + cost;
+                    q.add(new CustomClass(newr, newc, dist[newr][newc]));
+                }
+            }
+        }
+    }
+    return dist[goalr][goalc] <= t;
+}

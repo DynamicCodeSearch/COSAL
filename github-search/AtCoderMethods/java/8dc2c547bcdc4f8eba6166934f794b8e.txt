@@ -1,0 +1,11 @@
+private static int sweep(List<char[]> board, int i, int j) {
+    int left = sweepOne(board, i - 1, j);
+    int right = sweepOne(board, i + 1, j);
+    int up = sweepOne(board, i, j + 1);
+    int down = sweepOne(board, i, j - 1);
+    int a = sweepOne(board, i - 1, j - 1);
+    int b = sweepOne(board, i + 1, j + 1);
+    int c = sweepOne(board, i - 1, j + 1);
+    int d = sweepOne(board, i + 1, j - 1);
+    return left + right + up + down + a + b + c + d;
+}

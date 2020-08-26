@@ -1,0 +1,21 @@
+private static void solve() {
+    Scanner sc = new Scanner(System.in);
+    PrintWriter pr = new PrintWriter(System.out);
+    int A = sc.nextInt();
+    int B = sc.nextInt();
+    int C = sc.nextInt();
+    int sum = 0;
+    if (A >= B) {
+        sum += C / B;
+        C %= B;
+        sum += C / A;
+        pr.println(sum);
+    } else {
+        sum += C / A;
+        C %= A;
+        sum += C / B;
+        pr.println(sum);
+    }
+    pr.flush();
+    sc.close();
+}

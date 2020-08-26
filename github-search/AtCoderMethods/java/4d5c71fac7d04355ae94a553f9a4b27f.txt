@@ -1,0 +1,44 @@
+void solve() throws IOException {
+    int n = ni();
+    int a = ni(), b = ni();
+    long[] v = nla(n);
+    Arrays.sort(v);
+    for (int i = 0; i < n / 2; i++) {
+        long tmp = v[i];
+        v[i] = v[n - 1 - i];
+        v[n - 1 - i] = tmp;
+    }
+    double ave = 0;
+    for (int i = 0; i < a; i++) {
+        ave += v[i];
+    }
+    ave /= a;
+    int begin = a - 1;
+    while (begin > 0 && v[begin - 1] == v[a - 1]) begin--;
+    int end = a - 1;
+    while (end < n - 1 && v[end + 1] == v[a - 1]) end++;
+    if (begin == 0) {
+        int m = end + 1;
+        long cnt = 0;
+        for (int i = a; i <= b && i <= m; i++) {
+            long tmp = 1;
+            for (int j = 0; j < i; j++) {
+                tmp *= m - j;
+                tmp /= j + 1;
+            }
+            cnt += tmp;
+        }
+        out.println(ave);
+        out.println(cnt);
+    } else {
+        int m = end - begin + 1;
+        int k = a - begin;
+        long cnt = 1;
+        for (int i = 0; i < k; i++) {
+            cnt *= m - i;
+            cnt /= i + 1;
+        }
+        out.println(ave);
+        out.println(cnt);
+    }
+}

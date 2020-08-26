@@ -1,0 +1,21 @@
+private static void solve() {
+    int n = nei();
+    Tree t = new Tree(n);
+    for (int i = 0; i < n - 1; i++) {
+        int a = nei() - 1;
+        int b = nei() - 1;
+        long c = nel();
+        t.addEdge(a, b, c);
+    }
+    int q = nei();
+    int k = nei() - 1;
+    t.dfs(k);
+    int[][] qs = new int[q][2];
+    for (int i = 0; i < q; i++) {
+        qs[i][0] = nei() - 1;
+        qs[i][1] = nei() - 1;
+    }
+    for (int i = 0; i < q; i++) {
+        out(t.dsts[qs[i][0]] + t.dsts[qs[i][1]]);
+    }
+}

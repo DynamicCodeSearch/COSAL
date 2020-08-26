@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    long[][] magic = new long[n][3];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < 2; j++) {
+            magic[i][j] = in.nextLong();
+        }
+        magic[i][2] = i;
+    }
+    List<long[]> downMagic = new ArrayList<>();
+    List<long[]> upMagic = new ArrayList<>();
+    for (int i = 0; i < n; i++) {
+        if (magic[i][0] < magic[i][1]) {
+            downMagic.add(magic[i]);
+        } else {
+            upMagic.add(magic[i]);
+        }
+    }
+    Collections.sort(downMagic, (o1, o2) -> Long.compare(o1[0], o2[0]));
+    Collections.sort(upMagic, (o1, o2) -> Long.compare(o2[1], o1[1]));
+    List<long[]> m = new ArrayList<>();
+    m.addAll(downMagic);
+    m.addAll(upMagic);
+    out.println(perform(0, m));
+    out.flush();
+}

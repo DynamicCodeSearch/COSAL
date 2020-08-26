@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String str = sc.nextLine();
+    int[] check = new int[26];
+    String str2 = "abcdefghijklmnopqrstuvwxyz";
+    for (int i = 0; i < str.length(); i++) {
+        char c = str.charAt(i);
+        int j = str2.indexOf(c);
+        check[j] = 1;
+    }
+    for (int i = 0; i < 26; i++) {
+        if (check[i] == 0) {
+            System.out.println(str2.charAt(i));
+            break;
+        }
+        if (i == 25) {
+            System.out.println("None");
+        }
+    }
+}

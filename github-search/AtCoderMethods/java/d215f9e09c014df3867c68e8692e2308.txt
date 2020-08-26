@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    long A = sc.nextLong();
+    int K = sc.nextInt();
+    int ans = -1;
+    if (K == 0) {
+        System.out.println(M - A);
+        return;
+    }
+    int days = 0;
+    while (A < M) {
+        days++;
+        A += 1 + K * A;
+    }
+    System.out.println(days);
+}

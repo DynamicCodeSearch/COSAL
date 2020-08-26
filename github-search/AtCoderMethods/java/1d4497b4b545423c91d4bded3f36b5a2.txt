@@ -1,0 +1,42 @@
+public void solveD() {
+    int N = in.nextInt();
+    Box[] boxes = new Box[N];
+    for (int i = 0; i < N; i++) {
+        boxes[i] = new Box(in.nextInt(), in.nextInt());
+    }
+    Arrays.sort(boxes, new Comparator<Box>() {
+
+        @Override
+        public int compare(Box o1, Box o2) {
+            return Integer.compare(o1.w, o2.w);
+        }
+    });
+    for (int i = 0; i < boxes.length; i++) boxes[i].wr = i;
+    Arrays.sort(boxes, new Comparator<Box>() {
+
+        @Override
+        public int compare(Box o1, Box o2) {
+            return Integer.compare(o1.h, o2.h);
+        }
+    });
+    for (int i = 0; i < boxes.length; i++) boxes[i].hr = i;
+    Arrays.sort(boxes, new Comparator<Box>() {
+
+        @Override
+        public int compare(Box o1, Box o2) {
+            return Integer.compare(o1.hr + o1.wr, o2.hr + o2.wr);
+        }
+    });
+    int ch = 0;
+    int cw = 0;
+    int res = 0;
+    for (int i = 0; i < boxes.length; i++) {
+        Box box = boxes[i];
+        if (cw < box.w && ch < box.h) {
+            res++;
+            cw = box.w;
+            ch = box.h;
+        }
+    }
+    System.out.println(res);
+}

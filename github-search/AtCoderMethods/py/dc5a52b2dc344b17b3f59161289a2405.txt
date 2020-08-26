@@ -1,0 +1,10 @@
+def solve(a):
+    dp = [10 ** 20] * len(a)
+    dp[0] = 0
+    for i in range(len(a)):
+        if i + 1 < len(a):
+            dp[i + 1] = min(dp[i + 1], dp[i] + abs(a[i] - a[i + 1]))
+        if i + 2 < len(a):
+            dp[i + 2] = min(dp[i + 2], dp[i] + abs(a[i] - a[i + 2]))
+
+    return dp[-1]

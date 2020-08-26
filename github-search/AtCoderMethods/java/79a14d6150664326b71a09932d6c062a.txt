@@ -1,0 +1,24 @@
+
+public void run() throws IOException {
+    
+    int TEST_CASE = 1;
+    while (TEST_CASE-- != 0) {
+        int n = io.nextInt();
+        int[] a = io.nextIntArray(n);
+        ArrayDeque<Integer> deq = new ArrayDeque<>();
+        for (int i = 0; i < n; i++) {
+            if (i % 2 == 0) {
+                deq.addLast(a[i]);
+            } else {
+                deq.addFirst(a[i]);
+            }
+        }
+        int[] b = new int[n];
+        if (n % 2 == 1) {
+            for (int i = 0; i < n; i++) b[i] = deq.pollLast();
+        } else {
+            for (int i = 0; i < n; i++) b[i] = deq.pollFirst();
+        }
+        printArrayLn(b);
+    }
+}

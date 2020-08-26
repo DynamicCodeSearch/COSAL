@@ -1,0 +1,23 @@
+public void solve() {
+    String str = next();
+    boolean flg = false;
+    int idx = 0;
+    int[] p = new int[10];
+    for (int i = 0; i < str.length(); i++) {
+        if (str.charAt(i) == 'W') {
+            if (flg) {
+                p[idx++] = i - 1;
+            }
+            flg = true;
+        } else {
+            flg = false;
+        }
+    }
+    int d;
+    if (p[1] - p[0] == 7) {
+        d = (p[0] + 8) % tone.length;
+    } else {
+        d = (p[0] + 1) % tone.length;
+    }
+    out.println(tone[(tone.length - d) % tone.length]);
+}

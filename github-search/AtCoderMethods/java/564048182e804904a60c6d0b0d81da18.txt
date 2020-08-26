@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    
+    Scanner scan = new Scanner(System.in);
+    H = scan.nextLong();
+    W = scan.nextLong();
+    long s = 1000000;
+    s = Math.min(s, minimum(true, H / 3, true, H, W));
+    s = Math.min(s, minimum(true, (H + 1) / 3, true, H, W));
+    s = Math.min(s, minimum(true, (H + 2) / 3, true, H, W));
+    s = Math.min(s, minimum(true, H / 3, false, H, W));
+    s = Math.min(s, minimum(true, (H + 1) / 3, false, H, W));
+    s = Math.min(s, minimum(true, (H + 2) / 3, false, H, W));
+    s = Math.min(s, minimum(false, W / 3, true, H, W));
+    s = Math.min(s, minimum(false, (W + 1) / 3, true, H, W));
+    s = Math.min(s, minimum(false, (W + 2) / 3, true, H, W));
+    s = Math.min(s, minimum(false, W / 3, false, H, W));
+    s = Math.min(s, minimum(false, (W + 1) / 3, false, H, W));
+    s = Math.min(s, minimum(false, (W + 2) / 3, false, H, W));
+    System.out.println(s);
+}

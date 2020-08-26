@@ -1,0 +1,13 @@
+public long min(int l, int r, int idx, int fr, int to) {
+    if (to <= l || r <= fr) {
+        return INF;
+    }
+    if (l <= fr && to <= r) {
+        return segMin[idx] + segAdd[idx];
+    }
+    int med = (fr + to) / 2;
+    long ret = INF;
+    ret = Math.min(ret, min(l, r, idx * 2 + 1, fr, med));
+    ret = Math.min(ret, min(l, r, idx * 2 + 2, med, to));
+    return ret + segAdd[idx];
+}

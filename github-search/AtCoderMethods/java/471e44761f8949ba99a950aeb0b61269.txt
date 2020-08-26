@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    FastScanner fs = new FastScanner();
+    String s = fs.next();
+    String reg = "WBWBWB";
+    String[] ans = { "Do", "Do", "Re", "Re", "Mi", "Fa", "Fa", "So", "So", "La", "La", "Si" };
+    StringBuilder sb = new StringBuilder();
+    int i;
+    for (i = 0; i < 20; i++) {
+        if (s.substring(i, i + 6).equals(reg))
+            break;
+    }
+    i = i - 5;
+    while (i < 0) {
+        i = i + 12;
+    }
+    sb.append(ans[(12 - i) % 12]);
+    System.out.println(sb.toString());
+}

@@ -1,0 +1,31 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    n = sc.nextInt();
+    pat = new boolean[n];
+    String line = sc.next();
+    for (int i = 0; i < line.length(); i++) {
+        pat[i] = (line.charAt(i) == 'o');
+    }
+    boolean[] ans = null;
+    boolean[] ss = search(true, true);
+    if (ss != null) {
+        System.out.println(toAnswer(ss));
+        return;
+    }
+    boolean[] sw = search(true, false);
+    if (sw != null) {
+        System.out.println(toAnswer(sw));
+        return;
+    }
+    boolean[] ws = search(false, true);
+    if (ws != null) {
+        System.out.println(toAnswer(ws));
+        return;
+    }
+    boolean[] ww = search(false, false);
+    if (ww != null) {
+        System.out.println(toAnswer(ww));
+        return;
+    }
+    System.out.println(-1);
+}

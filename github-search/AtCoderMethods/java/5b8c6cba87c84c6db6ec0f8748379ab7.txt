@@ -1,0 +1,24 @@
+public static void main(String[] args) throws IOException {
+    FastScanner in = new FastScanner(System.in);
+    int n = in.nextInt();
+    long[] a = new long[n];
+    long sum = 0;
+    for (int i = 0; i < a.length; i++) {
+        a[i] = in.nextInt();
+        sum += a[i];
+    }
+    Arrays.sort(a);
+    if (sum % 10 != 0) {
+        System.out.println(sum);
+        return;
+    }
+    for (int i = 0; i < a.length; i++) {
+        sum -= a[i];
+        if (sum % 10 != 0) {
+            System.out.println(sum);
+            return;
+        }
+        sum += a[i];
+    }
+    System.out.println(0);
+}

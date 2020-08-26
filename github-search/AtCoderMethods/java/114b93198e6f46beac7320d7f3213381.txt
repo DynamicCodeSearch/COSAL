@@ -1,0 +1,34 @@
+int[] bfs(ArrayList<Edge>[] g, int from) {
+    int n = g.length;
+    int[] dist = new int[n];
+    Arrays.fill(dist, INF);
+    PriorityQueue<State> pq = new PriorityQueue<>(new Comparator<State>() {
+
+        @Override
+        public int compare(State o1, State o2) {
+            if (o1.mcnt != o2.mcnt)
+                return o1.mcnt - o2.mcnt;
+            return o1.dist - o2.dist;
+        }
+    });
+    pq.add(new State(from, 0, 0));
+    while (!pq.isEmpty()) {
+        State p = pq.poll();
+        if (dist[p.u] <= p.dist)
+            continue;
+        dist[p.u] = p.dist;
+        for (Edge e : g[p.u]) {
+            int ncost = dist[p.u];
+            if (e.type == 0) {
+                ncost += 1;
+                if (ncost < dist[e.to])
+                    pq.add(new State(e.to, p.mcnt, ncost));
+            } else {
+                ncost += p.mcnt + 1;
+                if (ncost < dist[e.to])
+                    pq.add(new State(e.to, p.mcnt + 1, ncost));
+            }
+        }
+    }
+    return dist;
+}

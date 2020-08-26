@@ -1,0 +1,15 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int[] array = in.nextIntArray(n);
+    Map<Integer, Integer> countMap = new HashMap<>();
+    for (int i = 0; i < n; i++) {
+        for (int j = -1; j <= 1; j++) {
+            countMap.merge(array[i] + j, 1, Integer::sum);
+        }
+    }
+    int ans = 0;
+    for (int count : countMap.values()) {
+        ans = Math.max(ans, count);
+    }
+    out.println(ans);
+}

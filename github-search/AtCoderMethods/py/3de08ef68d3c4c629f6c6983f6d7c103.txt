@@ -1,0 +1,9 @@
+def main():
+    global G,V
+    V = int(input())
+    G = [[] for _ in range(V)]
+    for i in range(1,V,1):
+        s,t = i,int(input())-1
+        G[s].append(t)
+        G[t].append(s)
+    print(dfs(0,-1))

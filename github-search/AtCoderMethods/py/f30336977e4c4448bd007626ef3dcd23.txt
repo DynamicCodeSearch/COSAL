@@ -1,0 +1,17 @@
+def solve():
+    N = int(input())
+    A = [(int(input()), i) for i in range(N)]
+    B = [0] * N
+    A.sort(key=itemgetter(0))
+
+    num = 0
+    for i in range(N):
+        if i == 0:
+            B[A[0][1]] = 0
+        else:
+            if A[i][0] > A[i - 1][0]:
+                num += 1
+
+            B[A[i][1]] = num
+
+    print(*B, sep='\n')

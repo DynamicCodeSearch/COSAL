@@ -1,0 +1,14 @@
+public int solve() {
+    if (N == 1)
+        return 1;
+    int max = -1;
+    int found = -1;
+    for (int i = 2; i <= N; i += 2) {
+        ArrayList<Integer> ret = factors(i);
+        if (ret.size() > max) {
+            max = ret.size();
+            found = i;
+        }
+    }
+    return found;
+}

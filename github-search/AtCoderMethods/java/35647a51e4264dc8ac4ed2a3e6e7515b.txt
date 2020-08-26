@@ -1,0 +1,18 @@
+public static void main(String[] args) throws Exception {
+    
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int[] b = Arrays.asList(br.readLine().split(" ")).stream().mapToInt(Integer::parseInt).toArray();
+    int n = b[0];
+    int[] a = { 1, 2, 3, 4, 5, 6 };
+    n %= 30;
+    for (int i = 0; i < n; i++) {
+        int x = i % 5;
+        int temp = a[x];
+        a[x] = a[x + 1];
+        a[x + 1] = temp;
+    }
+    for (int i = 0; i < 6; i++) {
+        System.out.print(a[i]);
+    }
+    System.out.println();
+}

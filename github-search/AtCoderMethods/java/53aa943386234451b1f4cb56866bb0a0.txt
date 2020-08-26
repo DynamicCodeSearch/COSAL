@@ -1,0 +1,13 @@
+private static void dfs(int now, int count, boolean[] visited, int[][] g, int N) {
+    if (count == N) {
+        ret++;
+        return;
+    }
+    for (int next : g[now]) {
+        if (!visited[next]) {
+            visited[next] = true;
+            dfs(next, count + 1, visited, g, N);
+            visited[next] = false;
+        }
+    }
+}

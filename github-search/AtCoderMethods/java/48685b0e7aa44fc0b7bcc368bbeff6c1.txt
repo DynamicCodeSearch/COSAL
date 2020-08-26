@@ -1,0 +1,33 @@
+public void solve(int testNumber, MyInput in, PrintWriter out) {
+    X = in.nextInt();
+    K = in.nextInt();
+    r = new int[K + 1];
+    System.arraycopy(in.nextIntArray(K), 0, r, 0, K);
+    r[K] = Integer.MAX_VALUE;
+    Q = in.nextInt();
+    qs = in.nextIntArray2DWithIndex(Q, 2);
+    Arrays.sort(qs, Comparator.comparingInt(a -> a[1]));
+    for (int i = 0; i < Q; i++) {
+        qs[i][2] = i;
+    }
+    Bucket.X = X;
+    Buckets buckets = new Buckets(Q, (l, r) -> {
+        int[] v = new int[r - l];
+        for (int i = l; i < r; i++) v[i - l] = qs[i][1];
+        return new Bucket(l, r, v);
+    });
+    int[] ans = new int[Q];
+    Arrays.sort(qs, Comparator.comparingInt(a -> a[0]));
+    for (int i = 0, j = 0; i <= K && j < Q; i++) {
+        final int sign = i % 2 == 0 ? -1 : 1;
+        for (; j < Q && qs[j][0] < r[i]; j++) {
+            final int dt = qs[j][0] - (i == 0 ? 0 : r[i - 1]);
+            final int idx = qs[j][2];
+            ans[j] = buckets.get(idx, b -> b.get(idx, sign * dt));
+        }
+        final int dt = r[i] - (i == 0 ? 0 : r[i - 1]);
+        final int v = sign * dt;
+        buckets.foreach(b -> b.update(v));
+    }
+    for (int a : ans) out.println(a);
+}

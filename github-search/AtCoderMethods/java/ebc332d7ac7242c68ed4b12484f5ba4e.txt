@@ -1,0 +1,41 @@
+private void solve() throws IOException {
+    for (int i = 0; i <= 200004; ++i) adj[i] = new ArrayList<>();
+    for (int i = 0; i <= 200004; ++i) dj[i] = new ArrayList<>();
+    N = nextInt();
+    ret = new int[N + 1];
+    used = new boolean[N + 1 + 200000];
+    int K = nextInt();
+    int L = nextInt();
+    for (int k = 0; k < K; ++k) {
+        int a = nextInt();
+        int b = nextInt();
+        adj[a].add(b);
+        adj[b].add(a);
+    }
+    for (int i = 1; i <= N; ++i) {
+        if (!used[i]) {
+            dfs(i);
+            ++id;
+        }
+    }
+    for (int l = 0; l < L; ++l) {
+        int a = nextInt();
+        int b = nextInt();
+        dj[a].add(b);
+        dj[b].add(a);
+    }
+    Arrays.fill(used, false);
+    for (int i = 1; i <= N; ++i) {
+        if (!used[i]) {
+            comp = new ArrayList<>();
+            dp = new HashMap<>();
+            dfs2(i);
+            for (int elem : comp) {
+                ret[elem] += dp.get(color[elem]);
+            }
+        }
+    }
+    writer.print(ret[1]);
+    for (int i = 2; i <= N; ++i) writer.print(" " + ret[i]);
+    writer.println();
+}

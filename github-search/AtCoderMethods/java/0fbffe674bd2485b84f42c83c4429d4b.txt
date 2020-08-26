@@ -1,0 +1,13 @@
+private static long[][] and(final long[][] a, final long[][] b) {
+    int h = a.length;
+    int w = b[0].length;
+    long[][] result = new long[h][w];
+    for (int y = 0; y < h; y++) {
+        for (int x = 0; x < w; x++) {
+            for (int i = 0; i < a[0].length; i++) {
+                result[y][x] = result[y][x] ^ (a[y][i] & b[i][x]);
+            }
+        }
+    }
+    return result;
+}

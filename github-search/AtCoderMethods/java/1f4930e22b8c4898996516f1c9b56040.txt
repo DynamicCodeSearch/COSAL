@@ -1,0 +1,13 @@
+private boolean hasNextByte() {
+    if (ptr < bufs)
+        return true;
+    ptr = 0;
+    try {
+        bufs = in.read(buf);
+    } catch (IOException e) {
+        throw new IllegalArgumentException(e);
+    }
+    if (bufs <= 0)
+        return false;
+    return true;
+}

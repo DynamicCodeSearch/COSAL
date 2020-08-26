@@ -1,0 +1,13 @@
+static long modcomb(long n, long k, long mod) {
+    if (k == 1) {
+        return n;
+    }
+    long ans = 1;
+    for (long i = n; i >= n - k + 1; i--) {
+        ans = (ans * i) % mod;
+    }
+    for (long i = k; 0 < i; i--) {
+        ans = (ans * modpow(i, mod - 2, mod)) % mod;
+    }
+    return ans;
+}

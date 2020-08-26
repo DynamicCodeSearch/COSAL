@@ -1,0 +1,14 @@
+long f(int i, long weight) {
+    if (i == n)
+        return 0;
+    String key = i + " " + weight;
+    if (memo.containsKey(key))
+        return memo.get(key);
+    long ans = 0;
+    if (weight + w[i] <= W) {
+        ans = Math.max(ans, f(i + 1, weight + w[i]) + v[i]);
+    }
+    ans = Math.max(ans, f(i + 1, weight));
+    memo.put(key, ans);
+    return ans;
+}

@@ -1,0 +1,20 @@
+static void Method(ArrayList<Integer> num, ArrayList<String> param) {
+    int VV = 0;
+    double km = num.get(0) / 1000d;
+    if (km < 0.1) {
+        VV = 0;
+    } else if (km <= 5) {
+        VV = (int) (km * 10);
+    } else if (km <= 30) {
+        VV = (int) (km + 50);
+    } else if (km <= 70) {
+        VV = (int) ((km - 30) / 5 + 80);
+    } else if (km > 70) {
+        VV = 89;
+    }
+    if (VV < 10) {
+        System.out.println("0" + VV);
+    } else {
+        System.out.println(VV);
+    }
+}

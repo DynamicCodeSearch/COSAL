@@ -1,0 +1,14 @@
+def is_ok(S, j, a2, d):
+    if j == len(S): return True
+
+    ak = a2 + d
+    while True:
+        s_ak = str(ak)
+        if S[j:].startswith(s_ak):
+            j  += len(s_ak)
+            ak += d
+            if j == len(S): return True
+        elif s_ak.startswith(S[j:]):
+            return True
+        else:
+            return False

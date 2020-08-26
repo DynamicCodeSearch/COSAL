@@ -1,0 +1,32 @@
+public void solve(int testNumber, MyInput in, PrintWriter out) {
+    int A = in.nextInt();
+    int B = in.nextInt();
+    int C = in.nextInt();
+    int D = in.nextInt();
+    int E = in.nextInt();
+    int F = in.nextInt();
+    int ans1 = 0, ans2 = 0;
+    boolean[][] dp = new boolean[F + 1][F + 1];
+    dp[0][0] = true;
+    for (int i = 0; i < dp.length; i++) {
+        for (int j = 0; j < dp.length; j++) if (dp[i][j] && i + j <= F) {
+            if (i + 100 * A < dp.length)
+                dp[i + 100 * A][j] = true;
+            if (i + 100 * B < dp.length)
+                dp[i + 100 * B][j] = true;
+            if (j + C < dp.length)
+                dp[i][j + C] = true;
+            if (j + D < dp.length)
+                dp[i][j + D] = true;
+            if (i + j == 0)
+                continue;
+            if (j <= i / 100 * E) {
+                if (ans2 == 0 || j / (double) (i + j) > ans1 / (double) ans2) {
+                    ans1 = j;
+                    ans2 = i + j;
+                }
+            }
+        }
+    }
+    out.println(ans2 + " " + ans1);
+}

@@ -1,0 +1,30 @@
+
+public static void main(String[] args) throws IOException {
+    
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] tmpArray = br.readLine().split(" ");
+    int n = Integer.parseInt(tmpArray[0]);
+    int m = Integer.parseInt(tmpArray[1]);
+    Line[] lines = new Line[m];
+    for (int i = 0; i < m; i++) {
+        tmpArray = br.readLine().split(" ");
+        lines[i] = new Line(Integer.parseInt(tmpArray[0]), Integer.parseInt(tmpArray[1]));
+    }
+    int[] visited = new int[n + 1];
+    int[] finished = new int[n + 1];
+    int[][] matrix = new int[n + 1][n + 1];
+    int bridge = 0;
+    for (int i = 0; i < m; i++) {
+        initMatrix(matrix, lines, n, i);
+        Arrays.fill(visited, 0);
+        Arrays.fill(finished, 0);
+        dfs(matrix, visited, finished, 1, 0);
+        for (int j = 1; j <= n; j++) {
+            if (visited[j] == 0) {
+                bridge++;
+                break;
+            }
+        }
+    }
+    System.out.println(bridge);
+}

@@ -1,0 +1,22 @@
+public void solve() {
+    Scanner in = new Scanner(System.in);
+    int n = in.nextInt(), m = in.nextInt();
+    boolean[] a = new boolean[n];
+    boolean[] b = new boolean[n];
+    for (int i = 0; i < m; ++i) {
+        int u = in.nextInt() - 1, v = in.nextInt() - 1;
+        if (u == 0) {
+            a[v] = true;
+        }
+        if (v == n - 1) {
+            b[u] = true;
+        }
+    }
+    for (int i = 0; i < n; ++i) {
+        if (a[i] && b[i]) {
+            System.out.println("POSSIBLE");
+            return;
+        }
+    }
+    System.out.println("IMPOSSIBLE");
+}

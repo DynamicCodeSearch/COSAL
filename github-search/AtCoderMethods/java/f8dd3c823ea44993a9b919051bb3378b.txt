@@ -1,0 +1,44 @@
+private static String solve(int n, int[][] abs) {
+    
+    
+    ArrayList<ArrayList<Integer>> conn = new ArrayList<>();
+    conn.add(null);
+    for (int i = 1; i <= n; i++) conn.add(new ArrayList<>());
+    for (int[] ab : abs) {
+        conn.get(ab[0]).add(ab[1]);
+        conn.get(ab[1]).add(ab[0]);
+    }
+    
+    PriorityQueue<int[]> q = new PriorityQueue<>((dhc1, dhc2) -> {
+        int cmp;
+        cmp = Integer.compare(dhc1[0], dhc2[0]);
+        if (cmp != 0)
+            return cmp;
+        return Integer.compare(dhc1[2], dhc2[2]);
+    });
+    int[] paint = new int[n + 1];
+    Arrays.fill(paint, -1);
+    final int FENNEC = 0;
+    final int SUNUKE = 1;
+    q.add(new int[] { 0, 1, FENNEC });
+    q.add(new int[] { 0, n, SUNUKE });
+    while (!q.isEmpty()) {
+        int[] arr = q.poll();
+        int dist = arr[0];
+        int here = arr[1];
+        int color = arr[2];
+        if (paint[here] != -1)
+            continue;
+        paint[here] = color;
+        for (int to : conn.get(here)) {
+            if (paint[to] != -1)
+                continue;
+            q.add(new int[] { dist + 1, to, color });
+        }
+    }
+    long fennec = Arrays.stream(paint).filter(p -> p == FENNEC).count();
+    long sunuke = Arrays.stream(paint).filter(p -> p == SUNUKE).count();
+    if (fennec > sunuke)
+        return "Fennec";
+    return "Snuke";
+}

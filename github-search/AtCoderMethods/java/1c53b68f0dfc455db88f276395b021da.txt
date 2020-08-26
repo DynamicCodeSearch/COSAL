@@ -1,0 +1,41 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int a;
+    int b;
+    int c;
+    Map<Integer, Integer> modeMap = new HashMap<Integer, Integer>();
+    for (int i = 0; i < n; i++) {
+        a = sc.nextInt();
+        b = a - 1;
+        c = a + 1;
+        if (modeMap.containsKey(a)) {
+            modeMap.put(a, modeMap.get(a) + 1);
+        } else {
+            modeMap.put(a, 1);
+        }
+        if (modeMap.containsKey(b)) {
+            modeMap.put(b, modeMap.get(b) + 1);
+        } else {
+            modeMap.put(b, 1);
+        }
+        if (modeMap.containsKey(c)) {
+            modeMap.put(c, modeMap.get(c) + 1);
+        } else {
+            modeMap.put(c, 1);
+        }
+    }
+    ArrayList<Integer> ans = new ArrayList<Integer>();
+    List<Map.Entry<Integer, Integer>> entries = new ArrayList<Map.Entry<Integer, Integer>>(modeMap.entrySet());
+    Collections.sort(entries, new Comparator<Map.Entry<Integer, Integer>>() {
+
+        @Override
+        public int compare(Map.Entry<Integer, Integer> entry1, Map.Entry<Integer, Integer> entry2) {
+            return ((Integer) entry2.getValue()).compareTo((Integer) entry1.getValue());
+        }
+    });
+    for (Map.Entry<Integer, Integer> s : entries) {
+        ans.add(s.getValue());
+    }
+    System.out.println(ans.get(0));
+}

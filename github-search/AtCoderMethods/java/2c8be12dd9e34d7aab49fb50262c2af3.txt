@@ -1,0 +1,50 @@
+static void solve() {
+    int n = ni(), m = ni();
+    int[] a = na(n);
+    for (int i = 0; i < n; i++) {
+        a[i]--;
+    }
+    long ans = 0;
+    long[] imos = new long[m + 3];
+    long[] imos2 = new long[m + 3];
+    for (int i = 0; i < n - 1; i++) {
+        int x = a[i], y = a[i + 1];
+        if (x > y) {
+            y += m;
+        }
+        ans += y - x;
+        if (x + 2 <= y) {
+            int z = x + 2;
+            if (z >= m) {
+                z -= m;
+                y -= m;
+            }
+            if (y < m) {
+                imos2[z]--;
+                imos2[y + 1]++;
+                imos[y + 1] += y - z + 1;
+            } else {
+                imos2[z]--;
+                imos2[0]--;
+                imos2[y - m + 1]++;
+                imos[0] -= m - z;
+                imos[y - m + 1] += y - z + 1;
+            }
+        }
+    }
+    for (int i = 0; i < m; i++) {
+        imos2[i + 1] += imos2[i];
+    }
+    for (int i = 0; i < m; i++) {
+        imos[i] += imos2[i];
+    }
+    for (int i = 0; i < m; i++) {
+        imos[i + 1] += imos[i];
+    }
+    long ret = 0;
+    for (int i = 0; i < m; i++) {
+        
+        ret = Math.min(ret, imos[i]);
+    }
+    out.println(ans + ret);
+}

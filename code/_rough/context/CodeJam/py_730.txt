@@ -1,0 +1,582 @@
+### Py Tokens: case, min, cas, max, float, sums, ans, xrange 
+
+### Py functions
+
+def func_1a290a0971104ceca2a31ed52779160c(i, infile, n, sums, v):
+    for i in xrange(n):
+        sums[i + 1] = sums[i] + v[i]
+    ans = sums[n]
+    for i in xrange(1, n):
+        L = 0
+        R = i
+        while R - L > 1:
+            M = L + R >> 1
+            ta = sums[M]
+            tb = sums[i] - sums[M]
+            if ta < tb:
+                L = M
+            else:
+                R = M
+        ans = min(ans, max(sums[L], sums[i] - sums[L], sums[n] - sums[i]),
+            max(sums[R], sums[i] - sums[R], sums[n] - sums[i]))(
+            'Case #%s: %.10f' % (cas, 1 - float(ans) / sums[n]))
+    return v
+
+def func_5123ac47d19d4eed9c9ec0a4cdcb74ae(i, infile, n, v):
+    v = [((i * p + q) % r + s) for i in xrange(n)]
+    sums = [0] * (n + 1)
+    for i in xrange(n):
+        sums[i + 1] = sums[i] + v[i]
+    ans = sums[n]
+    for i in xrange(1, n):
+        L = 0
+        R = i
+        while R - L > 1:
+            M = L + R >> 1
+            ta = sums[M]
+            tb = sums[i] - sums[M]
+            if ta < tb:
+                L = M
+            else:
+                R = M
+        ans = min(ans, max(sums[L], sums[i] - sums[L], sums[n] - sums[i]),
+            max(sums[R], sums[i] - sums[R], sums[n] - sums[i]))(
+            'Case #%s: %.10f' % (cas, 1 - float(ans) / sums[n]))
+    return i
+
+def func_6e9534a8596e4ac881185e379e7df78d(i, infile, n, sums, v):
+    for i in xrange(n):
+        sums[i + 1] = sums[i] + v[i]
+    ans = sums[n]
+    for i in xrange(1, n):
+        L = 0
+        R = i
+        while R - L > 1:
+            M = L + R >> 1
+            ta = sums[M]
+            tb = sums[i] - sums[M]
+            if ta < tb:
+                L = M
+            else:
+                R = M
+        ans = min(ans, max(sums[L], sums[i] - sums[L], sums[n] - sums[i]),
+            max(sums[R], sums[i] - sums[R], sums[n] - sums[i]))(
+            'Case #%s: %.10f' % (cas, 1 - float(ans) / sums[n]))
+    return i
+
+def func_ddef9fe9ac93463f93ad5f5bb60387d3(ans, i, infile, n, sums):
+    for i in xrange(1, n):
+        L = 0
+        R = i
+        while R - L > 1:
+            M = L + R >> 1
+            ta = sums[M]
+            tb = sums[i] - sums[M]
+            if ta < tb:
+                L = M
+            else:
+                R = M
+        ans = min(ans, max(sums[L], sums[i] - sums[L], sums[n] - sums[i]),
+            max(sums[R], sums[i] - sums[R], sums[n] - sums[i]))(
+            'Case #%s: %.10f' % (cas, 1 - float(ans) / sums[n]))
+    return n
+
+def func_17f25ca8d48c44dfa7879146788375ea(i, infile, n, sums, v):
+    sums = [0] * (n + 1)
+    for i in xrange(n):
+        sums[i + 1] = sums[i] + v[i]
+    ans = sums[n]
+    for i in xrange(1, n):
+        L = 0
+        R = i
+        while R - L > 1:
+            M = L + R >> 1
+            ta = sums[M]
+            tb = sums[i] - sums[M]
+            if ta < tb:
+                L = M
+            else:
+                R = M
+        ans = min(ans, max(sums[L], sums[i] - sums[L], sums[n] - sums[i]),
+            max(sums[R], sums[i] - sums[R], sums[n] - sums[i]))(
+            'Case #%s: %.10f' % (cas, 1 - float(ans) / sums[n]))
+    return n
+
+*********************************
+
+#### Score: 7.39577
+
+
+#### Java Tokens: min, max, ans, sum, math 
+
+public static int func_18e0d7a3a9004e878e1bb3e739bfcbf6(int n, long[] sum) { 
+ long ans = sum[n];
+int l = 1;
+for (int i = 2; i <= n; i++) {
+    while (l + 1 < i && Math.max(sum[i] - sum[l], sum[l]) > Math.max(sum[i] - sum[l + 1], sum[l + 1])) {
+        ans = Math.min(ans, Math.max(sum[n] - sum[i], Math.max(sum[i] - sum[l], sum[l])));
+        l++;
+    }
+    ans = Math.min(ans, Math.max(sum[n] - sum[i], Math.max(sum[i] - sum[l], sum[l])));
+}
+return l;
+}
+
+
+public static long func_86e361714b204771a5224d744686e8da(int n, long[] sum) { 
+ long ans = sum[n];
+int l = 1;
+for (int i = 2; i <= n; i++) {
+    while (l + 1 < i && Math.max(sum[i] - sum[l], sum[l]) > Math.max(sum[i] - sum[l + 1], sum[l + 1])) {
+        ans = Math.min(ans, Math.max(sum[n] - sum[i], Math.max(sum[i] - sum[l], sum[l])));
+        l++;
+    }
+    ans = Math.min(ans, Math.max(sum[n] - sum[i], Math.max(sum[i] - sum[l], sum[l])));
+}
+return ans;
+}
+
+
+public static long func_1bd1c810a74e498e9723f78d4fe9cfda(int n, int i, int l, long ans, long[] sum) { 
+ while (l + 1 < i && Math.max(sum[i] - sum[l], sum[l]) > Math.max(sum[i] - sum[l + 1], sum[l + 1])) {
+    ans = Math.min(ans, Math.max(sum[n] - sum[i], Math.max(sum[i] - sum[l], sum[l])));
+    l++;
+}
+ans = Math.min(ans, Math.max(sum[n] - sum[i], Math.max(sum[i] - sum[l], sum[l])));
+return ans;
+}
+
+
+*********************************
+
+#### Score: 7.39577
+
+
+#### Java Tokens: min, max, ans, length, math 
+
+public static long func_9327ba5dc49f4a99a27336e31b9e9a93(long sr, long sm, long sl, long[] a) { 
+ long ans = Math.max(sm, sr);
+int l = 0;
+for (int r = 1; r < a.length; ++r) {
+    sm += a[r];
+    sr -= a[r];
+    while (l < r && Math.max(sl + a[l], sm - a[l]) < Math.max(sl, sm)) {
+        sl += a[l];
+        sm -= a[l];
+        ++l;
+    }
+    ans = Math.min(ans, Math.max(sr, Math.max(sm, sl)));
+// System.out.println(" " + l + " " + r + " " + sl + " " + sm + " " + sr + " " + ans);
+}
+return sr;
+}
+
+
+public static int func_68eaf40520ca454dbdbff670ea5a2422(long ans, long sr, long sm, long sl, long[] a) { 
+ int l = 0;
+for (int r = 1; r < a.length; ++r) {
+    sm += a[r];
+    sr -= a[r];
+    while (l < r && Math.max(sl + a[l], sm - a[l]) < Math.max(sl, sm)) {
+        sl += a[l];
+        sm -= a[l];
+        ++l;
+    }
+    ans = Math.min(ans, Math.max(sr, Math.max(sm, sl)));
+// System.out.println(" " + l + " " + r + " " + sl + " " + sm + " " + sr + " " + ans);
+}
+return l;
+}
+
+
+public static int func_e2c12373faae4b4391a538ad649d66ab(long sr, long sm, long sl, long[] a) { 
+ long ans = Math.max(sm, sr);
+int l = 0;
+for (int r = 1; r < a.length; ++r) {
+    sm += a[r];
+    sr -= a[r];
+    while (l < r && Math.max(sl + a[l], sm - a[l]) < Math.max(sl, sm)) {
+        sl += a[l];
+        sm -= a[l];
+        ++l;
+    }
+    ans = Math.min(ans, Math.max(sr, Math.max(sm, sl)));
+// System.out.println(" " + l + " " + r + " " + sl + " " + sm + " " + sr + " " + ans);
+}
+return l;
+}
+
+
+*********************************
+
+#### Score: 6.98814
+
+
+#### Java Tokens: res, min, max, ans, sum, math 
+
+public static int func_047b1e0c188c41b7a93977a8a64ae3f3(int n, long[] sum) { 
+ long ans = sum[n];
+int l = 1;
+for (int i = 2; i <= n; i++) {
+    while (l + 1 < i && Math.max(sum[i] - sum[l], sum[l]) > Math.max(sum[i] - sum[l + 1], sum[l + 1])) {
+        ans = Math.min(ans, Math.max(sum[n] - sum[i], Math.max(sum[i] - sum[l], sum[l])));
+        l++;
+    }
+    ans = Math.min(ans, Math.max(sum[n] - sum[i], Math.max(sum[i] - sum[l], sum[l])));
+}
+double res = (double) ans / sum[n];
+return l;
+}
+
+
+public static int func_330173ad6bbb49649ae4310602de4188(int n, long ans, long[] sum) { 
+ int l = 1;
+for (int i = 2; i <= n; i++) {
+    while (l + 1 < i && Math.max(sum[i] - sum[l], sum[l]) > Math.max(sum[i] - sum[l + 1], sum[l + 1])) {
+        ans = Math.min(ans, Math.max(sum[n] - sum[i], Math.max(sum[i] - sum[l], sum[l])));
+        l++;
+    }
+    ans = Math.min(ans, Math.max(sum[n] - sum[i], Math.max(sum[i] - sum[l], sum[l])));
+}
+double res = (double) ans / sum[n];
+return l;
+}
+
+
+public static long func_692cf403b4954663b037b51f4188faa5(int n, int l, long ans, long[] sum) { 
+ for (int i = 2; i <= n; i++) {
+    while (l + 1 < i && Math.max(sum[i] - sum[l], sum[l]) > Math.max(sum[i] - sum[l + 1], sum[l + 1])) {
+        ans = Math.min(ans, Math.max(sum[n] - sum[i], Math.max(sum[i] - sum[l], sum[l])));
+        l++;
+    }
+    ans = Math.min(ans, Math.max(sum[n] - sum[i], Math.max(sum[i] - sum[l], sum[l])));
+}
+double res = (double) ans / sum[n];
+return ans;
+}
+
+
+*********************************
+
+#### Score: 6.98814
+
+
+#### Java Tokens: min, max, ans, length, sum, math 
+
+public static long func_71e798a67e324fefbe8af096684cdfe2(long sm, long sl, long[] a) { 
+ long sr = 0;
+for (int i = 1; i < a.length; ++i) {
+    sr += a[i];
+}
+long sum = sm + sr;
+long ans = Math.max(sm, sr);
+int l = 0;
+for (int r = 1; r < a.length; ++r) {
+    sm += a[r];
+    sr -= a[r];
+    while (l < r && Math.max(sl + a[l], sm - a[l]) < Math.max(sl, sm)) {
+        sl += a[l];
+        sm -= a[l];
+        ++l;
+    }
+    ans = Math.min(ans, Math.max(sr, Math.max(sm, sl)));
+// System.out.println(" " + l + " " + r + " " + sl + " " + sm + " " + sr + " " + ans);
+}
+return sum;
+}
+
+
+public static long func_23fdec310e3d45b2a1f3a29c6c33fd64(long sl, long[] a) { 
+ long sm = a[0];
+long sr = 0;
+for (int i = 1; i < a.length; ++i) {
+    sr += a[i];
+}
+long sum = sm + sr;
+long ans = Math.max(sm, sr);
+int l = 0;
+for (int r = 1; r < a.length; ++r) {
+    sm += a[r];
+    sr -= a[r];
+    while (l < r && Math.max(sl + a[l], sm - a[l]) < Math.max(sl, sm)) {
+        sl += a[l];
+        sm -= a[l];
+        ++l;
+    }
+    ans = Math.min(ans, Math.max(sr, Math.max(sm, sl)));
+// System.out.println(" " + l + " " + r + " " + sl + " " + sm + " " + sr + " " + ans);
+}
+return sl;
+}
+
+
+public static long func_bbd2f72de3de4d6996fbe2d6c103e060(long[] a) { 
+ long sl = 0;
+long sm = a[0];
+long sr = 0;
+for (int i = 1; i < a.length; ++i) {
+    sr += a[i];
+}
+long sum = sm + sr;
+long ans = Math.max(sm, sr);
+int l = 0;
+for (int r = 1; r < a.length; ++r) {
+    sm += a[r];
+    sr -= a[r];
+    while (l < r && Math.max(sl + a[l], sm - a[l]) < Math.max(sl, sm)) {
+        sl += a[l];
+        sm -= a[l];
+        ++l;
+    }
+    ans = Math.min(ans, Math.max(sr, Math.max(sm, sl)));
+// System.out.println(" " + l + " " + r + " " + sl + " " + sm + " " + sr + " " + ans);
+}
+return sr;
+}
+
+
+*********************************
+
+#### Score: 6.98814
+
+
+#### Java Tokens: min, max, ans, pref, sum, math 
+
+public static long func_30c835fdb9ca4979818148535431f2be(int t, long rs, long sum, long max, long[] pref) { 
+ long ans = rs;
+ans = Math.max(ans, Math.max(sum - pref[t], pref[t]));
+max = Math.min(max, ans);
+return ans;
+}
+
+
+public static long func_cac459492e1c4e069037e8565f66fc81(int t, long rs, long sum, long max, long[] pref) { 
+ long ans = rs;
+ans = Math.max(ans, Math.max(sum - pref[t], pref[t]));
+max = Math.min(max, ans);
+return max;
+}
+
+
+public static long func_c99dc47448f64c609053987de2c6f9bf(int t, long ans, long sum, long max, long[] pref) { 
+ ans = Math.max(ans, Math.max(sum - pref[t], pref[t]));
+max = Math.min(max, ans);
+return max;
+}
+
+
+*********************************
+
+#### Score: 6.62561
+
+
+#### Java Tokens: min, third, max, ans, math, first, second 
+
+public static long func_afafb4dffcba42a6a6919612545a2461(int j, int i, long third, long ans, long[] A) { 
+ long first = A[j + 2];
+long second = A[i + 1] - A[j + 2];
+ans = Math.min(ans, Math.max(first, Math.max(second, third)));
+return first;
+}
+
+
+public static long func_4acad57935d34f28b57f3066b870ebec(int j, int i, long third, long ans, long[] A) { 
+ long first = A[j + 1];
+long second = A[i + 1] - A[j + 1];
+ans = Math.min(ans, Math.max(first, Math.max(second, third)));
+return first;
+}
+
+
+public static long func_6bb8fbc65b424efabcabb0db7f50f2c2(int j, int i, long third, long ans, long[] A) { 
+ while (j < i && A[i + 1] - A[j + 2] > A[j + 2]) j++;
+{
+    long first = A[j + 1];
+    long second = A[i + 1] - A[j + 1];
+    ans = Math.min(ans, Math.max(first, Math.max(second, third)));
+}
+return ans;
+}
+
+
+*********************************
+
+#### Score: 6.46944
+
+
+#### Java Tokens: counts, sums 
+
+public static long[] func_ae9ba4b9b8d04fd5a0e331b4ee27bd47(int N, long[] counts) { 
+ final long[] sums = new long[N + 1];
+for (int i = 0; i < N; i++) sums[i + 1] = sums[i] + counts[i];
+return sums;
+}
+
+
+public static long[] func_b4724337b76a451aafaf26f38719ac95(int N, long r, long s, long p, long q) { 
+ final long[] counts = new long[N];
+for (int i = 0; i < N; i++) counts[i] = (i * p + q) % r + s;
+final long[] sums = new long[N + 1];
+return counts;
+}
+
+
+public static long[] func_ef09f120b5934329b234870dbe057a99(int N, long r, long s, long p, long q) { 
+ final long[] counts = new long[N];
+for (int i = 0; i < N; i++) counts[i] = (i * p + q) % r + s;
+final long[] sums = new long[N + 1];
+return sums;
+}
+
+
+*********************************
+
+#### Score: 6.42826
+
+
+#### Java Tokens: next, compare, nextint, #%d:, integer, sort, int, printf, comparator, system, cas, arrays, case 
+
+public static int[] func_ea09d5a25a934ac1b747118c896979e1(int cas, int n, Scanner in) { 
+ int[] L = new int[n];
+final int[] P = new int[n];
+Integer[] I = new Integer[n];
+for (int i = 0; i < n; i++) L[i] = in.nextInt();
+for (int i = 0; i < n; i++) {
+    P[i] = in.nextInt();
+    I[i] = i;
+}
+Arrays.sort(I, new Comparator<Integer>() {
+
+    public int compare(Integer A, Integer B) {
+        if (P[A] != P[B])
+            return P[B] - P[A];
+        return A - B;
+    }
+});
+System.out.printf("Case #%d:", cas);
+return L;
+}
+
+
+public static int[] func_e63095ca1fdf4d89b68f61e92b926ceb(int cas, int n, Scanner in) { 
+ int[] L = new int[n];
+final int[] P = new int[n];
+Integer[] I = new Integer[n];
+for (int i = 0; i < n; i++) L[i] = in.nextInt();
+for (int i = 0; i < n; i++) {
+    P[i] = in.nextInt();
+    I[i] = i;
+}
+Arrays.sort(I, new Comparator<Integer>() {
+
+    public int compare(Integer A, Integer B) {
+        if (P[A] != P[B])
+            return P[B] - P[A];
+        return A - B;
+    }
+});
+System.out.printf("Case #%d:", cas);
+return P;
+}
+
+
+public static int[] func_5126b7888d9b40b4a5d968fd6d90c764(int cas, int n, int[] L, Scanner in) { 
+ final int[] P = new int[n];
+Integer[] I = new Integer[n];
+for (int i = 0; i < n; i++) L[i] = in.nextInt();
+for (int i = 0; i < n; i++) {
+    P[i] = in.nextInt();
+    I[i] = i;
+}
+Arrays.sort(I, new Comparator<Integer>() {
+
+    public int compare(Integer A, Integer B) {
+        if (P[A] != P[B])
+            return P[B] - P[A];
+        return A - B;
+    }
+});
+System.out.printf("Case #%d:", cas);
+return P;
+}
+
+
+*********************************
+
+#### Score: 6.30109
+
+
+#### Java Tokens: min, left, max, lowx, ans, lowy, right, math 
+
+public static double func_e03f2c89681e4755b0cb9b2385aa6a0c(double right, double left) { 
+ double ans = 2000 * (right - left);
+for (int l = 0; l < A.L - 1; l++) {
+    if (A.lowx[l + 1] < left || A.lowx[l] > right)
+        continue;
+    double ax = Math.max(A.lowx[l], left);
+    double bx = Math.min(A.lowx[l + 1], right);
+    double ay = A.lowy[l];
+    double by = A.lowy[l + 1];
+    if (ax > A.lowx[l]) {
+        ay = A.lowy[l] + (ax - A.lowx[l]) / (A.lowx[l + 1] - A.lowx[l]) * (A.lowy[l + 1] - A.lowy[l]);
+    }
+    if (bx < A.lowx[l + 1]) {
+        by = A.lowy[l + 1] + (bx - A.lowx[l + 1]) / (A.lowx[l] - A.lowx[l + 1]) * (A.lowy[l] - A.lowy[l + 1]);
+    }
+    ans -= (bx - ax) * ((ay + by) / 2 + 1000);
+}
+return ans;
+}
+
+
+*********************************
+
+#### Score: 6.30109
+
+
+#### Java Tokens: res, min, max, %.15f, ans, sum, math, printf 
+
+public static PrintWriter func_a3c059c89a1b435ab46b204dd5d26129(int n, long ans, long[] sum, PrintWriter out) { 
+ int l = 1;
+for (int i = 2; i <= n; i++) {
+    while (l + 1 < i && Math.max(sum[i] - sum[l], sum[l]) > Math.max(sum[i] - sum[l + 1], sum[l + 1])) {
+        ans = Math.min(ans, Math.max(sum[n] - sum[i], Math.max(sum[i] - sum[l], sum[l])));
+        l++;
+    }
+    ans = Math.min(ans, Math.max(sum[n] - sum[i], Math.max(sum[i] - sum[l], sum[l])));
+}
+double res = (double) ans / sum[n];
+out.printf("%.15f\n", 1 - res);
+return out;
+}
+
+
+public static PrintWriter func_aa8cbe1272c940b39b40f729b29f02dc(int n, int l, long ans, long[] sum, PrintWriter out) { 
+ for (int i = 2; i <= n; i++) {
+    while (l + 1 < i && Math.max(sum[i] - sum[l], sum[l]) > Math.max(sum[i] - sum[l + 1], sum[l + 1])) {
+        ans = Math.min(ans, Math.max(sum[n] - sum[i], Math.max(sum[i] - sum[l], sum[l])));
+        l++;
+    }
+    ans = Math.min(ans, Math.max(sum[n] - sum[i], Math.max(sum[i] - sum[l], sum[l])));
+}
+double res = (double) ans / sum[n];
+out.printf("%.15f\n", 1 - res);
+return out;
+}
+
+
+public static long func_a74b2d451ce242e4978f8bcfa7e07356(int n, long[] sum, PrintWriter out) { 
+ long ans = sum[n];
+int l = 1;
+for (int i = 2; i <= n; i++) {
+    while (l + 1 < i && Math.max(sum[i] - sum[l], sum[l]) > Math.max(sum[i] - sum[l + 1], sum[l + 1])) {
+        ans = Math.min(ans, Math.max(sum[n] - sum[i], Math.max(sum[i] - sum[l], sum[l])));
+        l++;
+    }
+    ans = Math.min(ans, Math.max(sum[n] - sum[i], Math.max(sum[i] - sum[l], sum[l])));
+}
+double res = (double) ans / sum[n];
+out.printf("%.15f\n", 1 - res);
+return ans;
+}
+

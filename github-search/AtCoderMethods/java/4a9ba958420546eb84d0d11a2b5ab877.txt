@@ -1,0 +1,39 @@
+public void solve(int testNumber, FastReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int K = in.nextInt();
+    long[] x = new long[n];
+    long[] y = new long[n];
+    long[][] p = new long[n][];
+    for (int i = 0; i < n; ++i) {
+        p[i] = in.nextLongArray(2);
+        x[i] = p[i][0];
+        y[i] = p[i][1];
+    }
+    ArrayUtils.sort(x);
+    ArrayUtils.sort(y);
+    long ret = Long.MAX_VALUE;
+    for (int i = 0; i < n; ++i) {
+        for (int j = i + 1; j < n; ++j) {
+            for (int k = 0; k < n; ++k) {
+                for (int l = k + 1; l < n; ++l) {
+                    int count = 0;
+                    long x1 = x[i];
+                    long x2 = x[j];
+                    long y1 = y[k];
+                    long y2 = y[l];
+                    for (long[] v : p) {
+                        long nx = v[0];
+                        long ny = v[1];
+                        if (x1 <= nx && nx <= x2 && y1 <= ny && ny <= y2)
+                            ++count;
+                    }
+                    if (count >= K) {
+                        long now = (x2 - x1) * (y2 - y1);
+                        ret = Math.min(ret, now);
+                    }
+                }
+            }
+        }
+    }
+    out.println(ret);
+}

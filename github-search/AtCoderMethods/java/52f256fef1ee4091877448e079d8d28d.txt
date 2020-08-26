@@ -1,0 +1,50 @@
+public static void main(String[] args) {
+    H = sc.nextInt();
+    W = sc.nextInt();
+    char[][] S = new char[H + 2][W + 2];
+    char[][] tmp;
+    String z;
+    for (int i = 1; i <= H; i++) {
+        z = sc.next();
+        for (int i2 = 1; i2 <= W; i2++) {
+            S[i][i2] = z.charAt(i2 - 1);
+        }
+    }
+    for (int i = 0; i < H + 2; i++) {
+        S[i][0] = '#';
+        S[i][W + 1] = '#';
+    }
+    for (int i = 0; i < W + 2; i++) {
+        S[0][i] = '#';
+        S[H + 1][i] = '#';
+    }
+    
+    char[][] ans = new char[H][W];
+    tmp = S;
+    for (int i = 1; i < H + 1; i++) {
+        for (int i2 = 1; i2 < W + 1; i2++) {
+            boolean flag = false;
+            if (tmp[i][i2] == '#') {
+                flag = search(tmp, i, i2);
+            }
+            if (flag) {
+                ans[i - 1][i2 - 1] = '#';
+            }
+        }
+    }
+    if (check(S, ans)) {
+        System.out.println("possible");
+        for (int i = 0; i < H; i++) {
+            for (int i2 = 0; i2 < W; i2++) {
+                if (ans[i][i2] == '#') {
+                    System.out.print('#');
+                } else {
+                    System.out.print('.');
+                }
+            }
+            System.out.println();
+        }
+    } else {
+        System.out.println("impossible");
+    }
+}

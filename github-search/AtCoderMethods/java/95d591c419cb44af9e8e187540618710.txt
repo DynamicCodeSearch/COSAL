@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int n = scanner.nextInt();
+    int[] price = new int[n];
+    for (int i = 0; i < n; i++) {
+        price[i] = scanner.nextInt();
+    }
+    int max = 0;
+    for (int i = 0; i < n; i++) {
+        if (max < price[i]) {
+            max = price[i];
+        }
+    }
+    int second = 0;
+    for (int i = 0; i < n; i++) {
+        if (second < price[i] && max != price[i]) {
+            second = price[i];
+        }
+    }
+    System.out.println(second);
+}

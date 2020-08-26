@@ -1,0 +1,31 @@
+void solve(FastScanner in, PrintWriter out) throws Exception {
+    int MOD = (int) (1e9 + 7);
+    int N = in.nextInt();
+    long K = in.nextInt();
+    if (N == 1) {
+        out.println(K);
+        return;
+    }
+    ArrayList<Integer> divisors = divisors(N);
+    Collections.sort(divisors);
+    long[] num = new long[divisors.size()];
+    for (int i = 0; i < num.length; i++) {
+        num[i] = modPow(K, (divisors.get(i) + 1) / 2, MOD);
+        for (int j = 0; j < i; j++) {
+            if (divisors.get(i) % divisors.get(j) == 0) {
+                num[i] -= num[j];
+                if (num[i] <= 0)
+                    num[i] += MOD;
+            }
+        }
+    }
+    long ans = 0;
+    for (int i = 0; i < num.length; i++) {
+        long d = divisors.get(i);
+        if (d % 2 == 0)
+            d /= 2;
+        ans += num[i] * d;
+        ans %= MOD;
+    }
+    out.println(ans);
+}

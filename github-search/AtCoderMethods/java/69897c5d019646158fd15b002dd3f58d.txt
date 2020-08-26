@@ -1,0 +1,12 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    long h = in.nextInt();
+    long w = in.nextInt();
+    long ans = Integer.MAX_VALUE;
+    for (int i = 1; i < w; i++) {
+        ans = Math.min(ans, calc(h, w, i));
+    }
+    for (int i = 1; i < h; i++) {
+        ans = Math.min(ans, calc(w, h, i));
+    }
+    out.println(ans);
+}

@@ -1,0 +1,12 @@
+static void solve(FastScanner sc, PrintWriter out) {
+    char[][] S = new char[3][];
+    S[0] = sc.ns().toCharArray();
+    S[1] = sc.ns().toCharArray();
+    S[2] = sc.ns().toCharArray();
+    int[] p = new int[3];
+    int hand = 0;
+    while (p[hand] < S[hand].length) {
+        hand = S[hand][p[hand]++] - 'a';
+    }
+    out.println((char) (hand + 'A'));
+}

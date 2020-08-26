@@ -1,0 +1,10 @@
+void solveC(Scanner sc) throws Throwable {
+    int n = sc.nextInt();
+    int k = sc.nextInt();
+    BigInteger sum = BigInteger.ZERO;
+    for (int i = 0; i < n; i++) {
+        int keisu = Math.min(Math.min(k, n - k + 1), Math.min(i + 1, n - i));
+        sum = sum.add(new BigInteger(String.valueOf(keisu)).multiply(new BigInteger(sc.next())));
+    }
+    System.out.println(sum);
+}

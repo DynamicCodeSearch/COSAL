@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[] card = new int[max];
+    for (int i = 1; i < max; i++) {
+        card[i] = -1;
+    }
+    int num = 0;
+    for (int i = 1; i <= n; i++) {
+        int tmp = sc.nextInt();
+        if (card[tmp] == -1) {
+            card[tmp] = 0;
+            num++;
+        }
+        card[tmp] = (card[tmp] + 1) % 2;
+    }
+    int zero = 0;
+    for (int i = 1; i < max; i++) {
+        if (card[i] == 0)
+            zero++;
+    }
+    System.out.println((num - (zero % 2)));
+}

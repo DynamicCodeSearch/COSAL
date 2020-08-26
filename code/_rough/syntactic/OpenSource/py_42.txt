@@ -1,0 +1,637 @@
+### Py functions
+
+def maketrans(fromstr, tostr):
+    """maketrans(frm, to) -> string
+
+  Return a translation table (a string of 256 bytes long)
+  suitable for use in string.translate.  The strings frm and to
+  must be of the same length.
+
+  """
+    if len(fromstr) != len(tostr):
+        raise ValueError, 'maketrans arguments must have same length'
+    global _idmapL
+    if not _idmapL:
+        _idmapL = list(_idmap)
+    L = _idmapL[:]
+    fromstr = map(ord, fromstr)
+    for i in range(len(fromstr)):
+        L[fromstr[i]] = tostr[i]
+    return ''.join(L)
+
+*********************************
+
+#### Score: 19.63354
+
+
+/**
+ * <p>Joins the elements of the provided {@code List} into a single String
+ * containing the provided list of elements.</p>
+ *
+ * <p>No delimiter is added before or after the list.
+ * Null objects or empty strings within the array are represented by
+ * empty strings.</p>
+ *
+ * <pre>
+ * StringUtils.join(null, *)               = null
+ * StringUtils.join([], *)                 = ""
+ * StringUtils.join([null], *)             = ""
+ * StringUtils.join(["a", "b", "c"], ';')  = "a;b;c"
+ * StringUtils.join(["a", "b", "c"], null) = "abc"
+ * StringUtils.join([null, "", "a"], ';')  = ";;a"
+ * </pre>
+ *
+ * @param list  the {@code List} of values to join together, may be null
+ * @param separator  the separator character to use
+ * @param startIndex the first index to start joining from.  It is
+ * an error to pass in a start index past the end of the list
+ * @param endIndex the index to stop joining from (exclusive). It is
+ * an error to pass in an end index past the end of the list
+ * @return the joined String, {@code null} if null list input
+ * @since 3.8
+ */
+public static String join(final List<?> list, final char separator, final int startIndex, final int endIndex) {
+    if (list == null) {
+        return null;
+    }
+    final int noOfItems = endIndex - startIndex;
+    if (noOfItems <= 0) {
+        return EMPTY;
+    }
+    final List<?> subList = list.subList(startIndex, endIndex);
+    return join(subList.iterator(), separator);
+}
+/**
+ * <p>Joins the elements of the provided {@code List} into a single String
+ * containing the provided list of elements.</p>
+ *
+ * <p>No delimiter is added before or after the list.
+ * Null objects or empty strings within the array are represented by
+ * empty strings.</p>
+ *
+ * <pre>
+ * StringUtils.join(null, *)               = null
+ * StringUtils.join([], *)                 = ""
+ * StringUtils.join([null], *)             = ""
+ * StringUtils.join(["a", "b", "c"], ';')  = "a;b;c"
+ * StringUtils.join(["a", "b", "c"], null) = "abc"
+ * StringUtils.join([null, "", "a"], ';')  = ";;a"
+ * </pre>
+ *
+ * @param list  the {@code List} of values to join together, may be null
+ * @param separator  the separator character to use
+ * @param startIndex the first index to start joining from.  It is
+ * an error to pass in a start index past the end of the list
+ * @param endIndex the index to stop joining from (exclusive). It is
+ * an error to pass in an end index past the end of the list
+ * @return the joined String, {@code null} if null list input
+ * @since 3.8
+ */
+public static String join(final List<?> list, final String separator, final int startIndex, final int endIndex) {
+    if (list == null) {
+        return null;
+    }
+    final int noOfItems = endIndex - startIndex;
+    if (noOfItems <= 0) {
+        return EMPTY;
+    }
+    final List<?> subList = list.subList(startIndex, endIndex);
+    return join(subList.iterator(), separator);
+}
+*********************************
+
+#### Score: 13.42445
+
+
+/**
+ * <p>Searches a String for substrings delimited by a start and end tag,
+ * returning all matching substrings in an array.</p>
+ *
+ * <p>A {@code null} input String returns {@code null}.
+ * A {@code null} open/close returns {@code null} (no match).
+ * An empty ("") open/close returns {@code null} (no match).</p>
+ *
+ * <pre>
+ * StringUtils.substringsBetween("[a][b][c]", "[", "]") = ["a","b","c"]
+ * StringUtils.substringsBetween(null, *, *)            = null
+ * StringUtils.substringsBetween(*, null, *)            = null
+ * StringUtils.substringsBetween(*, *, null)            = null
+ * StringUtils.substringsBetween("", "[", "]")          = []
+ * </pre>
+ *
+ * @param str  the String containing the substrings, null returns null, empty returns empty
+ * @param open  the String identifying the start of the substring, empty returns null
+ * @param close  the String identifying the end of the substring, empty returns null
+ * @return a String Array of substrings, or {@code null} if no match
+ * @since 2.3
+ */
+public static String[] substringsBetween(final String str, final String open, final String close) {
+    if (str == null || isEmpty(open) || isEmpty(close)) {
+        return null;
+    }
+    final int strLen = str.length();
+    if (strLen == 0) {
+        return ArrayUtils.EMPTY_STRING_ARRAY;
+    }
+    final int closeLen = close.length();
+    final int openLen = open.length();
+    final List<String> list = new ArrayList<>();
+    int pos = 0;
+    while (pos < strLen - closeLen) {
+        int start = str.indexOf(open, pos);
+        if (start < 0) {
+            break;
+        }
+        start += openLen;
+        final int end = str.indexOf(close, start);
+        if (end < 0) {
+            break;
+        }
+        list.add(str.substring(start, end));
+        pos = end + closeLen;
+    }
+    if (list.isEmpty()) {
+        return null;
+    }
+    return list.toArray(new String[list.size()]);
+}
+*********************************
+
+#### Score: 13.32061
+
+
+/**
+ * Performs the logic for the {@code split} and
+ * {@code splitPreserveAllTokens} methods that do not return a
+ * maximum array length.
+ *
+ * @param str  the String to parse, may be {@code null}
+ * @param separatorChar the separate character
+ * @param preserveAllTokens if {@code true}, adjacent separators are
+ * treated as empty token separators; if {@code false}, adjacent
+ * separators are treated as one separator.
+ * @return an array of parsed Strings, {@code null} if null String input
+ */
+private static String[] splitWorker(final String str, final char separatorChar, final boolean preserveAllTokens) {
+    if (str == null) {
+        return null;
+    }
+    final int len = str.length();
+    if (len == 0) {
+        return ArrayUtils.EMPTY_STRING_ARRAY;
+    }
+    final List<String> list = new ArrayList<>();
+    int i = 0, start = 0;
+    boolean match = false;
+    boolean lastMatch = false;
+    while (i < len) {
+        if (str.charAt(i) == separatorChar) {
+            if (match || preserveAllTokens) {
+                list.add(str.substring(start, i));
+                match = false;
+                lastMatch = true;
+            }
+            start = ++i;
+            continue;
+        }
+        lastMatch = false;
+        match = true;
+        i++;
+    }
+    if (match || preserveAllTokens && lastMatch) {
+        list.add(str.substring(start, i));
+    }
+    return list.toArray(new String[list.size()]);
+}
+*********************************
+
+#### Score: 12.39046
+
+
+/**
+ * <p>Splits a String by Character type as returned by
+ * {@code java.lang.Character.getType(char)}. Groups of contiguous
+ * characters of the same type are returned as complete tokens, with the
+ * following exception: if {@code camelCase} is {@code true},
+ * the character of type {@code Character.UPPERCASE_LETTER}, if any,
+ * immediately preceding a token of type {@code Character.LOWERCASE_LETTER}
+ * will belong to the following token rather than to the preceding, if any,
+ * {@code Character.UPPERCASE_LETTER} token.
+ * @param str the String to split, may be {@code null}
+ * @param camelCase whether to use so-called "camel-case" for letter types
+ * @return an array of parsed Strings, {@code null} if null String input
+ * @since 2.4
+ */
+private static String[] splitByCharacterType(final String str, final boolean camelCase) {
+    if (str == null) {
+        return null;
+    }
+    if (str.isEmpty()) {
+        return ArrayUtils.EMPTY_STRING_ARRAY;
+    }
+    final char[] c = str.toCharArray();
+    final List<String> list = new ArrayList<>();
+    int tokenStart = 0;
+    int currentType = Character.getType(c[tokenStart]);
+    for (int pos = tokenStart + 1; pos < c.length; pos++) {
+        final int type = Character.getType(c[pos]);
+        if (type == currentType) {
+            continue;
+        }
+        if (camelCase && type == Character.LOWERCASE_LETTER && currentType == Character.UPPERCASE_LETTER) {
+            final int newTokenStart = pos - 1;
+            if (newTokenStart != tokenStart) {
+                list.add(new String(c, tokenStart, newTokenStart - tokenStart));
+                tokenStart = newTokenStart;
+            }
+        } else {
+            list.add(new String(c, tokenStart, pos - tokenStart));
+            tokenStart = pos;
+        }
+        currentType = type;
+    }
+    list.add(new String(c, tokenStart, c.length - tokenStart));
+    return list.toArray(new String[list.size()]);
+}
+*********************************
+
+#### Score: 10.43932
+
+
+/**
+ * <p>
+ * Replace all occurrences of Strings within another String.
+ * This is a private recursive helper method for {@link #replaceEachRepeatedly(String, String[], String[])} and
+ * {@link #replaceEach(String, String[], String[])}
+ * </p>
+ *
+ * <p>
+ * A {@code null} reference passed to this method is a no-op, or if
+ * any "mos.search string" or "string to replace" is null, that replace will be
+ * ignored.
+ * </p>
+ *
+ * <pre>
+ *  StringUtils.replaceEach(null, *, *, *, *) = null
+ *  StringUtils.replaceEach("", *, *, *, *) = ""
+ *  StringUtils.replaceEach("aba", null, null, *, *) = "aba"
+ *  StringUtils.replaceEach("aba", new String[0], null, *, *) = "aba"
+ *  StringUtils.replaceEach("aba", null, new String[0], *, *) = "aba"
+ *  StringUtils.replaceEach("aba", new String[]{"a"}, null, *, *) = "aba"
+ *  StringUtils.replaceEach("aba", new String[]{"a"}, new String[]{""}, *, >=0) = "b"
+ *  StringUtils.replaceEach("aba", new String[]{null}, new String[]{"a"}, *, >=0) = "aba"
+ *  StringUtils.replaceEach("abcde", new String[]{"ab", "d"}, new String[]{"w", "t"}, *, >=0) = "wcte"
+ *  (example of how it repeats)
+ *  StringUtils.replaceEach("abcde", new String[]{"ab", "d"}, new String[]{"d", "t"}, false, >=0) = "dcte"
+ *  StringUtils.replaceEach("abcde", new String[]{"ab", "d"}, new String[]{"d", "t"}, true, >=2) = "tcte"
+ *  StringUtils.replaceEach("abcde", new String[]{"ab", "d"}, new String[]{"d", "ab"}, *, *) = IllegalStateException
+ * </pre>
+ *
+ * @param text
+ *            text to mos.search and replace in, no-op if null
+ * @param searchList
+ *            the Strings to mos.search for, no-op if null
+ * @param replacementList
+ *            the Strings to replace them with, no-op if null
+ * @param repeat if true, then replace repeatedly
+ *       until there are no more possible replacements or timeToLive < 0
+ * @param timeToLive
+ *            if less than 0 then there is a circular reference and endless
+ *            loop
+ * @return the text with any replacements processed, {@code null} if
+ *         null String input
+ * @throws IllegalStateException
+ *             if the mos.search is repeating and there is an endless loop due
+ *             to outputs of one being inputs to another
+ * @throws IllegalArgumentException
+ *             if the lengths of the arrays are not the same (null is ok,
+ *             and/or size 0)
+ * @since 2.4
+ */
+private static String replaceEach(final String text, final String[] searchList, final String[] replacementList, final boolean repeat, final int timeToLive) {
+    if (isEmpty(text) || ArrayUtils.isEmpty(searchList) || ArrayUtils.isEmpty(replacementList)) {
+        return text;
+    }
+    // if recursing, this shouldn't be less than 0
+    if (timeToLive < 0) {
+        throw new IllegalStateException("Aborting to protect against StackOverflowError - " + "output of one loop is the input of another");
+    }
+    final int searchLength = searchList.length;
+    final int replacementLength = replacementList.length;
+    // make sure lengths are ok, these need to be equal
+    if (searchLength != replacementLength) {
+        throw new IllegalArgumentException("Search and Replace array lengths don't match: " + searchLength + " vs " + replacementLength);
+    }
+    // keep track of which still have matches
+    final boolean[] noMoreMatchesForReplIndex = new boolean[searchLength];
+    // index on index that the match was found
+    int textIndex = -1;
+    int replaceIndex = -1;
+    int tempIndex = -1;
+    // NOTE: logic duplicated below START
+    for (int i = 0; i < searchLength; i++) {
+        if (noMoreMatchesForReplIndex[i] || searchList[i] == null || searchList[i].isEmpty() || replacementList[i] == null) {
+            continue;
+        }
+        tempIndex = text.indexOf(searchList[i]);
+        // see if we need to keep searching for this
+        if (tempIndex == -1) {
+            noMoreMatchesForReplIndex[i] = true;
+        } else {
+            if (textIndex == -1 || tempIndex < textIndex) {
+                textIndex = tempIndex;
+                replaceIndex = i;
+            }
+        }
+    }
+    // no mos.search strings found, we are done
+    if (textIndex == -1) {
+        return text;
+    }
+    int start = 0;
+    // get a good guess on the size of the result buffer so it doesn't have to double if it goes over a bit
+    int increase = 0;
+    // count the replacement text elements that are larger than their corresponding text being replaced
+    for (int i = 0; i < searchList.length; i++) {
+        if (searchList[i] == null || replacementList[i] == null) {
+            continue;
+        }
+        final int greater = replacementList[i].length() - searchList[i].length();
+        if (greater > 0) {
+            // assume 3 matches
+            increase += 3 * greater;
+        }
+    }
+    // have upper-bound at 20% increase, then let Java take over
+    increase = Math.min(increase, text.length() / 5);
+    final StringBuilder buf = new StringBuilder(text.length() + increase);
+    while (textIndex != -1) {
+        for (int i = start; i < textIndex; i++) {
+            buf.append(text.charAt(i));
+        }
+        buf.append(replacementList[replaceIndex]);
+        start = textIndex + searchList[replaceIndex].length();
+        textIndex = -1;
+        replaceIndex = -1;
+        tempIndex = -1;
+        // NOTE: logic mostly duplicated above START
+        for (int i = 0; i < searchLength; i++) {
+            if (noMoreMatchesForReplIndex[i] || searchList[i] == null || searchList[i].isEmpty() || replacementList[i] == null) {
+                continue;
+            }
+            tempIndex = text.indexOf(searchList[i], start);
+            // see if we need to keep searching for this
+            if (tempIndex == -1) {
+                noMoreMatchesForReplIndex[i] = true;
+            } else {
+                if (textIndex == -1 || tempIndex < textIndex) {
+                    textIndex = tempIndex;
+                    replaceIndex = i;
+                }
+            }
+        }
+    // NOTE: logic duplicated above END
+    }
+    final int textLength = text.length();
+    for (int i = start; i < textLength; i++) {
+        buf.append(text.charAt(i));
+    }
+    final String result = buf.toString();
+    if (!repeat) {
+        return result;
+    }
+    return replaceEach(result, searchList, replacementList, repeat, timeToLive - 1);
+}
+*********************************
+
+#### Score: 9.93480
+
+
+/**
+ * Returns the given {@code template} string with each occurrence of {@code "%s"} replaced with
+ * the corresponding argument value from {@code args}; or, if the placeholder and argument counts
+ * do not match, returns a best-effort form of that string. Will not throw an exception under
+ * normal conditions.
+ *
+ * <p><b>Note:</b> For most string-formatting needs, use {@link String#format String.format},
+ * {@link java.io.PrintWriter#format PrintWriter.format}, and related methods. These support the
+ * full range of <a
+ * href="https://docs.oracle.com/javase/9/docs/api/java/util/Formatter.html#syntax">format
+ * specifiers</a>, and alert you to usage errors by throwing {@link
+ * java.util.IllegalFormatException}.
+ *
+ * <p>In certain cases, such as outputting debugging information or constructing a message to be
+ * used for another unchecked exception, an exception during string formatting would serve little
+ * purpose except to supplant the real information you were trying to provide. These are the cases
+ * this method is made for; it instead generates a best-effort string with all supplied argument
+ * values present. This method is also useful in environments such as GWT where {@code
+ * String.format} is not available. As an example, method implementations of the {@link
+ * Preconditions} class use this formatter, for both of the reasons just discussed.
+ *
+ * <p><b>Warning:</b> Only the exact two-character placeholder sequence {@code "%s"} is
+ * recognized.
+ *
+ * @param template a string containing zero or more {@code "%s"} placeholder sequences. {@code
+ *     null} is treated as the four-character string {@code "null"}.
+ * @param args the arguments to be substituted into the message template. The first argument
+ *     specified is substituted for the first occurrence of {@code "%s"} in the template, and so
+ *     forth. A {@code null} argument is converted to the four-character string {@code "null"};
+ *     non-null values are converted to strings using {@link Object#toString()}.
+ * @since 25.1
+ */
+// TODO(diamondm) consider using Arrays.toString() for array parameters
+public static String lenientFormat(@Nullable String template, @Nullable Object@Nullable ... args) {
+    // null -> "null"
+    template = String.valueOf(template);
+    if (args == null) {
+        args = new Object[] { "(Object[])null" };
+    } else {
+        for (int i = 0; i < args.length; i++) {
+            args[i] = lenientToString(args[i]);
+        }
+    }
+    // start substituting the arguments into the '%s' placeholders
+    StringBuilder builder = new StringBuilder(template.length() + 16 * args.length);
+    int templateStart = 0;
+    int i = 0;
+    while (i < args.length) {
+        int placeholderStart = template.indexOf("%s", templateStart);
+        if (placeholderStart == -1) {
+            break;
+        }
+        builder.append(template, templateStart, placeholderStart);
+        builder.append(args[i++]);
+        templateStart = placeholderStart + 2;
+    }
+    builder.append(template, templateStart, template.length());
+    // if we run out of placeholders, append the extra args in square braces
+    if (i < args.length) {
+        builder.append(" [");
+        builder.append(args[i++]);
+        while (i < args.length) {
+            builder.append(", ");
+            builder.append(args[i++]);
+        }
+        builder.append(']');
+    }
+    return builder.toString();
+}
+*********************************
+
+#### Score: 9.60702
+
+
+/**
+ * Returns a string consisting of a specific number of concatenated copies of an input string. For
+ * example, {@code repeat("hey", 3)} returns the string {@code "heyheyhey"}.
+ *
+ * @param string any non-null string
+ * @param count the number of times to repeat it; a nonnegative integer
+ * @return a string containing {@code string} repeated {@code count} times (the empty string if
+ *     {@code count} is zero)
+ * @throws IllegalArgumentException if {@code count} is negative
+ */
+public static String repeat(String string, int count) {
+    // eager for GWT.
+    checkNotNull(string);
+    if (count <= 1) {
+        checkArgument(count >= 0, "invalid count: %s", count);
+        return (count == 0) ? "" : string;
+    }
+    // IF YOU MODIFY THE CODE HERE, you must update StringsRepeatBenchmark
+    final int len = string.length();
+    final long longSize = (long) len * (long) count;
+    final int size = (int) longSize;
+    if (size != longSize) {
+        throw new ArrayIndexOutOfBoundsException("Required array size too large: " + longSize);
+    }
+    final char[] array = new char[size];
+    string.getChars(0, len, array, 0);
+    int n;
+    for (n = len; n < size - n; n <<= 1) {
+        System.arraycopy(array, 0, array, n, n);
+    }
+    System.arraycopy(array, 0, array, n, size - n);
+    return new String(array);
+}
+*********************************
+
+#### Score: 9.56657
+
+
+/**
+ * <p>Compares given <code>string</code> to a CharSequences vararg of <code>searchStrings</code>,
+ * returning {@code true} if the <code>string</code> is equal to any of the <code>searchStrings</code>.</p>
+ *
+ * <pre>
+ * StringUtils.equalsAny(null, (CharSequence[]) null) = false
+ * StringUtils.equalsAny(null, null, null)    = true
+ * StringUtils.equalsAny(null, "abc", "def")  = false
+ * StringUtils.equalsAny("abc", null, "def")  = false
+ * StringUtils.equalsAny("abc", "abc", "def") = true
+ * StringUtils.equalsAny("abc", "ABC", "DEF") = false
+ * </pre>
+ *
+ * @param string to compare, may be {@code null}.
+ * @param searchStrings a vararg of strings, may be {@code null}.
+ * @return {@code true} if the string is equal (case-sensitive) to any other element of <code>searchStrings</code>;
+ * {@code false} if <code>searchStrings</code> is null or contains no matches.
+ * @since 3.5
+ */
+public static boolean equalsAny(final CharSequence string, final CharSequence... searchStrings) {
+    if (ArrayUtils.isNotEmpty(searchStrings)) {
+        for (final CharSequence next : searchStrings) {
+            if (equals(string, next)) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+/**
+ * <p>Compares given <code>string</code> to a CharSequences vararg of <code>searchStrings</code>,
+ * returning {@code true} if the <code>string</code> is equal to any of the <code>searchStrings</code>, ignoring case.</p>
+ *
+ * <pre>
+ * StringUtils.equalsAnyIgnoreCase(null, (CharSequence[]) null) = false
+ * StringUtils.equalsAnyIgnoreCase(null, null, null)    = true
+ * StringUtils.equalsAnyIgnoreCase(null, "abc", "def")  = false
+ * StringUtils.equalsAnyIgnoreCase("abc", null, "def")  = false
+ * StringUtils.equalsAnyIgnoreCase("abc", "abc", "def") = true
+ * StringUtils.equalsAnyIgnoreCase("abc", "ABC", "DEF") = true
+ * </pre>
+ *
+ * @param string to compare, may be {@code null}.
+ * @param searchStrings a vararg of strings, may be {@code null}.
+ * @return {@code true} if the string is equal (case-insensitive) to any other element of <code>searchStrings</code>;
+ * {@code false} if <code>searchStrings</code> is null or contains no matches.
+ * @since 3.5
+ */
+public static boolean equalsAnyIgnoreCase(final CharSequence string, final CharSequence... searchStrings) {
+    if (ArrayUtils.isNotEmpty(searchStrings)) {
+        for (final CharSequence next : searchStrings) {
+            if (equalsIgnoreCase(string, next)) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+*********************************
+
+#### Score: 9.47893
+
+
+/**
+ * Appends the suffix to the end of the string if the string does not
+ * already end with the suffix.
+ *
+ * @param str The string.
+ * @param suffix The suffix to append to the end of the string.
+ * @param ignoreCase Indicates whether the compare should ignore case.
+ * @param suffixes Additional suffixes that are valid terminators (optional).
+ *
+ * @return A new String if suffix was appended, the same string otherwise.
+ */
+private static String appendIfMissing(final String str, final CharSequence suffix, final boolean ignoreCase, final CharSequence... suffixes) {
+    if (str == null || isEmpty(suffix) || endsWith(str, suffix, ignoreCase)) {
+        return str;
+    }
+    if (ArrayUtils.isNotEmpty(suffixes)) {
+        for (final CharSequence s : suffixes) {
+            if (endsWith(str, s, ignoreCase)) {
+                return str;
+            }
+        }
+    }
+    return str + suffix.toString();
+}
+*********************************
+
+#### Score: 9.47578
+
+
+/**
+ * Prepends the prefix to the start of the string if the string does not
+ * already start with any of the prefixes.
+ *
+ * @param str The string.
+ * @param prefix The prefix to prepend to the start of the string.
+ * @param ignoreCase Indicates whether the compare should ignore case.
+ * @param prefixes Additional prefixes that are valid (optional).
+ *
+ * @return A new String if prefix was prepended, the same string otherwise.
+ */
+private static String prependIfMissing(final String str, final CharSequence prefix, final boolean ignoreCase, final CharSequence... prefixes) {
+    if (str == null || isEmpty(prefix) || startsWith(str, prefix, ignoreCase)) {
+        return str;
+    }
+    if (ArrayUtils.isNotEmpty(prefixes)) {
+        for (final CharSequence p : prefixes) {
+            if (startsWith(str, p, ignoreCase)) {
+                return str;
+            }
+        }
+    }
+    return prefix.toString() + str;
+}

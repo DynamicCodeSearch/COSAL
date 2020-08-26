@@ -1,0 +1,34 @@
+static void solve() {
+    int n = ni(), m = ni();
+    int q = ni();
+    int[] a = na(q);
+    int[][] b = new int[n][m];
+    int p = 0;
+    int r = 0, c = 0;
+    while (p < q) {
+        while (p < q && a[p] == 0) p++;
+        if (p == q)
+            break;
+        a[p]--;
+        b[r][c] = p + 1;
+        if (r % 2 == 0) {
+            if (c == m - 1) {
+                r++;
+            } else {
+                c++;
+            }
+        } else {
+            if (c == 0) {
+                r++;
+            } else {
+                c--;
+            }
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            out.print(b[i][j] + " ");
+        }
+        out.println();
+    }
+}

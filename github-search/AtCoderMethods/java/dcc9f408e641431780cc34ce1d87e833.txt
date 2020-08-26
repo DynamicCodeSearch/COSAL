@@ -1,0 +1,31 @@
+public static void main(String[] args) {
+    int N = Integer.parseInt(scan.next());
+    neighbor = new ArrayList<List<Integer>>(N);
+    for (int i = 0; i < N; i++) {
+        neighbor.add(new ArrayList<Integer>());
+    }
+    for (int i = 0; i < N - 1; i++) {
+        int a = Integer.parseInt(scan.next()) - 1;
+        int b = Integer.parseInt(scan.next()) - 1;
+        neighbor.get(a).add(b);
+        neighbor.get(b).add(a);
+    }
+    checked = new boolean[N];
+    checked[0] = true;
+    int[] dist1 = new int[N];
+    dfs(0, dist1);
+    checked = new boolean[N];
+    checked[N - 1] = true;
+    int[] distN = new int[N];
+    dfs(N - 1, distN);
+    int black = 0;
+    int white = 0;
+    for (int i = 0; i < N; i++) {
+        if (dist1[i] <= distN[i])
+            black++;
+        else
+            white++;
+    }
+    System.out.println(black > white ? "Fennec" : "Snuke");
+    scan.close();
+}

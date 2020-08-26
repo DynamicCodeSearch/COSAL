@@ -1,0 +1,19 @@
+public void solve(int testNumber, MyReader in, PrintWriter out) {
+    int M = 100005;
+    int[] cnt = new int[100005];
+    int N = in.nextInt();
+    for (int i = 0; i < N; i++) {
+        int a = in.nextInt();
+        cnt[a]++;
+    }
+    int ma = 0;
+    for (int i = 0; i < M; i++) {
+        int tot = cnt[i];
+        if (i > 0)
+            tot += cnt[i - 1];
+        if (i + 1 < M)
+            tot += cnt[i + 1];
+        ma = Math.max(ma, tot);
+    }
+    out.println(ma);
+}

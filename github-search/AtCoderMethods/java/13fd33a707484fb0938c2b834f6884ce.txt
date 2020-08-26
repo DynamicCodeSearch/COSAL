@@ -1,0 +1,27 @@
+public void solve() {
+    Road[] roads = new Road[M];
+    Info[] info = new Info[Q];
+    for (int i = 0; i < M; i++) {
+        roads[i] = new Road(ai[i], bi[i], yi[i]);
+    }
+    for (int i = 0; i < Q; i++) {
+        info[i] = new Info(i, vi[i], wi[i]);
+    }
+    Arrays.sort(roads);
+    Arrays.sort(info);
+    UnionFind uf = new UnionFind(N);
+    int roadCount = 0;
+    int[] answer = new int[Q];
+    for (int i = 0; i < Q; i++) {
+        int startCity = info[i].city;
+        int year = info[i].year;
+        while (roadCount < M && roads[roadCount].year > year) {
+            uf.union(roads[roadCount].from, roads[roadCount].to);
+            roadCount++;
+        }
+        answer[info[i].id] = uf.groupSize(startCity);
+    }
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < Q; i++) sb.append(answer[i] + "\n");
+    System.out.print(sb.toString());
+}

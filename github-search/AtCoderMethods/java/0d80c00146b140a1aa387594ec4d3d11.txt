@@ -1,0 +1,27 @@
+void solve() throws NumberFormatException, IOException {
+    int n = in.nextInt();
+    int[] alp = new int[26];
+    for (int i = 0; i < n; i++) {
+        int[] tmp = new int[26];
+        char[] s = in.nextToken().toCharArray();
+        for (int j = 0; j < s.length; j++) {
+            tmp[s[j] - 'a']++;
+        }
+        if (i == 0) {
+            for (int j = 0; j < 26; j++) {
+                alp[j] = tmp[j];
+            }
+        } else {
+            for (int j = 0; j < 26; j++) {
+                alp[j] = Math.min(alp[j], tmp[j]);
+            }
+        }
+    }
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < 26; i++) {
+        for (int j = 0; j < alp[i]; j++) {
+            sb.appendCodePoint('a' + i);
+        }
+    }
+    out.println(sb.toString());
+}

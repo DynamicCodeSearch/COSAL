@@ -1,0 +1,22 @@
+private void run() {
+    int n = sc.nextInt();
+    int[][] mins = new int[n][26];
+    for (int i = 0; i < n; i++) {
+        String s = sc.next();
+        for (int j = 0; j < s.length(); j++) {
+            char c = s.charAt(j);
+            mins[i][c - 'a']++;
+        }
+    }
+    String ans = "";
+    for (int i = 0; i < 26; i++) {
+        int min = 999999;
+        for (int j = 0; j < n; j++) {
+            min = Math.min(min, mins[j][i]);
+        }
+        for (int j = 0; j < min; j++) {
+            ans += (char) ('a' + i);
+        }
+    }
+    System.out.println(ans);
+}

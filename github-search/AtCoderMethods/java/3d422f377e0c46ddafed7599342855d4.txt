@@ -1,0 +1,46 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    int[] x = new int[n];
+    for (int i = 0; i < n; i++) {
+        x[i] = sc.nextInt();
+    }
+    int[] y = new int[m];
+    for (int i = 0; i < m; i++) {
+        y[i] = sc.nextInt();
+    }
+    long yoko = 0;
+    for (int i = 0; i < n; i++) {
+        yoko += (long) i * x[i];
+        if (yoko >= 0) {
+            yoko %= 1000000007;
+        } else {
+            yoko = -(-yoko % 1000000007);
+        }
+        yoko -= (long) (n - i - 1) * x[i];
+        if (yoko >= 0) {
+            yoko %= 1000000007;
+        } else {
+            yoko = -(-yoko % 1000000007);
+        }
+    }
+    long tate = 0;
+    for (int i = 0; i < m; i++) {
+        tate += (long) i * y[i];
+        if (tate >= 0) {
+            tate %= 1000000007;
+        } else {
+            tate = -(-tate % 1000000007);
+        }
+        tate -= (long) (m - i - 1) * y[i];
+        if (tate >= 0) {
+            tate %= 1000000007;
+        } else {
+            tate = -(-tate % 1000000007);
+        }
+    }
+    long ans = yoko * tate;
+    ans %= 1000000007;
+    System.out.print(ans);
+}

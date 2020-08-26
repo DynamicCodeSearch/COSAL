@@ -1,0 +1,9 @@
+def pow(a,n): 
+    ret = 1
+    mag = a
+    while n > 0:
+        if n & 1:
+            ret = mul(ret, mag)
+        mag = mul(mag, mag)
+        n >>= 1
+    return ret

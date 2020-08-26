@@ -1,0 +1,5 @@
+def dfs(i, used, g, ng):
+    for n in g[i]:
+        if n not in used and (i, n) != ng and (n, i) != ng:
+            used.add(n)
+            dfs(n, used, g, ng)

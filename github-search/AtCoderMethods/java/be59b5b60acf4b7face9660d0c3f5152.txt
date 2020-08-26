@@ -1,0 +1,12 @@
+private Pair query(int a, int b, int k, int l, int r) {
+    
+    if (r < a || b < l)
+        return new Pair(-1, Integer.MAX_VALUE);
+    if (a <= l && r <= b)
+        return new Pair(idx[k], dat[k]);
+    else {
+        Pair vl = query(a, b, k * 2 + 1, l, (l + r) / 2);
+        Pair vr = query(a, b, k * 2 + 2, (l + r) / 2 + 1, r);
+        return vl.val < vr.val ? vl : vr;
+    }
+}

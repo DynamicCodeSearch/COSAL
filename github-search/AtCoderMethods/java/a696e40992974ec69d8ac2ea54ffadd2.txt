@@ -1,0 +1,31 @@
+public static void main(String[] args) {
+    int MAX = 1000000007;
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    String S_1 = sc.next();
+    String S_2 = sc.next();
+    sc.close();
+    long result = 1;
+    int i = 0;
+    while (i < N) {
+        if (S_1.charAt(i) == S_2.charAt(i)) {
+            if (i == 0) {
+                result *= 3;
+            } else if (S_1.charAt(i - 1) == S_2.charAt(i - 1)) {
+                result *= 2;
+            }
+            i++;
+        } else {
+            if (i == 0) {
+                result *= 6;
+            } else if (S_1.charAt(i - 1) == S_2.charAt(i - 1)) {
+                result *= 2;
+            } else {
+                result *= 3;
+            }
+            i += 2;
+        }
+        result %= MAX;
+    }
+    System.out.println(result);
+}

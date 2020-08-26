@@ -1,0 +1,14 @@
+public static long func2(long h, long w) {
+    long min_dif = h * w;
+    if (w % 2 == 0) {
+        for (long i = 1; i < h; ++i) {
+            min_dif = Math.min(Math.abs(w * i - w / 2 * (h - i)), min_dif);
+        }
+    } else {
+        for (long i = 1; i < h; ++i) {
+            long max_dif = Math.max(Math.abs((w + 1) / 2 * (h - i) - w / 2 * (h - i)), Math.max(Math.abs(w * i - w / 2 * (h - i)), Math.abs(w * i - (w + 1) / 2 * (h - i))));
+            min_dif = Math.min(max_dif, min_dif);
+        }
+    }
+    return min_dif;
+}

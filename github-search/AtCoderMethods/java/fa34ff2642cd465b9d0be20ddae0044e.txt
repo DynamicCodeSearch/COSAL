@@ -1,0 +1,31 @@
+public static void main(String[] args) {
+    
+    Scanner scan = new Scanner(System.in);
+    int A = scan.nextInt();
+    int B = scan.nextInt();
+    int num = 0;
+    for (; ; ) {
+        if (A == B) {
+            break;
+        }
+        if (A > B) {
+            if (A - B > 7) {
+                A -= 10;
+            } else if (A - B > 3) {
+                A -= 5;
+            } else {
+                A -= 1;
+            }
+        } else {
+            if (B - A > 7) {
+                A += 10;
+            } else if (B - A > 3) {
+                A += 5;
+            } else {
+                A += 1;
+            }
+        }
+        num++;
+    }
+    System.out.println(num);
+}

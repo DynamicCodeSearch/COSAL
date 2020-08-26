@@ -1,0 +1,17 @@
+Range dfs(Range r, int v, int par) {
+    Range res = new Range();
+    res.and(p[v]);
+    res.and(r);
+    Range next = res.copy();
+    next.inc();
+    for (int nv : node[v]) {
+        if (nv == par)
+            continue;
+        Range ret = dfs(next, nv, v);
+        res.and(ret);
+    }
+    range[v] = res;
+    valid &= res.valid();
+    res.inc();
+    return res;
+}

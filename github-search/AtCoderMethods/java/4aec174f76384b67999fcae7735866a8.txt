@@ -1,0 +1,14 @@
+static long PowerMod(long a, long n, long m) {
+    a = a % m;
+    if (a < 0)
+        a = a + m;
+    long pw = 1;
+    while (n >= 1) {
+        if ((n % 2) == 1) {
+            pw = MulMod(a, pw, m);
+        }
+        a = MulMod(a, a, m);
+        n = n / 2;
+    }
+    return pw;
+}

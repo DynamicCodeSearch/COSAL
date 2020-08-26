@@ -1,0 +1,11 @@
+boolean isOk(int c, int[] D) {
+    while (c > 0) {
+        int next = c % 10;
+        c /= 10;
+        boolean contains = false;
+        for (int x : D) contains |= (x == next);
+        if (contains)
+            return false;
+    }
+    return true;
+}

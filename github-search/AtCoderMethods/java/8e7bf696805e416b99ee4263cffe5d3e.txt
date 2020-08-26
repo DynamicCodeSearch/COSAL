@@ -1,0 +1,26 @@
+private void solve(Scanner sc, PrintWriter out) {
+    N = sc.nextInt();
+    K = sc.nextInt();
+    D = new String[K];
+    for (int i = 0; i < K; ++i) {
+        D[i] = sc.next();
+    }
+    boolean found = true;
+    int n = N;
+    while (found) {
+        found = false;
+        StringBuilder sb = new StringBuilder();
+        sb.append(n);
+        for (int i = 0; i < K; ++i) {
+            if (sb.indexOf(D[i]) >= 0) {
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            break;
+        }
+        ++n;
+    }
+    out.println(n);
+}

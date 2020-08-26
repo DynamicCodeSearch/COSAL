@@ -1,0 +1,21 @@
+def nuripattern(pos,pre,ago):
+    if dp[pos][pre] >= 0:
+        return dp[pos][pre]
+    if pre == 1:
+        res = 1
+        for nex in br[pos]:
+            if nex == ago: continue;
+            res *= nuripattern(nex,0,pos)
+        dp[pos][1] = res%MOD
+        return res%MOD
+
+    else:
+        res = 1
+        for nex in br[pos]:
+            tres = 0
+            if nex == ago: continue;
+            tres += nuripattern(nex,0,pos)
+            tres += nuripattern(nex,1,pos)
+            res *= tres
+        dp[pos][0] = res%MOD
+        return res%MOD

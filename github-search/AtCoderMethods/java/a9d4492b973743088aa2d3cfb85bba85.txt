@@ -1,0 +1,8 @@
+void maxUpdate(int k, int a) {
+    k += N - 1;
+    maxDat[k] = a;
+    while (k > 0) {
+        k = (k - 1) / 2;
+        maxDat[k] = Math.max(maxDat[k * 2 + 1], maxDat[k * 2 + 2]);
+    }
+}

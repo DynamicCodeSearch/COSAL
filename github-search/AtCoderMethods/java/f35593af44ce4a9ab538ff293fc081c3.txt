@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int i, k, a, b, ans = 20;
+    int[] number = new int[20];
+    for (i = 0; i < 20; i++) {
+        number[i] = i % 10;
+    }
+    a = sc.nextInt();
+    b = sc.nextInt();
+    for (i = 0; i < 20; i++) {
+        if (number[i] == a) {
+            for (k = 0; k < 20; k++) {
+                if (number[k] == b && Math.abs(i - k) < ans) {
+                    ans = Math.abs(i - k);
+                }
+            }
+        }
+    }
+    System.out.println(ans);
+}

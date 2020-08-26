@@ -1,0 +1,16 @@
+private boolean dfs(int v, boolean[][] g, boolean[] was, int[] pair) {
+    if (was[v]) {
+        return false;
+    }
+    was[v] = true;
+    for (int u = 0; u < g[v].length; u++) {
+        if (!g[v][u]) {
+            continue;
+        }
+        if (pair[u] < 0 || dfs(pair[u], g, was, pair)) {
+            pair[u] = v;
+            return true;
+        }
+    }
+    return false;
+}

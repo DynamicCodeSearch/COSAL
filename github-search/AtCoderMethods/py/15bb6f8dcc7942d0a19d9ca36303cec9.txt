@@ -1,0 +1,6 @@
+def find(self, p):
+    assert p >= 0 & p < len(self._parent)
+    while p != self._parent[p]:
+        self._parent[p] = self._parent[self._parent[p]]    
+        p = self._parent[p]
+    return p

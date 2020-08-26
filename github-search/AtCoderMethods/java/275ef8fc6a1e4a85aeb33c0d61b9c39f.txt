@@ -1,0 +1,6 @@
+private static char[][] rotate(char[][] a, int n) {
+    char[][] b = new char[n][n];
+    for (int i = 0; i < n; i++) b[i] = (char[]) a[i].clone();
+    for (int i = 0; i < n; i++) for (int j = 0; j < n; j++) a[j][n - i - 1] = b[i][j];
+    return a;
+}

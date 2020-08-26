@@ -1,0 +1,217 @@
+### Py Tokens: field, formatfield, formatspec, format, formatter, spec, value 
+
+### Py functions
+
+def format_field(self, value, format_spec):
+  return format(value, format_spec)
+*********************************
+
+#### Score: 5.75196
+
+
+#### Java Tokens: template, string, nullable, valueof, placeholders, run, lenient, braces, strings, extra, builder, lenientformat, placeholder, value, (object[])null, placeholderstart, format, length, start, index, substituting, args, square, lenienttostring, templatestart, arguments, stringbuilder, indexof, tostring, append, object 
+
+
+
+public static String lenientFormat(@Nullable String template, @Nullable Object@Nullable ... args) {
+    
+    template = String.valueOf(template);
+    if (args == null) {
+        args = new Object[] { "(Object[])null" };
+    } else {
+        for (int i = 0; i < args.length; i++) {
+            args[i] = lenientToString(args[i]);
+        }
+    }
+    
+    StringBuilder builder = new StringBuilder(template.length() + 16 * args.length);
+    int templateStart = 0;
+    int i = 0;
+    while (i < args.length) {
+        int placeholderStart = template.indexOf("%s", templateStart);
+        if (placeholderStart == -1) {
+            break;
+        }
+        builder.append(template, templateStart, placeholderStart);
+        builder.append(args[i++]);
+        templateStart = placeholderStart + 2;
+    }
+    builder.append(template, templateStart, template.length());
+    
+    if (i < args.length) {
+        builder.append(" [");
+        builder.append(args[i++]);
+        while (i < args.length) {
+            builder.append(", ");
+            builder.append(args[i++]);
+        }
+        builder.append(']');
+    }
+    return builder.toString();
+}
+*********************************
+
+#### Score: 4.98034
+
+
+#### Java Tokens: exception, com, code, string, nullable, log, valueof, logger, another, integer, tohexstring, lenient, proguard, default, see, common, strings, identity, get, warning, create, hex, lenientformat, behavior, value, class, threw, getclass, identityhashcode, created, format, google, getlogger, getname, forcing, system, lenienttostring, inline, name, com.google.common.base.strings, fixed, avoid, objecttostring, tostring, hash, object, base 
+
+private static String lenientToString(@Nullable Object o) {
+    try {
+        return String.valueOf(o);
+    } catch (Exception e) {
+        
+        String objectToString = o.getClass().getName() + '@' + Integer.toHexString(System.identityHashCode(o));
+        
+        Logger.getLogger("com.google.common.base.Strings").log(WARNING, "Exception during lenientFormat for " + objectToString, e);
+        return "<" + objectToString + " threw " + e.getClass().getName() + ">";
+    }
+}
+*********************************
+
+#### Score: 4.12881
+
+
+#### Java Tokens: exception, leading, sign, integer, isempty, empty, numberformatexception, parseint, 12-3, number, character, either, u0967u0968u0969, utils, isdigit, generate, digit, still, pre, method, test, format, check, sequence, 12.3, contains, 123, checks, +123, outside, unicode, returns, parsed, decimal, since, changed, allow, note, code, string, signature, numeric, range, respectively, non, charsequence, point, long, negative, passes, param, value, charat, isnumeric, may, parselong, length, also, positive, parse, int, stringutils, -123, non-null, char, digits, ab2c 
+
+
+public static boolean isNumeric(final CharSequence cs) {
+    if (isEmpty(cs)) {
+        return false;
+    }
+    final int sz = cs.length();
+    for (int i = 0; i < sz; i++) {
+        if (!Character.isDigit(cs.charAt(i))) {
+            return false;
+        }
+    }
+    return true;
+}
+*********************************
+
+#### Score: 3.13928
+
+
+#### Java Tokens: 4.000, eager, gwt, padchar, reach, zero, pad, character, copies, java, always, check, resulting, formatter, input, null, util, padded, reached, returns, must, formatting, minlength, code, string, beginning, checknotnull, least, link, 2010, padend, example, result, see, negative, min, strings, appended, param, builder, end, set, capabilities, necessary, length, many, consisting, appear, richer, char, stringbuilder, returned, tostring, minimum, append 
+
+
+public static String padEnd(String string, int minLength, char padChar) {
+    
+    checkNotNull(string);
+    if (string.length() >= minLength) {
+        return string;
+    }
+    StringBuilder sb = new StringBuilder(minLength);
+    sb.append(string);
+    for (int i = string.length(); i < minLength; i++) {
+        sb.append(padChar);
+    }
+    return sb.toString();
+}
+*********************************
+
+#### Score: 3.08714
+
+
+#### Java Tokens: eager, gwt, padchar, reach, zero, pad, character, copies, java, always, check, resulting, formatter, input, null, util, padded, 007, reached, returns, must, formatting, padstart, prepended, minlength, code, string, beginning, checknotnull, least, link, insert, 2010, example, result, see, negative, min, strings, param, builder, end, set, capabilities, necessary, start, length, many, consisting, appear, richer, char, stringbuilder, returned, tostring, minimum, append 
+
+
+public static String padStart(String string, int minLength, char padChar) {
+    
+    checkNotNull(string);
+    if (string.length() >= minLength) {
+        return string;
+    }
+    StringBuilder sb = new StringBuilder(minLength);
+    for (int i = string.length(); i < minLength; i++) {
+        sb.append(padChar);
+    }
+    sb.append(string);
+    return sb.toString();
+}
+*********************************
+
+#### Score: 2.71876
+
+
+#### Java Tokens: code, string, valueof, representation, stringutils, character, see, array, param, utils, returns, value, since 
+
+
+public static String valueOf(final char[] value) {
+    return value == null ? null : String.valueOf(value);
+}
+*********************************
+
+#### Score: 2.51723
+
+
+#### Java Tokens: exception, small, argument, ghijklmno, ...is, abbrevmarkerlength, !ghijklmno, used, source, isempty, good, somewhere, ---, empty, minabbrevwidthoffset, edge, character, abcdefghij, utils, abcdefg---, greater, defined, given, isnotempty, using, pre, offset, like, going, format, specify, abbrevmarker, check, illegal, str, input, left, marker, following, ...ghij..., must, abbrev, replacement, 'ghijklmno, abra, since, note, maxwidth, illegalargumentexception, works, code, string, efghij, ::efghij::, least, turn, abbreviates, substring, necessarily, result, min, param, abcdefghi,, men, for..., allows, abbreviate, may, max, length, abcdefghi, abcdefghijklmno, abbreviation, ..., stringutils, appear, leftmost, ghij, equals, *ghijklmno, width, maximum, time, minabbrevwidth, minimum, abcdefg, abbreviated, first 
+
+
+public static String abbreviate(final String str, final String abbrevMarker, int offset, final int maxWidth) {
+    if (isEmpty(str) && isEmpty(abbrevMarker)) {
+        return str;
+    } else if (isNotEmpty(str) && EMPTY.equals(abbrevMarker) && maxWidth > 0) {
+        return str.substring(0, maxWidth);
+    } else if (isEmpty(str) || isEmpty(abbrevMarker)) {
+        return str;
+    }
+    final int abbrevMarkerLength = abbrevMarker.length();
+    final int minAbbrevWidth = abbrevMarkerLength + 1;
+    final int minAbbrevWidthOffset = abbrevMarkerLength + abbrevMarkerLength + 1;
+    if (maxWidth < minAbbrevWidth) {
+        throw new IllegalArgumentException(String.format("Minimum abbreviation width is %d", minAbbrevWidth));
+    }
+    if (str.length() <= maxWidth) {
+        return str;
+    }
+    if (offset > str.length()) {
+        offset = str.length();
+    }
+    if (str.length() - offset < maxWidth - abbrevMarkerLength) {
+        offset = str.length() - (maxWidth - abbrevMarkerLength);
+    }
+    if (offset <= abbrevMarkerLength + 1) {
+        return str.substring(0, maxWidth - abbrevMarkerLength) + abbrevMarker;
+    }
+    if (maxWidth < minAbbrevWidthOffset) {
+        throw new IllegalArgumentException(String.format("Minimum abbreviation width with offset is %d", minAbbrevWidthOffset));
+    }
+    if (offset + maxWidth - abbrevMarkerLength < str.length()) {
+        return abbrevMarker + abbreviate(str.substring(offset), abbrevMarker, maxWidth - abbrevMarkerLength);
+    }
+    return abbrevMarker + str.substring(str.length() - (maxWidth - abbrevMarkerLength));
+}
+*********************************
+
+#### Score: 2.45700
+
+
+#### Java Tokens: pre, code, string, may, valueof, objectutils, check, empty, str, stringutils, either, see, bat, param, utils, defaultstring, returns, passed, tostring, value, object 
+
+
+public static String defaultString(final String str) {
+    return defaultString(str, EMPTY);
+}
+*********************************
+
+#### Score: 2.40018
+
+
+#### Java Tokens: pre, defaultstr, code, string, may, valueof, objectutils, check, str, stringutils, input, either, see, null, bat, param, utils, defaultstring, returns, passed, value, tostring, object 
+
+
+public static String defaultString(final String str, final String defaultStr) {
+    return str == null ? defaultStr : str;
+}
+*********************************
+
+#### Score: 2.29508
+
+
+#### Java Tokens: code, string, isempty, charsequence, empty, either, see, bat, defaultifempty, param, utils, passed, value, pre, defaultstr, may, kind, check, specific, str, stringutils, sequence, input, null, defaultstring, char, returns 
+
+
+public static <T extends CharSequence> T defaultIfEmpty(final T str, final T defaultStr) {
+    return isEmpty(str) ? defaultStr : str;
+}

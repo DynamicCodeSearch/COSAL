@@ -1,0 +1,52 @@
+
+public static int dfs(int n, char[][] board) {
+    if (n == 10) {
+        int sente = 0;
+        int koute = 0;
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (board[i][j] == board[i + 1][j]) {
+                    sente += b[i][j];
+                } else {
+                    koute += b[i][j];
+                }
+            }
+        }
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 2; j++) {
+                if (board[i][j] == board[i][j + 1]) {
+                    sente += c[i][j];
+                } else {
+                    koute += c[i][j];
+                }
+            }
+        }
+        return sente - koute;
+    } else {
+        if (n % 2 == 0) {
+            int score = Integer.MAX_VALUE;
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
+                    if (board[i][j] == '.') {
+                        board[i][j] = 'x';
+                        score = Math.min(score, dfs(n + 1, board));
+                        board[i][j] = '.';
+                    }
+                }
+            }
+            return score;
+        } else {
+            int score = -10000;
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
+                    if (board[i][j] == '.') {
+                        board[i][j] = 'o';
+                        score = Math.max(score, dfs(n + 1, board));
+                        board[i][j] = '.';
+                    }
+                }
+            }
+            return score;
+        }
+    }
+}

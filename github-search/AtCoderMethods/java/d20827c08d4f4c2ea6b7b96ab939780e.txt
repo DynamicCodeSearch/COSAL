@@ -1,0 +1,22 @@
+public static void main(String[] __) {
+    int w = s.nextInt(), h = s.nextInt(), n = s.nextInt();
+    int[] in = { 0, w, 0, h };
+    for (int i = 0; i < n; i++) {
+        int x = s.nextInt(), y = s.nextInt(), a = s.nextInt();
+        switch(a) {
+            case 1:
+                in[0] = Math.max(in[0], x);
+                break;
+            case 2:
+                in[1] = Math.min(in[1], x);
+                break;
+            case 3:
+                in[2] = Math.max(in[2], y);
+                break;
+            case 4:
+                in[3] = Math.min(in[3], y);
+                break;
+        }
+    }
+    System.out.println(Math.max(in[1] - in[0], 0) * Math.max(in[3] - in[2], 0));
+}

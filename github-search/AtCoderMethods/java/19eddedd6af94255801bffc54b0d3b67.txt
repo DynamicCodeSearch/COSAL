@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String in1 = sc.nextLine();
+    String[] joken = in1.split(" ");
+    int N = Integer.parseInt(joken[0]);
+    int Q = Integer.parseInt(joken[1]);
+    String[] suretsu = new String[N];
+    for (int i = 0; i < suretsu.length; i++) {
+        suretsu[i] = "0";
+    }
+    for (int i = 0; i < Q; i++) {
+        if (sc.hasNext()) {
+            String in2 = sc.nextLine();
+            String[] joken2 = in2.split(" ");
+            int start = Integer.parseInt(joken2[0]);
+            int end = Integer.parseInt(joken2[1]);
+            for (int j = start - 1; j < end; j++) {
+                suretsu[j] = joken2[2];
+            }
+        }
+    }
+    for (int k = 0; k < suretsu.length; k++) {
+        System.out.println(suretsu[k]);
+    }
+}

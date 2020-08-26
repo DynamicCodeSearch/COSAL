@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    int N;
+    N = sc.nextInt();
+    node[] Node = new node[N];
+    for (int i = 0; i < N; i++) {
+        Node[i] = new node();
+    }
+    for (int i = 0; i < (N - 1); i++) {
+        int A, B;
+        A = sc.nextInt() - 1;
+        B = sc.nextInt() - 1;
+        link L1 = new link(B);
+        link L2 = new link(A);
+        Node[A].Link.add(L1);
+        Node[B].Link.add(L2);
+    }
+    int start_node = -1;
+    for (int i = 0; i < N; i++) {
+        if (Node[i].Link.size() == 1) {
+            start_node = i;
+            break;
+        }
+    }
+    int ans;
+    solve(start_node, Node, M);
+    ans = (int) ((Node[start_node].BL_cnt + Node[start_node].WH_cnt) % M);
+    System.out.println(ans);
+}

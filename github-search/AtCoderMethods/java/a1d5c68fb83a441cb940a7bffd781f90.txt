@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int m = sc.nextInt();
+    int n = sc.nextInt();
+    int N = sc.nextInt();
+    int count = N, now = N;
+    int notcount = 0;
+    while (now >= m) {
+        notcount += now % m;
+        now = (int) now / m * n;
+        count += now;
+        if (now < m) {
+            now = now + notcount;
+            notcount = 0;
+        }
+    }
+    System.out.println(count);
+}

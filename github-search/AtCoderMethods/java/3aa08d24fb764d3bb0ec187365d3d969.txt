@@ -1,0 +1,20 @@
+public static void solve(Scanner s) {
+    int n = s.nextInt();
+    int[][] na = new int[n][];
+    for (int i = 0; i < n; i++) {
+        na[i] = new int[2];
+        na[i][0] = i + 1;
+        na[i][1] = s.nextInt();
+    }
+    Arrays.sort(na, new Comparator<int[]>() {
+
+        public int compare(int[] a, int[] b) {
+            return b[1] - a[1];
+        }
+    });
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < n; i++) {
+        sb.append(na[i][0] + "\n");
+    }
+    System.out.println(sb.toString());
+}

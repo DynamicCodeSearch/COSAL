@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[] r = new int[n];
+    for (int i = 0; i < n; i++) {
+        r[i] = sc.nextInt();
+    }
+    Arrays.sort(r);
+    int count = 0;
+    if (n % 2 == 0) {
+        for (int i = 1; i <= n; i++) {
+            if (i % 2 == 1) {
+                count -= (r[i - 1] * r[i - 1]);
+            } else {
+                count += (r[i - 1] * r[i - 1]);
+            }
+        }
+    } else {
+        for (int i = 1; i <= n; i++) {
+            if (i % 2 == 1) {
+                count += (r[i - 1] * r[i - 1]);
+            } else {
+                count -= (r[i - 1] * r[i - 1]);
+            }
+        }
+    }
+    double ans = count * Math.PI;
+    System.out.println(ans);
+}

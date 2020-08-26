@@ -1,0 +1,8 @@
+def is_valid(seq, xy):
+    pos = [0] * len(seq)
+    for i, s in enumerate(seq):
+        pos[s] = i
+    for x, y in xy:
+        if pos[x] > pos[y]:
+            return False
+    return True

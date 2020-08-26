@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int xa = sc.nextInt();
+    int ya = sc.nextInt();
+    int xb = sc.nextInt();
+    int yb = sc.nextInt();
+    int xc = sc.nextInt();
+    int yc = sc.nextInt();
+    if (xa > 0) {
+        xb -= xa;
+        xc -= xa;
+    } else if (xa < 0) {
+        xb += Math.abs(xa);
+        xc += Math.abs(xa);
+    }
+    if (ya > 0) {
+        yb -= ya;
+        yc -= ya;
+    } else if (ya < 0) {
+        yb += Math.abs(ya);
+        yc += Math.abs(ya);
+    }
+    double answer = (double) Math.abs(xb * yc - yb * xc) / (double) 2;
+    System.out.println(answer);
+}

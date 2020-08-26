@@ -1,0 +1,20 @@
+public void solve() {
+    N = nextInt();
+    A = nextInt();
+    B = nextInt();
+    h = new int[N];
+    for (int i = 0; i < N; i++) {
+        h[i] = nextInt();
+    }
+    int low = 0;
+    int high = (int) 1e9 + 7;
+    while (high - low > 1) {
+        int mid = high + low >> 1;
+        if (check(mid)) {
+            high = mid;
+        } else {
+            low = mid;
+        }
+    }
+    out.println(high);
+}

@@ -1,0 +1,14 @@
+public static void main(String[] args) throws IOException {
+    Integer stackSize = null;
+    if (stackSize != null) {
+        new Thread(null, () -> {
+            try {
+                new Main().run();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }, "", stackSize).start();
+    } else {
+        new Main().run();
+    }
+}

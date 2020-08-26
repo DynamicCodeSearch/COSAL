@@ -1,0 +1,27 @@
+static void solve(int i) {
+    if ((sw[i] == "S" && s.charAt(i) == 'o') || (sw[i] == "W" && s.charAt(i) == 'x')) {
+        if (i == N - 1)
+            sw[0] = sw[N - 2];
+        else if (i == 0)
+            sw[1] = sw[N - 1];
+        else
+            sw[i + 1] = sw[i - 1];
+    } else {
+        if (i == N - 1) {
+            if (sw[N - 2] == "S")
+                sw[0] = "W";
+            else
+                sw[0] = "S";
+        } else if (i == 0) {
+            if (sw[N - 1] == "S")
+                sw[1] = "W";
+            else
+                sw[1] = "S";
+        } else {
+            if (sw[i - 1] == "S")
+                sw[i + 1] = "W";
+            else
+                sw[i + 1] = "S";
+        }
+    }
+}

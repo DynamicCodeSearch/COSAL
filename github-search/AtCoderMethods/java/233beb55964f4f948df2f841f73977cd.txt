@@ -1,0 +1,13 @@
+private long getMin(int root, int l, int r, int L, int R) {
+    if (l > r || l > R || L > r || L > R) {
+        return infinity;
+    }
+    if (l == L && r == R) {
+        return min[root];
+    }
+    push(root);
+    int M = (L + R) / 2;
+    long m1 = getMin(2 * root + 1, l, Math.min(M, r), L, M);
+    long m2 = getMin(2 * root + 2, Math.max(M + 1, l), r, M + 1, R);
+    return Math.min(m1, m2);
+}

@@ -1,0 +1,8 @@
+def fill_dp(i):
+    if i == 0:
+        return
+    if i == 1:
+        dp[i] = abs(A[i] - A[i - 1])
+        return
+    dp[i] = min(dp[i - 1] + abs(A[i] - A[i - 1]),
+                dp[i - 2] + abs(A[i] - A[i - 2]))

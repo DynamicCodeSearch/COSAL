@@ -1,0 +1,56 @@
+private static void solve() {
+    int n = nei();
+    int m = nei();
+    int[][] e = new int[m][3];
+    ArrayList<ArrayList<Integer>> es = new ArrayList<ArrayList<Integer>>();
+    Po[] c = new Po[n];
+    for (int i = 0; i < n; i++) {
+        c[i] = new Po(i, 1145141919, 364634931);
+    }
+    for (int i = 0; i < n; i++) {
+        es.add(new ArrayList<Integer>());
+    }
+    for (int i = 0; i < m; i++) {
+        e[i][0] = nei() - 1;
+        e[i][1] = nei() - 1;
+        e[i][2] = nei();
+        es.get(e[i][0]).add(i);
+        es.get(e[i][1]).add(i);
+    }
+    c[0].cost = 0;
+    PriorityQueue<Po> q = new PriorityQueue<Po>((a, b) -> a.cost - b.cost);
+    q.add(new Po(0, 0, 364364931));
+    int[] cnt = new int[n];
+    cnt[0]++;
+    boolean aaa = Math.random() > 0.5;
+    while (!q.isEmpty()) {
+        Po po = q.poll();
+        int at = po.at;
+        cnt[at]--;
+        int cost = c[at].cost;
+        TreeSet<Integer> eki = c[at].eki;
+        ArrayList<Integer> edgs = es.get(at);
+        for (int edg : edgs) {
+            int[] ee = e[edg];
+            int another = ee[0] == at ? ee[1] : ee[0];
+            int cst = eki.contains(ee[2]) ? 0 : 1;
+            if (c[another].cost > cost + cst) {
+                c[another].cost = cost + cst;
+                c[another].eki.clear();
+                c[another].eki.add(ee[2]);
+                Po popo = new Po(another, cost + cst, ee[2]);
+                q.add(popo);
+                cnt[another]++;
+            } else if (c[another].cost == cost + cst) {
+                if (c[another].eki.add(ee[2]) && aaa) {
+                    if (cnt[another] == 0) {
+                        Po popo = new Po(another, cost + cst, ee[2]);
+                        q.add(popo);
+                        cnt[another]++;
+                    }
+                }
+            }
+        }
+    }
+    out(c[n - 1].cost == 1145141919 ? -1 : c[n - 1].cost);
+}

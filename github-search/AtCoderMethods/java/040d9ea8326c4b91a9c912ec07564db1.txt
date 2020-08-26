@@ -1,0 +1,13 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    init();
+    while (sc.hasNext()) {
+        long h = sc.nextLong(), w = sc.nextLong(), a = sc.nextLong(), b = sc.nextLong();
+        long ans = 0;
+        for (long i = 1; i <= h - a; i++) {
+            ans += (ncr(b + i - 2, i - 1) * ncr(w - b - 1 + h - i, h - i)) % mod;
+            ans %= mod;
+        }
+        System.out.println(ans);
+    }
+}

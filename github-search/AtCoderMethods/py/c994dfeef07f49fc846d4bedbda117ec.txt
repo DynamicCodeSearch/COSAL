@@ -1,0 +1,10 @@
+def f(s,m):
+    n = d[s] - set([m])
+    t = 0
+    for c in n:
+        cf,ct = f(c,s)
+        if cf:
+            t += ct + 1
+    if h[s] == 1 or t > 0:
+        return [True, t]
+    return [False, 0]

@@ -1,0 +1,18 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    char[] input = in.readString().toCharArray();
+    int bestAPos = 0;
+    for (int from = 0; from < input.length; from++) {
+        if (input[from] == 'A') {
+            bestAPos = from;
+            break;
+        }
+    }
+    int bestZPos = input.length - 1;
+    for (int from = input.length - 1; from >= 0; from--) {
+        if (input[from] == 'Z') {
+            bestZPos = from;
+            break;
+        }
+    }
+    out.printLine(bestZPos - bestAPos + 1);
+}

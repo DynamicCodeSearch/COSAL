@@ -1,0 +1,17 @@
+private static ArrayList<Integer> search(ArrayList<Integer> student, ArrayList<ArrayList<Integer>> checkpoints) {
+    ArrayList<Integer> distances = new ArrayList<Integer>();
+    for (ArrayList<Integer> checkpoint : checkpoints) {
+        distances.add(distance(checkpoint, student));
+    }
+    Integer minDistance = Collections.min(distances);
+    int index = 0;
+    for (int i = 0; i < distances.size(); i++) {
+        if (minDistance == distances.get(i)) {
+            index = i;
+            break;
+        }
+    }
+    System.out.print(index + 1);
+    System.out.print('\n');
+    return checkpoints.get(index);
+}

@@ -1,0 +1,42 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    final int mod = 1000000007;
+    char[][] field = new char[2][n];
+    for (int i = 0; i < 2; i++) {
+        String str = sc.next();
+        field[i] = str.toCharArray();
+    }
+    int state = 0;
+    long ans = 1;
+    for (int j = 0; j < n; j++) {
+        if (state == 0) {
+            if (field[0][j] == field[1][j]) {
+                ans = ans * 3 % mod;
+                state = 1;
+            } else {
+                ans = ans * 6 % mod;
+                state = 2;
+            }
+        } else if (state == 1) {
+            if (field[0][j] == field[1][j]) {
+                ans = ans * 2 % mod;
+                state = 1;
+            } else {
+                ans = ans * 2 % mod;
+                state = 2;
+            }
+        } else if (state == 2) {
+            state = 3;
+        } else if (state == 3) {
+            if (field[0][j] == field[1][j]) {
+                state = 1;
+            } else {
+                ans = ans * 3 % mod;
+                state = 2;
+            }
+        }
+    }
+    System.out.println(ans);
+}

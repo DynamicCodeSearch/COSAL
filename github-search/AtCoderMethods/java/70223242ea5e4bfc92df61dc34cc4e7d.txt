@@ -1,0 +1,32 @@
+void run() {
+    Scanner cin = new Scanner(System.in);
+    String S = cin.next();
+    int T = cin.nextInt();
+    int N = S.length();
+    int y = 0, x = 0, cnt = 0;
+    for (int i = 0; i < N; i++) {
+        char c = S.charAt(i);
+        if (c == 'U')
+            y++;
+        else if (c == 'D')
+            y--;
+        else if (c == 'R')
+            x++;
+        else if (c == 'L')
+            x--;
+        else
+            cnt++;
+    }
+    if (y < 0)
+        y = -y;
+    if (x < 0)
+        x = -x;
+    int ans;
+    if (T == 1)
+        ans = x + y + cnt;
+    else if (x + y > cnt)
+        ans = x + y - cnt;
+    else
+        ans = N % 2;
+    System.out.println(ans);
+}

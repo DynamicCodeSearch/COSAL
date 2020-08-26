@@ -1,0 +1,34 @@
+void submit() {
+    int h = nextInt();
+    int w = nextInt();
+    int n = nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = nextInt();
+    }
+    int[][] ret = new int[h][w];
+    int ptr = 0;
+    for (int i = 0; i < h; i++) {
+        int y, step;
+        if (i % 2 == 0) {
+            y = 0;
+            step = 1;
+        } else {
+            y = w - 1;
+            step = -1;
+        }
+        for (int j = 0; j < w; j++, y += step) {
+            ret[i][y] = ptr + 1;
+            a[ptr]--;
+            if (a[ptr] == 0) {
+                ptr++;
+            }
+        }
+    }
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            out.print(ret[i][j] + " ");
+        }
+        out.println();
+    }
+}

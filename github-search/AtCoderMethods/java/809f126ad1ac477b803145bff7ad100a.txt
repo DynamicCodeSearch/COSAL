@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String S = sc.next();
+    String T = "WBWBWWBWBWBW";
+    T = T + T + T;
+    String[] ans = { "Do", "Re", "Mi", "Fa", "So", "La", "Si" };
+    int k = 0;
+    for (int i = 0; i < 12; i++) {
+        String tmp = T.substring(i, i + 20);
+        if (tmp.charAt(0) == 'B')
+            continue;
+        if (tmp.equals(S))
+            break;
+        k++;
+    }
+    System.out.println(ans[k]);
+}

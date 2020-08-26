@@ -1,0 +1,12 @@
+def shortestPath(g,s,dist,prev):
+	n = len(g)-1
+ Q=[]
+ heapq.heappush(Q,(0,-2,s))
+ while Q:
+		e = heapq.heappop(Q)
+  if prev[e[2]]!=-1: continue
+  prev[e[2]] = e[1]
+  for f in g[e[2]]:
+			if dist[f[2]] > e[0] + f[0]:
+				dist[f[2]] = e[0] + f[0]
+    heapq.heappush(Q,(e[0]+f[0],f[1],f[2]))

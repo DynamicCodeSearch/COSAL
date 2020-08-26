@@ -1,0 +1,5 @@
+def oneone(i, l, M):
+    if i < 3:
+        return sum(pow(10, j*l, M) for j in range(i)) % M
+    else:
+        return (oneone(2, (i//2)*l, M) * oneone(i//2, l, M) + (i%2) * pow(10, (i-1)*l, M)) % M

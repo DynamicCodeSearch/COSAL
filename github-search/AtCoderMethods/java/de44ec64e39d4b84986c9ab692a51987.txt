@@ -1,0 +1,12 @@
+public static void solver(String S) {
+    int k = S.length();
+    long sum = 0;
+    for (int i = 0; i < k; i++) {
+        for (int d = 0; d < k - i; d++) {
+            double p = (d == k - i - 1) ? Math.pow(2, k - d - 1) : Math.pow(2, k - d - 2);
+            long add = (long) (Math.pow(10, d) * p);
+            sum += add * Integer.parseInt("" + S.charAt(i));
+        }
+    }
+    System.out.println(sum);
+}

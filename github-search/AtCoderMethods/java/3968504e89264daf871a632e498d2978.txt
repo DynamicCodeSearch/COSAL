@@ -1,0 +1,22 @@
+private static int[][] solve(int h, int w, int n, int[] a) {
+    int[][] ans = new int[h][w];
+    int[] b = Arrays.copyOf(a, n);
+    int c = 0;
+    for (int y = 0; y < h; y++) {
+        int s, d;
+        if (y % 2 == 0) {
+            s = 0;
+            d = 1;
+        } else {
+            s = w - 1;
+            d = -1;
+        }
+        for (int i = 0, x = s; i < w; i++, x += d) {
+            ans[y][x] = c + 1;
+            b[c] -= 1;
+            if (b[c] == 0)
+                c += 1;
+        }
+    }
+    return ans;
+}

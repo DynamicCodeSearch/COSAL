@@ -1,0 +1,39 @@
+private void solve() {
+    try {
+        String[] aCards = sc.next().split("");
+        String[] bCards = sc.next().split("");
+        String[] cCards = sc.next().split("");
+        String winner = "";
+        String turn = "a";
+        int firstA = 0;
+        int firstB = 0;
+        int firstC = 0;
+        while (true) {
+            if (turn.equals("a")) {
+                if (aCards.length - 1 == firstA) {
+                    winner = "A";
+                    break;
+                }
+                turn = aCards[firstA];
+                firstA++;
+            } else if (turn.equals("b")) {
+                if (bCards.length - 1 == firstB) {
+                    winner = "B";
+                    break;
+                }
+                turn = bCards[firstB];
+                firstB++;
+            } else {
+                if (cCards.length - 1 == firstC) {
+                    winner = "C";
+                    break;
+                }
+                turn = cCards[firstC];
+                firstC++;
+            }
+        }
+        System.out.println(winner);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}

@@ -1,0 +1,27 @@
+def main():
+    n = I()
+    a = LI_()
+    b = [-1] * n
+    t = 1
+    for i in range(n+1):
+        c = a[i]
+        if b[c] >= 0:
+            t = i - b[c]
+            break
+        b[c] = i
+
+    rr = [n]
+    nb = M(n+1)
+    nt = M(1)
+    for i in range(2,n+2):
+        nb *= n-i+2
+        nb /= i
+
+        tr = nb.n
+        if n-t >= i-1:
+            nt *= n-t-i+2
+            nt /= i-1
+            tr -= nt.n
+            tr %= mod
+        rr.append(tr)
+    return '\n'.join(map(str, rr))

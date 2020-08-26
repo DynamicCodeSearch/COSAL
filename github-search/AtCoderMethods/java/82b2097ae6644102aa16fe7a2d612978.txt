@@ -1,0 +1,38 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    long A = sc.nextLong();
+    long B = sc.nextLong();
+    long[] a = sc.nextLongList(N);
+    if (A == 1) {
+        Arrays.sort(a);
+        for (long x : a) {
+            System.out.println(x);
+        }
+    } else {
+        while (true) {
+            Arrays.sort(a);
+            boolean mul = false;
+            for (int i = 1; i < N; i++) {
+                if (a[0] * A <= a[i]) {
+                    a[0] *= A;
+                    B--;
+                    mul = true;
+                    break;
+                }
+            }
+            if (!mul || B == 0) {
+                Arrays.sort(a);
+                break;
+            }
+        }
+        int start = (int) B % N;
+        for (int i = start; i < N + start; i++) {
+            long k = B / N;
+            if (i >= N) {
+                k++;
+            }
+            System.out.println((a[i % N] * powMod(A, k, MOD)) % MOD);
+        }
+    }
+}

@@ -1,0 +1,22 @@
+public void main(FastScanner in, PrintWriter out) {
+    N = in.nextInt();
+    M = in.nextInt();
+    boolean[] visited = new boolean[N];
+    boolean ans = false;
+    for (int i = 0; i < M; i++) {
+        int u = in.nextInt() - 1;
+        int v = in.nextInt() - 1;
+        if (u == 0) {
+            if (visited[v]) {
+                ans = true;
+            }
+            visited[v] = true;
+        } else if (v == (N - 1)) {
+            if (visited[u]) {
+                ans = true;
+            }
+            visited[u] = true;
+        }
+    }
+    out.println(ans ? "POSSIBLE" : "IMPOSSIBLE");
+}

@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    try {
+        Integer sitei = Integer.valueOf(br.readLine());
+        String VV = "";
+        if (sitei < 100) {
+            VV = "00";
+        } else if (sitei >= 100 && sitei <= 5000) {
+            VV = String.format("%02d", sitei / 100);
+        } else if (sitei >= 6000 && sitei <= 30000) {
+            VV = String.valueOf((sitei / 1000) + 50);
+        } else if (sitei >= 35000 && sitei <= 70000) {
+            VV = String.valueOf((((sitei / 1000) - 30) / 5) + 80);
+        } else if (sitei > 70000) {
+            VV = "89";
+        }
+        System.out.println(VV);
+    } catch (Exception e) {
+    }
+}

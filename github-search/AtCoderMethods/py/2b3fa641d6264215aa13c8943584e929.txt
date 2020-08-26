@@ -1,0 +1,9 @@
+def first_put(board):
+    for i in range(8):
+        for j, c in enumerate(input().strip()):
+            if c == 'Q':
+                if can_put(i, j, board):
+                    board[i][j] = 1
+                else:
+                    return False
+    return True

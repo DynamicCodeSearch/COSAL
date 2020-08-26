@@ -1,0 +1,12 @@
+def all_pattern(a,b,c):
+    max_a = int(c//a)
+    all_list = []
+    for i in range(max_a+1):
+        goukei = 0
+        goukei += a*i
+        j = 0
+        while goukei <= c:
+            if not goukei in all_list:
+                all_list.append(goukei)
+            goukei += b
+    return all_list

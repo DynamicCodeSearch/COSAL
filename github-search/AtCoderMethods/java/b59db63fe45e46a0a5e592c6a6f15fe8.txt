@@ -1,0 +1,10 @@
+void build(int node, int s, int e) {
+    if (s == e)
+        t[node] = a[s];
+    else {
+        int mid = (s + e) >> 1;
+        build(node << 1, s, mid);
+        build(node << 1 | 1, mid + 1, e);
+        t[node] = Math.min(t[node << 1], t[node << 1 | 1]);
+    }
+}

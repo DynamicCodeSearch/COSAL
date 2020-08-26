@@ -1,0 +1,10 @@
+private long gcd(long a, long b) {
+    if (b == 0)
+        return a;
+    if (a < b) {
+        long tmp = b;
+        b = a;
+        a = tmp;
+    }
+    return gcd(b, (a % b));
+}

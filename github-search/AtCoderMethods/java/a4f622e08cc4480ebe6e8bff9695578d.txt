@@ -1,0 +1,16 @@
+private static String solve(Scanner scanner) {
+    int N = Integer.parseInt(scanner.nextLine());
+    String[] nums = scanner.nextLine().split(" ");
+    LinkedList<String> result = new LinkedList<>();
+    for (int i = 0; i < N; i++) {
+        if (i % 2 == 1) {
+            result.addLast(nums[i]);
+        } else {
+            result.addFirst(nums[i]);
+        }
+    }
+    if (N % 2 == 0) {
+        Collections.reverse(result);
+    }
+    return result.stream().collect(Collectors.joining(" "));
+}

@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int n = in.nextInt();
+    long time = in.nextLong();
+    long[] t = new long[n];
+    for (int i = 0; i < n; i++) {
+        t[i] = in.nextLong();
+    }
+    long bLast = -1;
+    long nTop = 0;
+    ;
+    long ans = 0;
+    for (int i = 0; i < n; ++i) {
+        nTop = t[i];
+        if (bLast >= nTop) {
+            ans += nTop + time - bLast;
+        } else {
+            ans += time;
+        }
+        bLast = nTop + time;
+    }
+    System.out.println(ans);
+}

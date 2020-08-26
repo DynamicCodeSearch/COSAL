@@ -1,0 +1,22 @@
+def main():
+    n, m = map(int, input().split())
+    rels = [[False] * n for _ in range(n)]
+    for _ in range(m):
+        xi, yi = map(int, input().split())
+        x, y = xi - 1, yi - 1
+        rels[x][y] = True
+        rels[y][x] = True
+
+    ans = 1
+
+    n_range = range(0, n)
+    for rep in range(n, 0, -1):
+        relcombs = comb(n_range, rep)
+        for relcomb in relcombs:
+            jud = [(rels[i][j]) for (i, j) in comb(relcomb, 2)]
+            if all(jud):
+                ans = rep
+        if ans != 1:
+            break
+
+    print(ans)

@@ -1,0 +1,32 @@
+
+public void run() throws IOException {
+    
+    int TEST_CASE = 1;
+    while (TEST_CASE-- != 0) {
+        int n = io.nextInt();
+        int K = io.nextInt();
+        List<Integer> factor = new ArrayList<Integer>();
+        for (int i = 1; i * i <= n; i++) {
+            if (n % i == 0) {
+                factor.add(i);
+                if (n != i * i)
+                    factor.add(n / i);
+            }
+        }
+        Collections.sort(factor);
+        long ans = 0;
+        long[] dp = new long[factor.size()];
+        for (int i = 0; i < factor.size(); i++) {
+            long d = factor.get(i);
+            dp[i] = powmod(K, (d + 1) / 2, mod);
+            for (int j = 0; j < i; j++) {
+                if (d % factor.get(j) == 0) {
+                    dp[i] -= dp[j];
+                }
+            }
+            dp[i] %= mod;
+            ans += dp[i] * d / (d % 2 == 0 ? 2 : 1);
+        }
+        io.out.println((ans % mod + mod) % mod);
+    }
+}

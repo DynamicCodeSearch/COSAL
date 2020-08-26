@@ -1,0 +1,10 @@
+public static int[][] packD(int n, int[] from, int[] to, int sup) {
+    int[][] g = new int[n][];
+    int[] p = new int[n];
+    for (int i = 0; i < sup; i++) p[from[i]]++;
+    for (int i = 0; i < n; i++) g[i] = new int[p[i]];
+    for (int i = 0; i < sup; i++) {
+        g[from[i]][--p[from[i]]] = to[i];
+    }
+    return g;
+}

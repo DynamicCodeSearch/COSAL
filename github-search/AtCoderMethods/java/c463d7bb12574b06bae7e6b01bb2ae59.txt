@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    try {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int Num = Integer.parseInt(br.readLine());
+        String[] input = new String[Num];
+        for (int i = 0; i < Num; i++) {
+            input[i] = br.readLine();
+        }
+        HashMap<String, Integer> result = new HashMap<String, Integer>();
+        HashMap<String, Integer> temp = new HashMap<String, Integer>();
+        for (int i = 0; i < input[0].length(); i++) {
+            result.put(Character.toString(input[0].charAt(i)), input[0].length());
+        }
+        for (int i = 0; i < Num; i++) {
+            result.forEach((k, v) -> temp.put(k, 0));
+            for (int j = 0; j < input[i].length(); j++) {
+                temp.computeIfPresent(Character.toString(input[i].charAt(j)), (k, v) -> v + 1);
+            }
+            temp.forEach((k, v) -> {
+                result.put(k, (v < result.get(k) ? v : result.get(k)));
+            });
+        }
+        result.forEach((k, v) -> {
+            while (v > 0) {
+                System.out.print(k);
+                v--;
+            }
+        });
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}

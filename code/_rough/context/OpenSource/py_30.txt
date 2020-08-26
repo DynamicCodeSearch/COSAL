@@ -1,0 +1,370 @@
+### Py Tokens: interpretation, results, replace, four, another, counts, isinstance, iterable, typeerror, addition, negative, fast, source, add, dict, expected, type, empty, get, outputs, watch, forward, iteritems, count, none, like, contexts, straight, descriptor, behavior, error, instead, sense, argument, zero, allowed, operation, counting, needs, instance, arguments, got, inputs, elements, dictionary, replacing, object, update, len, mapping, untouched, regular, witch, selfget, path, contain, super, mismash, counter, elem, mixed, implement, makes, original 
+
+### Py functions
+
+def update(*args, **kwds):
+
+
+
+
+
+
+
+
+  if not args:
+    raise TypeError("descriptor 'update' of 'Counter' object "
+                    "needs an argument")
+  self = args[0]
+  args = args[1:]
+  if len(args) > 1:
+    raise TypeError('expected at most 1 arguments, got %d' % len(args))
+  iterable = args[0] if args else None
+  if iterable is not None:
+    if isinstance(iterable, Mapping):
+      if self:
+        self_get = self.get
+        for elem, count in iterable.iteritems():
+          self[elem] = self_get(elem, 0) + count
+      else:
+        super(Counter, self).update(iterable) 
+    else:
+      self_get = self.get
+      for elem in iterable:
+        self[elem] = self_get(elem, 0) + 1
+  if kwds:
+    self.update(kwds)
+*********************************
+
+#### Score: 16.11117
+
+
+#### Java Tokens: exception, argument, eager, gwt, large:, integer, repeated, required, empty, zero, number, copies, checkargument, len, longsize, hey, large, containing, count, index, heyheyhey, check, illegal, benchmark, input, system, null, size, invalid, bounds, returns, must, illegalargumentexception, getchars, code, string, stringsrepeatbenchmark, checknotnull, count:, update, arrayindexoutofboundsexception, non, example, times, negative, concatenated, strings, array, param, arraycopy, repeat, get, length, nonnegative, specific, non-null, consisting, modify, chars 
+
+
+public static String repeat(String string, int count) {
+    
+    checkNotNull(string);
+    if (count <= 1) {
+        checkArgument(count >= 0, "invalid count: %s", count);
+        return (count == 0) ? "" : string;
+    }
+    
+    final int len = string.length();
+    final long longSize = (long) len * (long) count;
+    final int size = (int) longSize;
+    if (size != longSize) {
+        throw new ArrayIndexOutOfBoundsException("Required array size too large: " + longSize);
+    }
+    final char[] array = new char[size];
+    string.getChars(0, len, array, 0);
+    int n;
+    for (n = len; n < size - n; n <<= 1) {
+        System.arraycopy(array, 0, array, n, n);
+    }
+    System.arraycopy(array, 0, array, n, size - n);
+    return new String(array);
+}
+*********************************
+
+#### Score: 13.92674
+
+
+#### Java Tokens: use, used, empty, zero, character, utils, exclusive, avoiding, starts, greater, counting, based, pre, negatives, specify, count, positions, handle, check, exceptions, str, input, left, zero-based, position, relative, next, code, string, beginning, back, substring, specified, remember, characters, negative, param, ends, get, end, means, abc, may, start, length, many, gets, strictly, stringutils, offsets, returned 
+
+
+public static String substring(final String str, int start, int end) {
+    if (str == null) {
+        return null;
+    }
+    
+    if (end < 0) {
+        
+        end = str.length() + end;
+    }
+    if (start < 0) {
+        
+        start = str.length() + start;
+    }
+    
+    if (end > str.length()) {
+        end = str.length();
+    }
+    
+    if (start > end) {
+        return EMPTY;
+    }
+    if (start < 0) {
+        start = 0;
+    }
+    if (end < 0) {
+        end = 0;
+    }
+    return str.substring(start, end);
+}
+*********************************
+
+#### Score: 13.20796
+
+
+#### Java Tokens: argument, allowed, startwhitespaces, source, isempty, space, empty, reference, improved, rec, character, java, trim, tab, utils, www, xml, normalize, function, modified, href, https, actual, similar, using, manually, http://www.w3.org/tr/xpath/#function-normalize-space, count, replacing, x0b, str, feed, input, regex, size, x20, http, difference, returns, iswhitespace, whitespaces, since, whitespacescount, code, string, normalized, link, pattern, vertical, sequences, characters, xpath, see, param, actualchar, ends, normalizespace, lang, charat, may, org, length, start, instead, lang-1020, stringutils, single, http://www.w3.org/tr/rec-xml/#nt-s, performance, form, normalizing, newchars, additionally, char, whitespace, significantly, chars 
+
+
+public static String normalizeSpace(final String str) {
+    
+    if (isEmpty(str)) {
+        return str;
+    }
+    final int size = str.length();
+    final char[] newChars = new char[size];
+    int count = 0;
+    int whitespacesCount = 0;
+    boolean startWhitespaces = true;
+    for (int i = 0; i < size; i++) {
+        final char actualChar = str.charAt(i);
+        final boolean isWhitespace = Character.isWhitespace(actualChar);
+        if (isWhitespace) {
+            if (whitespacesCount == 0 && !startWhitespaces) {
+                newChars[count++] = SPACE.charAt(0);
+            }
+            whitespacesCount++;
+        } else {
+            startWhitespaces = false;
+            newChars[count++] = (actualChar == 160 ? 32 : actualChar);
+            whitespacesCount = 0;
+        }
+    }
+    if (startWhitespaces) {
+        return EMPTY;
+    }
+    return new String(newChars, 0, count - (whitespacesCount > 0 ? 1 : 0)).trim();
+}
+*********************************
+
+#### Score: 13.05883
+
+
+#### Java Tokens: occurrences, exception, outputs, repeats, argument, inputs, replace, wcte, used, illegalstateexception, reference, mos, utils, tcte, loop, repeating, text, state, replacements, replaceeach, ignored, repeatedly, pre, method, nothing, list, no-op, illegal, input, replaceeachrepeatedly, replacementlist, timetolive, arrays, replacement, since, illegalargumentexception, code, string, another, endless, example, search, strings, mos.search, param, array, passed, live, aba, within, replaces, abcde, one, length, stringutils, processed, searchlist, lengths, due, time 
+
+
+public static String replaceEachRepeatedly(final String text, final String[] searchList, final String[] replacementList) {
+    
+    
+    final int timeToLive = searchList == null ? 0 : searchList.length;
+    return replaceEach(text, searchList, replacementList, true, timeToLive);
+}
+*********************************
+
+#### Score: 12.18950
+
+
+#### Java Tokens: exception, occurrences, repeats, stack, mostly, objects, upper, arrayutils, wcte, isempty, illegalstateexception, output, mos, java, utils, tcte, let, text, state, greater, replaceeach, dcte, still, goal, sure, method, index, circular, no-op, matches, input, size, guess, replacementlist, math, arrays, recursing, larger, illegalargumentexception, another, requests, recursive, example, result, search, see, min, found, strings, mos.search, get, builder, repl, protect, stackoverflowerror, nomorematchesforreplindex, aba, within, textlength, one, replaced, possible, stringutils, searchlength, buf, textindex, elements, logic, stringbuilder, outputs, argument, tempindex, inputs, replace, good, empty, reference, overflow, helper, major, loop, find, repeating, match:, replaceindex, create, replacements, buffer, ignored, repeatedly, pre, need, count, less, list, illegal, done, take, measure, replaceeachrepeatedly, keep, creates, know, timetolive, assume, replacement, since, next, note, replacementlength, code, string, searching, link, mchyzer, endless, upper-bound, error, duplicated, array, param, repeat, end, passed, track, make, live, charat, temp, abcde, bound, length, match, start, aborting, increase, earliest, equal, processed, performance, searchlist, lengths, due, corresponding, harness, time, indexof, tostring, append 
+
+
+private static String replaceEach(final String text, final String[] searchList, final String[] replacementList, final boolean repeat, final int timeToLive) {
+    if (isEmpty(text) || ArrayUtils.isEmpty(searchList) || ArrayUtils.isEmpty(replacementList)) {
+        return text;
+    }
+    
+    if (timeToLive < 0) {
+        throw new IllegalStateException("Aborting to protect against StackOverflowError - " + "output of one loop is the input of another");
+    }
+    final int searchLength = searchList.length;
+    final int replacementLength = replacementList.length;
+    
+    if (searchLength != replacementLength) {
+        throw new IllegalArgumentException("Search and Replace array lengths don't match: " + searchLength + " vs " + replacementLength);
+    }
+    
+    final boolean[] noMoreMatchesForReplIndex = new boolean[searchLength];
+    
+    int textIndex = -1;
+    int replaceIndex = -1;
+    int tempIndex = -1;
+    
+    for (int i = 0; i < searchLength; i++) {
+        if (noMoreMatchesForReplIndex[i] || searchList[i] == null || searchList[i].isEmpty() || replacementList[i] == null) {
+            continue;
+        }
+        tempIndex = text.indexOf(searchList[i]);
+        
+        if (tempIndex == -1) {
+            noMoreMatchesForReplIndex[i] = true;
+        } else {
+            if (textIndex == -1 || tempIndex < textIndex) {
+                textIndex = tempIndex;
+                replaceIndex = i;
+            }
+        }
+    }
+    
+    if (textIndex == -1) {
+        return text;
+    }
+    int start = 0;
+    
+    int increase = 0;
+    
+    for (int i = 0; i < searchList.length; i++) {
+        if (searchList[i] == null || replacementList[i] == null) {
+            continue;
+        }
+        final int greater = replacementList[i].length() - searchList[i].length();
+        if (greater > 0) {
+            
+            increase += 3 * greater;
+        }
+    }
+    
+    increase = Math.min(increase, text.length() / 5);
+    final StringBuilder buf = new StringBuilder(text.length() + increase);
+    while (textIndex != -1) {
+        for (int i = start; i < textIndex; i++) {
+            buf.append(text.charAt(i));
+        }
+        buf.append(replacementList[replaceIndex]);
+        start = textIndex + searchList[replaceIndex].length();
+        textIndex = -1;
+        replaceIndex = -1;
+        tempIndex = -1;
+        
+        for (int i = 0; i < searchLength; i++) {
+            if (noMoreMatchesForReplIndex[i] || searchList[i] == null || searchList[i].isEmpty() || replacementList[i] == null) {
+                continue;
+            }
+            tempIndex = text.indexOf(searchList[i], start);
+            
+            if (tempIndex == -1) {
+                noMoreMatchesForReplIndex[i] = true;
+            } else {
+                if (textIndex == -1 || tempIndex < textIndex) {
+                    textIndex = tempIndex;
+                    replaceIndex = i;
+                }
+            }
+        }
+    
+    }
+    final int textLength = text.length();
+    for (int i = start; i < textLength; i++) {
+        buf.append(text.charAt(i));
+    }
+    final String result = buf.toString();
+    if (!repeat) {
+        return result;
+    }
+    return replaceEach(result, searchList, replacementList, repeat, timeToLive - 1);
+}
+*********************************
+
+#### Score: 11.27494
+
+
+#### Java Tokens: exception, com, code, string, nullable, log, valueof, logger, another, integer, tohexstring, lenient, proguard, default, see, common, strings, identity, get, warning, create, hex, lenientformat, behavior, value, class, threw, getclass, identityhashcode, created, format, google, getlogger, getname, forcing, system, lenienttostring, inline, name, com.google.common.base.strings, fixed, avoid, objecttostring, tostring, hash, object, base 
+
+private static String lenientToString(@Nullable Object o) {
+    try {
+        return String.valueOf(o);
+    } catch (Exception e) {
+        
+        String objectToString = o.getClass().getName() + '@' + Integer.toHexString(System.identityHashCode(o));
+        
+        Logger.getLogger("com.google.common.base.Strings").log(WARNING, "Exception during lenientFormat for " + objectToString, e);
+        return "<" + objectToString + " threw " + e.getClass().getName() + ">";
+    }
+}
+*********************************
+
+#### Score: 10.80859
+
+
+#### Java Tokens: plane, none, cslen, searchlast, empty, searchlen, character, high, len, fine, utils, ishighsurrogate, always, pre, last, like, index, check, abab, sequence, ab1, contains, checks, invalid, returns, searchchars, basic, containsnone, since, changed, code, string, signature, charsequence, characters, search, array, param, low, missing, surrogate, charat, multilingual, contain, may, length, cslast, stringutils, char, abz, certain, indexof, chars 
+
+
+
+
+public static boolean containsNone(final CharSequence cs, final char... searchChars) {
+    if (cs == null || searchChars == null) {
+        return true;
+    }
+    final int csLen = cs.length();
+    final int csLast = csLen - 1;
+    final int searchLen = searchChars.length;
+    final int searchLast = searchLen - 1;
+    for (int i = 0; i < csLen; i++) {
+        final char ch = cs.charAt(i);
+        for (int j = 0; j < searchLen; j++) {
+            if (searchChars[j] == ch) {
+                if (Character.isHighSurrogate(ch)) {
+                    if (j == searchLast) {
+                        
+                        return false;
+                    }
+                    if (i < csLast && searchChars[j + 1] == cs.charAt(i + 1)) {
+                        return false;
+                    }
+                } else {
+                    
+                    return false;
+                }
+            }
+        }
+    }
+    return true;
+}
+*********************************
+
+#### Score: 10.44957
+
+
+#### Java Tokens: exception, exceeds, code, string, available, mid, substring, without, required, empty, zero, characters, negative, len, pos, param, utils, get, treated, pre, middle, abc, may, length, start, gets, str, stringutils, input, position, returned, remainder 
+
+
+public static String mid(final String str, int pos, final int len) {
+    if (str == null) {
+        return null;
+    }
+    if (len < 0 || pos > str.length()) {
+        return EMPTY;
+    }
+    if (pos < 0) {
+        pos = 0;
+    }
+    if (str.length() <= pos + len) {
+        return str.substring(pos);
+    }
+    return str.substring(pos, pos + len);
+}
+*********************************
+
+#### Score: 9.84494
+
+
+#### Java Tokens: joins, providing, code, string, added, use, provided, values, link, iterable, empty, iterator, see, character, param, utils, delimiter, join, together, treated, may, containing, joined, list, separator, stringutils, single, input, examples, elements, object, since 
+
+
+public static String join(final Iterable<?> iterable, final String separator) {
+    if (iterable == null) {
+        return null;
+    }
+    return join(iterable.iterator(), separator);
+}
+*********************************
+
+#### Score: 9.71696
+
+
+#### Java Tokens: criteria, replace, occurs, isempty, empty, truncate, utils, greater, otherwise, pre, offset, last, targetsting, replacing, less, str, startoffset, following, replacement, since, code, string, endoffset, abbreviates, substring, characters, param, end, passed, met, abbreviate, middle, abc, original, may, supplied, abbreviatemiddle, length, start, sting, enough, abbreviation, room, target, stringutils, ab.f, neither, abcdef, returned, abbreviated, first 
+
+
+public static String abbreviateMiddle(final String str, final String middle, final int length) {
+    if (isEmpty(str) || isEmpty(middle)) {
+        return str;
+    }
+    if (length >= str.length() || length < middle.length() + 2) {
+        return str;
+    }
+    final int targetSting = length - middle.length();
+    final int startOffset = targetSting / 2 + targetSting % 2;
+    final int endOffset = str.length() - targetSting / 2;
+    return str.substring(0, startOffset) + middle + str.substring(endOffset);
+}

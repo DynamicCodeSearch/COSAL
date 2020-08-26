@@ -1,0 +1,19 @@
+def solve():
+    H, W = map(int, input().split())
+    S = [[1 if j == '#' else 0 for j in input()] for i in range(H)]
+
+    T = [[1] * W for i in range(H)]
+    U = [[0] * W for i in range(H)]
+
+    gyakushuku(H, W, S, T)
+
+    shukuyaku(H, W, T, U)
+
+    for i in range(H):
+        if S[i] != U[i]:
+            print('impossible')
+            return
+
+    print('possible')
+    for i in range(H):
+        print(''.join(['#' if t else '.' for t in T[i]]))

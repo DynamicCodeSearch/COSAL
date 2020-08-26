@@ -1,0 +1,25 @@
+void submit() {
+    int n = nextInt();
+    int c0 = 0;
+    int c1 = 0;
+    int c2 = 0;
+    for (int i = 0; i < n; i++) {
+        int x = nextInt();
+        if (x % 4 == 0) {
+            c2++;
+        } else if (x % 2 == 0) {
+            c1++;
+        } else {
+            c0++;
+        }
+    }
+    if (c0 > c2 + 1) {
+        out.println("No");
+        return;
+    }
+    if (c0 == c2 + 1) {
+        out.println(c1 == 0 ? "Yes" : "No");
+        return;
+    }
+    out.println("Yes");
+}

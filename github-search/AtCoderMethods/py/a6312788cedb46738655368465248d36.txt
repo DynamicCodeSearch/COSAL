@@ -1,0 +1,14 @@
+def find_even(text):
+    chars = list(text)
+    tail_index = (len(chars) + 1) // 2
+    pre = 0
+    while tail_index > 0:
+        tail_index -= 1
+        pre = 0
+        post = tail_index
+        while chars[pre] == chars[post]:
+            pre += 1
+            post += 1
+            if pre == tail_index:
+                return 2 * tail_index
+    raise("Error")

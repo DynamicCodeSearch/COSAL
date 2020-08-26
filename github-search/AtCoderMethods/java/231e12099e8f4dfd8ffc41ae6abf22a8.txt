@@ -1,0 +1,35 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    long[] a = new long[3 * N];
+    for (int i = 0; i < 3 * N; i++) {
+        a[i] = sc.nextLong();
+    }
+    long[] sumMax = new long[N + 1];
+    PriorityQueue<Long> pq1 = new PriorityQueue<Long>();
+    for (int i = 0; i < N; i++) {
+        sumMax[0] += a[i];
+        pq1.add(a[i]);
+    }
+    for (int i = 1; i < N + 1; i++) {
+        pq1.add(a[N - 1 + i]);
+        long min = pq1.poll();
+        sumMax[i] = sumMax[i - 1] + a[N - 1 + i] - min;
+    }
+    long[] sumMin = new long[N + 1];
+    PriorityQueue<Long> pq2 = new PriorityQueue<Long>(N, Collections.reverseOrder());
+    for (int i = 0; i < N; i++) {
+        sumMin[0] += a[3 * N - 1 - i];
+        pq2.add(a[3 * N - 1 - i]);
+    }
+    for (int i = 1; i < N + 1; i++) {
+        pq2.add(a[2 * N - i]);
+        long max = pq2.poll();
+        sumMin[i] = sumMin[i - 1] + a[2 * N - i] - max;
+    }
+    long ans = -(long) Math.pow(10, 15);
+    for (int i = 0; i < N + 1; i++) {
+        ans = Math.max(ans, sumMax[i] - sumMin[N - i]);
+    }
+    System.out.println(ans);
+}

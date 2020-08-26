@@ -1,0 +1,15 @@
+private String solve(String s) {
+    int index = s.length();
+    while (index > 0) {
+        if (s.regionMatches(index - 7, "dreamer", 0, 7)) {
+            index -= 7;
+        } else if (s.regionMatches(index - 6, "eraser", 0, 6)) {
+            index -= 6;
+        } else if (s.regionMatches(index - 5, "dream", 0, 5) || s.regionMatches(index - 5, "erase", 0, 5)) {
+            index -= 5;
+        } else {
+            return "NO";
+        }
+    }
+    return "YES";
+}

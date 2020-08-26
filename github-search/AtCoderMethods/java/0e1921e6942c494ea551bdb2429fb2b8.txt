@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    
+    Scanner scan = new Scanner(System.in);
+    int N = scan.nextInt();
+    int x = N / 5;
+    int a = x % 6;
+    LinkedList<Integer> card = new LinkedList<Integer>();
+    for (int i = 0; i < 6; i++) {
+        a++;
+        if (a == 7) {
+            a = 1;
+        }
+        card.add(a);
+    }
+    int b = N % 5;
+    int first = card.pop();
+    card.add(b, first);
+    for (int i = 0; i < 6; i++) {
+        System.out.print(card.poll());
+    }
+    System.out.println();
+}

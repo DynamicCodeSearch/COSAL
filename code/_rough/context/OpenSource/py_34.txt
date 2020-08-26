@@ -1,0 +1,257 @@
+### Py Tokens: like, missing, counter, elem, keyerror, dict, delitem, key, error, values, super 
+
+### Py functions
+
+def __delitem__(self, elem):
+
+  if elem in self:
+    super(Counter, self).__delitem__(elem)
+*********************************
+
+#### Score: 5.59113
+
+
+#### Java Tokens: plane, none, cslen, searchlast, empty, searchlen, character, high, len, fine, utils, ishighsurrogate, always, pre, last, like, index, check, abab, sequence, ab1, contains, checks, invalid, returns, searchchars, basic, containsnone, since, changed, code, string, signature, charsequence, characters, search, array, param, low, missing, surrogate, charat, multilingual, contain, may, length, cslast, stringutils, char, abz, certain, indexof, chars 
+
+
+
+
+public static boolean containsNone(final CharSequence cs, final char... searchChars) {
+    if (cs == null || searchChars == null) {
+        return true;
+    }
+    final int csLen = cs.length();
+    final int csLast = csLen - 1;
+    final int searchLen = searchChars.length;
+    final int searchLast = searchLen - 1;
+    for (int i = 0; i < csLen; i++) {
+        final char ch = cs.charAt(i);
+        for (int j = 0; j < searchLen; j++) {
+            if (searchChars[j] == ch) {
+                if (Character.isHighSurrogate(ch)) {
+                    if (j == searchLast) {
+                        
+                        return false;
+                    }
+                    if (i < csLast && searchChars[j + 1] == cs.charAt(i + 1)) {
+                        return false;
+                    }
+                } else {
+                    
+                    return false;
+                }
+            }
+        }
+    }
+    return true;
+}
+*********************************
+
+#### Score: 5.49215
+
+
+#### Java Tokens: plane, zzabyycdxx, arrayutils, containsany, isempty, empty, searchlast, zero, mos, character, high, fine, utils, ishighsurrogate, given, pre, last, like, index, check, sequence, input, contains, checks, searchchars, basic, since, changed, code, string, signature, charsequence, characters, search, found, array, param, low, missing, cslength, surrogate, charat, multilingual, aba, set, may, length, match, cslast, stringutils, searchlength, char, indexof, chars 
+
+
+
+
+public static boolean containsAny(final CharSequence cs, final char... searchChars) {
+    if (isEmpty(cs) || ArrayUtils.isEmpty(searchChars)) {
+        return false;
+    }
+    final int csLength = cs.length();
+    final int searchLength = searchChars.length;
+    final int csLast = csLength - 1;
+    final int searchLast = searchLength - 1;
+    for (int i = 0; i < csLength; i++) {
+        final char ch = cs.charAt(i);
+        for (int j = 0; j < searchLength; j++) {
+            if (searchChars[j] == ch) {
+                if (Character.isHighSurrogate(ch)) {
+                    if (j == searchLast) {
+                        
+                        return true;
+                    }
+                    if (i < csLast && searchChars[j + 1] == cs.charAt(i + 1)) {
+                        return true;
+                    }
+                } else {
+                    
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}
+*********************************
+
+#### Score: 4.65348
+
+
+#### Java Tokens: occurs, isempty, empty, mos, character, either, utils, find, inclusive, blockquote, pre, like, index_not_found, index, check, aabaabaa, sequence, input, returns, updated, since, changed, code, string, signature, smallest, values, link, units, occurrence, codepointat, charsequence, specified, point, behave, search, searchchar, found, param, value, seq, charat, charsequenceutils, may, within, match, stringutils, call, furthermore, char, returned, indexof, first 
+
+
+
+
+public static int indexOf(final CharSequence seq, final int searchChar) {
+    if (isEmpty(seq)) {
+        return INDEX_NOT_FOUND;
+    }
+    return CharSequenceUtils.indexOf(seq, searchChar, 0);
+}
+*********************************
+
+#### Score: 4.57204
+
+
+#### Java Tokens: occurs, isempty, empty, mos, character, either, utils, find, inclusive, blockquote, pre, last, like, index_not_found, index, aabaabaa, ffff, sequence, input, xffff, unicode, lastindexof, returns, starting, updated, since, changed, largest, code, string, signature, values, link, range, units, codepointat, charsequence, specified, point, behave, search, searchchar, found, param, value, seq, charat, charsequenceutils, within, length, match, stringutils, call, char, returned 
+
+
+
+
+public static int lastIndexOf(final CharSequence seq, final int searchChar) {
+    if (isEmpty(seq)) {
+        return INDEX_NOT_FOUND;
+    }
+    return CharSequenceUtils.lastIndexOf(seq, searchChar, seq.length());
+}
+*********************************
+
+#### Score: 4.09927
+
+
+#### Java Tokens: joins, noofitems, added, use, objects, empty, character, utils, delimiter, exclusive, represented, join, pre, pass, containing, past, newstringbuilder, index, list, separator, input, 123, endindex, null, stop, items, since, joining, code, string, provided, values, error, strings, array, param, builder, end, together, may, within, joined, start, 1;2;3, stringutils, single, buf, startindex, elements, stringbuilder, tostring, append, first 
+
+
+public static String join(final byte[] array, final char separator, final int startIndex, final int endIndex) {
+    if (array == null) {
+        return null;
+    }
+    final int noOfItems = endIndex - startIndex;
+    if (noOfItems <= 0) {
+        return EMPTY;
+    }
+    final StringBuilder buf = newStringBuilder(noOfItems);
+    buf.append(array[startIndex]);
+    for (int i = startIndex + 1; i < endIndex; i++) {
+        buf.append(separator);
+        buf.append(array[i]);
+    }
+    return buf.toString();
+}
+*********************************
+
+#### Score: 4.09927
+
+
+#### Java Tokens: joins, noofitems, added, use, objects, empty, character, utils, delimiter, exclusive, represented, join, pre, pass, containing, past, newstringbuilder, index, list, separator, input, 123, endindex, null, stop, items, since, joining, code, string, provided, values, error, strings, array, param, builder, end, together, may, within, joined, start, 1;2;3, stringutils, single, buf, startindex, elements, stringbuilder, tostring, append, first 
+
+
+public static String join(final char[] array, final char separator, final int startIndex, final int endIndex) {
+    if (array == null) {
+        return null;
+    }
+    final int noOfItems = endIndex - startIndex;
+    if (noOfItems <= 0) {
+        return EMPTY;
+    }
+    final StringBuilder buf = newStringBuilder(noOfItems);
+    buf.append(array[startIndex]);
+    for (int i = startIndex + 1; i < endIndex; i++) {
+        buf.append(separator);
+        buf.append(array[i]);
+    }
+    return buf.toString();
+}
+*********************************
+
+#### Score: 4.09927
+
+
+#### Java Tokens: joins, noofitems, added, use, objects, empty, character, utils, delimiter, exclusive, represented, join, pre, pass, containing, past, newstringbuilder, index, list, separator, input, 123, endindex, null, stop, items, since, joining, code, string, provided, values, error, strings, array, param, builder, end, together, may, within, joined, start, 1;2;3, stringutils, single, buf, startindex, elements, stringbuilder, tostring, append, first 
+
+
+public static String join(final double[] array, final char separator, final int startIndex, final int endIndex) {
+    if (array == null) {
+        return null;
+    }
+    final int noOfItems = endIndex - startIndex;
+    if (noOfItems <= 0) {
+        return EMPTY;
+    }
+    final StringBuilder buf = newStringBuilder(noOfItems);
+    buf.append(array[startIndex]);
+    for (int i = startIndex + 1; i < endIndex; i++) {
+        buf.append(separator);
+        buf.append(array[i]);
+    }
+    return buf.toString();
+}
+*********************************
+
+#### Score: 4.09927
+
+
+#### Java Tokens: joins, noofitems, added, use, objects, empty, character, utils, delimiter, exclusive, represented, join, pre, pass, containing, past, newstringbuilder, index, list, separator, input, 123, endindex, null, stop, items, since, joining, code, string, provided, values, error, strings, array, param, builder, end, together, may, within, joined, start, 1;2;3, stringutils, single, buf, startindex, elements, stringbuilder, tostring, append, first 
+
+
+public static String join(final float[] array, final char separator, final int startIndex, final int endIndex) {
+    if (array == null) {
+        return null;
+    }
+    final int noOfItems = endIndex - startIndex;
+    if (noOfItems <= 0) {
+        return EMPTY;
+    }
+    final StringBuilder buf = newStringBuilder(noOfItems);
+    buf.append(array[startIndex]);
+    for (int i = startIndex + 1; i < endIndex; i++) {
+        buf.append(separator);
+        buf.append(array[i]);
+    }
+    return buf.toString();
+}
+*********************************
+
+#### Score: 4.09927
+
+
+#### Java Tokens: joins, noofitems, added, use, objects, empty, character, utils, delimiter, exclusive, represented, join, pre, pass, containing, past, newstringbuilder, index, list, separator, input, 123, endindex, null, stop, items, since, joining, code, string, provided, values, error, strings, array, param, builder, end, together, may, within, joined, start, 1;2;3, stringutils, single, buf, startindex, elements, stringbuilder, tostring, append, first 
+
+
+public static String join(final int[] array, final char separator, final int startIndex, final int endIndex) {
+    if (array == null) {
+        return null;
+    }
+    final int noOfItems = endIndex - startIndex;
+    if (noOfItems <= 0) {
+        return EMPTY;
+    }
+    final StringBuilder buf = newStringBuilder(noOfItems);
+    buf.append(array[startIndex]);
+    for (int i = startIndex + 1; i < endIndex; i++) {
+        buf.append(separator);
+        buf.append(array[i]);
+    }
+    return buf.toString();
+}
+*********************************
+
+#### Score: 4.09927
+
+
+#### Java Tokens: joins, ;;a, noofitems, added, use, objects, empty, iterator, character, utils, delimiter, exclusive, represented, join, pre, pass, containing, past, index, list, separator, input, endindex, null, stop, items, since, sub, joining, code, a;b;c, string, provided, values, error, strings, array, param, end, together, abc, may, within, joined, start, stringutils, single, startindex, sublist, elements, first 
+
+
+public static String join(final List<?> list, final char separator, final int startIndex, final int endIndex) {
+    if (list == null) {
+        return null;
+    }
+    final int noOfItems = endIndex - startIndex;
+    if (noOfItems <= 0) {
+        return EMPTY;
+    }
+    final List<?> subList = list.subList(startIndex, endIndex);
+    return join(subList.iterator(), separator);
+}

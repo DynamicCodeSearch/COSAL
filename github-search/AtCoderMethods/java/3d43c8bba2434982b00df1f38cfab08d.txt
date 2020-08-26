@@ -1,0 +1,35 @@
+void main() {
+    
+    this.dp = new int[N][maxA + 1][maxB + 1];
+    for (int k = 0; k < N; k++) {
+        for (int i = 0; i <= maxA; i++) {
+            for (int j = 0; j <= maxB; j++) {
+                dp[k][i][j] = INF;
+            }
+        }
+    }
+    dp[0][0][0] = 0;
+    dp[0][drugs[0].a][drugs[0].b] = drugs[0].cost;
+    
+    for (int i = 0; i < N; i++) {
+        for (int x = 0; x <= maxA; x++) {
+            for (int y = 0; y <= maxB; y++) {
+                if (i - 1 >= 0) {
+                    dp[i][x][y] = dp[i - 1][x][y];
+                    if (x - drugs[i].a >= 0 && y - drugs[i].b >= 0) {
+                        dp[i][x][y] = Math.min(dp[i][x][y], dp[i - 1][x - drugs[i].a][y - drugs[i].b] + drugs[i].cost);
+                    }
+                }
+            }
+        }
+    }
+    int minCost = Integer.MAX_VALUE / 2;
+    for (int i = 1; i <= maxA; i++) {
+        for (int j = 1; j <= maxB; j++) {
+            if (i * Mb == j * Ma) {
+                minCost = Math.min(minCost, dp[N - 1][i][j]);
+            }
+        }
+    }
+    System.out.println(minCost != INF ? minCost : -1);
+}

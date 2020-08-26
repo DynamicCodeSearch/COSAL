@@ -1,0 +1,35 @@
+def solve(s1):
+    div = 1000000007
+    s1 = iter(s1)
+    try:
+        a = next(s1)
+        b = next(s1)
+    except:
+        return 3
+    if a != b:
+        a = b
+        try:
+            b = next(s1)
+        except:
+            return 6
+    ans = 3
+    state = 0
+    while True:
+        if a == b:
+            ans *= 3 if state else 2
+            ans %= div
+            try:
+                a = next(s1)
+                b = next(s1)
+            except:
+                return ans
+            state = 1
+        else:
+            ans *= 1 if state else 2
+            ans %= div
+            try:
+                a = b
+                b = next(s1)
+            except:
+                return ans * 2 % div
+            state = 0

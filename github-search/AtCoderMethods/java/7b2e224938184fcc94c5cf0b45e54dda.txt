@@ -1,0 +1,21 @@
+static void fill(int y, int x) {
+    for (int dy = -1; dy < 2; dy++) {
+        for (int dx = -1; dx < 2; dx++) {
+            if (y + dy < 0 || y + dy >= H || x + dx < 0 || x + dx >= W) {
+                continue;
+            }
+            if (tmap[y + dy][x + dx] < 1) {
+                return;
+            }
+        }
+    }
+    for (int dy = -1; dy < 2; dy++) {
+        for (int dx = -1; dx < 2; dx++) {
+            if (y + dy < 0 || y + dy >= H || x + dx < 0 || x + dx >= W) {
+                continue;
+            }
+            map[y + dy][x + dx] = 2;
+        }
+    }
+    fills[y][x] = true;
+}

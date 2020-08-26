@@ -1,0 +1,19 @@
+void solve() throws IOException {
+    int n = readInt();
+    boolean[] avail = new boolean[10000 + 100];
+    avail[0] = true;
+    while (n-- > 0) {
+        int x = readInt();
+        for (int i = avail.length - 1; i >= 0; i--) {
+            if (avail[i]) {
+                avail[i + x] = true;
+            }
+        }
+    }
+    for (int i = avail.length - 1; i >= 0; i--) {
+        if (avail[i] && i % 10 != 0 || i == 0) {
+            out.println(i);
+            return;
+        }
+    }
+}

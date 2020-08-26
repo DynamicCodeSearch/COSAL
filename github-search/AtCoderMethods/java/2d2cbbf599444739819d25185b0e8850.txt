@@ -1,0 +1,26 @@
+private void run() {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    Map<Integer, List<NodeWithCost>> tree = new HashMap<>();
+    for (int i = 0; i < (n - 1); i++) {
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        int cost = sc.nextInt();
+        if (!tree.containsKey(a)) {
+            tree.put(a, new ArrayList<>());
+        }
+        if (!tree.containsKey(b)) {
+            tree.put(b, new ArrayList<>());
+        }
+        tree.get(a).add(new NodeWithCost(b, cost));
+        tree.get(b).add(new NodeWithCost(a, cost));
+    }
+    int q = sc.nextInt();
+    int k = sc.nextInt();
+    Map<Integer, Long> costDataFromK = buildCostData(k, tree);
+    for (int i = 0; i < q; i++) {
+        int x = sc.nextInt();
+        int y = sc.nextInt();
+        System.out.println(costDataFromK.get(x) + costDataFromK.get(y));
+    }
+}

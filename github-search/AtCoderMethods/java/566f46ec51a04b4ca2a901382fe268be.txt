@@ -1,0 +1,20 @@
+public static void main(String[] args) throws Exception {
+    InputReader in = new InputReader(System.in);
+    PrintWriter pw = new PrintWriter(System.out);
+    h = in.ii();
+    w = in.ii();
+    s = new char[h][w];
+    for (int i = 0; i < h; i++) s[i] = in.is().toCharArray();
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            if (s[i][j] == '.') {
+                s[i][j] = (char) (find(i, j) + '0');
+            }
+            sb.append(s[i][j]);
+        }
+        sb.append("\n");
+    }
+    pw.println(sb);
+    pw.close();
+}

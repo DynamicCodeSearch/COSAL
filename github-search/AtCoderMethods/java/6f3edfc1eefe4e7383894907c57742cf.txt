@@ -1,0 +1,9 @@
+static void calcDepth(Node n, Set<Integer> parents) {
+    parents.add(n.id);
+    for (Entry<Node, Integer> c : n.edge.entrySet()) {
+        if (parents.contains(c.getKey().id))
+            continue;
+        c.getKey().depth = n.depth + c.getValue();
+        calcDepth(c.getKey(), parents);
+    }
+}

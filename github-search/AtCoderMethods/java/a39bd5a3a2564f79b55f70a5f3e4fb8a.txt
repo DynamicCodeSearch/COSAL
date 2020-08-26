@@ -1,0 +1,49 @@
+void solve(FastScanner in, PrintWriter out) throws Exception {
+    int N = in.nextInt();
+    ArrayList<Integer>[] G = new ArrayList[N];
+    for (int i = 0; i < N; i++) {
+        G[i] = new ArrayList<>();
+    }
+    for (int i = 0; i < N - 1; i++) {
+        int a = in.nextInt() - 1;
+        int b = in.nextInt() - 1;
+        G[a].add(b);
+        G[b].add(a);
+    }
+    int[] ans = new int[N];
+    Arrays.fill(ans, -1);
+    PriorityQueue<int[]> Q = new PriorityQueue<>(new Comparator<int[]>() {
+
+        @Override
+        public int compare(int[] o1, int[] o2) {
+            return Integer.compare(o1[0], o2[0]);
+        }
+    });
+    int K = in.nextInt();
+    for (int i = 0; i < K; i++) {
+        int v = in.nextInt() - 1;
+        int p = in.nextInt();
+        ans[v] = p;
+        Q.add(new int[] { p, v });
+    }
+    while (!Q.isEmpty()) {
+        int[] q = Q.poll();
+        int v = q[1];
+        for (int u : G[v]) {
+            if (ans[u] == -1) {
+                ans[u] = ans[v] + 1;
+                Q.add(new int[] { ans[u], u });
+            }
+        }
+    }
+    for (int i = 0; i < N; i++) {
+        for (int u : G[i]) {
+            if (Math.abs(ans[i] - ans[u]) != 1) {
+                out.println("No");
+                return;
+            }
+        }
+    }
+    out.println("Yes");
+    for (int a : ans) out.println(a);
+}

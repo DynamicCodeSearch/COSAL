@@ -1,0 +1,17 @@
+public static void main(String[] __) {
+    int d = getInt(), m = getInt();
+    if (Math.abs(d - m) >= 2) {
+        System.out.println(0);
+        return;
+    }
+    long r = 1;
+    for (int i = 1; i <= d; i++) {
+        r *= i;
+        r %= mod;
+    }
+    for (int i = 1; i <= m; i++) {
+        r *= i;
+        r %= mod;
+    }
+    System.out.println(d == m ? r * 2 % mod : r);
+}

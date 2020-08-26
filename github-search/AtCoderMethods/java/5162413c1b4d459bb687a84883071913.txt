@@ -1,0 +1,22 @@
+int countCommon(int i, int j) {
+    if (i > j) {
+        return countCommon(j, i);
+    } else if (i == j) {
+        return 0;
+    }
+    int cnt = 0;
+    int li = i;
+    int lj = j;
+    int limit = Math.min(j - i, n - j);
+    for (int ki = k - 1; ki >= 0; ki--) {
+        if (levelRank[ki] == null || limit < (1 << ki)) {
+            continue;
+        }
+        if (levelRank[ki][li] == levelRank[ki][lj]) {
+            cnt += 1 << ki;
+            li += 1 << ki;
+            lj += 1 << ki;
+        }
+    }
+    return cnt;
+}

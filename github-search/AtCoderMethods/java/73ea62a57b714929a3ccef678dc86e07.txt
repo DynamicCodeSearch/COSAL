@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    int n = ni(), m = ni();
+    int[] a = new int[n];
+    int[] b = new int[n];
+    nextIntArray(a, b);
+    int[] c = new int[m];
+    int[] d = new int[m];
+    nextIntArray(c, d);
+    for (int i = 0; i < n; i++) {
+        long min = Long.MAX_VALUE;
+        int num = 0;
+        for (int j = 0; j < m; j++) {
+            int man = Math.abs(a[i] - c[j]) + Math.abs(b[i] - d[j]);
+            if (min > man) {
+                min = man;
+                num = j + 1;
+            }
+        }
+        pl(num);
+    }
+    flush();
+}

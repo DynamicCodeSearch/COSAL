@@ -1,0 +1,8 @@
+def solve(repeats, H, W, N):
+    grid = [['.']*W for _ in range(H)]
+    pos = walk_grid(H, W)
+    for c, r in enumerate(repeats, start=1):
+        for _ in range(r):
+            x, y = pos.__next__()
+            grid[y][x] = c
+    return grid

@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    int[][] ab = new int[n][2];
+    int[][] cd = new int[m][2];
+    int min = Integer.MAX_VALUE;
+    int nearNum = 0;
+    for (int i = 0; i < n; i++) {
+        ab[i][0] = sc.nextInt();
+        ab[i][1] = sc.nextInt();
+    }
+    for (int i = 0; i < m; i++) {
+        cd[i][0] = sc.nextInt();
+        cd[i][1] = sc.nextInt();
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            int num = Math.abs(ab[i][0] - cd[j][0]) + Math.abs(ab[i][1] - cd[j][1]);
+            if (min > num) {
+                min = num;
+                nearNum = j + 1;
+            }
+        }
+        System.out.println(nearNum);
+        min = Integer.MAX_VALUE;
+    }
+}

@@ -1,0 +1,36 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    int[] rcnt = new int[100010];
+    int[] ccnt = new int[100010];
+    int[] rcntcnt = new int[100010];
+    int[] ccntcnt = new int[100010];
+    int R = sc.nextInt();
+    int C = sc.nextInt();
+    int k = sc.nextInt();
+    int n = sc.nextInt();
+    int[] r = new int[n];
+    int[] c = new int[n];
+    for (int i = 0; i < n; i++) {
+        r[i] = sc.nextInt() - 1;
+        c[i] = sc.nextInt() - 1;
+        rcnt[r[i]]++;
+        ccnt[c[i]]++;
+    }
+    for (int i = 0; i < R; i++) {
+        rcntcnt[rcnt[i]]++;
+    }
+    for (int i = 0; i < C; i++) {
+        ccntcnt[ccnt[i]]++;
+    }
+    long ans = 0;
+    for (int i = 0; i <= k; i++) {
+        ans += (long) rcntcnt[i] * ccntcnt[k - i];
+    }
+    for (int i = 0; i < n; i++) {
+        if (rcnt[r[i]] + ccnt[c[i]] == k)
+            ans--;
+        if (rcnt[r[i]] + ccnt[c[i]] == k + 1)
+            ans++;
+    }
+    System.out.println(ans);
+}

@@ -1,0 +1,41 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    StringTokenizer st = new StringTokenizer(br.readLine());
+    int sx = Integer.parseInt(st.nextToken()) + 1000;
+    int sy = Integer.parseInt(st.nextToken()) + 1000;
+    int tx = Integer.parseInt(st.nextToken()) + 1000;
+    int ty = Integer.parseInt(st.nextToken()) + 1000;
+    int len1 = ty - sy;
+    int len2 = tx - sx;
+    String str = "";
+    for (int i = 0; i < len1; i++) {
+        str += "U";
+    }
+    for (int i = 0; i < len2; i++) {
+        str += "R";
+    }
+    for (int i = 0; i < len1; i++) {
+        str += "D";
+    }
+    for (int i = 0; i < len2; i++) {
+        str += "L";
+    }
+    str += "D";
+    len1++;
+    len2++;
+    for (int i = 0; i < len2; i++) {
+        str += "R";
+    }
+    for (int i = 0; i < len1; i++) {
+        str += "U";
+    }
+    str += "LU";
+    for (int i = 0; i < len2; i++) {
+        str += "L";
+    }
+    for (int i = 0; i < len1; i++) {
+        str += "D";
+    }
+    str += "R";
+    System.out.println(str);
+}

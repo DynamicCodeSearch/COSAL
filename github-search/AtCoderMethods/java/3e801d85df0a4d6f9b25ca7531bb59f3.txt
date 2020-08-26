@@ -1,0 +1,11 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    Printer pr = new Printer(System.out);
+    String s = sc.next();
+    int n = s.indexOf("WWBWBWW");
+    String[] ans = { "Do", "Do#", "Re", "Re#", "Mi", "Fa", "Fa#", "So", "So#", "La", "La#", "Si" };
+    int x = (-n - 1 + 3 * ans.length) % ans.length;
+    pr.println(ans[x]);
+    pr.close();
+    sc.close();
+}

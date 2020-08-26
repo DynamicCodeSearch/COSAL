@@ -1,0 +1,34 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int t = scan.nextInt();
+    int n = scan.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = scan.nextInt();
+    }
+    int m = scan.nextInt();
+    int[] b = new int[m];
+    for (int i = 0; i < m; i++) {
+        b[i] = scan.nextInt();
+    }
+    if (m > n) {
+        System.out.println("no");
+        return;
+    }
+    int temp = n - m;
+    int j = 0;
+    for (int i = 0; i < m; i++) {
+        if (!((b[i] >= a[j]) && (b[i] - a[j] <= t))) {
+            if (temp > 0) {
+                temp--;
+                j++;
+                i--;
+                continue;
+            }
+            System.out.println("no");
+            return;
+        }
+        j++;
+    }
+    System.out.println("yes");
+}

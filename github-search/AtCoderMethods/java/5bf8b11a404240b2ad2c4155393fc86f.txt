@@ -1,0 +1,19 @@
+static void solve() {
+    int n = ni(), Q = ni();
+    int[][] co = new int[n][];
+    for (int i = 0; i < n; i++) {
+        co[i] = na(3);
+    }
+    for (int z = 0; z < Q; z++) {
+        int a = ni(), b = ni();
+        double ret = 0;
+        for (int i = 0; i < n; i++) {
+            int r = co[i][1], h = co[i][2], x = co[i][0];
+            int xl = co[i][0], xh = co[i][0] + co[i][2];
+            if (Math.max(a, xl) <= Math.min(b, xh)) {
+                ret += v(r, h, Math.min(h, xh - a)) - v(r, h, Math.max(0, xh - b));
+            }
+        }
+        out.printf("%.14f\n", ret);
+    }
+}

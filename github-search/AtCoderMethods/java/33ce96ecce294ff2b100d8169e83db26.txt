@@ -1,0 +1,19 @@
+public static void core(final Scanner in) {
+    final int n = in.nextInt();
+    int a = (int) Math.floor(Math.pow((double) n, 0.5));
+    int b = n / a;
+    int r = n - a * b;
+    int score = getScore(a, b, r);
+    int best_score = score;
+    while (a > 1 && best_score > 0) {
+        a--;
+        b = n / a;
+        r = n - a * b;
+        score = getScore(a, b, r);
+        if (score < best_score) {
+            best_score = score;
+        }
+    }
+    ;
+    System.out.println(best_score);
+}

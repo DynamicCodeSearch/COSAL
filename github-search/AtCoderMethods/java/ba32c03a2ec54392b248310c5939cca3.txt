@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] ans = new int[4];
+    String s = sc.next();
+    for (int i = 0; i < N; i++) {
+        int c = Integer.parseInt(String.valueOf(s.charAt(i))) - 1;
+        ans[c]++;
+    }
+    int max = 0;
+    int min = 200;
+    for (int i = 0; i < 4; i++) {
+        max = Math.max(max, ans[i]);
+        min = Math.min(min, ans[i]);
+    }
+    System.out.println(max + " " + min);
+}

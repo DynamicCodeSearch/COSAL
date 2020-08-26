@@ -1,0 +1,78 @@
+
+
+
+
+public static void main(String[] args) throws Exception, IOException {
+    Reader sc = new Reader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = sc.nextInt();
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    int[] c = new int[n];
+    int d[] = new int[n], mx = 0;
+    A[] x = new A[n];
+    for (int i = 0; i < n; i++) {
+        d[i] = sc.nextInt();
+        if (a == 1)
+            continue;
+        int k = d[i];
+        while (k > 0) {
+            c[i]++;
+            k /= a;
+        }
+        x[i] = new A(d[i], c[i], log(d[i]));
+        mx = max(mx, c[i]);
+    }
+    if (a > 1)
+        sort(x);
+    sort(d);
+    if (a == 1) {
+        for (int i = 0; i < n; i++) {
+            out.print(d[i] % mod);
+            out.print(i < n - 1 ? " " : "");
+        }
+        out.println();
+        out.flush();
+        return;
+    }
+    
+    
+    
+    int e = 0;
+    double lg = log(a);
+    for (int i = 0; i < n; i++) {
+        e += mx - c[i];
+        x[i].b = 0;
+    }
+    if (e >= b) {
+        for (int i = 0; i < b; i++) {
+            x[0].b++;
+            x[0].d += lg;
+            sort(x);
+        }
+    } else {
+        for (int i = 0; i < e; i++, b--) {
+            x[0].b++;
+            x[0].d += lg;
+            sort(x);
+        }
+        for (int i = 0; i < n; i++) {
+            x[i].b += b / n;
+        }
+        for (int i = 0; i < b % n; i++) {
+            x[0].b++;
+            x[0].d += lg;
+            sort(x);
+        }
+    
+    
+    
+    }
+    for (int i = 0; i < n; i++) {
+        long w = x[i].a, z = powerb(a, x[i].b, mod);
+        out.print(w * z % mod);
+        out.print(i < n - 1 ? " " : "");
+    }
+    out.println();
+    out.flush();
+}

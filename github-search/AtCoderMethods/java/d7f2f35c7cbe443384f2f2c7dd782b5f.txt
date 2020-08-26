@@ -1,0 +1,35 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    for (int i = 0; i < m; i++) {
+        int p = sc.nextInt();
+        int q = sc.nextInt();
+        int c = sc.nextInt();
+        int p0Id = toId(p, 0);
+        int q0Id = toId(q, 0);
+        int pcId = toId(p, c);
+        int qcId = toId(q, c);
+        List<Long> p0 = g.getNext(p0Id);
+        List<Long> q0 = g.getNext(q0Id);
+        List<Long> pc = g.getNext(pcId);
+        List<Long> qc = g.getNext(qcId);
+        if (pc.isEmpty()) {
+            p0.add(iToL(pcId, 1));
+            pc.add(iToL(p0Id, 0));
+        }
+        pc.add(iToL(qcId, 0));
+        if (qc.isEmpty()) {
+            q0.add(iToL(qcId, 1));
+            qc.add(iToL(q0Id, 0));
+        }
+        qc.add(iToL(pcId, 0));
+    
+    
+    
+    
+    
+    }
+    long ans = dijkstra(toId(1, 0), toId(n, 0));
+    System.out.println(ans);
+}

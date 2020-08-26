@@ -1,0 +1,34 @@
+static int get_prime_list(int N, int[] prime) {
+    int[] Bit = new int[N / 30 + 1];
+    int _30m_d = 0x0efbaebbe;
+    Arrays.fill(Bit, _30m_d);
+    Bit[0] = Bit[0] & 0xFFFFFFE9;
+    int[] t_prime = { 1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29 };
+    int p_pos = 11;
+    for (int i = 0; i < p_pos; i++) {
+        prime[i] = t_prime[i];
+    }
+    int pos = 4;
+    for (int ii = pos; ii < p_pos; ii++) {
+        int p;
+        p = prime[ii];
+        for (int j = p * p; j <= N; j = j + 2 * p) {
+            setBit(Bit, j);
+        }
+        for (int j = prime[ii - 1] * prime[ii - 1]; j < (prime[ii] * prime[ii]); j++) {
+            if (j > N) {
+                break;
+            }
+            if (checkBit(Bit, j) == 0) {
+                prime[p_pos] = j;
+                
+                p_pos++;
+            }
+        }
+        if (p * p >= N) {
+            break;
+        }
+    }
+    
+    return p_pos;
+}

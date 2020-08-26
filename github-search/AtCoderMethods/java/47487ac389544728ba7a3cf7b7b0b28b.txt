@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    long[][] d = sc.nextLongTable(N, 2);
+    Arrays.sort(d, new Comparator<long[]>() {
+
+        @Override
+        public int compare(long[] o1, long[] o2) {
+            long signA = Long.signum(o1[0] - o1[1]);
+            long signB = Long.signum(o2[0] - o2[1]);
+            if (signA != signB) {
+                return Long.compare(signA, signB);
+            } else if (signA > 0) {
+                return Long.compare(o2[1], o1[1]);
+            } else {
+                return Long.compare(o1[0], o2[0]);
+            }
+        }
+    });
+    
+    long max = 0;
+    long now = 0;
+    for (long[] x : d) {
+        now += x[0];
+        max = Math.max(max, now);
+        now -= x[1];
+    }
+    System.out.println(max);
+}

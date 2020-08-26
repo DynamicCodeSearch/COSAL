@@ -1,0 +1,12 @@
+private static long pow(long a, long b) {
+    if (b == 0) {
+        return 1;
+    }
+    if (b % 2 == 0) {
+        long v = pow(a, b / 2);
+        return mul(v, v);
+    } else {
+        long v = pow(a, b / 2);
+        return mul(mul(v, v), a);
+    }
+}

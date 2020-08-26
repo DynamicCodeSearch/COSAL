@@ -1,0 +1,36 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    boolean[] b = new boolean[1001];
+    ArrayList<Integer> prime = new ArrayList<Integer>();
+    prime.add(2);
+    for (int i = 3; i <= 1000; i += 2) {
+        if (b[i] == false) {
+            prime.add(i);
+            int k = 3;
+            while (i * k <= 1000) {
+                b[i * k] = true;
+                k += 2;
+            }
+        }
+    }
+    int s = prime.size();
+    long[] PNum = new long[s];
+    for (int i = 0; i < s; i++) {
+        int P = prime.get(i);
+        for (int j = 1; j <= N; j++) {
+            int tmp = j;
+            while (tmp % P == 0) {
+                PNum[i]++;
+                tmp /= P;
+            }
+        }
+    }
+    long ans = 1;
+    long mod = 1000000007;
+    for (int i = 0; i < s; i++) {
+        ans *= (PNum[i] + 1);
+        ans %= mod;
+    }
+    System.out.println(ans);
+}

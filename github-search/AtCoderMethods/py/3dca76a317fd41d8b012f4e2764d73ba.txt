@@ -1,0 +1,9 @@
+def main():
+    N, K = list(map(int, input().split(' ')))
+    Rs = list(map(int, input().split(' ')))
+    Rs.sort()
+    C = 0
+
+    for i in (range(1, K + 1))[::-1]:
+        C = (C + Rs[-i]) * 0.5
+    print(C)

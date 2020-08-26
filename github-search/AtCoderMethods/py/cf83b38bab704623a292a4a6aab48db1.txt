@@ -1,0 +1,16 @@
+def parse(commands):
+    x = 0
+    y = 0
+    r = 0
+    for command in commands:
+        if command == "L":
+            x -= 1
+        elif command == "R":
+            x += 1
+        elif command == "U":
+            y += 1
+        elif command == "D":
+            y -= 1
+        else:
+            r += 1
+    return Result(abs(x), abs(y), r)

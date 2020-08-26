@@ -1,0 +1,19 @@
+int dp(int k, int ta, int tb) {
+    if (k == 0 && ta == a[0] && tb == b[0]) {
+        return c[0];
+    }
+    if (k == 0 && ta == 0 && tb == 0) {
+        return 0;
+    }
+    if (k < 0 || ta < 0 || tb < 0) {
+        return 1 << 20;
+    }
+    if (f[k][ta][tb]) {
+        return dp[k][ta][tb];
+    }
+    f[k][ta][tb] = true;
+    int ret = 1 << 20;
+    ret = Math.min(ret, dp(k - 1, ta, tb));
+    ret = Math.min(ret, dp(k - 1, ta - a[k], tb - b[k]) + c[k]);
+    return dp[k][ta][tb] = ret;
+}

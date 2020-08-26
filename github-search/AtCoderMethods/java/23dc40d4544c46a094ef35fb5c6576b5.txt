@@ -1,0 +1,13 @@
+public static void main(String[] args) throws Exception {
+    int n = sc.nextInt();
+    int ans = 10000000;
+    for (int i = 1; i <= n; i++) {
+        int x = Math.abs(n / i - i);
+        int y = n - (n / i) * i;
+        ans = Math.min(ans, x + y);
+    }
+    out.println(ans);
+    out.flush();
+    sc.close();
+    out.close();
+}

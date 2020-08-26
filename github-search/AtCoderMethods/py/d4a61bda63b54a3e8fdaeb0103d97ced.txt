@@ -1,0 +1,11 @@
+def main():
+    N = int(input())
+    s = input()
+
+    for x in [(-1, -1), (-1, 1), (1, -1), (1, 1)]:
+        l = [None] * N
+        l[-1], l[0] = x[0], x[1]
+        if ok(l, s):
+            print("".join(['W' if x == -1 else 'S' for x in l]))
+            return
+    print(-1)

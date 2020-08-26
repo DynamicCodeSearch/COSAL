@@ -1,0 +1,15 @@
+void solve() throws IOException {
+    String s = readString();
+    long ans = 0;
+    for (long i = 0; i < 1 << (s.length() - 1); i++) {
+        int prev = 0;
+        for (int j = 0; j < s.length() - 1; j++) {
+            if (((i >> j) & 1) == 1) {
+                ans += Long.parseLong(s.substring(prev, j + 1));
+                prev = j + 1;
+            }
+        }
+        ans += Long.parseLong(s.substring(prev, s.length()));
+    }
+    out.println(ans);
+}

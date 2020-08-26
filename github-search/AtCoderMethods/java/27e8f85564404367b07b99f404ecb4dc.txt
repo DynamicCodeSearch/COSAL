@@ -1,0 +1,33 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    HashMap<Integer, ArrayList<Integer>> map = new HashMap<Integer, ArrayList<Integer>>();
+    for (int i = 1; i < N; i++) {
+        int id = sc.nextInt() - 1;
+        if (map.containsKey(id)) {
+            ArrayList<Integer> list = map.get(id);
+            list.add(i);
+            map.put(id, list);
+        } else {
+            ArrayList<Integer> list = new ArrayList<Integer>();
+            list.add(i);
+            map.put(id, list);
+        }
+    }
+    int[] salary = new int[N];
+    for (int i = N - 1; i >= 0; i--) {
+        if (map.containsKey(i)) {
+            ArrayList<Integer> list = map.get(i);
+            int maxsalary = 0;
+            int minsalary = Integer.MAX_VALUE;
+            for (int j = 0; j < list.size(); j++) {
+                maxsalary = Math.max(maxsalary, salary[list.get(j)]);
+                minsalary = Math.min(minsalary, salary[list.get(j)]);
+            }
+            salary[i] = maxsalary + minsalary + 1;
+        } else {
+            salary[i] = 1;
+        }
+    }
+    System.out.println(salary[0]);
+}

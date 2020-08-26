@@ -1,0 +1,13 @@
+static Node mergeX(Node x, Node y) {
+    if (count(x) > count(y)) {
+        Node z = x;
+        x = y;
+        y = z;
+    }
+    while (count(x) > 0) {
+        Node first = get(x, 0);
+        x = erase(x, 0);
+        y = insertb(y, first);
+    }
+    return y;
+}

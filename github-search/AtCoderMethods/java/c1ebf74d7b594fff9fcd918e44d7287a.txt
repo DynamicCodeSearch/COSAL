@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int n = scanner.nextInt();
+    scanner.close();
+    int sum = 0;
+    for (int i = 1; i < 10; i++) {
+        for (int j = 1; j < 10; j++) {
+            sum += i * j;
+        }
+    }
+    int x = sum - n;
+    int y = 0, z = 0;
+    for (int i = 1; i < 10; i++) {
+        if (x % i == 0 && x / i < 10) {
+            y = i;
+            z = x / i;
+            System.out.println(y + " x " + z);
+        }
+    }
+}

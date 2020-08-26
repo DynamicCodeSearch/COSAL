@@ -1,0 +1,12 @@
+static long DFS(int y, int x) {
+    if (dp[y][x] > 0)
+        return dp[y][x];
+    for (int i = 0; i < 4; i++) {
+        if (a[y][x] < a[y + d[i][0]][x + d[i][1]]) {
+            dp[y][x] += DFS(y + d[i][0], x + d[i][1]);
+            dp[y][x] %= INF;
+        }
+    }
+    dp[y][x]++;
+    return dp[y][x];
+}

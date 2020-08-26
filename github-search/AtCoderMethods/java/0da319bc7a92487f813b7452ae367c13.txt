@@ -1,0 +1,28 @@
+private void solve() {
+    Scanner in = new Scanner(System.in);
+    int n = in.nextInt();
+    int[] a = new int[n];
+    int[] b = new int[n];
+    for (int i = 0; i < n; ++i) {
+        a[i] = in.nextInt();
+    }
+    int idx = n / 2, d;
+    if (n % 2 == 0) {
+        d = -1;
+    } else {
+        d = 1;
+    }
+    for (int i = 0; i < n; ++i) {
+        b[idx] = a[i];
+        idx += d;
+        if (d < 0) {
+            d = 1 - d;
+        } else {
+            d = -1 - d;
+        }
+    }
+    for (int i = 0; i < n; ++i) {
+        System.out.print(b[i] + " ");
+    }
+    System.out.println();
+}

@@ -1,0 +1,13 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    int n = Integer.parseInt(sc.nextLine());
+    Point[] point = new Point[n];
+    for (int i = 0; i < n; i++) {
+        String[] s = sc.nextLine().split(" ");
+        point[i] = new Point(Integer.parseInt(s[0]), Integer.parseInt(s[1]));
+    }
+    double max = 0.0;
+    for (int i = 0; i < point.length; i++) for (int j = i + 1; j < point.length; j++) if (max < distance(point[i], point[j]))
+        max = distance(point[i], point[j]);
+    System.out.println(max);
+}

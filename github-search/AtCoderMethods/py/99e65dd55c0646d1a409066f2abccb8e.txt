@@ -1,0 +1,26 @@
+def Write_and_Erase():
+
+    numbers = []
+    try:
+        LOCAL_FLAG
+        N = 3
+        numbers = [6, 2, 6]
+
+
+        N = 6
+        numbers = [12, 22, 16, 22, 18, 12]
+
+    except NameError:
+        N = int(input())
+        for i in range(N):
+            numbers.append(int(input()))
+
+    onPaper = set([numbers[0]])
+    for i in range(1, N):
+        if numbers[i] in onPaper:
+            onPaper.remove(numbers[i])
+        else:
+            onPaper.add(numbers[i])
+
+
+    print(len(onPaper))

@@ -1,0 +1,17 @@
+public void solve() {
+    int n = nextInt();
+    int q = nextInt();
+    int[] sum = new int[n + 1];
+    for (int i = 0; i < q; i++) {
+        int l = nextInt();
+        int r = nextInt();
+        sum[l - 1] += 1;
+        sum[r] -= 1;
+    }
+    int cur = 0;
+    for (int i = 0; i < n; i++) {
+        cur += sum[i];
+        out.print(cur % 2);
+    }
+    out.println();
+}

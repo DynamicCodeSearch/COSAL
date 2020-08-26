@@ -1,0 +1,11 @@
+def get_prime_list(n):
+    prime = [2]
+    for i in range(3, n+1):
+        flag = True
+        for j in range(2, i):
+            if i%j == 0:
+                flag = False
+                break
+        if flag:
+            prime.append(i)
+    return prime

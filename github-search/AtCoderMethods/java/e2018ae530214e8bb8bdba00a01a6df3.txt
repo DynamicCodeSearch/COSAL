@@ -1,0 +1,28 @@
+public void run() {
+    N = in.nextInt();
+    M = in.nextInt();
+    map = new boolean[N][N];
+    int[][] route = new int[2][M];
+    int a, b;
+    for (int i = 0; i < M; i++) {
+        a = in.nextInt() - 1;
+        b = in.nextInt() - 1;
+        route[0][i] = a;
+        route[1][i] = b;
+        map[a][b] = true;
+        map[b][a] = true;
+    }
+    int count = 0;
+    int tmp;
+    int ti = 0;
+    int tj = 0;
+    for (int i = 0; i < M; i++) {
+        map[route[0][i]][route[1][i]] = false;
+        map[route[1][i]][route[0][i]] = false;
+        if (check())
+            count++;
+        map[route[0][i]][route[1][i]] = true;
+        map[route[1][i]][route[0][i]] = true;
+    }
+    out.println(count);
+}

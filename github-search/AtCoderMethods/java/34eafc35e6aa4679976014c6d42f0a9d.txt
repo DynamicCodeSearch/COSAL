@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int n = in.nextInt();
+    int m = in.nextInt();
+    int[][] student = new int[n][2];
+    int[][] checkPoint = new int[m][2];
+    int[] indexArray = new int[n];
+    for (int i = 0; i < n; i++) {
+        student[i][0] = in.nextInt();
+        student[i][1] = in.nextInt();
+    }
+    for (int i = 0; i < m; i++) {
+        checkPoint[i][0] = in.nextInt();
+        checkPoint[i][1] = in.nextInt();
+    }
+    for (int i = 0; i < student.length; i++) {
+        int min = 2147483647;
+        int index = -1;
+        for (int j = 0; j < checkPoint.length; j++) {
+            if (Math.abs(student[i][0] - checkPoint[j][0]) + Math.abs(student[i][1] - checkPoint[j][1]) < min) {
+                min = Math.abs(student[i][0] - checkPoint[j][0]) + Math.abs(student[i][1] - checkPoint[j][1]);
+                index = j + 1;
+            }
+        }
+        
+        System.out.println(index);
+    }
+}

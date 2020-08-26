@@ -1,0 +1,145 @@
+### Py Tokens: map, none, ordered, items, clear, remove, dict, ordereddict, root 
+
+### Py functions
+
+def clear(self):
+
+  root = self.__root
+  root[:] = [root, root, None]
+  self.__map.clear()
+  dict.clear(self)
+*********************************
+
+#### Score: 4.86289
+
+
+#### Java Tokens: given, using, string, lower-case, lower, torootlowercase, link, source, converts, manner, locale, stringutils, param, utils, root, tolowercase, safe, case, null-safe, since 
+
+
+public static String toRootLowerCase(final String source) {
+    return source == null ? null : source.toLowerCase(Locale.ROOT);
+}
+*********************************
+
+#### Score: 4.86289
+
+
+#### Java Tokens: given, using, string, upper, link, source, converts, manner, torootuppercase, locale, stringutils, upper-case, param, utils, root, safe, touppercase, case, null-safe, since 
+
+
+public static String toRootUpperCase(final String source) {
+    return source == null ? null : source.toUpperCase(Locale.ROOT);
+}
+*********************************
+
+#### Score: 4.23264
+
+
+#### Java Tokens: stringutils, noofitems, string, utils, newstringbuilder, builder, stringbuilder, items 
+
+private static StringBuilder newStringBuilder(final int noOfItems) {
+    return new StringBuilder(noOfItems * 16);
+}
+*********************************
+
+#### Score: 3.40647
+
+
+#### Java Tokens: css, pre, code, string, may, foo, none, check, sequences, charsequences, charsequence, empty, stringutils, sequence, isanyempty, bar, checks, bob, isnoneempty, param, utils, char, since 
+
+
+public static boolean isNoneEmpty(final CharSequence... css) {
+    return !isAnyEmpty(css);
+}
+*********************************
+
+#### Score: 3.31951
+
+
+#### Java Tokens: occurrences, pre, code, string, may, within, queued, replace, source, isempty, remove, substring, empty, str, stringutils, mos, input, search, found, removed, param, utils, removes, since 
+
+
+public static String remove(final String str, final String remove) {
+    if (isEmpty(str) || isEmpty(remove)) {
+        return str;
+    }
+    return replace(str, remove, EMPTY, -1);
+}
+*********************************
+
+#### Score: 3.28076
+
+
+#### Java Tokens: code, string, link, stripped, strips, remove, character, strip, trim, param, utils, end, defined, similar, pre, abc, may, start, str, stringutils, input, returns, removes, whitespace, iswhitespace 
+
+
+
+
+public static String strip(final String str) {
+    return strip(str, null);
+}
+*********************************
+
+#### Score: 3.20617
+
+
+#### Java Tokens: code, string, charutils, substring, remove, without, empty, strlen, character, len, param, lastidx, utils, ends, charat, ret, pre, abc, last, may, chop, length, str, stringutils, input, char, idx 
+
+
+
+
+public static String chop(final String str) {
+    if (str == null) {
+        return null;
+    }
+    final int strLen = str.length();
+    if (strLen < 2) {
+        return EMPTY;
+    }
+    final int lastIdx = strLen - 1;
+    final String ret = str.substring(0, lastIdx);
+    final char last = str.charAt(lastIdx);
+    if (last == CharUtils.LF && ret.charAt(lastIdx - 1) == CharUtils.CR) {
+        return ret.substring(0, lastIdx - 1);
+    }
+    return ret;
+}
+*********************************
+
+#### Score: 3.17895
+
+
+#### Java Tokens: isnoneblank, css, blank, code, string, foo, link, none, sequences, charsequence, empty, character, bar, param, utils, defined, pre, may, check, charsequences, stringutils, sequence, checks, bob, char, isanyblank, whitespace, iswhitespace, since 
+
+
+public static boolean isNoneBlank(final CharSequence... css) {
+    return !isAnyBlank(css);
+}
+*********************************
+
+#### Score: 3.10103
+
+
+#### Java Tokens: occurrences, code, string, queued, replace, insensitive, source, isempty, remove, substring, empty, mos, search, found, ued, param, utils, ignore, case, replaceignorecase, removeignorecase, pre, may, within, str, stringutils, input, removed, removal, since 
+
+
+public static String removeIgnoreCase(final String str, final String remove) {
+    if (isEmpty(str) || isEmpty(remove)) {
+        return str;
+    }
+    return replaceIgnoreCase(str, remove, EMPTY, -1);
+}
+*********************************
+
+#### Score: 3.01335
+
+
+#### Java Tokens: code, string, signature, none, charsequence, empty, characters, character, tochararray, array, param, utils, xyz, invalidchars, always, pre, contain, may, check, abab, stringutils, sequence, ab1, contains, checks, char, invalid, abz, returns, containsnone, certain, chars, since, changed 
+
+
+public static boolean containsNone(final CharSequence cs, final String invalidChars) {
+    if (cs == null || invalidChars == null) {
+        return true;
+    }
+    return containsNone(cs, invalidChars.toCharArray());
+}

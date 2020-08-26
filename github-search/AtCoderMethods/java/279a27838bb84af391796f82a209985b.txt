@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    Scanner s = new Scanner(System.in);
+    int N = s.nextInt();
+    int K = s.nextInt();
+    int[][] answerValues = new int[N][K];
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < K; j++) {
+            answerValues[i][j] = s.nextInt();
+        }
+    }
+    s.close();
+    int totalPattern = (int) Math.pow(K, N);
+    for (int pattern = 0; pattern < totalPattern; pattern++) {
+        int xor = 0;
+        int tmpPattern = pattern;
+        for (int i = 0; i < N; i++) {
+            int answer = tmpPattern % K;
+            xor = xor ^ answerValues[i][answer];
+            tmpPattern /= K;
+        }
+        if (xor == 0) {
+            System.out.println("Found");
+            return;
+        }
+    }
+    System.out.println("Nothing");
+}

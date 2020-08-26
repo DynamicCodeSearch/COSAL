@@ -1,0 +1,11 @@
+public static int maxClusterDfs(boolean[][] graph) {
+    int nodeSize = graph.length;
+    boolean[] visited = new boolean[nodeSize];
+    int result = 0;
+    for (int start = 0; start < nodeSize; ++start) {
+        visited[start] = true;
+        result = Math.max(1 + dfs(graph, start, visited), result);
+        visited[start] = false;
+    }
+    return result;
+}

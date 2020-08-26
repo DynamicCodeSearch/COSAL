@@ -1,0 +1,39 @@
+def look_for_minimum_path(self, start, end, depth=5):
+    if start in self.path and end in self.path[start]:
+        return [start, end, self.path[start][end]]
+    answer = []
+    answer_value = []
+    process = [[start]]
+    process_value = [[0]]
+    min_value = self.big_number
+    for _ in range(depth):
+        tmp_process_p = []
+        tmp_process_v = []
+        for p, v in zip(process, process_value):
+            value = v[-1]
+            if p[-1] in self.path:
+                for key in self.path[p[-1]].keys():
+                    tmp_value = value + self.path[p[-1]][key]
+                    if min_value >= tmp_value:
+                        tmp_p = p[:] + [key]
+                        tmp_v = v[:] + [tmp_value]
+                        if key == end:
+                            answer = tmp_p
+                            answer_value = tmp_v
+                            min_value = tmp_value
+                        elif len(tmp_p) == len(set(tmp_p)):
+                            tmp_process_p.append(tmp_p)
+                            tmp_process_v.append(tmp_v)
+        process = tmp_process_p[:]
+        process_value = tmp_process_v[:]
+        if len(process) == 0:
+            if len(answer) == 0:
+                return [start, self.big_number]
+            else:
+                self.register_path(answer, answer_value)
+                return answer + [answer_value[-1]]
+    if len(answer) == 0:
+        return [start, self.big_number]
+    else:
+        self.register_path(answer, answer_value)
+        return answer + [answer_value[-1]]

@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    Printer pr = new Printer(System.out);
+    double p = sc.nextDouble();
+    double l = 0;
+    double r = 1.0e18;
+    for (int i = 0; i < 200; i++) {
+        double c1 = (l + l + r) / 3;
+        double c2 = (l + r + r) / 3;
+        if (f2(c1, p) < f2(c2, p)) {
+            r = c2;
+        } else {
+            l = c1;
+        }
+    }
+    pr.printf("%.9f\n", f2(l, p));
+    pr.close();
+    sc.close();
+}

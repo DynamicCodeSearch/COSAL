@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    try (Scanner sc = new Scanner(System.in)) {
+        
+        int n = sc.nextInt();
+        int q = sc.nextInt();
+        
+        Cone[] cones = new Cone[n];
+        for (int i = 0; i < n; i++) {
+            int x = sc.nextInt();
+            int r = sc.nextInt();
+            int h = sc.nextInt();
+            cones[i] = new Cone(x, r, h);
+        }
+        
+        for (int i = 0; i < q; i++) {
+            int a = sc.nextInt();
+            int b = sc.nextInt();
+            if (a > b)
+                throw new IllegalStateException("a=" + a + ",b=" + b);
+            BigDecimal answer = BigDecimal.ZERO;
+            if (a != b) {
+                for (Cone cone : cones) {
+                    answer = answer.add(cone.calcIntersectionVolume(a, b));
+                }
+            }
+            System.out.println(answer.setScale(RESULT_SCALE, BigDecimal.ROUND_HALF_UP));
+        }
+    } finally {
+    }
+}

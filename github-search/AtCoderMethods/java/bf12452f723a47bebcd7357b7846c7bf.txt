@@ -1,0 +1,20 @@
+double readDouble() throws java.io.IOException {
+    byte c;
+    while ((c = read()) <= ' ') ;
+    boolean negate = c == '-';
+    if (negate)
+        c = read();
+    int power = 0;
+    long res = 0;
+    boolean dot_flag = false;
+    for (; (c >= '0' && c <= '9') || c == '.'; c = read()) {
+        if (dot_flag)
+            power++;
+        if (c == '.')
+            dot_flag = true;
+        else
+            res = res * 10 + c - '0';
+    }
+    double ret = res / Math.pow(10, power);
+    return negate ? -ret : ret;
+}

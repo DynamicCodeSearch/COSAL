@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    long[] array = new long[1001];
+    for (int i = 1; i <= N; i++) {
+        array[i] = i;
+    }
+    int[] primes = sieveAtkin(10000);
+    Map<Long, Long> map = new HashMap<>();
+    for (int i = 1; i <= N; i++) {
+        long[][] factors = factorize(array[i], primes);
+        for (long[] f : factors) {
+            long now = !map.containsKey(f[0]) ? 0 : map.get(f[0]);
+            map.put(f[0], now + f[1]);
+        }
+    }
+    long mod = 1000000000 + 7;
+    long ret = 1;
+    for (Map.Entry<Long, Long> entry : map.entrySet()) {
+        long p = entry.getValue();
+        ret *= p + 1;
+        ret %= mod;
+    }
+    System.out.println(ret);
+}

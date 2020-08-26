@@ -1,0 +1,26 @@
+static long lcm(long t1, long t2) {
+    if (t1 == t2) {
+        return t1;
+    }
+    long x = t1;
+    long y = t2;
+    long gcd = 1;
+    for (; ; ) {
+        if (x < y) {
+            
+            y = y % x;
+            if (y == 0) {
+                gcd = x;
+                break;
+            }
+        } else if (y < x) {
+            
+            x = x % y;
+            if (x == 0) {
+                gcd = y;
+                break;
+            }
+        }
+    }
+    return t1 * (t2 / gcd);
+}

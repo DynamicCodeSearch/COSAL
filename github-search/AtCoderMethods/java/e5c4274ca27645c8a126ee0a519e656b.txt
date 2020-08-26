@@ -1,0 +1,17 @@
+static void solve() {
+    long r = nl(), b = nl();
+    long x = nl(), y = nl();
+    
+    
+    
+    long low = 0, high = Math.min(b, r / x) + 1;
+    while (high - low > 1) {
+        long a = high + low >>> 1;
+        if ((b - a) / y - (r - a * x) > 0) {
+            high = a;
+        } else {
+            low = a;
+        }
+    }
+    out.println(Math.min((b - low) / y, r - low * x) + low);
+}

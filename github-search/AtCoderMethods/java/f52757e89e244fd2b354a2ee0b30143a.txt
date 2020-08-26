@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int h = sc.nextInt();
+    int w = sc.nextInt();
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    int i1 = h - 1 - a;
+    int j1 = b;
+    long ans = 0;
+    while (i1 >= 0 && j1 < w) {
+        int i2 = h - 1 - i1;
+        int j2 = w - 1 - j1;
+        ans += comb(i1 + j1, i1) * comb(i2 + j2, i2) % MOD;
+        if (ans >= MOD)
+            ans -= MOD;
+        i1 -= 1;
+        j1 += 1;
+    }
+    System.out.println(ans);
+}

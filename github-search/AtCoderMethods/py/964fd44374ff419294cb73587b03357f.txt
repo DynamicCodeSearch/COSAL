@@ -1,0 +1,20 @@
+def main():
+    votes = int(input())
+    ratio = [[ int(i) for i in input().split() ] for j in range(votes)]
+
+    votesTemp = [0, 0]
+    for i in range(votes):
+        if i == 0:
+            votesTemp = ratio[i]
+            continue
+        if(gcd(ratio[i][0], ratio[i][1]) != 1):
+        	x = 1 / 0
+        ceil = [ cceil(votesTemp[j], ratio[i][j]) for j in range(2)]
+
+        votesTemp = [ max(ceil) * ratio[i][j] for j in range(2) ]
+
+
+
+
+
+    print(sum(votesTemp))

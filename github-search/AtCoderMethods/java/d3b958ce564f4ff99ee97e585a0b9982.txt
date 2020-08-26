@@ -1,0 +1,20 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    StringBuilder sb = new StringBuilder();
+    String[] str = br.readLine().split(" ");
+    int a = Integer.parseInt(str[0]);
+    int b = Integer.parseInt(str[1]);
+    int c = Integer.parseInt(str[2]);
+    int sum = 0;
+    int cnt = 0;
+    int tar = a;
+    if (a > b) {
+        tar = b;
+    }
+    while (sum + tar <= c) {
+        sum += tar;
+        cnt++;
+    }
+    sb.append(cnt);
+    System.out.println(sb);
+}

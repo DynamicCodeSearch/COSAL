@@ -1,0 +1,12 @@
+static int NI() {
+    try {
+        int c = System.in.read(), r = 0;
+        for (; c != '-' && (c < '0' || '9' < c); ) c = System.in.read();
+        if (c == '-')
+            return -NI();
+        for (; '0' <= c && c <= '9'; c = System.in.read()) r = r * 10 + c - '0';
+        return r;
+    } catch (Exception e) {
+        return -1;
+    }
+}

@@ -1,0 +1,44 @@
+private static void create_sample() throws IOException {
+    String outputFileName = "./input7.txt";
+    BufferedWriter writer = new BufferedWriter(new FileWriter(outputFileName));
+    writer.write("1000 1000\n");
+    StringBuilder sb0 = new StringBuilder();
+    StringBuilder sb6 = new StringBuilder();
+    for (int i = 0; i < 1000; i++) {
+        sb0.append('.');
+        sb6.append('.');
+    }
+    StringBuilder sb1 = new StringBuilder();
+    StringBuilder sb2 = new StringBuilder();
+    StringBuilder sb3 = new StringBuilder();
+    StringBuilder sb4 = new StringBuilder();
+    StringBuilder sb5 = new StringBuilder();
+    for (int i = 0; i < 141; i++) {
+        sb1.append("...o...");
+        sb2.append("..o.o..");
+        sb3.append(".o...o.");
+        sb4.append(".ooooo.");
+        sb5.append(".o...o.");
+    }
+    sb1.append(".........o...");
+    sb2.append("........o.o..");
+    sb3.append(".......o...o.");
+    sb4.append(".......ooooo.");
+    sb5.append(".......o...o.");
+    for (int i = 0; i < 142; i++) {
+        writer.write(sb0.toString() + "\n");
+        writer.write(sb1.toString() + "\n");
+        writer.write(sb2.toString() + "\n");
+        writer.write(sb3.toString() + "\n");
+        writer.write(sb4.toString() + "\n");
+        writer.write(sb5.toString() + "\n");
+        writer.write(sb6.toString() + "\n");
+    }
+    writer.write(sb0.toString() + "\n");
+    writer.write(sb0.toString() + "\n");
+    writer.write(sb0.toString() + "\n");
+    writer.write(sb0.toString() + "\n");
+    writer.write(sb0.toString() + "\n");
+    writer.write(sb0.toString() + "\n");
+    writer.close();
+}

@@ -1,0 +1,12 @@
+private int[] min(int l, int r, int idx, int fr, int to) {
+    if (to <= l || r <= fr) {
+        return none;
+    }
+    if (l <= fr && to <= r) {
+        return new int[] { seg[idx], minidx[idx] };
+    }
+    int med = (fr + to) / 2;
+    int[] a = min(l, r, idx * 2 + 1, fr, med);
+    int[] b = min(l, r, idx * 2 + 2, med, to);
+    return a[0] < b[0] ? a : b;
+}

@@ -1,0 +1,24 @@
+private static void solve() {
+    int t = nei();
+    int n = nei();
+    int[] as = nis(n);
+    int m = nei();
+    int[] bs = nis(m);
+    if (m > n) {
+        kil("no");
+    }
+    int tako = 0;
+    int kyaku = 0;
+    while (true) {
+        if (as[tako] <= bs[kyaku] && as[tako] + t >= bs[kyaku]) {
+            tako++;
+            kyaku++;
+        } else {
+            tako++;
+        }
+        if (kyaku == m)
+            kil("yes");
+        if (tako == n)
+            kil("no");
+    }
+}

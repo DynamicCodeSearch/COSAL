@@ -1,0 +1,17 @@
+public boolean union(int x, int y) {
+    x = find(x);
+    y = find(y);
+    if (x != y) {
+        if (par[y] < par[x]) {
+            
+            int tmp = x;
+            x = y;
+            y = tmp;
+        }
+        par[x] += par[y];
+        par[y] = x;
+        return true;
+    } else {
+        return false;
+    }
+}

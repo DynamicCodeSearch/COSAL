@@ -1,0 +1,10 @@
+def solve(N, a):
+    count = defaultdict(int)
+    for _a in a:
+        count[_a - 1] += 1
+        count[_a] += 1
+        count[_a + 1] += 1
+    l_count = list(count.items())
+    l_count.sort(key = lambda x: -x[1])
+    ans = l_count[0][1]
+    return ans

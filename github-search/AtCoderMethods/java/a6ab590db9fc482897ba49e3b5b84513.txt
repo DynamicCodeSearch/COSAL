@@ -1,0 +1,89 @@
+public static void main(String[] args) throws IOException {
+    Integer in1 = null;
+    double aa = 0;
+    double bb = 0;
+    String ans1 = "";
+    String ans2 = "";
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    try {
+        String temp = br.readLine();
+        for (String str : temp.split(" ")) {
+            if (in1 == null) {
+                in1 = 1;
+                aa = Integer.parseInt(str) / 10.00;
+            } else {
+                bb = Integer.parseInt(str);
+            }
+        }
+        BigDecimal bd = new BigDecimal(bb);
+        BigDecimal c = new BigDecimal("60.0");
+        
+        BigDecimal bd2 = bd.divide(c, 1, BigDecimal.ROUND_HALF_UP);
+        bb = bd2.doubleValue();
+        if (aa >= 11.25 && aa < 33.75) {
+            ans1 = "NNE";
+        } else if (aa >= 33.75 && aa < 56.25) {
+            ans1 = "NE";
+        } else if (aa >= 56.25 && aa < 78.75) {
+            ans1 = "ENE";
+        } else if (aa >= 78.75 && aa < 101.25) {
+            ans1 = "E";
+        } else if (aa >= 101.25 && aa < 123.75) {
+            ans1 = "ESE";
+        } else if (aa >= 123.75 && aa < 146.25) {
+            ans1 = "SE";
+        } else if (aa >= 146.25 && aa < 168.75) {
+            ans1 = "SSE";
+        } else if (aa >= 168.75 && aa < 191.25) {
+            ans1 = "S";
+        } else if (aa >= 191.25 && aa < 213.75) {
+            ans1 = "SSW";
+        } else if (aa >= 213.75 && aa < 236.25) {
+            ans1 = "SW";
+        } else if (aa >= 236.25 && aa < 258.75) {
+            ans1 = "WSW";
+        } else if (aa >= 258.75 && aa < 281.25) {
+            ans1 = "W";
+        } else if (aa >= 281.25 && aa < 303.75) {
+            ans1 = "WNW";
+        } else if (aa >= 303.75 && aa < 326.25) {
+            ans1 = "NW";
+        } else if (aa >= 326.25 && aa < 348.75) {
+            ans1 = "NNW";
+        } else {
+            ans1 = "N";
+        }
+        if (bb <= 0.2) {
+            ans2 = "0";
+            ans1 = "C";
+        } else if (bb >= 0.3 && bb <= 1.5) {
+            ans2 = "1";
+        } else if (bb >= 1.6 && bb <= 3.3) {
+            ans2 = "2";
+        } else if (bb >= 3.4 && bb <= 5.4) {
+            ans2 = "3";
+        } else if (bb >= 5.5 && bb <= 7.9) {
+            ans2 = "4";
+        } else if (bb >= 8.0 && bb <= 10.7) {
+            ans2 = "5";
+        } else if (bb >= 10.8 && bb <= 13.8) {
+            ans2 = "6";
+        } else if (bb >= 13.9 && bb <= 17.1) {
+            ans2 = "7";
+        } else if (bb >= 17.2 && bb <= 20.7) {
+            ans2 = "8";
+        } else if (bb >= 20.8 && bb <= 24.4) {
+            ans2 = "9";
+        } else if (bb >= 24.5 && bb <= 28.4) {
+            ans2 = "10";
+        } else if (bb >= 28.5 && bb <= 32.6) {
+            ans2 = "11";
+        } else if (bb >= 32.7) {
+            ans2 = "12";
+        }
+        System.out.println(ans1 + " " + ans2);
+    } catch (Exception e) {
+        System.out.println(e.getMessage());
+        System.exit(0);
+    }
+}

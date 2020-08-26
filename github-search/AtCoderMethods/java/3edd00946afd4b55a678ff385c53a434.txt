@@ -1,0 +1,45 @@
+private static void solve() {
+    int n = nei();
+    int[][] d = nis2(n, n);
+    int q = nei();
+    int[] qs = nis(q);
+    int[][] d2 = new int[n + 1][n + 1];
+    for (int i = 0; i < n; i++) {
+        for (int j = 1; j < n; j++) {
+            d[i][j] += d[i][j - 1];
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = 1; j < n; j++) {
+            d[j][i] += d[j - 1][i];
+        }
+    }
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= n; j++) {
+            d2[i][j] = d[i - 1][j - 1];
+        }
+    }
+    int[] s = new int[n * n + 10];
+    for (int x1 = 0; x1 < n; x1++) {
+        for (int x2 = x1 + 1; x2 <= n; x2++) {
+            for (int y1 = 0; y1 < n; y1++) {
+                for (int y2 = y1 + 1; y2 <= n; y2++) {
+                    int sum = d2[x2][y2] + d2[x1][y1] - d2[x1][y2] - d2[x2][y1];
+                    int area = (x2 - x1) * (y2 - y1);
+                    if (s[area] < sum)
+                        s[area] = sum;
+                }
+            }
+        }
+    }
+    int max = 0;
+    for (int i = 1; i <= n * n; i++) {
+        if (s[i] > max)
+            max = s[i];
+        if (s[i] < max)
+            s[i] = max;
+    }
+    for (int i = 0; i < q; i++) {
+        out(s[qs[i]]);
+    }
+}

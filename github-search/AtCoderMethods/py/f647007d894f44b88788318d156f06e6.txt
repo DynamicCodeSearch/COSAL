@@ -1,0 +1,15 @@
+def f(i):
+    if i == 8:
+        return True
+
+    if y[i] > 0:
+        return f(i+1)
+
+    for j in range(8):
+        if t[j] + n1[i+j] + n2[i-j+7] > 0:
+            continue
+        t[j] = n1[i+j] = n2[i-j+7] = 1
+        if f(i+1):
+            a[i][j] = True
+            return True
+        t[j] = n1[i+j] = n2[i-j+7] = 0

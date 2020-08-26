@@ -1,0 +1,281 @@
+### Py Tokens: passed, named, helper, braced, argument, escaped, kws, unicode, fail, ascii, substitute, needs, typeerror, group, sub, val, pattern, latter, use, invalid, containing, positional, idiom, arguments, template, instead, type, valueerror, unrecognized, function, non, multimap, allow, object, keyerror, len, mapping, key, convert, keyword, many, value, descriptor, delimiter, safe, str, none, error, safesubstitute 
+
+### Py functions
+
+def safe_substitute(*args, **kws):
+  if not args:
+    raise TypeError("descriptor 'safe_substitute' of 'Template' object "
+                    "needs an argument")
+  self, args = args[0], args[1:]  
+  if len(args) > 1:
+    raise TypeError('Too many positional arguments')
+  if not args:
+    mapping = kws
+  elif kws:
+    mapping = _multimap(kws, args[0])
+  else:
+    mapping = args[0]
+
+  def convert(mo):
+    named = mo.group('named') or mo.group('braced')
+    if named is not None:
+      try:
+
+
+        return '%s' % (mapping[named],)
+      except KeyError:
+        return mo.group()
+    if mo.group('escaped') is not None:
+      return self.delimiter
+    if mo.group('invalid') is not None:
+      return mo.group()
+    raise ValueError('Unrecognized named group in pattern',
+                     self.pattern)
+  return self.pattern.sub(convert, self.template)
+*********************************
+
+#### Score: 13.12520
+
+
+#### Java Tokens: code, string, values, non-empty, non, charsequence, empty, safevarargs, array, param, utils, xyz, varargs, value, val, isnotempty, pre, abc, test, may, firstnonempty, kind, specific, stringutils, sequence, safe, char, returns, returned, first, since 
+
+
+@SafeVarargs
+public static <T extends CharSequence> T firstNonEmpty(final T... values) {
+    if (values != null) {
+        for (final T val : values) {
+            if (isNotEmpty(val)) {
+                return val;
+            }
+        }
+    }
+    return null;
+}
+*********************************
+
+#### Score: 13.02927
+
+
+#### Java Tokens: template, string, nullable, valueof, placeholders, run, lenient, braces, strings, extra, builder, lenientformat, placeholder, value, (object[])null, placeholderstart, format, length, start, index, substituting, args, square, lenienttostring, templatestart, arguments, stringbuilder, indexof, tostring, append, object 
+
+
+
+public static String lenientFormat(@Nullable String template, @Nullable Object@Nullable ... args) {
+    
+    template = String.valueOf(template);
+    if (args == null) {
+        args = new Object[] { "(Object[])null" };
+    } else {
+        for (int i = 0; i < args.length; i++) {
+            args[i] = lenientToString(args[i]);
+        }
+    }
+    
+    StringBuilder builder = new StringBuilder(template.length() + 16 * args.length);
+    int templateStart = 0;
+    int i = 0;
+    while (i < args.length) {
+        int placeholderStart = template.indexOf("%s", templateStart);
+        if (placeholderStart == -1) {
+            break;
+        }
+        builder.append(template, templateStart, placeholderStart);
+        builder.append(args[i++]);
+        templateStart = placeholderStart + 2;
+    }
+    builder.append(template, templateStart, template.length());
+    
+    if (i < args.length) {
+        builder.append(" [");
+        builder.append(args[i++]);
+        while (i < args.length) {
+            builder.append(", ");
+            builder.append(args[i++]);
+        }
+        builder.append(']');
+    }
+    return builder.toString();
+}
+*********************************
+
+#### Score: 12.35539
+
+
+#### Java Tokens: blank, code, string, values, link, non, non-blank, charsequence, empty, character, safevarargs, array, param, utils, xyz, varargs, firstnonblank, value, defined, val, pre, abc, test, may, kind, specific, isnotblank, stringutils, sequence, safe, char, returns, whitespace, returned, iswhitespace, first, since 
+
+
+@SafeVarargs
+public static <T extends CharSequence> T firstNonBlank(final T... values) {
+    if (values != null) {
+        for (final T val : values) {
+            if (isNotBlank(val)) {
+                return val;
+            }
+        }
+    }
+    return null;
+}
+*********************************
+
+#### Score: 11.64728
+
+
+#### Java Tokens: exception, argument, eager, gwt, large:, integer, repeated, required, empty, zero, number, copies, checkargument, len, longsize, hey, large, containing, count, index, heyheyhey, check, illegal, benchmark, input, system, null, size, invalid, bounds, returns, must, illegalargumentexception, getchars, code, string, stringsrepeatbenchmark, checknotnull, count:, update, arrayindexoutofboundsexception, non, example, times, negative, concatenated, strings, array, param, arraycopy, repeat, get, length, nonnegative, specific, non-null, consisting, modify, chars 
+
+
+public static String repeat(String string, int count) {
+    
+    checkNotNull(string);
+    if (count <= 1) {
+        checkArgument(count >= 0, "invalid count: %s", count);
+        return (count == 0) ? "" : string;
+    }
+    
+    final int len = string.length();
+    final long longSize = (long) len * (long) count;
+    final int size = (int) longSize;
+    if (size != longSize) {
+        throw new ArrayIndexOutOfBoundsException("Required array size too large: " + longSize);
+    }
+    final char[] array = new char[size];
+    string.getChars(0, len, array, 0);
+    int n;
+    for (n = len; n < size - n; n <<= 1) {
+        System.arraycopy(array, 0, array, n, n);
+    }
+    System.arraycopy(array, 0, array, n, size - n);
+    return new String(array);
+}
+*********************************
+
+#### Score: 10.84026
+
+
+#### Java Tokens: argument, allowed, startwhitespaces, source, isempty, space, empty, reference, improved, rec, character, java, trim, tab, utils, www, xml, normalize, function, modified, href, https, actual, similar, using, manually, http://www.w3.org/tr/xpath/#function-normalize-space, count, replacing, x0b, str, feed, input, regex, size, x20, http, difference, returns, iswhitespace, whitespaces, since, whitespacescount, code, string, normalized, link, pattern, vertical, sequences, characters, xpath, see, param, actualchar, ends, normalizespace, lang, charat, may, org, length, start, instead, lang-1020, stringutils, single, http://www.w3.org/tr/rec-xml/#nt-s, performance, form, normalizing, newchars, additionally, char, whitespace, significantly, chars 
+
+
+public static String normalizeSpace(final String str) {
+    
+    if (isEmpty(str)) {
+        return str;
+    }
+    final int size = str.length();
+    final char[] newChars = new char[size];
+    int count = 0;
+    int whitespacesCount = 0;
+    boolean startWhitespaces = true;
+    for (int i = 0; i < size; i++) {
+        final char actualChar = str.charAt(i);
+        final boolean isWhitespace = Character.isWhitespace(actualChar);
+        if (isWhitespace) {
+            if (whitespacesCount == 0 && !startWhitespaces) {
+                newChars[count++] = SPACE.charAt(0);
+            }
+            whitespacesCount++;
+        } else {
+            startWhitespaces = false;
+            newChars[count++] = (actualChar == 160 ? 32 : actualChar);
+            whitespacesCount = 0;
+        }
+    }
+    if (startWhitespaces) {
+        return EMPTY;
+    }
+    return new String(newChars, 0, count - (whitespacesCount > 0 ? 1 : 0)).trim();
+}
+*********************************
+
+#### Score: 10.68702
+
+
+#### Java Tokens: exception, joins, sanitizedseparator, argument, added, use, objects, empty, iterator, character, java, utils, delimiter, a,b,, join, hasnext, varargs, treated, pre, sanitized, containing, list, separator, illegal, defaultstring, must, arrays, object, since, next, illegalargumentexception, providing, code, string, provided, values, a,,b, result, strings, param, a,b, builder, lang, aslist, value, together, joined, stringutils, single, joinwith, elements, stringbuilder, tostring, append 
+
+
+public static String joinWith(final String separator, final Object... objects) {
+    if (objects == null) {
+        throw new IllegalArgumentException("Object varargs must not be null");
+    }
+    final String sanitizedSeparator = defaultString(separator);
+    final StringBuilder result = new StringBuilder();
+    final Iterator<Object> iterator = Arrays.asList(objects).iterator();
+    while (iterator.hasNext()) {
+        final String value = Objects.toString(iterator.next(), "");
+        result.append(value);
+        if (iterator.hasNext()) {
+            result.append(sanitizedSeparator);
+        }
+    }
+    return result.toString();
+}
+*********************************
+
+#### Score: 10.59291
+
+
+#### Java Tokens: note, \p{incombiningdiacriticalmarks}+, string, pattern, replace, convert, non, empty, characters, strip, compile, utils, stripaccents, normalize, builder, non-nls-1, convertremainingaccentcharacters, diacritical, decomposed, accents, combining, marks, matcher, replaceall, nfd, accent, remaining, stringutils, input, incombiningdiacriticalmarks, normalizer, form, nls, stringbuilder 
+
+
+
+public static String stripAccents(final String input) {
+    if (input == null) {
+        return null;
+    }
+    
+    final Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
+    final StringBuilder decomposed = new StringBuilder(Normalizer.normalize(input, Normalizer.Form.NFD));
+    convertRemainingAccentCharacters(decomposed);
+    
+    return pattern.matcher(decomposed).replaceAll(EMPTY);
+}
+*********************************
+
+#### Score: 10.17482
+
+
+#### Java Tokens: joins, code, string, added, signature, use, provided, objects, values, type, empty, safevarargs, strings, array, param, utils, represented, join, varargs, together, pre, abc, may, within, containing, joined, list, specific, separator, stringutils, single, input, null, elements, safe, since, changed 
+
+
+
+
+@SafeVarargs
+public static <T> String join(final T... elements) {
+    return join(elements, null);
+}
+*********************************
+
+#### Score: 10.03305
+
+
+#### Java Tokens: joins, ;;a, noofitems, added, use, objects, empty, iterator, character, utils, delimiter, exclusive, represented, join, pre, pass, containing, past, index, list, separator, input, endindex, null, stop, items, since, sub, joining, code, a;b;c, string, provided, values, error, strings, array, param, end, together, abc, may, within, joined, start, stringutils, single, startindex, sublist, elements, first 
+
+
+public static String join(final List<?> list, final char separator, final int startIndex, final int endIndex) {
+    if (list == null) {
+        return null;
+    }
+    final int noOfItems = endIndex - startIndex;
+    if (noOfItems <= 0) {
+        return EMPTY;
+    }
+    final List<?> subList = list.subList(startIndex, endIndex);
+    return join(subList.iterator(), separator);
+}
+*********************************
+
+#### Score: 10.03305
+
+
+#### Java Tokens: joins, ;;a, noofitems, added, use, objects, empty, iterator, character, utils, delimiter, exclusive, represented, join, pre, pass, containing, past, index, list, separator, input, endindex, null, stop, items, since, sub, joining, code, a;b;c, string, provided, values, error, strings, array, param, end, together, abc, may, within, joined, start, stringutils, single, startindex, sublist, elements, first 
+
+
+public static String join(final List<?> list, final String separator, final int startIndex, final int endIndex) {
+    if (list == null) {
+        return null;
+    }
+    final int noOfItems = endIndex - startIndex;
+    if (noOfItems <= 0) {
+        return EMPTY;
+    }
+    final List<?> subList = list.subList(startIndex, endIndex);
+    return join(subList.iterator(), separator);
+}

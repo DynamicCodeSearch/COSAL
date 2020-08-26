@@ -1,0 +1,11 @@
+static long go(int h, int w) {
+    if (w % 3 == 0)
+        return 0;
+    long min = h;
+    for (int i = 1; i < w; i++) {
+        long[] u = { (long) (h + 1) / 2 * i, (long) (h / 2) * i, (long) (w - i) * h };
+        Arrays.sort(u);
+        min = Math.min(min, u[2] - u[0]);
+    }
+    return min;
+}

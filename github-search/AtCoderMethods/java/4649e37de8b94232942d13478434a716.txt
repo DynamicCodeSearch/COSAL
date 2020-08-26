@@ -1,0 +1,27 @@
+static int solve(int[] a) {
+    int n = a.length;
+    int[] stk = new int[n + 1];
+    int head = 0;
+    int[] l = new int[n];
+    for (int i = 0; i < n; i++) {
+        while (head > 0 && a[stk[head - 1]] >= a[i]) {
+            head--;
+        }
+        l[i] = head == 0 ? 0 : stk[head - 1] + 1;
+        stk[head++] = i;
+    }
+    int[] r = new int[n];
+    head = 0;
+    for (int i = n - 1; i >= 0; i--) {
+        while (head > 0 && a[stk[head - 1]] >= a[i]) {
+            head--;
+        }
+        r[i] = head == 0 ? n : stk[head - 1];
+        stk[head++] = i;
+    }
+    int max = 0;
+    for (int i = 0; i < n; i++) {
+        max = Math.max(max, a[i] * (r[i] - l[i] + 1));
+    }
+    return max;
+}

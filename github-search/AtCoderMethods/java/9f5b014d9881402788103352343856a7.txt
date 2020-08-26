@@ -1,0 +1,8 @@
+void minUpdate(int k, int a) {
+    k += N - 1;
+    minDat[k] = a;
+    while (k > 0) {
+        k = (k - 1) / 2;
+        minDat[k] = Math.min(minDat[k * 2 + 1], minDat[k * 2 + 2]);
+    }
+}

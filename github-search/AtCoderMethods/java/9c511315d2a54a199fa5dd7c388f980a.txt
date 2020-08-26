@@ -1,0 +1,34 @@
+public static void main(String[] args) {
+    String S = sc.next();
+    int T = sc.nextInt();
+    int x = 0;
+    int y = 0;
+    int unknown = 0;
+    for (char c : S.toCharArray()) {
+        if (c == 'L')
+            --x;
+        else if (c == 'R')
+            ++x;
+        else if (c == 'U')
+            ++y;
+        else if (c == 'D')
+            --y;
+        else
+            ++unknown;
+    }
+    int dist = Math.abs(x) + Math.abs(y);
+    if (T == 1) {
+        System.out.println(dist + unknown);
+    } else {
+        int ans = 0;
+        if (dist >= unknown) {
+            ans = dist - unknown;
+        } else {
+            if ((unknown - dist) % 2 == 1)
+                ans = 1;
+            else
+                ans = 0;
+        }
+        System.out.println(ans);
+    }
+}

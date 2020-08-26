@@ -1,0 +1,14 @@
+static int dfs(int c, ArrayList<Integer> l, int[][] g) {
+    if (l.isEmpty())
+        return 1;
+    int ret = 0;
+    for (int i = 0; i < l.size(); i++) {
+        int next = l.get(i);
+        if (g[c][next] == 1) {
+            ArrayList<Integer> tmpl = (ArrayList<Integer>) l.clone();
+            tmpl.remove(l.get(i));
+            ret += dfs(next, tmpl, g);
+        }
+    }
+    return ret;
+}

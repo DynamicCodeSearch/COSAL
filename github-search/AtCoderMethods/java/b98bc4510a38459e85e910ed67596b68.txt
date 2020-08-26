@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int w = in.nextInt();
+    int h = in.nextInt();
+    int[] a = in.nextInts(w);
+    int[] b = in.nextInts(h);
+    long[][] wmax = build(a);
+    long[][] hmax = build(b);
+    int q = in.nextInt();
+    while (--q >= 0) {
+        int wl = in.nextInt() - 1;
+        int hl = in.nextInt() - 1;
+        out.println(solve(wmax[wl], hmax[hl], wl + 1, hl + 1));
+    }
+    out.flush();
+}

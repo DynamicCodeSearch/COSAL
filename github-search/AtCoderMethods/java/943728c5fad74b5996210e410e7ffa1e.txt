@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int NG1 = sc.nextInt();
+    int NG2 = sc.nextInt();
+    int NG3 = sc.nextInt();
+    String ans = "NO";
+    if ((N != NG1) && (N != NG2) && (N != NG3)) {
+        int pos = N;
+        for (int i = 0; i < 100; i++) {
+            if ((pos - 3 != NG1) && (pos - 3 != NG2) && (pos - 3 != NG3)) {
+                pos -= 3;
+            } else if ((pos - 2 != NG1) && (pos - 2 != NG2) && (pos - 2 != NG3)) {
+                pos -= 2;
+            } else if ((pos - 1 != NG1) && (pos - 1 != NG2) && (pos - 1 != NG3)) {
+                pos -= 1;
+            } else {
+                break;
+            }
+        }
+        if (pos <= 0)
+            ans = "YES";
+    }
+    System.out.println(ans);
+}

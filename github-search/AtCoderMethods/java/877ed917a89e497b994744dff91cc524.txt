@@ -1,0 +1,21 @@
+void solve(InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int q = in.nextInt();
+    int a = in.nextInt();
+    int prev = in.nextInt();
+    init(n, a);
+    for (int i = 1; i <= q; ++i) {
+        int curr = in.nextInt();
+        long cost = Math.abs(curr - prev);
+        long o1 = rmq(curr);
+        long o2 = getDP(prev) + cost;
+        setDP(prev, Math.min(o1, o2) - cost);
+        offset += cost;
+        prev = curr;
+    }
+    long ans = (long) 1e18;
+    for (int i = 1; i <= n; ++i) {
+        ans = Math.min(ans, getDP(i));
+    }
+    out.println(ans);
+}

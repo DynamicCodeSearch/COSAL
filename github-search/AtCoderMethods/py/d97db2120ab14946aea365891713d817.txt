@@ -1,0 +1,7 @@
+def main():
+    N, M = map(int, input().split())
+    edges = []
+    for _ in range(M):
+        a, b, c = map(int, input().split())
+        edges.append((a - 1, b - 1, -c))
+    print(bellman_ford(edges, 0, N))

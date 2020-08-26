@@ -1,0 +1,24 @@
+private static long solve(long n, long s) {
+    if (n < s) {
+        return -1;
+    }
+    if (n == s) {
+        return n + 1;
+    }
+    for (long b = 2; b <= 1000000; b++) {
+        if (compute(n, b) == s) {
+            return b;
+        }
+    }
+    long bestB = (long) 1e18;
+    for (long k = 1; k <= 1000000; k++) {
+        long kB = n - s + k;
+        if (kB % k == 0) {
+            long b = kB / k;
+            if (b >= 2 && compute(n, b) == s) {
+                bestB = Math.min(bestB, b);
+            }
+        }
+    }
+    return bestB == 1e18 ? -1 : bestB;
+}

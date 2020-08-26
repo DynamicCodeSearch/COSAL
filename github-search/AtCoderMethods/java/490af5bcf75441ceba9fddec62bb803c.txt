@@ -1,0 +1,36 @@
+public static void main(String[] args) {
+    try (Scanner in = new Scanner(System.in)) {
+        int n = in.nextInt();
+        int[] a = new int[n + 1];
+        int[] count = new int[n + 1];
+        int index2 = -1;
+        int value = -1;
+        for (int i = 0; i < a.length; i++) {
+            a[i] = in.nextInt();
+            count[a[i]]++;
+            if (count[a[i]] > 1) {
+                index2 = i;
+                value = a[i];
+            }
+        }
+        int index1 = -1;
+        for (int i = 0; i < index2; i++) {
+            if (a[i] == value) {
+                index1 = i;
+            }
+        }
+        
+        StringBuilder res = new StringBuilder();
+        for (int k = 1; k <= n + 1; k++) {
+            
+            
+            
+            
+            
+            
+            
+            res.append(((modComb((n + 1), k, m) - modComb((n + 1) - (index2 - index1 + 1), k - 1, m) + m) % m) + "\n");
+        }
+        System.out.println(res.toString());
+    }
+}

@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    final int N = sc.nextInt();
+    long[] arr = new long[N];
+    for (int i = 0; i < N; i++) {
+        arr[i] = sc.nextLong();
+    }
+    final long sum = Arrays.stream(arr).sum();
+    final long lo_avg = sum / N;
+    final long hi_avg = (sum + N - 1) / N;
+    long lo_answer = 0, hi_answer = 0;
+    for (int i = 0; i < N; i++) {
+        lo_answer += (arr[i] - lo_avg) * (arr[i] - lo_avg);
+        hi_answer += (arr[i] - hi_avg) * (arr[i] - hi_avg);
+    }
+    System.out.println(Math.min(lo_answer, hi_answer));
+}

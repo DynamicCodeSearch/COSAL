@@ -1,0 +1,9 @@
+public static BigInteger gcd(BigInteger a, BigInteger b) {
+    if (a.mod(b).equals(BigInteger.ZERO))
+        return b;
+    if (b.mod(a).equals(BigInteger.ZERO))
+        return a;
+    if (a.compareTo(b) < 0)
+        return gcd(a, b.mod(a));
+    return gcd(b, a.mod(b));
+}

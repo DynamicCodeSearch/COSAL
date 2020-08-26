@@ -1,0 +1,19 @@
+def main():
+    num = input().split()
+    num = [int(x) for x in num]
+    H = num[0]
+    W = num[1]
+
+    array = []
+    for i in range(H):
+        array.append(list(input()))
+
+    for i in range(H):
+        for j in range(W):
+            if array[i][j] == "#":
+                pass
+            else:
+                array[i][j] = calc(array, i, j, H, W)
+
+    for i in range(0, num[0]):
+        print("".join(map(str, array[i])))

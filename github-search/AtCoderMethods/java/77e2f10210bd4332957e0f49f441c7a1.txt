@@ -1,0 +1,39 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int k = sc.nextInt();
+    ArrayList<Long> xlist = new ArrayList<Long>();
+    ArrayList<Long> ylist = new ArrayList<Long>();
+    long[][] co = new long[n][2];
+    for (int i = 0; i < n; i++) {
+        long x = sc.nextLong();
+        long y = sc.nextLong();
+        xlist.add(x);
+        ylist.add(y);
+        co[i][0] = x;
+        co[i][1] = y;
+    }
+    Collections.sort(xlist);
+    Collections.sort(ylist);
+    long ans = Long.MAX_VALUE;
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {
+            for (int s = 0; s < n; s++) {
+                for (int l = s + 1; l < n; l++) {
+                    long xmin = xlist.get(i);
+                    long xmax = xlist.get(j);
+                    long ymin = ylist.get(s);
+                    long ymax = ylist.get(l);
+                    int count = 0;
+                    for (int m = 0; m < n; m++) {
+                        if ((co[m][0] >= xmin) && (co[m][0] <= xmax) && (co[m][1] >= ymin) && (co[m][1] <= ymax))
+                            count++;
+                    }
+                    if (count >= k)
+                        ans = Math.min(ans, (xmax - xmin) * (ymax - ymin));
+                }
+            }
+        }
+    }
+    System.out.println(ans);
+}

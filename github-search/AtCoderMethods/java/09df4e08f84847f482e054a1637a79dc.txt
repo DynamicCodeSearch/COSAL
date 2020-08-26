@@ -1,0 +1,40 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String S = sc.next();
+    
+    
+    
+    String s1 = "dream";
+    String s2 = "dreamer";
+    String s3 = "erase";
+    String s4 = "eraser";
+    String ans = "YES";
+    int pos = S.length();
+    while (pos > 0) {
+        String str5 = "";
+        String str6 = "";
+        String str7 = "";
+        if (pos - 5 >= 0) {
+            str5 = S.substring(pos - 5, pos);
+        }
+        if (pos - 6 >= 0) {
+            str6 = S.substring(pos - 6, pos);
+        }
+        if (pos - 7 >= 0) {
+            str7 = S.substring(pos - 7, pos);
+        }
+        if ((pos - 5 >= 0) && (s1.equals(str5))) {
+            pos -= 5;
+        } else if ((pos - 7 >= 0) && (s2.equals(str7))) {
+            pos -= 7;
+        } else if ((pos - 5 >= 0) && (s3.equals(str5))) {
+            pos -= 5;
+        } else if ((pos - 6 >= 0) && (s4.equals(str6))) {
+            pos -= 6;
+        } else {
+            ans = "NO";
+            break;
+        }
+    }
+    System.out.println(ans);
+}

@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter w = new PrintWriter(System.out);
+    int n = in.nextInt();
+    int[] overall = new int[26];
+    String s = in.readString();
+    for (int i = 0; i < s.length(); i++) overall[s.charAt(i) - 97]++;
+    
+    for (int i = 1; i < n; i++) {
+        s = in.readString();
+        int[] temp = new int[26];
+        for (int j = 0; j < s.length(); j++) {
+            temp[s.charAt(j) - 97]++;
+        }
+        for (int k = 0; k < 26; k++) overall[k] = Math.min(overall[k], temp[k]);
+    
+    }
+    String ans = "";
+    for (int i = 0; i < 26; i++) {
+        String temp = Character.toString((char) (97 + i));
+        if (overall[i] > 0) {
+            temp = new String(new char[overall[i]]).replace("\0", temp);
+            ans = ans + temp;
+        }
+    }
+    
+    w.println(ans);
+    w.close();
+}

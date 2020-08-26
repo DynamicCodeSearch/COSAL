@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    final Scanner sc = new Scanner(System.in);
+    final int N = sc.nextInt();
+    ArrayList<HashSet<Integer>> adj = new ArrayList<HashSet<Integer>>();
+    for (int i = 0; i < N; i++) {
+        adj.add(new HashSet<Integer>());
+    }
+    for (int i = 0; i < N - 1; i++) {
+        final int a = sc.nextInt() - 1;
+        final int b = sc.nextInt() - 1;
+        adj.get(a).add(b);
+        adj.get(b).add(a);
+    }
+    long[][] memo = new long[2][N];
+    for (int i = 0; i < 2; i++) {
+        Arrays.fill(memo[i], -1l);
+    }
+    System.out.println(memoized_dfs(0, -1, false, adj, memo));
+
+
+}

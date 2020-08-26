@@ -1,0 +1,11 @@
+def main():
+    N, T = map(int, input().split())
+    a_list = list(map(int, input().split()))
+    d = defaultdict(int)
+    min_a, min_i = a_list[0], 0
+    for i in range(1, len(a_list)):
+        a = a_list[i]
+        d[a - min_a] += 1
+        min_a = min(min_a, a)
+
+    print(d[max(d)])

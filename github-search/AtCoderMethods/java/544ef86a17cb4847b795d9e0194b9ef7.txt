@@ -1,0 +1,8 @@
+
+void remove() {
+    NodeData parent = this.parent;
+    parent.childs.remove(this);
+    parent.black = parent.black * this.white % NodeData.MODULO;
+    
+    parent.white = parent.white * (this.black + this.white) % NodeData.MODULO;
+}

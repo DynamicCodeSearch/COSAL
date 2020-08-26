@@ -1,0 +1,24 @@
+
+public long dfs(int L, int C) {
+    if (L == N) {
+        if (sum[L - 1] == C)
+            return 1L;
+        else
+            return 0L;
+    }
+    if (dp[L][C] != -1) {
+        return dp[L][C];
+    }
+    long ret = 0;
+    
+    if (C <= sum[newR[L]] && sum[newR[L]] - C <= newR[L] - L) {
+        ret += dfs(L + 1, C) % MOD;
+    }
+    
+    if (C + 1 <= sum[newR[L]] && sum[newR[L]] - C - 1 <= newR[L] - L) {
+        ret += dfs(L + 1, C + 1) % MOD;
+    }
+    
+    ret %= MOD;
+    return dp[L][C] = ret % MOD;
+}

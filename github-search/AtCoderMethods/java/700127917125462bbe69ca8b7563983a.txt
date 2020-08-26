@@ -1,0 +1,32 @@
+public void solve() {
+    N = nextInt();
+    a = new int[N];
+    for (int i = 0; i < N; i++) {
+        a[i] = nextInt();
+    }
+    TreeMap<Integer, Integer> map = new TreeMap<>();
+    for (int i = 0; i < N; i++) {
+        if (map.containsKey(a[i])) {
+            map.put(a[i], map.get(a[i]) + 1);
+        } else {
+            map.put(a[i], 1);
+        }
+    }
+    TreeSet<Integer> set = new TreeSet<>();
+    long ans = 0;
+    for (int key : map.keySet()) {
+        if (map.get(key) > 1) {
+            if (map.get(key) > 3) {
+                ans = Math.max(ans, (long) key * key);
+            }
+            set.add(key);
+        }
+    }
+    if (set.size() < 2) {
+        out.println(ans);
+    } else {
+        int first = set.pollLast();
+        int second = set.pollLast();
+        out.println(Math.max(ans, (long) first * second));
+    }
+}

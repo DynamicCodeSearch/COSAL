@@ -1,0 +1,41 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    int t = sc.nextInt();
+    int[] A = new int[n];
+    for (int i = 0; i < n; i++) {
+        A[i] = Integer.parseInt(sc.next());
+    }
+    int[] a = new int[m];
+    int[] b = new int[m];
+    int[] c = new int[m];
+    for (int i = 0; i < m; i++) {
+        a[i] = Integer.parseInt(sc.next()) - 1;
+        b[i] = Integer.parseInt(sc.next()) - 1;
+        c[i] = Integer.parseInt(sc.next());
+    }
+    long[] forward = new long[n];
+    long[] back = new long[n];
+    Arrays.fill(forward, -1);
+    Arrays.fill(back, -1);
+    diqstr(n, a, b, c, forward);
+    diqstr(n, b, a, c, back);
+    
+    
+    long max = 0;
+    for (int i = 0; i < n; i++) {
+        if (forward[i] == -1 || back[i] == -1)
+            continue;
+        long f = forward[i];
+        long ba = back[i];
+        if (t - ba - f < 0)
+            continue;
+        long res = (t - f - ba) * A[i];
+        if (res > max)
+            max = res;
+    }
+    out.println(max);
+    out.flush();
+}

@@ -1,0 +1,40 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    while (sc.hasNext()) {
+        int h = (int) sc.nextLong();
+        int w = (int) sc.nextLong();
+        int[][] a = new int[h][w];
+        PriorityQueue<point> queue = new PriorityQueue<point>(1, new MyComparator());
+        for (int i = 0; i < h; i++) {
+            for (int j = 0; j < w; j++) {
+                a[i][j] = (int) sc.nextLong();
+                queue.add(new point(i, j, a[i][j]));
+            }
+        }
+        long[][] dp = new long[h][w];
+        for (int i = 0; i < h; i++) for (int j = 0; j < w; j++) dp[i][j] = 1;
+        while (!queue.isEmpty()) {
+            point p = queue.poll();
+            for (int k = 0; k < 4; k++) {
+                if (p.x == 0 && k == 1)
+                    continue;
+                else if (p.x == h - 1 && k == 3)
+                    break;
+                else if (p.y == 0 && k == 0)
+                    continue;
+                else if (p.y == w - 1 && k == 2)
+                    continue;
+                else if (a[p.x + d[k]][p.y + d[k + 1]] > a[p.x][p.y]) {
+                    dp[p.x + d[k]][p.y + d[k + 1]] += dp[p.x][p.y];
+                    dp[p.x + d[k]][p.y + d[k + 1]] %= mod;
+                }
+            }
+        }
+        int res = 0;
+        for (int i = 0; i < h; i++) for (int j = 0; j < w; j++) {
+            res += dp[i][j];
+            res %= mod;
+        }
+        System.out.println(res);
+    }
+}

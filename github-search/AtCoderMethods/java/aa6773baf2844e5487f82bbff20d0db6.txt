@@ -1,0 +1,9 @@
+public static void main(String[] $) {
+    int[] a = new int[114];
+    ++a[getInt()];
+    --a[getInt()];
+    ++a[getInt()];
+    --a[getInt()];
+    Arrays.parallelPrefix(a, Integer::sum);
+    System.out.println(Arrays.stream(a).filter(i -> i == 2).count());
+}

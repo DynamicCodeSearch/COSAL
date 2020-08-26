@@ -1,0 +1,12 @@
+public MultiSet<T> merge(MultiSet<T> set) {
+    MultiSet<T> s, l;
+    if (this.size() < set.size()) {
+        s = this;
+        l = set;
+    } else {
+        s = set;
+        l = this;
+    }
+    for (Entry<T, Integer> e : s.entrySet()) l.add(e.getKey(), e.getValue());
+    return l;
+}

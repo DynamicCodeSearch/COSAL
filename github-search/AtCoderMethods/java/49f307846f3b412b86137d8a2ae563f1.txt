@@ -1,0 +1,38 @@
+public static void main(String[] args) {
+    
+    final int n, a;
+    final int[] x;
+    try (Scanner scan = new Scanner(System.in)) {
+        
+        n = scan.nextInt();
+        
+        a = scan.nextInt();
+        x = new int[n];
+        for (int i = 0; i < n; i++) {
+            
+            
+            x[i] = scan.nextInt() - a;
+        }
+    }
+    
+    
+    int[] positive = Arrays.stream(x).filter(i -> i > 0).toArray();
+    Arrays.sort(positive);
+    int[] zero = Arrays.stream(x).filter(i -> i == 0).toArray();
+    
+    int[] negative = Arrays.stream(x).filter(i -> i < 0).map(i -> -i).toArray();
+    Arrays.sort(negative);
+    
+    
+    
+    Map<Integer, Long> positiveSum = sumCount(positive);
+    Map<Integer, Long> negativeSum = sumCount(negative);
+    long result = positiveSum.keySet().stream().mapToLong(i -> positiveSum.get(i) * negativeSum.getOrDefault(i, 0L)).sum();
+    result = result << zero.length;
+    
+    result--;
+    
+    try (PrintWriter out = new PrintWriter(System.out)) {
+        out.println(result);
+    }
+}

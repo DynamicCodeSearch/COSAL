@@ -1,0 +1,14 @@
+public void solve(int testNumber, Scanner in, PrintWriter out) {
+    int n = in.nextInt();
+    int k = in.nextInt();
+    int[] arr = new int[10000];
+    for (int i = 0; i < n; i++) {
+        arr[i] = in.nextInt();
+    }
+    long ans = 0;
+    for (int i = 0; i < n; i++) {
+        long s = Math.min(arr[i], k - arr[i]);
+        ans += s;
+    }
+    out.println(ans * 2);
+}

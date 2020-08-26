@@ -1,0 +1,9 @@
+private static long calc(int n, int a, int b, long[] cities) {
+    long cost = 0;
+    
+    for (int i = 0; i < n - 1; i++) {
+        cost += Math.min((cities[i + 1] - cities[i]) * a, b);
+    
+    }
+    return cost;
+}

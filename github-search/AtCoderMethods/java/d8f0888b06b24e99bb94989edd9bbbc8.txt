@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    int N = Integer.parseInt(scan.next());
+    int M = Integer.parseInt(scan.next());
+    boolean[][] link = new boolean[N][N];
+    for (int i = 0; i < M; i++) {
+        int x = Integer.parseInt(scan.next()) - 1;
+        int y = Integer.parseInt(scan.next()) - 1;
+        link[x][y] = true;
+    }
+    int total = pow(2, N);
+    result = new long[total];
+    for (int i = 0; i < total; i++) {
+        result[i] = count(i, link);
+    }
+    System.out.println(result[total - 1]);
+    scan.close();
+}

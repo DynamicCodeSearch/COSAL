@@ -1,0 +1,22 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    String s = sc.next();
+    String cs = "abcdefghijklmnopqrstuvwxyz";
+    String[] ca = cs.split("");
+    int[] ci = new int[26];
+    for (int i = 0; i < s.length(); i++) {
+        for (int j = 0; j < 26; j++) {
+            if (s.substring(i, i + 1).equals(ca[j])) {
+                ci[j]++;
+            }
+        }
+    }
+    for (int i = 0; i <= 26; i++) {
+        if (i == 26) {
+            System.out.println("None");
+        } else if (ci[i] == 0) {
+            System.out.println(ca[i]);
+            break;
+        }
+    }
+}

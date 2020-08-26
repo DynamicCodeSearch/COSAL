@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    int N = sc.nextInt();
+    int cnt4 = 0;
+    int cnt2 = 0;
+    int cntodd = 0;
+    for (int i = 0; i < N; i++) {
+        int a = sc.nextInt();
+        if (a % 4 == 0) {
+            cnt4++;
+        } else if (a % 2 == 1) {
+            cntodd++;
+        } else {
+            cnt2++;
+        }
+    }
+    if (cnt4 >= cntodd || (cnt4 + 1 == cntodd && cnt2 == 0)) {
+        System.out.println("Yes");
+    } else {
+        System.out.println("No");
+    }
+}

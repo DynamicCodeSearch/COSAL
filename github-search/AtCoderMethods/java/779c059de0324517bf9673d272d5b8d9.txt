@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner s = new Scanner(System.in);
+    final int N = s.nextInt();
+    int[] menu = new int[N];
+    for (int i = 0; i < N; i++) {
+        menu[i] = s.nextInt();
+    }
+    s.close();
+    Arrays.sort(menu);
+    int max = menu[N - 1];
+    int index = N - 2;
+    while (menu[index] == max && index > 0) {
+        index--;
+    }
+    System.out.println(menu[index]);
+}

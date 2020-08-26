@@ -1,0 +1,18 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    used = new boolean[101];
+    a = in.nextInt();
+    b = in.nextInt();
+    c = in.nextInt();
+    temp = a;
+    temp %= b;
+    while (temp != c && !used[temp]) {
+        used[temp] = true;
+        temp += a;
+        temp %= b;
+    }
+    if (temp == c) {
+        out.print("YES");
+    } else {
+        out.print("NO");
+    }
+}

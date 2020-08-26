@@ -1,0 +1,37 @@
+void solve() throws IOException {
+    int a = nextInt();
+    int b = nextInt();
+    if (b >= a) {
+        out.println("Impossible");
+        out.flush();
+        return;
+    }
+    int[] arr = new int[a + b];
+    int sz = 0;
+    for (int i = 0; i < a + b; i++) {
+        if (sz == 0) {
+            arr[sz++] = i;
+            continue;
+        }
+        int top = arr[sz - 1];
+        out.println("? " + top + " " + i);
+        out.flush();
+        String resp = nextToken();
+        if (resp.equals("Y")) {
+            arr[sz++] = i;
+        } else {
+            sz--;
+        }
+    }
+    int honest = arr[sz - 1];
+    char[] ans = new char[a + b];
+    for (int i = 0; i < a + b; i++) {
+        out.println("? " + honest + " " + i);
+        out.flush();
+        String resp = nextToken();
+        ans[i] = resp.equals("Y") ? '1' : '0';
+    }
+    out.print("! ");
+    out.println(ans);
+    out.flush();
+}

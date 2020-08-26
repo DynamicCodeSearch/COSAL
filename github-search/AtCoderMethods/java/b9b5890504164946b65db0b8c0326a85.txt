@@ -1,0 +1,18 @@
+public void solve() {
+    int N = in.nextInt(), K = in.nextInt();
+    int[][] w = in.nextIntMap(N, N);
+    long[] sum = new long[1 << N];
+    for (int i = 0; i < (1 << N); i++) for (int j = 0; j < N; j++) if ((i & (1 << j)) != 0)
+        for (int k = j + 1; k < N; k++) if ((i & (1 << k)) != 0)
+            sum[i] += w[j][k];
+    int all = (1 << N) - 1;
+    long[] dp = new long[1 << N];
+    for (int i = 1; i < (1 << N); i++) {
+        dp[i] = K - (sum[all] - sum[i] - sum[i ^ all]);
+        for (int bits = (i - 1) & i; bits > 0; bits = (bits - 1) & i) {
+            long diff = sum[i] - sum[bits] - sum[i ^ bits];
+            dp[i] = Math.max(dp[i], dp[bits] + dp[i ^ bits] + diff);
+        }
+    }
+    System.out.println(dp[(1 << N) - 1]);
+}

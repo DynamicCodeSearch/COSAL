@@ -1,0 +1,18 @@
+static long countLess(Node y, int id) {
+    long ret = 0;
+    while (y != null) {
+        fall(y);
+        if (id < y.id) {
+            y = y.left;
+        } else if (id == y.id) {
+            ret += val(y.left);
+            break;
+        } else {
+            ret += val(y.left);
+            ret += y.myval;
+            ;
+            y = y.right;
+        }
+    }
+    return ret % mod;
+}

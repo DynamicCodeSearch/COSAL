@@ -1,0 +1,32 @@
+@SuppressWarnings("unchecked")
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int N, M, T;
+    N = scanner.nextInt();
+    M = scanner.nextInt();
+    T = scanner.nextInt();
+    int[] money = new int[N];
+    for (int i = 0; i < N; i++) {
+        money[i] = scanner.nextInt();
+    }
+    g1 = new LinkedList[N];
+    g2 = new LinkedList[N];
+    for (int i = 0; i < N; i++) {
+        g1[i] = new LinkedList<edge>();
+        g2[i] = new LinkedList<edge>();
+    }
+    for (int i = 0; i < M; i++) {
+        int a = scanner.nextInt();
+        int b = scanner.nextInt();
+        int c = scanner.nextInt();
+        g1[a - 1].add(new edge(b - 1, c));
+        g2[b - 1].add(new edge(a - 1, c));
+    }
+    int[] d1 = dijkstra(0, g1);
+    int[] d2 = dijkstra(0, g2);
+    long ans = 0;
+    for (int i = 0; i < N; i++) {
+        ans = Math.max(ans, (long) (T - d1[i] - d2[i]) * money[i]);
+    }
+    System.out.println(ans);
+}

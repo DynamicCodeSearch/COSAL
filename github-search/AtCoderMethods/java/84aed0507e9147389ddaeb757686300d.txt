@@ -1,0 +1,22 @@
+private static boolean check(double t) {
+    double d = t / C[0];
+    double xl = X[0] - d;
+    double xr = X[0] + d;
+    double yu = Y[0] + d;
+    double yd = Y[0] - d;
+    for (int i = 1; i < N; i++) {
+        double cd = t / C[i];
+        double cxl = X[i] - cd;
+        double cxr = X[i] + cd;
+        double cyu = Y[i] + cd;
+        double cyd = Y[i] - cd;
+        if (cxr <= xl || xr <= cxl || yu <= cyd || cyu <= yd) {
+            return false;
+        }
+        xl = Math.max(xl, cxl);
+        xr = Math.min(xr, cxr);
+        yu = Math.min(yu, cyu);
+        yd = Math.max(yd, cyd);
+    }
+    return true;
+}

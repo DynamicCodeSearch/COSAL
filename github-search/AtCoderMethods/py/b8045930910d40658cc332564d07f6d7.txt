@@ -1,0 +1,12 @@
+def main():
+    N = int(input())
+    children = defaultdict(list)
+
+    for _ in range(N - 1):
+        a, b = map(lambda x: int(x) - 1, input().split())
+        children[a].append(b)
+        children[b].append(a)
+
+    f, g = [1] * N, [1] * N
+    dfs(0, -1, children, f, g)
+    print(f[0])

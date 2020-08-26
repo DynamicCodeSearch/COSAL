@@ -1,0 +1,34 @@
+static ArrayList<Integer> quicksort(ArrayList<Integer> l) {
+    ArrayList<Integer> leftsort = new ArrayList<Integer>();
+    ArrayList<Integer> rightsort = new ArrayList<Integer>();
+    ArrayList<Integer> sorted = new ArrayList<Integer>();
+    int pivot = l.get(0);
+    if (l.size() == 1)
+        return l;
+    else {
+        for (int i = 1; i < l.size(); i++) {
+            if (pivot < l.get(i))
+                rightsort.add(l.get(i));
+            else
+                leftsort.add(l.get(i));
+        }
+        if (leftsort.size() == 0) {
+            ArrayList<Integer> rightsorted = quicksort(rightsort);
+            sorted.add(pivot);
+            for (int i = 0; i < rightsorted.size(); i++) {
+                sorted.add(rightsorted.get(i));
+            }
+        } else if (rightsort.size() == 0) {
+            sorted = quicksort(leftsort);
+            sorted.add(pivot);
+        } else {
+            sorted = quicksort(leftsort);
+            ArrayList<Integer> rightsorted = quicksort(rightsort);
+            sorted.add(pivot);
+            for (int i = 0; i < rightsorted.size(); i++) {
+                sorted.add(rightsorted.get(i));
+            }
+        }
+        return sorted;
+    }
+}

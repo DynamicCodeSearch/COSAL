@@ -1,0 +1,19 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+    int N = Integer.parseInt(in.readLine());
+    int[] a = new int[N];
+    for (int i = 0; i < N; i++) {
+        a[i] = Integer.parseInt(in.readLine());
+    }
+    int pointer = 0;
+    int counter = 0;
+    for (int i = 0; i < N; i++) {
+        pointer = a[pointer] - 1;
+        counter++;
+        if (pointer == 1) {
+            System.out.println(counter);
+            return;
+        }
+    }
+    System.out.println(-1);
+}

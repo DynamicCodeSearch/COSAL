@@ -1,0 +1,13 @@
+@Override
+public void readInput() throws IOException {
+    
+    long N = scanner.nextLong();
+    long M = scanner.nextLong();
+    if (2 * N >= M) {
+        res = "" + (M / 2);
+    } else {
+        long used = N * 2;
+        long remaining = M - used;
+        res = "" + (used / 2 + remaining / 4);
+    }
+}

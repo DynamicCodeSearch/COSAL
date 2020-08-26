@@ -1,0 +1,14 @@
+
+void init(int V) {
+    
+    dfs(root, -1, 0);
+    
+    for (int k = 0; k + 1 < MAX_LOG; k++) {
+        for (int v = 0; v < V; v++) {
+            if (parent[k][v] < 0)
+                parent[k + 1][v] = -1;
+            else
+                parent[k + 1][v] = parent[k][parent[k][v]];
+        }
+    }
+}

@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int length = sc.nextInt();
+    int v = sc.nextInt();
+    int vv = sc.nextInt();
+    int x = sc.nextInt();
+    int exit = sc.nextInt();
+    double rightround, leftround;
+    if (x > exit) {
+        rightround = length - x + exit;
+        leftround = x - exit;
+    } else if (x < exit) {
+        rightround = exit - x;
+        leftround = length - exit + x;
+    } else {
+        rightround = 0;
+        leftround = 0;
+    }
+    double time1, time2;
+    if (v >= vv) {
+        time1 = rightround / (v + vv);
+        time2 = time1 + 1.0;
+    } else {
+        time1 = rightround / (v + vv);
+        time2 = leftround / (vv - v);
+    }
+    if (time1 < time2) {
+        System.out.println(time1);
+    } else {
+        System.out.println(time2);
+    }
+}

@@ -1,0 +1,16 @@
+void doIt() {
+    int n = sc.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = sc.nextInt();
+    }
+    int min = Integer.MAX_VALUE;
+    for (int i = -100; i <= 100; i++) {
+        int num = 0;
+        for (int j = 0; j < n; j++) {
+            num = num + (i - a[j]) * (i - a[j]);
+        }
+        min = Math.min(min, num);
+    }
+    System.out.println(min);
+}

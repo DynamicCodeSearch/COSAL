@@ -1,0 +1,35 @@
+public static void solver(String move, int target) {
+    int x = 0;
+    int y = 0;
+    int unknown = 0;
+    char[] array = move.toCharArray();
+    for (int i = 0; i < array.length; i++) {
+        switch(array[i]) {
+            case 'L':
+                x--;
+                break;
+            case 'R':
+                x++;
+                break;
+            case 'U':
+                y--;
+                break;
+            case 'D':
+                y++;
+                break;
+            case '?':
+                unknown++;
+                break;
+        }
+    }
+    if (target == 1) {
+        System.out.println(Math.abs(x) + Math.abs(y) + unknown);
+    } else {
+        int dist = Math.abs(x) + Math.abs(y);
+        if (dist > unknown) {
+            System.out.println(dist - unknown);
+        } else {
+            System.out.println((unknown - dist) % 2);
+        }
+    }
+}

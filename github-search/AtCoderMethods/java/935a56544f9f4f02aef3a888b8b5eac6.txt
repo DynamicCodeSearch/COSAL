@@ -1,0 +1,9 @@
+public void add(int a, int b, int x, int k, int l, int r) {
+    if (a <= l && r <= b) {
+        all[k] += x;
+    } else if (l < b && a < r) {
+        part[k] += (Math.min(b, r) - Math.max(a, l)) * x;
+        add(a, b, x, k * 2 + 1, l, (l + r) / 2);
+        add(a, b, x, k * 2 + 2, (l + r) / 2, r);
+    }
+}

@@ -1,0 +1,25 @@
+public static void main(String[] args) throws IOException {
+    long n = 0;
+    long a = 0;
+    long b = 0;
+    long xb = 0;
+    long xc = 0;
+    long xp = 0;
+    long result = 0;
+    Scanner scan = new Scanner(System.in);
+    n = scan.nextInt();
+    a = scan.nextInt();
+    b = scan.nextInt();
+    xb = scan.nextInt();
+    for (int i = 1; i < n; i++) {
+        xc = scan.nextInt();
+        xp = (xc - xb);
+        if (xp * a < b) {
+            result += xp * a;
+        } else {
+            result += b;
+        }
+        xb = xc;
+    }
+    System.out.println(result);
+}

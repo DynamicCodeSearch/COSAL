@@ -1,0 +1,17 @@
+private void solve() {
+    Scanner in = new Scanner(System.in);
+    int N = in.nextInt();
+    int ans = 0;
+    HashSet<Integer> set = new HashSet<>();
+    for (int i = 0; i < N; i++) {
+        int a = in.nextInt();
+        if (set.contains(a)) {
+            set.remove(a);
+            ans--;
+        } else {
+            set.add(a);
+            ans++;
+        }
+    }
+    System.out.println(ans);
+}

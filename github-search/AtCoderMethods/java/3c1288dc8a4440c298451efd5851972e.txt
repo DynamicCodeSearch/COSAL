@@ -1,0 +1,14 @@
+public static void output() throws IOException {
+    int n = ri();
+    int m = ri();
+    precompute();
+    if (n > (m + 1) || m > (n + 1)) {
+        println(0);
+    } else if (n == m) {
+        println((2 * fact[n] * fact[m]) % mod);
+    } else if (n == m + 1 || m == n + 1) {
+        println((fact[n] * fact[m]) % mod);
+    } else {
+        println(0);
+    }
+}

@@ -1,0 +1,21 @@
+void solve() {
+    String s = sc.next();
+    s = new StringBuilder(s).reverse().toString();
+    String[] words = { "maerd", "remaerd", "esare", "resare" };
+    int pos = 0;
+    for (; ; ) {
+        boolean change = false;
+        for (String word : words) {
+            if (pos + word.length() <= s.length() && s.substring(pos, pos + word.length()).equals(word)) {
+                pos += word.length();
+                change = true;
+            }
+        }
+        if (!change)
+            break;
+    }
+    if (pos == s.length())
+        System.out.println("YES");
+    else
+        System.out.println("NO");
+}

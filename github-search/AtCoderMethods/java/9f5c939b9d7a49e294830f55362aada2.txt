@@ -1,0 +1,18 @@
+
+public static int calcMinAllareaTree(int[] townGroup, Queue<Branch> branches) {
+    int result = 0;
+    while (!branches.isEmpty()) {
+        
+        
+        Branch branch = branches.poll();
+        int group1 = getGroup(townGroup, branch.n1);
+        int group2 = getGroup(townGroup, branch.n2);
+        
+        if (group1 != group2) {
+            
+            result += branch.value;
+            townGroup[group1] = group2;
+        }
+    }
+    return result;
+}

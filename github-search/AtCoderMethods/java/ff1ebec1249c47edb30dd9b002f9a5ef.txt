@@ -1,0 +1,22 @@
+private static void dfs(int N, int[][] g, int a, int b, boolean[] f, int pos) {
+    if (f[pos])
+        return;
+    f[pos] = true;
+    
+    for (int i = 0; i < N; i++) {
+        
+        if (i == pos || f[i]) {
+            
+            continue;
+        }
+        if (g[pos][i] == 1 || g[i][pos] == 1) {
+            
+            if (a == pos && b == i || a == i && b == pos) {
+                
+                continue;
+            }
+            
+            dfs(N, g, a, b, f, i);
+        }
+    }
+}

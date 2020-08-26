@@ -1,0 +1,9 @@
+public static void solve(Node n) {
+    for (int i = 0; i < n.to.size(); i++) {
+        int next = n.to.get(i);
+        if (node[next].visit)
+            continue;
+        node[next].visit = true;
+        solve(node[next]);
+    }
+}

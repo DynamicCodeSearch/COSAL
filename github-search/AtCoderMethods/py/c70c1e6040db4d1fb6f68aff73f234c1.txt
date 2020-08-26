@@ -1,0 +1,23 @@
+def main():
+    N =  int(input())
+    a = [int(i) for i in input().split()]
+
+
+
+    count_ = [0] * ( max(a)+2 )
+
+
+
+
+
+    for num in a:
+        if(num > 0):
+            count_[num-1] += 1
+            count_[num] += 1
+            count_[num+1] += 1
+        else:
+            count_[num] += 1
+            count_[num+1] += 1
+
+
+    print(max(count_))

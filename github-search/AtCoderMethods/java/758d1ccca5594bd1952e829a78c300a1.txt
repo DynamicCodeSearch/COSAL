@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    long[] fib = new long[51];
+    fib[0] = 1;
+    fib[1] = 1;
+    for (int i = 2; i < 50; i++) {
+        fib[i] = fib[i - 2] + fib[i - 1];
+    }
+    int k = in.nextInt();
+    for (int p = 0; p + 1 < 50; p++) {
+        if (cnt(fib[p], fib[p + 1]) == k) {
+            out.println(fib[p] + " " + fib[p + 1]);
+            break;
+        }
+    }
+    out.flush();
+}

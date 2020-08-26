@@ -1,0 +1,39 @@
+static void solve() {
+    int n = ni();
+    int[] a = na(3 * n);
+    long[] ls = new long[3 * n];
+    PriorityQueue<Integer> pq = new PriorityQueue<>();
+    long s = 0;
+    for (int i = 0; i < 3 * n; i++) {
+        pq.add(a[i]);
+        s += a[i];
+        if (pq.size() > n) {
+            s -= pq.poll();
+        }
+        if (pq.size() == n) {
+            ls[i] = s;
+        } else {
+            ls[i] = -Long.MAX_VALUE / 10;
+        }
+    }
+    long[] rs = new long[3 * n];
+    pq = new PriorityQueue<>();
+    s = 0;
+    for (int i = 3 * n - 1; i >= 0; i--) {
+        pq.add(-a[i]);
+        s += a[i];
+        if (pq.size() > n) {
+            s -= -pq.poll();
+        }
+        if (pq.size() == n) {
+            rs[i] = s;
+        } else {
+            rs[i] = Long.MAX_VALUE / 10;
+        }
+    }
+    long max = Long.MIN_VALUE;
+    for (int i = 0; i < 3 * n - 1; i++) {
+        max = Math.max(max, ls[i] - rs[i + 1]);
+    }
+    out.println(max);
+}

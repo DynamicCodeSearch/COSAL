@@ -1,0 +1,16 @@
+void solve(FastScanner in, PrintWriter out) throws Exception {
+    int N = in.nextInt();
+    long X = in.nextInt();
+    long[] A = in.nextLongArray(N);
+    long ans = 0;
+    if (A[0] > X) {
+        ans += (A[0] - X);
+        A[0] = X;
+    }
+    for (int i = 1; i < N; i++) {
+        long eat = Math.max(A[i] + A[i - 1] - X, 0);
+        A[i] -= eat;
+        ans += eat;
+    }
+    out.println(ans);
+}

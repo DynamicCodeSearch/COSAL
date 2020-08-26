@@ -1,0 +1,9 @@
+def solve(cards):
+    grand_total = sum(cards)
+
+    snuke_total = cards[0]      
+    min_diff = abs(grand_total - (snuke_total*2))
+    for c in cards[1:-1]:       
+        snuke_total += c
+        min_diff = min(abs(min_diff), abs(grand_total - (snuke_total*2)))
+    return min_diff

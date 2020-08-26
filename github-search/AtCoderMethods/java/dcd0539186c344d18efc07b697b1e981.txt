@@ -1,0 +1,20 @@
+void solve(ContestScanner in, Writer out) throws NumberFormatException, IOException {
+    char[] s = in.nextToken().toCharArray();
+    int[] alp = new int[26];
+    int n = s.length;
+    for (int i = 0; i < n; i++) {
+        alp[s[i] - 'a']++;
+    }
+    int odd = 0;
+    for (int i = 0; i < 26; i++) {
+        if (alp[i] % 2 == 1)
+            odd++;
+    }
+    if (odd == 0) {
+        System.out.println(n);
+        return;
+    }
+    int pair = (n - odd) / 2;
+    int div = pair / odd;
+    System.out.println(div * 2 + 1);
+}

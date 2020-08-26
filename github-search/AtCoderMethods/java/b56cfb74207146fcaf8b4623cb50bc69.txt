@@ -1,0 +1,11 @@
+void buildTriangle() {
+    for (int i = 0; i <= N; i++) {
+        dp[i][0] = 1 / Math.pow(2, i);
+        dp[i][i] = 1 / Math.pow(2, i);
+    }
+    for (int i = 2; i <= N; i++) {
+        for (int j = 1; j < i; j++) {
+            dp[i][j] = (dp[i - 1][j - 1] + dp[i - 1][j]) / 2;
+        }
+    }
+}

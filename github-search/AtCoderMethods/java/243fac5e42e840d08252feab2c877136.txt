@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    int[] a = new int[N];
+    for (int i = 0; i < N; i++) {
+        a[i] = sc.nextInt();
+    }
+    int[] dp = new int[N];
+    for (int i = 0; i < N; i++) {
+        if (i == 0 || dp[i - 1] == 1) {
+            int j = i + 1;
+            for (; j < N; j++) {
+                if (a[j] <= a[j - 1]) {
+                    break;
+                }
+            }
+            dp[i] = j - i;
+        } else {
+            dp[i] = dp[i - 1] - 1;
+        }
+    }
+    long sum = 0;
+    for (int i = 0; i < N; i++) {
+        sum += dp[i];
+    }
+    System.out.println(sum);
+}

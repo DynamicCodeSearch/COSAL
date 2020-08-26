@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int m = scanner.nextInt();
+    int sum = 0;
+    if (m < 100) {
+        System.out.println("00");
+    } else if (100 <= m && m <= 5000) {
+        sum = m / 100;
+        if (sum < 10) {
+            System.out.println("0" + sum);
+        } else {
+            System.out.println(sum);
+        }
+    } else if (6000 <= m && m <= 30000) {
+        sum = m / 1000 + 50;
+        System.out.println(sum);
+    } else if (35000 <= m && m <= 70000) {
+        sum = ((m / 1000) - 30) / 5 + 80;
+        System.out.println(sum);
+    } else if (70000 < m) {
+        System.out.println(89);
+    }
+}

@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    String a = sc.next();
+    String b = sc.next();
+    String c = sc.next();
+    char al;
+    if (a.length() == 1) {
+        al = a.charAt(0);
+    } else {
+        al = a.charAt(a.length() - 1);
+    }
+    char bl = b.charAt(0);
+    char cl = c.charAt(0);
+    if (al == bl) {
+        if (b.length() != 1) {
+            bl = b.charAt(b.length() - 1);
+        }
+        if (bl == cl) {
+            System.out.println("YES");
+        } else {
+            System.out.println("NO");
+        }
+    } else {
+        System.out.println("NO");
+    }
+}

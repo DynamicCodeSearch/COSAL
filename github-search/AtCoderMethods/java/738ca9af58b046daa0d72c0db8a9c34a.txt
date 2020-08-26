@@ -1,0 +1,41 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String input = br.readLine();
+    String[] s = input.split("");
+    input = br.readLine();
+    String[] t = input.split("");
+    boolean flag = false;
+    for (int i = 0; i < s.length; i++) {
+        if (s[i].equals("@")) {
+            if (t[i].equals("a") || t[i].equals("t") || t[i].equals("c") || t[i].equals("o") || t[i].equals("d") || t[i].equals("e") || t[i].equals("r") || t[i].equals("@")) {
+                flag = true;
+                continue;
+            
+            } else {
+                System.out.println("You will lose");
+                flag = false;
+                break;
+            }
+        } else if (t[i].equals("@")) {
+            if (s[i].equals("a") || s[i].equals("t") || s[i].equals("c") || s[i].equals("o") || s[i].equals("d") || s[i].equals("e") || s[i].equals("r") || s[i].equals("@")) {
+                flag = true;
+                continue;
+            
+            } else {
+                System.out.println("You will lose");
+                flag = false;
+                break;
+            }
+        } else if (s[i].equals(t[i])) {
+            flag = true;
+            continue;
+        } else {
+            System.out.println("You will lose");
+            flag = false;
+            break;
+        }
+    }
+    if (flag) {
+        System.out.println("You can win");
+    }
+}

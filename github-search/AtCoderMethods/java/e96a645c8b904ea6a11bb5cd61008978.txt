@@ -1,0 +1,9 @@
+public String next() throws IOException {
+    StringBuilder builder = new StringBuilder();
+    int read;
+    while ((read = inputStream.read()) <= 0x20) ;
+    do {
+        builder.append((char) read);
+    } while ((read = inputStream.read()) > 0x20);
+    return builder.toString();
+}

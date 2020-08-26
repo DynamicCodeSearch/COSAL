@@ -1,0 +1,16 @@
+int max(int k, int low, int high, int left, int right) {
+    if (right <= low || high <= left) {
+        return 0;
+    }
+    if (high <= low) {
+        return 0;
+    }
+    if (left == low && high == right) {
+        return this.tree[k];
+    }
+    int mid = (low + high) / 2;
+    int max = 0;
+    max = Math.max(max, max(2 * k, low, Math.min(high, mid), left, Math.min(right, mid)));
+    max = Math.max(max, max(2 * k + 1, Math.max(low, mid), high, Math.max(left, mid), right));
+    return max;
+}

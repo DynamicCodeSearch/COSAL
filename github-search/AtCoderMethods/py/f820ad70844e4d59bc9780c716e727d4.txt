@@ -1,0 +1,12 @@
+def Main():
+  N = int(input())
+  v = -1
+  if isPrime(N):
+    print(len(str(N)))
+  elif not isPrime(N):
+    for i in range(1, ceil(sqrt(N)) + 1):
+      if N%i == 0:
+        t = f(int(i), int (N/i))
+        if v == -1 or v > t:
+          v = t
+    print(v)

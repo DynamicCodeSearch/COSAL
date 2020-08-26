@@ -1,0 +1,15 @@
+private static boolean solve(int a, int b, int c) {
+    HashSet<Integer> set = new HashSet<>();
+    int num = 0;
+    int mod;
+    do {
+        num += a;
+        mod = num % b;
+        if (mod == c)
+            return true;
+        if (set.contains(mod))
+            break;
+        set.add(mod);
+    } while (true);
+    return false;
+}

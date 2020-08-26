@@ -1,0 +1,33 @@
+public static void main(String[] args) throws Exception {
+    String s = sc.next();
+    int t = sc.nextInt();
+    int x = 0;
+    int y = 0;
+    int z = 0;
+    for (int i = 0; i < s.length(); i++) {
+        if (s.charAt(i) == 'L') {
+            x--;
+        } else if (s.charAt(i) == 'R') {
+            x++;
+        } else if (s.charAt(i) == 'U') {
+            y--;
+        } else if (s.charAt(i) == 'D') {
+            y++;
+        } else {
+            z++;
+        }
+    }
+    if (t == 1) {
+        out.println(Math.abs(x) + Math.abs(y) + z);
+    } else {
+        int w = Math.abs(x) + Math.abs(y);
+        if (w >= z) {
+            out.println(w - z);
+        } else {
+            out.println((z - w) % 2);
+        }
+    }
+    out.flush();
+    sc.close();
+    out.close();
+}

@@ -1,0 +1,26 @@
+def main():
+    N, M = map(int, input().split())
+
+    dp = [[INF] * N for _ in range(N)]
+    edges = []
+    for i in range(M):
+        a, b, c = map(int, input().split())
+        a -= 1
+        b -= 1
+        dp[a][b] = c
+        dp[b][a] = c
+        edges.append((a, b, c))
+
+    for i in range(N):
+        dp[i][i] = 0
+
+    for m in range(N):
+        for s in range(N):
+            for e in range(N):
+                if dp[s][m] != INF and dp[m][e] != INF:
+                    dp[s][e] = min(dp[s][e], dp[s][m] + dp[m][e])
+
+    ans = 0
+    for a, b, c in edges:
+        ans += dp[a][b] != c
+    print(ans)

@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int input = sc.nextInt();
+    int[] x = new int[100];
+    int[] y = new int[100];
+    double max = 0;
+    for (int i = 0; i < input; i++) {
+        x[i] = sc.nextInt();
+        y[i] = sc.nextInt();
+    }
+    for (int i = 0; i < input - 1; i++) {
+        for (int j = i + 1; j < input; j++) {
+            double num = Math.sqrt((x[i] - x[j]) * (x[i] - x[j]) + (y[i] - y[j]) * (y[i] - y[j]));
+            if (num > max) {
+                max = num;
+            }
+        }
+    }
+    System.out.println(max);
+    sc.close();
+}

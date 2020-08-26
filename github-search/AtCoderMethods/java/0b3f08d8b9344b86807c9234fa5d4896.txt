@@ -1,0 +1,22 @@
+private void solve() {
+    int n = in.nextInt();
+    int m = in.nextInt();
+    List<Student> lst = new ArrayList<>();
+    for (int i = 0; i < n; i++) {
+        lst.add(new Student(in.nextInt(), in.nextInt(), Integer.MAX_VALUE, -1));
+    }
+    for (int i = 0; i < m; i++) {
+        int x = in.nextInt();
+        int y = in.nextInt();
+        for (Student s : lst) {
+            int v = Math.abs(s.x - x) + Math.abs(s.y - y);
+            if (v < s.d) {
+                s.idx = i;
+                s.d = v;
+            }
+        }
+    }
+    for (Student s : lst) {
+        out.println(s.idx + 1);
+    }
+}

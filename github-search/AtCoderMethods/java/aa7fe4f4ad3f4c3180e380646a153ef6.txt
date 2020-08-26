@@ -1,0 +1,13 @@
+static boolean nextPermutation(int[] a) {
+    for (int i = a.length - 1; i > 0; i--) {
+        if (a[i - 1] < a[i]) {
+            int swapIndex = find(a[i - 1], a, i, a.length - 1);
+            int temp = a[swapIndex];
+            a[swapIndex] = a[i - 1];
+            a[i - 1] = temp;
+            Arrays.sort(a, i, a.length);
+            return true;
+        }
+    }
+    return false;
+}

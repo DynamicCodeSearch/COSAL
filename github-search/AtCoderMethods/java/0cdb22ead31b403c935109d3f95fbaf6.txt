@@ -1,0 +1,14 @@
+private static boolean unite(int fr, int to) {
+    int a = root(fr);
+    int b = root(to);
+    if (a == b)
+        return false;
+    if (rt[a] > rt[b]) {
+        int tmp = a;
+        a = b;
+        b = tmp;
+    }
+    rt[a] += rt[b];
+    rt[b] = a;
+    return true;
+}

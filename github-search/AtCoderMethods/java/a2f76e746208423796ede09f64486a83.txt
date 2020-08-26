@@ -1,0 +1,8 @@
+static void colorise(int v, int borw) {
+    color[v] = borw;
+    for (int c : tree[v]) {
+        if (color[c] == -1) {
+            colorise(c, borw);
+        }
+    }
+}

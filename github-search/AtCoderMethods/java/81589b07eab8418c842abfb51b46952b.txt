@@ -1,0 +1,17 @@
+public void solve() {
+    int n = io.ri();
+    int[] have = new int[100003];
+    for (int i = 0; i < n; i++) {
+        int a = io.ri();
+        have[a]++;
+    }
+    int res = 0;
+    int c = 0;
+    for (int i = 0; i < have.length; i++) if (have[i] > 1) {
+        c = 1 - (have[i] + c) % 2;
+        res++;
+    } else if (have[i] == 1)
+        res++;
+    res -= c;
+    io.writeLine(res + "");
+}

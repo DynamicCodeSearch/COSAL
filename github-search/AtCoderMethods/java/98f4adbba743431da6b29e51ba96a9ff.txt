@@ -1,0 +1,31 @@
+void solve() throws IOException {
+    int n = nextInt();
+    int m = nextInt();
+    char[][] c = new char[n][m];
+    for (int i = 0; i < n; i++) {
+        c[i] = nextToken().toCharArray();
+    }
+    int[] dx = { -1, 0, 1, 1, 1, 0, -1, -1 };
+    int[] dy = { 1, 1, 1, 0, -1, -1, -1, 0 };
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            if (c[i][j] == '#')
+                continue;
+            int ans = 0;
+            for (int k = 0; k < 8; k++) {
+                int ni = i + dx[k];
+                int nj = j + dy[k];
+                if (inField(ni, nj, n, m) && c[ni][nj] == '#') {
+                    ans++;
+                }
+            }
+            c[i][j] = (char) ('0' + ans);
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            out.print(c[i][j]);
+        }
+        out.println();
+    }
+}

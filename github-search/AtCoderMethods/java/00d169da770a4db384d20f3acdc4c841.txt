@@ -1,0 +1,12 @@
+public MatrixMod pow(long exp) {
+    MatrixMod ret = identity(n);
+    MatrixMod x = this;
+    while (exp > 0) {
+        if ((exp & 1) != 0) {
+            ret = ret.multiply(x);
+        }
+        x = x.multiply(x);
+        exp >>>= 1;
+    }
+    return ret;
+}

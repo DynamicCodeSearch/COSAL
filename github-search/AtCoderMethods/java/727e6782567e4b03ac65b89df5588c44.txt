@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner input = new Scanner(System.in);
+    int k, n, i, num;
+    long res;
+    long[] sum = new long[100010];
+    n = input.nextInt();
+    k = input.nextInt();
+    for (i = 0; i < n; i++) {
+        num = input.nextInt();
+        sum[i + 1] = sum[i] + num;
+    }
+    res = 0;
+    for (i = 0; i < n - k + 1; i++) {
+        res += sum[i + k] - sum[i];
+    }
+    System.out.println(res);
+}

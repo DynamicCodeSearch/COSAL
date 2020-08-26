@@ -1,0 +1,15 @@
+public HashMap<Integer, ArrayList<Integer>> get() {
+    HashMap<Integer, ArrayList<Integer>> map = new HashMap<Integer, ArrayList<Integer>>();
+    for (int i = 0; i < parent.length; i++) {
+        int p = find(i);
+        ArrayList<Integer> tmp;
+        if (map.get(p) == null) {
+            tmp = new ArrayList<Integer>();
+        } else {
+            tmp = map.get(p);
+        }
+        tmp.add(i);
+        map.put(p, tmp);
+    }
+    return map;
+}

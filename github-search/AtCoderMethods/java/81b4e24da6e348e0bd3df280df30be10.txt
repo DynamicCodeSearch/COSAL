@@ -1,0 +1,53 @@
+public static void main(String[] args) {
+    
+    
+    int[] rate = new int[10];
+    
+    for (int cnt = 0; cnt < 10; cnt++) {
+        rate[cnt] = 0;
+    }
+    
+    Scanner sc = new Scanner(System.in);
+    
+    int N = Integer.parseInt(sc.next());
+    int a;
+    for (int cnt = 0; cnt < N; cnt++) {
+        a = Integer.parseInt(sc.next());
+        
+        if ((1 <= a) && (a <= 399)) {
+            rate[0] = 1;
+        } else if ((400 <= a) && (a <= 799)) {
+            rate[1] = 1;
+        } else if ((800 <= a) && (a <= 1199)) {
+            rate[2] = 1;
+        } else if ((1200 <= a) && (a <= 1599)) {
+            rate[3] = 1;
+        } else if ((1600 <= a) && (a <= 1999)) {
+            rate[4] = 1;
+        } else if ((2000 <= a) && (a <= 2399)) {
+            rate[5] = 1;
+        } else if ((2400 <= a) && (a <= 2799)) {
+            rate[6] = 1;
+        } else if ((2800 <= a) && (a <= 3199)) {
+            rate[7] = 1;
+        } else if ((3200 <= a) && (a <= 4800)) {
+            rate[8] = rate[8] + 1;
+        }
+    }
+    
+    sc.close();
+    
+    int sum = 0;
+    for (int cnt = 0; cnt < 10; cnt++) {
+        sum = sum + rate[cnt];
+    }
+    
+    if ((sum - rate[8]) == 0) {
+        
+        System.out.print((sum - rate[8] + 1));
+    } else {
+        System.out.print((sum - rate[8]));
+    }
+    
+    System.out.print(" " + sum);
+}

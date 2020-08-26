@@ -1,0 +1,29 @@
+public static void main(String[] args) throws Exception {
+    FastScannerB fs = new FastScannerB();
+    PrintWriter out = new PrintWriter(System.out);
+    int n = fs.nextInt(), m = fs.nextInt();
+    char[][] a = new char[n][n];
+    for (int i = 0; i < n; i++) a[i] = fs.nextCharArray();
+    char[][] b = new char[m][m];
+    for (int i = 0; i < m; i++) b[i] = fs.nextCharArray();
+    StringBuilder bCode = new StringBuilder();
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < m; j++) {
+            bCode.append(b[i][j] == '#' ? 1 : 0);
+        }
+    }
+    boolean good = false;
+    all: for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (i + m <= n && j + m <= n) {
+                String abc = getCode(a, i, j, m);
+                if (abc.equals(bCode.toString())) {
+                    good = true;
+                    break all;
+                }
+            }
+        }
+    }
+    out.println(good ? "Yes" : "No");
+    out.close();
+}

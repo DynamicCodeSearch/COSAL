@@ -1,0 +1,14 @@
+
+
+
+void dfs(int from, int to, long len) {
+    
+    dist[to] = len;
+    
+    TreeMap<Integer, Long> map = treeList.get(to);
+    
+    map.remove(from);
+    
+    
+    map.forEach((k, v) -> dfs(to, k, len + v));
+}

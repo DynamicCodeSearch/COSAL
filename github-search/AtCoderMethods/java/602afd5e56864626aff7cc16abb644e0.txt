@@ -1,0 +1,14 @@
+void run() {
+    int[] cnt = new int[300];
+    int ofs = 100;
+    for (int i = 0; i < 3; ++i) {
+        int n = ni();
+        cnt[n + ofs]++;
+    }
+    for (int i = -100; i <= 100; ++i) {
+        if (cnt[i + ofs] == 1) {
+            System.out.println(i);
+            break;
+        }
+    }
+}

@@ -1,0 +1,6 @@
+def dps(position, total_cost):
+    if depth[position - 1] > total_cost:
+        depth[position - 1] = total_cost
+    for next_position in tree[position]:
+        if depth[next_position - 1] == 1000000000000000:
+            dps(next_position, depth[position - 1] + cost[(position, next_position)])

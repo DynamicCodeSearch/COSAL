@@ -1,0 +1,25 @@
+public static void main(String[] args) throws IOException {
+    int H = 0;
+    int W = 0;
+    int[][] A = null;
+    int[][] D = null;
+    MyScanner sc = new MyScanner();
+    H = sc.nextInt();
+    W = sc.nextInt();
+    A = new int[H + 2][W + 2];
+    D = new int[H + 2][W + 2];
+    for (int i = 0; i < H; ++i) {
+        for (int j = 0; j < W; ++j) {
+            A[i + 1][j + 1] = sc.nextInt();
+        }
+    }
+    long path_sum = 0;
+    for (int i = 1; i < H + 1; ++i) {
+        for (int j = 1; j < W + 1; ++j) {
+            path_sum += CalcD(A, D, i, j);
+            path_sum = path_sum % MOD;
+        }
+    }
+    System.out.println(String.valueOf(path_sum));
+    System.gc();
+}

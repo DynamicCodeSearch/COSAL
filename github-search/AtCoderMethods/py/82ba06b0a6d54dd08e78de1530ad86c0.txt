@@ -1,0 +1,15 @@
+def makePuzzle():
+    count_Scc = 0
+    tmp = sys.stdin.readlines()
+    num_s, num_c = tmp[0].split(" ")
+    num_s = int(num_s)
+    num_c = int(num_c)
+
+    if num_c-num_s*2>=0:
+        count_Scc = num_s
+        num_c = num_c - num_s*2
+        count_Scc = count_Scc + num_c//4
+    else:
+        count_Scc = num_c//2
+
+    return count_Scc

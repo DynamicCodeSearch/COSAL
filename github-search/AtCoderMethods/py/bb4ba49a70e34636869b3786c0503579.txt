@@ -1,0 +1,25 @@
+def main():
+    N, A, B = map(int, input().split())
+    v = list(map(int, input().split()))
+
+    v.sort(reverse=True)
+
+
+    print('{:.6f}'.format((sum(v[:A]) / A)))
+
+    va = v[A - 1]
+
+    pool = v.count(va)
+
+    head = sum(x > va for x in v)
+
+
+
+
+    if head == 0:
+
+        ans = sum([_nCr(pool, pick) for pick in range(A, min(B, pool) + 1)])
+    else:
+        pick = A - head
+        ans = _nCr(pool, pick)
+    print(ans)

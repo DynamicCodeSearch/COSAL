@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    try (BufferedReader in = new BufferedReader(new InputStreamReader(System.in))) {
+        String S = in.readLine();
+        int len = S.length();
+        boolean[] exist = new boolean[26];
+        char a = 'a';
+        boolean result = true;
+        for (int i = 0; i < len; i++) {
+            if (exist[S.charAt(i) - a]) {
+                result = false;
+                break;
+            } else {
+                exist[S.charAt(i) - a] = true;
+            }
+        }
+        if (result) {
+            System.out.println("yes");
+        } else {
+            System.out.println("no");
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

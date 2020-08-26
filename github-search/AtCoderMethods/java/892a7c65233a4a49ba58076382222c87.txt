@@ -1,0 +1,94 @@
+public static void main(String[] args) throws IOException {
+    final Scanner sc = new Scanner(System.in);
+    final int H = sc.nextInt();
+    final int W = sc.nextInt();
+    boolean[][] is_black = new boolean[H][W];
+    for (int i = 0; i < H; i++) {
+        final char[] line = sc.next().toCharArray();
+        for (int j = 0; j < W; j++) {
+            is_black[i][j] = line[j] == '#';
+        }
+    }
+    long[][] prev_dist_map = new long[H][W];
+    for (int y = 0; y < H; y++) {
+        for (int x = 0; x < W; x++) {
+            if (!is_black[y][x]) {
+                prev_dist_map[y][x] = 0;
+            } else {
+                prev_dist_map[y][x] = Integer.MAX_VALUE;
+            }
+        }
+    }
+    for (int y = 0; y < H; y++) {
+        for (int x = 0; x < W; x++) {
+            if (!is_black[y][x]) {
+                continue;
+            }
+            if (y != 0 && x != 0) {
+                prev_dist_map[y][x] = Math.min(prev_dist_map[y][x], prev_dist_map[y - 1][x - 1] + 1);
+            }
+            if (y != 0) {
+                prev_dist_map[y][x] = Math.min(prev_dist_map[y][x], prev_dist_map[y - 1][x] + 1);
+            }
+            if (y != 0 && x != W - 1) {
+                prev_dist_map[y][x] = Math.min(prev_dist_map[y][x], prev_dist_map[y - 1][x + 1] + 1);
+            }
+            if (x != 0) {
+                prev_dist_map[y][x] = Math.min(prev_dist_map[y][x], prev_dist_map[y][x - 1] + 1);
+            }
+        }
+    }
+    for (int y = H - 1; y >= 0; y--) {
+        for (int x = W - 1; x >= 0; x--) {
+            if (!is_black[y][x]) {
+                continue;
+            }
+            if (y != H - 1 && x != W - 1) {
+                prev_dist_map[y][x] = Math.min(prev_dist_map[y][x], prev_dist_map[y + 1][x + 1] + 1);
+            }
+            if (y != H - 1) {
+                prev_dist_map[y][x] = Math.min(prev_dist_map[y][x], prev_dist_map[y + 1][x] + 1);
+            }
+            if (y != H - 1 && x != 0) {
+                prev_dist_map[y][x] = Math.min(prev_dist_map[y][x], prev_dist_map[y + 1][x - 1] + 1);
+            }
+            if (x != W - 1) {
+                prev_dist_map[y][x] = Math.min(prev_dist_map[y][x], prev_dist_map[y][x + 1] + 1);
+            }
+        }
+    }
+    
+    boolean[][] next_is_black = new boolean[H][W];
+    for (int i = 0; i < H; i++) {
+        LOOP: for (int j = 0; j < W; j++) {
+            for (int dx = -1; dx <= 1; dx++) {
+                for (int dy = -1; dy <= 1; dy++) {
+                    final int nx = j + dx;
+                    final int ny = i + dy;
+                    if (in_range(nx, ny, W, H) && prev_dist_map[ny][nx] >= 2) {
+                        next_is_black[i][j] = true;
+                        continue LOOP;
+                    }
+                }
+            }
+        }
+    }
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            if (is_black[i][j] != next_is_black[i][j]) {
+                System.out.println("impossible");
+                return;
+            }
+        }
+    }
+    PrintWriter pw = new PrintWriter(System.out);
+    pw.println("possible");
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            pw.print(prev_dist_map[i][j] >= 2 ? "#" : ".");
+        }
+        pw.println();
+    }
+    pw.flush();
+    pw.close();
+}

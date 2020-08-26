@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    String s = sc.next();
+    int p = 0;
+    int m = 0;
+    int[] sum = new int[N + 1];
+    for (int i = 0; i < N; i++) {
+        if (s.charAt(i) == '(') {
+            sum[i + 1] = sum[i] + 1;
+        } else {
+            sum[i + 1] = sum[i] - 1;
+            if (sum[i + 1] < 0) {
+                p++;
+                sum[i + 1] = 0;
+            }
+        }
+    }
+    m = sum[N];
+    String first = "";
+    String last = "";
+    for (int i = 0; i < p; i++) {
+        first += "(";
+    }
+    for (int i = 0; i < m; i++) {
+        last += ")";
+    }
+    System.out.println(first + s + last);
+}

@@ -1,0 +1,26 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    StringTokenizer st = new StringTokenizer(br.readLine());
+    int w = Integer.parseInt(st.nextToken());
+    int h = Integer.parseInt(st.nextToken());
+    int temp_w = w;
+    int temp_h = h;
+    while (temp_w != temp_h) {
+        if (temp_w > temp_h) {
+            temp_w -= temp_h;
+        } else {
+            temp_h -= temp_w;
+        }
+    }
+    if (temp_w != 1) {
+        while (!(w == 4 && h == 3) && !(w == 16 && h == 9) && w >= 4 && h >= 3) {
+            w /= temp_w;
+            h /= temp_h;
+        }
+    }
+    if (w == 4 && h == 3) {
+        System.out.println("4:3");
+    } else if (w == 16 && h == 9) {
+        System.out.println("16:9");
+    }
+}

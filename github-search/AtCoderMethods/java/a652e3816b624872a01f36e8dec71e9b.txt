@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    
+    int n = sc.nextInt();
+    char[][] Masu = new char[n][n];
+    char[][] AnsArray = new char[n][n];
+    for (int i = 0; i < n; i++) {
+        
+        String OnelineStr = sc.next();
+        
+        for (int j = 0; j < n; j++) {
+            Masu[i][j] = OnelineStr.charAt(j);
+        }
+    
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            AnsArray[j][-i + (n - 1)] = Masu[i][j];
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            System.out.print(AnsArray[i][j]);
+        }
+        if (i != n - 1)
+            System.out.println();
+    }
+}

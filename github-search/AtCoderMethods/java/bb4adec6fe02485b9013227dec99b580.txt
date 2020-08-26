@@ -1,0 +1,4 @@
+public static long modh(long a, long M, int h, int mod) {
+    long r = a - ((M * (a & mask) >>> 31) + M * (a >>> 31) >>> h - 31) * mod;
+    return r < mod ? r : r - mod;
+}

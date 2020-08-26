@@ -1,0 +1,20 @@
+void solve() {
+    int N = fs.nextInt();
+    int K = fs.nextInt();
+    long[] a = new long[N];
+    long Result = 0;
+    long Temp = 0;
+    int backNum = N - K + 1;
+    for (int i = 0; i < N; i++) {
+        a[i] = fs.nextLong();
+    }
+    for (int i = 0; i < backNum; i++) {
+        Result += a[i];
+    }
+    Temp = Result;
+    for (int i = backNum; i < N; i++) {
+        Temp = Temp - a[i - backNum] + a[i];
+        Result += +Temp;
+    }
+    System.out.println(Result);
+}

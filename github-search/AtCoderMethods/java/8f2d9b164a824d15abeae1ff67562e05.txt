@@ -1,0 +1,17 @@
+public static void fall(Node a) {
+    if (a == null)
+        return;
+    if (a.left != null) {
+        a.left.mul *= a.mul;
+        a.left.mul %= mod;
+        update(a.left);
+    }
+    if (a.right != null) {
+        a.right.mul *= a.mul;
+        a.right.mul %= mod;
+        update(a.right);
+    }
+    a.myval = a.myval * a.mul % mod;
+    a.mul = 1;
+    update(a);
+}

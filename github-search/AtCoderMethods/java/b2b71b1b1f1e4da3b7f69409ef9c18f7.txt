@@ -1,0 +1,54 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(in);
+    String[] tmp = sc.nextLine().split(" ");
+    int h = Integer.parseInt(tmp[0]);
+    int w = Integer.parseInt(tmp[1]);
+    boolean[][] map = new boolean[h][w];
+    for (int i = 0; i < h; i++) {
+        char[] temp = sc.nextLine().toCharArray();
+        for (int j = 0; j < w; j++) map[i][j] = temp[j] == 'o';
+    }
+    int a = 0, b = 0, c = 0;
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            if (!map[i][j])
+                continue;
+            int count = 0;
+            int minx = 2000, miny = 2000, maxx = -1, maxy = -1;
+            LinkedList<Map> open = new LinkedList<Map>();
+            open.add(new Map(j, i));
+            map[i][j] = false;
+            while (!open.isEmpty()) {
+                Map now = open.poll();
+                minx = Math.min(now.x, minx);
+                miny = Math.min(now.y, miny);
+                maxx = Math.max(now.x, maxx);
+                maxy = Math.max(now.y, maxy);
+                count++;
+                for (int k = 0; k < 8; k++) {
+                    int nx = now.x + dx[k];
+                    int ny = now.y + dy[k];
+                    if (!(0 <= nx && nx < w && 0 <= ny && ny < h))
+                        continue;
+                    if (!map[ny][nx])
+                        continue;
+                    open.add(new Map(nx, ny));
+                    map[ny][nx] = false;
+                }
+            }
+            int size = (maxx - minx + 1) / 5;
+            if (size <= 0)
+                continue;
+            int type = count / size / size;
+            if (type == 12)
+                a++;
+            else if (type == 16)
+                b++;
+            else if (type == 11)
+                c++;
+        }
+    }
+    out.println(a + " " + b + " " + c);
+    return;
+}

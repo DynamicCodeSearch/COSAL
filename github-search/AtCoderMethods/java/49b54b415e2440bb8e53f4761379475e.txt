@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter w = new PrintWriter(System.out);
+    Scanner sc = new Scanner(System.in);
+    int n = in.nextInt();
+    int k = in.nextInt();
+    int[] arr = new int[10001];
+    arr = in.nextIntArray(n);
+    Arrays.sort(arr);
+    long ans = 0;
+    for (int i = n - k; i < n; i++) ans += arr[i];
+    w.println(ans);
+    w.close();
+}

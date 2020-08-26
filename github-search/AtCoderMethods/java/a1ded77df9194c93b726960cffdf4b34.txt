@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    try {
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        int T = sc.nextInt();
+        int[] input = new int[N];
+        long result = T;
+        input[0] = sc.nextInt();
+        for (int i = 1; i < N; i++) {
+            input[i] = sc.nextInt();
+            if (input[i] - input[i - 1] <= T) {
+                result += input[i] - input[i - 1];
+            } else {
+                result += T;
+            }
+        }
+        System.out.println(result);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}

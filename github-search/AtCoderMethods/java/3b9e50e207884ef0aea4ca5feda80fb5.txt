@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    long N = Long.parseLong(scan.next());
+    int min = Integer.MAX_VALUE;
+    long A = 1;
+    long B = N;
+    for (; A <= B; A++) {
+        if (N % A == 0) {
+            B = N / A;
+            int tmp = F(A, B);
+            if (tmp < min)
+                min = tmp;
+        } else {
+            B = N / A + 1;
+        }
+    }
+    System.out.println(min);
+    scan.close();
+}

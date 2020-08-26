@@ -1,0 +1,30 @@
+def main():
+    n, m, r = input_list()
+    rlist = input_list()
+    rlist = [r-1 for r in rlist]
+    d = [[float('inf')]*n for i in range(n)]
+    for i in range(n):
+        d[i][i] = 0
+
+    for i in range(m):
+        a, b, c = input_list()
+        d[a-1][b-1] = c
+        d[b-1][a-1] = c
+
+    for k in range(n):
+        for i in range(n):
+            for j in range(n):
+                distance = d[i][k]+d[k][j]
+                if d[i][j] > distance:
+                    d[i][j] = distance
+
+    ans = float('inf')
+    for p in permutations(rlist):
+        distance = 0
+        for i in range(r-1):
+            distance += d[p[i]][p[i+1]]
+
+        if ans > distance:
+            ans = distance
+
+    print(ans)

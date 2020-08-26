@@ -1,0 +1,43 @@
+public long nextLong() {
+    try {
+        long ret = 0;
+        eatDelimiters();
+        boolean positive = true;
+        if (buf[bufi] == '-') {
+            ++bufi;
+            if (!pumpBuf())
+                throw new RuntimeException("IO.nextLong: Invalid long.");
+            positive = false;
+        }
+        boolean first = true;
+        while (true) {
+            if (!pumpBuf())
+                break;
+            if (isDelimiter(buf[bufi])) {
+                if (first)
+                    throw new RuntimeException("IO.nextLong: Invalid long.");
+                break;
+            }
+            first = false;
+            if (buf[bufi] >= '0' && buf[bufi] <= '9') {
+                if (ret < -922337203685477580L)
+                    throw new RuntimeException("IO.nextLong: Invalid long.");
+                ret *= 10;
+                ret -= (long) (buf[bufi] - '0');
+                if (ret > 0)
+                    throw new RuntimeException("IO.nextLong: Invalid long.");
+            } else {
+                throw new RuntimeException("IO.nextLong: Invalid long.");
+            }
+            ++bufi;
+        }
+        if (positive) {
+            if (ret == -9223372036854775808L)
+                throw new RuntimeException("IO.nextLong: Invalid long.");
+            ret = -ret;
+        }
+        return ret;
+    } catch (IOException e) {
+        throw new RuntimeException("IO.nextLong: Caught IOException.");
+    }
+}

@@ -1,0 +1,13 @@
+public static void main(String[] args) {
+    int n = s.nextInt(), in[] = new int[n];
+    for (int i = 0; i < n; i++) in[i] = s.nextInt();
+    int sum = Arrays.stream(in).sum(), res = sum;
+    for (int i = (1 << n - 1) - 1; i > 0; i--) {
+        int buf = 0;
+        for (int j = 0; j < n; j++) if ((i & 1 << j) > 0) {
+            buf += in[j];
+        }
+        res = Math.min(res, Math.max(buf, sum - buf));
+    }
+    System.out.println(res);
+}

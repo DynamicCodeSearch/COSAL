@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int N = in.nextInt();
+    int[] scores = new int[N];
+    int sum = 0;
+    ArrayList<Integer> notTenMultiple = new ArrayList<Integer>();
+    for (int i = 0; i < N; i++) {
+        int a = in.nextInt();
+        if (a % 10 != 0) {
+            notTenMultiple.add(a);
+        }
+        sum += a;
+    }
+    notTenMultiple.sort(null);
+    if (sum % 10 == 0) {
+        if (notTenMultiple.size() > 0) {
+            sum -= notTenMultiple.get(0);
+        } else {
+            sum = 0;
+        }
+    }
+    System.out.println(sum);
+}

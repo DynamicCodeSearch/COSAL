@@ -1,0 +1,11 @@
+long calc(Piece[] nums, int W) {
+    long[] dp = new long[W + 1];
+    for (int j = 0; j < nums.length; j++) {
+        Piece p = nums[j];
+        for (int i = W; i >= 0; i--) {
+            if (p.w <= i)
+                dp[i] = Math.max(dp[i], dp[i - p.w] + p.c);
+        }
+    }
+    return dp[W];
+}

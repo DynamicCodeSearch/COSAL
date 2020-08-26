@@ -1,0 +1,17 @@
+public void exec() throws IOException {
+    InputUtil in = new InputUtil();
+    PrintWriter out = new PrintWriter(System.out);
+    int N = in.nextInt();
+    NodeManager nm = new NodeManager(N);
+    for (int i = 1; i < N; i++) {
+        int a = in.nextInt();
+        int b = in.nextInt();
+        int c = in.nextInt();
+        nm.getNode(a).distance.put(b, c);
+        nm.getNode(b).distance.put(a, c);
+    }
+    int Q = in.nextInt();
+    int K = in.nextInt();
+    outputQ(nm, K, Q, in, out);
+    out.flush();
+}

@@ -1,0 +1,28 @@
+public static void solve(PrintWriter out, FastScanner in) {
+    int N = in.nextInt();
+    HashMap<Integer, Integer> map = new HashMap<>();
+    for (int i = 0; i < N; i++) {
+        int a = in.nextInt();
+        if (map.containsKey(a)) {
+            map.replace(a, map.get(a) + 1);
+        } else {
+            map.put(a, 1);
+        }
+    }
+    int size = map.size();
+    int sub = 0;
+    for (int key : map.keySet()) {
+        if (map.get(key) % 2 == 0) {
+            
+            sub++;
+        }
+    
+    }
+    if (sub % 2 == 0) {
+        
+        System.out.println(size);
+    } else {
+        
+        System.out.println(size - 1);
+    }
+}

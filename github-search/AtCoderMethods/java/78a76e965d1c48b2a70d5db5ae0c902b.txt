@@ -1,0 +1,13 @@
+private void rec(int w0, int curList, int curPos, long curSum, int w, List<Integer>[] vs) {
+    ans = Math.max(ans, curSum);
+    if (curList == vs.length) {
+        return;
+    }
+    rec(w0, curList + 1, 0, curSum, w, vs);
+    if (curPos < vs[curList].size()) {
+        int nw = w - (w0 + curList);
+        if (nw >= 0) {
+            rec(w0, curList, curPos + 1, curSum + vs[curList].get(curPos), nw, vs);
+        }
+    }
+}

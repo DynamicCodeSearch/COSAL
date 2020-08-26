@@ -1,0 +1,12 @@
+public static void main(String[] args) throws IOException {
+    final Scanner sc = new Scanner(System.in);
+    final long N = sc.nextLong();
+    int min = Integer.MAX_VALUE;
+    for (long j = 1; j * j <= N; j++) {
+        if (N % j != 0) {
+            continue;
+        }
+        min = Math.min(min, Math.max(Long.toString(j).length(), Long.toString(N / j).length()));
+    }
+    System.out.println(min);
+}

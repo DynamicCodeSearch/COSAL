@@ -1,0 +1,22 @@
+def helper(n):
+  q = child_L[n]
+  del child_L[n]
+
+  hq.heapify(q)
+  i = 0
+  while q:
+    t = hq.heappop(q)
+    if i < t:
+      break
+    else:
+      i += (i==t)
+
+  j = i+1
+  while q:
+    t = hq.heappop(q)
+    if j < t:
+      break
+    else:
+      j += (j==t)
+
+  return (i,j)

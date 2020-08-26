@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int a = scanner.nextInt(), b = scanner.nextInt(), c = scanner.nextInt();
+    int[] rank = new int[3];
+    if (a > b) {
+        rank[0]++;
+    } else {
+        rank[1]++;
+    }
+    if (a > c) {
+        rank[0]++;
+    } else {
+        rank[2]++;
+    }
+    if (b > c) {
+        rank[1]++;
+    } else {
+        rank[2]++;
+    }
+    for (int i = 0; i < 3; i++) {
+        switch(rank[i]) {
+            case 0:
+                System.out.println(3);
+                break;
+            case 1:
+                System.out.println(2);
+                break;
+            case 2:
+                System.out.println(1);
+        }
+    }
+}

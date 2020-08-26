@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < a.length; i++) {
+        a[i] = sc.nextInt();
+    }
+    int[] b = new int[n];
+    boolean isTop = true;
+    int topCnt = 0;
+    int tailCnt = n - 1;
+    for (int i = n - 1; i >= 0; i--) {
+        if (isTop) {
+            b[topCnt++] = a[i];
+            isTop = false;
+        } else {
+            b[tailCnt--] = a[i];
+            isTop = true;
+        }
+    }
+    for (int i = 0; i < n - 1; i++) {
+        System.out.print(b[i] + " ");
+    }
+    System.out.print(b[n - 1]);
+}

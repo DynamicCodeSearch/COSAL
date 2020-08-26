@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    try {
+        
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+        int n = Integer.parseInt(br.readLine());
+        int ans = 100 * (n / 10);
+        n = n % 10;
+        if (n >= 7) {
+            ans += 100;
+        } else {
+            ans += 15 * n;
+        }
+        System.out.println(ans);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

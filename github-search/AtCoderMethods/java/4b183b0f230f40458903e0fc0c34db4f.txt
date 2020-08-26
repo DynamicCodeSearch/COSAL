@@ -1,0 +1,14 @@
+private static void solve() {
+    int n = nei();
+    int k = nei();
+    double[] rs = new double[n];
+    for (int i = 0; i < n; i++) {
+        rs[i] = nei();
+    }
+    Arrays.sort(rs);
+    double rate = 0;
+    for (int i = n - k; i < n; i++) {
+        rate = (rate + rs[i]) * 0.5;
+    }
+    out(rate);
+}

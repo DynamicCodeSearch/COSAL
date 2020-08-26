@@ -1,0 +1,22 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    int[] b = new int[10];
+    sc.fill(b);
+    int N = sc.nextInt();
+    int[] a = new int[N];
+    sc.fill(a);
+    Map<Character, Character> map = new HashMap<>();
+    for (int i = 0; i < b.length; i++) {
+        map.put(Integer.toString(b[i]).toCharArray()[0], Integer.toString(i).toCharArray()[0]);
+    }
+    List<Pair> converted = new ArrayList<>();
+    for (int value : a) {
+        StringBuilder builder = new StringBuilder();
+        for (char c : Integer.toString(value).toCharArray()) {
+            builder.append(map.get(c));
+        }
+        converted.add(new Pair(Integer.parseInt(builder.toString()), value));
+    }
+    String result = converted.stream().sorted(Comparator.comparingInt(Pair::getKey)).mapToInt(Pair::getValue).mapToObj(Integer::toString).collect(Collectors.joining(System.lineSeparator()));
+    System.out.println(result);
+}

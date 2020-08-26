@@ -1,0 +1,54 @@
+private void solve() {
+    
+    Scanner io = new Scanner(System.in);
+    N = io.nextInt();
+    PriorityQueue<Point> queX = new PriorityQueue<>();
+    PriorityQueue<Point> queY = new PriorityQueue<>();
+    Node[] node = new Node[N];
+    for (int i = 0; i < N; i++) {
+        int x = io.nextInt();
+        int y = io.nextInt();
+        queX.add(new Point(x, i));
+        queY.add(new Point(y, i));
+        node[i] = new Node();
+    }
+    Point prev = queX.poll();
+    Point now;
+    while (!queX.isEmpty()) {
+        now = queX.poll();
+        int far = now.dis - prev.dis;
+        node[now.id].prevX = new Point(far, prev.id);
+        node[prev.id].nextX = new Point(far, now.id);
+        prev = now;
+    }
+    prev = queY.poll();
+    while (!queY.isEmpty()) {
+        now = queY.poll();
+        int far = now.dis - prev.dis;
+        node[now.id].prevY = new Point(far, prev.id);
+        node[prev.id].nextY = new Point(far, now.id);
+        prev = now;
+    }
+    boolean[] fin = new boolean[N];
+    PriorityQueue<Point> queR = new PriorityQueue<>();
+    long ans = 0;
+    fin[0] = true;
+    queR.add(node[0].nextX);
+    queR.add(node[0].prevX);
+    queR.add(node[0].nextY);
+    queR.add(node[0].prevY);
+    while (!queR.isEmpty()) {
+        now = queR.poll();
+        if (now.id == -1)
+            break;
+        if (fin[now.id])
+            continue;
+        ans += now.dis;
+        fin[now.id] = true;
+        queR.add(node[now.id].nextX);
+        queR.add(node[now.id].prevX);
+        queR.add(node[now.id].nextY);
+        queR.add(node[now.id].prevY);
+    }
+    System.out.println(ans);
+}

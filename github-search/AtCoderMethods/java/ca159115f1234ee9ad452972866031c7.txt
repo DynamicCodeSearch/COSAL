@@ -1,0 +1,18 @@
+void run() {
+    Scanner sc = new Scanner(System.in);
+    AVLTree avl = new AVLTree();
+    int Q = sc.nextInt();
+    for (int i = 0; i < Q; ++i) {
+        int T = sc.nextInt();
+        int X = sc.nextInt();
+        if (T == 1) {
+            avl.insert(X);
+        } else {
+            AVLTree.Node node = avl.kth(X);
+            if (node == null)
+                throw new AssertionError();
+            System.out.println(node.key);
+            avl.delete(node);
+        }
+    }
+}

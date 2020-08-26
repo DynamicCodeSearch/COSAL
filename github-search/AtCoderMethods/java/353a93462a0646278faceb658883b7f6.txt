@@ -1,0 +1,32 @@
+static void solve() {
+    char[] s = ns().toCharArray();
+    int[][] next = makeFatNext(s, 'a', 'z');
+    int n = s.length;
+    int[] dplen = new int[n + 1];
+    int[] dpnext = new int[n + 1];
+    for (int i = n; i >= 0; i--) {
+        int minlen = 99999999;
+        int arg = -1;
+        for (int j = 0; j < 26; j++) {
+            if (next[j][i] == n + 1) {
+                if (0 < minlen) {
+                    minlen = 0;
+                    arg = j;
+                }
+            } else {
+                if (dplen[next[j][i]] < minlen) {
+                    minlen = dplen[next[j][i]];
+                    arg = j;
+                }
+            }
+        }
+        dplen[i] = minlen + 1;
+        dpnext[i] = arg;
+    }
+    int cur = 0;
+    while (cur < n + 1) {
+        out.print((char) ('a' + dpnext[cur]));
+        cur = next[dpnext[cur]][cur];
+    }
+    out.println();
+}

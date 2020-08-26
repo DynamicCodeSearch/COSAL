@@ -1,0 +1,17 @@
+void run() {
+    String s = sc.next().substring(0, 12);
+    String f = "WBWBWWBWBWBW";
+    String[] r = { "Do", "Do", "Re", "Re", "Mi", "Fa", "Fa", "So", "So", "La", "La", "Si" };
+    String[] c = new String[12];
+    for (int i = 0; i < 12; i++) {
+        c[i] = f;
+        String tmp = f.substring(1, 12) + f.substring(0, 1);
+        f = tmp;
+    }
+    for (int i = 0; i < 12; i++) {
+        if (s.equals(c[i])) {
+            System.out.println(r[i]);
+            break;
+        }
+    }
+}

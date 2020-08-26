@@ -1,0 +1,34 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    boolean found = false;
+    char[][] in = new char[N][N];
+    char[][] temp = new char[M][M];
+    for (int i = 0; i < N; i++) {
+        in[i] = sc.next().toCharArray();
+    }
+    for (int i = 0; i < M; i++) {
+        temp[i] = sc.next().toCharArray();
+    }
+    for (int i = 0; i <= N - M; i++) {
+        for (int j = 0; j <= N - M; j++) {
+            found = true;
+            label1: for (int ii = 0; ii < M; ii++) {
+                for (int jj = 0; jj < M; jj++) {
+                    if (in[i + ii][j + jj] != temp[ii][jj]) {
+                        found = false;
+                        break label1;
+                    }
+                }
+            }
+            if (found) {
+                System.out.println("Yes");
+                sc.close();
+                return;
+            }
+        }
+    }
+    System.out.println("No");
+    sc.close();
+}

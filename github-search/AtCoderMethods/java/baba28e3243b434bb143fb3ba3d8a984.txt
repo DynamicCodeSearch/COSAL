@@ -1,0 +1,18 @@
+void run() {
+    String str = sc.next();
+    for (int i = 0; i < key.length(); ++i) {
+        if (key.charAt(i) == 'B') {
+            continue;
+        }
+        boolean flag = true;
+        for (int j = 0; j < str.length(); ++j) {
+            flag &= key.charAt((i + j) % key.length()) == str.charAt(j);
+            debug(i, key.charAt((i + j) % key.length()), str.charAt(j), "...", ans[(i + j) % ans.length]);
+        }
+        if (flag) {
+            System.out.println(ans[i]);
+            return;
+        }
+    }
+    ans[ans.length] = "";
+}

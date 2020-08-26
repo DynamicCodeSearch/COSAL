@@ -1,0 +1,15 @@
+long term(String sb) {
+    long res = factor(sb);
+    for (; index < sb.length(); ) {
+        if (sb.charAt(index) == '*') {
+            index++;
+            res *= factor(sb);
+        } else if (sb.charAt(index) == '/') {
+            index++;
+            res /= factor(sb);
+        } else {
+            break;
+        }
+    }
+    return res;
+}

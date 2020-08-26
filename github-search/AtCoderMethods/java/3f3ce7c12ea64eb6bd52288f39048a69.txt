@@ -1,0 +1,22 @@
+public long minx(int l, int r) {
+    long min = Long.MAX_VALUE;
+    if (l >= r)
+        return min;
+    while (l != 0) {
+        int f = l & -l;
+        if (l + f > r)
+            break;
+        long v = st[(H + l) / f];
+        if (v < min)
+            min = v;
+        l += f;
+    }
+    while (l < r) {
+        int f = r & -r;
+        long v = st[(H + r) / f - 1];
+        if (v < min)
+            min = v;
+        r -= f;
+    }
+    return min;
+}

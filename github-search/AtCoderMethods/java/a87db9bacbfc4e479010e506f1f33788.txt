@@ -1,0 +1,43 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    int c = sc.nextInt();
+    int max = a;
+    if (b > a) {
+        if (c > b) {
+            max = c;
+            if (max == a + b)
+                System.out.println("Yes");
+            else
+                System.out.println("No");
+        } else {
+            max = b;
+            if (max == a + c)
+                System.out.println("Yes");
+            else
+                System.out.println("No");
+        }
+    } else if (c > a) {
+        if (b > a) {
+            max = b;
+            if (max == a + c)
+                System.out.println("Yes");
+            else
+                System.out.println("No");
+        } else {
+            max = c;
+            if (max == a + b)
+                System.out.println("Yes");
+            else
+                System.out.println("No");
+        }
+    } else {
+        if (max == b + c)
+            System.out.println("Yes");
+        else
+            System.out.println("No");
+    }
+    sc.close();
+}

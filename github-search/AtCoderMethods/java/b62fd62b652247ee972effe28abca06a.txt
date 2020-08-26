@@ -1,0 +1,10 @@
+void discharge() {
+    while (isOverflow()) {
+        for (PushRelabelBaseMaxFlow.Edge e : edges) {
+            while (e.canPush()) e.push();
+            if (!isOverflow())
+                return;
+        }
+        relabel();
+    }
+}

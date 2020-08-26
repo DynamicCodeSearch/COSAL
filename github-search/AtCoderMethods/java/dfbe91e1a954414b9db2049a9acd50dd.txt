@@ -1,0 +1,17 @@
+public static void main(String[] args) throws java.lang.Exception {
+    InputReader in = new InputReader(System.in);
+    PrintWriter w = new PrintWriter(System.out);
+    int n = 50;
+    long k = in.nextLong();
+    long[] a = new long[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = k * 1L / n + i;
+    }
+    for (int i = 0; i < k % n; i++) {
+        a[i] += n + 1;
+        for (int j = 0; j < n; j++) a[j]--;
+    }
+    w.println(n);
+    for (long x : a) w.print(x + " ");
+    w.close();
+}

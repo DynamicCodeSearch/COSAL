@@ -1,0 +1,26 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    try {
+        String str = br.readLine();
+        String[] s = str.split(" ", 0);
+        int N = Integer.parseInt(s[0]);
+        int M = Integer.parseInt(s[1]);
+        long max = 1000000007;
+        long count = 0;
+        if (Math.abs(N - M) < 2) {
+            count = 1;
+            for (int i = 1; i < N + 1; i++) {
+                count = (((long) i % max) * count) % max;
+            }
+            for (int i = 1; i < M + 1; i++) {
+                count = (((long) i % max) * count) % max;
+            }
+        }
+        if (N == M) {
+            count = ((long) 2 * count) % max;
+        }
+        System.out.println(count);
+    } catch (Exception e) {
+        System.exit(0);
+    }
+}

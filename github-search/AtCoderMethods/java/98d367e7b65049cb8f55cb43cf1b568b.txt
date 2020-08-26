@@ -1,0 +1,21 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] s = br.readLine().split("");
+    String output = "";
+    String tmp = s[0];
+    int count = 1;
+    int index = 0;
+    for (int i = 1; i < s.length; i++) {
+        if (s[i].equals(tmp)) {
+            count += 1;
+        } else {
+            output += tmp;
+            tmp = s[i];
+            output += String.valueOf(count);
+            index += 2;
+            count = 1;
+        }
+    }
+    output += tmp + String.valueOf(count);
+    System.out.println(output);
+}

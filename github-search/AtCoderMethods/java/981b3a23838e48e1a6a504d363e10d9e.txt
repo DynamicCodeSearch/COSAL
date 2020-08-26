@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int N = Integer.parseInt(scan.next());
+    int Q = Integer.parseInt(scan.next());
+    int[] Sequence = new int[N + 1];
+    for (int i = 0; i < Sequence.length; i++) Sequence[i] = 0;
+    for (int i = 0; i < Q; i++) {
+        int L = Integer.parseInt(scan.next());
+        int R = Integer.parseInt(scan.next());
+        int T = Integer.parseInt(scan.next());
+        for (int j = L; j <= R; j++) {
+            Sequence[j] = T;
+        }
+    }
+    for (int i = 1; i < Sequence.length; i++) System.out.println(Sequence[i]);
+}

@@ -1,0 +1,32 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int r = in.nextInt(), c = in.nextInt(), n = in.nextInt();
+    List<Segment> a = new ArrayList<>();
+    for (int i = 0; i < n; ++i) {
+        int x1 = in.nextInt(), y1 = in.nextInt();
+        int x2 = in.nextInt(), y2 = in.nextInt();
+        int left = calcPos(r, c, x1, y1);
+        int right = calcPos(r, c, x2, y2);
+        if (left != -1 && right != -1) {
+            if (left > right) {
+                int aux = left;
+                left = right;
+                right = aux;
+            }
+            a.add(new Segment(left, right));
+        }
+    }
+    Collections.sort(a, Comparator.comparingInt(o -> o.right));
+    List<Segment> stk = new ArrayList<>();
+    for (Segment e : a) {
+        while (!stk.isEmpty() && e.left < stk.get(stk.size() - 1).right) {
+            Segment s = stk.get(stk.size() - 1);
+            stk.remove(stk.size() - 1);
+            if (s.left < e.left) {
+                out.println("NO");
+                return;
+            }
+        }
+        stk.add(e);
+    }
+    out.println("YES");
+}

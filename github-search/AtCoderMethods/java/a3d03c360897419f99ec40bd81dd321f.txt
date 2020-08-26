@@ -1,0 +1,16 @@
+public void solve() {
+    int N = in.nextInt(), T = in.nextInt();
+    int[] a = in.nextIntArray(N);
+    int min = a[0];
+    int diffMax = 0;
+    int res = 0;
+    for (int i = 1; i < N; i++) {
+        if (diffMax < a[i] - min) {
+            diffMax = a[i] - min;
+            res = 1;
+        } else if (diffMax == a[i] - min)
+            res++;
+        min = Math.min(min, a[i]);
+    }
+    System.out.println(res);
+}

@@ -1,0 +1,56 @@
+private void solve() throws IOException {
+    int sx = nextInt();
+    int sy = nextInt();
+    int tx = nextInt();
+    int ty = nextInt();
+    sb = new StringBuilder("");
+    int curx = sx;
+    int cury = sy;
+    while (cury < ty) {
+        ++cury;
+        sb.append("U");
+    }
+    while (curx < tx) {
+        ++curx;
+        sb.append("R");
+    }
+    sb.append("U");
+    ++cury;
+    while (curx >= sx) {
+        --curx;
+        sb.append("L");
+    }
+    while (cury > sy) {
+        --cury;
+        sb.append("D");
+    }
+    sb.append("R");
+    curx = sx;
+    cury = sy;
+    sb.append("D");
+    --cury;
+    while (curx <= tx) {
+        ++curx;
+        sb.append("R");
+    }
+    while (cury < ty) {
+        ++cury;
+        sb.append("U");
+    }
+    sb.append("L");
+    curx = tx;
+    cury = ty;
+    while (cury > sy) {
+        --cury;
+        sb.append("D");
+    }
+    while (curx > sx) {
+        --curx;
+        sb.append("L");
+    }
+    writer.println(sb);
+
+
+
+
+}

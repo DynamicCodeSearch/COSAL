@@ -1,0 +1,17 @@
+boolean ok(int[] a, int b, int k) {
+    boolean[] ok = new boolean[k];
+    ok[0] = true;
+    for (int i = 0; i < a.length; ++i) {
+        if (i == b)
+            continue;
+        for (int j = k - 1 - a[i]; j >= 0; --j) {
+            if (ok[j])
+                ok[j + a[i]] = true;
+        }
+    }
+    for (int i = k - a[b]; i < k; ++i) {
+        if (ok[i])
+            return true;
+    }
+    return false;
+}

@@ -1,0 +1,14 @@
+def imin(x, y):
+  if x == "No" or y == "No":
+    return "No"
+  elif y == "Any":
+    return x
+  elif x == "Any":
+    return y
+  else:
+    (a1, b1, p1) = x
+    (a2, b2, p2) = y
+    if p1 != p2 or b1 < a2 or b2 < a1:
+      return "No"
+    else:
+      return (max(a1, a2), min(b1, b2), p1)

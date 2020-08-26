@@ -1,0 +1,11 @@
+public void add(int l, int r, int a, int b, int x, int idx) {
+    if (r <= a || b <= l) {
+        ;
+    } else if (l <= a && b <= r) {
+        v[idx] += x;
+    } else {
+        int mid = (a + b) / 2;
+        add(l, r, a, mid, x, idx * 2);
+        add(l, r, mid, b, x, idx * 2 + 1);
+    }
+}

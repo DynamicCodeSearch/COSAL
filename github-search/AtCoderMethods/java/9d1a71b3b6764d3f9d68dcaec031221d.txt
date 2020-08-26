@@ -1,0 +1,9 @@
+void run() {
+    N = sc.nextInt();
+    M = sc.nextInt();
+    order = new boolean[N][N];
+    memo = new long[N][1 << N];
+    for (int i = 0; i < N; i++) Arrays.fill(memo[i], -1);
+    for (int i = 0; i < M; i++) order[sc.nextInt() - 1][sc.nextInt() - 1] = true;
+    System.out.println(bitDP(0, 0));
+}

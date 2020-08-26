@@ -1,0 +1,17 @@
+public static void main(String[] args) throws NumberFormatException, IOException {
+    Scanner sc = new Scanner();
+    int N = sc.nextInt();
+    int run = 0;
+    int ans = 0;
+    for (int i = 0; i < N; i++) {
+        int c = sc.nextInt() - 1;
+        if (c == i)
+            run++;
+        else {
+            ans += (run + 1) / 2;
+            run = 0;
+        }
+    }
+    ans += (run + 1) / 2;
+    System.out.println(ans);
+}

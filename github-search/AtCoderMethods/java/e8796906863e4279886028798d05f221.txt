@@ -1,0 +1,13 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int m = (int) Math.sqrt((double) n);
+    int min = 100000;
+    for (int i = 1; i <= m; i++) {
+        int p = n / i;
+        int r = n % i;
+        int k = p - i + r;
+        min = Math.min(min, k);
+    }
+    System.out.println(min);
+}

@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int price = sc.nextInt();
+    int K = sc.nextInt();
+    int[] num = new int[K];
+    boolean judge = false;
+    for (int i = 0; i < K; i++) num[i] = sc.nextInt();
+    while (!judge) {
+        judge = true;
+        int p = price++;
+        while (p != 0) {
+            for (int i = 0; i < K; i++) {
+                if (p % 10 == num[i]) {
+                    judge = false;
+                }
+            }
+            p /= 10;
+        }
+    }
+    System.out.println(--price);
+}

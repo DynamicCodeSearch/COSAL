@@ -1,0 +1,12 @@
+static void initMatrix(int[][] matrix, Line[] lines, int n, int skip) {
+    for (int i = 0; i <= n; i++) {
+        Arrays.fill(matrix[i], 0);
+    }
+    for (int i = 0; i < lines.length; i++) {
+        if (i == skip) {
+            continue;
+        }
+        matrix[lines[i].start][lines[i].end] = 1;
+        matrix[lines[i].end][lines[i].start] = 1;
+    }
+}

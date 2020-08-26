@@ -1,0 +1,15 @@
+void unite(int x, int y) {
+    x = root(x);
+    y = root(y);
+    if (x == y)
+        return;
+    if (rank[x] < rank[y]) {
+        par[x] = y;
+        size[y] += size[x];
+    } else {
+        par[y] = x;
+        size[x] += size[y];
+        if (rank[x] == rank[y])
+            rank[x]++;
+    }
+}

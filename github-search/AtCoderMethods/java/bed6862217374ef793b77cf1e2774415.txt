@@ -1,0 +1,32 @@
+void run() {
+    int N = in.nextInt(), K = in.nextInt();
+    int[] x = new int[N];
+    int[] y = new int[N];
+    for (int i = 0; i < N; i++) {
+        x[i] = in.nextInt();
+        y[i] = in.nextInt();
+    }
+    int[] sortedX = Arrays.copyOf(x, N);
+    int[] sortedY = Arrays.copyOf(y, N);
+    Arrays.sort(sortedX);
+    Arrays.sort(sortedY);
+    long res = Long.MAX_VALUE;
+    for (int xi = 0; xi < N; xi++) for (int xj = xi + 1; xj < N; xj++) {
+        for (int yi = 0; yi < N; yi++) for (int yj = yi + 1; yj < N; yj++) {
+            int xl = sortedX[xi], xr = sortedX[xj];
+            int yd = sortedY[yi], yu = sortedY[yj];
+            long area = calcArea(xl, xr, yd, yu);
+            int cnt = 0;
+            for (int i = 0; i < N; i++) {
+                if (xl <= x[i] && x[i] <= xr && yd <= y[i] && y[i] <= yu) {
+                    
+                    cnt++;
+                }
+            }
+            if (area != 0 && cnt == K) {
+                res = Math.min(res, area);
+            }
+        }
+    }
+    System.out.println(res);
+}

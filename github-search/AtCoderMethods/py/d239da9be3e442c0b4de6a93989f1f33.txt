@@ -1,0 +1,21 @@
+def main(N, aa):
+
+    n_m2 = 0
+    n_m4 = 0
+    n_m2_notm4 = 0
+    for a in aa:
+        is_m2 = a % 2 == 0
+        is_m4 = a % 4 == 0
+
+        n_m2 += int(is_m2)
+        n_m4 += int(is_m4)
+        n_m2_notm4 += int(is_m2 and not is_m4)
+
+    if n_m2_notm4 == 0 and n_m4 >= N // 2:
+        return "Yes"
+    else:
+        rest = N - n_m2_notm4 + 1
+        if n_m4 >= rest // 2:
+            return "Yes"
+        else:
+            return "No"

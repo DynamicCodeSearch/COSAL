@@ -1,0 +1,13 @@
+private static void dfs(int i) {
+    for (Edge e : edges[i]) {
+        if (d[e.v] == -1) {
+            d[e.v] = d[i] + e.w;
+            if (d[e.v] > max) {
+                max = d[e.v];
+                maxt = e.v;
+            }
+            dfs(e.v);
+        }
+    }
+    return;
+}

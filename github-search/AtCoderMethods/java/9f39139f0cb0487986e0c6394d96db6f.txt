@@ -1,0 +1,51 @@
+public void exec() throws IOException {
+    InputUtil in = new InputUtil();
+    PrintWriter out = new PrintWriter(System.out);
+    ModUtil mu = new ModUtil();
+    int N = in.nextInt();
+    Point[] P = new Point[N];
+    HashMap<Line, Integer> lineMap = new HashMap<>();
+    for (int i = 0; i < N; i++) {
+        P[i] = new Point(in.nextInt(), in.nextInt());
+    }
+    int lineMax = 1;
+    for (int i = 0; i < N - 1; i++) {
+        for (int j = i + 1; j < N; j++) {
+            Line l = Line.getLine(P[i], P[j]);
+            if (lineMap.containsKey(l)) {
+                int tmp = lineMap.get(l) + 1;
+                lineMap.put(l, tmp);
+                lineMax = Math.max(lineMax, tmp);
+            } else {
+                lineMap.put(l, 1);
+            }
+        }
+    }
+    HashMap<Integer, Integer> lineNumMap = new HashMap<>();
+    for (int lineNum : lineMap.values()) {
+        if (lineNumMap.containsKey(lineNum)) {
+            lineNumMap.put(lineNum, lineNumMap.get(lineNum) + 1);
+        } else {
+            lineNumMap.put(lineNum, 1);
+        }
+    }
+    int ans = mu.power(2, N);
+    ans = mu.sub(ans, 1);
+    ans = mu.sub(ans, N);
+    int pointMax = 2;
+    int lines = 1;
+    while (lines <= lineMax) {
+        Integer lineNum = lineNumMap.get(lines);
+        if (lineNum != null) {
+            for (int j = 2; j <= pointMax; j++) {
+                int subSetNum = mu.getC(pointMax, j);
+                int totalSubSetNum = mu.multiple(subSetNum, lineNum);
+                ans = mu.sub(ans, totalSubSetNum);
+            }
+        }
+        pointMax++;
+        lines = pointMax * (pointMax - 1) / 2;
+    }
+    out.println(ans);
+    out.flush();
+}

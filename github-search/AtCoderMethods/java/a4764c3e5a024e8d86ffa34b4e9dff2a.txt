@@ -1,0 +1,8 @@
+double getArea() {
+    int n = getSize();
+    double res = 0;
+    for (int i = 0; i < n; i++) {
+        res += (ps[(i + 1) % n].y + ps[i].y) * (ps[i].x - ps[(i + 1) % n].x) / 2.0;
+    }
+    return Math.abs(res);
+}

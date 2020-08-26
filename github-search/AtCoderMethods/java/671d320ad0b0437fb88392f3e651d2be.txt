@@ -1,0 +1,8 @@
+public static int toInt(String time, int st) {
+    int t = Integer.parseInt(time);
+    t = (t / 5 + (t % 5 != 0 && st == 1 ? 1 : 0)) * 5;
+    if (t % 100 == 60) {
+        t = (t / 100 + 1) * 100;
+    }
+    return t / 5;
+}

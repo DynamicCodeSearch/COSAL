@@ -1,0 +1,12 @@
+void solve() throws IOException {
+    long a = nl();
+    long b = nl();
+    long m = nl();
+    long d = gcd(a, b);
+    long[] X = { 0, 1 };
+    long[][] A = { { 10, 1 }, { 0, 1 } };
+    long[] ret1 = pow(A, X, a, m);
+    long[][] B = { { (int) pow(10, d, m), 1 }, { 0, 1 } };
+    long[] ret2 = pow(B, X, b / d, m);
+    out.println((ret1[0] * ret2[0]) % m);
+}

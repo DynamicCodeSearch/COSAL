@@ -1,0 +1,13 @@
+def isBeautiful(w):
+    w = list(w)
+    length = len(w)
+
+    if length % 2 != 0:
+        return False
+
+    w.sort()
+    for i in range(0, length, 2):
+      if w[i] != w[i + 1]:
+        return False
+
+    return True

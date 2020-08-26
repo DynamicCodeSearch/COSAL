@@ -1,0 +1,17 @@
+static long[] enumCombSums(int n, int m, int[][] fif, int mod) {
+    long[] ret = new long[n + m + 1];
+    ret[0] = 1 % mod;
+    for (int i = 1; i <= n + m; i++) {
+        ret[i] = ret[i - 1] * 2;
+        if (i > m) {
+            ret[i] -= C(i - 1, m, mod, fif);
+        }
+        if (i > n) {
+            ret[i] -= C(i - 1, n, mod, fif);
+        }
+        ret[i] %= mod;
+        if (ret[i] < 0)
+            ret[i] += mod;
+    }
+    return ret;
+}

@@ -1,0 +1,13 @@
+public static void main(String[] args) throws IOException {
+    final Scanner sc = new Scanner(System.in);
+    final int sx = sc.nextInt();
+    final int sy = sc.nextInt();
+    final int tx = sc.nextInt();
+    final int ty = sc.nextInt();
+    StringBuilder sb = new StringBuilder();
+    move(sx, sy, tx, ty, sb, true);
+    move(tx, ty, sx, sy, sb, true);
+    move(sx, sy, tx, ty, sb, false);
+    move(tx, ty, sx, sy, sb, false);
+    System.out.println(sb);
+}

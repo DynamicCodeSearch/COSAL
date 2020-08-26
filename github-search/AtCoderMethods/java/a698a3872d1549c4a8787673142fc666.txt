@@ -1,0 +1,18 @@
+public static void main(String[] args) throws IOException {
+    Scanner sc = new Scanner(System.in);
+    int size = sc.nextInt();
+    String s = sc.next();
+    char[] arr = s.toCharArray();
+    int x = 0;
+    int max = 0;
+    for (int i = 0; i < size; i++) {
+        char c = arr[i];
+        if (c == 'I') {
+            x += 1;
+        } else {
+            x--;
+        }
+        max = Math.max(max, x);
+    }
+    System.out.println(max);
+}

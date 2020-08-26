@@ -1,0 +1,11 @@
+def bfs_color(N, Adj, v_cols, u, col):
+    v_cols[u] = col
+    nxts = deque([u])
+
+    while nxts:
+        v = nxts.popleft()
+
+        for w in Adj[v]:
+            if v_cols[w] is None:
+                v_cols[w] = col
+                nxts.append(w)

@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    try {
+        int first = sc.nextInt();
+        int second = sc.nextInt();
+        int third = sc.nextInt();
+        int[] values = { first, second, third };
+        int count5 = 0;
+        int count7 = 0;
+        for (int value : values) {
+            count5 += value == 5 ? 1 : 0;
+            count7 += value == 7 ? 1 : 0;
+        }
+        if (count5 == 2 && count7 == 1) {
+            System.out.println("YES");
+        } else {
+            throw new Exception();
+        }
+    } catch (Throwable t) {
+        System.out.println("NO");
+    } finally {
+        sc.close();
+    }
+}

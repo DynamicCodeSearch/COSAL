@@ -1,0 +1,15 @@
+public static int check(int[] list) {
+    boolean[] leached = new boolean[list.length];
+    Arrays.fill(leached, false);
+    int count = 0;
+    int current = 0;
+    while (!leached[current]) {
+        
+        count++;
+        leached[current] = true;
+        current = list[current];
+        if (current == 1)
+            return count;
+    }
+    return -1;
+}

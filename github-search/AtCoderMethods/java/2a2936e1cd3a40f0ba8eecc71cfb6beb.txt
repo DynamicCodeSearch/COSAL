@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String siguInput = sc.next();
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < siguInput.length(); i++) {
+        String l = String.valueOf(siguInput.charAt(i));
+        if (l.equals("0") || l.equals("1")) {
+            sb.append(l);
+        } else if (l.equals("B") && sb.length() > 0) {
+            sb.deleteCharAt(sb.length() - 1);
+        }
+    }
+    sc.close();
+    System.out.print(sb.toString());
+}

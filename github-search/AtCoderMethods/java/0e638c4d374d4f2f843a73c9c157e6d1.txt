@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int k = sc.nextInt();
+    double[] r = new double[n];
+    double sum = 0;
+    for (int i = 0; i < n; i++) {
+        r[i] = sc.nextInt();
+    }
+    Arrays.sort(r);
+    for (int i = n - k; i < n; i++) {
+        sum = (sum + r[i]) / 2;
+    }
+    System.out.println(sum);
+}

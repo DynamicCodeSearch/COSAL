@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    FastScanner fs = new FastScanner();
+    List<Long> list = new ArrayList<Long>();
+    long num1 = fs.nextLong();
+    long num2 = fs.nextLong();
+    long count = 0;
+    for (int i = 0; i < num1; i++) {
+        list.add(fs.nextLong());
+    }
+    List<Long> newList = list.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
+    for (int j = 0; j < num2; j++) {
+        count += newList.get(j);
+    }
+    System.out.println(count);
+}

@@ -1,0 +1,31 @@
+def get_possible(n, people):
+    counts = {}
+    values = set([])
+    for person in people:
+        if not counts.get(person):
+            counts[person] = 1
+            values.add(person)
+        else:
+            counts[person] += 1
+
+
+    if n % 2:
+        start_value = 0
+    else:
+        start_value = 1
+
+    if values != set([i for i in xrange(start_value, n , 2)]):
+        return 0
+
+    possibilities = 1
+
+    if 0 in values:
+        values.remove(0)
+
+    for key in list(values):
+        if counts.get(key) != 2:
+            return 0
+        else:
+            possibilities *= counts.get(key)
+
+    return possibilities

@@ -1,0 +1,19 @@
+def main():
+    N = int(input())
+    S = [None] * N
+    P = [None] * N
+    for i in range(N):
+        S[i], p = input().split()
+        P[i] = int(p)
+
+    p = sum(P) // 2
+    i = 0
+    while i < N:
+        if P[i] > p:
+            ans = S[i]
+            break
+        i += 1
+    else:
+        ans = 'atcoder'
+
+    print(ans)

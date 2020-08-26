@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner scn = new Scanner(System.in);
+    String s = scn.nextLine();
+    String res = "";
+    int len = s.length();
+    scn.close();
+    for (int i = 0; i < len; i++) {
+        switch(s.charAt(i)) {
+            case '0':
+                res += "0";
+                break;
+            case '1':
+                res += "1";
+                break;
+            case 'B':
+                if (res.length() > 0)
+                    res = res.substring(0, res.length() - 1);
+                break;
+        }
+    }
+    System.out.println(res);
+}

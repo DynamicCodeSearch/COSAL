@@ -1,0 +1,14 @@
+public int nextInt() throws IOException {
+    readToken();
+    int num = 0, i = 0;
+    boolean sign = false;
+    if (byteBuf[i] == '-') {
+        sign = true;
+        i++;
+    }
+    for (; i < totalBytes; i++) {
+        num *= 10;
+        num += byteBuf[i] - '0';
+    }
+    return sign ? -num : num;
+}

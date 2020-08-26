@@ -1,0 +1,23 @@
+def dfs(i, field):
+    if i >= 9:
+        return calc_score(field)
+
+    if lt(field) in memo:
+        return memo[lt(field)]
+
+    mark = i % 2
+    best_score = 0 if mark == 0 else 10 ** 10
+    for y in range(3):
+        for x in range(3):
+            if field[y][x] is None:
+                field[y][x] = mark
+                score = dfs(i + 1, field)
+                field[y][x] = None
+
+                if mark == 0 and score > best_score:
+                    best_score = score
+                if mark == 1 and score < best_score:
+                    best_score = score
+
+    memo[lt(field)] = best_score
+    return best_score

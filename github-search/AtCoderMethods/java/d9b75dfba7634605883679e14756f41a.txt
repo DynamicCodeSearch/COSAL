@@ -1,0 +1,14 @@
+private int read() throws IOException {
+    int ret = -1;
+    if (len <= pos) {
+        
+        len = input.read(buffer);
+        pos = 0;
+        if (len > 0) {
+            ret = read();
+        }
+    } else {
+        ret = buffer[pos++];
+    }
+    return ret;
+}

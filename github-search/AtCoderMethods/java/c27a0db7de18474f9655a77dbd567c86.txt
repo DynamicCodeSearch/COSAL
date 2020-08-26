@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    PrintWriter pw = new PrintWriter(System.out);
+    int N = sc.nextInt();
+    int[] a = new int[N - 1];
+    int[] b = new int[N - 1];
+    for (int i = 0; i < N - 1; i++) {
+        a[i] = sc.nextInt() - 1;
+        b[i] = sc.nextInt() - 1;
+    }
+    Tree tree = new Tree(a, b);
+    int K = sc.nextInt();
+    for (int i = 0; i < K; i++) {
+        int V = sc.nextInt() - 1;
+        int P = sc.nextInt();
+        tree.set(V, P);
+    }
+    if (tree.check()) {
+        pw.println("Yes");
+        for (int i = 0; i < N; i++) pw.println(tree.min[i]);
+    } else {
+        pw.println("No");
+    }
+    sc.close();
+    pw.close();
+}

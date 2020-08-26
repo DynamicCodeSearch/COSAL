@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    int c = sc.nextInt();
+    int d = sc.nextInt();
+    int ans = 0;
+    if (a <= c && c <= b) {
+        if (d <= b) {
+            ans = d - c;
+        } else {
+            ans = b - c;
+        }
+    } else if (c < a && d >= a) {
+        if (d > b) {
+            ans = b - a;
+        } else {
+            ans = d - a;
+        }
+    }
+    System.out.println(ans);
+}

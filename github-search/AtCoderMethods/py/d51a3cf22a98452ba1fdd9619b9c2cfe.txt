@@ -1,0 +1,10 @@
+def solve(l):
+    box_list = [Box(w, h) for w, h in l]
+
+    dp = [box_list[0]]
+    for box in box_list[1:]:
+        if dp[-1].w < box.w and dp[-1].h < box.h:
+            dp.append(box)
+        else:
+            dp[bisect.bisect_left(dp, box)] = box
+    return len(dp)

@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    String s = Fs.next();
+    int res = 0;
+    int gu = 0;
+    int pa = 0;
+    for (int i = 0; i < s.length(); i++) {
+        char c = s.charAt(i);
+        if (c == 'g') {
+            if (gu > pa) {
+                res++;
+                pa++;
+            } else
+                gu++;
+        } else {
+            if (gu > pa) {
+                pa++;
+            } else {
+                res--;
+                gu++;
+            }
+        }
+    }
+    System.out.println(res);
+}

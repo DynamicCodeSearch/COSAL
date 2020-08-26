@@ -1,0 +1,24 @@
+public void readBody(String str) {
+    
+    String ans = str;
+    for (; ; ) {
+        int n = 0;
+        for (char c : ans.toCharArray()) {
+            if (c == '(')
+                n++;
+            else if (c == ')')
+                n--;
+            if (n < 0)
+                break;
+        }
+        if (n == 0)
+            break;
+        else if (n < 0)
+            ans = "(" + ans;
+        else {
+            for (int i = 0; i < n; i++) ans = ans + ")";
+        }
+    }
+    System.out.println(ans);
+    cnt++;
+}

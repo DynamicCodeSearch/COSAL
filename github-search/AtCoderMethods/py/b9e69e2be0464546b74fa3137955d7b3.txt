@@ -1,0 +1,9 @@
+def mines(y, x):
+    around = [(y + i, x + j) for i in dxy for j in dxy]
+    cnt = 0
+    for (i, j) in around:
+        if i < 0 or h <= i or j < 0 or w <= j:
+            continue
+        if s[i][j] == '#':
+            cnt += 1
+    return cnt

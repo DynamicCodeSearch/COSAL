@@ -1,0 +1,12 @@
+public void solve(int testNumber, Scanner in, PrintWriter out) {
+    int N = in.nextInt();
+    int T = in.nextInt();
+    int[] arr = new int[N + 1];
+    long ans = 0;
+    for (int i = 1; i <= N; i++) {
+        arr[i] = in.nextInt();
+        ans = ans + 1l * Math.min(T, arr[i] - arr[i - 1]);
+    }
+    ans = ans + T;
+    out.println(ans);
+}

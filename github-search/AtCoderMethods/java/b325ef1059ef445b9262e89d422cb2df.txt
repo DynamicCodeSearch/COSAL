@@ -1,0 +1,13 @@
+static void comb_list(int n, int[] X, long[] list) {
+    int max;
+    
+    list[0] = 1;
+    max = 0;
+    for (int i = 0; i < n; i++) {
+        
+        for (int j = max; 0 <= j; j--) {
+            list[j + X[i]] = list[j + X[i]] + list[j];
+        }
+        max = max + X[i];
+    }
+}

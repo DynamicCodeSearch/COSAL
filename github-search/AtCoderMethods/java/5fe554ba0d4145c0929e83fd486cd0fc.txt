@@ -1,0 +1,23 @@
+public void solve(int testNumber, Scanner in, PrintWriter out) {
+    int n = in.nextInt();
+    int[] ar = new int[n];
+    for (int i = 0; i < n; i++) {
+        ar[i] = in.nextInt();
+    }
+    int cnt = 0;
+    for (int i = 0; i < ar.length; i++) {
+        if (ar[i] == i + 1 && i == ar.length - 1) {
+            int swap = ar[i];
+            ar[i] = ar[i - 1];
+            ar[i - 1] = swap;
+            cnt++;
+        }
+        if (ar[i] == i + 1) {
+            int swap = ar[i];
+            ar[i] = ar[i + 1];
+            ar[i + 1] = swap;
+            cnt++;
+        }
+    }
+    out.println(cnt);
+}

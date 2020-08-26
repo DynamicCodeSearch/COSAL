@@ -1,0 +1,22 @@
+public static void main(String[] args) throws java.lang.Exception {
+    String[] array = { "N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW" };
+    Scanner sc = new Scanner(System.in);
+    int angle = sc.nextInt() * 10;
+    int calc = (angle + 1125) / 2250;
+    String direction;
+    if (calc < 16) {
+        direction = array[calc];
+    } else {
+        direction = array[0];
+    }
+    double input = sc.nextDouble();
+    input = input * 100 / 60;
+    input += 5;
+    int wind = (int) (input / 10);
+    String result;
+    int pow = calc_wind(wind);
+    if (pow == 0) {
+        direction = "C";
+    }
+    System.out.println(direction + " " + pow);
+}

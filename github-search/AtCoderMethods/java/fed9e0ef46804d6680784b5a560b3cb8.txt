@@ -1,0 +1,15 @@
+public static boolean solve(int[] g, int x) {
+    int left = 0;
+    int right = g.length;
+    while (left < right) {
+        int mid = (left + right) / 2;
+        if (g[mid] == x) {
+            return true;
+        } else if (g[mid] > x) {
+            right = mid;
+        } else {
+            left = mid + 1;
+        }
+    }
+    return false;
+}

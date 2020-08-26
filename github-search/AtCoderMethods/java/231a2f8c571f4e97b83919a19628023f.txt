@@ -1,0 +1,23 @@
+int detMod2(int[][] a, int n) {
+    for (int i = 0; i < n; i++) {
+        if (a[i][i] == 0)
+            for (int j = i + 1; j < n; j++) {
+                if (a[j][i] == 0)
+                    continue;
+                int[] tmp = a[j];
+                a[j] = a[i];
+                a[i] = tmp;
+                break;
+            }
+        if (a[i][i] == 0)
+            return 0;
+        for (int j = i + 1; j < n; j++) {
+            if (a[j][i] == 0)
+                continue;
+            for (int k = i; k < n; k++) a[j][k] = (a[j][k] - a[i][k]) % 2;
+        }
+    }
+    int res = 1;
+    for (int i = 0; i < n; i++) res = res * a[i][i] % 2;
+    return res;
+}

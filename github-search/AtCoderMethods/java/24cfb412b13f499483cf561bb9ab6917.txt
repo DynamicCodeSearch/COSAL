@@ -1,0 +1,45 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int Ma = sc.nextInt();
+    int Mb = sc.nextInt();
+    
+    int[][][] dp = new int[N][N * 10 + 1][N * 10 + 1];
+    int[] a = new int[N];
+    int[] b = new int[N];
+    int[] c = new int[N];
+    for (int i = 0; i < N; i++) {
+        a[i] = sc.nextInt();
+        b[i] = sc.nextInt();
+        c[i] = sc.nextInt();
+    }
+    for (int i = 0; i < N * 10 + 1; i++) {
+        for (int j = 0; j < N * 10 + 1; j++) {
+            if ((i == a[0]) && (j == b[0])) {
+                dp[0][i][j] = c[0];
+            } else {
+                if ((i != 0) || (j != 0))
+                    dp[0][i][j] = 10000;
+            }
+        }
+    }
+    for (int n = 1; n < N; n++) {
+        for (int i = 0; i < N * 10 + 1; i++) {
+            for (int j = 0; j < N * 10 + 1; j++) {
+                if ((i >= a[n]) && (j >= b[n])) {
+                    dp[n][i][j] = Math.min(dp[n - 1][i][j], dp[n - 1][i - a[n]][j - b[n]] + c[n]);
+                } else {
+                    dp[n][i][j] = dp[n - 1][i][j];
+                }
+            }
+        }
+    }
+    int ans = 10000;
+    for (int k = 1; k <= 400; k++) {
+        if ((k * Ma < N * 10 + 1) && (k * Mb < N * 10 + 1))
+            ans = Math.min(ans, dp[N - 1][k * Ma][k * Mb]);
+    }
+    if (ans == 10000)
+        ans = -1;
+    System.out.println(ans);
+}

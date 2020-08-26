@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    long N = sc.nextLong();
+    long H = sc.nextLong();
+    long A = sc.nextLong();
+    long B = sc.nextLong();
+    long C = sc.nextLong();
+    long D = sc.nextLong();
+    long E = sc.nextLong();
+    long expense = Long.MAX_VALUE;
+    for (int x = 0; x <= N; x++) {
+        long y = Math.max(0, y = ((N - x) * E - H - B * x + D + E) / (D + E));
+        expense = Math.min(x * A + y * C, expense);
+    }
+    System.out.println(expense);
+}

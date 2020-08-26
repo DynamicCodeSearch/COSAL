@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int k = in.nextInt();
+    int s = in.nextInt();
+    int answer = 0;
+    for (int x = 0; x <= k; x++) {
+        for (int y = x; y <= k; y++) {
+            int z = s - y - x;
+            if (y <= z && z <= k) {
+                if (x == y && y == z && x == z) {
+                    answer += 1;
+                } else if (x == y || y == z || x == z) {
+                    answer += 3;
+                } else {
+                    answer += 6;
+                }
+            }
+        }
+    }
+    System.out.println(answer);
+}

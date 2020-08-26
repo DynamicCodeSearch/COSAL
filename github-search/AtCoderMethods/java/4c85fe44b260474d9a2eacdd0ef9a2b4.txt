@@ -1,0 +1,19 @@
+public static void main(String[] args) throws IOException {
+    String S = br.readLine();
+    int[] count = new int[26];
+    for (int i = 0; i < S.length(); i++) {
+        count[S.charAt(i) % 26]++;
+    }
+    int KISU = 0, GUSU = 0;
+    for (int i = 0; i < 26; i++) {
+        KISU += count[i] % 2;
+        GUSU += count[i] / 2;
+    }
+    int ans = 0;
+    if (KISU == 0) {
+        ans = S.length();
+    } else {
+        ans = (GUSU / KISU) * 2 + 1;
+    }
+    System.out.println(ans);
+}

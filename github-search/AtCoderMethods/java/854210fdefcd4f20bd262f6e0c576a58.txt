@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int m = sc.nextInt();
+    int n = sc.nextInt();
+    int N = sc.nextInt();
+    int soldCount = 0;
+    int stock = 0;
+    soldCount += N;
+    stock = N;
+    while (true) {
+        if (stock >= m) {
+            soldCount += (stock / m) * n;
+            stock = (stock / m) * n + stock % m;
+        } else {
+            break;
+        }
+    }
+    System.out.println(soldCount);
+}

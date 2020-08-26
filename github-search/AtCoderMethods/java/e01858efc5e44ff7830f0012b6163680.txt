@@ -1,0 +1,6 @@
+static long gcd(long x, long y) {
+    if (Math.max(x, y) % Math.min(x, y) == 0)
+        return Math.min(x, y);
+    else
+        return gcd(Math.min(x, y), Math.max(x, y) % Math.min(x, y));
+}

@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    
+    final String w;
+    try (Scanner scan = new Scanner(System.in)) {
+        
+        w = scan.next();
+    }
+    
+    Map<Integer, List<Integer>> map = IntStream.range(0, w.length()).map(i -> w.charAt(i)).boxed().collect(Collectors.groupingBy(i -> i));
+    boolean result = map.keySet().stream().allMatch(key -> map.get(key).size() % 2 == 0);
+    
+    try (PrintWriter out = new PrintWriter(System.out)) {
+        out.println(result ? "Yes" : "No");
+    }
+}

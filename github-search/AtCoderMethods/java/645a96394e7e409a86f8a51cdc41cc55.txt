@@ -1,0 +1,11 @@
+void run() {
+    FastScanner sc = new FastScanner();
+    int n = sc.nextInt();
+    int ans = Integer.MAX_VALUE;
+    for (int i = 1; i <= n; i++) {
+        int x = n / i;
+        int tmp = Math.abs(x - i) + (n - x * i);
+        ans = Math.min(ans, tmp);
+    }
+    System.out.println(ans);
+}

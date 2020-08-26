@@ -1,0 +1,21 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int[] a = in.nextIntArray(n);
+    boolean[] b = new boolean[8];
+    int cntOver = 0;
+    for (int x : a) {
+        x /= 400;
+        if (x >= 8)
+            cntOver++;
+        else
+            b[x] = true;
+    }
+    int cnt = 0;
+    for (int i = 0; i < 8; i++) {
+        if (b[i])
+            cnt++;
+    }
+    int max = cntOver + cnt;
+    int min = cnt == 0 ? 1 : cnt;
+    out.println(min + " " + max);
+}

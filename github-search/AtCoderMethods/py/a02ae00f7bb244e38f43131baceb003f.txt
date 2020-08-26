@@ -1,0 +1,11 @@
+def match(s, sw, index, N):
+    if s[index]=='o':
+        if sw[index]=='S':
+            return sw[(index - 1 + N) % N] == sw[(index + 1 + N) % N]
+        else:
+            return sw[(index - 1 + N) % N] != sw[(index + 1 + N) % N]
+    else:
+        if sw[index]=='W':
+            return sw[(index - 1 + N) % N] == sw[(index + 1 + N) % N]
+        else:
+            return sw[(index - 1 + N) % N] != sw[(index + 1 + N) % N]

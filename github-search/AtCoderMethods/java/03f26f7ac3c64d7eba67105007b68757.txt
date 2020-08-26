@@ -1,0 +1,11 @@
+public String nextToken() throws IOException {
+    StringBuilder sb = new StringBuilder();
+    if (c == -2)
+        c = reader.read();
+    while (c != -1 && (c == ' ' || c == '\t' || c == '\n' || c == '\r')) c = reader.read();
+    while (c != -1 && c != ' ' && c != '\t' && c != '\n' && c != '\r') {
+        sb.appendCodePoint(c);
+        c = reader.read();
+    }
+    return sb.toString();
+}

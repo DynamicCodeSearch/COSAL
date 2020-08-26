@@ -1,0 +1,28 @@
+private long rec(int S) {
+    if (dp[S] != -1) {
+        return dp[S];
+    }
+    if (Integer.bitCount(S) == 1) {
+        return dp[S] = 1;
+    }
+    long res = 0;
+    for (int a = 0; a < n; ++a) {
+        if ((S >> a & 1) == 0) {
+            continue;
+        }
+        boolean ok = true;
+        for (int b = 0; b < n; ++b) {
+            if ((S >> b & 1) == 0) {
+                continue;
+            }
+            if (G[a][b]) {
+                ok = false;
+                break;
+            }
+        }
+        if (ok) {
+            res += rec(S & ~(1 << a));
+        }
+    }
+    return dp[S] = res;
+}

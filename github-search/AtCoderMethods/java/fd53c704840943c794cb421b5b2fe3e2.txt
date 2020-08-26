@@ -1,0 +1,21 @@
+void run() {
+    sc = new FastScanner();
+    int n = sc.nextInt();
+    ns = new int[n];
+    int sum = 0;
+    for (int i = 0; i < n; i++) {
+        int tmp = sc.nextInt();
+        ns[i] = tmp;
+        sum += tmp;
+    }
+    int mid = sum / n;
+    int ans = Integer.MAX_VALUE;
+    for (int i = mid; i <= 100; i++) {
+        int c = 0;
+        for (int j = 0; j < n; j++) {
+            c += Math.pow((ns[j] - i), 2);
+        }
+        ans = Math.min(ans, c);
+    }
+    System.out.println(ans);
+}

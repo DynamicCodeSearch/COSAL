@@ -1,0 +1,10 @@
+def main(o, e):
+    answer = ''
+    o = deque(o)
+    e = deque(e)
+    for i in range(len(o) + len(e)):
+        if i % 2 == 0:
+            answer += o.popleft()
+        else:
+            answer += e.popleft()
+    return answer

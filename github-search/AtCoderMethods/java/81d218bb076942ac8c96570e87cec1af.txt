@@ -1,0 +1,25 @@
+long count(int index, int rest, int target) {
+    if (cache[index][rest][target] >= 0) {
+        return cache[index][rest][target];
+    }
+    if (rest == 0 && target > 0) {
+        cache[index][rest][target] = 0;
+        return cache[index][rest][target];
+    }
+    if (rest == 0 && target == 0) {
+        cache[index][rest][target] = 1;
+        return cache[index][rest][target];
+    }
+    if (x.length - index < rest) {
+        cache[index][rest][target] = 0;
+        return cache[index][rest][target];
+    }
+    cache[index][rest][target] = 0;
+    for (int i = index; i < x.length; i++) {
+        if (target - x[i] < 0) {
+            continue;
+        }
+        cache[index][rest][target] += count(i + 1, rest - 1, target - x[i]);
+    }
+    return cache[index][rest][target];
+}

@@ -1,0 +1,14 @@
+void reLink() {
+    if (left == null)
+        left = get(x - 1, y);
+    if (right == null)
+        right = get(x + 1, y);
+    if (up == null)
+        up = get(x, y + 1);
+    if (down == null)
+        down = get(x, y - 1);
+    left.right = right;
+    right.left = left;
+    up.down = down;
+    down.up = up;
+}

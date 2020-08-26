@@ -1,0 +1,21 @@
+public long solve2() {
+    int[] mae = new int[2 * N];
+    int[] ushiro = new int[2 * N];
+    long ans = Long.MIN_VALUE;
+    for (int i = N; i <= 2 * N; i++) {
+        System.arraycopy(A, 0, mae, 0, i);
+        Arrays.sort(mae, 0, i);
+        long sum = 0;
+        for (int j = 0; j < N; j++) {
+            sum += mae[i - 1 - j];
+        }
+        System.arraycopy(A, i, ushiro, 0, 3 * N - i);
+        Arrays.sort(ushiro, 0, 3 * N - i);
+        long sum2 = 0;
+        for (int j = 0; j < N; j++) {
+            sum2 += ushiro[j];
+        }
+        ans = Math.max(ans, sum - sum2);
+    }
+    return ans;
+}

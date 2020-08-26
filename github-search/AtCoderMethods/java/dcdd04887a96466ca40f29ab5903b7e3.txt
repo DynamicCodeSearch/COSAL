@@ -1,0 +1,13 @@
+static long count(int n) {
+    long result = 1;
+    if (n % 2 == 1) {
+        for (int i = 0; i < (n - 1) / 2; i++) {
+            result = (result * 2) % 1_000_000_007L;
+        }
+    } else {
+        for (int i = 0; i < n / 2; i++) {
+            result = (result * 2) % 1_000_000_007L;
+        }
+    }
+    return result;
+}

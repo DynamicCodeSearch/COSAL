@@ -1,0 +1,23 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String line = br.readLine();
+    int n = Integer.parseInt(line);
+    int min = Integer.MAX_VALUE;
+    int root2 = (int) Math.sqrt(n);
+    int root4 = (int) Math.pow(n, 1 / 4d);
+    int loopstart = root2 - root4;
+    int loopend = root2 + root4;
+    if (loopstart < 1)
+        loopstart = 1;
+    if (loopend > n)
+        loopend = n;
+    for (int width = loopstart; width <= loopend; width++) {
+        int height = n / width;
+        int surplus = n % width;
+        int subtract = Math.abs(width - height);
+        int result = subtract + surplus;
+        if (min > result)
+            min = result;
+    }
+    System.out.println(min);
+}

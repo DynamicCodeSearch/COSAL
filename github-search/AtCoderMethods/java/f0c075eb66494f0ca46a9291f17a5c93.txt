@@ -1,0 +1,22 @@
+public static void main(String[] args) throws IOException {
+    final Scanner sc = new Scanner(System.in);
+    final char[] input = sc.next().toCharArray();
+    final int limit = input.length - 1;
+    long answer = 0;
+    for (int bit = 0; bit < (1 << limit); bit++) {
+        StringBuilder sb = new StringBuilder();
+        long sum = 0;
+        for (int pos = 0; pos < input.length; pos++) {
+            sb.append(input[pos]);
+            if ((bit & (1 << pos)) != 0) {
+                sum += Long.parseLong(sb.toString());
+                sb.setLength(0);
+            }
+        }
+        if (sb.length() != 0) {
+            sum += Long.parseLong(sb.toString());
+        }
+        answer += sum;
+    }
+    System.out.println(answer);
+}

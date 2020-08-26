@@ -1,0 +1,33 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    long[] a = new long[n];
+    long cnt = 0;
+    for (int i = 0; i < n; i++) {
+        a[i] = in.nextLong();
+    }
+    Arrays.sort(a);
+    int i = n - 1;
+    while (true) {
+        long mod = a[i] % n;
+        long times = (a[i] - (mod)) / n;
+        a[i] = mod;
+        cnt += times;
+        for (int j = 0; j < n; j++) {
+            if (j != i)
+                a[j] += times;
+        }
+        boolean done = true;
+        for (long k : a) {
+            if (k > n - 1) {
+                done = false;
+            }
+        }
+        if (done)
+            break;
+        i--;
+        if (i == -1) {
+            i = n - 1;
+        }
+    }
+    out.println(cnt);
+}

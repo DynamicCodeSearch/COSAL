@@ -1,0 +1,36 @@
+public void solve(int testNumber, Scanner sc, PrintWriter out) {
+    int n = sc.nextInt(), m = sc.nextInt();
+    int[][] res = new int[n][m];
+    int i = 0, j = 0, num = 1, parity = 0;
+    int N = sc.nextInt();
+    while (N-- > 0) {
+        int a = sc.nextInt();
+        while (a-- > 0) {
+            res[i][j] = num;
+            if (parity == 0) {
+                j++;
+                if (j == m) {
+                    parity = 1;
+                    j = m - 1;
+                    i++;
+                }
+            } else {
+                j--;
+                if (j == -1) {
+                    parity = 0;
+                    j = 0;
+                    i++;
+                }
+            }
+        }
+        num++;
+    }
+    for (int r = 0; r < n; r++) {
+        for (int c = 0; c < m; c++) {
+            if (c > 0)
+                out.print(" ");
+            out.print(res[r][c]);
+        }
+        out.println();
+    }
+}

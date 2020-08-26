@@ -1,0 +1,20 @@
+public void calc() {
+    sb = new StringBuilder();
+    FastScanner sc = new FastScanner();
+    String s = sc.next();
+    long ans = 0;
+    for (int i = 0; i < s.length(); i++) {
+        long num = Long.parseLong(s.charAt(i) + "");
+        long sum = 0;
+        for (int t = 0; t < s.length() - i; t++) {
+            long n = (long) Math.pow(2, s.length() - t - 1);
+            if (i + t != s.length() - 1) {
+                n /= 2;
+            }
+            
+            sum += num * Math.pow(10, t) * n;
+        }
+        ans += sum;
+    }
+    System.out.println(ans);
+}

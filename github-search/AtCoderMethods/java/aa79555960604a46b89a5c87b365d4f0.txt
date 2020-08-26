@@ -1,0 +1,18 @@
+static double[] kas(Circle w, Point p) {
+    double[] ar = new double[5];
+    if (rast(p, w.c) == w.r) {
+        ar[0] = 1;
+        ar[1] = p.x;
+        ar[2] = p.y;
+        return ar;
+    } else {
+        if (rast(p, w.c) < w.r) {
+            ar[0] = 0;
+            return ar;
+        } else {
+            double e = Math.sqrt(((rast(p, w.c) * rast(p, w.c)) - (w.r * w.r)));
+            return ar;
+        
+        }
+    }
+}

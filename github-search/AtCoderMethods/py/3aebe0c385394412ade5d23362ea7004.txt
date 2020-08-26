@@ -1,0 +1,14 @@
+def makePascal(n):  
+  res = [[1]]
+
+  for m in range(1, n+1):
+    l = []
+    for k in range(m + 1):
+      if k == 0 or k == m:
+        l.append(1)
+      else:
+        tmp = res[m-1][k-1] + res[m-1][k]
+        l.append(tmp)
+    res.append(l)
+
+  return res

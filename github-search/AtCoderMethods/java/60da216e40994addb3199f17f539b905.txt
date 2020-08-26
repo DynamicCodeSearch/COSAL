@@ -1,0 +1,15 @@
+private static boolean solve(int n, int m, int[][] abs) {
+    Set<Long> ships = new HashSet<>();
+    for (int[] ab : abs) {
+        ships.add(((long) ab[0] << 30) + ab[1]);
+        ships.add(((long) ab[1] << 30) + ab[0]);
+    }
+    for (int mid = 2; mid < n; mid++) {
+        if (!ships.contains(((long) mid << 30) + 1))
+            continue;
+        if (!ships.contains(((long) mid << 30) + n))
+            continue;
+        return true;
+    }
+    return false;
+}

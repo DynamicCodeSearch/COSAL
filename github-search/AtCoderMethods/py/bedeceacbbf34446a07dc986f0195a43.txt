@@ -1,0 +1,17 @@
+def nap(i,W2):
+    kagi = str(i) + ':' +str(W2)
+    if kagi in nap_memo:
+        return nap_memo[kagi]
+    elif i ==0:
+        r=0
+    elif W2<Wmin:
+        r=0
+    elif W2 < w[i]:
+        r=nap(i-1,W2)
+    elif Wsum[i]<=W2:
+        r=Vsum[i]
+    else:
+        r=max( nap(i-1,W2-w[i])+v[i],nap(i-1,W2))
+
+    nap_memo[kagi]=r
+    return r

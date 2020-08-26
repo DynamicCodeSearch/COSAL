@@ -1,0 +1,7 @@
+public static void eatCandies(int[] array, int index, int numExcessCandies) {
+    array[index] -= numExcessCandies;
+    if (array[index] < 0) {
+        array[index - 1] += array[index];
+        array[index] = 0;
+    }
+}

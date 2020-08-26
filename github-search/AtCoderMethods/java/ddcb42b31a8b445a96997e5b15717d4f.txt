@@ -1,0 +1,11 @@
+long gcd(long a, long b) {
+    long tempa = a;
+    long tempb = b;
+    long r = a % b;
+    while (r != 0) {
+        a = b;
+        b = r;
+        r = a % b;
+    }
+    return (tempb / b) * tempa;
+}

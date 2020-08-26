@@ -1,0 +1,28 @@
+public void passStaticVar() throws IOException {
+    N = Integer.parseInt(jvin.readLine());
+    X_Coor = new int[N];
+    X_id = new Integer[N];
+    Y_Coor = new int[N];
+    Y_id = new Integer[N];
+    for (int i = 0; i < N; ++i) {
+        String[] t = jvin.readLine().split(" ");
+        X_Coor[i] = Integer.parseInt(t[0]);
+        Y_Coor[i] = Integer.parseInt(t[1]);
+        X_id[i] = Y_id[i] = i;
+    }
+    Arrays.sort(X_id, new CompKey(X_Coor));
+    Arrays.sort(Y_id, new CompKey(Y_Coor));
+    E = new Edge[2 * N - 2];
+    int m = 0;
+    for (int i = 1; i < N; ++i) {
+        E[m++] = new Edge(X_id[i], X_id[i - 1], X_Coor[X_id[i]] - X_Coor[X_id[i - 1]]);
+        E[m++] = new Edge(Y_id[i], Y_id[i - 1], Y_Coor[Y_id[i]] - Y_Coor[Y_id[i - 1]]);
+    }
+    Arrays.sort(E, new CompKey_e());
+    d = new DisjointSet(N);
+    long res = 0;
+    for (int i = 0; i < m; ++i) if (!d.isConnected(E[i].u, E[i].v))
+        res += E[i].w;
+    jvout.println(res);
+    jvout.flush();
+}

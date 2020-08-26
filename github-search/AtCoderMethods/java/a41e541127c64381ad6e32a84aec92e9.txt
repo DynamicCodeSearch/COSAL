@@ -1,0 +1,31 @@
+
+public void solve() {
+    int xs = in.nextInt(), ys = in.nextInt(), xt = in.nextInt(), yt = in.nextInt();
+    int N = in.nextInt();
+    int[] x = new int[N + 1];
+    int[] y = new int[N + 1];
+    int[] r = new int[N + 1];
+    for (int i = 1; i <= N; i++) {
+        x[i] = in.nextInt();
+        y[i] = in.nextInt();
+        r[i] = in.nextInt();
+    }
+    
+    double[][] dist = new double[N + 2][N + 2];
+    for (int i = 0; i < N + 2; i++) {
+        Arrays.fill(dist[i], Dijkstra.INF);
+        dist[i][i] = 0;
+    }
+    for (int i = 1; i <= N; i++) {
+        dist[0][i] = dist[i][0] = calcDist(xs, ys, 0, x[i], y[i], r[i]);
+        dist[N + 1][i] = dist[i][N + 1] = calcDist(xt, yt, 0, x[i], y[i], r[i]);
+        for (int j = 1; j <= N; j++) {
+            if (i == j)
+                continue;
+            dist[i][j] = calcDist(x[i], y[i], r[i], x[j], y[j], r[j]);
+        }
+    }
+    Dijkstra dijkstra = new Dijkstra();
+    double res = Math.min(dijkstra.doit(0, dist).minCost[N + 1], calcDist(xs, ys, xt, yt));
+    System.out.println(res);
+}

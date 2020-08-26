@@ -1,0 +1,35 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int n = scan.nextInt();
+    int a = scan.nextInt();
+    int b = scan.nextInt();
+    int ans = 0;
+    for (int i = 0; i < n; i++) {
+        String s = scan.next();
+        int d = scan.nextInt();
+        if (s.equals("East")) {
+            if (a <= d && d <= b) {
+                ans = ans + d;
+            } else if (d < a) {
+                ans = ans + a;
+            } else if (d > b) {
+                ans = ans + b;
+            }
+        } else {
+            if (a <= d && d <= b) {
+                ans = ans - d;
+            } else if (d < a) {
+                ans = ans - a;
+            } else if (d > b) {
+                ans = ans - b;
+            }
+        }
+    }
+    if (ans < 0) {
+        System.out.println("West " + Math.abs(ans));
+    } else if (ans > 0) {
+        System.out.println("East " + ans);
+    } else {
+        System.out.println(0);
+    }
+}

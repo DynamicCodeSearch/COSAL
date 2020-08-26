@@ -1,0 +1,13 @@
+public static long normalize(long x) {
+    if (0 <= x) {
+        if (x < MOD)
+            return x;
+        if (x < MOD * 2)
+            return x - MOD;
+        return x % MOD;
+    }
+    if (-MOD <= x)
+        return x + MOD;
+    x %= MOD;
+    return x == 0 ? 0 : x + MOD;
+}

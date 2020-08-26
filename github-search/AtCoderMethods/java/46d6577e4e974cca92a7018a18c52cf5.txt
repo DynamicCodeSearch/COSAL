@@ -1,0 +1,13 @@
+static void substract(int n) {
+    for (int k = n; k >= 0; --k) {
+        if (k == NGone || k == NGtwo || k == NGthree) {
+            continue;
+        }
+        for (int i = 1; i <= 3; i++) {
+            if (k - i >= 0) {
+                visited[k - i] = Math.min(visited[k] + 1, visited[k - i]);
+            
+            }
+        }
+    }
+}

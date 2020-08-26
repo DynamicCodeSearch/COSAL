@@ -1,0 +1,10 @@
+private void dfs2(int a) {
+    for (Edge e : es[a].e) {
+        int to = e.to;
+        long cc = dsts[a] + e.c;
+        if (dsts[to] == -1 || cc < dsts[to]) {
+            dsts[to] = cc;
+            dfs2(to);
+        }
+    }
+}

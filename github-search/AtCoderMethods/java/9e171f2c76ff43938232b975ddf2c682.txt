@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    long k = scanner.nextLong();
+    long[] ans = new long[ARRAY_LENGTH];
+    Arrays.fill(ans, k / ARRAY_LENGTH + ARRAY_LENGTH - 1);
+    int left = (int) (k % ARRAY_LENGTH);
+    for (int i = 1; i <= left; i++) {
+        long min = Long.MAX_VALUE;
+        int minId = -1;
+        for (int j = 0; j < ARRAY_LENGTH; j++) if (ans[j] < min) {
+            min = ans[j];
+            minId = j;
+        }
+        ans[minId] += ARRAY_LENGTH;
+        for (int j = 0; j < ARRAY_LENGTH; j++) if (j != minId)
+            ans[j]--;
+    }
+    System.out.println(ARRAY_LENGTH);
+    System.out.print(ans[0]);
+    for (int i = 1; i < ARRAY_LENGTH; i++) System.out.printf(" %d", ans[i]);
+    System.out.println();
+}

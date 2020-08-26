@@ -1,0 +1,59 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    n = sc.nextInt();
+    a = sc.nextInt();
+    b = sc.nextInt();
+    v = new long[n];
+    for (int i = 0; i < n; i++) {
+        v[i] = sc.nextLong();
+    }
+    Arrays.sort(v);
+    long[] rv = new long[n];
+    for (int i = 0; i < n; i++) {
+        rv[i] = v[n - i - 1];
+    }
+    long sum = 0;
+    for (int i = 0; i < a; i++) {
+        sum += rv[i];
+    }
+    double max = (double) sum / (double) a;
+    long[][] dp = new long[n + 1][n + 1];
+    for (int i = 1; i <= n; i++) {
+        for (int j = 0; j <= n; j++) {
+            if (j == 0 || i == j) {
+                dp[i][j] = 1;
+            } else {
+                dp[i][j] = dp[i - 1][j] + dp[i - 1][j - 1];
+            }
+        }
+    }
+    long count = 0;
+    if (rv[0] != rv[a - 1]) {
+        int c = 0, d = 0;
+        for (int i = 0; i < n; i++) {
+            if (rv[a - 1] == rv[i]) {
+                ++c;
+            }
+        }
+        for (int i = 0; i < a; i++) {
+            if (rv[a - 1] == rv[i]) {
+                ++d;
+            }
+        }
+        count += dp[c][d];
+    } else {
+        int c = 0;
+        for (int i = 0; i < n; i++) {
+            if (rv[0] == rv[i]) {
+                ++c;
+            }
+        }
+        for (int i = a; i <= b; i++) {
+            if (i <= c) {
+                count += dp[c][i];
+            }
+        }
+    }
+    System.out.println(max);
+    System.out.println(count);
+}

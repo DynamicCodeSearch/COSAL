@@ -1,0 +1,19 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    long n = in.nextLong();
+    long m = in.nextLong();
+    if (Math.abs(n - m) >= 2) {
+        out.println(0);
+        return;
+    }
+    long ans = 1;
+    long MOD = 1_000_000_007;
+    for (int i = 1; i <= n; i++) {
+        ans = (ans * i) % MOD;
+    }
+    for (int i = 1; i <= m; i++) {
+        ans = (ans * i) % MOD;
+    }
+    if (n == m)
+        ans = (ans * 2) % MOD;
+    out.println(ans);
+}

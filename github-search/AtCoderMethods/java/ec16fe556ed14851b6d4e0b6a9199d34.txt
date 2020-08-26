@@ -1,0 +1,14 @@
+private void union(int p, int q) {
+    int i = root(p);
+    int j = root(q);
+    
+    if (i == j)
+        return;
+    if (sz[i] >= sz[j]) {
+        id[j] = i;
+        sz[i] += sz[j];
+    } else {
+        id[i] = j;
+        sz[j] += sz[i];
+    }
+}

@@ -1,0 +1,6 @@
+def rec(S, num, totals):
+    totals[num] = [int(''.join(S[:num+1]))]
+    for idx in range(num):
+        for item in totals[idx]:
+            totals[num].append( item + int(''.join(S[idx+1:num+1])) )
+    return totals

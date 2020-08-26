@@ -1,0 +1,11 @@
+public Item pop() {
+    if (isEmpty())
+        throw new NoSuchElementException("Stack underflow");
+    
+    Item item = first.item;
+    
+    first = first.next;
+    N--;
+    
+    return item;
+}

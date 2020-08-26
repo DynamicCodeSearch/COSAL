@@ -1,0 +1,13 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    String s = in.nextString();
+    int cnt1 = count(n, s, ')');
+    int cnt2 = count(n, new StringBuilder(s).reverse().toString(), '(');
+    for (int i = 0; i < cnt1; i++) {
+        s = "(" + s;
+    }
+    for (int i = 0; i < cnt2; i++) {
+        s += ")";
+    }
+    out.println(s);
+}

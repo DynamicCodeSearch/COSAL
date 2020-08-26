@@ -1,0 +1,22 @@
+static void Method(ArrayList<Long> num, ArrayList<String> param) {
+    HashMap<Long, Long> list = new HashMap<Long, Long>();
+    int count = 0;
+    for (int i = 2; i < num.size(); i += 2) {
+        if (list.containsKey(num.get(i))) {
+            list.put(num.get(i), list.get(num.get(i)) + num.get(i + 1));
+        } else {
+            list.put(num.get(i), num.get(i + 1));
+        }
+    }
+    Object[] mapkey = list.keySet().toArray();
+    Arrays.sort(mapkey);
+    for (Object nKey : mapkey) {
+        if (num.get(1) - list.get(nKey) <= 0) {
+            System.out.println(nKey);
+            System.exit(0);
+        } else {
+            num.set(1, num.get(1) - list.get(nKey));
+        }
+        count++;
+    }
+}

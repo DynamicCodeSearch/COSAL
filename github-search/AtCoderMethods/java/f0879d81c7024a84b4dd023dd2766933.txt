@@ -1,0 +1,33 @@
+
+public static void execute() {
+    int n = nextInt();
+    List<Integer> p = new ArrayList<>(n);
+    for (int i = 0; i < n; i++) {
+        int input = nextInt();
+        p.add(input);
+    }
+    long swapCount = 0L;
+    for (int i = 0; i < n; i++) {
+        int pi = p.get(i);
+        if (pi == i + 1) {
+            
+            if (i < n - 1) {
+                int piRight = p.get(i + 1);
+                
+                if (piRight == i + 1) {
+                    Collections.swap(p, i, i + 1);
+                } else if (piRight == i) {
+                    
+                    Collections.swap(p, i, i - 1);
+                } else {
+                    Collections.swap(p, i, i + 1);
+                }
+            } else {
+                
+                Collections.swap(p, i, i - 1);
+            }
+            swapCount++;
+        }
+    }
+    out(swapCount);
+}

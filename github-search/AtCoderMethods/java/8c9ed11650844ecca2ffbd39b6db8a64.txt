@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String s = sc.next();
+    int maxLength = s.length() - 1;
+    for (int i = s.length() - 1; i > 0; i--) {
+        if (i % 2 != 0) {
+            continue;
+        }
+        boolean isSS = true;
+        for (int t = 0; t < i / 2; t++) {
+            if (s.charAt(t) != s.charAt(i / 2 + t)) {
+                isSS = false;
+                break;
+            }
+        }
+        if (isSS) {
+            maxLength = i;
+            break;
+        }
+    }
+    System.out.println(maxLength);
+}

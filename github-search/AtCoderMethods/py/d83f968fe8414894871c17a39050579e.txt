@@ -1,0 +1,39 @@
+def main():
+    N = int(input())
+    C = [int(input()) for i in range(N)]
+
+    min_of_ascending = [-1]
+
+    for c in C:
+        if len(min_of_ascending) == 0:
+            min_of_ascending.append(c)
+            continue
+
+
+        upper = len(min_of_ascending)
+        lower = 0
+        middle = 0
+        while(lower < upper):
+            middle = (upper + lower) // 2
+
+            if len(min_of_ascending) - 1 < middle + 1:
+                break
+            if min_of_ascending[middle] < c and min_of_ascending[middle + 1] > c:
+                break
+
+            if min_of_ascending[middle] < c:
+                lower = middle
+            else:
+                upper = middle
+
+        if lower < upper:
+            if len(min_of_ascending) - 1 < middle + 1:
+                if c > min_of_ascending[middle]:
+                    min_of_ascending.append(c)
+                else:
+                    if c > min_of_ascending[middle - 1]:
+                        min_of_ascending[middle] = c
+            else:
+                if c < min_of_ascending[middle + 1]:
+                    min_of_ascending[middle + 1] = c
+    print(len(C) - len(min_of_ascending) + 1)

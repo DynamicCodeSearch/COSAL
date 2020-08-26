@@ -1,0 +1,49 @@
+public static void main(String[] args) throws IOException {
+    Scanner scan = new Scanner(System.in);
+    String str = scan.next();
+    char[] atoz = new char[26];
+    atoz[0] = 'a';
+    atoz[13] = 'n';
+    atoz[1] = 'b';
+    atoz[14] = 'o';
+    atoz[2] = 'c';
+    atoz[15] = 'p';
+    atoz[3] = 'd';
+    atoz[16] = 'q';
+    atoz[4] = 'e';
+    atoz[17] = 'r';
+    atoz[5] = 'f';
+    atoz[18] = 's';
+    atoz[6] = 'g';
+    atoz[19] = 't';
+    atoz[7] = 'h';
+    atoz[20] = 'u';
+    atoz[8] = 'i';
+    atoz[21] = 'v';
+    atoz[9] = 'j';
+    atoz[22] = 'w';
+    atoz[10] = 'k';
+    atoz[23] = 'x';
+    atoz[11] = 'l';
+    atoz[24] = 'y';
+    atoz[12] = 'm';
+    atoz[25] = 'z';
+    int count = 0;
+    for (int i = 0; i < 26; i++) {
+        count = 0;
+        for (int j = 0; j < str.length(); j++) {
+            if (atoz[i] == str.charAt(j)) {
+                
+                count++;
+            }
+        }
+        
+        if (count % 2 == 1) {
+            System.out.println("No");
+            break;
+        }
+        if (i == 25) {
+            System.out.println("Yes");
+        }
+    }
+}

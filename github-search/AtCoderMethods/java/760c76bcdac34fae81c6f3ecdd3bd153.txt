@@ -1,0 +1,9 @@
+void dfs(int v, int p, int d) {
+    parent[0][v] = p;
+    depth[v] = d;
+    for (int i = 0; i < path[v].size(); i++) {
+        if (path[v].get(i) != p) {
+            dfs(path[v].get(i), v, d + 1);
+        }
+    }
+}

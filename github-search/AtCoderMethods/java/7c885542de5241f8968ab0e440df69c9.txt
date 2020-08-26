@@ -1,0 +1,32 @@
+public static void main(String[] args) throws java.lang.Exception {
+    InputReader in = new InputReader(System.in);
+    PrintWriter w = new PrintWriter(System.out);
+    int n = in.nextInt();
+    ArrayList<Edge>[] graph = new ArrayList[n];
+    for (int i = 0; i < n; i++) graph[i] = new ArrayList<>();
+    long[] dis = new long[n];
+    Arrays.fill(dis, Long.MAX_VALUE);
+    for (int i = 0; i < n - 1; i++) {
+        int u = in.nextInt() - 1, v = in.nextInt() - 1;
+        long c = in.nextLong();
+        graph[u].add(new Edge(v, c));
+        graph[v].add(new Edge(u, c));
+    }
+    int q = in.nextInt(), k = in.nextInt() - 1;
+    dis[k] = 0;
+    Queue<Integer> bfs = new LinkedList<>();
+    bfs.add(k);
+    long ans = 0;
+    while (bfs.size() > 0) {
+        int temp = bfs.poll();
+        for (Edge e : graph[temp]) {
+            if (dis[e.to] == Long.MAX_VALUE)
+                bfs.add(e.to);
+            dis[e.to] = Math.min(dis[e.to], dis[temp] + e.cost);
+        }
+    }
+    while (q-- > 0) {
+        w.println(dis[in.nextInt() - 1] + dis[in.nextInt() - 1]);
+    }
+    w.close();
+}

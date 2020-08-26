@@ -1,0 +1,44 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    int R = Integer.parseInt(sc.next());
+    int C = Integer.parseInt(sc.next());
+    int sy = Integer.parseInt(sc.next());
+    int sx = Integer.parseInt(sc.next());
+    int gy = Integer.parseInt(sc.next());
+    int gx = Integer.parseInt(sc.next());
+    char[][] c = new char[R][C];
+    int[][] d = new int[R][C];
+    sc.nextLine();
+    for (int y = 0; y < R; y++) {
+        String tempstr = sc.nextLine();
+        for (int x = 0; x < C; x++) {
+            c[y][x] = tempstr.charAt(x);
+        }
+    }
+    Queue<Integer> qy = new ArrayDeque<Integer>(R);
+    Queue<Integer> qx = new ArrayDeque<Integer>(C);
+    qy.offer(sy - 1);
+    qx.offer(sx - 1);
+    d[sy][sx] = 0;
+    while (!qy.isEmpty() && !qx.isEmpty()) {
+        int x = qx.poll();
+        int y = qy.poll();
+        if (gx - 1 == x && gy - 1 == y) {
+            System.out.println(d[y][x]);
+            return;
+        }
+        for (int i = -1; i < 2; i++) {
+            for (int j = -1; j < 2; j++) {
+                if ((i != 0 && j != 0) || (i == 0 && j == 0))
+                    continue;
+                if (c[y + i][x + j] == '.' && d[y + i][x + j] == 0) {
+                    d[y + i][x + j] = d[y][x] + 1;
+                    qx.offer(x + j);
+                    qy.offer(y + i);
+                }
+            }
+        }
+        c[y][x] = '#';
+    }
+}

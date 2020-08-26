@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    Scanner input = new Scanner(System.in);
+    while (input.hasNext()) {
+        String s = input.next();
+        int[] countChar = new int[26];
+        int[] countPrevFreq = new int[s.length()];
+        int[] prevPos = new int[26];
+        Arrays.fill(prevPos, -1);
+        int a = -1, b = -1;
+        for (int i = 0; i < s.length(); ++i) {
+            int currentChar = s.charAt(i) - 'a';
+            countPrevFreq[i] = countChar[currentChar];
+            ++countChar[currentChar];
+            if (prevPos[currentChar] > -1) {
+                int len = i - prevPos[currentChar] + 1;
+                int freqDiff = countPrevFreq[i] - countPrevFreq[prevPos[currentChar]] + 1;
+                if (freqDiff * 2 > len) {
+                    a = prevPos[currentChar] + 1;
+                    b = i + 1;
+                }
+            }
+            prevPos[currentChar] = i;
+        }
+        System.out.printf("%d %d\n", a, b);
+    }
+}

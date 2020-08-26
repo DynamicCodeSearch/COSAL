@@ -1,0 +1,13 @@
+static void dfs(int current, int[][] nm, ArrayList<Integer> visited, int N) {
+    if (visited.contains(current))
+        return;
+    visited.add(current);
+    for (int i = 1; i <= N; i++) {
+        if (visited.contains(i))
+            continue;
+        if (nm[current][i] == 1) {
+            dfs(i, nm, visited, N);
+        }
+    }
+    return;
+}

@@ -1,0 +1,58 @@
+private void go(int sx, int sy, int tx, int ty) {
+    sx += 1005;
+    sy += 1005;
+    tx += 1005;
+    ty += 1005;
+    forbidden[sx][sy] = false;
+    forbidden[tx][ty] = false;
+    Queue<Integer> q = new LinkedList<>();
+    q.offer(sx);
+    q.offer(sy);
+    int[][] px = new int[2011][2011];
+    int[][] py = new int[2011][2011];
+    px[sx][sy] = sx;
+    py[sx][sy] = sy;
+    boolean[][] used = new boolean[2011][2011];
+    while (!q.isEmpty()) {
+        int r = q.poll();
+        int c = q.poll();
+        for (int a = 0; a < 4; ++a) {
+            int x = dx[a] + r;
+            int y = dy[a] + c;
+            if (x >= 0 && x <= 2010 && y >= 0 && y <= 2010 && !used[x][y] && !forbidden[x][y]) {
+                used[x][y] = true;
+                px[x][y] = r;
+                py[x][y] = c;
+                q.offer(x);
+                q.offer(y);
+            }
+        }
+    }
+    int endX = tx;
+    int endY = ty;
+    String temp = "";
+    System.out.println(endX + " " + endY + " " + used[endX][endY]);
+    System.out.println(px[endX][endY] + " " + py[endX][endY]);
+    System.out.println(px[1006][1006] + " " + py[1006][1006]);
+    System.out.println(px[1006][1005] + " " + py[1006][1005]);
+    System.out.println(sx + " " + sy);
+    while ((endX != sx) || ((endY != sy))) {
+        int prevX = px[endX][endY];
+        int prevY = py[endX][endY];
+        char stepp = '!';
+        if (prevX + 1 == endX) {
+            stepp = 'R';
+        } else if (prevX - 1 == endX) {
+            stepp = 'L';
+        } else if (prevY + 1 == endY) {
+            stepp = 'D';
+        } else
+            stepp = 'U';
+        temp = stepp + temp;
+        int tempX = px[endX][endY];
+        int tempY = py[endX][endY];
+        endX = tempX;
+        endY = tempY;
+    }
+    sb.append(temp);
+}

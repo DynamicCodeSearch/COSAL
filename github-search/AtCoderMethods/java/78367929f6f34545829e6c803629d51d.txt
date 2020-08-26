@@ -1,0 +1,16 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    boolean end = true;
+    Deque<Integer> dq = new LinkedList<>();
+    for (int i = 0; i < n; i++) {
+        if (end) {
+            dq.addLast(in.nextInt());
+        } else
+            dq.addFirst(in.nextInt());
+        end = !end;
+    }
+    if (end)
+        while (!dq.isEmpty()) out.print(dq.pollFirst() + " ");
+    else
+        while (!dq.isEmpty()) out.print(dq.pollLast() + " ");
+}

@@ -1,0 +1,27 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int m = in.nextInt();
+    int r = in.nextInt();
+    int[] ri = in.nextIntArray0indexed(r);
+    WarshallFloyd wf = new WarshallFloyd(n);
+    for (int i = 0; i < m; i++) {
+        int from = in.nextInt() - 1;
+        int to = in.nextInt() - 1;
+        int cost = in.nextInt();
+        wf.addUndirectedEdge(from, to, cost);
+    }
+    int[][] dist = wf.getDist();
+    int[] a = new int[r];
+    for (int i = 0; i < r; i++) {
+        a[i] = i;
+    }
+    long ans = Long.MAX_VALUE;
+    do {
+        long tmp = 0;
+        for (int i = 0; i < r - 1; i++) {
+            tmp += dist[ri[a[i]]][ri[a[i + 1]]];
+        }
+        ans = Math.min(ans, tmp);
+    } while (Permutation.next(a));
+    out.println(ans);
+}

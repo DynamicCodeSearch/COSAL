@@ -1,0 +1,9 @@
+int f(int i, int sum) {
+    if (i == n)
+        return sum % 10 == 0 ? 0 : sum;
+    if (memo[i][sum] != -1)
+        return memo[i][sum];
+    int ans = f(i + 1, sum);
+    ans = Math.max(ans, f(i + 1, (sum + arr[i])));
+    return memo[i][sum] = ans;
+}

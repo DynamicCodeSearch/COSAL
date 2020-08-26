@@ -1,0 +1,12 @@
+def main():
+    N, K = input().split()
+    l = list(set(list('0123456789')) - set(input().split()))
+    t = int(N)
+    m = 100000
+    for i in itertools.product(l, repeat=len(N)):
+        if int(''.join(i)) >= t:
+            m = min(m, int(''.join(i)))
+    for i in itertools.product(l, repeat=len(N)+1):
+        if int(''.join(i)) >= t:
+            m = min(m, int(''.join(i)))
+    print(m)

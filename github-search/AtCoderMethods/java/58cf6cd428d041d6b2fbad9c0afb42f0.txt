@@ -1,0 +1,11 @@
+int query(int a, int b, int k, int l, int r) {
+    if (r <= a || b <= l)
+        return MAX;
+    if (a <= l && r <= b)
+        return data[k];
+    else {
+        int vl = query(a, b, k * 2 + 1, l, (l + r) / 2);
+        int vr = query(a, b, k * 2 + 2, (l + r) / 2, r);
+        return Math.min(vl, vr);
+    }
+}

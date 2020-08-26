@@ -1,0 +1,60 @@
+public static void main(String[] args) {
+    Scanner cin = new Scanner(System.in);
+    int target = cin.nextInt();
+    String[] list = new String[target];
+    int tmp = 100;
+    int listNo = 0;
+    for (int i = 0; i < target; i++) {
+        list[i] = cin.next();
+        if (list[i].length() < tmp) {
+            tmp = list[i].length();
+            listNo = i;
+        }
+    }
+    
+    HashMap<Character, Integer> result = new HashMap<Character, Integer>();
+    for (int j = 0; j < list[listNo].length(); j++) {
+        if (result.containsKey(list[listNo].charAt(j))) {
+            result.put(list[listNo].charAt(j), result.get(list[listNo].charAt(j)) + 1);
+        } else {
+            result.put(list[listNo].charAt(j), 1);
+        }
+    }
+    HashMap<Character, Integer> tmp_map = new HashMap<Character, Integer>();
+    for (int k = 0; k < target; k++) {
+        if (k != listNo) {
+            tmp_map.clear();
+            for (int l = 0; l < list[k].length(); l++) {
+                if (tmp_map.containsKey(list[k].charAt(l))) {
+                    tmp_map.put(list[k].charAt(l), tmp_map.get(list[k].charAt(l)) + 1);
+                } else {
+                    tmp_map.put(list[k].charAt(l), 1);
+                }
+            }
+            if (result.size() > 0) {
+                Object[] key = result.keySet().toArray();
+                for (int p = 0; p < key.length; p++) {
+                    if (tmp_map.containsKey((char) key[p])) {
+                        if (result.get((char) key[p]) > tmp_map.get((char) key[p])) {
+                            result.put((char) key[p], tmp_map.get((char) key[p]));
+                        }
+                    } else {
+                        result.remove((char) key[p]);
+                    }
+                }
+            }
+        }
+    }
+    if (result.size() == 0) {
+        System.out.println("");
+    } else {
+        Object[] output = result.keySet().toArray();
+        Arrays.sort(output);
+        for (int n = 0; n < result.size(); n++) {
+            for (int m = 0; m < result.get((char) output[n]); m++) {
+                System.out.print(output[n]);
+            }
+        }
+        System.out.println("");
+    }
+}

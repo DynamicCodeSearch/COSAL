@@ -1,0 +1,31 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int T = sc.nextInt();
+    int N = sc.nextInt();
+    int[] takoyaki = new int[N];
+    for (int i = 0; i < N; i++) {
+        takoyaki[i] = sc.nextInt();
+    }
+    int M = sc.nextInt();
+    int[] customer = new int[M];
+    for (int i = 0; i < M; i++) {
+        customer[i] = sc.nextInt();
+    }
+    int[] sold = new int[N];
+    String ans = "yes";
+    for (int i = 0; i < M; i++) {
+        int count = 0;
+        for (int j = 0; j < N; j++) {
+            if (sold[j] == 0 && customer[i] >= takoyaki[j] && customer[i] - takoyaki[j] <= T) {
+                sold[j] = 1;
+                count++;
+                break;
+            }
+        }
+        if (count == 0) {
+            ans = "no";
+            break;
+        }
+    }
+    System.out.println(ans);
+}

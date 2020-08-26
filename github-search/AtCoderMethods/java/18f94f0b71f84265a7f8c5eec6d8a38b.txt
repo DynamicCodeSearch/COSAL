@@ -1,0 +1,15 @@
+public static int lis2(int[] in) {
+    int n = in.length;
+    int ret = 0;
+    int[] h = new int[n + 1];
+    for (int i = 0; i < n; i++) {
+        int ind = Arrays.binarySearch(h, 0, ret + 1, in[i]);
+        if (ind < 0) {
+            ind = -ind - 2;
+            h[ind + 1] = in[i];
+            if (ind >= ret)
+                ret++;
+        }
+    }
+    return ret;
+}

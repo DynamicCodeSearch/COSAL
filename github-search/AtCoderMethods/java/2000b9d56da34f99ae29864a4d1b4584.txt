@@ -1,0 +1,65 @@
+public static void main(String[] args) throws IOException {
+    final Scanner sc = new Scanner(System.in);
+    final int H = sc.nextInt();
+    final int W = sc.nextInt();
+    int[][] map = new int[H][W];
+    int[][] out_degree = new int[H][W];
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            map[i][j] = sc.nextInt();
+        }
+    }
+    for (int y = 0; y < H; y++) {
+        for (int x = 0; x < W; x++) {
+            for (final int[] move : move_dirs) {
+                final int nx = x + move[0];
+                final int ny = y + move[1];
+                if (!is_ok(nx, ny, W, H)) {
+                    continue;
+                }
+                if (map[y][x] < map[ny][nx]) {
+                    out_degree[y][x]++;
+                }
+            }
+        }
+    }
+    long[][] ways = new long[H][W];
+    LinkedList<Integer> x_queue = new LinkedList<Integer>();
+    LinkedList<Integer> y_queue = new LinkedList<Integer>();
+    for (int y = 0; y < H; y++) {
+        for (int x = 0; x < W; x++) {
+            if (out_degree[y][x] == 0) {
+                x_queue.add(x);
+                y_queue.add(y);
+                ways[y][x] = 0;
+            }
+        }
+    }
+    long answer = 0;
+    while (!x_queue.isEmpty()) {
+        final int x = x_queue.poll();
+        final int y = y_queue.poll();
+        ways[y][x] += 1;
+        ways[y][x] %= MOD;
+        answer += ways[y][x];
+        answer %= MOD;
+        for (final int[] move : move_dirs) {
+            final int nx = x + move[0];
+            final int ny = y + move[1];
+            if (!is_ok(nx, ny, W, H)) {
+                continue;
+            }
+            if (map[y][x] <= map[ny][nx]) {
+                continue;
+            }
+            ways[ny][nx] += ways[y][x];
+            ways[ny][nx] %= MOD;
+            out_degree[ny][nx]--;
+            if (out_degree[ny][nx] == 0) {
+                x_queue.add(nx);
+                y_queue.add(ny);
+            }
+        }
+    }
+    System.out.println(answer);
+}

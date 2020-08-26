@@ -1,0 +1,10 @@
+def union(self, x, y):
+    s1 = self.find(x)
+    s2 = self.find(y)
+    if s1 != s2:
+        if self.table[s1] <= self.table[s2]:
+            self.table[s1] += self.table[s2]
+            self.table[s2] = s1
+        else:
+            self.table[s2] += self.table[s1]
+            self.table[s1] = s2

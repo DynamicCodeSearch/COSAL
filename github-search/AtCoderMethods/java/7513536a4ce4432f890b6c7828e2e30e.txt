@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String s = sc.nextLine();
+    sc.close();
+    for (int i = 97; i < 123; i++) {
+        char c = (char) i;
+        for (int j = 0; j < s.length(); j++) {
+            char c2 = s.charAt(j);
+            if (c == c2) {
+                break;
+            } else if (j + 1 == s.length() && c != c2) {
+                System.out.println(c);
+                return;
+            }
+        }
+    }
+    System.out.println("None");
+}

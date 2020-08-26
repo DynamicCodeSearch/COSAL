@@ -1,0 +1,28 @@
+def is_one_land(board):
+    N = len(board)
+    M = len(board[0])
+    done = [[0]*M for _ in range(N)]
+    stack = []
+    for i in range(N):
+        for j in range(M):
+            if board[i][j] == LAND:
+                done[i][j] = True
+                stack.append((i, j))
+                break
+        else:
+            continue
+        break
+
+    while stack:
+        i, j = stack.pop()
+        for ni, nj in xy4(i, j):
+            if (0 <= ni < N and 0 <= nj < M and
+                board[ni][nj] == LAND and not done[ni][nj]):
+                done[ni][nj] = True
+                stack.append((ni, nj))
+
+    for i in range(N):
+        for j in range(M):
+            if not done[i][j] and board[i][j] == LAND:
+                return False
+    return True

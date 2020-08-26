@@ -1,0 +1,11 @@
+public void solve(int testNumber, FastReader in, PrintWriter out) {
+    String s = in.next();
+    int[] freq = new int[255];
+    for (int i = 0; i < s.length(); i++) {
+        freq[s.charAt(i)]++;
+    }
+    boolean ok = true;
+    for (int i = 0; i < 255; i++) if (freq[i] > 1)
+        ok = false;
+    out.println(ok ? "yes" : "no");
+}

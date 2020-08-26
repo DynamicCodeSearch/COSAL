@@ -1,0 +1,8 @@
+public static long roundhalf(long W, long H) {
+    final long W_lim = (W + 1) / 3;
+    final long S1 = W_lim * H;
+    final long H_lim = (H + 1) / 2;
+    final long S2 = (W - W_lim) * H_lim;
+    final long S3 = (W - W_lim) * (H - H_lim);
+    return Math.max(S1, Math.max(S2, S3)) - Math.min(S1, Math.min(S2, S3));
+}

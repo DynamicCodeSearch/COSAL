@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int K = sc.nextInt();
+    char[] s = sc.next().toCharArray();
+    Koshi koshi = new Koshi(0, 0);
+    koshi.reLink();
+    for (int i = 0; i < K; i++) {
+        switch(s[i]) {
+            case 'L':
+                koshi = koshi.left;
+                break;
+            case 'R':
+                koshi = koshi.right;
+                break;
+            case 'U':
+                koshi = koshi.up;
+                break;
+            case 'D':
+                koshi = koshi.down;
+                break;
+        }
+        koshi.reLink();
+    }
+    System.out.println(koshi.x + " " + koshi.y);
+}

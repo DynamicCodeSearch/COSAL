@@ -1,0 +1,13 @@
+def dfs(v,n):
+    s=[]
+    d=[-1 for i in range(n+1)]
+    d[v]=0
+    s.append(v)
+    while len(s):
+        v=s.pop()
+
+        for i in e[v]:
+            if d[i[0]]<0:
+                d[i[0]]=d[v]+i[1]
+                s.append(i[0])
+    return d

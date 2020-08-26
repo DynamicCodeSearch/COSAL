@@ -1,0 +1,18 @@
+public static int[][] get(int n, int[] a, int[] b) {
+    int[][] res = new int[n + 1][];
+    int[] c = new int[n + 1];
+    for (int i = 0; i < a.length; i++) {
+        c[a[i]]++;
+        c[b[i]]++;
+    }
+    for (int i = 0; i < n + 1; i++) {
+        res[i] = new int[c[i]];
+    }
+    int[] ind = new int[n + 1];
+    for (int i = 0; i < a.length; i++) {
+        int from = a[i], to = b[i];
+        res[from][ind[from]++] = to;
+        res[to][ind[to]++] = from;
+    }
+    return res;
+}

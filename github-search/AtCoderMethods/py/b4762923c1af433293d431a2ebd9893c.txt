@@ -1,0 +1,13 @@
+def factorize_fact(n, primes):
+    factors = collections.Counter()
+    if n < 2:
+        return factors
+    for p in primes:
+        if p * p > n:
+            break
+        while n % p == 0:
+            factors[p] += 1
+            n //= p
+    if n > 1:
+        factors[n] += 1
+    return factors

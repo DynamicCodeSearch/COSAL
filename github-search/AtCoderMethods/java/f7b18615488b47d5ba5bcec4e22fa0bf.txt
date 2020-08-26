@@ -1,0 +1,65 @@
+public static void main(String[] args) {
+    
+    
+    int W;
+    
+    int H;
+    
+    int N;
+    
+    int minwx;
+    
+    int maxwx;
+    
+    int minwy;
+    
+    int maxwy;
+    
+    int warea;
+    
+    int[] x;
+    
+    int[] y;
+    
+    int[] a;
+    Scanner scan = new Scanner(System.in);
+    
+    W = scan.nextInt();
+    H = scan.nextInt();
+    N = scan.nextInt();
+    x = new int[N];
+    y = new int[N];
+    a = new int[N];
+    for (int i = 0; i < N; i++) {
+        x[i] = scan.nextInt();
+        y[i] = scan.nextInt();
+        a[i] = scan.nextInt();
+    }
+    scan.close();
+    
+    
+    minwx = 0;
+    maxwx = W;
+    minwy = 0;
+    maxwy = H;
+    
+    for (int j = 0; j < N; j++) {
+        if (a[j] == 1 && minwx < x[j]) {
+            minwx = x[j];
+        } else if (a[j] == 2 && maxwx > x[j]) {
+            maxwx = x[j];
+        } else if (a[j] == 3 && minwy < y[j]) {
+            minwy = y[j];
+        } else if (a[j] == 4 && maxwy > y[j]) {
+            maxwy = y[j];
+        }
+    }
+    
+    if (minwx >= maxwx || minwy >= maxwy) {
+        warea = 0;
+    } else {
+        warea = (maxwx - minwx) * (maxwy - minwy);
+    }
+    
+    System.out.println(warea);
+}

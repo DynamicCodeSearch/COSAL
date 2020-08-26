@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    int n = ni();
+    String[] s = new String[n];
+    for (int i = 0; i < n; i++) s[i] = next();
+    int[] gcd = new int[26];
+    Arrays.fill(gcd, Integer.MAX_VALUE);
+    for (int i = 0; i < n; i++) {
+        int[] ta = new int[26];
+        for (int j = 0; j < s[i].length(); j++) {
+            char ch = s[i].charAt(j);
+            ta[(int) (ch - 'a')]++;
+        }
+        for (int j = 0; j < 26; j++) {
+            gcd[j] = Math.min(gcd[j], ta[j]);
+        }
+    }
+    String res = "";
+    for (int i = 0; i < 26; i++) {
+        char ch = (char) ('a' + i);
+        for (int j = 0; j < gcd[i]; j++) res = res + ch;
+    }
+    pl(res);
+    flush();
+}

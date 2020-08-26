@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int m = scanner.nextInt();
+    int n = scanner.nextInt();
+    int N = scanner.nextInt();
+    int usedPencil = N;
+    int ret = usedPencil;
+    while (true) {
+        if (usedPencil >= m) {
+            int numRecycle = usedPencil / m;
+            usedPencil -= numRecycle * m;
+            usedPencil += numRecycle * n;
+            ret += numRecycle * n;
+        } else
+            break;
+    }
+    System.out.println(ret);
+}

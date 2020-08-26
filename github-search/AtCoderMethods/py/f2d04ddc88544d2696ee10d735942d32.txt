@@ -1,0 +1,9 @@
+def solve(n, m):
+    if abs(n - m) > 1:
+        return 0
+    res = f[m] * f[n]
+    res %= M
+    if m == n:
+        res *= 2
+        res %= M
+    return res

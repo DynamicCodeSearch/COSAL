@@ -1,0 +1,34 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    int T = Integer.parseInt(reader.readLine());
+    int N = Integer.parseInt(reader.readLine());
+    int[] takoyakiArray = new int[N];
+    String[] takoYakiStringArray = reader.readLine().split(" ");
+    for (int i = 0; i < N; i++) {
+        takoyakiArray[i] = Integer.parseInt(takoYakiStringArray[i]);
+    }
+    int M = Integer.parseInt(reader.readLine());
+    int[] customers = new int[M];
+    String[] customerStringArray = reader.readLine().split(" ");
+    for (int i = 0; i < M; i++) {
+        customers[i] = Integer.parseInt(customerStringArray[i]);
+    }
+    int numberOfCustomersThatBoughtTakohyaki = 0;
+    int takoyakiNumber = 0;
+    for (int i = 0; i < M; i++) {
+        int customer = customers[i];
+        while (takoyakiNumber < N) {
+            if (takoyakiArray[takoyakiNumber] <= customer && customer <= (takoyakiArray[takoyakiNumber] + T)) {
+                numberOfCustomersThatBoughtTakohyaki += 1;
+                takoyakiNumber += 1;
+                break;
+            }
+            takoyakiNumber += 1;
+        }
+    }
+    if (numberOfCustomersThatBoughtTakohyaki == M) {
+        System.out.println("yes");
+    } else {
+        System.out.println("no");
+    }
+}

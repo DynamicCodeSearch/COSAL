@@ -1,0 +1,24 @@
+
+void unite(int x, int y) {
+    x = find(x);
+    y = find(y);
+    if (x == y) {
+        return;
+    }
+    cnt--;
+    
+    if (g2i.get(x).size() > g2i.get(y).size()) {
+        g2i.get(x).addAll(g2i.get(y));
+        for (int e : g2i.get(y)) {
+            i2g.set(e, x);
+        }
+        g2i.set(y, null);
+    } else {
+        g2i.get(y).addAll(g2i.get(x));
+        for (int e : g2i.get(x)) {
+            i2g.set(e, y);
+        }
+        g2i.set(x, null);
+    }
+    return;
+}

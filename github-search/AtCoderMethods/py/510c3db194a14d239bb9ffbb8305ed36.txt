@@ -1,0 +1,19 @@
+def main():
+    N, M = map(int, input().split())
+    A = tuple(tuple(map(int, input().split())) for _ in range(M))
+
+    if M == 1:
+        print('IMPOSSIBLE')
+        return
+
+    relay = []
+    for a, b in A:
+        if a == 1:
+            relay.append(b)
+        elif b == N:
+            relay.append(a)
+
+    if len(relay) > len(set(relay)):
+        print('POSSIBLE')
+    else:
+        print('IMPOSSIBLE')

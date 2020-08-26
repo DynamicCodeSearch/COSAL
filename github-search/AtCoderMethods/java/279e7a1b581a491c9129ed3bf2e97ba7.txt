@@ -1,0 +1,19 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String w = br.readLine();
+    int a = Integer.parseInt(w);
+    int v = a / 100;
+    if (0 <= a && a < 100) {
+        System.out.println("00");
+    } else if (a < 1000) {
+        System.out.println("0" + v);
+    } else if (a <= 5000) {
+        System.out.println(v);
+    } else if (a <= 30000) {
+        System.out.println(v / 10 + 50);
+    } else if (a <= 70000) {
+        System.out.println((v / 10 - 30) / 5 + 80);
+    } else {
+        System.out.println("89");
+    }
+}

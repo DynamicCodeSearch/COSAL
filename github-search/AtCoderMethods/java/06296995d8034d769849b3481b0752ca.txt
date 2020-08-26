@@ -1,0 +1,15 @@
+private static int dfs(int now, int nokoriNum, int nokoriWidth) {
+    if (dp[now][nokoriNum][nokoriWidth] != -1) {
+        return dp[now][nokoriNum][nokoriWidth];
+    }
+    int result;
+    if (now == N || nokoriNum == 0) {
+        result = 0;
+    } else if (nokoriWidth < widths[now]) {
+        result = dfs(now + 1, nokoriNum, nokoriWidth);
+    } else {
+        result = Math.max(dfs(now + 1, nokoriNum - 1, nokoriWidth - widths[now]) + values[now], dfs(now + 1, nokoriNum, nokoriWidth));
+    }
+    dp[now][nokoriNum][nokoriWidth] = result;
+    return result;
+}

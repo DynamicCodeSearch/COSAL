@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    
+    Scanner cin = new Scanner(System.in);
+    cin.nextLine();
+    
+    String[] answers = cin.nextLine().split("");
+    
+    int[] count = new int[4];
+    for (int i = 0; i < answers.length; i++) {
+        count[Integer.parseInt(answers[i]) - 1]++;
+    }
+    Arrays.sort(count);
+    System.out.println(count[3] + " " + count[0]);
+    cin.close();
+}

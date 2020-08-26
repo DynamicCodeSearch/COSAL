@@ -1,0 +1,52 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    StringBuilder sb = new StringBuilder();
+    String[] s = br.readLine().split(" ");
+    int a = 100 * Integer.parseInt(s[0]);
+    int b = 100 * Integer.parseInt(s[1]);
+    int c = Integer.parseInt(s[2]);
+    int d = Integer.parseInt(s[3]);
+    int e = Integer.parseInt(s[4]);
+    int f = Integer.parseInt(s[5]);
+    boolean[] water = new boolean[f + 1];
+    boolean[] sugar = new boolean[f + 1];
+    water[0] = true;
+    sugar[0] = true;
+    for (int i = 0; i < f + 1; i++) {
+        if (i - a >= 0 && water[i - a]) {
+            water[i] = true;
+        }
+        if (i - c >= 0 && sugar[i - c]) {
+            sugar[i] = true;
+        }
+    }
+    for (int i = 0; i < f + 1; i++) {
+        if (i - b >= 0 && water[i - b]) {
+            water[i] = true;
+        }
+        if (i - d >= 0 && sugar[i - d]) {
+            sugar[i] = true;
+        }
+    }
+    double bestDens = 0;
+    int bestSug = 0;
+    int bestMass = a;
+    for (int i = 1; i < f + 1; i++) {
+        if (!water[i])
+            continue;
+        int wat = i;
+        for (int j = 0; j + i <= f; j++) {
+            if (!sugar[j])
+                continue;
+            int sug = j;
+            if (100 * sug > wat * e)
+                continue;
+            if ((100.0 * sug) / (sug + wat) > bestDens) {
+                bestDens = (100.0 * sug) / (sug + wat);
+                bestSug = sug;
+                bestMass = sug + wat;
+            }
+        }
+    }
+    System.out.println(bestMass + " " + bestSug);
+}

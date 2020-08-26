@@ -1,0 +1,165 @@
+### Py Tokens: templatemetaclass, verbose, delim, idpattern, ignorecase, escape, dct, super, name, pattern, compile, delimiter, bases, template, metaclass, cls 
+
+### Py functions
+
+def __init__(cls, name, bases, dct):
+  super(_TemplateMetaclass, cls).__init__(name, bases, dct)
+  if 'pattern' in dct:
+    pattern = cls.pattern
+  else:
+    pattern = _TemplateMetaclass.pattern % {
+      'delim' : _re.escape(cls.delimiter),
+      'id'    : cls.idpattern,
+    }
+  cls.pattern = _re.compile(pattern, _re.IGNORECASE | _re.VERBOSE)
+*********************************
+
+#### Score: 7.19295
+
+
+#### Java Tokens: note, \p{incombiningdiacriticalmarks}+, string, pattern, replace, convert, non, empty, characters, strip, compile, utils, stripaccents, normalize, builder, non-nls-1, convertremainingaccentcharacters, diacritical, decomposed, accents, combining, marks, matcher, replaceall, nfd, accent, remaining, stringutils, input, incombiningdiacriticalmarks, normalizer, form, nls, stringbuilder 
+
+
+
+public static String stripAccents(final String input) {
+    if (input == null) {
+        return null;
+    }
+    
+    final Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
+    final StringBuilder decomposed = new StringBuilder(Normalizer.normalize(input, Normalizer.Form.NFD));
+    convertRemainingAccentCharacters(decomposed);
+    
+    return pattern.matcher(decomposed).replaceAll(EMPTY);
+}
+*********************************
+
+#### Score: 5.99051
+
+
+#### Java Tokens: equivalent, deprecated, moved, replace, abc123, source, empty, reference, compile, reg, utils, given, using, pre, method, &lt;__&gt;b, matcher, no-op, matches, resulting, abcabc123, cabc, regex, safe, matched, quot, option, since, changed, code, string, regexutils, [a-z], pattern, remove, substring, dotall, see, param, abcabc, passed, regular, expression, abc, replaceall, removepattern, &lt;.*&gt;, stringutils, call, a&lt;__&gt;, removes, replacepattern 
+
+
+@Deprecated
+public static String removePattern(final String source, final String regex) {
+    return RegExUtils.removePattern(source, regex);
+}
+*********************************
+
+#### Score: 5.10771
+
+
+#### Java Tokens: equivalent, deprecated, moved, replace, abc123, source, mode, reference, lorem, compile, reg, utils, abc___123, given, using, pre, method, matcher, no-op, _$2, matches, resulting, abcabc123, [^a-z0-9]+, cabc, regex, &lt;__&gt;, substituted, safe, ipsum, matched, zzz, quot, replacement, option, since, changed, code, abc_123, string, regexutils, [a-z], line, pattern, link, substring, dotall, dolor, see, known, param, abcabc, single-line, perl, passed, regular, sit, expression, abc, replaces, lorem_ipsum_dolor_sit, match, also, replaceall, &lt;.*&gt;, stringutils, single, call, +)([a-z]+), replacepattern 
+
+
+@Deprecated
+public static String replacePattern(final String source, final String regex, final String replacement) {
+    return RegExUtils.replacePattern(source, regex, replacement);
+}
+*********************************
+
+#### Score: 4.96303
+
+
+#### Java Tokens: exception, equivalent, added, use, deprecated, moved, replace, prepend, abc123, empty, reference, mode, java, compile, reg, utils, text, given, pre, method, &lt;__&gt;b, matcher, no-op, matches, cabc, input, regex, util, safe, matched, option, since, code, string, regexutils, [a-z], line, automatically, pattern, link, patternsyntaxexception, remove, substring, dotall, see, abcabc123abc, known, param, unlike, abcabc, single-line, passed, perl, regular, expression, abc, may, also, replaceall, (?s)&lt;.*&gt;, removepattern, &lt;.*&gt;, stringutils, single, processed, removeall, a&lt;__&gt;, syntax, removes, (?s) 
+
+
+@Deprecated
+public static String removeAll(final String text, final String regex) {
+    return RegExUtils.removeAll(text, regex);
+}
+*********************************
+
+#### Score: 4.82681
+
+
+#### Java Tokens: exception, equivalent, added, use, deprecated, moved, replace, prepend, empty, reference, mode, java, compile, reg, utils, text, given, pre, method, replacefirst, &lt;__&gt;b, abcbc, matcher, no-op, matches, abcabc123, cabc, input, regex, util, [a-z]+, safe, matched, replacement, option, since, code, string, [a-z], regexutils, line, automatically, pattern, link, patternsyntaxexception, remove, substring, dotall, see, abcabc123abc, known, param, abcbc123, abcabc, single-line, passed, perl, regular, expression, abc, may, cbc, also, (?s)&lt;.*&gt;, &lt;.*&gt;, stringutils, single, processed, removefirst, abc123abc, a&lt;__&gt;, syntax, removes, first, (?s) 
+
+
+@Deprecated
+public static String removeFirst(final String text, final String regex) {
+    return replaceFirst(text, regex, EMPTY);
+}
+*********************************
+
+#### Score: 4.69832
+
+
+#### Java Tokens: exception, equivalent, added, use, deprecated, moved, replace, prepend, abc123, reference, mode, mos, lorem, java, compile, reg, utils, abc___123, text, replacements, given, pre, method, matcher, no-op, _$2, matches, abcabc123, [^a-z0-9]+, cabc, input, regex, &lt;__&gt;, util, substituted, safe, ipsum, matched, zzz, replacement, option, since, code, abc_123, string, regexutils, [a-z], line, automatically, pattern, link, patternsyntaxexception, substring, dotall, dolor, search, see, known, param, unlike, abcabc, single-line, passed, perl, regular, sit, expression, abc, may, replaces, lorem_ipsum_dolor_sit, match, also, replaceall, (?s)&lt;.*&gt;, &lt;.*&gt;, stringutils, single, processed, +)([a-z]+), syntax, (?s), replacepattern, zzazzbzzczz 
+
+
+@Deprecated
+public static String replaceAll(final String text, final String regex, final String replacement) {
+    return RegExUtils.replaceAll(text, regex, replacement);
+}
+*********************************
+
+#### Score: 4.69832
+
+
+#### Java Tokens: exception, equivalent, added, use, deprecated, moved, replace, prepend, reference, mode, zabc, mos, lorem, java, compile, reg, utils, text, given, pre, method, replacefirst, matcher, no-op, _$2, matches, abcabc123, [^a-z0-9]+, cabc, input, regex, &lt;__&gt;, util, substituted, safe, ipsum, matched, zzz, replacement, option, since, code, string, regexutils, [a-z], line, automatically, pattern, link, patternsyntaxexception, substring, dotall, dolor, zzabc, search, see, abcabc123abc, known, param, abcabc, single-line, passed, perl, regular, sit, expression, abc, may, replaces, match, also, abc_123abc, (?s)&lt;.*&gt;, abc_bc123, &lt;.*&gt;, stringutils, single, processed, abc123abc, +)([a-z]+), syntax, first, (?s), lorem_ipsum 
+
+
+@Deprecated
+public static String replaceFirst(final String text, final String regex, final String replacement) {
+    return RegExUtils.replaceFirst(text, regex, replacement);
+}
+*********************************
+
+#### Score: 4.47646
+
+
+#### Java Tokens: startswith, ignorecase, compare, code, string, prefix, optionally, insensitive, charsequence, specified, see, java, param, indicates, utils, find, whether, ignore, starts, lang, case, charsequenceutils, regionmatches, may, length, check, matches, str, stringutils, sequence, char, region 
+
+
+private static boolean startsWith(final CharSequence str, final CharSequence prefix, final boolean ignoreCase) {
+    if (str == null || prefix == null) {
+        return str == prefix;
+    }
+    if (prefix.length() > str.length()) {
+        return false;
+    }
+    return CharSequenceUtils.regionMatches(str, ignoreCase, 0, prefix, 0, prefix.length());
+}
+*********************************
+
+#### Score: 4.33395
+
+
+#### Java Tokens: prepended, ignorecase, startswith, compare, string, prefix, additional, prepend, arrayutils, isempty, charsequence, empty, valid, array, param, indicates, utils, whether, missing, prepends, ignore, starts, case, otherwise, isnotempty, already, start, optional, str, stringutils, sequence, prefixes, prependifmissing, char, tostring 
+
+
+private static String prependIfMissing(final String str, final CharSequence prefix, final boolean ignoreCase, final CharSequence... prefixes) {
+    if (str == null || isEmpty(prefix) || startsWith(str, prefix, ignoreCase)) {
+        return str;
+    }
+    if (ArrayUtils.isNotEmpty(prefixes)) {
+        for (final CharSequence p : prefixes) {
+            if (startsWith(str, p, ignoreCase)) {
+                return str;
+            }
+        }
+    }
+    return prefix.toString() + str;
+}
+*********************************
+
+#### Score: 4.28859
+
+
+#### Java Tokens: ignorecase, suffixes, compare, string, additional, terminators, arrayutils, endswith, suffix, isempty, charsequence, empty, valid, appended, array, param, indicates, utils, whether, ends, missing, ignore, end, appendifmissing, case, otherwise, isnotempty, already, optional, appends, str, stringutils, sequence, char, tostring, append 
+
+
+private static String appendIfMissing(final String str, final CharSequence suffix, final boolean ignoreCase, final CharSequence... suffixes) {
+    if (str == null || isEmpty(suffix) || endsWith(str, suffix, ignoreCase)) {
+        return str;
+    }
+    if (ArrayUtils.isNotEmpty(suffixes)) {
+        for (final CharSequence s : suffixes) {
+            if (endsWith(str, s, ignoreCase)) {
+                return str;
+            }
+        }
+    }
+    return str + suffix.toString();
+}

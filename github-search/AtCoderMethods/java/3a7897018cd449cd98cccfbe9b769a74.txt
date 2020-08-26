@@ -1,0 +1,6 @@
+public void revert(int to) {
+    while (hp > to) {
+        upper[(int) (hist[hp - 1] >>> 32)] = ((int) hist[hp - 1]) - offset;
+        hp--;
+    }
+}

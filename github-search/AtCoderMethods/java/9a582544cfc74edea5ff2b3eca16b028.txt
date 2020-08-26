@@ -1,0 +1,13 @@
+public long upperBound(long begin, long end, LongChecker check) {
+    long l = begin - 1;
+    long r = end;
+    while (r - l > 1) {
+        long m = (r + l) / 2;
+        if (check.check(m)) {
+            l = m;
+        } else {
+            r = m;
+        }
+    }
+    return l;
+}

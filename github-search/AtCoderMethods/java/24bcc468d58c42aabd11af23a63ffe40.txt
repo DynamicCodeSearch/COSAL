@@ -1,0 +1,26 @@
+private static void solve() {
+    char[] s = sc.next().toCharArray();
+    char[] t = sc.next().toCharArray();
+    int ns = s.length;
+    int nt = t.length;
+    char[] st = new char[ns + 1];
+    char[] tt = new char[nt + 1];
+    for (int i = 0; i < ns; i++) {
+        st[i + 1] = tr(st[i], s[i]);
+    }
+    for (int i = 0; i < nt; i++) {
+        tt[i + 1] = tr(tt[i], t[i]);
+    }
+    int q = sc.nextInt();
+    for (int i = 0; i < q; i++) {
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        int c = sc.nextInt();
+        int d = sc.nextInt();
+        if (rtr(st[a - 1], st[b]) == rtr(tt[c - 1], tt[d])) {
+            pr.println("YES");
+        } else {
+            pr.println("NO");
+        }
+    }
+}

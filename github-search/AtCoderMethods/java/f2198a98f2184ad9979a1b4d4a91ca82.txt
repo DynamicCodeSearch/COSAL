@@ -1,0 +1,28 @@
+public static void main(String[] args) throws Exception {
+    int n = sc.nextInt();
+    int k = sc.nextInt();
+    int[] d = new int[10];
+    for (int i = 0; i < k; i++) {
+        d[sc.nextInt()]++;
+    }
+    int ans = n;
+    while (true) {
+        String x = String.valueOf(ans);
+        int z = String.valueOf(ans).length();
+        boolean flag = true;
+        for (int i = 0; i < z; i++) {
+            int y = (int) (x.charAt(i) - '0');
+            if (d[y] != 0) {
+                flag = false;
+            }
+        }
+        if (flag) {
+            break;
+        }
+        ans++;
+    }
+    out.println(ans);
+    out.flush();
+    sc.close();
+    out.close();
+}

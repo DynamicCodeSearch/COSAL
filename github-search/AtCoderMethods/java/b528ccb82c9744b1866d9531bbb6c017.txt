@@ -1,0 +1,105 @@
+private char[][] beforeReduction(char[][] pic, int H, int W) {
+    char[][] ans = new char[H][W];
+    if (W == 1 && H == 1)
+        ans[0][0] = pic[0][0];
+    else if (W == 1) {
+        for (int i = 0; i < H; i++) {
+            if (pic[i][0] == '#')
+                if (i == 0) {
+                    if (pic[i + 1][0] == '#')
+                        ans[i][0] = '#';
+                    else
+                        ans[i][0] = '.';
+                } else if (i == H - 1) {
+                    if (pic[i - 1][0] == '#')
+                        ans[i][0] = '#';
+                    else
+                        ans[i][0] = '.';
+                } else {
+                    if (pic[i - 1][0] == '#' && pic[i + 1][0] == '#')
+                        ans[i][0] = '#';
+                    else
+                        ans[i][0] = '.';
+                }
+            else
+                ans[i][0] = '.';
+        }
+    } else if (H == 1) {
+        for (int j = 0; j < W; j++) {
+            if (pic[0][j] == '#')
+                if (j == 0) {
+                    if (pic[0][j + 1] == '#')
+                        ans[0][j] = '#';
+                    else
+                        ans[0][j] = '.';
+                } else if (j == W - 1) {
+                    if (pic[0][j - 1] == '#')
+                        ans[0][j] = '#';
+                    else
+                        ans[0][j] = '.';
+                } else {
+                    if (pic[0][j - 1] == '#' && pic[0][j + 1] == '#')
+                        ans[0][j] = '#';
+                    else
+                        ans[0][j] = '.';
+                }
+            else
+                ans[0][j] = '.';
+        }
+    } else {
+        for (int i = 0; i < H; i++) {
+            for (int j = 0; j < W; j++) {
+                if (pic[i][j] == '#') {
+                    if (i == 0 && j == 0) {
+                        if (pic[i + 1][j] == '#' && pic[i][j + 1] == '#' && pic[i + 1][j + 1] == '#')
+                            ans[i][j] = '#';
+                        else
+                            ans[i][j] = '.';
+                    } else if (i == 0 && j == W - 1) {
+                        if (pic[i][j - 1] == '#' && pic[i + 1][j] == '#' && pic[i + 1][j - 1] == '#')
+                            ans[i][j] = '#';
+                        else
+                            ans[i][j] = '.';
+                    } else if (i == H - 1 && j == 0) {
+                        if (pic[i - 1][j] == '#' && pic[i][j + 1] == '#' && pic[i - 1][j + 1] == '#')
+                            ans[i][j] = '#';
+                        else
+                            ans[i][j] = '.';
+                    } else if (i == H - 1 && j == W - 1) {
+                        if (pic[i][j - 1] == '#' && pic[i - 1][j] == '#' && pic[i - 1][j - 1] == '#')
+                            ans[i][j] = '#';
+                        else
+                            ans[i][j] = '.';
+                    } else if (i == 0) {
+                        if (pic[i][j - 1] == '#' && pic[i + 1][j - 1] == '#' && pic[i + 1][j] == '#' && pic[i + 1][j + 1] == '#' && pic[i][j + 1] == '#')
+                            ans[i][j] = '#';
+                        else
+                            ans[i][j] = '.';
+                    } else if (i == H - 1) {
+                        if (pic[i][j - 1] == '#' && pic[i - 1][j - 1] == '#' && pic[i - 1][j] == '#' && pic[i - 1][j + 1] == '#' && pic[i][j + 1] == '#')
+                            ans[i][j] = '#';
+                        else
+                            ans[i][j] = '.';
+                    } else if (j == 0) {
+                        if (pic[i - 1][j] == '#' && pic[i - 1][j + 1] == '#' && pic[i][j + 1] == '#' && pic[i + 1][j + 1] == '#' && pic[i + 1][j] == '#')
+                            ans[i][j] = '#';
+                        else
+                            ans[i][j] = '.';
+                    } else if (j == W - 1) {
+                        if (pic[i - 1][j] == '#' && pic[i - 1][j - 1] == '#' && pic[i][j - 1] == '#' && pic[i + 1][j - 1] == '#' && pic[i + 1][j] == '#')
+                            ans[i][j] = '#';
+                        else
+                            ans[i][j] = '.';
+                    } else {
+                        if (pic[i - 1][j - 1] == '#' && pic[i - 1][j] == '#' && pic[i - 1][j + 1] == '#' && pic[i][j - 1] == '#' && pic[i][j + 1] == '#' && pic[i + 1][j - 1] == '#' && pic[i + 1][j] == '#' && pic[i + 1][j + 1] == '#')
+                            ans[i][j] = '#';
+                        else
+                            ans[i][j] = '.';
+                    }
+                } else
+                    ans[i][j] = '.';
+            }
+        }
+    }
+    return ans;
+}

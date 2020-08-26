@@ -1,0 +1,25 @@
+public static void main(String[] args) throws Exception {
+    boolean[] flag = new boolean[8];
+    int count = 0;
+    Arrays.fill(flag, false);
+    int n = sc.nextInt();
+    for (int i = 0; i < n; i++) {
+        int x = sc.nextInt();
+        if (x >= 3200) {
+            count++;
+        } else {
+            flag[x / 400] = true;
+        }
+    }
+    int ans = 0;
+    for (int i = 0; i < 8; i++) {
+        if (flag[i]) {
+            ans++;
+        }
+    }
+    out.println((Math.max(ans, 1)) + " " + (
+    ans + count));
+    out.flush();
+    sc.close();
+    out.close();
+}

@@ -1,0 +1,12 @@
+static void solve(int current_node, node[] Node, int M) {
+    node N = Node[current_node];
+    for (link Link : N.Link) {
+        int next_node = Link.to;
+        if (Node[next_node].visit == 1)
+            continue;
+        N.visit = 1;
+        solve(next_node, Node, M);
+        N.WH_cnt = (N.WH_cnt * (Node[next_node].WH_cnt + Node[next_node].BL_cnt)) % M;
+        N.BL_cnt = (N.BL_cnt * Node[next_node].WH_cnt) % M;
+    }
+}

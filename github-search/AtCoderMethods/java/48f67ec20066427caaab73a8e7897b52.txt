@@ -1,0 +1,24 @@
+public void run() {
+    InputReader sc = new InputReader(System.in);
+    PrintWriter w = new PrintWriter(System.out);
+    int n = sc.nextInt();
+    int[][] arr = new int[n][26];
+    for (int i = 0; i < n; i++) {
+        char[] c = sc.next().toCharArray();
+        for (char ch : c) {
+            arr[i][ch - 'a']++;
+        }
+    }
+    for (int i = 0; i < 26; i++) {
+        char ch = (char) (i + 'a');
+        int min = Integer.MAX_VALUE;
+        for (int j = 0; j < n; j++) {
+            min = min(min, arr[j][i]);
+        }
+        if (min == Integer.MAX_VALUE)
+            continue;
+        while (min-- > 0) w.print(ch);
+    }
+    w.println();
+    w.close();
+}

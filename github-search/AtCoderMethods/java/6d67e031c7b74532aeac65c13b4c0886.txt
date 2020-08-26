@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    long K = sc.nextLong();
+    int[][] arr = new int[N][2];
+    for (int i = 0; i < N; i++) {
+        arr[i][0] = sc.nextInt();
+        arr[i][1] = sc.nextInt();
+    }
+    Arrays.sort(arr, new Comparator<int[]>() {
+
+        public int compare(int[] o1, int[] o2) {
+            return o1[0] - o2[0];
+        }
+    });
+    long sum = 0;
+    int index = 0;
+    while (sum < K) {
+        sum += arr[index][1];
+        index++;
+    }
+    System.out.println(arr[index - 1][0]);
+}

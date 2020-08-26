@@ -1,0 +1,26 @@
+public static void main(String[] arg) {
+    Scanner scanner = new Scanner(System.in);
+    int n = Integer.valueOf(scanner.nextLine());
+    ArrayList<String> stringList = new ArrayList<>();
+    for (int i = 0; i < n; i++) {
+        stringList.add(scanner.nextLine());
+    }
+    ArrayList<String> commonList = new ArrayList<String>(Arrays.asList(stringList.get(0).split("")));
+    for (int i = 1; i < n; i++) {
+        StringBuffer sb = new StringBuffer(stringList.get(i));
+        for (int j = 0; j < commonList.size(); j++) {
+            String s = commonList.get(j);
+            if (sb.indexOf(s) > -1) {
+                sb.deleteCharAt(sb.indexOf(s));
+            } else {
+                commonList.remove(j);
+                j--;
+            }
+        }
+    }
+    String[] commonArray = commonList.toArray(new String[commonList.size()]);
+    Arrays.sort(commonArray);
+    StringBuffer ans = new StringBuffer();
+    for (String s : commonArray) ans.append(s);
+    System.out.println(ans.toString());
+}

@@ -1,0 +1,14 @@
+private static void paint(Tree tree, Color[] color, int parent, int node) {
+    Node child = tree.first(node);
+    if (color[node].count > 1) {
+        if (color[node].start < color[parent].start)
+            color[node].start = color[parent].start - 1;
+        else
+            color[node].start = color[parent].start + 1;
+    }
+    while (child != null) {
+        if (child.node != parent)
+            paint(tree, color, node, child.node);
+        child = tree.next(child);
+    }
+}

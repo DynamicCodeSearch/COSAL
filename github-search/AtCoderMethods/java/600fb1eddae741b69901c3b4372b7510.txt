@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    
+    Scanner scan = new Scanner(System.in);
+    int H = scan.nextInt();
+    int W = scan.nextInt();
+    String[][] result = new String[H + 2][W + 2];
+    for (int i = 0; i < H + 2; i++) {
+        for (int j = 0; j < W + 2; j++) {
+            result[i][j] = "#";
+        }
+    }
+    String[] sub = new String[H];
+    for (int i = 0; i < H; i++) {
+        sub[i] = scan.next();
+        for (int j = 0; j < W; j++) {
+            result[i + 1][j + 1] = sub[i].substring(j, j + 1);
+        }
+    }
+    for (int i = 0; i < H + 2; i++) {
+        for (int j = 0; j < W + 2; j++) {
+            System.out.print(result[i][j]);
+        }
+        System.out.println();
+    }
+}

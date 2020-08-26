@@ -1,0 +1,85 @@
+private static void solve() {
+    Scanner sc = new Scanner(System.in);
+    PrintWriter pr = new PrintWriter(System.out);
+    int H = sc.nextInt();
+    int W = sc.nextInt();
+    int[] h = { -1, -1, -1, 0, 0, 1, 1, 1 };
+    int[] w = { -1, 0, 1, -1, 1, -1, 0, 1 };
+    char[][] map = new char[H][W];
+    char[][] map2 = new char[H][W];
+    for (int i = 0; i < H; i++) {
+        for (int s = 0; s < W; s++) {
+            map2[i][s] = '#';
+        }
+    }
+    for (int i = 0; i < H; i++) {
+        String tmp = sc.next();
+        for (int s = 0; s < W; s++) {
+            map[i][s] = tmp.charAt(s);
+            if (tmp.charAt(s) == '.') {
+                map2[i][s] = '.';
+                for (int k = 0; k < 8; k++) {
+                    if (i + h[k] >= 0 && i + h[k] < H && s + w[k] >= 0 && s + w[k] < W) {
+                        map2[i + h[k]][s + w[k]] = '.';
+                    }
+                }
+            }
+        }
+    }
+    char[][] map3 = new char[H][W];
+    for (int i = 0; i < H; i++) {
+        for (int s = 0; s < W; s++) {
+            map3[i][s] = '.';
+        }
+    }
+    for (int i = 0; i < H; i++) {
+        for (int s = 0; s < W; s++) {
+            if (map2[i][s] == '#') {
+                map3[i][s] = '#';
+                for (int k = 0; k < 8; k++) {
+                    if (i + h[k] >= 0 && i + h[k] < H && s + w[k] >= 0 && s + w[k] < W) {
+                        map3[i + h[k]][s + w[k]] = '#';
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    boolean result = true;
+    for (int i = 0; i < H; i++) {
+        for (int s = 0; s < W; s++) {
+            if (map[i][s] != map3[i][s]) {
+                result = false;
+            }
+        }
+    }
+    if (result) {
+        System.out.println("possible");
+        for (int i = 0; i < H; i++) {
+            for (int s = 0; s < W; s++) {
+                System.out.print(map2[i][s]);
+            }
+            System.out.println();
+        }
+    } else {
+        System.out.println("impossible");
+    }
+    sc.close();
+}

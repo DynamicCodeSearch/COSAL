@@ -1,0 +1,36 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    int x = -1;
+    int y = -1;
+    int[] groupA = { 1, 3, 5, 7, 8, 10, 12 };
+    int[] groupB = { 4, 6, 9, 11 };
+    if (a == 2) {
+        x = 2;
+    }
+    if (b == 2) {
+        y = 2;
+    }
+    for (int i = 0; i < groupA.length; i++) {
+        if (groupA[i] == a) {
+            x = 0;
+        }
+        if (groupA[i] == b) {
+            y = 0;
+        }
+    }
+    for (int i = 0; i < groupB.length; i++) {
+        if (groupB[i] == a) {
+            x = 1;
+        }
+        if (groupB[i] == b) {
+            y = 1;
+        }
+    }
+    if (x == y && x != -1 && y != -1) {
+        System.out.println("Yes");
+    } else {
+        System.out.println("No");
+    }
+}

@@ -1,0 +1,16 @@
+void run() {
+    N = sc.nextInt();
+    l = new ArrayList[N];
+    dp = new long[N][2];
+    for (int i = 0; i < N; i++) {
+        l[i] = new ArrayList<>();
+    }
+    for (int i = 0; i < N - 1; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        l[a].add(b);
+        l[b].add(a);
+    }
+    dfs(0, -1);
+    System.out.println((dp[0][0] + dp[0][1]) % MOD);
+}

@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner reader = new Scanner(System.in);
+    int height = reader.nextInt();
+    int width = reader.nextInt();
+    String[] inputArray = new String[height];
+    for (int i = 0; i < height; i++) {
+        inputArray[i] = reader.next();
+    }
+    System.out.println(String.join("", Collections.nCopies(width + 2, "#")));
+    for (int i = 0; i < height; i++) {
+        System.out.println("#" + inputArray[i] + "#");
+    }
+    System.out.println(String.join("", Collections.nCopies(width + 2, "#")));
+    reader.close();
+}

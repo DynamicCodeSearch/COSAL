@@ -1,0 +1,19 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+    int N = Integer.parseInt(in.readLine());
+    Long[] a = Arrays.stream(in.readLine().split(" ")).map(Long::parseLong).toArray(Long[]::new);
+    long sum = 0;
+    for (int i = 0; i < N; i++) {
+        sum += a[i];
+    }
+    long min = Long.MAX_VALUE;
+    long sunuke = sum, arai = 0;
+    for (int i = 0; i < N - 1; i++) {
+        sunuke -= a[i];
+        arai += a[i];
+        if (Math.abs(sunuke - arai) < min) {
+            min = Math.abs(sunuke - arai);
+        }
+    }
+    System.out.println(min);
+}

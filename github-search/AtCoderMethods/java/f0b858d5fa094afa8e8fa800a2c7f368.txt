@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    Scanner cin = new Scanner(System.in);
+    PrintWriter cout = new PrintWriter(System.out);
+    int N = Integer.parseInt(cin.next());
+    int M = Integer.parseInt(cin.next());
+    int T = Integer.parseInt(cin.next());
+    int[] A = new int[N];
+    for (int i = 0; i < N; i++) A[i] = Integer.parseInt(cin.next());
+    int[] a = new int[M];
+    int[] b = new int[M];
+    int[] c = new int[M];
+    for (int i = 0; i < M; i++) {
+        a[i] = Integer.parseInt(cin.next());
+        b[i] = Integer.parseInt(cin.next());
+        c[i] = Integer.parseInt(cin.next());
+        a[i]--;
+        b[i]--;
+    }
+    long[] dist1 = dijkstra(N, M, a, b, c);
+    long[] dist2 = dijkstra(N, M, b, a, c);
+    long ans = 0;
+    for (int i = 0; i < N; i++) {
+        if (T < dist1[i] + dist2[i])
+            continue;
+        ans = Math.max(ans, (T - dist1[i] - dist2[i]) * A[i]);
+    }
+    cout.println(ans);
+    cout.flush();
+}

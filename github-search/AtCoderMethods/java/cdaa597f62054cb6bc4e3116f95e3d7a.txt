@@ -1,0 +1,9 @@
+private void build() {
+    if (g == null) {
+        g = new Dinic.AdjListGraph(level.length, 2 * es.size() * 2);
+        for (int[] e : es) {
+            g.addEdge(e[0], e[1], e[2], g.m + 1);
+            g.addEdge(e[1], e[0], 0, g.m - 1);
+        }
+    }
+}

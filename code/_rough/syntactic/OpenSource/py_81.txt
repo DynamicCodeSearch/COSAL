@@ -1,0 +1,602 @@
+### Py functions
+
+def check_unused_args(self, used_args, args, kwargs):
+    pass
+
+*********************************
+
+#### Score: 0.37601
+
+
+/**
+ * <p>Joins the elements of the provided {@code Iterator} into
+ * a single String containing the provided elements.</p>
+ *
+ * <p>No delimiter is added before or after the list. Null objects or empty
+ * strings within the iteration are represented by empty strings.</p>
+ *
+ * <p>See the examples here: {@link #join(Object[],char)}. </p>
+ *
+ * @param iterator  the {@code Iterator} of values to join together, may be null
+ * @param separator  the separator character to use
+ * @return the joined String, {@code null} if null iterator input
+ * @since 2.0
+ */
+public static String join(final Iterator<?> iterator, final char separator) {
+    // handle null, zero and one elements before building a buffer
+    if (iterator == null) {
+        return null;
+    }
+    if (!iterator.hasNext()) {
+        return EMPTY;
+    }
+    final Object first = iterator.next();
+    if (!iterator.hasNext()) {
+        return Objects.toString(first, EMPTY);
+    }
+    // two or more elements
+    // Java default is 16, probably too small
+    final StringBuilder buf = new StringBuilder(STRING_BUILDER_SIZE);
+    if (first != null) {
+        buf.append(first);
+    }
+    while (iterator.hasNext()) {
+        buf.append(separator);
+        final Object obj = iterator.next();
+        if (obj != null) {
+            buf.append(obj);
+        }
+    }
+    return buf.toString();
+}
+*********************************
+
+#### Score: 0.37601
+
+
+// Replacing
+// -----------------------------------------------------------------------
+/**
+ * <p>Replaces a String with another String inside a larger String, once.</p>
+ *
+ * <p>A {@code null} reference passed to this method is a no-op.</p>
+ *
+ * <pre>
+ * StringUtils.replaceOnce(null, *, *)        = null
+ * StringUtils.replaceOnce("", *, *)          = ""
+ * StringUtils.replaceOnce("any", null, *)    = "any"
+ * StringUtils.replaceOnce("any", *, null)    = "any"
+ * StringUtils.replaceOnce("any", "", *)      = "any"
+ * StringUtils.replaceOnce("aba", "a", null)  = "aba"
+ * StringUtils.replaceOnce("aba", "a", "")    = "ba"
+ * StringUtils.replaceOnce("aba", "a", "z")   = "zba"
+ * </pre>
+ *
+ * @see #replace(String text, String searchString, String replacement, int max)
+ * @param text  text to mos.search and replace in, may be null
+ * @param searchString  the String to mos.search for, may be null
+ * @param replacement  the String to replace with, may be null
+ * @return the text with any replacements processed,
+ *  {@code null} if null String input
+ */
+public static String replaceOnce(final String text, final String searchString, final String replacement) {
+    return replace(text, searchString, replacement, 1);
+}
+/**
+ * <p>Replaces all occurrences of a String within another String.</p>
+ *
+ * <p>A {@code null} reference passed to this method is a no-op.</p>
+ *
+ * <pre>
+ * StringUtils.replace(null, *, *)        = null
+ * StringUtils.replace("", *, *)          = ""
+ * StringUtils.replace("any", null, *)    = "any"
+ * StringUtils.replace("any", *, null)    = "any"
+ * StringUtils.replace("any", "", *)      = "any"
+ * StringUtils.replace("aba", "a", null)  = "aba"
+ * StringUtils.replace("aba", "a", "")    = "b"
+ * StringUtils.replace("aba", "a", "z")   = "zbz"
+ * </pre>
+ *
+ * @see #replace(String text, String searchString, String replacement, int max)
+ * @param text  text to mos.search and replace in, may be null
+ * @param searchString  the String to mos.search for, may be null
+ * @param replacement  the String to replace it with, may be null
+ * @return the text with any replacements processed,
+ *  {@code null} if null String input
+ */
+public static String replace(final String text, final String searchString, final String replacement) {
+    return replace(text, searchString, replacement, -1);
+}
+/**
+ * <p>Case insensitively replaces all occurrences of a String within another String.</p>
+ *
+ * <p>A {@code null} reference passed to this method is a no-op.</p>
+ *
+ * <pre>
+ * StringUtils.replaceIgnoreCase(null, *, *)        = null
+ * StringUtils.replaceIgnoreCase("", *, *)          = ""
+ * StringUtils.replaceIgnoreCase("any", null, *)    = "any"
+ * StringUtils.replaceIgnoreCase("any", *, null)    = "any"
+ * StringUtils.replaceIgnoreCase("any", "", *)      = "any"
+ * StringUtils.replaceIgnoreCase("aba", "a", null)  = "aba"
+ * StringUtils.replaceIgnoreCase("abA", "A", "")    = "b"
+ * StringUtils.replaceIgnoreCase("aba", "A", "z")   = "zbz"
+ * </pre>
+ *
+ * @see #replaceIgnoreCase(String text, String searchString, String replacement, int max)
+ * @param text  text to mos.search and replace in, may be null
+ * @param searchString  the String to mos.search for (case insensitive), may be null
+ * @param replacement  the String to replace it with, may be null
+ * @return the text with any replacements processed,
+ *  {@code null} if null String input
+ * @since 3.5
+ */
+public static String replaceIgnoreCase(final String text, final String searchString, final String replacement) {
+    return replaceIgnoreCase(text, searchString, replacement, -1);
+}
+*********************************
+
+#### Score: 0.37601
+
+
+// IndexOfAny strings
+// -----------------------------------------------------------------------
+/**
+ * <p>Find the first index of any of a set of potential substrings.</p>
+ *
+ * <p>A {@code null} CharSequence will return {@code -1}.
+ * A {@code null} or zero length mos.search array will return {@code -1}.
+ * A {@code null} mos.search array entry will be ignored, but a mos.search
+ * array containing "" will return {@code 0} if {@code str} is not
+ * null. This method uses {@link String#indexOf(String)} if possible.</p>
+ *
+ * <pre>
+ * StringUtils.indexOfAny(null, *)                      = -1
+ * StringUtils.indexOfAny(*, null)                      = -1
+ * StringUtils.indexOfAny(*, [])                        = -1
+ * StringUtils.indexOfAny("zzabyycdxx", ["ab", "cd"])   = 2
+ * StringUtils.indexOfAny("zzabyycdxx", ["cd", "ab"])   = 2
+ * StringUtils.indexOfAny("zzabyycdxx", ["mn", "op"])   = -1
+ * StringUtils.indexOfAny("zzabyycdxx", ["zab", "aby"]) = 1
+ * StringUtils.indexOfAny("zzabyycdxx", [""])           = 0
+ * StringUtils.indexOfAny("", [""])                     = 0
+ * StringUtils.indexOfAny("", ["a"])                    = -1
+ * </pre>
+ *
+ * @param str  the CharSequence to check, may be null
+ * @param searchStrs  the CharSequences to mos.search for, may be null
+ * @return the first index of any of the searchStrs in str, -1 if no match
+ * @since 3.0 Changed signature from indexOfAny(String, String[]) to indexOfAny(CharSequence, CharSequence...)
+ */
+public static int indexOfAny(final CharSequence str, final CharSequence... searchStrs) {
+    if (str == null || searchStrs == null) {
+        return INDEX_NOT_FOUND;
+    }
+    // String's can't have a MAX_VALUEth index.
+    int ret = Integer.MAX_VALUE;
+    int tmp = 0;
+    for (final CharSequence mos.search : searchStrs) {
+        if (mos.search == null) {
+            continue;
+        }
+        tmp = CharSequenceUtils.indexOf(str, mos.search, 0);
+        if (tmp == INDEX_NOT_FOUND) {
+            continue;
+        }
+        if (tmp < ret) {
+            ret = tmp;
+        }
+    }
+    return ret == Integer.MAX_VALUE ? INDEX_NOT_FOUND : ret;
+}
+*********************************
+
+#### Score: 0.37601
+
+
+/**
+ * <p>Compare two Strings lexicographically, ignoring case differences,
+ * as per {@link String#compareToIgnoreCase(String)}, returning :</p>
+ * <ul>
+ *  <li>{@code int = 0}, if {@code str1} is equal to {@code str2} (or both {@code null})</li>
+ *  <li>{@code int < 0}, if {@code str1} is less than {@code str2}</li>
+ *  <li>{@code int > 0}, if {@code str1} is greater than {@code str2}</li>
+ * </ul>
+ *
+ * <p>This is a {@code null} safe version of :</p>
+ * <blockquote><pre>str1.compareToIgnoreCase(str2)</pre></blockquote>
+ *
+ * <p>{@code null} inputs are handled according to the {@code nullIsLess} parameter.
+ * Two {@code null} references are considered equal.
+ * Comparison is case insensitive.</p>
+ *
+ * <pre>
+ * StringUtils.compareIgnoreCase(null, null, *)     = 0
+ * StringUtils.compareIgnoreCase(null , "a", true)  &lt; 0
+ * StringUtils.compareIgnoreCase(null , "a", false) &gt; 0
+ * StringUtils.compareIgnoreCase("a", null, true)   &gt; 0
+ * StringUtils.compareIgnoreCase("a", null, false)  &lt; 0
+ * StringUtils.compareIgnoreCase("abc", "abc", *)   = 0
+ * StringUtils.compareIgnoreCase("abc", "ABC", *)   = 0
+ * StringUtils.compareIgnoreCase("a", "b", *)       &lt; 0
+ * StringUtils.compareIgnoreCase("b", "a", *)       &gt; 0
+ * StringUtils.compareIgnoreCase("a", "B", *)       &lt; 0
+ * StringUtils.compareIgnoreCase("A", "b", *)       &lt; 0
+ * StringUtils.compareIgnoreCase("ab", "abc", *)    &lt; 0
+ * </pre>
+ *
+ * @see String#compareToIgnoreCase(String)
+ * @param str1  the String to compare from
+ * @param str2  the String to compare to
+ * @param nullIsLess  whether consider {@code null} value less than non-{@code null} value
+ * @return &lt; 0, 0, &gt; 0, if {@code str1} is respectively less, equal ou greater than {@code str2},
+ *          ignoring case differences.
+ * @since 3.5
+ */
+public static int compareIgnoreCase(final String str1, final String str2, final boolean nullIsLess) {
+    if (str1 == str2) {
+        return 0;
+    }
+    if (str1 == null) {
+        return nullIsLess ? -1 : 1;
+    }
+    if (str2 == null) {
+        return nullIsLess ? 1 : -1;
+    }
+    return str1.compareToIgnoreCase(str2);
+}
+*********************************
+
+#### Score: 0.37601
+
+
+// Equals
+// -----------------------------------------------------------------------
+/**
+ * <p>Compares two CharSequences, returning {@code true} if they represent
+ * equal sequences of characters.</p>
+ *
+ * <p>{@code null}s are handled without exceptions. Two {@code null}
+ * references are considered to be equal. The comparison is <strong>case sensitive</strong>.</p>
+ *
+ * <pre>
+ * StringUtils.equals(null, null)   = true
+ * StringUtils.equals(null, "abc")  = false
+ * StringUtils.equals("abc", null)  = false
+ * StringUtils.equals("abc", "abc") = true
+ * StringUtils.equals("abc", "ABC") = false
+ * </pre>
+ *
+ * @param cs1  the first CharSequence, may be {@code null}
+ * @param cs2  the second CharSequence, may be {@code null}
+ * @return {@code true} if the CharSequences are equal (case-sensitive), or both {@code null}
+ * @since 3.0 Changed signature from equals(String, String) to equals(CharSequence, CharSequence)
+ * @see Object#equals(Object)
+ * @see #equalsIgnoreCase(CharSequence, CharSequence)
+ */
+public static boolean equals(final CharSequence cs1, final CharSequence cs2) {
+    if (cs1 == cs2) {
+        return true;
+    }
+    if (cs1 == null || cs2 == null) {
+        return false;
+    }
+    if (cs1.length() != cs2.length()) {
+        return false;
+    }
+    if (cs1 instanceof String && cs2 instanceof String) {
+        return cs1.equals(cs2);
+    }
+    // Step-wise comparison
+    final int length = cs1.length();
+    for (int i = 0; i < length; i++) {
+        if (cs1.charAt(i) != cs2.charAt(i)) {
+            return false;
+        }
+    }
+    return true;
+}
+*********************************
+
+#### Score: 0.37601
+
+
+public static void main(String[] args) {
+    int i;
+    for (i = 0; i < 10; i++) {
+        System.out.println(i);
+    }
+    System.out.println(i);
+}
+*********************************
+
+#### Score: 0.37601
+
+
+/**
+ * <p>Capitalizes a String changing the first character to title case as
+ * per {@link Character#toTitleCase(int)}. No other characters are changed.</p>
+ *
+ * <p>For a word based algorithm, see {@link org.apache.commons.lang3.text.WordUtils#capitalize(String)}.
+ * A {@code null} input String returns {@code null}.</p>
+ *
+ * <pre>
+ * StringUtils.capitalize(null)  = null
+ * StringUtils.capitalize("")    = ""
+ * StringUtils.capitalize("cat") = "Cat"
+ * StringUtils.capitalize("cAt") = "CAt"
+ * StringUtils.capitalize("'cat'") = "'cat'"
+ * </pre>
+ *
+ * @param str the String to capitalize, may be null
+ * @return the capitalized String, {@code null} if null String input
+ * @see org.apache.commons.lang3.text.WordUtils#capitalize(String)
+ * @see #uncapitalize(String)
+ * @since 2.0
+ */
+public static String capitalize(final String str) {
+    int strLen = length(str);
+    if (strLen == 0) {
+        return str;
+    }
+    final int firstCodepoint = str.codePointAt(0);
+    final int newCodePoint = Character.toTitleCase(firstCodepoint);
+    if (firstCodepoint == newCodePoint) {
+        // already capitalized
+        return str;
+    }
+    // cannot be longer than the char array
+    final int[] newCodePoints = new int[strLen];
+    int outOffset = 0;
+    // copy the first codepoint
+    newCodePoints[outOffset++] = newCodePoint;
+    for (int inOffset = Character.charCount(firstCodepoint); inOffset < strLen; ) {
+        final int codepoint = str.codePointAt(inOffset);
+        // copy the remaining ones
+        newCodePoints[outOffset++] = codepoint;
+        inOffset += Character.charCount(codepoint);
+    }
+    return new String(newCodePoints, 0, outOffset);
+}
+*********************************
+
+#### Score: 0.37601
+
+
+/**
+ * <p>Compares two CharSequences, returning {@code true} if they represent
+ * equal sequences of characters, ignoring case.</p>
+ *
+ * <p>{@code null}s are handled without exceptions. Two {@code null}
+ * references are considered equal. The comparison is <strong>case insensitive</strong>.</p>
+ *
+ * <pre>
+ * StringUtils.equalsIgnoreCase(null, null)   = true
+ * StringUtils.equalsIgnoreCase(null, "abc")  = false
+ * StringUtils.equalsIgnoreCase("abc", null)  = false
+ * StringUtils.equalsIgnoreCase("abc", "abc") = true
+ * StringUtils.equalsIgnoreCase("abc", "ABC") = true
+ * </pre>
+ *
+ * @param cs1  the first CharSequence, may be {@code null}
+ * @param cs2  the second CharSequence, may be {@code null}
+ * @return {@code true} if the CharSequences are equal (case-insensitive), or both {@code null}
+ * @since 3.0 Changed signature from equalsIgnoreCase(String, String) to equalsIgnoreCase(CharSequence, CharSequence)
+ * @see #equals(CharSequence, CharSequence)
+ */
+public static boolean equalsIgnoreCase(final CharSequence cs1, final CharSequence cs2) {
+    if (cs1 == cs2) {
+        return true;
+    }
+    if (cs1 == null || cs2 == null) {
+        return false;
+    }
+    if (cs1.length() != cs2.length()) {
+        return false;
+    }
+    return CharSequenceUtils.regionMatches(cs1, true, 0, cs2, 0, cs1.length());
+}
+*********************************
+
+#### Score: 0.37601
+
+
+/**
+ * <p>
+ * Joins the elements of the provided array into a single String containing the provided list of elements.
+ * </p>
+ *
+ * <p>
+ * No delimiter is added before or after the list. Null objects or empty strings within the array are represented
+ * by empty strings.
+ * </p>
+ *
+ * <pre>
+ * StringUtils.join(null, *)               = null
+ * StringUtils.join([], *)                 = ""
+ * StringUtils.join([null], *)             = ""
+ * StringUtils.join([1, 2, 3], ';')  = "1;2;3"
+ * StringUtils.join([1, 2, 3], null) = "123"
+ * </pre>
+ *
+ * @param array
+ *            the array of values to join together, may be null
+ * @param separator
+ *            the separator character to use
+ * @param startIndex
+ *            the first index to start joining from. It is an error to pass in a start index past the end of the
+ *            array
+ * @param endIndex
+ *            the index to stop joining from (exclusive). It is an error to pass in an end index past the end of
+ *            the array
+ * @return the joined String, {@code null} if null array input
+ * @since 3.2
+ */
+public static String join(final byte[] array, final char separator, final int startIndex, final int endIndex) {
+    if (array == null) {
+        return null;
+    }
+    final int noOfItems = endIndex - startIndex;
+    if (noOfItems <= 0) {
+        return EMPTY;
+    }
+    final StringBuilder buf = newStringBuilder(noOfItems);
+    buf.append(array[startIndex]);
+    for (int i = startIndex + 1; i < endIndex; i++) {
+        buf.append(separator);
+        buf.append(array[i]);
+    }
+    return buf.toString();
+}
+/**
+ * <p>
+ * Joins the elements of the provided array into a single String containing the provided list of elements.
+ * </p>
+ *
+ * <p>
+ * No delimiter is added before or after the list. Null objects or empty strings within the array are represented
+ * by empty strings.
+ * </p>
+ *
+ * <pre>
+ * StringUtils.join(null, *)               = null
+ * StringUtils.join([], *)                 = ""
+ * StringUtils.join([null], *)             = ""
+ * StringUtils.join([1, 2, 3], ';')  = "1;2;3"
+ * StringUtils.join([1, 2, 3], null) = "123"
+ * </pre>
+ *
+ * @param array
+ *            the array of values to join together, may be null
+ * @param separator
+ *            the separator character to use
+ * @param startIndex
+ *            the first index to start joining from. It is an error to pass in a start index past the end of the
+ *            array
+ * @param endIndex
+ *            the index to stop joining from (exclusive). It is an error to pass in an end index past the end of
+ *            the array
+ * @return the joined String, {@code null} if null array input
+ * @since 3.2
+ */
+public static String join(final short[] array, final char separator, final int startIndex, final int endIndex) {
+    if (array == null) {
+        return null;
+    }
+    final int noOfItems = endIndex - startIndex;
+    if (noOfItems <= 0) {
+        return EMPTY;
+    }
+    final StringBuilder buf = newStringBuilder(noOfItems);
+    buf.append(array[startIndex]);
+    for (int i = startIndex + 1; i < endIndex; i++) {
+        buf.append(separator);
+        buf.append(array[i]);
+    }
+    return buf.toString();
+}
+/**
+ * <p>
+ * Joins the elements of the provided array into a single String containing the provided list of elements.
+ * </p>
+ *
+ * <p>
+ * No delimiter is added before or after the list. Null objects or empty strings within the array are represented
+ * by empty strings.
+ * </p>
+ *
+ * <pre>
+ * StringUtils.join(null, *)               = null
+ * StringUtils.join([], *)                 = ""
+ * StringUtils.join([null], *)             = ""
+ * StringUtils.join([1, 2, 3], ';')  = "1;2;3"
+ * StringUtils.join([1, 2, 3], null) = "123"
+ * </pre>
+ *
+ * @param array
+ *            the array of values to join together, may be null
+ * @param separator
+ *            the separator character to use
+ * @param startIndex
+ *            the first index to start joining from. It is an error to pass in a start index past the end of the
+ *            array
+ * @param endIndex
+ *            the index to stop joining from (exclusive). It is an error to pass in an end index past the end of
+ *            the array
+ * @return the joined String, {@code null} if null array input
+ * @since 3.2
+ */
+public static String join(final float[] array, final char separator, final int startIndex, final int endIndex) {
+    if (array == null) {
+        return null;
+    }
+    final int noOfItems = endIndex - startIndex;
+    if (noOfItems <= 0) {
+        return EMPTY;
+    }
+    final StringBuilder buf = newStringBuilder(noOfItems);
+    buf.append(array[startIndex]);
+    for (int i = startIndex + 1; i < endIndex; i++) {
+        buf.append(separator);
+        buf.append(array[i]);
+    }
+    return buf.toString();
+}
+*********************************
+
+#### Score: 0.37601
+
+
+/**
+ * <p>Swaps the case of a String changing upper and title case to
+ * lower case, and lower case to upper case.</p>
+ *
+ * <ul>
+ *  <li>Upper case character converts to Lower case</li>
+ *  <li>Title case character converts to Lower case</li>
+ *  <li>Lower case character converts to Upper case</li>
+ * </ul>
+ *
+ * <p>For a word based algorithm, see {@link org.apache.commons.lang3.text.WordUtils#swapCase(String)}.
+ * A {@code null} input String returns {@code null}.</p>
+ *
+ * <pre>
+ * StringUtils.swapCase(null)                 = null
+ * StringUtils.swapCase("")                   = ""
+ * StringUtils.swapCase("The dog has a BONE") = "tHE DOG HAS A bone"
+ * </pre>
+ *
+ * <p>NOTE: This method changed in Lang version 2.0.
+ * It no longer performs a word based algorithm.
+ * If you only use ASCII, you will notice no change.
+ * That functionality is available in org.apache.commons.lang3.text.WordUtils.</p>
+ *
+ * @param str  the String to swap case, may be null
+ * @return the changed String, {@code null} if null String input
+ */
+public static String swapCase(final String str) {
+    if (isEmpty(str)) {
+        return str;
+    }
+    final int strLen = str.length();
+    // cannot be longer than the char array
+    final int[] newCodePoints = new int[strLen];
+    int outOffset = 0;
+    for (int i = 0; i < strLen; ) {
+        final int oldCodepoint = str.codePointAt(i);
+        final int newCodePoint;
+        if (Character.isUpperCase(oldCodepoint)) {
+            newCodePoint = Character.toLowerCase(oldCodepoint);
+        } else if (Character.isTitleCase(oldCodepoint)) {
+            newCodePoint = Character.toLowerCase(oldCodepoint);
+        } else if (Character.isLowerCase(oldCodepoint)) {
+            newCodePoint = Character.toUpperCase(oldCodepoint);
+        } else {
+            newCodePoint = oldCodepoint;
+        }
+        newCodePoints[outOffset++] = newCodePoint;
+        i += Character.charCount(newCodePoint);
+    }
+    return new String(newCodePoints, 0, outOffset);
+}

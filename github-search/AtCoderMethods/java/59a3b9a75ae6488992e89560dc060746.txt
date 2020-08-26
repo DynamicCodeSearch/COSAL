@@ -1,0 +1,22 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int[] a = in.nextIntArray(n);
+    LinkedList<Integer> list = new LinkedList<>();
+    for (int i = 0; i < n; i++) {
+        if (i % 2 == 0) {
+            list.addLast(a[i]);
+        } else {
+            list.addFirst(a[i]);
+        }
+    }
+    if (n % 2 == 1)
+        Collections.reverse(list);
+    Iterator<Integer> iterator = list.iterator();
+    if (iterator.hasNext()) {
+        out.print(iterator.next());
+    }
+    while (iterator.hasNext()) {
+        out.print(" " + iterator.next());
+    }
+    out.println();
+}

@@ -1,0 +1,15 @@
+static void solve() {
+    int n = in.nextInt();
+    x = new double[n];
+    y = new double[n];
+    c = new double[n];
+    for (int i = 0; i < n; i++) {
+        x[i] = in.nextDouble();
+        y[i] = in.nextDouble();
+        c[i] = in.nextDouble();
+    }
+    dump(c);
+    double p = search(x);
+    double q = search(y);
+    out.printf("%.10f\n", Math.max(f(x, p), f(y, q)));
+}

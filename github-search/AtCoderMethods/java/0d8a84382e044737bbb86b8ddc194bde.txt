@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    FastScanner fs = new FastScanner();
+    int n = fs.nextInt();
+    String s = fs.next();
+    char[][] pat = { { 'S', 'S' }, { 'S', 'W' }, { 'W', 'S' }, { 'W', 'W' } };
+    for (char[] p : pat) {
+        String ans = check(s, p[0], p[1]);
+        if (!ans.isEmpty()) {
+            System.out.println(ans);
+            return;
+        }
+    }
+    System.out.println(-1);
+}

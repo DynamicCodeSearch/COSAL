@@ -1,0 +1,15 @@
+def main():
+
+    n = int(input())
+    res = -1
+    divisors_found = set()
+    for subset in powerset(prime_factors(n)):
+        div1 = prod(subset)
+        if div1 not in divisors_found:
+            div2 = n // div1
+            this_f = f(div1, div2)
+            if res == -1 or this_f < res:
+                res = this_f
+            divisors_found.add(div1)
+            divisors_found.add(div2)
+    print(res)

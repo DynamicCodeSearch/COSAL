@@ -1,0 +1,13 @@
+private void dfs2(int v) {
+    used[v] = true;
+    comp.add(v);
+    if (!dp.containsKey(color[v])) {
+        dp.put(color[v], 1);
+    } else {
+        dp.put(color[v], dp.get(color[v]) + 1);
+    }
+    for (int to : dj[v]) {
+        if (!used[to])
+            dfs2(to);
+    }
+}

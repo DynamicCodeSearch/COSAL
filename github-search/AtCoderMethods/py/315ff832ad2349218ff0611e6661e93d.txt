@@ -1,0 +1,21 @@
+def main():
+    n = input()
+    a_list = [int(i) for i in input().split()]
+
+    rate_list = [0 for i in range(9)]
+
+    for a in a_list:
+        if 1 <= a and a < 400: rate_list[0] = 1
+        elif 400 <= a and a < 800: rate_list[1] = 1
+        elif 800 <= a and a < 1200: rate_list[2] = 1
+        elif 1200 <= a and a < 1600: rate_list[3] = 1
+        elif 1600 <= a and a < 2000: rate_list[4] = 1
+        elif 2000 <= a and a < 2400: rate_list[5] = 1
+        elif 2400 <= a and a < 2800: rate_list[6] = 1
+        elif 2800 <= a and a < 3200: rate_list[7] = 1
+        else: rate_list[8] += 1
+
+    if 1 in rate_list[:-1]: minv = sum(rate_list[:-1])
+    else: minv = 1
+
+    print("{} {}".format(minv, sum(rate_list)))

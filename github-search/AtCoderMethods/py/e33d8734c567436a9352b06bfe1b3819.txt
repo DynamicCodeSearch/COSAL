@@ -1,0 +1,10 @@
+def solve():
+  N,Q = map(int,input().split())
+  a = [0] * N
+
+  for q in range(Q):
+    L,R,T = map(int,input().split())
+    L,R = L-1,R-1
+    a[L:R+1] = [T] * ( R + 1 - L)
+
+  print(*a,sep='\n')

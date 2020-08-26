@@ -1,0 +1,33 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int H = sc.nextInt();
+    int W = sc.nextInt();
+    String[] input = new String[H];
+    for (int i = 0; i < H; i++) {
+        input[i] = sc.next();
+    }
+    String[][] input_bunkatsu = new String[H][W];
+    for (int i = 0; i < H; i++) {
+        input_bunkatsu[i] = input[i].split("");
+    }
+    String[][] a = new String[H + 2][W + 2];
+    for (int i = 1; i < H + 1; i++) {
+        for (int j = 1; j < W + 1; j++) {
+            a[i][j] = input_bunkatsu[i - 1][j - 1];
+        }
+    }
+    for (int i = 0; i < H + 2; i++) {
+        a[i][0] = "#";
+        a[i][W + 1] = "#";
+    }
+    for (int j = 1; j < W + 1; j++) {
+        a[0][j] = "#";
+        a[H + 1][j] = "#";
+    }
+    for (int i = 0; i < H + 2; i++) {
+        for (int j = 0; j < W + 2; j++) {
+            System.out.print(a[i][j]);
+        }
+        System.out.println();
+    }
+}

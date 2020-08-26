@@ -1,0 +1,16 @@
+static void dfs(int at, boolean[] V, int seen) {
+    boolean no = true;
+    for (Integer i : adj[at]) {
+        if (!V[i]) {
+            V[i] = true;
+            no = false;
+            dfs(i, V, seen + 1);
+            V[i] = false;
+        }
+    }
+    if (no) {
+        if (seen == V.length) {
+            cnt++;
+        }
+    }
+}

@@ -1,0 +1,24 @@
+public void solve() {
+    int n = io.ri();
+    int m = io.ri();
+    long[] xs = new long[n];
+    for (int i = 0; i < n; i++) xs[i] = io.ri();
+    long[] ys = new long[m];
+    for (int i = 0; i < m; i++) ys[i] = io.ri();
+    long res = 0;
+    long cur = 0;
+    for (int i = 1; i < n; i++) {
+        long dif = xs[i] - xs[i - 1];
+        cur = (cur + dif * i) % MOD;
+        res = (res + cur) % MOD;
+    }
+    cur = 0;
+    long ans = 0;
+    for (int i = 1; i < m; i++) {
+        long v = ys[i] - ys[i - 1];
+        long plus = (v * res) % MOD;
+        cur = (cur + plus * i) % MOD;
+        ans = (ans + cur) % MOD;
+    }
+    io.writeLine(ans + "");
+}

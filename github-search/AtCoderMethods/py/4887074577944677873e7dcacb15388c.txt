@@ -1,0 +1,16 @@
+def count(n):
+    result = []
+    prev = V[0]
+    count = 1
+    for i, v in enumerate(V[1:n]):
+        if (v == prev):
+            count += 1
+        else:
+            result.append(count)
+            count = 1
+
+        if(i == n-2):
+            result.append(count)
+        prev = v
+
+    return result

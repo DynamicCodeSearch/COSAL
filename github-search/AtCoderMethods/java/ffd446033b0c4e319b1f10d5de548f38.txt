@@ -1,0 +1,11 @@
+public String next() {
+    if (!hasNext()) {
+        throw new NoSuchElementException();
+    }
+    StringBuilder sb = new StringBuilder();
+    int b = -1;
+    while (isPrint((b = nextByte()))) {
+        sb.appendCodePoint(b);
+    }
+    return sb.toString();
+}

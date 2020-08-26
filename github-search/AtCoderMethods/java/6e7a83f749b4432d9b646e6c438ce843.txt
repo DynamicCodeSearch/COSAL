@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    int n = sc.nextInt();
+    String[] s = new String[n];
+    for (int i = 0; i < n; i++) s[i] = sc.next();
+    int[][] alpha = new int[n][26];
+    int[] minAlpha = new int[26];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < s[i].length(); j++) {
+            int t = s[i].charAt(j) - 'a';
+            alpha[i][t]++;
+        }
+        if (i == 0)
+            for (int k = 0; k < 26; k++) {
+                minAlpha[k] = alpha[0][k];
+            }
+        else {
+            for (int k = 0; k < 26; k++) {
+                minAlpha[k] = Math.min(alpha[i][k], minAlpha[k]);
+            }
+        }
+    }
+    for (int i = 0; i < 26; i++) {
+        while (minAlpha[i] > 0) {
+            System.out.print((char) (i + 'a'));
+            minAlpha[i]--;
+        }
+    }
+    System.out.println();
+}

@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String[] S = { sc.next(), sc.next(), sc.next() };
+    int[] k = { 0, 0, 0 };
+    int t = 0;
+    while (true) {
+        k[t]++;
+        for (int i = 0; i < 3; i++) {
+            if (k[i] > S[i].length()) {
+                char c = (char) ('A' + i);
+                String ans = String.valueOf(c);
+                System.out.println(ans);
+                return;
+            }
+        }
+        t = S[t].charAt(k[t] - 1) - 'a';
+    }
+}

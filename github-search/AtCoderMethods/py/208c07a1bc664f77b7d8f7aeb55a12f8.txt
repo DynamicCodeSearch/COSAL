@@ -1,0 +1,10 @@
+def len_sum(Xs):
+    size = len(Xs)
+    ret = 0
+    n = len(Xs) - 1
+
+    for x in reversed(Xs):
+        ret += n * x
+        ret %= MOD
+        n -= 2
+    return ret

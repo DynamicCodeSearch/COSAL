@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    double P = Double.parseDouble(sc.next());
+    double t0 = 0;
+    double t3 = 10000000000000000000.00000;
+    double MIN = t3;
+    for (int i = 0; i < 1000; i++) {
+        double t1 = (t3 - t0) / 3.0 + t0;
+        double t2 = (t3 - t0) / 3.0 * 2.0 + t0;
+        double a = f(t1, P);
+        double b = f(t2, P);
+        if (a < b) {
+            t3 = t2;
+        } else {
+            t0 = t1;
+        }
+        MIN = Math.min(a, MIN);
+        MIN = Math.min(b, MIN);
+        MIN = Math.min(f(t0, P), MIN);
+        MIN = Math.min(f(t3, P), MIN);
+    }
+    System.out.printf("%.20f\n", MIN);
+}

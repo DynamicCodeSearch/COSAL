@@ -1,0 +1,5 @@
+void init() {
+    f[0] = invf[0] = 1;
+    for (int i = 1; i < 200100; i++) f[i] = (f[i - 1] * i % mod);
+    for (int i = 1; i < 200100; i++) invf[i] = bpow(f[i], mod - 2);
+}

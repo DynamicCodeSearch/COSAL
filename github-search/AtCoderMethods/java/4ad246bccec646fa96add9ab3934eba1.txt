@@ -1,0 +1,37 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    final int water1Weight = sc.nextInt();
+    final int water2Weight = sc.nextInt();
+    final int sugar1Weight = sc.nextInt();
+    final int sugar2Weight = sc.nextInt();
+    final int sugarLimit = sc.nextInt();
+    final int beakerLimit = sc.nextInt();
+    int waterTotal = 0;
+    int sugarTotal = 0;
+    int tempSugarLimit = 0;
+    double maxConcentration = 0;
+    int maxWaterTotal = 0;
+    int maxSugarTotal = 0;
+    for (int water1Count = 0; water1Count * 100 * water1Weight <= beakerLimit; water1Count++) {
+        for (int water2Count = 0; water1Count * 100 * water1Weight + water2Count * 100 * water2Weight <= beakerLimit; water2Count++) {
+            waterTotal = water1Count * 100 * water1Weight + water2Count * 100 * water2Weight;
+            tempSugarLimit = (water1Count * water1Weight + water2Count * water2Weight) * sugarLimit;
+            for (int sugar1Count = 0; sugar1Count * sugar1Weight + waterTotal <= beakerLimit && sugar1Count * sugar1Weight <= tempSugarLimit; sugar1Count++) {
+                for (int sugar2Count = 0; sugar1Count * sugar1Weight + sugar2Count * sugar2Weight + waterTotal <= beakerLimit && sugar1Count * sugar1Weight + sugar2Count * sugar2Weight <= tempSugarLimit; sugar2Count++) {
+                    sugarTotal = sugar1Count * sugar1Weight + sugar2Count * sugar2Weight;
+                    double concentration = (double) sugarTotal / (waterTotal + sugarTotal);
+                    if (concentration > maxConcentration) {
+                        maxConcentration = concentration;
+                        maxWaterTotal = waterTotal;
+                        maxSugarTotal = sugarTotal;
+                    }
+                }
+            }
+        }
+    }
+    if (maxSugarTotal == 0) {
+        System.out.println(water1Weight * 100 + " " + maxSugarTotal);
+    } else {
+        System.out.println((maxWaterTotal + maxSugarTotal) + " " + maxSugarTotal);
+    }
+}

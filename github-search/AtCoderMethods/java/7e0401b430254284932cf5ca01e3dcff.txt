@@ -1,0 +1,10 @@
+public static long[] buildFenwick(int n, int v) {
+    long[] ft = new long[n + 1];
+    Arrays.fill(ft, 1, n + 1, v);
+    for (int k = 2, h = 1; k <= n; k *= 2, h *= 2) {
+        for (int i = k; i <= n; i += k) {
+            ft[i] += ft[i - h];
+        }
+    }
+    return ft;
+}

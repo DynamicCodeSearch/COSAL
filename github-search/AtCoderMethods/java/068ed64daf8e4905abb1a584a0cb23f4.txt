@@ -1,0 +1,15 @@
+public static String solve(int n, List<int[]> A) {
+    Map<Integer, List<Integer>> graph = constructGraph(n, A);
+    int[] fenecDist = new int[n + 1];
+    Arrays.fill(fenecDist, -1);
+    int[] snukeDist = new int[n + 1];
+    Arrays.fill(snukeDist, -1);
+    dfs(graph, fenecDist, 1, 0);
+    dfs(graph, snukeDist, n, 0);
+    int[] fscore = new int[n + 1];
+    for (int i = 1; i < n + 1; i++) {
+        if (fenecDist[i] <= snukeDist[i])
+            fscore[i] = 1;
+    }
+    return Arrays.stream(fscore).sum() > n / 2 ? "Fennec" : "Snuke";
+}

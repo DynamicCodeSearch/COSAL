@@ -1,0 +1,6 @@
+private static long sum(String S, long currentSum, int prevPlus, int pos) {
+    if (pos == S.length()) {
+        return currentSum + Long.parseLong(S.substring(prevPlus, pos));
+    }
+    return sum(S, currentSum + Long.parseLong(S.substring(prevPlus, pos)), pos, pos + 1) + sum(S, currentSum, prevPlus, pos + 1);
+}

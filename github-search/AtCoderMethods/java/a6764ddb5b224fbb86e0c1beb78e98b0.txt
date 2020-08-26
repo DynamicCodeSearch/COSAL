@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    String[] Str = new String[2];
+    Str[0] = sc.nextLine();
+    Str[1] = sc.nextLine();
+    sc.close();
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < Str[0].length() - 1; i++) {
+        sb.append(Str[0].charAt(i));
+        sb.append(Str[1].charAt(i));
+    }
+    sb.append(Str[0].charAt((Str[0].length() - 1)));
+    if (Str[0].length() == Str[1].length()) {
+        sb.append(Str[1].charAt((Str[1].length() - 1)));
+    }
+    System.out.println(sb.toString());
+}

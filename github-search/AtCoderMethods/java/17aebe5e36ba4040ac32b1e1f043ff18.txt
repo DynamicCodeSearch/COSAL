@@ -1,0 +1,11 @@
+long func(long ww, int num) {
+    if (ww < 0)
+        return -Long.MAX_VALUE / 16;
+    if (num == N)
+        return 0;
+    if (f.containsKey(Arrays.asList(ww, (long) num)))
+        return f.get(Arrays.asList(ww, (long) num));
+    long ret = Math.max(func(ww - w[num], num + 1) + v[num], func(ww, num + 1));
+    f.put(Arrays.asList(ww, (long) num), ret);
+    return ret;
+}

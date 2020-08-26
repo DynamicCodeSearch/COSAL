@@ -1,0 +1,8 @@
+private void rec(Graph graph, int[] d1, int from, int parent) {
+    for (int to : graph.get(from)) {
+        if (to != parent) {
+            d1[to] = d1[from] + 1;
+            rec(graph, d1, to, from);
+        }
+    }
+}

@@ -1,0 +1,22 @@
+
+public static void addFb(String s) {
+    int lHp = 0, rHp = 0;
+    for (int i = 0; i < s.length(); i++) {
+        if (s.charAt(i) == '(') {
+            lHp++;
+        } else {
+            if (lHp > 0)
+                lHp--;
+            else
+                rHp++;
+        }
+    }
+    for (int i = 0; i < rHp; i++) {
+        sb.append('(');
+    }
+    sb.append(s);
+    for (int i = 0; i < lHp; i++) {
+        sb.append(')');
+    }
+    System.out.println(sb);
+}

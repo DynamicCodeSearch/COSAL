@@ -1,0 +1,29 @@
+public static void main(String[] args) throws Exception {
+    
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String t = br.readLine();
+    String s = br.readLine();
+    char[] tc = t.toCharArray();
+    char[] ts = s.toCharArray();
+    Boolean b = true;
+    for (int i = 0; i < tc.length; i++) {
+        if (tc[i] != ts[i]) {
+            if (tc[i] == '@') {
+                if (ts[i] != 'a' && ts[i] != 't' && ts[i] != 'c' && ts[i] != 'o' && ts[i] != 'd' && ts[i] != 'e' && ts[i] != 'r' && ts[i] != '@') {
+                    b = false;
+                }
+            } else if (ts[i] == '@') {
+                if (tc[i] != 'a' && tc[i] != 't' && tc[i] != 'c' && tc[i] != 'o' && tc[i] != 'd' && tc[i] != 'e' && tc[i] != 'r' && tc[i] != '@') {
+                    b = false;
+                }
+            } else {
+                b = false;
+            }
+        }
+    }
+    if (b) {
+        System.out.println("You can win");
+    } else {
+        System.out.println("You will lose");
+    }
+}

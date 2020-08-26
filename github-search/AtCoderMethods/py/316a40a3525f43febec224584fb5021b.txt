@@ -1,0 +1,11 @@
+def main():
+    S, T = input(), int(input())
+    l, r, u, d, q = S.count("L"), S.count("R"), S.count("U"), S.count("D"), S.count("?")
+    ans = abs(l - r) + abs(u - d)
+    if T == 1:
+        print(ans + q)
+    else:
+        if ans >= q:
+            print(ans - q)
+        else:
+            print((q - ans) % 2)

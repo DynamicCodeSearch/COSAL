@@ -1,0 +1,9 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int K = sc.nextInt();
+    long ans = 0;
+    for (int i = 0; i < N; i++) ans += sc.nextLong() * Math.min(Math.min(i + 1, N - i), Math.min(K, N - K + 1));
+    System.out.println(ans);
+    sc.close();
+}

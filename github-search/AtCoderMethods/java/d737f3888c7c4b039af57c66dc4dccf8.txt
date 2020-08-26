@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    IO io = new IO();
+    int n = io.nextInt();
+    int[] count = new int[AMAX + 1];
+    for (int i = 0; i < n; i++) {
+        count[io.nextInt()]++;
+    }
+    int remove = 0;
+    for (int i = 0; i <= AMAX; i++) {
+        if (count[i] > 1) {
+            remove += count[i] - 1;
+        }
+    }
+    remove = (remove + 1) / 2 * 2;
+    System.out.println(n - remove);
+}

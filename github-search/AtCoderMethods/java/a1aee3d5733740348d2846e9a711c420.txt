@@ -1,0 +1,43 @@
+void solver() {
+    int n = ni();
+    int m = ni();
+    ArrayList<Edge>[] g = new ArrayList[n];
+    for (int i = 0; i < n; i++) {
+        g[i] = new ArrayList<>();
+    }
+    for (int i = 0; i < m; i++) {
+        int c = ni();
+        int a = ni();
+        int b = ni();
+        g[a].add(new Edge(a, b, c));
+        g[b].add(new Edge(b, a, c));
+    }
+    long[] dist = new long[n];
+    Arrays.fill(dist, 1L << 60);
+    PriorityQueue<State> que = new PriorityQueue<>();
+    que.add(new State(0, 0, 0));
+    dist[0] = 0;
+    while (!que.isEmpty()) {
+        State s = que.poll();
+        if (dist[s.cur] < s.dist)
+            continue;
+        dist[s.cur] = s.dist;
+        for (Edge e : g[s.cur]) {
+            int ndist = s.dist;
+            if (e.type == 0) {
+                ndist += 1;
+                if (ndist < dist[e.dst]) {
+                    que.add(new State(e.dst, s.mcnt, ndist));
+                }
+            } else {
+                ndist += s.mcnt + 1;
+                if (ndist < dist[e.dst]) {
+                    que.add(new State(e.dst, s.mcnt + 1, ndist));
+                }
+            }
+        }
+    }
+    for (int v = 0; v < n; v++) {
+        out.println(dist[v]);
+    }
+}

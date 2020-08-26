@@ -1,0 +1,44 @@
+def solve(s, l):
+    for now in range(1, len(s) + 1):
+        now %= len(s)
+        pre = now - 1
+        nex = (now + 1) % len(s)
+
+
+        if l[pre] is not None and l[nex] is not None:
+            if l[now] == 1:
+                if s[now] == "o":
+                    if l[nex] != l[pre]:
+                        return False
+                else:
+                    if l[nex] == l[pre]:
+                        return False
+            else:
+                if s[now] == "o":
+                    if l[nex] == l[pre]:
+                        return False
+                else:
+                    if l[nex] != l[pre]:
+                        return False
+
+
+        if l[pre] is not None and l[nex] is None:
+
+            if l[now] == 1:
+
+                if s[now] == "o":
+                    l[nex] = l[pre]
+
+
+                else:
+                    l[nex] = -1 * l[pre]
+
+            else:
+
+                if s[now] == "o":
+                    l[nex] = -1 * l[pre]
+
+                else:
+                    l[nex] = l[pre]
+
+    return True

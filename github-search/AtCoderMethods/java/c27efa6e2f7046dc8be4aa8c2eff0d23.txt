@@ -1,0 +1,48 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    int[][] graph = buildGraph(in, n, n - 1);
+    boolean[] add = new boolean[n];
+    int[] num = new int[n];
+    Arrays.fill(num, -1);
+    Queue<State> q = new PriorityQueue<>();
+    int[] from = new int[n];
+    Arrays.fill(from, -1);
+    int k = in.nextInt();
+    for (int i = 0; i < k; i++) {
+        int v = in.nextInt() - 1;
+        int va = in.nextInt();
+        add[v] = true;
+        num[v] = va;
+        q.add(new State(v, va));
+    }
+    boolean isOK = true;
+    while (q.size() >= 1) {
+        State st = q.poll();
+        for (int to : graph[st.now]) {
+            if (to == from[st.now]) {
+                continue;
+            }
+            if (!add[to]) {
+                add[to] = true;
+                num[to] = st.value + 1;
+                from[to] = st.now;
+                q.add(new State(to, st.value + 1));
+            } else if (add[to]) {
+                if (num[to] != st.value + 1 && num[to] != st.value - 1) {
+                    isOK = false;
+                }
+            }
+        }
+    }
+    if (isOK) {
+        out.println("Yes");
+        for (int i = 0; i < n; i++) {
+            out.println(num[i]);
+        }
+    } else {
+        out.println("No");
+    }
+    out.flush();
+}

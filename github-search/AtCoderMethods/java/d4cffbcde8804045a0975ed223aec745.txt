@@ -1,0 +1,16 @@
+public static long find(long n, long k) {
+    if (n == 2) {
+        if (k == 1 || k == 3)
+            return 1;
+        else
+            return 2;
+    }
+    long t = pow2(2, n, mod) - 1;
+    long z = (t + 1) / 2;
+    if (k == z)
+        return n;
+    if (k < z)
+        return find(n - 1, k);
+    else
+        return find(n - 1, k - z);
+}

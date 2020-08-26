@@ -1,0 +1,20 @@
+void dijkstra(int s) {
+    Queue<Edge> pq = new PriorityQueue<Edge>();
+    Arrays.fill(d, INF);
+    d[s] = 0;
+    pq.add(new Edge(s, 0));
+    while (!pq.isEmpty()) {
+        Edge e = pq.poll();
+        int v = e.to;
+        if (d[v] < e.cost) {
+            continue;
+        }
+        for (int i = 0; i < tree[v].size(); i++) {
+            Edge ei = tree[v].get(i);
+            if (d[ei.to] > d[v] + ei.cost) {
+                d[ei.to] = d[v] + ei.cost;
+                pq.add(new Edge(ei.to, d[ei.to]));
+            }
+        }
+    }
+}

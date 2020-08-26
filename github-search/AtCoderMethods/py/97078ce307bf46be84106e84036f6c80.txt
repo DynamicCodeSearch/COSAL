@@ -1,0 +1,13 @@
+def get_composable_numbers(a, b, lim):
+    result = set()
+    result.add(0)
+    if a < lim:
+        result.add(a)
+    if b < lim:
+        result.add(b)
+
+    for c in range(max(result), lim + 1):
+        if (c - a) in result or (c - b) in result:
+            result.add(c)
+
+    return list(result)

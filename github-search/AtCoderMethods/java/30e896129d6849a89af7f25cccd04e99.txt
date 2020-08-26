@@ -1,0 +1,75 @@
+public static void main(String[] args) throws IOException {
+    Scanner sc = new Scanner(System.in);
+    int H = sc.nextInt();
+    int W = sc.nextInt();
+    char[][] S = new char[H][];
+    for (int i = 0; i < H; i++) {
+        S[i] = sc.next().toCharArray();
+    }
+    boolean[][] map = new boolean[H][];
+    for (int i = 0; i < H; i++) {
+        map[i] = new boolean[W];
+    }
+    for (int y = 0; y < H; y++) {
+        for (int x = 0; x < W; x++) {
+            if (S[y][x] == '#') {
+                boolean success = true;
+                OuterLoop: for (int yy = Math.max(0, y - 1); yy < Math.min(H, y + 2); yy++) {
+                    for (int xx = Math.max(0, x - 1); xx < Math.min(W, x + 2); xx++) {
+                        if (S[yy][xx] == '.') {
+                            success = false;
+                            break OuterLoop;
+                        }
+                    }
+                }
+                if (success) {
+                    map[y][x] = true;
+                }
+            }
+        }
+    }
+    boolean[][] base = new boolean[H][];
+    for (int i = 0; i < H; i++) {
+        base[i] = new boolean[W];
+    }
+    for (int y = 0; y < H; y++) {
+        for (int x = 0; x < W; x++) {
+            if (map[y][x]) {
+                for (int yy = Math.max(0, y - 1); yy < Math.min(H, y + 2); yy++) {
+                    for (int xx = Math.max(0, x - 1); xx < Math.min(W, x + 2); xx++) {
+                        base[yy][xx] = true;
+                    }
+                }
+            }
+        }
+    }
+    boolean success = true;
+    for (int y = 0; y < H; y++) {
+        for (int x = 0; x < W; x++) {
+            if ((base[y][x] && S[y][x] == '.') || (!base[y][x] && S[y][x] == '#')) {
+                success = false;
+                break;
+            }
+        }
+    }
+    if (success) {
+        System.out.println("possible");
+        for (int y = 0; y < H; y++) {
+            for (int x = 0; x < W; x++) {
+                System.out.print(map[y][x] ? '#' : '.');
+            }
+            System.out.println();
+        }
+    } else {
+        System.out.println("impossible");
+    }
+    if (false) {
+        for (int y = 0; y < H; y++) {
+            for (int x = 0; x < W; x++) {
+                System.err.print(map[y][x] ? '#' : '.');
+            }
+            System.err.println();
+        }
+        System.err.println();
+    }
+}

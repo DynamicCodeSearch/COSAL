@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    long a, b;
+    Scanner in = new Scanner(System.in);
+    a = in.nextLong();
+    b = in.nextLong();
+    long count = 0;
+    long sum, goal = 2000000000000L;
+    if (b == 0) {
+        System.out.println(goal - a);
+        return;
+    }
+    sum = a;
+    while (sum < goal) {
+        count++;
+        sum = sum + 1 + sum * b;
+    }
+    System.out.println(count);
+    return;
+}

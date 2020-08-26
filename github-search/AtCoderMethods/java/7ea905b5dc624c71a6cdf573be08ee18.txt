@@ -1,0 +1,39 @@
+public static void main(String[] args) {
+    int n = sc.nextInt();
+    int ma = sc.nextInt();
+    int mb = sc.nextInt();
+    int[][][] dp = new int[41][401][401];
+    for (int i = 0; i < 41; i++) {
+        for (int j = 0; j < 401; j++) {
+            for (int k = 0; k < 401; k++) {
+                dp[i][j][k] = INF;
+            }
+        }
+    }
+    dp[0][0][0] = 0;
+    for (int i = 0; i < n; i++) {
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        int c = sc.nextInt();
+        for (int j = 0; j < 401; j++) {
+            for (int k = 0; k < 401; k++) {
+                int t = dp[i][j][k];
+                if (t != INF) {
+                    dp[i + 1][j][k] = Math.min(t, dp[i + 1][j][k]);
+                    dp[i + 1][j + a][k + b] = Math.min(t + c, dp[i + 1][j + a][k + b]);
+                }
+            }
+        }
+    }
+    int ret = INF;
+    for (int i = 0; i <= n; i++) {
+        for (int j = 1; j < 401; j++) {
+            int a = j * ma;
+            int b = j * mb;
+            if (a <= 400 && b <= 400) {
+                ret = Math.min(ret, dp[i][a][b]);
+            }
+        }
+    }
+    System.out.println(ret == INF ? -1 : ret);
+}

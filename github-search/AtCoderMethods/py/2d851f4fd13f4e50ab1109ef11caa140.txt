@@ -1,0 +1,6 @@
+def on_edge(x1, y1, x2, y2, R, C, i, edge_points):
+    c1 = coord_on_edge(x1, y1, R, C)
+    c2 = coord_on_edge(x2, y2, R, C)
+    if c1 is not None and c2 is not None:
+        heapq.heappush(edge_points, (c1, i))
+        heapq.heappush(edge_points, (c2, i))

@@ -1,0 +1,10 @@
+public long nextLong() throws IOException, NumberFormatException {
+    long r = 0;
+    while ((c = in.read()) != -1 && Character.isWhitespace(c)) ;
+    while (c != -1 && !Character.isWhitespace(c)) {
+        r *= 10;
+        r += c - '0';
+        c = in.read();
+    }
+    return r;
+}

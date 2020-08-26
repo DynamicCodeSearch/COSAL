@@ -1,0 +1,16 @@
+def main():
+    n, m = map(int, input().split())
+
+    d = defaultdict(lambda: list())
+    for _ in range(m):
+        a, b = map(int, input().split())
+        d[a].append(b)
+
+    flag = 1
+    for i in d[1]:
+        if n in d[i]:
+            print("POSSIBLE")
+            flag = 0
+            break
+
+    if flag: print("IMPOSSIBLE")

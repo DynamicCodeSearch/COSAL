@@ -1,0 +1,12 @@
+static boolean isOK(int N, int rest) {
+    if (N >= 0 && done[N][rest])
+        return memo[N][rest];
+    if (N == 0)
+        return true;
+    for (int i = 0; i < 3; i++) if (NG[i] == N)
+        return false;
+    if (rest <= 0 || N < 0)
+        return false;
+    done[N][rest] = true;
+    return memo[N][rest] = isOK(N - 1, rest - 1) || isOK(N - 2, rest - 1) || isOK(N - 3, rest - 1);
+}

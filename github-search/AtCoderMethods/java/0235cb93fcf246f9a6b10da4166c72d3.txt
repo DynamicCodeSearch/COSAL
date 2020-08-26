@@ -1,0 +1,7 @@
+long f(int x, int m) {
+    if (x == m)
+        return 1;
+    if (memo2[x][m] != -1)
+        return memo2[x][m];
+    return memo2[x][m] = comb[x][m] * f(x - m, m) % mod;
+}

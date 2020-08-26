@@ -1,0 +1,33 @@
+static String[] dfs(List<Integer> list) {
+    if (list.size() == K) {
+        String[] ans = new String[K + 1];
+        for (int i = 0; i < N; i++) {
+            int current = 0;
+            for (int d = 0; d < v[i].length(); d++) {
+                int n = v[i].charAt(d) - '0';
+                int size = list.get(n - 1);
+                if (w[i].length() < current + size)
+                    return null;
+                String s = w[i].substring(current, current + size);
+                if (ans[n] == null) {
+                    ans[n] = s;
+                } else if (!ans[n].equals(s)) {
+                    return null;
+                }
+                current += size;
+            }
+            if (w[i].length() != current)
+                return null;
+        }
+        return ans;
+    }
+    for (int i = 1; i <= 3; i++) {
+        List<Integer> newList = new ArrayList<>();
+        for (int l : list) newList.add(l);
+        newList.add(i);
+        String[] result = dfs(newList);
+        if (result != null)
+            return result;
+    }
+    return null;
+}

@@ -1,0 +1,14 @@
+def bfs(x, y):
+    que.append((x, y))
+    while que:
+        x, y = que.popleft()
+        for dx, dy in [(0, 1), (1, 0), (0, -1), (-1, 0)]:
+            nx, ny = x + dx, y + dy
+            if not 0 <= nx < r or not 0 <= ny < c:
+                continue
+            if css[nx][ny] == "#":
+                continue
+            if dist[nx][ny] != -1:
+                continue
+            dist[nx][ny] = dist[x][y] + 1
+            que.append((nx, ny))

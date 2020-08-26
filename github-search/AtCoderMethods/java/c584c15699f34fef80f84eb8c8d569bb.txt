@@ -1,0 +1,21 @@
+private HashMap<String, Integer> soinbunkai(HashMap<String, Integer> map, int n) {
+    HashMap<String, Integer> ret;
+    if (map == null)
+        ret = new HashMap<>();
+    else
+        ret = map;
+    int nnum = n;
+    for (int i = 2; i <= n; i++) {
+        while (nnum % i == 0) {
+            nnum /= i;
+            String stri = Integer.toString(i);
+            if (ret.containsKey(stri))
+                ret.put(stri, ret.get(stri) + 1);
+            else
+                ret.put(stri, 1);
+            if (nnum == 1)
+                break;
+        }
+    }
+    return ret;
+}

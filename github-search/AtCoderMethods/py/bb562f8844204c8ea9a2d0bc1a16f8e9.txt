@@ -1,0 +1,14 @@
+def c():
+    n, k = map(int, input().split())
+    U = []
+    for i in range(n):
+        U.append(tuple(map(int, input().split())))
+    U = sorted(U, key=lambda i: i[0])
+
+    for i in U:
+        if k <= i[1]:
+            print(i[0])
+            break
+        k -= i[1]
+    else:
+        print(U[-1][0])

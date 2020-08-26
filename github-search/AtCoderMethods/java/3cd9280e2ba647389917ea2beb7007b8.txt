@@ -1,0 +1,22 @@
+public static void main(String[] args) throws IOException {
+    final Scanner sc = new Scanner(System.in);
+    final int N = sc.nextInt();
+    long[] as = new long[N];
+    long[] bs = new long[N];
+    for (int i = 0; i < N; i++) {
+        as[i] = sc.nextLong();
+        bs[i] = sc.nextLong();
+    }
+    PriorityQueue<Temp> queue = new PriorityQueue<Temp>();
+    for (int i = 0; i < N; i++) {
+        queue.add(new Temp(as[i], bs[i]));
+    }
+    long max = 0, cur = 0;
+    while (!queue.isEmpty()) {
+        final Temp temp = queue.poll();
+        
+        max = Math.max(max, cur + temp.a);
+        cur = cur + temp.a - temp.b;
+    }
+    System.out.println(max);
+}

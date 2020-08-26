@@ -1,0 +1,20 @@
+static boolean check(char[][] tmp, char[][] ans) {
+    for (int i = 0; i < H; i++) {
+        for (int i2 = 0; i2 < W; i2++) {
+            if (ans[i][i2] == '#') {
+                for (int i3 = 0; i3 < 8; i3++) {
+                    for (int i4 = 0; i4 < 8; i4++) {
+                        tmp[i + 1 + dy[i3]][i2 + 1 + dx[i4]] = '.';
+                    }
+                }
+            }
+        }
+    }
+    for (int i = 1; i <= H; i++) {
+        for (int i2 = 1; i2 <= W; i2++) {
+            if (tmp[i][i2] == '#')
+                return false;
+        }
+    }
+    return true;
+}

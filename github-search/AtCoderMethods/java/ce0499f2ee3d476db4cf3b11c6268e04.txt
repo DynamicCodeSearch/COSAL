@@ -1,0 +1,28 @@
+public static void main(String[] args) throws Exception {
+    
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String line = br.readLine();
+    int i = Integer.parseInt(line);
+    int VV = 0;
+    if (i < 100)
+        System.out.println("00");
+    if (i >= 100 && i < 1000) {
+        VV = i * 10 / 1000;
+        String s = "0" + String.valueOf(VV);
+        System.out.println(s);
+    }
+    if (i >= 1000 && i <= 5000) {
+        VV = i * 10 / 1000;
+        System.out.println(VV);
+    }
+    if (i >= 6000 && i <= 30000) {
+        VV = i / 1000 + 50;
+        System.out.println(VV);
+    }
+    if (i >= 35000 && i <= 70000) {
+        VV = (i / 1000 - 30) / 5 + 80;
+        System.out.println(VV);
+    }
+    if (i > 70000)
+        System.out.println(89);
+}

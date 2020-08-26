@@ -1,0 +1,36 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int max = 1;
+    Map<Integer, Integer> counter = new HashMap<>();
+    for (int i = 0; i < N; i++) {
+        int input = sc.nextInt();
+        int input_minus = input - 1;
+        int input_plus = input + 1;
+        if (counter.containsKey(input)) {
+            counter.put(input, counter.get(input) + 1);
+            if (counter.get(input) > max) {
+                max = counter.get(input);
+            }
+        } else {
+            counter.put(input, 1);
+        }
+        if (counter.containsKey(input_minus)) {
+            counter.put(input_minus, counter.get(input_minus) + 1);
+            if (counter.get(input_minus) > max) {
+                max = counter.get(input_minus);
+            }
+        } else {
+            counter.put(input_minus, 1);
+        }
+        if (counter.containsKey(input_plus)) {
+            counter.put(input_plus, counter.get(input_plus) + 1);
+            if (counter.get(input_plus) > max) {
+                max = counter.get(input_plus);
+            }
+        } else {
+            counter.put(input_plus, 1);
+        }
+    }
+    System.out.println(max);
+}

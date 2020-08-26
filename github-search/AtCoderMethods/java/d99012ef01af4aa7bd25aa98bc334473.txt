@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    final long nicho = 2 * (long) Math.pow(10, 12);
+    long A, K, days;
+    days = 0;
+    A = Long.parseLong(sc.next());
+    K = Long.parseLong(sc.next());
+    if (K == 0) {
+        days = nicho - A;
+        A = nicho;
+    }
+    while (A < nicho) {
+        A += 1 + K * A;
+        days++;
+    }
+    System.out.println(days);
+}

@@ -1,0 +1,18 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    String str = input.readLine();
+    int n = Integer.parseInt(str);
+    int[] a = new int[n];
+    int count = 0;
+    a: for (int i = 0; i < n; i++) {
+        str = input.readLine();
+        a[i] = Integer.parseInt(str);
+        for (int j = 0; j < i; j++) {
+            if (a[i] == a[j]) {
+                count++;
+                continue a;
+            }
+        }
+    }
+    System.out.println(count);
+}

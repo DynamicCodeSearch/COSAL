@@ -1,0 +1,31 @@
+def main():
+    h,w = readLine_int_list()
+    a = g_twoD_list(w,h)
+    b = defaultdict(lambda: 0)
+    _h = 0
+    _w = 0
+    for l in readAll_str():
+        for i in l:
+            _w = 0
+            for j in i:
+                b[(_h,_w)] = j
+                _w += 1
+            _h += 1
+
+    dir_b = [(-1,0), (1,0), (0,-1), (0,1), (-1,-1), (-1,1), (1,-1), (1,1)]
+    for i in range(h):
+        for j in range(w):
+            cnt = 0
+            for d in dir_b:
+                r = b[(i+d[0], j+d[1])]
+                if r == '#':
+                    cnt += 1
+            if b[(i,j)] == '.':
+                b[(i,j)] = str(cnt)
+
+    for i in b:
+        if 0 <= i[0] < h and 0 <= i[1] < w:
+            a[i[0]][i[1]] = b[i]
+
+    for i in a:
+        print(''.join(i))

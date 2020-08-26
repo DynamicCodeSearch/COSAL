@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    try (BufferedReader in = new BufferedReader(new InputStreamReader(System.in))) {
+        String[] sArr = in.readLine().split(" ");
+        int N = Integer.parseInt(sArr[0]);
+        long A = Long.parseLong(sArr[1]);
+        long B = Long.parseLong(sArr[2]);
+        long[] h = new long[N];
+        for (int i = 0; i < N; i++) {
+            h[i] = Long.parseLong(in.readLine());
+        }
+        long t = (long) Math.pow(10, 9);
+        long min = 0;
+        long max = (long) Math.pow(10, 9);
+        long need;
+        while (max - min > 1) {
+            t = min + (max - min) / 2;
+            need = query(h, A, B, t);
+            if (need > t) {
+                min = t;
+            } else if (need <= t) {
+                max = t;
+            }
+        }
+        System.out.println(max);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

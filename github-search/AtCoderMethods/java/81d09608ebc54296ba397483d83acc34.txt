@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    sc = new Scanner(System.in);
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    int i;
+    int up = 0;
+    int dn = 0;
+    for (i = a; i != b; i++) {
+        if (i != 9) {
+            up++;
+        } else {
+            i = -1;
+            up++;
+        }
+    }
+    for (i = a; i != b; i--) {
+        if (i != 0) {
+            dn++;
+        } else {
+            i = 10;
+            dn++;
+        }
+    }
+    System.out.println(Math.min(up, dn));
+}

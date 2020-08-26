@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[] card = new int[100001];
+    for (int i = 0; i < n; i++) {
+        int x = sc.nextInt();
+        card[x]++;
+        if (card[x] == 3)
+            card[x] = card[x] - 2;
+    }
+    int one = 0;
+    int two = 0;
+    for (int i = 0; i < 100001; i++) {
+        if (card[i] == 1)
+            one++;
+        else if (card[i] == 2)
+            two++;
+    }
+    if (two % 2 == 0)
+        System.out.println(one + two);
+    else
+        System.out.println(one + two - 1);
+}

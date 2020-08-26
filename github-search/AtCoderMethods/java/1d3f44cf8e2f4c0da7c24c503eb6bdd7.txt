@@ -1,0 +1,8 @@
+private static int getNeededWin(int day, int win, long[] accDays, long[][] dp) {
+    
+    
+    double currentRate = ((double) dp[day][win]) / ((double) accDays[day]);
+    
+    int ret = (int) (currentRate * (accDays[day + 1] - accDays[day])) + 1;
+    return ret;
+}

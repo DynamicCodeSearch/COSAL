@@ -1,0 +1,19 @@
+def main():
+    h, w = reads()
+    s = [list(input()) for _ in range(h)]
+    a = [['.']*w for _ in range(h)]
+    b = [['.']*w for _ in range(h)]
+    for x in range(w):
+        for y in range(h):
+            if f1(s, x, y):
+                a[y][x] = '#'
+    for x in range(w):
+        for y in range(h):
+            if f2(a, x, y):
+                b[y][x] = '#'
+    if s == b:
+        print('possible')
+        for l in a:
+            print(''.join(l))
+    else:
+        print('impossible')

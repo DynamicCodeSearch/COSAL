@@ -1,0 +1,8 @@
+static void dfs(List<List<Integer>> graph, int v, boolean[] visited) {
+    visited[v] = true;
+    for (int w : graph.get(v)) {
+        if (!visited[w]) {
+            dfs(graph, w, visited);
+        }
+    }
+}

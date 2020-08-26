@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner stdIn = new Scanner(System.in);
+    int from = stdIn.nextInt();
+    int to = stdIn.nextInt();
+    int sorce = stdIn.nextInt();
+    int pencil;
+    int save = 0;
+    int total = 0;
+    total = sorce;
+    while (true) {
+        sorce += save;
+        save = sorce % from;
+        sorce -= save;
+        if (sorce == 0)
+            break;
+        pencil = (sorce / from) * to;
+        
+        total += pencil;
+        sorce = pencil;
+    }
+    System.out.println(total);
+}

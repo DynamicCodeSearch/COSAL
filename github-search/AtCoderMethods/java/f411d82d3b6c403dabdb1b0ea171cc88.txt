@@ -1,0 +1,22 @@
+private void dfs(int now, int prev) {
+    
+    pre[now] = ind;
+    low[now] = ind;
+    ind++;
+    for (int i = 0; i < n; i++) {
+        if (i == prev)
+            continue;
+        if (pass[now][i] == false)
+            continue;
+        if (pre[i] != -1) {
+            low[now] = Math.min(low[now], low[i]);
+            continue;
+        }
+        ;
+        dfs(i, now);
+        low[now] = Math.min(low[now], low[i]);
+        if (pre[i] == low[i]) {
+            ans++;
+        }
+    }
+}

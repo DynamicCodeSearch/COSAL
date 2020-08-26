@@ -1,0 +1,11 @@
+def dfs(pos,parent):
+    global k
+    rank[pos]=low[pos]=k
+    k+=1
+    visited[pos]=True
+    for i in edge[pos]:
+        if not visited[i]:
+            dfs(i,pos)
+            low[pos]=min(low[pos],low[i])
+        elif i!=parent:
+            low[pos]=min(low[pos],rank[i])

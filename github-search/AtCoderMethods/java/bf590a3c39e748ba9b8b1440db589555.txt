@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    
+    char[] k = new StringBuilder(in.nextToken()).reverse().toString().toCharArray();
+    int[] digit = new int[128];
+    for (int i = 0; i < k.length; i++) {
+        digit[i] = k[i] - '0';
+    }
+    long ans = 0;
+    for (int keta = k.length; keta <= 18; keta++) {
+        for (int krag = 0; krag < (1 << (keta - 1)); krag++) {
+            long partialAns = 1;
+            for (int f = 0; f * 2 < keta; f++) {
+                if (f == keta - 1 - f) {
+                    int L = rightValue(f, krag, digit);
+                    partialAns *= L == 0 ? 10 : 0;
+                } else {
+                    int L = rightValue(f, krag, digit);
+                    int R = rightValue(keta - 1 - f, krag, digit);
+                    partialAns *= doit(f, L, R);
+                }
+            }
+            ans += partialAns;
+        }
+    }
+    out.println(ans);
+    out.flush();
+}

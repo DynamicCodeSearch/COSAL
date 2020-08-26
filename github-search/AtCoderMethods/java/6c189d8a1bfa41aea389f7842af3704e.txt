@@ -1,0 +1,18 @@
+public static void main(String[] args) throws Exception {
+    int n = sc.nextInt();
+    int res = 1000000;
+    for (int i = 1; i <= 1000; i++) {
+        int a = n % i;
+        int b = n / i;
+        int c = 0;
+        if (b > i) {
+            c = b - i + a;
+        } else {
+            c = i - b + a;
+        }
+        if (res > c) {
+            res = c;
+        }
+    }
+    System.out.println(res);
+}

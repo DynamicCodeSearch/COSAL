@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    double L = Double.parseDouble(sc.next());
+    double X = Double.parseDouble(sc.next());
+    double Y = Double.parseDouble(sc.next());
+    double S = Double.parseDouble(sc.next());
+    double D = Double.parseDouble(sc.next());
+    double clockwise, anticlockwise;
+    if (D == S)
+        System.out.println(0.0);
+    else if (D > S) {
+        if (X >= Y) {
+            System.out.println((D - S) / (X + Y));
+        } else {
+            clockwise = (D - S) / (X + Y);
+            anticlockwise = (L - D + S) / (Y - X);
+            System.out.println(Math.abs(Math.min(clockwise, anticlockwise)));
+        }
+    } else if (D < S) {
+        if (X >= Y) {
+            System.out.println((L - S + D) / (X + Y));
+        } else {
+            clockwise = (L - S + D) / (X + Y);
+            anticlockwise = (S - D) / (Y - X);
+            System.out.println(Math.abs(Math.min(clockwise, anticlockwise)));
+        }
+    }
+}

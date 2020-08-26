@@ -1,0 +1,12 @@
+def sugar(water,C,D,E,F):
+  sugar = []
+  limit = water / 100 * E
+  cntc = 0
+  cntd = 0
+  while cntc * C <= limit and cntc * C + water <= F:
+    while cntc * C + cntd * D <= limit and cntc * C + cntd * D + water <= F:
+      sugar.append(cntc * C + cntd * D)
+      cntd += 1
+    cntc += 1
+    cntd = 0
+  return max(sugar)

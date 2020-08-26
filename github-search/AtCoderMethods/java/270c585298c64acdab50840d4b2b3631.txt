@@ -1,0 +1,9 @@
+private final void replace(int index1, int index2) {
+    int nodeIndex1 = nodes[index1].index;
+    int nodeIndex2 = nodes[index2].index;
+    map.put(nodeIndex1, index2);
+    map.put(nodeIndex2, index1);
+    Node tmp = nodes[index1];
+    nodes[index1] = nodes[index2];
+    nodes[index2] = tmp;
+}

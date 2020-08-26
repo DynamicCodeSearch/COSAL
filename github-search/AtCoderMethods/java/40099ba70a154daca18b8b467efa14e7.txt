@@ -1,0 +1,19 @@
+void solve() throws NumberFormatException, IOException {
+    int n = in.nextInt();
+    int m = in.nextInt();
+    long x0 = 0, y0 = 0;
+    long X = 0, Y = 0;
+    x0 = in.nextLong();
+    for (int i = 1; i < n; i++) {
+        long x = in.nextLong();
+        X = (X + (x - x0) * coef(i, n - 1)) % mod;
+        x0 = x;
+    }
+    y0 = in.nextLong();
+    for (int i = 1; i < m; i++) {
+        long y = in.nextLong();
+        Y = (Y + (y - y0) * coef(i, m - 1)) % mod;
+        y0 = y;
+    }
+    System.out.println(X * Y % mod);
+}

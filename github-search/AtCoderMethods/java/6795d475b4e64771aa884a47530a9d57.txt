@@ -1,0 +1,38 @@
+public static void main(String[] args) {
+    
+    final String s;
+    try (Scanner scan = new Scanner(System.in)) {
+        
+        s = scan.next();
+    }
+    
+    int[] counts = new int[26];
+    for (int i = 0; i < s.length(); i++) {
+        char c = s.charAt(i);
+        counts[c - 'a']++;
+    }
+    
+    int center = 0;
+    int lateral = 0;
+    int result;
+    for (int count : counts) {
+        if (count == 0) {
+            continue;
+        } else if (count % 2 == 1) {
+            center++;
+            lateral += count / 2;
+        } else {
+            
+            lateral += count / 2;
+        }
+    }
+    if (center == 0 || center == 1) {
+        
+        result = s.length();
+    } else {
+        
+        
+        result = 1 + lateral / center * 2;
+    }
+    System.out.println(result);
+}

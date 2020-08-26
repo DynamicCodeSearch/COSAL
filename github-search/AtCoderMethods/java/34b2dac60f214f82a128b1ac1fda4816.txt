@@ -1,0 +1,16 @@
+private void solve() throws IOException {
+    int N = nextInt();
+    int[] arr = new int[N];
+    long s = 0L;
+    for (int i = 0; i < N; ++i) {
+        arr[i] = nextInt();
+        s += arr[i];
+    }
+    long best = Long.MAX_VALUE;
+    long temp = 0L;
+    for (int i = 0; i < N - 1; ++i) {
+        temp += arr[i];
+        best = Math.min(best, Math.abs(temp - (s - temp)));
+    }
+    writer.println(best);
+}

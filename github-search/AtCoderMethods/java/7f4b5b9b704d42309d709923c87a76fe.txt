@@ -1,0 +1,45 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String str = sc.next();
+    int T = sc.nextInt();
+    int l = str.length();
+    int x = 0, y = 0, v = 0;
+    for (int i = 0; i < l; i++) {
+        switch(str.charAt(i)) {
+            case 'U':
+                y++;
+                break;
+            case 'D':
+                y--;
+                break;
+            case 'R':
+                x++;
+                break;
+            case 'L':
+                x--;
+                break;
+            case '?':
+                v++;
+                break;
+        }
+    }
+    x = Math.abs(x);
+    y = Math.abs(y);
+    if (T == 1) {
+        System.out.println(x + y + v);
+    } else {
+        while (v > 0 && x > 0 || y > 0 && v > 0) {
+            if (v > 0 && x > 0) {
+                v--;
+                x--;
+            }
+            if (v > 0 && y > 0) {
+                v--;
+                y--;
+            }
+        }
+        if (v >= 2)
+            v = v % 2;
+        System.out.println(x + y + v);
+    }
+}

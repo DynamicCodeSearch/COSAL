@@ -1,0 +1,17 @@
+long dfs(int i, long w) {
+    String key = i + " " + w;
+    long res = 0;
+    if (i == N) {
+        res = 0;
+    } else if (map.containsKey(key)) {
+        return map.get(key);
+    } else if (w > W - weight[i]) {
+        res = dfs(i + 1, w);
+    } else {
+        long r1 = dfs(i + 1, w);
+        long r2 = dfs(i + 1, w + weight[i]) + value[i];
+        res = Math.max(r1, r2);
+    }
+    map.put(key, res);
+    return res;
+}

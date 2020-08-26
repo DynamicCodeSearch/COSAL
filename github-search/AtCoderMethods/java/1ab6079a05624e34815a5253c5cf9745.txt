@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int n = in.nextInt();
+    HashMap<String, Integer> map = new HashMap<>();
+    for (int i = 0; i < n; i++) {
+        String name = in.next();
+        if (map.containsKey(name)) {
+            map.put(name, map.get(name) + 1);
+        } else {
+            map.put(name, 1);
+        }
+    }
+    int max = 0;
+    String name = "";
+    for (String str : map.keySet()) {
+        if (map.get(str) > max) {
+            max = map.get(str);
+            name = str;
+        }
+    }
+    System.out.println(name);
+}

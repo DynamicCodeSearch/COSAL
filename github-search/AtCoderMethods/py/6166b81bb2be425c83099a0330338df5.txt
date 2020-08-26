@@ -1,0 +1,23 @@
+def merge(a, b):
+    global ans
+    na = len(a)
+    nb = len(b)
+
+    a.append(-inf)
+    b.append(-inf)
+
+    la = 0
+    lb = 0
+
+    res = []
+
+    for i in range(na + nb):
+        if a[la] <= b[lb]:
+            ans += na - la
+            res.append(b[lb])
+            lb += 1
+        else:
+            res.append(a[la])
+            la += 1
+
+    return res

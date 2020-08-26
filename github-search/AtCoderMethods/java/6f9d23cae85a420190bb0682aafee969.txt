@@ -1,0 +1,17 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    n = in.nextInt();
+    for (int i = 0; i < n; i++) {
+        int w = in.nextInt();
+        int h = in.nextInt();
+        list.add(new Pair(w, h));
+    }
+    Collections.sort(list);
+    int ans = 0;
+    RMQ rmq = new RMQ(100010);
+    for (int i = 0; i < n; i++) {
+        int lower = rmq.query(0, list.get(i).y - 1);
+        rmq.update(list.get(i).y, lower + 1);
+        ans = Math.max(ans, lower + 1);
+    }
+    out.println(ans);
+}

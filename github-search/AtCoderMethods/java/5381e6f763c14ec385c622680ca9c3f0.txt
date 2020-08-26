@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    n = sc.nextInt();
+    m = sc.nextInt();
+    queries = new ArrayList<Query>(100000);
+    for (int i = 0; i < m; i++) {
+        int a = sc.nextInt() - 1, b = sc.nextInt() - 1, y = sc.nextInt();
+        queries.add(new Query(a, b, y, true));
+    }
+    q = sc.nextInt();
+    for (int i = 0; i < q; i++) {
+        int v = sc.nextInt() - 1, w = sc.nextInt();
+        queries.add(new Query(v, i, w, false));
+    }
+    Query[] queries2 = queries.toArray(new Query[queries.size()]);
+    Arrays.sort(queries2);
+    UnionFindTree uf = new UnionFindTree(n);
+    int[] ans = new int[q];
+    for (Query query : queries2) {
+        if (query.isEdge) {
+            int v = query.v, w = query.w;
+            uf.union(v, w);
+        } else {
+            ans[query.w] = uf.childCount(query.v);
+        }
+    }
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < q; i++) {
+        sb.append(ans[i] + "\n");
+    }
+    System.out.print(sb.toString());
+}

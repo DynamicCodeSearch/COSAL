@@ -1,0 +1,20 @@
+void solve() throws NumberFormatException, IOException {
+    final ContestScanner in = new ContestScanner();
+    Writer out = new Writer();
+    int n = in.nextInt();
+    Num[] num = new Num[n];
+    for (int i = 0; i < n; i++) {
+        int a = in.nextInt();
+        num[i] = new Num(i, a);
+    }
+    Arrays.sort(num);
+    int base = 0;
+    int[] b = new int[n];
+    for (int i = 0; i < n; i++) {
+        if (i > 0 && num[i].a > num[i - 1].a)
+            base++;
+        b[num[i].id] = base;
+    }
+    for (int i = 0; i < n; i++) out.println(b[i]);
+    out.close();
+}

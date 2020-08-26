@@ -1,0 +1,11 @@
+def main():
+
+    n = int(input())
+    res = f(1, n)
+    i = 2
+    while i <= math.sqrt(n):
+        if n % i == 0:
+            this_f = f(i, n // i)
+            res = this_f if this_f < res else res
+        i += 1
+    print(res)

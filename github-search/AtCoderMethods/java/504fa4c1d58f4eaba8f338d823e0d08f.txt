@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int n = scanner.nextInt(), k = scanner.nextInt();
+    char[] ng = new char[k];
+    for (int i = 0; i < k; i++) {
+        int x = scanner.nextInt();
+        ng[i] = (char) ('0' + x);
+    }
+    int money = n;
+    while (true) {
+        String s = String.valueOf(money);
+        int count = 0;
+        for (int i = 0; i < s.length(); i++) {
+            for (int j = 0; j < k; j++) {
+                if (s.charAt(i) == ng[j]) {
+                    break;
+                } else if (j == (k - 1)) {
+                    count++;
+                }
+            }
+        }
+        if (count == s.length()) {
+            break;
+        } else {
+            money++;
+        }
+    }
+    System.out.println(money);
+}

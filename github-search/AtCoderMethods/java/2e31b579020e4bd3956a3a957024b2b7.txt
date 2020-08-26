@@ -1,0 +1,19 @@
+public static long powMod(long value, long exponent, int modulo) {
+    if (exponent < 0)
+        throw new IllegalArgumentException("negative exponent");
+    if (modulo == 1)
+        return 0;
+    if (value >= modulo)
+        value %= modulo;
+    if (value < 0)
+        value = value % modulo + value;
+    long res = 1;
+    while (exponent > 0) {
+        if ((exponent & 1) == 1) {
+            res = res * value % modulo;
+        }
+        value = value * value % modulo;
+        exponent >>= 1;
+    }
+    return res;
+}

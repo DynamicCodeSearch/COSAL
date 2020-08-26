@@ -1,0 +1,12 @@
+def main():
+    S = str(input())
+    N = int(input())
+    L = [None] * N
+    for i in range(N):
+        L[i] = tuple(map(int, input().split()))
+
+    s = list(S)
+    for i in L:
+        s[i[0]-1:i[1]] = reversed(s[i[0]-1:i[1]])
+
+    print(*s, sep='')

@@ -1,0 +1,8 @@
+void update(int i, int v) {
+    i += n - 1;
+    seg[i] = v;
+    while (i != 0) {
+        i = (i - 1) / 2;
+        seg[i] = merge(seg[2 * i + 1], seg[2 * i + 2]);
+    }
+}

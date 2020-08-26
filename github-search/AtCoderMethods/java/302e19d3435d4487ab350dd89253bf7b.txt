@@ -1,0 +1,18 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    String[] conditions = input.readLine().split(" ");
+    int N = Integer.parseInt(conditions[0]);
+    int K = Integer.parseInt(conditions[1]);
+    int[] rates = new int[N];
+    String[] ratesAsString = input.readLine().split(" ");
+    for (int i = 0; i < N; i++) {
+        rates[i] = Integer.parseInt(ratesAsString[i]);
+    }
+    Arrays.sort(rates);
+    float currentRate = 0;
+    for (int i = 0; i < K; i++) {
+        float rateOfProgrammer = rates[(N - 1) - (K - 1) + i];
+        currentRate = calculateNewRate(currentRate, rateOfProgrammer);
+    }
+    System.out.println(currentRate);
+}

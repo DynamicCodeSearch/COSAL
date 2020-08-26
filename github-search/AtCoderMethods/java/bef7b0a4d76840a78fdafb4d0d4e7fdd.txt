@@ -1,0 +1,26 @@
+static void solve() {
+    int answer = 0;
+    int a = in.nextInt();
+    int b = in.nextInt();
+    int c = in.nextInt();
+    if (a < b) {
+        answer += a;
+        if (b < c) {
+            answer += b;
+            out.println(answer);
+            return;
+        }
+        answer += c;
+        out.println(answer);
+        return;
+    }
+    answer += b;
+    if (a < c) {
+        answer += a;
+        out.println(answer);
+        return;
+    }
+    answer += c;
+    out.println(answer);
+    return;
+}

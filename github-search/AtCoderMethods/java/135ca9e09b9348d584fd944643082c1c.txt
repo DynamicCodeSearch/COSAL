@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    board = new char[8][];
+    for (int i = 0; i < board.length; i++) {
+        board[i] = new char[8];
+    }
+    Scanner sc = new Scanner(System.in);
+    for (int i = 0; i < board.length; i++) {
+        String s = sc.next();
+        for (int j = 0; j < board[i].length; j++) {
+            board[i][j] = s.charAt(j);
+        }
+    }
+    if (dfs(0)) {
+        for (int i = 0; i < 8; i++) {
+            System.out.println(new String(board[i]));
+        }
+    } else {
+        System.out.println("No Answer");
+    }
+}

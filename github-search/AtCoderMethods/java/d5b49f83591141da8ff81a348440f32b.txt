@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    PrintWriter out = new PrintWriter(System.out);
+    int n = sc.nextInt();
+    int l = sc.nextInt();
+    char[] s = sc.next().toCharArray();
+    int tab = 1, count = 0;
+    for (int i = 0; i < n; i++) {
+        switch(s[i]) {
+            case '+':
+                tab++;
+                if (tab > l) {
+                    count++;
+                    tab = 1;
+                }
+                break;
+            case '-':
+                tab--;
+                tab = Math.max(1, tab);
+                break;
+        }
+    }
+    out.println(count);
+    out.flush();
+}

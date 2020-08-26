@@ -1,0 +1,50 @@
+public static void main(String[] args) throws IOException {
+    
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    Ta[] ar = new Ta[N];
+    for (int i = 0; i < N; i++) {
+        Ta taka = new Ta();
+        taka.x = sc.nextInt();
+        taka.y = sc.nextInt();
+        taka.c = sc.nextInt();
+        ar[i] = taka;
+    }
+    double σ = -11111;
+    double td = 0;
+    double tu = 10e10;
+    do {
+        double t = (td + tu) / 2.0;
+        boolean ok = true;
+        double xmax = 10e5;
+        double xmin = -10e5;
+        double ymax = 10e5;
+        double ymin = -10e5;
+        for (Ta tak : ar) {
+            double xr = tak.x + t / (double) tak.c;
+            double xl = tak.x - t / (double) tak.c;
+            double yu = tak.y + t / (double) tak.c;
+            double yd = tak.y - t / (double) tak.c;
+            if (xr < xmin || xmax < xl || yu < ymin || ymax < yd) {
+                ok = false;
+                break;
+            }
+            if (xr < xmax)
+                xmax = xr;
+            if (xmin < xl)
+                xmin = xl;
+            if (yu < ymax)
+                ymax = yu;
+            if (ymin < yd)
+                ymin = yd;
+        }
+        if (ok) {
+            σ = Math.abs(tu - t);
+            tu = t;
+        } else {
+            σ = Math.abs(td - t);
+            td = t;
+        }
+    } while (σ > 10e-8);
+    System.out.printf("%f\n", td);
+}

@@ -1,0 +1,17 @@
+static List<Edge>[] getMst(List<Edge> edge, int n) {
+    Collections.sort(edge);
+    UnionFind uf = new UnionFind(n);
+    List<Edge>[] node = new List[n];
+    for (int i = 0; i < n; i++) {
+        node[i] = new ArrayList<>();
+    }
+    for (Edge e : edge) {
+        if (uf.same(e.from, e.to))
+            continue;
+        uf.unite(e.from, e.to);
+        cost += e.cost;
+        node[e.from].add(e);
+        node[e.to].add(new Edge(e.to, e.from, e.cost));
+    }
+    return node;
+}

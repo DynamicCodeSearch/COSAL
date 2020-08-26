@@ -1,0 +1,16 @@
+long[][] mxNthPow(long[][] a, long n) {
+    long[][] ans = { { 1, 0 }, { 0, 1 } };
+    long[][] aa = a;
+    while (n > 0) {
+        if (n % 2 == 0) {
+            aa = mx2thPow(aa);
+            n /= 2;
+        } else if (n % 2 == 1) {
+            ans = mxProduct(aa, ans);
+            n--;
+        }
+    
+    }
+    
+    return ans;
+}

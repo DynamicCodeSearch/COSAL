@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    
+    int n;
+    Scanner s = new Scanner(System.in);
+    n = s.nextInt();
+    int[] t = new int[n];
+    for (int i = 0; i < n; i++) {
+        t[i] = s.nextInt();
+    }
+    int m = s.nextInt();
+    int[][] p = new int[m][2];
+    for (int j = 0; j < m; j++) {
+        int[] pi = new int[2];
+        pi[0] = s.nextInt();
+        pi[1] = s.nextInt();
+        p[j] = pi;
+    }
+    
+    for (int j = 0; j < m; j++) {
+        int sum = 0;
+        for (int k = 0; k < n; k++) {
+            if (k + 1 != p[j][0]) {
+                sum += t[k];
+            } else {
+                sum += p[j][1];
+            }
+        }
+        System.out.println(sum);
+    }
+}

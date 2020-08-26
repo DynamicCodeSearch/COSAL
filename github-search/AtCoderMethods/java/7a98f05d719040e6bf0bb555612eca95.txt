@@ -1,0 +1,11 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    int n = in.readInt();
+    int min = Integer.MAX_VALUE / 3;
+    for (int i = 1; i <= n; i++) {
+        int h = n / i;
+        int a = Math.abs(i - h);
+        int r = n - i * h;
+        min = Math.min(min, a + r);
+    }
+    out.printLine(min);
+}

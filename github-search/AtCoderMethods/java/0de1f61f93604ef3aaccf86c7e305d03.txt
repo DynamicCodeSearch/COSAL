@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    PrintWriter pw = new PrintWriter(System.out);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    Segment[] segments = new Segment[N];
+    for (int i = 0; i < N; i++) segments[i] = new Segment(sc.nextInt(), sc.nextInt());
+    Arrays.sort(segments, new Comparator<Segment>() {
+
+        public int compare(Segment s1, Segment s2) {
+            return Integer.compare(s1.length, s2.length);
+        }
+    });
+    SegmentTree st = new SegmentTree(M + 1);
+    int idx = 0;
+    for (int i = 1; i <= M; i++) {
+        while (idx < N && segments[idx].length < i) {
+            st.add(segments[idx].l, segments[idx].r + 1, 1);
+            idx++;
+        }
+        int ans = N - idx;
+        for (int j = i; j <= M; j += i) ans += st.get(j);
+        pw.println(ans);
+    }
+    sc.close();
+    pw.close();
+}

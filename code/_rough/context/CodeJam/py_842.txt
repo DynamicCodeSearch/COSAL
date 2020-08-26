@@ -1,0 +1,480 @@
+### Py Tokens: false, xrange, sums, high, needed, can2, can3, total, true, low 
+
+### Py functions
+
+def func_8d5c2a6a5df8425688da39abab72fb28(N, i, sums, total):
+
+    def can3(p):
+        needed = (1 - p) * total
+        for i in xrange(N - 1, 0, -1):
+            if sums[i] <= needed:
+                break
+        else:
+            return False
+        for j in xrange(N - 1, i - 1, -1):
+            if sums[j + 1] - sums[i] <= needed:
+                break
+        else:
+            return False
+        if total - sums[j + 1] <= needed:
+            return True
+        return False
+
+    def can2(p):
+        needed = (1 - p) * total
+        for i in xrange(N - 1, 0, -1):
+            if sums[i] <= needed:
+                break
+        else:
+            return False
+        if total - sums[i] <= needed:
+            return True
+        return False
+    low = 0.0
+    high = 1.0
+    for i in xrange(40):
+        g = (low + high) * 0.5
+        if can3(g) or can2(g):
+            low = g
+        else:
+            high = g
+    return g
+
+def func_52bfb310e10c491eb5af18c679a95ec0(N, i, sums, total):
+
+    def can3(p):
+        needed = (1 - p) * total
+        for i in xrange(N - 1, 0, -1):
+            if sums[i] <= needed:
+                break
+        else:
+            return False
+        for j in xrange(N - 1, i - 1, -1):
+            if sums[j + 1] - sums[i] <= needed:
+                break
+        else:
+            return False
+        if total - sums[j + 1] <= needed:
+            return True
+        return False
+
+    def can2(p):
+        needed = (1 - p) * total
+        for i in xrange(N - 1, 0, -1):
+            if sums[i] <= needed:
+                break
+        else:
+            return False
+        if total - sums[i] <= needed:
+            return True
+        return False
+    low = 0.0
+    high = 1.0
+    for i in xrange(40):
+        g = (low + high) * 0.5
+        if can3(g) or can2(g):
+            low = g
+        else:
+            high = g
+    return N
+
+def func_54d7001718b2456daec76aa980fa9cb1(N, i, sums, total):
+
+    def can3(p):
+        needed = (1 - p) * total
+        for i in xrange(N - 1, 0, -1):
+            if sums[i] <= needed:
+                break
+        else:
+            return False
+        for j in xrange(N - 1, i - 1, -1):
+            if sums[j + 1] - sums[i] <= needed:
+                break
+        else:
+            return False
+        if total - sums[j + 1] <= needed:
+            return True
+        return False
+
+    def can2(p):
+        needed = (1 - p) * total
+        for i in xrange(N - 1, 0, -1):
+            if sums[i] <= needed:
+                break
+        else:
+            return False
+        if total - sums[i] <= needed:
+            return True
+        return False
+    low = 0.0
+    high = 1.0
+    for i in xrange(40):
+        g = (low + high) * 0.5
+        if can3(g) or can2(g):
+            low = g
+        else:
+            high = g
+    return i
+
+def func_b43ac823f01f4016a4b4d7e3d0ddf381(N, i, sums, total):
+
+    def can3(p):
+        needed = (1 - p) * total
+        for i in xrange(N - 1, 0, -1):
+            if sums[i] <= needed:
+                break
+        else:
+            return False
+        for j in xrange(N - 1, i - 1, -1):
+            if sums[j + 1] - sums[i] <= needed:
+                break
+        else:
+            return False
+        if total - sums[j + 1] <= needed:
+            return True
+        return False
+
+    def can2(p):
+        needed = (1 - p) * total
+        for i in xrange(N - 1, 0, -1):
+            if sums[i] <= needed:
+                break
+        else:
+            return False
+        if total - sums[i] <= needed:
+            return True
+        return False
+    low = 0.0
+    high = 1.0
+    for i in xrange(40):
+        g = (low + high) * 0.5
+        if can3(g) or can2(g):
+            low = g
+        else:
+            high = g
+    return high
+
+def func_3d057514a2b34102a8919eeb0acaae8b(N, i, sums, total):
+
+    def can3(p):
+        needed = (1 - p) * total
+        for i in xrange(N - 1, 0, -1):
+            if sums[i] <= needed:
+                break
+        else:
+            return False
+        for j in xrange(N - 1, i - 1, -1):
+            if sums[j + 1] - sums[i] <= needed:
+                break
+        else:
+            return False
+        if total - sums[j + 1] <= needed:
+            return True
+        return False
+
+    def can2(p):
+        needed = (1 - p) * total
+        for i in xrange(N - 1, 0, -1):
+            if sums[i] <= needed:
+                break
+        else:
+            return False
+        if total - sums[i] <= needed:
+            return True
+        return False
+    low = 0.0
+    high = 1.0
+    for i in xrange(40):
+        g = (low + high) * 0.5
+        if can3(g) or can2(g):
+            low = g
+        else:
+            high = g
+    return low
+
+*********************************
+
+#### Score: 9.33141
+
+
+#### Java Tokens: total, counts, sums 
+
+public static long func_503f58214a9e46398f915e47c6091911(int N, long[] counts) { 
+ final long[] sums = new long[N + 1];
+for (int i = 0; i < N; i++) sums[i + 1] = sums[i] + counts[i];
+final long total = sums[N];
+return total;
+}
+
+
+public static long func_b46e4e8121134bb08801d3de4510d4e8(int N, long r, long s, long p, long q) { 
+ final long[] counts = new long[N];
+for (int i = 0; i < N; i++) counts[i] = (i * p + q) % r + s;
+final long[] sums = new long[N + 1];
+for (int i = 0; i < N; i++) sums[i + 1] = sums[i] + counts[i];
+final long total = sums[N];
+return total;
+}
+
+
+public static long[] func_c5395f39b64745dea5778e0eeb6218e9(int N, long[] counts) { 
+ final long[] sums = new long[N + 1];
+for (int i = 0; i < N; i++) sums[i + 1] = sums[i] + counts[i];
+final long total = sums[N];
+return sums;
+}
+
+
+*********************************
+
+#### Score: 9.33141
+
+
+#### Java Tokens: total, answer, sums 
+
+public static long func_962ac62c8aba4fa2a8841f2042b999e5(int N, long[] sums) { 
+ final long total = sums[N];
+long answer = 0L;
+return answer;
+}
+
+
+public static long func_87f91c6eb3bf4d10be724ab348a980dc(int N, long[] sums) { 
+ final long total = sums[N];
+long answer = 0L;
+return total;
+}
+
+
+*********************************
+
+#### Score: 9.08062
+
+
+#### Java Tokens: high, low 
+
+public static int func_f388707605144796a4b526fe90630b7b(long high, long low) { 
+ long m = (low + high) / 2;
+int i = 0;
+long x = 0;
+return i;
+}
+
+
+public static long func_4095026e27114ba9a8e9a5cc355f034b(long high, long low) { 
+ long m = (low + high) / 2;
+int i = 0;
+long x = 0;
+return m;
+}
+
+
+public static double func_d2d97269ac5346cdaada845feea25bbc(int W) { 
+ double low = 0;
+double high = W;
+return high;
+}
+
+
+*********************************
+
+#### Score: 8.74133
+
+
+#### Java Tokens: total, answer, counts, sums 
+
+public static long func_4502893454b544fb8f2c8b6663730b53(int N, long[] counts, long[] sums) { 
+ for (int i = 0; i < N; i++) sums[i + 1] = sums[i] + counts[i];
+final long total = sums[N];
+long answer = 0L;
+return total;
+}
+
+
+public static long func_2b449234c47b48a3a863bdbd2128d4b1(int N, long[] counts) { 
+ final long[] sums = new long[N + 1];
+for (int i = 0; i < N; i++) sums[i + 1] = sums[i] + counts[i];
+final long total = sums[N];
+long answer = 0L;
+return answer;
+}
+
+
+public static long[] func_1354726a852d4842831d5c8292d43b03(int N, long r, long s, long p, long q) { 
+ final long[] counts = new long[N];
+for (int i = 0; i < N; i++) counts[i] = (i * p + q) % r + s;
+final long[] sums = new long[N + 1];
+for (int i = 0; i < N; i++) sums[i + 1] = sums[i] + counts[i];
+final long total = sums[N];
+long answer = 0L;
+return counts;
+}
+
+
+*********************************
+
+#### Score: 8.46644
+
+
+#### Java Tokens: high, low, pref 
+
+public static long func_5a49a347564d436ea920679a11a87a7e(int n, int[] a, long[] pref) { 
+ for (int i = 0; i < n; i++) {
+    pref[i + 1] = pref[i] + a[i];
+}
+// System.out.println(Arrays.toString(pref));
+// System.out.println(Arrays.toString(a));
+// can't
+long low = 0;
+// can
+long high = pref[n];
+return low;
+}
+
+
+public static long func_2487d07add2548239d0f095dd0a4d809(int n, int r, int s, int q, int p) { 
+ int[] a = new int[n];
+for (int i = 0; i < n; i++) {
+    a[i] = (int) (((long) i * p + q) % r + s);
+}
+long[] pref = new long[n + 1];
+for (int i = 0; i < n; i++) {
+    pref[i + 1] = pref[i] + a[i];
+}
+// System.out.println(Arrays.toString(pref));
+// System.out.println(Arrays.toString(a));
+// can't
+long low = 0;
+// can
+long high = pref[n];
+return high;
+}
+
+
+public static long func_3b9299aca8b743df90f3c6b488f863b9(int n, long[] pref) { 
+ // System.out.println(Arrays.toString(pref));
+// System.out.println(Arrays.toString(a));
+// can't
+long low = 0;
+// can
+long high = pref[n];
+return high;
+}
+
+
+*********************************
+
+#### Score: 8.46644
+
+
+#### Java Tokens: high, low, start 
+
+public static double func_b5792060a4574f6cb338460730a6d45d(int W, double start) { 
+ double low = start;
+double high = W;
+return high;
+}
+
+
+public static double func_425fa528f9504f9fb25dda4eb0fe99a8(int W, double start) { 
+ double low = start;
+double high = W;
+return low;
+}
+
+
+*********************************
+
+#### Score: 8.46644
+
+
+#### Java Tokens: high, low, mid 
+
+public static double func_608e8094a31741c5b1446cdcc31bc4c1(double high, double T, double low) { 
+ double mid = (high + low) / 2;
+if (A.S(mid) < T) {
+    low = mid;
+} else {
+    high = mid;
+}
+return low;
+}
+
+
+public static double func_77de1b90c2464a29a0b4c2ab8b37d8bf(double high, double T, double low) { 
+ double mid = (high + low) / 2;
+if (A.S(mid) < T) {
+    low = mid;
+} else {
+    high = mid;
+}
+return mid;
+}
+
+
+public static double func_197eab54ec904e71bad12749c453400f(double high, double T, double low) { 
+ double mid = (high + low) / 2;
+if (A.S(mid) < T) {
+    low = mid;
+} else {
+    high = mid;
+}
+return high;
+}
+
+
+*********************************
+
+#### Score: 8.46644
+
+
+#### Java Tokens: high, curans, low 
+
+public static double func_a3bac718cee84db1a6dfeec352afc588(double curans) { 
+ double low = curans;
+double high = A.W;
+return low;
+}
+
+
+public static double func_5c7decc6cbd34947b30c7ccd6bcbb155(double curans) { 
+ double low = curans;
+double high = A.W;
+return high;
+}
+
+
+*********************************
+
+#### Score: 8.46644
+
+
+#### Java Tokens: high, low, sum 
+
+public static long func_81beb2a9a2844c0189b6fe4b1e9096f7(long sum) { 
+ long low = 0;
+long high = sum;
+return high;
+}
+
+
+public static long func_f130b35bd7e44a57af243400663cb5a5(long sum) { 
+ long low = 0;
+long high = sum;
+return low;
+}
+
+
+*********************************
+
+#### Score: 8.46644
+
+
+#### Java Tokens: high, low, budget 
+
+public static long func_60ad323720a64daf8e001c01843bad2a(long low, long budget) { 
+ --low;
+long high = budget + 1;
+return high;
+}
+

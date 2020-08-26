@@ -1,0 +1,50 @@
+boolean f(int N, int[][] x, int d) {
+    int sz = 1;
+    while (sz < 2 * N) sz *= 2;
+    int[][] arr = new int[2 * N][];
+    for (int i = 0; i < N; ++i) {
+        arr[i] = new int[] { x[i][0], i };
+        arr[i + N] = new int[] { x[i][1], i };
+    }
+    Arrays.sort(arr, comp);
+    ArrayList<Integer>[] lis = new ArrayList[N];
+    for (int i = 0; i < N; ++i) {
+        lis[i] = new ArrayList<>();
+    }
+    for (int i = 0; i < 2 * N; ++i) {
+        lis[arr[i][1]].add(i);
+    }
+    ArrayList<Integer>[] g = new ArrayList[2 * sz + sz - 1];
+    for (int i = 0; i < g.length; ++i) {
+        g[i] = new ArrayList<>();
+    }
+    for (int i = 0; i < N; ++i) {
+        int xId = lis[i].get(0);
+        int yId = lis[i].get(1);
+        g[xId + sz - 1].add(yId + 2 * sz - 1);
+        g[xId + 2 * sz - 1].add(yId + sz - 1);
+        g[yId + sz - 1].add(xId + 2 * sz - 1);
+        g[yId + 2 * sz - 1].add(xId + sz - 1);
+    }
+    for (int i = 0; i < sz - 1; ++i) {
+        g[i].add(2 * i + 1);
+        g[i].add(2 * i + 2);
+    }
+    for (int i = 0; i < arr.length; ++i) {
+        arr[i][1] = i;
+    }
+    for (int i = 0; i < arr.length; ++i) {
+        int v = arr[i][0];
+        IntervalConnect(new int[] { v - d + 1, -Integer.MAX_VALUE }, new int[] { v, i - 1 }, 0, sz - 1, 0, g, arr, i + 2 * sz - 1);
+        IntervalConnect(new int[] { v, i + 1 }, new int[] { v + d - 1, Integer.MAX_VALUE }, 0, sz - 1, 0, g, arr, i + 2 * sz - 1);
+    }
+    int[] col = new int[2 * sz + sz - 1];
+    stronglyConnectedComponent(g, col);
+    System.gc();
+    for (int i = 0; i < 2 * N; ++i) {
+        if (col[i + sz - 1] == col[i + 2 * sz - 1]) {
+            return false;
+        }
+    }
+    return true;
+}

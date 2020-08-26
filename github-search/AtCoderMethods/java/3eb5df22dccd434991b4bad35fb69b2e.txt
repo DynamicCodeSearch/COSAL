@@ -1,0 +1,12 @@
+static void dfs(int recent, int depth, boolean[] visied) {
+    if (depth == nextNode.size() - 1) {
+        cnt++;
+        return;
+    }
+    for (Integer next : nextNode.get(recent)) {
+        visied[recent] = true;
+        if (!visied[next])
+            dfs(next, depth + 1, visied);
+        visied[recent] = false;
+    }
+}

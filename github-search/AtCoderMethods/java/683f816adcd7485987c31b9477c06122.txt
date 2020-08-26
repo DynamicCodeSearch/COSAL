@@ -1,0 +1,14 @@
+void solve() throws IOException {
+    P = nd();
+    double high = P, low = 0;
+    for (int i = 0; i < 1000; i++) {
+        double x1 = (high + 2 * low) / 3;
+        double x2 = (2 * high + low) / 3;
+        if (calc(x1) < calc(x2)) {
+            high = x2;
+        } else {
+            low = x1;
+        }
+    }
+    out.println(calc(high));
+}

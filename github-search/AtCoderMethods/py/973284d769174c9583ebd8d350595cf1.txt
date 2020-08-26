@@ -1,0 +1,17 @@
+def main():
+    H, W, N = map(int, input().split())
+    d = defaultdict(int)
+    for _ in range(N):
+        a, b = map(int, input().split())
+        a, b = a - 1, b - 1
+        for y in range(-2, 1):
+            for x in range(-2, 1):
+                ny, nx = a + y, b + x
+                if 0 <= ny < H - 2 and 0 <= nx < W - 2:
+                    d[(ny, nx)] += 1
+    ans = [0] * 10
+    for v in d.values():
+        ans[v] += 1
+    ans[0] = (H - 2) * (W - 2) - sum(ans)
+
+    print(*ans, sep="\n")

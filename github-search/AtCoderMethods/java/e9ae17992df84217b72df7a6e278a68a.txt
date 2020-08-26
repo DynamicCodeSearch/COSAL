@@ -1,0 +1,47 @@
+public static void main(String[] args) throws IOException {
+    final Scanner sc = new Scanner(System.in);
+    final int N = sc.nextInt();
+    final int M = sc.nextInt();
+    boolean[][] adj = new boolean[N][N];
+    for (int i = 0; i < M; i++) {
+        final int x = sc.nextInt() - 1;
+        final int y = sc.nextInt() - 1;
+        adj[x][y] = true;
+    }
+    final int BIT_SIZE = 1 << N;
+    long[][] sums = new long[BIT_SIZE][N];
+    for (int i = 0; i < N; i++) {
+        sums[1 << i][i] = 1;
+    }
+    for (int bit = 1; bit < BIT_SIZE; bit++) {
+        for (int cur_last = 0; cur_last < N; cur_last++) {
+            if ((bit & (1 << cur_last)) == 0) {
+                continue;
+            }
+            for (int next_last = 0; next_last < N; next_last++) {
+                if ((bit & (1 << next_last)) != 0) {
+                    continue;
+                }
+                boolean is_valid = true;
+                for (int from = 0; from < N; from++) {
+                    if ((bit & (1 << from)) == 0) {
+                        continue;
+                    }
+                    if (adj[next_last][from]) {
+                        is_valid = false;
+                        break;
+                    }
+                }
+                if (!is_valid) {
+                    continue;
+                }
+                sums[bit | (1 << next_last)][next_last] += sums[bit][cur_last];
+            }
+        }
+    }
+    long sum = 0;
+    for (int last = 0; last < N; last++) {
+        sum += sums[BIT_SIZE - 1][last];
+    }
+    System.out.println(sum);
+}

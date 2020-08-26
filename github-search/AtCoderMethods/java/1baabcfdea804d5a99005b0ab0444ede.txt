@@ -1,0 +1,19 @@
+long calculateSumWith(int bit) {
+    long sum = 0;
+    long tmpNum = 0;
+    int digit = 1;
+    bit = bit << 1;
+    for (int j = 0; j < N; j++) {
+        if ((bit >> j & 1) == 1) {
+            sum += tmpNum;
+            tmpNum = 0;
+            digit = 1;
+        }
+        
+        tmpNum += Long.valueOf(nums[N - j - 1]) * digit;
+        digit *= 10;
+    }
+    sum += tmpNum;
+    
+    return sum;
+}

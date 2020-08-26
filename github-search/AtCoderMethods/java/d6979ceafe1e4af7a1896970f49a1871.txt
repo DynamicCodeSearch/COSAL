@@ -1,0 +1,66 @@
+private static String solve(int n, int[][] abs) {
+    TreeSet<int[]> tmap = new TreeSet<>(Comparator.comparingLong((ab) -> (long) ab[0] * Integer.MAX_VALUE + ab[1]));
+    for (int[] ab : abs) {
+        tmap.add(ab);
+        tmap.add(new int[] { ab[1], ab[0] });
+    }
+    
+    
+    int sp = -1;
+    PriorityQueue<int[]> q = new PriorityQueue<>(Comparator.comparingInt((dhp) -> dhp[0]));
+    Integer[] preced = new Integer[n + 1];
+    q.add(new int[] { 0, 1, -1 });
+    while (!q.isEmpty()) {
+        int[] arr = q.poll();
+        int dist = arr[0];
+        int here = arr[1];
+        int pre = arr[2];
+        if (preced[here] != null)
+            continue;
+        preced[here] = pre;
+        if (here == n) {
+            sp = dist;
+            break;
+        }
+        for (int[] edge : tmap.subSet(new int[] { here, 0 }, new int[] { here + 1, 0 })) {
+            int to = edge[1];
+            if (preced[to] != null)
+                continue;
+            q.add(new int[] { dist + 1, to, here });
+        }
+    }
+    q.clear();
+    ArrayDeque<int[]> stk = new ArrayDeque<>();
+    Integer[] paint = new Integer[n + 1];
+    final int FENNEC = 1;
+    final int SNUKE = 0;
+    for (int i = 0, p = preced[n]; i < sp - 1; i++) {
+        if (i < (sp - 1) / 2)
+            paint[p] = SNUKE;
+        else
+            paint[p] = FENNEC;
+        stk.add(new int[] { p, paint[p] });
+        p = preced[p];
+    }
+    paint[1] = FENNEC;
+    paint[n] = SNUKE;
+    stk.add(new int[] { 1, paint[1] });
+    stk.add(new int[] { n, paint[n] });
+    while (!stk.isEmpty()) {
+        int[] arr = stk.pollFirst();
+        int here = arr[0];
+        int color = arr[1];
+        for (int[] edge : tmap.subSet(new int[] { here, 0 }, new int[] { here + 1, 0 })) {
+            int to = edge[1];
+            if (paint[to] != null)
+                continue;
+            paint[to] = color;
+            stk.add(new int[] { to, color });
+        }
+    }
+    long fennec = Arrays.stream(paint).filter(p -> p != null && p == FENNEC).count();
+    long sunuke = Arrays.stream(paint).filter(p -> p != null && p == SNUKE).count();
+    if (fennec > sunuke)
+        return "Fennec";
+    return "Snuke";
+}

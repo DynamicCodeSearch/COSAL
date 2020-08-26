@@ -1,0 +1,54 @@
+
+public void run() throws IOException {
+    
+    int TEST_CASE = 1;
+    while (TEST_CASE-- != 0) {
+        int n = io.nextInt();
+        int m = io.nextInt();
+        int[][] dist = new int[n][n];
+        int sumC = 0;
+        for (int i = 0; i < m; i++) {
+            int a = io.nextInt() - 1;
+            int b = io.nextInt() - 1;
+            int c = io.nextInt();
+            dist[a][b] = dist[b][a] = c;
+            sumC += c;
+        }
+        int[] dp1 = new int[1 << n];
+        for (int i = 1; i < 1 << n; i++) {
+            for (int j = 0; j < n; j++) if ((i >> j & 1) == 1) {
+                int sum = 0;
+                for (int k = 0; k < n; k++) {
+                    if ((i >> k & 1) == 1) {
+                        sum += dist[j][k];
+                    }
+                }
+                dp1[i] = dp1[i & ~(1 << j)] + sum;
+                break;
+            }
+        }
+        int[][] dp2 = new int[n][1 << n];
+        for (int[] d : dp2) Arrays.fill(d, Integer.MIN_VALUE);
+        dp2[0][1] = 0;
+        for (int i = 0; i < 1 << n; i++) {
+            for (int j = 0; j < n; j++) if ((i >> j & 1) == 1) {
+                if (dp2[j][i] == Integer.MIN_VALUE)
+                    continue;
+                for (int k = 0; k < n; k++) if ((i >> k & 1) == 0) {
+                    if (dist[j][k] == 0)
+                        continue;
+                    dp2[k][i | 1 << k] = Math.max(dp2[k][i | 1 << k], dp2[j][i] + dist[j][k]);
+                }
+                int z = ~i & ((1 << (n - 1)) - 1);
+                for (int k = z; k != 0; k = (k - 1) & z) {
+                    dp2[j][i | k] = Math.max(dp2[j][i | k], dp2[j][i] + dp1[k | 1 << j]);
+                }
+            }
+        }
+        int ans = Integer.MIN_VALUE;
+        for (int i = 0; i < n; i++) {
+            ans = Math.max(ans, dp2[i][(1 << n) - 1]);
+        }
+        io.out.println(sumC - ans);
+    }
+}

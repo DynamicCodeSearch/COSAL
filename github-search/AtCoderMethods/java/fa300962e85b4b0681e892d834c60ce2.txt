@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    long best = Long.MAX_VALUE;
+    int n = in.nextInt();
+    int[] a = in.nextInts(n);
+    for (int k = -100; k <= 100; k++) {
+        long cost = 0;
+        for (int i = 0; i < n; i++) {
+            int diff = Math.abs(k - a[i]);
+            cost += diff * diff;
+        }
+        best = Math.min(best, cost);
+    }
+    out.println(best);
+    out.flush();
+}

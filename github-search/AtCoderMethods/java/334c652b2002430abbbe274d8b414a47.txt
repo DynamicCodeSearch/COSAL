@@ -1,0 +1,31 @@
+public static void main(String[] args) throws IOException {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] A = new int[N];
+    sc.fill(A);
+    Arrays.sort(A);
+    for (int i = 0; i < N / 2; i++) {
+        int tmp = A[i];
+        A[i] = A[N - i - 1];
+        A[N - i - 1] = tmp;
+    }
+    debug(A);
+    long a = -1;
+    long b = -1;
+    for (int i = 1; i < N; i++) {
+        if (A[i - 1] == A[i]) {
+            if (a == -1) {
+                a = A[i];
+                i++;
+            } else {
+                b = A[i];
+                break;
+            }
+        }
+    }
+    if (a == -1 || b == -1) {
+        System.out.println(0);
+    } else {
+        System.out.println(a * b);
+    }
+}

@@ -1,0 +1,13 @@
+def solve():
+    n, t = map(int, input().split())
+    lim = 10**6 + 10**5 + 1
+    door = [0] * lim
+
+    for i in range(n):
+        a = int(sys.stdin.readline())
+        door[a] += 1
+        door[a + t] -= 1
+
+    ans = sum(di > 0 for di in accumulate(door))
+
+    print(ans)

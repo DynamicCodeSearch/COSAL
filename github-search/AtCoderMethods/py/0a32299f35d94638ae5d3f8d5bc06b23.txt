@@ -1,0 +1,12 @@
+def main():
+    n, x = read_int_list()
+    a = read_int_list()
+    a.insert(0, 0)
+    n += 1
+    res = 0
+    for i in range(1, n):
+        if a[i - 1] + a[i] > x:
+            diff = a[i - 1] + a[i] - x
+            res += diff
+            a[i] -= diff
+    print(res)

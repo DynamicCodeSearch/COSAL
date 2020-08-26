@@ -1,0 +1,22 @@
+void run() {
+    int N = in.nextInt();
+    g = new ArrayList[N];
+    for (int i = 0; i < N; i++) {
+        g[i] = new ArrayList<>();
+    }
+    for (int i = 0; i < N - 1; i++) {
+        int a = in.nextInt() - 1;
+        int b = in.nextInt() - 1;
+        int c = in.nextInt();
+        g[a].add(new Edge(b, c));
+        g[b].add(new Edge(a, c));
+    }
+    int Q = in.nextInt(), K = in.nextInt();
+    dist = new long[N];
+    dfs(K - 1, -1, 0);
+    for (int i = 0; i < Q; i++) {
+        int x = in.nextInt() - 1;
+        int y = in.nextInt() - 1;
+        System.out.println(dist[x] + dist[y]);
+    }
+}

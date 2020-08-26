@@ -1,0 +1,19 @@
+private void solve() {
+    try {
+        long N = scanner.nextLong();
+        long A = 1;
+        long B = N;
+        long min = solveF(A, B);
+        for (long i = 2; i <= Math.sqrt(N); i++) {
+            if (N % i == 0) {
+                int f = solveF(i, N / i);
+                if (f < min) {
+                    min = f;
+                }
+            }
+        }
+        System.out.println(min);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}

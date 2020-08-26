@@ -1,0 +1,11 @@
+void solve() throws IOException {
+    int n = nextInt();
+    int[] a = new int[n];
+    int sum = 0;
+    for (int i = 0; i < n; i++) {
+        a[i] = nextInt();
+        sum += a[i];
+    }
+    int avg = Math.floorDiv(sum, n);
+    out.println(Math.min(go(a, avg), go(a, avg + 1)));
+}

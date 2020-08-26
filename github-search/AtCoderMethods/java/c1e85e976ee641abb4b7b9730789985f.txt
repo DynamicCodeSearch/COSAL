@@ -1,0 +1,70 @@
+public static void main(String[] args) {
+    String Dir;
+    int W = 0;
+    double d;
+    Scanner sc = new Scanner(System.in);
+    int Deg = sc.nextInt();
+    int Dis = sc.nextInt();
+    if (112.5 <= Deg && Deg < 337.5)
+        Dir = "NNE";
+    else if (337.5 <= Deg && Deg < 562.5)
+        Dir = "NE";
+    else if (562.5 <= Deg && Deg < 787.5)
+        Dir = "ENE";
+    else if (787.5 <= Deg && Deg < 1012.5)
+        Dir = "E";
+    else if (1012.5 <= Deg && Deg < 1237.5)
+        Dir = "ESE";
+    else if (1237.5 <= Deg && Deg < 1462.5)
+        Dir = "SE";
+    else if (1462.5 <= Deg && Deg < 1687.5)
+        Dir = "SSE";
+    else if (1687.5 <= Deg && Deg < 1912.5)
+        Dir = "S";
+    else if (1912.5 <= Deg && Deg < 2137.5)
+        Dir = "SSW";
+    else if (2137.5 <= Deg && Deg < 2362.5)
+        Dir = "SW";
+    else if (2362.5 <= Deg && Deg < 2587.5)
+        Dir = "WSW";
+    else if (2587.5 <= Deg && Deg < 2812.5)
+        Dir = "W";
+    else if (2812.5 <= Deg && Deg < 3037.5)
+        Dir = "WNW";
+    else if (3037.5 <= Deg && Deg < 3262.5)
+        Dir = "NW";
+    else if (3262.5 <= Deg && Deg < 3487.5)
+        Dir = "NNW";
+    else
+        Dir = "N";
+    d = Math.round(Dis / 60.0 * 10.0) / 10.0;
+    if (0.0 <= d && d <= 0.2)
+        W = 0;
+    else if (0.3 <= d && d <= 1.5)
+        W = 1;
+    else if (1.6 <= d && d <= 3.3)
+        W = 2;
+    else if (3.4 <= d && d <= 5.4)
+        W = 3;
+    else if (5.5 <= d && d <= 7.9)
+        W = 4;
+    else if (8.0 <= d && d <= 10.7)
+        W = 5;
+    else if (10.8 <= d && d <= 13.8)
+        W = 6;
+    else if (13.9 <= d && d <= 17.1)
+        W = 7;
+    else if (17.2 <= d && d <= 20.7)
+        W = 8;
+    else if (20.8 <= d && d <= 24.4)
+        W = 9;
+    else if (24.5 <= d && d <= 28.4)
+        W = 10;
+    else if (28.5 <= d && d <= 32.6)
+        W = 11;
+    else if (32.7 <= d)
+        W = 12;
+    if (W == 0)
+        Dir = "C";
+    System.out.println(Dir + " " + W);
+}

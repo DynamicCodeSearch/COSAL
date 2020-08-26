@@ -1,0 +1,8 @@
+private void dfs(int u, int par, long d) {
+    dist[u] = d;
+    for (Edge e : g[u]) {
+        if (e.to == par)
+            continue;
+        dfs(e.to, u, d + e.cost);
+    }
+}

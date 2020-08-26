@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner cin = new Scanner(System.in);
+    int target = cin.nextInt();
+    String result;
+    if (target < 100) {
+        result = "00";
+    } else if (target <= 5000) {
+        result = Integer.toString((int) (target / 100));
+        if (result.length() == 1) {
+            result = "0" + result;
+        }
+    } else if (target <= 30000) {
+        result = Integer.toString(50 + (int) (target / 1000));
+    } else if (target <= 70000) {
+        result = Integer.toString(80 + ((int) (target / 1000) - 30) / 5);
+    } else {
+        result = "89";
+    }
+    System.out.println(result);
+}

@@ -1,0 +1,11 @@
+def solve(N, M):
+    ans = min(M // 2, N)
+
+    x = (M - 2*N) // 4
+    for i in range(x - 5, x + 6):
+        if i >= 0 and M >= 2 * i:
+            M2 = M - 2 * i
+            N2 = N + i
+            ans = max(ans, min(M2 // 2, N2))
+
+    return ans

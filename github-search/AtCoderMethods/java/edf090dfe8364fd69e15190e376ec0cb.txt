@@ -1,0 +1,15 @@
+void dfs(int d) {
+    if (d == n + (n - 1)) {
+        String tmp = "";
+        for (int i = 0; i < c.length; i++) {
+            if (c[i] != '-')
+                tmp += c[i];
+        }
+        ans += new Parse().expression(tmp);
+        return;
+    }
+    c[d] = '+';
+    dfs(d + 2);
+    c[d] = '-';
+    dfs(d + 2);
+}

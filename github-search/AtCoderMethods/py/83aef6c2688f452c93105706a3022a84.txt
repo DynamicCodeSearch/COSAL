@@ -1,0 +1,10 @@
+def solve(N, M):
+    a = 0
+    b = 10 ** 20
+    while b - a > 1:
+        m = (a + b) // 2
+        if is_possible(N, M, m):
+            a = m
+        else:
+            b = m
+    return a

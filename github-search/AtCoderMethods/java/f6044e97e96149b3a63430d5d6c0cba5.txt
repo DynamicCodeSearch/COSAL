@@ -1,0 +1,16 @@
+private static boolean f(long a, long b) {
+    if ((a == 0 && b == 0) || (a == 0 && b == 1) || (a == 1 && b == 0) || (a == 1 && b == 1)) {
+        return false;
+    }
+    for (long i = a / 2; i >= 1; i--) {
+        if (!f(a - 2 * i, b + i)) {
+            return true;
+        }
+    }
+    for (long i = b / 2; i >= 1; i--) {
+        if (!f(a + i, b - 2 * i)) {
+            return true;
+        }
+    }
+    return false;
+}

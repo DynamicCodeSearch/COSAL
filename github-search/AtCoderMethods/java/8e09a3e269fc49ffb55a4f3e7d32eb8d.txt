@@ -1,0 +1,33 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int A = sc.nextInt();
+    int B = sc.nextInt();
+    Long[] v = new Long[N];
+    for (int i = 0; i < N; i++) v[i] = sc.nextLong();
+    Arrays.sort(v, Collections.reverseOrder());
+    long[][] comb = new long[60][60];
+    for (int i = 0; i < 60; i++) {
+        comb[i][0] = comb[i][i] = 1;
+        for (int j = 1; j < i; j++) {
+            comb[i][j] = comb[i - 1][j] + comb[i - 1][j - 1];
+        }
+    }
+    double sum = 0;
+    for (int i = 0; i < A; i++) sum += v[i];
+    System.out.println(sum / A);
+    int K = 0, L = 0;
+    for (int i = 0; i < N; i++) if (v[i].equals(v[A - 1])) {
+        K++;
+        if (i < A)
+            L++;
+    }
+    long ans = 0;
+    if (v[0].equals(v[A - 1])) {
+        for (int i = A; i <= B; i++) ans += comb[K][i];
+    } else {
+        ans = comb[K][L];
+    }
+    System.out.println(ans);
+    sc.close();
+}

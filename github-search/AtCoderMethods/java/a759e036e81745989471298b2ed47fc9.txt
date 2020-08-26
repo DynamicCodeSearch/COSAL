@@ -1,0 +1,12 @@
+static long pow(long base, long pow) {
+    if (pow == 1)
+        return base;
+    long half = pow(base, pow / 2);
+    half %= mod;
+    half *= half;
+    half %= mod;
+    if (pow % 2 == 1)
+        half *= base;
+    half %= mod;
+    return half;
+}

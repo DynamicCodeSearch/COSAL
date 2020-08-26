@@ -1,0 +1,48 @@
+private void solve(Scanner sc) {
+    int N = sc.nextInt();
+    int K = sc.nextInt();
+    long[] s = new long[N];
+    boolean containsZero = false;
+    boolean containsLower = false;
+    for (int i = 0; i < N; ++i) {
+        s[i] = sc.nextInt();
+        if (s[i] == 0) {
+            containsZero = true;
+        }
+        if (s[i] <= K) {
+            containsLower = true;
+        }
+    }
+    if (containsZero) {
+        _out.println(N);
+        return;
+    }
+    if (!containsLower) {
+        _out.println(0);
+        return;
+    }
+    if (K == 0) {
+        _out.println(0);
+        return;
+    }
+    int left = 0;
+    int right = 0;
+    long prod = 1;
+    int max = 0;
+    while (right < N) {
+        long tmp = prod * s[right];
+        if (tmp > K) {
+            if (left == right) {
+                ++right;
+            } else {
+                prod /= s[left];
+            }
+            ++left;
+        } else {
+            prod = tmp;
+            max = Math.max(max, right - left + 1);
+            ++right;
+        }
+    }
+    _out.println(max);
+}

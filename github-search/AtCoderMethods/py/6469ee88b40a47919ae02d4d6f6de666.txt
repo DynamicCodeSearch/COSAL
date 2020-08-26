@@ -1,0 +1,10 @@
+def main():
+	n, m = list(map(int, input().split()))
+ ships = [list(map(int, input().split())) for _ in range(m)]
+ frm1 = [x[1] for x in ships if x[0] == 1]
+ toN = [x[0] for x in ships if x[1] == n]
+ out = set(frm1).intersection(set(toN))
+ if len(out) >= 1:
+		print("POSSIBLE")
+ else:
+		print("IMPOSSIBLE")

@@ -1,0 +1,18 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    int elder = 0;
+    if (m % 2 == 1) {
+        elder = 1;
+        n--;
+        m -= 3;
+    }
+    int baby = (m - n * 2) / 2;
+    int adult = n - baby;
+    if (adult < 0 || baby < 0) {
+        System.out.println("-1 -1 -1");
+    } else {
+        System.out.println(adult + " " + elder + " " + baby);
+    }
+}

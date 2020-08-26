@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    long D = sc.nextLong();
+    long[] d = sc.nextLongList(N);
+    int Q = sc.nextInt();
+    int[] q = sc.nextIntList(Q);
+    long[] p = new long[N + 1];
+    p[0] = D;
+    for (int i = 0; i < N; i++) {
+        p[i + 1] = Math.min(p[i] + d[i], Math.abs(p[i] - d[i]));
+        p[i + 1] = Math.min(p[i + 1], p[i]);
+    }
+    long[] dp = new long[N + 1];
+    dp[N] = 1;
+    for (int i = N - 1; i >= 0; i--) {
+        dp[i] = d[i] / 2 >= dp[i + 1] ? dp[i + 1] : dp[i + 1] + d[i];
+    }
+    StringBuilder sb = new StringBuilder();
+    for (int v : q) {
+        if (p[v - 1] >= dp[v]) {
+            sb.append("YES\n");
+        } else {
+            sb.append("NO\n");
+        }
+    }
+    System.out.println(sb);
+}

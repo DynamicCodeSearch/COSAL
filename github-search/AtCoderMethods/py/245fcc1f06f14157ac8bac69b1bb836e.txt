@@ -1,0 +1,16 @@
+def main():
+    N = int(input())
+    a_list = list(map(int, input().split()))
+    f, t, o = 0, 0, 0
+    for a in a_list:
+        if a % 4 == 0:
+            f += 1
+        elif a % 2 == 0:
+            t += 1
+        else:
+            o += 1
+
+    if f >= (N // 2) or f >= o:
+        print("Yes")
+    else:
+        print("No")

@@ -1,0 +1,16 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[] t = new int[3];
+    String[] ans = new String[3];
+    t[0] = n / 3600;
+    t[1] = n % 3600 / 60;
+    t[2] = n % 3600 % 60;
+    for (int i = 0; i < 3; i++) {
+        ans[i] = "" + t[i];
+        if (t[i] < 10) {
+            ans[i] = "0" + ans[i];
+        }
+    }
+    System.out.println(ans[0] + ":" + ans[1] + ":" + ans[2]);
+}

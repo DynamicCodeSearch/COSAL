@@ -1,0 +1,31 @@
+def solve():
+    N = int(input())
+    A = [int(i) for i in input().split()]
+    asum = sum(A)
+
+    if asum % N:
+        print(-1)
+        return
+
+    b = asum // N
+
+    l, r = 0, 0
+    v = 0
+    ans = 0
+
+    while r < N:
+        if l == r:
+            v += A[r]
+            r += 1
+        else:
+            if v == (r - l) * b:
+                ans += r - l - 1
+                l = r
+                v = 0
+            else:
+                v += A[r]
+                r += 1
+
+    ans += r - l - 1
+
+    print(ans)

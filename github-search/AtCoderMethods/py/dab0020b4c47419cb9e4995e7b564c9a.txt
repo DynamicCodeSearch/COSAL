@@ -1,0 +1,17 @@
+def solve(): 
+    A, B, C, D = list(map(int, input().split(" ")))
+
+    if A < C <= B < D:
+        print(B - C)
+    elif C < A <= D < B:
+        print(D - A)
+    elif A < C < D < B:
+        print(D - C)
+    elif C < A < B < D:
+        print(B - A)
+    elif (A == C)  and (B == D):
+        print(B - A)
+    elif A == C or B == D:
+        print(min(abs(B-A), abs(D-C)))
+    else:
+        print(0)

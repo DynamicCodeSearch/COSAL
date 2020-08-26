@@ -1,0 +1,12 @@
+def main():
+    N, T = map(int, input().split())
+    t = list(map(int, input().split()))
+
+    total = T
+    for n in range(1, N):
+        if t[n] < t[n-1] + T:
+            total += (t[n]+T) - (t[n-1]+T)
+        else:
+            total += T
+
+    print(total)

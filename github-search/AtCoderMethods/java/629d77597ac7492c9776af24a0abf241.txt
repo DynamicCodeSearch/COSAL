@@ -1,0 +1,9 @@
+private static boolean check(int[][] ranges, int[] io) {
+    Stack<Integer> stk = new Stack<>();
+    for (int[] r : ranges) {
+        if (!dostk(stk, r[0], r[1], io)) {
+            return false;
+        }
+    }
+    return stk.size() == 0;
+}

@@ -1,0 +1,5 @@
+static long nCk(int n, int k, long mod, long[] fact, long[] factI) {
+    if (k < 0 || n < k)
+        return 0;
+    return fact[n] * factI[k] % mod * factI[n - k] % mod;
+}

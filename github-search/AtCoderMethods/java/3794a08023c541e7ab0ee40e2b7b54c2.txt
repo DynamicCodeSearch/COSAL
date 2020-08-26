@@ -1,0 +1,15 @@
+public void solve(ArrayList<String> inLines) {
+    int N = Integer.parseInt(inLines.get(0));
+    String str = inLines.get(1);
+    int maxX = 0;
+    int x = 0;
+    for (int i = 0; i < N; i++) {
+        if (str.charAt(i) == 'I')
+            x++;
+        else if (str.charAt(i) == 'D')
+            x -= 1;
+        if (x > maxX)
+            maxX = x;
+    }
+    System.out.println(maxX);
+}

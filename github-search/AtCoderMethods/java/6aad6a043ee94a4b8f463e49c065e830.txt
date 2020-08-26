@@ -1,0 +1,12 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    long T = sc.nextInt();
+    long[] t = sc.nextLongList(N);
+    long now = 0;
+    for (int i = 1; i < N; i++) {
+        now += Math.min(T, t[i] - t[i - 1]);
+    }
+    now += T;
+    System.out.println(now);
+}

@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n, x, y, min = 100000;
+    n = Integer.parseInt(sc.next());
+    x = 1;
+    y = n;
+    while (x <= y) {
+        if (x * y <= n) {
+            min = Math.min(n - x * y + Math.abs(x - y), min);
+            x++;
+        } else {
+            y--;
+        }
+    }
+    System.out.println(min);
+}

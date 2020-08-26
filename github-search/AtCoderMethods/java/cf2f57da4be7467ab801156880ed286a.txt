@@ -1,0 +1,20 @@
+void solve() throws IOException {
+    int n = in.nextInt();
+    int m = in.nextInt();
+    List<Edge>[] node = new List[n];
+    for (int i = 0; i < n; i++) {
+        node[i] = new ArrayList<>();
+    }
+    for (int i = 0; i < m; i++) {
+        int a = in.nextInt() - 1;
+        int b = in.nextInt() - 1;
+        long c = in.nextInt();
+        node[a].add(new Edge(b, -c));
+    }
+    long[] cost = bellman_ford(node, n, m);
+    if (lastC[n - 1] == n - 1) {
+        System.out.println("inf");
+        return;
+    }
+    System.out.println(-cost[n - 1]);
+}

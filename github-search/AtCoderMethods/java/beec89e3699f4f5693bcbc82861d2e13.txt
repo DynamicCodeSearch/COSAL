@@ -1,0 +1,40 @@
+public static void main(String[] args) {
+    Scanner ss = new Scanner(System.in);
+    long r = ss.nextLong();
+    long b = ss.nextLong();
+    long x = ss.nextLong();
+    long y = ss.nextLong();
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    double dr = (double) r;
+    double db = (double) b;
+    double dx = (double) x;
+    double dy = (double) y;
+    double ds = (dy * dr - db) / (dx * dy - 1);
+    double dt = (dx * db - dr) / (dx * dy - 1);
+    long s = (long) ds;
+    long t = (long) dt;
+    long max = 0;
+    for (long i = -100; i <= 100; i++) {
+        for (long j = -100; j <= 100; j++) {
+            if (s + i >= 0 && t + j >= 0 && x * (s + i) + (t + j) <= r && (s + i) + y * (t + j) <= b) {
+                max = Math.max(max, s + i + t + j);
+            }
+        }
+    }
+    max = Math.max(max, Math.min(r / x, b));
+    max = Math.max(max, Math.min(r, b / y));
+    System.out.println(max);
+}

@@ -1,0 +1,11 @@
+def solve():
+    n = int(input())
+    hana = [0] * (10**5 + 1)
+
+    for i in range(n):
+        a = int(sys.stdin.readline())
+        hana[a] += 1
+
+    ans = sum(max(0, h - 1) for h in hana)
+
+    print(ans)

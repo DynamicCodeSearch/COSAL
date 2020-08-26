@@ -1,0 +1,34 @@
+public void solve() {
+    N = nextInt();
+    connect = new ArrayList[N];
+    for (int i = 0; i < N; i++) {
+        connect[i] = new ArrayList<Integer>();
+    }
+    dp = new long[2][N];
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < N; j++) {
+            dp[i][j] = -1;
+        }
+    }
+    for (int i = 0; i < N - 1; i++) {
+        int a = nextInt() - 1;
+        int b = nextInt() - 1;
+        connect[a].add(b);
+        connect[b].add(a);
+    }
+    int start = 0;
+    for (int i = 0; i < N; i++) {
+        if (connect[i].size() == 1) {
+            start = i;
+            break;
+        }
+    }
+    used = new boolean[N];
+    used[start] = true;
+    long ans = dfs(1, start) % INF;
+    ans %= INF;
+    ans += dfs(0, start) % INF;
+    used[start] = false;
+    ans %= INF;
+    out.println(ans);
+}

@@ -1,0 +1,8 @@
+def update(self, index, value):
+    x = index
+    while x < self.size:
+        if self.tree[x] < value:
+            self.tree[x] = value
+        else:
+            return
+        x |= x + 1

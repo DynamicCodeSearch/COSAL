@@ -1,0 +1,20 @@
+def main():
+    N, M = map(int, input().split())
+    students = []
+    for _ in range(N):
+        a, b = map(int, input().split())
+        students.append((a, b))
+
+    checkpoints = []
+    for _ in range(M):
+        c, d = map(int, input().split())
+        checkpoints.append((c, d))
+
+    for s in students:
+        ans = ""
+        best = float("inf")
+        for i, c in enumerate(checkpoints, start=1):
+            if abs(s[0] - c[0]) + abs(s[1] - c[1]) < best:
+                best = abs(s[0] - c[0]) + abs(s[1] - c[1])
+                ans = i
+        print(ans)

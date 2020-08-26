@@ -1,0 +1,22 @@
+private long f() {
+    long sum = 0;
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            boolean flag = true;
+            for (int k = 0; k < n; ++k) {
+                if (i != j && j != k && i != k) {
+                    if (gr[i][j] > gr[i][k] + gr[k][j]) {
+                        return -1;
+                    }
+                    if (gr[i][j] == gr[i][k] + gr[k][j]) {
+                        flag = false;
+                    }
+                }
+            }
+            if (flag && i < j) {
+                sum += gr[i][j];
+            }
+        }
+    }
+    return sum;
+}

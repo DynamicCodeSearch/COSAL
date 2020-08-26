@@ -1,0 +1,19 @@
+void solve() {
+    int N = sc.nextInt();
+    int[] count = new int[26];
+    for (int i = 0; i < count.length; i++) count[i] = 1000000;
+    for (int i = 0; i < N; i++) {
+        int[] s = new int[26];
+        for (char c : sc.next().toCharArray()) {
+            ++s[c - 'a'];
+        }
+        for (int j = 0; j < count.length; j++) count[j] = min(count[j], s[j]);
+    }
+    String ans = "";
+    for (int j = 0; j < count.length; j++) {
+        for (int i = 0; i < count[j]; i++) {
+            ans = ans + (char) ('a' + j);
+        }
+    }
+    out.println(ans);
+}

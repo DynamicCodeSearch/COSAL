@@ -1,0 +1,14 @@
+def main():
+    N, T = map(int, input().split())
+    t = list(map(int, input().split()))
+    s, e = 0, 0
+    ans = 0
+    for i in range(N):
+        if t[i] <= e:
+            e = t[i] + T
+        else:
+            ans += e - s
+            s = t[i]
+            e = t[i] + T
+    ans += e - s
+    print(ans)

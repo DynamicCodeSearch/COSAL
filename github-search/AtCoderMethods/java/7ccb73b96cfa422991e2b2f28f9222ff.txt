@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = sc.nextInt();
+        a[i]--;
+    }
+    int res = 0;
+    int curr = 0;
+    boolean[] light = new boolean[n];
+    while (true) {
+        res++;
+        if (a[curr] == 1)
+            break;
+        else if (light[a[curr]]) {
+            res = -1;
+            break;
+        }
+        light[curr] = true;
+        curr = a[curr];
+    }
+    System.out.println(res);
+}

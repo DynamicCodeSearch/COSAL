@@ -1,0 +1,13 @@
+long solveLargeK(long k, long m) {
+    int dsum = ("" + m).length() * 9;
+    int ans = 0;
+    for (int i = 0; i <= dsum; i++) {
+        long base = i;
+        while (base <= m) {
+            if (i == digitSum(base))
+                ans++;
+            base += k;
+        }
+    }
+    return ans;
+}

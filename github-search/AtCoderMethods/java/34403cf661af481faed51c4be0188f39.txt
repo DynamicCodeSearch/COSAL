@@ -1,0 +1,19 @@
+private int count(int left, int right) {
+    int index = -1;
+    boolean hasZero = false;
+    for (int i = left; i <= right; i++) {
+        if (S.charAt(i) == '0')
+            hasZero = true;
+        else if (S.charAt(i) == '+') {
+            index = i;
+            break;
+        }
+    }
+    if (index > -1) {
+        return count(left, index - 1) + count(index + 1, right);
+    } else if (hasZero) {
+        return 0;
+    } else {
+        return 1;
+    }
+}

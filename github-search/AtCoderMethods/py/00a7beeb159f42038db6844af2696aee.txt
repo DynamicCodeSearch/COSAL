@@ -1,0 +1,12 @@
+def lower_bound(arr,v):
+    l = 0
+    r = len(arr)
+    m = (l+r)//2
+    while r-l>1:
+        if arr[m] >= v:
+            r = m
+        else:
+            l = m
+        m = (l+r)//2
+
+    return m

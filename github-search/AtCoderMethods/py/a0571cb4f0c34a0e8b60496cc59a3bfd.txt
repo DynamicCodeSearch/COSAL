@@ -1,0 +1,10 @@
+def main():
+    A, K = map(int, input().split())
+    ans = 0
+    if K == 0:
+        print(2 * (10 ** 12) - A)
+        return
+    while A < 2 * (10 ** 12):
+        A += 1 + A * K
+        ans += 1
+    print(ans)

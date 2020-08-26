@@ -1,0 +1,31 @@
+public static void main(String[] args) {
+    long a, b, k, l;
+    long one;
+    long money = 0;
+    long money2 = 0;
+    Scanner input = new Scanner(System.in);
+    a = input.nextLong();
+    b = input.nextLong();
+    k = input.nextLong();
+    l = input.nextLong();
+    one = b / l;
+    if (one > a) {
+        money = a * k;
+    } else {
+        for (int i = 0; k > l; ) {
+            k = k - l;
+            money += b;
+        }
+        money2 = money;
+        money += a * k;
+        for (int i = 0; k > 0; ) {
+            k = k - l;
+            money2 += b;
+        }
+    }
+    if (money > money2) {
+        System.out.println(money2);
+    } else {
+        System.out.println(money);
+    }
+}

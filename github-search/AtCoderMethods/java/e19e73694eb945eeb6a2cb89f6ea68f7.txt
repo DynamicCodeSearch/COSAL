@@ -1,0 +1,19 @@
+void run() {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int k = sc.nextInt();
+    int[] a = new int[10];
+    for (int i = 0; i < k; i++) {
+        a[sc.nextInt()] = 1;
+    }
+    L: for (int i = n; ; i++) {
+        char[] c = ("" + i).toCharArray();
+        for (int j = 0; j < c.length; j++) {
+            if (a[c[j] - '0'] == 1) {
+                continue L;
+            }
+        }
+        System.out.println(i);
+        return;
+    }
+}

@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    String input = scan.next();
+    long sum = 0;
+    int itr = 1;
+    for (int i = 0; i < input.length() - 1; i++) {
+        itr *= 2;
+    }
+    for (int combi = 0; combi < itr; combi++) {
+        int i = 0;
+        while (i < input.length()) {
+            int j = i;
+            while ((combi & (1 << j)) == 0) {
+                j++;
+                if (j >= input.length() - 1) {
+                    j = input.length() - 1;
+                    break;
+                }
+            }
+            sum += Long.valueOf(input.substring(i, j + 1));
+            i = j + 1;
+        }
+    }
+    System.out.println(sum);
+}

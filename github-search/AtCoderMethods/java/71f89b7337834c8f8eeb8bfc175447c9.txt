@@ -1,0 +1,76 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    long W = sc.nextLong();
+    long[] w = new long[N + 1];
+    long[] v = new long[N + 1];
+    for (int i = 1; i <= N; i++) {
+        w[i] = sc.nextLong();
+        v[i] = sc.nextLong();
+    }
+    int a = 0;
+    int b = 0;
+    int c = 0;
+    int d = 0;
+    long[] va = new long[N + 1];
+    long[] vb = new long[N + 1];
+    long[] vc = new long[N + 1];
+    long[] vd = new long[N + 1];
+    va[0] = 0;
+    vb[0] = 0;
+    vc[0] = 0;
+    vd[0] = 0;
+    for (int i = 1; i <= N; i++) {
+        if (w[i] == w[1]) {
+            a++;
+            va[a] = v[i];
+        }
+        if (w[i] == w[1] + 1) {
+            b++;
+            vb[b] = v[i];
+        }
+        if (w[i] == w[1] + 2) {
+            c++;
+            vc[c] = v[i];
+        }
+        if (w[i] == w[1] + 3) {
+            d++;
+            vd[d] = v[i];
+        }
+    }
+    Arrays.sort(va);
+    Arrays.sort(vb);
+    Arrays.sort(vc);
+    Arrays.sort(vd);
+    long sum = 0;
+    long sumtmp = 0;
+    for (int i = 0; i <= a; i++) {
+        for (int j = 0; j <= b; j++) {
+            for (int k = 0; k <= c; k++) {
+                for (int m = 0; m <= d; m++) {
+                    sum = 0;
+                    for (int n = N; n > N - i; n--) {
+                        sum = sum + va[n];
+                    }
+                    for (int n = N; n > N - j; n--) {
+                        sum = sum + vb[n];
+                    }
+                    for (int n = N; n > N - k; n--) {
+                        sum = sum + vc[n];
+                    }
+                    for (int n = N; n > N - m; n--) {
+                        sum = sum + vd[n];
+                    }
+                    double y = 10000000;
+                    double x = (double) (w[1] / y) * i + (double) ((w[1] + 1) / y) * j + (double) ((w[1] + 2) / y) * k + (double) ((w[1] + 3) / y) * m;
+                    if (x <= (double) (W) / y) {
+                        if (sum > sumtmp) {
+                            sumtmp = sum;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    System.out.println(sumtmp);
+}

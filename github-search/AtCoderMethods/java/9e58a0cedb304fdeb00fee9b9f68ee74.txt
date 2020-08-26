@@ -1,0 +1,16 @@
+public static int go(int index, int nodeId, int flag) {
+    if (index == n) {
+        return flag == 1 ? 1 : 0;
+    }
+    if (dp[index][nodeId][flag] != null)
+        return dp[index][nodeId][flag];
+    int res = 0;
+    for (char c = '0'; c <= '9'; c++) {
+        Node n = nodes[nodeId];
+        while (n.child[c - '0'] == null) n = n.fail;
+        n = n.child[c - '0'];
+        res += go(index + 1, n.id, flag | (n.isTerminal ? 1 : 0));
+        res %= mod;
+    }
+    return dp[index][nodeId][flag] = res;
+}

@@ -1,0 +1,9 @@
+static long calc(int a, int b) {
+    int x = toInt(a / 3.0);
+    long s1 = b * x;
+    long s2 = (a - x) * (b / 2);
+    long s3 = (a - x) * ((b + 1) / 2);
+    long s4 = b * ((a - x) / 2);
+    long s5 = b * ((a - x + 1) / 2);
+    return Math.min(max(s1, s2, s3) - min(s1, s2, s3), max(s1, s4, s5) - min(s1, s4, s5));
+}

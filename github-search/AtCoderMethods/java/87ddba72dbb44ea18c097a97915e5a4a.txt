@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int T = sc.nextInt();
+    long sum = 0;
+    int[] t_array = new int[N];
+    for (int i = 0; i < N; i++) {
+        t_array[i] = sc.nextInt();
+    }
+    int pre_time = t_array[N - 1] + T;
+    for (int i = N - 1; 0 <= i; i--) {
+        int delta = pre_time - t_array[i];
+        if (delta < T) {
+            sum += delta;
+        } else {
+            sum += T;
+        }
+        pre_time = t_array[i];
+    }
+    System.out.println(sum);
+    sc.close();
+}

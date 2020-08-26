@@ -1,0 +1,58 @@
+static void solve() {
+    int n = ni();
+    int[][] g = new int[n][n];
+    for (int i = 0; i < n; i++) {
+        Arrays.fill(g[i], -1);
+    }
+    int m = ni();
+    long csum = 0;
+    for (int i = 0; i < m; i++) {
+        int f = ni() - 1, t = ni() - 1;
+        g[f][t] = g[t][f] = ni();
+        csum += g[f][t];
+    }
+    long[][] dp = new long[1 << n][n];
+    for (int i = 0; i < 1 << n; i++) {
+        Arrays.fill(dp[i], -9999999999L);
+    }
+    long[] score = new long[1 << n];
+    for (int i = 0; i < 1 << n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (i << ~j < 0) {
+                for (int k = j + 1; k < n; k++) {
+                    if (i << ~k < 0 && g[j][k] != -1) {
+                        score[i] += g[j][k];
+                    }
+                }
+            }
+        }
+    }
+    for (int i = 1; i < 1 << n - 1; i += 2) {
+        dp[i][0] = score[i];
+    }
+    for (int i = 1; i < 1 << n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (dp[i][j] < 0)
+                continue;
+            for (int to = 1; to < n; to++) {
+                if (g[j][to] != -1 && i << ~to >= 0) {
+                    int mask = (1 << n) - 1 ^ i ^ 1 << to;
+                    ;
+                    for (int u = mask; u >= 0; u--) {
+                        u &= mask;
+                        int l = u ^ 1 << to;
+                        
+                        
+                        dp[i | l][to] = Math.max(dp[i | l][to], dp[i][j] + score[l] + g[j][to]);
+                    
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    
+    
+    out.println(csum - dp[(1 << n) - 1][n - 1]);
+}

@@ -1,0 +1,23 @@
+void run() {
+    int n = ni();
+    long t = ni();
+    ArrayList<Pair<Long, Long>> list = new ArrayList<>();
+    for (int i = 0; i < n; ++i) {
+        long v = ni();
+        Pair<Long, Long> p = new Pair<>(v, v + t);
+        list.add(p);
+    }
+    for (int i = 0; i < n - 1; ++i) {
+        Pair<Long, Long> left = list.get(i);
+        Pair<Long, Long> right = list.get(i + 1);
+        if (left.s > right.f) {
+            left.s = right.f;
+        }
+    }
+    long sum = 0;
+    for (int i = 0; i < n; ++i) {
+        Pair<Long, Long> p = list.get(i);
+        sum += p.s - p.f;
+    }
+    System.out.println(sum);
+}

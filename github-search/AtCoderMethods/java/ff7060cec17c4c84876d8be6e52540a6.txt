@@ -1,0 +1,56 @@
+public static void main(String[] args) throws IOException {
+    final Scanner sc = new Scanner(System.in);
+    final int N = sc.nextInt();
+    long[] xs = new long[N];
+    for (int i = 0; i < N; i++) {
+        xs[i] = sc.nextLong();
+    }
+    final int LOG = Integer.numberOfTrailingZeros(Integer.highestOneBit(N)) + 1;
+    final long L = sc.nextLong();
+    int[][] days = new int[LOG + 1][N];
+    {
+        for (int start = 0; start < N; start++) {
+            int lower_end = start, upper_end = N;
+            while (lower_end + 1 < upper_end) {
+                final int middle_end = (lower_end + upper_end) / 2;
+                final long diff = xs[middle_end] - xs[start];
+                if (diff <= L) {
+                    lower_end = middle_end;
+                } else {
+                    upper_end = middle_end;
+                }
+            }
+            
+            days[0][start] = lower_end;
+        }
+        
+        for (int depth = 1; depth <= LOG; depth++) {
+            for (int start = 0; start < N; start++) {
+                days[depth][start] = days[depth - 1][days[depth - 1][start]];
+            }
+        
+        }
+    }
+    final int Q = sc.nextInt();
+    for (int q = 0; q < Q; q++) {
+        final int a = sc.nextInt() - 1;
+        final int b = sc.nextInt() - 1;
+        final int min = Math.min(a, b);
+        final int max = Math.max(a, b);
+        int min_day = 0, max_day = N;
+        LOOP: while (min_day + 1 < max_day) {
+            final int middle_day = (min_day + max_day) / 2;
+            for (int rest_day = middle_day, cnt = 0, curr_pos = min; rest_day > 0; rest_day /= 2, cnt++) {
+                if (rest_day % 2 == 1) {
+                    curr_pos = days[cnt][curr_pos];
+                }
+                if (curr_pos >= max) {
+                    max_day = middle_day;
+                    continue LOOP;
+                }
+            }
+            min_day = middle_day;
+        }
+        System.out.println(max_day);
+    }
+}

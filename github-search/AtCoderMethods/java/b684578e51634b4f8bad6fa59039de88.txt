@@ -1,0 +1,17 @@
+void run() {
+    int n = ni();
+    TreeSet<Integer> set = new TreeSet<>();
+    int[] a = new int[n];
+    for (int i = 0; i < n; ++i) {
+        a[i] = ni();
+        set.add(a[i]);
+    }
+    HashMap<Integer, Integer> map = new HashMap<>();
+    int cnt = 0;
+    for (int v : set) {
+        map.put(v, cnt++);
+    }
+    for (int i = 0; i < n; ++i) {
+        System.out.println(map.get(a[i]));
+    }
+}

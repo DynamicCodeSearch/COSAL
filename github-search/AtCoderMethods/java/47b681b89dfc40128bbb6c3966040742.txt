@@ -1,0 +1,19 @@
+static void solve() {
+    char[] s = ns().toCharArray();
+    int n = s.length;
+    boolean[] dp = new boolean[n + 1];
+    dp[0] = true;
+    String[] ts = { "dream", "dreamer", "erase", "eraser" };
+    for (int i = 1; i <= n; i++) {
+        inner: for (String t : ts) {
+            if (i - t.length() >= 0 && dp[i - t.length()]) {
+                for (int j = i - t.length(), k = 0; k < t.length(); k++, j++) {
+                    if (t.charAt(k) != s[j])
+                        continue inner;
+                }
+                dp[i] = true;
+            }
+        }
+    }
+    out.println(dp[n] ? "YES" : "NO");
+}

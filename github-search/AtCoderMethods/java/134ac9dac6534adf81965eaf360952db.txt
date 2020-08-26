@@ -1,0 +1,26 @@
+private boolean hasNextByte() {
+    if (ptr < buflen) {
+        return true;
+    } else {
+        ptr = 0;
+        try {
+            if (debug != null) {
+                buflen = debug.length();
+                buffer = debug.getBytes();
+                debug = "";
+                eos = true;
+            } else {
+                buflen = in.read(buffer);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (buflen < 0) {
+            eos = true;
+            return false;
+        } else if (buflen == 0) {
+            return false;
+        }
+    }
+    return true;
+}

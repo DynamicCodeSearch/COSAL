@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    PriorityQueue<Edge> edges = new PriorityQueue<>();
+    for (int i = 0; i < M; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        int y = sc.nextInt();
+        edges.add(new Edge(a, b, y));
+    }
+    int Q = sc.nextInt();
+    PriorityQueue<Edge> queries = new PriorityQueue<>();
+    for (int i = 0; i < Q; i++) {
+        int v = sc.nextInt() - 1;
+        int y = sc.nextInt();
+        queries.add(new Edge(i, v, y));
+    }
+    UnionFind unionFind = new UnionFind(N);
+    int[] ans = new int[Q];
+    while (!queries.isEmpty()) {
+        Edge query = queries.poll();
+        while (!edges.isEmpty() && edges.peek().year > query.year) {
+            Edge edge = edges.poll();
+            unionFind.unite(edge.to, edge.from);
+        }
+        ans[query.from] = unionFind.size(query.to);
+    }
+    for (int a : ans) System.out.println(a);
+}

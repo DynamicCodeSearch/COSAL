@@ -1,0 +1,13 @@
+
+static long getCombination(int n, int r) {
+    long[] modDp = new long[n + 1];
+    long[] modInvDp = new long[n + 1];
+    modDp[0] = 1;
+    for (int i = 1; i <= n; i++) modDp[i] = getMod(modDp[i - 1] * i);
+    modInvDp[n] = getInverse(modDp[n]);
+    for (int i = n; i > 0; i--) modInvDp[i - 1] = getMod(modInvDp[i] * i);
+    long ans = modDp[n];
+    ans = ans * modInvDp[r] % MOD;
+    ans = ans * modInvDp[n - r] % MOD;
+    return ans;
+}

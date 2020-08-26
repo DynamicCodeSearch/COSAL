@@ -1,0 +1,21 @@
+void solve() {
+    int sx = in.nextInt();
+    int sy = in.nextInt();
+    int tx = in.nextInt();
+    int ty = in.nextInt();
+    int x = tx - sx;
+    int y = ty - sy;
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < y; i++) sb.append('U');
+    for (int i = 0; i < x; i++) sb.append('R');
+    for (int i = 0; i < y; i++) sb.append('D');
+    for (int i = 0; i < x + 1; i++) sb.append('L');
+    for (int i = 0; i < y + 1; i++) sb.append('U');
+    for (int i = 0; i < x + 1; i++) sb.append('R');
+    sb.append('D');
+    sb.append('R');
+    for (int i = 0; i < y + 1; i++) sb.append('D');
+    for (int i = 0; i < x + 1; i++) sb.append('L');
+    sb.append('U');
+    out.println(sb.toString());
+}

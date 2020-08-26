@@ -1,0 +1,11 @@
+private int get(int root, int x, int L, int R) {
+    if (L == R) {
+        return add[root];
+    }
+    push(root);
+    int M = (L + R) / 2;
+    if (x <= M) {
+        return get(2 * root + 1, x, L, M);
+    }
+    return get(2 * root + 2, x, M + 1, R);
+}

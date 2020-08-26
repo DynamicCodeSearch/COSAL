@@ -1,0 +1,15 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    String s = sc.next();
+    int[] num = new int[26];
+    for (int i = 0; i < s.length(); i++) {
+        num[s.charAt(i) - 'a']++;
+    }
+    for (int i = 0; i < 26; i++) {
+        if (num[i] >= 2) {
+            System.out.println("no");
+            return;
+        }
+    }
+    System.out.println("yes");
+}

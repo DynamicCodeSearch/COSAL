@@ -1,0 +1,13 @@
+private void solve(Scanner sc) {
+    int n = sc.nextInt();
+    Map<Long, Long> map = new HashMap<>();
+    for (int i = 1; i <= n; ++i) {
+        map = d(i, map);
+    }
+    long ans = 1;
+    for (Map.Entry<Long, Long> entry : map.entrySet()) {
+        ans *= entry.getValue() + 1;
+        ans %= 1_000_000_007;
+    }
+    _out.println(ans % 1_000_000_007);
+}

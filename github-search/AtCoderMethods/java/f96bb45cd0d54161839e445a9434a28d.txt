@@ -1,0 +1,31 @@
+void solve() throws NumberFormatException, IOException {
+    int n = in.nextInt();
+    long[] a = new long[n + 1];
+    long k = in.nextLong();
+    for (int i = 1; i <= n; i++) {
+        a[i] = in.nextLong() + a[i - 1];
+    }
+    if (a[n] == k) {
+        System.out.println(1);
+        return;
+    }
+    long[][] dp = new long[n + 1][n + 1];
+    for (int i = 0; i < n; i++) {
+        Arrays.fill(dp[i + 1], k + 1);
+        for (int j = 0; j <= i; j++) {
+            dp[i + 1][j] = Math.min(dp[i + 1][j], dp[i][j]);
+            final long need;
+            if (i > 0)
+                need = (long) ((double) (a[i + 1] - a[i]) * dp[i][j] / a[i]) + 1;
+            else
+                need = 1;
+            dp[i + 1][j + 1] = Math.min(dp[i + 1][j + 1], dp[i][j] + need);
+        }
+    }
+    for (int i = n; i >= 0; i--) {
+        if (dp[n][i] <= k) {
+            System.out.println(i);
+            break;
+        }
+    }
+}

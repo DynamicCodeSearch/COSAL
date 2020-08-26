@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    try (Scanner sc = new Scanner(System.in)) {
+        String s = sc.nextLine();
+        do {
+            s = s.substring(0, s.length() - 1);
+            if (s.length() % 2 != 0) {
+                continue;
+            }
+            String a = s.substring(0, s.length() / 2);
+            String b = s.substring(s.length() / 2, s.length());
+            if (a.equals(b)) {
+                System.out.println(a.length() * 2);
+                return;
+            }
+        } while (0 < s.length());
+    }
+}

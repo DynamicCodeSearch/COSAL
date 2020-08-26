@@ -1,0 +1,9 @@
+
+int query(int i) {
+    int max = 0;
+    while (i > 0) {
+        max = Math.max(max, bit[i - 1]);
+        i -= i & (-i);
+    }
+    return max;
+}

@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    n = sc.nextInt();
+    a = new Pair[n];
+    int maxH = 0;
+    for (int i = 0; i < a.length; i++) {
+        int w = sc.nextInt(), h = sc.nextInt();
+        a[i] = new Pair(w, h);
+        maxH = Math.max(maxH, h);
+    }
+    Arrays.sort(a);
+    RangeMaximumQuery rmq = new RangeMaximumQuery(maxH);
+    int ans = 1;
+    for (int i = 0; i < a.length; i++) {
+        int h = a[i].h;
+        int nv = rmq.get(0, h) + 1;
+        ans = Math.max(ans, nv);
+        rmq.update(h, nv);
+    }
+    System.out.println(ans);
+}

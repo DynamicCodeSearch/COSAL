@@ -1,0 +1,18 @@
+static int lowerBound(ArrayList<Pair> a, int fromIndex, int toIndex, long key) {
+    if (a.get(toIndex - 1).y < key) {
+        return toIndex;
+    } else if (a.get(fromIndex).y >= key) {
+        return fromIndex;
+    }
+    int l = fromIndex;
+    int r = toIndex - 1;
+    while (l + 1 < r) {
+        int c = (l + r) >>> 1;
+        if (a.get(c).y >= key) {
+            r = c;
+        } else {
+            l = c;
+        }
+    }
+    return r;
+}

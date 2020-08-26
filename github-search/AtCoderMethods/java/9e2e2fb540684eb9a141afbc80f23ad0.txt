@@ -1,0 +1,18 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] nums = br.readLine().split(" ");
+    int n = Integer.parseInt(nums[0]);
+    int t = Integer.parseInt(nums[1]);
+    int total = 0;
+    int prev = -1000000;
+    for (int i = 0; i < n; i++) {
+        int tmp = Integer.parseInt(br.readLine());
+        if (tmp - prev >= t) {
+            total += t;
+        } else {
+            total += t - (t - tmp + prev);
+        }
+        prev = tmp;
+    }
+    System.out.println(total);
+}

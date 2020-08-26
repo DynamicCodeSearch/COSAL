@@ -1,0 +1,47 @@
+static void solve() {
+    int n = ni();
+    int[][] cs = new int[n][];
+    long[] chs = new long[n];
+    long ret = 0;
+    for (int i = 0; i < n; i++) {
+        cs[i] = na(4);
+        chs[i] = h(cs[i]);
+    }
+    LongHashCounter lhc = new LongHashCounter();
+    for (int i = n - 1; i >= 0; i--) {
+        for (int j = i + 1; j < n; j++) {
+            
+            inner: for (int d = 0; d < 4; d++) {
+                long[] hs = { h(cs[i][1], cs[i][0], cs[j][d + 1 & 3], cs[j][d + 0 & 3]), h(cs[i][2], cs[i][1], cs[j][d + 0 & 3], cs[j][d + 3 & 3]), h(cs[i][3], cs[i][2], cs[j][d + 3 & 3], cs[j][d + 2 & 3]), h(cs[i][0], cs[i][3], cs[j][d + 2 & 3], cs[j][d + 1 & 3]) };
+                Arrays.sort(hs);
+                long plus = 1;
+                for (int k = 0; k < 4; ) {
+                    int l = k;
+                    while (l < 4 && hs[k] == hs[l]) l++;
+                    int count = lhc.get(hs[k]);
+                    if (hs[k] == chs[j])
+                        count--;
+                    if (count <= 0)
+                        continue inner;
+                    long dup = 1;
+                    if (hs[k] / 1000000 % 1000 == hs[k] % 1000 && hs[k] / 1000000000 % 1000 == hs[k] / 1000 % 1000) {
+                        dup = 2;
+                        if (hs[k] / 1000 % 1000 == hs[k] % 1000) {
+                            dup = 4;
+                        }
+                    }
+                    long mul = 1;
+                    for (int t = 1; t <= l - k; t++) {
+                        mul = mul * dup;
+                        mul = mul * (count - t + 1);
+                    }
+                    plus = plus * mul;
+                    k = l;
+                }
+                ret += plus;
+            }
+        }
+        lhc.inc(chs[i], 1);
+    }
+    out.println(ret);
+}

@@ -1,0 +1,14 @@
+static void solve() {
+    int n = ni(), A = ni(), B = ni();
+    int[] a = na(n);
+    long low = 0, high = 1000000009;
+    while (high - low > 1) {
+        long h = high + low >> 1;
+        if (ok(a, h, A, B)) {
+            high = h;
+        } else {
+            low = h;
+        }
+    }
+    out.println(high);
+}

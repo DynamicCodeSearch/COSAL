@@ -1,0 +1,21 @@
+void solve() throws NumberFormatException, IOException {
+    final ContestScanner in = new ContestScanner();
+    Writer out = new Writer();
+    r = in.nextLong();
+    b = in.nextLong();
+    x = in.nextLong();
+    y = in.nextLong();
+    long left = 0;
+    long right = Math.min(r, b);
+    long ans = 0;
+    while (left <= right) {
+        long mid = (left + right) / 2;
+        if (check(mid)) {
+            ans = mid;
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+    System.out.println(ans);
+}

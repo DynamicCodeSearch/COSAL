@@ -1,0 +1,11 @@
+void union(int a, int b) {
+    int pa = root(a);
+    int pb = root(b);
+    if (-par[pa] < -par[pb]) {
+        par[pb] += par[pa];
+        par[pa] = pb;
+    } else {
+        par[pa] += par[pb];
+        par[pb] = pa;
+    }
+}

@@ -1,0 +1,5 @@
+def compute_pair(k, typecode="L"):
+    dp = array.array(typecode, [1, 1])
+    for i in range(2, k + 2):
+        dp.append(dp[i - 1] + dp[i - 2])
+    return dp[k + 1], dp[k]

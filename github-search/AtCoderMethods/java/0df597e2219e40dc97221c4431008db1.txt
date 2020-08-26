@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int n = scan.nextInt();
+    int k = scan.nextInt();
+    Deque<Integer> q = new ArrayDeque<Integer>();
+    int[] ts = new int[n];
+    for (int i = 0; i < n; i++) {
+        ts[i] = scan.nextInt();
+    }
+    Arrays.sort(ts);
+    int index = n - 1;
+    for (int i = 0; i < k; i++) {
+        q.addFirst(ts[index]);
+        index--;
+    }
+    double ans = 0;
+    for (int i = 0; i < k; i++) {
+        ans = (ans + q.pollFirst()) / 2;
+    }
+    System.out.println(ans);
+}

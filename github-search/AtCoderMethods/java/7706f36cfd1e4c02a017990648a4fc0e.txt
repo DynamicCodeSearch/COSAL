@@ -1,0 +1,17 @@
+int lca(int u, int v) {
+    if (head[u] != head[v]) {
+        if (depth[head[u]] < depth[head[v]]) {
+            int tmp = u;
+            u = v;
+            v = tmp;
+        }
+        return lca(parent[head[u]], v);
+    } else {
+        if (depth[u] > depth[v]) {
+            int tmp = u;
+            u = v;
+            v = tmp;
+        }
+        return u;
+    }
+}

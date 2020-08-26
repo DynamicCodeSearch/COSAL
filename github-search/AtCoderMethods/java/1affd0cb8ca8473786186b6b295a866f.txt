@@ -1,0 +1,13 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int N = in.nextInt();
+    long curT = 1;
+    long curA = 1;
+    for (int i = 0; i < N; i++) {
+        long T = in.nextLong();
+        long A = in.nextLong();
+        long F = Math.max(div(curT, T), div(curA, A));
+        curA = A * F;
+        curT = T * F;
+    }
+    out.println(curA + curT);
+}

@@ -1,0 +1,11 @@
+void solve() throws IOException {
+    char[][] s = new char[3][];
+    for (int i = 0; i < 3; i++) {
+        s[i] = in.nextToken().toCharArray();
+        if (i > 0 && s[i][0] != s[i - 1][s[i - 1].length - 1]) {
+            System.out.println("NO");
+            return;
+        }
+    }
+    System.out.println("YES");
+}

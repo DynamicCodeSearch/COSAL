@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int T = sc.nextInt();
+    long sum = 0;
+    long openingTime = 0;
+    long currentStartTime = 0;
+    for (int i = 0; i < N; i++) {
+        int ai = sc.nextInt();
+        if (ai <= openingTime) {
+            openingTime = ai + T;
+        } else {
+            sum += openingTime - currentStartTime;
+            currentStartTime = ai;
+            openingTime = ai + T;
+        }
+    }
+    sum += openingTime - currentStartTime;
+    System.out.println(sum);
+}

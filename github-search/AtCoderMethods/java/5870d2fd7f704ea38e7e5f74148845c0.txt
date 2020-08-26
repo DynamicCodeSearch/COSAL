@@ -1,0 +1,8 @@
+public void Update(int v, int idx) {
+    xs[idx += n - 1] = v;
+    while (idx > 0) {
+        idx = (idx - 1) / 2;
+        xs[idx] = Min(xs[idx * 2 + 1], xs[idx * 2 + 2]);
+        ys[idx] = ys[minIndex(idx * 2 + 1, idx * 2 + 2)];
+    }
+}

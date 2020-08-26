@@ -1,0 +1,15 @@
+void solve() {
+    int sScore = 0, fScore = 0;
+    int[] fScores = getDists(0);
+    int[] sScores = getDists(n - 1);
+    for (int i = 0; i < n; i++) {
+        if (fScores[i] <= sScores[i])
+            fScore++;
+        else
+            sScore++;
+    }
+    if (fScore > sScore)
+        System.out.println("Fennec");
+    else
+        System.out.println("Snuke");
+}

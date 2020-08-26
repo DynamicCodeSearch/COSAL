@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    
+    int k = (int) Math.sqrt(n);
+    int ans = Integer.MAX_VALUE / 2;
+    for (int h = 1; h <= Math.sqrt(n); h++) {
+        for (int w = h; h * w <= n; w++) {
+            if (ans > w - h + (n - w * h))
+                ans = w - h + (n - w * h);
+        }
+    }
+    System.out.println(ans);
+}

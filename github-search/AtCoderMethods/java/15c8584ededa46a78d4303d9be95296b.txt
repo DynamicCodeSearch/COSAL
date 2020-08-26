@@ -1,0 +1,15 @@
+public void solve(int testNumber, Scanner in, PrintWriter out) {
+    
+    Set<Integer> colors = new HashSet<>();
+    int n = in.nextInt();
+    int choosers = 0;
+    for (int i = 0; i < n; i++) {
+        int current = getColor(in.nextInt());
+        if (current < 0) {
+            ++choosers;
+        } else {
+            colors.add(current);
+        }
+    }
+    out.printf("%d %d\n", Math.max(colors.size(), 1), colors.size() + choosers);
+}

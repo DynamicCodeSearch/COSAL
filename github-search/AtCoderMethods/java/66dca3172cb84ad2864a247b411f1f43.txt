@@ -1,0 +1,15 @@
+public void solve() {
+    int sum = 0;
+    int min = 101;
+    for (int s : Score) {
+        sum += s;
+        if (s % 10 != 0 && s < min)
+            min = s;
+    }
+    if (sum % 10 != 0)
+        System.out.println(sum);
+    else if (min > 100)
+        System.out.println(0);
+    else
+        System.out.println((sum - min));
+}

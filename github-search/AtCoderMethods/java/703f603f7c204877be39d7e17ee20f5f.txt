@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int deg = scan.nextInt() * 10;
+    double dis = scan.nextInt() / 60.0;
+    dis = Math.round(dis * 10 + 0.0001);
+    String[] DIR_ARRAY = { "N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW" };
+    String dir = DIR_ARRAY[((deg + 1125) / 2250) % 16];
+    int w = 12;
+    int[] rank = { 2, 15, 33, 54, 79, 107, 138, 171, 207, 244, 284, 326 };
+    for (int i = 0; i < rank.length; i++) {
+        if (dis <= rank[i]) {
+            w = i;
+            break;
+        }
+    }
+    if (w == 0) {
+        dir = "C";
+    }
+    System.out.println(dir + " " + w);
+}

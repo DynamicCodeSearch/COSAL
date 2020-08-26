@@ -1,0 +1,18 @@
+void run() {
+    char[] S = sc.next().toCharArray();
+    char[] T = sc.next().toCharArray();
+    int[] scoreS = new int[S.length + 1];
+    int[] scoreT = new int[T.length + 1];
+    for (int i = 1; i <= S.length; i++) scoreS[i] += scoreS[i - 1] + (S[i - 1] == 'A' ? 1 : 2);
+    for (int i = 1; i <= T.length; i++) scoreT[i] += scoreT[i - 1] + (T[i - 1] == 'A' ? 1 : 2);
+    StringBuilder out = new StringBuilder();
+    int q = sc.nextInt();
+    while (q-- > 0) {
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        int c = sc.nextInt();
+        int d = sc.nextInt();
+        out.append((scoreS[b] - scoreS[a - 1]) % 3 == (scoreT[d] - scoreT[c - 1]) % 3 ? "YES\n" : "NO\n");
+    }
+    System.out.print(out);
+}

@@ -1,0 +1,12 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int length = scanner.nextInt();
+    for (int i = 0; i < length; i++) {
+        int t = scanner.nextInt();
+        increment(t - 1);
+        increment(t);
+        increment(t + 1);
+    }
+    int max = map.entrySet().stream().max(Comparator.comparingInt(m -> m.getValue())).get().getValue();
+    System.out.println(max);
+}

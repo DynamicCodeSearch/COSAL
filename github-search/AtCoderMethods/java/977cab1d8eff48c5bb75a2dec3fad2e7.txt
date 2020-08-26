@@ -1,0 +1,22 @@
+public static long maxRect(int[] a) {
+    int n = a.length;
+    int[] stack = new int[n];
+    int[] left = new int[n];
+    int p = 0;
+    long max = 0;
+    for (int i = 0; i < n; i++) {
+        int o = p;
+        while (p > 0 && stack[p - 1] >= a[i]) {
+            p--;
+            max = Math.max(max, (long) (i - 1 - left[p] + 1 + 1) * stack[p]);
+        }
+        if (o == p)
+            left[p] = i;
+        stack[p++] = a[i];
+    }
+    while (p > 0) {
+        p--;
+        max = Math.max(max, (long) (n - 1 - left[p] + 1 + 1) * stack[p]);
+    }
+    return max;
+}

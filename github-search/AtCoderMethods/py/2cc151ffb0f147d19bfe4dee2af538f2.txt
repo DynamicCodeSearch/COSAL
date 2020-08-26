@@ -1,0 +1,27 @@
+def main(args):
+    n = int(input())
+    a = [int(x) for x in input().split()]
+
+
+
+
+
+
+
+    l = len(a)
+    b = [0] * l
+    pos = l // 2
+    if l % 2 == 1:
+        direction = 1
+    else:
+        direction = -1
+
+    step = 1
+    for c in a:
+
+        b[pos] = c
+        pos = pos + (step * direction)
+        step += 1
+        direction *= -1
+
+    print(*b)

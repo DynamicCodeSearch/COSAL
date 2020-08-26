@@ -1,0 +1,15 @@
+public static void output() throws IOException {
+    int n = ri();
+    int[] a = new int[n];
+    int[] ctr = new int[4];
+    for (int i = 0; i < n; i++) {
+        ctr[ri() % 4]++;
+    }
+    ctr[2] = ctr[2] % 2;
+    int no = ctr[0] + ctr[1] + ctr[2] + ctr[3];
+    if (ctr[0] + (no % 2) >= (ctr[1] + ctr[2] + ctr[3])) {
+        println("Yes");
+    } else {
+        println("No");
+    }
+}

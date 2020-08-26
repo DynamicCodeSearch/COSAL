@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    Student[] students = new Student[N];
+    CheckPoint[] check_points = new CheckPoint[M];
+    for (int i = 0; i < students.length; i++) {
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        students[i] = new Student(a, b);
+    }
+    for (int i = 0; i < check_points.length; i++) {
+        int c = sc.nextInt();
+        int d = sc.nextInt();
+        check_points[i] = new CheckPoint(c, d);
+    }
+    for (Student st : students) {
+        st.SetDestination(check_points);
+    }
+    for (Student st : students) {
+        System.out.println(st.Destination);
+    }
+    sc.close();
+}

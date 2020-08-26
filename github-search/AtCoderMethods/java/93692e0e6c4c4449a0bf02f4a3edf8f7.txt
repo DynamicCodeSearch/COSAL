@@ -1,0 +1,13 @@
+void run() {
+    int n = ni();
+    List<Node> list = new ArrayList<>();
+    for (int i = 0; i < n; ++i) {
+        int a = ni();
+        Node node = new Node();
+        node.height = a;
+        node.number = i + 1;
+        list.add(node);
+    }
+    Collections.sort(list, (a, b) -> b.height - a.height);
+    list.forEach(a -> System.out.println(a.number));
+}

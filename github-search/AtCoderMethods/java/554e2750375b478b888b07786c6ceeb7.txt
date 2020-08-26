@@ -1,0 +1,24 @@
+private void solve() {
+    int n = in.nextInt();
+    int a = in.nextInt();
+    int[] x = new int[n + 1];
+    for (int i = 1; i <= n; i++) {
+        x[i] = in.nextInt();
+    }
+    long[][] dp = new long[51][2551];
+    dp[0][0] = 1;
+    int tot = 0;
+    for (int i = 1; i <= n; i++) {
+        for (int j = i - 1; j >= 0; j--) {
+            for (int k = tot; k >= 0; k--) {
+                dp[j + 1][k + x[i]] += dp[j][k];
+            }
+        }
+        tot += x[i];
+    }
+    long cnt = 0;
+    for (int i = 1; i <= n; i++) {
+        cnt += dp[i][a * i];
+    }
+    out.print(cnt);
+}

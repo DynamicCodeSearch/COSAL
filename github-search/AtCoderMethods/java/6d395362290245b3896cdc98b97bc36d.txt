@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    int N = in.nextInt(), a = in.nextInt(), b = in.nextInt(), K = in.nextInt();
+    int[] P = new int[K];
+    for (int i = 0; i < K; i++) {
+        P[i] = in.nextInt();
+    }
+    Arrays.sort(P);
+    boolean f = true;
+    for (int i = 0; i < P.length - 1; i++) {
+        if (P[i] == P[i + 1] || P[i] == a || P[i] == b) {
+            f = false;
+            break;
+        }
+    }
+    if (P[P.length - 1] == a || P[P.length - 1] == b) {
+        f = false;
+    }
+    if (f) {
+        System.out.println("YES");
+    } else {
+        System.out.println("NO");
+    }
+}

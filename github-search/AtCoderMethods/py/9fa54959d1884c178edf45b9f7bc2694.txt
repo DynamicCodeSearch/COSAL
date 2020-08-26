@@ -1,0 +1,12 @@
+def calc(H, W):
+  res = 10000000000
+  for h in range(1, H):
+    S1 = h*W
+    S2a = (H-h)*(W//2)
+    S3a = (H-h)*(W-W//2)
+    S2b = (H-h)//2*W
+    S3b = ((H-h)- (H-h)//2)*W
+    dS = min( max(S1, S2a, S3a)-min(S1, S2a, S3a), max(S1, S2b, S3b) - min(S1, S2b, S3b))
+    if dS < res:
+      res = dS
+  return res

@@ -1,0 +1,37 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    double[][] normKun = new double[n][3];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < 3; j++) {
+            normKun[i][j] = in.nextInt();
+        }
+    }
+    double min = 0;
+    double max = 1e12;
+    for (int cur = 0; cur < 100; cur++) {
+        double med = (min + max) / 2;
+        boolean isOK = true;
+        for (int q = 0; q <= 1; q++) {
+            double left = -1e12;
+            double right = 1e12;
+            for (int i = 0; i < n; i++) {
+                double range = med / normKun[i][2];
+                left = Math.max(left, normKun[i][q] - range);
+                right = Math.min(right, normKun[i][q] + range);
+            }
+            if (left > right) {
+                isOK = false;
+                break;
+            }
+        }
+        if (isOK) {
+            max = med;
+        } else {
+            min = med;
+        }
+    }
+    out.println(String.format("%.9f", max));
+    out.flush();
+}

@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int n = scanner.nextInt();
+    long a = scanner.nextLong();
+    long b = scanner.nextLong();
+    a -= b;
+    long[] point = new long[n];
+    for (int i = 0; i < n; i++) {
+        point[i] = scanner.nextLong();
+    }
+    long min = 0;
+    long max = 1000000000;
+    while (max > min) {
+        long T = (min + max) / 2;
+        long cnt = 0;
+        for (int i = 0; i < point.length; i++) {
+            long rest = point[i] - T * b;
+            if (rest > 0) {
+                cnt += (rest % a) == 0 ? (rest / a) : (rest / a) + 1;
+            }
+        }
+        if (T >= cnt) {
+            max = T;
+        } else {
+            min = T + 1;
+        }
+    }
+    System.out.println(min);
+    scanner.close();
+}

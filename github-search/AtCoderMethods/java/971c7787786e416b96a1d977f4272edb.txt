@@ -1,0 +1,19 @@
+private void read() {
+    es = new PriorityQueue<>((e1, e2) -> Long.compare(e1.cost, e2.cost));
+    try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
+        String line = br.readLine();
+        String[] elems;
+        n = Integer.parseInt(line);
+        A = new long[n][n];
+        for (int i = 0; i < n; i++) {
+            elems = br.readLine().split(" ");
+            for (int j = 0; j < n; j++) {
+                A[i][j] = Long.parseLong(elems[j]);
+                if (j < i)
+                    es.add(new Edge(i, j, A[i][j]));
+            }
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

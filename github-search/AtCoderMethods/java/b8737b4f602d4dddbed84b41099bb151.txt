@@ -1,0 +1,12 @@
+static void solve() {
+    
+    
+    long a = nl(), b = nl(), K = nl(), L = nl();
+    long c = b - a * L;
+    long base = a * K;
+    long ret = Long.MAX_VALUE;
+    ret = Math.min(ret, base + c * 0L);
+    ret = Math.min(ret, base + c * (K / L));
+    ret = Math.min(ret, b * (K / L + 1));
+    out.println(ret);
+}

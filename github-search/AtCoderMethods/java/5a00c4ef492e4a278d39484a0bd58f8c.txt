@@ -1,0 +1,30 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    StringTokenizer st = new StringTokenizer(br.readLine());
+    n = Integer.parseInt(st.nextToken());
+    m = Integer.parseInt(st.nextToken());
+    boolean[][] n_map = new boolean[n][n];
+    boolean[][] m_map = new boolean[m][m];
+    String str;
+    for (int i = 0; i < n; i++) {
+        str = br.readLine();
+        for (int j = 0; j < n; j++) {
+            n_map[i][j] = (str.charAt(j) == '#');
+        }
+    }
+    for (int i = 0; i < m; i++) {
+        str = br.readLine();
+        for (int j = 0; j < m; j++) {
+            m_map[i][j] = (str.charAt(j) == '#');
+        }
+    }
+    for (int i = 0; i <= n - m; i++) {
+        for (int j = 0; j <= n - m; j++) {
+            if (check(n_map, m_map, i, j)) {
+                System.out.println("Yes");
+                System.exit(0);
+            }
+        }
+    }
+    System.out.println("No");
+}

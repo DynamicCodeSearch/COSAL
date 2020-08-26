@@ -1,0 +1,9 @@
+public static ModInt getInstance(int mod, int cap) {
+    if (instance.containsKey(mod)) {
+        return instance.get(mod);
+    } else {
+        ModInt mi = new ModInt(mod, cap);
+        instance.put(mod, mi);
+        return mi;
+    }
+}

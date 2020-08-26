@@ -1,0 +1,9 @@
+static long gcd(long a, long b) {
+    long gr = max(a, b), les = min(a, b);
+    while (gr % les != 0) {
+        long tmp = gr;
+        gr = les;
+        les = tmp % les;
+    }
+    return les;
+}

@@ -1,0 +1,56 @@
+void compute() {
+    Scanner sc = new Scanner(System.in);
+    int H = sc.nextInt();
+    int W = sc.nextInt();
+    boolean[][] bom = new boolean[H + 2][W + 2];
+    for (int i = 0; i < H + 2; i++) {
+        for (int j = 0; j < W + 2; j++) {
+            bom[i][j] = false;
+        }
+    }
+    for (int i = 0; i < H; i++) {
+        String line = sc.next();
+        for (int j = 0; j < W; j++) {
+            if (line.charAt(j) == '#') {
+                bom[i + 1][j + 1] = true;
+            } else {
+                bom[i + 1][j + 1] = false;
+            }
+        }
+    }
+    for (int i = 1; i < H + 1; i++) {
+        for (int j = 1; j < W + 1; j++) {
+            if (bom[i][j]) {
+                System.out.print('#');
+            } else {
+                int nBoms = 0;
+                if (bom[i - 1][j - 1]) {
+                    nBoms++;
+                }
+                if (bom[i - 1][j]) {
+                    nBoms++;
+                }
+                if (bom[i - 1][j + 1]) {
+                    nBoms++;
+                }
+                if (bom[i][j - 1]) {
+                    nBoms++;
+                }
+                if (bom[i][j + 1]) {
+                    nBoms++;
+                }
+                if (bom[i + 1][j - 1]) {
+                    nBoms++;
+                }
+                if (bom[i + 1][j]) {
+                    nBoms++;
+                }
+                if (bom[i + 1][j + 1]) {
+                    nBoms++;
+                }
+                System.out.print(nBoms);
+            }
+        }
+        System.out.println();
+    }
+}

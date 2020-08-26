@@ -1,0 +1,14 @@
+private void solve(Scanner sc) {
+    int sx = sc.nextInt();
+    int sy = sc.nextInt();
+    int tx = sc.nextInt();
+    int ty = sc.nextInt();
+    s = new Point(sx, sy);
+    t = new Point(tx, ty);
+    map = new LinkedHashMap<>();
+    map.put("U", new int[] { 0, 1 });
+    map.put("R", new int[] { 1, 0 });
+    map.put("D", new int[] { 0, -1 });
+    map.put("L", new int[] { -1, 0 });
+    search(0, s, t, new HashSet<>(), new StringBuilder());
+}

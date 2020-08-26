@@ -1,0 +1,36 @@
+void solve() throws IOException {
+    int n = in.nextInt();
+    int W = in.nextInt();
+    long[][] dp = new long[n + 1][3 * n + 1];
+    
+    long inf = Long.MAX_VALUE / 2;
+    for (int i = 0; i <= n; i++) {
+        Arrays.fill(dp[i], -inf);
+    }
+    long w1 = in.nextLong();
+    long v1 = in.nextLong();
+    dp[0][0] = 0;
+    dp[1][0] = v1;
+    for (int i = 1; i < n; i++) {
+        long w = in.nextLong();
+        int sw = (int) (w - w1);
+        long v = in.nextLong();
+        for (int j = i; j >= 0; j--) {
+            for (int k = 0; k <= 3 * n - sw; k++) {
+                if (dp[j][k] == inf)
+                    continue;
+                dp[j + 1][k + sw] = Math.max(dp[j + 1][k + sw], dp[j][k] + v);
+            }
+        }
+    }
+    long best = 0;
+    for (int i = 0; i <= n; i++) {
+        for (int j = 0; j <= 3 * n; j++) {
+            long w = i * w1 + j;
+            if (w > W)
+                continue;
+            best = Math.max(best, dp[i][j]);
+        }
+    }
+    System.out.println(best);
+}

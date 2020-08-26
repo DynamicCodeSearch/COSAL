@@ -1,0 +1,29 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    boolean[] s = new boolean[200010];
+    boolean[] t = new boolean[200010];
+    for (int i = 0; i < m; i++) {
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        if (a == 1) {
+            s[b] = true;
+        }
+        if (b == n) {
+            t[a] = true;
+        }
+    }
+    boolean ans = false;
+    for (int i = 0; i < n; i++) {
+        if (s[i] && t[i]) {
+            ans = true;
+            break;
+        }
+    }
+    if (ans) {
+        System.out.println("POSSIBLE");
+    } else {
+        System.out.println("IMPOSSIBLE");
+    }
+}

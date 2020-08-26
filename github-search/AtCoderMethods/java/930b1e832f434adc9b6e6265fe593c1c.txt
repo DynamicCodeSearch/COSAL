@@ -1,0 +1,11 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    char[] a = in.next().toCharArray();
+    for (int i = a.length - 3; i >= 0; i -= 2) {
+        StringBuilder sb = new StringBuilder();
+        for (int j = 0; j <= i; ++j) sb.append(a[j]);
+        if (sb.subSequence(0, sb.length() / 2 - 1).equals(sb.subSequence(sb.length() / 2, i))) {
+            out.println(i + 1);
+            return;
+        }
+    }
+}

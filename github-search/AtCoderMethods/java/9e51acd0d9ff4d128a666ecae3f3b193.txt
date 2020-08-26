@@ -1,0 +1,16 @@
+long pow(long a, long n) {
+    long ans = 1;
+    long aa = a;
+    while (n >= 1) {
+        if (n % 2 == 0) {
+            aa *= aa;
+            aa %= m;
+            n /= 2;
+        } else if (n % 2 == 1) {
+            ans *= aa;
+            ans %= m;
+            n--;
+        }
+    }
+    return ans;
+}

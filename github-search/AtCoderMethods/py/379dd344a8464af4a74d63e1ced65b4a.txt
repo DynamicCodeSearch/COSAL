@@ -1,0 +1,21 @@
+def main():
+    n = I()
+    a = [I() for _ in range(n)]
+    s = set(a)
+    if len(s) == 1:
+        return -1
+
+    a = a + a
+    m = 0
+    c = 0
+    t = -1
+    for i in a:
+        if i != t:
+            if m < c:
+                m = c
+            t = i
+            c = 1
+        else:
+            c += 1
+
+    return (m+1) // 2

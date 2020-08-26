@@ -1,0 +1,68 @@
+static void solve() {
+    char[] s = ns().toCharArray();
+    long L = nl() - 1, R = nl() - 1;
+    int n = s.length;
+    int ptn = 0;
+    for (int i = 0; i < n; i++) {
+        ptn |= 1 << s[i] - 'a';
+    }
+    if ((ptn & ptn - 1) == 0) {
+        for (int i = 0; i < 26; i++) {
+            if (ptn << ~i < 0) {
+                out.print(R - L + 1 + " ");
+            } else {
+                out.print(0 + " ");
+            }
+        }
+        out.println();
+        return;
+    }
+    int[] z = Z(s);
+    int len = s.length;
+    for (int i = 1; i < s.length / 2; i++) {
+        if (z[s.length / 2 + i] == s.length / 2 - i) {
+            len = s.length / 2 + i;
+            break;
+        }
+    }
+    if (len == s.length) {
+        long[] f = new long[26];
+        for (int i = 0; i < n; i++) {
+            f[s[i] - 'a'] += (R + 1) / s.length + ((R + 1) % s.length > i ? 1 : 0);
+            f[s[i] - 'a'] -= L / s.length + (L % s.length > i ? 1 : 0);
+        }
+        for (int i = 0; i < 26; i++) {
+            out.print(f[i] + " ");
+        }
+        out.println();
+        return;
+    }
+    char[] t = Arrays.copyOf(s, len * 2);
+    for (int j = 0; j < len; j++) {
+        t[j + len] = t[j];
+    }
+    int[] zt = Z(t);
+    int lent = t.length;
+    for (int i = 1; i < t.length / 2; i++) {
+        if (zt[t.length / 2 + i] == t.length / 2 - i) {
+            lent = t.length / 2 + i;
+            break;
+        }
+    }
+    long[] vs = new long[100];
+    vs[0] = len;
+    vs[1] = lent;
+    for (int i = 2; ; i++) {
+        vs[i] = vs[i - 1] + vs[i - 2];
+        if (vs[i] > 1e18) {
+            vs = Arrays.copyOf(vs, i);
+            break;
+        }
+    }
+    long[] f1 = count(R, vs, s);
+    long[] f0 = count(L - 1, vs, s);
+    for (int i = 0; i < 26; i++) {
+        out.print(f1[i] - f0[i] + " ");
+    }
+    out.println();
+}

@@ -1,0 +1,7 @@
+def calcMinDist(n, new_vers, k, queries):
+	dist = [- 1 for _ in range(n)]
+ flag = [False for _ in range(n)]
+ dist[k - 1] = 0
+ flag[k - 1] = True
+ dfs(new_vers, dist, flag, k)
+ return dist

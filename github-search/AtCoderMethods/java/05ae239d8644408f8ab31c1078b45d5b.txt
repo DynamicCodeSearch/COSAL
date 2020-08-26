@@ -1,0 +1,26 @@
+public int solve1(int h, int w, boolean[][] z) {
+    int[][] up = new int[h + 1][w + 1];
+    for (int i = 1; i < h; i++) {
+        for (int j = 1; j < w; j++) {
+            if (!z[i][j]) {
+                up[i][j] = up[i - 1][j] + 1;
+            }
+        }
+    }
+    int ans = 1;
+    for (int i = 1; i <= h; i++) {
+        ArrayList<Pair> s = new ArrayList<>();
+        s.add(new Pair(0, -1));
+        for (int j = 1; j <= w; j++) {
+            while (s.get(s.size() - 1).y >= up[i][j]) {
+                int v = (j - s.get(s.size() - 2).x) * (s.get(s.size() - 1).y + 1);
+                if (v > ans) {
+                    ans = v;
+                }
+                s.remove(s.size() - 1);
+            }
+            s.add(new Pair(j, up[i][j]));
+        }
+    }
+    return ans;
+}

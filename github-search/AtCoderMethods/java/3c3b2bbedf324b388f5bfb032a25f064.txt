@@ -1,0 +1,45 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    int[][] lr = in.nextIntTable(n, 2);
+    for (int i = 0; i < n; i++) {
+        lr[i][1] = lr[i][1] - lr[i][0];
+    }
+    TreeSet<LinePoint> left = new TreeSet<>((a, b) -> a.p == b.p ? a.idx - b.idx : Long.compare(a.p, b.p));
+    TreeSet<LinePoint> right = new TreeSet<>((a, b) -> a.p == b.p ? a.idx - b.idx : Long.compare(a.p, b.p));
+    long exLeft = 0;
+    long exRight = 0;
+    left.add(LinePoint.create(lr[0][0]));
+    right.add(LinePoint.create(lr[0][0]));
+    long bottom = 0;
+    for (int i = 1; i < n; i++) {
+        exLeft -= lr[i][1];
+        exRight += lr[i - 1][1];
+        long zeroFrom = left.last().p + exLeft;
+        long zeroTo = right.first().p + exRight;
+        if (zeroFrom <= lr[i][0] && lr[i][0] <= zeroTo) {
+            left.add(LinePoint.create(lr[i][0] - exLeft));
+            right.add(LinePoint.create(lr[i][0] - exRight));
+        } else if (lr[i][0] < zeroFrom) {
+            long add = Math.abs((left.last().p + exLeft) - lr[i][0]);
+            left.add(LinePoint.create(lr[i][0] - exLeft));
+            left.add(LinePoint.create(lr[i][0] - exLeft));
+            left.pollLast();
+            LinePoint pt = right.first();
+            right.add(LinePoint.create(pt.p - (zeroTo - zeroFrom)));
+            bottom += add;
+        } else {
+            long add = Math.abs((right.first().p + exRight) - lr[i][0]);
+            right.add(LinePoint.create(lr[i][0] - exRight));
+            right.add(LinePoint.create(lr[i][0] - exRight));
+            right.pollFirst();
+            LinePoint pt = left.last();
+            left.add(LinePoint.create(pt.p + (zeroTo - zeroFrom)));
+            bottom += add;
+        }
+    }
+    
+    out.println(bottom);
+    out.flush();
+}

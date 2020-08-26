@@ -1,0 +1,11 @@
+void update(int l, int r, int v, int k, int curL, int curR) {
+    if (curR <= l || curL >= r)
+        return;
+    if (l <= curL && curR <= r) {
+        seg[k] += v;
+        return;
+    }
+    final int curM = (curL + curR) / 2;
+    update(l, r, v, 2 * k + 1, curL, curM);
+    update(l, r, v, 2 * k + 2, curM, curR);
+}

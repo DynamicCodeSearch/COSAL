@@ -1,0 +1,14 @@
+void solve() throws IOException {
+    String s = in.nextToken();
+    s = s.replaceAll("dream", "A");
+    s = s.replaceAll("erase", "B");
+    s = s.replaceAll("Aer", "C");
+    s = s.replaceAll("Br", "D");
+    for (char c : s.toCharArray()) {
+        if (c < 'A' || 'D' < c) {
+            System.out.println("NO");
+            return;
+        }
+    }
+    System.out.println("YES");
+}

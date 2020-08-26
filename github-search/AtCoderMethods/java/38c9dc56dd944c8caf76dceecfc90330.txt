@@ -1,0 +1,16 @@
+public static void main(String[] args) throws Exception {
+    int n = sc.nextInt();
+    long[] arr = new long[n];
+    for (int i = 0; i < n; i++) {
+        arr[i] = sc.nextLong();
+    }
+    long curr = arr[0];
+    for (int i = 1; i < n; i++) {
+        
+        long gcd = gcd(arr[i], curr);
+        long p1 = curr / gcd, p2 = arr[i];
+        curr = (p1 * p2);
+    }
+    out.println(curr);
+    out.close();
+}

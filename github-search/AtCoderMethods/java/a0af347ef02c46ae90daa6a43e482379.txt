@@ -1,0 +1,45 @@
+private void solve(Scanner sc) {
+    N = sc.nextInt();
+    A = sc.nextInt();
+    B = sc.nextInt();
+    v = new long[N];
+    for (int i = 0; i < N; ++i) {
+        v[i] = sc.nextLong();
+    }
+    Arrays.sort(v);
+    for (int i = 0; i < N / 2; ++i) {
+        long t = v[i];
+        v[i] = v[N - i - 1];
+        v[N - i - 1] = t;
+    }
+    double avg = avg(v, 0, A - 1);
+    long count;
+    if (v[0] != v[A - 1]) {
+        int x = 0;
+        for (int i = 0; i < N; ++i) {
+            if (v[A - 1] == v[i]) {
+                ++x;
+            }
+        }
+        int y = 0;
+        for (int i = 0; i < A; ++i) {
+            if (v[A - 1] == v[i]) {
+                ++y;
+            }
+        }
+        count = C(x, y).longValue();
+    } else {
+        int x = 0;
+        for (int i = 0; i < N; ++i) {
+            if (v[0] == v[i]) {
+                ++x;
+            }
+        }
+        count = 0;
+        for (int i = A; i <= B; ++i) {
+            count += C(x, i).longValue();
+        }
+    }
+    _out.printf("%.6f%n", avg);
+    _out.println(count);
+}

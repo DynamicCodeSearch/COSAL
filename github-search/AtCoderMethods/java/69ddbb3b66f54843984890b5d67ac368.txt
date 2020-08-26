@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int k = 0, u = 0, i = 0, j = 0;
+    int n = sc.nextInt();
+    int[] c = new int[n];
+    String[] m = new String[n];
+    for (i = 0; i < n; i++) {
+        c[i] = 0;
+    }
+    for (i = 0; i < n; i++) {
+        m[i] = sc.next();
+    }
+    for (i = 0; i < n; i++) {
+        for (j = 0; j < n; j++) {
+            if (m[i].equals(m[j])) {
+                c[i] += 1;
+            }
+        }
+    }
+    for (i = 0; i < n; i++) {
+        if (c[i] >= k) {
+            k = c[i];
+            u = i;
+        }
+    }
+    System.out.println(m[u]);
+}

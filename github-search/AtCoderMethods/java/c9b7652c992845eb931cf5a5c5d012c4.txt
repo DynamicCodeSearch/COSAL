@@ -1,0 +1,28 @@
+void solve() {
+    String s = in.next();
+    int n = s.length();
+    int[] cnt = new int[26];
+    for (int i = 0; i < n; i++) {
+        cnt[s.charAt(i) - 'a']++;
+    }
+    int odd = 0, even = 0;
+    for (int i = 0; i < cnt.length; i++) {
+        if (cnt[i] % 2 == 0) {
+            even += cnt[i];
+        } else {
+            even += cnt[i] - 1;
+            odd++;
+        }
+    }
+    if (odd == 0) {
+        System.out.println(n);
+    } else {
+        int res = 1;
+        int cEven = 0;
+        while (cEven + odd * 2 <= even) {
+            res += 2;
+            cEven += odd * 2;
+        }
+        System.out.println(res);
+    }
+}

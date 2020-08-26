@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    String o = scan.next();
+    String e = scan.next();
+    String[] O = o.split("", 0);
+    String[] E = e.split("", 0);
+    StringBuffer sb = new StringBuffer();
+    for (int i = 0; i < o.length() + e.length(); i++) {
+        if (i % 2 == 0) {
+            sb.append(O[i / 2]);
+        } else {
+            sb.append(E[(i - 1) / 2]);
+        }
+    }
+    String s = sb.toString();
+    System.out.println(s);
+}

@@ -1,0 +1,33 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int K = sc.nextInt();
+    int[] p = new int[N];
+    int[] w = new int[N];
+    for (int i = 0; i < N; i++) {
+        w[i] = sc.nextInt();
+        p[i] = sc.nextInt();
+    }
+    double OK = 0;
+    double NG = 100;
+    double mid = (OK + NG) / 2;
+    for (int t = 0; t < 100; t++) {
+        mid = (OK + NG) / 2;
+        ArrayList<Double> list = new ArrayList<>();
+        for (int i = 0; i < N; i++) {
+            list.add(w[i] * (p[i] - mid) / 100);
+        }
+        Collections.sort(list);
+        Collections.reverse(list);
+        double sum = 0;
+        for (int i = 0; i < K; i++) {
+            sum += list.get(i);
+        }
+        if (sum >= 0) {
+            OK = mid;
+        } else {
+            NG = mid;
+        }
+    }
+    System.out.println(OK);
+}

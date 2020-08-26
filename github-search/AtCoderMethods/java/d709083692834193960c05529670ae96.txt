@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    try (Scanner scan = new Scanner(System.in)) {
+        int N = Integer.parseInt(scan.next());
+        int K = Integer.parseInt(scan.next());
+        int[] a = new int[N];
+        for (int i = 0; i < N; i++) {
+            a[i] = Integer.parseInt(scan.next());
+        }
+        long sum = 0L;
+        for (int i = 0; i < N - K + 1; i++) {
+            for (int j = 0; j < K; j++) {
+                sum += a[i + j];
+            }
+        }
+        System.out.println(sum);
+    }
+}

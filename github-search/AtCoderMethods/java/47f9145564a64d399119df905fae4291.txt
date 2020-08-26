@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    BigInteger[] input = new BigInteger[N];
+    for (int i = 0; i < N; i++) {
+        input[i] = new BigInteger(sc.next());
+    }
+    BigInteger result = BigInteger.ONE;
+    for (BigInteger temp : input) {
+        result = LCM(result, temp);
+    }
+    if (result.compareTo(Max) >= 0)
+        result = Max;
+    System.out.println(result.toString());
+}

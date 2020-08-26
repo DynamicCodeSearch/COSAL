@@ -1,0 +1,42 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    long xs = sc.nextLong();
+    long ys = sc.nextLong();
+    long xt = sc.nextLong();
+    long yt = sc.nextLong();
+    int n = sc.nextInt();
+    long[] x = new long[n + 2];
+    long[] y = new long[n + 2];
+    long[] r = new long[n + 2];
+    x[0] = xs;
+    x[1] = xt;
+    y[0] = ys;
+    y[1] = yt;
+    r[0] = 0;
+    r[1] = 0;
+    for (int i = 0; i < n; i++) {
+        x[i + 2] = sc.nextLong();
+        y[i + 2] = sc.nextLong();
+        r[i + 2] = sc.nextLong();
+    }
+    sc.close();
+    double flen = len(xs, ys, xt, yt, 0, 0);
+    double[][] edge = new double[n + 2][n + 2];
+    for (int i = 0; i < n + 2; i++) {
+        for (int j = 0; j < n + 2; j++) {
+            if (i == j) {
+                edge[i][j] = 0.0f;
+            } else {
+                double mlen = len(x[i], y[i], x[j], y[j], r[i], r[j]);
+                if (mlen <= flen) {
+                    edge[i][j] = mlen;
+                } else {
+                    edge[i][j] = -1.1f;
+                }
+            }
+        }
+    }
+    double[] dis = new double[n + 2];
+    dijkstra(edge, 0, dis);
+    System.out.printf("%.10f", dis[1]);
+}

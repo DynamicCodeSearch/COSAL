@@ -1,0 +1,26 @@
+
+public void addPrime(int n) {
+    if (n <= 2) {
+        return;
+    }
+    for (int i = list.get(list.size() - 1) + 2; i < n; i += 2) {
+        if (new Check() {
+
+            @Override
+            public boolean accept(int i) {
+                for (Integer integer : list) {
+                    int sq = (int) Math.sqrt(i);
+                    if (integer > sq) {
+                        return true;
+                    }
+                    if (i % integer == 0) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+        }.accept(i)) {
+            list.add(i);
+        }
+    }
+}

@@ -1,0 +1,15 @@
+def dfs(left,cy):
+    if left == 0:
+        for m in M:
+            print("".join(m))
+        sys.exit()
+
+    for y in range(cy,8):
+        for x in range(8):
+            if M[y][x] == "Q":
+                continue
+            if check(y,x) == 0:
+                continue
+            M[y][x] = "Q"
+            dfs(left-1,y+1)
+            M[y][x] = "."

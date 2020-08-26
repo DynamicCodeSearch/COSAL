@@ -1,0 +1,19 @@
+public static int query(int u, int v) {
+    if (level[u] < level[v]) {
+        int tmp = u;
+        u = v;
+        v = tmp;
+    }
+    int log = 1;
+    for (log = 1; (1 << log) <= level[u]; log++) ;
+    log--;
+    for (int i = log; i >= 0; i--) if (level[u] - (1 << i) >= level[v])
+        u = ansector[u][i];
+    if (u == v)
+        return u;
+    for (int i = log; i >= 0; i--) if (ansector[u][i] != -1 && ansector[u][i] != ansector[v][i]) {
+        u = ansector[u][i];
+        v = ansector[v][i];
+    }
+    return parent[u];
+}

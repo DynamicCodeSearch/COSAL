@@ -1,0 +1,11 @@
+def main():
+    M = 10 ** 5
+    n = read_int()
+    a = read_int_list()
+    c = Counter(a)
+    res = 0
+    for X in range(0, M + 1):
+        r = c[X - 1] + c[X] + c[X + 1]
+        if r > res:
+            res = r
+    print(res)

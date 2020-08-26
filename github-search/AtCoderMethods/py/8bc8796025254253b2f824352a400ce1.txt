@@ -1,0 +1,9 @@
+def c():
+    n = int(input())
+    t = {int(input()) for _ in range(n)}
+
+    from fractions import gcd
+    from functools import reduce
+    def lcm(a, b):
+        return (a * b) // gcd(a, b)
+    print( reduce(lcm, t) )

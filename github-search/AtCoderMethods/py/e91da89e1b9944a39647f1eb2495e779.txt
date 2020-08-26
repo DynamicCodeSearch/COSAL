@@ -1,0 +1,22 @@
+def main():
+    w,h,n = LI()
+    a = [[1]*w for _ in range(h)]
+    for _ in range(n):
+        x,y,t = LI()
+        if t == 1:
+            for _x in range(x):
+                for _y in range(h):
+                    a[_y][_x] = 0
+        elif t == 2:
+            for _x in range(x, w):
+                for _y in range(h):
+                    a[_y][_x] = 0
+        elif t == 3:
+            for _x in range(w):
+                for _y in range(y):
+                    a[_y][_x] = 0
+        else:
+            for _x in range(w):
+                for _y in range(y,h):
+                    a[_y][_x] = 0
+    return sum(sum(_) for _ in a)

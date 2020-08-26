@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    PrintWriter out = new PrintWriter(System.out);
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    Queue<State> q = new ArrayDeque<>();
+    q.offer(new State(a, 0));
+    while (!q.isEmpty()) {
+        State s = q.poll();
+        if (s.temp == b) {
+            out.println(s.count);
+            break;
+        }
+        for (int i = 0; i < con.length; i++) {
+            q.offer(new State(s.temp + con[i], s.count + 1));
+        }
+    }
+    out.flush();
+}

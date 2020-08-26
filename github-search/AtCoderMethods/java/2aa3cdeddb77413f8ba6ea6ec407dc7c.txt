@@ -1,0 +1,38 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int i = 0, save = 0, yes = 0;
+    int T = sc.nextInt();
+    int N = sc.nextInt();
+    int[] A = new int[N];
+    for (i = 0; i < N; i++) {
+        A[i] = sc.nextInt();
+    }
+    int M = sc.nextInt();
+    int[] B = new int[M];
+    for (i = 0; i < M; i++) {
+        B[i] = sc.nextInt();
+    }
+    for (i = 0; i < M; i++) {
+        if (M > N) {
+            yes = 0;
+            break;
+        }
+        if (save == N) {
+            yes = 0;
+        } else {
+            if (B[i] - A[save] <= T && B[i] >= A[save]) {
+                yes = 1;
+                save += 1;
+            } else {
+                yes = 0;
+                i -= 1;
+                save += 1;
+            }
+        }
+    }
+    if (yes == 1) {
+        System.out.println("yes");
+    } else {
+        System.out.println("no");
+    }
+}

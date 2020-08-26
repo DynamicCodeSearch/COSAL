@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    int K = sc.nextInt();
+    int[] l = new int[K];
+    int[] r = new int[K];
+    for (int i = 0; i < K; i++) {
+        l[i] = Integer.parseInt(sc.next());
+        r[i] = Integer.parseInt(sc.next());
+    }
+    Arrays.sort(l);
+    Arrays.sort(r);
+    int cnt = 0;
+    int p = 0;
+    int q = 0;
+    for (int i = 1; i < N + 1; i++) {
+        while (true) {
+            if (p == K || l[p] > i)
+                break;
+            p++;
+            cnt++;
+        }
+        while (true) {
+            if (q == K || r[q] >= i)
+                break;
+            q++;
+            cnt--;
+        }
+        System.out.print(cnt % 2);
+    }
+    System.out.println();
+}

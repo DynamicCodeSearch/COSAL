@@ -1,0 +1,10 @@
+public String nextString() {
+    int c = pread();
+    while (isSpaceChar(c)) c = pread();
+    StringBuilder res = new StringBuilder();
+    do {
+        res.appendCodePoint(c);
+        c = pread();
+    } while (!isSpaceChar(c));
+    return res.toString();
+}

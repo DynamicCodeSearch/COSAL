@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int N = scan.nextInt();
+    int T = scan.nextInt();
+    int t = 0;
+    int count = 0;
+    for (int i = 0; i < N; i++) {
+        int before = t;
+        t = scan.nextInt();
+        if (t == 0 || t - before > T) {
+            count += T;
+        } else {
+            count += t - before;
+        }
+    }
+    System.out.println(count);
+}

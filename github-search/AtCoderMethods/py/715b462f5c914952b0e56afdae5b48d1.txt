@@ -1,0 +1,16 @@
+def get_wind_scale(dis):
+    velocity = [
+        0.0, 0.3, 1.6, 3.4, 5.5, 8.0, 10.8,
+        13.9, 17.2, 20.8, 24.5, 28.5, 32.7
+    ]
+
+    distance = dis * 10
+
+    for i in range(len(velocity) - 1):
+        lower_limit = (velocity[i] * 10 - 0.5) * 60
+        upper_limit = (velocity[i + 1] * 10 - 0.5) * 60
+        if lower_limit <= distance < upper_limit:
+            return i
+
+    if distance >= (velocity[-1] * 10 - 0.5) * 60:
+        return 12

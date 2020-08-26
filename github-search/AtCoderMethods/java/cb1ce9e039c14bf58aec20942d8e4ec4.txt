@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[] result = new int[n];
+    if (n % 2 == 1) {
+        result[n / 2] = sc.nextInt();
+    }
+    int numParallelPairs = n / 2;
+    for (int i = 1; i <= numParallelPairs; i++) {
+        if (n % 2 == 0) {
+            result[n / 2 + i - 1] = sc.nextInt();
+            result[n / 2 - i] = sc.nextInt();
+        } else if (n % 2 == 1) {
+            result[n / 2 + i] = sc.nextInt();
+            result[n / 2 - i] = sc.nextInt();
+        }
+    }
+    for (Integer i : result) {
+        System.out.print(i + " ");
+    }
+}

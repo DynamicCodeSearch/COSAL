@@ -1,0 +1,25 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int N = Integer.parseInt(br.readLine());
+    int max = 0;
+    Integer[] ii = new Integer[N];
+    for (int i = 0; i < N; i++) {
+        ii[i] = Integer.parseInt(br.readLine());
+        max += ii[i];
+    }
+    
+    if (max % 10 > 0) {
+        System.out.println(max);
+        return;
+    }
+    
+    Arrays.sort(ii);
+    for (int i = 0; i < N; i++) {
+        if ((max - ii[i]) % 10 > 0) {
+            System.out.println(max - ii[i]);
+            return;
+        }
+    }
+    System.out.println(0);
+    return;
+}

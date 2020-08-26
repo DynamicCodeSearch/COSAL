@@ -1,0 +1,42 @@
+public void solve(int testNumber, Scanner in, PrintWriter out) {
+    int N = in.nextInt();
+    List<Long> a = new ArrayList<>();
+    for (int i = 0; i < 3 * N; i++) {
+        a.add(in.nextLong());
+    }
+    Queue<Long> head = new PriorityQueue<>(Comparator.naturalOrder());
+    Queue<Long> tail = new PriorityQueue<>(Comparator.reverseOrder());
+    for (int i = 0; i < N; i++) {
+        head.add(a.get(i));
+        tail.add(a.get(a.size() - 1 - i));
+    }
+    assert head.size() == N;
+    assert tail.size() == N;
+    long[] l = new long[N + 1];
+    long[] r = new long[N + 1];
+    l[0] = head.stream().mapToLong(Long::longValue).sum();
+    r[N] = tail.stream().mapToLong(Long::longValue).sum();
+    for (int i = 1; i <= N; i++) {
+        if (a.get(N + i - 1) > head.peek()) {
+            long t = head.poll();
+            head.add(a.get(N + i - 1));
+            l[i] = l[i - 1] + a.get(N + i - 1) - t;
+        } else {
+            l[i] = l[i - 1];
+        }
+        if (a.get(2 * N - i) < tail.peek()) {
+            long t = tail.poll();
+            tail.add(a.get(2 * N - i));
+            r[N - i] = r[N - i + 1] + a.get(2 * N - i) - t;
+        } else {
+            r[N - i] = r[N - i + 1];
+        }
+        assert tail.size() == head.size();
+    }
+    long max = l[0] - r[0];
+    for (int i = 1; i <= N; i++) {
+        if (l[i] - r[i] > max)
+            max = l[i] - r[i];
+    }
+    out.println(max);
+}

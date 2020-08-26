@@ -1,0 +1,15 @@
+int check(String s, int k) {
+    int count = 0;
+    LOOP: for (int i = 0; i <= s.length() - k; i++) {
+        String si = s.substring(i, i + k);
+        count++;
+        for (int j = i + 1; j <= s.length() - k; j++) {
+            String sj = s.substring(j, j + k);
+            if (si.equals(sj)) {
+                count--;
+                continue LOOP;
+            }
+        }
+    }
+    return count;
+}

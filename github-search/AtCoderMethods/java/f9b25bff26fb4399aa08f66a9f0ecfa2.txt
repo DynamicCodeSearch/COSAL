@@ -1,0 +1,11 @@
+public void unite(int x, int y) {
+    int a = cnt[x];
+    int b = cnt[y];
+    cnt[x] += b;
+    cnt[y] += a;
+    int t = find(x);
+    int s = find(y);
+    data[t] = s;
+    cnt[t] = Math.max(cnt[t], cnt[s]);
+    cnt[s] = Math.max(cnt[t], cnt[s]);
+}

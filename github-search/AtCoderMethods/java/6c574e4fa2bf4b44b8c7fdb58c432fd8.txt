@@ -1,0 +1,47 @@
+private static void solve() {
+    long n = sc.nextLong();
+    int m = sc.nextInt();
+    long[] p = new long[m];
+    double[] a = new double[m];
+    double[] b = new double[m];
+    Set<Long> hs = new TreeSet<>();
+    for (int i = 0; i < m; i++) {
+        p[i] = sc.nextLong() - 1;
+        a[i] = sc.nextDouble();
+        b[i] = sc.nextDouble();
+        hs.add(p[i]);
+    }
+    Map<Long, Integer> hm = new HashMap<>();
+    int index = 0;
+    for (long e : hs) {
+        hm.put(e, index++);
+    }
+    int nn = 1;
+    while (nn < hs.size()) {
+        nn *= 2;
+    }
+    double[] sta = new double[2 * nn - 1];
+    Arrays.fill(sta, 1);
+    double[] stb = new double[2 * nn - 1];
+    double max = 1;
+    double min = 1;
+    for (int i = 0; i < m; i++) {
+        int pi = hm.get(p[i]) + nn - 1;
+        sta[pi] = a[i];
+        stb[pi] = b[i];
+        while (pi > 0) {
+            pi = (pi - 1) / 2;
+            int li = 2 * pi + 1;
+            int ri = 2 * pi + 2;
+            sta[pi] = sta[ri] * sta[li];
+            stb[pi] = sta[ri] * stb[li] + stb[ri];
+        
+        
+        }
+        double dtmp = sta[0] + stb[0];
+        max = Math.max(max, dtmp);
+        min = Math.min(min, dtmp);
+    }
+    pr.printf("%.7f\n", min);
+    pr.printf("%.7f\n", max);
+}

@@ -1,0 +1,19 @@
+void failFn(String str, int[] arr) {
+    int len = 0;
+    arr[0] = 0;
+    int i = 1;
+    while (i < arr.length) {
+        if (str.charAt(i) == str.charAt(len)) {
+            arr[i++] = ++len;
+            continue;
+        }
+        if (len == 0) {
+            arr[i] = len;
+            i++;
+            continue;
+        }
+        if (str.charAt(i) != str.charAt(len)) {
+            len = arr[len - 1];
+        }
+    }
+}

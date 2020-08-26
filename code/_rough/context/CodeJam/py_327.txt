@@ -1,0 +1,357 @@
+### Py Tokens: count, parse, compute, int, xrange, argv, sys, case, part, len, close, data, infile, result 
+
+### Py functions
+
+def func_f2fad613180144288740e0ecf09fe94f(T, infile):
+    count = 1
+    part = 0
+    if len(sys.argv) == 3:
+        part = int(sys.argv[1])
+        count = int(sys.argv[2])
+    for i in xrange(T):
+        data = parse(infile)
+        if i * count >= part * T and i * count < (part + 1) * T:
+            result = compute(*data)
+            print 'Case #%d: %s' % (i + 1, result)
+    infile.close()
+    return T
+
+*********************************
+
+#### Score: 10.45262
+
+
+#### Java Tokens: data, count, sum 
+
+public static long func_b5dd2b6dd7ee40509f3a548c91c956fb(int i, int[] data, long count, long sum) { 
+ count++;
+sum = data[i];
+return sum;
+}
+
+
+*********************************
+
+#### Score: 10.25327
+
+
+#### Java Tokens: next, print, println, nextint, len, oppa, close, int, case 
+
+public static PrintWriter func_4961a51e396740f1a0a0180470083812(int tN, PrintWriter pw, Scanner sc) { 
+ for (int tn = 0; tn < tN; tn++) {
+    int n = sc.nextInt();
+    int[] p = new int[n];
+    int[] len = new int[n];
+    for (int i = 0; i < n; i++) {
+        p[i] = sc.nextInt();
+    }
+    for (int i = 0; i < n; i++) {
+        len[i] = sc.nextInt();
+    }
+    boolean[] oppa = new boolean[n];
+    pw.print("Case #" + (tn + 1) + ":");
+    c: for (int i = 0; i < n; i++) {
+        int be = -1;
+        for (int j = 0; j < n; j++) {
+            if (!oppa[j]) {
+                if (be == -1 || len[j] * p[be] > len[be] * p[j]) {
+                    be = j;
+                }
+            }
+        }
+        oppa[be] = true;
+        pw.print(" " + be);
+    }
+    pw.println();
+}
+pw.close();
+return pw;
+}
+
+
+*********************************
+
+#### Score: 9.78818
+
+
+#### Java Tokens: data, count, length, sum 
+
+public static long func_2201eb934a1b4b86819ca5e791c91d99(int[] data) { 
+ long count = 1, sum = 0;
+int n = data.length;
+return count;
+}
+
+
+public static long func_e34d5ed09d1e48ae8c0833dd849300bf(int[] data) { 
+ long count = 1, sum = 0;
+int n = data.length;
+return sum;
+}
+
+
+public static int func_4c8db2c31e2d447abb268d163c881edf(int[] data) { 
+ long count = 1, sum = 0;
+int n = data.length;
+return n;
+}
+
+
+*********************************
+
+#### Score: 9.78818
+
+
+#### Java Tokens: data, max, count, sum 
+
+public static boolean func_5e9184c7a9784684a3dc179151b93dca(int n, int[] data, long count, long max, long sum) { 
+ for (int i = 0; i < n; i++) {
+    if (data[i] > max)
+        return false;
+    sum += data[i];
+    if (sum > max) {
+        count++;
+        sum = data[i];
+        if (count > 3)
+            return false;
+    }
+}
+return count <= 3;
+
+}
+
+
+*********************************
+
+#### Score: 9.36379
+
+
+#### Java Tokens: next, print, println, nextint, len, nextline, line, oppa, close, int, case 
+
+public static PrintWriter func_57a8e7ccd652408899745ab0f694b422(int tN, PrintWriter pw, Scanner sc) { 
+ sc.nextLine();
+for (int tn = 0; tn < tN; tn++) {
+    int n = sc.nextInt();
+    int[] p = new int[n];
+    int[] len = new int[n];
+    for (int i = 0; i < n; i++) {
+        p[i] = sc.nextInt();
+    }
+    for (int i = 0; i < n; i++) {
+        len[i] = sc.nextInt();
+    }
+    boolean[] oppa = new boolean[n];
+    pw.print("Case #" + (tn + 1) + ":");
+    c: for (int i = 0; i < n; i++) {
+        int be = -1;
+        for (int j = 0; j < n; j++) {
+            if (!oppa[j]) {
+                if (be == -1 || len[j] * p[be] > len[be] * p[j]) {
+                    be = j;
+                }
+            }
+        }
+        oppa[be] = true;
+        pw.print(" " + be);
+    }
+    pw.println();
+}
+pw.close();
+return pw;
+}
+
+
+public static int func_aa0d2a61f895408d9e19bb9a62c12818(PrintWriter pw, Scanner sc) { 
+ int tN = sc.nextInt();
+sc.nextLine();
+for (int tn = 0; tn < tN; tn++) {
+    int n = sc.nextInt();
+    int[] p = new int[n];
+    int[] len = new int[n];
+    for (int i = 0; i < n; i++) {
+        p[i] = sc.nextInt();
+    }
+    for (int i = 0; i < n; i++) {
+        len[i] = sc.nextInt();
+    }
+    boolean[] oppa = new boolean[n];
+    pw.print("Case #" + (tn + 1) + ":");
+    c: for (int i = 0; i < n; i++) {
+        int be = -1;
+        for (int j = 0; j < n; j++) {
+            if (!oppa[j]) {
+                if (be == -1 || len[j] * p[be] > len[be] * p[j]) {
+                    be = j;
+                }
+            }
+        }
+        oppa[be] = true;
+        pw.print(" " + be);
+    }
+    pw.println();
+}
+pw.close();
+return tN;
+}
+
+
+public static PrintWriter func_071c380574ab4774b4afe8840c36e53e(PrintWriter pw, Scanner sc) { 
+ int tN = sc.nextInt();
+sc.nextLine();
+for (int tn = 0; tn < tN; tn++) {
+    int n = sc.nextInt();
+    int[] p = new int[n];
+    int[] len = new int[n];
+    for (int i = 0; i < n; i++) {
+        p[i] = sc.nextInt();
+    }
+    for (int i = 0; i < n; i++) {
+        len[i] = sc.nextInt();
+    }
+    boolean[] oppa = new boolean[n];
+    pw.print("Case #" + (tn + 1) + ":");
+    c: for (int i = 0; i < n; i++) {
+        int be = -1;
+        for (int j = 0; j < n; j++) {
+            if (!oppa[j]) {
+                if (be == -1 || len[j] * p[be] > len[be] * p[j]) {
+                    be = j;
+                }
+            }
+        }
+        oppa[be] = true;
+        pw.print(" " + be);
+    }
+    pw.println();
+}
+pw.close();
+return pw;
+}
+
+
+*********************************
+
+#### Score: 9.36163
+
+
+#### Java Tokens: result, bet, count 
+
+public static long func_a0f85d9271124754bc4eaf6d0bf0af0b(int count, long bet, long[] a) { 
+ long result = 0;
+for (int i = 0; i < count; i++) {
+    result += (bet - a[i]);
+}
+return result;
+}
+
+
+public static long func_3750e0686e284a38b90b7179cfafbcb5(int count, long bet, long result, long[] a) { 
+ for (int i = 0; i < count; i++) {
+    result += (bet - a[i]);
+}
+return result;
+}
+
+
+*********************************
+
+#### Score: 9.20640
+
+
+#### Java Tokens: data, max, length, count, sum 
+
+public static boolean func_e7d5d416effe43588e807dc60e0f7865(int[] data, long count, long max, long sum) { 
+ int n = data.length;
+for (int i = 0; i < n; i++) {
+    if (data[i] > max)
+        return false;
+    sum += data[i];
+    if (sum > max) {
+        count++;
+        sum = data[i];
+        if (count > 3)
+            return false;
+    }
+}
+return count <= 3;
+
+}
+
+
+*********************************
+
+#### Score: 9.20640
+
+
+#### Java Tokens: data, max, count, length, sum 
+
+public static boolean func_631490b67cb6453bb735e964df39abcf(int[] data, long max) { 
+ long count = 1, sum = 0;
+int n = data.length;
+for (int i = 0; i < n; i++) {
+    if (data[i] > max)
+        return false;
+    sum += data[i];
+    if (sum > max) {
+        count++;
+        sum = data[i];
+        if (count > 3)
+            return false;
+    }
+}
+return count <= 3;
+
+}
+
+
+*********************************
+
+#### Score: 8.76955
+
+
+#### Java Tokens: result, bet, count, length 
+
+public static long func_5feb496050944d1e8af76d28fc7f59ca(int count, long bet, long[] a) { 
+ long result = 0;
+for (int i = 0; i < count; i++) {
+    result += (bet - a[i]);
+}
+for (int i = count; i < a.length; i++) {
+    if (a[i] <= bet) {
+        result += (bet + 1 - a[i]);
+    }
+}
+return result;
+}
+
+
+public static long func_0138f2926854428dba9c323efc1adc68(int count, long bet, long result, long[] a) { 
+ for (int i = 0; i < count; i++) {
+    result += (bet - a[i]);
+}
+for (int i = count; i < a.length; i++) {
+    if (a[i] <= bet) {
+        result += (bet + 1 - a[i]);
+    }
+}
+return result;
+}
+
+
+*********************************
+
+#### Score: 8.76955
+
+
+#### Java Tokens: bet, result, count, length 
+
+public static long func_bdb03892897f4948a558f36ec1d18d00(int count, long bet, long result, long[] a) { 
+ for (int i = count; i < a.length; i++) {
+    if (a[i] <= bet) {
+        result += (bet + 1 - a[i]);
+    }
+}
+return result;
+
+}
+

@@ -1,0 +1,21 @@
+void solve() throws IOException {
+    int H = in.nextInt();
+    int W = in.nextInt();
+    int a = in.nextInt();
+    int b = in.nextInt();
+    if (H - a == 1 && W - b == 1) {
+        System.out.println(1);
+        return;
+    }
+    long res = 0;
+    final long mod = 1000000007;
+    long c1 = 1;
+    long c2 = modcomb(H - 1 + W - b - 1, W - b - 1, mod);
+    final int w = b - 1;
+    for (int h = 1; h <= H - a; h++) {
+        res = (res + c1 * c2 % mod) % mod;
+        c1 = c1 * (w + h) % mod * modinv(h, mod) % mod;
+        c2 = c2 * (H - h) % mod * modinv(W - b - 1 + H - h, mod) % mod;
+    }
+    System.out.println(res);
+}

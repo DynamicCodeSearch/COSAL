@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    int n = 1;
+    while (true) {
+        if (a == 4) {
+            System.out.println("4:3");
+            break;
+        }
+        if (a == 16) {
+            System.out.println("16:9");
+            break;
+        }
+        if (a % n == 0 && b % n == 0) {
+            a = a / n;
+            b = b / n;
+            n = 1;
+        }
+        n++;
+    }
+}

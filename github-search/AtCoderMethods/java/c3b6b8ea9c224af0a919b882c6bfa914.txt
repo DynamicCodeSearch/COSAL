@@ -1,0 +1,54 @@
+public static void output() throws IOException {
+    int n = ri();
+    tree = new List[n];
+    for (int i = 0; i < n; i++) {
+        tree[i] = new ArrayList<Integer>();
+    }
+    for (int i = 0; i < n - 1; i++) {
+        int u = ri() - 1;
+        int v = ri() - 1;
+        tree[u].add(v);
+        tree[v].add(u);
+    }
+    par = new int[n];
+    dfs(0, -1);
+    int curr = n - 1;
+    ArrayList<Integer> lis = new ArrayList<Integer>();
+    while (curr != 0) {
+        lis.add(curr);
+        curr = par[curr];
+    }
+    lis.add(0);
+    int white = lis.size() / 2;
+    int black = lis.size() - lis.size() / 2;
+    color = new int[n];
+    Arrays.fill(color, -1);
+    for (int i = 0; i < white; i++) {
+        color[lis.get(i)] = 0;
+    }
+    for (int i = white; i < lis.size(); i++) {
+        color[lis.get(i)] = 1;
+    }
+    for (int i = 0; i < n; i++) {
+        if (color[i] != -1) {
+            colorise(i, color[i]);
+        }
+    }
+    int wc = 0;
+    int bc = 0;
+    for (int i = 0; i < n; i++) {
+        if (color[i] == 0) {
+            wc++;
+        } else {
+            bc++;
+        }
+    }
+    if (wc > bc) {
+        println("Snuke");
+    } else if (wc == bc) {
+        println("Snuke");
+    } else {
+        println("Fennec");
+    }
+
+}

@@ -1,0 +1,12 @@
+static long res(int bit) {
+    if (dp[bit] > 0)
+        return dp[bit];
+    for (int i = 0; i < N; i++) {
+        if ((two[i] & bit) > 0) {
+            if (admit(bit - two[i], i)) {
+                dp[bit] += res(bit - two[i]);
+            }
+        }
+    }
+    return dp[bit];
+}

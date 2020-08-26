@@ -1,0 +1,19 @@
+public String next() {
+    int strLen = 0;
+    int c;
+    do {
+        c = read();
+        if (c == -1)
+            throw new NoSuchElementException();
+    } while (Character.isWhitespace(c));
+    do {
+        if (strLen + 1 >= strBuf.length) {
+            char[] tmp = new char[strBuf.length * 2];
+            System.arraycopy(strBuf, 0, tmp, 0, strBuf.length);
+            strBuf = tmp;
+        }
+        strBuf[strLen++] = (char) c;
+        c = read();
+    } while (c != -1 && !Character.isWhitespace(c));
+    return new String(strBuf, 0, strLen);
+}

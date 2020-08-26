@@ -1,0 +1,21 @@
+public long relabelToFront(int s, int t) {
+    initializePreflow(vertices[s]);
+    PushRelabelBaseMaxFlow.Vertex[] L = new PushRelabelBaseMaxFlow.Vertex[V - 1];
+    for (int i = 0, j = 0; i < V; i++) {
+        if (i != s && i != t)
+            L[j++] = vertices[i];
+    }
+    int i = 0;
+    PushRelabelBaseMaxFlow.Vertex cur = L[i];
+    while (cur != null) {
+        int h0 = cur.height;
+        cur.discharge();
+        if (cur.height > h0) {
+            L[i = 0] = cur;
+        }
+        PushRelabelBaseMaxFlow.Vertex tmp = L[++i];
+        L[i] = cur;
+        cur = tmp;
+    }
+    return vertices[t].excessFlow;
+}

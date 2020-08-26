@@ -1,0 +1,11 @@
+def getResult(a):
+    sum, start = 0, 0
+    for i in range(len(a)-1):
+        if a[i] < a[i+1]:
+            if i == len(a)-2:
+                sum += getCombination(start, i+1)
+            continue
+        else:
+            sum += getCombination(start, i)
+            start = i + 1
+    return int(sum + len(a))

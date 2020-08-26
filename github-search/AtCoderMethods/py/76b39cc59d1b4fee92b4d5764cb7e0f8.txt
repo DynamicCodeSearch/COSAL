@@ -1,0 +1,11 @@
+def main():
+    N, K = map(int, input().split())
+    R = tuple(map(int, input().split()))
+
+    r = sorted(R)
+    c = 0
+    offset = N - K
+    for i in range(K):
+        c = (c + r[i + offset]) / 2
+
+    print(c)

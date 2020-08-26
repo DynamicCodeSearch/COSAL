@@ -1,0 +1,18 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String line = br.readLine();
+    String[] list = line.split(" ");
+    double a = Integer.parseInt(list[0]);
+    double b = Integer.parseInt(list[1]);
+    double c = Integer.parseInt(list[2]);
+    double d = Integer.parseInt(list[3]);
+    double x = b / a;
+    double y = d / c;
+    String z = "DRAW";
+    if (x > y) {
+        z = "TAKAHASHI";
+    } else if (y > x) {
+        z = "AOKI";
+    }
+    System.out.println(z);
+}

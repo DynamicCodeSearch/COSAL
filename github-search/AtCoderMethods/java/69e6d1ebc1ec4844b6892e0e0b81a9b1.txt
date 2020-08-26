@@ -1,0 +1,10 @@
+private static long solve(int n, long[] t) {
+    long a = t[0];
+    for (int i = 1; i < n; i++) {
+        long b = t[i];
+        long gcd = gcd(a, b);
+        long lcm = a / gcd * b;
+        a = lcm;
+    }
+    return a;
+}

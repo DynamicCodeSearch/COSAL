@@ -1,0 +1,56 @@
+static void solve() {
+    int n = ni();
+    int[][] xy = new int[n][];
+    int max = -1;
+    int min = Integer.MAX_VALUE;
+    for (int i = 0; i < n; i++) {
+        xy[i] = na(2);
+        if (xy[i][0] > xy[i][1]) {
+            int d = xy[i][0];
+            xy[i][0] = xy[i][1];
+            xy[i][1] = d;
+        }
+        for (int u = 0; u < 2; u++) {
+            if (xy[i][u] > max)
+                max = xy[i][u];
+            if (xy[i][u] < min)
+                min = xy[i][u];
+        }
+    }
+    
+    int lmin = Integer.MAX_VALUE;
+    for (int i = 0; i < n; i++) {
+        lmin = Math.min(lmin, xy[i][1]);
+    }
+    int rmax = 0;
+    for (int i = 0; i < n; i++) {
+        rmax = Math.max(rmax, xy[i][0]);
+    }
+    long ans = (long) (max - lmin) * (rmax - min);
+    int[][] es = new int[2 * n][];
+    int p = 0;
+    for (int i = 0; i < n; i++) {
+        es[p++] = new int[] { xy[i][0], i, 0 };
+        es[p++] = new int[] { xy[i][1], i, 1 };
+    }
+    Arrays.sort(es, new Comparator<int[]>() {
+
+        public int compare(int[] a, int[] b) {
+            if (a[0] != b[0])
+                return a[0] - b[0];
+            return a[2] - b[2];
+        }
+    });
+    int h = 0;
+    for (int i = 0; i < n; i++) {
+        h = Math.max(h, xy[i][0]);
+    }
+    for (int[] e : es) {
+        ans = Math.min(ans, (long) (max - min) * (h - e[0]));
+        h = Math.max(h, xy[e[1]][1]);
+        if (e[2] == 1)
+            break;
+    }
+    out.println(ans);
+
+}

@@ -1,0 +1,34 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    n = scanner.nextInt();
+    m = scanner.nextInt();
+    chars = scanner.next().toCharArray();
+    l = new int[m];
+    r = new int[m];
+    for (int i = 0; i < m; i++) {
+        l[i] = scanner.nextInt() - 1;
+        r[i] = scanner.nextInt() - 1;
+    }
+    newR = new int[n + 1];
+    for (int i = 0; i < n; i++) {
+        newR[i] = i;
+    }
+    for (int i = 0; i < m; i++) {
+        newR[l[i]] = Math.max(newR[l[i]], r[i]);
+    }
+    for (int i = 1; i < n; i++) {
+        newR[i] = Math.max(newR[i], newR[i - 1]);
+    }
+    sum = new int[n];
+    for (int i = 0; i < n; i++) {
+        sum[i] = chars[i] - '0';
+    }
+    for (int i = 0; i < n - 1; i++) {
+        sum[i + 1] += sum[i];
+    }
+    dp = new long[n + 1][n + 1];
+    for (int i = 0; i < n + 1; i++) {
+        Arrays.fill(dp[i], -1);
+    }
+    System.out.println(dfs(0, newR[0], sum[newR[0]]));
+}

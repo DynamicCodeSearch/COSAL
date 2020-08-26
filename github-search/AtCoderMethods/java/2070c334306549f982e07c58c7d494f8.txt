@@ -1,0 +1,44 @@
+public static void main(String[] $) {
+    Point p = new Point(getInt() - 1, getInt() - 1);
+    String w = s.next();
+    char[][] f = REPS(9).mapToObj(i -> s.next().toCharArray()).toArray(char[][]::new);
+    w = turn(w, p);
+    for (int l = 0; l < 4; ++l) {
+        System.out.print(f[p.y][p.x]);
+        if (l == 3) {
+            System.out.println();
+            return;
+        }
+        switch(w) {
+            case "R":
+                ++p.x;
+                break;
+            case "L":
+                --p.x;
+                break;
+            case "U":
+                --p.y;
+                break;
+            case "D":
+                ++p.y;
+                break;
+            case "RU":
+                ++p.x;
+                --p.y;
+                break;
+            case "RD":
+                ++p.x;
+                ++p.y;
+                break;
+            case "LU":
+                --p.x;
+                --p.y;
+                break;
+            case "LD":
+                --p.x;
+                ++p.y;
+                break;
+        }
+        w = turn(w, p);
+    }
+}

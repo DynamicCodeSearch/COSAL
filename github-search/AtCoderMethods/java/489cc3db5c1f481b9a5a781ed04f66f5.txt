@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    long L = sc.nextInt();
+    long X = sc.nextInt();
+    long Y = sc.nextInt();
+    long S = sc.nextInt();
+    long D = sc.nextInt();
+    long p = (D + L - S) % L;
+    long n = (S + L - D) % L;
+    double tp = ((double) p) / (X + Y);
+    double tn = Long.MAX_VALUE;
+    if (X < Y) {
+        tn = ((double) n) / (Y - X);
+    }
+    DecimalFormat df = new DecimalFormat("0.000000000");
+    System.out.println(df.format(Math.min(tp, tn)));
+}

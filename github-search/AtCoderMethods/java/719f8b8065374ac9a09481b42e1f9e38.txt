@@ -1,0 +1,39 @@
+public void calc() {
+    int A = in.nextInt();
+    int B = in.nextInt();
+    int C = in.nextInt();
+    int D = in.nextInt();
+    int E = in.nextInt();
+    int F = in.nextInt();
+    int water = 100 * A;
+    int sugar = 0;
+    double noudo = 0.0;
+    double maxn = 100.0 * E / (100.0 + E);
+    for (int i1 = 0; i1 <= F / A * 100; i1++) {
+        for (int i2 = 0; i2 <= F / B * 100; i2++) {
+            if (i1 * A * 100 + i2 * B * 100 > F) {
+                break;
+            }
+            for (int i3 = 0; i3 <= F / C; i3++) {
+                if (i1 * A * 100 + i2 * B * 100 + i3 * C > F) {
+                    break;
+                }
+                for (int i4 = 0; i4 <= F / D; i4++) {
+                    int w = 100 * A * i1 + 100 * B * i2;
+                    int s = C * i3 + D * i4;
+                    if (w + s > F) {
+                        break;
+                    }
+                    double n = 100.0 * s / (w + s);
+                    if (n <= maxn && noudo < n) {
+                        noudo = n;
+                        water = w;
+                        sugar = s;
+                    }
+                }
+            }
+        }
+    }
+    out.println((water + sugar) + " " + sugar);
+    out.close();
+}

@@ -1,0 +1,14 @@
+def Dijkstra(adj):
+    dist = [float('inf') for i in range(len(adj))]
+    dist[0] = 0
+    que = []
+    heappush(que, (0, 0))
+    while len(que) != 0:
+        cost, src = heappop(que)
+        if dist[src] < cost:
+            continue
+        for to, ecost in adj[src]:
+            if dist[to] > dist[src] + ecost:
+                dist[to] = dist[src] + ecost
+                heappush(que, (dist[to], to))
+    return dist

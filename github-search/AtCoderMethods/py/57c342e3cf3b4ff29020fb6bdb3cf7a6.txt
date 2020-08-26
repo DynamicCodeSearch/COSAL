@@ -1,0 +1,16 @@
+def main():
+    n = int(input())
+    t = list(map(int, input().split()))
+    m = int(input())
+    time = []
+    for i in range(m):
+        time.append(list(map(int, input().split())))
+
+    for i in range(m):
+        result = 0
+        for j in range(n):
+            if time[i][0]-1 == j:
+                result += time[i][1]
+            else:
+                result += t[j]
+        print(result)

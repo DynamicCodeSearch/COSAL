@@ -1,0 +1,13 @@
+def plus(a, b):
+	l = max(len(a), len(b))
+ a_ = a.rjust(l, '0')
+ b_ = b.rjust(l, '0')
+
+ s = ''; resi = 0
+ for i in range(l)[::-1]:
+		temp = (int(a_[i]) + int(b_[i]) + resi)%10
+
+  resi = (int(a_[i]) + int(b_[i]) + resi)//10
+
+  s = str(temp) + s
+ return s

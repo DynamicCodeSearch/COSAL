@@ -1,0 +1,20 @@
+private static void doit(int[] choice, ArrayList[] ws, ArrayList[] prf, int pos, AtomicLong max) {
+    if (pos == ws.length) {
+        long avail = w;
+        long worth = 0;
+        for (int i = 0; i < choice.length; i++) {
+            avail -= choice[i] * (first + i);
+            if (avail < 0)
+                break;
+            
+            worth += (long) prf[i].get(choice[i]);
+        }
+        if (avail >= 0)
+            max.set(Math.max(worth, max.get()));
+        return;
+    }
+    for (int i = 0; i <= ws[pos].size(); i++) {
+        choice[pos] = i;
+        doit(choice, ws, prf, pos + 1, max);
+    }
+}

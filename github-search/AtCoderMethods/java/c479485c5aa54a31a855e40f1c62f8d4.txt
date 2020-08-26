@@ -1,0 +1,10 @@
+private long query(long a, long b, int k, int l, int r) {
+    if (r <= a || b <= l) {
+        return -INF;
+    }
+    if (a <= l && r <= b) {
+        return data[k];
+    } else {
+        return Math.max(query(a, b, k * 2 + 1, l, (l + r) / 2), query(a, b, k * 2 + 2, (l + r) / 2, r));
+    }
+}

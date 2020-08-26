@@ -1,0 +1,13 @@
+public int recur(int h, int w) {
+    if (memo[h][w] != 0)
+        return memo[h][w];
+    int ret = 1;
+    for (int i = 0; i < 4; i++) {
+        int hh = h + DX[i];
+        int ww = w + DY[i];
+        if (field[h][w] < field[hh][ww]) {
+            ret = mod(ret + recur(hh, ww));
+        }
+    }
+    return memo[h][w] = ret;
+}

@@ -1,0 +1,15 @@
+void solve() throws NumberFormatException, IOException {
+    long a = in.nextLong();
+    long k = in.nextLong();
+    final long lim = 2000000000000L;
+    if (k == 0) {
+        System.out.println(lim - a);
+    } else {
+        int day = 0;
+        while (a < lim) {
+            a += a * k + 1;
+            day++;
+        }
+        System.out.println(day);
+    }
+}

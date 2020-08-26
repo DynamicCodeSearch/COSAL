@@ -1,0 +1,15 @@
+private static long getGCD(long m, long n) {
+    long r;
+    if (m < n) {
+        long buffer = m;
+        m = n;
+        n = buffer;
+    }
+    r = m % n;
+    while (r != 0) {
+        m = n;
+        n = r;
+        r = m % n;
+    }
+    return n;
+}

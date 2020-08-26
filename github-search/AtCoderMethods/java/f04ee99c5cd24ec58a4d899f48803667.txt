@@ -1,0 +1,9 @@
+void push(int rt) {
+    if (tag[rt] != 0) {
+        tag[lson(rt)] += tag[rt];
+        tag[rson(rt)] += tag[rt];
+        mx[lson(rt)] += tag[rt];
+        mx[rson(rt)] += tag[rt];
+        tag[rt] = 0;
+    }
+}

@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int n = in.nextInt();
+    int maxCount = 0;
+    int maxN = 1;
+    for (int i = 1; i <= n; i++) {
+        int count = 0;
+        int tmp = i;
+        while (tmp % 2 == 0) {
+            tmp /= 2;
+            count++;
+        }
+        if (count > maxCount) {
+            maxCount = count;
+            maxN = i;
+        }
+    }
+    System.out.println(maxN);
+}

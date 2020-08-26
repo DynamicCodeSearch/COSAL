@@ -1,0 +1,14 @@
+public static void main(String[] args) throws NumberFormatException, IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String S = br.readLine();
+    Integer N = Integer.valueOf(br.readLine());
+    List<String> sList = new ArrayList<String>();
+    for (int i = 0; i < 5; i++) {
+        String x = S.substring(i, i + 1);
+        for (int j = 0; j < 5; j++) {
+            String y = S.substring(j, j + 1);
+            sList.add(x + y);
+        }
+    }
+    System.out.println(sList.get(N - 1));
+}

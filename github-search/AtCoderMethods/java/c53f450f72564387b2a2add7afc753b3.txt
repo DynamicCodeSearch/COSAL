@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    long a = in.nextLong();
+    long b = in.nextLong();
+    long k = in.nextLong();
+    long l = in.nextLong();
+    if (a * l <= b) {
+        out.println(a * k);
+    } else {
+        long allSet = ((k + l - 1) / l) * b;
+        long setExceptLast = (k / l) * b + (k % l) * a;
+        out.println(Math.min(allSet, setExceptLast));
+    }
+    out.flush();
+}

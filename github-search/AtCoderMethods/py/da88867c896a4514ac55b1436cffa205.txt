@@ -1,0 +1,13 @@
+def convert_to_dists(L):
+  it = iter(L)
+  it2 = iter(L)
+  next(it2)
+
+  D = []
+
+  for a,b in zip(it, it2):
+    ax, ai = a
+    bx, bi = b
+    d = abs(ax-bx)
+    D.append((d,ai,bi))
+  return D

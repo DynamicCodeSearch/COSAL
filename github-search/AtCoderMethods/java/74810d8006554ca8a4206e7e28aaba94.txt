@@ -1,0 +1,8 @@
+void propagate(int curL, int curR, int k) {
+    if (add[k] != 0) {
+        final int curM = (curL + curR) / 2;
+        add(curL, curR, 2 * k + 1, add[k], curL, curM);
+        add(curL, curR, 2 * k + 2, add[k], curM, curR);
+        add[k] = 0;
+    }
+}

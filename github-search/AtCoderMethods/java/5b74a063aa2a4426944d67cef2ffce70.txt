@@ -1,0 +1,30 @@
+private void solve(FastScanner in, PrintWriter out) {
+    R = in.nextInt();
+    C = in.nextInt();
+    int N = in.nextInt();
+    ArrayList<Edge> edges = new ArrayList<>();
+    for (int i = 0; i < N; i++) {
+        Pair pair = new Pair(in.nextInt(), in.nextInt(), in.nextInt(), in.nextInt());
+        if (onBorder(pair.x1, pair.y1) && onBorder(pair.x2, pair.y2)) {
+            long c1 = convert(pair.x1, pair.y1);
+            long c2 = convert(pair.x2, pair.y2);
+            long l = Math.max(c1, c2);
+            long s = Math.min(c1, c2);
+            Edge edge = new Edge(s, l);
+            edges.add(edge);
+        }
+    }
+    edges.sort((o1, o2) -> Long.signum(o1.from - o2.from));
+    ArrayDeque<Long> stop = new ArrayDeque<>();
+    for (Edge edge : edges) {
+        while (!stop.isEmpty() && stop.peekFirst() < edge.from) {
+            stop.pollFirst();
+        }
+        if (!stop.isEmpty() && stop.peekFirst() < edge.to) {
+            out.println("NO");
+            return;
+        }
+        stop.addFirst(edge.to);
+    }
+    out.println("YES");
+}

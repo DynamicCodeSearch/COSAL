@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    char[] c = in.nextToken().toCharArray();
+    char[] rc = new StringBuilder(String.valueOf(c)).reverse().toString().toCharArray();
+    int n = c.length;
+    SuffixArray sa = new SuffixArray(c);
+    sa.buildSA();
+    sa.buildLCP();
+    SuffixArray rsa = new SuffixArray(rc);
+    rsa.buildSA();
+    rsa.buildLCP();
+    long ptn = 0;
+    for (int last = 2; last <= n; last++) {
+        if (n - last * 2 <= 0) {
+            break;
+        }
+        int a = Math.min(sa.countCommon(0, n - last), last - 1);
+        int b = Math.min(rsa.countCommon(0, last), last - 1);
+        ptn += Math.max(0, a + b + 1 - last);
+    
+    }
+    out.println(ptn);
+    out.flush();
+}

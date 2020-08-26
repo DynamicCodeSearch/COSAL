@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner cin = new Scanner(System.in);
+    int count = cin.nextInt();
+    long time = cin.nextLong();
+    long sub;
+    long sum_sub = 0L;
+    long last_one = 0L;
+    long tmp;
+    for (int i = 0; i < count; i++) {
+        if (i == 0) {
+            last_one = cin.nextLong();
+        } else {
+            tmp = cin.nextLong();
+            sub = time + last_one - tmp;
+            if (sub > 0) {
+                sum_sub += sub;
+            }
+            last_one = tmp;
+        }
+    }
+    long result = (long) count * time - sum_sub;
+    System.out.println(result);
+}

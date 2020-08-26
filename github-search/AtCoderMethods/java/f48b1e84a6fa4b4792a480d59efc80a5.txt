@@ -1,0 +1,20 @@
+private void func(String S, int plusCount, ArrayList<String> list) {
+    if (S == null || S.length() <= plusCount)
+        return;
+    if (plusCount == 0) {
+        if (S.length() != 0) {
+            list.add(S);
+            long sum = 0;
+            for (String str : list) {
+                sum += Long.parseLong(str);
+            }
+            Sum += sum;
+        }
+    } else {
+        for (int i = 1; i < S.length(); i++) {
+            ArrayList<String> templist = (ArrayList<String>) list.clone();
+            templist.add(S.substring(0, i));
+            func(S.substring(i), plusCount - 1, templist);
+        }
+    }
+}

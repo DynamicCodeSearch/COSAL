@@ -1,0 +1,20 @@
+private void solve() {
+    int mod4 = 0, mod2 = 0, mod1 = 0;
+    for (int i = 0; i < n; i++) {
+        if (as[i] % 4 == 0) {
+            mod4++;
+        } else if (as[i] % 2 == 0) {
+            mod2++;
+        } else {
+            mod1++;
+        }
+    }
+    if (mod2 % 2 != 0) {
+        mod1++;
+    }
+    if (mod4 - mod1 >= -1) {
+        System.out.println("Yes");
+    } else {
+        System.out.println("No");
+    }
+}

@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    Scanner stdin = new Scanner(System.in);
+    int n, k = 0;
+    long a, b;
+    n = stdin.nextInt();
+    a = stdin.nextLong();
+    b = stdin.nextLong();
+    long[] A = new long[n];
+    for (int i = 0; i < n; i++) {
+        A[i] = stdin.nextInt();
+    }
+    long Tmax = 1000000000;
+    long Tmin = 0;
+    long T = 0;
+    
+    while (Tmax - Tmin > 1) {
+        T = Tmin + (Tmax - Tmin) / 2;
+        k = 0;
+        for (int i = 0; i < n; i++) {
+            
+            if (A[i] > b * T) {
+                k += Math.ceil((double) (A[i] - b * T) / (double) (a - b));
+            }
+        }
+        if (k > T) {
+            Tmin = T;
+        } else if (k <= T) {
+            Tmax = T;
+        }
+    }
+    System.out.println(Tmax);
+}

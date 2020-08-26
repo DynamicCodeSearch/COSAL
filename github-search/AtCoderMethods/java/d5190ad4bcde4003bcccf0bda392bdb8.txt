@@ -1,0 +1,21 @@
+public long nextLong() {
+    int c = this.read();
+    while (isSpace(c)) {
+        c = this.read();
+    }
+    byte sgn = 1;
+    if (c == 45) {
+        sgn = -1;
+        c = this.read();
+    }
+    long res = 0;
+    while (c >= 48 && c <= 57) {
+        res *= 10;
+        res += c - 48;
+        c = this.read();
+        if (isSpace(c)) {
+            return res * sgn;
+        }
+    }
+    throw new InputMismatchException();
+}

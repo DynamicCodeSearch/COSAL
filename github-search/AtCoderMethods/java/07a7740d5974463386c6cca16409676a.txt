@@ -1,0 +1,40 @@
+public void calc() {
+    int N = in.nextInt();
+    int[] a = new int[N - 1], b = new int[N - 1];
+    
+    treeList = new ArrayList<List<Integer>>();
+    for (int i = 0; i < N; i++) {
+        treeList.add(new ArrayList<Integer>());
+    }
+    for (int i = 0; i < N - 1; i++) {
+        a[i] = in.nextInt() - 1;
+        b[i] = in.nextInt() - 1;
+        treeList.get(a[i]).add(b[i]);
+        treeList.get(b[i]).add(a[i]);
+    }
+    done = new boolean[N];
+    dist1 = new int[N];
+    distN = new int[N];
+    
+    dfs(0, 0, dist1);
+    
+    Arrays.fill(done, false);
+    dfs(N - 1, 0, distN);
+    
+    int fennec = 0, snuke = 0;
+    for (int i = 0; i < N; i++) {
+        
+        if (dist1[i] <= distN[i]) {
+            fennec++;
+        } else {
+            snuke++;
+        }
+    }
+    
+    String ans = "Fennec";
+    if (snuke >= fennec) {
+        ans = "Snuke";
+    }
+    out.println(ans);
+    out.close();
+}

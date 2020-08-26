@@ -1,0 +1,9 @@
+private static int calc(int num) {
+    int minimum = num;
+    for (int x = 1; x <= landscapeMax(num); x++) {
+        for (int y = 1; y <= portraitMax(num, x); y++) {
+            minimum = min(minimum, deduction(num, x, y));
+        }
+    }
+    return minimum;
+}

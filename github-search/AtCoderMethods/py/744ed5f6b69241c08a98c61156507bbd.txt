@@ -1,0 +1,21 @@
+def countBomb(y, x):
+    cnt=0
+    vec=[
+        (0,-1),
+        (1,-1),
+        (1,0),
+        (1,1),
+        (0,1),
+        (-1,1),
+        (-1,0),
+        (-1,-1)
+    ]
+
+    for tpl in vec:
+        tmpX=x+int(tpl[0])
+        tmpY=y+int(tpl[1])
+        if(tmpX<0 or tmpY<0 or tmpX>=W or tmpY>=H):
+            continue
+        if(panel[tmpY][tmpX]=="#"):
+            cnt+=1
+    return cnt

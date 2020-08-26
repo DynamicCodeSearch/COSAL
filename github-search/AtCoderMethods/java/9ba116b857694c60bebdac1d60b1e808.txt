@@ -1,0 +1,26 @@
+private static void solve() {
+    Scanner sc = new Scanner(System.in);
+    PrintWriter pr = new PrintWriter(System.out);
+    int H = sc.nextInt();
+    int W = sc.nextInt();
+    int[][] map = new int[H][W];
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            if (j != W - 1) {
+                map[i][j + 1]++;
+            }
+            if (i != H - 1) {
+                map[i + 1][j]++;
+            }
+        }
+    }
+    int sum = 0;
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            sum += map[i][j];
+        }
+    }
+    pr.println(sum);
+    pr.flush();
+    sc.close();
+}

@@ -1,0 +1,47 @@
+public void run(java.util.Scanner sc, java.io.PrintWriter out) {
+    Point2D[] d = new Point2D[sc.nextInt()];
+    for (int i = 0; i < d.length; ++i) {
+        final int w = Integer.parseInt(sc.next());
+        final int h = Integer.parseInt(sc.next());
+        d[i] = new Point2D(w, h);
+    }
+    java.util.Arrays.sort(d, new java.util.Comparator<Point2D>() {
+
+        public int compare(Point2D a, Point2D b) {
+            if (a.x < b.x)
+                return (-1);
+            if (b.x < a.x)
+                return (1);
+            if (b.y < a.y)
+                return (-1);
+            if (a.y < b.y)
+                return (1);
+            return (0);
+        }
+    });
+    for (int i = 0; i < d.length; ++i) {
+        d[i].id = i;
+    }
+    java.util.Arrays.sort(d, new java.util.Comparator<Point2D>() {
+
+        public int compare(Point2D a, Point2D b) {
+            if (a.y < b.y)
+                return (-1);
+            if (b.y < a.y)
+                return (1);
+            if (b.id < a.id)
+                return (-1);
+            if (a.id < b.id)
+                return (1);
+            return (0);
+        }
+    });
+    int res = 0;
+    RankInADynamicSubset rids = new RankInADynamicSubset(d.length);
+    for (int i = 0; i < d.length; ++i) {
+        final int value = rids.currentRankOf(d[i].id) + 1;
+        rids.add(d[i].id, value);
+        res = Math.max(res, value);
+    }
+    out.println(res);
+}

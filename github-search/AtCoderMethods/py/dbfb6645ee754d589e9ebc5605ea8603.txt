@@ -1,0 +1,14 @@
+def main():
+    N = int(input())
+    A = []
+    for _ in range(N):
+        A.append(int(input()))
+    A.sort()
+
+    asum = sum(A)
+    vmax = disp(asum)
+    for a in A:
+        v = disp(asum - a)
+        vmax = max(vmax, v)
+
+    print(vmax)

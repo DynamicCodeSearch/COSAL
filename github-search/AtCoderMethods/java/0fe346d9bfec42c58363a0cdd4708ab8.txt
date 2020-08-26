@@ -1,0 +1,36 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int TGT = sc.nextInt();
+    int cnt = 0;
+    while (N != TGT) {
+        if (N > TGT) {
+            
+            int[] t = { N - 1, N - 5, N - 10 };
+            int min;
+            if (Math.abs(t[0] - TGT) < Math.abs(t[1] - TGT)) {
+                min = 0;
+            } else {
+                min = 1;
+            }
+            if (Math.abs(t[2] - TGT) < Math.abs(t[min] - TGT)) {
+                min = 2;
+            }
+            N = t[min];
+        } else {
+            int[] t = { N + 1, N + 5, N + 10 };
+            int min;
+            if (Math.abs(t[0] - TGT) < Math.abs(t[1] - TGT)) {
+                min = 0;
+            } else {
+                min = 1;
+            }
+            if (Math.abs(t[2] - TGT) < Math.abs(t[min] - TGT)) {
+                min = 2;
+            }
+            N = t[min];
+        }
+        cnt++;
+    }
+    System.out.println(cnt);
+}

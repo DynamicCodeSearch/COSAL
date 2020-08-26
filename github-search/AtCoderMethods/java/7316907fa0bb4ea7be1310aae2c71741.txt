@@ -1,0 +1,10 @@
+private static void log(Object... logs) {
+    if (IS_TEST) {
+        StackTraceElement[] ste = Thread.currentThread().getStackTrace();
+        String clazz = "UK";
+        if (ste.length > 2) {
+            clazz = ste[2].getClassName().replaceAll("^.+\\.", "") + "-" + ste[2].getMethodName();
+        }
+        System.out.println("*LOG*\t" + clazz + "\t" + Arrays.stream(logs).map(o -> Objects.toString(o)).collect(Collectors.joining("\t")));
+    }
+}

@@ -1,0 +1,15 @@
+def vertical_cut(H, W):
+    if W < 3:
+        return float('inf')
+
+    if W % 3 == 0:
+        min_w = W // 3
+        max_w = W // 3
+    else:
+        min_w = W // 3
+        max_w = W // 3 + 1
+
+    S_max = max_w * H
+    S_min = min_w * H
+
+    return S_max - S_min

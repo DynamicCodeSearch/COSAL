@@ -1,0 +1,32 @@
+private void solve(Scanner sc) {
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    int X = sc.nextInt();
+    int Y = sc.nextInt();
+    NavigableSet<Integer> a = new TreeSet<>();
+    for (int i = 0; i < N; ++i) {
+        a.add(sc.nextInt());
+    }
+    NavigableSet<Integer> b = new TreeSet<>();
+    for (int i = 0; i < M; ++i) {
+        b.add(sc.nextInt());
+    }
+    int ans = 0;
+    boolean flag = true;
+    int cur = 0;
+    do {
+        flag = false;
+        Integer aa = a.ceiling(cur);
+        if (aa != null) {
+            aa += X;
+            Integer bb = b.ceiling(aa);
+            if (bb != null) {
+                bb += Y;
+                cur = bb;
+                ++ans;
+                flag = true;
+            }
+        }
+    } while (flag);
+    _out.println(ans);
+}

@@ -1,0 +1,28 @@
+void solve(int i, int num, int k) {
+    
+    if (num == k) {
+        
+        
+        long a = 0;
+        for (int j = 0; j < n - 1; j++) {
+            a += c[j] - '0';
+            if (plus[j]) {
+                sum += a;
+                a = 0;
+            } else {
+                a *= 10;
+            }
+        }
+        a += c[n - 1] - '0';
+        sum += a;
+        
+        return;
+    }
+    if (i == n - 1) {
+        return;
+    }
+    plus[i] = true;
+    solve(i + 1, num + 1, k);
+    plus[i] = false;
+    solve(i + 1, num, k);
+}

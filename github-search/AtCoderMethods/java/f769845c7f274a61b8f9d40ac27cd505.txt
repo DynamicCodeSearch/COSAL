@@ -1,0 +1,13 @@
+public static void main(String[] args) throws IOException {
+    MyScanner sc = new MyScanner();
+    int N = sc.readInt();
+    Student[] students = new Student[N];
+    int[] heights = sc.readIntArray();
+    for (int i = 0; i < N; i++) {
+        students[i] = new Student(i + 1, heights[i]);
+    }
+    sc.close();
+    Arrays.asList(students).stream().sorted((a, b) -> Integer.valueOf(b.height).compareTo(Integer.valueOf(a.height))).forEach(s -> {
+        System.out.println(s.num);
+    });
+}

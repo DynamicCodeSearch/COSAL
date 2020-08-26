@@ -1,0 +1,14 @@
+static void solve() {
+    int n = nextInt();
+    int a = 1;
+    long min = 1145141919810364364L;
+    while (a * a <= n) {
+        int r = n % a;
+        int b = n / a;
+        int c = (b - a) + r;
+        if (c < min)
+            min = c;
+        a++;
+    }
+    System.out.println(min);
+}

@@ -1,0 +1,35 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    Integer A = Integer.valueOf(br.readLine());
+    Integer B = Integer.valueOf(br.readLine());
+    Integer C = Integer.valueOf(br.readLine());
+    List<Integer> sortList = new ArrayList<Integer>();
+    sortList.add(A);
+    sortList.add(B);
+    sortList.add(C);
+    Collections.sort(sortList);
+    int cnt = 3;
+    for (Integer s : sortList) {
+        if (A == s) {
+            System.out.println(cnt);
+            break;
+        }
+        cnt--;
+    }
+    cnt = 3;
+    for (Integer s : sortList) {
+        if (B == s) {
+            System.out.println(cnt);
+            break;
+        }
+        cnt--;
+    }
+    cnt = 3;
+    for (Integer s : sortList) {
+        if (C == s) {
+            System.out.println(cnt);
+            break;
+        }
+        cnt--;
+    }
+}

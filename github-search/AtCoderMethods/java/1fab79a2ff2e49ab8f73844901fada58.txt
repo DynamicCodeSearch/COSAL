@@ -1,0 +1,56 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    int r = sc.nextInt();
+    int c = sc.nextInt();
+    int k = sc.nextInt();
+    char[][] field = new char[r][c];
+    for (int i = 0; i < r; i++) {
+        String s = sc.next();
+        field[i] = s.toCharArray();
+    }
+    if (k > (double) (r + 1) / 2 || k > (double) (c + 1) / 2) {
+        System.out.println(0);
+        return;
+    }
+    int ans = 0;
+    int[][] down = new int[r][c];
+    int[][] up = new int[r][c];
+    for (int i = 0; i < r; i++) {
+        for (int j = 0; j < c; j++) {
+            int ux = j;
+            int uy = i;
+            while (uy >= 0 && field[uy][ux] == 'o') {
+                up[i][j]++;
+                uy--;
+            }
+            int dx = j;
+            int dy = i;
+            while (dy < r && field[dy][dx] == 'o') {
+                down[i][j]++;
+                dy++;
+            }
+        }
+    }
+    for (int i = k - 1; i <= r - k; i++) {
+        for (int j = k - 1; j <= c - k; j++) {
+            int cx = j;
+            int cy = i;
+            
+            boolean check = true;
+            for (int m = j - k + 1; m < j + k; m++) {
+                int num1 = Math.abs(j - k - m);
+                int num2 = Math.abs(j + k - m);
+                int con = Math.min(num1, num2);
+                
+                if (!(up[i][m] >= con && down[i][m] >= con)) {
+                    check = false;
+                }
+            }
+            if (check) {
+                ans++;
+            
+            }
+        }
+    }
+    System.out.println(ans);
+}

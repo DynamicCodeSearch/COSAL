@@ -1,0 +1,15 @@
+
+public static int recal(String A, String B, int i, boolean trig) {
+    if (B.length() + i > A.length()) {
+        return -1;
+    }
+    if (A.substring(i, i + B.length()).equals(B)) {
+        return i;
+    } else {
+        if (trig) {
+            return recal(A, B, ++i, trig);
+        } else {
+            return -1;
+        }
+    }
+}

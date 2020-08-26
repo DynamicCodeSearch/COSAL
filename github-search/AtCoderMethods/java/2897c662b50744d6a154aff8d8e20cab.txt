@@ -1,0 +1,15 @@
+private static long solve(int n, int[][] a) {
+    
+    long ans = 0;
+    for (int k = 0; k < n; k++) for (int i = 0; i < n; i++) for (int j = 0; j < n; j++) if (a[i][j] > a[i][k] + a[k][j])
+        return -1;
+    for (int i = 0; i < n; i++) fromTo: for (int j = 0; j < i; j++) {
+        via: for (int k = 0; k < n; k++) if (k != i && k != j && a[i][j] == a[i][k] + a[k][j])
+            
+            continue fromTo;
+        else
+            continue via;
+        ans += a[i][j];
+    }
+    return ans;
+}

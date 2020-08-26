@@ -1,0 +1,10 @@
+static String getCode(char[][] a, int i, int j, int m) {
+    StringBuilder res = new StringBuilder();
+    int lim = i + m, limj = j + m;
+    for (int k = i; k < lim; k++) {
+        for (int l = j; l < limj; l++) {
+            res.append(a[k][l] == '#' ? 1 : 0);
+        }
+    }
+    return res.toString();
+}

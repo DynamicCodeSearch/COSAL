@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    Pos start = new Pos(sc.nextInt(), sc.nextInt());
+    Pos goal = new Pos(sc.nextInt(), sc.nextInt());
+    final int T = sc.nextInt();
+    final int V = sc.nextInt();
+    final int N = sc.nextInt();
+    Pos[] girls = new Pos[N];
+    for (int i = 0; i < N; i++) girls[i] = new Pos(sc.nextInt(), sc.nextInt());
+    sc.close();
+    boolean ans = false;
+    for (int i = 0; i < N; i++) {
+        if ((getDistance(start, girls[i]) + getDistance(goal, girls[i])) / (double) V <= T) {
+            ans = true;
+            break;
+        }
+    }
+    System.out.println(ans ? "YES" : "NO");
+}

@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    
+    int N = scan.nextInt();
+    int[] num = new int[100000];
+    int diviteby4 = 0;
+    int diviteby2 = 0;
+    int areaby4 = 0;
+    int areaby2 = 0;
+    for (int i = 0; i < N; i++) {
+        num[i] = scan.nextInt();
+        if (num[i] % 4 == 0)
+            diviteby4++;
+        if (num[i] % 2 == 0 && num[i] % 4 != 0)
+            diviteby2++;
+    }
+    areaby4 = diviteby4 * 2;
+    if (diviteby2 == 0)
+        areaby2 = 0;
+    else
+        areaby2 = diviteby2 - 1;
+    if (areaby2 + areaby4 >= N - 1)
+        System.out.println("Yes");
+    else
+        System.out.println("No");
+}

@@ -1,0 +1,41 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String s = sc.next();
+    int t = sc.nextInt();
+    int L = 0;
+    int R = 0;
+    int U = 0;
+    int D = 0;
+    int Q = 0;
+    for (char c : s.toCharArray()) {
+        switch(c) {
+            case 'L':
+                L++;
+                break;
+            case 'R':
+                R++;
+                break;
+            case 'U':
+                U++;
+                break;
+            case 'D':
+                D++;
+                break;
+            case '?':
+                Q++;
+                break;
+        }
+    }
+    int baseX = R - L;
+    int baseY = U - D;
+    int dist = Math.abs(baseX) + Math.abs(baseY);
+    if (t == 1) {
+        System.out.println(dist + Q);
+    } else {
+        if (dist >= Q) {
+            System.out.println(dist - Q);
+        } else {
+            System.out.println((Q - dist) % 2);
+        }
+    }
+}

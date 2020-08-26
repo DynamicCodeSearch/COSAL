@@ -1,0 +1,29 @@
+@SuppressWarnings("unchecked")
+public static void main(String[] args) throws Exception {
+    int n = sc.nextInt();
+    long t = sc.nextLong();
+    a = new Pair[n];
+    al = new ArrayList[n];
+    for (int i = 0; i < n; i++) {
+        long num = sc.nextLong();
+        a[i] = new Pair(num, num + t);
+        al[i] = new ArrayList<Integer>();
+    }
+    long res = 0;
+    int last = 0;
+    for (int i = 0; i < n; i++) {
+        if (i + 1 < n && a[i].r >= a[i + 1].l) {
+            al[i].add(i + 1);
+        }
+    }
+    v = new boolean[n];
+    for (int i = 0; i < n; i++) {
+        if (!v[i]) {
+            list = new ArrayList<Integer>();
+            dfs(i);
+            res = res + a[list.get(list.size() - 1)].r - a[list.get(0)].l;
+        }
+    }
+    out.println(res);
+    out.close();
+}

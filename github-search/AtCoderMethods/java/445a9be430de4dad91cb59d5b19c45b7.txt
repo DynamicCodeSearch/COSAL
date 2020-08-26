@@ -1,0 +1,18 @@
+public static int nextInt() {
+    int num = 0;
+    String str = next();
+    boolean minus = false;
+    int i = 0;
+    if (str.charAt(0) == '-') {
+        minus = true;
+        i++;
+    }
+    int len = str.length();
+    for (; i < len; i++) {
+        char c = str.charAt(i);
+        if (!('0' <= c && c <= '9'))
+            throw new RuntimeException();
+        num = num * 10 + (c - '0');
+    }
+    return minus ? -num : num;
+}

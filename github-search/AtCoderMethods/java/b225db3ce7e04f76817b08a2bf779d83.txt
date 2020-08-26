@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    int i;
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    long[] x = new long[n];
+    long[] y = new long[m];
+    for (i = 0; i < n; i++) x[i] = sc.nextLong();
+    for (i = 0; i < m; i++) y[i] = sc.nextLong();
+    long ans = 0;
+    long WidthSum = 0;
+    long HeightSum = 0;
+    for (i = 0; i < n; i++) {
+        WidthSum += i * x[i] - (n - 1 - i) * x[i];
+        WidthSum %= (1000000000 + 7);
+    }
+    for (i = 0; i < m; i++) {
+        HeightSum += i * y[i] - (m - 1 - i) * y[i];
+        HeightSum %= (1000000000 + 7);
+    }
+    ans += WidthSum * HeightSum % (1000000000 + 7);
+    System.out.println(ans);
+}

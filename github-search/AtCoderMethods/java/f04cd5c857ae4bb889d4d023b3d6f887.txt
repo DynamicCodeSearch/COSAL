@@ -1,0 +1,21 @@
+void solve() throws IOException {
+    int n = in.nextInt();
+    String s = in.nextToken();
+    char[] t = s.toCharArray();
+    int p = 0;
+    for (int i = 0; i < n; i++) {
+        if (t[i] == '(') {
+            p++;
+        } else {
+            p--;
+        }
+        if (p < 0) {
+            p++;
+            s = "(" + s;
+        }
+    }
+    for (int i = 0; i < p; i++) {
+        s += ")";
+    }
+    System.out.println(s);
+}

@@ -1,0 +1,38 @@
+void solve() {
+    int n = sc.nextInt();
+    Range[] ranges = new Range[n];
+    for (int i = 0; i < n; i++) {
+        ranges[i] = new Range(i, sc.nextInt(), sc.nextInt());
+    }
+    boolean[] isCovered = new boolean[n];
+    int[] v = new int[2 * n];
+    for (int i = 0; i < n; i++) {
+        v[2 * i] = ranges[i].a;
+        v[2 * i + 1] = ranges[i].b;
+    }
+    v = normalize(v);
+    for (int i = 0; i < n; i++) {
+        ranges[i].a = v[i * 2] + 1;
+        ranges[i].b = v[i * 2 + 1] + 1;
+    }
+    Arrays.sort(ranges, new Comparator<Range>() {
+
+        @Override
+        public int compare(Range a, Range b) {
+            if (a.a != b.a)
+                return a.a < b.a ? -1 : 1;
+            if (a.b != b.b)
+                return a.b > b.b ? -1 : 1;
+            return Integer.compare(a.id, b.id);
+        }
+    });
+    int ans = 0;
+    BITMAX bitmax = new BITMAX(2 * n + 1);
+    for (Range range : ranges) {
+        
+        int count = bitmax.get(range.b - 1);
+        ans = Math.max(ans, count + 1);
+        bitmax.update(range.b, count + 1);
+    }
+    out.println(ans);
+}

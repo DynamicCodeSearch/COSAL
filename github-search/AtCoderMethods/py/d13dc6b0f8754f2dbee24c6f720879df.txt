@@ -1,0 +1,4 @@
+def overlaps(self, time_span):
+    if self.start.later_than(time_span.start):
+        return time_span.overlaps(self)
+    return self.end.later_than(time_span.start) or self.end.equals(time_span.start)

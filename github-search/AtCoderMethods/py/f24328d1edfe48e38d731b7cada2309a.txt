@@ -1,0 +1,16 @@
+def main():
+    N, K = map(int, input().split())
+
+    d = dd(int)
+    for n in range(N):
+        a,b = map(int, input().split())
+        d[a] += b
+
+    count = 0
+    A = sorted(d.keys())
+    for k in A:
+
+        count += d[k]
+        if count >= K:
+            print(k)
+            break

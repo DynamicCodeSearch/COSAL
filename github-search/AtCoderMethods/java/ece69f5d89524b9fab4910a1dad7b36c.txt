@@ -1,0 +1,22 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    Graph graph = new Graph(n);
+    for (int i = 0; i < n - 1; i++) {
+        int from = in.nextInt() - 1;
+        int to = in.nextInt() - 1;
+        graph.addUndirectedEdge(from, to);
+    }
+    int[] d1 = new int[n];
+    rec(graph, d1, 0, -1);
+    int[] d2 = new int[n];
+    rec(graph, d2, n - 1, -1);
+    int cnt1 = 0;
+    int cnt2 = 0;
+    for (int i = 0; i < n; i++) {
+        if (d1[i] <= d2[i])
+            cnt1++;
+        else
+            cnt2++;
+    }
+    out.println(cnt1 > cnt2 ? "Fennec" : "Snuke");
+}

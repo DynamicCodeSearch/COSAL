@@ -1,0 +1,22 @@
+def Choco(H,W,ans):
+    if H%3==0 or W%3==0:
+        print("0")
+        exit()
+    else:
+        for i in range(H):
+            if i==0:
+                pass
+            else:
+                a=W*i
+                if (H-i)%2==0:
+                    b=(H-i)*W//2
+                    dif=abs(a-b)
+                else:
+                    w1=W//2
+                    b=(H-i)*w1
+                    c=(H-i)*(W-w1)
+                    M=max(a,b,c)
+                    m=min(a,b,c)
+                    dif=M-m
+                ans=min(dif,ans)
+    return ans

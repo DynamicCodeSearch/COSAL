@@ -1,0 +1,7 @@
+public static int rmq(int[][] or, int a, int b) {
+    if (a >= b)
+        return 0;
+    
+    int t = 31 - Integer.numberOfLeadingZeros(b - a);
+    return Math.min(or[t][a], or[t][b - (1 << t)]);
+}

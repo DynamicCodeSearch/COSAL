@@ -1,0 +1,11 @@
+void dfs(int cur, int pos, int[] num, int[] cnt, TreeSet<Integer> set) {
+    if (pos == num.length) {
+        set.add(cur);
+        return;
+    }
+    dfs(cur, pos + 1, num, cnt, set);
+    for (int i = 0; i < cnt[pos]; i++) {
+        cur *= num[pos];
+        dfs(cur, pos + 1, num, cnt, set);
+    }
+}

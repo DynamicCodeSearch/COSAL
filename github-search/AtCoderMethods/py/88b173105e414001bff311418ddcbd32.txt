@@ -1,0 +1,10 @@
+def main():
+    n, m = reads();
+    a = [input() for _ in range(n)]
+    b = [input() for _ in range(m)]
+    for i in range(n - m + 1):
+        for j in range(n - m + 1):
+            if check(i, j, a, b):
+                print('Yes')
+                return
+    print('No')

@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String s = sc.next();
+    String[] sSplit = s.split("");
+    boolean ans = true;
+    for (int i = 0; i < sSplit.length; i++) {
+        for (int j = 0; j < sSplit.length; j++) {
+            if (i != j) {
+                if (sSplit[i].equals(sSplit[j])) {
+                    ans = false;
+                    break;
+                }
+            }
+        }
+    }
+    if (ans) {
+        System.out.println("yes");
+    } else {
+        System.out.println("no");
+    }
+}

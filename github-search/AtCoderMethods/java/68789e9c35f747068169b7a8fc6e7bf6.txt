@@ -1,0 +1,38 @@
+public static void main(String[] args) throws java.lang.Exception {
+    Scanner in = new Scanner(System.in);
+    int n = in.nextInt();
+    int k = in.nextInt();
+    int[] nums = new int[n];
+    boolean zeroFlag = false;
+    for (int i = 0; i < n; i++) {
+        nums[i] = in.nextInt();
+        if (nums[i] == 0) {
+            zeroFlag = true;
+        }
+    }
+    if (zeroFlag) {
+        System.out.println(n);
+    } else {
+        int start = 0;
+        int end = 0;
+        long multi = 1;
+        int answer = 0;
+        while (end < n) {
+            
+            while (end < n && multi * nums[end] <= k) {
+                multi *= nums[end];
+                end++;
+            }
+            answer = Math.max(answer, end - start);
+            if (start == end) {
+                start++;
+                end++;
+                multi = 1;
+            } else {
+                multi /= nums[start];
+                start++;
+            }
+        }
+        System.out.println(answer);
+    }
+}

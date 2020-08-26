@@ -1,0 +1,33 @@
+public static void main(String[] args) {
+    StdIn in = new StdIn();
+    int n = in.nextInt(), m = in.nextInt();
+    List<Integer>[] graph = new List[n];
+    for (int i = 0; i < n; ++i) graph[i] = new ArrayList<Integer>();
+    for (int i = 0; i < m; ++i) {
+        int a = in.nextInt() - 1, b = in.nextInt() - 1;
+        graph[a].add(b);
+        graph[b].add(a);
+    }
+    int[] queue = new int[200000];
+    int[] dist = new int[200000];
+    Arrays.fill(dist, -1);
+    int h = 0, t = 0;
+    queue[t++] = 0;
+    dist[0] = 0;
+    while (t > h) {
+        int node = queue[h++];
+        if (node == n - 1) {
+            System.out.println("POSSIBLE");
+            System.exit(0);
+        }
+        if (dist[node] >= 2)
+            continue;
+        for (int neighbor : graph[node]) {
+            if (dist[neighbor] == -1) {
+                dist[neighbor] = dist[node] + 1;
+                queue[t++] = neighbor;
+            }
+        }
+    }
+    System.out.println("IMPOSSIBLE");
+}

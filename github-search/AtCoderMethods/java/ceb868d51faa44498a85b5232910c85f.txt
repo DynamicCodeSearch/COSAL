@@ -1,0 +1,29 @@
+public static long det(long[][] A, long mod) {
+    int n = A.length;
+    long D = 1;
+    for (int i = 0; i < n; i++) {
+        int pivot = i;
+        for (int j = i + 1; j < n; j++) {
+            if (A[j][i] >= 1) {
+                pivot = j;
+            }
+        }
+        long[] t = A[pivot].clone();
+        A[pivot] = A[i].clone();
+        A[i] = t;
+        D *= A[i][i];
+        D %= mod;
+        D = (i == pivot) ? D : (mod - D) % mod;
+        if (A[i][i] == 0) {
+            break;
+        }
+        for (int j = i + 1; j < n; j++) {
+            for (int k = n - 1; k >= i; k--) {
+                long sub = A[i][k] * A[j][i] % mod * invl(A[i][i], mod) % mod;
+                A[j][k] += mod - sub;
+                A[j][k] %= mod;
+            }
+        }
+    }
+    return D % mod;
+}

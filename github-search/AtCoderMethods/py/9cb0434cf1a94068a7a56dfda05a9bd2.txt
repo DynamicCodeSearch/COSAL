@@ -1,0 +1,18 @@
+def main():
+    N,M = LI()
+    a = [LI() for _ in range(M)]
+    t = set()
+    s = set()
+    for i,j in a:
+        if i==1:
+            t.add(j)
+        elif i==N:
+            s.add(j)
+        if j==1:
+            t.add(i)
+        elif j==N:
+            s.add(i)
+    if t&s:
+        return 'POSSIBLE'
+
+    return 'IMPOSSIBLE'

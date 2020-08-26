@@ -1,0 +1,10 @@
+def main():
+    C = [list(input().split(' ')) for i in range(4)]
+    for i in range(2):
+        for j in range(4):
+            temp = C[i][j]
+            C[i][j] = C[3 - i][3 - j]
+            C[3 - i][3 - j] = temp
+
+    for c in C:
+        print('%s %s %s %s' % (c[0], c[1], c[2], c[3]))

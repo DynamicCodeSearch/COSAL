@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    int n = ni();
+    int[] a = nia(n);
+    Arrays.sort(a);
+    int[] x = new int[100010];
+    for (int i = 0; i < n; i++) {
+        x[a[i]] = (x[a[i]] + 1) % 2;
+        if (x[a[i]] == 0)
+            x[a[i]] = 2;
+    }
+    int c2 = 0;
+    for (int i = 0; i < x.length; i++) c2 += (x[i] == 2 ? 1 : 0);
+    while (c2 >= 3) c2 -= 2;
+    HashSet<Integer> set = new HashSet<Integer>();
+    for (int i = 0; i < n; i++) set.add(a[i]);
+    if (c2 == 0)
+        pl(set.size());
+    if (c2 == 1)
+        pl(set.size() - 1);
+    if (c2 == 2)
+        pl(set.size());
+    flush();
+}

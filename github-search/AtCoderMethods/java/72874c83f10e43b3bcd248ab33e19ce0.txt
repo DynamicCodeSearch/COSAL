@@ -1,0 +1,19 @@
+public long calc(int mode) {
+    long sum = 0;
+    long cnt = 0;
+    for (int i = 0; i < N; i++) {
+        sum += a[i];
+        if (i % 2 == mode) {
+            if (sum <= 0) {
+                cnt += 1 - sum;
+                sum = 1;
+            }
+        } else {
+            if (sum >= 0) {
+                cnt += 1 + sum;
+                sum = -1;
+            }
+        }
+    }
+    return cnt;
+}

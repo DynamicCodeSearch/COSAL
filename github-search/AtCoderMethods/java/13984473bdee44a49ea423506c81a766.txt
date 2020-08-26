@@ -1,0 +1,7 @@
+void relabel() {
+    final int h = edges.stream().filter(e -> e.capacity > 0).map(a -> a.v.height).min(Comparator.naturalOrder()).get();
+    if (!isOverflow() || height > h) {
+        throw new RuntimeException();
+    }
+    height = h + 1;
+}

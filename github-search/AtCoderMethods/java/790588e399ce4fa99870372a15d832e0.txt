@@ -1,0 +1,49 @@
+public static int rank(boolean[][] M) {
+    int n = M.length, m = M[0].length;
+    
+    for (int i = 0; i < n; i++) {
+        
+        boolean pivotFound = false;
+        out: for (int pi = i; pi < n; pi++) {
+            for (int pj = i; pj < m; pj++) {
+                if (M[pi][pj]) {
+                    
+                    for (int k = 0; k < n; k++) {
+                        boolean u = M[k][pj];
+                        M[k][pj] = M[k][i];
+                        M[k][i] = u;
+                    }
+                    if (pi != i) {
+                        
+                        for (int k = 0; k < m; k++) {
+                            boolean u = M[pi][k];
+                            M[pi][k] = M[i][k];
+                            M[i][k] = u;
+                        }
+                    }
+                    pivotFound = true;
+                    break out;
+                }
+            }
+        }
+        if (!pivotFound)
+            return i;
+        for (int j = i + 1; j < n; j++) {
+            if (M[j][i]) {
+                for (int k = i; k < m; k++) {
+                    M[j][k] ^= M[i][k];
+                }
+            }
+        }
+    }
+    for (int j = n - 1; j >= 0; j--) {
+        for (int i = j - 1; i >= 0; i--) {
+            if (M[i][j]) {
+                for (int k = j; k < m; k++) {
+                    M[i][k] ^= M[j][k];
+                }
+            }
+        }
+    }
+    return n;
+}

@@ -1,0 +1,14 @@
+private void add(int l, int r, int v, int shift, int idx) {
+    if (r < l)
+        return;
+    final int index = idx | 1 << bits - shift;
+    if (r - l + 1 < (1 << shift)) {
+        final int nidx = idx << 1 | 1;
+        add(l, Math.min(r, (nidx << shift - 1) - 1), v, shift - 1, nidx - 1);
+        add(Math.max(l, nidx << shift - 1), r, v, shift - 1, nidx);
+        value[index] = value[index << 1] + value[index << 1 | 1] + hold[index] * (1 << shift);
+    } else {
+        value[index] += v * (1 << shift);
+        hold[index] += v;
+    }
+}

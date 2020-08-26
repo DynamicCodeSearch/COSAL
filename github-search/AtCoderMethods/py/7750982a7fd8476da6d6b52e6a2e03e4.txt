@@ -1,0 +1,17 @@
+def main():
+    N, M = map(int, input().split())
+    s = set()
+    for _ in range(M):
+        a, b = map(int, input().split())
+        s.add((a, b))
+        s.add((b, a))
+    ans = 0
+    for x in permutations(range(2, N + 1)):
+        now = 1
+        for i in range(len(x)):
+            if (now, x[i]) not in s:
+                break
+            now = x[i]
+        else:
+            ans += 1
+    print(ans)

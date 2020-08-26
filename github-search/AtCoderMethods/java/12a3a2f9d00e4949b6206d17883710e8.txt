@@ -1,0 +1,20 @@
+private void doit() {
+    Scanner sc = new Scanner(System.in);
+    while (sc.hasNext()) {
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        int diff = Math.abs(a - b);
+        if (diff >= 2) {
+            System.out.println(0);
+            continue;
+        } else if (diff == 0) {
+            long res = calc(a);
+            long ans = (res * res) % MOD;
+            ans = (ans * 2) % MOD;
+            System.out.println(ans);
+        } else {
+            long res = (calc(a) * calc(b)) % MOD;
+            System.out.println(res);
+        }
+    }
+}

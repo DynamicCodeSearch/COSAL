@@ -1,0 +1,16 @@
+def dfs(v, used):
+    if not False in used:
+        return 1
+
+    ans = 0
+    for i in range(N):
+        if not adj_matrix[v][i]:
+            continue
+        if used[i]:
+            continue
+
+        used[i] = True
+        ans += dfs(i, used)
+        used[i] = False
+
+    return ans

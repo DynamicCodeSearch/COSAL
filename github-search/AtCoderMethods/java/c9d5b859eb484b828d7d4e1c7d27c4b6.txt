@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int n = scan.nextInt();
+    int sq = (int) Math.sqrt(n);
+    int min = 1 << 30;
+    for (int i = 1; i <= sq; i++) {
+        int tate = n / i;
+        int amari = n - tate * i;
+        int zettaiti = Math.abs(tate - i);
+        min = Math.min(min, amari + zettaiti);
+    
+    }
+    System.out.println(min);
+}

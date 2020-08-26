@@ -1,0 +1,14 @@
+def solve(Y, M, D):
+    while Y%(D*M) != 0:
+        D += 1
+        U = 0
+        if M == 2:
+            U = isUruu(Y)
+        if D > days[M-1] + U:
+            M += 1
+            D = 1
+            if M == 13:
+                Y += 1
+                M = 1
+
+    print("{}/{:02d}/{:02d}".format(Y, M, D))

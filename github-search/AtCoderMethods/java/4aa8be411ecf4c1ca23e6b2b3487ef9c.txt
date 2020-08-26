@@ -1,0 +1,52 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    int[][] arr = new int[N][M];
+    int n = M;
+    int m = N;
+    int l = 0, k = 0, i;
+    int size = sc.nextInt();
+    List<Integer> li = new ArrayList<>();
+    for (int j = 0; j < size; j++) {
+        li.add(sc.nextInt());
+    }
+    List<Integer> ele = new ArrayList<>();
+    int u = 1;
+    for (Integer p : li) {
+        while (p-- > 0) {
+            ele.add(u);
+        }
+        u++;
+    }
+    Iterator<Integer> itr = ele.iterator();
+    while (l < n && k < m) {
+        for (i = l; i < n; i++) {
+            arr[k][i] = itr.next();
+        }
+        k++;
+        for (i = k; i < m; i++) {
+            arr[i][n - 1] = itr.next();
+        }
+        n--;
+        if (k < m) {
+            for (i = n - 1; i >= l; --i) {
+                arr[m - 1][i] = itr.next();
+            }
+            m--;
+        }
+        if (l < n) {
+            for (i = m - 1; i >= k; --i) {
+                arr[i][l] = itr.next();
+            }
+            l++;
+        }
+    }
+    for (i = 0; i < N; i++) {
+        for (int j = 0; j < M; j++) {
+            System.out.print(arr[i][j] + " ");
+        }
+        System.out.println();
+    }
+}

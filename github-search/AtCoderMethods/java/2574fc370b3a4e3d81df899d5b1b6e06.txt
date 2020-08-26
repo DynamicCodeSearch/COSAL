@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    long N = scanner.nextLong();
+    ArrayList<Long> list = new ArrayList<Long>();
+    long i = 1;
+    double last = Math.sqrt(N);
+    while (true) {
+        if (N % i == 0) {
+            list.add(N / i);
+        }
+        if (i > last)
+            break;
+        i++;
+    }
+    long ans = 99999999;
+    for (int j = 0; j < list.size(); j++) {
+        int temp = Math.max(log10(list.get(j)), log10(N / list.get(j)));
+        ans = Math.min(ans, temp);
+    }
+    System.out.println(ans);
+}

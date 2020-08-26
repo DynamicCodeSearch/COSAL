@@ -1,0 +1,36 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    Printer pr = new Printer(System.out);
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    List<Tri> aby = new ArrayList<>(m);
+    for (int i = 0; i < m; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        int y = sc.nextInt();
+        aby.add(new Tri(a, b, y));
+    }
+    Collections.sort(aby);
+    int q = sc.nextInt();
+    List<Tri> vw = new ArrayList<>(q);
+    for (int i = 0; i < q; i++) {
+        int v = sc.nextInt() - 1;
+        int w = sc.nextInt();
+        vw.add(new Tri(i, v, w));
+    }
+    Collections.sort(vw);
+    Map<Integer, Integer> ret = new TreeMap<>();
+    UnionFind uf = new UnionFind(n);
+    int j = 0;
+    for (Tri e : vw) {
+        for (; j < m && e.y < aby.get(j).y; j++) {
+            uf.unite(aby.get(j).a, aby.get(j).b);
+        }
+        ret.put(e.a, uf.count(e.b));
+    }
+    for (int e : ret.values()) {
+        pr.println(e);
+    }
+    pr.close();
+    sc.close();
+}

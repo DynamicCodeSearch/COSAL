@@ -1,0 +1,6 @@
+def animals(start, votes):
+    rv = [None] * len(votes)
+    rv[:2] = start
+    for i in range(1, len(votes) - 1):
+        rv[i + 1] = rv[i - 1] ^ rv[i] ^ votes[i]
+    return tuple(rv)

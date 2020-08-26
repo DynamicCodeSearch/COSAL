@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    int n = scan.nextInt();
+    String[] array = new String[n];
+    String[][] poi = new String[n][n];
+    Scan(n, array);
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            poi[i][j] = String.valueOf(array[i].charAt(j));
+        }
+    }
+    for (int k = 0; k < n; k++) {
+        for (int m = 0; m < n - 1; m++) {
+            System.out.print(poi[n - m - 1][k]);
+        }
+        System.out.println(poi[0][k]);
+    }
+}

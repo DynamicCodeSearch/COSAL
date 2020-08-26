@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int N = scan.nextInt();
+    int NG1 = scan.nextInt();
+    int NG2 = scan.nextInt();
+    int NG3 = scan.nextInt();
+    String ans = "NO";
+    if (N != NG1 && N != NG2 && N != NG3) {
+        for (int i = 0; i < 100; i++) {
+            if (N - 3 != NG1 && N - 3 != NG2 && N - 3 != NG3) {
+                N -= 3;
+            } else if (N - 2 != NG1 && N - 2 != NG2 && N - 2 != NG3) {
+                N -= 2;
+            } else if (N - 1 != NG1 && N - 1 != NG2 && N - 1 != NG3) {
+                N -= 1;
+            } else {
+                break;
+            }
+        }
+        if (N <= 0)
+            ans = "YES";
+    }
+    System.out.println(ans);
+}

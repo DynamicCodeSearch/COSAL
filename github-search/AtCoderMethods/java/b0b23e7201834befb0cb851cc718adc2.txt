@@ -1,0 +1,62 @@
+private static void solve() {
+    int n = sc.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = sc.nextInt();
+    }
+    long[] sump = new long[n];
+    long retp = 0;
+    if (a[0] <= 0) {
+        retp += -a[0] + 1;
+        sump[0] = 1;
+    } else {
+        sump[0] = a[0];
+    }
+    for (int i = 1; i < n; i++) {
+        if (i % 2 == 1) {
+            long tmp = sump[i - 1] + a[i];
+            if (tmp >= 0) {
+                retp += tmp + 1;
+                sump[i] = -1;
+            } else {
+                sump[i] = tmp;
+            }
+        } else {
+            long tmp = sump[i - 1] + a[i];
+            if (tmp <= 0) {
+                retp += -tmp + 1;
+                sump[i] = 1;
+            } else {
+                sump[i] = tmp;
+            }
+        }
+    }
+    long[] summ = new long[n];
+    long retm = 0;
+    if (a[0] >= 0) {
+        retm += a[0] + 1;
+        summ[0] = -1;
+    } else {
+        summ[0] = a[0];
+    }
+    for (int i = 1; i < n; i++) {
+        if (i % 2 == 1) {
+            long tmp = summ[i - 1] + a[i];
+            if (tmp <= 0) {
+                retm += -tmp + 1;
+                summ[i] = 1;
+            } else {
+                summ[i] = tmp;
+            }
+        } else {
+            long tmp = summ[i - 1] + a[i];
+            if (tmp >= 0) {
+                retm += tmp + 1;
+                summ[i] = -1;
+            } else {
+                summ[i] = tmp;
+            }
+        }
+    }
+    pr.println(Math.min(retp, retm));
+}

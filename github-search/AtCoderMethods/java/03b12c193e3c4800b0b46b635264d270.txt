@@ -1,0 +1,5 @@
+public static Mint comb(int n, int k) {
+    if (n < 0 || k < 0 || n - k < 0)
+        return Mint.ZERO;
+    return fact(n).mul(ifact(k)).mul(ifact(n - k));
+}

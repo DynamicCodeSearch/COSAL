@@ -1,0 +1,19 @@
+public static void main(String[] args) throws java.lang.Exception {
+    InputReader in = new InputReader(System.in);
+    PrintWriter w = new PrintWriter(System.out);
+    int a = in.nextInt() * 100, b = in.nextInt() * 100, c = in.nextInt(), d = in.nextInt(), e = in.nextInt(), f = in.nextInt();
+    long maxsugar = 0, maxwater = 0;
+    for (int i = 0; i <= 100; i++) for (int j = 0; j <= 100; j++) for (int k = 0; k <= 100; k++) for (int l = 0; l <= 100; l++) {
+        int x = a * i + b * j;
+        int y = c * k + d * l;
+        if (x + y <= f) {
+            if (100 * y <= x * e)
+                if (maxsugar * (x + y) <= y * (maxsugar + maxwater)) {
+                    maxwater = x;
+                    maxsugar = y;
+                }
+        }
+    }
+    w.println((maxwater + maxsugar) + " " + maxsugar);
+    w.close();
+}

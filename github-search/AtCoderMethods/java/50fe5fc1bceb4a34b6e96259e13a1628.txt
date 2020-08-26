@@ -1,0 +1,65 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int W, H;
+    H = sc.nextInt();
+    W = sc.nextInt();
+    char[][] map = new char[H][];
+    for (int i = 0; i < H; i++) {
+        map[i] = sc.next().toCharArray();
+    }
+    char[][] sub = new char[H][W];
+    char[][] suub = new char[H][W];
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            sub[i][j] = '#';
+            suub[i][j] = '#';
+        }
+    }
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            if (map[i][j] == '.') {
+                for (int q = -1; q < 2; q++) {
+                    for (int w = -1; w < 2; w++) {
+                        if (i + q < 0 || i + q > H - 1 || j + w < 0 || j + w > W - 1)
+                            continue;
+                        sub[i + q][j + w] = '.';
+                        suub[i + q][j + w] = '.';
+                    }
+                }
+            }
+        }
+    }
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            if (suub[i][j] == '#') {
+                for (int q = -1; q < 2; q++) {
+                    for (int w = -1; w < 2; w++) {
+                        if (i + q < 0 || i + q > H - 1 || j + w < 0 || j + w > W - 1)
+                            continue;
+                        sub[i + q][j + w] = '#';
+                    }
+                }
+            }
+        }
+    }
+    boolean check = true;
+    a: for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            if (sub[i][j] != map[i][j]) {
+                check = false;
+                break a;
+            }
+        }
+    }
+    if (!check) {
+        System.out.println("impossible");
+    } else {
+        System.out.println("possible");
+        for (int i = 0; i < H; i++) {
+            for (int j = 0; j < W; j++) {
+                System.out.print(suub[i][j]);
+            }
+            System.out.println();
+        }
+    }
+}

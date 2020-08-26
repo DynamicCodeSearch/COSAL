@@ -1,0 +1,14 @@
+@Override
+public int compareTo(Magic m) {
+    int result = up - down;
+    int result1 = m.up - m.down;
+    if (result >= 0 && result1 < 0) {
+        return 1;
+    } else if (result < 0 && result1 >= 0) {
+        return -1;
+    } else if (result < 0 && result1 < 0) {
+        return up - m.up;
+    } else {
+        return -(down - m.down);
+    }
+}

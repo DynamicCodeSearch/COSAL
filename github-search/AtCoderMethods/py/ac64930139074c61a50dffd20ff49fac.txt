@@ -1,0 +1,15 @@
+def output():
+
+    raintimes_index = [i for i, b in enumerate(RAINTIMES) if b]
+
+    rain_durations = []
+    start, end = raintimes_index[0], raintimes_index[0]
+    for v in raintimes_index[1:]:
+        if v == end + 1:
+            end = v
+        else:
+            rain_durations.append((start, end))
+            start, end = v, v
+    rain_durations.append((start, end))
+
+    [print('{:02d}{:02d}-'.format(*divmod(s * 5, 60)) + '{:02d}{:02d}'.format(*divmod((e + 1) * 5, 60))) for s, e in rain_durations]

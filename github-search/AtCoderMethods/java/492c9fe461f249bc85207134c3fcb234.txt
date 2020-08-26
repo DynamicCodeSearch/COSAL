@@ -1,0 +1,35 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    Long[] a = new Long[n];
+    HashMap<Long, Long> hm = new HashMap<>();
+    for (int i = 0; i < n; i++) {
+        a[i] = in.nextLong();
+        if (hm.containsKey(a[i]))
+            hm.put(a[i], hm.get(a[i]) + 1);
+        else
+            hm.put(a[i], 1L);
+    }
+    Arrays.sort(a, (x1, x2) -> Long.compare(x2, x1));
+    long s = 0;
+    for (int i = 0; i < n; i++) {
+        long t = a[i];
+        if (!hm.containsKey(t))
+            continue;
+        if (hm.get(t) >= 4) {
+            if (s > 0)
+                out.println(s * t);
+            else
+                out.println(t * t);
+            return;
+        } else if (hm.get(t) >= 2) {
+            if (s == 0) {
+                s = t;
+                hm.remove(t);
+            } else {
+                out.println(s * t);
+                return;
+            }
+        }
+    }
+    out.println(0);
+}

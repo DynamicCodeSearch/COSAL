@@ -1,0 +1,12 @@
+def dfs(n, prev):
+    ret = (0,0)
+    for u in G[n]:
+        if u != prev:
+            w,b = dfs(u, n)
+            if ret[0] == 0:
+                ret = (w+b,w)
+            else:
+                ret = (ret[0] * (w + b), ret[1] * w)
+        if u == prev and len(G[n]) == 1:
+            ret = (1,1)
+    return ret

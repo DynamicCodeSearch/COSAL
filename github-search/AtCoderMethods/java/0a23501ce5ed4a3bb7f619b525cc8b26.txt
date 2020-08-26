@@ -1,0 +1,46 @@
+public static void main(String[] args) {
+    
+    sc = new Scanner(System.in);
+    N = sc.nextInt();
+    M = sc.nextInt();
+    T = sc.nextLong();
+    A = new long[N];
+    for (int i = 0; i < N; i++) {
+        A[i] = sc.nextLong();
+    }
+    ArrayList<node> fwd_Nodes = new ArrayList<>();
+    ArrayList<node> bwd_Nodes = new ArrayList<>();
+    for (int i = 0; i < N; i++) {
+        node node1 = new node();
+        node node2 = new node();
+        fwd_Nodes.add(node1);
+        bwd_Nodes.add(node2);
+    }
+    for (int i = 0; i < M; i++) {
+        int a, b, c;
+        a = sc.nextInt() - 1;
+        b = sc.nextInt() - 1;
+        c = sc.nextInt();
+        edge e1 = new edge();
+        e1.toNode = b;
+        e1.cost = c;
+        fwd_Nodes.get(a).Edge.add(e1);
+        edge e2 = new edge();
+        e2.toNode = a;
+        e2.cost = c;
+        bwd_Nodes.get(b).Edge.add(e2);
+    }
+    find_path(fwd_Nodes, 0);
+    find_path(bwd_Nodes, 0);
+    long max = 0;
+    for (int i = 0; i < N; i++) {
+        long max0;
+        if ((T - fwd_Nodes.get(i).min_dis - bwd_Nodes.get(i).min_dis) > 0) {
+            max0 = (T - fwd_Nodes.get(i).min_dis - bwd_Nodes.get(i).min_dis) * A[i];
+            if (max < max0)
+                max = max0;
+        }
+    }
+    
+    System.out.println(max);
+}

@@ -1,0 +1,62 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int H = sc.nextInt();
+    int W = sc.nextInt();
+    char[][] S = new char[H][W];
+    char[][] _S = new char[H][W];
+    char[][] __S = new char[H][W];
+    for (int i = 0; i < H; i++) {
+        String L = sc.next();
+        for (int j = 0; j < W; j++) {
+            S[i][j] = L.charAt(j);
+        }
+    }
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            _S[i][j] = S[i][j];
+        }
+    }
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            if (S[i][j] == '.') {
+                for (int k = i - 1; k < i + 2; k++) {
+                    for (int l = j - 1; l < j + 2; l++) {
+                        if (k >= 0 && l >= 0 && k < H && l < W) {
+                            _S[k][l] = '.';
+                        }
+                    }
+                }
+            }
+        }
+    }
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            __S[i][j] = _S[i][j];
+        }
+    }
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            if (__S[i][j] == '#') {
+                for (int k = i - 1; k < i + 2; k++) {
+                    for (int l = j - 1; l < j + 2; l++) {
+                        if (k >= 0 && l >= 0 && k < H && l < W) {
+                            _S[k][l] = '#';
+                        }
+                    }
+                }
+            }
+        }
+    }
+    if (Arrays.deepEquals(S, _S)) {
+        System.out.println("possible");
+        for (int i = 0; i < H; i++) {
+            for (int j = 0; j < W; j++) {
+                System.out.print(__S[i][j]);
+            }
+            System.out.println("");
+        }
+    } else {
+        System.out.println("impossible");
+    }
+    sc.close();
+}

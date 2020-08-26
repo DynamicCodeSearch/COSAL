@@ -1,0 +1,34 @@
+public static void main(String[] args) {
+    n = scan.nextInt();
+    m = scan.nextInt();
+    t = scan.nextInt();
+    a = new int[n];
+    nodes = new Node[n];
+    nodesR = new Node[n];
+    dp = new long[n];
+    dpR = new long[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = scan.nextInt();
+        nodes[i] = new Node(i);
+        nodesR[i] = new Node(i);
+        dp[i] = -1;
+        dpR[i] = -1;
+    }
+    for (int i = 0; i < m; i++) {
+        int l = scan.nextInt() - 1;
+        int r = scan.nextInt() - 1;
+        int c = scan.nextInt();
+        nodes[l].edges.add(new Edge(r, c));
+        nodesR[r].edges.add(new Edge(l, c));
+    }
+    dijkstra(nodes, dp, 0);
+    dijkstra(nodesR, dpR, 0);
+    long ans = 0;
+    for (int i = 0; i < n; i++) {
+        if (dp[i] == -1 || dpR[i] == -1)
+            continue;
+        long v = (t - dp[i] - dpR[i]) * a[i];
+        ans = Math.max(ans, v);
+    }
+    System.out.println(ans);
+}

@@ -1,0 +1,9 @@
+private static void solve() {
+    for (int i = 0; i < n; i++) {
+        int buf = s.nextInt();
+        imos[buf]++;
+        imos[buf + t]--;
+    }
+    Arrays.parallelPrefix(imos, (a, b) -> a + b);
+    System.out.println(Arrays.stream(imos).filter(i -> i >= 1).count());
+}

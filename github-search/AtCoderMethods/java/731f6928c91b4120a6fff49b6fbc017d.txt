@@ -1,0 +1,35 @@
+void solve() {
+    long n = nl();
+    long m = nl();
+    long mod = (long) 10e8 + 7;
+    if (n > m) {
+        long t = n;
+        n = m;
+        m = t;
+    }
+    if (m - n > 1) {
+        out.println(0);
+    } else if (n == m) {
+        long x = 1;
+        for (long i = 1; i <= n; ++i) {
+            x *= i;
+            x %= mod;
+        }
+        x *= x;
+        x %= mod;
+        x *= 2;
+        x %= mod;
+        out.println(x);
+    } else {
+        long x = 1;
+        for (int i = 1; i <= n; ++i) {
+            x *= i;
+            x %= mod;
+        }
+        long y = x * m;
+        y %= mod;
+        x *= y;
+        x %= mod;
+        out.println(x);
+    }
+}

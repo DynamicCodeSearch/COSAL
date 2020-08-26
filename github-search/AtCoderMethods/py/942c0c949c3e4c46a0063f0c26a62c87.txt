@@ -1,0 +1,8 @@
+def func(a,n,l):
+    if len(l) == 0:
+        return a + n
+
+    l2 = [i for i in l]
+    m = l2.pop(0)
+
+    return func(a,10*n+m,l2) + (func(a+n,m,l2))

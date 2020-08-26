@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    PrintWriter out = new PrintWriter(System.out);
+    int n = sc.nextInt();
+    int t = sc.nextInt(), a = sc.nextInt();
+    long voteT = t, voteA = a;
+    for (int i = 1; i < n; i++) {
+        t = sc.nextInt();
+        a = sc.nextInt();
+        long multi = Math.max((voteT + (t - voteT % t) % t) / t, (voteA + (a - voteA % a) % a) / a);
+        voteT = t * multi;
+        voteA = a * multi;
+    }
+    out.println(voteT + voteA);
+    out.flush();
+}

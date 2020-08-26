@@ -1,0 +1,47 @@
+public static void main(String[] args) throws IOException {
+    try (Scanner sc = new Scanner(System.in)) {
+        final int N = sc.nextInt();
+        ArrayList<HashMap<Integer, Long>> adj = new ArrayList<HashMap<Integer, Long>>();
+        for (int i = 0; i < N; i++) {
+            adj.add(new HashMap<Integer, Long>());
+        }
+        for (int i = 0; i < N - 1; i++) {
+            final int a = sc.nextInt() - 1;
+            final int b = sc.nextInt() - 1;
+            final long c = sc.nextLong();
+            adj.get(a).put(b, c);
+            adj.get(b).put(a, c);
+        }
+        final int Q = sc.nextInt();
+        final int K = sc.nextInt() - 1;
+        long[] dist_from_k = new long[N];
+        Arrays.fill(dist_from_k, INF);
+        dist_from_k[K] = 0;
+        PriorityQueue<State> queue = new PriorityQueue<State>();
+        queue.add(new State(K, -1, 0));
+        while (!queue.isEmpty()) {
+            final State state = queue.poll();
+            final int node = state.curr;
+            final int prev = state.prev;
+            if (dist_from_k[node] < state.cost) {
+                continue;
+            }
+            
+            for (final int next : adj.get(node).keySet()) {
+                if (next == prev) {
+                    continue;
+                }
+                final long next_dist = dist_from_k[node] + adj.get(node).get(next);
+                if (next_dist < dist_from_k[next]) {
+                    dist_from_k[next] = next_dist;
+                    queue.add(new State(next, node, next_dist));
+                }
+            }
+        }
+        for (int i = 0; i < Q; i++) {
+            final int x = sc.nextInt() - 1;
+            final int y = sc.nextInt() - 1;
+            System.out.println(dist_from_k[x] + dist_from_k[y]);
+        }
+    }
+}

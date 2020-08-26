@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = Integer.parseInt(sc.next());
+    int[] s = new int[N];
+    for (int i = 0; i < N; i++) {
+        s[i] = Integer.parseInt(sc.next());
+    }
+    for (int i = 0; i < N - 1; i++) {
+        for (int j = N - 1; j > i; j--) {
+            if (s[j] < s[j - 1]) {
+                int temp = s[j];
+                s[j] = s[j - 1];
+                s[j - 1] = temp;
+            }
+        }
+    }
+    int total = 0;
+    for (int i = 0; i < N; i++) total += s[i];
+    int i = 0;
+    while (total % 10 == 0 && i < N) {
+        if (s[i] % 10 != 0)
+            total -= s[i];
+        i++;
+    }
+    if (i == N) {
+        System.out.println(0);
+    } else {
+        System.out.println(total);
+    }
+}

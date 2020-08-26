@@ -1,0 +1,62 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int W = sc.nextInt();
+    long w0;
+    ArrayList<Integer>[] v = new ArrayList[4];
+    for (int i = 0; i < 4; ++i) {
+        v[i] = new ArrayList<Integer>(N);
+    }
+    w0 = sc.nextInt();
+    v[0].add(sc.nextInt());
+    for (int i = 1; i < N; ++i) {
+        int w = sc.nextInt();
+        v[w - (int) w0].add(sc.nextInt());
+    }
+    for (int i = 0; i < 4; ++i) {
+        v[i].sort(Comparator.reverseOrder());
+    }
+    int max_v = 0;
+    for (int i = 0; i <= v[0].size(); ++i) {
+        long ww0 = w0 * (long) i;
+        if (ww0 > W) {
+            break;
+        }
+        int vv0 = 0;
+        for (int k = 0; k < i; ++k) {
+            vv0 += v[0].get(k);
+        }
+        for (int j = 0; j <= v[1].size(); ++j) {
+            long ww01 = ww0 + (w0 + 1) * (long) j;
+            int vv01 = vv0;
+            if (ww01 > W) {
+                break;
+            }
+            for (int k = 0; k < j; ++k) {
+                vv01 += v[1].get(k);
+            }
+            for (int l = 0; l <= v[2].size(); ++l) {
+                long ww012 = ww01 + (w0 + 2) * (long) l;
+                int vv012 = vv01;
+                if (ww012 > W) {
+                    break;
+                }
+                for (int k = 0; k < l; ++k) {
+                    vv012 += v[2].get(k);
+                }
+                for (int ll = 0; ll <= v[3].size(); ++ll) {
+                    long ww0123 = ww012 + (w0 + 3) * (long) ll;
+                    int vv0123 = vv012;
+                    if (ww0123 > W) {
+                        break;
+                    }
+                    for (int k = 0; k < ll; ++k) {
+                        vv0123 += v[3].get(k);
+                    }
+                    max_v = Math.max(max_v, vv0123);
+                }
+            }
+        }
+    }
+    System.out.println(max_v);
+}

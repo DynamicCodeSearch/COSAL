@@ -1,0 +1,47 @@
+public void solve() {
+    int H = nextInt();
+    int W = nextInt();
+    int N = nextInt();
+    HashSet<Pair> hash = new HashSet<>(N * 2);
+    HashSet<Pair> flg = new HashSet<>(N * 2 * 8);
+    for (int i = 0; i < N; i++) {
+        int a = nextInt();
+        int b = nextInt();
+        hash.add(new Pair(b, a));
+    }
+    long[] ans = new long[10];
+    ans[0] = (long) (H - 2) * (W - 2);
+    for (Pair p : hash) {
+        Pair np = p;
+        if (!flg.contains(np) && 2 <= np.x && np.x <= (W - 1) && 2 <= np.y && np.y <= (H - 1)) {
+            int cnt = 0;
+            if (hash.contains(np))
+                cnt++;
+            for (int j = 0; j < 8; j++) {
+                if (hash.contains(np.newPair(j)))
+                    cnt++;
+            }
+            ans[0]--;
+            ans[cnt]++;
+            flg.add(np);
+        }
+        for (int i = 0; i < 8; i++) {
+            np = p.newPair(i);
+            if (!flg.contains(np) && 2 <= np.x && np.x <= (W - 1) && 2 <= np.y && np.y <= (H - 1)) {
+                int cnt = 0;
+                if (hash.contains(np))
+                    cnt++;
+                for (int j = 0; j < 8; j++) {
+                    if (hash.contains(np.newPair(j)))
+                        cnt++;
+                }
+                ans[0]--;
+                ans[cnt]++;
+                flg.add(np);
+            }
+        }
+    }
+    for (int i = 0; i < 10; i++) {
+        out.println(ans[i]);
+    }
+}

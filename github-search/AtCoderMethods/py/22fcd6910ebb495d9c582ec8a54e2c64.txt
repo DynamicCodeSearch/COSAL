@@ -1,0 +1,49 @@
+def main():
+    N, W = map(int, input().split())
+
+    w1 = [0, 0]
+    w2 = [0, 0]
+    w3 = [0, 0]
+    w4 = [0, 0]
+    v1 = []
+    v2 = []
+    v3 = []
+    v4 = []
+
+    i = 0
+    while i < N:
+        w, v = map(int, input().split())
+        if i == 0 or w == w1[0]:
+            w1[0] = w
+            w1[1] += 1
+            v1.append(v)
+        elif w == w1[0] + 1:
+            w2[0] = w
+            w2[1] += 1
+            v2.append(v)
+        elif w == w1[0] + 2:
+            w3[0] = w
+            w3[1] += 1
+            v3.append(v)
+        elif w == w1[0] + 3:
+            w4[0] = w
+            w4[1] += 1
+            v4.append(v)
+        i += 1
+
+    v1.sort(reverse=True)
+    v2.sort(reverse=True)
+    v3.sort(reverse=True)
+    v4.sort(reverse=True)
+
+    ans = []
+    for i in range(w1[1] + 1):
+        for j in range(w2[1] + 1):
+            for k in range(w3[1] + 1):
+                for l in range(w4[1] + 1):
+                    w = w1[0] * i + w2[0] * j + w3[0] * k + w4[0] * l
+                    if w <= W:
+                        v = sum(v1[:i] + v2[:j] + v3[:k] + v4[:l])
+                        ans.append(v)
+
+    print(max(ans))

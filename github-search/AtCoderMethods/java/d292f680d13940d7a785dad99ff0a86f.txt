@@ -1,0 +1,17 @@
+public int[] dfsOrder() {
+    int[] st = new int[V];
+    int sp = 0, len = 0;
+    int[] order = new int[V];
+    boolean[] vis = new boolean[V];
+    vis[root] = true;
+    st[sp++] = root;
+    while (sp > 0) {
+        int v = st[--sp];
+        order[len++] = v;
+        for (Edge e : vertex[v].edges) if (!vis[e.to]) {
+            vis[e.to] = true;
+            st[sp++] = e.to;
+        }
+    }
+    return order;
+}

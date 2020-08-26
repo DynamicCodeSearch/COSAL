@@ -1,0 +1,38 @@
+public static boolean dfs(int n, String[] chess) {
+    int memo_x = -1, memo_y = -1;
+    if (n == 8) {
+        flag = 1;
+    } else {
+        for (int i = 0; i < 8; i++) {
+            if (chess[n].charAt(i) == 'Q') {
+                memo_x = i;
+                memo_y = n;
+            }
+        }
+        if (memo_x != -1) {
+            if (isPuttable(memo_x, memo_y, chess)) {
+                if (dfs(n + 1, chess))
+                    return true;
+            }
+        } else {
+            for (int i = 0; i < 8; i++) {
+                if (isPuttable(i, n, chess)) {
+                    String line1 = chess[n].substring(0, i);
+                    String line2 = chess[n].substring(i + 1, 8);
+                    chess[n] = line1 + "Q" + line2;
+                    if (dfs(n + 1, chess))
+                        return true;
+                    else {
+                        line1 = chess[n].substring(0, i);
+                        line2 = chess[n].substring(i + 1, 8);
+                        chess[n] = line1 + "." + line2;
+                    }
+                }
+            }
+        }
+    }
+    if (flag == 1)
+        return true;
+    else
+        return false;
+}

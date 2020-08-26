@@ -1,0 +1,15 @@
+
+public static int[] mul(int[][] A, int[] v, int mod) {
+    int m = A.length;
+    int n = v.length;
+    int[] w = new int[m];
+    for (int i = 0; i < m; i++) {
+        long sum = 0;
+        for (int k = 0; k < n; k++) {
+            sum += (long) A[i][k] * v[k];
+            sum %= mod;
+        }
+        w[i] = (int) sum;
+    }
+    return w;
+}

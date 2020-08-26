@@ -1,0 +1,17 @@
+public int getMinPattern() {
+    int patterns = 0;
+    boolean foundFreeColor = false;
+    
+    for (Map.Entry<Rate, Integer> entry : rateDispersion.entrySet()) {
+        if (!entry.getKey().isFreeColor() && entry.getValue() != null && entry.getValue() > 0) {
+            patterns += 1;
+        }
+        if (!foundFreeColor && entry.getKey().isFreeColor() && entry.getValue() != null && entry.getValue() > 0) {
+            foundFreeColor = true;
+        }
+    }
+    if (foundFreeColor && patterns == 0) {
+        patterns = 1;
+    }
+    return patterns;
+}

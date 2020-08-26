@@ -1,0 +1,13 @@
+private int solve(Point student, Point[] checks) {
+    int min = Integer.MAX_VALUE;
+    int index = -1;
+    for (int i = 0; i < checks.length; ++i) {
+        Point check = checks[i];
+        int dist = Math.abs(student.x - check.x) + Math.abs(student.y - check.y);
+        if (min > dist) {
+            min = dist;
+            index = i;
+        }
+    }
+    return index + 1;
+}

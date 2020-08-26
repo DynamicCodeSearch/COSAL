@@ -1,0 +1,23 @@
+public static void main(String[] args) throws Exception {
+    Scanner scan = new Scanner(System.in);
+    int N = scan.nextInt();
+    int[] point = new int[100000];
+    for (int i = 0; i < N; i++) {
+        int a = scan.nextInt();
+        if (a > 1)
+            point[a - 2]++;
+        if (a > 0)
+            point[a - 1]++;
+        if (a != 100000)
+            point[a]++;
+    }
+    int maxPoint = 0;
+    int maxX = 0;
+    for (int i = 0; i < 100000; i++) {
+        if (point[i] > maxPoint) {
+            maxPoint = point[i];
+            maxX = i;
+        }
+    }
+    System.out.println(point[maxX]);
+}

@@ -1,0 +1,14 @@
+void solve() throws NumberFormatException, IOException {
+    final ContestScanner in = new ContestScanner();
+    Writer out = new Writer();
+    String s = in.nextToken();
+    int[] a = new int[4];
+    for (int i = 0; i < 4; i++) {
+        a[i] = in.nextInt();
+        int os = a[i];
+        for (int j = 0; j < i; j++) if (a[j] <= a[i])
+            os++;
+        s = s.substring(0, os) + "\"" + s.substring(os, s.length());
+    }
+    System.out.println(s);
+}

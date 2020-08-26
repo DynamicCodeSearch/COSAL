@@ -1,0 +1,14 @@
+private boolean checkExplosives(long u) {
+    long count = 0;
+    for (int i = 1; i <= N; i++) {
+        long v = h[i] - B * u;
+        if (v < 0)
+            continue;
+        long c = v / (A - B);
+        if (v % (A - B) != 0) {
+            c++;
+        }
+        count += c;
+    }
+    return count <= u;
+}

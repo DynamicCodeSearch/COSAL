@@ -1,0 +1,28 @@
+boolean isNeed(int n, int k, int[] a, int m) {
+    
+    boolean[][] dp = new boolean[n + 1][k];
+    dp[0][0] = true;
+    for (int i = 0; i < n; i++) {
+        if (i == m) {
+            for (int j = 0; j < k; j++) {
+                if (dp[i][j])
+                    dp[i + 1][j] = true;
+            }
+        } else {
+            for (int j = 0; j < k; j++) {
+                if (dp[i][j])
+                    dp[i + 1][j] = true;
+                if (dp[i][j] && j + a[i] < k)
+                    dp[i + 1][j + a[i]] = true;
+            }
+        }
+    }
+    for (int i = 0; i <= n; i++) {
+        for (int j = 0; j < k; j++) {
+            if (dp[i][j] && j + a[m] >= k) {
+                return true;
+            }
+        }
+    }
+    return false;
+}

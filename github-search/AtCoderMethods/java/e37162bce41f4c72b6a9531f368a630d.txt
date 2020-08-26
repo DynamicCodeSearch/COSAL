@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] l = new int[N];
+    int[] r = new int[N];
+    for (int i = 0; i < N; i++) {
+        l[i] = sc.nextInt();
+        r[i] = sc.nextInt();
+    }
+    int[] person = new int[1001001];
+    for (int i = 0; i < N; i++) {
+        for (int j = l[i] - 1; j <= r[i] - 1; j++) {
+            person[j] = 1;
+        }
+    }
+    int ans = 0;
+    for (int i = 0; i < person.length; i++) {
+        if (person[i] == 1) {
+            ans++;
+        }
+    }
+    System.out.println(ans);
+}

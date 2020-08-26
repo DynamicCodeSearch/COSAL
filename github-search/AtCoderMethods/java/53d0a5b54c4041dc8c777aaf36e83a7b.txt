@@ -1,0 +1,12 @@
+void solve() throws IOException {
+    int n = nextInt();
+    int k = nextToken().length();
+    int[] noEmpty = goNoEmpty(n, k);
+    int[] empty = goEmpty(n);
+    int ret = 0;
+    for (int i = 0; i <= n; i++) {
+        ret += (int) ((long) noEmpty[i] * empty[n - i] % P);
+        ret %= P;
+    }
+    out.println(ret);
+}

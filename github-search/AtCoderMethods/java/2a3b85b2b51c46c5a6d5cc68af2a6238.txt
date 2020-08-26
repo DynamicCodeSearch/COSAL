@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    long[] x = new long[n];
+    long[] y = new long[m];
+    for (int i = 0; i < n; i++) {
+        x[i] = sc.nextLong();
+    }
+    for (int i = 0; i < m; i++) {
+        y[i] = sc.nextLong();
+    }
+    long xSum = 0;
+    n--;
+    m--;
+    for (int i = 0; i < n / 2.0; i++) {
+        xSum += (x[n - i] - x[i]) * (long) (n - 2 * i);
+        xSum = xSum % 1000000007l;
+    }
+    long ySum = 0;
+    for (int i = 0; i < m / 2.0; i++) {
+        ySum += (y[m - i] - y[i]) * (long) (m - 2 * i);
+        ySum = ySum % 1000000007l;
+    }
+    long result = 0;
+    result = xSum % 1000000007l;
+    result = (result * ySum) % 1000000007l;
+    System.out.println(result);
+}

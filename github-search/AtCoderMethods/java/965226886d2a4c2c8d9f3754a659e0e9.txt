@@ -1,0 +1,8 @@
+private static void solve() {
+    for (int l = 0; l < n; l++) {
+        imos[s.nextInt()]++;
+        imos[s.nextInt() + 1]--;
+    }
+    Arrays.parallelPrefix(imos, (a, b) -> a + b);
+    System.out.println(Arrays.stream(imos).parallel().max().getAsInt());
+}

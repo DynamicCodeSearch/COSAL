@@ -1,0 +1,9 @@
+static void seive(ArrayList<Long> l1) {
+    boolean[] power = new boolean[1000001];
+    for (int i = 2; i * i <= 1000000; i++) {
+        if (!power[i]) {
+            for (int j = 2 * i; j <= 1000000; j += i) power[j] = true;
+        }
+    }
+    for (int i = 2; i <= 1000000; i++) l1.add((long) i);
+}

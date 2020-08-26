@@ -1,0 +1,18 @@
+def solve():
+    N, Q = map(int, input().split())
+    ban = [0] * N
+    for i in range(Q):
+        l, r = map(int, input().split())
+        l -= 1
+        ban[l] += 1
+        if r < N:
+            ban[r] -= 1
+
+    ac = list(accumulate(ban))
+    ans = [0] * N
+
+    for i, koma in enumerate(ac):
+        if koma % 2:
+            ans[i] = 1
+
+    print(*ans, sep='')

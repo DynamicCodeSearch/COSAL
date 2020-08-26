@@ -1,0 +1,18 @@
+public IntIterator iterator() {
+    return new IntIterator() {
+
+        int pos = 0;
+
+        public Integer next() {
+            return IntList.this.elem[pos++];
+        }
+
+        public boolean hasNext() {
+            return pos < IntList.this.size;
+        }
+
+        public int nextInt() {
+            return IntList.this.elem[pos++];
+        }
+    };
+}

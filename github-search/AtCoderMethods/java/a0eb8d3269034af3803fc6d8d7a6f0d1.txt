@@ -1,0 +1,12 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int min = Integer.MAX_VALUE - 1;
+    for (int height = 1; height <= Math.sqrt(n); height++) {
+        int diff = Math.abs(height - n / height);
+        int remainder = n % height;
+        if (min > diff + remainder)
+            min = diff + remainder;
+    }
+    System.out.println(min);
+}

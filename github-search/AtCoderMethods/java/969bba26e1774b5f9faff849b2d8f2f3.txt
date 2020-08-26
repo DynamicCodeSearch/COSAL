@@ -1,0 +1,68 @@
+static void solve() {
+    int n = ni(), m = ni();
+    int[][] es = new int[m][];
+    for (int i = 0; i < m; i++) {
+        es[i] = new int[] { ni() - 1, ni() - 1, ni() };
+    }
+    Arrays.sort(es, new Comparator<int[]>() {
+
+        public int compare(int[] a, int[] b) {
+            return a[2] - b[2];
+        }
+    });
+    RestorableDisjointSet2 rds = new RestorableDisjointSet2(n, m);
+    int[] cen = new int[n];
+    Arrays.fill(cen, -1);
+    int id = n;
+    int[] from = new int[2 * m];
+    int[] to = new int[2 * m];
+    int ep = 0;
+    for (int i = 0; i < m; ) {
+        int j = i;
+        while (j < m && es[j][2] == es[i][2]) j++;
+        for (int k = i; k < j; k++) {
+            rds.union(es[k][0], es[k][1]);
+        }
+        for (int k = i; k < j; k++) {
+            for (int u = 0; u < 2; u++) {
+                int root = rds.root(es[k][u]);
+                if (cen[root] == -1) {
+                    cen[root] = id;
+                    id++;
+                }
+                from[ep] = es[k][u];
+                to[ep] = cen[root];
+                ep++;
+            }
+        }
+        for (int k = i; k < j; k++) {
+            for (int u = 0; u < 2; u++) {
+                int root = rds.root(es[k][u]);
+                cen[root] = -1;
+            }
+        }
+        rds.revert(0);
+        i = j;
+    }
+    int[][] g = packU(id, from, to, ep);
+    Queue<Integer> q = new ArrayDeque<>();
+    q.add(0);
+    int[] d = new int[id];
+    int I = 99999999;
+    Arrays.fill(d, I);
+    d[0] = 0;
+    while (!q.isEmpty()) {
+        int cur = q.poll();
+        for (int e : g[cur]) {
+            if (d[e] == I) {
+                d[e] = d[cur] + 1;
+                q.add(e);
+            }
+        }
+    }
+    if (d[n - 1] == I) {
+        out.println(-1);
+    } else {
+        out.println(d[n - 1] / 2);
+    }
+}

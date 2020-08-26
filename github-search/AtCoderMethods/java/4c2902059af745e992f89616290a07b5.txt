@@ -1,0 +1,20 @@
+long nextLong() {
+    if (!hasNext())
+        throw new IllegalArgumentException();
+    long n = 0;
+    int plus = 1;
+    int b = readByte();
+    if (b == '-') {
+        plus = -1;
+        b = readByte();
+    }
+    if ('0' > b || b > '9')
+        throw new IllegalArgumentException();
+    while (true) {
+        if (!isMeaningful(b))
+            return plus * n;
+        n *= 10;
+        n += number[b - '0'];
+        b = readByte();
+    }
+}

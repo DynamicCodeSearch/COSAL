@@ -1,0 +1,40 @@
+public void solve() {
+    int N = io.ri();
+    long W = io.ri();
+    Piece[] all = new Piece[N];
+    long sum = 0;
+    for (int i = 0; i < N; i++) {
+        int a = io.ri();
+        int b = io.ri();
+        all[i] = new Piece(b, a);
+        sum += a;
+    }
+    long res = 0;
+    if (sum <= W) {
+        for (int i = 0; i < N; i++) res += all[i].c;
+        io.writeLine(res + "");
+        return;
+    }
+    if (N == 1 || all[0].w > W) {
+        io.writeLine("0");
+        return;
+    }
+    if (W * N <= 10_000_000L) {
+        res = calc(all, (int) W);
+        io.writeLine(res + "");
+        return;
+    }
+    int k1 = N, k2 = N;
+    int w1 = (int) W, w2 = (int) W;
+    if (all[0].w > 1) {
+        k1 = (int) W / (all[0].w - 1);
+        w1 = (int) W % (all[0].w - 1);
+        k2 = k1 - 1;
+        w2 = (int) W - k2 * (all[0].w - 1);
+        for (int i = N - 1; i >= 0; i--) {
+            all[i].w -= (all[0].w - 1);
+        }
+    }
+    Arrays.sort(all, (p1, p2) -> p1.c > p2.c ? -1 : (p1.c < p2.c ? 1 : 0));
+    io.writeLine(Math.max(ccc(all, w1, k1), ccc(all, w2, k2)) + "");
+}

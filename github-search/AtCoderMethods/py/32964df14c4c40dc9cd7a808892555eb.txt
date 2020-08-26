@@ -1,0 +1,9 @@
+def ko(board,count,b,c,ms):
+    if count == 5: return calc(board,b,c,ms)
+    score = 10000
+    for i in range(9):
+        if board[i] != 0: continue
+        board[i] = -1
+        score = min(score,dai(list(board),count+1,b,c,ms))
+        board[i] = 0
+    return score

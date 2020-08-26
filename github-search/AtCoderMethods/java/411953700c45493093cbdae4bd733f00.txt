@@ -1,0 +1,16 @@
+
+
+public static void addNocostBranches(int[] townGroup, Map<Integer, Set<Integer>> _map) {
+    for (Map.Entry<Integer, Set<Integer>> e : _map.entrySet()) {
+        Set<Integer> set = e.getValue();
+        int preTownNum = -1;
+        for (int townNum : set) {
+            if (preTownNum != -1) {
+                
+                
+                townGroup[getGroup(townGroup, townNum)] = getGroup(townGroup, preTownNum);
+            }
+            preTownNum = townNum;
+        }
+    }
+}

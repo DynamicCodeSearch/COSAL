@@ -1,0 +1,33 @@
+
+public void solve() {
+    int N = in.nextInt(), A = in.nextInt(), B = in.nextInt(), C = in.nextInt(), D = in.nextInt();
+    long[][] fact = new long[N + 1][N + 1];
+    for (int i = 0; i <= N; i++) {
+        fact[i][i] = 1;
+        for (int j = i + 1; j <= N; j++) {
+            fact[i][j] = (fact[i][j - 1] * j) % MOD;
+        }
+    }
+    long[] next = new long[N + 1];
+    long[] prev = new long[N + 1];
+    prev[0] = 1;
+    for (int p = A; p <= B; p++) {
+        for (int i = 0; i <= N; i++) next[i] = prev[i];
+        for (int g = C; g <= D; g++) {
+            if (p * g > N)
+                break;
+            long d = DIV(1, MULT(POW(fact[0][p], g), fact[0][g]));
+            for (int i = 0; i < N; i++) {
+                if (i + p * g > N)
+                    break;
+                long m = MULT(prev[i], MULT(fact[N - (i + p * g)][N - i], d));
+                next[i + p * g] = ADD(next[i + p * g], m);
+            }
+        }
+        
+        long[] tmp = next;
+        next = prev;
+        prev = tmp;
+    }
+    System.out.println(prev[N]);
+}

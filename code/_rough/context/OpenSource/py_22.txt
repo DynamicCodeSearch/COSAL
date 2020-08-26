@@ -1,0 +1,265 @@
+### Py Tokens: object, ordereddict, valuesview, viewvalues, dict, values, ordered, providing, view 
+
+### Py functions
+
+def viewvalues(self):
+
+  return ValuesView(self)
+*********************************
+
+#### Score: 9.37817
+
+
+#### Java Tokens: joins, providing, code, string, added, use, provided, values, link, iterable, empty, iterator, see, character, param, utils, delimiter, join, together, treated, may, containing, joined, list, separator, stringutils, single, input, examples, elements, object, since 
+
+
+public static String join(final Iterable<?> iterable, final String separator) {
+    if (iterable == null) {
+        return null;
+    }
+    return join(iterable.iterator(), separator);
+}
+*********************************
+
+#### Score: 8.87335
+
+
+#### Java Tokens: joins, providing, code, string, added, use, provided, objects, values, link, iterable, empty, iterator, see, character, strings, param, utils, delimiter, iteration, represented, join, together, may, within, containing, joined, list, separator, stringutils, single, input, null, examples, elements, object, since 
+
+
+public static String join(final Iterable<?> iterable, final char separator) {
+    if (iterable == null) {
+        return null;
+    }
+    return join(iterable.iterator(), separator);
+}
+*********************************
+
+#### Score: 7.37775
+
+
+#### Java Tokens: exception, joins, sanitizedseparator, argument, added, use, objects, empty, iterator, character, java, utils, delimiter, a,b,, join, hasnext, varargs, treated, pre, sanitized, containing, list, separator, illegal, defaultstring, must, arrays, object, since, next, illegalargumentexception, providing, code, string, provided, values, a,,b, result, strings, param, a,b, builder, lang, aslist, value, together, joined, stringutils, single, joinwith, elements, stringbuilder, tostring, append 
+
+
+public static String joinWith(final String separator, final Object... objects) {
+    if (objects == null) {
+        throw new IllegalArgumentException("Object varargs must not be null");
+    }
+    final String sanitizedSeparator = defaultString(separator);
+    final StringBuilder result = new StringBuilder();
+    final Iterator<Object> iterator = Arrays.asList(objects).iterator();
+    while (iterator.hasNext()) {
+        final String value = Objects.toString(iterator.next(), "");
+        result.append(value);
+        if (iterator.hasNext()) {
+            result.append(sanitizedSeparator);
+        }
+    }
+    return result.toString();
+}
+*********************************
+
+#### Score: 4.87867
+
+
+#### Java Tokens: joins, ;;a, a;b;c, code, string, added, use, provided, objects, values, empty, character, strings, array, param, utils, delimiter, represented, join, together, pre, abc, may, within, containing, joined, length, list, separator, stringutils, single, input, null, elements, object, since 
+
+
+public static String join(final Object[] array, final char separator) {
+    if (array == null) {
+        return null;
+    }
+    return join(array, separator, 0, array.length);
+}
+*********************************
+
+#### Score: 4.87867
+
+
+#### Java Tokens: joins, code, string, added, use, provided, objects, values, empty, a--b--c, character, strings, array, param, utils, delimiter, represented, join, together, ,,a, treated, pre, abc, may, within, containing, joined, length, list, separator, stringutils, single, input, null, elements, object 
+
+
+public static String join(final Object[] array, final String separator) {
+    if (array == null) {
+        return null;
+    }
+    return join(array, separator, 0, array.length);
+}
+*********************************
+
+#### Score: 4.34482
+
+
+#### Java Tokens: joins, small, added, use, objects, building, empty, zero, iterator, character, java, utils, delimiter, string_builder_size, join, hasnext, buffer, treated, containing, handle, list, separator, input, size, examples, object, next, code, string, probably, provided, values, link, two, see, param, builder, together, may, joined, one, stringutils, single, buf, obj, elements, stringbuilder, tostring, first, append 
+
+
+public static String join(final Iterator<?> iterator, final String separator) {
+    
+    if (iterator == null) {
+        return null;
+    }
+    if (!iterator.hasNext()) {
+        return EMPTY;
+    }
+    final Object first = iterator.next();
+    if (!iterator.hasNext()) {
+        return Objects.toString(first, "");
+    }
+    
+    
+    final StringBuilder buf = new StringBuilder(STRING_BUILDER_SIZE);
+    if (first != null) {
+        buf.append(first);
+    }
+    while (iterator.hasNext()) {
+        if (separator != null) {
+            buf.append(separator);
+        }
+        final Object obj = iterator.next();
+        if (obj != null) {
+            buf.append(obj);
+        }
+    }
+    return buf.toString();
+}
+*********************************
+
+#### Score: 4.19350
+
+
+#### Java Tokens: joins, small, added, use, objects, building, empty, zero, iterator, character, java, utils, delimiter, string_builder_size, represented, join, hasnext, buffer, containing, handle, list, separator, input, size, null, examples, object, since, next, code, string, probably, provided, values, link, two, see, strings, param, builder, iteration, together, may, within, joined, one, stringutils, single, buf, obj, elements, stringbuilder, tostring, first, append 
+
+
+public static String join(final Iterator<?> iterator, final char separator) {
+    
+    if (iterator == null) {
+        return null;
+    }
+    if (!iterator.hasNext()) {
+        return EMPTY;
+    }
+    final Object first = iterator.next();
+    if (!iterator.hasNext()) {
+        return Objects.toString(first, EMPTY);
+    }
+    
+    
+    final StringBuilder buf = new StringBuilder(STRING_BUILDER_SIZE);
+    if (first != null) {
+        buf.append(first);
+    }
+    while (iterator.hasNext()) {
+        buf.append(separator);
+        final Object obj = iterator.next();
+        if (obj != null) {
+            buf.append(obj);
+        }
+    }
+    return buf.toString();
+}
+*********************************
+
+#### Score: 4.12201
+
+
+#### Java Tokens: joins, ;;a, noofitems, added, use, objects, empty, character, utils, delimiter, exclusive, represented, join, pre, pass, containing, past, newstringbuilder, index, list, separator, input, endindex, null, stop, items, object, since, joining, a;b;c, code, string, provided, values, error, strings, array, param, builder, end, together, abc, may, within, joined, start, stringutils, single, buf, startindex, elements, stringbuilder, tostring, append, first 
+
+
+public static String join(final Object[] array, final char separator, final int startIndex, final int endIndex) {
+    if (array == null) {
+        return null;
+    }
+    final int noOfItems = endIndex - startIndex;
+    if (noOfItems <= 0) {
+        return EMPTY;
+    }
+    final StringBuilder buf = newStringBuilder(noOfItems);
+    if (array[startIndex] != null) {
+        buf.append(array[startIndex]);
+    }
+    for (int i = startIndex + 1; i < endIndex; i++) {
+        buf.append(separator);
+        if (array[i] != null) {
+            buf.append(array[i]);
+        }
+    }
+    return buf.toString();
+}
+*********************************
+
+#### Score: 3.88989
+
+
+#### Java Tokens: template, string, nullable, valueof, placeholders, run, lenient, braces, strings, extra, builder, lenientformat, placeholder, value, (object[])null, placeholderstart, format, length, start, index, substituting, args, square, lenienttostring, templatestart, arguments, stringbuilder, indexof, tostring, append, object 
+
+
+
+public static String lenientFormat(@Nullable String template, @Nullable Object@Nullable ... args) {
+    
+    template = String.valueOf(template);
+    if (args == null) {
+        args = new Object[] { "(Object[])null" };
+    } else {
+        for (int i = 0; i < args.length; i++) {
+            args[i] = lenientToString(args[i]);
+        }
+    }
+    
+    StringBuilder builder = new StringBuilder(template.length() + 16 * args.length);
+    int templateStart = 0;
+    int i = 0;
+    while (i < args.length) {
+        int placeholderStart = template.indexOf("%s", templateStart);
+        if (placeholderStart == -1) {
+            break;
+        }
+        builder.append(template, templateStart, placeholderStart);
+        builder.append(args[i++]);
+        templateStart = placeholderStart + 2;
+    }
+    builder.append(template, templateStart, template.length());
+    
+    if (i < args.length) {
+        builder.append(" [");
+        builder.append(args[i++]);
+        while (i < args.length) {
+            builder.append(", ");
+            builder.append(args[i++]);
+        }
+        builder.append(']');
+    }
+    return builder.toString();
+}
+*********************************
+
+#### Score: 3.74273
+
+
+#### Java Tokens: joins, exception, noofitems, added, use, equally, objects, b--c, empty, number, character, len, utils, delimiter, roughly, exclusive, represented, join, treated, given, pre, containing, newstringbuilder, index, list, separator, input, entries, endindex, null, stop, bounds, items, object, joining, code, string, nof, firststring, provided, values, arrayindexoutofboundsexception, a--b--c, strings, nofstrings, array, param, builder, end, together, ,,a, abc, may, within, joined, start, length, ife, stringutils, single, buf, startindex, assuming, elements, stringbuilder, tostring, append, first 
+
+
+public static String join(final Object[] array, String separator, final int startIndex, final int endIndex) {
+    if (array == null) {
+        return null;
+    }
+    if (separator == null) {
+        separator = EMPTY;
+    }
+    
+    
+    final int noOfItems = endIndex - startIndex;
+    if (noOfItems <= 0) {
+        return EMPTY;
+    }
+    final StringBuilder buf = newStringBuilder(noOfItems);
+    if (array[startIndex] != null) {
+        buf.append(array[startIndex]);
+    }
+    for (int i = startIndex + 1; i < endIndex; i++) {
+        buf.append(separator);
+        if (array[i] != null) {
+            buf.append(array[i]);
+        }
+    }
+    return buf.toString();
+}

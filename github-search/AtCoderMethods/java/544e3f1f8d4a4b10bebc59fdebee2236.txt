@@ -1,0 +1,36 @@
+public static void main(String[] args) {
+    createKey();
+    Scanner sc = new Scanner(System.in);
+    String in = sc.nextLine();
+    char[] a = in.toCharArray();
+    int firstMiFaPos = in.indexOf("WBWBWBW");
+    String secondString = new String();
+    int startKey = 5;
+    StringBuffer sb = new StringBuffer();
+    for (int i = firstMiFaPos; i < a.length; i++) {
+        String key = Character.toString(a[i]);
+        sb.append(pianoKey.get(startKey));
+        startKey++;
+        if (startKey > 11) {
+            startKey = 0;
+        }
+    }
+    List<String> keyList = new ArrayList<String>();
+    int secondKey = 4;
+    int secondStart = firstMiFaPos - 1;
+    for (int j = secondStart; j >= 0; j--) {
+        String keyC = pianoKey.get(secondKey);
+        keyList.add(keyC);
+        secondKey--;
+        if (secondKey < 0) {
+            secondKey = 11;
+        }
+    }
+    if (keyList.size() > 0) {
+        System.out.println(keyList.get(keyList.size() - 1));
+    } else {
+        String answer = sb.toString().substring(0, 2);
+        System.out.println(answer);
+    }
+    sc.close();
+}

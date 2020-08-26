@@ -1,0 +1,37 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    String S = sc.next();
+    int T = sc.nextInt();
+    int x = 0;
+    int y = 0;
+    int unknown = 0;
+    for (char c : S.toCharArray()) {
+        switch(c) {
+            case 'L':
+                x--;
+                break;
+            case 'R':
+                x++;
+                break;
+            case 'U':
+                y++;
+                break;
+            case 'D':
+                y--;
+                break;
+            case '?':
+                unknown++;
+                break;
+        }
+    }
+    int sum = Math.abs(x) + Math.abs(y);
+    if (T == 1) {
+        System.out.println(sum + unknown);
+    } else {
+        if (sum > unknown) {
+            System.out.println(sum - unknown);
+        } else {
+            System.out.println((unknown - sum) % 2);
+        }
+    }
+}

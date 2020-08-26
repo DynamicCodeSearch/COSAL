@@ -1,0 +1,10 @@
+def f(v, d):
+  global vis, ans
+  if d == N:
+    ans += 1
+    return
+  for nxt in range(N):
+    if g[v][nxt] and not vis[nxt]:
+      vis[nxt] = True
+      f(nxt, d + 1)
+      vis[nxt] = False

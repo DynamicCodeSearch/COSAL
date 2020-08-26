@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    if (m < n * 2 || n * 4 < m) {
+        System.out.println("-1 -1 -1");
+        return;
+    }
+    int a = 0, b = 0, c = 0;
+    int d = m - n * 3;
+    if (d == 0) {
+        b = n;
+    } else if (d < 0) {
+        a = -d;
+        b = n + d;
+    } else {
+        c = d;
+        b = n - d;
+    }
+    System.out.println(a + " " + b + " " + c);
+}

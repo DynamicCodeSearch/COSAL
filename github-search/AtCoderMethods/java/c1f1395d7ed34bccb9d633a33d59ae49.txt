@@ -1,0 +1,37 @@
+public static void main(String[] args) {
+    try {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int N = Integer.parseInt(br.readLine());
+        int[] a = new int[N];
+        String[] str = br.readLine().split(" ");
+        for (int i = 0; i < N; i++) {
+            a[i] = Integer.parseInt(str[i]);
+        }
+        int ave = 0;
+        for (int i = 0; i < N; i++) {
+            ave += a[i];
+        }
+        ave /= N;
+        int res = 0;
+        for (int i = 0; i < N; i++) {
+            res += (a[i] - ave) * (a[i] - ave);
+        }
+        for (int i = 1; i < N / 2 + 1; i++) {
+            int comp1 = 0;
+            int comp2 = 0;
+            for (int j = 0; j < N; j++) {
+                comp1 += Math.pow(a[j] - (ave + i), 2);
+                comp2 += Math.pow(a[j] - (ave - i), 2);
+            }
+            
+            if (res < comp1 && res < comp2)
+                break;
+            else if (res >= comp1)
+                res = comp1;
+            else if (res >= comp2)
+                res = comp2;
+        }
+        System.out.println(res);
+    } catch (Exception e) {
+    }
+}

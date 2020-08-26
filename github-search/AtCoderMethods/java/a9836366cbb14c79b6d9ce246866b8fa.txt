@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    double cx = sc.nextDouble();
+    double cy = sc.nextDouble();
+    int N = sc.nextInt();
+    double[] x = new double[N + 2];
+    double[] y = new double[N + 2];
+    for (int i = 0; i < N; i++) {
+        x[i] = sc.nextDouble();
+        y[i] = sc.nextDouble();
+    }
+    double min = 100000000;
+    for (int i = 0; i < N - 1; i++) {
+        double l = dist(x[i], x[i + 1], y[i], y[i + 1], cx, cy);
+        min = Math.min(l, min);
+    }
+    double l = dist(x[N - 1], x[0], y[N - 1], y[0], cx, cy);
+    min = Math.min(l, min);
+    System.out.println(min);
+}

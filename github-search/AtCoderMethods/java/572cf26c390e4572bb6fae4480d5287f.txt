@@ -1,0 +1,15 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    int A = in.readInt();
+    int B = in.readInt();
+    int K = in.readInt();
+    int L = in.readInt();
+    int q = K / L;
+    int r = K % L;
+    BigInteger ba = BigInteger.valueOf(A);
+    BigInteger bb = BigInteger.valueOf(B);
+    BigInteger bq = BigInteger.valueOf(q);
+    BigInteger br = BigInteger.valueOf(r);
+    BigInteger b1 = bb.multiply(bq).add(r == 0 ? BigInteger.ZERO : bb);
+    BigInteger b2 = bb.multiply(bq).add(ba.multiply(br));
+    out.printLine(b1.min(b2));
+}

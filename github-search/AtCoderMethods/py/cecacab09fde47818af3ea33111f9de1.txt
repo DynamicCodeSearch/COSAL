@@ -1,0 +1,20 @@
+def check(graph, edge):
+    checked = set()
+    checking = set([edge[0]])
+    while True:
+        for p in checking - checked:
+            if p == edge[0] and edge[1] in graph[p]:
+                checked.add(p)
+                checking.update(graph[p] - set([edge[1]]))
+                continue
+
+            if edge[1] in graph[p]:
+                return True
+
+            checked.add(p)
+            checking.update(graph[p])
+
+        if checking - checked == set():
+            break
+
+    return False

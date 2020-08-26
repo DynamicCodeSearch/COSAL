@@ -1,0 +1,17 @@
+private static double solve(int n, double[] p, double[] c) {
+    double maxt = 0.0;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (p[i] > p[j]) {
+                
+                
+                
+                
+                double x = (c[i] * p[i] + c[j] * p[j]) / (c[i] + c[j]);
+                double t = c[i] * (p[i] - x);
+                maxt = Math.max(maxt, t);
+            }
+        }
+    }
+    return maxt;
+}

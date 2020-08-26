@@ -1,0 +1,12 @@
+long sum(int[] a) {
+    long cur = a.length - 1;
+    long step = a.length - 3;
+    long res = 0;
+    for (int i = 0; i < a.length - 1; i++) {
+        long diff = (a[i + 1] - a[i]) % MOD;
+        res = (res + (cur * diff) % MOD) % MOD;
+        cur += step;
+        step -= 2;
+    }
+    return res;
+}

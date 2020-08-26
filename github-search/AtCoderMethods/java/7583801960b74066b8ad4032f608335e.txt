@@ -1,0 +1,27 @@
+void solve() throws IOException {
+    int n = in.nextInt();
+    int m = in.nextInt();
+    int[] x = new int[n];
+    int[] y = new int[n];
+    for (int i = 0; i < n; i++) {
+        x[i] = in.nextInt();
+        y[i] = in.nextInt();
+    }
+    int[] d = new int[n];
+    int[] p = new int[n];
+    Arrays.fill(d, Integer.MAX_VALUE);
+    for (int i = 0; i < m; i++) {
+        int px = in.nextInt();
+        int py = in.nextInt();
+        for (int j = 0; j < n; j++) {
+            int dist = Math.abs(px - x[j]) + Math.abs(py - y[j]);
+            if (dist < d[j]) {
+                d[j] = dist;
+                p[j] = i + 1;
+            }
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        System.out.println(p[i]);
+    }
+}

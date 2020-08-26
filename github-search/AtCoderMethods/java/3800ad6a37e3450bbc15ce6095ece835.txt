@@ -1,0 +1,26 @@
+public void solveSystem() {
+    boolean[] used = new boolean[2 * size];
+    int[] order = new int[2 * size];
+    int pos = 0;
+    for (int i = 0; i < 2 * size; ++i) if (!used[i])
+        pos = dfs1(used, order, pos, i);
+    values = new boolean[2 * size];
+    for (int i = 2 * size - 1; i >= 0; --i) {
+        int node = order[i];
+        if (!values[node] && !values[non(node)])
+            dfs2(used, node);
+    }
+    for (int i = 0; i < 2 * size; ++i) {
+        for (int p = firstEdge[i]; p != -1; p = nextEdge[p]) {
+            int to = edgeTo[p];
+            if (values[i] && !values[to]) {
+                values = new boolean[0];
+                return;
+            }
+        }
+        if (values[i] == values[non(i)]) {
+            values = new boolean[0];
+            return;
+        }
+    }
+}

@@ -1,0 +1,17 @@
+def main():
+    N = int(input())
+    T_list = list(map(int, input().split()))
+    M = int(input())
+    drink_list = []
+    for _ in range(M):
+        p, x = map(int, input().split())
+        drink_list.append((p, x))
+
+    for p, x in drink_list:
+        total = 0
+        for i, t in enumerate(T_list, start=1):
+            if i == p:
+                total += x
+            else:
+                total += t
+        print(total)

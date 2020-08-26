@@ -1,0 +1,17 @@
+public static void main(String[] args) throws IOException {
+    try (Scanner sc = new Scanner(System.in)) {
+        final long W = sc.nextInt();
+        final long H = sc.nextInt();
+        final long min = Math.min(W, H);
+        final long max = Math.max(W, H);
+        if (max <= 2) {
+            System.out.println(1);
+        } else if (max % 3 == 0 || min % 3 == 0) {
+            System.out.println(0);
+        } else if (min <= 2) {
+            System.out.println(calc(max, min));
+        } else {
+            System.out.println(Math.min(min, Math.min(calc(W, H), calc(H, W))));
+        }
+    }
+}

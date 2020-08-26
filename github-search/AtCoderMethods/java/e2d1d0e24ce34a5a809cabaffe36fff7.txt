@@ -1,0 +1,41 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] a = new int[N];
+    for (int i = 0; i < N; i++) {
+        a[i] = sc.nextInt();
+    }
+    int[][] odd = new int[N][N];
+    int[][] even = new int[N][N];
+    for (int i = 0; i < N; i++) {
+        for (int j = i + 1; j < N; j++) {
+            for (int k = 0; k <= j - i; k++) {
+                if (k % 2 == 0) {
+                    odd[i][j] += a[i + k];
+                } else {
+                    even[i][j] += a[i + k];
+                }
+            }
+        }
+    }
+    int takahashiMax = -3000;
+    for (int i = 0; i < N; i++) {
+        int temp = 0;
+        int aokiMax = -3000;
+        for (int j = N - 1; j >= 0; j--) {
+            if (i < j) {
+                if (aokiMax <= even[i][j]) {
+                    aokiMax = even[i][j];
+                    temp = odd[i][j];
+                }
+            } else if (i > j) {
+                if (aokiMax <= even[j][i]) {
+                    aokiMax = even[j][i];
+                    temp = odd[j][i];
+                }
+            }
+        }
+        takahashiMax = Math.max(takahashiMax, temp);
+    }
+    System.out.println(takahashiMax);
+}

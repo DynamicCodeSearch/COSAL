@@ -1,0 +1,9 @@
+static long modpow(int a, int b) {
+    if (b == 0)
+        return 1;
+    long temp = modpow(a, b / 2);
+    temp = temp * 1L * temp % mod;
+    if ((b & 1) == 1)
+        temp = temp * a % mod;
+    return temp;
+}

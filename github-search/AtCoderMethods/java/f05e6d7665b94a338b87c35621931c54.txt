@@ -1,0 +1,18 @@
+public static void main(String[] args) throws IOException {
+    double P = new Double(br.readLine());
+    double left = 0, right = 100, x = 0;
+    double e = 0.0001;
+    for (int i = 0; i < 1000; i++) {
+        x = (left + right) / 2;
+        
+        double t1 = P / (Math.pow(2, (x + e) / 1.5)) + x + e;
+        double t2 = P / (Math.pow(2, (x - e) / 1.5)) + x - e;
+        double grad = (t1 - t2) / (2 * e);
+        if (grad > 0) {
+            right = x;
+        } else {
+            left = x;
+        }
+    }
+    System.out.println(Math.min(P, P / (Math.pow(2, (x) / 1.5)) + x));
+}

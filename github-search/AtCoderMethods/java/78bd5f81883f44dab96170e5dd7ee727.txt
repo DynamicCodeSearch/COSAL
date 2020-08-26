@@ -1,0 +1,60 @@
+private static void solve() {
+    int n = sc.nextInt();
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    long[] v = new long[n];
+    Map<Long, Integer> hm = new HashMap<>();
+    for (int i = 0; i < n; i++) {
+        v[i] = sc.nextLong();
+        if (!hm.containsKey(v[i])) {
+            hm.put(v[i], 0);
+        }
+        hm.put(v[i], hm.get(v[i]) + 1);
+    }
+    Arrays.sort(v);
+    long[] sum = new long[n + 1];
+    for (int i = n - 1; i >= 0; i--) {
+        sum[i] = sum[i + 1] + v[i];
+    }
+    Set<Long> hs = new HashSet<>();
+    for (int i = n - 1; i >= 0; i--) {
+        int c = n - i;
+        if (c > b) {
+            break;
+        } else if (c < a) {
+            hs.add(v[i]);
+        } else if (c == a) {
+            hs.add(v[i]);
+            if (hs.size() > 1) {
+                pr.printf("%.7f\n", (double) sum[i] / c);
+                int cnt = 0;
+                for (int j = i; j < n; j++) {
+                    if (v[j] == v[i]) {
+                        cnt++;
+                    } else {
+                        break;
+                    }
+                }
+                pr.println(CLong(hm.get(v[i]), cnt));
+                return;
+            }
+        } else {
+            hs.add(v[i]);
+            if (hs.size() > 1) {
+                pr.printf("%.7f\n", (double) v[n - 1]);
+                long ret = 0;
+                for (int j = a; j <= c - 1; j++) {
+                    ret += CLong(hm.get(v[n - 1]), j);
+                }
+                pr.println(ret);
+                return;
+            }
+        }
+    }
+    pr.printf("%.7f\n", (double) v[n - 1]);
+    long ret = 0;
+    for (int j = a; j <= b; j++) {
+        ret += CLong(hm.get(v[n - 1]), j);
+    }
+    pr.println(ret);
+}

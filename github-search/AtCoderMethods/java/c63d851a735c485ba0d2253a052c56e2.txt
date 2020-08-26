@@ -1,0 +1,72 @@
+void solve(long X, int K, long[] r, int Q, long[] t, long[] a) {
+    Scanner sc = new Scanner(System.in);
+    PrintWriter pw = new PrintWriter(System.out);
+    PriorityQueue<Query> pq = new PriorityQueue<>();
+    for (int i = 0; i < K; ++i) {
+        pq.add(new Query(0, r[i], -1));
+    }
+    for (int i = 0; i < Q; ++i) {
+        pq.add(new Query(1, t[i], a[i]));
+    }
+    int coe = -1;
+    long upper = X;
+    long lower = 0;
+    long preR = 0;
+    long upperpos = X;
+    long lowerpos = 0;
+    while (!pq.isEmpty()) {
+        Query q = pq.poll();
+        if (q.type == 1) {
+            long ans = -1;
+            if (lower > upper) {
+                if (coe == 1) {
+                    ans = Math.min(q.t - preR + lowerpos, X);
+                } else {
+                    ans = Math.max(-(q.t - preR) + lowerpos, 0);
+                }
+                pw.println(ans);
+                continue;
+            }
+            if (lower > q.a) {
+                q.a = lower;
+            } else if (upper < q.a) {
+                q.a = upper;
+            }
+            if (coe == 1) {
+                ans = Math.min(X, (q.a - lower) + lowerpos + coe * (q.t - preR));
+            } else {
+                ans = Math.max(0, (q.a - lower) + lowerpos + coe * (q.t - preR));
+            }
+            pw.println(ans);
+        } else {
+            long d = q.t - preR;
+            if (lower < upper) {
+                if (coe == -1) {
+                    if (lowerpos < d) {
+                        lower = lower + (d - lowerpos);
+                    }
+                } else {
+                    if (upperpos > X - d) {
+                        upper = upper - (upperpos - (X - d));
+                    }
+                    if (upper < lower) {
+                        lower = X;
+                    }
+                }
+                lower = Math.min(lower, X);
+                upper = Math.min(upper, X);
+                lower = Math.max(lower, 0);
+                upper = Math.max(upper, 0);
+            }
+            lowerpos += d * coe;
+            upperpos += d * coe;
+            lowerpos = Math.max(lowerpos, 0);
+            upperpos = Math.max(upperpos, 0);
+            lowerpos = Math.min(lowerpos, X);
+            upperpos = Math.min(upperpos, X);
+            preR = q.t;
+            coe *= -1;
+        }
+    }
+    pw.close();
+}

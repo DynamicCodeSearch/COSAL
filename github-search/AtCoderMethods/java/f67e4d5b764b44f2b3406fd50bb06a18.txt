@@ -1,0 +1,34 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    sc.close();
+    HashSet<Integer> group1 = new HashSet<Integer>();
+    HashSet<Integer> group2 = new HashSet<Integer>();
+    HashSet<Integer> group3 = new HashSet<Integer>();
+    group1.add(1);
+    group1.add(3);
+    group1.add(5);
+    group1.add(7);
+    group1.add(8);
+    group1.add(10);
+    group1.add(12);
+    group2.add(4);
+    group2.add(6);
+    group2.add(9);
+    group2.add(11);
+    group3.add(2);
+    HashSet<Integer> agroup = null;
+    if (group1.contains(a)) {
+        agroup = group1;
+    } else if (group2.contains(a)) {
+        agroup = group2;
+    } else if (group3.contains(a)) {
+        agroup = group3;
+    }
+    String yorn = "No";
+    if (agroup.contains(b)) {
+        yorn = "Yes";
+    }
+    System.out.println(yorn);
+}

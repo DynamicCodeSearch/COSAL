@@ -1,0 +1,21 @@
+public static int[] makeOrder(int[][] g, int[] par) {
+    int n = g.length;
+    int[] ord = new int[n];
+    int p = 0;
+    boolean[] ved = new boolean[n];
+    for (int i = 0; i < n; i++) {
+        if (par[i] == -1) {
+            ord[p++] = i;
+            ved[i] = true;
+        }
+    }
+    for (int r = 0; r < n; r++) {
+        for (int e : g[ord[r]]) {
+            if (!ved[e]) {
+                ved[e] = true;
+                ord[p++] = e;
+            }
+        }
+    }
+    return ord;
+}

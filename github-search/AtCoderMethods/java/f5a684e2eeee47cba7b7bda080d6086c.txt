@@ -1,0 +1,40 @@
+static void solve() {
+    in = new InputReader(System.in);
+    out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    int[] arr = in.nextIntArray(n);
+    Merge.sort(arr);
+    int ans = 0;
+    for (int i = 0; i < n; i++) {
+        int l = 0;
+        int r = i;
+        int x = arr[i] - 1;
+        int cnt = 0;
+        int ind = i;
+        while (r - l >= 0) {
+            int m = (r + l) >> 1;
+            if (arr[m] >= x) {
+                ind = m;
+                r = m - 1;
+            } else
+                l = m + 1;
+        }
+        cnt = i - ind + 1;
+        l = i;
+        r = n - 1;
+        x = arr[i] + 1;
+        ind = i;
+        while (r - l >= 0) {
+            int m = (r + l) >> 1;
+            if (arr[m] <= x) {
+                ind = m;
+                l = m + 1;
+            } else
+                r = m - 1;
+        }
+        cnt += ind - i;
+        ans = max(ans, cnt);
+    }
+    out.println(ans);
+    out.close();
+}

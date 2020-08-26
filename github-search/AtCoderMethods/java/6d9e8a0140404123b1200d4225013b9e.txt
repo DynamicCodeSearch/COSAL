@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int h = scan.nextInt();
+    int w = scan.nextInt();
+    String sharp = "";
+    for (int i = 0; i < w + 2; i++) {
+        sharp += "#";
+    }
+    StringBuilder sb = new StringBuilder();
+    sb.append(sharp + "\n");
+    for (int i = 0; i < h; i++) {
+        sb.append("#" + scan.next() + "#");
+        sb.append("\n");
+    }
+    scan.close();
+    sb.append(sharp);
+    System.out.println(sb.toString());
+}

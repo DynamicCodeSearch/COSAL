@@ -1,0 +1,19 @@
+def calc(v, l, s, d):
+    if v == 0:
+        return float("inf") 
+
+
+    if v > 0:
+        if d < s:
+            s0 = s - l
+        else:
+            s0 = s
+
+        return (d-s0)/v
+    else:
+        if s < d:
+            s0 = s + l
+        else:
+            s0 = s
+
+        return -(s0-d)/v

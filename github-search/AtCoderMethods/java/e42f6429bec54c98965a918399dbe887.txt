@@ -1,0 +1,26 @@
+private static long solve(int[][] men, int[][] panels, long[] codes) {
+    int n = panels.length;
+    long[] menCodes = new long[4];
+    for (int i = 0; i < 4; i++) {
+        menCodes[i] = code(men[i]);
+    }
+    long[] menCounts = new long[4];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < 4; j++) {
+            if (menCodes[j] == codes[i]) {
+                menCounts[j]++;
+            }
+        }
+    }
+    Map<Long, Long> dec = new HashMap<>();
+    long ret = 1;
+    for (int i = 0; i < 4; i++) {
+        long A = same(men[i]);
+        ret *= A * menCounts[i] - A * dec.getOrDefault(menCodes[i], 0L);
+        dec.put(menCodes[i], dec.getOrDefault(menCodes[i], 0L) + 1);
+    }
+    if (ret < 0) {
+        return 0;
+    }
+    return ret;
+}

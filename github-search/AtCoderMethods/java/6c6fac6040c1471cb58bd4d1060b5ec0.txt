@@ -1,0 +1,6 @@
+private static int next(long set, int n) {
+    long h = Long.lowestOneBit(set >>> n);
+    if (h == 0L)
+        return -1;
+    return Long.numberOfTrailingZeros(h) + n;
+}

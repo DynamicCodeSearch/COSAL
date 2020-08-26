@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int h = n / 3600;
+    int m = (n - h * 3600) / 60;
+    int s = n - (h * 3600 + m * 60);
+    String hh = String.valueOf(h);
+    String mm = String.valueOf(m);
+    String ss = String.valueOf(s);
+    if (hh.length() == 1) {
+        hh = "0" + hh;
+    }
+    if (mm.length() == 1) {
+        mm = "0" + mm;
+    }
+    if (ss.length() == 1) {
+        ss = "0" + ss;
+    }
+    System.out.println(hh + ":" + mm + ":" + ss);
+}

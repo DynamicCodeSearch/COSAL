@@ -1,0 +1,24 @@
+public static void doB() {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] x = new int[N];
+    int[] y = new int[N];
+    int[] c = new int[N];
+    for (int i = 0; i < c.length; i++) {
+        x[i] = sc.nextInt();
+        y[i] = sc.nextInt();
+        c[i] = sc.nextInt();
+    }
+    
+    int X = 0;
+    int Y = 0;
+    double max = -1000000;
+    for (int i = 0; i < c.length; i++) {
+        int diffX = Math.abs(X - x[i]);
+        int diffY = Math.abs(Y - y[i]);
+        double diff = Math.pow(diffX, 2) + Math.pow(diffY, 2);
+        if (max < diff) {
+            max = diff;
+        }
+    }
+}

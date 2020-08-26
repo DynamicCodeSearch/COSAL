@@ -1,0 +1,18 @@
+long func(long S, long X) {
+    if (S == 0)
+        return 1;
+    TreeMap<Long, Long> d = dp.get(S);
+    if (d == null)
+        dp.put(S, d = new TreeMap<>());
+    else {
+        Long ans = d.get(X);
+        if (ans != null)
+            return ans;
+    }
+    long ans = func(S / 2, X / 2) % MOD;
+    ans = (ans + func((S - 1) / 2, (X - 1) / 2)) % MOD;
+    if (S >= 2)
+        ans = (ans + func((S - 2) / 2, X / 2)) % MOD;
+    d.put(X, ans);
+    return ans;
+}

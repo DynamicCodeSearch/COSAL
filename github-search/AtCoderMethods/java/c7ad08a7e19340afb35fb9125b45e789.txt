@@ -1,0 +1,18 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    sc.useDelimiter("\\s");
+    String phrase;
+    ArrayList<Integer> array = new ArrayList<Integer>();
+    phrase = sc.next();
+    while (sc.hasNextInt()) {
+        array.add(sc.nextInt());
+    }
+    Integer count = 0;
+    StringBuffer st = new StringBuffer(phrase);
+    for (int i = 0; i < array.size(); i++) {
+        int pos = array.get(i);
+        st.insert(pos + count, '"');
+        count = count + 1;
+    }
+    System.out.println(new String(st));
+}

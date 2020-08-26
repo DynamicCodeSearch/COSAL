@@ -1,0 +1,407 @@
+### Py Tokens: amountbet, bets, min, sum, nummin, amount, num, low, bet 
+
+### Py functions
+
+def func_0af10341f958426aaa7ac3e140ce3e8a(best, bets, c, g, num_min):
+    low = g
+    amount_bet = g * num_min - sum(bets[:num_min])
+    return amount_bet
+
+*********************************
+
+#### Score: 9.43116
+
+
+#### Java Tokens: cheaters, next, amount, bets, nextlong, long 
+
+public static long[] func_ad5d85a6c84347faa4e1aba294c33713(int bets) { 
+ long[] amount = new long[37];
+for (int i = 0; i < bets; i++) {
+    amount[i] = Cheaters.sc.nextLong();
+}
+return amount;
+}
+
+
+*********************************
+
+#### Score: 9.05643
+
+
+#### Java Tokens: bet, amount, max, joined, expected, lower, math 
+
+public static double func_4d9a6316c0484c3aa1f72f610cf4a798(int joined, long lower, long[] amount) { 
+ double expected = 0, bet = 0;
+for (int i = 0; i < joined; i++) {
+    bet += Math.max(0, lower - amount[i]);
+    expected += 36.0 * Math.max(0, lower - amount[i]) / joined;
+}
+for (int i = joined; i < 37; i++) {
+    bet += Math.max(0, lower + 1 - amount[i]);
+}
+return bet;
+}
+
+
+public static double func_85b356b2afaa47baa42034b534b0559c(int joined, long lower, long[] amount) { 
+ double expected = 0, bet = 0;
+for (int i = 0; i < joined; i++) {
+    bet += Math.max(0, lower - amount[i]);
+    expected += 36.0 * Math.max(0, lower - amount[i]) / joined;
+}
+for (int i = joined; i < 37; i++) {
+    bet += Math.max(0, lower + 1 - amount[i]);
+}
+return expected;
+}
+
+
+public static double func_5e240c55ea43403f9d45f3525aa89847(int joined, long lower, long[] amount) { 
+ double expected = 0, bet = 0;
+for (int i = 0; i < joined; i++) {
+    bet += Math.max(0, lower - amount[i]);
+    expected += 36.0 * Math.max(0, lower - amount[i]) / joined;
+}
+return bet;
+}
+
+
+*********************************
+
+#### Score: 9.05643
+
+
+#### Java Tokens: bet, amount, max, joined, lower, expected, math 
+
+public static double func_f4233494239b4ef181115cbeb7a69d1c(int joined, long lower, long[] amount, double bet, double expected) { 
+ for (int i = 0; i < joined; i++) {
+    bet += Math.max(0, lower - amount[i]);
+    expected += 36.0 * Math.max(0, lower - amount[i]) / joined;
+}
+for (int i = joined; i < 37; i++) {
+    bet += Math.max(0, lower + 1 - amount[i]);
+}
+return bet;
+}
+
+
+public static double func_d35eb63b260c4014afe062db0413b466(int joined, long lower, long[] amount, double bet, double expected) { 
+ for (int i = 0; i < joined; i++) {
+    bet += Math.max(0, lower - amount[i]);
+    expected += 36.0 * Math.max(0, lower - amount[i]) / joined;
+}
+for (int i = joined; i < 37; i++) {
+    bet += Math.max(0, lower + 1 - amount[i]);
+}
+return expected;
+}
+
+
+*********************************
+
+#### Score: 8.60449
+
+
+#### Java Tokens: bet, amount, lowestbet, max, joined, math, lowest, required 
+
+public static long func_2c113b83872c4a5594d96d4be9f8888b(int joined, long lowestBet, long required, long[] amount) { 
+ for (int i = 0; i < 37; i++) {
+    required += Math.max(0, i < joined ? (lowestBet - amount[i]) : (lowestBet + 1 - amount[i]));
+}
+return required;
+}
+
+
+public static long func_894d0b4574e74399bc80e2abf4a29ee7(int joined, long lowestBet, long[] amount) { 
+ long required = 0;
+for (int i = 0; i < 37; i++) {
+    required += Math.max(0, i < joined ? (lowestBet - amount[i]) : (lowestBet + 1 - amount[i]));
+}
+return required;
+}
+
+
+*********************************
+
+#### Score: 8.60449
+
+
+#### Java Tokens: bet, amount, max, joined, expected, lower, best, math 
+
+public static double func_b89cde6c1a5441c3a13065df01d16719(int joined, long lower, long[] amount, double best) { 
+ double expected = 0, bet = 0;
+for (int i = 0; i < joined; i++) {
+    bet += Math.max(0, lower - amount[i]);
+    expected += 36.0 * Math.max(0, lower - amount[i]) / joined;
+}
+for (int i = joined; i < 37; i++) {
+    bet += Math.max(0, lower + 1 - amount[i]);
+}
+// System.out.println(String.format(
+// "Joined: %s, lowest bet: %s, profit: %s", joined,
+// lower, expected - bet));
+best = Math.max(best, expected - bet);
+return best;
+}
+
+
+public static double func_f5e86a88280547848ee9b67225926e44(int joined, long lower, long[] amount, double best) { 
+ double expected = 0, bet = 0;
+for (int i = 0; i < joined; i++) {
+    bet += Math.max(0, lower - amount[i]);
+    expected += 36.0 * Math.max(0, lower - amount[i]) / joined;
+}
+for (int i = joined; i < 37; i++) {
+    bet += Math.max(0, lower + 1 - amount[i]);
+}
+// System.out.println(String.format(
+// "Joined: %s, lowest bet: %s, profit: %s", joined,
+// lower, expected - bet));
+best = Math.max(best, expected - bet);
+return expected;
+}
+
+
+public static double func_e3c075089100497f87a0c9d82c4b5be8(int joined, long lower, long[] amount, double best) { 
+ double expected = 0, bet = 0;
+for (int i = 0; i < joined; i++) {
+    bet += Math.max(0, lower - amount[i]);
+    expected += 36.0 * Math.max(0, lower - amount[i]) / joined;
+}
+for (int i = joined; i < 37; i++) {
+    bet += Math.max(0, lower + 1 - amount[i]);
+}
+// System.out.println(String.format(
+// "Joined: %s, lowest bet: %s, profit: %s", joined,
+// lower, expected - bet));
+best = Math.max(best, expected - bet);
+return bet;
+}
+
+
+*********************************
+
+#### Score: 8.48799
+
+
+#### Java Tokens: cheaters, next, amount, arrays, sort, bets, nextlong, long 
+
+public static long[] func_4e521c4c66dc44d1827430f3c4effbba(int bets) { 
+ long[] amount = new long[37];
+for (int i = 0; i < bets; i++) {
+    amount[i] = Cheaters.sc.nextLong();
+}
+Arrays.sort(amount);
+return amount;
+}
+
+
+*********************************
+
+#### Score: 8.21423
+
+
+#### Java Tokens: bet, min 
+
+public static long func_89576d1bee414a2bb97c873c687a8b65(int i, long[] v) { 
+ long bet = i * (v[i] - 1);
+long min = 0;
+for (int j = 0; j < i; j++) {
+    min += v[j];
+}
+return min;
+}
+
+
+public static long func_6297b6de147c4fa08dcd5994fa0221ce(int i, long[] v) { 
+ long bet = i * (v[i] - 1);
+long min = 0;
+return bet;
+}
+
+
+public static long func_a487c2f03dae4afab5b57f1c4b9ede88(int i, long[] v) { 
+ long bet = i * (v[i] - 1);
+long min = 0;
+for (int j = 0; j < i; j++) {
+    min += v[j];
+}
+return bet;
+}
+
+
+*********************************
+
+#### Score: 8.19757
+
+
+#### Java Tokens: bet, amount, lowestbet, max, joined, math, lowest, required, budget 
+
+public static boolean func_8be0c5b8958e4b44a02562ff6a55d272(int joined, long lowestBet, long required, long budget, long[] amount) { 
+ for (int i = 0; i < 37; i++) {
+    required += Math.max(0, i < joined ? (lowestBet - amount[i]) : (lowestBet + 1 - amount[i]));
+}
+return required <= budget;
+
+}
+
+
+public static boolean func_125133e8e61f4e1cab49427af2f8c1c7(int joined, long lowestBet, long budget, long[] amount) { 
+ long required = 0;
+for (int i = 0; i < 37; i++) {
+    required += Math.max(0, i < joined ? (lowestBet - amount[i]) : (lowestBet + 1 - amount[i]));
+}
+return required <= budget;
+
+}
+
+
+*********************************
+
+#### Score: 8.08686
+
+
+#### Java Tokens: cheaters, next, amount, best, arrays, sort, bets, nextlong, long 
+
+public static long[] func_400f562cb2ec4feda4ab805299306fc4(int bets) { 
+ long[] amount = new long[37];
+for (int i = 0; i < bets; i++) {
+    amount[i] = Cheaters.sc.nextLong();
+}
+Arrays.sort(amount);
+double best = 0.0;
+return amount;
+}
+
+
+public static double func_74ace98f4ac04ab1822619ab8d0f6188(int bets) { 
+ long[] amount = new long[37];
+for (int i = 0; i < bets; i++) {
+    amount[i] = Cheaters.sc.nextLong();
+}
+Arrays.sort(amount);
+double best = 0.0;
+return best;
+}
+
+
+public static double func_75b44cee596943e0a5c2399ce64aa62c(int bets, long[] amount) { 
+ for (int i = 0; i < bets; i++) {
+    amount[i] = Cheaters.sc.nextLong();
+}
+Arrays.sort(amount);
+double best = 0.0;
+return best;
+}
+
+
+*********************************
+
+#### Score: 7.57499
+
+
+#### Java Tokens: next, amount, middle, max, joined, lower, upper, expected, e14, best, sort, possible, bets, long, cheaters, bet, arrays, math, nextlong, budget 
+
+public static long[] func_a1d25d5fb0814e159e74fd11824f5fd7(int bets, long budget) { 
+ long[] amount = new long[37];
+for (int i = 0; i < bets; i++) {
+    amount[i] = Cheaters.sc.nextLong();
+}
+Arrays.sort(amount);
+double best = 0.0;
+for (int joined = 1; joined <= 37; joined++) {
+    long lower = 0, upper = (long) 1e14;
+    while (lower + 1 < upper) {
+        long middle = (lower + upper) / 2;
+        if (Cheaters.possible(amount, joined, middle, budget))
+            lower = middle;
+        else
+            upper = middle;
+    }
+    if (Cheaters.possible(amount, joined, lower, budget)) {
+        double expected = 0, bet = 0;
+        for (int i = 0; i < joined; i++) {
+            bet += Math.max(0, lower - amount[i]);
+            expected += 36.0 * Math.max(0, lower - amount[i]) / joined;
+        }
+        for (int i = joined; i < 37; i++) {
+            bet += Math.max(0, lower + 1 - amount[i]);
+        }
+        // System.out.println(String.format(
+        // "Joined: %s, lowest bet: %s, profit: %s", joined,
+        // lower, expected - bet));
+        best = Math.max(best, expected - bet);
+    }
+}
+return amount;
+}
+
+
+public static double func_8538e33fcf984248a1edfb04b9ffb81c(int bets, long budget) { 
+ long[] amount = new long[37];
+for (int i = 0; i < bets; i++) {
+    amount[i] = Cheaters.sc.nextLong();
+}
+Arrays.sort(amount);
+double best = 0.0;
+for (int joined = 1; joined <= 37; joined++) {
+    long lower = 0, upper = (long) 1e14;
+    while (lower + 1 < upper) {
+        long middle = (lower + upper) / 2;
+        if (Cheaters.possible(amount, joined, middle, budget))
+            lower = middle;
+        else
+            upper = middle;
+    }
+    if (Cheaters.possible(amount, joined, lower, budget)) {
+        double expected = 0, bet = 0;
+        for (int i = 0; i < joined; i++) {
+            bet += Math.max(0, lower - amount[i]);
+            expected += 36.0 * Math.max(0, lower - amount[i]) / joined;
+        }
+        for (int i = joined; i < 37; i++) {
+            bet += Math.max(0, lower + 1 - amount[i]);
+        }
+        // System.out.println(String.format(
+        // "Joined: %s, lowest bet: %s, profit: %s", joined,
+        // lower, expected - bet));
+        best = Math.max(best, expected - bet);
+    }
+}
+return best;
+}
+
+
+public static double func_4331760ecb944c6888ac70098c155da4(int bets, long budget, long[] amount) { 
+ for (int i = 0; i < bets; i++) {
+    amount[i] = Cheaters.sc.nextLong();
+}
+Arrays.sort(amount);
+double best = 0.0;
+for (int joined = 1; joined <= 37; joined++) {
+    long lower = 0, upper = (long) 1e14;
+    while (lower + 1 < upper) {
+        long middle = (lower + upper) / 2;
+        if (Cheaters.possible(amount, joined, middle, budget))
+            lower = middle;
+        else
+            upper = middle;
+    }
+    if (Cheaters.possible(amount, joined, lower, budget)) {
+        double expected = 0, bet = 0;
+        for (int i = 0; i < joined; i++) {
+            bet += Math.max(0, lower - amount[i]);
+            expected += 36.0 * Math.max(0, lower - amount[i]) / joined;
+        }
+        for (int i = joined; i < 37; i++) {
+            bet += Math.max(0, lower + 1 - amount[i]);
+        }
+        // System.out.println(String.format(
+        // "Joined: %s, lowest bet: %s, profit: %s", joined,
+        // lower, expected - bet));
+        best = Math.max(best, expected - bet);
+    }
+}
+return best;
+}
+

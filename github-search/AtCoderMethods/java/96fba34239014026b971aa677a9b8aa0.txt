@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] a = new int[N * 3];
+    for (int i = 0; i < N * 3; i++) a[i] = sc.nextInt();
+    long[] sum1 = new long[N + 1];
+    PriorityQueue<Integer> q = new PriorityQueue<>();
+    for (int i = 0; i < N; i++) {
+        q.add(a[i]);
+        sum1[0] += a[i];
+    }
+    for (int i = 0; i < N; i++) {
+        q.add(a[N + i]);
+        int min = q.poll();
+        sum1[i + 1] = sum1[i] + a[N + i] - min;
+    }
+    long[] sum2 = new long[N + 1];
+    q = new PriorityQueue<>(Comparator.reverseOrder());
+    for (int i = 0; i < N; i++) {
+        q.add(a[N * 2 + i]);
+        sum2[N] += a[N * 2 + i];
+    }
+    for (int i = 0; i < N; i++) {
+        q.add(a[N * 2 - 1 - i]);
+        int max = q.poll();
+        sum2[N - 1 - i] = sum2[N - i] + a[N * 2 - 1 - i] - max;
+    }
+    long ans = sum1[0] - sum2[0];
+    for (int i = 0; i < N; i++) ans = Math.max(ans, sum1[i + 1] - sum2[i + 1]);
+    System.out.println(ans);
+    sc.close();
+}

@@ -1,0 +1,49 @@
+static void solve() {
+    int n = ni(), K = ni();
+    int[] a = na(n);
+    long sum = 0;
+    for (int i = 0; i < n; i++) {
+        sum += a[i];
+    }
+    if (sum < K) {
+        out.println(n);
+        return;
+    }
+    boolean[][] fdp = new boolean[n + 1][K + 1];
+    fdp[0][0] = true;
+    for (int i = 0; i < n; i++) {
+        for (int j = K; j >= 0; j--) {
+            if (j + a[i] <= K)
+                fdp[i + 1][j + a[i]] |= fdp[i][j];
+            fdp[i + 1][j] |= fdp[i][j];
+        }
+    }
+    boolean[][] bdp = new boolean[n + 1][K + 1];
+    bdp[n][0] = true;
+    for (int i = n - 1; i >= 0; i--) {
+        for (int j = 0; j <= K; j++) {
+            if (j + a[i] <= K)
+                bdp[i][j + a[i]] |= bdp[i + 1][j];
+            bdp[i][j] |= bdp[i + 1][j];
+        }
+    }
+    int ct = 0;
+    outer: for (int i = 0; i < n; i++) {
+        if (a[i] >= K) {
+        } else {
+            
+            int ok = 0;
+            for (int j = K - 1; j >= 0; j--) {
+                if (bdp[i + 1][K - 1 - j])
+                    ok++;
+                if (K - a[i] - 1 - j >= 0 && bdp[i + 1][K - a[i] - 1 - j])
+                    ok--;
+                if (fdp[i][j] && ok > 0) {
+                    continue outer;
+                }
+            }
+            ct++;
+        }
+    }
+    out.println(ct);
+}

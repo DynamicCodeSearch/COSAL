@@ -1,0 +1,17 @@
+def main():
+    N = int(input())
+    P = tuple(map(int, input().split()))
+
+    p = []
+    for i, n in enumerate(P):
+        if i + 1 == n:
+            if P[i-1] == n - 1:
+                p[-1] += 1
+            else:
+                p.append(1)
+
+    ans = 0
+    for i in p:
+        ans += (i + 1) // 2
+
+    print(ans)

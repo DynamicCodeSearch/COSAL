@@ -1,0 +1,52 @@
+static void solve() {
+    int n = ni(), m = ni();
+    int[][] ts = new int[n][];
+    for (int i = 0; i < n; i++) {
+        ts[i] = new int[] { ni(), ni() };
+    }
+    Arrays.sort(ts, new Comparator<int[]>() {
+
+        public int compare(int[] a, int[] b) {
+            if (a[0] != b[0])
+                return a[0] - b[0];
+            return -(a[1] - b[1]);
+        }
+    });
+    int[][] rems = new int[n][];
+    PriorityQueue<int[]> q = new PriorityQueue<>((x, y) -> -(x[1] - y[1]));
+    int p = 0;
+    int rp = 0;
+    int cap = 0;
+    int fed = 0;
+    for (int i = 1; i <= m; i++) {
+        cap++;
+        while (p < n && ts[p][0] <= i) {
+            q.add(ts[p]);
+            p++;
+        }
+        while (!q.isEmpty() && cap > 0) {
+            int[] cur = q.poll();
+            if (cur[0] < i - cap + 1) {
+                rems[rp++] = cur;
+                continue;
+            }
+            fed++;
+            cap--;
+        }
+    }
+    rems = Arrays.copyOf(rems, rp);
+    Arrays.sort(rems, new Comparator<int[]>() {
+
+        public int compare(int[] a, int[] b) {
+            return (a[1] - b[1]);
+        }
+    });
+    int next = fed + 1;
+    for (int[] rem : rems) {
+        if (rem[1] <= m && next <= m) {
+            next = Math.max(next, rem[1]) + 1;
+            fed++;
+        }
+    }
+    out.println(n - fed);
+}

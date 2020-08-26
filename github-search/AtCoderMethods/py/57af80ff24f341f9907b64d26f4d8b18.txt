@@ -1,0 +1,6 @@
+def dfs(cur, pre, g, par, dw, w):
+    dw[cur] = w
+    par[cur] = pre
+    for e in g[cur]:
+        if e[0] != pre:
+            dfs(e[0], cur, g, par, dw, w + e[1])

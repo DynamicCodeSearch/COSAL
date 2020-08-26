@@ -1,0 +1,5 @@
+def factorial(n):
+    for i in range(len(memo)+1,n+1):
+        if n not in memo:
+            memo[i] = memo[i-1] * i % int(1e9+7)
+    return memo[n]

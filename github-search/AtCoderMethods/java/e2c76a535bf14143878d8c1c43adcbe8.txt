@@ -1,0 +1,11 @@
+private static Map<Integer, List<Integer>> createGraph(int N, int M, int[][] pairs) {
+    Map<Integer, List<Integer>> graph = new HashMap<>();
+    for (int i = 1; i <= N; i++) {
+        graph.put(i, new ArrayList<Integer>());
+    }
+    for (int i = 0; i < pairs.length; i++) {
+        graph.get(pairs[i][0]).add(pairs[i][1]);
+        graph.get(pairs[i][1]).add(pairs[i][0]);
+    }
+    return graph;
+}

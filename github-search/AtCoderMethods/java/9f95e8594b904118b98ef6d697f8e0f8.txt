@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String saa = sc.next(), sbb = sc.next(), scc = sc.next();
+    int na = saa.length(), nb = sbb.length(), nc = scc.length();
+    int a = 0, b = 0, c = 0, turn = 0;
+    while (true) {
+        if (turn == 0) {
+            if (a == na) {
+                System.out.println('A');
+                break;
+            }
+            turn = saa.charAt(a) - 'a';
+            a++;
+        } else if (turn == 1) {
+            if (b == nb) {
+                System.out.println('B');
+                break;
+            }
+            turn = sbb.charAt(b) - 'a';
+            b++;
+        } else {
+            if (c == nc) {
+                System.out.println('C');
+                break;
+            }
+            turn = scc.charAt(c) - 'a';
+            c++;
+        }
+    }
+}

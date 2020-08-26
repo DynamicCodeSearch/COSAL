@@ -1,0 +1,11 @@
+public void solve(int testNumber, Scanner in, PrintWriter out) {
+    String str = in.next();
+    int len = 0;
+    for (int i = str.length() / 2 - 1; i >= 0; i--) {
+        if (str.substring(0, i).equals(str.substring(i, 2 * i))) {
+            len = 2 * i;
+            break;
+        }
+    }
+    out.print(len);
+}

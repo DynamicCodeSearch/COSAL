@@ -1,0 +1,9 @@
+void dfs(int v) {
+    visited[v] = true;
+    ar[v] = id;
+    for (int to : road[v]) {
+        if (!visited[to]) {
+            dfs(to);
+        }
+    }
+}

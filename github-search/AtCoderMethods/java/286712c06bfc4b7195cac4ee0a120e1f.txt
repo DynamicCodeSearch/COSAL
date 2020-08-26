@@ -1,0 +1,6 @@
+private void dfs2(boolean[] used, int node) {
+    used[node] = false;
+    values[non(node)] = true;
+    for (int p = t_firstEdge[node]; p != -1; p = t_nextEdge[p]) if (used[t_edgeTo[p]])
+        dfs2(used, t_edgeTo[p]);
+}

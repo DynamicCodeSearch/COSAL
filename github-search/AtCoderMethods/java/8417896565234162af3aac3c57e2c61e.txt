@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int max = sc.nextInt();
+    int total = sc.nextInt();
+    int result = 0;
+    if (max * 3 == total)
+        result = 1;
+    else {
+        for (int i = max; i >= total - max * 2 && i >= 0; i--) {
+            for (int j = max; j >= total - i - max && j >= 0; j--) {
+                int k = total - i - j;
+                if (k > j)
+                    break;
+                if (k >= 0 && k <= max) {
+                    
+                    result += (j == k) ? 1 : 2;
+                }
+            }
+        }
+    
+    }
+    System.out.println(result);
+}

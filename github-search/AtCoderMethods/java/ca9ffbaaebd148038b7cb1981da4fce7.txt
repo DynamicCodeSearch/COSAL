@@ -1,0 +1,30 @@
+long dfs(ArrayList<Integer> V, int cur, int left) {
+    if (cur > N * (N - 1) / 2) {
+        return 1;
+    }
+    if (memo[cur][left].containsKey(V)) {
+        return memo[cur][left].get(V);
+    }
+    long ret = 0;
+    if (yes[cur]) {
+        for (int i = 0; i < V.size(); i++) {
+            for (int j = 0; j < i; j++) {
+                ArrayList<Integer> V2 = new ArrayList<>();
+                for (int k = 0; k < V.size(); k++) {
+                    if (k != i && k != j) {
+                        V2.add(V.get(k));
+                    }
+                }
+                V2.add(V.get(i) + V.get(j));
+                V2.sort(null);
+                ret += V.get(i) * V.get(j) * dfs(V2, cur + 1, left + V.get(i) * V.get(j) - 1) % MOD;
+                ret %= MOD;
+            }
+        }
+    } else {
+        if (left > 0)
+            ret = left * dfs(V, cur + 1, left - 1) % MOD;
+    }
+    memo[cur][left].put(V, ret % MOD);
+    return ret % MOD;
+}

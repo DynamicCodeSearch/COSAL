@@ -1,0 +1,13 @@
+def hoge(x,y,w,h,stage):
+    temp = [-1,0,1]
+    count = 0
+    for i in temp:
+        if x + i < 0 or x+i >= h:
+            continue
+        for j in temp:
+            if y + j < 0 or y+j >= w:
+                continue
+
+            if stage[x+i][y+j] == "#":
+                count += 1
+    return count

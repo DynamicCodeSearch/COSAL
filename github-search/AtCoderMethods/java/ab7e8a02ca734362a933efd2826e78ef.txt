@@ -1,0 +1,6 @@
+int count(int v, int p) {
+    int res = 0;
+    for (int t : g[v]) if (t != p && color[t] == 0)
+        res += 1 + count(t, v);
+    return res;
+}

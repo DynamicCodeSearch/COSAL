@@ -1,0 +1,13 @@
+void solve() throws IOException {
+    String s = in.readString();
+    if (s.length() == 1)
+        out.printLine(0);
+    else {
+        int alt = 1;
+        for (int i = 1; i < s.length(); ++i) {
+            if (s.charAt(i) != s.charAt(i - 1))
+                alt++;
+        }
+        out.printLine(alt - 1);
+    }
+}

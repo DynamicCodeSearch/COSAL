@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] a = new int[N];
+    int total = 0, avg = 0, cnt = 0;
+    for (int i = 0; i < N; i++) {
+        a[i] = sc.nextInt();
+        total += a[i];
+    }
+    if (total % N != 0) {
+        System.out.println(-1);
+        return;
+    }
+    avg = total / N;
+    for (int i = 0; i < N - 1; i++) {
+        int hidari = 0;
+        int migi = 0;
+        for (int j = i; j >= 0; j--) {
+            hidari += a[j];
+        }
+        for (int j = i + 1; j < N; j++) {
+            migi += a[j];
+        }
+        if (hidari != avg * (i + 1) || migi != avg * (N - 1 - i)) {
+            cnt++;
+        }
+    }
+    System.out.println(cnt);
+}

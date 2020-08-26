@@ -1,0 +1,12 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    String[] input = sc.next().split("/");
+    int year = Integer.parseInt(input[0]);
+    int month = Integer.parseInt(input[1]);
+    int day = Integer.parseInt(input[2]);
+    LocalDateTime date = LocalDateTime.of(year, month, day, 0, 0);
+    while (!success(date)) {
+        date = date.plusDays(1);
+    }
+    System.out.println(date.format(DateTimeFormatter.ofPattern("yyyy/MM/dd")));
+}

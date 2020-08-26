@@ -1,0 +1,31 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    PrintWriter out = new PrintWriter(System.out);
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    List<List<Integer>> to = new ArrayList<>();
+    for (int i = 0; i < n; i++) {
+        to.add(new ArrayList<>());
+    }
+    for (int i = 0; i < m; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        to.get(a).add(b);
+        to.get(b).add(a);
+    }
+    boolean[][] reach = new boolean[2][n];
+    reach[0][0] = true;
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < n; j++) {
+            if (reach[0][j]) {
+                reach[1][j] = true;
+                for (int k : to.get(j)) {
+                    reach[1][k] = true;
+                }
+            }
+        }
+        reach[0] = reach[1].clone();
+    }
+    out.println(reach[0][n - 1] ? "POSSIBLE" : "IMPOSSIBLE");
+    out.flush();
+}

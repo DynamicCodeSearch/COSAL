@@ -1,0 +1,24 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    final int n = in.nextInt();
+    final String s = in.next();
+    StringBuilder sb = new StringBuilder();
+    int count = 0;
+    for (int i = 0; i < s.length(); i++) {
+        char ch = s.charAt(i);
+        if (ch == ')') {
+            if (count <= 0)
+                sb.insert(0, '(');
+            sb.append(')');
+            count--;
+            if (count < 0)
+                count = 0;
+        } else {
+            sb.append('(');
+            count++;
+        }
+    }
+    while (count-- > 0) {
+        sb.append(')');
+    }
+    out.println(sb);
+}

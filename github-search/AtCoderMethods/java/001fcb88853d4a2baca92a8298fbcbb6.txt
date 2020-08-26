@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int[] list = new int[(int) Math.ceil((Math.pow(10, 9) + 1) / 31.0)];
+    int c = sc.nextInt();
+    int n;
+    int index;
+    int bitno;
+    int a = 0;
+    for (int i = 0; i < c; i++) {
+        n = sc.nextInt();
+        index = (int) Math.floor(n / 31.0);
+        bitno = n % 31;
+        list[index] = list[index] ^ (1 << bitno);
+        if ((1 << bitno & list[index]) > 0) {
+            a += 1;
+        } else {
+            a -= 1;
+        }
+    }
+    System.out.println(a);
+}

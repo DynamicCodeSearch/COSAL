@@ -1,0 +1,11 @@
+def __init__(self, n, default):
+    self.N = n
+    aa = [[default] * n]
+    for i in range(1, 100):
+        if len(aa[i-1]) == 1:
+            break
+        ba = aa[-1]
+        l = len(ba) // 2
+        a = [self.merge(ba[j*2], ba[j*2+1]) for j in range(l)]
+        aa.append(a)
+    self.aa = aa

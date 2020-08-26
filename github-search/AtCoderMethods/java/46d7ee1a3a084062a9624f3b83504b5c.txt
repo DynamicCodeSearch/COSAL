@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int temp = 0;
+    int first = sc.nextInt();
+    int end = sc.nextInt();
+    int[] array = { 10, -10, 5, -5, 1, -1 };
+    Queue<Integer> q = new LinkedList<Integer>();
+    HashMap<Integer, Integer> hm = new HashMap<Integer, Integer>();
+    q.add(first);
+    hm.put(first, 0);
+    while (!q.isEmpty() && !hm.containsKey(end)) {
+        int now = q.poll();
+        for (int i = 0; i < array.length; i++) {
+            temp = now + array[i];
+            if (!hm.containsKey(temp)) {
+                q.add(temp);
+                hm.put(temp, hm.get(now) + 1);
+            }
+        }
+    }
+    System.out.println(hm.get(end));
+}

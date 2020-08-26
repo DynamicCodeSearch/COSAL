@@ -1,0 +1,33 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int kosu = sc.nextInt();
+    int kaz = 0;
+    int evenum = 0;
+    int addnum = 0;
+    int yonbai = 0;
+    for (int i = 0; i < kosu; i++) {
+        kaz = sc.nextInt();
+        if (kaz % 2 != 0) {
+            evenum++;
+        } else
+            addnum++;
+        {
+            if (kaz % 4 == 0) {
+                yonbai++;
+            }
+            ;
+        }
+    }
+    if (evenum == 0) {
+        System.out.println("Yes");
+    } else {
+        if ((evenum - 1) < yonbai) {
+            System.out.println("Yes");
+        } else if ((evenum - 1) == yonbai && (evenum + addnum) % 2 != 0) {
+            System.out.println("Yes");
+        } else {
+            System.out.println("No");
+        }
+    }
+    sc.close();
+}

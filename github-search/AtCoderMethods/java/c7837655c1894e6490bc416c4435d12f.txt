@@ -1,0 +1,37 @@
+public static int[] dijkh(int[][] g, int from, int to) {
+    int n = g.length;
+    final int[] td = new int[n];
+    Arrays.fill(td, Integer.MAX_VALUE);
+    int[] prev = new int[n];
+    Arrays.fill(prev, -1);
+    TreeSet<Integer> q = new TreeSet<Integer>(new Comparator<Integer>() {
+
+        public int compare(Integer a, Integer b) {
+            if (td[a] - td[b] != 0)
+                return td[a] - td[b];
+            return a - b;
+        }
+    });
+    q.add(from);
+    td[from] = 0;
+    while (q.size() > 0) {
+        int cur = q.pollFirst();
+        if (cur == to)
+            break;
+        for (int i = 0; i < g[cur].length; i++) {
+            int next = g[cur][i];
+            int nd = td[cur] + 1;
+            if (nd < td[next]) {
+                q.remove(next);
+                td[next] = nd;
+                prev[next] = cur;
+                q.add(next);
+            }
+        }
+    }
+    int ct = 0;
+    for (int u = to; u != -1; u = prev[u]) ct++;
+    int[] h = new int[ct];
+    for (int u = to, p = ct - 1; u != -1; u = prev[u], p--) h[p] = u;
+    return h;
+}

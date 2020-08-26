@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] A = new int[N];
+    int[] dp = new int[N];
+    for (int i = 0; i < N; i++) {
+        A[i] = sc.nextInt();
+    }
+    dp[1] = Math.abs(A[1] - A[0]);
+    for (int i = 2; i < N; i++) {
+        dp[i] = Math.min(dp[i - 1] + Math.abs(A[i] - A[i - 1]), dp[i - 2] + Math.abs(A[i] - A[i - 2]));
+    }
+    System.out.println(dp[N - 1]);
+}

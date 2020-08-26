@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    boolean[] sit = new boolean[100000];
+    for (int i = 0; i < sit.length; i++) {
+        sit[i] = false;
+    }
+    for (int i = 0; i < n; i++) {
+        int l = sc.nextInt();
+        int r = sc.nextInt();
+        l--;
+        r--;
+        for (int j = l; j <= r; j++) {
+            sit[j] = true;
+        }
+    }
+    int cnt = 0;
+    for (int i = 0; i < sit.length; i++) {
+        if (sit[i])
+            cnt++;
+    }
+    System.out.println(cnt);
+}

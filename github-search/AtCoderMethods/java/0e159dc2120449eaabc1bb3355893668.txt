@@ -1,0 +1,26 @@
+void solve() {
+    int N = in.nextInt();
+    int Q = in.nextInt();
+    int[] l = new int[Q];
+    int[] r = new int[Q];
+    for (int i = 0; i < Q; i++) {
+        l[i] = in.nextInt();
+        r[i] = in.nextInt();
+    }
+    int[] a = new int[N + 1];
+    for (int i = 0; i < Q; i++) {
+        a[l[i] - 1]++;
+        a[r[i]]++;
+    }
+    StringBuilder sb = new StringBuilder();
+    int cur = 0;
+    for (int i = 0; i < N; i++) {
+        cur += a[i];
+        if ((cur & 1) == 0) {
+            sb.append("0");
+        } else {
+            sb.append("1");
+        }
+    }
+    out.println(sb.toString());
+}

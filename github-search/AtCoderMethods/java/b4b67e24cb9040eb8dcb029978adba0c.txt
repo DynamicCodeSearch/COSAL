@@ -1,0 +1,17 @@
+public String run(String[] args, InputStream in) {
+    String result = null;
+    try {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+        int N = Integer.parseInt(reader.readLine());
+        List<Integer> list = reader.lines().flatMap(s -> Stream.of(s.replaceAll("\\s+", " ").split(" "))).limit(N).map(Integer::parseInt).map(n -> n / 400).sorted().collect(Collectors.toList());
+        long c1 = list.stream().filter(n -> n < 8).distinct().count();
+        long c2 = list.stream().filter(n -> n >= 8).count();
+        long min = (c1 == 0) ? 1 : c1;
+        
+        long max = (c1 + c2);
+        result = String.valueOf(min) + " " + String.valueOf(max);
+    } catch (IOException ex) {
+        Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return result;
+}

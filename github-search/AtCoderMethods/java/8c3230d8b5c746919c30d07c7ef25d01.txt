@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int start = sc.nextInt();
+    int goal = sc.nextInt();
+    int counter = 0;
+    int sa = Math.abs(goal - start);
+    while (sa != 0) {
+        if (sa > 7) {
+            sa = sa - 10;
+            counter++;
+        } else if (sa > 2) {
+            sa = sa - 5;
+            counter++;
+        } else {
+            sa = sa - 1;
+            counter++;
+        }
+        sa = Math.abs(sa);
+    }
+    System.out.println(counter);
+}

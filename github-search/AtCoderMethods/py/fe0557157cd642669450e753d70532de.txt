@@ -1,0 +1,9 @@
+def pop(S):
+    index=[]
+    for i in range(len(S)-1):
+        if S[i]=='('and S[i+1]==')':
+            index.append(i)
+            index.append(i+1)
+    index = np.array(index)
+    answer = np.delete(S,index)
+    return answer

@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    PrintWriter pw = new PrintWriter(System.out);
+    char[] S = sc.next().toCharArray();
+    int N = S.length;
+    char[] T = sc.next().toCharArray();
+    int M = T.length;
+    int[] scnt = new int[N + 1];
+    for (int i = 0; i < N; i++) {
+        scnt[i + 1] = (scnt[i] + (S[i] == 'A' ? 1 : 2)) % 3;
+    }
+    int[] tcnt = new int[M + 1];
+    for (int i = 0; i < M; i++) {
+        tcnt[i + 1] = (tcnt[i] + (T[i] == 'A' ? 1 : 2)) % 3;
+    }
+    int Q = sc.nextInt();
+    for (int i = 0; i < Q; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt();
+        int c = sc.nextInt() - 1;
+        int d = sc.nextInt();
+        pw.println((scnt[b] - scnt[a] - tcnt[d] + tcnt[c] + 6) % 3 == 0 ? "YES" : "NO");
+    }
+    sc.close();
+    pw.close();
+}

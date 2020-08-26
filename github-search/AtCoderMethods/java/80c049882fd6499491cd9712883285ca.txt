@@ -1,0 +1,21 @@
+private static void solve(ConsoleScanner cin, PrintWriter cout) {
+    
+    int n = cin.nextInt();
+    int m = cin.nextInt();
+    int r = cin.nextInt();
+    int[] s = new int[r];
+    for (int i = 0; i < s.length; i++) s[i] = cin.nextInt() - 1;
+    long[][] dist = new long[n][n];
+    for (long[] d : dist) Arrays.fill(d, Long.MAX_VALUE / 2);
+    for (int i = 0; i < n; i++) dist[i][i] = 0;
+    for (int i = 0; i < m; i++) {
+        int a = cin.nextInt() - 1;
+        int b = cin.nextInt() - 1;
+        int c = cin.nextInt();
+        dist[a][b] = dist[b][a] = c;
+    }
+    now.getAsLong();
+    long ans = solve(n, r, s, dist);
+    cout.println(ans);
+    assert 0 == tr("elapsed", now.getAsLong());
+}

@@ -1,0 +1,18 @@
+public int read() {
+    if (this.numChars == -1) {
+        throw new InputMismatchException();
+    } else {
+        if (this.curChar >= this.numChars) {
+            this.curChar = 0;
+            try {
+                this.numChars = this.stream.read(this.buf);
+            } catch (IOException ex) {
+                throw new InputMismatchException();
+            }
+            if (this.numChars <= 0) {
+                return -1;
+            }
+        }
+        return this.buf[this.curChar++];
+    }
+}

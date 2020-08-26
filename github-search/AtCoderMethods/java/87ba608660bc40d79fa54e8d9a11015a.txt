@@ -1,0 +1,78 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int[] from = new int[n];
+    IntList[] graph = new IntList[n];
+    int[] deg = new int[n];
+    for (int i = 0; i < n; ++i) {
+        graph[i] = new IntList();
+    }
+    for (int i = 0; i < n; ++i) {
+        from[i] = in.nextInt() - 1;
+        graph[from[i]].add(i);
+        deg[from[i]]++;
+    }
+    Queue<Integer> q = new ArrayDeque<>();
+    for (int i = 0; i < n; ++i) {
+        if (deg[i] == 0) {
+            q.add(i);
+        }
+    }
+    boolean[] used = new boolean[n];
+    int[] color = new int[n];
+    while (!q.isEmpty()) {
+        int node = q.poll();
+        for (IntIterator it = graph[node].iterator(); it.hasNext(); ) {
+            int to = it.nextInt();
+            used[color[to]] = true;
+        }
+        while (used[color[node]]) {
+            color[node]++;
+        }
+        Arrays.fill(used, 0, color[node], false);
+        if (--deg[from[node]] == 0) {
+            q.add(from[node]);
+        }
+    }
+    int k = 0;
+    for (int i = 0; i < n; ++i) {
+        if (deg[i] != 0) {
+            k++;
+            for (IntIterator it = graph[i].iterator(); it.hasNext(); ) {
+                int to = it.nextInt();
+                if (deg[to] == 0) {
+                    used[color[to]] = true;
+                }
+            }
+            while (used[color[i]]) {
+                color[i]++;
+            }
+            Arrays.fill(used, 0, color[i], false);
+        }
+    }
+    int[] initColor = color.clone();
+    int[] nodes = new int[k];
+    k = 0;
+    for (int i = 0; i < n; ++i) {
+        if (deg[i] != 0) {
+            nodes[k++] = i;
+            for (int j = from[i]; j != i; j = from[j]) {
+                nodes[k++] = j;
+            }
+            break;
+        }
+    }
+    TwoSat s = new TwoSat(n);
+    for (int i = 0; i < k; ++i) {
+        int node = nodes[i];
+        int next = nodes[(i + 1) % k];
+        if (color[node] == color[next]) {
+            s.addXor(node, next);
+        } else if (color[node] + 1 == color[next]) {
+            s.addOr(s.non(node), next);
+        } else if (color[next] + 1 == color[node]) {
+            s.addOr(s.non(next), node);
+        }
+    }
+    s.solveSystem();
+    out.println(s.hasSolution() ? "POSSIBLE" : "IMPOSSIBLE");
+}

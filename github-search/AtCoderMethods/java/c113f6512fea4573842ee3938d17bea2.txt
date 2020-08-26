@@ -1,0 +1,20 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int T = sc.nextInt();
+    int[] a = new int[N];
+    for (int i = 0; i < N; i++) a[i] = sc.nextInt();
+    long sum = 0;
+    int now = 0;
+    int to = 0;
+    for (int i = 0; i < N; i++) {
+        if (a[i] < to) {
+            sum += a[i] - a[i - 1];
+        } else {
+            sum += T;
+        }
+        now = a[i];
+        to = a[i] + T;
+    }
+    System.out.println(sum);
+}

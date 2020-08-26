@@ -1,0 +1,19 @@
+public boolean small(Pair n) {
+    if (this.a == this.b) {
+        if (n.a > n.b)
+            return true;
+        if (n.a < n.b)
+            return false;
+        return this.a < n.a;
+    }
+    if (this.a - this.b > 0)
+        if (n.a - n.b <= 0) {
+            return false;
+        } else {
+            return this.b > n.b;
+        }
+    if (n.a - n.b >= 0) {
+        return true;
+    }
+    return this.a < n.a;
+}

@@ -1,0 +1,15 @@
+int ans(int l, int r, int c, int ind) {
+    if (lazy[c] != 0) {
+        lazy[2 * c + 1] += lazy[c];
+        lazy[2 * c + 2] += lazy[c];
+        if (l == r)
+            arr[c] += lazy[c];
+        lazy[c] = 0;
+    }
+    if (l == r)
+        return arr[c];
+    int mid = l + r >> 1;
+    if (mid >= ind)
+        return ans(l, mid, 2 * c + 1, ind);
+    return ans(mid + 1, r, 2 * c + 2, ind);
+}

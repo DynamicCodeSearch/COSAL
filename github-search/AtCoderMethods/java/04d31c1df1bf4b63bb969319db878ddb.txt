@@ -1,0 +1,20 @@
+public static long[][] mul(long[][] a, long[][] b) {
+    int n = a.length;
+    int m = b[0].length;
+    long[][] ans = new long[n][m];
+    if (n == 2 && m == 2 && b.length == 2) {
+        ans[0][0] = ((a[0][0] * b[0][0]) % mod + (a[0][1] * b[1][0])) % mod;
+        ans[0][1] = ((a[0][0] * b[0][1]) % mod + (a[0][1] * b[1][1])) % mod;
+        ans[1][0] = ((a[1][0] * b[0][0]) % mod + (a[1][1] * b[1][0])) % mod;
+        ans[1][1] = ((a[1][1] * b[1][1]) % mod + (a[1][0] * b[0][1])) % mod;
+        return ans;
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            for (int k = 0; k < b.length; k++) {
+                ans[i][j] = (ans[i][j] + (a[i][k] * b[k][j]) % mod) % mod;
+            }
+        }
+    }
+    return ans;
+}

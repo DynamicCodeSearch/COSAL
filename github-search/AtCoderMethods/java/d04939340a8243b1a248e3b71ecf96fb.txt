@@ -1,0 +1,24 @@
+public char[][] rotation(char[][] s, int N) {
+    if (N % 2 == 0) {
+        for (int i = 0; i < N / 2; i++) {
+            for (int j = 0; j < N / 2; j++) {
+                char tmp = s[i][j];
+                s[i][j] = s[N - 1 - j][i];
+                s[N - 1 - j][i] = s[N - 1 - i][N - 1 - j];
+                s[N - 1 - i][N - 1 - j] = s[j][N - 1 - i];
+                s[j][N - 1 - i] = tmp;
+            }
+        }
+    } else {
+        for (int i = 0; i < N / 2; i++) {
+            for (int j = 0; j < N / 2 + 1; j++) {
+                char tmp = s[i][j];
+                s[i][j] = s[N - 1 - j][i];
+                s[N - 1 - j][i] = s[N - 1 - i][N - 1 - j];
+                s[N - 1 - i][N - 1 - j] = s[j][N - 1 - i];
+                s[j][N - 1 - i] = tmp;
+            }
+        }
+    }
+    return s;
+}

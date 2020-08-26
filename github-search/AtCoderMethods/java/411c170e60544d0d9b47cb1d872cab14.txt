@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    int N = in.nextInt();
+    ;
+    int[] a = new int[N];
+    for (int i = 0; i < N; i++) {
+        a[i] = in.nextInt();
+    }
+    int start = 0;
+    long sum = 0;
+    for (int i = 0; i < N; i++) {
+        if (i == N - 1) {
+            sum += f(i - start + 1);
+            break;
+        } else if (a[i] >= a[i + 1]) {
+            sum += f(i - start + 1);
+            start = i + 1;
+        }
+    }
+    System.out.println(sum);
+}

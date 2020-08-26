@@ -1,0 +1,14 @@
+public static void main(String[] args) throws Throwable {
+    MyScanner sc = new MyScanner();
+    PrintWriter pw = new PrintWriter(System.out);
+    int n = sc.nextInt() - 1;
+    long lcm = sc.nextLong();
+    while (n-- > 0) {
+        long t = sc.nextLong();
+        long g = gcd(lcm, t);
+        lcm = (lcm / g) * t;
+    }
+    pw.println(lcm);
+    pw.flush();
+    pw.close();
+}

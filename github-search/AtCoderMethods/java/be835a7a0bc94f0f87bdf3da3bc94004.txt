@@ -1,0 +1,56 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    int m = in.nextInt();
+    int[][] souveniors = in.nextIntTable(n, 2);
+    int[] ans = new int[100010];
+    int TH = 320;
+    
+    int[] imos = new int[100010];
+    for (int i = 0; i < n; i++) {
+        int fr = 1000000;
+        for (int d = 1; d <= 320; d++) {
+            int L = (souveniors[i][0] % d == 0) ? souveniors[i][0] / d : souveniors[i][0] / d + 1;
+            int R = souveniors[i][1] / d;
+            if (L <= R) {
+                if (R < fr) {
+                    imos[L]++;
+                    imos[R + 1]--;
+                } else if (L < fr) {
+                    imos[L]++;
+                    imos[fr]--;
+                }
+            }
+            fr = Math.min(fr, L);
+            if (L < TH) {
+                break;
+            }
+        }
+    }
+    for (int l = 0; l < imos.length - 1; l++) {
+        imos[l + 1] += imos[l];
+        if (l > TH) {
+            ans[l] = imos[l];
+        }
+    }
+    
+    for (int d = 1; d <= TH; d++) {
+        for (int i = 0; i < n; i++) {
+            int len = souveniors[i][1] - souveniors[i][0] + 1;
+            if (d <= len) {
+                ans[d]++;
+            } else {
+                int lmo = souveniors[i][0] % d;
+                int rmo = souveniors[i][1] % d;
+                if (lmo == 0 || rmo == 0 || lmo > rmo) {
+                    ans[d]++;
+                }
+            }
+        }
+    }
+    for (int i = 1; i <= m; i++) {
+        out.println(ans[i]);
+    }
+    out.flush();
+}

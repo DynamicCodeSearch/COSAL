@@ -1,0 +1,55 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int H = sc.nextInt();
+    int W = sc.nextInt();
+    boolean[][] v = new boolean[H][W];
+    for (int i = 0; i < H; i++) {
+        String s = sc.next();
+        for (int j = 0; j < W; j++) v[i][j] = s.charAt(j) == '#';
+    }
+    boolean[][] o = new boolean[H][W];
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            boolean paint = true;
+            for (int ny = i - 1; ny <= i + 1; ny++) {
+                for (int nx = j - 1; nx <= j + 1; nx++) {
+                    if (0 <= ny && ny < H && 0 <= nx && nx < W && !v[ny][nx]) {
+                        paint = false;
+                        break;
+                    }
+                }
+            }
+            o[i][j] = paint;
+        }
+    }
+    boolean ok = true;
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            if (v[i][j]) {
+                boolean check = false;
+                for (int ny = i - 1; ny <= i + 1; ny++) {
+                    for (int nx = j - 1; nx <= j + 1; nx++) {
+                        if (0 <= ny && ny < H && 0 <= nx && nx < W && o[ny][nx]) {
+                            check = true;
+                            break;
+                        }
+                    }
+                }
+                if (!check) {
+                    ok = false;
+                    break;
+                }
+            }
+        }
+    }
+    if (ok) {
+        System.out.println("possible");
+        for (int i = 0; i < H; i++) {
+            for (int j = 0; j < W; j++) System.out.print(o[i][j] ? "#" : ".");
+            System.out.println();
+        }
+    } else {
+        System.out.println("impossible");
+    }
+    sc.close();
+}

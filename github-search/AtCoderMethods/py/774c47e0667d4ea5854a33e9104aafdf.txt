@@ -1,0 +1,15 @@
+def main():
+    h, w = map(int, input().split())
+    sl = [list(input()) for _ in range(h)]
+    tsl = [['#' for _ in range(w)] for _ in range(h)]
+    ttsl = [['.' for _ in range(w)] for _ in range(h)]
+
+    tsl = check(h, w, '#', '.', sl, tsl)
+    ttsl = check(h, w, '.', '#', tsl, ttsl)
+
+    if ttsl == sl:
+        print('possible')
+        for s in tsl:
+            print(''.join(s))
+    else:
+        print('impossible')

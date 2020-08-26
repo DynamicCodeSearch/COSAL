@@ -1,0 +1,15 @@
+void run() {
+    int n = ni();
+    int min = 1 << 28;
+    for (int i = 1; i < 1000; ++i) {
+        for (int j = 1; j < 1000; ++j) {
+            if (i * j > n) {
+                continue;
+            }
+            int m = n - i * j;
+            int s = Math.abs(i - j);
+            min = Math.min(min, m + s);
+        }
+    }
+    System.out.println(min);
+}

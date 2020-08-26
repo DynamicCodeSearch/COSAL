@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int distance = sc.nextInt();
+    int vv = 0;
+    if (distance >= 100 && distance <= 5000) {
+        vv = distance / 100;
+    } else if (distance >= 6000 && distance <= 30000) {
+        vv = distance / 1000 + 50;
+    } else if (distance >= 35000 && distance <= 70000) {
+        vv = (distance / 1000 - 30) / 5 + 80;
+    } else if (distance > 70000) {
+        vv = 89;
+    }
+    System.out.printf("%02d\n", vv);
+}

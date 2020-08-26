@@ -1,0 +1,19 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt() + 1;
+    String n = String.valueOf(N);
+    int digit = n.length();
+    long ans = 0;
+    for (int i = 1; i <= digit; i++) {
+        int pat = (int) Math.pow(10, i);
+        int num = (int) Math.pow(10, i - 1);
+        ans += N / pat * num;
+        int res = N % pat;
+        if (res < num) {
+            continue;
+        } else {
+            ans += Math.min(num, res - num);
+        }
+    }
+    System.out.println(ans);
+}

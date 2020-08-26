@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    PrintWriter out = new PrintWriter(System.out);
+    int r = sc.nextInt();
+    int g = sc.nextInt();
+    int b = sc.nextInt();
+    int min = Integer.MAX_VALUE;
+    for (int gl = -300; gl < 300; gl++) {
+        int count = 0;
+        int gr = gl + g - 1;
+        for (int i = gl; i <= gr; i++) {
+            count += Math.abs(i);
+        }
+        int rr = Math.min(r / 2 - 100, gl - 1);
+        int rl = rr - r + 1;
+        for (int i = rl + 100; i <= rr + 100; i++) {
+            count += Math.abs(i);
+        }
+        int bl = Math.max(-b / 2 + 100, gr + 1);
+        int br = bl + b - 1;
+        for (int i = bl - 100; i <= br - 100; i++) {
+            count += Math.abs(i);
+        }
+        min = Math.min(min, count);
+    }
+    out.println(min);
+    out.flush();
+}

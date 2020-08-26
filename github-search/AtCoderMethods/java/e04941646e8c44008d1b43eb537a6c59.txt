@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    try {
+        Scanner sc = new Scanner(System.in);
+        int X = sc.nextInt();
+        int Y = sc.nextInt();
+        if (X == 2 || Y == 2) {
+            System.out.println("No");
+        } else {
+            if (X % 2 == 0 && Y % 2 == 0) {
+                System.out.println((Y < 7 || X > 7) ? "Yes" : "No");
+            } else if (X % 2 == 0 || Y % 2 == 0) {
+                System.out.println((X < 8 && Y > 7) ? "Yes" : "No");
+            } else {
+                System.out.println((Y < 8 || X > 8) ? "Yes" : "No");
+            }
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}

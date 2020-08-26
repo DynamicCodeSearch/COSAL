@@ -1,0 +1,28 @@
+public static void main(String[] args) throws IOException {
+    
+    Scanner sc = new Scanner(System.in);
+    int A = sc.nextInt() * 100;
+    int B = sc.nextInt() * 100;
+    int C = sc.nextInt();
+    int D = sc.nextInt();
+    int E = sc.nextInt();
+    int F = sc.nextInt();
+    int ansA = 0;
+    int ansB = 0;
+    for (int a = 0; a * A <= F; a++) {
+        for (int b = 0; a * A + b * B <= F; b++) {
+            int wa = a * A + b * B;
+            int limit = Math.min(wa / 100 * E, F - wa);
+            for (int c = 0; c * C <= limit; c++) {
+                for (int d = 0; c * C + d * D <= limit; d++) {
+                    int wb = c * C + d * D;
+                    if (isStrong(wa, wb, ansA, ansB)) {
+                        ansA = wa;
+                        ansB = wb;
+                    }
+                }
+            }
+        }
+    }
+    System.out.println((ansA + ansB) + " " + ansB);
+}

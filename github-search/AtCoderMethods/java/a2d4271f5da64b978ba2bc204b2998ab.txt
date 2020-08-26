@@ -1,0 +1,26 @@
+private void solve(Scanner sc) {
+    int A = sc.nextInt();
+    int B = sc.nextInt();
+    if (B == A) {
+        _out.println(0);
+        return;
+    }
+    if (A > B) {
+        int t = A;
+        A = B;
+        B = t;
+    }
+    int ans = 0;
+    ans += (B - A) / 10;
+    A += 10 * ans;
+    int t1 = (A + 10) - B + 1;
+    int t2;
+    if (A + 5 >= B) {
+        t2 = (A + 5) - B + 1;
+    } else {
+        t2 = B - (A + 5) + 1;
+    }
+    int t3 = B - A;
+    ans += Math.min(t1, Math.min(t2, t3));
+    _out.println(ans);
+}

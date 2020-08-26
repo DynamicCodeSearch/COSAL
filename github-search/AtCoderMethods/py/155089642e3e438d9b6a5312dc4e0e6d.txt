@@ -1,0 +1,14 @@
+def rec_dp(i, j):
+    if(j in dp[i]):
+        return dp[i][j]
+
+    res = 0
+    if(i == N):
+        res = 0
+    elif(j < w[i]):
+        res = rec_dp(i+1, j)
+    else:
+        res = max(rec_dp(i+1, j), rec_dp(i+1, j-w[i]) + v[i])
+
+    dp[i][j] = res
+    return res

@@ -1,0 +1,17 @@
+def check1(a):
+  sum = 0
+  ans = 0
+  for i in range(len(a)):
+    if(i % 2 == 0):
+      sum += a[i]
+      if(sum >= 0):
+        a[i] -= abs(sum)+1
+        ans += abs(sum)+1
+        sum -= abs(sum)+1
+    else:
+      sum += a[i]
+      if(sum <= 0):
+        a[i] += abs(sum)+1
+        ans += abs(sum)+1
+        sum += abs(sum)+1
+  return ans

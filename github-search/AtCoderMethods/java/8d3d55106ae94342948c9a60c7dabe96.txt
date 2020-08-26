@@ -1,0 +1,13 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String str = sc.nextLine();
+    int min = 0;
+    for (int i = 0; i < str.length() - 1; i++) {
+        String pattern = str.substring(0, i);
+        if ((pattern + pattern).length() == str.length())
+            break;
+        else if (str.indexOf(pattern + pattern) != -1)
+            min = pattern.length() * 2;
+    }
+    System.out.println(min);
+}

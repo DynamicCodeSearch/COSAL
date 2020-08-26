@@ -1,0 +1,6 @@
+private static long solve(int n, int[] a) {
+    HashMap<Integer, Integer> map = new HashMap<>();
+    for (int k : a) map.put(k, 1 + map.getOrDefault(k, 0));
+    long ans = map.values().stream().filter(cnt -> cnt % 2 == 1).count();
+    return ans;
+}

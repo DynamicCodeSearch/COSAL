@@ -1,0 +1,14 @@
+static long dfs(int i, int j) {
+    if (dp[i][j] > 0) {
+        return dp[i][j];
+    }
+    dp[i][j] = 1;
+    for (int k = 0; k < 4; k++) {
+        int xs = j + vx[k];
+        int ys = i + vy[k];
+        if (xs >= 0 && xs < W && ys >= 0 && ys < H && a[i][j] < a[ys][xs]) {
+            dp[i][j] = (dp[i][j] + dfs(ys, xs)) % MOD;
+        }
+    }
+    return dp[i][j];
+}

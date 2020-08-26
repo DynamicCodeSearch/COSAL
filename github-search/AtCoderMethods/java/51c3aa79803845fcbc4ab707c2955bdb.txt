@@ -1,0 +1,15 @@
+static void solve() {
+    int h = in.nextInt();
+    int w = in.nextInt();
+    int a = in.nextInt();
+    int b = in.nextInt();
+    long[] fact = fact(w + h, MOD);
+    long[] factI = factInv(fact, MOD);
+    long ans = 0;
+    for (int i = 1; i <= h - a; i++) {
+        
+        
+        ans = (ans + nCk(i + b - 2, b - 1, MOD, fact, factI) * nCk(h - i + w - b - 1, w - b - 1, MOD, fact, factI) % MOD) % MOD;
+    }
+    out.println(ans);
+}

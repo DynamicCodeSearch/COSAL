@@ -1,0 +1,32 @@
+
+public double dfs(int n, int k) {
+    if (k == 0) {
+        
+        return 0.0;
+    } else if (k >= N - n + 1) {
+        
+        return 1.0;
+    }
+    if (dp[n][k] != -1) {
+        return dp[n][k];
+    }
+    
+    
+    double NSenbei = 1.0 / (N - n + 1);
+    
+    double notNSenbei = (1.0 - NSenbei);
+    
+    
+    double maxSenbei = 1.0 / n;
+    
+    double notNMaxSenbei = notNSenbei * maxSenbei;
+    
+    double eat = dfs(n + 1, k - 1) * notNMaxSenbei + NSenbei;
+    
+    double notEat = dfs(n + 1, k) * notNMaxSenbei;
+    
+    double notMaxSenbei = 1.0 - maxSenbei;
+    
+    double notNnotMaxSenbei = notNSenbei * notMaxSenbei;
+    return dp[n][k] = notNnotMaxSenbei * dfs(n + 1, k) + Math.max(eat, notEat);
+}

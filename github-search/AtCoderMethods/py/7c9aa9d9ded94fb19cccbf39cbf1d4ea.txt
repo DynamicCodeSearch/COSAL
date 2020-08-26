@@ -1,0 +1,14 @@
+def main(argv):
+    line = sys.stdin.readline()
+    while line:
+        N = int(line)
+        a = map(lambda x: int(x), sys.stdin.readline().split(" "))
+
+        histogram = [0 for i in xrange(100000 + 2)]
+        for i in a:
+            histogram[i - 1] += 1
+            histogram[i] += 1
+            histogram[i + 1] += 1
+        print(max(histogram[1:]))
+
+        line = sys.stdin.readline()

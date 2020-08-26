@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int x = sc.nextInt();
+    int y = sc.nextInt();
+    int x2 = sc.nextInt();
+    int y2 = sc.nextInt();
+    int Xsa = x2 - x;
+    int Ysa = y2 - y;
+    StringBuilder R = new StringBuilder();
+    for (int i = 0; i < Xsa; i++) {
+        R.append("R");
+    }
+    StringBuilder U = new StringBuilder();
+    for (int i = 0; i < Ysa; i++) {
+        U.append("U");
+    }
+    String L = R.toString();
+    L = L.replace("R", "L");
+    String D = U.toString();
+    D = D.replace("U", "D");
+    StringBuilder ans = new StringBuilder(R);
+    ans.append(U).append(L).append(D).append("D").append(R).append("R").append(U).append("U").append("L").append("U").append(L).append("L").append(D).append("D").append("R");
+    System.out.println(ans);
+}

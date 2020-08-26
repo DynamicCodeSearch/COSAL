@@ -1,0 +1,37 @@
+public static void main(String[] args) {
+    int N = Integer.parseInt(scan.next());
+    int T = Integer.parseInt(scan.next());
+    int[] A = new int[N];
+    for (int i = 0; i < N; i++) {
+        A[i] = Integer.parseInt(scan.next());
+    }
+    int[] min = new int[N - 1];
+    min[0] = A[0];
+    for (int i = 1; i < N - 1; i++) {
+        min[i] = A[i] < min[i - 1] ? A[i] : min[i - 1];
+    }
+    int[] max = new int[N - 1];
+    max[N - 2] = A[N - 1];
+    for (int i = N - 3; i > -1; i--) {
+        max[i] = A[i + 1] > max[i + 1] ? A[i + 1] : max[i + 1];
+    }
+    int _min = 0;
+    int _max = Integer.MAX_VALUE;
+    int count = 0;
+    int maxValue = 0;
+    for (int i = 0; i < N - 1; i++) {
+        if (_min != min[i] || _max != max[i]) {
+            _min = min[i];
+            _max = max[i];
+            int value = _max - _min;
+            if (value > maxValue) {
+                maxValue = value;
+                count = 1;
+            } else if (value == maxValue) {
+                count++;
+            }
+        }
+    }
+    System.out.println(count);
+    scan.close();
+}

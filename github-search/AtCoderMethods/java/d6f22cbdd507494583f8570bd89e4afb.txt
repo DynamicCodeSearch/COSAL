@@ -1,0 +1,29 @@
+private static boolean compare(String w1, String w2) {
+    int l1 = w1.length();
+    int l2 = w2.length();
+    int minL;
+    boolean same = true;
+    boolean ans = false;
+    if (l1 < l2) {
+        minL = l1;
+    } else {
+        minL = l2;
+    }
+    for (int i = 0; i < minL; i++) {
+        double dev = w1.charAt(l1 - 1 - i) - w2.charAt(l2 - 1 - i);
+        if (dev > 0) {
+            same = false;
+            ans = true;
+            break;
+        } else if (dev < 0) {
+            same = false;
+            break;
+        }
+    }
+    if (same) {
+        if (w1.length() > w2.length()) {
+            ans = true;
+        }
+    }
+    return ans;
+}

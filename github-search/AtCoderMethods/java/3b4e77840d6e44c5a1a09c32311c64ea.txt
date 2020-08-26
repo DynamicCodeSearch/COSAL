@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    int k = ni();
+    int s = ni();
+    int res = 0;
+    for (int i = 0; i <= k; i++) {
+        if (i > s)
+            break;
+        if (s - i > k * 2)
+            continue;
+        if (s - i > k) {
+            res += 2 * k + i - s + 1;
+        } else {
+            res += s - i + 1;
+        }
+    }
+    pl(res);
+    flush();
+}

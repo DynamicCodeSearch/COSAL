@@ -1,0 +1,43 @@
+public static void main(String[] args) {
+    BigInteger T, A;
+    T = BigInteger.ZERO;
+    A = T;
+    Scanner scanner = new Scanner(System.in);
+    int n = scanner.nextInt();
+    for (int i = 1; i <= n; i++) {
+        int _x = scanner.nextInt();
+        int _y = scanner.nextInt();
+        BigInteger x = BigInteger.valueOf(_x);
+        BigInteger y = BigInteger.valueOf(_y);
+        if (i == 1) {
+            T = x;
+            A = y;
+            continue;
+        }
+        BigInteger D = x.multiply(A).subtract(T.multiply(y));
+        if (D.compareTo(BigInteger.ZERO) >= 0) {
+            for (int j = 0; j <= 1000; j++) {
+                BigInteger Z = D.add(x.multiply(BigInteger.valueOf(j)));
+                if (Z.mod(y).compareTo(BigInteger.ZERO) == 0) {
+                    BigInteger q = BigInteger.valueOf(j);
+                    BigInteger p = Z.divide(y);
+                    T = T.add(p);
+                    A = A.add(q);
+                    break;
+                }
+            }
+        } else {
+            for (int j = 0; j <= 1000; j++) {
+                BigInteger Z = y.multiply(BigInteger.valueOf(j)).subtract(D);
+                if (Z.mod(x).compareTo(BigInteger.ZERO) == 0) {
+                    BigInteger q = Z.divide(x);
+                    BigInteger p = BigInteger.valueOf(j);
+                    T = T.add(p);
+                    A = A.add(q);
+                    break;
+                }
+            }
+        }
+    }
+    System.out.println(T.add(A).toString());
+}

@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int K = sc.nextInt();
+    int[] a = new int[N];
+    for (int i = 0; i < N; i++) a[i] = sc.nextInt();
+    long[] S = new long[N + 1];
+    S[0] = 0;
+    long ans = 0;
+    for (int i = 0; i < N; i++) S[i + 1] = S[i] + a[i];
+    for (int i = 0; i < N - K + 1; i++) {
+        ans += S[K + i] - S[i];
+    }
+    System.out.println(ans);
+}

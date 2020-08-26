@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String s = sc.nextLine();
+    int k = sc.nextInt();
+    sc.close();
+    HashMap<String, Integer> m = new HashMap<String, Integer>();
+    for (int i = 0; i < s.length(); i++) {
+        if (i + k <= s.length()) {
+            String tempstr = s.substring(i, i + k);
+            if (m.containsKey(tempstr)) {
+                ;
+            } else {
+                m.put(tempstr, 1);
+            }
+        } else {
+            break;
+        }
+    }
+    System.out.println(m.size());
+}

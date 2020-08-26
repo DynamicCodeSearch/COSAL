@@ -1,0 +1,17 @@
+public static void main(String[] args) throws IOException {
+    InputStreamReader isr = new InputStreamReader(System.in);
+    BufferedReader reader = new BufferedReader(isr);
+    int n = Integer.valueOf(reader.readLine());
+    String[] str = reader.readLine().split(" ");
+    HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+    int[] list = new int[n];
+    for (int i = 0; i < n; i++) {
+        list[i] = Integer.valueOf(str[i]);
+        map.put(list[i], i + 1);
+    }
+    Arrays.sort(list);
+    for (int i = n - 1; i >= 0; i--) {
+        System.out.println(map.get(list[i]));
+    }
+    reader.close();
+}

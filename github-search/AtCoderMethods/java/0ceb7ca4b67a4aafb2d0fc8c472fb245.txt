@@ -1,0 +1,16 @@
+int union(int x, int y) {
+    x = root(x);
+    y = root(y);
+    if (x != y) {
+        if (tree[x] < tree[y]) {
+            tree[y] += tree[x];
+            tree[x] = y;
+            return -tree[y];
+        } else {
+            tree[x] += tree[y];
+            tree[y] = x;
+            return -tree[x];
+        }
+    }
+    return -tree[x];
+}

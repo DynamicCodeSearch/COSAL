@@ -1,0 +1,11 @@
+static long pow(long a, long x, long MOD) {
+    long res = 1;
+    while (x > 0) {
+        if (x % 2 != 0) {
+            res = (res * a) % MOD;
+        }
+        a = (a * a) % MOD;
+        x /= 2;
+    }
+    return res;
+}

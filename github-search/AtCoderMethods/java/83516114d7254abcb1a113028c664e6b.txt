@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    sc = new InputReader(System.in);
+    out = new PrintWriter(System.out);
+    long[] fact = new long[(int) 1e5 + 10];
+    fact[0] = 1;
+    for (int i = 1; i < fact.length; i++) {
+        fact[i] = (i * fact[i - 1]);
+        fact[i] = (fact[i] % MOD);
+    }
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    if (Math.abs(n - m) > 1) {
+        out.println(0);
+    } else if (n == m) {
+        long val1 = fact[n];
+        long val2 = fact[m];
+        long res = (val1 * val2) % MOD;
+        res = (res % MOD);
+        res = (2 * res) % MOD;
+        res = (res % MOD);
+        out.println(res);
+    } else {
+        long max = fact[Math.max(n, m)];
+        long min = fact[Math.min(n, m)];
+        long res = (max * min) % MOD;
+        res = (res % MOD);
+        out.println(res);
+    }
+    out.close();
+}

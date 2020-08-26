@@ -1,0 +1,31 @@
+private static void solve() {
+    int[] a = new int[9];
+    int n = nei();
+    for (int i = 0; i < n; i++) {
+        int r = nei();
+        if (r < 400)
+            a[0]++;
+        else if (r < 800)
+            a[1]++;
+        else if (r < 1200)
+            a[2]++;
+        else if (r < 1600)
+            a[3]++;
+        else if (r < 2000)
+            a[4]++;
+        else if (r < 2400)
+            a[5]++;
+        else if (r < 2800)
+            a[6]++;
+        else if (r < 3200)
+            a[7]++;
+        else
+            a[8]++;
+    }
+    int m = 0;
+    for (int i = 0; i < 8; i++) {
+        if (a[i] > 0)
+            m++;
+    }
+    out((m == 0 ? 1 : m) + " " + (m + a[8]));
+}

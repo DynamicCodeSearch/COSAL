@@ -1,0 +1,18 @@
+def dijkstra_dense(g, start):
+    n = len(g)
+    ds = [1e18] * n
+    ds[start] = 0
+
+    done = [0] * n
+    while True:
+        lmin = 1e19
+        arg = -1
+        for i in range(n):
+            if not done[i] and ds[i] < lmin:
+                lmin = ds[i]
+                arg = i
+        if arg == -1: break
+        done[arg] = 1
+        for i in range(n):
+            ds[i] = min(ds[i], lmin + g[arg][i])
+    return ds

@@ -1,0 +1,42 @@
+public void solve() {
+    int n = in.nextInt(), W = in.nextInt();
+    long[] w = new long[n];
+    long[] v = new long[n];
+    int[] size = new int[4];
+    for (int i = 0; i < n; i++) {
+        w[i] = in.nextInt();
+        v[i] = in.nextInt();
+        size[(int) (w[i] - w[0])]++;
+    }
+    long[][] vv = new long[4][];
+    long[][] vs = new long[4][];
+    for (int i = 0; i < 4; i++) {
+        vv[i] = new long[size[i]];
+        int ptr = 0;
+        for (int j = 0; j < n; j++) {
+            if (w[j] != w[0] + i)
+                continue;
+            vv[i][ptr] = v[j];
+            ptr++;
+        }
+        Arrays.sort(vv[i]);
+        long[] vr = new long[size[i]];
+        for (int j = 0; j < size[i]; j++) vr[j] = vv[i][size[i] - j - 1];
+        vs[i] = new long[size[i] + 1];
+        for (int j = 0; j < size[i]; j++) vs[i][j + 1] = vs[i][j] + vr[j];
+    }
+    long res = 0;
+    for (int i = 0; i <= size[0]; i++) {
+        for (int j = 0; j <= size[1]; j++) {
+            for (int k = 0; k <= size[2]; k++) {
+                for (int l = 0; l <= size[3]; l++) {
+                    long wsum = i * w[0] + j * (w[0] + 1) + k * (w[0] + 2) + l * (w[0] + 3);
+                    long vsum = vs[0][i] + vs[1][j] + vs[2][k] + vs[3][l];
+                    if (wsum <= W)
+                        res = Math.max(res, vsum);
+                }
+            }
+        }
+    }
+    System.out.println(res);
+}

@@ -1,0 +1,34 @@
+public static void main(String[] args) throws Exception {
+    FastReader in = new FastReader(System.in);
+    PrintWriter pw = new PrintWriter(System.out);
+    a = in.nextInt();
+    b = in.nextInt();
+    c = in.nextInt();
+    d = in.nextInt();
+    e = in.nextInt();
+    f = in.nextInt();
+    set = new TreeSet<>();
+    list = new HashSet<>();
+    gen_w(0);
+    gen_s(0);
+    
+    
+    int s = 0, sw = 0;
+    if (set.floor(f) != null)
+        sw = set.floor(f);
+    double ratio = 0;
+    for (int i : list) {
+        int need = need(i);
+        Integer has = set.ceiling(need);
+        if (has != null && has + i <= f) {
+            double dens = density(i, has);
+            if (dens > ratio) {
+                ratio = dens;
+                s = i;
+                sw = i + has;
+            }
+        }
+    }
+    pw.println(sw + " " + s);
+    pw.close();
+}

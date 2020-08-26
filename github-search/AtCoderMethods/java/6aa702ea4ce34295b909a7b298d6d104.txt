@@ -1,0 +1,14 @@
+boolean link(int x, int y) {
+    x = root(x);
+    y = root(y);
+    if (x != y) {
+        if (data[y] < data[x]) {
+            data[y] += data[x];
+            data[x] = y;
+        } else {
+            data[x] += data[y];
+            data[y] = x;
+        }
+    }
+    return x != y;
+}

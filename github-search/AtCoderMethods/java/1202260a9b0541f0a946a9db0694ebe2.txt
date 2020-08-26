@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int R = sc.nextInt();
+    int C = sc.nextInt();
+    int sy = sc.nextInt();
+    int sx = sc.nextInt();
+    int gy = sc.nextInt();
+    int gx = sc.nextInt();
+    String tmp = "";
+    String[][] c_ij = new String[R][C];
+    for (int i = 0; i < R; i++) {
+        tmp = sc.next();
+        for (int j = 0; j < C; j++) {
+            c_ij[i][j] = "" + tmp.charAt(j);
+        }
+    }
+    System.out.println(new BreadthFirstSearch(sy, sx, gy, gx, c_ij).shortestPath());
+}

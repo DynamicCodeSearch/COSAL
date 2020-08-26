@@ -1,0 +1,14 @@
+def check4adjacent(N, a):
+    a = np.array(map(int, a))
+    count_4multiples = len(np.where(a % 4 == 0)[0])
+    count_2multiples = len(np.where((a % 2 == 0) & (a % 4 != 0))[0])
+    count_else = N - (count_4multiples + count_2multiples)
+    if count_2multiples % 2 == 0:
+        flag = 1
+    else:
+        flag = 0
+
+    if (count_4multiples + flag >= count_else ):
+        return "Yes"
+    else:
+        return "No"

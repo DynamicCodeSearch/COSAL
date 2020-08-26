@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    long R = sc.nextLong();
+    long B = sc.nextLong();
+    int x = sc.nextInt();
+    int y = sc.nextInt();
+    long max = Math.min(R, B) + 1;
+    long min = 0;
+    while (min + 1 < max) {
+        long mid = (min + max) / 2;
+        if (check(R, B, x, y, mid))
+            min = mid;
+        else
+            max = mid;
+    }
+    System.out.println(min);
+    sc.close();
+}

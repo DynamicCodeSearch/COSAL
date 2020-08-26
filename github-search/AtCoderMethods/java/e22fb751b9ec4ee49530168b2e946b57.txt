@@ -1,0 +1,18 @@
+long solve(long H, long W) {
+    long ans = Long.MAX_VALUE / 16;
+    if (W % 3 == 0) {
+        ans = 0;
+    } else {
+        ans = W;
+    }
+    for (long i = 1; i < H; ++i) {
+        ans = Math.min(ans, max(i * W, (H - i) * (W / 2), (H - i) * (W - W / 2)) - min(i * W, (H - i) * (W / 2), (H - i) * (W - W / 2)));
+        long w = i * W / (H - i);
+        for (long j = w - 1; j <= w + 1; ++j) {
+            if (j <= 0 || W - j <= 0)
+                continue;
+            ans = Math.min(ans, max(i * W, (H - i) * j, (H - i) * (W - j)) - min(i * W, (H - i) * j, (H - i) * (W - j)));
+        }
+    }
+    return ans;
+}

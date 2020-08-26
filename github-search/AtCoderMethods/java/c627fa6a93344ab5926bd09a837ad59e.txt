@@ -1,0 +1,46 @@
+private static void solve() {
+    int n = sc.nextInt();
+    List<List<Integer>> edges = new ArrayList<>(n);
+    for (int i = 0; i < n; i++) {
+        edges.add(new ArrayList<>());
+    }
+    for (int i = 0; i < n - 1; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        edges.get(a).add(b);
+        edges.get(b).add(a);
+    }
+    int k = sc.nextInt();
+    int[] vv = new int[n];
+    Arrays.fill(vv, -INF);
+    PriorityQueue<Integer> pq = new PriorityQueue<>((o1, o2) -> Integer.compare(vv[o1], vv[o2]));
+    boolean[] used = new boolean[n];
+    for (int i = 0; i < k; i++) {
+        int v = sc.nextInt() - 1;
+        int p = sc.nextInt();
+        vv[v] = p;
+        pq.add(v);
+        used[v] = true;
+    }
+    while (!pq.isEmpty()) {
+        int e = pq.remove();
+        for (int next : edges.get(e)) {
+            if (vv[next] != -INF) {
+                if (vv[e] + 1 != vv[next] && vv[e] - 1 != vv[next]) {
+                    pr.println("No");
+                    return;
+                }
+            } else {
+                vv[next] = vv[e] + 1;
+            }
+            if (!used[next]) {
+                pq.add(next);
+                used[next] = true;
+            }
+        }
+    }
+    pr.println("Yes");
+    for (int i = 0; i < n; i++) {
+        pr.println(vv[i]);
+    }
+}

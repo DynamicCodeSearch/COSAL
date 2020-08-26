@@ -1,0 +1,36 @@
+@Override
+protected String solve() throws IOException {
+    PriorityQueue<Data> queue = new PriorityQueue<>((o1, o2) -> Long.compare(o2.value, o1.value));
+    for (int i = 0; i < N; i++) {
+        Data data = new Data();
+        data.idx = i + 1;
+        data.value = A[i];
+        queue.add(data);
+    }
+    long[] res = new long[N];
+    Arrays.fill(res, 0);
+    int cnt = 0;
+    int minIdx = N + 1;
+    while (!queue.isEmpty()) {
+        Data next = queue.remove();
+        long curVal = next.value;
+        minIdx = Math.min(next.idx, minIdx);
+        cnt++;
+        while (!queue.isEmpty() && queue.peek().value == curVal) {
+            next = queue.remove();
+            minIdx = Math.min(minIdx, next.idx);
+            cnt++;
+        }
+        long nextVal = 0;
+        if (!queue.isEmpty()) {
+            nextVal = queue.peek().value;
+        }
+        res[minIdx - 1] += (curVal - nextVal) * cnt;
+    }
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < N; i++) {
+        sb.append(res[i]).append("\n");
+    }
+    sb.delete(sb.length() - 1, sb.length());
+    return sb.toString();
+}

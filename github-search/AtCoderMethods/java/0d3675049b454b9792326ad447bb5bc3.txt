@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    int H, W;
+    FastScanner scan = new FastScanner();
+    H = scan.nextInt();
+    W = scan.nextInt();
+    a = new int[H + 2][W + 2];
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            a[i + 1][j + 1] = scan.nextInt();
+        }
+    }
+    dp = new long[H + 2][W + 2];
+    long sum = 0;
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            sum += DFS(i + 1, j + 1);
+            sum %= INF;
+        }
+    }
+    System.out.println(sum);
+}

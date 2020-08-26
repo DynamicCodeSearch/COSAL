@@ -1,0 +1,31 @@
+def solve():
+    def check(k):
+        ue = (R - k) // (x - 1)
+        sita = (k*y - B + y - 2) // (y - 1)
+
+        if ue < sita or ue < 0:
+            return False
+        else:
+            z = max(sita, 0)
+
+            if k - z < 0:
+                return False
+            else:
+                return True
+
+    R, B = map(int, input().split())
+    x, y = map(int, input().split())
+
+    top = R + B
+    btm = 0
+
+    while top - btm > 1:
+        mid = (top + btm) // 2
+
+        if check(mid):
+            btm = mid
+        else:
+            top = mid
+
+    ans = btm
+    print(ans)

@@ -1,0 +1,24 @@
+private void solve() {
+    int[] count = new int[26];
+    Arrays.fill(count, Integer.MAX_VALUE);
+    int n = in.nextInt();
+    for (int i = 0; i < n; i++) {
+        String s = in.nextLine();
+        int[] nC = new int[26];
+        Arrays.fill(nC, 0);
+        for (int j = 0; j < s.length(); j++) {
+            nC[s.charAt(j) - 'a']++;
+        }
+        for (int j = 0; j < 26; j++) {
+            count[j] = Math.min(count[j], nC[j]);
+        }
+    }
+    for (int i = 0; i < 26; i++) {
+        char c = (char) ('a' + i);
+        while (count[i] > 0) {
+            out.print(c);
+            count[i]--;
+        }
+    }
+    out.print("");
+}

@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    n = sc.nextInt();
+    long ans = INF;
+    for (int x = 1; x <= n; x++) {
+        int d = 0;
+        for (; ; ) {
+            long y1 = x + d, y2 = x - d;
+            boolean flag = false;
+            if (y1 <= n && n - x * y1 >= 0) {
+                ans = Math.min(ans, d + n - x * y1);
+                flag = true;
+            }
+            if (y2 > 0 && n - x * y2 >= 0) {
+                ans = Math.min(ans, d + n - x * y2);
+                flag = true;
+            }
+            if (!flag) {
+                break;
+            }
+            ++d;
+        }
+    }
+    System.out.println(ans);
+}

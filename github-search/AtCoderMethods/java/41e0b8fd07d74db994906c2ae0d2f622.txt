@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    long N = sc.nextLong();
+    sc.close();
+    long ans = 100;
+    for (long i = 1; i < Math.sqrt(N) + 1; i++) {
+        if (N % i == 0) {
+            int test = Math.max(disit(i, 10), disit(N / i, 10));
+            ans = Math.min(ans, test);
+        }
+    }
+    System.out.println(ans);
+}

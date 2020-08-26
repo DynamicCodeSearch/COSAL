@@ -1,0 +1,18 @@
+public void solve() {
+    String s = in.next();
+    String t = in.next();
+    int n = s.length(), m = t.length();
+    int[] sumS = new int[n + 1];
+    int[] sumT = new int[m + 1];
+    for (int i = 0; i < n; i++) sumS[i + 1] = sumS[i] + convert(s.charAt(i));
+    for (int i = 0; i < m; i++) sumT[i + 1] = sumT[i] + convert(t.charAt(i));
+    int Q = in.nextInt();
+    for (int i = 0; i < Q; i++) {
+        int a = in.nextInt(), b = in.nextInt();
+        int c = in.nextInt(), d = in.nextInt();
+        int x = sumS[b] - sumS[a - 1];
+        int y = sumT[d] - sumT[c - 1];
+        
+        System.out.println((x % 3) == (y % 3) ? "YES" : "NO");
+    }
+}

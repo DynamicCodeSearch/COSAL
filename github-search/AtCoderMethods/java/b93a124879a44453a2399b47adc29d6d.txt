@@ -1,0 +1,40 @@
+void solve() throws NumberFormatException, IOException {
+    ContestScanner in = new ContestScanner();
+    Writer out = new Writer();
+    char[] s = in.nextToken().toCharArray();
+    int t = in.nextInt();
+    if (t == 2)
+        t = -1;
+    final int[] dx = { -1, 1, 0, 0 };
+    final int[] dy = { 0, 0, 1, -1 };
+    HashMap<Character, Integer> map = new HashMap<>();
+    map.put('L', 0);
+    map.put('R', 1);
+    map.put('U', 2);
+    map.put('D', 3);
+    int x = 0;
+    int y = 0;
+    int q = 0;
+    for (int i = 0; i < s.length; i++) {
+        if (s[i] == '?') {
+            q++;
+            continue;
+        }
+        int dir = map.get(s[i]);
+        x += dx[dir];
+        y += dy[dir];
+    }
+    for (int i = 0; i < q; i++) {
+        int max = -Integer.MAX_VALUE;
+        int maxID = 0;
+        for (int j = 0; j < 4; j++) {
+            if (max < t * (Math.abs(x + dx[j]) + Math.abs(y + dy[j]))) {
+                max = t * (Math.abs(x + dx[j]) + Math.abs(y + dy[j]));
+                maxID = j;
+            }
+        }
+        x += dx[maxID];
+        y += dy[maxID];
+    }
+    System.out.println(Math.abs(x) + Math.abs(y));
+}

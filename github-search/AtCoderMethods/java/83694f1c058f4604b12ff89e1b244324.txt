@@ -1,0 +1,14 @@
+public static void main(String[] args) throws IOException {
+    FastScanner fs = new FastScanner();
+    String moji = fs.next();
+    String a = moji.substring(0, moji.length() - 2);
+    int i = (a.length() % 2 == 0) ? 0 : 1;
+    String str, str1;
+    for (; i < a.length(); i += 2) {
+        str = a.substring(0, (a.length() - i) / 2);
+        str1 = a.substring((a.length() - i) / 2, a.length() - i);
+        if (str.equals(str1))
+            break;
+    }
+    System.out.println(a.length() - i);
+}

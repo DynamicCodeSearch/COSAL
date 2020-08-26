@@ -1,0 +1,13 @@
+public static void dfs(int u, int d, int col) {
+    for (int v : adjList.get(u)) {
+        if (vis[v])
+            continue;
+        vis[v] = true;
+        if (col == 0) {
+            dist1[v] = d + 1;
+        } else {
+            dist2[v] = d + 1;
+        }
+        dfs(v, d + 1, col);
+    }
+}

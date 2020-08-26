@@ -1,0 +1,76 @@
+private static void solve() {
+    int n = sc.nextInt();
+    int[] x = new int[n];
+    for (int i = 0; i < n; i++) {
+        x[i] = sc.nextInt();
+    }
+    int l = sc.nextInt();
+    int[][] db = new int[31][n];
+    int[][] dbr = new int[31][n];
+    for (int i = 0; i < n; i++) {
+        int ll = i;
+        int rr = n;
+        while (rr - ll > 1) {
+            int mid = ll + (rr - ll) / 2;
+            if (x[mid] - x[i] <= l) {
+                ll = mid;
+            } else {
+                rr = mid;
+            }
+        }
+        db[0][i] = ll;
+    }
+    for (int i = 0; i < n; i++) {
+        int ll = -1;
+        int rr = i;
+        while (rr - ll > 1) {
+            int mid = ll + (rr - ll) / 2;
+            if (x[i] - x[mid] <= l) {
+                rr = mid;
+            } else {
+                ll = mid;
+            }
+        }
+        dbr[0][i] = rr;
+    }
+    for (int j = 1; j < 31; j++) {
+        for (int i = 0; i < n; i++) {
+            db[j][i] = db[j - 1][db[j - 1][i]];
+        }
+        for (int i = n - 1; i >= 0; i--) {
+            dbr[j][i] = dbr[j - 1][dbr[j - 1][i]];
+        }
+    }
+    int q = sc.nextInt();
+    int[] a = new int[q];
+    int[] b = new int[q];
+    for (int i = 0; i < q; i++) {
+        a[i] = sc.nextInt() - 1;
+        b[i] = sc.nextInt() - 1;
+        int cnt = 0;
+        if (b[i] > a[i]) {
+            int now = a[i];
+            while (now < b[i]) {
+                for (int j = 1; j < 31; j++) {
+                    if (db[j][now] >= b[i]) {
+                        cnt += 0x1 << (j - 1);
+                        now = db[j - 1][now];
+                        break;
+                    }
+                }
+            }
+        } else {
+            int now = a[i];
+            while (now > b[i]) {
+                for (int j = 1; j < 31; j++) {
+                    if (dbr[j][now] <= b[i]) {
+                        cnt += 0x1 << (j - 1);
+                        now = dbr[j - 1][now];
+                        break;
+                    }
+                }
+            }
+        }
+        pr.println(cnt);
+    }
+}

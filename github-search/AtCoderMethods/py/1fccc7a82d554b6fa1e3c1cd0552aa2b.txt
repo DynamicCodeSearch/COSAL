@@ -1,0 +1,21 @@
+def main():
+    line = sys.stdin.readline()
+    n = int(line)
+    line = sys.stdin.readline()
+    lst = line.split()
+    a_lst = [int(a) for a in lst]
+    length = len(a_lst)
+
+    sunuke_sum = a_lst[0]
+    arai_sum = sum(a_lst[1:])
+    min_score = abs(sunuke_sum - arai_sum)
+
+    for k in range(1,length-1):
+        sunuke_sum += a_lst[k]
+        arai_sum -= a_lst[k]
+        score = abs(sunuke_sum - arai_sum)
+        if score < min_score:
+            min_score = score
+
+    print(min_score)
+    return 0

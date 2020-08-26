@@ -1,0 +1,43 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    PrintWriter out = new PrintWriter(System.out);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    int R = sc.nextInt();
+    int[] r = new int[R];
+    for (int i = 0; i < R; i++) {
+        r[i] = sc.nextInt() - 1;
+    }
+    List<List<Edge>> edges = new ArrayList<>();
+    for (int i = 0; i < N; i++) {
+        edges.add(new ArrayList<>());
+    }
+    for (int i = 0; i < M; i++) {
+        int A = sc.nextInt() - 1;
+        int B = sc.nextInt() - 1;
+        int C = sc.nextInt();
+        edges.get(A).add(new Edge(A, B, C));
+        edges.get(B).add(new Edge(B, A, C));
+    }
+    int[][] dist = new int[R][R];
+    for (int i = 0; i < R; i++) {
+        int[] d = dijkstra(N, edges, r[i]);
+        for (int j = 0; j < R; j++) {
+            dist[i][j] = d[r[j]];
+        }
+    }
+    int[] way = new int[R];
+    for (int i = 0; i < R; i++) {
+        way[i] = i;
+    }
+    int min = INF;
+    do {
+        int total = 0;
+        for (int i = 1; i < R; i++) {
+            total += dist[way[i - 1]][way[i]];
+        }
+        min = Math.min(min, total);
+    } while (nextPermutation(way));
+    out.println(min);
+    out.flush();
+}

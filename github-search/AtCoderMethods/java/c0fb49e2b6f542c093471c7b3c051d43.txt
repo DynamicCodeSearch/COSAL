@@ -1,0 +1,59 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int r = scan.nextInt();
+    int c = scan.nextInt();
+    int sy = scan.nextInt() - 1;
+    int sx = scan.nextInt() - 1;
+    int gy = scan.nextInt() - 1;
+    int gx = scan.nextInt() - 1;
+    scan.nextLine();
+    char[][] map = new char[r][c];
+    int[][] result = new int[r][c];
+    int[][] q = new int[(r - 1) * (c - 1)][2];
+    int push = 0;
+    int pop = 0;
+    int y;
+    int x;
+    String line;
+    for (int i = 0; i < r; i++) {
+        line = scan.nextLine().trim();
+        for (int j = 0; j < c; j++) {
+            map[i][j] = line.charAt(j);
+            result[i][j] = -1;
+        }
+    }
+    result[sy][sx] = 0;
+    q[push][0] = sy;
+    q[push][1] = sx;
+    push++;
+    while (result[gy][gx] == -1) {
+        y = q[pop][0];
+        x = q[pop][1];
+        pop++;
+        if (map[y - 1][x] == '.' && result[y - 1][x] == -1) {
+            result[y - 1][x] = result[y][x] + 1;
+            q[push][0] = y - 1;
+            q[push][1] = x;
+            push++;
+        }
+        if (map[y][x + 1] == '.' && result[y][x + 1] == -1) {
+            result[y][x + 1] = result[y][x] + 1;
+            q[push][0] = y;
+            q[push][1] = x + 1;
+            push++;
+        }
+        if (map[y + 1][x] == '.' && result[y + 1][x] == -1) {
+            result[y + 1][x] = result[y][x] + 1;
+            q[push][0] = y + 1;
+            q[push][1] = x;
+            push++;
+        }
+        if (map[y][x - 1] == '.' && result[y][x - 1] == -1) {
+            result[y][x - 1] = result[y][x] + 1;
+            q[push][0] = y;
+            q[push][1] = x - 1;
+            push++;
+        }
+    }
+    System.out.println(result[gy][gx]);
+}

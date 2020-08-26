@@ -1,0 +1,15 @@
+void solve() throws IOException {
+    long A = nl();
+    long K = nl();
+    if (K == 0) {
+        out.println(2000000000000L - A);
+    } else {
+        long cnt = 0;
+        long tmp = A;
+        while (tmp < 2000000000000L) {
+            tmp = tmp * (K + 1) + 1;
+            cnt++;
+        }
+        out.println(cnt);
+    }
+}

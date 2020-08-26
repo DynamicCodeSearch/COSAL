@@ -1,0 +1,25 @@
+public static long[] dijkstra(Graph graph, int start) {
+    int n = graph.size();
+    long[] distance = new long[n];
+    boolean[] visited = new boolean[n];
+    for (int i = 0; i < n; i++) {
+        distance[i] = Integer.MAX_VALUE;
+    }
+    PriorityQueue<Graph.Path> queue = new PriorityQueue<>();
+    distance[start] = 0;
+    queue.add(new Graph.Path(start, start, 0));
+    while (queue.size() > 0) {
+        Graph.Path minPath = queue.poll();
+        visited[minPath.to] = true;
+        for (Graph.Path edge : graph.get(minPath.to)) {
+            if (!visited[edge.to]) {
+                long newCost = edge.cost + minPath.cost;
+                if (newCost < distance[edge.to]) {
+                    queue.add(new Graph.Path(start, edge.to, newCost));
+                    distance[edge.to] = newCost;
+                }
+            }
+        }
+    }
+    return distance;
+}

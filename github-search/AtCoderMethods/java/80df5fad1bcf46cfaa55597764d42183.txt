@@ -1,0 +1,41 @@
+public static void main(String[] args) {
+    String s = next(), t = next();
+    int[] sa = new int[s.length()];
+    int[] ta = new int[t.length()];
+    int prev = 0;
+    for (int i = 0; i < s.length(); i++) {
+        if (s.charAt(i) == 'A')
+            sa[i] = prev + 1;
+        else
+            sa[i] = prev;
+        prev = sa[i];
+    }
+    
+    prev = 0;
+    for (int i = 0; i < t.length(); i++) {
+        if (t.charAt(i) == 'A')
+            ta[i] = prev + 1;
+        else
+            ta[i] = prev;
+        prev = ta[i];
+    }
+    int q = ni();
+    for (int i = 0; i < q; i++) {
+        int a = ni(), b = ni(), c = ni(), d = ni();
+        int sl = b - a + 1;
+        int tl = d - c + 1;
+        
+        int csa = (a == 1 ? sa[b - 1] : sa[b - 1] - sa[a - 2]);
+        
+        int cta = (c == 1 ? ta[d - 1] : ta[d - 1] - ta[c - 2]);
+        int csb = sl - csa;
+        int ctb = tl - cta;
+        int js = ((csb - csa) % 3 + 3) % 3;
+        int jt = ((ctb - cta) % 3 + 3) % 3;
+        if (js == jt)
+            pl("YES");
+        else
+            pl("NO");
+    }
+    flush();
+}

@@ -1,0 +1,19 @@
+def FindMaxCon(res, water, C, D, E):
+  c = 0
+  d = 0
+  tmpCon = 0
+  dp = list([False] * 3001)
+  dp[0] = True
+  for i in range(3001):
+    if(i - C >= 0 and i - D >= 0):
+      dp[i] = dp[i - C] or dp[i - D]
+    elif(i - C >= 0):
+      dp[i] = dp[i - C]
+    elif(i - D >= 0):
+      dp[i] = dp[i - D]
+  tmpSugar = 0
+  for i in range(min(res, int(E * water / 100)) + 1):
+    if(dp[i]):
+      tmpSugar = i
+  ans = tmpSugar
+  return ans

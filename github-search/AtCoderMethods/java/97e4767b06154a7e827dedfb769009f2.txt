@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = Integer.parseInt(sc.next());
+    long a = Long.parseLong(sc.next());
+    long b = Long.parseLong(sc.next());
+    long sum = 0;
+    long from = Long.parseLong(sc.next());
+    long to = Long.parseLong(sc.next());
+    sum += (a * (to - from) < b) ? a * (to - from) : b;
+    for (int i = 0; i < n - 2; i++) {
+        from = to;
+        to = Long.parseLong(sc.next());
+        sum += (a * (to - from) < b) ? a * (to - from) : b;
+    }
+    System.out.println(String.valueOf(sum));
+}

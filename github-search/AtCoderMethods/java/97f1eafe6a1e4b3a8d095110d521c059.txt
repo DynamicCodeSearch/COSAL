@@ -1,0 +1,18 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    StringBuilder sb = new StringBuilder();
+    String a = br.readLine();
+    int l = a.length();
+    Long s = Long.parseLong(a);
+    Long sum = 0l;
+    long[] cnt = { 1, 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048 };
+    for (int i = 0; i < l; i++) {
+        int pos = Integer.parseInt("" + a.charAt(i));
+        for (int j = l - i - 1; j > -1; j--) {
+            sum += pos * (long) Math.pow(10, j) * cnt[l - i - 1 - j];
+            cnt[l - i - 1 - j] *= 2;
+        }
+    }
+    sb.append(sum);
+    System.out.println(sb);
+}

@@ -1,0 +1,9 @@
+
+void update(int i, int x) {
+    i = n - 1 + i;
+    st[i] = x;
+    while (i > 0) {
+        i = (i - 1) / 2;
+        st[i] = Math.min(st[2 * i + 1], st[2 * i + 2]);
+    }
+}

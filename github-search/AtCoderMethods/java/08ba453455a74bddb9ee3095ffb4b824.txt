@@ -1,0 +1,20 @@
+void solve(FastScanner in, PrintWriter out) {
+    int N = in.nextInt();
+    int K = in.nextInt();
+    int mask = 0;
+    for (int i = 0; i < K; i++) {
+        int d = in.nextInt();
+        mask |= (1 << d);
+    }
+    outer: for (int i = N; ; i++) {
+        int x = i;
+        while (x > 0) {
+            int y = x - x / 10 * 10;
+            if (((1 << y) & mask) != 0)
+                continue outer;
+            x /= 10;
+        }
+        out.println(i);
+        return;
+    }
+}

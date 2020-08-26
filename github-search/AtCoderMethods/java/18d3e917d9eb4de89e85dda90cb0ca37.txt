@@ -1,0 +1,78 @@
+public static void main(String[] args) {
+    Scanner as = new Scanner(System.in);
+    String a = as.next();
+    boolean b = true;
+    try {
+        for (int i = 0; i < a.length(); i++) {
+            if (b) {
+                if (String.valueOf(a.charAt(i)).equals("d")) {
+                    i++;
+                    if (String.valueOf(a.charAt(i)).equals("r")) {
+                        i++;
+                        if (String.valueOf(a.charAt(i)).equals("e")) {
+                            i++;
+                            if (String.valueOf(a.charAt(i)).equals("a")) {
+                                i++;
+                                if (String.valueOf(a.charAt(i)).equals("m")) {
+                                    if (i + 1 < a.length() && String.valueOf(a.charAt(i + 1)).equals("e") && String.valueOf(a.charAt(i + 2)).equals("r")) {
+                                        if (i + 3 < a.length() && (String.valueOf(a.charAt(i + 3)).equals("d") || String.valueOf(a.charAt(i + 3)).equals("e"))) {
+                                            i += 2;
+                                        } else if (i + 3 < a.length() && String.valueOf(a.charAt(i + 3)).equals("a")) {
+                                        } else if (i + 3 >= a.length()) {
+                                            i += 3;
+                                        }
+                                    } else if (i + 1 >= a.length()) {
+                                    }
+                                } else {
+                                    b = false;
+                                }
+                            } else {
+                                b = false;
+                            }
+                        } else {
+                            b = false;
+                        }
+                    } else {
+                        b = false;
+                    }
+                } else if (String.valueOf(a.charAt(i)).equals("e")) {
+                    i++;
+                    if (String.valueOf(a.charAt(i)).equals("r")) {
+                        i++;
+                        if (String.valueOf(a.charAt(i)).equals("a")) {
+                            i++;
+                            if (String.valueOf(a.charAt(i)).equals("s")) {
+                                i++;
+                                if (String.valueOf(a.charAt(i)).equals("e")) {
+                                    if (i + 1 < a.length() && String.valueOf(a.charAt(i + 1)).equals("r")) {
+                                        i++;
+                                    } else if (i + 1 >= a.length()) {
+                                    }
+                                } else {
+                                    b = false;
+                                }
+                            } else {
+                                b = false;
+                            }
+                        } else {
+                            b = false;
+                        }
+                    } else {
+                        b = false;
+                    }
+                } else {
+                    b = false;
+                }
+            } else {
+                break;
+            }
+        }
+    } catch (Exception e) {
+        b = false;
+    }
+    if (b) {
+        System.out.println("YES");
+    } else {
+        System.out.println("NO");
+    }
+}

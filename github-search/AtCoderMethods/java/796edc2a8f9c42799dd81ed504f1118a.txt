@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    long X = sc.nextLong();
+    long Y = sc.nextLong();
+    long nowX = X;
+    long nowY = Y;
+    long sumX = X;
+    long sumY = Y;
+    while (nowX > 1 || nowY > 1) {
+        sumX += nowY / 2;
+        sumY += nowX / 2;
+        long nextY = nowY % 2 + nowX / 2;
+        long nextX = nowX % 2 + nowY / 2;
+        nowX = nextX;
+        nowY = nextY;
+    }
+    sumX /= 2;
+    sumY /= 2;
+    if ((sumX ^ sumY) == 0) {
+        System.out.println("Brown");
+    } else {
+        System.out.println("Alice");
+    }
+}

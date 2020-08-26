@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int min = Integer.MAX_VALUE;
+    for (int i = 1; i <= n; i++) {
+        int j = n / i;
+        int k = n % i;
+        int v = Math.abs(j - i) + k;
+        if (min > v) {
+            min = v;
+        }
+    }
+    System.out.println(min);
+}

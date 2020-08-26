@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    try {
+        Scanner sc = new Scanner(System.in);
+        int H = sc.nextInt();
+        int W = sc.nextInt();
+        String[] result = new String[H + 2];
+        for (int i = 0; i < H + 2; i++) {
+            if (i == 0 || i == H + 1) {
+                StringBuilder str = new StringBuilder();
+                for (int j = 0; j < W + 2; j++) {
+                    str.append("#");
+                }
+                result[i] = str.toString();
+            } else {
+                result[i] = "#" + sc.next() + "#";
+            }
+        }
+        for (int i = 0; i < H + 2; i++) {
+            System.out.println(result[i]);
+        }
+    } catch (Exception e) {
+        e.getMessage();
+    }
+}

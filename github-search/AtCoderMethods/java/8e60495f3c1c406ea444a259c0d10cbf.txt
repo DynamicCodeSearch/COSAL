@@ -1,0 +1,21 @@
+public boolean check() {
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            if (i + M - 1 >= N || j + M - 1 >= N)
+                continue;
+            boolean flag = true;
+            for (int x = 0; x < M; x++) {
+                for (int y = 0; y < M; y++) {
+                    if (a[i + x][j + y] != b[x][y]) {
+                        flag = false;
+                        x = y = M;
+                    }
+                }
+            }
+            if (flag) {
+                return true;
+            }
+        }
+    }
+    return false;
+}

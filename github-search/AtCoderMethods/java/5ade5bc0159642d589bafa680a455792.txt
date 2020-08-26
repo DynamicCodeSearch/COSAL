@@ -1,0 +1,23 @@
+private void solve(Scanner sc) {
+    int N = sc.nextInt();
+    String s = "abc";
+    int[] idx = new int[N];
+    do {
+        for (int i = 0; i < N; ++i) {
+            _out.print(s.charAt(idx[i]));
+        }
+        _out.println();
+        ++idx[N - 1];
+        if (idx[N - 1] >= s.length()) {
+            int cursor = N - 1;
+            while (idx[cursor] >= s.length()) {
+                if (cursor - 1 < 0) {
+                    break;
+                }
+                idx[cursor] = 0;
+                ++idx[cursor - 1];
+                --cursor;
+            }
+        }
+    } while (idx[0] < s.length());
+}

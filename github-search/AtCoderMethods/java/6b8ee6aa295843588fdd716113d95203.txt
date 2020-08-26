@@ -1,0 +1,18 @@
+public int lastle(int l, long v) {
+    int cur = H + l;
+    while (true) {
+        if (st[cur] <= v) {
+            if (cur < H) {
+                cur = 2 * cur + 1;
+            } else {
+                return cur - H;
+            }
+        } else {
+            if ((cur & cur - 1) == 0)
+                return -1;
+            cur--;
+            if ((cur & 1) == 1)
+                cur >>>= 1;
+        }
+    }
+}

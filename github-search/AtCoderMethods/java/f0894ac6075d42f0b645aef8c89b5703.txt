@@ -1,0 +1,25 @@
+public void calc() {
+    sb = new StringBuilder();
+    BufferedInputStream bs = new BufferedInputStream(System.in);
+    Scanner sc = new Scanner(bs);
+    String s = sc.next();
+    long ans = 0;
+    int[] nums = new int[26];
+    for (char c : s.toCharArray()) {
+        nums[c - 'a']++;
+    }
+    int d = 0;
+    int o = 0;
+    for (int i = 0; i < 26; i++) {
+        int n = nums[i];
+        d += n / 2;
+        o += n % 2;
+    }
+    if (o == 0) {
+        ans = s.length();
+    } else {
+        int t = d / o;
+        ans = t * 2 + 1;
+    }
+    System.out.println(ans);
+}

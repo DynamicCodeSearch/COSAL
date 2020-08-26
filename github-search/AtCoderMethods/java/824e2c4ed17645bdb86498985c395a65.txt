@@ -1,0 +1,36 @@
+void run() {
+    int N = sc.nextInt();
+    int Q = sc.nextInt();
+    double[] V = new double[20005];
+    for (int i = 0; i < N; i++) {
+        int X = sc.nextInt();
+        double R = sc.nextDouble();
+        double H = sc.nextDouble();
+        double v = R * R * Math.PI * H / 3;
+        double sumV = 0;
+        for (int j = X, k = 1; j <= X + H; j++, k++) {
+            double s = R * (H - k) / H * R * (H - k) / H * Math.PI * (H - k) / 3;
+            if (s < 0)
+                s = 0;
+            V[j] += v - s - sumV;
+            sumV += v - s - sumV;
+        }
+    }
+    double[] sum = new double[20005];
+    sum[0] = V[0];
+    for (int i = 1; i < V.length; i++) {
+        sum[i] = sum[i - 1] + V[i];
+    }
+    StringBuilder o = new StringBuilder();
+    while (Q-- > 0) {
+        int A = sc.nextInt();
+        int B = sc.nextInt();
+        if (A == B)
+            o.append(0 + "\n");
+        else if (A == 0)
+            o.append(sum[B - 1] + "\n");
+        else
+            o.append(sum[B - 1] - sum[A - 1] + "\n");
+    }
+    System.out.print(o);
+}

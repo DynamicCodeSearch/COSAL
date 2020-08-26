@@ -1,0 +1,5 @@
+def sieve(n):
+    s = [True] * n
+    for x in range(2, int(n**0.5) + 1):
+        if s[x]: mark(s, x)
+    return [i for i in range(0,n) if s[i] and i > 1]

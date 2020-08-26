@@ -1,0 +1,37 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int n = scanner.nextInt();
+    long[] a = new long[n];
+    for (int i = 0; i < n; i++) a[i] = scanner.nextLong();
+    long min = Long.MAX_VALUE, ans = 0, add = 0;
+    for (long i : a) min = Math.min(i, min);
+    for (int i = 0; i < n; i++) {
+        long times = (a[i] - min) / (n + 1);
+        add += times;
+        ans += times;
+        a[i] -= times * (n + 1);
+    }
+    for (int i = 0; i < n; i++) a[i] += add;
+    min += add;
+    long circles = min - n;
+    if (circles > 0) {
+        ans += circles * n;
+        for (int i = 0; i < n; i++) a[i] -= circles;
+    }
+    while (true) {
+        long max = 0;
+        int maxId = 0;
+        for (int i = 0; i < n; i++) if (a[i] > max) {
+            max = a[i];
+            maxId = i;
+        }
+        if (max < n) {
+            System.out.println(ans);
+            break;
+        }
+        for (int i = 0; i < n; i++) if (i != maxId)
+            a[i]++;
+        a[maxId] -= n;
+        ans++;
+    }
+}

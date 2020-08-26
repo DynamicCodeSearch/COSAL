@@ -1,0 +1,19 @@
+public static String recalTo(List<String> LA, List<String> LB) {
+    
+    List<String> AA = LA;
+    int index = 0;
+    while (true) {
+        if (AA.isEmpty()) {
+            break;
+        }
+        if (matchList(LA, LB, index)) {
+            return "Yes";
+        }
+        index++;
+        if (LA.get(0).length() <= index) {
+            LA.remove(0);
+            index = 0;
+        }
+    }
+    return "No";
+}

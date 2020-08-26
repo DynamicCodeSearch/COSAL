@@ -1,0 +1,68 @@
+public static int[] decompose(ArrayList<ArrayList<Integer>> G) {
+    ArrayList<Integer> vs = new ArrayList<>();
+    int V = G.size();
+    int[] cmp = new int[V];
+    ArrayList<ArrayList<Integer>> rG = new ArrayList<>(V);
+    for (int i = 0; i < V; i++) {
+        rG.add(new ArrayList<>());
+    }
+    for (int i = 0; i < V; i++) {
+        for (int v : G.get(i)) {
+            rG.get(v).add(i);
+        }
+    }
+    boolean[] used = new boolean[V];
+    ArrayDeque<Integer> stack = new ArrayDeque<>();
+    boolean[] added = new boolean[V];
+    for (int i = 0; i < V; i++) {
+        if (!used[i]) {
+            stack.addFirst(i);
+            while (!stack.isEmpty()) {
+                int v = stack.peekFirst();
+                used[v] = true;
+                boolean pushed = false;
+                for (int j = G.get(v).size() - 1; j >= 0; j--) {
+                    int u = G.get(v).get(j);
+                    if (!used[u]) {
+                        stack.addFirst(u);
+                        pushed = true;
+                    }
+                }
+                if (!pushed) {
+                    stack.pollFirst();
+                    if (!added[v]) {
+                        vs.add(v);
+                        added[v] = true;
+                    }
+                }
+            }
+        }
+    }
+    Arrays.fill(used, false);
+    int k = 0;
+    Collections.reverse(vs);
+    for (int i : vs) {
+        if (!used[i]) {
+            stack.push(i);
+            used[i] = true;
+            cmp[i] = k;
+            while (!stack.isEmpty()) {
+                int v = stack.peek();
+                boolean pushed = false;
+                for (int u : rG.get(v)) {
+                    if (!used[u]) {
+                        used[u] = true;
+                        cmp[u] = k;
+                        stack.push(u);
+                        pushed = true;
+                    }
+                }
+                if (!pushed) {
+                    stack.pop();
+                }
+            }
+            k++;
+        }
+    }
+    return cmp;
+}

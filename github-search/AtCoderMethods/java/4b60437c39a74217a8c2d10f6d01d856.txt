@@ -1,0 +1,10 @@
+public static void main(String[] args) {
+    final int n = s.nextInt(), min = s.nextInt(), max = s.nextInt();
+    int x = 0;
+    for (int i = 0; i < n; i++) {
+        int buf = s.next().equals("East") ? 1 : -1;
+        buf *= Math.min(max, Math.max(min, s.nextInt()));
+        x += buf;
+    }
+    System.out.println(x == 0 ? 0 : x > 0 ? "East " + x : "West " + -x);
+}

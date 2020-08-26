@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    long a = scanner.nextLong();
+    long b = scanner.nextLong();
+    long maxA = 1;
+    long maxB = 1;
+    for (int i = 1; i <= a; i++) {
+        maxA *= i;
+        maxA %= (Math.pow(10, 9) + 7);
+    }
+    for (int i = 1; i <= b; i++) {
+        maxB *= i;
+        maxB %= (Math.pow(10, 9) + 7);
+    }
+    if (a == b) {
+        long result = ((maxA * maxB * 2) % (1000000007));
+        System.out.println(result);
+    } else if (a + 1 == b || b + 1 == a) {
+        long result = ((maxA * maxB) % (1000000007));
+        System.out.println(result);
+    } else {
+        System.out.println("0");
+    }
+    scanner.close();
+}

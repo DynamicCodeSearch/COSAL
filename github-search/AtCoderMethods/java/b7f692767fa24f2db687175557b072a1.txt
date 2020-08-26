@@ -1,0 +1,29 @@
+private static void mergeParts(int[] array, int lowerIndex, int middle, int higherIndex) {
+    int[] temp = new int[higherIndex - lowerIndex + 1];
+    for (int i = lowerIndex; i <= higherIndex; i++) {
+        temp[i - lowerIndex] = array[i];
+    }
+    int i = lowerIndex;
+    int j = middle + 1;
+    int k = lowerIndex;
+    while (i <= middle && j <= higherIndex) {
+        if (temp[i - lowerIndex] < temp[j - lowerIndex]) {
+            array[k] = temp[i - lowerIndex];
+            i++;
+        } else {
+            array[k] = temp[j - lowerIndex];
+            j++;
+        }
+        k++;
+    }
+    while (i <= middle) {
+        array[k] = temp[i - lowerIndex];
+        k++;
+        i++;
+    }
+    while (j <= higherIndex) {
+        array[k] = temp[j - lowerIndex];
+        k++;
+        j++;
+    }
+}

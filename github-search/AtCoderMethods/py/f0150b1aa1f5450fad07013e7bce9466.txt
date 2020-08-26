@@ -1,0 +1,13 @@
+def min_value_can_pay(n, d):
+    ints_can_be_used = think_ints_can_be_used(d)
+    queue = []
+    for i in ints_can_be_used:
+        queue.append(i)
+    while len(queue) > 0:
+        j = queue.pop(0)
+        if j >= n:
+            return j
+        if j == 0:
+            continue
+        for i in ints_can_be_used:
+            queue.append(j * 10 + i)

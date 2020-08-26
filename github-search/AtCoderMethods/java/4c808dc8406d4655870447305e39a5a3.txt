@@ -1,0 +1,42 @@
+public void solve(int testNumber, Scanner in, PrintWriter out) {
+    char[] c = in.next().toCharArray();
+    int n = c.length;
+    int len = 1;
+    int[] st = new int[n + 1];
+    st[0] = n;
+    boolean[] u = new boolean[26];
+    int left = 26;
+    int[][] first = new int[26][n + 1];
+    for (int j = 0; j < 26; j++) {
+        first[j][n] = n;
+    }
+    for (int i = n - 1; i >= 0; i--) {
+        int v = c[i] - 'a';
+        if (!u[v]) {
+            u[v] = true;
+            left--;
+        }
+        for (int j = 0; j < 26; j++) {
+            first[j][i] = first[j][i + 1];
+        }
+        first[v][i] = i;
+        if (left == 0) {
+            st[len] = i;
+            len++;
+            Arrays.fill(u, false);
+            left = 26;
+        }
+    }
+    StringBuilder ans = new StringBuilder();
+    int p = 0;
+    for (int i = len - 1; i >= 0; i--) {
+        for (int j = 0; j < 26; j++) {
+            if (first[j][p] >= st[i]) {
+                p = first[j][p] + 1;
+                ans.append((char) ('a' + j));
+                break;
+            }
+        }
+    }
+    out.println(ans);
+}

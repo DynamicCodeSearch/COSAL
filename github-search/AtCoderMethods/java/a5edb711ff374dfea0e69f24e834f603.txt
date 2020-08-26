@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int Q = sc.nextInt();
+    int[] l = new int[Q];
+    int[] r = new int[Q];
+    for (int i = 0; i < Q; i++) {
+        l[i] = sc.nextInt() - 1;
+        r[i] = sc.nextInt() - 1;
+    }
+    int[] koma = new int[N + 1];
+    for (int i = 0; i < N + 1; i++) koma[i] = 0;
+    for (int i = 0; i < Q; i++) {
+        koma[l[i]]++;
+        koma[r[i] + 1]--;
+    }
+    for (int i = 1; i < N; i++) koma[i] += koma[i - 1];
+    for (int i = 0; i < N; i++) {
+        if (koma[i] % 2 == 0) {
+            System.out.print(0);
+        } else {
+            System.out.print(1);
+        }
+    }
+    System.out.println();
+}

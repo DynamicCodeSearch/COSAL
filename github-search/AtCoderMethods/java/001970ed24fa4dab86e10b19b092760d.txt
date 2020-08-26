@@ -1,0 +1,42 @@
+public static void main(String[] args) {
+    Scanner scn = new Scanner(System.in);
+    int N = Integer.parseInt(scn.next());
+    int[] A = new int[N];
+    for (int i = 0; i < N; i++) {
+        A[i] = Integer.parseInt(scn.next());
+    }
+    Arrays.sort(A);
+    boolean flag = true;
+    if (N % 2 == 0) {
+        for (int i = 0; i < N / 2; i++) {
+            int tmp = i * 2 + 1;
+            if (!(A[i * 2] == tmp && A[i * 2 + 1] == tmp)) {
+                flag = false;
+                break;
+            }
+        }
+    } else {
+        if (A[0] != 0) {
+            flag = false;
+        }
+        if (flag) {
+            for (int i = 0; i < (N - 1) / 2; i++) {
+                int tmp = (i + 1) * 2;
+                if (!(A[i * 2 + 1] == tmp && A[i * 2 + 2] == tmp)) {
+                    flag = false;
+                    break;
+                }
+            }
+        }
+    }
+    if (flag) {
+        long res = 1;
+        long tmp = 1000000007;
+        for (int i = 0; i < N / 2; i++) {
+            res = (res * 2) % tmp;
+        }
+        System.out.println(res);
+    } else {
+        System.out.println(0);
+    }
+}

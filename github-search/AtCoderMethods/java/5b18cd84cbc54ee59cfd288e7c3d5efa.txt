@@ -1,0 +1,14 @@
+void dfs(int v, int lvl) {
+    if (lvl > 2)
+        return;
+    if (lvl == 2 && v == n - 1) {
+        flag = true;
+        return;
+    }
+    if (used[v])
+        return;
+    used[v] = true;
+    for (int i : g[v]) {
+        dfs(i, lvl + 1);
+    }
+}

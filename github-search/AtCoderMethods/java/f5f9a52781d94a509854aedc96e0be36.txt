@@ -1,0 +1,15 @@
+public void run() {
+    int n = ni();
+    long ts = 1;
+    long as = 1;
+    for (int i = 0; i < n; i++) {
+        long t = nl();
+        long a = nl();
+        long tm = (ts % t == 0) ? (ts / t) : (ts / t + 1);
+        long am = (as % a == 0) ? (as / a) : (as / a + 1);
+        long m = Math.max(tm, am);
+        ts = t * m;
+        as = a * m;
+    }
+    out.println(ts + as);
+}

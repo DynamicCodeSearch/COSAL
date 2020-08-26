@@ -1,0 +1,11 @@
+static double search(double[] x) {
+    double l = -100000, r = 100000;
+    for (int i = 0; i < 100; i++) {
+        if (f(x, (l * 2 + r) / 3) < f(x, (l + r * 2) / 3)) {
+            r = (l + r * 2) / 3;
+        } else {
+            l = (l * 2 + r) / 3;
+        }
+    }
+    return (l + r) / 2;
+}

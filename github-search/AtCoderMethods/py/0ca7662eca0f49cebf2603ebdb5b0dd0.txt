@@ -1,0 +1,6 @@
+def compute_sum(n, k, xs):
+    cs = CumulativeSum(xs)
+    answer = 0
+    for start_idx in range(n - k + 1):
+        answer += cs.partial_sum(start_idx, start_idx + k - 1)
+    return answer

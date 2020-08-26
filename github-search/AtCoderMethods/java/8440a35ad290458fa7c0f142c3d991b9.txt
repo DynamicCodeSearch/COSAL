@@ -1,0 +1,41 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    final int R = sc.nextInt();
+    final int C = sc.nextInt();
+    final int K = sc.nextInt();
+    int[][] field = new int[R][C];
+    for (int y = 0; y < R; y++) {
+        String r = sc.next();
+        for (int x = 0; x < C; x++) {
+            field[y][x] = r.charAt(x) == 'o' ? 1 : 0;
+        }
+    }
+    sc.close();
+    int[][] dp = new int[R][C];
+    for (int y = 0; y < R; y++) {
+        dp[y][0] = field[y][0];
+        for (int x = 1; x < C; x++) {
+            dp[y][x] = field[y][x] == 0 ? 0 : dp[y][x - 1] + 1;
+        }
+    }
+    int ans = 0;
+    for (int y = K - 1; y <= R - K; y++) {
+        for (int x = K - 1; x < C; x++) {
+            if (dp[y][x] >= K * 2 - 1) {
+                
+                int count = 1;
+                boolean can = true;
+                while (count < K) {
+                    if (dp[y - count][x - count] < (K - count) * 2 - 1 || dp[y + count][x - count] < (K - count) * 2 - 1) {
+                        can = false;
+                        break;
+                    }
+                    count++;
+                }
+                if (can)
+                    ans++;
+            }
+        }
+    }
+    System.out.println(ans);
+}

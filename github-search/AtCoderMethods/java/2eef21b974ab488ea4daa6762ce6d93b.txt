@@ -1,0 +1,42 @@
+public static void main(String[] args) {
+    Scanner s = new Scanner(System.in);
+    final int T = s.nextInt();
+    final int N = s.nextInt();
+    List<Integer> takoyakiSecs = new ArrayList<>();
+    for (int i = 0; i < N; i++) {
+        takoyakiSecs.add(s.nextInt());
+    }
+    final int M = s.nextInt();
+    if (N < M) {
+        System.out.println("no");
+        return;
+    }
+    List<Integer> okyakuSecs = new ArrayList<>();
+    for (int i = 0; i < M; i++) {
+        okyakuSecs.add(s.nextInt());
+    }
+    List<Integer> takoyakis = new ArrayList<>();
+    for (int sec = 0; sec <= 100 && !okyakuSecs.isEmpty(); sec++) {
+        while (!takoyakis.isEmpty() && takoyakis.get(0) == sec - 1 - T) {
+            takoyakis.remove(0);
+        }
+        while (!takoyakiSecs.isEmpty() && takoyakiSecs.get(0) == sec) {
+            takoyakis.add(sec);
+            takoyakiSecs.remove(0);
+        }
+        while (!okyakuSecs.isEmpty() && okyakuSecs.get(0) == sec) {
+            if (takoyakis.isEmpty()) {
+                System.out.println("no");
+                return;
+            } else {
+                okyakuSecs.remove(0);
+                takoyakis.remove(0);
+            }
+        }
+    }
+    if (okyakuSecs.isEmpty()) {
+        System.out.println("yes");
+    } else {
+        System.out.println("no");
+    }
+}

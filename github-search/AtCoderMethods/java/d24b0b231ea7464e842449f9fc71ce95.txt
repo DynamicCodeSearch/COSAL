@@ -1,0 +1,17 @@
+static void dijkstra(ArrayList<ArrayList<Edge>> e, long[] res) {
+    PriorityQueue<Edge> q = new PriorityQueue<Edge>();
+    q.add(new Edge(0, 0));
+    while (!q.isEmpty()) {
+        long costs = q.element().getCost();
+        int now = q.element().getPoint();
+        q.poll();
+        if (res[now] == INF)
+            res[now] = costs;
+        else
+            continue;
+        buf = e.get(now);
+        for (Edge next : buf) {
+            q.add(new Edge(next.getPoint(), next.getCost() + costs));
+        }
+    }
+}

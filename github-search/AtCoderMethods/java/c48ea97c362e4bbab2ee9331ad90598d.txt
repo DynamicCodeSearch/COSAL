@@ -1,0 +1,42 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int num = sc.nextInt();
+    Map<Integer, Integer> map = new TreeMap<>();
+    
+    for (int i = 0; i < num; i++) {
+        
+        String[] str = sc.next().split("-");
+        int beginTime = Integer.valueOf(str[0]) / 5 * 5;
+        int endTime = (int) Math.ceil(Integer.valueOf(str[1]) / 5.0) * 5;
+        if (String.valueOf(endTime).endsWith("60"))
+            endTime += 40;
+        
+        map.putIfAbsent(beginTime, endTime);
+        map.put(beginTime, Math.max(endTime, map.get(beginTime)));
+    }
+    
+    int beginTime = -1;
+    int endTime = -1;
+    for (Entry<Integer, Integer> e : map.entrySet()) {
+        int _beginTime = e.getKey();
+        int _endTime = e.getValue();
+        
+        if (beginTime < 0) {
+            beginTime = _beginTime;
+            endTime = _endTime;
+        } else 
+        if (_beginTime <= endTime) {
+            endTime = Math.max(_endTime, endTime);
+        } else 
+        {
+            System.out.printf("%04d-%04d%n", beginTime, endTime);
+            beginTime = _beginTime;
+            endTime = _endTime;
+        }
+    }
+    if (beginTime >= 0) {
+        System.out.printf("%04d-%04d%n", beginTime, endTime);
+    }
+    
+    sc.close();
+}

@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = Integer.parseInt(sc.nextLine());
+    String S = sc.nextLine();
+    sc.close();
+    if (N % 2 == 0 || S.charAt(N / 2) != 'b') {
+        System.out.println(-1);
+        return;
+    }
+    char[] moji = S.toCharArray();
+    Set<Character> abc = new HashSet<>(Arrays.asList('a', 'b', 'c'));
+    if (!abc.contains(moji[0])) {
+        System.out.println(-1);
+        return;
+    }
+    for (int i = 0; i < N - 1; i++) {
+        char now = moji[i];
+        char next = moji[i + 1];
+        int nowint = now - 'a';
+        int nextint = next - 'a';
+        if (!abc.contains(next) || nextint != (nowint + 1) % 3) {
+            System.out.println(-1);
+            return;
+        }
+    }
+    System.out.println((N - 1) / 2);
+}

@@ -1,0 +1,16 @@
+long pow(long n, int k) {
+    if (k == 0) {
+        return 1;
+    }
+    if (k % 2 == 0) {
+        long t = pow(n, k / 2);
+        t %= MOD;
+        return t * t % MOD;
+    } else {
+        long t = pow(n, (k - 1) / 2);
+        t %= MOD;
+        t *= t;
+        t %= MOD;
+        return t * n % MOD;
+    }
+}

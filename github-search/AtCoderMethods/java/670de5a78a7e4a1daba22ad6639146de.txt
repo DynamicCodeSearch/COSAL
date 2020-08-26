@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    FS r = new FS();
+    int N = r.nextInt();
+    long[] T = new long[N];
+    long[] A = new long[N];
+    for (int i = 0; i < N; i++) {
+        T[i] = r.nextLong();
+        A[i] = r.nextLong();
+    }
+    for (int i = 1; i < N; i++) {
+        if (T[i - 1] <= T[i] && A[i - 1] <= A[i]) {
+            continue;
+        }
+        Long rate = Math.max(T[i - 1] / T[i], A[i - 1] / A[i]);
+        if (T[i - 1] > T[i] * rate || A[i - 1] > A[i] * rate)
+            rate++;
+        T[i] = T[i] * rate;
+        A[i] = A[i] * rate;
+    }
+    System.out.println(T[N - 1] + A[N - 1]);
+}

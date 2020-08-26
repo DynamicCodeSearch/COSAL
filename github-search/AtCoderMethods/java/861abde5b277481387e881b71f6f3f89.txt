@@ -1,0 +1,41 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    PrintWriter pw = new PrintWriter(System.out);
+    int N = sc.nextInt();
+    int[] x = new int[N];
+    for (int i = 0; i < N; i++) x[i] = sc.nextInt();
+    int L = sc.nextInt();
+    int Q = sc.nextInt();
+    final int G = 18;
+    int[][] m = new int[G][N];
+    for (int i = 0; i < N; i++) {
+        int idx = Arrays.binarySearch(x, x[i] + L);
+        if (idx < 0)
+            idx = -idx - 2;
+        m[0][i] = idx;
+    }
+    for (int i = 1; i < G; i++) {
+        for (int j = 0; j < N; j++) {
+            m[i][j] = m[i - 1][m[i - 1][j]];
+        }
+    }
+    for (int i = 0; i < Q; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        if (a > b) {
+            int temp = a;
+            a = b;
+            b = temp;
+        }
+        int ans = 0;
+        for (int j = G - 1; j >= 0; j--) {
+            if (m[j][a] < b) {
+                ans |= 1 << j;
+                a = m[j][a];
+            }
+        }
+        pw.println(ans + 1);
+    }
+    sc.close();
+    pw.close();
+}

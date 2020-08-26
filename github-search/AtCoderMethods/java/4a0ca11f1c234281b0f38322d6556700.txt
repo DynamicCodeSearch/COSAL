@@ -1,0 +1,18 @@
+private List<Integer> getPrimes(int givenLimit) {
+    List<Integer> primeList = new ArrayList<>();
+    int[] flagAt = new int[givenLimit + 1];
+    Arrays.fill(flagAt, 1);
+    flagAt[0] = flagAt[1] = 0;
+    for (int from = 2; from * from <= givenLimit; from++) {
+        if (flagAt[from] == 1) {
+            for (int j = 2 * from; j <= givenLimit; j += from) {
+                flagAt[j] = 0;
+            }
+        }
+    }
+    for (int from = 0; from <= givenLimit; from++) {
+        if (flagAt[from] == 1)
+            primeList.add(from);
+    }
+    return primeList;
+}

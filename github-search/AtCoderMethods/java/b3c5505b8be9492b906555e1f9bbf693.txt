@@ -1,0 +1,36 @@
+private Node<E> erase(Node<E> x, E value) {
+    if (x == null) {
+        return x;
+    }
+    int cmp = comparator.compare(value, x.value);
+    if (cmp < 0) {
+        x.left = erase(x.left, value);
+        Node.update(x);
+        return x;
+    } else if (cmp > 0) {
+        x.right = erase(x.right, value);
+        Node.update(x);
+        return x;
+    } else {
+        if (x.left == null || x.right == null) {
+            modCount++;
+            if (x.left == null) {
+                return x.right;
+            } else {
+                return x.left;
+            }
+        } else {
+            if (x.left.priority < x.right.priority) {
+                x = rotateRight(x);
+                x.right = erase(x.right, value);
+                Node.update(x);
+                return x;
+            } else {
+                x = rotateLeft(x);
+                x.left = erase(x.left, value);
+                Node.update(x);
+                return x;
+            }
+        }
+    }
+}

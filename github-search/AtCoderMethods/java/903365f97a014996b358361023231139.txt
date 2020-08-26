@@ -1,0 +1,31 @@
+public static void main(String[] args) throws IOException {
+    final Scanner sc = new Scanner(System.in);
+    final int N = sc.nextInt();
+    Bar[] bars = new Bar[N];
+    for (int i = 0; i < N; i++) {
+        final int w = sc.nextInt();
+        final int h = sc.nextInt();
+        bars[i] = new Bar(w, h);
+    }
+    Arrays.sort(bars);
+    MaxSegmentTree segtree = new MaxSegmentTree(100001);
+    LinkedList<Integer> same_queue = new LinkedList<Integer>();
+    for (int i = 0; i < N; i++) {
+        if (i != 0 && bars[i].w != bars[i - 1].w) {
+            while (!same_queue.isEmpty()) {
+                final int h_key = same_queue.poll();
+                final int h_val = same_queue.poll();
+                segtree.update(h_key, h_val);
+            }
+        }
+        same_queue.add(bars[i].h);
+        same_queue.add(segtree.query(0, bars[i].h) + 1);
+    }
+    while (!same_queue.isEmpty()) {
+        final int h_key = same_queue.poll();
+        final int h_val = same_queue.poll();
+        segtree.update(h_key, h_val);
+    }
+    final int answer = segtree.query(0, 1000001);
+    System.out.println(answer);
+}

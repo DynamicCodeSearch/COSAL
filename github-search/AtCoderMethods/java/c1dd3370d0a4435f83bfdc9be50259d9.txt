@@ -1,0 +1,22 @@
+static void shortestPaths(List<Edge>[] edges, int s, int[] prio, int[] pred) {
+    Arrays.fill(pred, -1);
+    Arrays.fill(prio, Integer.MAX_VALUE);
+    prio[s] = 0;
+    PriorityQueue<Long> q = new PriorityQueue<>();
+    q.add((long) s);
+    while (!q.isEmpty()) {
+        long cur = q.remove();
+        int curu = (int) cur;
+        if (cur >>> 32 != prio[curu])
+            continue;
+        for (Edge e : edges[curu]) {
+            int v = e.t;
+            int nprio = prio[curu] + e.cost;
+            if (prio[v] > nprio) {
+                prio[v] = nprio;
+                pred[v] = curu;
+                q.add(((long) nprio << 32) + v);
+            }
+        }
+    }
+}

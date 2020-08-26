@@ -1,0 +1,64 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] rain = new int[60 * 24];
+    for (int i = 0; i < N; i++) {
+        String s = sc.next();
+        String[] r = s.split("-");
+        String starth = r[0].substring(0, 2);
+        String startm = r[0].substring(2, 4);
+        String endh = r[1].substring(0, 2);
+        String endm = r[1].substring(2, 4);
+        int start = 60 * Integer.parseInt(starth) + Integer.parseInt(startm);
+        int end = 60 * Integer.parseInt(endh) + Integer.parseInt(endm);
+        for (int j = 0; j < 5; j++) {
+            if ((start - j) % 5 == 0) {
+                rain[start - j]++;
+                break;
+            }
+        }
+        for (int j = 0; j < 5; j++) {
+            if ((end + j) % 5 == 0) {
+                if (end + j < 60 * 24)
+                    rain[end + j]--;
+                break;
+            }
+        }
+    }
+    ArrayList<Integer> startList = new ArrayList<Integer>();
+    ArrayList<Integer> endList = new ArrayList<Integer>();
+    if (rain[0] > 0)
+        startList.add(0);
+    for (int i = 1; i < 60 * 24; i++) {
+        rain[i] += rain[i - 1];
+        if (rain[i - 1] == 0 && rain[i] > 0)
+            startList.add(i);
+    }
+    for (int i = 0; i < 60 * 24 - 1; i++) {
+        if (rain[i] > 0 && rain[i + 1] == 0)
+            endList.add(i + 1);
+    }
+    if (rain[60 * 24 - 1] > 0)
+        endList.add(60 * 24);
+    for (int i = 0; i < startList.size(); i++) {
+        int h = startList.get(i) / 60;
+        int m = startList.get(i) - 60 * h;
+        String hstr = String.valueOf(h);
+        if (h < 10)
+            hstr = "0" + hstr;
+        String mstr = String.valueOf(m);
+        if (m < 10)
+            mstr = "0" + mstr;
+        String startstr = hstr + mstr;
+        h = endList.get(i) / 60;
+        m = endList.get(i) - 60 * h;
+        hstr = String.valueOf(h);
+        if (h < 10)
+            hstr = "0" + hstr;
+        mstr = String.valueOf(m);
+        if (m < 10)
+            mstr = "0" + mstr;
+        String endstr = hstr + mstr;
+        System.out.println(startstr + "-" + endstr);
+    }
+}

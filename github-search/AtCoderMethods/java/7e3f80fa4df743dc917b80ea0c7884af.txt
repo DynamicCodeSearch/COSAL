@@ -1,0 +1,16 @@
+void play(int node, int parent) {
+    for (int x : g[node]) {
+        if (x != parent) {
+            if (dist1[x] <= distN[x]) {
+                
+                mark[x] = 0;
+                f++;
+            } else {
+                mark[x] = 1;
+                
+                snuke++;
+            }
+            play(x, node);
+        }
+    }
+}

@@ -1,0 +1,26 @@
+private static void solve() {
+    int n = sc.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = sc.nextInt();
+    }
+    Deque<Integer> b = new ArrayDeque<>(n);
+    for (int i = 0; i < n; i++) {
+        if (i % 2 == 0) {
+            b.addLast(a[i]);
+        } else {
+            b.addFirst(a[i]);
+        }
+    }
+    List<Integer> ans = new ArrayList<>(b);
+    if (n % 2 == 1) {
+        Collections.reverse(ans);
+    }
+    for (int i = 0; i < n; i++) {
+        if (i > 0) {
+            pr.print(' ');
+        }
+        pr.print(ans.get(i));
+    }
+    pr.println();
+}

@@ -1,0 +1,8 @@
+static void dfs(int v, int p) {
+    par[v] = p;
+    for (int c : tree[v]) {
+        if (c != p) {
+            dfs(c, v);
+        }
+    }
+}

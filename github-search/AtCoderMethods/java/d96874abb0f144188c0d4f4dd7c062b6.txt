@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner stdIn = new Scanner(System.in);
+    String X = stdIn.nextLine();
+    String[] str = X.split(" ");
+    int N = Integer.parseInt(str[0]);
+    int T = Integer.parseInt(str[1]);
+    int[] A = new int[N];
+    for (int j = 0; j < N; j++) {
+        A[j] = stdIn.nextInt();
+    }
+    int sum = 0;
+    for (int i = 0; i < N; i++) {
+        if (i == 0) {
+            sum += T;
+        } else if ((A[i] - A[i - 1]) >= T) {
+            sum += T;
+        } else {
+            sum += (A[i] - A[i - 1]);
+        }
+    }
+    System.out.println(sum);
+}

@@ -1,0 +1,15 @@
+def main():
+    T = int(input())
+    N = int(input())
+    As = list(map(int, input().split()))
+    M = int(input())
+    Bs = list(map(int, input().split()))
+    bsIndex = 0
+
+    for A in As:
+        if Bs[bsIndex] - A <= T and Bs[bsIndex] >= A:
+            bsIndex += 1
+            if bsIndex == len(Bs):
+                break
+
+    print('yes' if bsIndex == len(Bs) else 'no')

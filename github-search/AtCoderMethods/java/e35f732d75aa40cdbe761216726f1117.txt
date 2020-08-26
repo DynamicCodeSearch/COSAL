@@ -1,0 +1,11 @@
+static void solver() {
+    Scanner sc = new Scanner(System.in);
+    double A = sc.nextDouble();
+    double K = sc.nextDouble();
+    if (K == 0) {
+        System.out.println((long) (BOUND - A));
+        return;
+    }
+    double i = Math.log((BOUND + 1 / K) / (A + 1 / K)) / Math.log(K + 1);
+    System.out.println((int) Math.ceil(i));
+}

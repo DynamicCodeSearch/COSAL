@@ -1,0 +1,13 @@
+String next() {
+    try {
+        StringBuilder res = new StringBuilder("");
+        int c = System.in.read();
+        while (Character.isWhitespace(c)) c = System.in.read();
+        do {
+            res.append((char) c);
+        } while (!Character.isWhitespace(c = System.in.read()));
+        return res.toString();
+    } catch (Exception e) {
+        return null;
+    }
+}

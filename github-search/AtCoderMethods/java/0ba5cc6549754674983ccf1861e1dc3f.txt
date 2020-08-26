@@ -1,0 +1,34 @@
+public void solve() {
+    int N = in.nextInt(), Ma = in.nextInt(), Mb = in.nextInt();
+    int[] a = new int[N];
+    int[] b = new int[N];
+    int[] c = new int[N];
+    int sumA = 0, sumB = 0;
+    for (int i = 0; i < N; i++) {
+        a[i] = in.nextInt();
+        b[i] = in.nextInt();
+        c[i] = in.nextInt();
+        sumA += a[i];
+        sumB += b[i];
+    }
+    int[][] dp = new int[sumA + 1][sumB + 1];
+    for (int i = 0; i < dp.length; i++) {
+        Arrays.fill(dp[i], 1 << 25);
+    }
+    dp[0][0] = 0;
+    for (int i = 0; i < N; i++) {
+        for (int aa = sumA - 1; aa >= 0; aa--) {
+            for (int bb = sumB - 1; bb >= 0; bb--) {
+                if (aa + a[i] <= sumA && bb + b[i] <= sumB)
+                    dp[aa + a[i]][bb + b[i]] = Math.min(dp[aa + a[i]][bb + b[i]], dp[aa][bb] + c[i]);
+            }
+        }
+    }
+    long res = 1 << 25;
+    for (int i = 1; i < Math.max(sumA, sumB) + 10; i++) {
+        int ma = Ma * i, mb = Mb * i;
+        if (ma <= sumA && mb <= sumB)
+            res = Math.min(res, dp[ma][mb]);
+    }
+    System.out.println(res == 1 << 25 ? -1 : res);
+}

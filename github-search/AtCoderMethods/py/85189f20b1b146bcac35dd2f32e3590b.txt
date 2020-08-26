@@ -1,0 +1,26 @@
+def main():
+    H, W = map(int, input().split())
+    N = int(input())
+    A = tuple(map(int, input().split()))
+
+    m = [[0 for i in range(W)] for j in range(H)]
+    a = []
+    j = 1
+    for i in A:
+        for _ in range(i):
+            a.append(j)
+        j += 1
+
+    i = 0
+    for h in range(H):
+        for w in range(W):
+            m[h][w] = a[i]
+            i += 1
+
+    flag = 1
+    for c in m:
+        if flag == -1:
+            print(*c[::-1])
+        else:
+            print(*c)
+        flag *= -1

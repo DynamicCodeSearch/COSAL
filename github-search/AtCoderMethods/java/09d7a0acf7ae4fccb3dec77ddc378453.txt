@@ -1,0 +1,8 @@
+static long[] fact(int n, long mod) {
+    long[] fact = new long[n + 1];
+    fact[0] = fact[1] = 1;
+    for (int i = 2; i <= n; i++) {
+        fact[i] = fact[i - 1] * i % mod;
+    }
+    return fact;
+}

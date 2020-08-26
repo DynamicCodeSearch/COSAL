@@ -1,0 +1,19 @@
+static boolean isPuttable(int y, int x, char[][] ans) {
+    for (int i = -1; i <= 1; i++) {
+        for (int j = -1; j <= 1; j++) {
+            if (i == 0 && j == 0)
+                continue;
+            int total1 = y;
+            int total2 = x;
+            while (true) {
+                total1 += i;
+                total2 += j;
+                if (total1 < 0 || total2 < 0 || total1 >= 8 || total2 >= 8)
+                    break;
+                if (ans[total1][total2] == 'Q')
+                    return false;
+            }
+        }
+    }
+    return true;
+}

@@ -1,0 +1,11 @@
+void solve() {
+    int N = sc.nextInt();
+    int K = sc.nextInt();
+    boolean[] ng = new boolean[10];
+    for (int i = 0; i < K; i++) {
+        ng[sc.nextInt()] = true;
+    }
+    int ans = N;
+    while (!check(ans, ng)) ++ans;
+    out.println(ans);
+}

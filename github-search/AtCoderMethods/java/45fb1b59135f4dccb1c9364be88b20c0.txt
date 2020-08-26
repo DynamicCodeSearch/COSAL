@@ -1,0 +1,30 @@
+public static void main(String[] args) throws Exception {
+    Scanner scan = new Scanner(System.in);
+    int A = scan.nextInt();
+    int B = scan.nextInt();
+    int C = scan.nextInt();
+    if (A == 1) {
+        System.out.println("YES");
+        return;
+    }
+    ArrayList<Integer> surplusList = new ArrayList<Integer>();
+    int surplus;
+    int multiple = 1;
+    boolean hasNotDoubled = true;
+    while (hasNotDoubled) {
+        surplus = A * multiple % B;
+        if (surplusList.contains(surplus)) {
+            hasNotDoubled = false;
+        } else {
+            surplusList.add(surplus);
+        }
+        multiple++;
+    }
+    for (int s : surplusList) {
+        if (s == C) {
+            System.out.println("YES");
+            return;
+        }
+    }
+    System.out.println("NO");
+}

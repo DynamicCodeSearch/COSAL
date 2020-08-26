@@ -1,0 +1,12 @@
+def B_NotFound(lst):
+    comparison = 'abcdefghijklmnopqrstuvwxyz'
+    lst = sorted(set(lst))  
+
+    string = [''] * len(comparison)
+    for i in range(len(lst)):
+        string[i] = lst[i]
+
+    for i in range(len(string)):
+        if string[i] != comparison[i]:
+            return comparison[i]
+    return 'None'

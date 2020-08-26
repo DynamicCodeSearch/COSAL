@@ -1,0 +1,37 @@
+private static void culculate(char input) {
+    char nextChar;
+    switch(input) {
+        case 'a':
+            if (aIndex == a.length) {
+                winner = 'A';
+                return;
+            } else {
+                nextChar = a[aIndex];
+                aIndex++;
+                culculate(nextChar);
+                return;
+            }
+        case 'b':
+            if (bIndex == b.length) {
+                winner = 'B';
+                return;
+            } else {
+                nextChar = b[bIndex];
+                bIndex++;
+                culculate(nextChar);
+                return;
+            }
+        case 'c':
+            if (cIndex == c.length) {
+                winner = 'C';
+                return;
+            } else {
+                nextChar = c[cIndex];
+                cIndex++;
+                culculate(nextChar);
+                return;
+            }
+        default:
+            throw new RuntimeException();
+    }
+}

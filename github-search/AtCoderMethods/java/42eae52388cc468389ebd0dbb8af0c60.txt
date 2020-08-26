@@ -1,0 +1,15 @@
+private boolean ensureNextToken() {
+    try {
+        while (!stk.hasMoreTokens()) {
+            String line = in.readLine();
+            if (line != null) {
+                stk = new StringTokenizer(line, " \t\n\r\f", true);
+            } else {
+                return false;
+            }
+        }
+    } catch (IOException e) {
+        return false;
+    }
+    return true;
+}

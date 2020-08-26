@@ -1,0 +1,18 @@
+def vertical_and_horizontal_cut(H, W):
+    min_score = float('inf')
+
+    for cut_i in range(1, W // 2 + 1):
+        left_S = cut_i * H
+        right_W = W - cut_i
+
+        right_H_top = H // 2
+        right_H_bottom = H - right_H_top
+
+        right_top_S = right_W * right_H_top
+        right_bottom_S = right_W * right_H_bottom
+
+        A = [left_S, right_top_S, right_bottom_S]
+        score = max(A) - min(A)
+        if score < min_score:
+            min_score = score
+    return min_score

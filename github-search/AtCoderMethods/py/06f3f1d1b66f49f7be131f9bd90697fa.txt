@@ -1,0 +1,17 @@
+def fun(turn,a_index,b_index,c_index):
+    if(a_index==len(a) and turn=='a'):
+        print("A")
+        sys.exit()
+    if(b_index==len(b) and turn=='b'):
+        print("B")
+        sys.exit()
+    if(c_index==len(c) and turn=='c'):
+        print("C")
+        sys.exit()
+
+    if(turn=='a'):
+        fun(a[a_index],a_index+1,b_index,c_index)
+    if(turn=='b'):
+        fun(b[b_index],a_index,b_index+1,c_index)
+    if(turn=='c'):
+        fun(c[c_index],a_index,b_index,c_index+1)

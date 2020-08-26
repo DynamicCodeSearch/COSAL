@@ -1,0 +1,12 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    int n = in.readInt();
+    int x = in.readInt();
+    int y = in.readInt();
+    int z = in.readInt();
+    mask = 1 + (1 << z) + (1 << (z + y)) + (1 << (x + y + z));
+    answer = new long[n + 1][1 << (x + y + z + 1)];
+    end = (1 << (x + y + z + 1)) - 1;
+    ArrayUtils.fill(answer, -1);
+    ten = IntegerUtils.generatePowers(10, n + 1, MiscUtils.MOD7);
+    out.printLine(solve(n, 1));
+}

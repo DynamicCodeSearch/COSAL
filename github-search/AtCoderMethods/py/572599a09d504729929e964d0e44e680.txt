@@ -1,0 +1,19 @@
+def golden_section_search(f, left, right, convexity=-1, accuracy=100):
+	from math import sqrt
+ golden = (-1 + sqrt(5)) / 2
+
+ sep_l = left + (right - left)/(2 + golden)
+ sep_r = left + (right - left)*(1 + golden)/(2 + golden)
+
+ for i in range(accuracy):
+		branch = f(sep_l) < f(sep_r) if convexity < 0 else not f(sep_l) < f(sep_r)
+  if branch:
+			left = sep_l
+   sep_l = sep_r
+   sep_r = left + (right - left)*(1 + golden)/(2 + golden)
+  else:
+			right = sep_r
+   sep_r = sep_l
+   sep_l = left + (right - left)/(2 + golden)
+
+ return left

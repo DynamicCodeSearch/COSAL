@@ -1,0 +1,26 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    int n = in.readInt();
+    int k = in.readInt();
+    int[] d = IOUtils.readIntArray(in, k);
+    boolean[] forbidden = new boolean[10];
+    for (int i : d) {
+        forbidden[i] = true;
+    }
+    while (true) {
+        int current = n;
+        boolean good = true;
+        while (current != 0) {
+            int digit = current % 10;
+            if (forbidden[digit]) {
+                good = false;
+                break;
+            }
+            current /= 10;
+        }
+        if (good) {
+            break;
+        }
+        n++;
+    }
+    out.printLine(n);
+}

@@ -1,0 +1,51 @@
+public static void main(String[] args) {
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    List<List<Integer>> list = new ArrayList<>();
+    for (int i = 0; i < n; i++) {
+        list.add(new ArrayList<>());
+    }
+    for (int i = 0; i < m; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        list.get(a).add(b);
+        list.get(b).add(a);
+    }
+    class Pair {
+
+        public int n;
+
+        public int c;
+
+        public Pair(int n, int c) {
+            this.n = n;
+            this.c = c;
+        }
+    }
+    int[] ret = new int[n];
+    for (int i = 0; i < n; i++) {
+        LinkedList<Pair> ll = new LinkedList<>();
+        boolean[] b = new boolean[n];
+        int cnt = 0;
+        b[i] = true;
+        ll.addLast(new Pair(i, 0));
+        while (true) {
+            if (ll.size() == 0)
+                break;
+            Pair p = ll.pollFirst();
+            for (Integer v : list.get(p.n)) {
+                if (!b[v]) {
+                    int c = p.c + 1;
+                    ll.addLast(new Pair(v, c));
+                    b[v] = true;
+                    if (c == 2)
+                        cnt++;
+                }
+            }
+        }
+        ret[i] = cnt;
+    }
+    for (int i = 0; i < n; i++) {
+        System.out.println(ret[i]);
+    }
+}

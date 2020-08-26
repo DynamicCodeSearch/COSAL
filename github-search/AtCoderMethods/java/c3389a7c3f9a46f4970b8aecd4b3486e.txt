@@ -1,0 +1,11 @@
+public MatrixMod multiply(MatrixMod b) {
+    long[][] c = new long[n][b.m];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < b.m; j++) {
+            for (int k = 0; k < m; k++) {
+                c[i][j] = (c[i][j] + e[i][k] * b.e[k][j]) % MOD;
+            }
+        }
+    }
+    return new MatrixMod(c);
+}

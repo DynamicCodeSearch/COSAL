@@ -1,0 +1,6 @@
+boolean isInside(int val, int low, int high) {
+    if (((low ^ high) & 1) != 0) {
+        throw new AssertionError();
+    }
+    return low <= val && val <= high && ((val ^ low) & 1) == 0;
+}

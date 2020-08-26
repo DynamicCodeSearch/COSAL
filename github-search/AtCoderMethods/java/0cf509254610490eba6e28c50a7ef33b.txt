@@ -1,0 +1,11 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    long T = in.nextLong();
+    long[] t = in.nextLongArray(n);
+    long ans = n * T;
+    for (int i = 0; i < n - 1; i++) {
+        if (t[i + 1] - t[i] < T)
+            ans -= T - (t[i + 1] - t[i]);
+    }
+    out.println(ans);
+}

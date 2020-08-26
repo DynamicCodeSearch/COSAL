@@ -1,0 +1,25 @@
+private int[][] readTree(int n, FastScanner in) {
+    int[] as = new int[n - 1];
+    int[] bs = new int[n - 1];
+    int[] deg = new int[n];
+    for (int i = 0; i < n - 1; i++) {
+        as[i] = in.nextInt() - 1;
+        bs[i] = in.nextInt() - 1;
+        ++deg[as[i]];
+        ++deg[bs[i]];
+    }
+    int[][] adj = new int[n][];
+    for (int i = 0; i < n; i++) {
+        adj[i] = new int[deg[i]];
+        deg[i] = 0;
+    }
+    for (int i = 0; i < n - 1; i++) {
+        int a = as[i];
+        int b = bs[i];
+        adj[a][deg[a]] = b;
+        adj[b][deg[b]] = a;
+        ++deg[a];
+        ++deg[b];
+    }
+    return adj;
+}

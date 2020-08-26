@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int num = sc.nextInt();
+    Map<String, Integer> map = new HashMap<String, Integer>();
+    for (int i = 0; i < num; i++) {
+        String key = sc.next();
+        if (map.containsKey(key)) {
+            map.put(key, map.get(key) + 1);
+        } else {
+            map.put(key, 1);
+        }
+    }
+    String top = null;
+    int max = 0;
+    for (Map.Entry<String, Integer> entry : map.entrySet()) {
+        String key = entry.getKey();
+        Integer value = entry.getValue();
+        if (value > max) {
+            top = key;
+            max = value;
+        }
+    }
+    System.out.println(top);
+}

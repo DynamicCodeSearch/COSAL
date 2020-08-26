@@ -1,0 +1,14 @@
+void compute() {
+    Scanner sc = new Scanner(System.in);
+    long K = sc.nextLong();
+    long[] a = new long[50];
+    Arrays.fill(a, 49 + K / 50 - K % 50);
+    for (int i = 0; i < K % 50; i++) {
+        a[i] += 51;
+    }
+    System.out.println(50);
+    for (int i = 0; i < 49; i++) {
+        System.out.print(a[i] + " ");
+    }
+    System.out.println(a[49]);
+}

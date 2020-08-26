@@ -1,0 +1,27 @@
+
+static String judgeCanSale(int permissionTime, ArrayList<Integer> takoyakiCookTimeList, ArrayList<Integer> customerVisitTimeList) {
+    String judge = "no";
+    int takoyakiTime = 0;
+    
+    for (int i = 0; i < customerVisitTimeList.size(); i++) {
+        for (int j = 0; j < takoyakiCookTimeList.size(); j++) {
+            takoyakiTime = customerVisitTimeList.get(i) - takoyakiCookTimeList.get(j);
+            
+            if (0 <= takoyakiTime && takoyakiTime <= permissionTime) {
+                takoyakiCookTimeList.remove(j);
+                break;
+            }
+            if (j == takoyakiCookTimeList.size() - 1) {
+                judge = "noTakoyaki";
+            }
+        }
+        if (judge.equals("noTakoyaki")) {
+            judge = "no";
+            break;
+        }
+        if (i == customerVisitTimeList.size() - 1) {
+            judge = "yes";
+        }
+    }
+    return judge;
+}

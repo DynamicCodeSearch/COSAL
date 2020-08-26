@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String s = sc.nextLine();
+    char c = 'a';
+    boolean printed = false;
+    boolean appear = false;
+    for (int i = 0; i < 26; i++) {
+        for (int j = 0; j < s.length(); j++) {
+            if (s.charAt(j) == (c + i)) {
+                appear = true;
+                break;
+            }
+        }
+        if (appear == false) {
+            System.out.println((char) (c + i));
+            printed = true;
+            break;
+        }
+        appear = false;
+    }
+    if (printed == false) {
+        System.out.println("None");
+    }
+}

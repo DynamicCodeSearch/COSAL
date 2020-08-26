@@ -1,0 +1,37 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = null;
+    try {
+        br = new BufferedReader(new InputStreamReader(System.in));
+        String in = null;
+        String[] work = null;
+        int w, h;
+        int preW = -1;
+        int preH = -1;
+        String result = "YES";
+        while (null != (in = br.readLine())) {
+            work = in.split(" ");
+            w = Integer.parseInt(work[0]);
+            h = Integer.parseInt(work[1]);
+            if (preW < 0 || preH < 0) {
+                preW = w;
+                preH = h;
+                continue;
+            }
+            if (preW == w || preH == h || preW == h || preH == w) {
+                preW = w;
+                preH = h;
+                continue;
+            }
+            result = "NO";
+            break;
+        }
+        System.out.println(result);
+    } finally {
+        if (br != null) {
+            try {
+                br.close();
+            } catch (IOException e) {
+            }
+        }
+    }
+}

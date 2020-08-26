@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    long sum = 0, cnt = 0;
+    int n = Integer.parseInt(sc.next());
+    long a = Long.parseLong(sc.next());
+    long b = Long.parseLong(sc.next());
+    int before = Integer.parseInt(sc.next());
+    for (int i = 0; i < n - 1; i++) {
+        int p = Integer.parseInt(sc.next());
+        long w = (p - before) * a;
+        if (w < b) {
+            sum += w;
+        } else
+            cnt++;
+        before = p;
+    }
+    sum += cnt * b;
+    System.out.println(sum);
+}

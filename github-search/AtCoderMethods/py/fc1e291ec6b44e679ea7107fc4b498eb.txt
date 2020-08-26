@@ -1,0 +1,6 @@
+def a(n, memo={}):
+    if n <= 0:
+        return 0
+    if n not in memo:
+        memo[n] = 2 * 10**(n - 1) + a(n - 1) * 8
+    return memo[n]

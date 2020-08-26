@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    long N = sc.nextLong();
+    long last = 0;
+    long i = 1;
+    long sqrt_N = (long) Math.sqrt(N);
+    while (i <= sqrt_N) {
+        if (N % i == 0) {
+            last = N / i;
+        }
+        i++;
+    }
+    System.out.println(String.valueOf(last).length());
+    sc.close();
+}

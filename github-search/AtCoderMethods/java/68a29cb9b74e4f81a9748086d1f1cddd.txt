@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int K = sc.nextInt();
+    if (K == 1) {
+        System.out.println("1 1");
+        return;
+    }
+    long a = 1;
+    long b = 3;
+    for (int i = 1; i < K - 1; i++) {
+        long tmp = b;
+        b = a + b;
+        a = tmp;
+    }
+    System.out.println(a + " " + b);
+}

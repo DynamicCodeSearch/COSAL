@@ -1,0 +1,25 @@
+public static void main(String[] args) throws IOException {
+    InputStreamReader size;
+    BufferedReader br;
+    size = new InputStreamReader(System.in);
+    br = new BufferedReader(size);
+    String h1w1 = br.readLine();
+    StringTokenizer hw1 = new StringTokenizer(h1w1);
+    String h1 = hw1.nextToken();
+    String w1 = hw1.nextToken();
+    int h01 = Integer.parseInt(h1);
+    int w01 = Integer.parseInt(w1);
+    String h2w2 = br.readLine();
+    StringTokenizer hw2 = new StringTokenizer(h2w2);
+    String h2 = hw2.nextToken();
+    String w2 = hw2.nextToken();
+    int h02 = Integer.parseInt(h2);
+    int w02 = Integer.parseInt(w2);
+    if (h01 == h02 || h01 == w02) {
+        System.out.println("YES");
+    } else if (w01 == h02 || w01 == w02) {
+        System.out.println("YES");
+    } else {
+        System.out.println("NO");
+    }
+}

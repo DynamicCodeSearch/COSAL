@@ -1,0 +1,45 @@
+public static void main(String[] args) {
+    try (Scanner scan = new Scanner(System.in)) {
+        int N = scan.nextInt();
+        scan.nextLine();
+        String s = scan.nextLine();
+        boolean[] ans = new boolean[N + 1];
+        boolean[][] init = { { S, S }, { S, W }, { W, S }, { W, W } };
+        for (int i = 0; i < 4; i++) {
+            ans[0] = init[i][0];
+            ans[1] = init[i][1];
+            for (int j = 1; j < N; j++) {
+                boolean a = true;
+                if (s.charAt(j) == 'x') {
+                    a = false;
+                }
+                boolean hanten = a ^ ans[j];
+                if (hanten) {
+                    ans[j + 1] = !ans[j - 1];
+                } else {
+                    ans[j + 1] = ans[j - 1];
+                }
+            }
+            boolean b = S;
+            boolean a = true;
+            if (s.charAt(0) == 'x') {
+                a = false;
+            }
+            boolean hanten = a ^ ans[0];
+            if (hanten) {
+                b = !ans[N - 1];
+            } else {
+                b = ans[N - 1];
+            }
+            if ((ans[0] == ans[N]) && (ans[1] == b)) {
+                for (int j = 0; j < N; j++) {
+                    String c = ans[j] ? "S" : "W";
+                    System.out.print(c);
+                }
+                System.out.println();
+                return;
+            }
+        }
+        System.out.println(-1);
+    }
+}

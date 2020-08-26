@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    PrintWriter out = new PrintWriter(System.out);
+    int n = sc.nextInt();
+    int[] p = sc.nextIntArray(n);
+    int count = 0;
+    boolean b = false;
+    for (int i = 0; i < n; i++) {
+        if (!b) {
+            if (p[i] == i + 1) {
+                count++;
+                b = true;
+            } else {
+                b = false;
+            }
+        } else {
+            b = false;
+        }
+    }
+    out.println(count);
+    out.flush();
+}

@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[] consumer = new int[1000001];
+    for (int i = 0; i < n; i++) {
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        consumer[a]++;
+        if (b + 1 < 1000001)
+            consumer[b + 1]--;
+    }
+    int ans = consumer[0];
+    for (int i = 1; i < 1000001; i++) {
+        consumer[i] += consumer[i - 1];
+        ans = Math.max(ans, consumer[i]);
+    }
+    System.out.println(ans);
+}

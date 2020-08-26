@@ -1,0 +1,16 @@
+public void run() {
+    try {
+        if ("".equals(fileName)) {
+            br = new BufferedReader(new InputStreamReader(System.in));
+            out = new PrintWriter(System.out);
+        } else {
+            br = new BufferedReader(new FileReader(fileName + ".in"));
+            out = new PrintWriter(fileName + ".out");
+        }
+        solve();
+        out.close();
+    } catch (IOException e) {
+        e.printStackTrace();
+        System.exit(1);
+    }
+}

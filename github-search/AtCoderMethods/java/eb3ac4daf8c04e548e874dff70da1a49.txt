@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int con = 0;
+    int n = sc.nextInt();
+    String[] str = new String[n];
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        String s = sc.next();
+        for (int j = 0; j < n; j++) {
+            if (i != 0 && s.equals(str[j])) {
+                a[j] += 1;
+            } else {
+                con++;
+            }
+        }
+        if (con == n)
+            str[i] = s;
+        con = 0;
+    }
+    int m = 0;
+    for (int i = 0; i < n; i++) {
+        if (a[m] < a[i]) {
+            m = i;
+        }
+    }
+    System.out.println(str[m]);
+    sc.close();
+}

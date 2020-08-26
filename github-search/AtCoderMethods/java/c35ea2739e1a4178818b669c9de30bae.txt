@@ -1,0 +1,23 @@
+private void solve(BufferedReader in, PrintWriter out) throws IOException {
+    String s = in.readLine();
+    String[] tokens = s.split(" ");
+    H = Integer.parseInt(tokens[0]);
+    W = Integer.parseInt(tokens[1]);
+    a = new int[H][W];
+    for (int i = 0; i < H; ++i) {
+        s = in.readLine();
+        tokens = s.split(" ");
+        for (int j = 0; j < W; ++j) {
+            a[i][j] = Integer.parseInt(tokens[j]);
+        }
+    }
+    dp = new long[H][W];
+    long total = 0;
+    for (int i = 0; i < H; ++i) {
+        for (int j = 0; j < W; ++j) {
+            total += search(i, j);
+            total %= MOD;
+        }
+    }
+    out.println(total % MOD);
+}

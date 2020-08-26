@@ -1,0 +1,16 @@
+private static void solve() {
+    int n = sc.nextInt();
+    int[] x = sc.na(n);
+    int lg = 0;
+    int res = 0;
+    for (int k = 0; k < n; k++) {
+        if (x[k] == k + 1) {
+            lg++;
+        } else {
+            res += (lg + 1) / 2;
+            lg = 0;
+        }
+    }
+    res += (lg + 1) / 2;
+    System.out.print(res);
+}

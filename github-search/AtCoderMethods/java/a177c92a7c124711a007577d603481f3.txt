@@ -1,0 +1,18 @@
+public final void answer() {
+    
+    
+    
+    
+    
+    
+    Set<Integer> waterSet = IntStream.rangeClosed(0, F / (100 * A)).mapToObj(i -> IntStream.rangeClosed(0, F / (100 * B)).map(j -> 100 * A * i + 100 * B * j).filter(w -> w > 0 && w <= F).boxed().collect(Collectors.toSet())).reduce(new HashSet<>(), (l1, l2) -> {
+        l1.addAll(l2);
+        return l1;
+    });
+    Set<Integer> sugarSet = IntStream.rangeClosed(0, F / C).mapToObj(i -> IntStream.rangeClosed(0, F / D).map(j -> C * i + D * j).filter(s -> s <= F).boxed().collect(Collectors.toSet())).reduce(new HashSet<>(), (s1, s2) -> {
+        s1.addAll(s2);
+        return s1;
+    });
+    Solution result = waterSet.stream().mapToInt(water -> water.intValue()).mapToObj(water -> sugarSet.stream().mapToInt(sugar -> sugar.intValue()).filter(sugar -> sugar <= water * E / 100).mapToObj(sugar -> new Solution(water, sugar)).filter(sol -> sol.total <= F).max(Comparator.naturalOrder()).get()).max(Comparator.naturalOrder()).get();
+    System.out.println(String.valueOf(result.total) + ' ' + result.sugar);
+}

@@ -1,0 +1,13 @@
+static int gaiseki(kP a, kP b, kP c, kP d) {
+    
+    
+    kP vA = new kP(b.x - a.x, b.y - a.y);
+    kP vB = new kP(d.x - c.x, d.y - c.y);
+    if (vA.x * vB.y > vA.y * vB.x) {
+        return 1;
+    } else if (vA.x * vB.y < vA.y * vB.x) {
+        return -1;
+    } else {
+        return 0;
+    }
+}

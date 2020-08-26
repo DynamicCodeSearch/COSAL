@@ -1,0 +1,28 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] line = br.readLine().split(" ");
+    int W = Integer.parseInt(line[0]), H = Integer.parseInt(line[1]), N = Integer.parseInt(line[2]);
+    int minX = 0, maxX = W, minY = 0, maxY = H;
+    for (int n = 0; n < N; n++) {
+        line = br.readLine().split(" ");
+        int x = Integer.parseInt(line[0]), y = Integer.parseInt(line[1]), a = Integer.parseInt(line[2]);
+        switch(a) {
+            case 1:
+                minX = Math.max(minX, x);
+                break;
+            case 2:
+                maxX = Math.min(maxX, x);
+                break;
+            case 3:
+                minY = Math.max(minY, y);
+                break;
+            case 4:
+                maxY = Math.min(maxY, y);
+                break;
+        }
+    }
+    if (minX < maxX && minY < maxY)
+        System.out.println((maxX - minX) * (maxY - minY));
+    else
+        System.out.println("0");
+}

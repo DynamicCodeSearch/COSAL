@@ -1,0 +1,10 @@
+public String nextToken() throws IOException {
+    while (sc == null || !sc.hasMoreTokens()) {
+        try {
+            sc = new StringTokenizer(br.readLine());
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    return sc.nextToken();
+}

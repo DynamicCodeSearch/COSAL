@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int second = sc.nextInt();
+    int hour = second / 3600;
+    second -= hour * 3600;
+    int minute = second / 60;
+    second -= minute * 60;
+    String hours = String.valueOf(hour);
+    String minutes = String.valueOf(minute);
+    String seconds = String.valueOf(second);
+    if (hour < 10)
+        hours = "0" + hours;
+    if (minute < 10)
+        minutes = "0" + minutes;
+    if (second < 10)
+        seconds = "0" + seconds;
+    System.out.println(hours + ":" + minutes + ":" + seconds);
+}

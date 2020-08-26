@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    String str = sc.next();
+    char[] charArray = str.toCharArray();
+    ArrayList<Character> array = new ArrayList<Character>();
+    for (int i = 0; i < charArray.length; i++) {
+        array.add(charArray[i]);
+    }
+    
+    int len = array.size();
+    while (len > 0) {
+        array.remove(len - 1);
+        array.remove(len - 2);
+        len -= 2;
+        if (IsEvenString(array)) {
+            System.out.println(len);
+            break;
+        }
+    }
+}

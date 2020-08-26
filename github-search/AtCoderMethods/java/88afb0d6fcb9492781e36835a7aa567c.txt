@@ -1,0 +1,27 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    int A = in.nextInt(), B = in.nextInt(), C = in.nextInt(), D = in.nextInt(), E = in.nextInt(), F = in.nextInt();
+    double maxRatio = 0;
+    int maxAmountOfSugar = 0, maxAmountOfWater = Math.min(100 * A, F);
+    int maxTimes = F / 100 + 1;
+    for (int a = 0; a <= 30; a += A) {
+        for (int b = 0; b <= 30; b += B) {
+            int water = (a + b) * 100;
+            int maxSugar = (a + b) * E;
+            for (int c = 0; c <= maxSugar; c += C) {
+                for (int d = 0; d <= maxSugar; d += D) {
+                    if (c + d > maxSugar)
+                        continue;
+                    int sugar = c + d;
+                    if (sugar + water > F)
+                        continue;
+                    if (sugar * 1.0 / water > maxRatio) {
+                        maxRatio = sugar * 1.0 / water;
+                        maxAmountOfSugar = sugar;
+                        maxAmountOfWater = water;
+                    }
+                }
+            }
+        }
+    }
+    out.printLine((maxAmountOfSugar + maxAmountOfWater) + " " + maxAmountOfSugar);
+}

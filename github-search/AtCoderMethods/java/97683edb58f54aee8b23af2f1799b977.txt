@@ -1,0 +1,22 @@
+public static long dfs(int deep, int limit, Prize[][] prizes, long W, long curr_weight, long curr_prize) {
+    if (deep >= limit) {
+        if (curr_weight > W) {
+            return 0;
+        } else {
+            return curr_prize;
+        }
+    } else {
+        long max_ret = dfs(deep + 1, limit, prizes, W, curr_weight, curr_prize);
+        long weight = 0, prize = 0;
+        for (int i = 0; i < prizes[deep].length; i++) {
+            weight += prizes[deep][i].weight;
+            prize += prizes[deep][i].prize;
+            final long next_weight = curr_weight + weight;
+            if (next_weight > W) {
+                break;
+            }
+            max_ret = Math.max(max_ret, dfs(deep + 1, limit, prizes, W, next_weight, prize + curr_prize));
+        }
+        return max_ret;
+    }
+}

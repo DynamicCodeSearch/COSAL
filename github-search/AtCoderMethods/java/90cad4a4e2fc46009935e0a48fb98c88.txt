@@ -1,0 +1,16 @@
+int dfs(String str) {
+    int d = Integer.parseInt(str);
+    if (d >= n) {
+        return d;
+    }
+    if (str.length() > 6) {
+        return 1 << 28;
+    }
+    int min = 1 << 28;
+    for (int i = 0; i < 10; ++i) {
+        if (list[i])
+            continue;
+        min = Math.min(min, dfs(str + i));
+    }
+    return min;
+}

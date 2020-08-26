@@ -1,0 +1,53 @@
+
+
+
+
+public static void main(String[] args) throws Exception, IOException {
+    Reader sc = new Reader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    
+    
+    
+    long h = sc.nextLong();
+    long w = sc.nextLong();
+    long ans = 1L << 61;
+    if (h % 3 == 0 || w % 3 == 0) {
+        ans = 0;
+    } else {
+        long x = h / 2, y = h / 2;
+        if (h % 2 == 1)
+            x++;
+        if (h > 1)
+            for (int i = 1; i < w; i++) {
+                long[] d = { i * h, (w - i) * x, (w - i) * y };
+                sort(d);
+                ans = min(ans, d[2] - d[0]);
+                d[0] = i * h;
+                d[1] = (w - i) / 2 * h;
+                d[2] = (w - i) / 2 * h;
+                if ((w - i) % 2 == 1)
+                    d[1] = (1 + (w - i) / 2) * h;
+                sort(d);
+                ans = min(ans, d[2] - d[0]);
+            }
+        x = w / 2;
+        y = w / 2;
+        if (w > 1)
+            if (w % 2 == 1)
+                x++;
+        for (int i = 1; i < h; i++) {
+            long[] d = { i * w, (h - i) * x, (h - i) * y };
+            sort(d);
+            ans = min(ans, d[2] - d[0]);
+            d[0] = i * w;
+            d[1] = (h - i) / 2 * w;
+            d[2] = (h - i) / 2 * w;
+            if ((h - i) % 2 == 1)
+                d[1] = (1 + (h - i) / 2) * w;
+            sort(d);
+            ans = min(ans, d[2] - d[0]);
+        }
+    }
+    out.println(ans);
+    out.flush();
+}

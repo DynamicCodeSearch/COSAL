@@ -1,0 +1,11 @@
+def dfs(arr, accm=0):
+	if len(arr) == 1:
+		return arr[0]
+
+ s1 = arr[0] * (2 ** (len(arr) - 2)) + dfs(arr[1:])
+
+ _arr = list(arr[1:])
+ _arr[0] += arr[0] * 10
+ s2 = dfs(_arr)
+
+ return s1 + s2

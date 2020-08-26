@@ -1,0 +1,26 @@
+public static long nCkMod(int n, int k) {
+    if (k > n) {
+        return 0;
+    }
+    if (n > 3 && k > 3 && k > n / 2) {
+        k = n - k;
+    }
+    if (!nCkCache.containsKey(Integer.valueOf(n))) {
+        List<Long> nList = new ArrayList<>();
+        nList.add(Long.valueOf(1));
+        nList.add(Long.valueOf(n));
+        nCkCache.put(Integer.valueOf(n), nList);
+    }
+    List<Long> nList = nCkCache.get(Integer.valueOf(n));
+    if (nList.size() > k) {
+        return nList.get(k);
+    }
+    
+    for (int i = nList.size(); i < k + 1; i++) {
+        Long c1 = nList.get(i - 1);
+        Long c2 = c1 * (n - i + 1) % MOD;
+        c2 = c2 * modPow(i, MOD - 2) % MOD;
+        nList.add(c2);
+    }
+    return nList.get(k);
+}

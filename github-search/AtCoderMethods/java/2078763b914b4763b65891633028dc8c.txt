@@ -1,0 +1,27 @@
+void setdata(Scanner scan) {
+    N = scan.nextInt();
+    G = scan.nextInt();
+    E = scan.nextInt();
+    Ge = new ArrayList[N + 1];
+    p = new int[G];
+    
+    passed = new boolean[N + 1];
+    for (int i = 0; i < N + 1; i++) {
+        Ge[i] = new ArrayList<Edge>();
+    }
+    
+    Edge e;
+    for (int i = 0; i < G; i++) {
+        p[i] = scan.nextInt();
+        Ge[p[i]].add(new Edge(N, 0));
+        Ge[N].add(new Edge(p[i], 0));
+    }
+    for (int i = 0; i < E; i++) {
+        int from = scan.nextInt();
+        int to = scan.nextInt();
+        e = new Edge(to, 0);
+        Ge[from].add(e);
+        e = new Edge(from, 0);
+        Ge[to].add(e);
+    }
+}

@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    String s = in.nextLine();
+    s += "A";
+    while (true) {
+        for (int i = 1; i < s.length(); i++) {
+            if (s.charAt(0) != s.charAt(i)) {
+                System.out.print(s.charAt(0) + "" + i);
+                if (i == s.length() - 1) {
+                    System.out.println();
+                    return;
+                }
+                s = s.substring(i, s.length());
+                break;
+            }
+        }
+    }
+}

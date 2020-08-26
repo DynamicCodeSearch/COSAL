@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    while (sc.hasNext()) {
+        int n = sc.nextInt();
+        int q = sc.nextInt();
+        double[] sum = new double[30000];
+        for (int i = 0; i < n; i++) {
+            int x = sc.nextInt();
+            double r = sc.nextDouble();
+            double h = sc.nextDouble();
+            double s = cone(r, h);
+            for (int j = 1; j <= h; j++) {
+                sum[x + j] += cone(r * (h - j + 1) / h, h - j + 1) - cone(r * (h - j) / h, h - j);
+            }
+        }
+        for (int i = 1; i < 30000; i++) sum[i] += sum[i - 1];
+        for (int i = 0; i < q; i++) {
+            int a = sc.nextInt();
+            int b = sc.nextInt();
+            System.out.println(BigDecimal.valueOf(Math.PI * (sum[b] - sum[a])).toPlainString());
+        }
+    }
+}

@@ -1,0 +1,16 @@
+void solve() {
+    int L = in.nextInt(), X = in.nextInt(), Y = in.nextInt();
+    int S = in.nextInt(), D = in.nextInt();
+    int len1 = Math.abs((D > S) ? D - S : L - S + D);
+    int len2 = Math.abs((D > S) ? L - D + S : S - D);
+    int go = X + Y, back = X - Y;
+    double res = Double.MAX_VALUE;
+    res = Math.min(res, (double) len1 / go);
+    if (back > 0) {
+        res = Math.min(res, (double) len1 / back);
+    } else if (back < 0) {
+        back *= -1;
+        res = Math.min(res, (double) len2 / back);
+    }
+    System.out.println(res);
+}

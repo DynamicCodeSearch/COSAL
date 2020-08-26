@@ -1,0 +1,29 @@
+def solve(N, K, S):
+    S = [x for x in S]
+    T1 = []
+    T2 = S.copy()
+    dictS = {chr(ord('a')+i): S.count(chr(ord('a')+i)) for i in range(26)}
+    dictT = dictS.copy()
+    atoz = [chr(ord('a')+i) for i in range(26)]
+    T2.sort()
+    for i in range(N):
+        dictS[S[i]] -= 1
+        for j in range(0, len(T2)):
+            c = T2[j]
+            dictT[c] -= 1
+            cnt = 0
+            for x in atoz:
+                cnt += min(dictS[x], dictT[x])
+            cnt = N - 1 - i - cnt
+            if S[i] != c:
+                cnt += 1
+            if K >= cnt:
+                pos = j
+                if S[i] != c:
+                    K -= 1
+                break
+            dictT[c] += 1
+        T1.append(T2[pos])
+        T2.pop(pos)
+
+    print(''.join(T1+T2))

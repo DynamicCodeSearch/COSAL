@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    int n = ni();
+    long A = nl(), B = nl();
+    long[] x = nla(n);
+    long cur = x[0];
+    long res = 0;
+    for (int i = 1; i < n; i++) {
+        long cost = x[i] - cur;
+        cost *= A;
+        cost = Math.min(cost, B);
+        cur = x[i];
+        res += cost;
+    }
+    pl(res);
+    flush();
+}

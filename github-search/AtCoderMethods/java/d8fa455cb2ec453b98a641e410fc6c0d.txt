@@ -1,0 +1,31 @@
+boolean dfs1(int v, int p) {
+    if (fixed[v]) {
+        low[v] = high[v] = val[v];
+    } else {
+        anything[v] = true;
+    }
+    for (int u : g[v]) {
+        if (u == p) {
+            continue;
+        }
+        boolean isOk = dfs1(u, v);
+        if (!isOk) {
+            return false;
+        }
+        if (anything[u]) {
+            continue;
+        }
+        if (anything[v]) {
+            anything[v] = false;
+            low[v] = low[u] - 1;
+            high[v] = high[u] + 1;
+            continue;
+        }
+        if (((low[u] ^ low[v]) & 1) == 0) {
+            return false;
+        }
+        low[v] = Math.max(low[v], low[u] - 1);
+        high[v] = Math.min(high[v], high[u] + 1);
+    }
+    return low[v] <= high[v];
+}

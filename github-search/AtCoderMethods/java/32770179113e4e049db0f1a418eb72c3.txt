@@ -1,0 +1,6 @@
+private void dfs(int v) {
+    used[v] = true;
+    for (int e = G.head[v]; e != -1; e = G.next[e]) if (!used[G.to[e]])
+        dfs(G.to[e]);
+    vs[len++] = v;
+}

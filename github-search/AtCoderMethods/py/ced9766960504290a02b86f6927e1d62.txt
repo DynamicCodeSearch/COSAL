@@ -1,0 +1,14 @@
+def BellmanFord(N, M, edges):
+    d = [inf] * N
+    d[0] = 0
+
+    for i in range(N - 1):
+        for (ai, bi, ci) in edges:
+            if d[ai] != inf and d[ai] + ci < d[bi]:
+                d[bi] = d[ai] + ci
+
+    for (ai, bi, ci) in edges:
+        if d[ai] != inf and d[ai] + ci < d[bi]:
+            return None
+
+    return d[N - 1]

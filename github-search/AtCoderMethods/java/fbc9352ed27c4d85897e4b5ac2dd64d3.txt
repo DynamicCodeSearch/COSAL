@@ -1,0 +1,14 @@
+void solve(int testNumber, InputReader in, PrintWriter out) {
+    s = in.next();
+    int ptr = 0, n = s.length();
+    while (ptr < n) {
+        int oldptr = ptr;
+        for (String i : list) if (ptr + i.length() <= n && s.substring(ptr, ptr + i.length()).equals(i)) {
+            ptr += i.length();
+            break;
+        }
+        if (ptr == oldptr)
+            break;
+    }
+    out.println(ptr == n ? "YES" : "NO");
+}

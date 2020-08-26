@@ -1,0 +1,308 @@
+### Py Tokens: range, append, max, sum, total, best 
+
+### Py functions
+
+def func_7d7a4662c93f4dac98ff626917909316(N, p, q, r, s):
+    t = [((i * p + q) % r + s) for i in range(N)]
+    total = sum(t)
+    c = [0]
+    for x in t:
+        c.append(c[-1] + x)
+    a = b = 0
+    best = 0
+    while b <= N:
+        if a == b or c[b] - c[a] <= total / 3:
+            b += 1
+            if b > N:
+                break
+        else:
+            a += 1
+        best = max(best, total - max((c[a], c[b] - c[a], total - c[b])))
+    return best
+
+def func_74e0c0ab3879463abb687fc4225acbee(N, p, q, r, s):
+    t = [((i * p + q) % r + s) for i in range(N)]
+    total = sum(t)
+    c = [0]
+    for x in t:
+        c.append(c[-1] + x)
+    a = b = 0
+    best = 0
+    while b <= N:
+        if a == b or c[b] - c[a] <= total / 3:
+            b += 1
+            if b > N:
+                break
+        else:
+            a += 1
+        best = max(best, total - max((c[a], c[b] - c[a], total - c[b])))
+    return total
+
+*********************************
+
+#### Score: 7.25405
+
+
+#### Java Tokens: min, max, sum, best, math 
+
+public static long func_2ce763c92ed940a597a196483683cf96(long x, long best, long sum, Long down) { 
+ long now = Math.max(down, Math.max(x - down, sum - x));
+best = Math.min(best, now);
+return best;
+}
+
+
+public static long func_20b219fd65fb4abab993706fdfb74c0a(long x, long best, long sum, Long down) { 
+ long now = Math.max(down, Math.max(x - down, sum - x));
+best = Math.min(best, now);
+return now;
+}
+
+
+public static long func_43d26346f2ae4f848c0c47dff88b36f4(long x, long best, long sum, Long up) { 
+ long now = Math.max(up, Math.max(x - up, sum - x));
+best = Math.min(best, now);
+return now;
+}
+
+
+*********************************
+
+#### Score: 6.85472
+
+
+#### Java Tokens: add, min, max, sum, best, math 
+
+public static long func_1c70a478aeb5427987ce86dfdf10e433(long x, long best, long sum, Long down, TreeSet<Long> all) { 
+ if (down != null) {
+    long now = Math.max(down, Math.max(x - down, sum - x));
+    best = Math.min(best, now);
+}
+all.add(x);
+return best;
+}
+
+
+*********************************
+
+#### Score: 6.85276
+
+
+#### Java Tokens: total, best, partials 
+
+public static double func_c893be9ac8e8493aa18d668330a5279f(int n, long best, long[] partials) { 
+ long total = partials[n];
+return 1 - (double) (best) / total;
+
+}
+
+
+*********************************
+
+#### Score: 6.49957
+
+
+#### Java Tokens: ceiling, min, max, sum, best, math, long 
+
+public static long func_658d7c60c31143fda1ef42aec14a67da(int i, long x, long best, long sum, long[] a, TreeSet<Long> all) { 
+ x += a[i];
+Long up = all.ceiling(x / 2 + 1);
+if (up != null) {
+    long now = Math.max(up, Math.max(x - up, sum - x));
+    best = Math.min(best, now);
+}
+return x;
+}
+
+
+public static Long func_df5d4a3663b54adcbd2a8dac3ce4d44f(int i, long x, long best, long sum, long[] a, TreeSet<Long> all) { 
+ x += a[i];
+Long up = all.ceiling(x / 2 + 1);
+if (up != null) {
+    long now = Math.max(up, Math.max(x - up, sum - x));
+    best = Math.min(best, now);
+}
+return up;
+}
+
+
+public static Long func_02865e74f4fc46489ac6d5a9d2579baa(long x, long best, long sum, TreeSet<Long> all) { 
+ Long up = all.ceiling(x / 2 + 1);
+if (up != null) {
+    long now = Math.max(up, Math.max(x - up, sum - x));
+    best = Math.min(best, now);
+}
+return up;
+}
+
+
+*********************************
+
+#### Score: 6.49957
+
+
+#### Java Tokens: min, max, sum, best, math, floor, long 
+
+public static long func_09c6ea16ac084147a40060ce4059926c(long x, long best, long sum, Long up, TreeSet<Long> all) { 
+ if (up != null) {
+    long now = Math.max(up, Math.max(x - up, sum - x));
+    best = Math.min(best, now);
+}
+Long down = all.floor(x / 2);
+if (down != null) {
+    long now = Math.max(down, Math.max(x - down, sum - x));
+    best = Math.min(best, now);
+}
+return best;
+}
+
+
+public static long func_a15c541b3fbd4a3c9d65dca1cfc67f1f(long x, long best, long sum, Long up, TreeSet<Long> all) { 
+ if (up != null) {
+    long now = Math.max(up, Math.max(x - up, sum - x));
+    best = Math.min(best, now);
+}
+Long down = all.floor(x / 2);
+return best;
+}
+
+
+public static long func_0fa949d0b1b94083b68aa87c6bb35dd3(long x, long best, long sum, TreeSet<Long> all) { 
+ Long down = all.floor(x / 2);
+if (down != null) {
+    long now = Math.max(down, Math.max(x - down, sum - x));
+    best = Math.min(best, now);
+}
+return best;
+}
+
+
+*********************************
+
+#### Score: 6.49957
+
+
+#### Java Tokens: prefixsum, max, prefix, sum, best, math, rsum 
+
+public static long func_0017067ec6b94d2797dac5736964db18(int n, long prefixSum, long max, long best, long[] rsum) { 
+ max = Math.max(max, prefixSum);
+best = Math.max(best, rsum[n - 1] - max);
+return best;
+}
+
+
+public static long func_ba606062e5fb4036a9d5a27782c3aa70(int n, long prefixSum, long max, long best, long[] rsum) { 
+ max = Math.max(max, prefixSum);
+best = Math.max(best, rsum[n - 1] - max);
+return max;
+}
+
+
+*********************************
+
+#### Score: 6.49957
+
+
+#### Java Tokens: sub, min, max, subsum, sum, best, math 
+
+public static long func_e52d990594594af9b1d1930546394c98(int n, long min, long subSum, long[] best, long[] A) { 
+ subSum += A[n];
+min = Math.min(min, Math.max(subSum, best[n - 1]));
+return subSum;
+}
+
+
+public static long func_cce427e621084c11ace268c6cd84ceee(int n, long min, long subSum, long[] best, long[] A) { 
+ subSum += A[n];
+min = Math.min(min, Math.max(subSum, best[n - 1]));
+return min;
+}
+
+
+*********************************
+
+#### Score: 6.23746
+
+
+#### Java Tokens: total, sum, second 
+
+public static long func_b44431fbac3c4d6fa46d517815fd9cb1(int second, long[] sum) { 
+ long total = 0;
+if (second != -1)
+    total += sum[second];
+return total;
+}
+
+
+*********************************
+
+#### Score: 6.18165
+
+
+#### Java Tokens: ceiling, min, max, sum, best, math, floor, long 
+
+public static long func_51647c95271e47c5af6f9d188f6366b6(int i, long x, long best, long sum, long[] a, TreeSet<Long> all) { 
+ x += a[i];
+Long up = all.ceiling(x / 2 + 1);
+if (up != null) {
+    long now = Math.max(up, Math.max(x - up, sum - x));
+    best = Math.min(best, now);
+}
+Long down = all.floor(x / 2);
+return x;
+}
+
+
+public static Long func_35430fbc5eb949dea025e26dd857a52a(long x, long best, long sum, TreeSet<Long> all) { 
+ Long up = all.ceiling(x / 2 + 1);
+if (up != null) {
+    long now = Math.max(up, Math.max(x - up, sum - x));
+    best = Math.min(best, now);
+}
+Long down = all.floor(x / 2);
+if (down != null) {
+    long now = Math.max(down, Math.max(x - down, sum - x));
+    best = Math.min(best, now);
+}
+return up;
+}
+
+
+public static Long func_f4f63880e3c54e70a9fdb6b1b585b54a(int i, long x, long best, long sum, long[] a, TreeSet<Long> all) { 
+ x += a[i];
+Long up = all.ceiling(x / 2 + 1);
+if (up != null) {
+    long now = Math.max(up, Math.max(x - up, sum - x));
+    best = Math.min(best, now);
+}
+Long down = all.floor(x / 2);
+return up;
+}
+
+
+*********************************
+
+#### Score: 6.18165
+
+
+#### Java Tokens: sub, min, max, subsum, sum, best, math, n-- 
+
+public static long func_d1a2e25aa0c542f2a78ba86bfcd7855b(int N, long min, long[] best, long[] A) { 
+ long subSum = 0;
+for (int n = N - 1; n >= 1; n--) {
+    subSum += A[n];
+    min = Math.min(min, Math.max(subSum, best[n - 1]));
+}
+return min;
+}
+
+
+public static long func_18af6541787c403ebaf04907423f0b27(int N, long min, long[] best, long[] A) { 
+ long subSum = 0;
+for (int n = N - 1; n >= 1; n--) {
+    subSum += A[n];
+    min = Math.min(min, Math.max(subSum, best[n - 1]));
+}
+return subSum;
+}
+

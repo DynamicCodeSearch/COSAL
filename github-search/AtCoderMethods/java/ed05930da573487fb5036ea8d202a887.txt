@@ -1,0 +1,21 @@
+public void solve(int testNumber, Scanner in, PrintWriter out) {
+    int N = in.nextInt();
+    int[] arr = new int[N];
+    int sum = 0;
+    for (int i = 0; i < N; i++) {
+        arr[i] = in.nextInt();
+        sum += arr[i];
+    }
+    int ans = 0;
+    if (sum % 10 != 0) {
+        out.println(sum);
+        return;
+    }
+    for (int i = 0; i < N; i++) {
+        int tmp = sum - arr[i];
+        if (tmp % 10 == 0)
+            continue;
+        ans = Math.max(ans, tmp);
+    }
+    out.println(ans);
+}

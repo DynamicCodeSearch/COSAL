@@ -1,0 +1,30 @@
+def main():
+    row, col = map(int, input().split())
+    sy, sx = map(int, input().split())
+    gy, gx = map(int, input().split())
+    sy -= 1
+    sx -= 1
+    gy -= 1
+    gx -= 1
+
+    cells = []
+    for i in range(row):
+        cells.append(input())
+
+    visited = [[False for j in range(col)] for i in range(row)]
+    visited[sy][sx] = True
+
+    dq = collections.deque()
+    dq.append((0, sy, sx))
+    while dq:
+        cost, y, x = dq.popleft()
+        if (y,x) == (gy, gx):
+            print(cost)
+            exit()
+        for dy, dx in ((0, 1), (0, -1), (1, 0), (-1, 0)):
+            ny = y + dy
+            nx = x + dx
+            if visited[ny][nx] or cells[ny][nx] == '#':
+                continue
+            dq.append((cost + 1, ny, nx))
+            visited[ny][nx] = True

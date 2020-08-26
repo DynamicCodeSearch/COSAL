@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    @SuppressWarnings("resource")
+    Scanner sc = new Scanner(System.in);
+    int W = sc.nextInt();
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    int A = b - (a + W);
+    int B = a - (b + W);
+    if (b <= (a + W) && (a + W) - b <= 2 * W) {
+        System.out.println("0");
+    } else if (b > (a + W)) {
+        if (A >= B) {
+            System.out.println(A);
+        } else if (A < B) {
+            System.out.println(B);
+        }
+    } else if (a > (b + W)) {
+        if (A >= B) {
+            System.out.println(A);
+        } else if (A < B) {
+            System.out.println(B);
+        }
+    }
+}

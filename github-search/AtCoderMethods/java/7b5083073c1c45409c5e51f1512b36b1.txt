@@ -1,0 +1,33 @@
+public void solve(int testNumber, FastScanner in, PrintWriter out) {
+    int[] group = new int[9];
+    int N = in.nextInt();
+    for (int i = 1; i <= N; i++) {
+        int a = in.nextInt() / 400;
+        if (a >= 8) {
+            group[8]++;
+        } else {
+            group[a]++;
+        }
+    }
+    int min = 0;
+    for (int i = 0; i <= 7; i++) {
+        if (group[i] > 0)
+            min++;
+    }
+    if (group[8] > 0) {
+        min = Math.max(1, min);
+    }
+    for (int i = 0; i <= 7; i++) {
+        if (group[i] == 0 && group[8] > 0) {
+            group[i]++;
+            group[8]--;
+        }
+    }
+    int max = 0;
+    for (int i = 0; i <= 7; i++) {
+        if (group[i] > 0)
+            max++;
+    }
+    max += group[8];
+    out.print(min + " " + max);
+}

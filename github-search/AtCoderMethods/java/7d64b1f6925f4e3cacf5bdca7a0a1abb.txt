@@ -1,0 +1,21 @@
+long cost(Node x, Node y, Node prev) {
+    if (memo[x.num] != -1) {
+        return memo[x.num];
+    }
+    if (x == y) {
+        memo[x.num] = 0;
+        return 0;
+    }
+    for (int i = 0; i < x.nexts.size(); i++) {
+        Node next = x.nexts.get(i);
+        if (prev == next) {
+            continue;
+        }
+        long nextCost = cost(next, y, x);
+        if (nextCost != -1) {
+            memo[x.num] = nextCost + x.distances.get(i);
+            return nextCost + x.distances.get(i);
+        }
+    }
+    return -1;
+}

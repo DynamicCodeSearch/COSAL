@@ -1,0 +1,47 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String S = sc.nextLine();
+    Map<Character, Boolean> map = new HashMap<Character, Boolean>() {
+
+        {
+            put('a', false);
+            put('b', false);
+            put('c', false);
+            put('d', false);
+            put('e', false);
+            put('f', false);
+            put('g', false);
+            put('h', false);
+            put('i', false);
+            put('j', false);
+            put('k', false);
+            put('l', false);
+            put('m', false);
+            put('n', false);
+            put('o', false);
+            put('p', false);
+            put('q', false);
+            put('r', false);
+            put('s', false);
+            put('t', false);
+            put('u', false);
+            put('v', false);
+            put('w', false);
+            put('x', false);
+            put('y', false);
+            put('z', false);
+        }
+    };
+    for (int i = 0; i < S.length(); i++) {
+        if (!map.get(S.charAt(i))) {
+            map.put(S.charAt(i), true);
+        }
+    }
+    for (Map.Entry<Character, Boolean> entry : map.entrySet()) {
+        if (!entry.getValue()) {
+            System.out.println(entry.getKey());
+            return;
+        }
+    }
+    System.out.println("None");
+}

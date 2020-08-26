@@ -1,0 +1,14 @@
+boolean merge(int x, int y) {
+    x = getRoot(x);
+    y = getRoot(y);
+    if (x != y) {
+        if (data[y] < data[x]) {
+            int t = x;
+            x = y;
+            y = t;
+        }
+        data[x] += data[y];
+        data[y] = x;
+    }
+    return x != y;
+}

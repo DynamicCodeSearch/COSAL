@@ -1,0 +1,45 @@
+def main():
+    N = int(input().strip())
+
+    n_399 = 0
+    n_799 = 0
+    n_1199 = 0
+    n_1599 = 0
+    n_1999 = 0
+    n_2399 = 0
+    n_2799 = 0
+    n_3199 = 0
+    n_free = 0
+    rates = list(map(int, input().strip().split()))
+    for r in rates:
+        if r <= 399:
+            n_399 = 1
+        elif r <= 799:
+            n_799 = 1
+        elif r <= 1199:
+            n_1199 = 1
+        elif r <= 1599:
+            n_1599 = 1
+        elif r <= 1999:
+            n_1999 = 1
+        elif r <= 2399:
+            n_2399 = 1
+        elif r <= 2799:
+            n_2799 = 1
+        elif r <= 3199:
+            n_3199 = 1
+        else:
+            n_free += 1
+
+    n_less_3200 = n_399 + n_799 + n_1199 +        n_1599 + n_1999 + n_2399 + n_2799 + n_3199
+    n_rest = N - n_less_3200
+
+    n_min = n_less_3200
+    if n_less_3200 == 0 and n_free > 0:
+        n_min = 1
+
+    n_max = n_less_3200 + n_free
+    if n_less_3200 + n_free >= N:
+        n_max = N
+
+    print(n_min, n_max)

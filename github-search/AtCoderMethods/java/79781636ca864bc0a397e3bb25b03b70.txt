@@ -1,0 +1,9 @@
+public static void solver(long L, long X, long Y, long S, long D) {
+    
+    double d1 = (D - S) <= 0 ? (double) D - (double) S + (double) L : (double) D - (double) S;
+    double t1 = d1 / ((double) Y + (double) X);
+    
+    double d2 = ((double) S - (double) D) < 0 ? (double) S - (double) D + (double) L : (double) S - (double) D;
+    double t2 = (Y - X) <= 0 ? Double.MAX_VALUE : d2 / ((double) Y - (double) X);
+    System.out.println(Math.min(t1, t2));
+}

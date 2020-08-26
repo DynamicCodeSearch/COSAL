@@ -1,0 +1,24 @@
+void run() {
+    Arrays.sort(people);
+    Arrays.sort(bridges);
+    int[] sizes = new int[Q];
+    UnionFindTree uf = new UnionFindTree(N);
+    int bridgeId = 0;
+    for (Human human : people) {
+        while (bridgeId < M && human.year < bridges[bridgeId].year) {
+            
+            
+            uf.union(bridges[bridgeId].cityA, bridges[bridgeId].cityB);
+            bridgeId++;
+        }
+        int size = uf.getSize(human.city);
+        sizes[human.id] = size;
+    
+    }
+    StringBuilder s = new StringBuilder();
+    for (int i = 0; i < Q; i++) s.append(sizes[i] + "\n");
+    System.out.print(s);
+
+
+
+}

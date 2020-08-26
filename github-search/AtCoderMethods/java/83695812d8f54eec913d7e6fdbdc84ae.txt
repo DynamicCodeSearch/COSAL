@@ -1,0 +1,10 @@
+void solve() {
+    long A = in.nextLong(), B = in.nextLong();
+    MOD = in.nextLong();
+    long G = gcd(A, B);
+    long[][] mat1 = { { 10 % MOD, 1 }, { 0, 1 } };
+    long[][] mat2 = { { POW(10, G), 1 }, { 0, 1 } };
+    long[][] ans1 = Matrix_L.pow(mat1, A - 1);
+    long[][] ans2 = Matrix_L.pow(mat2, B / G - 1);
+    System.out.println((ans1[0][0] + ans1[0][1]) * (ans2[0][0] + ans2[0][1]) % MOD);
+}

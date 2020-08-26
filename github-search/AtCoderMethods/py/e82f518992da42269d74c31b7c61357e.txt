@@ -1,0 +1,12 @@
+def score(input_list):
+    s = sum(input_list[:N])
+    score_list = [s]
+    l = input_list[:N]
+    heapify(l)
+
+    for val in input_list[N:2 * N]:
+        s -= heappushpop(l, val)
+        s += val
+        score_list.append(s)
+
+    return score_list

@@ -1,0 +1,39 @@
+public static void main(String[] args) {
+    Scanner io = new Scanner(System.in);
+    long H = io.nextLong();
+    long W = io.nextLong();
+    long sum = H * W;
+    if (sum % 3 == 0) {
+        System.out.println(0);
+        return;
+    }
+    long ans = Long.MAX_VALUE;
+    long x, y, z, max, min;
+    for (int i = 1; i < H; i++) {
+        x = W * i;
+        y = (H - i) * (W / 2);
+        z = sum - x - y;
+        max = Math.max(x, Math.max(y, z));
+        min = Math.min(x, Math.min(y, z));
+        ans = Math.min(ans, max - min);
+        y = (H - i) / 2 * W;
+        z = sum - x - y;
+        max = Math.max(x, Math.max(y, z));
+        min = Math.min(x, Math.min(y, z));
+        ans = Math.min(ans, max - min);
+    }
+    for (int i = 1; i < W; i++) {
+        x = H * i;
+        y = (W - i) * (H / 2);
+        z = sum - x - y;
+        max = Math.max(x, Math.max(y, z));
+        min = Math.min(x, Math.min(y, z));
+        ans = Math.min(ans, max - min);
+        y = (W - i) / 2 * H;
+        z = sum - x - y;
+        max = Math.max(x, Math.max(y, z));
+        min = Math.min(x, Math.min(y, z));
+        ans = Math.min(ans, max - min);
+    }
+    System.out.println(ans);
+}

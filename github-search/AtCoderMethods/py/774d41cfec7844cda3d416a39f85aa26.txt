@@ -1,0 +1,8 @@
+def solve(K, S):
+    ans = 0
+    for i in range(K, -1, -1):
+        for j in range(i, -1, -1):
+            k = S - (i + j)
+            if k >= 0 and k <= j:
+                ans += count(i, j, S - (i + j))
+    return ans

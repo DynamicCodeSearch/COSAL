@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n;
+    long k;
+    n = sc.nextInt();
+    k = sc.nextLong();
+    HashMap<Integer, Long> counts = new HashMap<>();
+    int a;
+    long b;
+    for (int i = 0; i < n; i++) {
+        a = sc.nextInt();
+        b = sc.nextLong();
+        if (!counts.containsKey(a)) {
+            counts.put(a, b);
+        } else {
+            counts.put(a, counts.get(a) + b);
+        }
+    }
+    long sum = 0;
+    Integer[] sortedKeys = counts.keySet().toArray(new Integer[counts.size()]);
+    Arrays.sort(sortedKeys);
+    for (Integer key : sortedKeys) {
+        if (sum + counts.get(key) >= k) {
+            System.out.println(key);
+            return;
+        } else {
+            sum += counts.get(key);
+        }
+    }
+}

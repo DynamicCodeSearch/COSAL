@@ -1,0 +1,10 @@
+public String nextLine() {
+    if (tokenizer == null || !tokenizer.hasMoreTokens()) {
+        try {
+            return br.readLine();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    return tokenizer.nextToken("\n");
+}

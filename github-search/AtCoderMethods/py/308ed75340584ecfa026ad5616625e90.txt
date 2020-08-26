@@ -1,0 +1,10 @@
+def find_next(idx, matrix, flag, nb_ans):
+    if sum(flag) == N:
+        return nb_ans+1
+    for j in range(N):
+        if matrix[idx][j] == 1 and flag[j] == 0:
+            flag[j] = 1
+            nb_ans = find_next(j, matrix, flag, nb_ans)
+            flag[j] = 0
+
+    return nb_ans

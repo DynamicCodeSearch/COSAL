@@ -1,0 +1,14 @@
+private int read() {
+    if (cur >= len) {
+        cur = 0;
+        try {
+            len = in.read(buf);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (len < 0) {
+            return -1;
+        }
+    }
+    return (int) buf[cur++];
+}

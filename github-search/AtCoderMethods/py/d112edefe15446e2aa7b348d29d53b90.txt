@@ -1,0 +1,15 @@
+def search(pointStack):
+    global counter
+    if len(pointStack) == N:
+        counter += 1
+        pointStack.pop()
+        return
+
+    currentNode = pointStack[-1]
+    for nextNode in road[currentNode]:
+        if nextNode in pointStack:
+            continue
+        pointStack.append(nextNode)
+        search(pointStack)
+
+    pointStack.pop()

@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner s = new Scanner(System.in);
+    final int N = s.nextInt();
+    s.close();
+    if (N == 1 || N == 2) {
+        System.out.println(0);
+        return;
+    }
+    if (N == 3) {
+        System.out.println(1);
+        return;
+    }
+    int[] tribo = new int[N];
+    tribo[0] = 0;
+    tribo[1] = 0;
+    tribo[2] = 1;
+    for (int i = 3; i < N; i++) {
+        tribo[i] = tribo[i - 1] + tribo[i - 2] + tribo[i - 3];
+        if (tribo[i] >= 10007) {
+            tribo[i] = tribo[i] % 10007;
+        }
+    }
+    System.out.println(tribo[N - 1] % 10007);
+}

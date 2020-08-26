@@ -1,0 +1,11 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int n = in.nextInt();
+    int m = in.nextInt();
+    if (n >= 12) {
+        n -= 12;
+    }
+    double deg1 = n * 30.0 + 30 * m / 60.0;
+    double deg2 = m * 6.0;
+    System.out.println(Math.min(Math.abs(deg2 - deg1), 360 - Math.abs(deg2 - deg1)));
+}

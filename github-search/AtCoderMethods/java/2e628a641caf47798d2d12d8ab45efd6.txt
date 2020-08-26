@@ -1,0 +1,50 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    long X = sc.nextLong();
+    long Y = sc.nextLong();
+    long[] a = new long[N];
+    long[] b = new long[M];
+    boolean flg = true;
+    int cnt = 0;
+    
+    long T = 0;
+    for (int i = 0; i < N; i++) {
+        
+        a[i] = sc.nextLong();
+    }
+    for (int j = 0; j < M; j++) {
+        
+        b[j] = sc.nextLong();
+    }
+    int i = 0;
+    int j = 0;
+    for (; ; ) {
+        for (; i < N; i++) {
+            if (T <= a[i] && flg == true) {
+                T = a[i];
+                T += X;
+                flg = false;
+                break;
+            }
+        }
+        if (flg == true)
+            break;
+        
+        for (; j < M; j++) {
+            if (T <= b[j] && flg == false) {
+                T = b[j];
+                T += Y;
+                cnt++;
+                flg = true;
+                break;
+            }
+        }
+        if (flg == false)
+            break;
+    
+    }
+    System.out.println(cnt);
+}

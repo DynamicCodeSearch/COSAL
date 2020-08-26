@@ -1,0 +1,10 @@
+static void dfs(int idx, int d) {
+    if (idx == n) {
+        if (d == 0)
+            flag = true;
+        return;
+    }
+    for (int i = 0; i < k; i++) {
+        dfs(idx + 1, d ^ t[idx][i]);
+    }
+}

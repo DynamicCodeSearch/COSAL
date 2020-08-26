@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    
+    Scanner scan = new Scanner(System.in);
+    int permissionTime, takoyakiNum, customerNum;
+    int[] takoyakiCookTime = null;
+    int[] customerVisitTime = null;
+    ArrayList<Integer> takoyakiCookTimeList = new ArrayList<Integer>();
+    ArrayList<Integer> customerVisitTimeList = new ArrayList<Integer>();
+    String judge = "no";
+    
+    permissionTime = Integer.parseInt(scan.nextLine());
+    takoyakiNum = Integer.parseInt(scan.nextLine());
+    takoyakiCookTime = Stream.of(scan.nextLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+    customerNum = Integer.parseInt(scan.nextLine());
+    customerVisitTime = Stream.of(scan.nextLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+    arrayToArrayList(takoyakiCookTimeList, takoyakiCookTime);
+    arrayToArrayList(customerVisitTimeList, customerVisitTime);
+    
+    scan.close();
+    
+    if (customerNum <= takoyakiNum) {
+        judge = judgeCanSale(permissionTime, takoyakiCookTimeList, customerVisitTimeList);
+    }
+    
+    System.out.println(judge);
+}

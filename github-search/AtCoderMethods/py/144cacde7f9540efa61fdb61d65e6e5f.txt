@@ -1,0 +1,24 @@
+def main():
+    n = int(sys.stdin.readline())
+    s_lst = []
+
+    m_default = 101
+    min_not_10 = m_default 
+    for i in range(n):
+        t = int(sys.stdin.readline())
+        if t < min_not_10 and t % 10 != 0:
+            min_not_10 = t
+
+        s_lst.append(t)
+
+
+    max_cand = sum(s_lst)
+    if max_cand % 10 != 0:
+        print(max_cand)
+    else:
+        if min_not_10 == m_default:
+            print(0)
+        else:
+            print(max_cand - min_not_10)
+
+    return 0

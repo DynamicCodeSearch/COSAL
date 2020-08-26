@@ -1,0 +1,31 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    int sum = 0, x = 0;
+    
+    for (int i = 0; i < n; i++) {
+        String s = sc.next();
+        int d = sc.nextInt();
+        if (d < a) {
+            x = a;
+        } else if (b < d) {
+            x = b;
+        } else {
+            x = d;
+        }
+        if (s.equals("East")) {
+            sum += x;
+        } else if (s.equals("West")) {
+            sum -= x;
+        }
+    }
+    if (sum > 0) {
+        System.out.println("East " + sum);
+    } else if (sum < 0) {
+        System.out.println("West " + (-sum));
+    } else {
+        System.out.println(0);
+    }
+}

@@ -1,0 +1,14 @@
+boolean union(int x, int y) {
+    x = root(x);
+    y = root(y);
+    if (x == y)
+        return false;
+    if (data[y] < data[x]) {
+        x ^= y;
+        y ^= x;
+        x ^= y;
+    }
+    data[x] += data[y];
+    data[y] = x;
+    return true;
+}

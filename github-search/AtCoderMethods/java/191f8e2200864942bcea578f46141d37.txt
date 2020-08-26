@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    long h = 0, w = 0;
+    @SuppressWarnings("resource")
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    long[] array = new long[n];
+    for (int i = 0; i < n; i++) {
+        array[i] = sc.nextLong();
+    }
+    Arrays.sort(array);
+    for (int i = array.length - 1; i > 0; i--) {
+        if (array[i] == array[i - 1]) {
+            if (h == 0) {
+                h = array[i];
+                i--;
+            } else {
+                w = array[i];
+                System.out.println(h * w);
+                return;
+            }
+        }
+    }
+    System.out.println("0");
+}

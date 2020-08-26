@@ -1,0 +1,15 @@
+static long dfs(int n, long w) {
+    if (dp.get(getKey(n, w)) != null) {
+        return dp.get(getKey(n, w));
+    }
+    long res;
+    if (n == N) {
+        res = 0;
+    } else if (w < b[n]) {
+        res = dfs(n + 1, w);
+    } else {
+        res = Math.max(dfs(n + 1, w), dfs(n + 1, w - b[n]) + a[n]);
+    }
+    dp.put(getKey(n, w), res);
+    return res;
+}

@@ -1,0 +1,17 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    Set<Integer> first = new HashSet<>(Arrays.asList(1, 3, 5, 7, 8, 10, 12));
+    Set<Integer> second = new HashSet<>(Arrays.asList(4, 6, 9, 11));
+    Set<Integer> third = new HashSet<>(Arrays.asList(2));
+    int x = in.nextInt(), y = in.nextInt();
+    List<Set<Integer>> list = Arrays.asList(first, second, third);
+    for (int i = 0; i < 3; ++i) {
+        if (list.get(i).contains(x) && !list.get(i).contains(y)) {
+            out.println("No");
+            return;
+        } else if (list.get(i).contains(y) && !list.get(i).contains(x)) {
+            out.println("No");
+            return;
+        }
+    }
+    out.println("Yes");
+}

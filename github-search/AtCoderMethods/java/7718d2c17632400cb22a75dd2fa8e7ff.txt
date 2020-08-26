@@ -1,0 +1,13 @@
+public double ternarySearch(double start, double end, DoubleUnaryOperator func) {
+    for (int i = 0; i < 1000; i++) {
+        double div = end - start;
+        double f1 = func.applyAsDouble(start + div / 3);
+        double f2 = func.applyAsDouble(end - div / 3);
+        if (f1 < f2) {
+            end = end - div / 3;
+        } else {
+            start = start + div / 3;
+        }
+    }
+    return (start + end) / 2;
+}

@@ -1,0 +1,9 @@
+public static long calcC(int n, int m) {
+    long c = 1;
+    m = (n - m < m ? n - m : m);
+    for (int ns = n - m + 1, ms = 1; ms <= m; ns++, ms++) {
+        c *= ns;
+        c /= ms;
+    }
+    return c;
+}

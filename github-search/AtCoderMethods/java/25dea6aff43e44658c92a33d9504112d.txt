@@ -1,0 +1,21 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String str = br.readLine();
+    int l = Integer.parseInt(str);
+    str = br.readLine();
+    String[] a = str.split(" ");
+    int odd = 0, e_4 = 0;
+    for (String ai_s : a) {
+        int ai = Integer.parseInt(ai_s);
+        if (ai % 4 == 0)
+            e_4++;
+        else if (ai % 2 != 0)
+            odd++;
+    }
+    if (e_4 >= odd)
+        System.out.println("Yes");
+    else if (e_4 + 1 == odd && e_4 + odd == l)
+        System.out.println("Yes");
+    else
+        System.out.println("No");
+}

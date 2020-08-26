@@ -1,0 +1,27 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    int N = Integer.parseInt(reader.readLine());
+    Tree tree = new Tree(N);
+    for (int j = 0; j < N - 1; j++) {
+        String[] xy = reader.readLine().split("\\s");
+        int x = Integer.parseInt(xy[0]) - 1, y = Integer.parseInt(xy[1]) - 1;
+        tree.insert(x, y);
+        tree.insert(y, x);
+    }
+    int K = Integer.parseInt(reader.readLine()), start = 0;
+    Color[] color = new Color[N];
+    for (int j = 0; j < K; j++) {
+        String[] vp = reader.readLine().split("\\s");
+        int v = Integer.parseInt(vp[0]) - 1;
+        color[v] = new Color(Integer.parseInt(vp[1]), 1);
+        start = v;
+    }
+    PrintWriter pw = new PrintWriter(System.out);
+    if (solve(tree, color, -1, start)) {
+        pw.println("Yes");
+        paint(tree, color, -1, start);
+        for (int j = 0; j < N; j++) pw.println(color[j].start);
+    } else
+        pw.println("No");
+    pw.close();
+}

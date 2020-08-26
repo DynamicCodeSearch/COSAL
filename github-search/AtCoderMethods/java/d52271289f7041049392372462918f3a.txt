@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int r = in.nextInt();
+    int c = in.nextInt();
+    int n = in.nextInt();
+    List<int[]> points = new ArrayList<>();
+    for (int i = 0; i < n; i++) {
+        int[] ho = new int[4];
+        for (int j = 0; j < 4; j++) {
+            ho[j] = in.nextInt();
+        }
+        int from = encode(r, c, ho[0], ho[1]);
+        int to = encode(r, c, ho[2], ho[3]);
+        if (from == -1 || to == -1) {
+            continue;
+        }
+        points.add(new int[] { from, to });
+    }
+    out.println(solve(points) ? "YES" : "NO");
+    out.flush();
+}

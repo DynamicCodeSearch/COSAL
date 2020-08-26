@@ -1,0 +1,17 @@
+def solve(first, second, s) :
+    n = len(s)
+    ans = [0] * (n)
+    ans[-2] = first;
+    ans[-1] = second;
+
+
+
+    for i in range(0, n-2) :
+        nsame = 0
+        nsame ^= s[i-1]
+        nsame ^= ans[i-1]
+        ans[i] = ans[i-2] ^ nsame
+    if check( s, ans, n-2 ) == 0 and check(s, ans, n-1) == 0 :
+        ans.append(1)
+
+    return ans

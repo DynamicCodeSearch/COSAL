@@ -1,0 +1,12 @@
+def c():
+    n = int(input())
+    a = [int(ai) for ai in input().split()]
+    maxN = 10**5
+    A = [0]*maxN
+    for i in a:
+        A[i] += 1
+        if i != 0:
+            A[i-1] += 1
+        if i != maxN-1:
+            A[i+1] += 1
+    print(max(A))

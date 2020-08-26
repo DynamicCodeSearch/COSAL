@@ -1,0 +1,11 @@
+def solve():
+    N = int(input())
+    S = [[c for c in input()] for i in range(N)]
+    D = [['' for j in range(N)] for i in range(N)]
+
+    for i in range(N):
+        for j in range(N):
+            D[i][j] = S[N - 1 - j][i]
+
+    for i in range(N):
+        print(''.join(D[i]))

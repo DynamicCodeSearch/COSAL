@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = Integer.parseInt(sc.next());
+    String str = sc.next();
+    String[] arr = new String[str.length()];
+    arr = str.split("", 0);
+    List<Integer> arrx = new ArrayList<>();
+    int count = 0;
+    arrx.add(0);
+    for (int i = 0; i < str.length(); i++) {
+        if (arr[i].equals("I")) {
+            count = count + 1;
+        } else {
+            count = count - 1;
+        }
+        arrx.add(count);
+    }
+    int max = arrx.get(0);
+    int v = 0;
+    for (int i = 0; i < arrx.size(); i++) {
+        v = arrx.get(i);
+        if (v > max) {
+            max = v;
+        }
+    }
+    System.out.println(max);
+}

@@ -1,0 +1,14 @@
+public static int findGFenwick(long[] ft, long v) {
+    int i = 0;
+    int n = ft.length;
+    for (int b = Integer.highestOneBit(n); b != 0 && i < n; b >>= 1) {
+        if (i + b < n) {
+            int t = i + b;
+            if (v >= ft[t]) {
+                i = t;
+                v -= ft[t];
+            }
+        }
+    }
+    return v != 0 ? -(i + 1) : i - 1;
+}

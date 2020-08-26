@@ -1,0 +1,23 @@
+def main():
+    S = str(input())
+    T = str(input())
+
+    at = 'atcoder'
+    ans = 'You will lose'
+    i = 0
+    while i < len(S):
+        if S[i] == T[i]:
+            pass
+        elif S[i] == '@':
+            if not T[i] in at:
+                break
+        elif T[i] == '@':
+            if not S[i] in at:
+                break
+        else:
+            break
+        i += 1
+    else:
+        ans = 'You can win'
+
+    print(ans)

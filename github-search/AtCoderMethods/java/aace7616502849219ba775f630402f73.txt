@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int N = Integer.parseInt(scanner.next());
+    int maxCost = 1, secondCost = 0;
+    for (int i = 0; i < N; i++) {
+        int tmp = Integer.parseInt(scanner.next());
+        if (tmp > maxCost) {
+            secondCost = maxCost;
+            maxCost = tmp;
+        } else if (tmp > secondCost && tmp != maxCost) {
+            secondCost = tmp;
+        }
+    }
+    System.out.println(secondCost);
+}

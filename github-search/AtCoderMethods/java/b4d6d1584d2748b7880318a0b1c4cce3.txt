@@ -1,0 +1,26 @@
+public void solve() {
+    int H = nextInt();
+    int W = nextInt();
+    field = new int[H + 2][W + 2];
+    memo = new int[H + 2][W + 2];
+    for (int i = 1; i <= H; i++) {
+        for (int j = 1; j <= W; j++) {
+            field[i][j] = nextInt();
+        }
+    }
+    for (int i = 1; i <= H; i++) {
+        field[i][0] = -1;
+        field[i][W + 1] = -1;
+    }
+    for (int i = 1; i <= W; i++) {
+        field[0][i] = -1;
+        field[H + 1][i] = -1;
+    }
+    int ans = 0;
+    for (int i = 1; i <= H; i++) {
+        for (int j = 1; j <= W; j++) {
+            ans = mod(ans + recur(i, j));
+        }
+    }
+    out.println(ans);
+}

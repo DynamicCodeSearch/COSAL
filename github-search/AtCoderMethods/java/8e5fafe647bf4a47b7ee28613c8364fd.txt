@@ -1,0 +1,11 @@
+static void Method(ArrayList<Long> num, ArrayList<String> param) {
+    long W = num.get(3);
+    int count = 0;
+    for (int i = 3; i < num.size(); i++) {
+        if (num.get(1) <= W && W <= num.get(2))
+            count++;
+        if (i < num.size() - 1)
+            W += num.get(i + 1);
+    }
+    System.out.println(count);
+}

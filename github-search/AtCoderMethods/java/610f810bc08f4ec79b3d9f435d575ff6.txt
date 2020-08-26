@@ -1,0 +1,9 @@
+private static long solve(int n, long k, int[][] abs) {
+    Arrays.sort(abs, (ab1, ab2) -> Integer.compare(ab1[0], ab2[0]));
+    for (int[] ab : abs) {
+        k -= ab[1];
+        if (k <= 0)
+            return ab[0];
+    }
+    throw new IllegalArgumentException();
+}

@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    int i = 0, TopRates = 0;
+    double Takahasi = 0;
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int K = sc.nextInt();
+    
+    Integer[] AllRates = new Integer[N];
+    
+    for (i = 0; i < N; i++) {
+        AllRates[i] = sc.nextInt();
+    }
+    Arrays.sort(AllRates, Comparator.reverseOrder());
+    for (i = K - 1; i >= 0; i--) {
+        Takahasi = (double) ((Takahasi + AllRates[i]) / 2);
+    }
+    System.out.println(Takahasi);
+}

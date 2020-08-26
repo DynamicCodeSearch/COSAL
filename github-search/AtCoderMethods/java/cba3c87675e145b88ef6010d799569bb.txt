@@ -1,0 +1,38 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    List<Character> alice = new ArrayList<>();
+    List<Character> bob = new ArrayList<>();
+    List<Character> charlie = new ArrayList<>();
+    for (char x : in.next().toCharArray()) alice.add(x);
+    for (char x : in.next().toCharArray()) bob.add(x);
+    for (char x : in.next().toCharArray()) charlie.add(x);
+    char next = alice.get(0);
+    boolean ans = true;
+    while (ans) {
+        switch(next) {
+            case 'a':
+                if (alice.size() == 0) {
+                    out.println("A");
+                    return;
+                }
+                next = alice.get(0);
+                alice.remove(0);
+                break;
+            case 'b':
+                if (bob.size() == 0) {
+                    out.println("B");
+                    return;
+                }
+                next = bob.get(0);
+                bob.remove(0);
+                break;
+            case 'c':
+                if (charlie.size() == 0) {
+                    out.println("C");
+                    return;
+                }
+                next = charlie.get(0);
+                charlie.remove(0);
+                break;
+        }
+    }
+}

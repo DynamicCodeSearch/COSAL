@@ -1,0 +1,11 @@
+double distance(LineSegment l) {
+    if (this.intersects(l)) {
+        return 0.0;
+    }
+    double min = Double.MAX_VALUE;
+    min = Math.min(min, distance(l.x1, l.y1));
+    min = Math.min(min, distance(l.x2, l.y2));
+    min = Math.min(min, l.distance(x1, y1));
+    min = Math.min(min, l.distance(x2, y2));
+    return min;
+}

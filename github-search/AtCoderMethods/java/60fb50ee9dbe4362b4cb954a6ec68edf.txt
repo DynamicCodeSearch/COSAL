@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner scn = new Scanner(System.in);
+    String[] in1 = scn.nextLine().split(" ");
+    scn.close();
+    int A = Integer.parseInt(in1[0]);
+    int B = Integer.parseInt(in1[1]);
+    int C = Integer.parseInt(in1[2]);
+    if (A + B == C && A - B != C) {
+        System.out.println("+");
+    } else if (A - B == C && A + B != C) {
+        System.out.println("-");
+    } else if (A + B != C && A - B != C) {
+        System.out.println("!");
+    } else {
+        System.out.println("?");
+    }
+}

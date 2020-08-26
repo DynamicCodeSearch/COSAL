@@ -1,0 +1,27 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    n = in.nextInt();
+    m = in.nextInt();
+    int q = in.nextInt();
+    int[] dx = { 0, 1, 0, -1 };
+    int[] dy = { 1, 0, -1, 0 };
+    int[][] g = new int[n][m];
+    int cur = 0;
+    int x = 0, y = 0;
+    for (int k = 0; k < q; ++k) {
+        int p = in.nextInt();
+        while (p-- > 0) {
+            g[x][y] = k + 1;
+            if (!border(x + dx[cur], y + dy[cur]) || g[x + dx[cur]][y + dy[cur]] > 0) {
+                cur = (cur + 1) % 4;
+            }
+            x += dx[cur];
+            y += dy[cur];
+        }
+    }
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < m; ++j) {
+            out.print(g[i][j] + " ");
+        }
+        out.println();
+    }
+}

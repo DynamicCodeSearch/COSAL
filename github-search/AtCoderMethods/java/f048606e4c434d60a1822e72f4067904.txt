@@ -1,0 +1,55 @@
+static void solve() {
+    int n = ni(), m = ni(), K = ni();
+    int[] from = new int[m];
+    int[] to = new int[m];
+    int[] w = new int[m];
+    for (int i = 0; i < m; i++) {
+        from[i] = ni() - 1;
+        to[i] = ni() - 1;
+        w[i] = i;
+    }
+    int[][][] g = packWU(n, from, to, w);
+    BCDatum bcd = decomposeToBiconnectedComponents(g);
+    int[][] cb = makeBuckets(bcd.edgeClus);
+    int mod = 1000000007;
+    long[][] C = new long[1000 + 1][1000 + 1];
+    for (int i = 0; i <= 1000; i++) {
+        C[i][0] = 1;
+        for (int j = 1; j <= i; j++) {
+            C[i][j] = C[i - 1][j - 1] + C[i - 1][j];
+            if (C[i][j] >= mod)
+                C[i][j] -= mod;
+        }
+    }
+    long ret = 1;
+    for (int[] row : cb) {
+        if (row.length == 0)
+            continue;
+        int[] ap = new int[row.length * 2];
+        int p = 0;
+        for (int v : row) {
+            ap[p++] = from[v];
+            ap[p++] = to[v];
+        }
+        Arrays.sort(ap);
+        int uv = 0;
+        for (int i = 0; i < ap.length; i++) {
+            if (i == 0 || ap[i] != ap[i - 1]) {
+                uv++;
+            }
+        }
+        if (uv > row.length) {
+            ret = ret * pow(K, row.length, mod) % mod;
+        } else if (uv == row.length) {
+            long res = 0;
+            for (int i = 1; i <= uv; i++) {
+                int gg = gcd(uv, i);
+                res += pow(K, gg, mod);
+            }
+            ret = ret * (res % mod * invl(uv, mod) % mod) % mod;
+        } else {
+            ret = ret * C[row.length + K - 1][K - 1] % mod;
+        }
+    }
+    out.println(ret);
+}

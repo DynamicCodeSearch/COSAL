@@ -1,0 +1,27 @@
+public static void main(String[] args) throws IOException {
+    InputStreamReader isr = new InputStreamReader(System.in);
+    BufferedReader br = new BufferedReader(isr);
+    String buf = br.readLine();
+    int N = Integer.parseInt(buf);
+    int[] x = new int[N];
+    int[] y = new int[100];
+    int i, j;
+    double len = 0, max = 0;
+    for (i = 0; i < N; i++) {
+        buf = br.readLine();
+        String[] ary = buf.split(" ");
+        x[i] = Integer.parseInt(ary[0]);
+        y[i] = Integer.parseInt(ary[1]);
+    }
+    for (i = 0; i < N - 1; i++) {
+        for (j = i + 1; j < N; j++) {
+            
+            len = (x[i] - x[j]) * (x[i] - x[j]) + (y[i] - y[j]) * (y[i] - y[j]);
+            if (max < len)
+                max = len;
+        
+        }
+    }
+    len = Math.sqrt(max);
+    System.out.println(len);
+}

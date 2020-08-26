@@ -1,0 +1,4 @@
+public <U> U get(int idx, BucketAccessor<T, U> f) {
+    int b = idx / S, offset = idx % S;
+    return f.access(buckets.get(b), offset);
+}

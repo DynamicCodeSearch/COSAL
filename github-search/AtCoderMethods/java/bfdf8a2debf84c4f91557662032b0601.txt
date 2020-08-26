@@ -1,0 +1,10 @@
+void solver() {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int d = (int) (Math.sqrt(n));
+    int ans = n;
+    for (int i = 1; i <= n; i++) {
+        ans = Math.min(ans, Math.abs(i - n / i) + (n - (n / i) * i));
+    }
+    System.out.println(ans);
+}

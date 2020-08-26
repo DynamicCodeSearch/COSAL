@@ -1,0 +1,40 @@
+void solve() {
+    int n = ni();
+    long t = nl();
+    int[] w = new int[n];
+    long[] v = new long[n];
+    for (int i = 0; i < n; ++i) {
+        w[i] = ni();
+        v[i] = nl();
+    }
+    long b = w[0];
+    for (int i = 0; i < n; ++i) {
+        w[i] -= b;
+    }
+    long[][] dp = new long[n + 1][333];
+    for (int i = 0; i < n; ++i) {
+        Arrays.fill(dp[i], -1);
+    }
+    dp[0][0] = 0;
+    for (int i = 0; i < n; ++i) {
+        for (int j = n - 1; j >= 0; --j) {
+            for (int k = 0; k < 333; ++k) {
+                if (dp[j][k] == -1)
+                    continue;
+                if (j * b + k + w[i] + b > t)
+                    continue;
+                long x = dp[j][k] + v[i];
+                if (dp[j + 1][k + w[i]] < x)
+                    dp[j + 1][k + w[i]] = x;
+            }
+        }
+    }
+    long x = 0;
+    for (int i = 0; i <= n; ++i) {
+        for (int j = 0; j < 333; ++j) {
+            if (x < dp[i][j])
+                x = dp[i][j];
+        }
+    }
+    out.println(x);
+}

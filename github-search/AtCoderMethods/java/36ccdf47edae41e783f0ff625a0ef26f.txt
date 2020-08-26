@@ -1,0 +1,27 @@
+public void solve(String[] args) {
+    MyScanner scanner = new MyScanner();
+    int N = scanner.nextInt();
+    int M = scanner.nextInt();
+    for (int i = 0; i < M; i++) {
+        List<Integer> p = new ArrayList<>();
+        p.add(scanner.nextInt() - 1);
+        p.add(scanner.nextInt() - 1);
+        list.add(p);
+    }
+    int ret = 0;
+    for (int i = 0; i < M; i++) {
+        check = new boolean[N];
+        used = new boolean[M];
+        dfs(0, i);
+        boolean f = true;
+        for (int j = 0; j < N; j++) {
+            if (!check[j]) {
+                f = false;
+            }
+        }
+        if (!f) {
+            ret++;
+        }
+    }
+    System.out.println(ret);
+}

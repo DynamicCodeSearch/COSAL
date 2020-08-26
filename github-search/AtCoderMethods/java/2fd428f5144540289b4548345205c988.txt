@@ -1,0 +1,20 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    String s = sc.next();
+    String make = "b";
+    int time = 1;
+    while (make.length() < n) {
+        if (time % 3 == 0)
+            make = "b" + make + "b";
+        else if (time % 3 == 1)
+            make = "a" + make + "c";
+        else if (time % 3 == 2)
+            make = "c" + make + "a";
+        time++;
+    }
+    if (make.equals(s))
+        System.out.println(time - 1);
+    else
+        System.out.println(-1);
+}

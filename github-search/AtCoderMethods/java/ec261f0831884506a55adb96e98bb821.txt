@@ -1,0 +1,48 @@
+void solver() {
+    
+    int N = ni();
+    
+    int M = ni();
+    
+    int S = ni() - 1;
+    ArrayList<Integer>[] e = new ArrayList[N];
+    for (int i = 0; i < N; i++) {
+        e[i] = new ArrayList<>();
+    }
+    for (int i = 0; i < M; i++) {
+        int u = ni() - 1;
+        int v = ni() - 1;
+        e[u].add(v);
+        e[v].add(u);
+    }
+    int[] mx = new int[N];
+    Arrays.fill(mx, -1);
+    mx[S] = S;
+    PriorityQueue<Pair> q = new PriorityQueue<Pair>(new Comparator<Pair>() {
+
+        @Override
+        public int compare(Pair o1, Pair o2) {
+            return -Integer.compare(o1.max, o2.max);
+        }
+    });
+    q.add(new Pair(S, S));
+    while (!q.isEmpty()) {
+        Pair v = q.poll();
+        if (mx[v.num] == -1)
+            throw new AssertionError();
+        for (int i = 0; i < e[v.num].size(); i++) {
+            int u = e[v.num].get(i);
+            if (mx[u] >= mx[v.num])
+                continue;
+            mx[u] = Math.min(u, mx[v.num]);
+            q.add(new Pair(u, mx[u]));
+        }
+    }
+    for (int i = 0; i < N; i++) {
+        if (mx[i] == i) {
+            out.println((i + 1));
+        } else if (mx[i] > i) {
+            throw new AssertionError();
+        }
+    }
+}

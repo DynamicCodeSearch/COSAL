@@ -1,0 +1,18 @@
+def main():
+    N,Q=list(map(int,input().split()))
+    a=[0 for _ in range(N)]
+    b=[0 for _ in range(N)]
+    for _ in range(Q):
+        l,r=list(map(int,input().split()))
+        a[l-1]+=1
+        if r!=N:
+            b[r]-=1
+    sum=0
+    str=""
+    for i in range(N):
+        sum=(sum+a[i]+b[i])%2
+        if(sum==1):
+            str+="1"
+        else:
+            str+="0"
+    print(str)

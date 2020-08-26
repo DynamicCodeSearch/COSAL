@@ -1,0 +1,18 @@
+def main():
+    d = defaultdict(lambda: 0)
+    h, w, n = reads()
+    for _ in range(n):
+        a, b = reads()
+        for i in range(3):
+            for j in range(3):
+                d[(a+i-1,b+j-1)] += 1
+    r = [0] * 10
+    for k in d:
+        y, x = k
+        if y < 2 or x < 2 or h-1 < y or w-1 < x:
+            continue
+        if d[k] < 10:
+            r[d[k]] += 1
+    r[0] = (h - 2)*(w - 2) - sum(r)
+    for l in r:
+        print(l)

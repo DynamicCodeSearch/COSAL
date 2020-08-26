@@ -1,0 +1,33 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    
+    
+    
+    int N = Integer.parseInt(br.readLine());
+    
+    List<String> a = Arrays.asList(br.readLine().trim().split(" ", 0));
+    List<String> b = new ArrayList<String>();
+    List<String> c = new ArrayList<String>();
+    for (int i = N - 1; i >= 0; i -= 2) {
+        b.add(a.get(i));
+    }
+    int j;
+    if (N % 2 == 0) {
+        j = 0;
+    } else {
+        j = 1;
+    }
+    for (int i = j; i < N; i += 2) {
+        b.add(a.get(i));
+    }
+    StringBuilder sb = new StringBuilder();
+    for (String s : b) {
+        sb.append(s);
+        sb.append(" ");
+    }
+    
+    sb.delete(sb.length() - 1, sb.length());
+    
+    System.out.println(sb);
+    return;
+}

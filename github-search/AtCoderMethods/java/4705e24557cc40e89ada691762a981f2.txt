@@ -1,0 +1,28 @@
+public void solve() {
+    int N = nextInt();
+    int M = nextInt();
+    int S = nextInt();
+    uf = new UnionFind(N + 1);
+    for (int i = 0; i <= N; i++) {
+        list.add(new ArrayList<>());
+    }
+    for (int i = 0; i < M; i++) {
+        int u = nextInt();
+        int v = nextInt();
+        int uu = Math.min(u, v);
+        int vv = Math.max(u, v);
+        list.get(uu).add(vv);
+    }
+    ArrayList<Integer> ans = new ArrayList<Integer>();
+    for (int i = N; i > 0; i--) {
+        for (int v : list.get(i)) {
+            uf.union(v, i);
+        }
+        if (uf.find(S, i)) {
+            ans.add(i);
+        }
+    }
+    for (int i = ans.size() - 1; i >= 0; i--) {
+        out.println(ans.get(i));
+    }
+}

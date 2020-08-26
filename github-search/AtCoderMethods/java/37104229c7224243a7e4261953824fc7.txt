@@ -1,0 +1,21 @@
+
+
+
+static int[] findIncorrectCloses(String s, char open, char close) {
+    int n = s.length();
+    int cnt = 0, size = 0;
+    int[] res = new int[n];
+    for (int i = 0; i < n; i++) {
+        if (s.charAt(i) == open)
+            cnt++;
+        else if (s.charAt(i) == close) {
+            if (cnt <= 0)
+                res[size++] = i;
+            else
+                cnt--;
+        } else {
+            throw new RuntimeException("Undefined character");
+        }
+    }
+    return Arrays.copyOf(res, size);
+}

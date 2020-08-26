@@ -1,0 +1,13 @@
+static void solve() throws IOException {
+    String s = rs();
+    for (int i = 0; i < s.length(); i++) {
+        if (s.charAt(i) >= '0' && s.charAt(i) <= '9') {
+            if (i != s.length() - 1 && s.charAt(i + 1) >= '0' && s.charAt(i + 1) <= '9') {
+                out.println(Integer.parseInt(s.substring(i, i + 2)));
+            } else {
+                out.println(s.charAt(i));
+            }
+            break;
+        }
+    }
+}

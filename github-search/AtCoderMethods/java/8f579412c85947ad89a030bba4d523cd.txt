@@ -1,0 +1,16 @@
+private void solve() {
+    try {
+        Integer N = sc.nextInt();
+        HashMap<String, Integer> soinsuMap = new HashMap<>();
+        for (int i = N; i >= 2; i--) {
+            soinsuMap = soinbunkai(soinsuMap, i);
+        }
+        long ret = 1;
+        for (int i : soinsuMap.values()) {
+            ret = ret * (i + 1) % 1000000007;
+        }
+        System.out.println(ret);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}

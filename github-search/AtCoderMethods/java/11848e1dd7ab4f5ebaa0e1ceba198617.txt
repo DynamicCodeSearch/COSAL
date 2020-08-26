@@ -1,0 +1,20 @@
+long f(int l, int curC) {
+    if (r[l] - (l - 1) < curC)
+        return memo[l][curC] = 0;
+    if (l == n - 1) {
+        if (curC > 1)
+            throw new AssertionError();
+        return memo[l][curC] = 1;
+    }
+    if (memo[l][curC] != -1)
+        return memo[l][curC];
+    long ret = 0;
+    if (!(r[l] - (l - 1 + 1) < curC)) {
+        ret += f(l + 1, curC + c[r[l + 1]] - c[r[l]]);
+    }
+    if (!(curC == 0)) {
+        ret += f(l + 1, curC - 1 + c[r[l + 1]] - c[r[l]]);
+    }
+    ret %= MODULO;
+    return memo[l][curC] = ret;
+}

@@ -1,0 +1,10 @@
+def update(n, x):
+    t, a = x
+    n1, n2 = n
+    c = 1
+    i0 = max(n1/t, n2/a)
+    for i in xrange(i0, 10**18):
+        if i * t >= n1 and i * a >=n2:
+            c = i
+            break
+    return c * t, c* a

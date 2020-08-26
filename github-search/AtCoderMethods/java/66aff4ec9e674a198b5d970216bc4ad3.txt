@@ -1,0 +1,15 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    double p = sc.nextDouble();
+    double max = 100;
+    double min = 0;
+    for (int i = 0; i < 1000; i++) {
+        double mid = (max + min) / 2;
+        double diff = 1 - p * Math.log(2) * (1 / 1.5) * Math.pow(2, -mid / 1.5);
+        if (diff > 0)
+            max = mid;
+        else
+            min = mid;
+    }
+    System.out.println(min + p * Math.pow(2, -min / 1.5));
+}

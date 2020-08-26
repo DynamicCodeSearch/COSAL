@@ -1,0 +1,28 @@
+void solve() {
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    int T = sc.nextInt();
+    a = sc.nextIntArray(N);
+    V[] g = new V[N];
+    for (int i = 0; i < N; i++) g[i] = new V();
+    V[] rev = new V[N];
+    for (int i = 0; i < N; i++) rev[i] = new V();
+    for (int mi = 0; mi < M; mi++) {
+        int from = sc.nextInt() - 1;
+        int to = sc.nextInt() - 1;
+        int w = sc.nextInt();
+        g[from].add(g[to], w);
+        rev[to].add(rev[from], w);
+    }
+    dijk(g, g[0]);
+    dijk(rev, rev[0]);
+    long ans = 0;
+    for (int i = 0; i < N; i++) {
+        long cur = 0;
+        int t = g[i].dist + rev[i].dist;
+        int res = Math.max(0, T - t);
+        cur += (long) res * a[i];
+        ans = Math.max(ans, cur);
+    }
+    out.println(ans);
+}

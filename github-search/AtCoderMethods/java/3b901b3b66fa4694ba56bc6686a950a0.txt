@@ -1,0 +1,26 @@
+public void solve(InputReader in, PrintWriter out) {
+    int n = in.nextInt(), x;
+    int[] a = new int[n + 1];
+    int[] visit = new int[n + 1];
+    Queue<Integer> Q = new ArrayDeque<Integer>();
+    int ans = 0;
+    for (int i = 1; i <= n; ++i) {
+        a[i] = in.nextInt();
+    }
+    Arrays.fill(visit, -1);
+    visit[1] = 0;
+    Q.add(1);
+    while (!Q.isEmpty()) {
+        x = Q.poll();
+        if (visit[a[x]] == -1) {
+            if (a[x] == 2) {
+                ans = visit[x] + 1;
+                out.println(ans);
+                return;
+            }
+            visit[a[x]] = visit[x] + 1;
+            Q.add(a[x]);
+        }
+    }
+    out.println(-1);
+}

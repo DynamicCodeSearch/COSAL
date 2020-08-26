@@ -1,0 +1,11 @@
+void solve() {
+    long A = in.nextInt();
+    long B = in.nextInt();
+    long K = in.nextInt();
+    long L = in.nextInt();
+    long ans = Long.MAX_VALUE;
+    ans = Math.min(ans, K * A);
+    ans = Math.min(ans, K % L == 0 ? K / L * B : (K / L + 1) * B);
+    ans = Math.min(ans, K % L == 0 ? K / L * B : K / L * B + (K % L) * A);
+    out.println(ans);
+}

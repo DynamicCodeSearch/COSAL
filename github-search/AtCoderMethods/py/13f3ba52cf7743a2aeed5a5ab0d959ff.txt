@@ -1,0 +1,17 @@
+def solve():
+    N = int(input())
+    s, p = [], []
+
+    for i in range(N):
+        name, num = input().split()
+        s.append(name)
+        p.append(int(num))
+
+    tot = sum(p)
+
+    for i in range(N):
+        if 2 * p[i] > tot:
+            print(s[i])
+            return
+
+    print('atcoder')

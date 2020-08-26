@@ -1,0 +1,11 @@
+private int findMax(List<Integer>[] positions, int i) {
+    int res = 0;
+    for (int c = 0; c < 26; c++) {
+        int k = Collections.binarySearch(positions[c], i);
+        if (k < 0) {
+            k = ~k;
+        }
+        res = Math.max(res, positions[c].get(k));
+    }
+    return res;
+}

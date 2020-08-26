@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int n = in.nextInt();
+    Pair[] x = new Pair[n];
+    for (int i = 0; i < n; i++) {
+        x[i] = new Pair(in.nextInt(), in.nextInt());
+    }
+    Arrays.sort(x);
+    long tmpMax = 0;
+    long tmp = 0;
+    for (int i = 0; i < n; i++) {
+        tmp += x[i].x;
+        if (tmpMax < tmp) {
+            tmpMax = tmp;
+        }
+        tmp -= x[i].y;
+    }
+    System.out.println(tmpMax);
+}

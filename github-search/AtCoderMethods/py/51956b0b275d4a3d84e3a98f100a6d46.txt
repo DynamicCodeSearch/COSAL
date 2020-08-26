@@ -1,0 +1,9 @@
+def can_kill(total, A, B, h_list):
+    add = A - B
+    num = 0
+    for h in h_list:
+        h -= B * total
+        num += ceil(h / add)
+        if num > total:
+            return False
+    return True

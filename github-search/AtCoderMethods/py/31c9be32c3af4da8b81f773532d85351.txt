@@ -1,0 +1,15 @@
+def f(l, s, e):
+    m = [False] * len(l)
+    m[s] = True
+    q = []
+    for nn in l[s]:
+        q.append(nn)
+        m[nn] = True
+    while len(q) > 0:
+        n = q[-1]
+        q = q[:-1]
+        for nn in l[n]:
+            if m[nn] == False:
+                m[nn] = True
+                q.append(nn)
+    return m[e]

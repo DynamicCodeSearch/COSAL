@@ -1,0 +1,32 @@
+public void readBody(String str) {
+    
+    String[] strArr = str.split(" ");
+    A = new int[N];
+    for (int i = 0; i < N; i++) A[i] = Integer.parseInt(strArr[i]);
+    if (A[0] != 0) {
+        long cnt1 = cnt();
+        long cnt2;
+        if (A[0] > 0) {
+            cnt2 = A[0] + 1;
+            A[0] = -1;
+        } else {
+            cnt2 = -1 * A[0] + 1;
+            A[0] = 1;
+        }
+        cnt2 += cnt();
+        if (cnt1 < cnt2)
+            System.out.println(cnt1);
+        else
+            System.out.println(cnt2);
+    } else {
+        A[0] = 1;
+        long cnt1 = cnt() + 1;
+        A[0] = -1;
+        long cnt2 = cnt() + 1;
+        if (cnt1 < cnt2)
+            System.out.println(cnt1);
+        else
+            System.out.println(cnt2);
+    }
+    cnt++;
+}

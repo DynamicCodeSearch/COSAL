@@ -1,0 +1,15 @@
+def cut(l, i): 
+    n = len(l)
+    if n == 1:
+        return int(l[0])+i 
+    if n == 0:
+        return 0
+    else: 
+        sum = int(''.join(l))+i 
+        for jj in range(n-1):
+
+            j=jj+1 
+
+            sum += cut(l[j:n], int(''.join(l[0:j]))+i)
+
+        return int(sum)

@@ -1,0 +1,12 @@
+def main():
+    _ = input()
+
+    xs = [int(x) for x in input().split()]
+    xs.sort()
+    ys = defaultdict(int)
+    for key in xs:
+        ys[key] += 1
+        ys[key-1] += 1
+        ys[key+1] += 1
+
+    print(max(ys.values()))

@@ -1,0 +1,26 @@
+public void solve(String[] args) {
+    MyScanner scanner = new MyScanner();
+    int N = scanner.nextInt();
+    String s = scanner.next();
+    int a = 0;
+    int prev = 0;
+    for (int i = 0; i < s.length(); i++) {
+        if (s.charAt(i) == '(') {
+            a++;
+        }
+        if (s.charAt(i) == ')') {
+            a--;
+            if (a < 0) {
+                a++;
+                prev++;
+            }
+        }
+    }
+    for (int i = 0; i < prev; i++) {
+        s = "(" + s;
+    }
+    for (int i = 0; i < a; i++) {
+        s = s + ")";
+    }
+    System.out.println(s);
+}

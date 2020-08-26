@@ -1,0 +1,17 @@
+public static int search(Node a, int q) {
+    int lcount = 0;
+    while (a != null) {
+        fall(a);
+        if (a.id == q) {
+            lcount += count(a.left);
+            break;
+        }
+        if (q < a.id) {
+            a = a.left;
+        } else {
+            lcount += count(a.left) + 1;
+            a = a.right;
+        }
+    }
+    return a == null ? -(lcount + 1) : lcount;
+}

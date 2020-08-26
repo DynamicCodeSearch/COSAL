@@ -1,0 +1,10 @@
+private static int[] calcSum(List<Integer> value) {
+    int[] sum = new int[value.size() + 1];
+    sum[0] = 0;
+    if (value.size() == 0)
+        return sum;
+    for (int i = 1; i < sum.length; i++) {
+        sum[i] = sum[i - 1] + value.get(i - 1);
+    }
+    return sum;
+}

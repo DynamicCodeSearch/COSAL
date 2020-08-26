@@ -1,0 +1,10 @@
+public String find(Node root, String word, int index) {
+    if (index >= word.length())
+        return "";
+    char c = word.charAt(index);
+    if (!root.children.containsKey(c)) {
+        return "";
+    }
+    Node next = root.children.get(c);
+    return word.charAt(index) + find(next, word, index + 1);
+}

@@ -1,0 +1,18 @@
+private int visit(int u, int mask) {
+    int g = mask, c;
+    for (c = 0; g > 0; g >>= 1) {
+        c += g & 1;
+    }
+    
+    if (c == n) {
+        return 1;
+    }
+    int count = 0;
+    for (int v : G[u]) {
+        if ((mask & (1 << v)) == 0) {
+            
+            count += visit(v, mask | (1 << v));
+        }
+    }
+    return count;
+}

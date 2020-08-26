@@ -1,0 +1,14 @@
+def check(s, a, b):
+    animals = [a, b]
+    s = s[1:] + s[0]
+    for c in s:
+        if animals[-1] is SHEEP:
+            animals.append(animals[-2] if c == 'o' else not animals[-2])
+        else:
+            animals.append(animals[-2] if c == 'x' else not animals[-2])
+
+    if a is animals[-2] and b is animals[-1]:
+        print(*['WS'[int(a)] for a in animals[:-2]], sep='')
+        return True
+    else:
+        return False

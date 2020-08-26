@@ -1,0 +1,11 @@
+void solve() throws IOException {
+    N = ni();
+    K = ni();
+    dp = new double[N + 1][K + 1][2];
+    for (int i = 0; i < dp.length; i++) {
+        for (int j = 0; j < dp[i].length; j++) {
+            Arrays.fill(dp[i][j], -1);
+        }
+    }
+    out.println(dfs(0, 0, 0));
+}

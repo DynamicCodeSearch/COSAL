@@ -1,0 +1,21 @@
+def main():
+    N = int(input())
+    A = tuple(map(int, input().split()))
+
+    a = sorted(A, reverse=True)
+    b = {}
+    for i in range(N - 1):
+        if a[i] == a[i+1]:
+            if a[i] in b.keys():
+                b[a[i]] += 1
+            else:
+                b[a[i]] = 2
+    if len(b) < 2:
+        ans = 0
+    elif b[max(b)] >= 4:
+        ans = max(b) ** 2
+    else:
+        c = sorted(b, reverse=True)
+        ans = c[0] * c[1]
+
+    print(ans)

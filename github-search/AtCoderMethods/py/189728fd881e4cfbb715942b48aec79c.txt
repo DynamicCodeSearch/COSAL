@@ -1,0 +1,20 @@
+def dijkstra(s,d,V):
+    global pq
+    color=[0]*n
+    d=[float('inf')]*n
+    d[s-1]=0
+    for i in V[s-1]:
+        heapq.heappush(pq,i)
+        d[i[1]-1]=i[0]
+    while len(pq)!=0:
+        t,u=heapq.heappop(pq)
+        color[u-1]=2
+        if d[u-1]<t:
+            continue
+        for c,v in V[u-1]:
+            if color[v-1]!=2 :
+                if d[u-1]+c<d[v-1]:
+                    d[v-1]=d[u-1]+c
+                    color[v-1]=1
+                    heapq.heappush(pq,[d[v-1],v])
+    return d

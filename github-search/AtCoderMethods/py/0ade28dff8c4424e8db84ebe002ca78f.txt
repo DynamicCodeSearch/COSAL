@@ -1,0 +1,20 @@
+def main():
+    N, M, T = map(int, input().split())
+    values = list(map(int, input().split()))
+    graph1 = defaultdict(list)
+    graph2 = defaultdict(list)
+    for _ in range(M):
+        a, b, c = map(int, input().split())
+        a, b = a - 1, b - 1
+        graph1[a].append((b, c))
+        graph2[b].append((a, c))
+
+    dist1 = dijkstra(0, N, graph1)
+    dist2 = dijkstra(0, N, graph2)
+
+    ans = 0
+    for i in range(len(dist1)):
+        t = T - (dist1[i] + dist2[i])
+        if t >= 0:
+            ans = max(ans, t * values[i])
+    print(ans)

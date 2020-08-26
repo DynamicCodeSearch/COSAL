@@ -1,0 +1,18 @@
+def f(H,W):
+    ans = H * W
+
+    for S1_H in range(1, H):    
+        temp = int(main(H - S1_H, W, S1_H * W))
+        if temp == 0:
+            return 0
+        elif temp < ans:
+            ans = temp
+
+    for S1_W in range(1, W):    
+        temp = int(main(H, W - S1_W, S1_W * H))
+        if temp == 0:
+            return 0
+        elif temp < ans:
+            ans = temp
+
+    return ans

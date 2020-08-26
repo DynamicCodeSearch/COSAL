@@ -1,0 +1,25 @@
+private void solve() throws IOException {
+    long s = input.nextLong();
+    long c = input.nextLong();
+    long d = (c - 2 * s) / 2;
+    long ans = 0;
+    for (long x = d - 10000000; x <= d + 10000000; x++) {
+        if (x >= 0 && x <= c) {
+            long cur = Math.min((c - x) / 2, s + x / 2);
+            ans = Math.max(ans, cur);
+        }
+    }
+    for (long x = 0; x <= 10000000; x++) {
+        if (x >= 0 && x <= c) {
+            long cur = Math.min((c - x) / 2, s + x / 2);
+            ans = Math.max(ans, cur);
+        }
+    }
+    for (long x = c; x >= c - 10000000; --x) {
+        if (x >= 0 && x <= c) {
+            long cur = Math.min((c - x) / 2, s + x / 2);
+            ans = Math.max(ans, cur);
+        }
+    }
+    output.println(ans);
+}

@@ -1,0 +1,7 @@
+public static long[] restoreRangeFenwick(long[] ft0, long[] ft1) {
+    int n = ft0.length - 1;
+    long[] ret = new long[n];
+    for (int i = 0; i < n; i++) ret[i] = sumRangeFenwick(ft0, ft1, i);
+    for (int i = n - 1; i >= 1; i--) ret[i] -= ret[i - 1];
+    return ret;
+}

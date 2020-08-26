@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    String[] strStdIn = new String[4];
+    int i = 0;
+    while (i != 4) {
+        strStdIn[i] = scanner.nextLine();
+        i++;
+    }
+    int totalLiving = Integer.parseInt(strStdIn[0]);
+    int initialLiving = Integer.parseInt(strStdIn[1]);
+    int initialCost = Integer.parseInt(strStdIn[2]);
+    int latterCost = Integer.parseInt(strStdIn[3]);
+    int latterLivingDate = totalLiving - initialLiving;
+    int totalCost = 0;
+    if ((initialLiving == 0) || (latterLivingDate <= 0)) {
+        totalCost = initialCost * totalLiving;
+    } else {
+        totalCost = latterCost * latterLivingDate + initialCost * (totalLiving - latterLivingDate);
+    }
+    String returnString = Integer.toString(totalCost);
+    System.out.println(totalCost);
+}

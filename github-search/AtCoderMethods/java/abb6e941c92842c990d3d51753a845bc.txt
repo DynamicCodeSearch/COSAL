@@ -1,0 +1,28 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int a = in.nextInt();
+    int b = in.nextInt();
+    int c = in.nextInt();
+    int d = in.nextInt();
+    int e = in.nextInt();
+    int f = in.nextInt();
+    Set<Integer> waterSet = calcSet(a, b, f / 100);
+    Set<Integer> sugerSet = calcSet(c, d, f);
+    double max = 0;
+    int ansSugerWater = 0;
+    int ansSuger = 0;
+    for (int weightWater : waterSet) {
+        for (int weightSuger : sugerSet) {
+            if (weightWater * 100 + weightSuger > f || weightSuger > weightWater * e || max >= (double) weightSuger / (weightSuger + weightWater)) {
+                continue;
+            }
+            ansSugerWater = weightWater * 100 + weightSuger;
+            ansSuger = weightSuger;
+            max = (double) weightSuger / (weightSuger + weightWater);
+        }
+    }
+    if (max == 0) {
+        out.println((a * 100) + " 0");
+        return;
+    }
+    out.println(ansSugerWater + " " + ansSuger);
+}

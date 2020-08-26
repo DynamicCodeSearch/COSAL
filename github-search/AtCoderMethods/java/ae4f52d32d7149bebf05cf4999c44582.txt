@@ -1,0 +1,19 @@
+void solve(FastScanner in, PrintWriter out) throws Exception {
+    long N = in.nextLong();
+    int h = 64 - Long.numberOfLeadingZeros(Long.highestOneBit(N)) - 1;
+    dp[h + 1][0] = 1;
+    for (int i = h; i >= 0; i--) {
+        if (((1L << i) & N) != 0) {
+            dp[i][0] = dp[i + 1][0];
+            dp[i][1] = (dp[i + 1][0] + dp[i + 1][1]) % MOD;
+            dp[i][2] = (3 * dp[i + 1][2] + 2 * dp[i + 1][1]) % MOD;
+        } else {
+            dp[i][0] = (dp[i + 1][0] + dp[i + 1][1]) % MOD;
+            dp[i][1] = dp[i + 1][1];
+            dp[i][2] = (3 * dp[i + 1][2] + dp[i + 1][1]) % MOD;
+        }
+    }
+    long ans = 0;
+    for (long d : dp[0]) ans = (ans + d) % MOD;
+    out.println(ans);
+}

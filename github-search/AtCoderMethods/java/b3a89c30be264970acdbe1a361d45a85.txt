@@ -1,0 +1,31 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int A = Integer.parseInt(br.readLine());
+    int B = Integer.parseInt(br.readLine());
+    int C = Integer.parseInt(br.readLine());
+    if (A > B && B > C) {
+        System.out.println("1");
+        System.out.println("2");
+        System.out.println("3");
+    } else if (A > B && C > B && A > C) {
+        System.out.println("1");
+        System.out.println("3");
+        System.out.println("2");
+    } else if (B > A && A > C) {
+        System.out.println("2");
+        System.out.println("1");
+        System.out.println("3");
+    } else if (B > A && B > C && C > A) {
+        System.out.println("3");
+        System.out.println("1");
+        System.out.println("2");
+    } else if (C > A && A > B) {
+        System.out.println("2");
+        System.out.println("3");
+        System.out.println("1");
+    } else if (C > A && C > B && A < B) {
+        System.out.println("3");
+        System.out.println("2");
+        System.out.println("1");
+    }
+}

@@ -1,0 +1,9 @@
+public static void main(String[] args) throws IOException {
+    try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
+        String[] card = br.readLine().split(" ");
+        int alice = Integer.parseInt(card[0]);
+        int bob = Integer.parseInt(card[1]);
+        String str = alice == bob ? "Draw" : alice == 1 ? "Alice" : bob == 1 || alice < bob ? "Bob" : "Alice";
+        System.out.println(str);
+    }
+}

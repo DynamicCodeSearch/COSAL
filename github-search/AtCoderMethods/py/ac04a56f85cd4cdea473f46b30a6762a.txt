@@ -1,0 +1,11 @@
+def main():
+    s = input()
+    for i in range(len(s)-2):
+        if len(set(s[i: i+3])) < 3:
+            print(i+1, i+3)
+            return
+    for i in range(len(s)-1):
+        if len(set(s[i: i+2])) < 2:
+            print(i+1, i+2)
+            return
+    print(-1, -1)

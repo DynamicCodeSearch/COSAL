@@ -1,0 +1,26 @@
+def main():
+    moves = raw_input()
+    maxmin = input()
+
+    pos = [0,0]
+    hatena_count = 0
+    for m in moves:
+        if m == "U":
+            pos[1] += 1
+        elif m == "D":
+            pos[1] -= 1
+        elif m == "R":
+            pos[0] += 1
+        elif m == "L":
+            pos[0] -= 1
+        elif m == "?":
+            hatena_count += 1
+
+    tmp = int(math.fabs(pos[0]) + math.fabs(pos[1]))
+    if maxmin == 1:
+        print(tmp + hatena_count)
+    elif maxmin == 2:
+        if tmp >= hatena_count:
+            print(tmp - hatena_count)
+        else:
+            print((hatena_count - tmp)%2)

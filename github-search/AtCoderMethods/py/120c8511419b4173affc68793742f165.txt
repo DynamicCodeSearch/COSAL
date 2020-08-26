@@ -1,0 +1,11 @@
+def confirmRelations():
+    answer = 1
+    for relation_size in range(n, 0, -1):
+        all_relations = itertools.combinations(range(n), relation_size)
+        for relation in all_relations:
+            judge = [relations[i][j] for (i, j) in itertools.combinations(relation, 2)]
+            if all(judge):
+                answer = relation_size
+        if answer != 1:
+            break
+    return answer

@@ -1,0 +1,35 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    int[] a = new int[M];
+    int[] b = new int[M];
+    sc.fill(a, b);
+    List<List<Integer>> root = new ArrayList<>(N);
+    for (int i = 0; i < N; i++) {
+        root.add(new ArrayList<>());
+    }
+    for (int i = 0; i < M; i++) {
+        root.get(a[i] - 1).add(b[i] - 1);
+        root.get(b[i] - 1).add(a[i] - 1);
+    }
+    Deque<List<Integer>> queue = new ArrayDeque<>();
+    queue.add(Arrays.asList(0));
+    int count = 0;
+    while (!queue.isEmpty()) {
+        List<Integer> list = queue.poll();
+        if (list.size() == N) {
+            count++;
+            continue;
+        }
+        int last = list.get(list.size() - 1);
+        for (int next : root.get(last)) {
+            if (!list.contains(next)) {
+                List<Integer> copy = new ArrayList<>(list);
+                copy.add(next);
+                queue.add(copy);
+            }
+        }
+    }
+    System.out.println(count);
+}

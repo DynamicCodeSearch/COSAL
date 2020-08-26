@@ -1,0 +1,15 @@
+@SuppressWarnings("unchecked")
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] n_m = br.readLine().split(" ");
+    long n = Long.parseLong(n_m[0]);
+    long m = Long.parseLong(n_m[1]);
+    total = 0;
+    if (n * 2 >= m) {
+        total = m / 2;
+    } else {
+        total = n;
+        total += (m - n * 2) / 4;
+    }
+    System.out.println(total);
+}

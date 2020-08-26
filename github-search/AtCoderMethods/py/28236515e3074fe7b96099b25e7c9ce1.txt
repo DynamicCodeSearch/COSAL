@@ -1,0 +1,15 @@
+def solve():
+    n, k = map(int, input().split())
+    d = list(map(int, input().split()))
+
+    use = []
+    for i in range(10):
+        if i not in d:
+            use.append(i)
+
+    for i in range(len(str(n)), len(str(n)) + 2):
+        st = []
+        func(0, i, "", use, st)
+        for x in sorted(st):
+            if int(x) >= n:
+                return x

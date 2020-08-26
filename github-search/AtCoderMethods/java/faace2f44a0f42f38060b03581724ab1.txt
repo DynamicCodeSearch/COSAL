@@ -1,0 +1,11 @@
+void solve(ContestScanner in, Writer out) throws NumberFormatException, IOException {
+    int n = in.nextInt();
+    int[][] a = new int[n][n];
+    for (int i = 0; i < n; i++) {
+        char[] line = in.nextToken().toCharArray();
+        for (int j = 0; j < n; j++) {
+            a[i][j] = line[j] - '0';
+        }
+    }
+    System.out.println(detMod2(a, n) % 2 == 0 ? "Even" : "Odd");
+}

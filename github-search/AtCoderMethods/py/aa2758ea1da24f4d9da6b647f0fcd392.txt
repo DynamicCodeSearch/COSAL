@@ -1,0 +1,12 @@
+def nibutan(th, a):
+    top = len(th)
+    btm = 0
+
+    while top > btm:
+        mid = (top + btm)//2
+        if th[mid] < a <= th[mid + 1]:
+            return mid
+        elif a <= th[mid]:
+            top = mid
+        else:
+            btm = mid

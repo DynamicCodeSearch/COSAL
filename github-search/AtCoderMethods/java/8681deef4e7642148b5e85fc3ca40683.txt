@@ -1,0 +1,51 @@
+public static void main(String[] args) {
+    int H = 0;
+    int W = 0;
+    int[][] A = null;
+    long[] A_work = null;
+    try (Scanner sc = new Scanner(System.in)) {
+        H = sc.nextInt();
+        W = sc.nextInt();
+        A = new int[H + 2][W + 2];
+        A_work = new long[H * W];
+        sc.nextLine();
+        for (int i = 0; i < H; ++i) {
+            String[] elems = sc.nextLine().split(" ");
+            for (int j = 0; j < elems.length; ++j) {
+                A[i + 1][j + 1] = Integer.parseInt(elems[j]);
+                A_work[i * W + j] = A[i + 1][j + 1] * 1000L * 1000L + i * 1000L + j;
+            }
+        }
+    }
+    Arrays.sort(A_work);
+    
+    System.gc();
+    long[][] P = new long[H + 2][W + 2];
+    int[] di = { -1, 0, 0, 1 };
+    int[] dj = { 0, -1, 1, 0 };
+    for (long focus : A_work) {
+        int i = (int) ((focus / 1000L) % 1000L) + 1;
+        int j = (int) (focus % 1000L) + 1;
+        
+        
+        P[i][j] = 1;
+        
+        for (int l = 0; l < 4; ++l) {
+            int i_ = i + di[l];
+            int j_ = j + dj[l];
+            if (A[i][j] - A[i_][j_] > 0) {
+                P[i][j] += P[i_][j_];
+                P[i][j] %= MOD;
+            }
+        }
+    }
+    long path_sum = 0;
+    for (int i = 0; i < H; ++i) {
+        for (int j = 0; j < W; ++j) {
+            path_sum = path_sum + P[i + 1][j + 1];
+            path_sum = path_sum % MOD;
+        }
+    }
+    System.out.printf("%d%n", path_sum);
+    System.gc();
+}

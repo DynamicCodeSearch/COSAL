@@ -1,0 +1,12 @@
+static void Method(ArrayList<Integer> num, ArrayList<String> param) {
+    int total = 0;
+    boolean fast = false;
+    for (int i = 2; i < num.size(); i++) {
+        total += num.get(1);
+        if (num.get(i - 1) + num.get(1) - num.get(i) > 0 && fast) {
+            total -= num.get(1) - (num.get(i) + num.get(1) - (num.get(i - 1) + num.get(1)));
+        }
+        fast = true;
+    }
+    System.out.println(total);
+}

@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[] marks = new int[n];
+    int sum = 0;
+    for (int i = 0; i < n; i++) {
+        marks[i] = sc.nextInt();
+        sum += marks[i];
+    }
+    Arrays.sort(marks);
+    int k = 0;
+    while (sum % 10 == 0 && sum != 0) {
+        while (k < marks.length && marks[k] % 10 == 0) k++;
+        if (k == marks.length) {
+            sum = 0;
+            break;
+        }
+        sum -= marks[k++];
+    }
+    System.out.println(sum);
+}

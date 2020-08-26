@@ -1,0 +1,12 @@
+def main():
+    N, M = map(int, input().split())
+    ships = set()
+    for _ in range(M):
+        a, b = map(int, input().split())
+        ships.add((a, b))
+        ships.add((b, a))
+    for i in range(2, N):
+        if (1, i) in ships and (i, N) in ships:
+            return "POSSIBLE"
+    else:
+        return "IMPOSSIBLE"

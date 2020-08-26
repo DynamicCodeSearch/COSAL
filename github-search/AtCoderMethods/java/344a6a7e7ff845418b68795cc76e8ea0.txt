@@ -1,0 +1,35 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int n = Integer.parseInt(br.readLine());
+    String[] vote = new String[n];
+    int[] count = new int[n];
+    String input;
+    int j;
+    for (int i = 0; i < n; i++) {
+        input = br.readLine();
+        j = 0;
+        while (vote[j] != null) {
+            if (vote[j].equals(input)) {
+                count[j] += 1;
+                break;
+            }
+            j += 1;
+        }
+        vote[j] = input;
+        count[j] += 1;
+    }
+    int max = -1;
+    int index = 0;
+    int k = 0;
+    while (vote[k] != null) {
+        if (max < count[k]) {
+            max = count[k];
+            index = k;
+        }
+        k += 1;
+        if (k >= n) {
+            break;
+        }
+    }
+    System.out.println(vote[index]);
+}

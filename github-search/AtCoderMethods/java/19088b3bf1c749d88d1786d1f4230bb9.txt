@@ -1,0 +1,28 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int h = in.nextInt();
+    int w = in.nextInt();
+    int n = in.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = in.nextInt();
+    }
+    int[][] m = new int[h][w];
+    int r = 0, c = 0, s = 1, co = 0;
+    for (; r < h; r++) {
+        for (; c < w && c >= 0; c += s) {
+            while (a[co] == 0) {
+                co++;
+            }
+            a[co]--;
+            m[r][c] = co + 1;
+        }
+        s *= -1;
+        c += s;
+    }
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            out.print(m[i][j] + " ");
+        }
+        out.println();
+    }
+}

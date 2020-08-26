@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner stdIn = new Scanner(System.in);
+    PrintWriter stdOut = new PrintWriter(System.out);
+    int N = stdIn.nextInt();
+    char[][] board;
+    board = new char[N][];
+    String S = "";
+    for (int i = 0; i < N; i++) {
+        S = stdIn.next();
+        board[i] = S.toCharArray();
+    }
+    for (int j = 0; j < N; j++) {
+        for (int i = N - 1; i >= 0; i--) stdOut.print(board[i][j]);
+        stdOut.println();
+    }
+    stdOut.flush();
+}

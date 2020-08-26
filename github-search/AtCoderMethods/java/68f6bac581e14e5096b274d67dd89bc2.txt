@@ -1,0 +1,11 @@
+public void solve(int testNumber, FastReader in, PrintWriter out) {
+    char[] s = in.nextString().toCharArray();
+    int[] countAll = StringUtils.countAll(s);
+    for (int i = 'a'; i <= 'z'; i++) {
+        if (countAll[i] == 0) {
+            out.println((char) (i));
+            return;
+        }
+    }
+    out.println("None");
+}

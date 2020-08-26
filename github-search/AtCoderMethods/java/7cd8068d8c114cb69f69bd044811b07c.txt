@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int H = sc.nextInt();
+    int W = sc.nextInt();
+    int[][] map = new int[H][W];
+    int N = sc.nextInt();
+    int index_x = 0;
+    int index_y = 0;
+    int drc = 1;
+    for (int i = 1; i <= N; i++) {
+        int temp = sc.nextInt();
+        for (int j = 0; j < temp; j++) {
+            map[index_x][index_y] = i;
+            index_x += drc;
+            if (index_x < 0 || index_x > H - 1) {
+                drc *= -1;
+                index_y++;
+                index_x += drc;
+            }
+        }
+    }
+    sc.close();
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            System.out.print(map[i][j] + " ");
+        }
+        System.out.println();
+    }
+}

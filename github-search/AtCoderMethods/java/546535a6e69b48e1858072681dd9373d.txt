@@ -1,0 +1,40 @@
+public static void main(String[] args) {
+    try {
+        BufferedReader io = new BufferedReader(new InputStreamReader(System.in));
+        String[] line;
+        line = io.readLine().split("\\s");
+        int N = Integer.parseInt(line[0]);
+        int M = Integer.parseInt(line[1]);
+        PriorityQueue<Bridge> queB = new PriorityQueue<>();
+        for (int i = 0; i < M; i++) {
+            line = io.readLine().split("\\s");
+            queB.add(new Bridge(Integer.parseInt(line[0]) - 1, Integer.parseInt(line[1]) - 1, Integer.parseInt(line[2])));
+        }
+        int Q = Integer.parseInt(io.readLine());
+        PriorityQueue<Person> queP = new PriorityQueue<>();
+        LinkedList<Person> queAns = new LinkedList<>();
+        for (int i = 0; i < Q; i++) {
+            line = io.readLine().split("\\s");
+            Person p = new Person(Integer.parseInt(line[0]) - 1, Integer.parseInt(line[1]));
+            queP.add(p);
+            queAns.add(p);
+        }
+        UnionFind tree = new UnionFind(N);
+        while (!queP.isEmpty()) {
+            int year = queP.peek().w;
+            while (!queB.isEmpty() && queB.peek().y > year) {
+                tree.unite(queB.peek().a, queB.poll().b);
+            }
+            while (!queP.isEmpty() && queP.peek().w == year) {
+                queP.peek().ans = tree.getIslandNum(queP.poll().v);
+            }
+        }
+        PrintWriter wr = new PrintWriter(System.out);
+        while (!queAns.isEmpty()) {
+            wr.println(queAns.poll().ans);
+        }
+        wr.flush();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

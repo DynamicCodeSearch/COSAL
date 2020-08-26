@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String str = sc.next();
+    String[] str_chars = str.split("");
+    String[] str_tokens = new String[str_chars.length];
+    int count = 1;
+    int token_num = 0;
+    for (int i = 0; i < str_chars.length; ++i) {
+        if (i == str_chars.length - 1) {
+            str_tokens[token_num] = str_chars[i] + count;
+            count = 1;
+            ++token_num;
+            continue;
+        }
+        if (str_chars[i].equals(str_chars[i + 1])) {
+            ++count;
+        } else {
+            str_tokens[token_num] = str_chars[i] + count;
+            count = 1;
+            ++token_num;
+        }
+    }
+    for (int i = 0; i < token_num; ++i) {
+        System.out.print(str_tokens[i]);
+    }
+    System.out.println();
+}

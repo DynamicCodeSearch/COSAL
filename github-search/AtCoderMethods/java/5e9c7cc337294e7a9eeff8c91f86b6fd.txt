@@ -1,0 +1,8 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    long a = sc.nextLong();
+    long b = sc.nextLong();
+    long m = sc.nextLong();
+    long g = gcd(a, b);
+    System.out.println(onesModM(1, g, m) * onesModM(g, a / g, m) % m * onesModM(g, b / g, m) % m);
+}

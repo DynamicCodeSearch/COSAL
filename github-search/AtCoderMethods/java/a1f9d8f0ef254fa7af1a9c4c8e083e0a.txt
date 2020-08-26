@@ -1,0 +1,18 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    int L = in.readInt();
+    int X = in.readInt();
+    int Y = in.readInt();
+    int S = in.readInt();
+    int D = in.readInt();
+    int dist = D - S;
+    if (dist < 0)
+        dist += L;
+    double min = Double.MAX_VALUE;
+    if (dist == 0)
+        min = 0;
+    if (X + Y != 0)
+        min = Math.min(min, (double) dist / (X + Y));
+    if (Y - X > 0)
+        min = Math.min(min, (double) (L - dist) / (Y - X));
+    out.printLine(min);
+}

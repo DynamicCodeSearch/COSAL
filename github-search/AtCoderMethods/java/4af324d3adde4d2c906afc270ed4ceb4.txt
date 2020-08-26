@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    long R = in.nextLong();
+    long B = in.nextLong();
+    long x = in.nextLong();
+    long y = in.nextLong();
+    long min = 0;
+    long max = Math.min(R, B) + 1;
+    while (max - min > 1) {
+        long uv = (max + min) / 2;
+        if (canMake(R, B, x, y, uv)) {
+            min = uv;
+        } else {
+            max = uv;
+        }
+    }
+    out.println(min);
+    out.flush();
+}

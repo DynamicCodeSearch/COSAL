@@ -1,0 +1,11 @@
+void build(int ss, int se, int si) {
+    if (ss == se) {
+        st[si] = arr[ss];
+        return;
+    }
+    int mid = (ss + se) / 2;
+    int val = 2 * si;
+    build(ss, mid, val);
+    build(mid + 1, se, val + 1);
+    st[si] = (st[val] + st[val + 1]);
+}

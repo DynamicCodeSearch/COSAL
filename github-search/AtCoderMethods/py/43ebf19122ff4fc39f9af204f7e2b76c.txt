@@ -1,0 +1,20 @@
+def greedy(S):
+    stack = 0
+    score = 0
+    debug = []
+    for ch in S:
+        my = ''
+        if stack == 0:
+            my = 'g'
+            stack += 1
+        else:
+            my = 'p'
+            stack -= 1
+
+        debug.append(my)
+        if my == 'g' and ch == 'p':
+            score -= 1
+        elif my == 'p' and ch == 'g':
+            score += 1
+
+    return max(score,0)

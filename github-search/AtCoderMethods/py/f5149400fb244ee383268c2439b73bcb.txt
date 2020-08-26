@@ -1,0 +1,16 @@
+def main():
+    n,a,b = LI()
+    ab = a - b
+    h = sorted([I() for _ in range(n)], reverse=True)
+    def ff(t):
+        bt = b*t
+        c = 0
+        for w in h:
+            if w <= bt:
+                return False
+            c += (w - bt + ab - 1) // ab
+            if c > t:
+                return True
+        return False
+
+    return bs(ff, 0, sum(h) // b + 1)

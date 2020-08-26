@@ -1,0 +1,21 @@
+static public void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int N = 0;
+    N = scan.nextInt();
+    int[] A = new int[N];
+    int four = 0, two = 0;
+    for (int i = 0; i < N; i++) {
+        A[i] = scan.nextInt();
+        if (A[i] % 4 == 0) {
+            four++;
+        } else if (A[i] % 2 == 0) {
+            two++;
+        }
+    }
+    two /= 2;
+    if (N / 2 <= four + two) {
+        System.out.println("Yes");
+    } else {
+        System.out.println("No");
+    }
+}

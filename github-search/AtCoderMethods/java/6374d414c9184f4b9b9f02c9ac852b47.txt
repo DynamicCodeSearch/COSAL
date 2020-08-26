@@ -1,0 +1,33 @@
+void solve() {
+    
+    int n = ni();
+    int m = ni();
+    int[] A = new int[n + 100];
+    int[] B = new int[n + 100];
+    int[] C = new int[m + 100];
+    int[] D = new int[m + 100];
+    for (int i = 0; i < n; i++) {
+        A[i] = ni();
+        B[i] = ni();
+    }
+    for (int i = 0; i < m; i++) {
+        C[i] = ni();
+        D[i] = ni();
+    }
+    for (int i = 0; i < n; i++) {
+        int dist = -1, index = -1;
+        for (int j = 0; j < m; j++) {
+            if (dist == -1) {
+                dist = Math.abs(A[i] - C[j]) + Math.abs(B[i] - D[j]);
+                index = j;
+            } else {
+                int x = Math.abs(A[i] - C[j]) + Math.abs(B[i] - D[j]);
+                if (x < dist) {
+                    dist = x;
+                    index = j;
+                }
+            }
+        }
+        out.println(index + 1);
+    }
+}

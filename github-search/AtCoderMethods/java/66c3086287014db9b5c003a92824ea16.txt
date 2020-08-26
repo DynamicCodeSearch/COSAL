@@ -1,0 +1,50 @@
+public static int[][] split(int[][] g) {
+    int n = g.length;
+    int[] deg = new int[n];
+    int[] par = new int[n];
+    Arrays.fill(par, -1);
+    for (int i = 0; i < n; i++) {
+        deg[i] = g[i].length;
+    }
+    Queue<Integer> q = new ArrayDeque<Integer>();
+    for (int i = 0; i < n; i++) {
+        if (deg[i] == 1) {
+            q.add(i);
+        }
+    }
+    while (!q.isEmpty()) {
+        int cur = q.poll();
+        deg[cur] = -9999999;
+        for (int e : g[cur]) {
+            deg[e]--;
+            if (deg[e] >= 0) {
+                par[cur] = e;
+            }
+            if (deg[e] >= 0 && deg[e] <= 1) {
+                q.add(e);
+            }
+        }
+    }
+    boolean[] ved = new boolean[n];
+    int[] next = new int[n];
+    Arrays.fill(next, -1);
+    for (int i = 0; i < n; i++) {
+        if (!ved[i] && deg[i] == 2) {
+            ved[i] = true;
+            int cur = i;
+            outer: while (true) {
+                for (int e : g[cur]) {
+                    if (deg[e] == 2 && !ved[e]) {
+                        next[cur] = e;
+                        ved[e] = true;
+                        cur = e;
+                        continue outer;
+                    }
+                }
+                next[cur] = i;
+                break;
+            }
+        }
+    }
+    return new int[][] { par, next };
+}

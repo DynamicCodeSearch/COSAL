@@ -1,0 +1,17 @@
+static void solve() {
+    double P = nd();
+    double low = 0, high = P + 1;
+    
+    for (int rep = 0; rep < 200; rep++) {
+        double l = (2 * low + high) / 3;
+        double r = (low + 2 * high) / 3;
+        double tl = time(l, P);
+        double tr = time(r, P);
+        if (tl < tr) {
+            high = r;
+        } else {
+            low = l;
+        }
+    }
+    out.printf("%.14f\n", time(high, P));
+}

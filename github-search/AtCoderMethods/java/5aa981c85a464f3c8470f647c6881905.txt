@@ -1,0 +1,13 @@
+static long gcd(long x, long y) {
+    x = (x ^ x >> 63) - (x >> 63);
+    y = (y ^ y >> 63) - (y >> 63);
+    if (x < y) {
+        x ^= y;
+        y ^= x;
+        x ^= y;
+    }
+    long z = x % y;
+    if (z == 0)
+        return y;
+    return gcd(y, z);
+}

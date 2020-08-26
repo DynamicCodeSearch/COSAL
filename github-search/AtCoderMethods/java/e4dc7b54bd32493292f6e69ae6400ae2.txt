@@ -1,0 +1,19 @@
+boolean isNeed(int[] a, int k, int idx) {
+    int n = a.length;
+    boolean[] can = new boolean[k];
+    can[0] = true;
+    for (int i = 0; i < n; i++) {
+        if (i == idx)
+            continue;
+        for (int j = k - 1; j >= 0; j--) {
+            if (j - a[i] >= 0 && j - a[i] < k && can[j - a[i]]) {
+                can[j] = true;
+            }
+        }
+    }
+    for (int i = Math.max(0, k - a[idx]); i < k; i++) {
+        if (can[i])
+            return true;
+    }
+    return false;
+}

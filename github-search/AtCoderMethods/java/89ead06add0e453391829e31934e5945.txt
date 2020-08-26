@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    while (sc.hasNext()) {
+        String str = sc.next();
+        String res = "";
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) - '0' <= 9 && str.charAt(i) >= 0) {
+                res += Character.toString(str.charAt(i));
+                if (i != str.length() - 1 && str.charAt(i + 1) - '0' <= 9 && str.charAt(i + 1) >= 0)
+                    res += Character.toString(str.charAt(i + 1));
+                break;
+            }
+        }
+        System.out.println(res);
+    }
+}

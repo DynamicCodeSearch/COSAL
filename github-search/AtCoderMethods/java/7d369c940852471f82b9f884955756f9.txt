@@ -1,0 +1,11 @@
+static void solve() {
+    String d = "WBWBWWBWBWBWWBWBWWBWBWBW";
+    String s = next();
+    for (int i = 0; i < 12; i++) {
+        String a = d.substring(i, d.length()) + d.substring(0, i);
+        if (a.startsWith(s)) {
+            System.out.println(new String[] { "Do", "Do#", "Re", "Re#", "Mi", "Fa", "Fa#", "So", "So#", "La", "La#", "Si" }[i]);
+            return;
+        }
+    }
+}

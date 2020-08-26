@@ -1,0 +1,16 @@
+
+static int binarySearch(long[] a, long key) {
+    int s = -1;
+    int t = a.length;
+    while (t - s > 1) {
+        int m = (s + t) / 2;
+        if (a[m] > key) {
+            t = m;
+        } else {
+            s = m;
+        }
+    }
+    if (a[s] != key)
+        s *= -1;
+    return s;
+}

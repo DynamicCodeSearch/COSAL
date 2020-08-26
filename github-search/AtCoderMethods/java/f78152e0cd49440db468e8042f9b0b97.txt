@@ -1,0 +1,23 @@
+public static void main(String[] args) throws IOException {
+    boolean stdStreams = true;
+    String fileName = Main.class.getSimpleName().replaceFirst("_.*", "").toLowerCase();
+    String inputFileName = fileName + ".in";
+    String outputFileName = fileName + ".out";
+    Locale.setDefault(Locale.US);
+    BufferedReader br;
+    if (stdStreams) {
+        br = new BufferedReader(new InputStreamReader(System.in));
+        out = new PrintWriter(System.out);
+    } else {
+        br = new BufferedReader(new FileReader(inputFileName));
+        out = new PrintWriter(outputFileName);
+    }
+    in = new MyScanner(br);
+    
+    int tests = 1;
+    for (int test = 0; test < tests; test++) {
+        new Main().run();
+    }
+    br.close();
+    out.close();
+}

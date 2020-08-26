@@ -1,0 +1,70 @@
+void solve() throws NumberFormatException, IOException {
+    final ContestScanner in = new ContestScanner();
+    Writer out = new Writer();
+    int n = in.nextInt();
+    int m = in.nextInt();
+    BitSet[] used = new BitSet[n];
+    List<Integer>[] typeA = new List[n];
+    List<Integer>[] typeB = new List[n];
+    BitSet[] hasEdge = new BitSet[n];
+    for (int i = 0; i < n; i++) {
+        hasEdge[i] = new BitSet(n);
+        used[i] = new BitSet(m);
+        typeA[i] = new ArrayList<>();
+        typeB[i] = new ArrayList<>();
+    }
+    Edge[] edge = new Edge[m];
+    for (int i = 0; i < m; i++) {
+        int c = in.nextInt();
+        int a = in.nextInt();
+        int b = in.nextInt();
+        edge[i] = new Edge(a, b, c);
+    }
+    Arrays.sort(edge);
+    for (int i = 0; i < m; i++) {
+        final int c = edge[i].c;
+        final int a = edge[i].a;
+        final int b = edge[i].b;
+        if (c == 0) {
+            hasEdge[a].set(b);
+            hasEdge[b].set(a);
+            typeA[a].add(b);
+            typeA[b].add(a);
+        } else if (!hasEdge[a].get(b)) {
+            typeB[a].add(b);
+            typeB[b].add(a);
+        }
+    }
+    long[] cost = new long[n];
+    final long inf = Long.MAX_VALUE;
+    Arrays.fill(cost, inf);
+    int[] bnum = new int[n];
+    Arrays.fill(bnum, Integer.MAX_VALUE);
+    Queue<Pos> qu = new PriorityQueue<>();
+    qu.add(new Pos(0, 0, 0));
+    while (!qu.isEmpty()) {
+        Pos p = qu.poll();
+        used[p.p].set(p.b);
+        bnum[p.p] = p.b;
+        if (cost[p.p] == inf)
+            cost[p.p] = p.cost;
+        for (int e : typeA[p.p]) {
+            final int nb = p.b;
+            final long nc = p.cost + 1;
+            if (used[e].get(nb) || bnum[e] < nb)
+                continue;
+            qu.add(new Pos(e, nc, nb));
+        }
+        for (int e : typeB[p.p]) {
+            final int nb = p.b + 1;
+            final long nc = p.cost + p.b + 1;
+            if (used[e].get(nb) || bnum[e] < nb)
+                continue;
+            qu.add(new Pos(e, nc, nb));
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        out.println(cost[i]);
+    }
+    out.close();
+}

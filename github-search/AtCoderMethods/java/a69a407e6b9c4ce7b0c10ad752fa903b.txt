@@ -1,0 +1,54 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    n = sc.nextInt();
+    p = new int[n];
+    for (int i = 0; i < n; i++) {
+        p[i] = sc.nextInt();
+    }
+    int[] pos = new int[MAX + 1];
+    for (int i = 0; i < n; i++) {
+        pos[p[i]] = i;
+    }
+    RangeMinimumTree re = new RangeMinimumTree(n);
+    RangeMinimumTree ro = new RangeMinimumTree(n);
+    for (int i = 0; i < n; i++) {
+        if (i % 2 == 0) {
+            re.update(i, p[i]);
+        } else {
+            ro.update(i, p[i]);
+        }
+    }
+    int[] ans = new int[n];
+    int sp = 0;
+    PriorityQueue<Interval> pq = new PriorityQueue<>();
+    pq.offer(new Interval(0, n, re.get(0, n)));
+    while (sp < n) {
+        Interval interval = pq.poll();
+        int p0 = interval.val;
+        int p1 = ((pos[p0] + 1) % 2 == 1 ? ro.get(pos[p0] + 1, interval.b) : re.get(pos[p0] + 1, interval.b));
+        if (DEBUG) {
+            System.out.println("p0 = " + p0);
+            System.out.println("p1 = " + p1);
+            System.out.println("pos[p0] = " + pos[p0]);
+            System.out.println("pos[p1] = " + pos[p1]);
+        }
+        ans[sp++] = p0;
+        ans[sp++] = p1;
+        Interval i1 = new Interval(interval.a, pos[p0], (interval.a % 2 == 0 ? re.get(interval.a, pos[p0]) : ro.get(interval.a, pos[p0])));
+        Interval i2 = new Interval(pos[p0] + 1, pos[p1], ((pos[p0] + 1) % 2 == 0 ? re.get(pos[p0] + 1, pos[p1]) : ro.get(pos[p0] + 1, pos[p1])));
+        Interval i3 = new Interval(pos[p1] + 1, interval.b, ((pos[p1] + 1) % 2 == 0 ? re.get(pos[p1] + 1, interval.b) : ro.get(pos[p1] + 1, interval.b)));
+        pq.offer(i1);
+        pq.offer(i2);
+        pq.offer(i3);
+        if (DEBUG) {
+            System.out.println(i1);
+            System.out.println(i2);
+            System.out.println(i3);
+        }
+    }
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < n; i++) {
+        sb.append(ans[i] + " ");
+    }
+    System.out.println(sb);
+}

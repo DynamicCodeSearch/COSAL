@@ -1,0 +1,59 @@
+void solver() {
+    Scanner sc = new Scanner(System.in);
+    Printer pr = new Printer(System.out);
+    
+    int N = sc.nextInt();
+    
+    int M = sc.nextInt();
+    @SuppressWarnings("unused")
+    ArrayList<Edge> e = new ArrayList<>();
+    for (int i = 0; i < M; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        int y = sc.nextInt();
+        e.add(new Edge(a, b, y));
+    }
+    e.sort(new Comparator<Edge>() {
+
+        @Override
+        public int compare(Edge o1, Edge o2) {
+            return -Integer.compare(o1.y, o2.y);
+        }
+    });
+    ArrayList<Pair> list = new ArrayList<>();
+    int Q = sc.nextInt();
+    for (int i = 0; i < Q; i++) {
+        int v = sc.nextInt() - 1;
+        int w = sc.nextInt();
+        list.add(new Pair(v, w, i));
+    }
+    list.sort(new Comparator<Pair>() {
+
+        @Override
+        public int compare(Pair o1, Pair o2) {
+            return -Integer.compare(o1.w, o2.w);
+        }
+    });
+    DJSet ds = new DJSet(N);
+    
+    int[] cities = new int[Q];
+    int j = 0;
+    for (int i = 0; i < Q; i++) {
+        Pair p = list.get(i);
+        if (j < M) {
+            Edge edge = e.get(j);
+            while (edge.y > p.w && j < M) {
+                ds.setUnion(edge.a, edge.b);
+                j++;
+                if (!(j < M))
+                    continue;
+                edge = e.get(j);
+            }
+        }
+        cities[p.i] = ds.size(p.v);
+    }
+    for (int i = 0; i < Q; i++) {
+        pr.println(cities[i]);
+    }
+    pr.close();
+}

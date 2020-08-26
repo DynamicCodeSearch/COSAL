@@ -1,0 +1,13 @@
+public static char check(char[][] a, int i, int j) {
+    int count = 0;
+    for (int k = 0; k < 8; k++) {
+        if (i + dy[k] < 0 || i + dy[k] >= H || j + dx[k] < 0 || j + dx[k] >= W) {
+            continue;
+        }
+        char ny = a[i + dy[k]][j + dx[k]];
+        if (ny == '#') {
+            count++;
+        }
+    }
+    return String.valueOf(count).charAt(0);
+}

@@ -1,0 +1,30 @@
+void run() {
+    int H = sc.nextInt();
+    int W = sc.nextInt();
+    int[][] a = sc.nextInt2dArray(H, W);
+    int[][] dp = new int[H][W];
+    Pair[] p = new Pair[H * W];
+    for (int i = 0, k = 0; i < H; i++) {
+        Arrays.fill(dp[i], 1);
+        for (int j = 0; j < W; j++) {
+            p[k++] = new Pair(a[i][j], i, j);
+        }
+    }
+    Arrays.sort(p);
+    for (int i = 0; i < p.length; i++) {
+        for (int j = 0; j < 4; j++) {
+            int nh = p[i].h + dy[j];
+            int nw = p[i].w + dx[j];
+            if (inner(nh, nw, H, W) && p[i].cnt < a[nh][nw]) {
+                dp[nh][nw] += dp[p[i].h][p[i].w];
+                dp[nh][nw] %= MOD;
+            }
+        }
+    }
+    long sum = 0;
+    for (int i = 0; i < H; i++) for (int j = 0; j < W; j++) {
+        sum += dp[i][j];
+        sum %= MOD;
+    }
+    System.out.println(sum);
+}

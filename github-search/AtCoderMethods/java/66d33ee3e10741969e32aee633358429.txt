@@ -1,0 +1,52 @@
+public static void main(String[] args) throws Exception {
+    Scanner scan = new Scanner(System.in);
+    
+    int W = scan.nextInt();
+    
+    int H = scan.nextInt();
+    
+    int N = scan.nextInt();
+    boolean[][] isAreaBlack = new boolean[H][W];
+    int x_i, y_i, a_i;
+    for (int i = 0; i < N; i++) {
+        x_i = scan.nextInt();
+        y_i = scan.nextInt();
+        a_i = scan.nextInt();
+        switch(a_i) {
+            case 1:
+                for (int j = 0; j < H; j++) {
+                    for (int k = 0; k < x_i; k++) {
+                        isAreaBlack[j][k] = true;
+                    }
+                }
+                break;
+            case 2:
+                for (int j = 0; j < H; j++) {
+                    for (int k = x_i; k < W; k++) {
+                        isAreaBlack[j][k] = true;
+                    }
+                }
+                break;
+            case 3:
+                for (int j = 0; j < y_i; j++) {
+                    for (int k = 0; k < W; k++) {
+                        isAreaBlack[j][k] = true;
+                    }
+                }
+                break;
+            case 4:
+                for (int j = y_i; j < H; j++) {
+                    for (int k = 0; k < W; k++) {
+                        isAreaBlack[j][k] = true;
+                    }
+                }
+                break;
+        }
+    }
+    int answer = 0;
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) if (!isAreaBlack[i][j])
+            answer++;
+    }
+    System.out.println(answer);
+}

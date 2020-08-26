@@ -1,0 +1,33 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    int sx = sc.nextInt();
+    int sy = sc.nextInt();
+    int tx = sc.nextInt();
+    int ty = sc.nextInt();
+    StringBuilder sb1 = new StringBuilder();
+    StringBuilder sb2 = new StringBuilder();
+    sb2.append("L");
+    for (int i = 0; i < ty - sy; i++) {
+        sb1.append("U");
+        sb2.append("U");
+    }
+    sb2.append("UR");
+    for (int i = 0; i < tx - sx; i++) {
+        sb1.append("R");
+        sb2.append("R");
+    }
+    sb2.append("DR");
+    for (int i = 0; i < ty - sy; i++) {
+        sb1.append("D");
+        sb2.append("D");
+    }
+    sb2.append("DL");
+    for (int i = 0; i < tx - sx; i++) {
+        sb1.append("L");
+        sb2.append("L");
+    }
+    sb2.append("U");
+    System.out.print(sb1.toString());
+    System.out.println(sb2.toString());
+    sc.close();
+}

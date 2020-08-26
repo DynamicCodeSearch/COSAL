@@ -1,0 +1,27 @@
+public void solve(int testNumber, Scanner in, PrintWriter out) {
+    int n = in.nextInt();
+    long max1 = 0;
+    long max2 = 0;
+    long[] a = new long[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = in.nextLong();
+    }
+    Arrays.sort(a);
+    for (int i = n - 1; i > 0; i--) {
+        if (a[i - 1] == a[i]) {
+            max1 = a[i];
+            for (int j = i - 2; j > 0; j--) {
+                if (a[j - 1] == a[j]) {
+                    max2 = a[j];
+                    out.println(max1 * max2);
+                    return;
+                }
+                if (j == 1) {
+                    out.println(0);
+                    return;
+                }
+            }
+        }
+    }
+    out.println(0);
+}

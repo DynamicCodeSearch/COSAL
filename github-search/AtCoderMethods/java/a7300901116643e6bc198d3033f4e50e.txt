@@ -1,0 +1,13 @@
+private static List<List<Integer>> permutations(int n, List<Integer> list) {
+    if (n <= 0) {
+        return Arrays.asList(Arrays.asList());
+    } else {
+        List<List<Integer>> result = new ArrayList<>();
+        for (Integer head : list) {
+            for (List<Integer> tail : permutations(n - 1, remove(head, list))) {
+                result.add(cons(head, tail));
+            }
+        }
+        return result;
+    }
+}

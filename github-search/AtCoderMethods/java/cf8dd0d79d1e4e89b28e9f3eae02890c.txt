@@ -1,0 +1,18 @@
+private static long calc(long H, long W) {
+    if (H % 3 == 0)
+        return 0;
+    long ret = Long.MAX_VALUE;
+    
+    ret = Math.min(ret, W);
+    
+    for (long h = H / 3; h <= (H + 2) / 3; h++) {
+        
+        long top = h * W;
+        long bottomLeft = (H - h) * ((W + 1) / 2);
+        long bottomRight = (H - h) * (W / 2);
+        long max = Math.max(top, bottomLeft);
+        long min = Math.min(top, bottomRight);
+        ret = Math.min(ret, max - min);
+    }
+    return ret;
+}

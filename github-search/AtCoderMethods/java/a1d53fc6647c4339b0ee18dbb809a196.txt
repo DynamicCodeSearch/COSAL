@@ -1,0 +1,34 @@
+static void solve() {
+    int w = ni(), h = ni();
+    int[] a = na(w);
+    int[] b = na(h);
+    int Q = ni();
+    int[][] qs = new int[Q][];
+    for (int i = 0; i < Q; i++) {
+        qs[i] = new int[] { ni() - 1, ni() - 1, i };
+    }
+    long[][] ta = go(a, qs, 0);
+    long[][] tb = go(b, qs, 1);
+    Arrays.sort(qs, new Comparator<int[]>() {
+
+        public int compare(int[] a, int[] b) {
+            return a[2] - b[2];
+        }
+    });
+    
+    for (int i = 0; i < Q; i++) {
+        EnvelopeLinear el = new EnvelopeLinear(qs[i][0] + 1);
+        for (int j = 1; j <= qs[i][0] + 1; j++) {
+            el.add(-j, -ta[i][j]);
+        }
+        
+        
+        
+        long max = Long.MIN_VALUE;
+        for (int j = 1; j <= qs[i][1] + 1; j++) {
+            int which = el.argmin((double) tb[i][j] / j);
+            max = Math.max(max, -el.slopes[which] * tb[i][j] - j * el.intercepts[which]);
+        }
+        out.println(max);
+    }
+}

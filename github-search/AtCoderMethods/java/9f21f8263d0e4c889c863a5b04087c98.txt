@@ -1,0 +1,20 @@
+void solve() {
+    int N = sc.nextInt();
+    long K = sc.nextLong();
+    int[] a = new int[N];
+    int[] b = new int[N];
+    for (int i = 0; i < N; i++) {
+        a[i] = sc.nextInt();
+        b[i] = sc.nextInt();
+    }
+    long lo = 0;
+    long hi = 1L << 58;
+    while (hi - lo > 1) {
+        long mi = (hi + lo) / 2;
+        if (f(a, b, mi) < K)
+            lo = mi;
+        else
+            hi = mi;
+    }
+    out.println(hi);
+}

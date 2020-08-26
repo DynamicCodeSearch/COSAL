@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    Scanner as = new Scanner(System.in);
+    int n = as.nextInt();
+    String[] a;
+    a = new String[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = as.next();
+    }
+    int[][] b;
+    b = new int[n][26];
+    for (int i = 0; i < n; i++) {
+        for (int s = 0; s < a[i].length(); s++) {
+            b[i][(int) a[i].charAt(s) - 97]++;
+        }
+    }
+    for (int i = 0; i < n - 1; i++) {
+        for (int s = 0; s < 26; s++) {
+            b[i + 1][s] = Math.min(b[i][s], b[i + 1][s]);
+        }
+    }
+    String l = "";
+    for (int i = 0; i < 26; i++) {
+        for (int s = 0; s < b[n - 1][i]; s++) {
+            l += String.valueOf((char) (i + 97));
+        }
+    }
+    System.out.println(l);
+}

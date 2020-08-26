@@ -1,0 +1,9 @@
+public void dfs(int i) {
+    visited[i] = true;
+    for (int next : graph[i]) {
+        if (!visited[next]) {
+            dfs(next);
+        }
+    }
+    rev.add(i);
+}

@@ -1,0 +1,26 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    n = in.nextInt();
+    m = in.nextInt();
+    r = in.nextInt();
+    towns = new int[r];
+    for (int i = 0; i < r; ++i) towns[i] = in.nextInt() - 1;
+    dp = new int[MX][MX];
+    for (int i = 0; i < n; ++i) Arrays.fill(dp[i], INF);
+    for (int i = 0; i < m; ++i) {
+        int u = in.nextInt() - 1;
+        int v = in.nextInt() - 1;
+        int c = in.nextInt();
+        dp[u][v] = dp[v][u] = c;
+    }
+    for (int k = 0; k < n; ++k) {
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < n; ++j) {
+                dp[i][j] = Math.min(dp[i][j], dp[i][k] + dp[k][j]);
+            }
+        }
+    }
+    vis = new boolean[MX];
+    res = INF;
+    dfs(0, -1, 0);
+    out.println(res);
+}

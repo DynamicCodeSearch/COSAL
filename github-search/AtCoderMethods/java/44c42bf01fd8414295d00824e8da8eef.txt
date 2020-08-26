@@ -1,0 +1,11 @@
+private void dfs(int cur, long cost, boolean[] used, long[] path) {
+    if (used[cur])
+        return;
+    used[cur] = true;
+    path[cur] = cost;
+    for (Edge e : es[cur]) {
+        if (!used[e.b]) {
+            dfs(e.b, cost + e.c, used, path);
+        }
+    }
+}

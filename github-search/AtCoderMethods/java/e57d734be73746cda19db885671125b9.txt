@@ -1,0 +1,28 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int m = in.nextInt();
+    int[] px = new int[n];
+    int[] py = new int[n];
+    for (int i = 0; i < n; i++) {
+        px[i] = in.nextInt();
+        py[i] = in.nextInt();
+    }
+    int[] cx = new int[m];
+    int[] cy = new int[m];
+    for (int i = 0; i < m; i++) {
+        cx[i] = in.nextInt();
+        cy[i] = in.nextInt();
+    }
+    for (int i = 0; i < n; i++) {
+        int minDist = editDistance(px[i], py[i], cx[0], cy[0]);
+        int cp = 1;
+        for (int j = 1; j < m; j++) {
+            int dist = editDistance(px[i], py[i], cx[j], cy[j]);
+            if (dist < minDist) {
+                minDist = dist;
+                cp = j + 1;
+            }
+        }
+        out.println(cp);
+    }
+}

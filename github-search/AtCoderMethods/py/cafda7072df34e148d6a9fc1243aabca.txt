@@ -1,0 +1,24 @@
+def solve():
+
+    A, B, C, D, E, F = map(int, input().split())
+    memo = {}
+
+    for a in range(31):
+        for b in range(31):
+            for c in range(101):
+                for d in range(101):
+                    if a == 0 and b == 0:
+                        break
+                    if (100*A)*a + (100*B)*b + C*c + D*d > F:
+                        break
+                    if  ((100*A)*a + (100*B)*b)/100 *E < C*c + D*d:
+                        break
+                    density = 100 * (C*c+D*d) / ( (100*A)*a + (100*B)*b + C*c + D*d )
+                    memo[a,b,c,d] = density
+
+    max_v = max(memo.values())
+
+    for k, v in memo.items():
+        if v == max_v:
+            print((100*A)*k[0] + (100*B)*k[1] + C*k[2] + D*k[3], C*k[2] + D*k[3] )
+            break

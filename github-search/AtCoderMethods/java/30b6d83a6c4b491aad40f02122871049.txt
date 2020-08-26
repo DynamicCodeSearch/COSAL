@@ -1,0 +1,17 @@
+public void solve(InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int[] a = new int[n + 1];
+    int s = 0;
+    for (int i = 1; i <= n; ++i) {
+        a[i] = in.nextInt();
+        s += a[i];
+    }
+    int m = in.nextInt(), idx, x;
+    int ans;
+    for (int i = 0; i < m; ++i) {
+        idx = in.nextInt();
+        x = in.nextInt();
+        ans = s + x - a[idx];
+        out.println(ans);
+    }
+}

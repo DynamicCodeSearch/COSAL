@@ -1,0 +1,20 @@
+public static void main(String[] args) throws java.lang.Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String s = br.readLine();
+    String[] str = s.split("\\s+");
+    int[] col = new int[str.length];
+    for (int i = 0; i < str.length; i++) {
+        col[i] = Integer.parseInt(str[i]);
+    }
+    boolean[] penki = new boolean[101];
+    int cnt = 0;
+    int sum = 0;
+    while (cnt < 3) {
+        if (!(penki[col[cnt]])) {
+            penki[col[cnt]] = true;
+            sum++;
+        }
+        cnt++;
+    }
+    System.out.print(sum);
+}

@@ -1,0 +1,31 @@
+long calc(int x, int y) {
+    
+    Point[] ps = new Point[y];
+    for (int j = 1; j <= y; j++) {
+        ps[j - 1] = new Point(j, Bmax[y][j]);
+    }
+    K = 0;
+    long[] xs = new long[y];
+    long[] ys = new long[y];
+    for (int j = 1; j <= y; j++) {
+        add_point(xs, ys, (long) j, Bmax[y][j]);
+    }
+    
+    long res = Long.MIN_VALUE;
+    for (int nx = 1; nx <= x; nx++) {
+        int lo = 0, hi = K - 1;
+        while (hi - lo > 2) {
+            int d = (hi - lo) / 3;
+            int mid1 = lo + d;
+            int mid2 = hi - d;
+            if (xs[mid1] * Amax[x][nx] + ys[mid1] * nx < xs[mid2] * Amax[x][nx] + ys[mid2] * nx)
+                lo = mid1;
+            else
+                hi = mid2;
+        }
+        for (int j = lo; j <= hi; j++) {
+            res = Math.max(res, xs[j] * Amax[x][nx] + ys[j] * nx);
+        }
+    }
+    return res;
+}

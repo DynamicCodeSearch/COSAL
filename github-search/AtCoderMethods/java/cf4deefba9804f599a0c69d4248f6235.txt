@@ -1,0 +1,30 @@
+
+
+int LIS(int[] a) {
+    int n = a.length;
+    ArrayList<Integer> list = new ArrayList<>();
+    for (int i = 0; i < n; i++) {
+        if (list.isEmpty() || a[i] > list.get(list.size() - 1)) {
+            list.add(a[i]);
+        } else if (list.get(list.size() - 1) == a[i]) {
+            continue;
+        } else {
+            
+            int first = 0;
+            int last = list.size() - 1;
+            while (first + 1 != last && !(first == 0 && last == 0)) {
+                int mid = (first + last) / 2;
+                if (list.get(mid) > a[i]) {
+                    last = mid;
+                } else {
+                    first = mid;
+                }
+            }
+            if (list.get(first) > a[i]) {
+                list.set(first, a[i]);
+            } else if (list.get(first) != a[i])
+                list.set(last, a[i]);
+        }
+    }
+    return list.size();
+}

@@ -1,0 +1,35 @@
+public double nextDouble() {
+    if (!hasNext()) {
+        throw new NoSuchElementException();
+    }
+    double d = 0;
+    boolean minus = false;
+    byte b = readByte();
+    if (b == '-') {
+        minus = true;
+        b = readByte();
+    }
+    if (b < '0' || '9' < b) {
+        throw new NumberFormatException();
+    }
+    long t = 0;
+    while (true) {
+        if ('0' <= b && b <= '9') {
+            d *= 10;
+            d += b - '0';
+        } else if (b == -1 || !isPrintableChar(b)) {
+            if (t != 0) {
+                d = d / t;
+            }
+            return minus ? -d : d;
+        } else if (b == '.') {
+            t = 1;
+            b = readByte();
+            continue;
+        } else {
+            throw new NumberFormatException();
+        }
+        t *= 10;
+        b = readByte();
+    }
+}

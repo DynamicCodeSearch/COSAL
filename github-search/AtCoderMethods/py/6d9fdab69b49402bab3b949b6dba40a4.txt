@@ -1,0 +1,9 @@
+def is_valid(xys):
+    xys.sort()
+    prev_x, prev_y = xys[0]
+    for x, y in xys[1:]:
+        if prev_x == x and prev_y == y:
+            return False
+        prev_x = x
+        prev_y = y
+    return True

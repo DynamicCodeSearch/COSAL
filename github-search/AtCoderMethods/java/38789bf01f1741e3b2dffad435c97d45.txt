@@ -1,0 +1,11 @@
+String next() {
+    if (!hasNext())
+        throw new IllegalArgumentException();
+    StringBuilder sb = new StringBuilder();
+    int b = readByte();
+    while (isMeaningful(b)) {
+        sb.appendCodePoint(b);
+        b = readByte();
+    }
+    return sb.toString();
+}

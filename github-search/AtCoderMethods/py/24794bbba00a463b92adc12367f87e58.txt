@@ -1,0 +1,12 @@
+def make(p, q):
+    M = [[pow(10, q, m), 0, 1],[1,0,0],[0,0,1]]
+
+    res = [[1,0,0],[0,1,0],[0,0,1]]
+    p /= q
+    p -= 1
+    while p>0:
+        if p&1:
+            res = prod(res, M)
+        M = prod(M, M)
+        p >>= 1
+    return (res[0][0] + res[0][2]) % m

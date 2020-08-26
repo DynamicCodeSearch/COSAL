@@ -1,0 +1,6 @@
+private void dfs(int v) {
+    used[v] = true;
+    for (int i = 0; i < G.get(v).size(); i++) if (!used[G.get(v).get(i)])
+        dfs(G.get(v).get(i));
+    vs.add(v);
+}

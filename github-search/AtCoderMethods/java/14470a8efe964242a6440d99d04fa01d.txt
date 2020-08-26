@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int m = sc.nextInt();
+    float mkm = (float) m / 1000;
+    String vv;
+    if (mkm < 0.1) {
+        
+        vv = "00";
+    } else if (0.1 <= mkm && mkm <= 5) {
+        
+        mkm = mkm * 10;
+        if (mkm < 10) {
+            vv = "0" + (int) mkm;
+        } else {
+            vv = "" + (int) mkm;
+        }
+    } else if (6 <= mkm && mkm <= 30) {
+        
+        vv = (int) mkm + 50 + "";
+    } else if (35 <= mkm && mkm <= 70) {
+        
+        vv = ((int) mkm - 30) / 5 + 80 + "";
+    } else if (70 <= mkm) {
+        vv = "89";
+    } else {
+        vv = null;
+    }
+    System.out.println(vv);
+}

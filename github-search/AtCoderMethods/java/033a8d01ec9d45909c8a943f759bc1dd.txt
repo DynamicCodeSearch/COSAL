@@ -1,0 +1,29 @@
+void solve() {
+    FastScanner in = new FastScanner(System.in);
+    int N = in.nextInt();
+    int Q = in.nextInt();
+    int[] X = new int[N];
+    int[] R = new int[N];
+    int[] H = new int[N];
+    for (int i = 0; i < N; i++) {
+        X[i] = in.nextInt();
+        R[i] = in.nextInt();
+        H[i] = in.nextInt();
+    }
+    StringBuilder sb = new StringBuilder();
+    for (int _i = 0; _i < Q; _i++) {
+        int A = in.nextInt();
+        int B = in.nextInt();
+        double ans = 0;
+        for (int i = 0; i < N; i++) {
+            if (X[i] <= B && A <= X[i] + H[i]) {
+                int a = Math.max(X[i], A);
+                int b = Math.min(X[i] + H[i], B);
+                double v = area(R[i], X[i], H[i], a) - area(R[i], X[i], H[i], b);
+                ans += v;
+            }
+        }
+        sb.append(ans + "\n");
+    }
+    System.out.print(sb);
+}

@@ -1,0 +1,13 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    char[] w = in.next().toCharArray();
+    int[] v = new int[26];
+    for (char x : w) ++v[x - 'a'];
+    for (int x : v) {
+        if (x % 2 != 0) {
+            System.out.println("No");
+            return;
+        }
+    }
+    System.out.println("Yes");
+}

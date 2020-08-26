@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int a = scan.nextInt();
+    int b = scan.nextInt();
+    int c = scan.nextInt();
+    int kosuu = 0;
+    while (true) {
+        if (c < a && c < b) {
+            break;
+        }
+        if (a < b) {
+            kosuu++;
+            c = c - a;
+        } else {
+            kosuu++;
+            c = c - b;
+        }
+        if (c - a < 0 && c - b < 0) {
+            break;
+        }
+    }
+    System.out.println(kosuu);
+    scan.close();
+}

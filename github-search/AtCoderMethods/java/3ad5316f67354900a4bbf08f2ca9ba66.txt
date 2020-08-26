@@ -1,0 +1,34 @@
+public static void main(String[] args) throws IOException {
+    n = in.nextInt();
+    m = in.nextInt();
+    r = in.nextInt();
+    c = new int[r];
+    d = new int[n + 1][n + 1];
+    g = new int[n + 1][n + 1];
+    for (int i = 0; i <= n; i++) {
+        Arrays.fill(d[i], Integer.MAX_VALUE);
+        Arrays.fill(g[i], Integer.MAX_VALUE);
+    }
+    for (int i = 0; i < r; i++) {
+        c[i] = in.nextInt();
+    }
+    for (int i = 0; i < m; i++) {
+        int A = in.nextInt();
+        int B = in.nextInt();
+        int C = in.nextInt();
+        g[A][B] = C;
+        g[B][A] = C;
+    }
+    for (int i = 0; i < r; i++) {
+        d[c[i]][c[i]] = 0;
+        dijkstra(c[i], c[i], -1);
+    }
+    long ans = Integer.MAX_VALUE;
+    boolean[] done = new boolean[r];
+    for (int i = 0; i < r; i++) {
+        done[i] = true;
+        ans = Math.min(ans, fun(c[i], done));
+        done[i] = false;
+    }
+    sop(ans);
+}

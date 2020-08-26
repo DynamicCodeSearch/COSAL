@@ -1,0 +1,38 @@
+public static void main(String[] args) throws java.lang.Exception {
+    InputReader in = new InputReader(System.in);
+    PrintWriter w = new PrintWriter(System.out);
+    HashSet<String> hs1 = new HashSet<>(), hs2 = new HashSet<>(), hs3 = new HashSet<>();
+    String s = in.next();
+    hs1.add("dreamer");
+    hs2.add("eraser");
+    hs3.add("dream");
+    hs3.add("erase");
+    for (int i = s.length() - 1; i > -1; ) {
+        if (i - 6 >= 0) {
+            String temp = s.substring(i - 6, i + 1);
+            if (hs1.contains(temp)) {
+                i -= 7;
+                continue;
+            }
+        }
+        if (i - 5 >= 0) {
+            String temp = s.substring(i - 5, i + 1);
+            if (hs2.contains(temp)) {
+                i -= 6;
+                continue;
+            }
+        }
+        if (i - 4 >= 0) {
+            String temp = s.substring(i - 4, i + 1);
+            if (hs3.contains(temp)) {
+                i -= 5;
+                continue;
+            }
+        }
+        w.println("NO");
+        w.close();
+        return;
+    }
+    w.println("YES");
+    w.close();
+}

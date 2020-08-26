@@ -1,0 +1,17 @@
+public void solve(int testNumber, Scanner in, PrintWriter out) {
+    int[] cnt = new int[9];
+    int n = in.nextInt();
+    int min = 0;
+    for (int i = 0; i < n; i++) {
+        int tmp = in.nextInt();
+        int col = getColor(tmp);
+        ++cnt[col];
+        if (cnt[col] <= 1 && col < 8)
+            ++min;
+    }
+    if (min == 0) {
+        out.println(1 + " " + cnt[8]);
+        return;
+    }
+    out.println(min + " " + (min + cnt[8]));
+}

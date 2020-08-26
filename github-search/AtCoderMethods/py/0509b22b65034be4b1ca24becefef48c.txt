@@ -1,0 +1,19 @@
+def read_data():
+    try:
+        LOCAL_FLAG
+        import codecs
+        import os
+
+        lines = []
+        file_path = os.path.join(os.path.dirname(__file__), 'data.dat')
+        with codecs.open(file_path, 'r', 'utf-8') as f:
+            n_lines = int(f.readline())
+            for i in range(n_lines):
+                lines.append(f.readline().rstrip("\r\n"))
+
+    except NameError:
+        lines = []
+        n_lines = int(input())
+        for i in range(n_lines):
+            lines.append(input())
+    return lines

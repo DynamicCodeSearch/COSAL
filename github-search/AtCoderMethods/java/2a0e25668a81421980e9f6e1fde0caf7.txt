@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    long MOD = (long) Math.pow(10, 9) + 7;
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    long ans = 0;
+    if (Math.abs(N - M) == 0) {
+        long a = 2;
+        for (long i = 1; i <= (long) N; i++) {
+            a = (a * i) % MOD;
+        }
+        for (long i = 1; i <= (long) M; i++) {
+            a = (a * i) % MOD;
+        }
+        ans = a;
+    } else if (Math.abs(N - M) == 1) {
+        long a = 1;
+        for (long i = 1; i <= (long) N; i++) {
+            a = (a * i) % MOD;
+        }
+        for (long i = 1; i <= (long) M; i++) {
+            a = (a * i) % MOD;
+        }
+        ans = a;
+    }
+    System.out.println(ans);
+}

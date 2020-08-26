@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    @SuppressWarnings("resource")
+    Scanner sc = new Scanner(System.in);
+    int A = sc.nextInt();
+    int B = sc.nextInt();
+    int C = sc.nextInt();
+    int K = sc.nextInt();
+    int S = sc.nextInt();
+    int T = sc.nextInt();
+    int discount = 0;
+    if (S + T >= K) {
+        discount = discount + (S + T) * C;
+        System.out.println((A * S) + (B * T) - discount);
+    } else {
+        System.out.println((A * S) + (B * T));
+    }
+}

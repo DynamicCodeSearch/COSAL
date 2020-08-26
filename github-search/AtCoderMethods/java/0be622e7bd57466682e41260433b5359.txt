@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    
+    int numBoxes = sc.nextInt();
+    int numLimit = sc.nextInt();
+    int[] candyArray = new int[numBoxes];
+    for (int i = 0; i < numBoxes; i++) {
+        candyArray[i] = sc.nextInt();
+    }
+    
+    long totalAteCandies = 0;
+    for (int i = 1; i < numBoxes; i++) {
+        int numExcessCandies = calculateExcessCandies(numLimit, candyArray[i - 1], candyArray[i]);
+        totalAteCandies += numExcessCandies;
+        eatCandies(candyArray, i, numExcessCandies);
+    }
+    System.out.println(totalAteCandies);
+}

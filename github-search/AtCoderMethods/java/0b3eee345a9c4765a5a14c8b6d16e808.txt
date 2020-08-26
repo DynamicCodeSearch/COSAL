@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    ArrayList<Pair> list = new ArrayList<>();
+    int N = sc.nextInt();
+    for (int i = 0; i < N; i++) {
+        int w = sc.nextInt();
+        int h = sc.nextInt();
+        list.add(new Pair(w, h));
+    }
+    Collections.sort(list);
+    int ans = 0;
+    RMQ rmq = new RMQ(100010);
+    for (int i = 0; i < N; i++) {
+        int lower = rmq.query(0, list.get(i).y - 1);
+        rmq.update(list.get(i).y, lower + 1);
+        ans = Math.max(ans, lower + 1);
+    }
+    System.out.println(ans);
+}

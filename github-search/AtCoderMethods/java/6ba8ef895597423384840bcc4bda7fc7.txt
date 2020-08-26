@@ -1,0 +1,21 @@
+private void solve() {
+    int N = sc.nextInt();
+    ex = new ArrayList<>();
+    int base = 0;
+    int exNum = 0;
+    Set used = new HashSet();
+    for (int i = 0; i < N; i++) {
+        String s = getRate(sc.nextInt());
+        if ("EX".equals(s)) {
+            exNum++;
+            continue;
+        }
+        used.add(s);
+    }
+    base = used.size();
+    if (0 < base) {
+        System.out.println(base + " " + (base + exNum));
+    } else {
+        System.out.println(1 + " " + exNum);
+    }
+}

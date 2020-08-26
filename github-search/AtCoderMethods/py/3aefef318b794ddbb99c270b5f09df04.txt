@@ -1,0 +1,13 @@
+def solve(H, W, A, B):
+    mod = 10 ** 9 + 7
+    cb = Combin(H + W)
+    ans = cb.nCb(H + W - 2, H - 1)
+    t1 = B + H - 1
+    t2 = B - 1
+    t3 = W - B - 2
+    t4 = W - B - 1
+    for a in range(1, A + 1):
+        d = cb.nCb(t1 - a, t2) * cb.nCb(t3 + a, t4)
+        ans -= d
+        ans %= mod
+    return ans

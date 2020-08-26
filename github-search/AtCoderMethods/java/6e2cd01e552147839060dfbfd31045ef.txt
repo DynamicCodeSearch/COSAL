@@ -1,0 +1,35 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    final int MAXCOL = 2;
+    boolean first = true;
+    int[] matrix = null;
+    int i = 0;
+    int num = 0;
+    int time = 0;
+    int total = 0;
+    String[] col2 = null;
+    while (in.hasNext()) {
+        i++;
+        String str = in.nextLine();
+        if (first) {
+            String[] col1 = str.split(" ", 0);
+            num = Integer.parseInt(col1[0]);
+            time = Integer.parseInt(col1[1]);
+            first = false;
+        } else {
+            col2 = str.split(" ", 0);
+        }
+        if (i == MAXCOL) {
+            break;
+        }
+    }
+    for (int z = 0; z < num - 1; z++) {
+        int n1 = Integer.parseInt(col2[z]);
+        int n2 = Integer.parseInt(col2[z + 1]);
+        int sa = n2 - n1;
+        if (time > sa) {
+            total += time - sa;
+        }
+    }
+    System.out.println(num * time - total);
+}

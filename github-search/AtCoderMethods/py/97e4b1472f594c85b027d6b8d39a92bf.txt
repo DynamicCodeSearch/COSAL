@@ -1,0 +1,10 @@
+def solve():
+    n = read_int()
+    a = read_int_list()
+    res = 0
+    c = Counter(a)
+    for i in range(10 ** 5 + 1):
+        r = c[i-1] + c[i] + c[i+1]
+        if r> res:
+            res = r
+    return res

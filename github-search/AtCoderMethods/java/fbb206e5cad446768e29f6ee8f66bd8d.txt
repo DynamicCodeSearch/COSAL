@@ -1,0 +1,14 @@
+void solve(ContestScanner in, Writer out) throws NumberFormatException, IOException {
+    char[] s = in.nextToken().toCharArray();
+    String[] res = { "Do", "Re", "Mi", "Fa", "So", "La", "Si" };
+    int w = 0;
+    for (int i = 0; i < s.length - 7; i++) {
+        if (s[i] == 'W' && s[i + 2] == 'B' && s[i + 4] == 'B' && s[i + 6] == 'W') {
+            
+            System.out.println(res[(res.length * 2 - 1 - w) % res.length]);
+            break;
+        }
+        if (s[i] == 'W')
+            w++;
+    }
+}

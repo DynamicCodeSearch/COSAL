@@ -1,0 +1,15 @@
+int readByte() {
+    if (lenbuffer == -1)
+        throw new InputMismatchException();
+    if (ptrbuffer >= lenbuffer) {
+        ptrbuffer = 0;
+        try {
+            lenbuffer = obj.read(inbuffer);
+        } catch (IOException e) {
+            throw new InputMismatchException();
+        }
+    }
+    if (lenbuffer <= 0)
+        return -1;
+    return inbuffer[ptrbuffer++];
+}

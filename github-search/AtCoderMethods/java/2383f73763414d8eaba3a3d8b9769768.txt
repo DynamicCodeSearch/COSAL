@@ -1,0 +1,32 @@
+void run() {
+    int n = ni();
+    int t = ni();
+    init(n);
+    int[] A = new int[n];
+    BIT<Integer> bit = new BIT<>(n, Math::max, () -> 0);
+    for (int i = 0; i < n; ++i) {
+        int a = ni();
+        update(i, a);
+        bit.update(n - i, a);
+        A[i] = a;
+    }
+    int maxDiff = Integer.MIN_VALUE;
+    int maxCount = 0;
+    for (int i = 0; i < n; ++i) {
+        int v = A[i];
+        int max = bit.reduce(0, n - 1 - i);
+        if (max == Integer.MIN_VALUE) {
+            continue;
+        }
+        int diff = max - v;
+        
+        if (maxDiff == diff) {
+            maxCount++;
+        } else if (maxDiff < diff) {
+            maxDiff = diff;
+            maxCount = 1;
+        }
+    }
+    
+    System.out.println(maxCount);
+}

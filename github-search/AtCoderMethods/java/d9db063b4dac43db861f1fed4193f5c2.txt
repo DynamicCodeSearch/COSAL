@@ -1,0 +1,21 @@
+private static void solve() {
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    char[][] a = new char[n][];
+    for (int i = 0; i < n; i++) {
+        a[i] = sc.next().toCharArray();
+    }
+    char[][] b = new char[m][];
+    for (int i = 0; i < m; i++) {
+        b[i] = sc.next().toCharArray();
+    }
+    for (int i = 0; i + m - 1 < n; i++) {
+        for (int j = 0; j + m - 1 < n; j++) {
+            if (isOK(i, j, a, b)) {
+                pr.println("Yes");
+                return;
+            }
+        }
+    }
+    pr.println("No");
+}

@@ -1,0 +1,386 @@
+### Py Tokens: ret2, wrong, ans, max, comp, ret 
+
+### Py functions
+
+def func_8c44da91250e416b9344aa8e374e5ccb(B, WRONG, Xs, ans, i):
+    l = max(1, Xs[i - 1]) - 1
+    r = B + Xs[36] + 1
+    while l + 1 < r:
+        m = (l + r) // 2
+        ret = comp(i, m)
+        if ret is WRONG:
+            r = m
+        else:
+            ans = max(ans, ret)
+            if m + 1 == r:
+                break
+            ret2 = comp(i, m + 1)
+            if ret2 is WRONG:
+                r = m
+            elif ret < ret2:
+                l = m
+            else:
+                r = m
+    return B
+
+def func_a16a01d1e71d4a0782fa56ab8b8324b3(B, WRONG, Xs, ans, i):
+    l = max(1, Xs[i - 1]) - 1
+    r = B + Xs[36] + 1
+    while l + 1 < r:
+        m = (l + r) // 2
+        ret = comp(i, m)
+        if ret is WRONG:
+            r = m
+        else:
+            ans = max(ans, ret)
+            if m + 1 == r:
+                break
+            ret2 = comp(i, m + 1)
+            if ret2 is WRONG:
+                r = m
+            elif ret < ret2:
+                l = m
+            else:
+                r = m
+    return ans
+
+def func_bb3d880e13b54b4ebe96f84096c0a086(B, WRONG, Xs, ans, i):
+    l = max(1, Xs[i - 1]) - 1
+    r = B + Xs[36] + 1
+    while l + 1 < r:
+        m = (l + r) // 2
+        ret = comp(i, m)
+        if ret is WRONG:
+            r = m
+        else:
+            ans = max(ans, ret)
+            if m + 1 == r:
+                break
+            ret2 = comp(i, m + 1)
+            if ret2 is WRONG:
+                r = m
+            elif ret < ret2:
+                l = m
+            else:
+                r = m
+    return WRONG
+
+def func_418f61c7d0974a89892f4e1975c65cd9(B, WRONG, Xs, ans, i):
+    l = max(1, Xs[i - 1]) - 1
+    r = B + Xs[36] + 1
+    while l + 1 < r:
+        m = (l + r) // 2
+        ret = comp(i, m)
+        if ret is WRONG:
+            r = m
+        else:
+            ans = max(ans, ret)
+            if m + 1 == r:
+                break
+            ret2 = comp(i, m + 1)
+            if ret2 is WRONG:
+                r = m
+            elif ret < ret2:
+                l = m
+            else:
+                r = m
+    return ans
+
+def func_c75ec6ae13c344c183242d758eeae97a(B, WRONG, Xs, ans, i):
+    l = max(1, Xs[i - 1]) - 1
+    r = B + Xs[36] + 1
+    while l + 1 < r:
+        m = (l + r) // 2
+        ret = comp(i, m)
+        if ret is WRONG:
+            r = m
+        else:
+            ans = max(ans, ret)
+            if m + 1 == r:
+                break
+            ret2 = comp(i, m + 1)
+            if ret2 is WRONG:
+                r = m
+            elif ret < ret2:
+                l = m
+            else:
+                r = m
+    return i
+
+*********************************
+
+#### Score: 7.13054
+
+
+#### Java Tokens: ret 
+
+public static double func_eb1ce8fbff084855a8300a82968a5e86(int li, double ret) { 
+ for (int i = 0; i < li - 1; i++) ret += C.l[i].x * C.l[i + 1].y;
+return ret;
+}
+
+
+public static double func_3352f75ca8b1493abac9d896a4d4908b(double ret) { 
+ ret -= C.u[0].y * C.l[0].x;
+return ret;
+
+}
+
+
+public static double func_e494412261a04b89822cdb4255b3a819(int li, double ret) { 
+ for (int i = 0; i < li - 1; i++) ret -= C.l[i].y * C.l[i + 1].x;
+return ret;
+}
+
+
+*********************************
+
+#### Score: 6.61851
+
+
+#### Java Tokens: ret, indu 
+
+public static double func_1806ddc95fb94a0388205d95cd2155df(int indu, double ret, double x) { 
+ ret += A.us[indu];
+double yu = A.uy[indu] + (A.uy[indu + 1] - A.uy[indu]) * (x - A.ux[indu]) / (A.ux[indu + 1] - A.ux[indu]);
+ret += (x - A.ux[indu]) * (A.uy[indu] + yu) / 2;
+return yu;
+}
+
+
+public static double func_646e86d7b8114de8bfb886dd2151f91c(int indu, double ret, double x) { 
+ ret += A.us[indu];
+double yu = A.uy[indu] + (A.uy[indu + 1] - A.uy[indu]) * (x - A.ux[indu]) / (A.ux[indu + 1] - A.ux[indu]);
+return yu;
+}
+
+
+public static double func_271473de058a4268a7de42103f6f3d4c(int indu, double ret, double x) { 
+ if (indu < 0)
+    indu = -indu - 2;
+ret += A.us[indu];
+double yu = A.uy[indu] + (A.uy[indu + 1] - A.uy[indu]) * (x - A.ux[indu]) / (A.ux[indu + 1] - A.ux[indu]);
+ret += (x - A.ux[indu]) * (A.uy[indu] + yu) / 2;
+return ret;
+}
+
+
+*********************************
+
+#### Score: 6.61851
+
+
+#### Java Tokens: ret, indl 
+
+public static double func_71c37f2e2b1b4c36a077121e96adbf75(int indl, double ret, double x) { 
+ ret -= A.ls[indl];
+double yl = A.ly[indl] + (A.ly[indl + 1] - A.ly[indl]) * (x - A.lx[indl]) / (A.lx[indl + 1] - A.lx[indl]);
+ret -= (x - A.lx[indl]) * (A.ly[indl] + yl) / 2;
+return ret;
+}
+
+
+public static int func_c45bfa4bdbb14395879688434e2c28d5(int indl, double ret) { 
+ if (indl < 0)
+    indl = -indl - 2;
+ret -= A.ls[indl];
+return indl;
+}
+
+
+public static double func_341afb07fb214ba290ffbe36755f129d(int indl, double ret, double x) { 
+ double yl = A.ly[indl] + (A.ly[indl + 1] - A.ly[indl]) * (x - A.lx[indl]) / (A.lx[indl + 1] - A.lx[indl]);
+ret -= (x - A.lx[indl]) * (A.ly[indl] + yl) / 2;
+return ret;
+}
+
+
+*********************************
+
+#### Score: 6.61851
+
+
+#### Java Tokens: ret, i-- 
+
+public static double func_e93ede155abb459eaab259bebed69574(int ui, double ret) { 
+ for (int i = ui - 1; i > 0; i--) ret -= C.u[i].y * C.u[i - 1].x;
+return ret;
+}
+
+
+public static double func_86c34bf50bfc4882ad60475754825308(int ui, double ret) { 
+ for (int i = ui - 1; i > 0; i--) ret += C.u[i].x * C.u[i - 1].y;
+ret += C.u[0].x * C.l[0].y;
+return ret;
+}
+
+
+public static double func_a5b6e2bd23b7429d90d9d397aa723ad9(int ui, double ret) { 
+ for (int i = ui - 1; i > 0; i--) ret -= C.u[i].y * C.u[i - 1].x;
+ret -= C.u[0].y * C.l[0].x;
+return ret;
+}
+
+
+*********************************
+
+#### Score: 6.61851
+
+
+#### Java Tokens: ret, sol 
+
+public static String func_a7be7337d85843068f92d53abb037ee7(int i, int[] sol, String ret) { 
+ if (i > 0)
+    ret += " ";
+ret += sol[i];
+return ret;
+}
+
+
+*********************************
+
+#### Score: 6.17923
+
+
+#### Java Tokens: ret, num, curr 
+
+public static double func_ed0342d9dcaa41db8cf5848110c2edbe(int r, int s, int n, int p, int q) { 
+ A.num = new long[n + 1];
+for (int i = 1; i <= n; i++) {
+    long curr = i - 1;
+    curr *= p;
+    curr += q;
+    curr %= r;
+    curr += s;
+    A.num[i] = A.num[i - 1] + curr;
+}
+double ret = 0;
+return ret;
+}
+
+
+public static double func_290667c5b85043b3b31969160f57e09e(int r, int s, int n, int p, int q) { 
+ for (int i = 1; i <= n; i++) {
+    long curr = i - 1;
+    curr *= p;
+    curr += q;
+    curr %= r;
+    curr += s;
+    A.num[i] = A.num[i - 1] + curr;
+}
+double ret = 0;
+return ret;
+}
+
+
+*********************************
+
+#### Score: 6.17923
+
+
+#### Java Tokens: ret, abs, math 
+
+public static double func_fb9083d938b34e21aa82c7a064d0ddec(double ret) { 
+ ret -= C.u[0].y * C.l[0].x;
+return Math.abs(ret);
+
+}
+
+
+*********************************
+
+#### Score: 6.17923
+
+
+#### Java Tokens: ret, task, taska 
+
+public static long func_db43c2b23f2f4e738910ab560ca4d99e(int r, int l) { 
+ if (l >= r)
+    return 0;
+long ret = TaskA.a[r - 1];
+if (l > 0)
+    ret -= TaskA.a[l - 1];
+return ret;
+}
+
+
+public static long func_1e56074138284d85a021793e4c4e334f(int l, long ret) { 
+ if (l > 0)
+    ret -= TaskA.a[l - 1];
+return ret;
+
+}
+
+
+public static long func_0ab1834f01634cd1a32cfcb5d0e89264(int r, int l) { 
+ if (l >= r)
+    return 0;
+long ret = TaskA.a[r - 1];
+return ret;
+}
+
+
+*********************************
+
+#### Score: 6.17923
+
+
+#### Java Tokens: ret, sol, length 
+
+public static String func_caa56888e2514329a0fe798b2135d424(int[] sol, String ret) { 
+ for (int i = 0; i < sol.length; i++) {
+    if (i > 0)
+        ret += " ";
+    ret += sol[i];
+}
+return ret;
+
+}
+
+
+*********************************
+
+#### Score: 6.00700
+
+
+#### Java Tokens: max, ans, math 
+
+public static int func_746ef42c56d84d7f888634c43c7477a7(int j, int i, int n, int[] ps, double ans) { 
+ int s1 = ps[i];
+int s2 = ps[j] - ps[i];
+int s3 = ps[n] - ps[j];
+int max = Math.max(s1, Math.max(s2, s3));
+ans = Math.max(ans, 1.0 * (ps[n] - max) / ps[n]);
+return s1;
+}
+
+
+public static int func_b71842c0d8c04c14855e762db4728c13(long sr, long sm) { 
+ long ans = Math.max(sm, sr);
+int l = 0;
+return l;
+}
+
+
+public static double func_713c867160b04492b3547e594d92c0d1(int s, int n, int q, int r, int p) { 
+ int[] a = new int[n];
+for (int i = 0; i < n; i++) {
+    a[i] = (i * p + q) % r + s;
+}
+int[] ps = new int[n + 1];
+for (int i = 1; i <= n; i++) {
+    ps[i] = ps[i - 1] + a[i - 1];
+}
+double ans = 0;
+for (int i = 0; i < n; i++) {
+    for (int j = i + 1; j <= n; j++) {
+        int s1 = ps[i];
+        int s2 = ps[j] - ps[i];
+        int s3 = ps[n] - ps[j];
+        int max = Math.max(s1, Math.max(s2, s3));
+        ans = Math.max(ans, 1.0 * (ps[n] - max) / ps[n]);
+    }
+}
+return ans;
+}
+

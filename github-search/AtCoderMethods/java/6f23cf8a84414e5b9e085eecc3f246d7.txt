@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String S = sc.next();
+    int zeroNum = 0;
+    int ans = 0;
+    if (S.charAt(0) == '0')
+        zeroNum++;
+    if (S.length() == 1) {
+        if (zeroNum == 0)
+            ans++;
+    } else {
+        for (int i = 2; i < S.length(); i++) {
+            if (i % 2 == 0) {
+                char c = S.charAt(i - 1);
+                if (c == '+') {
+                    if (zeroNum == 0)
+                        ans++;
+                    zeroNum = 0;
+                }
+                if (S.charAt(i) == '0')
+                    zeroNum++;
+            }
+        }
+        if (zeroNum == 0)
+            ans++;
+    }
+    System.out.println(ans);
+}

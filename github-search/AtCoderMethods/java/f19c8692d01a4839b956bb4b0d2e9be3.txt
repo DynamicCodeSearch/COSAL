@@ -1,0 +1,47 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    int n = in.nextInt(), i;
+    int[] a = new int[3];
+    for (i = 0; i < n; i++) {
+        int k = in.nextInt(), c = 0;
+        while (k > 0 && k % 2 == 0) {
+            c++;
+            k /= 2;
+        }
+        if (c > 2) {
+            c = 2;
+        }
+        a[c]++;
+    }
+    int[] b = new int[n];
+    for (i = 1; i < n; i += 2) {
+        if (a[2] > 0) {
+            b[i] = 2;
+            a[2]--;
+        } else if (a[1] > 0) {
+            a[1]--;
+            b[i] = 1;
+        }
+    }
+    i = n - 1;
+    if (b[i] > 0) {
+        i--;
+    }
+    while (i >= 0) {
+        if (a[2] > 0) {
+            b[i] = 2;
+            a[2]--;
+        } else if (a[1] > 0) {
+            b[i] = 1;
+            a[1]--;
+        }
+        i -= 2;
+    }
+    String ans = "Yes";
+    for (i = 1; i < n; i++) {
+        if (b[i] + b[i - 1] < 2) {
+            ans = "No";
+            break;
+        }
+    }
+    out.printLine(ans);
+}

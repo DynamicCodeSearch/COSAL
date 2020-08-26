@@ -1,0 +1,25 @@
+public static void main(String[] args) throws java.lang.Exception {
+    InputReader in = new InputReader(System.in);
+    PrintWriter w = new PrintWriter(System.out);
+    int n = in.nextInt();
+    int[] a = in.nextIntArray(n);
+    HashMap<Integer, Integer> hm = new HashMap<>();
+    for (int x : a) {
+        if (!hm.containsKey(x))
+            hm.put(x, 0);
+        if (!hm.containsKey(x - 1))
+            hm.put(x - 1, 0);
+        if (!hm.containsKey(x + 1))
+            hm.put(x + 1, 0);
+        hm.put(x, hm.get(x) + 1);
+        hm.put(x - 1, hm.get(x - 1) + 1);
+        hm.put(x + 1, hm.get(x + 1) + 1);
+    }
+    int max = -1;
+    for (int x : hm.keySet()) {
+        max = Math.max(max, hm.get(x));
+    }
+    
+    w.println(max);
+    w.close();
+}

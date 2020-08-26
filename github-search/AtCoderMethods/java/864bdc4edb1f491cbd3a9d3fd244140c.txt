@@ -1,0 +1,16 @@
+static int lis(int[] a) {
+    int n = a.length;
+    int len = 1;
+    int[] dp = new int[n];
+    Arrays.fill(dp, 1 << 29);
+    dp[0] = a[0];
+    for (int i = 1; i < n; i++) {
+        if (dp[len - 1] < a[i]) {
+            dp[len++] = a[i];
+        } else {
+            int idx = lowerBound(dp, a[i]);
+            dp[idx] = a[i];
+        }
+    }
+    return len;
+}

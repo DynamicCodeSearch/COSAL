@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner sn = new Scanner(System.in);
+    long R = sn.nextLong();
+    long B = sn.nextLong();
+    long x = sn.nextLong();
+    long y = sn.nextLong();
+    long m = 0;
+    long l = 0, r = Math.min(R, B) + 1;
+    while (r - l > 1) {
+        m = (l + r) / 2;
+        long nR = (R - m) / (x - 1);
+        long nB = (B - m) / (y - 1);
+        if (nR + nB < m)
+            r = m;
+        else
+            l = m;
+    }
+    System.out.println(l);
+}

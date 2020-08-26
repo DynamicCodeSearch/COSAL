@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    long walk = sc.nextInt();
+    long tel = sc.nextInt();
+    long total = 0;
+    long prev = sc.nextLong();
+    for (int i = 1; i < n; i++) {
+        long next = Long.parseLong(sc.next());
+        long dist = (next - prev) * walk;
+        total += (dist > tel) ? tel : dist;
+        prev = next;
+    }
+    System.out.println(total);
+}

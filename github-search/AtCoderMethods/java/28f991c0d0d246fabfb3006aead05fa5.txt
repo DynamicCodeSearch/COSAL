@@ -1,0 +1,9 @@
+
+static int[] exchangeArrayElement(int[] inArray, long i) {
+    int[] outArray = Arrays.copyOf(inArray, inArray.length);
+    long targetElement1 = (i % 5);
+    long targetElement2 = (i % 5) + 1;
+    outArray[(int) targetElement1] = inArray[(int) targetElement2];
+    outArray[(int) targetElement2] = inArray[(int) targetElement1];
+    return outArray;
+}

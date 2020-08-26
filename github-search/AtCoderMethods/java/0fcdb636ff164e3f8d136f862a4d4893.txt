@@ -1,0 +1,13 @@
+long[][] mul(int n, long[][] a1, long[][] a2) {
+    long[][] temp = new long[n][n];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            long sum = 0;
+            for (int k = 0; k < n; k++) {
+                sum = (sum + a1[i][k] * a2[k][j]) % MOD;
+            }
+            temp[i][j] = sum;
+        }
+    }
+    return temp;
+}

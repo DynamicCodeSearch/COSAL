@@ -1,0 +1,69 @@
+private void solve(Scanner sc) {
+    String S = sc.nextLine();
+    int T = sc.nextInt();
+    List<Point> list = new ArrayList<>();
+    list.add(new Point(0, 0));
+    int ct = 0;
+    for (int i = 0; i < S.length(); ++i) {
+        char ch = S.charAt(i);
+        switch(ch) {
+            case 'L':
+                move(list, -1, 0);
+                break;
+            case 'R':
+                move(list, 1, 0);
+                break;
+            case 'U':
+                move(list, 0, 1);
+                break;
+            case 'D':
+                move(list, 0, -1);
+                break;
+            case '?':
+                ++ct;
+                break;
+        }
+    }
+    if (T == 1) {
+        long max = Integer.MIN_VALUE;
+        for (Point p : list) {
+            max = Math.max(max, Math.abs(p.x - ct) + Math.abs(p.y));
+            max = Math.max(max, Math.abs(p.x + ct) + Math.abs(p.y));
+            max = Math.max(max, Math.abs(p.x) + Math.abs(p.y + ct));
+            max = Math.max(max, Math.abs(p.x) + Math.abs(p.y - ct));
+        }
+        _out.println(max);
+    } else {
+        long min = Integer.MAX_VALUE;
+        for (Point p : list) {
+            if (p.x > 0 && p.x <= ct) {
+                ct -= p.x;
+                p.x = 0;
+            } else if (p.x < 0 && Math.abs(p.x) <= ct) {
+                ct += p.x;
+                p.x = 0;
+            } else if (p.x > 0) {
+                p.x -= ct;
+                ct = 0;
+            } else if (p.x < 0) {
+                p.x += ct;
+                ct = 0;
+            }
+            if (p.y > 0 && p.y <= ct) {
+                ct -= p.y;
+                p.y = 0;
+            } else if (p.y < 0 && Math.abs(p.y) <= ct) {
+                ct += p.y;
+                p.y = 0;
+            } else if (p.y > 0) {
+                p.y -= ct;
+                ct = 0;
+            } else if (p.y < 0) {
+                p.y += ct;
+                ct = 0;
+            }
+            min = Math.min(min, Math.abs(p.x) + Math.abs(p.y) + (ct % 2 == 0 ? 0 : 1));
+        }
+        _out.println(min);
+    }
+}

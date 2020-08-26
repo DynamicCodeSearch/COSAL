@@ -1,0 +1,25 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String line = br.readLine();
+    String[] tokens = line.split(" ");
+    long onePrice = Integer.parseInt(tokens[0]);
+    long multiplePrice = Integer.parseInt(tokens[1]);
+    long number = Integer.parseInt(tokens[2]);
+    long set = Integer.parseInt(tokens[3]);
+    long setNumber = number / set;
+    long result = 0;
+    if (set <= number) {
+        if ((number % set) * onePrice < multiplePrice) {
+            result = (multiplePrice * setNumber) + ((number % set) * onePrice);
+        } else {
+            result = (multiplePrice * setNumber) + multiplePrice;
+        }
+    } else {
+        if ((number * onePrice) < multiplePrice) {
+            result = number * onePrice;
+        } else {
+            result = multiplePrice;
+        }
+    }
+    System.out.println(result);
+}

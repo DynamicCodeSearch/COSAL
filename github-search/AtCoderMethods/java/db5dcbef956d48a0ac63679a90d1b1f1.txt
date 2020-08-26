@@ -1,0 +1,21 @@
+private void solve(Scanner sc) {
+    N = sc.nextInt();
+    W = sc.nextInt();
+    boolean overWeight = false;
+    for (int i = 0; i < N; ++i) {
+        int v = sc.nextInt();
+        int w = sc.nextInt();
+        list.add(new Pair<>(v, w));
+        if (w > 1000) {
+            overWeight = true;
+        }
+    }
+    if (N <= 30) {
+        ans = solve1(0, W);
+    } else if (!overWeight) {
+        ans = solve2();
+    } else {
+        ans = solve3();
+    }
+    _out.println(ans);
+}

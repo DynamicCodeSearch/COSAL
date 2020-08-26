@@ -1,0 +1,17 @@
+def main():
+    _ = input()
+    xs = Stdin.read_line(converter=int)
+    ys = chain.from_iterable([[x-1, x, x+1] for x in xs])
+    ys = sorted(list(ys))
+    cnt = 0
+    m = 0
+    prev = ys[0]
+    for y in ys:
+        if y == prev:
+            cnt += 1
+        else:
+            if m < cnt:
+                m = cnt
+            prev = y
+            cnt = 1
+    print(m)

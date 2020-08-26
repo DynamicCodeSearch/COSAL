@@ -1,0 +1,6 @@
+static boolean check(long R, long B, int x, int y, long N) {
+    if (R < N || B < N)
+        return false;
+    long typeA = x == 1 ? N : Math.min((R - N) / (x - 1), N);
+    return B >= typeA && (B - typeA) / y >= N - typeA;
+}

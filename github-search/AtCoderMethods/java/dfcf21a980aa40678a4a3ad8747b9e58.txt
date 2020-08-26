@@ -1,0 +1,16 @@
+private static final List<Integer> furui(int N) {
+    boolean[] furui = new boolean[N + 1];
+    for (int i = 2; i < N + 1; i++) {
+        furui[i] = true;
+    }
+    List<Integer> ret = new ArrayList<>(N);
+    for (int i = 2; i <= N; i++) {
+        if (furui[i]) {
+            ret.add(i);
+            for (int j = i + i; j <= N; j += i) {
+                furui[j] = false;
+            }
+        }
+    }
+    return ret;
+}

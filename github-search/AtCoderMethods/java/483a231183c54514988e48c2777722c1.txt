@@ -1,0 +1,11 @@
+static void dfs(int u, int p, int depth) {
+    size[u]++;
+    level[u] = depth;
+    for (int v : g[u]) {
+        if (v != p) {
+            P[v] = u;
+            dfs(v, u, depth + 1);
+            size[u] += size[v];
+        }
+    }
+}

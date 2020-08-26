@@ -1,0 +1,18 @@
+private static void solve() {
+    int N = ni();
+    int[] a = new int[N];
+    for (int i = 0; i < N; i++) {
+        a[i] = ni();
+    }
+    int min = Integer.MAX_VALUE;
+    for (int i = -100; i <= 100; i++) {
+        int tmp = 0;
+        for (int j : a) {
+            tmp += (i - j) * (i - j);
+        }
+        if (tmp < min) {
+            min = tmp;
+        }
+    }
+    System.out.println(min);
+}

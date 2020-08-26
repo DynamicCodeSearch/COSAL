@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    try (Scanner in = new Scanner(System.in)) {
+        int N = in.nextInt();
+        int[] A = new int[N];
+        for (int i = 0; i < N; i++) {
+            A[i] = in.nextInt();
+        }
+        HashMap<Integer, Integer> numberToCount = new HashMap<>();
+        for (int i = 0; i < N; i++) {
+            Integer count = numberToCount.get(A[i]);
+            numberToCount.put(A[i], 1 + (count == null ? 0 : count.intValue()));
+        }
+        int count = 0;
+        for (Integer number : numberToCount.keySet()) {
+            if (numberToCount.get(number).intValue() % 2 == 1) {
+                count++;
+            }
+        }
+        System.out.println(count);
+    }
+}

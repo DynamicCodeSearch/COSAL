@@ -1,0 +1,23 @@
+public static void diqstr(int n, int[] a, int[] b, int[] c, long[] min) {
+    ArrayList<HashSet<Q>> map = new ArrayList<HashSet<Q>>();
+    for (int i = 0; i < n; i++) {
+        map.add(new HashSet<Q>());
+    }
+    for (int i = 0; i < a.length; i++) {
+        map.get(a[i]).add(new Q(b[i], c[i]));
+    }
+    PriorityQueue<Q> queue = new PriorityQueue<Q>();
+    queue.add(new Q(0, 0));
+    while (!queue.isEmpty()) {
+        Q now = queue.poll();
+        int id = now.id;
+        long cost = now.cost;
+        if (min[id] != -1 && min[id] < cost)
+            continue;
+        
+        min[id] = cost;
+        for (Q next : map.get(id)) {
+            queue.add(new Q(next.id, cost + next.cost));
+        }
+    }
+}

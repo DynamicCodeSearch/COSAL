@@ -1,0 +1,20 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String line = br.readLine();
+    String[] number = line.split(" ");
+    int a = Integer.parseInt(number[0]);
+    int b = Integer.parseInt(number[1]);
+    int c = Integer.parseInt(number[2]);
+    int f = a % b;
+    int n = 0;
+    while (true) {
+        if ((n + a) % b == c) {
+            System.out.println("YES");
+            break;
+        } else if ((n + (2 * a)) % b == f) {
+            System.out.println("NO");
+            break;
+        }
+        n = n + a;
+    }
+}

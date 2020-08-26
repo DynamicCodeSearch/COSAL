@@ -1,0 +1,43 @@
+void solve() {
+    int n = ni(), x[] = na(n), l = ni(), q = ni();
+    int[][] dp = new int[n][20];
+    for (int i = 0; i < n; ++i) {
+        int min = i, max = n;
+        while (max - min > 1) {
+            int mid = (max + min) / 2;
+            if (x[i] + l >= x[mid]) {
+                min = mid;
+            } else {
+                max = mid;
+            }
+        }
+        Arrays.fill(dp[i], Integer.MAX_VALUE);
+        dp[i][0] = min;
+    }
+    for (int j = 1; j < 20; ++j) {
+        for (int i = 0; i < n; ++i) {
+            if (dp[i][j - 1] >= n - 1)
+                break;
+            dp[i][j] = dp[dp[i][j - 1]][j - 1];
+        }
+    }
+    for (int i = 0; i < q; ++i) {
+        int a = ni() - 1, b = ni() - 1;
+        if (a > b) {
+            int t = a;
+            a = b;
+            b = t;
+        }
+        int res = 0;
+        while (a < b) {
+            for (int j = 0; j < 20; ++j) {
+                if (dp[a][j + 1] > b) {
+                    res += 1 << j;
+                    a = dp[a][j];
+                    break;
+                }
+            }
+        }
+        out.println(res);
+    }
+}

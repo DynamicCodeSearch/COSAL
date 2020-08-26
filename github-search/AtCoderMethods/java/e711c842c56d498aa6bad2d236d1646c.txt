@@ -1,0 +1,12 @@
+void set(int pre, int v, int par) {
+    if (pre + 1 > range[v].max)
+        pre--;
+    else
+        pre++;
+    p[v] = pre;
+    for (int nv : node[v]) {
+        if (nv == par)
+            continue;
+        set(pre, nv, v);
+    }
+}

@@ -1,0 +1,22 @@
+
+
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int n = scan.nextInt();
+    String input = scan.next(), ans = null;
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 2; j++) {
+            String temp = check(input, i, j);
+            if (temp != null) {
+                ans = temp;
+                break;
+            }
+            if (ans != null)
+                break;
+        }
+    }
+    if (ans == null)
+        System.out.println(-1);
+    else
+        System.out.println(ans);
+}

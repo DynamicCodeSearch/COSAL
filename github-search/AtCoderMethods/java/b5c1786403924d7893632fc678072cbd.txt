@@ -1,0 +1,22 @@
+long[] dijkstra2(int atom) {
+    long[] ret = new long[n + 1];
+    Arrays.fill(ret, 1L << 60);
+    PriorityQueue<Integer> queue = new PriorityQueue<>((a, b) -> Long.compare(ret[a], ret[b]));
+    ret[atom] = 0;
+    queue.add(atom);
+    boolean[] done = new boolean[n + 1];
+    while (queue.size() > 0) {
+        int id = queue.poll();
+        if (done[id]) {
+            continue;
+        }
+        done[id] = true;
+        for (Edge next : rev.get(id)) {
+            if (ret[next.to] > ret[id] + next.cost) {
+                ret[next.to] = ret[id] + next.cost;
+                queue.add(next.to);
+            }
+        }
+    }
+    return ret;
+}

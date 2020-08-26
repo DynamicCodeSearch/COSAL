@@ -1,0 +1,14 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    long a = 1, b = 1;
+    for (int i = 0; i < n; ++i) {
+        long u = in.nextInt(), v = in.nextInt();
+        long g = BigInteger.valueOf(u).gcd(BigInteger.valueOf(v)).longValue();
+        u /= g;
+        v /= g;
+        long ratio = Math.max((a + u - 1) / u, (b + v - 1) / v);
+        a = u * ratio;
+        b = v * ratio;
+    }
+    out.print(a + b);
+}

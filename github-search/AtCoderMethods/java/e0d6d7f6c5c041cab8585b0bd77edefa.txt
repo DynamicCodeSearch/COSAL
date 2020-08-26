@@ -1,0 +1,17 @@
+private static long search(int[][] item, int[] id, int k, int W) {
+    if (k == id.length - 1)
+        return 0;
+    int sum = 0;
+    int sumw = 0;
+    long ans = search(item, id, k + 1, W);
+    for (int i = id[k]; i < id[k + 1]; i++) {
+        sumw += item[i][0];
+        if (sumw <= W) {
+            sum += item[i][1];
+            ans = Math.max(sum + search(item, id, k + 1, W - sumw), ans);
+        } else {
+            break;
+        }
+    }
+    return ans;
+}

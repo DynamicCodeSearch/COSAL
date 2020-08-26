@@ -1,0 +1,29 @@
+def main():
+    N, M, R = map(int, input().split())
+    r_list = list(map(int, input().split()))
+    dp = [[float("inf")] * (N + 1) for _ in range(N + 1)]
+    for _ in range(M):
+        A, B, C = map(int, input().split())
+        dp[A][B] = dp[B][A] = C
+
+    for i in range(N):
+        dp[i][i] = 0
+
+    for m in range(N + 1):
+        for s in range(N + 1):
+            for e in range(N + 1):
+                dist = dp[s][m] + dp[m][e]
+                if dist < dp[s][e]:
+                    dp[s][e] = dist
+
+    ans = float("inf")
+    for p in permutations(r_list, len(r_list)):
+        total = 0
+        for i in range(len(p) - 1):
+            total += dp[p[i]][p[i + 1]]
+            if total >= ans:
+                break
+        else:
+            if total < ans:
+                ans = total
+    print(ans)

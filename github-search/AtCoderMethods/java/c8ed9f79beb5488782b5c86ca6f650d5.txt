@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    n = sc.nextInt();
+    a = sc.nextInt();
+    b = sc.nextInt();
+    h = new long[n];
+    for (int i = 0; i < n; i++) {
+        h[i] = sc.nextInt();
+    }
+    long low = 0, high = Integer.MAX_VALUE / 2;
+    while (high - low > 1) {
+        long mid = (low + high) / 2;
+        if (f(mid)) {
+            high = mid;
+        } else {
+            low = mid;
+        }
+    }
+    System.out.println(high);
+}

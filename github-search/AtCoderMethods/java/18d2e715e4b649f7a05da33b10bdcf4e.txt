@@ -1,0 +1,41 @@
+public void solve() {
+    N = nextInt();
+    A = new int[N];
+    B = new int[100000 + 1];
+    for (int i = 0; i < N; i++) {
+        A[i] = nextInt();
+        B[A[i]]++;
+    }
+    pq = new PriorityQueue<P>();
+    for (int i = 0; i < 100000 + 1; i++) {
+        if (B[i] == 0)
+            continue;
+        P p = new P(B[i], i);
+        pq.add(p);
+    }
+    while (pq.size() > 0) {
+        P p = pq.poll();
+        if (p.x == 1) {
+            pq.add(p);
+            break;
+        }
+        if (p.x >= 3) {
+            if (p.x % 2 == 0) {
+                p.x = 2;
+            } else {
+                p.x = 1;
+            }
+        } else if (p.x == 2) {
+            if (pq.size() > 0) {
+                P pp = pq.poll();
+                pp.x -= 1;
+                if (pp.x > 0) {
+                    pq.add(pp);
+                }
+                p.x = 1;
+            }
+        }
+        pq.add(p);
+    }
+    out.println(pq.size());
+}

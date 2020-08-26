@@ -1,0 +1,54 @@
+public static void main(String[] args) {
+    
+    
+    final String n;
+    
+    final int k;
+    
+    final int[] d;
+    try (Scanner scan = new Scanner(System.in)) {
+        
+        n = "0" + scan.next();
+        k = scan.nextInt();
+        d = new int[k];
+        for (int i = 0; i < k; i++) {
+            d[i] = scan.nextInt();
+        }
+    }
+    
+    final int[] like = IntStream.range(0, 10).filter(i -> Arrays.stream(d).noneMatch(dd -> dd == i)).toArray();
+    
+    final int[] original = n.chars().map(i -> i - (int) '0').toArray();
+    int[] result = Arrays.copyOf(original, original.length);
+    
+    for (int j = result.length - 1; j > 0; j--) {
+        final int i = j;
+        OptionalInt tempInt = Arrays.stream(like).filter(likevalue -> likevalue >= result[i]).min();
+        if (tempInt.isPresent()) {
+            result[i] = tempInt.getAsInt();
+        } else {
+            
+            result[i - 1]++;
+            result[i] = like[0];
+        }
+    }
+    
+    if (result[0] == 0) {
+        result[0] = 0;
+    } else {
+        
+        result[0] = Arrays.stream(like).filter(likevalue -> likevalue >= result[0]).min().getAsInt();
+    }
+    
+    for (int i = 0; i < result.length - 1; i++) {
+        if (result[i] > original[i]) {
+            Arrays.fill(result, i + 1, result.length, like[0]);
+            break;
+        }
+    }
+    
+    
+    
+    out.println(Arrays.stream(result).reduce((start, element) -> start * 10 + element).getAsInt());
+    out.flush();
+}

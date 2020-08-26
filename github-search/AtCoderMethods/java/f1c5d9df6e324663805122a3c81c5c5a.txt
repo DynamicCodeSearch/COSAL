@@ -1,0 +1,41 @@
+public static void main(String[] args) {
+    IO io = new IO();
+    int h = io.nextInt();
+    int w = io.nextInt();
+    int[][] a = io.nextIntMatrix(h, w);
+    ArrayList<Tuple> al = new ArrayList<>();
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            al.add(new Tuple(a[i][j], i, j));
+        }
+    }
+    long[][] dp = new long[h][w];
+    al.sort((x1, x2) -> Integer.compare(x1.a, x2.a));
+    for (Tuple t : al) {
+        dp[t.i][t.j]++;
+        if (dp[t.i][t.j] >= MOD)
+            dp[t.i][t.j] -= MOD;
+        for (int k = 0; k < 4; k++) {
+            int ni = t.i + d[k];
+            int nj = t.j + d[k ^ 1];
+            if (ni < 0 || ni >= h || nj < 0 || nj >= w) {
+                continue;
+            }
+            if (a[t.i][t.j] >= a[ni][nj]) {
+                continue;
+            }
+            dp[ni][nj] += dp[t.i][t.j];
+            if (dp[ni][nj] >= MOD)
+                dp[ni][nj] -= MOD;
+        }
+    }
+    long ans = 0;
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            ans += dp[i][j];
+            if (ans >= MOD)
+                ans -= MOD;
+        }
+    }
+    System.out.println(ans);
+}

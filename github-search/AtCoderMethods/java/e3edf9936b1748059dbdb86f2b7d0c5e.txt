@@ -1,0 +1,38 @@
+static int dfs(int cnt, int id, int dir) {
+    int pre = dir, first = 1, s;
+    for (int i = x; i < h; i++) {
+        if (first == 1) {
+            s = y;
+            first = 0;
+        } else {
+            if (pre == 0)
+                s = 0;
+            else
+                s = w - 1;
+        }
+        if (pre == 0) {
+            for (int j = s; j < w; j++) {
+                if (cnt == 0) {
+                    x = i;
+                    y = j;
+                    return pre;
+                }
+                map[i][j] = id;
+                cnt--;
+            }
+            pre = 1 - pre;
+        } else {
+            for (int j = s; j >= 0; j--) {
+                if (cnt == 0) {
+                    x = i;
+                    y = j;
+                    return pre;
+                }
+                map[i][j] = id;
+                cnt--;
+            }
+            pre = 1 - pre;
+        }
+    }
+    return 0;
+}

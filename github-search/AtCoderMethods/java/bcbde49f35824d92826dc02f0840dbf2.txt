@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    long s = scan.nextLong();
+    long c = scan.nextLong();
+    long ans = 0;
+    if (c >= 2 * s) {
+        long x = (c / 2 - s) / 2;
+        for (long temp = Math.max(x - 2, 1); temp <= x + 2; temp++) {
+            if (temp <= c / 2) {
+                long result = Math.min(c / 2 - temp, s + temp);
+                if (result > ans)
+                    ans = result;
+            }
+        }
+        System.out.println(ans);
+    } else {
+        System.out.println(c / 2);
+    }
+}

@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    char[] statement = in.nextToken().toCharArray();
+    char[] ans = null;
+    sch: for (int first = 0; first < 2; first++) {
+        for (int second = 0; second < 2; second++) {
+            char[] type = new char[n];
+            type[0] = first == 0 ? 'S' : 'W';
+            type[1] = second == 0 ? 'S' : 'W';
+            if (fillType(type, statement)) {
+                ans = type;
+                break sch;
+            }
+        }
+    }
+    if (ans == null) {
+        out.println(-1);
+    } else {
+        out.println(String.valueOf(ans));
+    }
+    out.flush();
+}

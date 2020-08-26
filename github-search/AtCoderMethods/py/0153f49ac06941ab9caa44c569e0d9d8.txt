@@ -1,0 +1,15 @@
+def solve(n, m, a, b):
+    islands = set()
+
+    for i in range(m):
+        if(a[i] == 1):
+            islands.add(b[i])
+        if(b[i] == 1):
+            islands.add(a[i])
+
+    for i in range(m):
+        if(a[i] == n and b[i] in islands):
+            return "POSSIBLE"
+        if(b[i] == n and a[i] in islands):
+            return "POSSIBLE"
+    return "IMPOSSIBLE"

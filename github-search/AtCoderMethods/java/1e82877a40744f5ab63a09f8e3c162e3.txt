@@ -1,0 +1,36 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    String[] a = new String[n];
+    String[] b = new String[m];
+    int x = 0;
+    int y = 0;
+    boolean end = false;
+    for (int i = 0; i < n; i++) {
+        a[i] = sc.next();
+    }
+    for (int i = 0; i < m; i++) {
+        b[i] = sc.next();
+    }
+    while (true) {
+        end = true;
+        for (int i = 0; i < m; i++) {
+            end = end & b[i].equals(a[i + y].substring(x, x + m));
+        }
+        if (end) {
+            System.out.println("Yes");
+            return;
+        } else {
+            if (x == n - m - 1 && y == n - m - 1) {
+                System.out.println("No");
+                return;
+            } else if (x == n - m - 1) {
+                x = 0;
+                y++;
+            } else {
+                x++;
+            }
+        }
+    }
+}

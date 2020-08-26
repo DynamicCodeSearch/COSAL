@@ -1,0 +1,14 @@
+def main(args):
+    N, M = map(int, input().split())
+
+    degrees = [0] * (N + 1)
+    es = [[] for _ in range(N + 1)]
+    for _ in range(M):
+        a, b = map(int, input().split())
+        es[a].append(b)
+        es[b].append(a)
+        degrees[a] += 1
+        degrees[b] += 1
+
+    result = solve(es, degrees, N, M)
+    print(min(result, M))

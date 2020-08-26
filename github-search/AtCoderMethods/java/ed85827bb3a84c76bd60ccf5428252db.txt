@@ -1,0 +1,25 @@
+private void contest() {
+    Scanner sc = new Scanner(System.in);
+    int h = sc.nextInt();
+    int w = sc.nextInt();
+    sc.nextLine();
+    char[][] map = new char[h][w];
+    for (int y = 0; y < h; ++y) {
+        String s = sc.nextLine();
+        for (int x = 0; x < w; ++x) {
+            map[y][x] = s.charAt(x);
+        }
+    }
+    char[][] res = restore(h, w, map);
+    if (check(h, w, map, res)) {
+        System.out.println("possible");
+        for (int y = 0; y < h; ++y) {
+            for (int x = 0; x < w; ++x) {
+                System.out.print(res[y][x]);
+            }
+            System.out.println();
+        }
+    } else {
+        System.out.println("impossible");
+    }
+}

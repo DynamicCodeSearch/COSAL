@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String topCoder = sc.next();
+    int result = 0;
+    for (int i = 0; i < topCoder.length(); i++) {
+        char atCoder;
+        if (topCoder.charAt(i) == 'p') {
+            if (i % 2 == 0) {
+                atCoder = 'g';
+                result--;
+            } else
+                atCoder = 'p';
+        } else {
+            if (i % 2 == 0) {
+                atCoder = 'g';
+            } else {
+                atCoder = 'p';
+                result++;
+            }
+        }
+    }
+    System.out.println(result);
+}

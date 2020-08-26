@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    N = sc.nextInt();
+    X = new int[N];
+    for (int i = 0; i < N; ++i) {
+        X[i] = Integer.parseInt(sc.next());
+    }
+    L = sc.nextInt();
+    logN = 1;
+    while ((1 << logN) < N) {
+        logN++;
+    }
+    build();
+    int Q = sc.nextInt();
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < Q; ++i) {
+        int A = Integer.parseInt(sc.next()) - 1;
+        int B = Integer.parseInt(sc.next()) - 1;
+        sb.append(solve(Math.min(A, B), Math.max(A, B)) + "\n");
+    }
+    System.out.print(sb);
+}

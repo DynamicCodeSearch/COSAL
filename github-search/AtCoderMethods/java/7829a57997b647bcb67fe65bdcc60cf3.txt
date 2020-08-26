@@ -1,0 +1,7 @@
+public long val(int index) {
+    if (index == from && index == to)
+        return val;
+    if (index > to || index < from)
+        return 0;
+    return left.val(index) + right.val(index) + val;
+}

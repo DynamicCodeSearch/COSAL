@@ -1,0 +1,23 @@
+public static void main(String[] args) throws Exception {
+    int n = sc.nextInt();
+    int q = sc.nextInt();
+    int[] num = new int[n + 1];
+    for (int i = 0; i < q; i++) {
+        num[sc.nextInt() - 1]++;
+        num[sc.nextInt()]++;
+    }
+    int now = 0;
+    for (int i = 0; i < n; i++) {
+        now += num[i];
+        if (now % 2 == 1) {
+            out.print("1");
+        } else {
+            out.print("0");
+        }
+        out.flush();
+    }
+    out.println();
+    out.flush();
+    sc.close();
+    out.close();
+}

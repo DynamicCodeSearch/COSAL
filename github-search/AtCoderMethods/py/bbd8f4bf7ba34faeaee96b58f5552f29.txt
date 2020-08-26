@@ -1,0 +1,14 @@
+def main():
+    n, k = map(int, input().split())
+
+    d = defaultdict(lambda: 0)
+    for _ in range(n):
+        a, b = map(int, input().split())
+        d[a] += b
+
+    cnt = 0
+    for i, v in sorted(d.items()):
+        cnt += v
+        if cnt >= k:
+            print(i)
+            break

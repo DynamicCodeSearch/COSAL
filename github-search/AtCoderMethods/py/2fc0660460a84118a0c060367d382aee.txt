@@ -1,0 +1,16 @@
+def main():
+    n = int(input())
+    a_list = sorted([int(input()) for _ in range(n)])
+    maxv = sum(a_list)
+
+    if maxv%10 != 0:
+        print(maxv)
+    else:
+        flag = 1
+        for i in range(n):
+            if a_list[i]%10 != 0:
+                ans = maxv - a_list[i]
+                print(ans)
+                flag = 0
+                break
+        if flag: print(0)

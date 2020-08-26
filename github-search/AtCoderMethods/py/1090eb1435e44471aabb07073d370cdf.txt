@@ -1,0 +1,16 @@
+def dfs(i, w, l, W):
+    if i >= len(l):
+        return 0
+
+    if (i, w) in memo:
+        return memo[(i, w)]
+
+
+    ans = dfs(i + 1, w, l, W)
+
+
+    if w + l[i][0] <= W:
+        ans = max(ans, dfs(i + 1, w + l[i][0], l, W) + l[i][1])
+
+    memo[(i, w)] = ans
+    return ans

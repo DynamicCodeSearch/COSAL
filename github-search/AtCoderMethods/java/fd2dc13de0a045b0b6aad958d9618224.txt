@@ -1,0 +1,10 @@
+public static void main(String[] args) throws IOException {
+    Scan in = new Scan(System.in);
+    int n = in.readInt();
+    long res = in.readLong();
+    for (int i = 0; i < n - 1; i++) {
+        long k = in.readLong();
+        res = (res / gcd(res, k)) * k;
+    }
+    System.out.println(res);
+}

@@ -1,0 +1,71 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int d = sc.nextInt();
+    int w = sc.nextInt();
+    String dir = "N";
+    if (d >= 113 && d < 338) {
+        dir = "NNE";
+    } else if (d >= 338 && d < 563) {
+        dir = "NE";
+    } else if (d >= 563 && d < 788) {
+        dir = "ENE";
+    } else if (d >= 788 && d < 1013) {
+        dir = "E";
+    } else if (d >= 1013 && d < 1238) {
+        dir = "ESE";
+    } else if (d >= 1238 && d < 1463) {
+        dir = "SE";
+    } else if (d >= 1463 && d < 1688) {
+        dir = "SSE";
+    } else if (d >= 1688 && d < 1913) {
+        dir = "S";
+    } else if (d >= 1913 && d < 2138) {
+        dir = "SSW";
+    } else if (d >= 2138 && d < 2363) {
+        dir = "SW";
+    } else if (d >= 2363 && d < 2588) {
+        dir = "WSW";
+    } else if (d >= 2588 && d < 2813) {
+        dir = "W";
+    } else if (d >= 2813 && d < 3038) {
+        dir = "WNW";
+    } else if (d >= 3038 && d < 3263) {
+        dir = "NW";
+    } else if (d >= 3263 && d < 3488) {
+        dir = "NNW";
+    }
+    double husoku = w / 60.0 + 0.00001;
+    BigDecimal bd = new BigDecimal(husoku);
+    bd = bd.setScale(1, BigDecimal.ROUND_HALF_UP);
+    husoku = bd.doubleValue();
+    int res = 0;
+    if (husoku >= 0.3 && husoku <= 1.5) {
+        res = 1;
+    } else if (husoku >= 1.6 && husoku <= 3.3) {
+        res = 2;
+    } else if (husoku >= 3.4 && husoku <= 5.4) {
+        res = 3;
+    } else if (husoku >= 5.5 && husoku <= 7.9) {
+        res = 4;
+    } else if (husoku >= 8.0 && husoku <= 10.7) {
+        res = 5;
+    } else if (husoku >= 10.8 && husoku <= 13.8) {
+        res = 6;
+    } else if (husoku >= 13.9 && husoku <= 17.1) {
+        res = 7;
+    } else if (husoku >= 17.2 && husoku <= 20.7) {
+        res = 8;
+    } else if (husoku >= 20.8 && husoku <= 24.4) {
+        res = 9;
+    } else if (husoku >= 24.5 && husoku <= 28.4) {
+        res = 10;
+    } else if (husoku >= 28.5 && husoku <= 32.6) {
+        res = 11;
+    } else if (husoku >= 32.7) {
+        res = 12;
+    }
+    if (res == 0) {
+        dir = "C";
+    }
+    System.out.println(dir + " " + res);
+}

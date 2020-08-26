@@ -1,0 +1,13 @@
+public void unite(int x, int y) {
+    x = find(x);
+    y = find(y);
+    if (x == y)
+        return;
+    if (parents[y] < parents[x]) {
+        int temp = x;
+        x = y;
+        y = temp;
+    }
+    parents[x] += parents[y];
+    parents[y] = x;
+}

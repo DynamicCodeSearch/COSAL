@@ -1,0 +1,22 @@
+boolean link() {
+    boolean[] visited = new boolean[n];
+    visited[0] = true;
+    for (int k = 0; k < n; k++) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (i == j)
+                    continue;
+                if (visited[i]) {
+                    if (c[i][j] && !visited[j]) {
+                        visited[j] = true;
+                    }
+                }
+            }
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        if (!visited[i])
+            return true;
+    }
+    return false;
+}

@@ -1,0 +1,33 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    h = sc.nextInt();
+    w = sc.nextInt();
+    grid = new char[h][w];
+    for (int i = 0; i < h; i++) {
+        grid[i] = sc.next().toCharArray();
+    }
+    int[] dx = { 0, -1, -1, -1, 0, 1, 1, 1 };
+    int[] dy = { -1, -1, 0, 1, 1, 1, 0, -1 };
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            if (grid[i][j] != '.') {
+                continue;
+            }
+            int count = 0;
+            for (int k = 0; k < 8; k++) {
+                int ni = i + dx[k];
+                int nj = j + dy[k];
+                if (0 <= ni && ni < h && 0 <= nj && nj < w && grid[ni][nj] == '#') {
+                    ++count;
+                }
+            }
+            grid[i][j] = (char) (count + '0');
+        }
+    }
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < h; i++) {
+        sb.append(grid[i]);
+        sb.append(System.lineSeparator());
+    }
+    System.out.print(sb);
+}

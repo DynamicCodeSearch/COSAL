@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    long pattern;
+    if (n == m) {
+        pattern = 1;
+        for (int i = 1; i <= n; i++) {
+            pattern = (i * pattern) % 1000000007;
+        }
+        for (int i = 1; i <= m; i++) {
+            pattern = (i * pattern) % 1000000007;
+        }
+        pattern = 2 * pattern % 1000000007;
+    } else if (Math.abs(n - m) == 1) {
+        pattern = 1;
+        for (int i = 1; i <= n; i++) {
+            pattern = (i * pattern) % 1000000007;
+        }
+        for (int i = 1; i <= m; i++) {
+            pattern = (i * pattern) % 1000000007;
+        }
+    } else {
+        pattern = 0;
+    }
+    System.out.println(pattern);
+}

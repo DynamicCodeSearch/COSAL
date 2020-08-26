@@ -1,0 +1,18 @@
+private static void run(int N) {
+    int[] countDivisor = new int[N + 1];
+    for (int number = 1; number <= N; number++) {
+        int n = number;
+        for (int divisor = 2; divisor <= n; divisor++) {
+            while (n % divisor == 0) {
+                countDivisor[divisor]++;
+                n /= divisor;
+            }
+        }
+    }
+    long numDivisors = 1;
+    for (int i = 2; i <= N; i++) {
+        numDivisors *= (1 + countDivisor[i]);
+        numDivisors = numDivisors % mod;
+    }
+    System.out.println(numDivisors);
+}

@@ -1,0 +1,27 @@
+public static long maximumFlowDinic(Edge[][] g, int source, int sink) {
+    int n = g.length;
+    int[] d = new int[n];
+    int[] q = new int[n];
+    long ret = 0;
+    while (true) {
+        Arrays.fill(d, -1);
+        q[0] = source;
+        int r = 1;
+        d[source] = 0;
+        for (int v = 0; v < r; v++) {
+            int cur = q[v];
+            for (Edge ne : g[cur]) {
+                if (d[ne.to] == -1 && ne.capacity - ne.flow > 0) {
+                    q[r++] = ne.to;
+                    d[ne.to] = d[cur] + 1;
+                }
+            }
+        }
+        if (d[sink] == -1)
+            break;
+        int[] sp = new int[n];
+        for (int i = 0; i < n; i++) sp[i] = g[i].length - 1;
+        ret += dfsDinic(d, g, sp, source, sink, Long.MAX_VALUE);
+    }
+    return ret;
+}

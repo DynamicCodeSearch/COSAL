@@ -1,0 +1,50 @@
+void solve() throws NumberFormatException, IOException {
+    final ContestScanner in = new ContestScanner();
+    Writer out = new Writer();
+    int n = in.nextInt();
+    int A = in.nextInt();
+    int B = in.nextInt();
+    if (A == 1) {
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++) a[i] = in.nextInt();
+        Arrays.sort(a);
+        for (int i = 0; i < n; i++) {
+            System.out.println(a[i]);
+        }
+        return;
+    }
+    D[] a = new D[n];
+    double min = Integer.MAX_VALUE;
+    double max = Integer.MIN_VALUE;
+    for (int i = 0; i < n; i++) {
+        int tmp = in.nextInt();
+        a[i] = new D(Math.log10(tmp) / Math.log10(A), tmp);
+        min = Math.min(min, a[i].a);
+        max = Math.max(max, a[i].a);
+    }
+    Arrays.sort(a);
+    while (max - min >= 1 && B > 0) {
+        a[0].a++;
+        B--;
+        a[0].x++;
+        Arrays.sort(a);
+        min = a[0].a;
+        max = a[a.length - 1].a;
+    }
+    int each = B / n;
+    B %= n;
+    for (int i = 0; i < n; i++) {
+        a[i].x += each;
+    }
+    while (B > 0) {
+        a[0].a++;
+        B--;
+        a[0].x++;
+        Arrays.sort(a);
+    }
+    Arrays.sort(a);
+    final int mod = 1000000007;
+    for (int i = 0; i < n; i++) {
+        System.out.println(modpow(A, a[i].x, mod) * a[i].origin % mod);
+    }
+}

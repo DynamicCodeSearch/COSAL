@@ -1,0 +1,33 @@
+def main():
+    h,w = LI()
+    a = [[0]*w for _ in range(h)]
+    s = [S() for _ in range(h)]
+    for i in range(h):
+        si = s[i]
+        for j in range(w):
+            if si[j] != '#':
+                continue
+            if j < w-1:
+                a[i][j+1] += 1
+                if i < h-1:
+                    a[i+1][j+1] += 1
+                if i > 0:
+                    a[i-1][j+1] += 1
+            if j > 0:
+                a[i][j-1] += 1
+                if i < h-1:
+                    a[i+1][j-1] += 1
+                if i > 0:
+                    a[i-1][j-1] += 1
+
+            if i < h-1:
+                a[i+1][j] += 1
+            if i > 0:
+                a[i-1][j] += 1
+
+    for i in range(h):
+        for j in range(w):
+            if s[i][j] == '#':
+                a[i][j] = '#'
+
+    return '\n'.join([''.join(map(str, r)) for r in a])

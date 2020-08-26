@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int n = scan.nextInt();
+    int m = scan.nextInt();
+    boolean[] startflag = new boolean[n];
+    boolean[] endflag = new boolean[n];
+    int tempA = 0;
+    int tempB = 0;
+    for (int i = 0; i < m; i++) {
+        tempA = scan.nextInt();
+        tempB = scan.nextInt();
+        if (tempA == 1) {
+            startflag[tempB - 1] = true;
+        }
+        if (tempB == n) {
+            endflag[tempA - 1] = true;
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        if (startflag[i] && endflag[i]) {
+            System.out.println("POSSIBLE");
+            return;
+        }
+    }
+    System.out.println("IMPOSSIBLE");
+}

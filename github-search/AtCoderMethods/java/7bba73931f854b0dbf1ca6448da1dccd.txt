@@ -1,0 +1,13 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String s = sc.next();
+    for (int i = s.length() - 2; i > 0; i -= 2) {
+        s = s.substring(0, i);
+        String s1 = s.substring(0, i / 2);
+        String s2 = s.substring(i / 2, i);
+        if (s1.equals(s2)) {
+            System.out.println(i);
+            return;
+        }
+    }
+}

@@ -1,0 +1,18 @@
+def main():
+    H, W = map(int, input().split())
+    N = int(input())
+    a_list = list(map(int, input().split()))
+    c_list = []
+    for i, a in enumerate(a_list, start=1):
+        c_list += [i] * a
+
+    ans = [[0] * W for _ in range(H)]
+    for i, c in enumerate(c_list):
+        h = i // W
+        if h % 2 == 0:
+            ans[h][i % W] = c
+        else:
+            ans[h][-(i % W + 1)] = c
+
+    for line in ans:
+        print(*line)

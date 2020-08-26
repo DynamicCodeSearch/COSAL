@@ -1,0 +1,12 @@
+private void solve(Scanner sc) {
+    long N = sc.nextLong();
+    int ans = Integer.MAX_VALUE;
+    for (long A = 1; A <= Math.sqrt(N); ++A) {
+        if (N % A != 0) {
+            continue;
+        }
+        long B = N / A;
+        ans = Math.min(ans, F(A, B));
+    }
+    _out.println(ans);
+}

@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String[][] c = new String[N][N];
+    for (int y = 0; y < N; y++) {
+        for (int x = 0; x < N; x++) {
+            c[x][y] = sc.next();
+        }
+    }
+    sc.close();
+    for (int y = 0; y < N; y++) {
+        for (int x = 0; x < N; x++) {
+            System.out.print(c[N - x - 1][N - y - 1]);
+            if (x < N - 1)
+                System.out.print(" ");
+        }
+        System.out.println();
+    }
+}

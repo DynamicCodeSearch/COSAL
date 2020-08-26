@@ -1,0 +1,14 @@
+def DFS(node, prev, visited):
+    visited.append(node)
+    if len(visited) == N:
+        return 1
+
+    res = 0
+    for edge in graph[node]:
+        if edge == prev:
+            continue
+        elif edge in visited:
+            continue
+        res += DFS(edge, node, visited[:])
+
+    return res

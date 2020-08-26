@@ -1,0 +1,10 @@
+def main():
+    n, q = map(int, input().split())
+    cones = [Cone(*map(int, input().split())) for _ in range(n)]
+
+    vs = array.array("d", (sum(cone.frustum_volume(x, x + 1)
+                               for cone in cones) for x in range(MAX_B)))
+    cs = CumulativeSum(vs, "d")
+    for _ in range(q):
+        a, b = map(int, input().split())
+        print("{:.6f}".format(cs.partial_sum(a, b - 1)))

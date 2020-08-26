@@ -1,0 +1,27 @@
+def D_Derangement():
+    try:
+        LOCAL_FLAG
+        N = 5
+        raw_p = "1 4 3 5 2"
+        p = list(map(int, raw_p.split()))
+
+    except NameError:
+        N = int(input())
+        p = list(map(int, input().split()))
+
+    bad = []
+    for i in range(N):
+        if(p[i] == i+1):
+            bad.append(i+1)
+
+    n_bad = len(bad)
+    n_ope = n_bad
+
+    while n_bad > 0:
+        if(bad[n_bad-2] == (bad[n_bad-1]-1)):
+            n_ope -= 1
+            n_bad -= 2
+        else:
+            n_bad -= 1
+
+    print(n_ope)

@@ -1,0 +1,14 @@
+int lower(ArrayList<Point> list, Point p) {
+    
+    
+    int ok = -1, ng = list.size();
+    while (ng - ok > 1) {
+        int middle = (ok + ng) / 2;
+        if (list.get(middle).compareTo(p) < 0) {
+            ok = middle;
+        } else {
+            ng = middle;
+        }
+    }
+    return ok;
+}

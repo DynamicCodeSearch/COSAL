@@ -1,0 +1,15 @@
+public static long sum(Node a, int L, int R) {
+    if (a == null || L >= R || L >= count(a) || R <= 0)
+        return 0L;
+    if (L <= 0 && R >= count(a)) {
+        return a.sum;
+    } else {
+        long ret = 0;
+        ret += sum(a.left, L, R);
+        ret += sum(a.right, L - count(a.left) - 1, R - count(a.left) - 1);
+        if (L <= count(a.left) && count(a.left) < R)
+            ret += a.v;
+        ret += (Math.min(R, a.count) - L) * a.add;
+        return ret;
+    }
+}

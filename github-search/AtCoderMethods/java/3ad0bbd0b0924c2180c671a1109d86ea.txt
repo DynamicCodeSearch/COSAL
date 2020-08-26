@@ -1,0 +1,20 @@
+public void run() {
+    
+    String input = cin.nextLine();
+    
+    Stack<Character> st = new Stack<>();
+    for (int i = 0; i < input.length(); i++) {
+        char ch = input.charAt(i);
+        if (ch == 'B') {
+            if (!st.isEmpty()) {
+                st.pop();
+            }
+        } else {
+            st.push(ch);
+        }
+    }
+    
+    for (char ch : st) {
+        System.out.print(ch);
+    }
+}

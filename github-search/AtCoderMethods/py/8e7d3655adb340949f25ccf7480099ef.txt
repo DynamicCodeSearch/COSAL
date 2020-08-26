@@ -1,0 +1,15 @@
+def main():
+    N = int(input())
+    C_list = list(sorted(list([int(input()) for _ in range(N)])))
+    num_list = [0] * N
+
+    for i in range(N):
+        for j in range(N):
+            if C_list[i] % C_list[j] == 0:
+                num_list[i] += 1
+
+    ans = 0
+    for i in range(N):
+        ans += ceil(num_list[i], 2) / num_list[i]
+
+    print("{0:.10f}".format(ans))

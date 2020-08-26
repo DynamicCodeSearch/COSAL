@@ -1,0 +1,23 @@
+def solve(h, w):
+    if h % 3 == 0 or w % 3 == 0:
+        return 0
+    res = w * h
+    for i in range(1, h):
+        s = i * w
+        if (h - i) % 2 == 0 or w % 2 == 0:
+            t = u = (h - i) * w // 2
+            r = score(s, t, u)
+            if res > r:
+                res = r
+        else:
+            t = (h - i) // 2 * w
+            u = ((h - i) // 2 + 1) * w
+            r = score(s, t, u)
+            if res > r:
+                res = r
+            t = w // 2 * (h - i)
+            u = (w // 2 + 1) * (h - i)
+            r = score(s, t, u)
+            if res > r:
+                res = r
+    return res

@@ -1,0 +1,27 @@
+private int solve(int N, int M) {
+    long[] step = computeStep(N, M);
+    two = new Mint[N + 1];
+    for (int i = 0; i < N + 1; i++) two[i] = i == 0 ? Mint.ONE : two[i - 1].mul(2);
+    Mint res = Mint.ZERO;
+    int zeroDet = 0;
+    int zeroComb = 0;
+    for (int t = 0; t < N + 1; t++) if (t % 2 == 0) {
+        for (int k = 0; k < N + 1; k++) {
+            if (N - t + k < 0 || t / 2 - k < 0)
+                continue;
+            if (step[N - t] > 0) {
+                Mint c = MathUtils.comb(N - t + k, k);
+                Mint det = det(t, k);
+                Mint val = c.mul(step[N - t]).mul(det);
+                if (c.equals(Mint.ZERO))
+                    zeroComb++;
+                if (det.equals(Mint.ZERO))
+                    zeroDet++;
+                res = res.add(val);
+            }
+        }
+    }
+    Debug.print("zeroComb", zeroComb);
+    Debug.print("zeroDet", zeroDet);
+    return res.get();
+}

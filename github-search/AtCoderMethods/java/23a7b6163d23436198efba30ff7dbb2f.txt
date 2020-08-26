@@ -1,0 +1,12 @@
+public static long func(long x, long s) {
+    if (s == 0)
+        return 1;
+    if (s % 2 == 0) {
+        long t = func(x, s / 2);
+        return (t * t) % MOD;
+    } else {
+        long t = func(x, (s - 1) / 2);
+        t = (t * t) % MOD;
+        return (t * x) % MOD;
+    }
+}

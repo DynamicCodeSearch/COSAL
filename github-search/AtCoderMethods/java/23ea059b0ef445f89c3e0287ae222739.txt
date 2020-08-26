@@ -1,0 +1,34 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int x = 0, y = 0, cnt = 0;
+    String s = sc.next();
+    int t = Integer.parseInt(sc.next());
+    char[] list = s.toCharArray();
+    for (int temp : list) {
+        switch(temp) {
+            case 'L':
+                x--;
+                break;
+            case 'R':
+                x++;
+                break;
+            case 'U':
+                y++;
+                break;
+            case 'D':
+                y--;
+                break;
+            case '?':
+                cnt++;
+                break;
+        }
+    }
+    if (t == 1) {
+        out.println(Math.abs(x) + Math.abs(y) + cnt);
+    } else {
+        out.println(Integer.max(Math.abs(x) + Math.abs(y) - cnt, list.length % 2));
+    }
+    out.flush();
+    sc.close();
+}

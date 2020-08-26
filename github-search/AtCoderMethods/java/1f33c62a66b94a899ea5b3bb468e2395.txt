@@ -1,0 +1,9 @@
+public void rdfs(int i, int id) {
+    visited[i] = true;
+    node_id[i] = id;
+    for (int next : r_graph[i]) {
+        if (!visited[next]) {
+            rdfs(next, id);
+        }
+    }
+}

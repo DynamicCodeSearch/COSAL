@@ -1,0 +1,44 @@
+private static int[] dfs(int now, int pre, int[][] g, int[] x) {
+    int m = g[now].length + (now == 0 ? 0 : -1);
+    if (m == 0) {
+        return new int[] { 0, x[now] };
+    }
+    int[] w = new int[m];
+    int total = 0;
+    int ptr = 0;
+    int min = 0;
+    for (int next : g[now]) {
+        if (next != pre) {
+            int[] y = dfs(next, now, g, x);
+            if (y[0] < 0) {
+                return y;
+            }
+            min += y[0];
+            w[ptr++] = y[1] - y[0];
+            total += y[1];
+        }
+    }
+    int v = x[now] - min;
+    if (v < 0) {
+        return new int[] { -1, -1 };
+    }
+    boolean[][] dp = new boolean[2][v + 1];
+    dp[0][0] = true;
+    for (int i = 0; i < m; i++) {
+        int from = i % 2;
+        int to = (i + 1) % 2;
+        Arrays.fill(dp[to], false);
+        for (int j = 0; j <= v; j++) {
+            dp[to][j] |= dp[from][j];
+            if (j + w[i] <= v)
+                dp[to][j + w[i]] |= dp[from][j];
+        }
+    }
+    int np = m % 2;
+    for (int i = v; i >= 0; i--) {
+        if (dp[np][i]) {
+            return new int[] { Math.min(x[now], total - i), Math.max(x[now], total - i) };
+        }
+    }
+    throw new RuntimeException();
+}

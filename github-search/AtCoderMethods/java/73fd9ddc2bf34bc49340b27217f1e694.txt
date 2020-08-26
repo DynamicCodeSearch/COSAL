@@ -1,0 +1,72 @@
+public static final void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    int R = sc.nextInt();
+    ArrayList<Integer> r = new ArrayList<>();
+    int[][] d = new int[N + 1][N + 1];
+    int[][] md = new int[R][R];
+    ArrayList<Integer>[] linked = new ArrayList[N + 1];
+    for (int i = 0; i < R; i++) r.add(sc.nextInt());
+    for (int i = 0; i < N + 1; i++) {
+        linked[i] = new ArrayList<>();
+        Arrays.fill(d[i], -1);
+    }
+    for (int i = 0; i < M; i++) {
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        int c = sc.nextInt();
+        linked[a].add(b);
+        linked[b].add(a);
+        d[a][b] = d[b][a] = c;
+    }
+    for (int i = 0; i < R - 1; i++) {
+        for (int j = i + 1; j < R; j++) {
+            int s = r.get(i);
+            int g = r.get(j);
+            boolean[] visited = new boolean[N + 1];
+            PriorityQueue<Pair> stk = new PriorityQueue<>();
+            stk.add(new Pair(0, s));
+            while (true) {
+                Pair p = stk.poll();
+                visited[p.b] = true;
+                if (p.b == g) {
+                    md[i][j] = md[j][i] = p.a;
+                    break;
+                }
+                for (int nc : linked[p.b]) {
+                    if (!visited[nc]) {
+                        stk.add(new Pair(p.a + d[p.b][nc], nc));
+                    }
+                }
+            }
+        }
+    }
+    int ans = Integer.MAX_VALUE;
+    int BR = (1 << R);
+    int[][] dp = new int[BR][R];
+    for (int i = 0; i < BR; i++) Arrays.fill(dp[i], Integer.MAX_VALUE);
+    for (int s = 0; s < R; s++) {
+        for (int i = 0; i < R; i++) {
+            dp[1 << i][i] = md[s][i];
+        }
+        for (int S = 1; S < BR; S++) {
+            for (int i = 0; i < R; i++) {
+                if ((S & (1 << i)) == 0)
+                    continue;
+                for (int j = 0; j < R; j++) {
+                    if ((S & (1 << j)) != 0)
+                        continue;
+                    int newDist = dp[S][i] + md[i][j];
+                    if (dp[S | (1 << j)][j] > newDist) {
+                        dp[S | (1 << j)][j] = newDist;
+                    }
+                }
+            }
+        }
+        if (dp[BR - 1][s] < ans) {
+            ans = dp[BR - 1][s];
+        }
+    }
+    System.out.println(ans);
+}

@@ -1,0 +1,100 @@
+void run() {
+    int n = ni();
+    int m = ni();
+    ArrayList<LinkedList<Edge>> list = new ArrayList<>();
+    for (int i = 0; i <= n; ++i) {
+        list.add(new LinkedList<>());
+    }
+    for (int i = 0; i < m; ++i) {
+        int a = ni();
+        int b = ni();
+        int c = ni();
+        Edge e = new Edge();
+        e.dist = b;
+        e.cost = c;
+        list.get(a).add(e);
+    }
+    int[] max = new int[n + 1];
+    max[1] = 0;
+    {
+        boolean[] done = new boolean[n + 1];
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(1);
+        while (queue.size() > 0) {
+            int p = queue.poll();
+            if (done[p]) {
+                continue;
+            }
+            done[p] = true;
+            for (Edge e : list.get(p)) {
+                queue.add(e.dist);
+                max[e.dist] = Math.max(max[e.dist], max[p] + 1);
+            }
+        }
+    }
+    boolean[] ok2n = new boolean[n + 1];
+    for (int i = 1; i <= n; ++i) {
+        boolean[] done = new boolean[n + 1];
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(i);
+        while (queue.size() > 0) {
+            int p = queue.poll();
+            if (done[p]) {
+                continue;
+            }
+            done[p] = true;
+            ok2n[i] |= p == n;
+            for (Edge e : list.get(p)) {
+                queue.add(e.dist);
+                max[e.dist] = Math.max(max[e.dist], max[p] + 1);
+            }
+        }
+    }
+    PriorityQueue<Node> queue = new PriorityQueue<>((a, b) -> {
+        if (a.dist != b.dist) {
+            return a.dist - b.dist;
+        }
+        return -Long.compare(a.cost, b.cost);
+    });
+    Node atom = new Node();
+    atom.index = 1;
+    atom.dist = max[1];
+    atom.cost = 0;
+    atom.map = new TreeMap<>();
+    atom.map.put(1, 0L);
+    queue.add(atom);
+    long ans = Long.MIN_VALUE;
+    boolean[] done = new boolean[n + 1];
+    while (queue.size() > 0) {
+        Node node = queue.poll();
+        
+        if (done[node.index]) {
+            continue;
+        }
+        done[node.index] = true;
+        if (node.index == n) {
+            ans = node.cost;
+        }
+        for (Edge e : list.get(node.index)) {
+            if (node.map.containsKey(e.dist)) {
+                long cost = node.cost + e.cost;
+                if (cost - node.map.get(e.dist) > 0 && ok2n[e.dist]) {
+                    ans = Long.MAX_VALUE;
+                    break;
+                }
+            }
+            Node next = new Node();
+            next.index = e.dist;
+            next.dist = max[e.dist];
+            next.cost = node.cost + e.cost;
+            next.map = new TreeMap<>(node.map);
+            next.map.put(next.index, next.cost);
+            queue.add(next);
+        }
+    }
+    if (ans == Long.MAX_VALUE) {
+        System.out.println("inf");
+    } else {
+        System.out.println(ans);
+    }
+}

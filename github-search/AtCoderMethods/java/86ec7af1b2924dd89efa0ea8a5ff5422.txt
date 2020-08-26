@@ -1,0 +1,44 @@
+public static void main(String[] args) {
+    int n = sc.nextInt();
+    if (n == 1) {
+        System.out.println(1);
+        System.out.println(1);
+        return;
+    }
+    fact[0] = 1;
+    for (int i = 1; i < fact.length; i++) {
+        fact[i] = fact[i - 1] * i % MOD;
+    }
+    long[] a = new long[n + 1];
+    int l = 0;
+    HashSet<Long> set = new HashSet<>();
+    for (int i = 0; i < n + 1; i++) {
+        a[i] = sc.nextLong();
+        if (set.contains(a[i])) {
+            for (int j = 0; j < i; j++) {
+                if (a[j] == a[i]) {
+                    l = i - j - 1;
+                }
+            }
+        } else {
+            set.add(a[i]);
+        }
+    }
+    StringBuilder ans = new StringBuilder();
+    for (int k = 1; k <= n + 1; k++) {
+        if (k == 1) {
+            ans.append(n);
+            ans.append("\n");
+            continue;
+        }
+        long x1 = nck(n - 1, k);
+        long x2 = nck(n - 1, k - 1);
+        long x3 = nck(n - l - 1, k - 1);
+        long x4 = nck(n - 1, k - 2);
+        
+        long x = (x1 + 2 * x2 - x3 + x4 + MOD) % MOD;
+        ans.append(x);
+        ans.append("\n");
+    }
+    System.out.print(ans);
+}

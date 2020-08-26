@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    long A = sc.nextInt();
+    long B = sc.nextInt();
+    long[] h = sc.nextLongList(N);
+    long C = A - B;
+    long left = 0;
+    long right = Integer.MAX_VALUE;
+    while (left <= right) {
+        long k = (left + right) / 2;
+        long count = 0;
+        for (long v : h) {
+            long last = v - k * B;
+            if (last > 0) {
+                count += (last + C - 1) / C;
+            }
+        }
+        if (count > k) {
+            left = k + 1;
+        } else {
+            right = k - 1;
+        }
+    }
+    System.out.println(left);
+}

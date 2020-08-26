@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    try (Scanner scannar = new Scanner(System.in)) {
+        long a = scannar.nextLong();
+        long k = scannar.nextLong();
+        if (k == 0) {
+            System.out.println((long) (Math.pow(10, 12) * 2) - a);
+        } else {
+            int i = 0;
+            while (a < 2 * Math.pow(10, 12)) {
+                a += 1 + k * a;
+                i++;
+            }
+            System.out.println(i);
+        }
+    }
+}

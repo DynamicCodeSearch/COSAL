@@ -1,0 +1,39 @@
+public static void main(String[] args) throws java.lang.Exception {
+    
+    BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+    String s = new String(in.readLine());
+    String t = new String(in.readLine());
+    HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+    map.put('L', 0);
+    map.put('R', 0);
+    map.put('U', 0);
+    map.put('D', 0);
+    map.put('?', 0);
+    for (int i = 0; i < s.length(); i++) {
+        char c = s.charAt(i);
+        map.put(c, map.get(c) + 1);
+    }
+    int x = 0;
+    int y = 0;
+    x -= map.get('L');
+    x += map.get('R');
+    y -= map.get('D');
+    y += map.get('U');
+    int ans = 0;
+    if (t.equals("1")) {
+        ans += Math.abs(x) + Math.abs(y) + map.get('?');
+    } else {
+        ans += Math.abs(x) + Math.abs(y);
+        if (ans >= map.get('?')) {
+            ans -= map.get('?');
+        } else {
+            ans = map.get('?') - ans;
+            if (ans % 2 == 0) {
+                ans = 0;
+            } else {
+                ans = 1;
+            }
+        }
+    }
+    System.out.println(ans);
+}

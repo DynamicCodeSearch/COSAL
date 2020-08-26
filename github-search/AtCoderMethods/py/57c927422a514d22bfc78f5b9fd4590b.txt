@@ -1,0 +1,10 @@
+def prod(X, Y):
+    R = [[1,0,0],[0,1,0],[0,0,1]]
+    for i in xrange(3):
+        for j in xrange(3):
+            r = 0
+            for k in xrange(3):
+                r += X[i][k] * Y[k][j]
+                r %= m
+            R[i][j] = r
+    return R

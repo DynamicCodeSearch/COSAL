@@ -1,0 +1,19 @@
+def main():
+    N, K = map(int, input().split())
+    items = []
+    for _ in range(N):
+        w, p = map(int, input().split())
+        items.append((w, p))
+
+    left, right = 0, 100
+    ans = 0
+    for _ in range(1000):
+        m = (left + right) / 2
+        if can_make(m, K, items):
+            left = m
+            ans = m
+        else:
+            right = m
+            ans = m
+
+    print(ans)

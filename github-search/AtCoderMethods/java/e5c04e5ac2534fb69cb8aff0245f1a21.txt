@@ -1,0 +1,14 @@
+public static long calcMinAttackNum(long a, long b, long[] enemyTairyoku) {
+    long min = 0;
+    long max = 1000000000;
+    while (min + 1 < max) {
+        long c = (min + max) / 2;
+        if (enough(a, b, enemyTairyoku, c)) {
+            max = c;
+        } else {
+            min = c;
+        }
+    
+    }
+    return min == max ? min + 1 : max;
+}

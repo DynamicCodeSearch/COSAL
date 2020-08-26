@@ -1,0 +1,14 @@
+def count_blackmass(y, x):
+
+
+
+    global mass_dict
+    for i in range(3):
+        tmpy = y - i 
+        for j in range(3):
+            tmpx = x - j 
+            if 0 < tmpy and 0 < tmpx and tmpx + 2 <= w and tmpy + 2 <= h: 
+                if  (tmpx, tmpy) in mass_dict:
+                    mass_dict[(tmpx, tmpy)] += 1
+                else:
+                    mass_dict[(tmpx, tmpy)] = 1

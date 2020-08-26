@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    H = sc.nextInt2();
+    W = sc.nextInt2();
+    a = new int[H + 2][W + 2];
+    for (int i = 1; i <= H; i++) {
+        for (int j = 1; j <= W; j++) {
+            a[i][j] = sc.nextInt2();
+        }
+    }
+    int sum = 0;
+    dp = new int[H + 2][W + 2];
+    for (int i = 1; i <= H; i++) {
+        for (int j = 1; j <= W; j++) {
+            sum += dp(i, j);
+            sum %= MOD;
+        }
+    }
+    System.out.println(sum);
+}

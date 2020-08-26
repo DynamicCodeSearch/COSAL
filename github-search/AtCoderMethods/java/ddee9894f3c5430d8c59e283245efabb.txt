@@ -1,0 +1,31 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    
+    int num;
+    
+    int time;
+    
+    int ans;
+    
+    num = sc.nextInt();
+    time = sc.nextInt();
+    ans = 0;
+    
+    int timeP = -time;
+    ans = 0;
+    
+    for (int i = 1; i <= num; i++) {
+        
+        int timeI = sc.nextInt();
+        
+        if (timeI - timeP < time) {
+            
+            ans += timeI - timeP;
+        } else {
+            
+            ans += time;
+        }
+        timeP = timeI;
+    }
+    System.out.println(ans);
+}

@@ -1,0 +1,15 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    int n = in.readInt();
+    int low = Integer.MAX_VALUE;
+    int hi = Integer.MIN_VALUE;
+    for (int i = 0; i < n; i++) {
+        int k = in.readInt();
+        if (k < low) {
+            low = k;
+        }
+        if (k > hi) {
+            hi = k;
+        }
+    }
+    out.printLine(hi - low);
+}

@@ -1,0 +1,39 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    n = in.nextInt();
+    m = in.nextInt();
+    r = in.nextInt();
+    R = new int[r];
+    for (int i = 0; i < r; ++i) {
+        R[i] = in.nextInt();
+    }
+    List<Pair>[] g = new ArrayList[n + 1];
+    for (int i = 1; i <= n; ++i) g[i] = new ArrayList<>();
+    for (int i = 0; i < m; ++i) {
+        int a = in.nextInt();
+        int b = in.nextInt();
+        int c = in.nextInt();
+        g[a].add(new Pair(b, c));
+        g[b].add(new Pair(a, c));
+    }
+    cost = new int[n + 1][n + 1];
+    for (int i = 1; i <= n; ++i) Arrays.fill(cost[i], Integer.MAX_VALUE);
+    for (int node : R) {
+        Queue<Integer> q = new LinkedList<>();
+        q.add(node);
+        cost[node][node] = 0;
+        while (!q.isEmpty()) {
+            int t = q.poll();
+            for (Pair p : g[t]) {
+                int tt = p.x;
+                int cc = p.y;
+                if (cost[node][t] + cc < cost[node][tt]) {
+                    cost[node][tt] = cost[node][t] + cc;
+                    q.add(tt);
+                }
+            }
+        }
+    }
+    marked = new boolean[r];
+    int ans = permute(-1, r, 0);
+    out.println(ans);
+}

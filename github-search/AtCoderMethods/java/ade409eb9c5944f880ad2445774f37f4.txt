@@ -1,0 +1,39 @@
+static void solve() {
+    int n = ni();
+    int[][] a = new int[n][n];
+    for (int i = 0; i < n; i++) {
+        a[i] = na(n);
+    }
+    for (int k = 0; k < n; k++) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (a[i][j] > a[i][k] + a[k][j]) {
+                    out.println(-1);
+                    return;
+                }
+            }
+        }
+    }
+    for (int k = 0; k < n; k++) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (a[i][k] == -1 || a[k][j] == -1 || a[i][j] == -1)
+                    continue;
+                if (k == i || k == j)
+                    continue;
+                if (a[i][j] == a[i][k] + a[k][j]) {
+                    a[i][j] = -1;
+                    a[j][i] = -1;
+                }
+            }
+        }
+    }
+    long res = 0;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (a[i][j] != -1)
+                res += a[i][j];
+        }
+    }
+    out.println(res / 2);
+}

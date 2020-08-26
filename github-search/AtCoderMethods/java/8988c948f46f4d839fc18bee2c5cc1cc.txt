@@ -1,0 +1,23 @@
+void solve() {
+    int N = 0;
+    long Count = 0;
+    int[] a;
+    N = fs.nextInt();
+    a = new int[N];
+    for (int i = 0; i < N; i++) {
+        a[i] = fs.nextInt();
+    }
+    int i = 0;
+    while (i < N) {
+        int j = i + 1;
+        while (j < N && a[j - 1] < a[j]) {
+            j++;
+        }
+        int Cnt = j - i;
+        i = j;
+        for (int k = 1; k <= Cnt; k++) {
+            Count += k;
+        }
+    }
+    System.out.println(Count);
+}

@@ -1,0 +1,16 @@
+def graph_apd(idx,jdx):
+
+    li = ([1,0],[-1,0],[0,-1],[0,1],[1,1],[-1,-1],[1,-1],[-1,1])
+
+    for i in li:
+        if ((idx+i[0])==-1):continue
+        if ((jdx+i[1])==-1):continue
+        try:
+            if graph2[idx+i[0]][jdx+i[1]]:
+
+                if graph2[idx+i[0]][jdx+i[1]] != "#":
+                    graph2[idx+i[0]][jdx+i[1]] += 1
+            else:
+                graph2[idx+i[0]][jdx+i[1]] = 1
+        except IndexError:
+            pass

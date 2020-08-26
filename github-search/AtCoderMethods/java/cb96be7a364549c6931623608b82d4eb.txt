@@ -1,0 +1,18 @@
+public static void main(String[] args) throws Exception {
+    int n = sc.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = sc.nextInt();
+    }
+    HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+    for (int i = 0; i < n; i++) {
+        map.put(a[i], i + 1);
+    }
+    Arrays.sort(a);
+    for (int i = n - 1; i >= 0; i--) {
+        out.println(map.get(a[i]));
+    }
+    out.flush();
+    sc.close();
+    out.close();
+}

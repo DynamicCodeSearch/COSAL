@@ -1,0 +1,22 @@
+private static void solve() {
+    int n = nei();
+    int m = nei();
+    int[][] es = nis2(m, 2);
+    int ans = 0;
+    for (int t = 0; t < m; t++) {
+        Graph g = new Graph(n, false);
+        for (int i = 0; i < m; i++) {
+            if (i != t) {
+                g.edge(es[i][0] - 1, es[i][1] - 1, 1);
+            }
+        }
+        g.dfs(0);
+        for (int i = 0; i < n; i++) {
+            if (g.ns.get(i).dfsVisited == 0) {
+                ans++;
+                break;
+            }
+        }
+    }
+    out(ans);
+}

@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int R = scan.nextInt();
+    int C = scan.nextInt();
+    int X = scan.nextInt();
+    int Y = scan.nextInt();
+    int D = scan.nextInt();
+    int L = scan.nextInt();
+    int roomPatern = (R - X + 1) * (C - Y + 1);
+    BigInteger sum = BigInteger.ZERO;
+    for (int i = 0; i <= 2; i++) {
+        for (int j = 0; j <= 2; j++) {
+            int arrangePatern = roomPatern * comb(2, i).intValue() * comb(2, j).intValue();
+            int square = (X - i) * (Y - j);
+            if (square < L + D) {
+                break;
+            }
+            if ((i + j) % 2 == 0) {
+                sum = sum.add(BigInteger.valueOf(arrangePatern).multiply(comb(square, L)).multiply(comb(square - L, D)));
+            } else {
+                sum = sum.subtract(BigInteger.valueOf(arrangePatern).multiply(comb(square, L)).multiply(comb(square - L, D)));
+            }
+        }
+    }
+    System.out.println(sum.mod(BIG));
+}

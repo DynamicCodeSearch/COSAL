@@ -1,0 +1,12 @@
+static long sum(int[] x) {
+    Arrays.sort(x);
+    int n = x.length;
+    long ret = 0;
+    for (int i = -(n - 1), j = 0; j < n; i += 2, j++) {
+        ret = ret + (long) x[j] * i;
+        ret %= mod;
+    }
+    if (ret < 0)
+        ret += mod;
+    return ret;
+}

@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] cnt = new int[1_000_00 + 1];
+    for (int i = 0; i < N; ++i) {
+        ++cnt[sc.nextInt()];
+    }
+    int distinct = 0;
+    for (int i = 0; i < cnt.length; ++i) {
+        if (cnt[i] > 0)
+            ++distinct;
+    }
+    if ((N - distinct) % 2 == 0) {
+        System.out.println(distinct);
+    } else {
+        System.out.println(distinct - 1);
+    }
+}

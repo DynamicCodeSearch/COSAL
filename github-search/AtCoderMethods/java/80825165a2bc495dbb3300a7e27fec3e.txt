@@ -1,0 +1,5 @@
+public int skip() {
+    int b;
+    while ((b = readByte()) != -1 && isSpaceChar(b)) ;
+    return b;
+}

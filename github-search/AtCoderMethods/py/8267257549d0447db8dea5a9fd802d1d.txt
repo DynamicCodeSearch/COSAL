@@ -1,0 +1,32 @@
+def scores():
+
+  selected_left = A[:N] 
+  heapify(selected_left)
+  l_score = sum(selected_left)
+
+  temp = sorted(A_indexed[N:])
+  selected_right_set = set(temp[:N])
+  unselected_right = temp[N:] 
+  del temp
+  r_score = sum(map(lambda x: x[0], selected_right_set))
+
+  yield l_score,r_score
+
+  for i in range(N, 2*N):
+    a = A[i]
+
+    if selected_left[0] < a:
+      l_score -= heapreplace(selected_left, a)
+      l_score += a
+
+    if (a,i) in selected_right_set:
+      r_score -= a
+      selected_right_set.remove((a,i))
+
+      n_element = heappop(unselected_right)
+      while n_element[1] <= i:
+        n_element = heappop(unselected_right)
+      selected_right_set.add(n_element)
+      r_score += n_element[0]
+
+    yield l_score,r_score

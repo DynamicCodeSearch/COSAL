@@ -1,0 +1,52 @@
+void run() {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    long[][] a = new long[n][n];
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            a[i][j] = sc.nextLong();
+        }
+    }
+    boolean ok = true;
+    for (int m = 0; m < n; ++m) {
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < n; ++j) {
+                ok &= a[i][m] + a[m][j] >= a[i][j];
+            }
+        }
+    }
+    if (!ok) {
+        System.out.println(-1);
+        return;
+    }
+    ArrayList<Edge> list = new ArrayList<>();
+    for (int i = 0; i < n; ++i) {
+        for (int j = i + 1; j < n; ++j) {
+            list.add(new Edge(i, j, a[i][j]));
+        }
+    }
+    Collections.sort(list);
+    long[][] d = new long[n][n];
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            if (i == j)
+                continue;
+            d[i][j] = Long.MAX_VALUE / 10;
+        }
+    }
+    long ans = 0;
+    for (Edge e : list) {
+        if (d[e.v1][e.v2] == e.cost)
+            continue;
+        ans += e.cost;
+        d[e.v1][e.v2] = e.cost;
+        d[e.v2][e.v1] = e.cost;
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < n; ++j) {
+                d[i][j] = Math.min(d[i][j], d[i][e.v1] + d[e.v2][j] + e.cost);
+                d[i][j] = Math.min(d[i][j], d[i][e.v2] + d[e.v1][j] + e.cost);
+            }
+        }
+    }
+    System.out.println(ans);
+}

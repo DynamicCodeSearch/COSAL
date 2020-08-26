@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    int H = sc.nextInt();
+    int W = sc.nextInt();
+    int A = sc.nextInt();
+    int B = sc.nextInt();
+    long[] row = new long[W];
+    long before = comb(H - A - 1 + B, B);
+    for (int i = B; i < W; ++i) {
+        row[i] = before;
+        before *= H - A + i;
+        before %= MOD;
+        before *= inv(i + 1);
+        before %= MOD;
+    }
+    long ans = 0;
+    long after = 1;
+    for (int i = W - 1; i >= B; --i) {
+        ans += row[i] * after;
+        ans %= MOD;
+        after *= A - 1 + (W - i);
+        after %= MOD;
+        after *= inv(W - i);
+        after %= MOD;
+    }
+    System.out.println(ans);
+}

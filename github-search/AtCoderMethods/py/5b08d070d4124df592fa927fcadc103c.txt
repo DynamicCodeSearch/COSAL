@@ -1,0 +1,10 @@
+def conv(field, char):
+    f_list = list(map(list, field))
+    for i in range(H):
+        for j in range(W):
+            if field[i][j] == char:
+                for dx, dy in D:
+                    nx, ny = i + dx, j + dy
+                    if 0 <= nx < H and 0 <= ny < W:
+                        f_list[nx][ny] = char
+    return tuple(map(tuple, f_list))

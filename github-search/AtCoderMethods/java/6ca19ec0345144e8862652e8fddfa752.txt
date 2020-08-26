@@ -1,0 +1,17 @@
+static long count(int l, int r) {
+    long num = 1;
+    while (a[l] < a[r]) {
+        num++;
+        l++;
+        r++;
+        if (r >= a.length)
+            break;
+    }
+    num = num * (num + 1) / 2;
+    l++;
+    r++;
+    if (r >= a.length)
+        return num;
+    else
+        return num + count(l, r);
+}

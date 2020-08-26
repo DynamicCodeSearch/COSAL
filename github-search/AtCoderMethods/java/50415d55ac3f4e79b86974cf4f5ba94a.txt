@@ -1,0 +1,21 @@
+private void solve() {
+    String s = in.next();
+    int[] counter = new int[256];
+    loop: {
+        for (int i = 2; i < 5; ++i) {
+            for (int j = 0; j + i <= s.length(); ++j) {
+                Arrays.fill(counter, 0);
+                for (int k = j; k < j + i; ++k) {
+                    counter[s.charAt(k)]++;
+                }
+                for (int k = 0; k < 256; ++k) {
+                    if (counter[k] > (i / 2)) {
+                        out.println((j + 1) + " " + (j + i));
+                        break loop;
+                    }
+                }
+            }
+        }
+        out.println("-1 -1");
+    }
+}

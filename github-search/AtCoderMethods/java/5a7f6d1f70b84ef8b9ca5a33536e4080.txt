@@ -1,0 +1,32 @@
+private static void solve() {
+    int[][] x = new int[5][5];
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            x[i][j] = sc.nextInt();
+        }
+    }
+    int[] dp = new int[0x1 << 25];
+    dp[0] = 1;
+    for (int mask = 0; mask < (0x1 << 25) - 1; mask++) {
+        if (dp[mask] == 0) {
+            continue;
+        }
+        int i = Integer.bitCount(mask);
+        for (int j = 0; j < 25; j++) {
+            if ((mask & 0x1 << j) != 0) {
+                continue;
+            }
+            int jx = j % 5;
+            int jy = j / 5;
+            if (x[jy][jx] != i + 1 && x[jy][jx] != 0) {
+                continue;
+            }
+            if (isOK(jx, jy, mask)) {
+                int nmask = mask | 0x1 << j;
+                dp[nmask] += dp[mask];
+                dp[nmask] %= MOD;
+            }
+        }
+    }
+    pr.println(dp[(0x1 << 25) - 1]);
+}

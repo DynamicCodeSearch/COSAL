@@ -1,0 +1,15 @@
+def main():
+    a = list(string.ascii_lowercase)
+    res = None
+    s = read_str_list()
+    l = list(s)
+    l.sort()
+    s = ''.join(l)
+
+    c = Counter(s)
+    for i in a:
+        if c[i] == 0:
+            res = i
+            break
+
+    print(res)

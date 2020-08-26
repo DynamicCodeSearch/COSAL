@@ -1,0 +1,11 @@
+def maxscore(S):
+ Score = sum(S)
+ if Score % 10 > 0:
+  return Score
+ else:
+  min = 100
+  for i in S:
+   if i % 10 > 0 and i < min:
+    min = i
+  Score -= min
+  return Score

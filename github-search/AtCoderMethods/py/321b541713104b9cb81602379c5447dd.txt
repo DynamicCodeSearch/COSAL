@@ -1,0 +1,16 @@
+def calcXor(depth, nowData):
+    for choice in range(0, K):
+        getData = QUEST[depth][choice]
+        if depth == 0:
+            calcData = getData
+        else:
+            calcData = nowData ^ getData
+
+
+        if depth == (N - 1):
+            if calcData == 0:
+                print("Found")
+                sys.exit(0)
+        else:
+
+            calcXor(depth + 1, calcData)

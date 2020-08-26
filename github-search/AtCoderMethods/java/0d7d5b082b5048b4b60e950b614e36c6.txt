@@ -1,0 +1,8 @@
+public void add(int i, int v) {
+    i += n - 1;
+    data[i] = Math.max(data[i], v);
+    while (i > 0) {
+        i = (i - 1) / 2;
+        data[i] = Math.max(data[(i << 1) + 1], data[(i << 1) + 2]);
+    }
+}

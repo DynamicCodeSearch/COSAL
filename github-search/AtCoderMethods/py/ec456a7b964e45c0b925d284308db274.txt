@@ -1,0 +1,16 @@
+def solve():
+    s = input()
+    t = input()
+    n = len(s)
+
+    for i in range(n):
+        if s[i] != t[i]:
+            if s[i] == '@' and t[i] in 'atcoder':
+                continue
+            elif t[i] == '@' and s[i] in 'atcoder':
+                continue
+            else:
+                print('You will lose')
+                return
+
+    print('You can win')

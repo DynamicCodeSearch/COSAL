@@ -1,0 +1,16 @@
+int dfs(int v, int t, int f) {
+    if (v == t)
+        return f;
+    for (; iter[v] < G.get(v).size(); iter[v]++) {
+        Edge e = G.get(v).get(iter[v]);
+        if (e.cap > 0 && level[v] < level[e.to]) {
+            int d = dfs(e.to, t, Math.min(f, e.cap));
+            if (d > 0) {
+                e.cap -= d;
+                G.get(e.to).get(e.rev).cap += d;
+                return d;
+            }
+        }
+    }
+    return 0;
+}

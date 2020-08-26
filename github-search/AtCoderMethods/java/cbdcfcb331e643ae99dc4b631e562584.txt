@@ -1,0 +1,24 @@
+static void solve() {
+    int N = sc.nextInt();
+    x = new int[N];
+    y = new int[N];
+    c = new int[N];
+    for (int i = 0; i < N; i++) {
+        x[i] = sc.nextInt();
+        y[i] = sc.nextInt();
+        c[i] = sc.nextInt();
+    }
+    double ans = -114514;
+    for (int i = 0; i < N; i++) {
+        for (int j = i + 1; j < N; j++) {
+            ans = Math.max(ans, (double) c[i] * c[j] / (c[i] + c[j]) * abs(x[i] - x[j]));
+        }
+    }
+    for (int i = 0; i < N; i++) {
+        for (int j = i + 1; j < N; j++) {
+            ans = Math.max(ans, (double) c[i] * c[j] / (c[i] + c[j]) * abs(y[i] - y[j]));
+        }
+    }
+    out.println(ans);
+    out.flush();
+}

@@ -1,0 +1,6 @@
+def get_size(root):
+    res = 1
+    for i in adj[root]:
+        if i != p[root]:
+            res += get_size(i)
+    return res

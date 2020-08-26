@@ -1,0 +1,14 @@
+def main():
+    N, T = map(int, input().split())
+    t = tuple(map(int, input().split()))
+
+    i = 0
+    x = 0
+    while i < N - 1:
+        t2 = t[i+1] - t[i]
+        if t2 < T:
+            x += t2
+        else:
+            x += T
+        i += 1
+    print(x + T)

@@ -1,0 +1,19 @@
+static long dfs(int idx, int ptn) {
+    if (idx == n) {
+        return (ptn & flg) >= 1 ? 1 : 0;
+    }
+    if (memo[idx][ptn] != -1) {
+        return memo[idx][ptn];
+    }
+    long res = 0;
+    if ((ptn & flg) >= 1) {
+        res = pow10[n - idx];
+    } else {
+        for (int c = 1; c <= 10; c++) {
+            res += dfs(idx + 1, go(ptn, c));
+        }
+    }
+    res %= MOD;
+    memo[idx][ptn] = (int) res;
+    return res;
+}

@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    int K = sc.nextInt(), cnt = 0;
+    int[] Tt = new int[K + 2];
+    Tt[0] = a;
+    Tt[1] = b;
+    for (int i = 2; i < K + 2; i++) {
+        Tt[i] = sc.nextInt();
+    }
+    out: for (int i = 0; i < K + 2; i++) {
+        for (int j = i + 1; j < K + 2; j++) {
+            if (Tt[i] == Tt[j]) {
+                System.out.println("NO");
+                cnt += 1;
+                break out;
+            }
+        }
+    }
+    if (cnt == 0)
+        System.out.println("YES");
+}

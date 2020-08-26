@@ -1,0 +1,21 @@
+public static int dfs(boolean[][] graph, int currentNode, boolean[] visited, Map<Integer, Integer> memoization) {
+    int memoizationKey = (1 << currentNode) << graph.length;
+    for (int i = 0; i < graph.length; ++i) if (visited[i])
+        memoizationKey |= (1 << i);
+    if (memoization.containsKey(memoizationKey))
+        return memoization.get(memoizationKey);
+    int result = 0;
+    for (int nextNode = 0; nextNode < graph.length; ++nextNode) {
+        if (!graph[currentNode][nextNode])
+            continue;
+        if (visited[nextNode])
+            continue;
+        if (isFullyConnected(graph, visited, nextNode)) {
+            visited[nextNode] = true;
+            result = Math.max(result, 1 + dfs(graph, nextNode, visited, memoization));
+            visited[nextNode] = false;
+        }
+    }
+    memoization.put(memoizationKey, result);
+    return result;
+}

@@ -1,0 +1,18 @@
+def c():
+    n = int(input())
+    ss = []
+    s_min = 101
+    for _ in range(n):
+        si = int(input())
+        ss.append(si)
+        if si % 10 != 0:
+            s_min = min(s_min, si)
+
+    m = sum(ss)
+    if m % 10 == 0:
+        if s_min > 100:
+            print(0)
+        else:
+            print(m - s_min)
+    else:
+        print(m)

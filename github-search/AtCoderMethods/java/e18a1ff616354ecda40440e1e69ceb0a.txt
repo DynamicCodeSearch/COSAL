@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    Printer pr = new Printer(System.out);
+    int n = sc.nextInt();
+    int[] a = new int[n];
+    Set<Integer> hs = new HashSet<>();
+    for (int i = 0; i < n; i++) {
+        a[i] = sc.nextInt();
+        hs.add(a[i]);
+    }
+    List<Integer> list = new ArrayList<Integer>(hs);
+    Collections.sort(list);
+    Map<Integer, Integer> hm = new HashMap<Integer, Integer>();
+    int num = 0;
+    for (int e : list) {
+        hm.put(e, num++);
+    }
+    for (int i = 0; i < n; i++) {
+        pr.println(hm.get(a[i]));
+    }
+    pr.close();
+    sc.close();
+}

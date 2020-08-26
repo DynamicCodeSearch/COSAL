@@ -1,0 +1,10 @@
+void solve(FastScanner in, PrintWriter out) {
+    int N = in.nextInt();
+    int min = N;
+    for (int i = 1; i <= N; i++) {
+        int w = N / i;
+        int remainder = N % i;
+        min = Math.min(min, Math.abs(w - i) + remainder);
+    }
+    out.println(min);
+}

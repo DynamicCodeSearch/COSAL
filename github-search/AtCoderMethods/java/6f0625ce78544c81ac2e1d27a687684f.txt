@@ -1,0 +1,19 @@
+static int dfs(int now, boolean[] visit, int cost) {
+    boolean ok = true;
+    for (int i = 0; i < visit.length; i++) {
+        if (!visit[i])
+            ok = false;
+    }
+    if (ok) {
+        return cost;
+    }
+    int ret = INF;
+    for (int i = 0; i < visit.length; i++) {
+        if (!visit[i]) {
+            visit[i] = true;
+            ret = Math.min(ret, dfs(r[i], visit, cost + d[now][r[i]]));
+            visit[i] = false;
+        }
+    }
+    return ret;
+}

@@ -1,0 +1,12 @@
+void dfs(int cur, int used) {
+    used |= 1 << cur;
+    if (Integer.bitCount(used) == n) {
+        ans++;
+        return;
+    }
+    for (int v : node[cur]) {
+        if ((used & 1 << v) > 0)
+            continue;
+        dfs(v, used);
+    }
+}

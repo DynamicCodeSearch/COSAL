@@ -1,0 +1,55 @@
+public static long solveSmallN(int n, int W, int[] v, int[] w) {
+    int n1 = n / 2;
+    int[] v1 = new int[n1];
+    int[] w1 = new int[n1];
+    for (int i = 0; i < n1; i++) {
+        v1[i] = v[i];
+        w1[i] = w[i];
+    }
+    int n2 = n - n / 2;
+    int[] v2 = new int[n2];
+    int[] w2 = new int[n2];
+    for (int i = 0; i < n2; i++) {
+        v2[i] = v[n1 + i];
+        w2[i] = w[n1 + i];
+    }
+    List<Napsack.Pair> tmp = new ArrayList<>();
+    for (int i = 0; i < 1 << n1; i++) {
+        long v1Sum = 0;
+        long w1Sum = 0;
+        for (int j = 0; j < n1; j++) {
+            if ((i >> j & 1) == 1) {
+                v1Sum += v1[j];
+                w1Sum += w1[j];
+            }
+        }
+        tmp.add(new Napsack.Pair(v1Sum, w1Sum));
+    }
+    Collections.sort(tmp);
+    long maxV = -1;
+    List<Napsack.Pair> list = new ArrayList<>();
+    for (int i = 0; i < tmp.size(); i++) {
+        Napsack.Pair p = tmp.get(i);
+        if (maxV >= p.v)
+            continue;
+        list.add(p);
+        maxV = Math.max(maxV, p.v);
+    }
+    long ans = 0;
+    for (int i = 0; i < 1 << n2; i++) {
+        long v2Sum = 0;
+        long w2Sum = 0;
+        for (int j = 0; j < n2; j++) {
+            if ((i >> j & 1) == 1) {
+                v2Sum += v2[j];
+                w2Sum += w2[j];
+            }
+        }
+        int idx = upperBound(list, new Napsack.Pair(0, W - w2Sum)) - 1;
+        if (idx < 0)
+            continue;
+        long v1Sum = list.get(idx).v;
+        ans = Math.max(ans, v1Sum + v2Sum);
+    }
+    return ans;
+}

@@ -1,0 +1,15 @@
+public static long subtotal(String base, boolean[] digi) {
+    long total = 0;
+    int from = 0;
+    for (int i = 0; i < digi.length; i++) {
+        if (!digi[i])
+            continue;
+        ;
+        total += Long.parseLong(base.substring(from, i + 1));
+        
+        from = i + 1;
+    }
+    total += Long.parseLong(base.substring(from, base.length()));
+    
+    return total;
+}

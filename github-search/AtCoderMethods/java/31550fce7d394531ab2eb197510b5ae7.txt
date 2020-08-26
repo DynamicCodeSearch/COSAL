@@ -1,0 +1,25 @@
+static boolean isMatch(char[][] a, char[][] b) {
+    for (int ly = 0; ly < a.length; ly++) {
+        for (int lx = 0; lx < a.length; lx++) {
+            if (ly + b.length > a.length || lx + b.length > a.length) {
+                continue;
+            }
+            boolean match = true;
+            for (int y = 0; y < b.length; y++) {
+                for (int x = 0; x < b.length; x++) {
+                    if (a[ly + y][lx + x] != b[y][x]) {
+                        match = false;
+                        break;
+                    }
+                }
+                if (!match) {
+                    break;
+                }
+            }
+            if (match) {
+                return true;
+            }
+        }
+    }
+    return false;
+}

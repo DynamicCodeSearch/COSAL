@@ -1,0 +1,25 @@
+
+public void run() throws IOException {
+    
+    int TEST_CASE = 1;
+    while (TEST_CASE-- != 0) {
+        int n = io.nextInt();
+        int[] c = new int[100000];
+        for (int a : io.nextIntArray(n)) {
+            c[a - 1]++;
+        }
+        int v = 0;
+        for (int i = 0; i < c.length; i++) {
+            v += Math.max(0, c[i] - 1);
+        }
+        int ans = n;
+        while (v >= 3) {
+            long x = v / 3;
+            v -= x * 3;
+            v += x;
+            ans -= x * 2;
+        }
+        
+        io.out.println(ans - (v == 0 ? 0 : 2));
+    }
+}

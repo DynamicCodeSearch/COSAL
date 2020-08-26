@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int n, m;
+    n = in.nextInt();
+    m = in.nextInt();
+    List<Pair> nList = new ArrayList<>();
+    List<Pair> mList = new ArrayList<>();
+    for (int i = 0; i < n; i++) {
+        nList.add(new Pair(in.nextLong(), in.nextLong()));
+    }
+    for (int i = 0; i < m; i++) {
+        mList.add(new Pair(in.nextLong(), in.nextLong()));
+    }
+    in.close();
+    int[] ans = new int[n];
+    Arrays.fill(ans, 0);
+    for (int i = 0; i < n; i++) {
+        long sx = nList.get(i).x;
+        long sy = nList.get(i).y;
+        long min = d(mList.get(0).x, mList.get(0).y, sx, sy);
+        for (int j = 1; j < m; j++) {
+            long tmp = d(mList.get(j).x, mList.get(j).y, sx, sy);
+            if (min > tmp) {
+                min = tmp;
+                ans[i] = j;
+            }
+        }
+    }
+    for (int i : ans) {
+        System.out.println(i + 1);
+    }
+}

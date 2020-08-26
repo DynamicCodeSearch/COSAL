@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    long n = sc.nextInt();
+    long a = sc.nextInt();
+    long b = sc.nextInt();
+    long[] cities = new long[(int) n];
+    for (int i = 0; i < n; i++) {
+        cities[i] = sc.nextInt();
+    }
+    long poyasimi = 0;
+    for (int i = 0; i < n - 1; i++) {
+        long sub = cities[i + 1] - cities[i];
+        poyasimi += Math.min(a * sub, b);
+    }
+    System.out.println(poyasimi);
+}

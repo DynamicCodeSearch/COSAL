@@ -1,0 +1,7 @@
+def root(self, node):  
+    if self.par[node] == node:
+        return node
+    else:
+        r = self.root(self.par[node])
+        self.par[node] = r  
+        return r

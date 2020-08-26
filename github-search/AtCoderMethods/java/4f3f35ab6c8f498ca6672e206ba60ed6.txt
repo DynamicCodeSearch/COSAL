@@ -1,0 +1,21 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    
+    edges = new List[n];
+    used = new boolean[n];
+    g = new long[n];
+    f = new long[n];
+    Arrays.fill(used, false);
+    for (int i = 0; i < n; i++) {
+        edges[i] = new ArrayList<Edge>();
+    }
+    for (int i = 0; i < n - 1; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        addEdge(a, b);
+        addEdge(b, a);
+    }
+    dfs(0);
+    System.out.println(f[0] % mod);
+}

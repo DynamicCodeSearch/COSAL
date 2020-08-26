@@ -1,0 +1,10 @@
+static int succ(int back, int now, char ox) {
+    int answer = 0;
+    int[][] succMato = { { 1, 0 }, { 0, 1 } };
+    int[][] succMatx = { { 0, 1 }, { 1, 0 } };
+    if (ox == 'o')
+        answer = succMato[back][now];
+    if (ox == 'x')
+        answer = succMatx[back][now];
+    return answer;
+}

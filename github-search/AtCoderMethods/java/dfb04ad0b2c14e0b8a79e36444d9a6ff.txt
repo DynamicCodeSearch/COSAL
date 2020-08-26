@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    Printer pr = new Printer(System.out);
+    long rr = sc.nextLong();
+    long bb = sc.nextLong();
+    int x = sc.nextInt();
+    int y = sc.nextInt();
+    long l = 0;
+    long r = Long.MAX_VALUE;
+    while (r - l > 1) {
+        long mid = l + (r - l) / 2;
+        if (isOK(mid, rr, bb, x, y)) {
+            l = mid;
+        } else {
+            r = mid;
+        }
+    }
+    pr.println(l);
+    pr.close();
+    sc.close();
+}

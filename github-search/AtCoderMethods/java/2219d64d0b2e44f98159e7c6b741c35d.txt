@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    Scanner scn = new Scanner(System.in);
+    int n = Integer.parseInt(scn.next());
+    int m = Integer.parseInt(scn.next());
+    long[][] ns = new long[2][n];
+    long[][] ms = new long[2][m];
+    for (int i = 0; i < n; i++) {
+        ns[0][i] = Long.parseLong(scn.next());
+        ns[1][i] = Long.parseLong(scn.next());
+    }
+    for (int i = 0; i < m; i++) {
+        ms[0][i] = Long.parseLong(scn.next());
+        ms[1][i] = Long.parseLong(scn.next());
+    }
+    scn.close();
+    for (int i = 0; i < n; i++) {
+        long min = 200000001;
+        int jj = 0;
+        for (int j = 0; j < m; j++) {
+            long x_dis = Math.abs(ns[0][i] - ms[0][j]);
+            long y_dis = Math.abs(ns[1][i] - ms[1][j]);
+            if (min > x_dis + y_dis) {
+                min = x_dis + y_dis;
+                jj = j;
+            }
+        }
+        System.out.println(jj + 1);
+    }
+}

@@ -1,0 +1,15 @@
+void solve() {
+    long sum = Arrays.stream(as).sum();
+    long[] subSum = new long[n];
+    subSum[0] = as[0];
+    for (int i = 1; i < n; i++) {
+        subSum[i] = subSum[i - 1] + as[i];
+    }
+    long ans = Long.MAX_VALUE, tmp;
+    for (int i = 0; i < n - 1; i++) {
+        tmp = sum - subSum[i];
+        tmp = Math.abs(tmp - subSum[i]);
+        ans = tmp < ans ? tmp : ans;
+    }
+    System.out.println(ans);
+}

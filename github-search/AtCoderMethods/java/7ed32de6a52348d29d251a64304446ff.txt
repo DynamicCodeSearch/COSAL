@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    try {
+        
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+        long n = Long.parseLong(br.readLine());
+        long total = 1;
+        for (long i = 1; i <= n; i++) {
+            total = (total * i) % (1000000000 + 7);
+        }
+        System.out.println(total);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

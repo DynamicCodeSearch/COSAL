@@ -1,0 +1,18 @@
+def dfs(N,graph):
+    arr=[-1 for _ in range(N)]
+    queue=deque()
+    temp=0
+    for i in range(N):
+        if arr[i]!=-1:
+            continue
+        arr[i]=temp
+        for i in graph[i]:
+            queue.append(i)
+        while(queue):
+            to=queue.pop()
+            arr[to]=temp
+            for i in graph[to]:
+                if arr[i]==-1:
+                    queue.append(i)
+        temp+=1
+    return arr

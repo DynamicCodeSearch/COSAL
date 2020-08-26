@@ -1,0 +1,105 @@
+void run() {
+    int n = sc.nextInt();
+    char[] c = sc.next().toCharArray();
+    StringBuilder s = new StringBuilder();
+    
+    for (int i = 0; i < n; i++) {
+        if (i == 0 || i == 1) {
+            s.append("S");
+        } else {
+            if (s.charAt(i - 1) == 'S') {
+                if (c[i - 1] == 'o') {
+                    s.append(s.charAt(i - 2));
+                } else {
+                    s.append(s.charAt(i - 2) == 'S' ? 'W' : 'S');
+                }
+            } else {
+                if (c[i - 1] == 'o') {
+                    s.append(s.charAt(i - 2) == 'S' ? 'W' : 'S');
+                } else {
+                    s.append(s.charAt(i - 2));
+                }
+            }
+        }
+    }
+    if (isOk(n, c, s)) {
+        System.out.println(s);
+        return;
+    }
+    
+    s = new StringBuilder();
+    for (int i = 0; i < n; i++) {
+        if (i == 0 || i == 1) {
+            s.append(i == 0 ? "S" : "W");
+        } else {
+            if (s.charAt(i - 1) == 'S') {
+                if (c[i - 1] == 'o') {
+                    s.append(s.charAt(i - 2));
+                } else {
+                    s.append(s.charAt(i - 2) == 'S' ? 'W' : 'S');
+                }
+            } else {
+                if (c[i - 1] == 'o') {
+                    s.append(s.charAt(i - 2) == 'S' ? 'W' : 'S');
+                } else {
+                    s.append(s.charAt(i - 2));
+                }
+            }
+        }
+    }
+    if (isOk(n, c, s)) {
+        System.out.println(s);
+        return;
+    }
+    
+    s = new StringBuilder();
+    for (int i = 0; i < n; i++) {
+        if (i == 0 || i == 1) {
+            s.append(i == 0 ? "W" : "S");
+        } else {
+            if (s.charAt(i - 1) == 'S') {
+                if (c[i - 1] == 'o') {
+                    s.append(s.charAt(i - 2));
+                } else {
+                    s.append(s.charAt(i - 2) == 'S' ? 'W' : 'S');
+                }
+            } else {
+                if (c[i - 1] == 'o') {
+                    s.append(s.charAt(i - 2) == 'S' ? 'W' : 'S');
+                } else {
+                    s.append(s.charAt(i - 2));
+                }
+            }
+        }
+    }
+    if (isOk(n, c, s)) {
+        System.out.println(s);
+        return;
+    }
+    
+    s = new StringBuilder();
+    for (int i = 0; i < n; i++) {
+        if (i == 0 || i == 1) {
+            s.append("W");
+        } else {
+            if (s.charAt(i - 1) == 'S') {
+                if (c[i - 1] == 'o') {
+                    s.append(s.charAt(i - 2));
+                } else {
+                    s.append(s.charAt(i - 2) == 'S' ? 'W' : 'S');
+                }
+            } else {
+                if (c[i - 1] == 'o') {
+                    s.append(s.charAt(i - 2) == 'S' ? 'W' : 'S');
+                } else {
+                    s.append(s.charAt(i - 2));
+                }
+            }
+        }
+    }
+    if (isOk(n, c, s)) {
+        System.out.println(s);
+        return;
+    }
+    System.out.println(-1);
+}

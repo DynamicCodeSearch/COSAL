@@ -1,0 +1,23 @@
+public long calc() {
+    Arrays.sort(items);
+    Map<Long, Long> map = new HashMap();
+    map.put(0L, 0L);
+    for (Item item : items) {
+        Map<Long, Long> curMap = new HashMap();
+        for (long key : map.keySet()) {
+            long weight = key + item.w;
+            long value = map.get(key) + item.v;
+            if (weight <= limitW) {
+                curMap.put(weight, value);
+            }
+        }
+        for (long key : curMap.keySet()) {
+            if (map.containsKey(key)) {
+                map.put(key, Math.max(curMap.get(key), map.get(key)));
+            } else {
+                map.put(key, curMap.get(key));
+            }
+        }
+    }
+    return Collections.max(map.values());
+}

@@ -1,0 +1,43 @@
+public int nextInt() {
+    try {
+        int ret = 0;
+        eatDelimiters();
+        boolean positive = true;
+        if (buf[bufi] == '-') {
+            ++bufi;
+            if (!pumpBuf())
+                throw new RuntimeException("IO.nextInt: Invalid int.");
+            positive = false;
+        }
+        boolean first = true;
+        while (true) {
+            if (!pumpBuf())
+                break;
+            if (isDelimiter(buf[bufi])) {
+                if (first)
+                    throw new RuntimeException("IO.nextInt: Invalid int.");
+                break;
+            }
+            first = false;
+            if (buf[bufi] >= '0' && buf[bufi] <= '9') {
+                if (ret < -214748364)
+                    throw new RuntimeException("IO.nextInt: Invalid int.");
+                ret *= 10;
+                ret -= (int) (buf[bufi] - '0');
+                if (ret > 0)
+                    throw new RuntimeException("IO.nextInt: Invalid int.");
+            } else {
+                throw new RuntimeException("IO.nextInt: Invalid int.");
+            }
+            ++bufi;
+        }
+        if (positive) {
+            if (ret == -2147483648)
+                throw new RuntimeException("IO.nextInt: Invalid int.");
+            ret = -ret;
+        }
+        return ret;
+    } catch (IOException e) {
+        throw new RuntimeException("IO.nextInt: Caught IOException.");
+    }
+}

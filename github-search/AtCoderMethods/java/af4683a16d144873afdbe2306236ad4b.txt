@@ -1,0 +1,18 @@
+private void solve(FastScanner sc) {
+    int n = sc.nextInt();
+    Map<Integer, Integer> cnt = new HashMap<>();
+    for (int i = 0; i < n; i++) {
+        int a = sc.nextInt();
+        cnt.computeIfPresent(a, (s, t) -> t + 1);
+        cnt.putIfAbsent(a, 1);
+    }
+    int ans = cnt.size();
+    int cntEven = 0;
+    for (Integer i : cnt.values()) {
+        if (i % 2 == 0)
+            cntEven++;
+    }
+    if (cntEven % 2 == 1)
+        ans--;
+    System.out.println(ans);
+}

@@ -1,0 +1,24 @@
+def main():
+    N,C = LI()
+    a = collections.defaultdict(int)
+    b = collections.defaultdict(int)
+    for i in range(N):
+        c = I()
+        if i % 2 == 0:
+            a[c] += 1
+        else:
+            b[c] += 1
+
+    r = N
+    for ak,av in a.items():
+        tr = N - av
+        if tr < r:
+            r = tr
+        for bk,bv in b.items():
+            if bk == ak:
+                continue
+            br = tr - bv
+            if r > br:
+                r = br
+
+    return r * C

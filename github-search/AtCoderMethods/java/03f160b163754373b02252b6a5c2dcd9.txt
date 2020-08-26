@@ -1,0 +1,33 @@
+public void solve() {
+    int n = in.nextInt(), a = in.nextInt();
+    int[] x = in.nextIntArray(n);
+    long[][] prev = new long[MAX + 1][n + 1];
+    long[][] next = new long[MAX + 1][n + 1];
+    prev[0][0] = 1;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j <= MAX; j++) {
+            Arrays.fill(next[j], 0);
+        }
+        for (int j = MAX - 1; j >= 0; j--) {
+            for (int k = i; k >= 0; k--) {
+                if (prev[j][k] == 0)
+                    continue;
+                next[j][k] += prev[j][k];
+                if (j + x[i] <= MAX)
+                    next[j + x[i]][k + 1] += prev[j][k];
+            }
+        }
+        
+        long[][] tmp = prev;
+        prev = next;
+        next = tmp;
+    }
+    long res = 0;
+    for (int i = 0; i <= MAX; i++) {
+        for (int j = 1; j <= n; j++) {
+            if (i % j == 0 && i / j == a)
+                res += prev[i][j];
+        }
+    }
+    System.out.println(res);
+}

@@ -1,0 +1,9 @@
+def main():
+    n = int(input())
+    ps = [list(map(int,input().split())) for _ in [0]*n]
+    maxi = 0
+    for a in ps:
+        for b in ps:
+            if maxi < calc(a,b):
+                maxi = calc(a,b)
+    print(math.sqrt(maxi))

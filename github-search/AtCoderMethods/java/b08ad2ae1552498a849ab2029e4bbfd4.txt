@@ -1,0 +1,24 @@
+public void solve(int testNumber, Scanner in, PrintWriter out) {
+    int n = in.nextInt();
+    int[] scores = new int[n];
+    int sum = 0;
+    for (int i = 0; i < n; ++i) {
+        scores[i] = in.nextInt();
+        sum += scores[i];
+    }
+    if (sum % 10 != 0) {
+        out.println(sum);
+    } else {
+        Arrays.sort(scores);
+        int index = 0;
+        while (index < scores.length && sum % 10 == 0) {
+            if (scores[index] % 10 == 0) {
+                index++;
+            } else {
+                sum -= scores[index];
+                index++;
+            }
+        }
+        out.println((sum % 10 == 0) ? 0 : sum);
+    }
+}

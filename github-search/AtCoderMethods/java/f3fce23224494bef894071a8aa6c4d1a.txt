@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String in = sc.nextLine();
+    String[] array = in.split(" ");
+    List<Integer> candyList = new ArrayList<Integer>();
+    for (int i = 0; i < array.length; i++) {
+        candyList.add(new Integer(array[i]));
+    }
+    Collections.sort(candyList);
+    int a = candyList.get(0).intValue() + candyList.get(1).intValue();
+    int b = candyList.get(2).intValue();
+    if (a == b) {
+        System.out.println("Yes");
+    } else {
+        System.out.println("No");
+    }
+}

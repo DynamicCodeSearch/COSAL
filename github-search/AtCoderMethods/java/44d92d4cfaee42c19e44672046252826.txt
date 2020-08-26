@@ -1,0 +1,11 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    long N = Long.parseLong(sc.next());
+    int minF = order(N);
+    for (long i = 1; i * i <= N; i++) {
+        if (N % i == 0) {
+            minF = Math.min(minF, maxOrder(i, N / i));
+        }
+    }
+    System.out.println(minF);
+}

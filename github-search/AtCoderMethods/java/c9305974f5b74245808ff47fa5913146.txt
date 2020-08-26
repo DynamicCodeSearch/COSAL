@@ -1,0 +1,46 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    int n = in.nextInt(), m = in.nextInt();
+    TaskF.Edge[] es = new TaskF.Edge[m];
+    int ss = 0;
+    int[][] cc = new int[n][n];
+    for (int i = 0; i < m; i++) {
+        int a = in.nextInt() - 1, b = in.nextInt() - 1, c = in.nextInt();
+        es[i] = new TaskF.Edge(a, b, c);
+        ss += c;
+        cc[a][b] = cc[b][a] = c;
+    }
+    int[] cost = new int[1 << n];
+    for (int i = 0; i < 1 << n; i++) {
+        for (int j = 0; j < n; j++) {
+            for (int k = j + 1; k < n; k++) {
+                if (((i >> j) & 1) == 1 && ((i >> k) & 1) == 1) {
+                    cost[i] += cc[j][k];
+                }
+            }
+        }
+    }
+    int[][] dp = new int[n][1 << n];
+    for (int[] x : dp) Arrays.fill(x, -(1 << 29));
+    for (int i = 0; i < 1 << n; i++) {
+        if (((i >> (n - 1)) & 1) == 0)
+            dp[0][i] = cost[i];
+    }
+    for (int cmask = 0; cmask < 1 << n; cmask++) {
+        for (int cnode = 0; cnode < n; cnode++) {
+            if (((cmask >> cnode) & 1) == 0 || dp[cnode][cmask] < 0)
+                continue;
+            int omask = ((1 << n) - 1) ^ cmask;
+            for (int nmask = omask; nmask != 0; nmask = (nmask - 1) & omask) {
+                for (int nnode = 0; nnode < n; nnode++) {
+                    if (((nmask >> nnode) & 1) == 0 || cc[cnode][nnode] == 0)
+                        continue;
+                    int t = dp[cnode][cmask] + cost[nmask] + cc[cnode][nnode];
+                    if (t > dp[nnode][nmask | cmask]) {
+                        dp[nnode][nmask | cmask] = t;
+                    }
+                }
+            }
+        }
+    }
+    out.println(ss - dp[n - 1][(1 << n) - 1]);
+}

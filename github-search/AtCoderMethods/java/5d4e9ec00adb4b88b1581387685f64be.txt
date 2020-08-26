@@ -1,0 +1,31 @@
+public static void main(String[] args) {
+    Scanner cin = new Scanner(System.in);
+    int N = cin.nextInt();
+    int M = cin.nextInt();
+    cin.close();
+    long result = 0;
+    long tmp = 1;
+    long mod = (long) (Math.pow(10, 9) + 7);
+    if (N - M > 1 || N - M < -1) {
+        tmp = 0;
+    } else if (N == M) {
+        for (int i = 2; i <= N; i++) {
+            tmp = (tmp * i) % mod;
+            tmp = (tmp * i) % mod;
+        }
+        tmp = tmp * 2;
+    } else {
+        int big = Math.max(N, M);
+        int small = Math.min(N, M);
+        for (int j = 1; j <= big; j++) {
+            if (j <= small) {
+                tmp = (tmp * j) % mod;
+                tmp = (tmp * j) % mod;
+            } else {
+                tmp = tmp * j % mod;
+            }
+        }
+    }
+    result = tmp % mod;
+    System.out.println(result);
+}

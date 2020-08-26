@@ -1,0 +1,14 @@
+private int kruskal(ArrayList<Edge> edgelist, int nodesize) {
+    int m = edgelist.size();
+    Collections.sort(edgelist);
+    UnionFind uf = new UnionFind(nodesize);
+    int res = 0;
+    for (int i = 0; i < m; i++) {
+        Edge e = edgelist.get(i);
+        if (!uf.same(e.from, e.to)) {
+            uf.unite(e.from, e.to);
+            res += e.cost;
+        }
+    }
+    return res;
+}

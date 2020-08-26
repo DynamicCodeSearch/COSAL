@@ -1,0 +1,16 @@
+int dfs(V v, V t, int f) {
+    if (v == t)
+        return f;
+    for (; v.iter >= 0; v.iter--) {
+        E e = v.es.get(v.iter);
+        if (v.level < e.to.level && e.cap > 0) {
+            int d = dfs(e.to, t, Math.min(f, e.cap));
+            if (d > 0) {
+                e.cap -= d;
+                e.rev.cap += d;
+                return d;
+            }
+        }
+    }
+    return 0;
+}

@@ -1,0 +1,28 @@
+public static void main(String[] args) throws IOException {
+    Scanner c = new Scanner(System.in);
+    int N = c.nextInt();
+    TreeMap<Integer, Integer> map = new TreeMap<Integer, Integer>();
+    for (int j = 0; j < N; j++) {
+        int i = c.nextInt();
+        if (!map.containsKey(-i))
+            map.put(-i, 1);
+        else
+            map.put(-i, 1 + map.get(-i));
+    }
+    
+    int side1 = 0, side2 = 0;
+    for (int i : map.keySet()) {
+        if (map.get(i) >= 2) {
+            if (side1 == 0 && map.get(i) >= 4) {
+                System.out.println(((long) (i)) * (long) (i));
+                return;
+            } else if (side1 == 0) {
+                side1 = i;
+            } else {
+                System.out.println(((long) (side1)) * (long) (i));
+                return;
+            }
+        }
+    }
+    System.out.println(0);
+}

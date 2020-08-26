@@ -1,0 +1,45 @@
+public static void main(String[] args) throws Exception {
+    Scanner scan = new Scanner(System.in);
+    long H = scan.nextLong();
+    long W = scan.nextLong();
+    if (H % 3 == 0) {
+        System.out.println(0);
+        return;
+    }
+    long answer;
+    
+    answer = H;
+    
+    long difference = W;
+    if (answer > difference)
+        answer = difference;
+    
+    for (int i = 1; i <= H; i++) {
+        long width = i * W;
+        long height1 = (H - i) * (W / 2);
+        long height2 = (H - i) * (W / 2);
+        if (W % 2 != 0)
+            height2 += (H - i);
+        long max1 = maxValue(width, height1, height2);
+        long min1 = minValue(width, height1, height2);
+        difference = Math.abs(max1 - min1);
+        if (answer > difference) {
+            answer = difference;
+        }
+    }
+    
+    for (int i = 1; i <= W; i++) {
+        long height = i * H;
+        long width1 = (W - i) * (H / 2);
+        long width2 = (W - i) * (H / 2);
+        if (H % 2 != 0)
+            width2 += (W - i);
+        long max2 = maxValue(height, width1, width2);
+        long min2 = minValue(height, width1, width2);
+        difference = Math.abs(max2 - min2);
+        if (answer > difference) {
+            answer = difference;
+        }
+    }
+    System.out.println(answer);
+}

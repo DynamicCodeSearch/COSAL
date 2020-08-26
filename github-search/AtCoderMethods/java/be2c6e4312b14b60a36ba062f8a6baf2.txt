@@ -1,0 +1,20 @@
+static long cal(long x) {
+    long res = 0;
+    if (x == 0)
+        return 1;
+    if (x == 1)
+        return 2;
+    if (x == 2)
+        return 4;
+    if (memo.containsKey(x))
+        return Long.parseLong(memo.get(x) + "");
+    if (x % 2 == 0) {
+        res = cal(x / 2) + 2 * cal(x / 2 - 1);
+        res %= mod;
+    } else {
+        res = 2 * cal(x / 2) + cal(x / 2 - 1);
+        res %= mod;
+    }
+    memo.put(x, res);
+    return res;
+}

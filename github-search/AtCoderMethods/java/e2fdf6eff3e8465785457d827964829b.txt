@@ -1,0 +1,16 @@
+int[] getSums(int from, int to, int c) {
+    int[] a = new int[to - from + 1];
+    Arrays.fill(a, 1);
+    int[] ret = new int[c + 1];
+    for (int i = 0; i <= c; i++) {
+        if (i != 0) {
+            for (int j = from; j <= to; j++) {
+                a[j - from] = (int) ((long) a[j - from] * j % P);
+            }
+        }
+        for (int j = 0; j <= to - from; j++) {
+            ret[i] = (ret[i] + a[j]) % P;
+        }
+    }
+    return ret;
+}

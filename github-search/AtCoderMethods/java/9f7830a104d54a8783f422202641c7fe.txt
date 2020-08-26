@@ -1,0 +1,47 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    long K = sc.nextLong();
+    long[] a = new long[N + 1];
+    long total = 0;
+    for (int i = 1; i <= N; i++) {
+        a[i] = sc.nextLong();
+        total += a[i];
+    }
+    long[][] wk = new long[2][N + 1];
+    for (int i = 1; i <= N; i++) {
+        wk[0][i] = Integer.MAX_VALUE;
+        wk[1][i] = Integer.MAX_VALUE;
+    }
+    long game = 0;
+    long game_prev = 0;
+    for (int i = 1; i <= N; i++) {
+        game_prev = game;
+        game += a[i];
+        long min = K - (total - game);
+        for (int j = 0; j <= i; j++) {
+            
+            long w1 = wk[(i - 1) % 2][j];
+            
+            double prob2 = 0;
+            if (j == 0) {
+                prob2 = 0;
+            } else {
+                prob2 = ((double) wk[(i - 1) % 2][j - 1]) / game_prev;
+            }
+            long w2 = ((long) (prob2 * game)) + 1;
+            if (w2 > game) {
+                w2 = Integer.MAX_VALUE;
+            }
+            wk[i % 2][j] = Math.min(w1, w2);
+            wk[i % 2][j] = Math.max(wk[i % 2][j], min);
+        }
+    }
+    int ans = 0;
+    for (int i = 0; i <= N; i++) {
+        if (wk[N % 2][i] <= K) {
+            ans = i;
+        }
+    }
+    System.out.println(ans);
+}

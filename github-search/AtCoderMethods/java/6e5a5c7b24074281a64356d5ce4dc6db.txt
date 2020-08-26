@@ -1,0 +1,19 @@
+private String getResult(int a, int b, int c) {
+    boolean[] tmps = new boolean[b];
+    int count = 1;
+    while (true) {
+        int tmp = (a * count) % b;
+        if (tmp == 0) {
+            return "NO";
+        }
+        if (tmps[tmp]) {
+            return "NO";
+        } else {
+            tmps[tmp] = true;
+        }
+        if (c % tmp == 0) {
+            return "YES";
+        }
+        count++;
+    }
+}

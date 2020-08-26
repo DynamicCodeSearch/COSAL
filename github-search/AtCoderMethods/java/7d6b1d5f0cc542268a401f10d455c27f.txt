@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter w = new PrintWriter(System.out);
+    int n = in.nextInt();
+    char[] ca = in.readString().toCharArray();
+    int x = 0;
+    int mx = 0;
+    for (char y : ca) {
+        switch(y) {
+            case 'I':
+                x++;
+                break;
+            case 'D':
+                x--;
+                break;
+        }
+        mx = Math.max(mx, x);
+    }
+    w.println(mx);
+    w.close();
+}

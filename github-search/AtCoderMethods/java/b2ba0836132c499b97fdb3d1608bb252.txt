@@ -1,0 +1,16 @@
+public void calc() {
+    sb = new StringBuilder();
+    IO sc = new IO();
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    boolean[][] map = new boolean[n][n];
+    for (int i = 0; i < m; i++) {
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        map[a - 1][b - 1] = map[b - 1][a - 1] = true;
+    }
+    int[] d = new int[n];
+    d[0] = 1;
+    int ans = msd(map, d, 0);
+    System.out.println(ans);
+}

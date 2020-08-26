@@ -1,0 +1,9 @@
+public void propagate() {
+    if (updated != 0 && start < end) {
+        for (Node node : nodes) {
+            node.cost += updated;
+            node.updated += updated;
+        }
+        updated = 0;
+    }
+}

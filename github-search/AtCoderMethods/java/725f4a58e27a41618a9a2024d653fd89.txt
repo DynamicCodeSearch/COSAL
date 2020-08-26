@@ -1,0 +1,13 @@
+public static void main(String[] args) throws NumberFormatException, IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    Integer A = Integer.valueOf(br.readLine());
+    int B = A / 2;
+    int max = 0;
+    for (int i = 1; i <= B; i++) {
+        int tmp = i * (A - i);
+        if (max < tmp) {
+            max = tmp;
+        }
+    }
+    System.out.println(max);
+}

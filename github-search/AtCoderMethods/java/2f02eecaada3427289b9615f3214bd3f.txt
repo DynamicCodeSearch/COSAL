@@ -1,0 +1,19 @@
+public void solve() {
+    N = in.nextInt();
+    C = in.nextInt();
+    A = in.nextIntArray(N);
+    B = in.nextIntArray(N);
+    dp = new long[N][C + 1];
+    for (int i = 0; i < N; i++) {
+        Arrays.fill(dp[i], Long.MAX_VALUE);
+    }
+    pow = new long[401][401];
+    powSum = new long[410][410];
+    for (int i = 0; i < 401; i++) {
+        for (int j = 0; j < 401; j++) {
+            pow[i][j] = POW(i, j);
+            powSum[i + 1][j] = ADD(powSum[i][j], pow[i][j]);
+        }
+    }
+    System.out.println(dfs(0, C));
+}

@@ -1,0 +1,31 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    Printer pr = new Printer(System.out);
+    int n = sc.nextInt();
+    List<Pair> pl = new ArrayList<>(n);
+    List<Pair> mi = new ArrayList<>(n);
+    for (int i = 0; i < n; i++) {
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        if (a >= b) {
+            pl.add(new Pair(a, b));
+        } else {
+            mi.add(new Pair(a, b));
+        }
+    }
+    Collections.sort(pl, (o1, o2) -> Integer.compare(o2.b, o1.b));
+    Collections.sort(mi, (o1, o2) -> Integer.compare(o1.a, o2.a));
+    long max = 0;
+    long tmp = 0;
+    for (Pair e : mi) {
+        max = Math.max(max, tmp + e.a);
+        tmp += e.a - e.b;
+    }
+    for (Pair e : pl) {
+        max = Math.max(max, tmp + e.a);
+        tmp += e.a - e.b;
+    }
+    pr.println(max);
+    pr.close();
+    sc.close();
+}

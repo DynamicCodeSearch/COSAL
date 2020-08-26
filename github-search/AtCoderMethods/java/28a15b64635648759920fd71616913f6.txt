@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    long N = sc.nextLong();
+    int ans = Integer.MAX_VALUE;
+    for (long i = 1; i * i <= N; i++) {
+        if (N % i == 0) {
+            long b = N / i;
+            int digit = 0;
+            for (int j = 0; j <= 11; j++) {
+                if (b < (long) Math.pow(10, j)) {
+                    digit = j;
+                    break;
+                }
+            }
+            ans = Math.min(ans, digit);
+        }
+    }
+    System.out.println(ans);
+}

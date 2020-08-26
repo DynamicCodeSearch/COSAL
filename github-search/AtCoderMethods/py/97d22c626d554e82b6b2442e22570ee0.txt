@@ -1,0 +1,21 @@
+def dodo(v):
+	if v<=0:
+		return 0
+
+ vv = 1
+ ld = 1
+ ret = 0
+
+ while vv*10 <= v:
+		vv *= 10
+  ld *= 8
+
+ for i in range(0,v//vv):
+		ret += vv
+  if i!=4 and i!=9:
+			ret -= ld
+
+ if v//vv==4 or v//vv==9:
+		return ret + (v - v//vv*vv + 1)
+ else:
+		return ret + dodo(v - v//vv*vv)

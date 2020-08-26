@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    while (sc.hasNext()) {
+        double l = sc.nextDouble();
+        double x = sc.nextDouble();
+        double y = sc.nextDouble();
+        double s = sc.nextDouble();
+        double d = sc.nextDouble();
+        double res = 0;
+        if (s <= d) {
+            res = (d - s) / (x + y);
+            if (x < y)
+                res = Math.min(res, (s + l - d) / (y - x));
+        } else {
+            res = (l - s + d) / (x + y);
+            if (x < y)
+                res = Math.min(res, (s - d) / (y - x));
+        }
+        System.out.println(res);
+    }
+}

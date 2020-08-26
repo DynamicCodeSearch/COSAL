@@ -1,0 +1,21 @@
+public void solve(int testNumber, MyReader in, PrintWriter out) {
+    int n = in.nextInt();
+    LinkedList<Integer> b = new LinkedList<>();
+    for (int i = 0; i < n; i++) {
+        int a = in.nextInt();
+        if (i % 2 == 0) {
+            b.addLast(a);
+        } else {
+            b.addFirst(a);
+        }
+    }
+    if (n % 2 != 0) {
+        Collections.reverse(b);
+    }
+    StringBuilder sb = new StringBuilder();
+    for (Integer v : b) {
+        sb.append(v);
+        sb.append(" ");
+    }
+    out.println(sb);
+}

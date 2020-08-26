@@ -1,0 +1,5 @@
+def split_2(h, w):
+    cand = []
+    cand.extend([((h // 2 + i) * w, (h - (h // 2 + i)) * w) for i in range(2)])
+    cand.extend([(h * (w // 2 + i), h * (w - (w // 2 + i))) for i in range(2)])
+    return cand

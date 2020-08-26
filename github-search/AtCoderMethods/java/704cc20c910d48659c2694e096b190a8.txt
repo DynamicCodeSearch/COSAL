@@ -1,0 +1,17 @@
+public void solve(int testNumber, Scanner sc, PrintWriter out) {
+    int n = sc.nextInt();
+    boolean okT = false;
+    int bad = 0, four = 0;
+    for (int i = 0; i < n; i++) {
+        int x = sc.nextInt();
+        bad += !(x % 2 == 0 || x % 4 == 0) ? 1 : 0;
+        okT |= (x % 2 == 0 && x % 4 != 0);
+        four += (x % 4 == 0) ? 1 : 0;
+    }
+    if (bad == 0)
+        out.println("Yes");
+    else if (okT)
+        out.println(bad <= four ? "Yes" : "No");
+    else
+        out.println(bad - 1 <= four ? "Yes" : "No");
+}

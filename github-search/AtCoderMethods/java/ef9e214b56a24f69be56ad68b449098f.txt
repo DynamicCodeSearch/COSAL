@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int X = sc.nextInt();
+    int[] a = new int[N];
+    int total = 0;
+    for (int i = 0; i < N; i++) {
+        a[i] = sc.nextInt();
+    }
+    int dec = X;
+    String bin = Integer.toBinaryString(dec);
+    int n = bin.length();
+    for (int i = 0; i < n; i++) {
+        if (bin.charAt(i) == '1') {
+            total += a[n - i - 1];
+        }
+    }
+    System.out.println(total);
+}

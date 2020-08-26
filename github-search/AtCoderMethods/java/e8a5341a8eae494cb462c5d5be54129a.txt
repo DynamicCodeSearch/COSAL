@@ -1,0 +1,15 @@
+long f(int x, int p) {
+    if (dpF[x] > 0)
+        return dpF[x];
+    if (adj[x].size() == 1 && adj[x].get(0) == p)
+        return 2;
+    long white = g(x, p);
+    long black = 1;
+    for (int child : adj[x]) {
+        if (child == p)
+            continue;
+        black *= g(child, x) % MOD;
+        black %= MOD;
+    }
+    return dpF[x] = (white + black) % MOD;
+}

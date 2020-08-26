@@ -1,0 +1,11 @@
+def check(a, b):
+    Sa = dic[a] - {b}
+    stack = list(Sa)
+    al = {a}
+    while stack != []:
+        p = stack.pop()
+        al.add(p)
+        stack += list(dic[p] - al)
+        if b in stack:
+            return False
+    return True

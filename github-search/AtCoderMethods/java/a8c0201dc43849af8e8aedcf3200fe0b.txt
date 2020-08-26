@@ -1,0 +1,12 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    PrintWriter out = new PrintWriter(System.out);
+    long n = sc.nextLong();
+    for (long i = (long) Math.sqrt(n); i > 0; i--) {
+        if (n % i == 0) {
+            out.println(digit(n / i));
+            break;
+        }
+    }
+    out.flush();
+}

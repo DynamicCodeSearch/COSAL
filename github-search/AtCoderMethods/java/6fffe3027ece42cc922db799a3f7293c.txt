@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    MyInput in = new MyInput();
+    int N = in.nextInt();
+    int[] num = new int[N];
+    for (int i = 0; i < N; i++) {
+        num[i] = in.nextInt();
+    }
+    Arrays.sort(num);
+    boolean flag = false;
+    int tmp = 0;
+    int count = 0;
+    for (int i = 0; i < N; i++) {
+        if (tmp == num[i]) {
+            flag ^= true;
+        } else {
+            if (flag)
+                count++;
+            flag = true;
+            tmp = num[i];
+        }
+    }
+    if (flag)
+        count++;
+    System.out.println(count);
+}

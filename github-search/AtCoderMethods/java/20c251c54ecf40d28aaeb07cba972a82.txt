@@ -1,0 +1,15 @@
+void run() {
+    long sum = 0;
+    long tmpSum = 0;
+    for (int i = 0; i < N; i++) {
+        if (i < K) {
+            sum += nums[i];
+            tmpSum += nums[i];
+        } else {
+            tmpSum += nums[i];
+            tmpSum -= nums[i - K];
+            sum += tmpSum;
+        }
+    }
+    System.out.println(sum);
+}

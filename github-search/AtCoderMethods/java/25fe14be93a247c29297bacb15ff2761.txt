@@ -1,0 +1,13 @@
+void run() {
+    int n = sc.nextInt();
+    int[] a = sc.nextIntArray(n);
+    int min = Integer.MAX_VALUE / 10;
+    for (int i = -100; i <= 100; i++) {
+        int cost = 0;
+        for (int j = 0; j < n; j++) {
+            cost += (a[j] - i) * (a[j] - i);
+        }
+        min = Math.min(min, cost);
+    }
+    System.out.println(min);
+}

@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    char[] S = sc.next().toCharArray();
+    char[][] elem = { "dream".toCharArray(), "dreamer".toCharArray(), "erase".toCharArray(), "eraser".toCharArray() };
+    Queue<Integer> queue = new ArrayDeque<>();
+    queue.add(0);
+    while (queue.size() > 0) {
+        int ptr = queue.poll();
+        for (char[] e : elem) {
+            if (S.length - ptr >= e.length) {
+                boolean f2 = true;
+                for (int i = 0; i < e.length; i++) {
+                    if (S[ptr + i] != e[i]) {
+                        f2 = false;
+                        break;
+                    }
+                }
+                if (f2) {
+                    if (ptr + e.length == S.length) {
+                        System.out.println("YES");
+                        return;
+                    }
+                    queue.add(ptr + e.length);
+                }
+            }
+        }
+    }
+    System.out.println("NO");
+}

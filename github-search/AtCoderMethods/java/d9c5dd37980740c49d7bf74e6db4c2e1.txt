@@ -1,0 +1,55 @@
+public static void main(String[] args) throws InterruptedException {
+    Scanner in = new Scanner(System.in);
+    int N = in.nextInt();
+    int[][] givenMap = new int[N][N];
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            givenMap[i][j] = in.nextInt();
+        }
+    }
+    long[][] map = new long[N][N];
+    for (int i = 0; i < N; i++) {
+        Arrays.fill(map[i], Long.MAX_VALUE / 2);
+    }
+    long sumPath = 0;
+    for (int i = 0; i < N; i++) {
+        for (int j = i + 1; j < N; j++) {
+            boolean altPathFound = false;
+            for (int k = 0; k < N && !altPathFound; k++) {
+                if (k != i && k != j && givenMap[i][k] + givenMap[k][j] == givenMap[i][j]) {
+                    altPathFound = true;
+                }
+            }
+            if (altPathFound) {
+            
+            } else {
+                map[i][j] = givenMap[i][j];
+                map[j][i] = givenMap[i][j];
+                sumPath += givenMap[i][j];
+            }
+        }
+    }
+    for (int k = 0; k < N; k++) {
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                if (i != j && j != k && k != i) {
+                    map[i][j] = Math.min(map[i][j], map[i][k] + map[k][j]);
+                }
+            }
+        }
+    }
+    
+    boolean graphExists = true;
+    for (int i = 0; i < N && graphExists; i++) {
+        for (int j = i + 1; j < N && graphExists; j++) {
+            if (i != j && map[i][j] != givenMap[i][j]) {
+                graphExists = false;
+            }
+        }
+    }
+    if (graphExists) {
+        System.out.println(sumPath);
+    } else {
+        System.out.println(-1);
+    }
+}

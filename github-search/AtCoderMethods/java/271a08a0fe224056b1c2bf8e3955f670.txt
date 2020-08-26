@@ -1,0 +1,52 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    int R = sc.nextInt();
+    int[] r = new int[R];
+    for (int i = 0; i < R; ++i) r[i] = sc.nextInt() - 1;
+    int[][] mat = new int[N][N];
+    for (int i = 0; i < N; ++i) {
+        for (int j = 0; j < N; ++j) {
+            if (i != j)
+                mat[i][j] = Integer.MAX_VALUE / 10;
+        }
+    }
+    for (int i = 0; i < M; ++i) {
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        int c = sc.nextInt();
+        --a;
+        --b;
+        mat[a][b] = c;
+        mat[b][a] = c;
+    }
+    for (int m = 0; m < N; ++m) {
+        for (int i = 0; i < N; ++i) {
+            for (int j = 0; j < N; ++j) {
+                mat[i][j] = Math.min(mat[i][j], mat[i][m] + mat[m][j]);
+            }
+        }
+    }
+    int[][] dp = new int[R][1 << R];
+    for (int i = 0; i < R; ++i) {
+        for (int j = 0; j < (1 << R); ++j) {
+            dp[i][j] = Integer.MAX_VALUE / 10;
+        }
+    }
+    for (int i = 0; i < R; ++i) {
+        dp[i][1 << i] = 0;
+    }
+    for (int s = 0; s < (1 << R); ++s) {
+        for (int cur = 0; cur < R; ++cur) {
+            for (int next = 0; next < R; ++next) {
+                dp[next][s | 1 << next] = Math.min(dp[next][s | 1 << next], dp[cur][s] + mat[r[cur]][r[next]]);
+            }
+        }
+    }
+    int ans = Integer.MAX_VALUE / 10;
+    for (int i = 0; i < R; ++i) {
+        ans = Math.min(ans, dp[i][(1 << R) - 1]);
+    }
+    System.out.println(ans);
+}

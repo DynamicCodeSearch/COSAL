@@ -1,0 +1,7 @@
+def pow_mod(x, y):
+    n = 1
+    for bit in bin(y)[:1:-1]:
+        if bit == "1":
+            n = n * x % mod
+        x = x * x % mod
+    return n

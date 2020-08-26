@@ -1,0 +1,31 @@
+public static void main(String[] args) {
+    int n = ni(), a = ni(), b = ni();
+    long[] v = nla(n);
+    Arrays.sort(v);
+    long sum = 0;
+    long sita = v[n - a];
+    int siy = 0;
+    for (int i = n - 1; i > n - 1 - a; i--) {
+        sum += v[i];
+        if (sita == v[i])
+            siy++;
+    }
+    pl(((double) sum) / a);
+    int zen = 0;
+    for (int i = 0; i < n; i++) if (sita == v[i])
+        zen++;
+    if (sita == v[n - 1]) {
+        long res = 0;
+        long c = ncr(zen, a);
+        for (int i = a; i <= b; i++) {
+            if (i > zen)
+                break;
+            res += c;
+            c *= zen - i;
+            c /= i + 1;
+        }
+        pl(res);
+    } else
+        pl(ncr(zen, siy));
+    flush();
+}

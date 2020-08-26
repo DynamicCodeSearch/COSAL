@@ -1,0 +1,34 @@
+public static void main(String[] args) {
+    try {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
+        String s = br.readLine();
+        int l = 0;
+        boolean lf = false;
+        int r = 0;
+        boolean rf = false;
+        String res = s;
+        for (int i = 0; i < n; i++) {
+            if (s.charAt(i) == '(') {
+                l++;
+            } else if (s.charAt(i) == ')') {
+                r++;
+                if (l < r) {
+                    res = '(' + res;
+                    l++;
+                }
+            }
+        }
+        while (l < r) {
+            res = '(' + res;
+            l++;
+        }
+        while (l > r) {
+            res = res + ')';
+            r++;
+        }
+        System.out.println(res);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}

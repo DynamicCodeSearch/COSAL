@@ -1,0 +1,22 @@
+long tail0(long top) {
+    if (top == 9) {
+        for (int i = 0; i < 10; i++) {
+            top *= 10;
+            if (!next(top - 1))
+                break;
+        }
+        if (top > inf)
+            return 1;
+        return top / 10;
+    } else {
+        long oldTop = top;
+        top++;
+        for (int i = 0; i < 10; i++) {
+            if (next(top * 10))
+                break;
+            top *= 10;
+            oldTop *= 10;
+        }
+        return oldTop * 10;
+    }
+}

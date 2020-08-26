@@ -1,0 +1,35 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int H = sc.nextInt();
+    int W = sc.nextInt();
+    int[] hj = { -1, -1, -1, 0, 0, 1, 1, 1 };
+    int[] wi = { -1, 0, 1, -1, 1, -1, 0, 1 };
+    int[][] map = new int[H][W];
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            map[i][j] = 0;
+        }
+    }
+    for (int i = 0; i < H; i++) {
+        String input = sc.next();
+        for (int j = 0; j < W; j++) {
+            char s = input.charAt(j);
+            if (s == '#') {
+                map[i][j] = -1;
+                for (int k = 0; k < hj.length; k++) {
+                    map = setmap(i + wi[k], j + hj[k], map);
+                }
+            }
+        }
+    }
+    for (int[] is : map) {
+        for (int i : is) {
+            if (i == -1) {
+                System.out.print("#");
+            } else {
+                System.out.print(i);
+            }
+        }
+        System.out.println();
+    }
+}

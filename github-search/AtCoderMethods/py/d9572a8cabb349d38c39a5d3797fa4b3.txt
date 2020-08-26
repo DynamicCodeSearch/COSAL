@@ -1,0 +1,12 @@
+def eratos(n):
+    if n <= 1:
+        return []
+    used = [False] * n
+    used[0] = used[1] = True
+    primes = []
+    for i in range(n):
+        if used[i] is False:
+            primes.append(i)
+            for j in range(i * 2, n, i):
+                used[j] = True
+    return primes

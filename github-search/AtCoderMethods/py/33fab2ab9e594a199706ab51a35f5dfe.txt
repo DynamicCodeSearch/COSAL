@@ -1,0 +1,11 @@
+def can(f):
+    end = [0 for x in range(n)]
+    que = [(0, f[0])]
+
+    while que:
+        index, targets = que.pop()
+        for ti, target in enumerate(targets):
+            if target and not end[ti]:
+                que.append((ti, f[ti]))
+        end[index] = 1
+    return end.count(1) == n

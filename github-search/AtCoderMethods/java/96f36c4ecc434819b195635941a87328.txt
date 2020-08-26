@@ -1,0 +1,41 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    Printer pr = new Printer(System.out);
+    long n = sc.nextLong();
+    long s = sc.nextLong();
+    if (n == s) {
+        pr.println(n + 1);
+        pr.close();
+        sc.close();
+        return;
+    }
+    for (long b = 2; b < 1_000_000; b++) {
+        long ret = 0;
+        long tmp = n;
+        while (tmp > 0) {
+            ret += tmp % b;
+            tmp /= b;
+        }
+        if (ret == s) {
+            pr.println(b);
+            pr.close();
+            sc.close();
+            return;
+        }
+    }
+    if (n - s > 0) {
+        for (long p = Math.min(1_000_000, s); p >= 1; p--) {
+            long b = (n - s) / p + 1;
+            
+            if (b * p + s - p == n && s - p < b) {
+                pr.println(b);
+                pr.close();
+                sc.close();
+                return;
+            }
+        }
+    }
+    pr.println(-1);
+    pr.close();
+    sc.close();
+}

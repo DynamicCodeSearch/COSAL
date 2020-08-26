@@ -1,0 +1,23 @@
+public static void main(String[] args) throws Exception {
+    int n = sc.nextInt();
+    int k = sc.nextInt();
+    long[] a = new long[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = sc.nextLong();
+    }
+    long c = 0;
+    long ans = 0;
+    for (int i = 0; i < k; i++) {
+        c += a[i];
+    }
+    ans = c;
+    for (int i = k; i < n; i++) {
+        c += a[i];
+        c -= a[i - k];
+        ans += c;
+    }
+    out.println(ans);
+    out.flush();
+    sc.close();
+    out.close();
+}

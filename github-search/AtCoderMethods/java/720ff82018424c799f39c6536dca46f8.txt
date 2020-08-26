@@ -1,0 +1,13 @@
+public int dfs(int v, int c) {
+    if (c == N - 1)
+        return 1;
+    used[v] = true;
+    int ret = 0;
+    for (int u : graph[v]) {
+        if (used[u])
+            continue;
+        ret += dfs(u, c + 1);
+    }
+    used[v] = false;
+    return ret;
+}

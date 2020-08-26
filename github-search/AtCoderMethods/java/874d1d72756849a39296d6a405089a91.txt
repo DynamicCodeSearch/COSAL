@@ -1,0 +1,23 @@
+public static void main(String[] $) {
+    int n = getInt();
+    Map<Long, Integer> a = new TreeMap<>(Comparator.reverseOrder());
+    INS(n).asLongStream().forEach(i -> a.merge(i, 1, Integer::sum));
+    long r = -1;
+    for (Entry<Long, Integer> e : a.entrySet()) {
+        long k = e.getKey();
+        int v = e.getValue();
+        if (r == -1 && v >= 4) {
+            System.out.println(k * k);
+            return;
+        }
+        if (r == -1 && v >= 2) {
+            r = k;
+            continue;
+        }
+        if (r != -1 && v >= 2) {
+            System.out.println(r * k);
+            return;
+        }
+    }
+    System.out.println(0);
+}

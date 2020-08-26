@@ -1,0 +1,41 @@
+private void solve(Scanner sc, PrintWriter out) {
+    
+    N = sc.nextInt();
+    
+    M = sc.nextInt();
+    hint = new HashMap<>();
+    for (int i = 0; i < M; ++i) {
+        int x = sc.nextInt() - 1;
+        int y = sc.nextInt() - 1;
+        List<Integer> list = hint.get(x);
+        if (list == null) {
+            list = new ArrayList<>();
+            hint.put(x, list);
+        }
+        list.add(y);
+    }
+    long[] dp = new long[1 << N];
+    
+    dp[0] = 1;
+    for (int i = 1; i < 1 << N; ++i) {
+        long sum = 0;
+        for (int j = 0; j < N; ++j) {
+            if ((i >> j & 1) == 1) {
+                boolean last = true;
+                if (hint.containsKey(j)) {
+                    for (Integer x : hint.get(j)) {
+                        if ((i >> x & 1) == 1) {
+                            last = false;
+                            break;
+                        }
+                    }
+                }
+                if (last) {
+                    sum += dp[i - (1 << j)];
+                }
+            }
+        }
+        dp[i] = sum;
+    }
+    out.println(dp[(1 << N) - 1]);
+}

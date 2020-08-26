@@ -1,0 +1,24 @@
+public static void main(String[] args) throws IOException {
+    int N, Q;
+    BufferedReader r = new BufferedReader(new InputStreamReader(System.in), 1);
+    {
+        String[] line = r.readLine().split(" ");
+        N = Integer.parseInt(line[0]);
+        Q = Integer.parseInt(line[1]);
+    }
+    int[] arr = new int[N + 2];
+    Arrays.fill(arr, 0);
+    for (int i = 0; i < Q; i++) {
+        String[] line = r.readLine().split(" ");
+        int lq = Integer.parseInt(line[0]);
+        int rq = Integer.parseInt(line[1]);
+        arr[lq]++;
+        arr[rq + 1]--;
+    }
+    StringWriter sw = new StringWriter(N);
+    for (int i = 1; i < arr.length - 1; i++) {
+        arr[i] = arr[i - 1] + arr[i];
+        sw.append((arr[i] % 2 == 0) ? '0' : '1');
+    }
+    System.out.println(sw.toString());
+}

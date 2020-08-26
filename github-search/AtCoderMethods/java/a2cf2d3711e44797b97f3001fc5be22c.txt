@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = 13;
+    UnionFind uf = new UnionFind(N);
+    uf.union(1, 3);
+    uf.union(3, 5);
+    uf.union(5, 7);
+    uf.union(7, 8);
+    uf.union(8, 10);
+    uf.union(10, 12);
+    uf.union(4, 6);
+    uf.union(6, 9);
+    uf.union(9, 11);
+    int x = sc.nextInt();
+    int y = sc.nextInt();
+    if (uf.same(x, y)) {
+        System.out.println("Yes");
+    } else {
+        System.out.println("No");
+    }
+}

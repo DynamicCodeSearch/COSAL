@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner read = new Scanner(System.in);
+    int num = read.nextInt();
+    int count = 0;
+    int i;
+    for (i = 1; i < num; i++) {
+        int a = read.nextInt();
+        if (a == i) {
+            count++;
+            i++;
+            a = read.nextInt();
+        }
+    }
+    if (i != num + 1) {
+        int last = read.nextInt();
+        if (last == num) {
+            count++;
+        }
+    }
+    System.out.println(count);
+}

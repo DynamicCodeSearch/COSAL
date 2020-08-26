@@ -1,0 +1,8 @@
+void solve(FastScanner in, PrintWriter out) {
+    long A = in.nextInt(), B = in.nextInt(), K = in.nextInt(), L = in.nextInt();
+    long ans = K / L * B;
+    ans += (K % L) * A;
+    ans = Math.min(ans, A * K);
+    ans = Math.min(ans, ((K + L - 1) / L * B));
+    out.println(ans);
+}

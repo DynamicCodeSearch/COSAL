@@ -1,0 +1,11 @@
+private static int[] nextPermutation(int[] c) {
+    int first = getFirst(c);
+    if (first == -1)
+        return null;
+    int toSwap = c.length - 1;
+    while (c[first] >= c[toSwap]) --toSwap;
+    swap(c, first++, toSwap);
+    toSwap = c.length - 1;
+    while (first < toSwap) swap(c, first++, toSwap--);
+    return c;
+}

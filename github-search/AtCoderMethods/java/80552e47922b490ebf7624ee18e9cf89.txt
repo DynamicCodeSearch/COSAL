@@ -1,0 +1,23 @@
+
+
+
+
+
+static boolean isIn(ArrayList<LineSegment> list, double x, double y) {
+    int wn = 0;
+    for (LineSegment l : list) {
+        if (l.y1 <= y && l.y2 > y) {
+            double vt = (y - l.y1) / (l.y2 - l.y1);
+            if (x < l.x1 + (vt * (l.x2 - l.x1))) {
+                ++wn;
+            }
+        }
+        if (l.y1 > y && l.y2 <= y) {
+            double vt = (y - l.y1) / (l.y2 - l.y1);
+            if (x < (l.x1 + (vt * (l.x2 - l.x1)))) {
+                --wn;
+            }
+        }
+    }
+    return wn > 0;
+}

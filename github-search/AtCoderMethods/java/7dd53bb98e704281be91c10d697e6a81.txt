@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    A = sc.nextLong();
+    K = sc.nextLong();
+    if (K > 0) {
+        long S = A;
+        int i = 0;
+        for (; ; i++) {
+            if (S >= 2000000000000L) {
+                break;
+            }
+            S += S * K + 1;
+        }
+        System.out.println(i);
+    } else {
+        System.out.println(2000000000000L - A);
+    }
+}

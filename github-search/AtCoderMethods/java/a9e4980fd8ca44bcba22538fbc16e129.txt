@@ -1,0 +1,55 @@
+
+public void run() throws IOException {
+    
+    int TEST_CASE = 1;
+    while (TEST_CASE-- != 0) {
+        int n = io.nextInt();
+        int ma = io.nextInt();
+        int mb = io.nextInt();
+        int[][] abc = io.nextIntArray2D(n, 3);
+        
+        int[][] min = new int[201][201];
+        for (int[] a : min) Arrays.fill(a, 1 << 29);
+        for (int i = 0; i < 1 << ((n + 1) / 2); i++) {
+            int c = 0;
+            int a = 0;
+            int b = 0;
+            for (int j = 0; j < (n + 1) / 2; j++) {
+                if ((i >>> j & 1) == 1) {
+                    a += abc[j][0];
+                    b += abc[j][1];
+                    c += abc[j][2];
+                }
+            }
+            min[a][b] = Math.min(min[a][b], c);
+        }
+        int ans = 1 << 29;
+        for (int i = 0; i < 1 << (n / 2); i++) {
+            int c = 0;
+            int a = 0;
+            int b = 0;
+            for (int j = 0; j < n / 2; j++) {
+                if ((i >>> j & 1) == 1) {
+                    a += abc[(n + 1) / 2 + j][0];
+                    b += abc[(n + 1) / 2 + j][1];
+                    c += abc[(n + 1) / 2 + j][2];
+                }
+            }
+            
+            int ra = -a, rb = -b;
+            for (; ; ) {
+                ra += ma;
+                rb += mb;
+                if (!(ra <= 200 && rb <= 200))
+                    break;
+                if (ra >= 0 && rb >= 0) {
+                    
+                    ans = Math.min(ans, min[ra][rb] + c);
+                }
+            }
+        }
+        if (ans >= 1 << 29)
+            ans = -1;
+        io.out.println(ans);
+    }
+}

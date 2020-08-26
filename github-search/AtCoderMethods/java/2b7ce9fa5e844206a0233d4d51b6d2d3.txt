@@ -1,0 +1,8 @@
+boolean ok(int pay, int d) {
+    while (pay > 0) {
+        if (((1 << pay % 10) & d) > 0)
+            return false;
+        pay /= 10;
+    }
+    return true;
+}

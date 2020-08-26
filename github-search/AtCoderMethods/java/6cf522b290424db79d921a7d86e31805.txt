@@ -1,0 +1,33 @@
+private static void solve() {
+    int n = nei();
+    int K = nei();
+    long[][] ps = nls2(n, 2);
+    ArrayList<Long> xs = new ArrayList<Long>();
+    ArrayList<Long> ys = new ArrayList<Long>();
+    for (int i = 0; i < n; i++) {
+        xs.add(ps[i][0]);
+        ys.add(ps[i][1]);
+    }
+    xs.sort((a, b) -> Long.signum(a - b));
+    ys.sort((a, b) -> Long.signum(a - b));
+    long minArea = Long.MAX_VALUE;
+    for (int i = 0; i < xs.size(); i++) {
+        for (int j = i + 1; j < xs.size(); j++) {
+            for (int k = 0; k < ys.size(); k++) {
+                for (int l = k + 1; l < ys.size(); l++) {
+                    long x1 = xs.get(i);
+                    long x2 = xs.get(j);
+                    long y1 = ys.get(k);
+                    long y2 = ys.get(l);
+                    if (num(n, ps, x1, y1, x2, y2) >= K) {
+                        long area = (y2 - y1) * (x2 - x1);
+                        if (area < minArea) {
+                            minArea = area;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    System.out.println(minArea);
+}

@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int n = scanner.nextInt(), k = scanner.nextInt();
+    ArrayList<Integer> r = new ArrayList<Integer>(n);
+    double t = 0;
+    for (int i = 0; i < n; i++) {
+        r.add(scanner.nextInt());
+    }
+    scanner.close();
+    Collections.sort(r);
+    if (k == 1) {
+        t = (t + r.get(n - 1)) / 2;
+    } else {
+        for (int i = n - k; i < n; i++) {
+            t = (t + r.get(i)) / 2;
+        }
+    }
+    System.out.println(t);
+}

@@ -1,0 +1,25 @@
+void solver(int n, long[] x, long[] y) {
+    long ans = pow2[n];
+    ans = (ans - n + MODULO) % MODULO;
+    for (int i = 0; i < n; ++i) {
+        boolean[] vis = new boolean[n];
+        vis[i] = true;
+        for (int j = i + 1; j < n; ++j) {
+            if (vis[j])
+                continue;
+            vis[j] = true;
+            int cnt = 1;
+            for (int k = j + 1; k < n; ++k) {
+                if ((x[i] - x[j]) * (y[k] - y[i]) == (y[i] - y[j]) * (x[k] - x[i])) {
+                    if (vis[k]) {
+                        throw new AssertionError();
+                    }
+                    vis[k] = true;
+                    ++cnt;
+                }
+            }
+            ans = (ans - (pow2[cnt] - 1) + MODULO) % MODULO;
+        }
+    }
+    System.out.println(ans - 1);
+}

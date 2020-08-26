@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    int N = Integer.parseInt(scan.next());
+    int K = Integer.parseInt(scan.next());
+    int[] l = new int[N];
+    for (int i = 0; i < N; i++) {
+        l[i] = Integer.parseInt(scan.next());
+    }
+    Arrays.sort(l);
+    int length = 0;
+    for (int i = N - 1; i >= N - K; i--) {
+        length += l[i];
+    }
+    System.out.println(length);
+    scan.close();
+}

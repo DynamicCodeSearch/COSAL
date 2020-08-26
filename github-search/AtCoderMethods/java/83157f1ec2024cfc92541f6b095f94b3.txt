@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int N = scanner.nextInt();
+    String S = scanner.next();
+    int max = 0;
+    int x = 0;
+    for (int i = 0; i < S.length(); i++) {
+        if (S.charAt(i) == 'I') {
+            x++;
+            if (x > max) {
+                max = x;
+            }
+        } else {
+            x--;
+        }
+    }
+    System.out.println(max);
+}

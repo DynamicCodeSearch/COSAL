@@ -1,0 +1,21 @@
+public static void main(String[] args) throws IOException {
+    InputStreamReader isr = new InputStreamReader(System.in);
+    BufferedReader reader = new BufferedReader(isr);
+    Main app = new Main();
+    String[] str;
+    int n = Integer.valueOf(reader.readLine()), a, b;
+    ary = new Node[n];
+    for (int i = 0; i < n; i++) {
+        ary[i] = new Node(i);
+    }
+    for (int i = 0; i < n - 1; i++) {
+        str = reader.readLine().split(" ");
+        a = Integer.valueOf(str[0]) - 1;
+        b = Integer.valueOf(str[1]) - 1;
+        ary[a].child.add(b);
+        ary[b].child.add(a);
+    }
+    int[] res = app.solve(0, -1);
+    System.out.println((res[0] + res[1]) % 1000000007);
+    reader.close();
+}

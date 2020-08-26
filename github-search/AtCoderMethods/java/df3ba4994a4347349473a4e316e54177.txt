@@ -1,0 +1,35 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    H = sc.nextInt();
+    W = sc.nextInt();
+    map = new int[H][W];
+    tmap = new int[H][W];
+    fills = new boolean[H][W];
+    for (int i = 0; i < H; i++) {
+        String line = sc.next();
+        for (int j = 0; j < W; j++) {
+            if (line.charAt(j) == '#') {
+                map[i][j] = 1;
+                tmap[i][j] = 1;
+            }
+        }
+    }
+    
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            fill(i, j);
+        }
+    }
+    
+    if (check()) {
+        System.out.println("possible");
+        for (int i = 0; i < H; i++) {
+            for (int j = 0; j < W; j++) {
+                System.out.print(fills[i][j] ? "#" : ".");
+            }
+            System.out.println();
+        }
+    } else {
+        System.out.println("impossible");
+    }
+}

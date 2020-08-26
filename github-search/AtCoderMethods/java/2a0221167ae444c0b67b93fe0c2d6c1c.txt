@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    long n = scanner.nextInt(), h = scanner.nextInt();
+    long a = scanner.nextInt(), b = scanner.nextInt(), c = scanner.nextInt(), d = scanner.nextInt(), e = scanner.nextInt();
+    scanner.close();
+    long cost = Long.MAX_VALUE;
+    for (long i = 0; i < n; i++) {
+        long dummy = (e * n - h - (b + e) * i);
+        if (dummy < 0) {
+            dummy = 0;
+        } else {
+            dummy = dummy / (d + e) + 1;
+        }
+        if (dummy <= n - i) {
+            cost = Math.min(cost, a * i + c * dummy);
+        }
+    }
+    System.out.println(cost);
+}

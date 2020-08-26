@@ -1,0 +1,18 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    String s = input.readLine();
+    String strk = input.readLine();
+    int k = Integer.parseInt(strk);
+    int answer = 0;
+    if (s.length() < k) {
+    } else if (s.length() == k) {
+        answer = 1;
+    } else {
+        Set<String> set = new HashSet<>();
+        for (int i = 0; i < s.length() - k + 1; i++) {
+            set.add(s.substring(i, i + k));
+        }
+        answer = set.size();
+    }
+    System.out.println(answer);
+}

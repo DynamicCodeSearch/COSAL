@@ -1,0 +1,13 @@
+boolean isContains(int num) {
+    char[] tmpNums = String.valueOf(num).toCharArray();
+    LinkedList<Integer> list = new LinkedList<Integer>();
+    for (int i = 0; i < tmpNums.length; i++) {
+        list.add(Integer.valueOf(String.valueOf(tmpNums[i])));
+    }
+    for (int i = 0; i < K; i++) {
+        if (list.contains(this.dislikeNums[i])) {
+            return true;
+        }
+    }
+    return false;
+}

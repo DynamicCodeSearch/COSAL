@@ -1,0 +1,10 @@
+public static void get(Main node) {
+    node.makechildren();
+    if (node.children.isEmpty()) {
+        sum += node.num;
+        return;
+    }
+    for (int i = 0; i < node.children.size(); i++) {
+        get(node.children.get(i));
+    }
+}

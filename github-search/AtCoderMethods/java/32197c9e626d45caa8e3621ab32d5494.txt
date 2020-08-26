@@ -1,0 +1,28 @@
+public static void solve(Scanner s) {
+    int n = s.nextInt();
+    int k = s.nextInt();
+    int[] d = new int[k];
+    for (int i = 0; i < k; i++) {
+        d[i] = s.nextInt();
+    }
+    Arrays.sort(d);
+    for (int i = 0; i < 100100100; i++) {
+        boolean breakFlg = true;
+        String nStr = n + "";
+        for (int j = 0; j < nStr.length(); j++) {
+            for (int l = 0; l < d.length; l++) {
+                int num = nStr.charAt(nStr.length() - j - 1) - 48;
+                while (num == d[l]) {
+                    n++;
+                    breakFlg = false;
+                    nStr = n + "";
+                    num = nStr.charAt(nStr.length() - j - 1) - 48;
+                }
+            }
+        }
+        if (breakFlg) {
+            break;
+        }
+    }
+    System.out.println(n);
+}

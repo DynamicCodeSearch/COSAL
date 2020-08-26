@@ -1,0 +1,15 @@
+static int dp(int i, int j) {
+    if (dp[i][j] > 0)
+        return dp[i][j];
+    int result = 1;
+    int aij = a[i][j];
+    if (aij < a[i - 1][j])
+        result = (result + dp(i - 1, j)) % MOD;
+    if (aij < a[i + 1][j])
+        result = (result + dp(i + 1, j)) % MOD;
+    if (aij < a[i][j - 1])
+        result = (result + dp(i, j - 1)) % MOD;
+    if (aij < a[i][j + 1])
+        result = (result + dp(i, j + 1)) % MOD;
+    return dp[i][j] = result;
+}

@@ -1,0 +1,8 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    String s = scan.next() + " ";
+    Pattern p1 = Pattern.compile("(?!\\D)(\\d+)(?=\\D+)");
+    Matcher m1 = p1.matcher(s);
+    if (m1.find())
+        System.out.println(m1.group(1));
+}

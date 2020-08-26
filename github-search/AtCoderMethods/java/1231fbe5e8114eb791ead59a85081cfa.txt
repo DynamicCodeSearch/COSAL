@@ -1,0 +1,12 @@
+public long readLong() throws IOException {
+    moveDigitHead();
+    long result = 0;
+    for (int i = 0; i < 20; i++) {
+        byte b = nextByte();
+        if (!isDigit(b))
+            break;
+        result *= 10;
+        result += b - '0';
+    }
+    return result;
+}

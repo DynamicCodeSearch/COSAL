@@ -1,0 +1,17 @@
+public void addEdge(int s, int t) {
+    if (m == next.length) {
+        {
+            int[] tmp = new int[Math.max(next.length + 5, next.length * 3 / 2)];
+            System.arraycopy(next, 0, tmp, 0, next.length);
+            next = tmp;
+        }
+        {
+            int[] tmp = new int[Math.max(to.length + 5, to.length * 3 / 2)];
+            System.arraycopy(to, 0, tmp, 0, to.length);
+            to = tmp;
+        }
+    }
+    next[m] = head[s];
+    head[s] = m;
+    to[m++] = t;
+}

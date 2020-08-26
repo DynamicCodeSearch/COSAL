@@ -1,0 +1,34 @@
+private void solve() {
+    int h = in.nextInt();
+    int w = in.nextInt();
+    Flow f = new Flow(h * w * 2 + 1 + h + w + 1);
+    char[][] s = new char[h][];
+    for (int i = 0; i < h; i++) {
+        s[i] = in.next().toCharArray();
+    }
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            int id1 = i * w + j;
+            int id2 = id1 + h * w;
+            if (s[i][j] == 'S') {
+                f.addEdge(h * w * 2, id1, Integer.MAX_VALUE);
+                f.addEdge(id1, id2, Integer.MAX_VALUE);
+            }
+            if (s[i][j] == 'T') {
+                f.addEdge(id2, f.n - 1, Integer.MAX_VALUE);
+                f.addEdge(id1, id2, Integer.MAX_VALUE);
+            }
+            if (s[i][j] == 'o') {
+                f.addEdge(id1, id2, 1);
+            }
+            if (s[i][j] != '.') {
+                f.addEdge(h * w * 2 + 1 + i, id1, Integer.MAX_VALUE);
+                f.addEdge(h * w * 2 + 1 + h + j, id1, Integer.MAX_VALUE);
+                f.addEdge(id2, h * w * 2 + 1 + i, Integer.MAX_VALUE);
+                f.addEdge(id2, h * w * 2 + 1 + h + j, Integer.MAX_VALUE);
+            }
+        }
+    }
+    long v = f.flow(h * w * 2);
+    out.println(v >= Integer.MAX_VALUE ? -1 : v);
+}

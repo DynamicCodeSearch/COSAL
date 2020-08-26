@@ -1,0 +1,10 @@
+void solve() throws IOException {
+    long n = in.nextLong();
+    int min = 100;
+    for (long i = 1; i * i <= n; i++) {
+        if (n % i != 0)
+            continue;
+        min = Math.min(min, Math.max(String.valueOf(i).length(), String.valueOf(n / i).length()));
+    }
+    System.out.println(min);
+}

@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int N = scan.nextInt();
+    int K = scan.nextInt();
+    List<Integer> rList = new ArrayList<>(N);
+    for (int i : IntStream.range(0, N).toArray()) {
+        rList.add(scan.nextInt());
+    }
+    rList.sort(Integer::compareTo);
+    double sum = 0;
+    for (int i : IntStream.range(N - K, N).toArray()) {
+        int r = rList.get(i);
+        sum = (sum + r) / 2;
+    }
+    System.out.println(sum);
+}

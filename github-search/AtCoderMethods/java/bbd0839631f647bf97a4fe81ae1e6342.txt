@@ -1,0 +1,11 @@
+public static void main(String[] args) throws Exception {
+    long n = sc.nextLong();
+    long min = Long.MAX_VALUE;
+    for (long i = 1; i * i <= n; i++) {
+        if (n % i == 0) {
+            min = Math.min(min, Math.max(Long.toString(i).length(), Long.toString(n / i).length()));
+        }
+    }
+    out.println(min);
+    out.close();
+}

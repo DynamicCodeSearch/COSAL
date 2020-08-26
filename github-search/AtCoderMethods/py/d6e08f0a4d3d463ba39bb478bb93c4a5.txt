@@ -1,0 +1,12 @@
+def main():
+    h,w,a,b = LI()
+    c1 = nCb(h-a-1+b, b)
+    c2 = nCb(w-b-1+a, a)
+    r = 0
+    for i in range(1, min(h-a, w-b)+1):
+        r += c1 * c2
+        r %= mod
+        c1 = c1 * (h-a-i) * inv(b+i) % mod
+        c2 = c2 * (w-b-i) * inv(a+i) % mod
+
+    return r

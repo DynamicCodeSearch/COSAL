@@ -1,0 +1,28 @@
+void solve(BufferedReader in) throws Exception {
+    int N = toInt(in.readLine());
+    Node[] nodes = new Node[N];
+    for (int i = 0; i < N; i++) nodes[i] = new Node();
+    Town[] t1 = new Town[N], t2 = new Town[N];
+    for (int i = 0; i < N; i++) {
+        int[] xx = toInts(in.readLine());
+        t1[i] = new Town(i, xx[0]);
+        t2[i] = new Town(i, xx[1]);
+    }
+    Arrays.sort(t1);
+    Arrays.sort(t2);
+    PriorityQueue<Edge> pq = new PriorityQueue<>();
+    for (int i = 0; i < N - 1; i++) {
+        pq.add(new Edge(nodes[t1[i].i], nodes[t1[i + 1].i], t1[i + 1].v - t1[i].v));
+        pq.add(new Edge(nodes[t2[i].i], nodes[t2[i + 1].i], t2[i + 1].v - t2[i].v));
+    }
+    long c = 0;
+    int p = 1;
+    while (p < N) {
+        Edge e = pq.poll();
+        if (Union(e.u, e.v)) {
+            c += e.cost;
+            p++;
+        }
+    }
+    System.out.println(c);
+}

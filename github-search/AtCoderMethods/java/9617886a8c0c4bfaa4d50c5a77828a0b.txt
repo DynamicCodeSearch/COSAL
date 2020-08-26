@@ -1,0 +1,28 @@
+public static void main(String[] args) throws FileNotFoundException {
+    Scanner sc = new Scanner(System.in);
+    String[] data = readlnS(sc, "");
+    List<String> str = new ArrayList<String>();
+    for (int i = 0; i < data.length; i++) {
+        str.add(data[i]);
+    }
+    int ans = 0;
+    boolean fnd = false;
+    while (str.size() > 2 && fnd == false) {
+        str.remove(str.size() - 1);
+        str.remove(str.size() - 1);
+        String[] lary = new String[str.size() / 2];
+        String[] rary = new String[str.size() / 2];
+        for (int i = 0; i < str.size() / 2; i++) {
+            lary[i] = str.get(i);
+        }
+        for (int i = 0; i < str.size() / 2; i++) {
+            rary[i] = str.get(i + (str.size() / 2));
+        }
+        String l = Arrays.toString(lary);
+        String r = Arrays.toString(rary);
+        if (l.equals(r)) {
+            fnd = true;
+            puts(str.size());
+        }
+    }
+}

@@ -1,0 +1,23 @@
+public static void main(String[] args) throws Exception {
+    
+    
+    Scanner scan = new Scanner(System.in);
+    String str1 = scan.nextLine();
+    String[] str2 = str1.split(" ");
+    int[] NST = new int[3];
+    NST[0] = Integer.parseInt(str2[0]);
+    NST[1] = Integer.parseInt(str2[1]);
+    NST[2] = Integer.parseInt(str2[2]);
+    int W = scan.nextInt();
+    int[] A = new int[1009];
+    for (int i = 2; i <= NST[0]; i++) A[i] = scan.nextInt();
+    int bestbody = 0;
+    if (W >= NST[1] && W <= NST[2])
+        bestbody++;
+    for (int h = 2; h <= NST[0]; h++) {
+        W = W + A[h];
+        if (W >= NST[1] && W <= NST[2])
+            bestbody++;
+    }
+    System.out.println(bestbody);
+}

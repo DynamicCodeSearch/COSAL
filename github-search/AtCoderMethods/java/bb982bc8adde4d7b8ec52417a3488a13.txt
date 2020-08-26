@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int small = sc.nextInt();
+    int newmade = sc.nextInt();
+    int firstpub = sc.nextInt();
+    int total = firstpub, recycle = firstpub, lest = 0;
+    while (true) {
+        if (recycle < small) {
+            recycle += lest;
+            lest = 0;
+            if (recycle < small) {
+                break;
+            } else {
+                total += recycle / small * newmade;
+                lest += recycle % small;
+                recycle = recycle / small * newmade;
+            }
+        } else {
+            total += (recycle / small) * newmade;
+            lest += recycle % small;
+            recycle = (recycle / small) * newmade;
+        }
+    }
+    System.out.println(total);
+}

@@ -1,0 +1,18 @@
+public void run() {
+    
+    String str = cin.nextLine();
+    
+    int[] count = new int[26];
+    for (int i = 0; i < str.length(); i++) {
+        count[str.charAt(i) - 'a']++;
+    }
+    String res = "Yes";
+    for (int c : count) {
+        if (c % 2 != 0) {
+            res = "No";
+            break;
+        }
+    }
+    
+    System.out.println(res);
+}

@@ -1,0 +1,17 @@
+public static long solve2(int index, long weight) {
+    String s = index + "," + weight;
+    if (w < weight) {
+        return Integer.MIN_VALUE;
+    } else if (index == n) {
+        return 0;
+    } else if (memo.containsKey(s)) {
+        return memo.get(s);
+    }
+    
+    
+    
+    
+    long temp = Math.max(solve2(index + 1, weight), values[index] + solve2(index + 1, weight + weights[index]));
+    memo.put(s, temp);
+    return temp;
+}

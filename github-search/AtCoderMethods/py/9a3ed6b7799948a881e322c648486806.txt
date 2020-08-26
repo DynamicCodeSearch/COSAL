@@ -1,0 +1,17 @@
+def check(lst):
+    for i in range(K):
+        maxv = max(lst)
+        if maxv <= N - 1:
+            return False
+        flg = False
+        for j in range(N):
+            if lst[j] == maxv and not flg:
+                lst[j] -= N
+                flg = True
+            else:
+                lst[j] += 1
+
+    for i in range(N):
+        if lst[i] >= N:
+            return False
+    return True

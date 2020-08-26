@@ -1,0 +1,26 @@
+static void Method(ArrayList<Integer> num, ArrayList<String> param) {
+    int[] n = new int[num.size()];
+    for (int i = 0; i < num.size(); i++) {
+        n[i] = num.get(i);
+    }
+    String[] p = new String[param.size()];
+    for (int i = 0; i < param.size(); i++) {
+        p[i] = param.get(i);
+    }
+    
+    int[] kekka = new int[num.size()];
+    long min = 999999999999999999l;
+    int ansewr = 0;
+    for (int i = 0; i < n[0] * 2; i += 2) {
+        for (int j = 0; j < n[1]; j++) {
+            kekka[j] = Math.abs(n[i + 2] - n[j * 2 + 2 + n[0] * 2]) + Math.abs(n[i + 3] - n[j * 2 + 3 + n[0] * 2]);
+            
+            if (min > kekka[j]) {
+                min = kekka[j];
+                ansewr = j + 1;
+            }
+        }
+        min = 999999999999999999l;
+        System.out.println(ansewr);
+    }
+}

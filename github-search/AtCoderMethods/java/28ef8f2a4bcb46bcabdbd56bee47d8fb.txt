@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    Point[] p = new Point[N];
+    double len2;
+    double max = 0.0;
+    for (int i = 0; i < N; i++) {
+        p[i] = new Point(sc.nextInt(), sc.nextInt());
+    }
+    for (int j = 0; j < N; j++) {
+        for (int k = j; k < N; k++) {
+            len2 = (p[j].x - p[k].x) * (p[j].x - p[k].x) + (p[j].y - p[k].y) * (p[j].y - p[k].y);
+            if (len2 > max) {
+                max = len2;
+            }
+        }
+    }
+    System.out.println(Math.sqrt(max));
+}

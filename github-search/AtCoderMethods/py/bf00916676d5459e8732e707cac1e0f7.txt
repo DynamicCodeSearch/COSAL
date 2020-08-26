@@ -1,0 +1,17 @@
+def solve():
+    N, K = map(int, input().split())
+
+    cnt = [0]*(10**5 + 1)
+
+    for i in range(N):
+        ai, bi = map(int, sys.stdin.readline().split())
+        cnt[ai] += bi
+
+    tot = 0
+
+    for i, cnti in enumerate(cnt):
+        tot += cnti
+
+        if tot >= K:
+            print(i)
+            return

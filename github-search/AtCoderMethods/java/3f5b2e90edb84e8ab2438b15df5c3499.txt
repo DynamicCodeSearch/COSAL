@@ -1,0 +1,19 @@
+long no_of_primes(long m, long n, long k) {
+    long count = 0, i, j;
+    int[] primes = new int[(int) (n - m + 2)];
+    if (m == 1)
+        primes[0] = 1;
+    for (i = 2; i <= Math.sqrt(n); i++) {
+        j = (m / i);
+        j *= i;
+        if (j < m)
+            j += i;
+        for (; j <= n; j += i) {
+            if (j != i)
+                primes[(int) (j - m)] = 1;
+        }
+    }
+    for (i = 0; i <= n - m; i++) if (primes[(int) i] == 0 && (i - 1) % k == 0)
+        count++;
+    return count;
+}

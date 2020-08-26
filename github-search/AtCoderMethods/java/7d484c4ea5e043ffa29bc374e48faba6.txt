@@ -1,0 +1,40 @@
+public void solve() {
+    R = io.ri();
+    C = io.ri();
+    int N = io.ri();
+    List<Pair> all = new ArrayList<>();
+    int[] ends = new int[N];
+    for (int i = 0; i < N; i++) {
+        int r1 = io.ri();
+        int c1 = io.ri();
+        int r2 = io.ri();
+        int c2 = io.ri();
+        add(all, c1, r1, i);
+        add(all, c2, r2, i);
+    }
+    all.sort((Pair p1, Pair p2) -> p1.b - p2.b);
+    for (int i = 0; i < all.size(); i++) {
+        Pair p = all.get(i);
+        int cur = p.a;
+        ends[cur]++;
+    }
+    Stack<Integer> st = new Stack<>();
+    boolean[] visit = new boolean[N];
+    for (int i = 0; i < all.size(); i++) {
+        Pair p = all.get(i);
+        int cur = p.a;
+        if (ends[cur] < 2)
+            continue;
+        if (visit[cur]) {
+            int t = st.pop();
+            if (t != cur) {
+                io.writeLine("NO");
+                return;
+            }
+        } else {
+            visit[cur] = true;
+            st.push(cur);
+        }
+    }
+    io.writeLine("YES");
+}

@@ -1,0 +1,18 @@
+public static int maxCluster(boolean[][] graph) {
+    int nodeSize = graph.length;
+    int result = 0;
+    for (int bmask = 1; bmask < (1 << nodeSize); ++bmask) {
+        List<Integer> candidate = new ArrayList<>();
+        int tmp = bmask;
+        int shift = 0;
+        while (tmp != 0) {
+            if ((tmp & 1) != 0)
+                candidate.add(shift);
+            tmp >>= 1;
+            ++shift;
+        }
+        if (isFullyConnected(graph, candidate))
+            result = Math.max(result, candidate.size());
+    }
+    return result;
+}

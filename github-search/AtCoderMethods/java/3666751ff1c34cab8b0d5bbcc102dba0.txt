@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int n = scan.nextInt();
+    double total = 0;
+    int zeroCount = 0;
+    for (int i = 0; i < n; i++) {
+        int temp = scan.nextInt();
+        if (temp == 0) {
+            zeroCount++;
+            continue;
+        }
+        total = total + temp;
+    }
+    total = total / (n - zeroCount);
+    total = Math.ceil(total);
+    System.out.println((int) total);
+}

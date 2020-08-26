@@ -1,0 +1,7 @@
+public static long nck(int n, int k, long[] fact, long[] inverse) {
+    if (n < k || n < 0 || k < 0) {
+        return 0;
+    }
+    
+    return (((fact[n] * inverse[n - k]) % MOD) * inverse[k]) % MOD;
+}

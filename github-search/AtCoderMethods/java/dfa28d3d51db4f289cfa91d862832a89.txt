@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    Printer pr = new Printer(System.out);
+    int n = sc.nextInt();
+    int q = sc.nextInt();
+    int[] x = new int[n];
+    int[] r = new int[n];
+    int[] h = new int[n];
+    for (int i = 0; i < n; i++) {
+        x[i] = sc.nextInt();
+        r[i] = sc.nextInt();
+        h[i] = sc.nextInt();
+    }
+    for (int i = 0; i < q; i++) {
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        double ret = 0;
+        for (int j = 0; j < n; j++) {
+            ret += v(x[j], r[j], h[j], a) - v(x[j], r[j], h[j], b);
+        }
+        pr.printf("%.4f\n", ret);
+    }
+    pr.close();
+    sc.close();
+}

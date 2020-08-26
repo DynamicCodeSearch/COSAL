@@ -1,0 +1,39 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    int[] a = new int[m];
+    int[] b = new int[m];
+    int[] pair1 = new int[m];
+    int[] pairn = new int[m];
+    int count1 = 0;
+    int countn = 0;
+    
+    HashSet<Integer> setn = new HashSet<>();
+    for (int i = 0; i < m; i++) {
+        a[i] = sc.nextInt();
+        b[i] = sc.nextInt();
+        if (a[i] == 1) {
+            pair1[count1] = b[i];
+            count1++;
+        
+        } else if (b[i] == n) {
+            
+            countn++;
+            setn.add(a[i]);
+        }
+    }
+    if (count1 == 0 || countn == 0)
+        System.out.println("IMPOSSIBLE");
+    else {
+        boolean flag = false;
+        
+        for (int i = 0; i < count1; i++) {
+            if (setn.contains(pair1[i])) {
+                flag = true;
+                break;
+            }
+        }
+        System.out.println((flag) ? "POSSIBLE" : "IMPOSSIBLE");
+    }
+}

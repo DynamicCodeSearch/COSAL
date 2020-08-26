@@ -1,0 +1,27 @@
+def ColoringDominoes(N, S1, S2):
+
+    pattern = list()
+    i = 0
+    while True:
+        if S1[i] == S2[i]:
+            pattern.append(True)
+            i += 1
+        else:
+            pattern.append(False)
+            i += 2
+        if i >= N:
+            break
+
+    if pattern[0]:
+        n_pattern = 3
+    else:
+        n_pattern = 6
+    for i in range(1, len(pattern)):
+        if pattern[i-1] and pattern[i]:
+            n_pattern *= 2
+        elif pattern[i-1] and not(pattern[i]):
+            n_pattern *= 2
+        elif not(pattern[i-1]) and not(pattern[i]):
+            n_pattern *= 3
+
+    return n_pattern % 1000000007

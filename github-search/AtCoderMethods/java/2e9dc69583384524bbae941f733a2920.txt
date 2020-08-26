@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int i, k;
+    int[] count = new int[6];
+    char[] ABC = { 'A', 'B', 'C', 'D', 'E', 'F' };
+    String S = sc.next();
+    for (i = 0; i < S.length(); i++) {
+        for (k = 0; k < 6; k++) {
+            if (S.charAt(i) == ABC[k]) {
+                count[k]++;
+            }
+        }
+    }
+    for (i = 0; i < 6; i++) {
+        System.out.print(count[i]);
+        if (i < 5) {
+            System.out.print(" ");
+        } else {
+            System.out.println();
+        }
+    }
+}

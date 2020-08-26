@@ -1,0 +1,15 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    String S = sc.next();
+    for (int i = 1; i < S.length(); i++) {
+        int length = S.length() - i;
+        if (length % 2 == 1) {
+            continue;
+        }
+        debug(S.substring(0, length / 2), S.substring(length / 2, length));
+        if (S.substring(0, length / 2).equals(S.substring(length / 2, length))) {
+            System.out.println(length);
+            return;
+        }
+    }
+}

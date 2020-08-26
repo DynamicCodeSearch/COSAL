@@ -1,0 +1,23 @@
+static long solve(int[] arr, int parity) {
+    long sum = 0;
+    long res = 0;
+    for (int n = arr.length, i = 0; i < n; i++) {
+        if ((parity & 1) == 0) {
+            if (sum + arr[i] <= 0) {
+                res += (1 - (sum + arr[i]));
+                sum = 1;
+            } else {
+                sum += arr[i];
+            }
+        } else {
+            if (sum + arr[i] >= 0) {
+                res += ((sum + arr[i]) - -1);
+                sum = -1;
+            } else {
+                sum += arr[i];
+            }
+        }
+        parity ^= 1;
+    }
+    return res;
+}

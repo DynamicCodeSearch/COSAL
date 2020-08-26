@@ -1,0 +1,22 @@
+private static void solve() {
+    String[] abc = new String[3];
+    abc[0] = sc.next();
+    abc[1] = sc.next();
+    abc[2] = sc.next();
+    int t = 0;
+    while (true) {
+        if (abc[t].length() == 0) {
+            pr.println((char) ('A' + t));
+            return;
+        }
+        char next = abc[t].charAt(0);
+        abc[t] = abc[t].substring(1, abc[t].length());
+        if (next == 'a') {
+            t = 0;
+        } else if (next == 'b') {
+            t = 1;
+        } else if (next == 'c') {
+            t = 2;
+        }
+    }
+}

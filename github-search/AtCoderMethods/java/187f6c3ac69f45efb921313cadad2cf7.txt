@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int n = scanner.nextInt();
+    int[] a = new int[n];
+    long sum = 0, x = 0, y = 0, ans = Long.MAX_VALUE;
+    for (int i = 0; i < n; i++) {
+        a[i] = scanner.nextInt();
+        sum += a[i];
+    }
+    for (int i = 0; i < n - 1; i++) {
+        x += a[i];
+        y = sum - x;
+        long z = Math.abs(x - y);
+        ans = Math.min(ans, z);
+    }
+    System.out.println(ans);
+}

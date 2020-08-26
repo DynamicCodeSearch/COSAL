@@ -1,0 +1,15 @@
+def Cond(monsters, A, B, mid):
+    t = [x - (B * mid) for x in monsters]
+    t.sort(reverse=True)
+    additional_damage = (A - B)
+
+    total_count = 0
+    for m in t:
+        if m < 1:
+            break
+        total_count += ceil(m / additional_damage)
+
+    if total_count <= mid:
+        return True
+    else:
+        return False

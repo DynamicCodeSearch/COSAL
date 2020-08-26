@@ -1,0 +1,13 @@
+static void solve(int[] array, int start, int end) {
+    if (start == end) {
+        long temp = 0;
+        for (int i = 1; i < array.length - 1; i++) temp += dist[array[i]][array[i + 1]];
+        ans = Math.min(ans, temp);
+        return;
+    }
+    for (int i = start; i <= end; i++) {
+        swap(array, start, i);
+        solve(array, start + 1, end);
+        swap(array, start, i);
+    }
+}

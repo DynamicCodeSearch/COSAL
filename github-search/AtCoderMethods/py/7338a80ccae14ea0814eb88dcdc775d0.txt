@@ -1,0 +1,14 @@
+def main():
+    n = read_int()
+    a = read_int_list()
+    res = 10 ** 20
+    s = sum(a)
+    x = 0
+    y = s
+    for i in range(n - 1):
+        x += a[i]
+        y -= a[i]
+        t = abs(x - y)
+        if res > t:
+            res = t
+    print(res)

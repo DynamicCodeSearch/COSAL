@@ -1,0 +1,34 @@
+public static void main(String[] args) {
+    final long MOD = 1000000007L;
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    String S1 = sc.next();
+    String S2 = sc.next();
+    char[] upper = new char[N];
+    char[] lower = new char[N];
+    for (int i = 0; i < N; i++) {
+        upper[i] = S1.charAt(i);
+        lower[i] = S2.charAt(i);
+    }
+    int availableColors = 3;
+    int n = 0;
+    long ans = 1;
+    while (n < N) {
+        if (upper[n] == lower[n]) {
+            ans = (ans * availableColors) % MOD;
+            availableColors = 2;
+            n++;
+        } else {
+            if (availableColors == 1)
+                ans = (ans * 3) % MOD;
+            else if (availableColors == 2)
+                ans = (ans * 2) % MOD;
+            else
+                
+                ans = (ans * 6) % MOD;
+            availableColors = 1;
+            n += 2;
+        }
+    }
+    System.out.println(ans);
+}

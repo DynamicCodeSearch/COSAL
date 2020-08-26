@@ -1,0 +1,6 @@
+public static long onesModM(long a, long b, long m) {
+    MatrixMod.MOD = m;
+    MatrixMod x = new MatrixMod(new long[][] { { pow(10, a, m), 1 }, { 0, 1 } });
+    x = x.pow(b);
+    return x.e[0][1];
+}

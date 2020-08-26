@@ -1,0 +1,18 @@
+void solve() {
+    int N = sc.nextInt();
+    long A = sc.nextLong();
+    long B = sc.nextLong();
+    long[] h = new long[N];
+    for (int i = 0; i < N; i++) h[i] = sc.nextLong();
+    int low = 0;
+    int high = (int) 1e9;
+    while (low < high - 1) {
+        int mid = (low + high) >> 1;
+        if (check(mid, h, A, B)) {
+            high = mid;
+        } else {
+            low = mid;
+        }
+    }
+    System.out.println(high);
+}

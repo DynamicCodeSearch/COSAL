@@ -1,0 +1,37 @@
+public static void main(String[] args) {
+    int n = s.nextInt() + 1, d[][] = new int[n][n];
+    for (int i = 1; i < n; i++) {
+        for (int j = 1; j < n; j++) {
+            d[i][j] = s.nextInt();
+        }
+    }
+    for (int i = 1; i < n; i++) Arrays.parallelPrefix(d[i], (o1, o2) -> o1 + o2);
+    for (int i = 1; i < n; i++) {
+        for (int j = 1; j < n; j++) {
+            d[i][j] += d[i - 1][j];
+        }
+    
+    }
+    for (int q = s.nextInt(); q > 0; q--) {
+        int p = s.nextInt(), max = -114514;
+        for (int x = 1, y; x <= p; x++) {
+            y = p / x;
+            
+            for (int i = y; i < n; i++) {
+                for (int j = x; j < n; j++) {
+                    max = Math.max(max, d[i][j] - d[i - y][j] - d[i][j - x] + d[i - y][j - x]);
+                }
+            }
+            
+            final int yy = x, xx = y;
+            
+            for (int i = yy; i < n; i++) {
+                for (int j = xx; j < n; j++) {
+                    max = Math.max(max, d[i][j] - d[i - yy][j] - d[i][j - xx] + d[i - yy][j - xx]);
+                }
+            }
+        
+        }
+        System.out.println(max);
+    }
+}

@@ -1,0 +1,13 @@
+def is_fullfilled(in_str):
+    LR = 0
+    for c in in_str:
+        if LR < 0:
+            return False
+        if c == "(":
+            LR += 1
+        else:
+            LR -= 1
+    if LR == 0:
+        return True
+    else:
+        return False

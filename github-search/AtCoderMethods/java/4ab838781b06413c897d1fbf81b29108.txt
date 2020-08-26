@@ -1,0 +1,4 @@
+public void update(int pos, long x) {
+    st[H + pos] = x;
+    for (int i = (H + pos) >>> 1; i >= 1; i >>>= 1) propagate(i);
+}

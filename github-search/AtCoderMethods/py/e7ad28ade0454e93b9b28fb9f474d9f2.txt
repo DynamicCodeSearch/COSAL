@@ -1,0 +1,16 @@
+def dp_go(now, c, p):
+    global memo
+    if memo[now][c] >= 0:
+        return memo[now][c]
+    ret = 1
+    ncs = [False]
+    if not(c):
+        ncs.append(True)
+    for x in edge[now]:
+        if x != p:
+            cur = 0
+            for nc in ncs:
+                cur += dp_go(x, nc, now)
+            ret *= cur
+    memo[now][c] = ret
+    return ret

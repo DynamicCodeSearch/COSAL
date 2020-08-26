@@ -1,0 +1,20 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String x = br.readLine();
+    String[] cut = x.split(" ");
+    int a = Integer.parseInt(cut[0]);
+    int b = Integer.parseInt(cut[1]);
+    String w = "Draw";
+    if (a == 1) {
+        a = 14;
+    }
+    if (b == 1) {
+        b = 14;
+    }
+    if (a > b) {
+        w = "Alice";
+    } else if (a < b) {
+        w = "Bob";
+    }
+    System.out.println(w);
+}

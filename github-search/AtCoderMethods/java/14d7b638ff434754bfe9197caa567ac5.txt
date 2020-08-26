@@ -1,0 +1,18 @@
+static void solve() {
+    String s = in.next();
+    int[] a = new int[4];
+    for (int i = 0; i < 4; i++) {
+        a[i] = in.nextInt();
+    }
+    int p = 0;
+    for (int i = 0; i < s.length(); i++) {
+        if (p != 4 && i == a[p]) {
+            out.print("\"");
+            p++;
+        }
+        out.print(s.charAt(i));
+    }
+    if (p != 4)
+        out.print("\"");
+    out.println();
+}

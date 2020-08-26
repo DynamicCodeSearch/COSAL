@@ -1,0 +1,13 @@
+void cnt(int len) {
+    if (len == N) {
+        CNT++;
+        return;
+    }
+    pathed = true;
+    for (Integer v : Link) {
+        if (!VertexMap.get(v).pathed) {
+            VertexMap.get(v).cnt(len + 1);
+        }
+    }
+    pathed = false;
+}

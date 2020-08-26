@@ -1,0 +1,31 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int A = sc.nextInt();
+    int B = sc.nextInt();
+    int[] array = { 1, 5, 10 };
+    Queue<Integer> q = new LinkedList<Integer>();
+    Map<Integer, Integer> m = new HashMap<Integer, Integer>();
+    q.add(A);
+    m.put(A, 0);
+    int key = 0;
+    while (!q.isEmpty()) {
+        int temp = q.poll();
+        if (temp == B) {
+            key = temp;
+            break;
+        }
+        int floor = m.get(temp);
+        for (int i = 0; i < array.length; i++) {
+            if (!q.contains(temp + array[i])) {
+                q.add(temp + array[i]);
+                m.put(temp + array[i], floor + 1);
+            }
+            if (!q.contains(temp - array[i])) {
+                q.add(temp - array[i]);
+                m.put(temp - array[i], floor + 1);
+            }
+        }
+    }
+    System.out.println(m.get(key));
+    sc.close();
+}

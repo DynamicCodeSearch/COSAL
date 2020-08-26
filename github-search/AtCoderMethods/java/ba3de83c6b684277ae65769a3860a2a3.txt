@@ -1,0 +1,28 @@
+
+public void run() throws IOException {
+    
+    int TEST_CASE = 1;
+    while (TEST_CASE-- != 0) {
+        int n = io.nextInt();
+        int m = io.nextInt();
+        int[] a = io.nextIntArray(n);
+        for (int i = 0; i < n; i++) a[i]--;
+        SegArithmeticProgression seg = new SegArithmeticProgression(m, 1);
+        long ans = 0;
+        for (int i = 1; i < n; i++) {
+            if (a[i - 1] <= a[i]) {
+                ans += a[i] - a[i - 1];
+                seg.addSeries(a[i - 1] + 2, a[i] + 1, 1);
+            } else {
+                ans += m + a[i] - a[i - 1];
+                seg.addSeries(a[i - 1] + 2, m, 1);
+                seg.addSeries(0, a[i] + 1, m - 1 - a[i - 1]);
+            }
+        }
+        long max = 0;
+        for (int i = 0; i < m; i++) {
+            max = Math.max(max, seg.get(i, i + 1));
+        }
+        io.out.println(ans - max);
+    }
+}

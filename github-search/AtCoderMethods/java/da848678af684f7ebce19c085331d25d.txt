@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    Map<String, Integer> map = new HashMap<>();
+    map.put("b", 0);
+    map.put("abc", 1);
+    map.put("cabca", 2);
+    String S = "cabca";
+    for (int i = 1; i <= 16; i++) {
+        int b = 3 * i;
+        S = "b" + S + "b";
+        map.put(S, b);
+        int c = 3 * i + 1;
+        S = "a" + S + "c";
+        map.put(S, c);
+        int d = 3 * i + 2;
+        S = "c" + S + "a";
+        map.put(S, d);
+    }
+    int N = sc.nextInt();
+    String SA = sc.next();
+    int K = -1;
+    if (map.containsKey(SA)) {
+        K = map.get(SA);
+    }
+    System.out.println(K);
+}

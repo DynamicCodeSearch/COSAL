@@ -1,0 +1,8 @@
+int Query(int l, int r, int a, int b, int k) {
+    if (l <= a && b <= r)
+        return xs[k];
+    if (b <= l || r <= a)
+        return INF;
+    final int m = (a + b) / 2;
+    return Min(Query(l, r, a, m, 2 * k + 1), Query(l, r, m, b, 2 * k + 2));
+}

@@ -1,0 +1,39 @@
+
+private void solveAll() throws IOException, InterruptedException {
+    long timeStart = System.currentTimeMillis();
+    if (T == 0) {
+        if (largeFakeTest) {
+            T = largeFakeTest_T;
+        } else {
+            T = scanner.nextInt();
+        }
+    }
+    final String[] results = new String[T + 1];
+    for (int test = 0; test < T; test++) {
+        Solver solver = new Solver() {
+
+            @Override
+            public void callback() {
+                results[testNo] = answer;
+            }
+        };
+        solver.testNo = test + 1;
+        if (largeFakeTest) {
+            solver.readFakeInput();
+        } else {
+            solver.readInput();
+        }
+        solver.solveWrapped();
+    }
+    long timeEnd = System.currentTimeMillis();
+    if (isInputFromFile())
+        System.out.println("All tasks are solved! Elapsed time " + (timeEnd - timeStart) / 1000.0 + " sec.");
+    
+    for (int i = 1; i <= T; i++) {
+        if (eventType == EventType.GOOGLE_CODE_JAM) {
+            out.printf("Case #%d: %s", i, results[i]);
+        } else {
+            out.println(results[i]);
+        }
+    }
+}

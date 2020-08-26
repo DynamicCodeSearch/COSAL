@@ -1,0 +1,28 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+    String[] inputs = reader.readLine().split(" ");
+    int N = Integer.parseInt(inputs[0]);
+    long T = Integer.parseInt(inputs[1]);
+    inputs = reader.readLine().split(" ");
+    long length = 0;
+    long t;
+    t = Long.parseLong(inputs[0]);
+    long[] interval = new long[] { t, t + T };
+    for (int i = 1; i < N; i++) {
+        t = Long.parseLong(inputs[i]);
+        if (interval[1] < t) {
+            length += (interval[1] - interval[0]);
+            interval[0] = t;
+            interval[1] = t + T;
+        } else if (interval[1] == t) {
+            length += (interval[1] - interval[0]);
+            interval[0] = t;
+            interval[1] = t + T;
+        } else {
+            length += (t - interval[0]);
+            interval[0] = t;
+            interval[1] = t + T;
+        }
+    }
+    System.out.println(length + (interval[1] - interval[0]));
+}

@@ -1,0 +1,15 @@
+void solve() throws IOException {
+    int N = ni();
+    int[] a = nia(N);
+    int ans = Integer.MAX_VALUE;
+    for (int i = -100; i <= 100; i++) {
+        int tmp = 0;
+        for (int j = 0; j < N; j++) {
+            tmp += (a[j] - i) * (a[j] - i);
+        }
+        if (tmp < ans) {
+            ans = tmp;
+        }
+    }
+    out.println(ans);
+}

@@ -1,0 +1,64 @@
+static public void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int h = sc.nextInt();
+    int w = sc.nextInt();
+    int n = sc.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) a[i] = sc.nextInt();
+    int[][] arr = new int[h][w];
+    int wl = 0;
+    int wm = w - 1;
+    int hl = 0;
+    int hm = h - 1;
+    int id = 0;
+    while (true) {
+        int i = 0;
+        for (i = wl; i <= wm; i++) {
+            if (a[id] == 0) {
+                id++;
+            }
+            arr[hl][i] = id + 1;
+            a[id]--;
+        }
+        if (i == wl)
+            break;
+        hl++;
+        for (i = hl; i <= hm; i++) {
+            if (a[id] == 0) {
+                id++;
+            }
+            arr[i][wm] = id + 1;
+            a[id]--;
+        }
+        if (i == hl)
+            break;
+        wm--;
+        for (i = wm; i >= wl; i--) {
+            if (a[id] == 0) {
+                id++;
+            }
+            arr[hm][i] = id + 1;
+            a[id]--;
+        }
+        if (i == wm)
+            break;
+        hm--;
+        for (i = hm; i >= hl; i--) {
+            if (a[id] == 0) {
+                id++;
+            }
+            arr[i][wl] = id + 1;
+            a[id]--;
+        }
+        if (i == hm)
+            break;
+        wl++;
+    }
+    for (int i = 0; i < h; i++) {
+        System.out.print(arr[i][0]);
+        for (int j = 1; j < w; j++) {
+            System.out.print(" " + arr[i][j]);
+        }
+        System.out.println();
+    }
+}

@@ -1,0 +1,56 @@
+public void solve() {
+    int H = nextInt();
+    int W = nextInt();
+    char[][] origin = new char[H][W];
+    char[][] tmp = new char[H][W];
+    char[][] tmp2 = new char[H][W];
+    for (int i = 0; i < H; i++) {
+        String str = next();
+        for (int j = 0; j < W; j++) {
+            origin[i][j] = tmp[i][j] = tmp2[i][j] = str.charAt(j);
+        }
+    }
+    int[] dr = { 0, -1, -1, -1, 0, 1, 1, 1 };
+    int[] dc = { 1, 1, 0, -1, -1, -1, 0, 1 };
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            if (origin[i][j] == '.') {
+                for (int k = 0; k < 8; k++) {
+                    int r = dr[k] + i;
+                    int c = dc[k] + j;
+                    if (0 <= r && r < H && 0 <= c && c < W) {
+                        tmp2[r][c] = tmp[r][c] = '.';
+                    }
+                }
+            }
+        }
+    }
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            if (tmp[i][j] == '#') {
+                for (int k = 0; k < 8; k++) {
+                    int r = dr[k] + i;
+                    int c = dc[k] + j;
+                    if (0 <= r && r < H && 0 <= c && c < W) {
+                        tmp2[r][c] = '#';
+                    }
+                }
+            }
+        }
+    }
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            if (origin[i][j] != tmp2[i][j]) {
+                out.println("impossible");
+                return;
+            }
+        }
+    }
+    out.println("possible");
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            out.print(tmp[i][j]);
+        }
+        out.println();
+    }
+}

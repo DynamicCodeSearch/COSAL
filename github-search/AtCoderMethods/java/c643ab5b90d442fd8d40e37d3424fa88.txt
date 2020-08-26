@@ -1,0 +1,15 @@
+static void rec(String s, int a, int b, int n) {
+    if (b == n) {
+        System.out.println(s);
+        return;
+    }
+    String p = s;
+    if (a > b) {
+        s = p + ")";
+        rec(s, a, b + 1, n);
+    }
+    if (a < n) {
+        s = p + "(";
+        rec(s, a + 1, b, n);
+    }
+}

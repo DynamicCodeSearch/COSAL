@@ -1,0 +1,8 @@
+public static void add(String str1, String str2) {
+    if (str2.length() == 0) {
+        calc(str1);
+        return;
+    }
+    add(str1 + str2.substring(0, 1), str2.substring(1));
+    add(str1 + "," + str2.substring(0, 1), str2.substring(1));
+}

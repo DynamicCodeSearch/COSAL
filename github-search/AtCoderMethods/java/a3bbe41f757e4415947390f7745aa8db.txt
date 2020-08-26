@@ -1,0 +1,15 @@
+public static int dfs(int l, int N, int t, int red, int[][] a, int[] v) {
+    if (red == N - 1) {
+        t++;
+    }
+    for (int j = 1; j <= N; j++) {
+        if (a[l][j] == 1 && v[j] == 0) {
+            v[j] = 1;
+            red++;
+            t = dfs(j, N, t, red, a, v);
+            v[j] = 0;
+            red--;
+        }
+    }
+    return t;
+}

@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int m = scan.nextInt();
+    int n = scan.nextInt();
+    int N = scan.nextInt();
+    int Sum = N, new_make = 0;
+    int not_using = 0;
+    while (true) {
+        not_using += N % m;
+        new_make = (N / m) * n;
+        Sum += (N / m) * n;
+        N = new_make;
+        if (new_make < m)
+            break;
+    }
+    not_using += new_make;
+    while (true) {
+        new_make = (not_using / m) * n;
+        Sum += new_make;
+        not_using = not_using % m + new_make;
+        if (not_using < m)
+            break;
+    }
+    System.out.println(Sum);
+}

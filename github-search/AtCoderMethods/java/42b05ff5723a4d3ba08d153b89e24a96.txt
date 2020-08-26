@@ -1,0 +1,19 @@
+void solve() throws IOException {
+    long h = in.nextInt();
+    long w = in.nextInt();
+    long ans = h * w;
+    
+    for (long i = w / 3; i <= w / 3 + 1; i++) {
+        long a = i * h;
+        long b = half(h, w - i);
+        long c = h * w - (a + b);
+        ans = Math.min(ans, diff(a, b, c));
+    }
+    for (long i = h / 3; i <= h / 3 + 1; i++) {
+        long a = i * w;
+        long b = half(h - i, w);
+        long c = h * w - (a + b);
+        ans = Math.min(ans, diff(a, b, c));
+    }
+    System.out.println(ans);
+}

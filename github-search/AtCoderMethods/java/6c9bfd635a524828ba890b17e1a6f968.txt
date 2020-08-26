@@ -1,0 +1,23 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    int n = in.readInt();
+    ArrayList<Long> list = new ArrayList<>();
+    long sumright = 0;
+    for (int i = 0; i < n; i++) {
+        long t = in.readLong();
+        list.add(t);
+        sumright += t;
+    }
+    long sumleft = 0;
+    long minABS = Long.MAX_VALUE;
+    for (int i = 0; i < n - 1; i++) {
+        sumleft += list.get(i);
+        sumright -= list.get(i);
+        if (Math.abs(sumleft - sumright) < minABS) {
+            minABS = Math.abs(sumleft - sumright);
+        }
+    }
+    out.printLine(minABS);
+    
+    return;
+
+}

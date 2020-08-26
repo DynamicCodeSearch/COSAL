@@ -1,0 +1,21 @@
+void solve() {
+    long k = nl();
+    if (k == 0) {
+        System.out.println("2\n1 1");
+        return;
+    }
+    if (k == 1) {
+        System.out.println("2\n0 2");
+        return;
+    }
+    out.println(50);
+    int l = (int) (k % 50);
+    long y = k / 50;
+    long[] arr = new long[60];
+    long g = y + 49, h = g + (50 - l + 1);
+    for (int i = 0; i < l; i++) {
+        arr[i] = h;
+    }
+    for (int i = l; i < 50; i++) arr[i] = g - l;
+    for (int i = 0; i < 50; i++) out.print(arr[i] + " ");
+}

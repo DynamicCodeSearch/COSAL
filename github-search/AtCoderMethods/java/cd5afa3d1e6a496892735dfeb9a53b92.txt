@@ -1,0 +1,13 @@
+static void update(int node, int s, int e, int l, int r, int val) {
+    if (s > e || l > e || r < s) {
+        return;
+    }
+    if (s == e) {
+        tree[node].val += val;
+    } else {
+        int mid = (s + e) >> 1;
+        update(node << 1, s, mid, l, r, val);
+        update(node << 1 | 1, mid + 1, e, l, r, val);
+        tree[node] = merge(tree[node << 1], tree[node << 1 | 1]);
+    }
+}

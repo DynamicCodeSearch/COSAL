@@ -1,0 +1,9 @@
+def getNewVote(currentVote, newRatio):
+    multFacCeil = []
+    for i in range(2):
+        multFacCeil.append((currentVote[i] - 1) // newRatio[i] + 1)
+    newVote = []
+    maxMF = max(multFacCeil)
+    for i in range(2):
+        newVote.append(newRatio[i] * maxMF)
+    return newVote

@@ -1,0 +1,24 @@
+public static void main(String[] args) throws IOException {
+    n = nextInt();
+    k = nextInt();
+    for (int i = 1; i <= n; i++) {
+        a[i] = a[i - 1] + nextInt() - k;
+        b[i] = a[i];
+    }
+    Arrays.sort(b, 1, n + 1);
+    hm.clear();
+    ed = 0;
+    for (int i = 1; i <= n; i++) {
+        if (!hm.containsKey(b[i]))
+            hm.put(b[i], ++ed);
+    }
+    ans = 0;
+    for (int i = 1; i <= n; i++) {
+        if (a[i] >= 0)
+            ans++;
+        ans += sum(hm.get(a[i]));
+        add(hm.get(a[i]), 1);
+    }
+    out.println(ans);
+    out.flush();
+}

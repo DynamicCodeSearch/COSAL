@@ -1,0 +1,12 @@
+public String nextLine() {
+    int c;
+    while ((c = read()) != -1 && (c == ' ' || c == '\n' || c == '\r')) ;
+    StringBuilder s = new StringBuilder();
+    while (c != -1) {
+        if (c == '\n' || c == '\r')
+            break;
+        s.append((char) c);
+        c = read();
+    }
+    return s.toString();
+}

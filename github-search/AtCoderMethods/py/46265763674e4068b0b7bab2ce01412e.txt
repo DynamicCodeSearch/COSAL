@@ -1,0 +1,12 @@
+def test(a):
+    if len(a) % 2:
+        if a[0]:
+            return False
+
+        del a[0]
+
+    for i in range(0, len(a) - 2, 2):
+        if a[i] != a[i + 1] or a[i + 2] - a[i] != 2:
+            return False
+
+    return True

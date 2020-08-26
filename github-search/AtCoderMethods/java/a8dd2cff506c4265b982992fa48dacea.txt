@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int cost = sc.nextInt();
+    int k = sc.nextInt();
+    ArrayList<Integer> numList = new ArrayList<>();
+    for (int i = 0; i < k; i++) {
+        numList.add(sc.nextInt());
+    }
+    boolean flag = true;
+    cost--;
+    while (flag) {
+        flag = false;
+        cost++;
+        int tmp = cost;
+        while (tmp > 0) {
+            if (numList.contains(tmp % 10)) {
+                flag = true;
+                break;
+            }
+            tmp /= 10;
+        }
+    }
+    System.out.println(cost);
+}

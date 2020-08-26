@@ -1,0 +1,15 @@
+private static int getVV(int m) {
+    if (m < 100) {
+        return 0;
+    }
+    if (m <= 5000) {
+        return m / 100;
+    }
+    if (m <= 30_000) {
+        return m / 1000 + 50;
+    }
+    if (m <= 70_000) {
+        return (m / 1000 - 30) / 5 + 80;
+    }
+    return 89;
+}

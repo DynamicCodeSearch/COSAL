@@ -1,0 +1,24 @@
+def solve():
+    N, A = map(int, input().split())
+    x = [int(i) for i in input().split()]
+
+    lim = sum(x)
+    dp = [[0]*(lim + 1) for i in range(N + 1)]
+
+    dp[0][0] = 1
+
+    for i in range(N):
+        for k in range(N, 0, -1):
+            for v in range(lim, -1, -1):
+                if v - x[i] < 0:
+                    break
+                dp[k][v] += dp[k - 1][v - x[i]]
+
+    ans = 0
+
+    for k in range(1, N + 1):
+        if k*A > lim:
+            break
+        ans += dp[k][k*A]
+
+    print(ans)

@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    int[] from = new int[M];
+    int[] to = new int[M];
+    long[] w = new long[M];
+    for (int i = 0; i < M; i++) {
+        from[i] = sc.nextInt() - 1;
+        to[i] = sc.nextInt() - 1;
+        w[i] = -sc.nextLong();
+    }
+    int[][] g = packD(N, from, to);
+    boolean[] flg = new boolean[N];
+    dfs(g, 0, flg, new boolean[N]);
+    long[] ret = bf(from, to, w, N, 0, flg);
+    if (ret == null) {
+        System.out.println("inf");
+    } else {
+        System.out.println(-ret[N - 1]);
+    }
+}

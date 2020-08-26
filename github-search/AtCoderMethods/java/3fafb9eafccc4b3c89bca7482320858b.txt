@@ -1,0 +1,47 @@
+public static void main(String[] args) {
+    Scanner stdIn = new Scanner(System.in);
+    H = Integer.valueOf(stdIn.next());
+    W = Integer.valueOf(stdIn.next());
+    stdIn.nextLine();
+    S = new char[H][W];
+    for (int i = 0; i < H; i++) {
+        S[i] = stdIn.nextLine().toCharArray();
+    }
+    char[][] decoded = new char[H][W];
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            decoded[i][j] = check(j, i) ? '#' : '.';
+        }
+    }
+    char[][] encoded = new char[H][W];
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            encoded[i][j] = '.';
+        }
+    }
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            if (decoded[i][j] == '#') {
+                for (int I = i - 1; I <= i + 1; I++) {
+                    for (int J = j - 1; J <= j + 1; J++) {
+                        if (I < 0 || J < 0 || I >= H || J >= W) {
+                            continue;
+                        }
+                        encoded[I][J] = '#';
+                    }
+                }
+            }
+        }
+    }
+    if (equals(S, encoded)) {
+        System.out.println("possible");
+        for (int i = 0; i < H; i++) {
+            for (int j = 0; j < W; j++) {
+                System.out.print(decoded[i][j]);
+            }
+            System.out.println();
+        }
+    } else {
+        System.out.println("impossible");
+    }
+}

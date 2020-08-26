@@ -1,0 +1,29 @@
+def Restoring_Road_Network2():
+
+    not_available = False
+    for k in range(0, N):
+        for i in range(0, N):
+            if(k==i): continue
+            for j in range(0, N):
+                if((i==j) or (j==k)): continue
+                if(A[i][k] + A[k][j] < A[i][j]):
+                    not_availabel = True
+                if(A[i][k] + A[k][j] == A[i][j]):
+                    B[i][j] = 1
+                    B[j][i] = 1
+
+    try:
+        LOCAL_FLAG
+        print(B)
+    except NameError:
+        pass
+
+    if(not_available):
+        print(-1)
+    else:
+        total_dis = 0
+        for i in range(0, N):
+            for j in range(i, N):
+                if(B[i][j] == 0):
+                    total_dis += A[i][j]
+        print(total_dis)

@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int t = sc.nextInt();
+    int[] a = new int[n];
+    int ans = 0;
+    for (int i = 0; i < n; i++) a[i] = sc.nextInt();
+    int min = a[0];
+    int profit = 0;
+    for (int i = 1; i < n; i++) {
+        if (min > a[i])
+            min = a[i];
+        if (profit < a[i] - min)
+            profit = a[i] - min;
+    }
+    min = a[0];
+    for (int i = 1; i < n; i++) {
+        if (min > a[i])
+            min = a[i];
+        if (profit == a[i] - min)
+            ans++;
+    }
+    System.out.println(ans);
+}

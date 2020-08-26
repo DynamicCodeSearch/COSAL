@@ -1,0 +1,11 @@
+boolean check(char[][] map, int x, int y, char c) {
+    for (int[] i : new int[][] { { -1, -1 }, { -1, 0 }, { -1, 1 }, { 0, -1 }, { 0, 1 }, { 1, -1 }, { 1, 0 }, { 1, 1 }, { 0, 0 } }) {
+        int nx = x + i[0], ny = y + i[1];
+        if (0 <= nx && nx < map.length && 0 <= ny && ny < map[0].length) {
+            if (map[nx][ny] == c) {
+                return true;
+            }
+        }
+    }
+    return false;
+}

@@ -1,0 +1,8 @@
+private static void add(int a, int b, Map<Long, Integer> hm) {
+    long key = (long) a << 32 | b;
+    if (hm.containsKey(key)) {
+        hm.put(key, hm.get(key) + 1);
+    } else {
+        hm.put(key, 1);
+    }
+}

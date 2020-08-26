@@ -1,0 +1,22 @@
+public static void main(String[] args) throws Exception {
+    build();
+    int n = sc.nextInt();
+    if (n == 1) {
+        out.println(1);
+    } else {
+        for (int i = 2; i <= n; i++) {
+            int curr = i;
+            while (curr > 1) {
+                put(sp[curr], 1);
+                curr /= sp[curr];
+            }
+        }
+        long res = 1;
+        for (Map.Entry<Integer, Integer> en : m1.entrySet()) {
+            long now = en.getValue() + 1;
+            res = (res * now) % mod;
+        }
+        out.println(res);
+    }
+    out.close();
+}

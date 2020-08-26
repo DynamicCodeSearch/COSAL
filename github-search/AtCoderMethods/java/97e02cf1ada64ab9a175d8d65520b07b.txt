@@ -1,0 +1,61 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    long K = sc.nextLong();
+    long[] accDays = new long[N + 1];
+    accDays[0] = 1;
+    accDays[1] = sc.nextLong();
+    for (int i = 2; i <= N; i++) {
+        accDays[i] = accDays[i - 1] + sc.nextLong();
+    }
+    if (accDays[N] == K) {
+        System.out.println(1);
+        return;
+    }
+    
+    long[][] dp = new long[N + 1][N + 1];
+    for (int day = 0; day <= N; day++) {
+        for (int win = 0; win <= N; win++) {
+            dp[day][win] = MAX;
+        }
+    }
+    dp[0][0] = 0;
+    
+    for (int day = 0; day < N; day++) {
+        for (int win = 0; win < day + 1; win++) {
+            
+            if (dp[day][win] == MAX) {
+                continue;
+            }
+            
+            int neededWin = getNeededWin(day, win, accDays, dp);
+            if (neededWin + win > K) {
+                
+                break;
+            } else {
+                
+                
+                dp[day + 1][win] = Math.min(dp[day + 1][win], dp[day][win]);
+                
+                dp[day + 1][win + 1] = Math.min(dp[day + 1][win + 1], dp[day][win] + neededWin);
+            }
+        }
+    }
+    
+    int ans = 0;
+    for (int win = 0; win <= N; win++) {
+        if (dp[N][win] != MAX && dp[N][win] <= K) {
+            ans = win;
+        }
+    }
+    
+    System.out.println(ans);
+
+
+
+
+
+
+
+}

@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    long[] a = new long[n];
+    long[] t = new long[n];
+    long x = 1;
+    for (int i = 0; i < n; i++) {
+        a[i] = sc.nextLong();
+        t[i] = sc.nextLong();
+    }
+    for (int i = 1; i < n; i++) {
+        long xa, xt;
+        if (x * a[i - 1] % a[i] == 0) {
+            xa = x * a[i - 1] / a[i];
+        } else {
+            xa = x * a[i - 1] / a[i] + 1;
+        }
+        if (x * t[i - 1] % t[i] == 0) {
+            xt = x * t[i - 1] / t[i];
+        } else {
+            xt = x * t[i - 1] / t[i] + 1;
+        }
+        x = xa > xt ? xa : xt;
+    }
+    System.out.println(x * (a[n - 1] + t[n - 1]));
+}

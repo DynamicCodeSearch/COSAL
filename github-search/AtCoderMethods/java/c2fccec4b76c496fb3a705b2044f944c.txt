@@ -1,0 +1,13 @@
+static boolean dfs(int n, int current) {
+    if (n == N) {
+        return current == 0;
+    }
+    boolean result = false;
+    for (int i = 0; i < K; i++) {
+        if (dfs(n + 1, current ^ t[n][i])) {
+            result = true;
+            break;
+        }
+    }
+    return result;
+}

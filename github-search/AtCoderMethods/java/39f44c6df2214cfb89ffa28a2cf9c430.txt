@@ -1,0 +1,12 @@
+public static void main(String[] args) throws java.lang.Exception {
+    InputReader in = new InputReader(System.in);
+    PrintWriter w = new PrintWriter(System.out);
+    int n = in.nextInt(), k = in.nextInt();
+    int[] a = in.nextIntArray(n);
+    long ans = 0;
+    for (int i = 1; i <= n; i++) {
+        ans += Math.min(a[i - 1], Math.abs(k - a[i - 1])) * 2L;
+    }
+    w.println(ans);
+    w.close();
+}

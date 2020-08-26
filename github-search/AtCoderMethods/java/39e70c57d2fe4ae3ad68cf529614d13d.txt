@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    int[] a = sc.nextIntList(N);
+    long ret = 0;
+    int last = 0;
+    int before = a[0];
+    for (int i = 1; i < N; i++) {
+        if (before >= a[i]) {
+            long n = i - last;
+            ret += n * (n + 1) / 2;
+            last = i;
+        }
+        before = a[i];
+    }
+    long n = N - last;
+    ret += n * (n + 1) / 2;
+    System.out.println(ret);
+}

@@ -1,0 +1,54 @@
+public static void main(String[] args) {
+    IO io = new IO();
+    int h = io.nextInt();
+    int w = io.nextInt();
+    char[][] m = io.nextCharMap(h, w);
+    char[][] ans = new char[h][w];
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            boolean flag = true;
+            LOOP: for (int i2 = -1; i2 <= 1; i2++) {
+                for (int j2 = -1; j2 <= 1; j2++) {
+                    int ci = i + i2;
+                    int cj = j + j2;
+                    if (ci < 0 || ci >= h || cj < 0 || cj >= w) {
+                        continue;
+                    }
+                    if (m[ci][cj] == '.') {
+                        flag = false;
+                        break LOOP;
+                    }
+                }
+            }
+            ans[i][j] = flag ? '#' : '.';
+        }
+    }
+    char[][] check = new char[h][w];
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            boolean flag = false;
+            LOOP: for (int i2 = -1; i2 <= 1; i2++) {
+                for (int j2 = -1; j2 <= 1; j2++) {
+                    int ci = i + i2;
+                    int cj = j + j2;
+                    if (ci < 0 || ci >= h || cj < 0 || cj >= w) {
+                        continue;
+                    }
+                    if (ans[ci][cj] == '#') {
+                        flag = true;
+                        break LOOP;
+                    }
+                }
+            }
+            check[i][j] = flag ? '#' : '.';
+        }
+    }
+    if (!Arrays.deepEquals(m, check)) {
+        System.out.println("impossible");
+        return;
+    }
+    System.out.println("possible");
+    for (int i = 0; i < h; i++) {
+        System.out.println(ans[i]);
+    }
+}

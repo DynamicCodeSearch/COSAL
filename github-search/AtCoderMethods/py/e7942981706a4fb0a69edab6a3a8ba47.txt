@@ -1,0 +1,18 @@
+def dvector(Masum,Mbsum,cost,vector):
+    global Ma
+    global Mb
+    global Nlist
+    global minicost
+    if len(vector) == len(Nlist):
+        return 0
+    dvector(Masum,Mbsum,cost,vector+[0])
+    Masum+= Nlist[len(vector)-1][0]
+    Mbsum+= Nlist[len(vector)-1][1]
+    cost += Nlist[len(vector)-1][2]
+    if Mbsum > 0:
+        if Masum/Mbsum == Ma/Mb:
+            if minicost > cost:
+                minicost = cost
+    if cost < minicost:
+        dvector(Masum,Mbsum,cost,vector+[1])
+    return 0

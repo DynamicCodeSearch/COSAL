@@ -1,0 +1,14 @@
+def search(self, x1, y1, x2, y2):
+    if x1 > x2 or y1 > y2:
+        return 0
+
+    r = self.R
+    rr = r[y2][x2]
+    if x1 > 0 and y1 > 0:
+        return rr - r[y1-1][x2] - r[y2][x1-1] + r[y1-1][x1-1]
+    if x1 > 0:
+        rr -= r[y2][x1-1]
+    if y1 > 0:
+        rr -= r[y1-1][x2]
+
+    return rr

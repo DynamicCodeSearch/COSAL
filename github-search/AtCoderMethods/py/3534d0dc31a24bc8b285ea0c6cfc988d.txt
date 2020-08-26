@@ -1,0 +1,25 @@
+def solve():
+    N, T = map(int, input().split())
+    A = [int(i) for i in input().split()]
+    min_v = float('inf')
+    max_dif = 0
+    ans = 0
+
+    for a in A:
+        if min_v > a:
+            min_v = a
+        else:
+            max_dif = max(max_dif, a - min_v)
+
+
+
+    min_v = float('inf')
+
+    for a in A:
+        if min_v > a:
+            min_v = a
+        else:
+            if a - min_v == max_dif:
+                ans += 1
+
+    print(ans)

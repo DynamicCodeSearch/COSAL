@@ -1,0 +1,37 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    final int R = sc.nextInt();
+    final int C = sc.nextInt();
+    final int K = sc.nextInt();
+    final int N = sc.nextInt();
+    Point<Integer>[] points = new Point[N];
+    final int[] yn = new int[R];
+    final int[] xn = new int[C];
+    for (int i = 0; i < N; i++) {
+        int y = sc.nextInt() - 1;
+        int x = sc.nextInt() - 1;
+        points[i] = new Point<Integer>(0, x, y);
+        yn[y]++;
+        xn[x]++;
+    }
+    sc.close();
+    final long[] ny = new long[K + 1];
+    final long[] nx = new long[K + 1];
+    for (int n : yn) if (n <= K)
+        ny[n]++;
+    for (int n : xn) if (n <= K)
+        nx[n]++;
+    long ans = 0;
+    for (int i = 0; i <= K; i++) {
+        ans += ny[i] * nx[K - i];
+    }
+    for (Point<Integer> p : points) {
+        int n = yn[p.y] + xn[p.x] - 1;
+        if (n == K - 1) {
+            ans--;
+        } else if (n == K) {
+            ans++;
+        }
+    }
+    System.out.println(ans);
+}

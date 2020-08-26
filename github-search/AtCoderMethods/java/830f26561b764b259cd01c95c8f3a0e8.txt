@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner scn = new Scanner(System.in);
+    int masukazu = Integer.parseInt(scn.nextLine());
+    char[][] input = new char[masukazu][masukazu];
+    String line = "";
+    
+    for (int i = 0; i < masukazu; i++) {
+        line = scn.nextLine();
+        for (int j = 0; j < masukazu; j++) {
+            
+            input[i][j] = line.charAt(j);
+        }
+    }
+    scn.close();
+    
+    for (int i = 0; i < masukazu; i++) {
+        for (int j = masukazu - 1; j >= 0; j--) {
+            
+            System.out.print(input[j][i]);
+        }
+        System.out.println();
+    }
+}

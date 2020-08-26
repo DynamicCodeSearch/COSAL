@@ -1,0 +1,24 @@
+public void solve(int testNumber, FastScanner in, PrintWriter out) {
+    char[] s = in.next().toCharArray();
+    int n = s.length;
+    int ans = 0;
+    int b = 0;
+    for (int i = 0; i < n; i++) {
+        if (s[i] == 'g') {
+            if (b > 0) {
+                --b;
+                ++ans;
+            } else {
+                ++b;
+            }
+        } else {
+            if (b > 0) {
+                --b;
+            } else {
+                --ans;
+                ++b;
+            }
+        }
+    }
+    out.println(ans);
+}

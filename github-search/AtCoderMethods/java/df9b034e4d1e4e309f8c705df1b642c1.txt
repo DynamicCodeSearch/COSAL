@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    long n = sc.nextLong(), k = sc.nextLong();
+    long[] a = new long[(int) n];
+    long[] cnt = new long[(int) n];
+    long ans = 0;
+    for (int i = 0; i < n; i++) {
+        a[i] = sc.nextLong();
+    }
+    long overlap = 2 * k - n;
+    if (overlap <= 0) {
+        for (int i = 0; i < k; i++) {
+            ans += (i + 1) * (a[i] + a[(int) n - 1 - i]);
+        }
+        for (int i = (int) k; i < n - k; i++) {
+            ans += (k * a[i]);
+        }
+    } else {
+        for (int i = 0; i < k - overlap; i++) {
+            ans += (i + 1) * (a[i] + a[(int) n - 1 - i]);
+        }
+        for (int i = (int) (n - k); i < n - k + overlap; i++) {
+            ans += ((n - k + 1) * a[i]);
+        }
+    }
+    System.out.println(ans);
+}

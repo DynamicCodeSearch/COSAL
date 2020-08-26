@@ -1,0 +1,25 @@
+int calc(int[] w, int[] h) {
+    int n = w.length;
+    State[] st = new State[n];
+    for (int i = 0; i < n; i++) {
+        st[i] = new State(w[i], h[i]);
+    }
+    Arrays.sort(st);
+    SegmentTree seg = new SegmentTree(MAX);
+    Queue<Pair> q = new LinkedList<Pair>();
+    for (int i = 0; i < n; i++) {
+        if (i != 0 && st[i].w > st[i - 1].w) {
+            while (!q.isEmpty()) {
+                Pair s = q.poll();
+                seg.maxUpdate(s.x, s.y);
+            }
+        }
+        int max = seg.getMaxQuery(0, st[i].h - 1);
+        q.add(new Pair(st[i].h, max + 1));
+    }
+    while (!q.isEmpty()) {
+        Pair s = q.poll();
+        seg.maxUpdate(s.x, s.y);
+    }
+    return seg.getMaxQuery(0, MAX - 1);
+}

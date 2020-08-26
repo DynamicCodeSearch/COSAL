@@ -1,0 +1,16 @@
+public static void solve(PrintWriter out, FastScanner in) {
+    int N = in.nextInt();
+    int[] a = in.nextIntArray(N);
+    int min = Integer.MAX_VALUE;
+    int max = 0;
+    for (int i = 0; i < N; i++) {
+        int val = a[i];
+        if (val > max) {
+            max = val;
+        }
+        if (val < min) {
+            min = val;
+        }
+    }
+    out.println(max - min);
+}

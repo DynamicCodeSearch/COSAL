@@ -1,0 +1,14 @@
+String next() {
+    while (st == null || !st.hasMoreTokens()) {
+        try {
+            String line = reader.readLine();
+            if (line == null) {
+                return null;
+            }
+            st = new StringTokenizer(line);
+        } catch (Exception e) {
+            throw new RuntimeException();
+        }
+    }
+    return st.nextToken();
+}

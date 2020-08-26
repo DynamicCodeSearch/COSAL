@@ -1,0 +1,18 @@
+public void calcDepth(int root) {
+    ArrayDeque<Integer> que = new ArrayDeque<Integer>();
+    que.push(root);
+    n[root].depth = 0;
+    while (que.size() > 0) {
+        int curr = que.pop();
+        Node curr_node = n[curr];
+        for (Edge e : curr_node) {
+            int next = e.to;
+            Node next_node = n[next];
+            if (next_node.depth == -1) {
+                next_node.depth = curr_node.depth + 1;
+                next_node.parent = curr_node;
+                que.push(next);
+            }
+        }
+    }
+}

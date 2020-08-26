@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    FS r = new FS();
+    int N = r.nextInt();
+    int dig = String.valueOf(N).length();
+    int K = r.nextInt();
+    boolean[] dis = new boolean[10];
+    for (int i = 0; i < K; i++) {
+        dis[r.nextInt()] = true;
+    }
+    int ans = N;
+    while (true) {
+        boolean isValid = true;
+        String str = String.valueOf(ans);
+        for (int i = 0; i < str.length(); i++) {
+            if (dis[Integer.parseInt("" + str.charAt(i))]) {
+                isValid = false;
+                break;
+            }
+        }
+        if (isValid)
+            break;
+        ans++;
+    }
+    System.out.println(ans);
+}

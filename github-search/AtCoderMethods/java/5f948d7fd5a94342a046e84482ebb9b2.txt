@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    try {
+        
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+        String[] strArr = br.readLine().split(" ");
+        int w = Integer.parseInt(strArr[0]);
+        int a = Integer.parseInt(strArr[1]);
+        int b = Integer.parseInt(strArr[2]);
+        int ans = 0;
+        if (a < b) {
+            if (a + w >= b) {
+                ans = 0;
+            } else {
+                ans = b - (a + w);
+            }
+        } else {
+            if (b + w >= a) {
+                ans = 0;
+            } else {
+                ans = a - (b + w);
+            }
+        }
+        System.out.println(ans);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

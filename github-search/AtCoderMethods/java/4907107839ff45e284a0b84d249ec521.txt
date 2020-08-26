@@ -1,0 +1,6 @@
+public static long nck(int n, int k, long[] fact) {
+    if (n < k || n < 0 || k < 0) {
+        return 0;
+    }
+    return (((fact[n] * myPow(fact[n - k])) % MOD) * myPow(fact[k])) % MOD;
+}

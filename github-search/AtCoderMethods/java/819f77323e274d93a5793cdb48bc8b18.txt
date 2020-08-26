@@ -1,0 +1,8 @@
+Mint det(int i, int J) {
+    if (i == 0 && J == 0)
+        return Mint.ONE;
+    int n = i / 2;
+    if (n - J < 0)
+        return Mint.ZERO;
+    return MathUtils.catalanTransposed(n, J).mul(two[n - J]);
+}

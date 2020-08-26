@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    BigDecimal xa = new BigDecimal(sc.next());
+    BigDecimal ya = new BigDecimal(sc.next());
+    BigDecimal xb = new BigDecimal(sc.next());
+    BigDecimal yb = new BigDecimal(sc.next());
+    BigDecimal xc = new BigDecimal(sc.next());
+    BigDecimal yc = new BigDecimal(sc.next());
+    BigDecimal a = xb.subtract(xa);
+    BigDecimal b = yb.subtract(ya);
+    BigDecimal c = xc.subtract(xa);
+    BigDecimal d = yc.subtract(ya);
+    System.out.println(((a.multiply(d)).subtract(b.multiply(c))).abs().divide(new BigDecimal("2"), 1, RoundingMode.HALF_UP).toPlainString());
+}

@@ -1,0 +1,34 @@
+
+static long[][] gauss_jordan(long[][] a, long[] b, int MOD) {
+    assert a.length == a[0].length;
+    int n = a.length;
+    long[][] res = new long[n][n + 1];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            res[i][j] = a[i][j];
+        }
+        res[i][n] = b[i];
+    }
+    for (int i = 0; i < n; i++) {
+        int pivot = i;
+        for (int j = i + 1; j < n; j++) {
+            if (Math.abs(res[j][i]) > Math.abs(res[pivot][i]))
+                pivot = j;
+        }
+        if (Math.abs(res[pivot][i]) < 1e-9)
+            continue;
+        {
+            
+            long[] tmp = res[i];
+            res[i] = res[pivot];
+            res[pivot] = tmp;
+        }
+        for (int j = 0; j < n; j++) if (i != j) {
+            long rate = DIV(res[j][i], res[i][i], MOD);
+            for (int k = 0; k < n + 1; k++) {
+                res[j][k] = SUB(res[j][k], MULT(res[i][k], rate, MOD), MOD);
+            }
+        }
+    }
+    return res;
+}

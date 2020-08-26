@@ -1,0 +1,9 @@
+static void init(int n) {
+    ff = new int[n + 1];
+    gg = new int[n + 1];
+    ff[0] = gg[0] = 1;
+    for (int i = 1; i <= n; i++) {
+        ff[i] = (int) ((long) ff[i - 1] * i % M);
+        gg[i] = (int) ((long) gg[i - 1] * inv(i) % M);
+    }
+}

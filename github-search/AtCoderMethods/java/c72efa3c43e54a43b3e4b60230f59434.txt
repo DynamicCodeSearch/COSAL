@@ -1,0 +1,8 @@
+private static void dfs(Map<Integer, List<Integer>> graph, int[] dist, int start, int depth) {
+    if (dist[start] > -1)
+        return;
+    dist[start] = depth;
+    for (int i : graph.get(start)) {
+        dfs(graph, dist, i, depth + 1);
+    }
+}

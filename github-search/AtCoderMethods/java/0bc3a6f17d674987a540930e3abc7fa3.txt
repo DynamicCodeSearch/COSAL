@@ -1,0 +1,35 @@
+void run() throws FileNotFoundException {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    long[] a = new long[3 * N];
+    for (int i = 0; i < 3 * N; ++i) {
+        a[i] = sc.nextLong();
+    }
+    long[] f = new long[3 * N];
+    long[] b = new long[3 * N];
+    PriorityQueue<Long> pf = new PriorityQueue<>();
+    PriorityQueue<Long> pb = new PriorityQueue<>();
+    for (int i = 0; i < N; ++i) {
+        f[i] = (i > 0 ? f[i - 1] : 0) + a[i];
+        b[3 * N - i - 1] = (i > 0 ? b[3 * N - i] : 0) + a[3 * N - i - 1];
+    }
+    for (int i = 0; i < N; ++i) pf.add(a[i]);
+    for (int i = 2 * N; i < 3 * N; ++i) pb.add(-a[i]);
+    for (int i = N; i < 3 * N; ++i) {
+        f[i] = f[i - 1] + a[i];
+        pf.add(a[i]);
+        long v = pf.poll();
+        f[i] -= v;
+    }
+    for (int i = 2 * N - 1; i >= 0; --i) {
+        b[i] = b[i + 1] + a[i];
+        pb.add(-a[i]);
+        long v = -pb.poll();
+        b[i] -= v;
+    }
+    long ans = -Long.MAX_VALUE / 16;
+    for (int i = N - 1; i < 2 * N; ++i) {
+        ans = Math.max(f[i] - b[i + 1], ans);
+    }
+    System.out.println(ans);
+}

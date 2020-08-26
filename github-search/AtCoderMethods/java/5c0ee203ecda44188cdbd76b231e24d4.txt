@@ -1,0 +1,34 @@
+private void doit() {
+    Scanner sc = new Scanner(System.in);
+    while (sc.hasNext()) {
+        n = sc.nextInt();
+        data = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            data.add(new ArrayList<>());
+        }
+        for (int i = 0; i < n - 1; i++) {
+            int a = sc.nextInt() - 1;
+            int b = sc.nextInt() - 1;
+            data.get(a).add(b);
+            data.get(b).add(a);
+        }
+        dis = 0;
+        used = new boolean[n];
+        used[0] = true;
+        ind = new int[n];
+        end = 0;
+        Arrays.fill(ind, -1);
+        int res = dfs(0, 0);
+        Arrays.fill(used, false);
+        used[0] = true;
+        int res2 = dfs2(0);
+        int a = res2 - 1;
+        
+        int b = n - 2 - a;
+        if (a > b) {
+            System.out.println("Fennec");
+        } else {
+            System.out.println("Snuke");
+        }
+    }
+}

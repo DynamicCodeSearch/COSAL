@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int m = scan.nextInt();
+    int n = scan.nextInt();
+    int N = scan.nextInt();
+    int ans = N;
+    int ama = 0;
+    int x = 0;
+    int y;
+    while (N >= m) {
+        ans += (N / m) * n;
+        x = (N / m) * n;
+        y = N / m;
+        ama += (N - y * m);
+        N = x;
+        if (N < m) {
+            N += ama;
+            ama = 0;
+        }
+    }
+    System.out.println(ans);
+}

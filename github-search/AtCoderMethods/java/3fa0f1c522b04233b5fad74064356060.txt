@@ -1,0 +1,13 @@
+void solve() {
+    int K = in.nextInt();
+    int S = in.nextInt();
+    int ans = 0;
+    for (int x = 0; x <= Math.min(K, S); x++) {
+        for (int y = 0; y <= Math.min(K, S - x); y++) {
+            if (S - x - y <= K) {
+                ans++;
+            }
+        }
+    }
+    out.println(ans);
+}

@@ -1,0 +1,37 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int students = Integer.parseInt(scan.next());
+    int checkpoints = Integer.parseInt(scan.next());
+    Point2D[] Students = new Point2D[students];
+    for (int i = 0; i < students; i++) {
+        int x = Integer.parseInt(scan.next());
+        int y = Integer.parseInt(scan.next());
+        Students[i] = new Point2D.Double(x, y);
+    }
+    Point2D[] CheckPoints = new Point2D[checkpoints];
+    for (int i = 0; i < checkpoints; i++) {
+        int x = Integer.parseInt(scan.next());
+        int y = Integer.parseInt(scan.next());
+        CheckPoints[i] = new Point2D.Double(x, y);
+    }
+    int man = 0;
+    int bef = -1;
+    int p = 1;
+    for (int i = 0; i < students; i++) {
+        bef = -1;
+        p = 0;
+        for (int k = 0; k < checkpoints; k++) {
+            int sx = (int) Students[i].getX();
+            int sy = (int) Students[i].getY();
+            int cx = (int) CheckPoints[k].getX();
+            int cy = (int) CheckPoints[k].getY();
+            man = Math.abs(sx - cx) + Math.abs(sy - cy);
+            if (bef == -1 || bef > man) {
+                bef = man;
+                p = k + 1;
+                continue;
+            }
+        }
+        System.out.println(p);
+    }
+}

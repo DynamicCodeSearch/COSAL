@@ -1,0 +1,14 @@
+static int solve(int x, int y) {
+    if (dp[y][x] > 0) {
+        return dp[y][x];
+    }
+    dp[y][x] = 1;
+    for (int i = 0; i < 4; i++) {
+        int nx = x + dx[i];
+        int ny = y + dy[i];
+        if (nx >= 0 && nx < W && ny >= 0 && ny < H && a[ny][nx] > a[y][x]) {
+            dp[y][x] = (dp[y][x] + solve(nx, ny)) % INF;
+        }
+    }
+    return dp[y][x];
+}

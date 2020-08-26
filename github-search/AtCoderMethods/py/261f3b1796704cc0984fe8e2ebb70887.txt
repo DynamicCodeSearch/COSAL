@@ -1,0 +1,8 @@
+def f(S):
+    if S in dp:
+        return dp[S]
+    if len(S) == 1:
+        dp[S] = 1
+    else:
+        dp[S] = sum(f(S-{i}) for i in S if not w[i] & S)
+    return dp[S]

@@ -1,0 +1,15 @@
+def move(start, goal, day):
+    mi = days[day][0]
+    ma = days[day][1]
+    day += 1
+
+    if mi <= start <= ma:
+        if mi <= goal <= ma:
+            return day
+
+        if start < goal:
+            start = ma
+        elif start > goal:
+            start = mi
+
+    return move(start, goal, day)

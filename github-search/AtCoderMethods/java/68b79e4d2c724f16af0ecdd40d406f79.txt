@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt(), i = 0;
+    int[] data = new int[n];
+    data[0] = 0;
+    if (n >= 2)
+        data[1] = 0;
+    if (n >= 3)
+        data[2] = 1;
+    for (i = 3; i < n; i++) {
+        data[i] = (data[i - 1] + data[i - 2] + data[i - 3]) % 10007;
+    }
+    System.out.println(data[n - 1] % 10007);
+}

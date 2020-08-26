@@ -1,0 +1,14 @@
+def check(cost):
+    left, right = -10**5, 10**5
+    for x, c in zip(X, C):
+        left = max(left, x - cost / c)
+        right = min(right, x + cost / c)
+    if left > right:
+        return False
+    left, right = -10**5, 10**5
+    for y, c in zip(Y, C):
+        left = max(left, y - cost / c)
+        right = min(right, y + cost / c)
+    if left > right:
+        return False
+    return True

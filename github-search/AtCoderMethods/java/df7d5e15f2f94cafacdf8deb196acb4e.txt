@@ -1,0 +1,15 @@
+private int solve(int n, int[] as) {
+    int INF = Integer.MAX_VALUE;
+    int[] costs = new int[n];
+    Arrays.fill(costs, INF);
+    costs[0] = 0;
+    for (int i = 0; i < n - 2; ++i) {
+        for (int j = 1; j <= 2; ++j) {
+            int cost = costs[i] + Math.abs(as[i] - as[i + j]);
+            costs[i + j] = costs[i + j] == INF ? cost : Math.min(costs[i + j], cost);
+        }
+    }
+    int cost = costs[n - 2] + Math.abs(as[n - 1] - as[n - 2]);
+    costs[n - 1] = costs[n - 1] == INF ? cost : Math.min(costs[n - 1], cost);
+    return costs[n - 1];
+}

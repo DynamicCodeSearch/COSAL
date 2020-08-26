@@ -1,0 +1,18 @@
+private void permutations(int num) {
+    
+    if (cntDigits(num) == y) {
+        if (num >= n) {
+            min = Math.min(min, num);
+            return;
+        }
+    }
+    if (cntDigits(num) == y + 1) {
+        if (num >= n) {
+            min = Math.min(min, num);
+        }
+        return;
+    }
+    for (int i : list) {
+        permutations(num * 10 + i);
+    }
+}

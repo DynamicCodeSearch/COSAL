@@ -1,0 +1,11 @@
+static int connected(List<List<Integer>> graph) {
+    boolean[] visited = new boolean[n];
+    int count = 0;
+    for (int v = 0; v < n; v++) {
+        if (!visited[v]) {
+            dfs(graph, v, visited);
+            ++count;
+        }
+    }
+    return count;
+}

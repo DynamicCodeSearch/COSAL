@@ -1,0 +1,40 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int N = Integer.parseInt(br.readLine());
+    String S = br.readLine();
+    int l = 0;
+    int r = 0;
+    
+    for (int i = 0; i < N; i++) {
+        if (S.charAt(i) == '(') {
+            l += 1;
+        } else {
+            l -= 1;
+            if (l < 0) {
+                l = 0;
+            }
+        }
+    }
+    
+    for (int i = N - 1; 0 <= i; i--) {
+        if (S.charAt(i) == ')') {
+            r += 1;
+        } else {
+            r -= 1;
+            if (r < 0) {
+                r = 0;
+            }
+        }
+    }
+    StringBuilder sbr = new StringBuilder();
+    for (int i = 0; i < r; i++) {
+        sbr.append('(');
+    }
+    StringBuilder sbl = new StringBuilder();
+    for (int i = 0; i < l; i++) {
+        sbl.append(')');
+    }
+    String ans = sbr.toString() + S + sbl.toString();
+    System.out.println(ans);
+    return;
+}

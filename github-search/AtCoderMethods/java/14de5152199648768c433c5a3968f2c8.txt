@@ -1,0 +1,13 @@
+public static void main(String[] args) throws Exception {
+    Scanner cin = new Scanner(System.in);
+    int H = cin.nextInt();
+    int W = cin.nextInt();
+    cin.close();
+    long result = 0L;
+    if (W == H) {
+        result = calcMin(H, W);
+    } else {
+        result = Math.min(calcMin(H, W), calcMin(W, H));
+    }
+    System.out.println(result);
+}

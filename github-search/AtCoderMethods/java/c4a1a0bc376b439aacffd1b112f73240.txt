@@ -1,0 +1,16 @@
+private static void calcVV(int m) {
+    checkRange(m);
+    String vv = null;
+    if (m < 100) {
+        vv = "00";
+    } else if (m >= 100 && m <= 5000) {
+        vv = String.format("%02d", m * 10 / 1000);
+    } else if (m >= 6000 && m <= 30000) {
+        vv = String.format("%02d", m / 1000 + 50);
+    } else if (m >= 35000 && m <= 70000) {
+        vv = String.format("%02d", (m / 1000 - 30) / 5 + 80);
+    } else if (m > 70000) {
+        vv = "89";
+    }
+    System.out.println(vv);
+}

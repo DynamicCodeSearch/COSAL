@@ -1,0 +1,53 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    int m = in.nextInt();
+    int[] a = in.nextInts(n);
+    for (int i = 0; i < a.length; i++) {
+        a[i]--;
+    }
+    List<Integer>[] onEvents = new List[m];
+    List<Integer>[] offEvents = new List[m];
+    for (int i = 0; i < m; i++) {
+        onEvents[i] = new ArrayList<>();
+        offEvents[i] = new ArrayList<>();
+    }
+    for (int i = 1; i < a.length; i++) {
+        if ((a[i - 1] + 1) % m == a[i]) {
+            continue;
+        }
+        int from = (a[i - 1] + 2) % m;
+        int to = a[i];
+        if (from <= to) {
+            onEvents[from].add(1);
+            offEvents[to].add(to - from + 1);
+        } else {
+            onEvents[from].add(1);
+            offEvents[m - 1].add((m - 1) - from + 1);
+            onEvents[0].add(m - from + 1);
+            offEvents[to].add(m + to - from + 1);
+        }
+    }
+    long max = 0;
+    long has = 0;
+    long now = 0;
+    for (int i = 0; i < m; i++) {
+        now += has;
+        for (int x : onEvents[i]) {
+            has++;
+            now += x;
+        }
+        max = Math.max(max, now);
+        for (int x : offEvents[i]) {
+            has--;
+            now -= x;
+        }
+    }
+    long total = 0;
+    for (int i = 1; i < n; i++) {
+        total += (a[i] >= a[i - 1]) ? (a[i] - a[i - 1]) : (a[i] - a[i - 1] + m);
+    }
+    out.println(total - max);
+    out.flush();
+}

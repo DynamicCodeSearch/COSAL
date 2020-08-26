@@ -1,0 +1,17 @@
+def main():
+    n,m = LI()
+    a = [LI() for _ in range(n)]
+    b = [LI() for _ in range(m)]
+    r = []
+    for ai in a:
+        mi = -1
+        mm = inf
+        for i in range(m):
+            bi = b[i]
+            t = abs(ai[0]-bi[0]) + abs(ai[1]-bi[1])
+            if t < mm:
+                mi = i+1
+                mm = t
+        r.append(mi)
+
+    return '\n'.join(map(str, r))

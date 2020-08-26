@@ -1,0 +1,44 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    Printer pr = new Printer(System.out);
+    String a = sc.next();
+    BigInteger ba = new BigInteger(a);
+    BigInteger bao = ba.add(BigInteger.ONE);
+    ba = ba.multiply(ba);
+    bao = bao.multiply(bao);
+    String sa = ba.toString();
+    if (sa.length() % 2 != 0) {
+        sa = "0" + sa;
+    }
+    for (int i = 1; i < a.length() + 1; i++) {
+        String tmp = sa.substring(0, i * 2);
+        BigInteger btmp = new BigInteger(tmp);
+        BigInteger btmpo = btmp.add(BigInteger.ONE);
+        String tmp2 = btmp.toString();
+        if (tmp2.length() % 2 != 0) {
+            tmp2 = "0" + tmp2;
+        }
+        while (tmp2.length() < sa.length()) {
+            tmp2 += "00";
+        }
+        BigInteger bt = new BigInteger(tmp2);
+        if (bt.compareTo(ba) >= 0 && bt.compareTo(bao) < 0) {
+            pr.println(btmp);
+            break;
+        }
+        tmp2 = btmpo.toString();
+        if (tmp2.length() % 2 != 0) {
+            tmp2 = "0" + tmp2;
+        }
+        while (tmp2.length() < sa.length()) {
+            tmp2 += "00";
+        }
+        bt = new BigInteger(tmp2);
+        if (bt.compareTo(ba) >= 0 && bt.compareTo(bao) < 0) {
+            pr.println(btmpo);
+            break;
+        }
+    }
+    pr.close();
+    sc.close();
+}

@@ -1,0 +1,6 @@
+private void rdfs(int v, int k) {
+    used[v] = true;
+    cmp[v] = k;
+    for (int e = rG.head[v]; e != -1; e = rG.next[e]) if (!used[rG.to[e]])
+        rdfs(rG.to[e], k);
+}

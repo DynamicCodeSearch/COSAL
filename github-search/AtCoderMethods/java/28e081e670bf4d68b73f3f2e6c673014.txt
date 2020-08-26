@@ -1,0 +1,7 @@
+public int find(int x) {
+    if (parent[x] == x)
+        return x;
+    int f = find(parent[x]);
+    cnt[x] = cnt[f];
+    return parent[x] = f;
+}

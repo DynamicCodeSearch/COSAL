@@ -1,0 +1,6 @@
+def dfs(v):
+    if len(v) == N:return 1
+    ans=0
+    for u in set(g[v[-1]]) - set(v):
+        ans += dfs(v + [u])
+    return ans

@@ -1,0 +1,15 @@
+public List<List<Integer>> biconnectedComponents(List<Integer>[] graph) {
+    int n = graph.length;
+    this.graph = graph;
+    visited = new boolean[n];
+    stack = new Stack<>();
+    time = 0;
+    tin = new int[n];
+    lowlink = new int[n];
+    components = new ArrayList<>();
+    cutPoints = new ArrayList<>();
+    bridges = new ArrayList<>();
+    for (int u = 0; u < n; u++) if (!visited[u])
+        dfs(u, -1);
+    return components;
+}

@@ -1,0 +1,49 @@
+void solve(FastScanner in, PrintWriter out) {
+    int H = in.nextInt(), W = in.nextInt();
+    char[][] map = new char[H][];
+    for (int i = 0; i < H; i++) map[i] = in.next().toCharArray();
+    char[][] ans = new char[H][W];
+    for (int i = 0; i < H; i++) for (int j = 0; j < W; j++) ans[i][j] = '?';
+    for (int h = 0; h < H; h++) {
+        for (int w = 0; w < W; w++) {
+            if (map[h][w] != '.')
+                continue;
+            for (int i = -1; i <= 1; i++) {
+                for (int j = -1; j <= 1; j++) {
+                    if (h + i < 0 || h + i >= H || w + j < 0 || w + j >= W)
+                        continue;
+                    ans[h + i][w + j] = '.';
+                }
+            }
+        }
+    }
+    for (int h = 0; h < H; h++) {
+        for (int w = 0; w < W; w++) {
+            if (map[h][w] != '#')
+                continue;
+            boolean ok = false;
+            for (int i = -1; i <= 1; i++) {
+                for (int j = -1; j <= 1; j++) {
+                    if (h + i < 0 || h + i >= H || w + j < 0 || w + j >= W)
+                        continue;
+                    if (ans[h + i][w + j] == '?')
+                        ok = true;
+                }
+            }
+            if (!ok) {
+                out.println("impossible");
+                return;
+            }
+        }
+    }
+    out.println("possible");
+    for (int h = 0; h < H; h++) {
+        for (int w = 0; w < W; w++) {
+            if (ans[h][w] == '.')
+                out.print('.');
+            else
+                out.print('#');
+        }
+        out.println();
+    }
+}

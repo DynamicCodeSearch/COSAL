@@ -1,0 +1,35 @@
+void solve() throws NumberFormatException, IOException {
+    final ContestScanner in = new ContestScanner();
+    Writer out = new Writer();
+    int n = in.nextInt();
+    int m = in.nextInt();
+    int t = in.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = in.nextInt();
+    }
+    List<Edge>[] city = new List[n];
+    List<Edge>[] rcity = new List[n];
+    for (int i = 0; i < n; i++) {
+        city[i] = new ArrayList<>();
+        rcity[i] = new ArrayList<>();
+    }
+    for (int i = 0; i < m; i++) {
+        int ca = in.nextInt() - 1;
+        int cb = in.nextInt() - 1;
+        int c = in.nextInt();
+        city[ca].add(new Edge(cb, c));
+        rcity[cb].add(new Edge(ca, c));
+    }
+    long[] distGo = dijkstra(city, n);
+    long[] distBack = dijkstra(rcity, n);
+    long max = 0;
+    for (int i = 0; i < n; i++) {
+        if (distGo[i] + distBack[i] > t)
+            continue;
+        long earn = (t - distGo[i] - distBack[i]) * a[i];
+        if (earn > max)
+            max = earn;
+    }
+    System.out.println(max);
+}

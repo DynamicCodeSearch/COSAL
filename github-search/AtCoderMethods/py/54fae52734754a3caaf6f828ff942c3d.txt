@@ -1,0 +1,16 @@
+def solve(n, k, a):
+    filter(lambda x: x < k, a)
+    n = len(a)
+    a.sort()
+    s = 0
+    lowest = None
+    for i in range(n - 1, -1, -1):
+        if k - a[i] <= s:
+
+            lowest = i
+        else:
+
+            s += a[i]
+    if lowest is None:
+        return n
+    return lowest

@@ -1,0 +1,10 @@
+def bt(S):
+    cnt = count(S)
+    if count(S) == 0 and valid(S):
+        tries.append(S)
+        return
+    else:
+        if cnt < 0:
+            return bt("(" + S)
+        else:
+            return bt(S + ")")

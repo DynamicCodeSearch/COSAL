@@ -1,0 +1,7 @@
+def gen(s):
+	if len(s)==1:
+		yield s
+ else:
+		for ss in gen(s[:-1]):
+			yield ss + s[-1]
+   yield ss + '+' + s[-1]

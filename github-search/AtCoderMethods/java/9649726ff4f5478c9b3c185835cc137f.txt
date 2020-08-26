@@ -1,0 +1,101 @@
+private static void solve() {
+    int n = sc.nextInt();
+    List<List<Integer>> edges = new ArrayList<>(n);
+    for (int i = 0; i < n; i++) {
+        edges.add(new ArrayList<>());
+    }
+    for (int i = 0; i < n - 1; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        edges.get(a).add(b);
+        edges.get(b).add(a);
+    }
+    int[] cnt = new int[n];
+    int[] p = new int[n];
+    boolean[] f = new boolean[n];
+    Arrays.fill(p, -1);
+    boolean[] used = new boolean[n];
+    boolean[] used2 = new boolean[n];
+    Deque<Integer> st = new ArrayDeque<>();
+    st.push(0);
+    p[0] = 0;
+    while (!st.isEmpty()) {
+        int e = st.peek();
+        if (used[e]) {
+            st.pop();
+        } else if (used2[e]) {
+            st.pop();
+            used[e] = true;
+            cnt[e]++;
+            cnt[p[e]] += cnt[e];
+            f[p[e]] |= f[e];
+        } else {
+            used2[e] = true;
+            for (int next : edges.get(e)) {
+                if (used[next]) {
+                    continue;
+                }
+                if (used2[next]) {
+                    
+                    continue;
+                }
+                if (next == n - 1) {
+                    f[e] = true;
+                    continue;
+                }
+                st.push(next);
+                p[next] = e;
+            }
+        }
+    }
+    final int OFFSET = 1_000_000;
+    Arrays.fill(used, false);
+    PriorityQueue<Integer> fq = new PriorityQueue<Integer>();
+    PriorityQueue<Integer> sq = new PriorityQueue<Integer>();
+    
+    fq.add(0);
+    
+    sq.add(n - 1);
+    while (true) {
+        while (!fq.isEmpty() && used[fq.peek() % OFFSET]) {
+            fq.remove();
+        }
+        if (fq.isEmpty()) {
+            pr.println("Snuke");
+            return;
+        } else {
+            int fe = fq.remove() % OFFSET;
+            used[fe] = true;
+            for (int next : edges.get(fe)) {
+                if (!used[next]) {
+                    if (!f[next]) {
+                        fq.add(next + OFFSET);
+                    } else {
+                        fq.add(next);
+                    }
+                
+                }
+            }
+        }
+        while (!sq.isEmpty() && used[sq.peek() % OFFSET]) {
+            sq.remove();
+        }
+        if (sq.isEmpty()) {
+            pr.println("Fennec");
+            return;
+        } else {
+            int se = sq.remove() % OFFSET;
+            used[se] = true;
+            for (int next : edges.get(se)) {
+                if (!used[next]) {
+                    if (!f[next]) {
+                        sq.add(next + OFFSET);
+                    } else {
+                        sq.add(next);
+                    }
+                
+                }
+            }
+        }
+    }
+}

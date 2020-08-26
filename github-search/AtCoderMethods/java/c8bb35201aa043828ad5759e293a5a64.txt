@@ -1,0 +1,31 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    long T = sc.nextInt();
+    int[] A = new int[N];
+    for (int i = 0; i < N; i++) {
+        A[i] = sc.nextInt();
+    }
+    Graph g = new Graph(N);
+    Graph h = new Graph(N);
+    for (int i = 0; i < M; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        int c = sc.nextInt();
+        g.add(a, b, c);
+        h.add(b, a, c);
+    }
+    long[] len1 = dijkstra(g, 0);
+    long[] len2 = dijkstra(h, 0);
+    long max = 0;
+    for (int i = 0; i < N; i++) {
+        long time = T - len1[i] - len2[i];
+        if (time < 0) {
+            continue;
+        }
+        long now = time * A[i];
+        max = Math.max(now, max);
+    }
+    System.out.println(max);
+}

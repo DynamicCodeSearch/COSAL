@@ -1,0 +1,20 @@
+def f(p, a, b, n):
+  if b - a + 1 < n:
+    return INF
+  if b < p:
+    return f(b, a, b, n) + (p-b)*n
+  if p < a:
+    return f(a, a, b, n) + (a-p)*n
+  a -= p
+  b -= p
+  m = min(abs(a),abs(b))
+  res = 0
+  n -= 1
+  n2 = min(n, m*2)
+  if n2 > 0:
+    n -= n2
+    res += (n2//2)*(n2//2+1)
+    if n2 % 2==1: res += (n2+1)//2
+  if n > 0:
+    res += (2*m+n+1)*n//2
+  return res

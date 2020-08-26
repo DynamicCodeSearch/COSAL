@@ -1,0 +1,39 @@
+public static void main(String[] args) {
+    int now = 0;
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    for (int i = 0; i < n; i++) {
+        String s = sc.next();
+        int d = sc.nextInt();
+        if (d < a) {
+            if (s.equals("East")) {
+                now += a;
+            } else {
+                now -= a;
+            }
+        }
+        if (a <= d && d <= b) {
+            if (s.equals("East")) {
+                now += d;
+            } else {
+                now -= d;
+            }
+        }
+        if (d > b) {
+            if (s.equals("East")) {
+                now += b;
+            } else {
+                now -= b;
+            }
+        }
+    }
+    if (now < 0) {
+        System.out.println("West " + Math.abs(now));
+    } else if (now == 0) {
+        System.out.println("0");
+    } else {
+        System.out.println("East " + now);
+    }
+}

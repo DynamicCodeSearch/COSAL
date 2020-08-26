@@ -1,0 +1,40 @@
+private static void bfs(int n) {
+    Queue<Integer> queue1 = new LinkedList<>();
+    Queue<Integer> queue2 = new LinkedList<>();
+    queue1.add(1);
+    queue2.add(n);
+    vis1[1] = true;
+    vis2[n] = true;
+    while (!queue1.isEmpty() || !queue2.isEmpty()) {
+        List<Integer> nextList = new ArrayList<>();
+        if (!queue1.isEmpty()) {
+            while (!queue1.isEmpty()) {
+                int current = queue1.poll();
+                for (int next : graph[current]) {
+                    if (!vis1[next] && !vis2[next]) {
+                        vis1[next] = true;
+                        nextList.add(next);
+                    }
+                }
+            }
+            for (int index : nextList) {
+                queue1.add(index);
+            }
+        }
+        nextList.clear();
+        if (!queue2.isEmpty()) {
+            while (!queue2.isEmpty()) {
+                int current = queue2.poll();
+                for (int next : graph[current]) {
+                    if (!vis1[next] && !vis2[next]) {
+                        vis2[next] = true;
+                        nextList.add(next);
+                    }
+                }
+            }
+            for (int index : nextList) {
+                queue2.add(index);
+            }
+        }
+    }
+}

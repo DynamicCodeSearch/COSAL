@@ -1,0 +1,9 @@
+def c():
+    N, M = map(int, input().split())
+    f = math.factorial
+    if abs(N-M) > 1:
+        print(0)
+    elif N > M or M > N:
+        print( f(N)*f(M) % (10**9 + 7) )
+    elif N == M:
+        print( (f(N)*f(M))*2 % (10**9 + 7))

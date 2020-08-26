@@ -1,0 +1,11 @@
+def c():
+    n = int(input())
+    a = list(map(int, input().split()))
+    l = list(map(lambda i: min(8, i//400), a))
+    over_rate = l.count(8)
+    res = set(l)
+    if 8 in res: res.remove(8)
+
+    mi = max(1, len(res))
+    ma = len(res) + over_rate
+    print(mi, ma)

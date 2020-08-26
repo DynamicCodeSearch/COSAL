@@ -1,0 +1,11 @@
+def main():
+    N, T = map(int, input().split())
+
+    sec = T
+    A1 = int(input())
+    for i in range(N - 1):
+        A2 = int(input())
+        sec += min(A2 - A1, T)
+        A1 = A2
+        i += 1
+    print(sec)

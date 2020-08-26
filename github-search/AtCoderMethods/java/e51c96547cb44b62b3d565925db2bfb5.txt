@@ -1,0 +1,30 @@
+public static void c_problem() {
+    
+    int n, q;
+    
+    int[] l = new int[200000];
+    
+    int[] r = new int[200000];
+    StringBuilder result = new StringBuilder("0");
+    Scanner stdin = new Scanner(System.in);
+    
+    n = stdin.nextInt();
+    q = stdin.nextInt();
+    for (int i = 0; i < n - 1; i++) {
+        result.append("0");
+    }
+    for (int i = 0; i < q; i++) {
+        l[i] = stdin.nextInt();
+        r[i] = stdin.nextInt();
+        
+        for (int j = l[i] - 1; j < r[i]; j++) {
+            if (result.charAt(j) == '0') {
+                result.setCharAt(j, '1');
+            } else {
+                result.setCharAt(j, '0');
+            }
+        }
+    }
+    
+    System.out.println(result);
+}

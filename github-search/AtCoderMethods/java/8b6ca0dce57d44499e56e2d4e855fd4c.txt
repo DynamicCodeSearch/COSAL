@@ -1,0 +1,18 @@
+static void Method(ArrayList<Integer> num, ArrayList<String> param) {
+    HashSet<Integer> road = new HashSet<Integer>();
+    boolean cheak = false;
+    road.add(num.get(1));
+    road.add(num.get(2));
+    for (int i = 4; i < num.size(); i++) {
+        if (road.contains(num.get(i))) {
+            cheak = true;
+        } else {
+            road.add(num.get(i));
+        }
+    }
+    if (!cheak && num.get(0) - (num.get(3) + 2) > -1) {
+        System.out.println("YES");
+    } else {
+        System.out.println("NO");
+    }
+}

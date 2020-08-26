@@ -1,0 +1,21 @@
+void run() {
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    long[] x = sc.nextLongArray(n);
+    long[] y = sc.nextLongArray(m);
+    long sumX = 0;
+    long sumY = 0;
+    long baseX = -n + 1;
+    long baseY = -m + 1;
+    for (int i = 0; i < n; i++, baseX += 2) {
+        sumX += (baseX * x[i]);
+        sumX += MOD;
+        sumX %= MOD;
+    }
+    for (int i = 0; i < m; i++, baseY += 2) {
+        sumY += (baseY * y[i]);
+        sumY += MOD;
+        sumY %= MOD;
+    }
+    System.out.println((sumX * sumY) % MOD);
+}

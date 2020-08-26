@@ -1,0 +1,27 @@
+def mergesort(A):
+	N = len(A)
+ if N==1:
+		return A
+ A1 = mergesort(A[:int(N/2)])
+ A2 = mergesort(A[int(N/2):])
+ p = 0
+ p1, p2 = 0, 0
+ A_result = []
+ while True:
+		if p1>=len(A1):
+			A_result = A_result+A2[p2:]
+   break
+  if p2>=len(A2):
+			A_result = A_result+A1[p1:]
+   break
+  if A1[p1]<A2[p2]:
+			A_result.append(A1[p1])
+   p = p+1
+   p1 = p1+1
+  else:
+			A_result.append(A2[p2])
+   p = p+1
+   p2 = p2+1
+  if p==N:
+			break
+ return A_result

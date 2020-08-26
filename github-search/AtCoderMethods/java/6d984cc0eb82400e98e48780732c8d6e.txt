@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String S = sc.next();
+    Map<String, Integer> map = new HashMap<String, Integer>();
+    for (int i = 0; i < S.length(); i++) {
+        String s = String.valueOf(S.charAt(i));
+        if (!map.containsKey(s)) {
+            map.put(s, i);
+            continue;
+        }
+        int v = map.put(s, i);
+        int charLen = i - v + 1;
+        if (2 <= charLen / 2)
+            continue;
+        System.out.printf("%d %d\n", v + 1, i + 1);
+        sc.close();
+        return;
+    }
+    System.out.println("-1 -1");
+    sc.close();
+}

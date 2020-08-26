@@ -1,0 +1,27 @@
+def main():
+    n,m,t=list(map(int,input().split()))
+    salary=[0 for _ in range(n)]
+
+    salary=list(map(int,input().split()))
+
+    graph=[[] for _ in range(n)]
+    reverse_graph=[[] for _ in range(n)]
+
+    for i in range(m):
+        a,b,c=list(map(int,input().split()))
+        a-=1
+        b-=1
+        graph[a].append((b,c))
+        reverse_graph[b].append((a,c))
+
+
+    cost=dijkstra(graph)
+    reverse_cost=dijkstra(reverse_graph)
+
+
+    ans=-1
+    for i in range(n):
+        dis=cost[i]+reverse_cost[i]
+        if dis<=t:
+            ans = max(ans,(t-dis)*salary[i])
+    print(ans)

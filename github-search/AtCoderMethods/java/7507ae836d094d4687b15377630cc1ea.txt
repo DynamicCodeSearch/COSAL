@@ -1,0 +1,30 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int N = in.nextInt();
+    int[] a = new int[N];
+    int[] res = new int[9];
+    int[] res1 = new int[9];
+    int ans = 0;
+    int ans1 = 0;
+    for (int i = 0; i < N; i++) {
+        a[i] = in.nextInt();
+    }
+    Arrays.sort(a);
+    for (int i = 0; i < N; i++) {
+        int div = a[i] / 400;
+        if (div < 8) {
+            res[div] = 1;
+            res1[div] = 1;
+        }
+        if (div >= 8) {
+            ans++;
+        }
+    }
+    for (int i = 0; i < 9; i++) {
+        if (res[i] == 1)
+            ans++;
+        if (res1[i] == 1)
+            ans1++;
+    }
+    out.print(Math.max(1, ans1) + " " + ans);
+    out.println();
+}

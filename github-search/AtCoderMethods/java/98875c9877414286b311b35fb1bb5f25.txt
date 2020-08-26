@@ -1,0 +1,45 @@
+public void solve(int testNumber, FastScanner in, PrintWriter out) {
+    List<Integer>[] positions = new List[26];
+    for (int i = 0; i < positions.length; i++) {
+        positions[i] = new ArrayList<>();
+    }
+    char[] s = in.next().toCharArray();
+    int n = s.length;
+    for (int i = 0; i < n; i++) {
+        s[i] -= 'a';
+        positions[s[i]].add(i);
+    }
+    for (int i = 0; i < positions.length; i++) {
+        positions[i].add(n);
+    }
+    int[] maxLen = new int[n + 1];
+    maxLen[n] = 1;
+    for (int i = n - 1; i >= 0; i--) {
+        int j = findMax(positions, i);
+        if (j == n) {
+            maxLen[i] = 1;
+        } else {
+            maxLen[i] = maxLen[j + 1] + 1;
+        }
+    }
+    char[] ans = new char[maxLen[0]];
+    int pos = 0;
+    for (int i = 0; i < ans.length; i++) {
+        for (int c = 0; c < 26; c++) {
+            ans[i] = (char) (c + 'a');
+            int k = Collections.binarySearch(positions[c], pos);
+            if (k < 0) {
+                k = ~k;
+            }
+            int npos = positions[c].get(k);
+            if (npos == n && i == ans.length - 1) {
+                break;
+            }
+            if (maxLen[npos + 1] == ans.length - i - 1) {
+                pos = npos + 1;
+                break;
+            }
+        }
+    }
+    out.println(new String(ans));
+}

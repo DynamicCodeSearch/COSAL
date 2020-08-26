@@ -1,0 +1,18 @@
+public static void main(String... args) {
+    Scanner sc = new Scanner(System.in);
+    String w = sc.next();
+    int[] alphabet = new int[26];
+    int n;
+    sc.close();
+    for (int i = 0; i < w.length(); i++) {
+        n = (int) (w.charAt(i) - 'a');
+        alphabet[n]++;
+    }
+    for (int alpha : alphabet) {
+        if (alpha % 2 != 0) {
+            System.out.println("No");
+            System.exit(0);
+        }
+    }
+    System.out.println("Yes");
+}

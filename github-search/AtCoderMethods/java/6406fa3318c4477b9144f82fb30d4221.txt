@@ -1,0 +1,13 @@
+public static boolean IsPrime(long l) {
+    
+    if (l <= 1)
+        return false;
+    if (l <= 3)
+        return true;
+    
+    if (l % 2 == 0 || l % 3 == 0)
+        return false;
+    for (long i = 5; i * i <= l; i = i + 6) if (l % i == 0 || l % (i + 2) == 0)
+        return false;
+    return true;
+}

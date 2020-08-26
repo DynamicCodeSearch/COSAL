@@ -1,0 +1,12 @@
+def is_connect(node_list):
+    check_list = [0]
+    stack = [node_list[0]]
+    while len(stack) != 0:
+        if len(check_list) == N:
+            return True
+        current = stack.pop()
+        for ii in current.connect:
+            if ii not in check_list:
+                check_list.append(ii)
+                stack.append(node_list[ii])
+    return (len(check_list) == N)

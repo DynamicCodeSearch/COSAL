@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    final int N = sc.nextInt();
+    final int M = sc.nextInt();
+    points = new Point[N];
+    for (int i = 0; i < N; i++) points[i] = new Point(i);
+    for (int i = 0; i < M; i++) {
+        int x = sc.nextInt() - 1;
+        int y = sc.nextInt() - 1;
+        points[x].neighbor.add(y);
+        points[y].neighbor.add(x);
+    }
+    sc.close();
+    dfs(0, 0, new ArrayList<Integer>());
+    int m = 0;
+    for (int i : g) {
+        for (int n : points[i].neighbor) {
+            if (g.contains(n)) {
+                m++;
+            }
+        }
+    }
+    System.out.println(M - m / 2);
+}

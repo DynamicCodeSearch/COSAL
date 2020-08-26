@@ -1,0 +1,18 @@
+public static int dfs(final int deep, final int N, final int node, boolean[][] adj, boolean[] visited) {
+    if (deep >= N) {
+        return 1;
+    }
+    int ret = 0;
+    visited[node] = true;
+    for (int next = 0; next < N; next++) {
+        if (!adj[node][next]) {
+            continue;
+        }
+        if (visited[next]) {
+            continue;
+        }
+        ret += dfs(deep + 1, N, next, adj, visited);
+    }
+    visited[node] = false;
+    return ret;
+}

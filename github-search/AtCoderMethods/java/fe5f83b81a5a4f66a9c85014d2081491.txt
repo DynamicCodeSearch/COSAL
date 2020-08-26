@@ -1,0 +1,40 @@
+static void FlipCells(int[][] cells, Point pt, int value) {
+    switch(pt.a) {
+        case 1:
+            {
+                for (int i = 0; i < cells.length; i++) {
+                    for (int j = 0; j < pt.x; j++) {
+                        cells[i][j] = value;
+                    }
+                }
+            }
+            break;
+        case 2:
+            {
+                for (int i = 0; i < cells.length; i++) {
+                    for (int j = pt.x; j < cells[i].length; j++) {
+                        cells[i][j] = value;
+                    }
+                }
+            }
+            break;
+        case 3:
+            {
+                for (int i = 0; i < pt.y; i++) {
+                    for (int j = 0; j < cells[i].length; j++) {
+                        cells[i][j] = value;
+                    }
+                }
+            }
+            break;
+        case 4:
+            {
+                for (int i = pt.y; i < cells.length; i++) {
+                    for (int j = 0; j < cells[i].length; j++) {
+                        cells[i][j] = value;
+                    }
+                }
+            }
+            break;
+    }
+}

@@ -1,0 +1,26 @@
+def main():
+    n = int(input())
+
+    if n > 800000:
+        i = 800000
+        a, b, c = 6738, 4314, 1155
+    elif n > 600000:
+        i = 600000
+        a, b, c = 5228, 6398, 488
+    elif n > 400000:
+        i = 400000
+        a, b, c = 4336, 681, 1413
+    elif n > 200000:
+        i = 200000
+        a, b, c = 1298, 2628, 8017
+    elif n > 3:
+        i = 3
+        a, b, c = 0, 0, 1
+    else:
+        ans = '001'[n-1]
+
+    if n > 3:
+        for _ in range(i, n):
+            a, b, c = b, c, (a + b + c) % 10007
+        ans = c
+    print(ans)

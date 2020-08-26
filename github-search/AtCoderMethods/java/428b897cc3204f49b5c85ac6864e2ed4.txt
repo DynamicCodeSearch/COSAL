@@ -1,0 +1,35 @@
+static void solve() {
+    int n = ni(), c = ni();
+    int[] a = na(n);
+    int[] b = na(n);
+    long[] sum = new long[c + 1];
+    
+    sum[0] = 1;
+    
+    int mod = 1000000007;
+    for (int i = 0; i < n; i++) {
+        long[] nsum = new long[c + 1];
+        
+        long[] h = new long[401];
+        Arrays.fill(h, 1);
+        for (int k = 0; k <= c; k++) {
+            long s = 0;
+            for (int j = a[i]; j <= b[i]; j++) {
+                s += h[j];
+            }
+            s %= mod;
+            for (int j = 0; j <= c && j + k <= c; j++) {
+                
+                
+                nsum[j + k] += sum[j] * s;
+                nsum[j + k] %= mod;
+            }
+            for (int j = a[i]; j <= b[i]; j++) {
+                h[j] = h[j] * j % mod;
+            }
+        }
+        
+        sum = nsum;
+    }
+    out.println(sum[c]);
+}

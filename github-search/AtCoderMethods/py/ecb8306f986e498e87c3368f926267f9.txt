@@ -1,0 +1,17 @@
+def c():
+    n = int(input())
+    a = list(map(int, input().split()))
+
+    def set_col(rate):
+        r = rate // 400
+        r = min(8, r)
+        return r
+
+    l = list(map(set_col, a))
+    over_rate = l.count(8)
+    res = set(l)
+    if 8 in res: res.remove(8)
+
+    mi = max(1, len(res))
+    ma = len(res) + over_rate
+    print(mi, ma)

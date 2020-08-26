@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    int m = in.nextInt();
+    int[][] takahashi = new int[n][2];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < 2; j++) {
+            takahashi[i][j] = in.nextInt();
+        }
+    }
+    Arrays.sort(takahashi, Comparator.comparingInt(u -> u[0]));
+    int ans = n < m ? 0 : n - m;
+    int[] vec = new int[m + 10];
+    Arrays.fill(vec, SegmentTreeRARMQ.INF);
+    for (int i = 1; i <= m; i++) {
+        vec[i] = -(m + 1 - i);
+    }
+    vec[0] = -m;
+    vec[m + 1] = 0;
+    SegmentTreeRARMQ seg = new SegmentTreeRARMQ(vec);
+    int head = 0;
+    for (int l = 0; l <= m - 1; l++) {
+        while (head < n && takahashi[head][0] == l) {
+            seg.add(0, takahashi[head][1] + 1, 1);
+            head++;
+        }
+        ans = Math.max(ans, seg.max(l + 2, m + 2) - l);
+    }
+    out.println(ans);
+    out.flush();
+}

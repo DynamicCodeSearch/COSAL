@@ -1,0 +1,52 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int N = scan.nextInt();
+    scan.nextLine();
+    String s1 = scan.nextLine();
+    String s2 = scan.nextLine();
+    char[] arr = s1.toCharArray();
+    if (N == 1) {
+        System.out.println("3");
+        return;
+    }
+    if (N == 2) {
+        System.out.println("6");
+        return;
+    }
+    long result = 1;
+    boolean horizon = true;
+    int i = 0;
+    if (arr[0] == arr[1]) {
+        
+        horizon = true;
+        result = 6;
+        i = 2;
+    } else {
+        
+        horizon = false;
+        result = 3;
+        i = 1;
+    }
+    while (i < N - 1) {
+        if (arr[i] == arr[i + 1]) {
+            
+            if (horizon)
+                result *= 3;
+            else
+                result *= 2;
+            horizon = true;
+            i += 2;
+        } else {
+            
+            if (horizon) {
+            } else
+                result *= 2;
+            i++;
+            horizon = false;
+            if (i == N - 1)
+                result *= 2;
+        }
+    }
+    long res = result % 1000000007;
+    System.out.println(res);
+}

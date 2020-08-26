@@ -1,0 +1,14 @@
+void run() {
+    int h = ni();
+    int w = ni();
+    int a = ni();
+    int b = ni();
+    long sum = 0;
+    for (int i = b; i < w; ++i) {
+        
+        
+        sum += (convi(i + h - a - 1, i) * convi(w - 1 - i + a - 1, a - 1)) % MOD;
+        sum %= MOD;
+    }
+    System.out.println(sum);
+}

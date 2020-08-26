@@ -1,0 +1,8 @@
+def size(prev, curr):
+    su=1
+    global nodes, edges
+    for neigh in nodes[curr]:
+        if neigh==prev:
+            continue
+        su+=size(curr,neigh)
+    return su

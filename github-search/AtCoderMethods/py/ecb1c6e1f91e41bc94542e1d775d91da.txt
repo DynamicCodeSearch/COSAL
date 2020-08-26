@@ -1,0 +1,25 @@
+def choco(h, w):
+    i = 1
+    min_ = float('inf')
+    max_ = 4
+    diff = float('inf')
+    while i <= w / 2:
+        w2 = w - i
+        s1 = h * i
+        s2 = h * (w2 // 2)
+        s3 = h * ((w2 + 1) // 2)
+        min_ = min(s1, s2, s3)
+        max_ = max(s1, s2, s3)
+        if max_ - min_ < diff:
+            diff = max_ - min_
+
+        s2 = h // 2 * w2
+        s3 = (h + 1) // 2 * w2
+        min_ = min(s1, s2, s3)
+        max_ = max(s1, s2, s3)
+        if max_ - min_ < diff:
+            diff = max_ - min_
+
+        i += 1
+
+    return diff

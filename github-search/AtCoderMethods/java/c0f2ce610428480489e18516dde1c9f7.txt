@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int n = scanner.nextInt(), x = scanner.nextInt();
+    int[] cost = new int[n];
+    for (int i = 0; i < n; i++) {
+        cost[i] = scanner.nextInt();
+    }
+    scanner.close();
+    String list = Integer.toBinaryString(x);
+    int sum = 0;
+    if (x != 0) {
+        for (int i = list.length() - 1; i >= 0; i--) {
+            if (list.charAt(i) == '1') {
+                sum += cost[list.length() - 1 - i];
+            }
+        }
+        System.out.println(sum);
+    } else {
+        System.out.println(0);
+    }
+}

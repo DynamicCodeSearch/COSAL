@@ -1,0 +1,17 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int lineCnt = Integer.parseInt(br.readLine());
+    if (lineCnt < 100) {
+        System.out.println("00");
+    } else if (100 <= lineCnt && lineCnt < 1000) {
+        System.out.println("0" + lineCnt / 100);
+    } else if (1000 <= lineCnt && lineCnt <= 5000) {
+        System.out.println(lineCnt / 100);
+    } else if (6000 <= lineCnt && lineCnt <= 30000) {
+        System.out.println(lineCnt / 1000 + 50);
+    } else if (35000 <= lineCnt && lineCnt <= 70000) {
+        System.out.println((lineCnt / 1000 - 30) / 5 + 80);
+    } else if (70000 < lineCnt) {
+        System.out.println(89);
+    }
+}

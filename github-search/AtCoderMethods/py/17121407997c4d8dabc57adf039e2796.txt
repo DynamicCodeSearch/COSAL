@@ -1,0 +1,16 @@
+def main():
+    N = int(input())
+    a = list(map(int,input().split()))
+    maxi = -sys.maxsize
+    for i in range(N):
+        score = (-sys.maxsize,-sys.maxsize)
+        for j in range(N):
+            if i == j:
+                continue
+            v = simulate(a,i,j,N)
+            if score == (-sys.maxsize,-sys.maxsize):
+                score = v
+            elif score[1] < v[1]:
+                score = v
+        maxi = max(maxi,score[0])
+    print(maxi)

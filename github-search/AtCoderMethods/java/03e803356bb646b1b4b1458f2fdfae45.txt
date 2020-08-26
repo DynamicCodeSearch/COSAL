@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    int i = 0, j = 0, max = 0, maxIndex = 0;
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    String[] data = new String[N];
+    int[] count = new int[N];
+    for (i = 0; i < N; i++) {
+        count[i] = 0;
+    }
+    for (i = 0; i < N; i++) {
+        data[i] = sc.next();
+    }
+    for (i = 0; i < N; i++) {
+        for (j = 0; j < N; j++) {
+            if (data[i].equals(data[j])) {
+                count[i] += 1;
+            }
+        }
+    }
+    for (i = 0; i < N; i++) {
+        if (count[i] >= max) {
+            max = count[i];
+            maxIndex = i;
+        }
+    }
+    System.out.println(data[maxIndex]);
+}

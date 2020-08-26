@@ -1,0 +1,9 @@
+private static BigDecimal getPermutation(final int n) {
+    BigDecimal result = BigDecimal.ONE;
+    for (int i = 1; i <= n; i++) {
+        result = result.multiply(BigDecimal.valueOf(i));
+        if (result.compareTo(B_MOD) == 1)
+            result = result.remainder(B_MOD);
+    }
+    return result;
+}

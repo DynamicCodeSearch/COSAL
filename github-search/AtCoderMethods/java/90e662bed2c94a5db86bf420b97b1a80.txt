@@ -1,0 +1,11 @@
+private static boolean dostk(Stack<Integer> stk, int from, int to, int[] io) {
+    for (int f = from; f <= to; f++) {
+        int x = io[f];
+        if (stk.size() >= 1 && stk.peek() == x) {
+            stk.pop();
+        } else {
+            stk.push(x);
+        }
+    }
+    return true;
+}

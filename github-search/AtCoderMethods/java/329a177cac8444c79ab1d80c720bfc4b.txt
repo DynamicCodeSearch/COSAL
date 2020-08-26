@@ -1,0 +1,23 @@
+void run() {
+    int N = sc.nextInt();
+    int A = sc.nextInt();
+    int[] x = sc.nextIntArray(N);
+    long[][] dp = new long[N + 1][2501];
+    dp[0][0] = 1;
+    for (int i = 0; i < N; i++) {
+        for (int j = N - 1; j >= 0; j--) {
+            for (int k = 0; k <= 2500; k++) {
+                if (k + x[i] <= 2500)
+                    dp[j + 1][k + x[i]] += dp[j][k];
+            }
+        }
+    }
+    long res = 0;
+    for (int i = 1; i <= N; i++) {
+        for (int j = 1; j <= 2500; j++) {
+            if (j % i == 0 && j / i == A)
+                res += dp[i][j];
+        }
+    }
+    System.out.println(res);
+}

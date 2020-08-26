@@ -1,0 +1,15 @@
+public void solve(int testNumber, ScanReader in, PrintWriter out) {
+    int N = in.scanInt();
+    int[] array = new int[N];
+    in.scanInt(array);
+    int ans = 0;
+    for (int i = 0; i < N - 1; i++) {
+        if (array[i] == i + 1) {
+            array[i] = array[i + 1] + array[i] - (array[i + 1] = array[i]);
+            ans++;
+        }
+    }
+    if (array[N - 1] == N)
+        ans++;
+    out.println(ans);
+}

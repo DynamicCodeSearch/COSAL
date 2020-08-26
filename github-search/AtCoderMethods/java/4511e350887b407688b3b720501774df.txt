@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    long r = sc.nextLong();
+    long b = sc.nextLong();
+    long x = sc.nextLong();
+    long y = sc.nextLong();
+    long naMax = Math.min(r / x, b);
+    long left = -1;
+    long right = naMax;
+    while (left + 1 < right) {
+        long c = (left + right) / 2;
+        if (f(c, naMax, r, b, x, y) > f(c + 1, naMax, r, b, x, y)) {
+            right = c;
+        } else {
+            left = c;
+        }
+    }
+    System.out.println(f(right, naMax, r, b, x, y));
+}

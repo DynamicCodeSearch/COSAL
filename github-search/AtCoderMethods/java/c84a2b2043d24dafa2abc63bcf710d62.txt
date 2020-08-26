@@ -1,0 +1,19 @@
+static void Manhattan(int a, int b) {
+    HashMap<Integer, Integer> man = new HashMap<>();
+    for (int i = 0; i < m; i++) {
+        man.put(i, Math.abs(a - point[i][0]) + Math.abs(b - point[i][1]));
+    }
+    List<Map.Entry<Integer, Integer>> entries = new ArrayList<Map.Entry<Integer, Integer>>(man.entrySet());
+    Collections.sort(entries, new Comparator() {
+
+        public int compare(Object o1, Object o2) {
+            Map.Entry e1 = (Map.Entry) o1;
+            Map.Entry e2 = (Map.Entry) o2;
+            return ((Integer) e1.getValue()).compareTo((Integer) e2.getValue());
+        }
+    });
+    for (Entry<Integer, Integer> s : entries) {
+        System.out.println(s.getKey() + 1);
+        break;
+    }
+}

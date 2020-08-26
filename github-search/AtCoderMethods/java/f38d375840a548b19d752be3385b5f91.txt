@@ -1,0 +1,22 @@
+private void solve(Scanner in, PrintWriter out) {
+    N = in.nextInt();
+    S = in.next().toCharArray();
+    int[] sheep = new int[N];
+    for (int s0 = 0; s0 <= 1; s0++) {
+        for (int s1 = 0; s1 <= 1; s1++) {
+            Arrays.fill(sheep, -1);
+            sheep[0] = s0;
+            sheep[1] = s1;
+            if (check(sheep)) {
+                for (int i = 0; i < N; i++) {
+                    out.print(sheep[i] == 1 ? "S" : "W");
+                }
+                out.println();
+                return;
+            } else {
+                continue;
+            }
+        }
+    }
+    out.println(-1);
+}

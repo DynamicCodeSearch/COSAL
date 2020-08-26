@@ -1,0 +1,50 @@
+public static void main(String[] args) {
+    Scanner s = new Scanner(System.in);
+    int n = s.nextInt();
+    int a = s.nextInt();
+    int b = s.nextInt();
+    if (a == 1) {
+        int[] value = new int[n];
+        for (int i = 0; i < n; i++) {
+            value[i] = s.nextInt();
+        }
+        Arrays.sort(value);
+        for (int v : value) {
+            System.out.println(v);
+        }
+        return;
+    }
+    Node.a = new BigInteger("" + a);
+    PriorityQueue<Node> queue = new PriorityQueue<Node>();
+    for (int i = 0; i < n; i++) {
+        int original = s.nextInt();
+        queue.add(new Node(new BigInteger("" + original), original, 0));
+    }
+    int count = 0;
+    while (count < n && b > 0) {
+        Node node = queue.poll();
+        
+        if (node.count == 0) {
+            count++;
+        }
+        b--;
+        queue.add(node.getNext());
+    }
+    ArrayDeque<Long> result = new ArrayDeque<Long>();
+    while (!queue.isEmpty()) {
+        Node node = queue.poll();
+        
+        
+        result.add(mul(node.original, pow(a, node.count + b / n)));
+    }
+    b -= (b / n) * n;
+    while (b > 0) {
+        long value = result.pollFirst();
+        
+        result.offerLast(mul(value, a));
+        b--;
+    }
+    while (!result.isEmpty()) {
+        System.out.println(result.removeFirst());
+    }
+}

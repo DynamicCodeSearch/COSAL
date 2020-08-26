@@ -1,0 +1,10 @@
+def solve():
+    N = int(input())
+    d = 10**12
+    i = 1
+    while i**2 <= N:
+        if N % i == 0:
+            d = min(d, order(i, N//i))
+        i += 1
+
+    print(d)

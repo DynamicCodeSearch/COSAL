@@ -1,0 +1,23 @@
+def search(self, s, t):
+    d = collections.defaultdict(lambda: inf)
+    d[s] = 0
+    q = []
+    heapq.heappush(q, (0, s))
+    v = collections.defaultdict(bool)
+    while len(q):
+        k, u = heapq.heappop(q)
+        if v[u]:
+            continue
+        if u == t:
+            return d[t]
+        v[u] = True
+
+        for uv, ud in self.e[u]:
+            if v[uv]:
+                continue
+            vd = k + ud
+            if d[uv] > vd:
+                d[uv] = vd
+                heapq.heappush(q, (vd, uv))
+
+    return None

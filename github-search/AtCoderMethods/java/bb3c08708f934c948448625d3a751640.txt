@@ -1,0 +1,5 @@
+static int lcm(int x, int y) {
+    x = (x ^ x >> 31) - (x >> 31);
+    y = (y ^ y >> 31) - (y >> 31);
+    return x / gcd(x, y) * y;
+}

@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    FastScanner fs = new FastScanner();
+    long a = fs.nextLong();
+    long k = fs.nextInt2();
+    StringBuilder sb = new StringBuilder();
+    if (k == 0) {
+        sb.append((long) 2e12 - a);
+    } else {
+        int i = 0;
+        long count = a;
+        while (count < 2e12) {
+            long add = 1 + k * count;
+            count += add;
+            i++;
+        }
+        sb.append(i);
+    }
+    System.out.println(sb.toString());
+}

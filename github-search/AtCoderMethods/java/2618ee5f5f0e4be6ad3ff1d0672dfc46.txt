@@ -1,0 +1,39 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    Printer pr = new Printer(System.out);
+    int n = sc.nextInt();
+    Pair[] hw = new Pair[n + 1];
+    for (int i = 0; i < n; i++) {
+        hw[i] = new Pair(sc.nextInt(), sc.nextInt());
+    }
+    hw[n] = new Pair(Integer.MAX_VALUE, Integer.MAX_VALUE);
+    Arrays.sort(hw);
+    int[] dp = new int[n];
+    Arrays.fill(dp, n);
+    for (int i = 0; i < n; i++) {
+        int l = -1;
+        int r = n;
+        while (r - l > 1) {
+            int mid = l + (r - l) / 2;
+            if (hw[dp[mid]].b >= hw[i].b) {
+                r = mid;
+            } else {
+                l = mid;
+            }
+        }
+        dp[r] = i;
+    }
+    int l = -1;
+    int r = n;
+    while (r - l > 1) {
+        int mid = l + (r - l) / 2;
+        if (hw[dp[mid]].b >= hw[n].b) {
+            r = mid;
+        } else {
+            l = mid;
+        }
+    }
+    pr.println(r);
+    pr.close();
+    sc.close();
+}

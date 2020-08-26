@@ -1,0 +1,32 @@
+void solve() throws IOException {
+    int n = in.nextInt();
+    Pair[] a = new Pair[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = new Pair(-in.nextInt(), i);
+    }
+    Arrays.sort(a);
+    long[] ans = new long[n];
+    List<Tri> ls = new ArrayList<>();
+    Tri pre = new Tri(a[0].a, a[0].b, 1);
+    ls.add(pre);
+    for (int i = 1; i < n; i++) {
+        if (a[i].a == a[i - 1].a) {
+            pre.c++;
+            continue;
+        }
+        ls.add(pre = new Tri(a[i].a, a[i].b, 1));
+    }
+    ls.add(new Tri(0, 0, 0));
+    long sum = 0;
+    for (int i = 0; i < ls.size() - 1; i++) {
+        Tri p = ls.get(i);
+        Tri f = ls.get(i + 1);
+        if (p.b < f.b)
+            f.b = p.b;
+        sum += p.c;
+        ans[p.b] += (long) (-p.a + f.a) * sum;
+    }
+    for (int i = 0; i < n; i++) {
+        out.println(ans[i]);
+    }
+}

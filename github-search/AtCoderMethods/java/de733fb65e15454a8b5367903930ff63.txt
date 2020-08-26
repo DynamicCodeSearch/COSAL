@@ -1,0 +1,22 @@
+
+void IntervalConnect(int[] a, int[] b, int l, int r, int k, ArrayList<Integer>[] g, int[][] arr, int src) {
+    if (l >= arr.length) {
+        return;
+    } else if (r >= arr.length) {
+        IntervalConnect(a, b, l, (l + r) / 2, 2 * k + 1, g, arr, src);
+        IntervalConnect(a, b, (l + r) / 2 + 1, r, 2 * k + 2, g, arr, src);
+        return;
+    }
+    int[] L = arr[l];
+    int[] R = arr[r];
+    if (comp.compare(a, L) <= 0 && comp.compare(R, b) <= 0) {
+        g[src].add(k);
+        return;
+    } else if (comp.compare(b, L) < 0 || comp.compare(R, a) < 0) {
+        return;
+    } else {
+        IntervalConnect(a, b, l, (l + r) / 2, 2 * k + 1, g, arr, src);
+        IntervalConnect(a, b, (l + r) / 2 + 1, r, 2 * k + 2, g, arr, src);
+        return;
+    }
+}

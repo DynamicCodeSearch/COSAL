@@ -1,0 +1,5 @@
+def dfs(now, cost, dic):
+  dic[now] = cost
+  for nx in adj[now]:
+    if nx not in dic:
+      dfs(nx, cost+1, dic)

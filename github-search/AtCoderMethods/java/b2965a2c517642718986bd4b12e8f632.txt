@@ -1,0 +1,6 @@
+static long countLess(Node x, Node y) {
+    if (x == null)
+        return 0L;
+    fall(x);
+    return (countLess(x.left, y) + countLess(x.right, y) + countLess(y, x.id) * x.myval) % mod;
+}

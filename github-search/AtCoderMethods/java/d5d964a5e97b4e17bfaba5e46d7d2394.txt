@@ -1,0 +1,61 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    int X = sc.nextInt();
+    int Y = sc.nextInt();
+    PriorityQueue<Integer> a = new PriorityQueue<Integer>();
+    PriorityQueue<Integer> b = new PriorityQueue<Integer>();
+    for (int i = 0; i < N; i++) {
+        a.add(sc.nextInt());
+    }
+    for (int i = 0; i < M; i++) {
+        b.add(sc.nextInt());
+    }
+    sc.close();
+    boolean flag = true;
+    int ctime = 0;
+    int ans = 0;
+    while (true) {
+        if (flag) {
+            if (ctime != 0) {
+                ans++;
+            }
+            if (a.isEmpty()) {
+                break;
+            }
+            ctime = a.poll() + X;
+            while (true) {
+                if (b.isEmpty()) {
+                    break;
+                }
+                int temp = b.peek();
+                if (temp < ctime) {
+                    b.poll();
+                } else {
+                    break;
+                }
+            }
+            flag = false;
+        } else {
+            if (b.isEmpty()) {
+                break;
+            }
+            ctime = b.poll() + Y;
+            while (true) {
+                if (a.isEmpty()) {
+                    break;
+                }
+                int temp = a.peek();
+                if (temp < ctime) {
+                    a.poll();
+                } else {
+                    break;
+                }
+            }
+            flag = true;
+        }
+    }
+    System.out.println(ans);
+}

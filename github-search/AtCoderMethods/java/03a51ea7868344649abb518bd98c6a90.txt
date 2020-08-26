@@ -1,0 +1,55 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    long[] x = in.nextLongs(n);
+    long L = in.nextLong();
+    int[][] left = new int[17][n];
+    int[][] right = new int[17][n];
+    int ti = 0;
+    for (int i = 0; i < n; i++) {
+        while (x[i] - x[ti] > L) {
+            ti++;
+        }
+        left[0][i] = ti;
+    }
+    ti = n - 1;
+    for (int i = n - 1; i >= 0; i--) {
+        while (x[ti] - x[i] > L) {
+            ti--;
+        }
+        right[0][i] = ti;
+    }
+    for (int k = 1; k <= 16; k++) {
+        for (int i = 0; i < n; i++) {
+            left[k][i] = left[k - 1][left[k - 1][i]];
+            right[k][i] = right[k - 1][right[k - 1][i]];
+        }
+    }
+    int q = in.nextInt();
+    while (--q >= 0) {
+        int a = in.nextInt() - 1;
+        int b = in.nextInt() - 1;
+        int need = 0;
+        if (a < b) {
+            for (int k = 16; k >= 0; k--) {
+                if (right[k][a] < b) {
+                    need += 1 << k;
+                    a = right[k][a];
+                }
+            }
+        } else {
+            for (int k = 16; k >= 0; k--) {
+                if (left[k][a] > b) {
+                    need += 1 << k;
+                    a = left[k][a];
+                }
+            }
+        }
+        if (a != b) {
+            need++;
+        }
+        out.println(need);
+    }
+    out.flush();
+}

@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    char[] charArray = scan.next().toCharArray();
+    if (charArray.length < 1 || charArray.length > 10) {
+        System.exit(-1);
+    }
+    List<String> list = new ArrayList<String>();
+    for (char ch : charArray) {
+        if (ch == '0' || ch == '1') {
+            list.add(String.valueOf(ch));
+        } else if (ch == 'B' && list.size() > 0) {
+            list.remove(list.size() - 1);
+        }
+    }
+    if (list.size() == 0) {
+        System.exit(-2);
+    }
+    System.out.println(String.join("", list));
+}

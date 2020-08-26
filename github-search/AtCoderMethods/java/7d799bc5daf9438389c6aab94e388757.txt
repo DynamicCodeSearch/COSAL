@@ -1,0 +1,34 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int questions = scanner.nextInt();
+    String answer = scanner.next();
+    scanner.close();
+    char[] answers = answer.toCharArray();
+    int[] count = new int[choice];
+    for (int i = 0; i < questions; i++) {
+        switch(answers[i]) {
+            case '1':
+                count[0]++;
+                break;
+            case '2':
+                count[1]++;
+                break;
+            case '3':
+                count[2]++;
+                break;
+            case '4':
+                count[3]++;
+        }
+    }
+    int max = 0;
+    int min = 100;
+    for (int i = 0; i < choice; i++) {
+        if (max < count[i]) {
+            max = count[i];
+        }
+        if (min > count[i]) {
+            min = count[i];
+        }
+    }
+    System.out.println(max + " " + min);
+}

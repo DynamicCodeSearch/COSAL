@@ -1,0 +1,22 @@
+public Node lca(int a, int b) {
+    
+    Node nodeA, nodeB;
+    if (n[a].depth < n[b].depth) {
+        nodeA = n[a];
+        nodeB = n[b];
+    } else {
+        nodeA = n[b];
+        nodeB = n[a];
+    }
+    
+    int diff = nodeB.depth - nodeA.depth;
+    for (int k = 0; k < diff; k++) {
+        nodeB = nodeB.parent;
+    }
+    
+    while (nodeA != nodeB) {
+        nodeA = nodeA.parent;
+        nodeB = nodeB.parent;
+    }
+    return nodeA;
+}

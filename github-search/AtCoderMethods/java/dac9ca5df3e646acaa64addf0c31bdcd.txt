@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int m, n, N;
+    int sum = 0, collect_pen, new_pen, remain = 0;
+    m = sc.nextInt();
+    n = sc.nextInt();
+    N = sc.nextInt();
+    collect_pen = N;
+    sum += collect_pen;
+    while (true) {
+        if (collect_pen + remain < m)
+            break;
+        if (collect_pen / m > 0) {
+            new_pen = collect_pen / m * n;
+            remain += collect_pen % m;
+        } else {
+            new_pen = (collect_pen + remain) / m * n;
+            remain = (collect_pen + remain) % m;
+        }
+        sum += new_pen;
+        collect_pen = new_pen;
+    }
+    System.out.println(sum);
+}

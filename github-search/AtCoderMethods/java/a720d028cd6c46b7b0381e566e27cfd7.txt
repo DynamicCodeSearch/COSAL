@@ -1,0 +1,22 @@
+public void run() {
+    Scanner sc = new Scanner(System.in);
+    long K = sc.nextLong();
+    long K_ = K;
+    int N = 50;
+    long[] a = new long[N];
+    Arrays.fill(a, K / 50 + N - 1);
+    K -= K / 50 * 50;
+    while (K > 0) {
+        Arrays.sort(a);
+        a[0] += N;
+        for (int i = 1; i < N; ++i) {
+            --a[i];
+        }
+        Arrays.sort(a);
+        --K;
+    }
+    System.out.println(N);
+    for (int i = 0; i < N; ++i) {
+        System.out.print(a[i] + (i == N - 1 ? "\n" : " "));
+    }
+}

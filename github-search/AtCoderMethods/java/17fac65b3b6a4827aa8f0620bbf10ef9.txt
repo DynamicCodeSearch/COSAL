@@ -1,0 +1,16 @@
+static void run(Scanner sc, PrintWriter out) {
+    int N = sc.nextInt();
+    int T = sc.nextInt();
+    long ans = 0;
+    int cur = 0;
+    for (int i = 0; i < N; i++) {
+        int A = sc.nextInt();
+        if (cur < A) {
+            ans += T;
+        } else {
+            ans += A + T - cur;
+        }
+        cur = A + T;
+    }
+    out.println(ans);
+}

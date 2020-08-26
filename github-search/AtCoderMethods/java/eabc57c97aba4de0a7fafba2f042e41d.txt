@@ -1,0 +1,27 @@
+static boolean judge(int i, int j) {
+    for (int k = 0; k < SIZE; k++) {
+        if (k == i)
+            continue;
+        if (board[k][j] == 'Q')
+            return false;
+    }
+    for (int k = 0; k < SIZE; k++) {
+        if (k == j)
+            continue;
+        if (board[i][k] == 'Q')
+            return false;
+    }
+    for (int k = 1; k <= i; k++) {
+        if (j - k >= 0 && board[i - k][j - k] == 'Q')
+            return false;
+        if (j + k < SIZE && board[i - k][j + k] == 'Q')
+            return false;
+    }
+    for (int k = 1; k < (SIZE - i); k++) {
+        if (j - k >= 0 && board[i + k][j - k] == 'Q')
+            return false;
+        if (j + k < SIZE && board[i + k][j + k] == 'Q')
+            return false;
+    }
+    return true;
+}

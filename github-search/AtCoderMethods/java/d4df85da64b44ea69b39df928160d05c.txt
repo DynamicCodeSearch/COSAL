@@ -1,0 +1,29 @@
+void solve(FastScanner in, PrintWriter out) throws Exception {
+    S = in.next().toCharArray();
+    int N = S.length;
+    boolean dream = false;
+    boolean erase = false;
+    int head = 0;
+    while (head < N) {
+        if (head + 5 <= N && dream(head)) {
+            dream = true;
+            head += 5;
+        } else if (head + 5 <= N && erase(head)) {
+            erase = true;
+            head += 5;
+        } else if (head + 2 <= N && er(head) && dream) {
+            dream = false;
+            head += 2;
+        } else if (head + 1 <= N && r(head) && erase) {
+            erase = false;
+            head += 1;
+        } else {
+            break;
+        }
+    }
+    if (head != N) {
+        out.println("NO");
+    } else {
+        out.println("YES");
+    }
+}

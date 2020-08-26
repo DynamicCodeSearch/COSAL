@@ -1,0 +1,68 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int count = sc.nextInt();
+    sc.nextLine();
+    String str = sc.nextLine();
+    sc.close();
+    char[] strArray = str.toCharArray();
+    int countLeft = 0;
+    int countRight = 0;
+    char left = '(';
+    char right = ')';
+    int indexRight = -1;
+    boolean noMore = false;
+    for (int i = 0; i < count; i++) {
+        if (left == strArray[i]) {
+            countLeft++;
+            if (!noMore) {
+                if (indexRight == -1 || indexRight < i) {
+                    indexRight = i;
+                }
+                boolean found = false;
+                for (int j = indexRight + 1; j < count; j++) {
+                    if (right == strArray[j]) {
+                        found = true;
+                        indexRight = j;
+                        countLeft--;
+                        break;
+                    }
+                }
+                if (!found || indexRight == count - 1) {
+                    noMore = true;
+                }
+            }
+        }
+    }
+    int indexLeft = -1;
+    noMore = false;
+    for (int i = count - 1; i >= 0; i--) {
+        if (right == strArray[i]) {
+            countRight++;
+            if (!noMore) {
+                if (indexLeft == -1 || indexLeft > i) {
+                    indexLeft = i;
+                }
+                boolean found = false;
+                for (int j = indexLeft - 1; j >= 0; j--) {
+                    if (left == strArray[j]) {
+                        found = true;
+                        indexLeft = j;
+                        countRight--;
+                        break;
+                    }
+                }
+                if (!found || indexLeft == 0) {
+                    noMore = true;
+                }
+            }
+        }
+    }
+    String result = str;
+    for (int i = 0; i < countRight; i++) {
+        result = "(" + result;
+    }
+    for (int i = 0; i < countLeft; i++) {
+        result += ")";
+    }
+    System.out.println(result);
+}

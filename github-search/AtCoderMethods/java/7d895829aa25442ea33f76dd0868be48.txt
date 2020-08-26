@@ -1,0 +1,16 @@
+private void solve() {
+    try (Scanner in = new Scanner(System.in)) {
+        int N = in.nextInt();
+        long A = in.nextInt();
+        long B = in.nextInt();
+        long[] X = new long[N];
+        for (int i = 0; i < N; i++) {
+            X[i] = in.nextInt();
+        }
+        long sum = 0;
+        for (int i = 1; i < N; i++) {
+            sum += Math.min(A * (X[i] - X[i - 1]), B);
+        }
+        System.out.println(sum);
+    }
+}

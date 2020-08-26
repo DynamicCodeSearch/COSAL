@@ -1,0 +1,27 @@
+static Node build(ArrayList<String> words) {
+    Node root = new Node();
+    for (int i = 0; i < words.size(); i++) root.insert(words.get(i), i, 0);
+    Queue<Node> q = new LinkedList<Node>();
+    for (int i = 0; i < 10; i++) {
+        if (root.child[i] == null)
+            root.child[i] = root;
+        else {
+            q.add(root.child[i]);
+            root.child[i].fail = root;
+        }
+    }
+    while (!q.isEmpty()) {
+        Node front = q.remove();
+        for (int i = 0; i < 10; i++) {
+            if (!front.chars[i])
+                continue;
+            q.add(front.child[i]);
+            Node temp = front.fail;
+            while (temp.child[i] == null) temp = temp.fail;
+            temp = temp.child[i];
+            front.child[i].fail = temp;
+            front.child[i].isTerminal |= temp.isTerminal;
+        }
+    }
+    return root;
+}

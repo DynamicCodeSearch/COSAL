@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    long n = N;
+    long mod = 1000000000 + 7;
+    
+    long[] dp = new long[N + 1];
+    long[] sum = new long[N + 1];
+    dp[0] = 1;
+    sum[0] = 1;
+    dp[1] = N;
+    sum[1] = N;
+    for (int i = 2; i <= N; i++) {
+        dp[i] = sum[i - 1];
+        dp[i] += mod - dp[i - 2];
+        dp[i] %= mod;
+        dp[i] += (n - i + 2);
+        dp[i] %= mod;
+        dp[i] += (n - 1) * (n - 1);
+        dp[i] %= mod;
+        sum[i] = sum[i - 1] + dp[i];
+        sum[i] %= mod;
+    }
+    System.out.println(dp[N]);
+}

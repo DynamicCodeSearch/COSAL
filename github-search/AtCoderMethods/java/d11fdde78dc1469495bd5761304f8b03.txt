@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int n = scanner.nextInt(), m = scanner.nextInt();
+    boolean[] from = new boolean[n + 1];
+    boolean[] to = new boolean[n + 1];
+    for (int i = 1; i <= m; i++) {
+        int a = scanner.nextInt(), b = scanner.nextInt();
+        if (a == 1)
+            from[b] = true;
+        if (b == n)
+            to[a] = true;
+    }
+    for (int i = 2; i < n; i++) if (from[i] && to[i]) {
+        System.out.println(YES);
+        return;
+    }
+    System.out.println(NO);
+}

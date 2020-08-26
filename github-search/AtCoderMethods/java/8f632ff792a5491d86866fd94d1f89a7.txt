@@ -1,0 +1,22 @@
+void run() {
+    int n = ni();
+    int k = ni();
+    long[] a = new long[n];
+    for (int i = 0; i < n; ++i) {
+        a[i] = ni();
+    }
+    int l = 0;
+    int r = k;
+    long sum = 0;
+    long sub = 0;
+    for (int j = l; j < r; ++j) {
+        sub += a[j];
+    }
+    sum += sub;
+    for (int i = 0; r < n; ++i) {
+        sub -= a[l++];
+        sub += a[r++];
+        sum += sub;
+    }
+    System.out.println(sum);
+}

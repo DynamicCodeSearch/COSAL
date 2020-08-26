@@ -1,0 +1,29 @@
+private static int[] dfs(int water, int salt) {
+    if ((salt + water) > 0 && (water + salt > f || salt * (100 + e) > e * (salt + water))) {
+        return new int[] { 100, 0 };
+    }
+    long hash = hash(water, salt);
+    if (memo.containsKey(hash)) {
+        return memo.get(hash);
+    }
+    int[] ret = new int[] { water, salt };
+    int[] now;
+    now = dfs(water + 100 * a, salt);
+    if (cmp(ret, now) < 0) {
+        ret = now;
+    }
+    now = dfs(water + 100 * b, salt);
+    if (cmp(ret, now) < 0) {
+        ret = now;
+    }
+    now = dfs(water, salt + c);
+    if (cmp(ret, now) < 0) {
+        ret = now;
+    }
+    now = dfs(water, salt + d);
+    if (cmp(ret, now) < 0) {
+        ret = now;
+    }
+    memo.put(hash, ret);
+    return ret;
+}

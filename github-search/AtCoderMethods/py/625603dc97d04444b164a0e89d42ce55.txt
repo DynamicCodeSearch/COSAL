@@ -1,0 +1,17 @@
+def add_edge(self,edge,cost):
+    if len(edge)==1:
+        edge=list(edge)
+
+    u,v=edge[0],edge[1]
+
+    if u not in self.nodes:
+        self.adj[u] = {}
+        self.nodes[u] = {}
+
+    if v not in self.nodes:
+        self.adj[v] = {}
+        self.nodes[v] = {}
+
+
+    self.adj[u][v] = cost
+    self.adj[v][u] = cost

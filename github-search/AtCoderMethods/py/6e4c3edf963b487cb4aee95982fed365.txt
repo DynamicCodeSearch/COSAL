@@ -1,0 +1,21 @@
+def main():
+    N = int(input())
+    a = [int(i) for i in input().split()]
+    area = 0
+
+    b = 0
+    tmp = 0
+
+    sort_a = sorted(a, reverse=True)
+    for num in sort_a:
+        if(num == tmp):
+            if(b > 0):
+                area = num * b
+                break
+            else:
+                b = num
+                tmp = 0
+        else:
+            tmp = num
+
+    print(area)

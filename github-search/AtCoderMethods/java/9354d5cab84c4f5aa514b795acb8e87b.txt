@@ -1,0 +1,28 @@
+
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int x1 = scanner.nextInt();
+    int y1 = scanner.nextInt();
+    int r = scanner.nextInt();
+    Area area1 = new Area(new Ellipse2D.Double(x1 - r, y1 - r, r * 2, r * 2));
+    int x2 = scanner.nextInt();
+    int y2 = scanner.nextInt();
+    int x3 = scanner.nextInt();
+    int y3 = scanner.nextInt();
+    Area area2 = new Area(new Rectangle2D.Double(x2, y2, x3 - x2, y3 - y2));
+    scanner.close();
+    Area tempArea = (Area) area1.clone();
+    tempArea.subtract(area2);
+    if (tempArea.isEmpty()) {
+        System.out.println("NO");
+    } else {
+        System.out.println("YES");
+    }
+    tempArea = (Area) area2;
+    tempArea.subtract(area1);
+    if (tempArea.isEmpty()) {
+        System.out.println("NO");
+    } else {
+        System.out.println("YES");
+    }
+}

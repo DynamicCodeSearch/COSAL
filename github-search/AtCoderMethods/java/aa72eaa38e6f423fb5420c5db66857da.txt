@@ -1,0 +1,16 @@
+public void solve(int testNumber, MyReader in, PrintWriter out) {
+    int N = in.nextInt();
+    long[] a = new long[N];
+    long tot = 0;
+    long[] s = new long[N];
+    for (int i = 0; i < N; i++) {
+        a[i] = in.nextLong();
+        tot += a[i];
+        s[i] = tot;
+    }
+    long d = Long.MAX_VALUE;
+    for (int i = 0; i < N - 1; i++) {
+        d = Math.min(d, Math.abs(s[i] - (tot - s[i])));
+    }
+    out.println(d);
+}

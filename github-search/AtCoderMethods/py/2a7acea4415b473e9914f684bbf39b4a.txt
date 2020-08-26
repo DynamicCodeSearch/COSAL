@@ -1,0 +1,12 @@
+def BFS(K,edges,N):
+  dist=[-1]*N
+  stack=[]
+  stack.append(K)
+  dist[K]=0
+  while stack:
+    label=stack.pop(-1)
+    for i,c in edges[label]:
+      if dist[i]==-1:
+        dist[i]=dist[label]+c
+        stack+=[i]
+  return dist

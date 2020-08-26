@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    scan.nextLine();
+    String[] ary = scan.nextLine().split(" ");
+    scan.close();
+    int max = Integer.parseInt(ary[0]);
+    int min = max;
+    int value;
+    for (int i = 1; i < ary.length; i++) {
+        value = Integer.parseInt(ary[i]);
+        if (max < value) {
+            max = value;
+        }
+        if (value < min) {
+            min = value;
+        }
+    }
+    System.out.println(max - min);
+}

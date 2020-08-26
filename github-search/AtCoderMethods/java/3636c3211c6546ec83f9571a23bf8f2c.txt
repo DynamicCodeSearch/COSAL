@@ -1,0 +1,14 @@
+public static void filter() throws Exception {
+    Scanner sc = new Scanner(new File("bruteforce.txt"));
+    while (sc.hasNextLine()) {
+        String s = sc.nextLine();
+        String[] t = s.replace("\"", "").split(",");
+        int[] x = new int[5];
+        for (int i = 0; i < 5; i++) {
+            x[i] = Integer.parseInt(t[i]);
+        }
+        if (x[0] >= 15 && x[1] >= 4 && x[2] >= 5 && x[3] >= 4 && x[1] <= x[3]) {
+            System.out.println(s);
+        }
+    }
+}

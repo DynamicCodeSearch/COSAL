@@ -1,0 +1,18 @@
+def main():
+
+    N = int(input())
+    counter = Counter(map(int, input().split()))
+    n_max = 0
+
+    def sort_func(t):
+        return t[0]
+    for a, n in sorted(counter.items(),
+                       key=sort_func):
+
+        temp_max = sum([
+            counter.get(a - 1, 0),
+            counter[a],
+            counter.get(a + 1, 0)
+        ])
+        n_max = max(n_max, temp_max)
+    print(n_max)

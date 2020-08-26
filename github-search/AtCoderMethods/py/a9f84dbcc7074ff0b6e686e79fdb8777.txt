@@ -1,0 +1,15 @@
+def main():
+    N = int(input())
+    A = tuple(map(int, input().split()))
+
+    a = set()
+    for i in A:
+        while True:
+            div_, mod_ = divmod(i, 2)
+            if mod_:
+                break
+            else:
+                i = div_
+        a.add(i)
+
+    print(len(a))

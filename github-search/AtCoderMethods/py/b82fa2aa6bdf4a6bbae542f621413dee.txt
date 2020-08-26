@@ -1,0 +1,17 @@
+def main():
+    N = int(input())
+    P = list(map(int, input().split()))
+
+    toSkip = False
+    count = 0
+    for i in range(1, len(P)+1):
+        p = P[i-1]
+        if p != i or toSkip:
+            toSkip = False
+            continue
+
+
+        count += 1
+        toSkip = True
+
+    print(count)

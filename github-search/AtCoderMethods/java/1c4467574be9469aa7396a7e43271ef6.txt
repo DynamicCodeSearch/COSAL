@@ -1,0 +1,15 @@
+private void solve() {
+    n = in.nextInt();
+    int m = in.nextInt();
+    G = new ArrayList[n];
+    for (int i = 0; i < n; i++) {
+        G[i] = new ArrayList<>();
+    }
+    for (int i = 0; i < m; i++) {
+        int u = in.nextInt();
+        int v = in.nextInt();
+        G[u - 1].add(v - 1);
+        G[v - 1].add(u - 1);
+    }
+    out.print(visit(0, 1));
+}

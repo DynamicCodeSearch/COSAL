@@ -1,0 +1,19 @@
+static double dp(int i, int j, int t) {
+    if (f[i][j][t] >= 0)
+        return f[i][j][t];
+    if (i == n)
+        if (t == 1) {
+            return 1.0;
+        } else {
+            return 0.0;
+        }
+    double p = 1.0 / (i + 1);
+    double ans;
+    if (j > 0) {
+        ans = p * Math.max(dp(i + 1, j, 0), dp(i + 1, j - 1, 1)) + (1 - p) * dp(i + 1, j, t);
+    } else {
+        ans = p * dp(i + 1, j, 0) + (1 - p) * dp(i + 1, j, t);
+    }
+    f[i][j][t] = ans;
+    return ans;
+}

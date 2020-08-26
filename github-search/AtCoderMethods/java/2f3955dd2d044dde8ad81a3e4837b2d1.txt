@@ -1,0 +1,15 @@
+void init() throws FileNotFoundException {
+    try {
+        in = new BufferedReader(new FileReader("input.txt"));
+        out = new PrintWriter("output.txt");
+    } catch (Exception e) {
+        String filename = "";
+        if (filename.isEmpty()) {
+            in = new BufferedReader(new InputStreamReader(System.in));
+            out = new PrintWriter(System.out);
+        } else {
+            in = new BufferedReader(new FileReader(filename + ".in"));
+            out = new PrintWriter(filename + ".out");
+        }
+    }
+}

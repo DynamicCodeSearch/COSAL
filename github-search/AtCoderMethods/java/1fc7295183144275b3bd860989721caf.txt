@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int x = sc.nextInt();
+    int y = sc.nextInt();
+    int z = sc.nextInt();
+    int k = 0;
+    int S = z;
+    int Fin = 0;
+    while (true) {
+        if (z / x != 0) {
+            k = k + z % x;
+            z = z / x * y;
+            S = S + z;
+        } else if (z / x == 0) {
+            if (k >= x - z) {
+                k = k - (x - z);
+                z = y;
+                S = S + z;
+            } else if (k < x - z) {
+                Fin++;
+            }
+        }
+        if (Fin == 1) {
+            break;
+        }
+    }
+    System.out.println(S);
+}

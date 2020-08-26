@@ -1,0 +1,24 @@
+void solve() throws Exception {
+    FastScanner in = new FastScanner(System.in);
+    int N = in.nextInt();
+    int[] cnt = new int[256];
+    int[] c = new int[256];
+    Arrays.fill(cnt, Integer.MAX_VALUE / 10);
+    for (int i = 0; i < N; i++) {
+        String s = in.next();
+        Arrays.fill(c, 0);
+        for (int jj = 0; jj < s.length(); jj++) {
+            c[s.charAt(jj)]++;
+        }
+        for (int jj = 0; jj < c.length; jj++) {
+            cnt[jj] = Math.min(cnt[jj], c[jj]);
+        }
+    }
+    String ret = "";
+    for (int i = 0; i < cnt.length; i++) {
+        for (int jj = 0; jj < cnt[i]; jj++) {
+            ret += (char) i;
+        }
+    }
+    System.out.println(ret);
+}

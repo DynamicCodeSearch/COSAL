@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int num = sc.nextInt();
+    int[] petals = new int[num];
+    for (int i = 0; i < num; ++i) {
+        petals[i] = sc.nextInt();
+    }
+    int result = 0;
+    for (int i = 0; i < num; ++i) {
+        int key = (petals[i] - 1) % 6;
+        switch(key) {
+            case 6:
+            case 2:
+                break;
+            case 3:
+            case 1:
+                result += 1;
+                break;
+            case 4:
+                result += 2;
+                break;
+            case 5:
+                result += 3;
+                break;
+        }
+    }
+    System.out.println(result);
+}

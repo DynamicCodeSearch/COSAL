@@ -1,0 +1,38 @@
+public static void main(String[] args) {
+    int r = sc.nextInt();
+    int c = sc.nextInt();
+    int sx = sc.nextInt() - 1;
+    int sy = sc.nextInt() - 1;
+    int ex = sc.nextInt() - 1;
+    int ey = sc.nextInt() - 1;
+    char[][] a = new char[r][c];
+    for (int i = 0; i < r; i++) {
+        String s = sc.next();
+        a[i] = s.toCharArray();
+    }
+    int[][] d = new int[r][c];
+    for (int i = 0; i < r; i++) {
+        for (int j = 0; j < c; j++) {
+            d[i][j] = -1;
+        }
+    }
+    Deque<Pair> q = new ArrayDeque<>();
+    q.addLast(new Pair(sx, sy, 0));
+    ;
+    while (true) {
+        if (q.size() == 0)
+            break;
+        int[] dx = { 0, 1, 0, -1 };
+        int[] dy = { 1, 0, -1, 0 };
+        Pair p = q.pollFirst();
+        for (int i = 0; i < 4; i++) {
+            int nx = dx[i] + p.x;
+            int ny = dy[i] + p.y;
+            if (0 <= nx && nx < r && 0 <= ny && ny < c && d[nx][ny] == -1 && a[nx][ny] != '#') {
+                d[nx][ny] = p.d + 1;
+                q.addLast(new Pair(nx, ny, p.d + 1));
+            }
+        }
+    }
+    System.out.println(d[ex][ey]);
+}

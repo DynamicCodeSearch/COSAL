@@ -1,0 +1,29 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    N = sc.nextInt();
+    A = sc.nextLong();
+    B = sc.nextLong();
+    h = new long[N];
+    for (int i = 0; i < N; i++) {
+        h[i] = sc.nextLong();
+    }
+    int Tmax = 1000000000;
+    int Tmin = 0;
+    int T = 0;
+    
+    while (Tmax - Tmin > 1) {
+        T = Tmin + (Tmax - Tmin) / 2;
+        int cnt = 0;
+        for (int i = 0; i < N; i++) {
+            if (h[i] > B * T) {
+                cnt += Math.ceil((double) (h[i] - B * T) / (double) (A - B));
+            }
+        }
+        if (cnt > T) {
+            Tmin = T;
+        } else if (cnt <= T) {
+            Tmax = T;
+        }
+    }
+    System.out.println(Tmax);
+}

@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = Integer.parseInt(sc.next());
+    String S = sc.next();
+    int x = 0;
+    int ans = 0;
+    for (int i = 0; i < N; i++) {
+        if (S.charAt(i) == 'D') {
+            x--;
+        } else {
+            x++;
+            ans = x > ans ? x : ans;
+        }
+    }
+    System.out.println(ans);
+    sc.close();
+}

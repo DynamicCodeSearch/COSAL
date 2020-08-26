@@ -1,0 +1,19 @@
+public long waysForSum(int target, int[] elems, int startIdx, int endIdx) {
+    if (startIdx > endIdx) {
+        if (target == 0) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+    long result = 0;
+    CacheEntry cacheKey = new CacheEntry(target, startIdx, endIdx);
+    if (cache.containsKey(cacheKey)) {
+        result = cache.get(cacheKey);
+    } else {
+        result += waysForSum(target + elems[startIdx], elems, startIdx + 1, endIdx);
+        result += waysForSum(target, elems, startIdx + 1, endIdx);
+        cache.put(cacheKey, result);
+    }
+    return result;
+}

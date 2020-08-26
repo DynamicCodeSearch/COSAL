@@ -1,0 +1,29 @@
+public static void solve(int N, int M, int[][] pairs) {
+    Map<Integer, List<Integer>> graph = createGraph(N, M, pairs);
+    Set<Integer> visited = new HashSet<>();
+    Deque<Island> queue = new LinkedList<>();
+    queue.add(new Island(1, 0));
+    boolean isPossible = false;
+    while (!queue.isEmpty()) {
+        Island island = queue.poll();
+        if (!visited.contains(island.number)) {
+            if (island.number == N && island.distanceFromOne <= 2) {
+                isPossible = true;
+                break;
+            }
+            visited.add(island.number);
+            if (island.distanceFromOne > 2) {
+                continue;
+            }
+            for (int v : graph.get(island.number)) {
+                int dist = island.distanceFromOne;
+                queue.add(new Island(v, dist + 1));
+            }
+        }
+    }
+    if (isPossible) {
+        System.out.println("POSSIBLE");
+    } else {
+        System.out.println("IMPOSSIBLE");
+    }
+}

@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    
+    Scanner scanner = new Scanner(System.in);
+    
+    int deg = scanner.nextInt() * 10;
+    int dirNum;
+    
+    dirNum = ((deg + DIF_DEG) % 36000) / INTERVAL_DEG;
+    
+    double dis = new BigDecimal(scanner.nextInt()).divide(new BigDecimal(60), 1, BigDecimal.ROUND_HALF_UP).doubleValue();
+    int wNum = 0;
+    
+    for (double wValue : W_VALUE_LIST) {
+        if (dis <= wValue) {
+            break;
+        }
+        wNum++;
+    }
+    
+    if (wNum == 0) {
+        
+        System.out.println(DIR_STOP + " " + wNum);
+    } else {
+        
+        System.out.println(DIR_LIST[dirNum] + " " + wNum);
+    }
+}

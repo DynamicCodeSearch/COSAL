@@ -1,0 +1,15 @@
+public static void main(String[] $) {
+    int n = getInt();
+    int[][] f = new int[n][n];
+    for (int i = 0; i < n; ++i) {
+        Arrays.fill(f[i], Integer.MAX_VALUE / 2);
+        f[i][i] = 0;
+    }
+    for (int i = getInt(); i > 0; --i) {
+        int a = getInt() - 1, b = getInt() - 1, t = getInt();
+        f[a][b] = t;
+        f[b][a] = t;
+    }
+    for (int k = 0; k < n; ++k) for (int i = 0; i < n; ++i) for (int j = 0; j < n; ++j) f[i][j] = Math.min(f[i][j], f[i][k] + f[k][j]);
+    System.out.println(Arrays.stream(f).mapToInt(o -> Arrays.stream(o).max().getAsInt()).min().getAsInt());
+}

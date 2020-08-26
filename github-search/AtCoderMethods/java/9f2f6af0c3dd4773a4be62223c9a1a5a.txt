@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int cost = 0;
+    int n = sc.nextInt();
+    int x = sc.nextInt();
+    String copy = Integer.toBinaryString(x);
+    String bin = copy;
+    if (n - copy.length() != 0) {
+        for (int i = 0; i < n - copy.length(); i++) {
+            bin = "0" + bin;
+        }
+    }
+    char[] ch = bin.toCharArray();
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = sc.nextInt();
+        if (ch[(n - 1) - i] == '1') {
+            cost += a[i];
+        }
+    }
+    System.out.println(cost);
+}

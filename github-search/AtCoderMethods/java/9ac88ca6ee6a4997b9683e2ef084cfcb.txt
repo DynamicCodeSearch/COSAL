@@ -1,0 +1,9 @@
+static long count(long a, long b, long c, long A) {
+    double la = Math.log(A);
+    double d1 = Math.log(a) + b * la;
+    double dd = d1 - Math.log(c);
+    if (dd <= 0) {
+        return 0;
+    }
+    return 1 + (long) ((dd - EPS) / la);
+}

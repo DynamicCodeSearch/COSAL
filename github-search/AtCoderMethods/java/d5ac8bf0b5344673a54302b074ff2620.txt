@@ -1,0 +1,8 @@
+void dfs(int node, int parent, int[] dArray) {
+    for (int x : g[node]) {
+        if (x != parent) {
+            dArray[x] = dArray[node] + 1;
+            dfs(x, node, dArray);
+        }
+    }
+}

@@ -1,0 +1,13 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    long A = sc.nextLong();
+    long B = sc.nextLong();
+    long[] X = sc.nextLongList(N);
+    long ret = 0;
+    for (int i = 1; i < N; i++) {
+        long x = (X[i] - X[i - 1]) * A;
+        ret += Math.min(x, B);
+    }
+    System.out.println(ret);
+}

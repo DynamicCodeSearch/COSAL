@@ -1,0 +1,14 @@
+void seive(int n) {
+    b = new boolean[n + 1];
+    prime = new int[n + 1];
+    for (int i = 2; i * i <= n; i++) {
+        if (!b[i]) {
+            for (int j = 2 * i; j <= n; j += i) {
+                if (!b[j]) {
+                    b[j] = true;
+                    prime[j] = i;
+                }
+            }
+        }
+    }
+}

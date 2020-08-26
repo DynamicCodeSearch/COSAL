@@ -1,0 +1,12 @@
+def binarySearch(small, big):
+	mid = (big + small) // 2
+ if big == small or big == small + 1:
+		if isWell(big):
+			return big
+  else:
+			return small
+ else:
+		if isWell(mid):
+			return binarySearch(mid, big)
+  else:
+			return binarySearch(small, mid)

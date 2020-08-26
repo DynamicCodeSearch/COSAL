@@ -1,0 +1,11 @@
+def solve(N, W, w_v):
+    memo = collections.defaultdict(int)
+    memo[0] = 0
+    for w, v in w_v:
+        for w_memo, v_memo in sorted(list(memo.items()), key=lambda x: -x[0]):
+            if w + w_memo > W:
+                continue
+            if memo[w + w_memo] < v_memo + v:
+                memo[w + w_memo] = v_memo + v
+
+    return max(memo.values())

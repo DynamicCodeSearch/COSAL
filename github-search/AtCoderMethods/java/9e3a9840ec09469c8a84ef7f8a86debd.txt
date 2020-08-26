@@ -1,0 +1,44 @@
+
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    Node[] nodes = new Node[n];
+    Edge[] edges = new Edge[n - 1];
+    for (int i = 0; i < n; i++) {
+        nodes[i] = new Node();
+        nodes[i].no = i;
+    }
+    for (int i = 0; i < n - 1; i++) {
+        Edge e = new Edge();
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        e.from = nodes[a - 1];
+        e.to = nodes[b - 1];
+        nodes[a - 1].edges.add(e);
+        nodes[b - 1].edges.add(e);
+        edges[i] = e;
+    }
+    List<Node> path = new ArrayList<Node>();
+    path.add(nodes[0]);
+    path = dfs(nodes, edges, path, nodes[n - 1], new boolean[n]);
+    for (int i = 0; i < path.size(); i++) {
+        if (i * 2 < path.size()) {
+            path.get(i).color = 1;
+        } else {
+            path.get(i).color = -1;
+        }
+    }
+    dfs2(nodes, edges, nodes[0], new boolean[n], (byte) 1);
+    dfs2(nodes, edges, nodes[n - 1], new boolean[n], (byte) -1);
+    int fennec = 0;
+    int snuke = 0;
+    for (int i = 0; i < n; i++) {
+        if (nodes[i].color == 1) {
+            fennec++;
+        } else {
+            snuke++;
+        }
+    }
+    System.out.println(fennec > snuke ? "Fennec" : "Snuke");
+}

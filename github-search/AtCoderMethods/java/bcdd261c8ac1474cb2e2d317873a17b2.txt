@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    try (Scanner sc = new Scanner(System.in)) {
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        if (1 < Math.abs(n - m)) {
+            System.out.println("0");
+            return;
+        }
+        long sortN = 1;
+        for (int i = n; i > 0; i--) {
+            sortN *= i;
+            sortN %= 1000000007;
+        }
+        long sortM = 1;
+        for (int i = m; i > 0; i--) {
+            sortM *= i;
+            sortM %= 1000000007;
+        }
+        long result = sortN * sortM;
+        if (Math.abs(n - m) == 0) {
+            result *= 2;
+        }
+        System.out.println(result % 1000000007);
+    }
+}

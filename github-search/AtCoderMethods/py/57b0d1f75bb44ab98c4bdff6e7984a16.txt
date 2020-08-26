@@ -1,0 +1,8 @@
+def dfs(Graph, Start, Visited=None):
+    if (Visited==None):  Visited = []
+    Visited.append(Start) 
+    for Next in Graph[Start]: 
+        if ( Next in Visited ):  
+            continue 
+        Visited = dfs(Graph, Next, Visited)
+    return Visited

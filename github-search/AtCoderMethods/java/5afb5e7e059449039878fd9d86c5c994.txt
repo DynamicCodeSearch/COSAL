@@ -1,0 +1,9 @@
+@Override
+public String toString() {
+    StringBuilder sb = new StringBuilder();
+    for (int i = next(0); i < scale; i = next(i + 1)) {
+        sb.append(",");
+        sb.append(keys[i] + ":" + allocated[i]);
+    }
+    return sb.length() == 0 ? "" : sb.substring(1);
+}

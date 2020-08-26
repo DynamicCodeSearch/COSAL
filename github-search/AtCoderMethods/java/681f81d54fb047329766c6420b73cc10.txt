@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    long a = in.nextLong();
+    long b = in.nextLong();
+    long k = in.nextLong();
+    long l = in.nextLong();
+    long c1 = b * (k / l) + a * (k % l);
+    long c2 = b * ((k - 1) / l + 1);
+    long c3 = a * k;
+    long ans = c1 < c2 ? c1 : c2;
+    ans = ans < c3 ? ans : c3;
+    System.out.println(ans);
+    in.close();
+}

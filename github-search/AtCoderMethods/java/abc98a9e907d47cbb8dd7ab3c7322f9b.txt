@@ -1,0 +1,95 @@
+public void run() {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    g = new ArrayList[n];
+    for (int i = 0; i < n; ++i) {
+        g[i] = new ArrayList<>();
+    }
+    int[] a = new int[n - 1];
+    int[] b = new int[n - 1];
+    HLDecomposition hld = new HLDecomposition(n);
+    for (int i = 0; i < n - 1; ++i) {
+        a[i] = sc.nextInt();
+        b[i] = sc.nextInt();
+        --a[i];
+        --b[i];
+        g[a[i]].add(b[i]);
+        g[b[i]].add(a[i]);
+        hld.ae(a[i], b[i]);
+    }
+    hld.pre();
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    int[] h = new int[2];
+    h[0] = 1;
+    h[1] = 1;
+    for (int i = 1; i < n - 1; ++i) {
+        int d0 = -2 * hld.depth[hld.lca(0, i)] + hld.depth[0] + hld.depth[i];
+        int d1 = -2 * hld.depth[hld.lca(n - 1, i)] + hld.depth[n - 1] + hld.depth[i];
+        if (d0 <= d1) {
+            ++h[0];
+        } else {
+            ++h[1];
+        }
+    }
+    if (h[0] + h[1] != n) {
+        throw new AssertionError();
+    }
+    if (h[0] <= h[1]) {
+        System.out.println("Snuke");
+    } else {
+        System.out.println("Fennec");
+    }
+}

@@ -1,0 +1,24 @@
+void modify(int dist, int dir) {
+    flipY += dist * dir;
+    if (flipY + len <= 0) {
+        flipX = flipY = len = 0;
+        return;
+    }
+    if (flipY >= X) {
+        flipX = len = 0;
+        flipY = X;
+        return;
+    }
+    if (flipY < 0) {
+        int delta = -flipY;
+        flipX += delta;
+        len -= delta;
+        flipY = 0;
+        return;
+    }
+    if (flipY + len > X) {
+        int delta = flipY + len - X;
+        len -= delta;
+        return;
+    }
+}

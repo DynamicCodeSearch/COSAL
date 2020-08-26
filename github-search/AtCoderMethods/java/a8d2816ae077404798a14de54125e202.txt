@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    sc.nextLine();
+    String S = sc.nextLine();
+    String accessory = "b";
+    int count = 0;
+    while (accessory.length() < N) {
+        count += 1;
+        if (count % 3 == 0) {
+            accessory = "b" + accessory + "b";
+        } else if (count % 3 == 1) {
+            accessory = "a" + accessory + "c";
+        } else {
+            accessory = "c" + accessory + "a";
+        }
+    }
+    if (accessory.equals(S)) {
+        System.out.println(count);
+    } else {
+        System.out.println(-1);
+    }
+}

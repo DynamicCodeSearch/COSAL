@@ -1,0 +1,27 @@
+public void run() {
+    try {
+        Scanner s = new Scanner();
+        int n = s.nextInt();
+        int q = s.nextInt();
+        int[] l = new int[q];
+        int[] r = new int[q];
+        int[] t = new int[q];
+        for (int i = 0; i < q; i++) {
+            s.reset();
+            l[i] = s.nextInt() - 1;
+            r[i] = s.nextInt() - 1;
+            t[i] = s.nextInt();
+        }
+        int[] array = new int[n];
+        for (int i = 0; i < q; i++) {
+            for (int j = l[i]; j < r[i] + 1; j++) {
+                array[j] = t[i];
+            }
+        }
+        for (int i = 0; i < n; i++) {
+            System.out.println(array[i]);
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}

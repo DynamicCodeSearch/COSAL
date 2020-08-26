@@ -1,0 +1,12 @@
+
+int sum(int a, int b, int l, int r, int k) {
+    if (a >= r || b <= l) {
+        return 0;
+    } else if (a <= l && r <= b) {
+        return v[k];
+    } else {
+        int vl = sum(a, b, l, (l + r) / 2, 2 * k + 1);
+        int vr = sum(a, b, (l + r) / 2, r, 2 * k + 2);
+        return vl + vr;
+    }
+}

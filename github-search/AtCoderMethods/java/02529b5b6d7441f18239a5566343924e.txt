@@ -1,0 +1,24 @@
+private static void solve(Scanner in) {
+    int N = in.nextInt(), M = in.nextInt();
+    EdgeWeightedDigraph G = new EdgeWeightedDigraph(N);
+    for (int i = 0; i < M; i++) {
+        int a = in.nextInt() - 1;
+        int b = in.nextInt() - 1;
+        int c = in.nextInt();
+        DirectedEdge e1 = new DirectedEdge(a, b, c);
+        DirectedEdge e2 = new DirectedEdge(b, a, c);
+        G.addEdge(e1);
+        G.addEdge(e2);
+    }
+    DijkstraAllPairsSP d = new DijkstraAllPairsSP(G);
+    Set<Pair> pairs = new HashSet<>();
+    for (int i = 0; i < N; i++) {
+        for (int j = i; j < N; j++) {
+            for (DirectedEdge edge : d.path(i, j)) {
+                pairs.add(new Pair(edge.from(), edge.to()));
+            }
+        }
+    }
+    int count = M - pairs.size();
+    System.out.println(count);
+}

@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = sc.nextInt();
+    }
+    int j = 0;
+    int cnt = 0;
+    int pre;
+    while (true) {
+        if (a[j] != -1 && a[j] - 1 != j) {
+            pre = j;
+            j = a[j] - 1;
+            a[pre] = -1;
+            cnt++;
+            if (j == 1) {
+                System.out.print(cnt);
+                return;
+            }
+        } else {
+            System.out.print("-1");
+            return;
+        }
+    }
+}

@@ -1,0 +1,19 @@
+@Override
+public int compareTo(Temp o) {
+    if (Integer.compare(this.type, o.type) != 0) {
+        return Integer.compare(this.type, o.type);
+    }
+    if (this.type == -1) {
+        if (Long.compare(this.a, o.a) != 0) {
+            return Long.compare(this.a, o.a);
+        } else {
+            return Long.compare(o.b, this.b);
+        }
+    } else {
+        if (Long.compare(o.b, this.b) != 0) {
+            return Long.compare(o.b, this.b);
+        } else {
+            return Long.compare(o.a, this.a);
+        }
+    }
+}

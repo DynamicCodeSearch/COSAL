@@ -1,0 +1,623 @@
+### Py Tokens: pgain, minpgain, min, max, mingain, hpi, gain, range, psum 
+
+### Py functions
+
+def func_df74e4c666384a00942a9fa254e9517a(N, S, i, mingain, psum):
+    minpgain = psum
+    hpi = 0
+    for i in range(N):
+        j = hpi
+        while j <= i:
+            pgain = max(S[j], S[i] - S[j])
+            gain = max(S[j], S[i] - S[j], psum - S[i])
+            mingain = min(mingain, gain)
+            if 2 * S[j] > S[i]:
+                break
+            if pgain <= minpgain:
+                hpi = j
+            j = j + 1
+    return gain
+
+def func_f211bc0acacb49bd93bf7ca293060bf5(N, S, i, mingain, psum):
+    minpgain = psum
+    hpi = 0
+    for i in range(N):
+        j = hpi
+        while j <= i:
+            pgain = max(S[j], S[i] - S[j])
+            gain = max(S[j], S[i] - S[j], psum - S[i])
+            mingain = min(mingain, gain)
+            if 2 * S[j] > S[i]:
+                break
+            if pgain <= minpgain:
+                hpi = j
+            j = j + 1
+    return mingain
+
+def func_d2a319dbebab460298269b0545d08da6(N, S, i, mingain, psum):
+    minpgain = psum
+    hpi = 0
+    for i in range(N):
+        j = hpi
+        while j <= i:
+            pgain = max(S[j], S[i] - S[j])
+            gain = max(S[j], S[i] - S[j], psum - S[i])
+            mingain = min(mingain, gain)
+            if 2 * S[j] > S[i]:
+                break
+            if pgain <= minpgain:
+                hpi = j
+            j = j + 1
+    return minpgain
+
+def func_68da5b472975496b86c51e024f6cfb37(N, S, i, mingain, psum):
+    minpgain = psum
+    hpi = 0
+    for i in range(N):
+        j = hpi
+        while j <= i:
+            pgain = max(S[j], S[i] - S[j])
+            gain = max(S[j], S[i] - S[j], psum - S[i])
+            mingain = min(mingain, gain)
+            if 2 * S[j] > S[i]:
+                break
+            if pgain <= minpgain:
+                hpi = j
+            j = j + 1
+    return pgain
+
+def func_5418a1d817274fc6aebf254d70e6d6ff(N, S, i, mingain, psum):
+    minpgain = psum
+    hpi = 0
+    for i in range(N):
+        j = hpi
+        while j <= i:
+            pgain = max(S[j], S[i] - S[j])
+            gain = max(S[j], S[i] - S[j], psum - S[i])
+            mingain = min(mingain, gain)
+            if 2 * S[j] > S[i]:
+                break
+            if pgain <= minpgain:
+                hpi = j
+            j = j + 1
+    return hpi
+
+*********************************
+
+#### Score: 9.27802
+
+
+#### Java Tokens: min, max, left, math, psum 
+
+public static long func_b789b0554f3a4d28bbcbeb0d48e164b4(int lo, int i, long t, long left, long[] psum) { 
+ long a = Math.max(t, left - t);
+if (lo > i + 1) {
+    t = psum[lo - 1] - psum[i];
+    a = Math.min(a, Math.max(t, left - t));
+}
+return a;
+}
+
+
+public static long func_84fd1675949148269a2b481d84fef3fa(int lo, int i, long t, long left, long[] psum) { 
+ long a = Math.max(t, left - t);
+if (lo > i + 1) {
+    t = psum[lo - 1] - psum[i];
+    a = Math.min(a, Math.max(t, left - t));
+}
+return t;
+}
+
+
+public static long func_791be3b4b34e4d79908ab7b36b862919(int lo, int i, long left, long[] psum) { 
+ long t = psum[lo] - psum[i];
+long a = Math.max(t, left - t);
+if (lo > i + 1) {
+    t = psum[lo - 1] - psum[i];
+    a = Math.min(a, Math.max(t, left - t));
+}
+return t;
+}
+
+
+*********************************
+
+#### Score: 8.76017
+
+
+#### Java Tokens: min, left, max, mid, math, psum 
+
+public static long func_92bd099942ec46329016ff46546f28cb(int N, int i, long[] psum) { 
+ int lo = i + 1, hi = N;
+long left = psum[N] - psum[i];
+while (lo < hi) {
+    int mid = (lo + hi) >> 1;
+    long s1 = psum[mid] - psum[i];
+    long s2 = left - s1;
+    if (s1 >= s2) {
+        hi = mid;
+    } else {
+        lo = mid + 1;
+    }
+}
+long t = psum[lo] - psum[i];
+long a = Math.max(t, left - t);
+if (lo > i + 1) {
+    t = psum[lo - 1] - psum[i];
+    a = Math.min(a, Math.max(t, left - t));
+}
+return a;
+}
+
+
+public static long func_fde39c123b7e43bda8869ac46339627e(int lo, int N, int i, int hi, long[] psum) { 
+ long left = psum[N] - psum[i];
+while (lo < hi) {
+    int mid = (lo + hi) >> 1;
+    long s1 = psum[mid] - psum[i];
+    long s2 = left - s1;
+    if (s1 >= s2) {
+        hi = mid;
+    } else {
+        lo = mid + 1;
+    }
+}
+long t = psum[lo] - psum[i];
+long a = Math.max(t, left - t);
+if (lo > i + 1) {
+    t = psum[lo - 1] - psum[i];
+    a = Math.min(a, Math.max(t, left - t));
+}
+return left;
+}
+
+
+public static int func_479876891d4f4151846a481484bed6bd(int N, int i, long[] psum) { 
+ int lo = i + 1, hi = N;
+long left = psum[N] - psum[i];
+while (lo < hi) {
+    int mid = (lo + hi) >> 1;
+    long s1 = psum[mid] - psum[i];
+    long s2 = left - s1;
+    if (s1 >= s2) {
+        hi = mid;
+    } else {
+        lo = mid + 1;
+    }
+}
+long t = psum[lo] - psum[i];
+long a = Math.max(t, left - t);
+if (lo > i + 1) {
+    t = psum[lo - 1] - psum[i];
+    a = Math.min(a, Math.max(t, left - t));
+}
+return lo;
+}
+
+
+*********************************
+
+#### Score: 8.76017
+
+
+#### Java Tokens: min, max, left, get, math, psum 
+
+public static long func_7b6a4f4bb4a340509c81f4fe85ba84fe(int lo, int N, int i, long left, long[] psum) { 
+ long t = psum[lo] - psum[i];
+long a = Math.max(t, left - t);
+if (lo > i + 1) {
+    t = psum[lo - 1] - psum[i];
+    a = Math.min(a, Math.max(t, left - t));
+}
+long get = psum[N] - Math.max(psum[i], a);
+return get;
+}
+
+
+public static long func_8504b07742854c648724c1e0f63520e6(int lo, int N, int i, long left, long[] psum) { 
+ long t = psum[lo] - psum[i];
+long a = Math.max(t, left - t);
+if (lo > i + 1) {
+    t = psum[lo - 1] - psum[i];
+    a = Math.min(a, Math.max(t, left - t));
+}
+long get = psum[N] - Math.max(psum[i], a);
+return t;
+}
+
+
+public static long func_0ddd6fced2a24eeca7aca14a321b317c(int lo, int N, int i, long left, long[] psum) { 
+ long t = psum[lo] - psum[i];
+long a = Math.max(t, left - t);
+if (lo > i + 1) {
+    t = psum[lo - 1] - psum[i];
+    a = Math.min(a, Math.max(t, left - t));
+}
+long get = psum[N] - Math.max(psum[i], a);
+return a;
+}
+
+
+*********************************
+
+#### Score: 8.29962
+
+
+#### Java Tokens: min, left, max, get, mid, math, psum 
+
+public static int func_b4c6456ae3794439b9dc11ee152e9158(int N, int i, long max, long[] psum) { 
+ int lo = i + 1, hi = N;
+long left = psum[N] - psum[i];
+while (lo < hi) {
+    int mid = (lo + hi) >> 1;
+    long s1 = psum[mid] - psum[i];
+    long s2 = left - s1;
+    if (s1 >= s2) {
+        hi = mid;
+    } else {
+        lo = mid + 1;
+    }
+}
+long t = psum[lo] - psum[i];
+long a = Math.max(t, left - t);
+if (lo > i + 1) {
+    t = psum[lo - 1] - psum[i];
+    a = Math.min(a, Math.max(t, left - t));
+}
+long get = psum[N] - Math.max(psum[i], a);
+if (get > max)
+    max = get;
+return hi;
+}
+
+
+public static long func_9f6aef59b6774b75b8a2fe218a3b96d3(int N, int i, long[] psum) { 
+ int lo = i + 1, hi = N;
+long left = psum[N] - psum[i];
+while (lo < hi) {
+    int mid = (lo + hi) >> 1;
+    long s1 = psum[mid] - psum[i];
+    long s2 = left - s1;
+    if (s1 >= s2) {
+        hi = mid;
+    } else {
+        lo = mid + 1;
+    }
+}
+long t = psum[lo] - psum[i];
+long a = Math.max(t, left - t);
+if (lo > i + 1) {
+    t = psum[lo - 1] - psum[i];
+    a = Math.min(a, Math.max(t, left - t));
+}
+long get = psum[N] - Math.max(psum[i], a);
+return a;
+}
+
+
+public static long func_5ade80b4a79640b39f855afb5e203cb7(int N, int i, long max, long[] psum) { 
+ int lo = i + 1, hi = N;
+long left = psum[N] - psum[i];
+while (lo < hi) {
+    int mid = (lo + hi) >> 1;
+    long s1 = psum[mid] - psum[i];
+    long s2 = left - s1;
+    if (s1 >= s2) {
+        hi = mid;
+    } else {
+        lo = mid + 1;
+    }
+}
+long t = psum[lo] - psum[i];
+long a = Math.max(t, left - t);
+if (lo > i + 1) {
+    t = psum[lo - 1] - psum[i];
+    a = Math.min(a, Math.max(t, left - t));
+}
+long get = psum[N] - Math.max(psum[i], a);
+if (get > max)
+    max = get;
+return left;
+}
+
+
+*********************************
+
+#### Score: 8.29962
+
+
+#### Java Tokens: min, max, left, get, mid, math, psum 
+
+public static long func_b89b6aa213704059806c00746a9633ff(int N, long[] psum) { 
+ long max = 0;
+for (int i = 0; i < N; i++) {
+    int lo = i + 1, hi = N;
+    long left = psum[N] - psum[i];
+    while (lo < hi) {
+        int mid = (lo + hi) >> 1;
+        long s1 = psum[mid] - psum[i];
+        long s2 = left - s1;
+        if (s1 >= s2) {
+            hi = mid;
+        } else {
+            lo = mid + 1;
+        }
+    }
+    long t = psum[lo] - psum[i];
+    long a = Math.max(t, left - t);
+    if (lo > i + 1) {
+        t = psum[lo - 1] - psum[i];
+        a = Math.min(a, Math.max(t, left - t));
+    }
+    long get = psum[N] - Math.max(psum[i], a);
+    if (get > max)
+        max = get;
+}
+return max;
+}
+
+
+*********************************
+
+#### Score: 8.15665
+
+
+#### Java Tokens: max, amt, psum 
+
+public static long[] func_0ef9f1a5f68843458470e12cf15306aa(int N, long r, long p, long s, long q) { 
+ long[] amt = new long[N + 1];
+for (int i = 1; i <= N; i++) {
+    amt[i] = (((i - 1) * p + q) % r) + s;
+}
+long[] psum = new long[N + 1];
+for (int i = 1; i <= N; i++) {
+    psum[i] = psum[i - 1] + amt[i];
+}
+long max = 0;
+return psum;
+}
+
+
+public static long[] func_6e904984a6c442b0911d425d61fcee45(int N, long r, long p, long s, long q) { 
+ long[] amt = new long[N + 1];
+for (int i = 1; i <= N; i++) {
+    amt[i] = (((i - 1) * p + q) % r) + s;
+}
+long[] psum = new long[N + 1];
+for (int i = 1; i <= N; i++) {
+    psum[i] = psum[i - 1] + amt[i];
+}
+long max = 0;
+return amt;
+}
+
+
+public static long func_21c8c77e667e417885b68ad498009e76(int N, long[] amt, long[] psum) { 
+ for (int i = 1; i <= N; i++) {
+    psum[i] = psum[i - 1] + amt[i];
+}
+long max = 0;
+return max;
+}
+
+
+*********************************
+
+#### Score: 7.88734
+
+
+#### Java Tokens: min, max, left, get, amt, mid, math, psum 
+
+public static long[] func_40b52fb7cc404b8d9da68c0e6c802c27(int N, long r, long p, long s, long q) { 
+ long[] amt = new long[N + 1];
+for (int i = 1; i <= N; i++) {
+    amt[i] = (((i - 1) * p + q) % r) + s;
+}
+long[] psum = new long[N + 1];
+for (int i = 1; i <= N; i++) {
+    psum[i] = psum[i - 1] + amt[i];
+}
+long max = 0;
+for (int i = 0; i < N; i++) {
+    int lo = i + 1, hi = N;
+    long left = psum[N] - psum[i];
+    while (lo < hi) {
+        int mid = (lo + hi) >> 1;
+        long s1 = psum[mid] - psum[i];
+        long s2 = left - s1;
+        if (s1 >= s2) {
+            hi = mid;
+        } else {
+            lo = mid + 1;
+        }
+    }
+    long t = psum[lo] - psum[i];
+    long a = Math.max(t, left - t);
+    if (lo > i + 1) {
+        t = psum[lo - 1] - psum[i];
+        a = Math.min(a, Math.max(t, left - t));
+    }
+    long get = psum[N] - Math.max(psum[i], a);
+    if (get > max)
+        max = get;
+}
+return psum;
+}
+
+
+public static long[] func_92797a0561f44f39a61a66a30f0e89e3(int N, long r, long p, long s, long q) { 
+ long[] amt = new long[N + 1];
+for (int i = 1; i <= N; i++) {
+    amt[i] = (((i - 1) * p + q) % r) + s;
+}
+long[] psum = new long[N + 1];
+for (int i = 1; i <= N; i++) {
+    psum[i] = psum[i - 1] + amt[i];
+}
+long max = 0;
+for (int i = 0; i < N; i++) {
+    int lo = i + 1, hi = N;
+    long left = psum[N] - psum[i];
+    while (lo < hi) {
+        int mid = (lo + hi) >> 1;
+        long s1 = psum[mid] - psum[i];
+        long s2 = left - s1;
+        if (s1 >= s2) {
+            hi = mid;
+        } else {
+            lo = mid + 1;
+        }
+    }
+    long t = psum[lo] - psum[i];
+    long a = Math.max(t, left - t);
+    if (lo > i + 1) {
+        t = psum[lo - 1] - psum[i];
+        a = Math.min(a, Math.max(t, left - t));
+    }
+    long get = psum[N] - Math.max(psum[i], a);
+    if (get > max)
+        max = get;
+}
+return amt;
+}
+
+
+public static long func_a1e7056c3f314368a80fd451b356f868(int N, long r, long p, long s, long q) { 
+ long[] amt = new long[N + 1];
+for (int i = 1; i <= N; i++) {
+    amt[i] = (((i - 1) * p + q) % r) + s;
+}
+long[] psum = new long[N + 1];
+for (int i = 1; i <= N; i++) {
+    psum[i] = psum[i - 1] + amt[i];
+}
+long max = 0;
+for (int i = 0; i < N; i++) {
+    int lo = i + 1, hi = N;
+    long left = psum[N] - psum[i];
+    while (lo < hi) {
+        int mid = (lo + hi) >> 1;
+        long s1 = psum[mid] - psum[i];
+        long s2 = left - s1;
+        if (s1 >= s2) {
+            hi = mid;
+        } else {
+            lo = mid + 1;
+        }
+    }
+    long t = psum[lo] - psum[i];
+    long a = Math.max(t, left - t);
+    if (lo > i + 1) {
+        t = psum[lo - 1] - psum[i];
+        a = Math.min(a, Math.max(t, left - t));
+    }
+    long get = psum[N] - Math.max(psum[i], a);
+    if (get > max)
+        max = get;
+}
+return max;
+}
+
+
+*********************************
+
+#### Score: 7.64448
+
+
+#### Java Tokens: max, left, math, psum 
+
+public static long func_a15bbdae63ed4bf68dfbe55be8bd7d0c(int lo, int i, long left, long[] psum) { 
+ long t = psum[lo] - psum[i];
+long a = Math.max(t, left - t);
+return t;
+}
+
+
+public static long func_f707e80cb2dc4866bfa8f03d019a9db1(int lo, int i, long left, long[] psum) { 
+ long t = psum[lo] - psum[i];
+long a = Math.max(t, left - t);
+return a;
+}
+
+
+*********************************
+
+#### Score: 7.64448
+
+
+#### Java Tokens: max, get, math, psum 
+
+public static long func_3a6502430e1d4659a016c901a3477e7f(int N, int i, long a, long max, long[] psum) { 
+ long get = psum[N] - Math.max(psum[i], a);
+if (get > max)
+    max = get;
+return max;
+}
+
+
+public static long func_dc5bab2837a54f5e9f1a07446108b2e0(int N, int i, long a, long max, long[] psum) { 
+ long get = psum[N] - Math.max(psum[i], a);
+if (get > max)
+    max = get;
+return get;
+}
+
+
+*********************************
+
+#### Score: 7.19603
+
+
+#### Java Tokens: left, max, mid, math, psum 
+
+public static int func_38126fd82129433eb1b968d9b9a26fff(int lo, int N, int i, int hi, long[] psum) { 
+ long left = psum[N] - psum[i];
+while (lo < hi) {
+    int mid = (lo + hi) >> 1;
+    long s1 = psum[mid] - psum[i];
+    long s2 = left - s1;
+    if (s1 >= s2) {
+        hi = mid;
+    } else {
+        lo = mid + 1;
+    }
+}
+long t = psum[lo] - psum[i];
+long a = Math.max(t, left - t);
+return hi;
+}
+
+
+public static long func_5517f036f06842878ee660c7a1fa9a64(int lo, int hi, int i, long left, long[] psum) { 
+ while (lo < hi) {
+    int mid = (lo + hi) >> 1;
+    long s1 = psum[mid] - psum[i];
+    long s2 = left - s1;
+    if (s1 >= s2) {
+        hi = mid;
+    } else {
+        lo = mid + 1;
+    }
+}
+long t = psum[lo] - psum[i];
+long a = Math.max(t, left - t);
+return a;
+}
+
+
+public static long func_28b1bc35ff5b4acea1426b864fba7ac1(int lo, int hi, int i, long left, long[] psum) { 
+ while (lo < hi) {
+    int mid = (lo + hi) >> 1;
+    long s1 = psum[mid] - psum[i];
+    long s2 = left - s1;
+    if (s1 >= s2) {
+        hi = mid;
+    } else {
+        lo = mid + 1;
+    }
+}
+long t = psum[lo] - psum[i];
+long a = Math.max(t, left - t);
+return t;
+}
+

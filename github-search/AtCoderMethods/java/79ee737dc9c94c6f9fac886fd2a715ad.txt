@@ -1,0 +1,44 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    N = sc.nextInt();
+    K = sc.nextInt();
+    L = sc.nextInt();
+    for (int i = 0; i < MAX_N; i++) rail[i] = new ArrayList<Integer>();
+    for (int i = 0; i < MAX_N; i++) road[i] = new ArrayList<Integer>();
+    for (int i = 0; i < K; i++) {
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        road[a].add(b);
+        road[b].add(a);
+    }
+    for (int i = 1; i <= N; i++) {
+        if (!visited[i]) {
+            dfs(i);
+        }
+        ++id;
+    }
+    for (int i = 0; i < L; i++) {
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        rail[a].add(b);
+        rail[b].add(a);
+    }
+    Arrays.fill(visited, false);
+    id = 1;
+    for (int i = 1; i <= N; i++) {
+        if (!visited[i]) {
+            dfs2(i);
+        }
+        ++id;
+    }
+    for (int i = 1; i <= N; i++) {
+        if (dp.containsKey(ar[i] * MAX_N + br[i])) {
+            dp.put(ar[i] * MAX_N + br[i], dp.get(ar[i] * MAX_N + br[i]) + 1);
+        } else {
+            dp.put(ar[i] * MAX_N + br[i], (long) 1);
+        }
+    }
+    for (int i = 1; i <= N; i++) {
+        System.out.println(dp.get(ar[i] * MAX_N + br[i]));
+    }
+}

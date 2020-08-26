@@ -1,0 +1,23 @@
+int[] rec(int len) {
+    if (memo[len] == null) {
+        int ans = Integer.MAX_VALUE;
+        int j = -1;
+        int k = -1;
+        for (int i = 0; i < 26; i++) {
+            int li = index(len, i);
+            if (li == -1) {
+                ans = 0;
+                j = i;
+                k = -1;
+                break;
+            }
+            if (ans > rec(li + 1)[0]) {
+                ans = rec(li + 1)[0];
+                j = i;
+                k = li + 1;
+            }
+        }
+        memo[len] = new int[] { ans + 1, j, k };
+    }
+    return memo[len];
+}

@@ -1,0 +1,15 @@
+void add(int l, int r, int k, long v, int curL, int curR) {
+    if (curR <= l || curL >= r || v == 0)
+        return;
+    if (l <= curL && curR <= r) {
+        final int m = curR - curL;
+        add2[k] += v;
+        seg[k] += v * m;
+        return;
+    }
+    final int curM = (curL + curR) / 2;
+    propagate(curL, curR, k);
+    add(l, r, 2 * k + 1, v, curL, curM);
+    add(l, r, 2 * k + 2, v, curM, curR);
+    seg[k] = seg[2 * k + 1] + seg[2 * k + 2];
+}

@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    char[] s = sc.next().toCharArray();
+    int[] n = new int[s.length];
+    for (int i = 0; i < s.length; i++) {
+        n[i] = Character.digit(s[i], 10);
+    }
+    int N = n.length - 1;
+    long ans = 0;
+    for (int i = 0; i < Math.pow(2, N); i++) {
+        long tmp = n[0];
+        for (int j = 0; j < N; j++) {
+            if ((i >> j & 1) == 1) {
+                ans += tmp;
+                tmp = 0;
+            }
+            tmp *= 10;
+            tmp += n[j + 1];
+        }
+        ans += tmp;
+    }
+    System.out.println(ans);
+}

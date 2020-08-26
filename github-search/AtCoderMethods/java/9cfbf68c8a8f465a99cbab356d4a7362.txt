@@ -1,0 +1,10 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    BigInteger ans = new BigInteger(in.nextToken());
+    for (int i = 1; i < n; i++) {
+        BigInteger x = new BigInteger(in.nextToken());
+        BigInteger gcd = x.gcd(ans);
+        ans = ans.multiply(x).divide(gcd);
+    }
+    out.print(ans.toString());
+}

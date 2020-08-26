@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    
+    Scanner cin = new Scanner(System.in);
+    int n;
+    n = cin.nextInt();
+    BigInteger ans = BigInteger.valueOf(1);
+    for (int i = 1; i <= n; i++) {
+        BigInteger x;
+        x = cin.nextBigInteger();
+        BigInteger tem = ans.gcd(x);
+        ans = ans.multiply(x);
+        ans = ans.divide(tem);
+    }
+    System.out.println(ans);
+}

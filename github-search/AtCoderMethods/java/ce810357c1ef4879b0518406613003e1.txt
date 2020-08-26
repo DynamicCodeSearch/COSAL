@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String a = sc.next();
+    String b = sc.next();
+    boolean end = false;
+    if (a.length() > b.length()) {
+        System.out.println("GREATER");
+        end = true;
+    } else if (a.length() < b.length()) {
+        System.out.println("LESS");
+        end = true;
+    } else if (a.length() == b.length()) {
+        for (int i = 0; i < a.length(); i++) {
+            if (a.charAt(i) > b.charAt(i)) {
+                System.out.println("GREATER");
+                end = true;
+                break;
+            } else if (a.charAt(i) < b.charAt(i)) {
+                System.out.println("LESS");
+                end = true;
+                break;
+            }
+        }
+    }
+    if (end == false) {
+        System.out.println("EQUAL");
+    }
+}

@@ -1,0 +1,52 @@
+private void solve(FastScanner in, PrintWriter out) {
+    int N = in.nextInt();
+    int[] x = new int[N];
+    int[] y = new int[N];
+    for (int i = 0; i < N; i++) {
+        x[i] = in.nextInt();
+        y[i] = in.nextInt();
+    }
+    ArrayList<int[]> tuples = new ArrayList<>();
+    for (int i = 0; i < N; i++) {
+        tuples.add(new int[] { i, x[i], y[i] });
+    }
+    tuples.sort((o1, o2) -> {
+        if (o1[1] == o2[1]) {
+            return o1[2] - o2[2];
+        }
+        return o1[1] - o2[1];
+    });
+    PriorityQueue<long[]> queue = new PriorityQueue<>((o1, o2) -> Long.signum(o1[2] - o2[2]));
+    for (int t = 1; t < tuples.size(); t++) {
+        int[] tuple = tuples.get(t);
+        int[] prev = tuples.get(t - 1);
+        long dist = Math.min(Math.abs(tuple[2] - prev[2]), Math.abs(tuple[1] - prev[1]));
+        queue.add(new long[] { tuple[0], prev[0], dist });
+    }
+    tuples.sort((o1, o2) -> {
+        if (o1[2] == o2[2]) {
+            return o1[1] - o2[1];
+        }
+        return o1[2] - o2[2];
+    });
+    for (int t = 1; t < tuples.size(); t++) {
+        int[] tuple = tuples.get(t);
+        int[] prev = tuples.get(t - 1);
+        long dist = Math.min(Math.abs(tuple[2] - prev[2]), Math.abs(tuple[1] - prev[1]));
+        queue.add(new long[] { tuple[0], prev[0], dist });
+    }
+    UnionFind uf = new UnionFind(N);
+    long ans = 0;
+    while (!queue.isEmpty()) {
+        long[] edge = queue.poll();
+        int v = (int) edge[0];
+        int u = (int) edge[1];
+        long dist = edge[2];
+        if (uf.isSame(v, u)) {
+            continue;
+        }
+        ans += dist;
+        uf.unite(u, v);
+    }
+    out.println(ans);
+}

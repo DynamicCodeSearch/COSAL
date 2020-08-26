@@ -1,0 +1,22 @@
+def solve():
+  if start == end: return[start,end]
+  mindeps = [INF for i in range(WN)]
+  mindeps[start] = 0
+  prevs = [-1 for i in range(WN)]
+  q = [(0,start)]
+  heapq.heapify(q)
+  while q:
+    depth,now = heapq.heappop(q)
+    if now == end:
+      route = []
+      while now >= 0:
+        route.append(now)
+        now = prevs[now]
+      return route[::-1]
+    for i in range(WN):
+      if depth >= mindeps[i] : continue
+      if es[now][i]:
+        heapq.heappush(q,(depth+1,i))
+        mindeps[i] = depth+1
+        prevs[i] = now
+  return -1

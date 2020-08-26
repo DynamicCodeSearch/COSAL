@@ -1,0 +1,31 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    
+    int N = Integer.parseInt(sc.next());
+    int K = Integer.parseInt(sc.next());
+    int[] l = new int[N + 1];
+    
+    for (int cnt = 0; cnt < N; cnt++) {
+        l[cnt] = Integer.parseInt(sc.next());
+    }
+    
+    sc.close();
+    int tmp;
+    int sum = 0;
+    
+    for (int cnt = 0; cnt < N; cnt++) {
+        for (int cnt2 = cnt + 1; cnt2 < N; cnt2++) {
+            if (l[cnt] < l[cnt2]) {
+                tmp = l[cnt];
+                l[cnt] = l[cnt2];
+                l[cnt2] = tmp;
+            }
+        }
+    }
+    
+    for (int cnt = 0; cnt < K; cnt++) {
+        sum = l[cnt] + sum;
+    }
+    System.out.println(sum);
+}

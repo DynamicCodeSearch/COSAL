@@ -1,0 +1,39 @@
+public void solve(int testNumber, MyInput in, PrintWriter out) {
+    int n = in.nextInt();
+    List<Integer> ones = new ArrayList<>();
+    int[] xs = in.nextIntArray(n);
+    for (int i = 0; i < n; i++) {
+        if (i == 0 || xs[i] - xs[i - 1] != 1)
+            ones.add(xs[i]);
+        if (i == n - 1 || xs[i + 1] - xs[i] != 1)
+            ones.add(xs[i] + 1);
+    }
+    boolean[] isPrime = eratosthenes(10000000);
+    int m = ones.size();
+    int S = m * 2, T = S + 1;
+    PushRelabelBaseMaxFlow flow = new PushRelabelBaseMaxFlow(T + 1);
+    
+    int[] cnt = new int[2];
+    for (int i = 0; i < ones.size(); i++) {
+        cnt[ones.get(i) % 2]++;
+        flow.addEdge(S, i, 1);
+        flow.addEdge(i + m, T, 1);
+        for (int j = 0; j < i; j++) {
+            final int a = ones.get(i);
+            final int b = ones.get(j);
+            if (a == b)
+                break;
+            if (a - b != 2 && isPrime[a - b]) {
+                flow.addEdge(i, j + m, 1);
+                flow.addEdge(j, i + m, 1);
+            }
+        }
+    }
+    int f1 = (int) (flow.relabelToFront(S, T) / 2);
+    
+    cnt[0] -= f1;
+    cnt[1] -= f1;
+    int f2 = cnt[0] / 2 + cnt[1] / 2;
+    int f3 = cnt[0] % 2 != 0 ? 1 : 0;
+    out.println(f1 * 1 + f2 * 2 + f3 * 3);
+}

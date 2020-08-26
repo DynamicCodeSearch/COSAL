@@ -1,0 +1,41 @@
+static void solve() {
+    int n = ni(), L = ni();
+    int tail = 0, head = 0;
+    double[] qtv = new double[n];
+    double[] qv = new double[n];
+    double V = 0;
+    double S = 0;
+    for (int i = 0; i < n; i++) {
+        int t = ni(), v = ni();
+        V += v;
+        S += (double) t * v;
+        while (V > L && tail < head) {
+            int ind = tail++;
+            if (V - qv[ind] <= L) {
+                S -= qtv[ind] * (double) (V - L);
+                qv[ind] = L - (V - qv[ind]);
+                --tail;
+                V = L;
+            } else {
+                V -= qv[ind];
+                S -= (double) qtv[ind] * qv[ind];
+            }
+        }
+        out.println(dtos(S / L));
+        
+        qtv[head] = t;
+        qv[head] = v;
+        head++;
+        while (head - tail >= 2) {
+            int l1 = head - 1, l2 = head - 2;
+            if (qtv[l2] < qtv[l1]) {
+                break;
+            } else {
+                qtv[l2] = (qtv[l1] * qv[l1] + qtv[l2] * qv[l2]) / (qv[l1] + qv[l2]);
+                qv[l2] += qv[l1];
+                head--;
+            }
+        }
+    
+    }
+}

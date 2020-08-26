@@ -1,0 +1,9 @@
+def calc_min_ternary(f, a, b, num_iter=DEFAULT_NUM_ITER):
+    for _ in range(num_iter):
+        left_third = (2 * a + b) / 3
+        right_third = (a + 2 * b) / 3
+        if f(left_third) > f(right_third):
+            a = left_third
+        else:
+            b = right_third
+    return (a + b) / 2

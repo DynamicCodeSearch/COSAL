@@ -1,0 +1,22 @@
+private void solve(Scanner sc) {
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    Map<Integer, List<Integer>> map = new HashMap<>();
+    for (int i = 0; i < N; ++i) {
+        map.put(i, new ArrayList<>());
+    }
+    for (int i = 0; i < M; ++i) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        map.get(a).add(b);
+    }
+    List<Integer> firstList = map.get(0);
+    for (int first : firstList) {
+        List<Integer> secondList = map.get(first);
+        if (secondList.contains(N - 1)) {
+            _out.println("POSSIBLE");
+            return;
+        }
+    }
+    _out.println("IMPOSSIBLE");
+}

@@ -1,0 +1,9 @@
+private static void dfs(int node, int[] dist) {
+    for (int p : neighbor.get(node)) {
+        if (!checked[p]) {
+            checked[p] = true;
+            dist[p] = dist[node] + 1;
+            dfs(p, dist);
+        }
+    }
+}

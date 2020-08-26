@@ -1,0 +1,12 @@
+def prime_list(k):
+    lis=[True for i in range(1,k+1)]
+    lis[0]=False
+    for i in range(2,k+1):
+        j=2
+        while j*j<=i:
+            if i%j==0:
+                lis[i-1]=False
+                break
+            else:
+                j+=1
+    return lis

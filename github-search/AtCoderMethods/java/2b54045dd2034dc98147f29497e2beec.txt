@@ -1,0 +1,36 @@
+
+private static boolean check(double k) {
+    for (int[] v : len) Arrays.fill(v, Integer.MAX_VALUE);
+    queue.add(sy * 1000 + sx);
+    len[sy][sx] = 0;
+    for (int i = 1; i <= 9; i++) {
+        bd[i] = (int) Math.floor((Math.log(k) - Math.log(i)) / Math.log(0.99));
+    }
+    System.gc();
+    boolean flg = false;
+    while (queue.size() > 0) {
+        
+        
+        
+        
+        
+        int v = queue.poll();
+        int y = v / 1000;
+        int x = v % 1000;
+        for (int[] d : DIR) {
+            int ny = y + d[0];
+            int nx = x + d[1];
+            int nlen = len[y][x] + 1;
+            if (ny == gy && nx == gx) {
+                queue.clear();
+                flg = true;
+                break;
+            }
+            if (len[ny][nx] == Integer.MAX_VALUE && map[ny][nx] >= 0 && map[ny][nx] <= 9 && bd[map[ny][nx]] >= nlen) {
+                len[ny][nx] = nlen;
+                queue.add(ny * 1000 + nx);
+            }
+        }
+    }
+    return flg;
+}

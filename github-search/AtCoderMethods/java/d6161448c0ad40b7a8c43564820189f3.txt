@@ -1,0 +1,46 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int R = sc.nextInt();
+    int C = sc.nextInt();
+    int K = sc.nextInt();
+    sc.nextLine();
+    char[][] lines = new char[R + 1][C];
+    for (int i = 0; i < R; i++) {
+        String line = sc.nextLine();
+        lines[i] = line.toCharArray();
+    }
+    Arrays.fill(lines[R], 'x');
+    sc.close();
+    int[][] spaces = new int[R][C];
+    for (int i = 0; i < C; i++) {
+        int space = 0;
+        for (int j = 0; j < R + 1; j++) {
+            space++;
+            if (lines[j][i] == 'x') {
+                if (j != R)
+                    spaces[j][i] = 0;
+                for (int k = 1; k < space; k++) {
+                    spaces[j - k][i] = Math.min(k, space - k);
+                }
+                space = 0;
+            }
+        }
+    }
+    int count = 0;
+    for (int i = 0; i < R; i++) {
+        for (int j = 0 + (K - 1); j <= (C - 1) - (K - 1); j++) {
+            if (spaces[i][j] >= K) {
+                boolean ok = true;
+                for (int k = 1; k < K; k++) {
+                    if (spaces[i][j - k] < K - k || spaces[i][j + k] < K - k) {
+                        ok = false;
+                        break;
+                    }
+                }
+                if (ok)
+                    count++;
+            }
+        }
+    }
+    System.out.println(count);
+}

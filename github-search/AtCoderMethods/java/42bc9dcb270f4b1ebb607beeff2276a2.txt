@@ -1,0 +1,21 @@
+public static void main(String[] args) throws NumberFormatException, IOException {
+    try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
+        String line;
+        String hint = null;
+        int divide = 0;
+        Map<String, Integer> list = new HashMap<>();
+        while ((line = br.readLine()) != null) {
+            if (divide == 0) {
+                hint = line.trim().toString();
+                divide++;
+            } else {
+                divide = Integer.parseInt(line);
+                break;
+            }
+        }
+        for (int i = 0; i <= hint.length() - divide; i++) {
+            list.put(hint.substring(i, i + divide), 1);
+        }
+        System.out.println(list.size());
+    }
+}

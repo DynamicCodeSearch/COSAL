@@ -1,0 +1,9 @@
+public static void setMod(int mod) {
+    if (mod <= 0)
+        throw new IllegalArgumentException("mod should be positive: " + mod);
+    if (!BigInteger.valueOf(mod).isProbablePrime(10))
+        throw new IllegalArgumentException("mod must be a prime." + mod);
+    MOD = mod;
+    ZERO = of(0);
+    ONE = of(1);
+}

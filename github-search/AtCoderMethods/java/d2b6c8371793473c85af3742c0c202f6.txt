@@ -1,0 +1,14 @@
+public long f(int[] x) {
+    long sx = 0, ax = 0;
+    for (int i = 0; i < x.length; i++) {
+        sx += x[i];
+        sx %= mod;
+        if (sx < 0)
+            sx += mod;
+        ax += (1L * (i + 1) * x[i] - sx) % mod;
+        ax %= mod;
+        if (ax < 0)
+            ax += mod;
+    }
+    return ax;
+}

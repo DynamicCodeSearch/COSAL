@@ -1,0 +1,17 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    int n = in.readInt();
+    int m = in.readInt();
+    Graph g = new BidirectionalGraph(n);
+    for (int i = 0; i < m; i++) {
+        int u = in.readInt() - 1;
+        int v = in.readInt() - 1;
+        g.addWeightedEdge(u, v, 1);
+        g.addWeightedEdge(v, u, 1);
+    }
+    long[] dist = ShortestDistance.dijkstraAlgorithm(g, 0).first;
+    if (dist[n - 1] <= 2) {
+        out.printLine("POSSIBLE");
+    } else {
+        out.printLine("IMPOSSIBLE");
+    }
+}

@@ -1,0 +1,24 @@
+public void run() {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    String S = sc.next();
+    long[][] f = new long[n + 1][n + 1];
+    f[0][0] = 1;
+    for (int i = 1; i <= n; ++i) {
+        for (int curLen = 0; curLen <= n; ++curLen) {
+            if (curLen + 1 <= n) {
+                f[i][curLen + 1] += 2 * f[i - 1][curLen];
+                f[i][curLen + 1] %= MODULO;
+            }
+            if (curLen > 0) {
+                f[i][curLen - 1] += f[i - 1][curLen];
+                f[i][curLen - 1] %= MODULO;
+            } else {
+                f[i][curLen] += f[i - 1][curLen];
+                f[i][curLen] %= MODULO;
+            }
+        }
+    }
+    long ans = f[n][S.length()] * inv(pow(2, S.length())) % MODULO;
+    System.out.println(ans);
+}

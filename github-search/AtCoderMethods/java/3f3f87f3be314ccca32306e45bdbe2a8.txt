@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    char[][] arr = new char[100][100];
+    Scanner sc = new Scanner(System.in);
+    
+    int h = sc.nextInt();
+    int w = sc.nextInt();
+    for (int i = 0; i < h; i++) {
+        String s = sc.next();
+        for (int j = 0; j < w; j++) {
+            arr[i][j] = s.charAt(j);
+        }
+    }
+    boolean isPossible = isPossible(arr, h, w);
+    if (!isPossible) {
+        System.out.println("impossible");
+    } else {
+        revert(arr, h, w);
+        replace(arr, h, w);
+        System.out.println("possible");
+        for (int i = 0; i < h; i++) {
+            for (int j = 0; j < w; j++) {
+                System.out.print(arr[i][j]);
+            }
+            System.out.print('\n');
+        }
+    }
+}

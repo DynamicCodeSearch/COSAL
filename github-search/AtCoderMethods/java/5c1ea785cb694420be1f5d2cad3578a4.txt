@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String s = sc.nextLine();
+    int a = Integer.parseInt(s.split(" ")[0]);
+    int b = Integer.parseInt(s.split(" ")[1]);
+    int counter = 0;
+    while (a != b) {
+        if (a > b) {
+            int temp = a;
+            a = b;
+            b = temp;
+        }
+        counter++;
+        if (Math.abs(b - a) >= 8)
+            a += 10;
+        else if (Math.abs(b - a) >= 4)
+            a += 5;
+        else
+            a++;
+    }
+    System.out.println(counter);
+}

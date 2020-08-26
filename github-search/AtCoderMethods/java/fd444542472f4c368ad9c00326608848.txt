@@ -1,0 +1,10 @@
+private static long solve2() throws Exception {
+    int max = N * 1000;
+    long[] dp = new long[max + 1];
+    for (int i = 0; i < N; i++) {
+        for (int j = max; j >= b[i]; j--) {
+            dp[j] = Math.max(dp[j], dp[(int) (j - b[i])] + a[i]);
+        }
+    }
+    return dp[(int) W];
+}

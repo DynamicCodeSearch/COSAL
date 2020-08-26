@@ -1,0 +1,14 @@
+static int[] MaxSort(int[] s) {
+    int[] ans = s;
+    for (int i = 0; i < ans.length; i++) {
+        int max = ans[i];
+        for (int k = i + 1; k < ans.length; k++) {
+            if (max < ans[k]) {
+                ans[i] = ans[k];
+                ans[k] = max;
+                max = ans[i];
+            }
+        }
+    }
+    return ans;
+}

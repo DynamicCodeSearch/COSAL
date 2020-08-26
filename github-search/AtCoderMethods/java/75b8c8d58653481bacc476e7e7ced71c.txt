@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int m = sc.nextInt();
+    int n = sc.nextInt();
+    Main soln = new Main();
+    soln.minDiv = Math.min(m, n);
+    long[] temp = new long[3];
+    for (int i = 1; i <= m / 2; i++) {
+        temp[0] = (long) i * n;
+        soln.digR(temp, m - i, n);
+        soln.digC(temp, m - i, n);
+    }
+    for (int i = 1; i <= n / 2; i++) {
+        temp[0] = (long) i * m;
+        soln.digR(temp, m, n - i);
+        soln.digC(temp, m, n - i);
+    }
+    System.out.println(soln.minDiv);
+}

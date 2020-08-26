@@ -1,0 +1,13 @@
+private boolean can(int n, long a, long b, int[] h, long k) {
+    long need = 0;
+    long d = a - b;
+    for (int i = 0; i < h.length; i++) {
+        long x = h[i];
+        x -= k * b;
+        if (x <= 0) {
+            continue;
+        }
+        need += (x + d - 1) / d;
+    }
+    return need <= k;
+}

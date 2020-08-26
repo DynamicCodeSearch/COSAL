@@ -1,0 +1,18 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    String[] firstLine = input.readLine().split(" ");
+    int N = Integer.parseInt(firstLine[0]);
+    int M = Integer.parseInt(firstLine[1]);
+    int answerA = -1, answerB = -1, answerC = -1;
+    for (int c = 0; c <= N; c++) {
+        int a = 3 * N - M + c;
+        int b = M - 2 * N - 2 * c;
+        if (a >= 0 && b >= 0 && c >= 0) {
+            answerA = a;
+            answerB = b;
+            answerC = c;
+            break;
+        }
+    }
+    System.out.println(answerA + " " + answerB + " " + answerC);
+}

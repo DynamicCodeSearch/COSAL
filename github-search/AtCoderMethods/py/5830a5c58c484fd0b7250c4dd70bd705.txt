@@ -1,0 +1,27 @@
+def main():
+    global N, ma, mb
+    N, ma, mb = map(int, input().split())
+    shop = [list(map(int, input().split())) for n in range(N)]
+
+    status = dd(int)
+    status[(0,0)] = 0
+    minimum = 100000
+    for product in shop:
+
+        old_status = dcopy(status)
+        for s, v in old_status.items():
+            key = (s[0]+product[0], s[1]+product[1])
+            value = v + product[2]
+            if not key in status:
+                status[key] = value
+                if check(key) and value < minimum:
+                    minimum = value
+            elif status[key] > value:
+                status[key] = value
+                if check(key) and value < minimum:
+                    minimum = value
+
+    if minimum == 100000:
+        print(-1)
+    else:
+        print(minimum)

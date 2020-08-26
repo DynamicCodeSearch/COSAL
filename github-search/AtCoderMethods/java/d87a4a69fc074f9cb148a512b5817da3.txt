@@ -1,0 +1,19 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] str = br.readLine().split(" ");
+    n = Integer.parseInt(str[0]);
+    a = Long.parseLong(str[1]);
+    b = Long.parseLong(str[2]);
+    enemy = new long[n];
+    for (int i = 0; i < n; i++) enemy[i] = Long.parseLong(br.readLine());
+    long l = 0, r = (long) 1e9 + 1, med = -1;
+    while (r - l > 0) {
+        med = (r + l) / 2;
+        if (C(med)) {
+            r = med;
+        } else {
+            l = med + 1;
+        }
+    }
+    System.out.println(l);
+}

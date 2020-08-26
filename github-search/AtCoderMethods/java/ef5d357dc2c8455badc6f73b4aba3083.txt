@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int n = scan.nextInt();
+    char[][] array = new char[n][n];
+    char[][] array2 = new char[n][n];
+    for (int i = 0; i < n; i++) {
+        String s = scan.next();
+        for (int j = 0; j < n; j++) {
+            array[i][j] = s.charAt(j);
+        }
+    }
+    scan.close();
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) array2[j][(n - 1) - i] = array[i][j];
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) System.out.print(array2[i][j]);
+        System.out.println("");
+    }
+}

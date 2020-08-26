@@ -1,0 +1,8 @@
+def rotate(size, board):
+    new_board = [["." for _ in range(size)] for _ in range(size)]
+    for r0, c0 in itertools.product(range(size), repeat=2):
+        (r, c) = (c0, size - r0 - 1)
+        assert r >= 0
+        assert c >= 0
+        new_board[r][c] = board[r0][c0]
+    return new_board

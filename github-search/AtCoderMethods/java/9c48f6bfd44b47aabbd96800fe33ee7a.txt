@@ -1,0 +1,57 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    String[] strA = new String[N];
+    String[] strB = new String[M];
+    for (int i = 0; i < N; i++) {
+        strA[i] = sc.next();
+    }
+    for (int i = 0; i < M; i++) {
+        strB[i] = sc.next();
+    }
+    int[][] A = new int[N][N];
+    int[][] B = new int[M][M];
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            char ch = strA[i].charAt(j);
+            if (ch == '#')
+                A[i][j] = 1;
+        }
+    }
+    for (int i = 0; i < M; i++) {
+        for (int j = 0; j < M; j++) {
+            char ch = strB[i].charAt(j);
+            if (ch == '#')
+                B[i][j] = 1;
+        }
+    }
+    boolean match_flag = false;
+    for (int i = 0; i <= N - M; i++) {
+        for (int j = 0; j <= N - M; j++) {
+            int k = 0, l = 0;
+            for (; k < M; k++) {
+                boolean flag = false;
+                for (l = 0; l < M; l++) {
+                    if (A[i + k][j + l] != B[k][l]) {
+                        flag = true;
+                        break;
+                    }
+                }
+                if (flag)
+                    break;
+            }
+            if (k == M && l == M) {
+                match_flag = true;
+                break;
+            }
+        }
+        if (match_flag)
+            break;
+    }
+    if (match_flag)
+        System.out.println("Yes");
+    else
+        System.out.println("No");
+    sc.close();
+}

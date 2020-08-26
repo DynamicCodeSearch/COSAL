@@ -1,0 +1,21 @@
+public static void main(String[] args) throws IOException {
+    ContestScanner scan = new ContestScanner();
+    int N = scan.nextInt();
+    int M = scan.nextInt();
+    int[] ai = new int[M];
+    int[] bi = new int[M];
+    int[] yi = new int[M];
+    for (int i = 0; i < M; i++) {
+        ai[i] = scan.nextInt();
+        bi[i] = scan.nextInt();
+        yi[i] = scan.nextInt();
+    }
+    int Q = scan.nextInt();
+    int[] vi = new int[Q];
+    int[] wi = new int[Q];
+    for (int i = 0; i < Q; i++) {
+        vi[i] = scan.nextInt();
+        wi[i] = scan.nextInt();
+    }
+    (new Solve(N, M, ai, bi, yi, Q, vi, wi)).solve();
+}

@@ -1,0 +1,8 @@
+def dfs(now, pre, depth):
+    ret = [1, 1] 
+    for nxt in E[now]:
+        if nxt != pre:
+            tmp = dfs(nxt, now, depth + 1)
+            ret[0] = (ret[0] * sum(tmp)) % MOD
+            ret[1] = (ret[1] *tmp[0]) % MOD
+    return ret

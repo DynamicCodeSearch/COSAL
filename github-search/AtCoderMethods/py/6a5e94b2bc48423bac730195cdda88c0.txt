@@ -1,0 +1,13 @@
+def unite(self, x, y):
+    px = self.find(x)
+    py = self.find(y)
+    if px == py:
+        return
+    if self.ranks[px] > self.ranks[py]:
+        self.parents[py] = px
+        self.sizes[px] += self.sizes[py]
+    else:
+        self.parents[px] = py
+        self.sizes[py] += self.sizes[px]
+        if self.ranks[px] == self.ranks[py]:
+            self.ranks[py] += 1

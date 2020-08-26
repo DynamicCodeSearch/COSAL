@@ -1,0 +1,16 @@
+public static void main(String[] args) throws IOException {
+    try (Scanner sc = new Scanner(System.in)) {
+        final int N = sc.nextInt();
+        int count = 0;
+        HashSet<Integer> set = new HashSet<Integer>();
+        for (int i = 0; i < N; i++) {
+            final int a = sc.nextInt();
+            if (set.contains(a)) {
+                set.remove(a);
+            } else {
+                set.add(a);
+            }
+        }
+        System.out.println(set.size());
+    }
+}

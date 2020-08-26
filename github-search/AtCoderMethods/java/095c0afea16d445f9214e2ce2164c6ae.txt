@@ -1,0 +1,6 @@
+public Tuple<Long> hash(int l, int r) {
+    long h1 = (this.hash[0][r] - (BigInteger.valueOf(this.hash[0][l]).multiply(BigInteger.valueOf(this.pow[0][r - l])).mod(BigInteger.valueOf(mod[0])).longValue()) + mod[0]) % mod[0];
+    long h2 = (this.hash[1][r] - (BigInteger.valueOf(this.hash[1][l]).multiply(BigInteger.valueOf(this.pow[1][r - l])).mod(BigInteger.valueOf(mod[1])).longValue()) + mod[1]) % mod[1];
+    long h3 = (this.hash[2][r] - (BigInteger.valueOf(this.hash[2][l]).multiply(BigInteger.valueOf(this.pow[2][r - l])).mod(BigInteger.valueOf(mod[2])).longValue()) + mod[2]) % mod[2];
+    return new Tuple<Long>(h1, h2, h3);
+}

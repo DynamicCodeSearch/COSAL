@@ -1,0 +1,31 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    int c = sc.nextInt();
+    
+    int ans1 = 0;
+    int ans2 = 0;
+    
+    if (Math.min(a, b) == a) {
+        ans1 = a;
+        if (Math.min(b, c) == b) {
+            ans2 = b;
+        } else {
+            ans2 = c;
+        }
+    } else {
+        ans1 = b;
+        if (Math.min(a, c) == a) {
+            ans2 = a;
+        } else {
+            ans2 = c;
+        }
+    }
+    
+    System.out.print(ans1 + ans2);
+    
+    sc.close();
+}

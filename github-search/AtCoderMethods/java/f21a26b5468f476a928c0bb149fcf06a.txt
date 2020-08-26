@@ -1,0 +1,10 @@
+public String next() {
+    int c = read();
+    while (isSpaceChar(c)) c = read();
+    StringBuffer res = new StringBuffer();
+    do {
+        res.appendCodePoint(c);
+        c = read();
+    } while (!isSpaceChar(c));
+    return res.toString();
+}

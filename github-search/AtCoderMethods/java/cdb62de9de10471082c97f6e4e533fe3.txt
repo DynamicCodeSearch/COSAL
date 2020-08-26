@@ -1,0 +1,25 @@
+public void solve() {
+    K = nextLong();
+    N = 50;
+    long[] a = new long[N];
+    for (int i = 0; i < 50; i++) {
+        a[i] = i;
+    }
+    long x = K / N;
+    long y = K % N;
+    for (int i = 0; i < N; i++) {
+        a[i] += N * x;
+        a[i] -= (N - 1) * x;
+        a[i] -= y;
+        if (i < y) {
+            a[i] += N + 1;
+        }
+    }
+    out.println(N);
+    for (int i = 0; i < N; i++) {
+        if (i != 0)
+            out.print(" ");
+        out.print(a[i]);
+    }
+    out.println();
+}

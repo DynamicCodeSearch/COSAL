@@ -1,0 +1,9 @@
+int getId(int to, int company) {
+    long id = (long) to * INF + company;
+    Integer integer = idMap.get(id);
+    if (integer == null) {
+        idMap.put(id, integer = idMap.size());
+        graph.add(new ArrayList<>());
+    }
+    return integer;
+}

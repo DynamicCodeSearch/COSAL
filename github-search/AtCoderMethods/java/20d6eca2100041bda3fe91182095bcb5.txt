@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    long a = in.nextInt();
+    long b = in.nextInt();
+    long[] x = in.nextLongs(n);
+    long sum = 0;
+    for (int i = 1; i < n; i++) {
+        long diff = x[i] - x[i - 1];
+        if (diff * a < b) {
+            sum += diff * a;
+        } else {
+            sum += b;
+        }
+    }
+    out.println(sum);
+    out.flush();
+}

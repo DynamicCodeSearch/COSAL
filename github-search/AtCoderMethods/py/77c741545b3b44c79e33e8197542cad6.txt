@@ -1,0 +1,11 @@
+def main():
+    a,b = LI()
+    a -= 1
+    s = re.sub('9.*$', '8', re.sub('4.*$', '3', str(a)))
+    s += '8'*(len(str(a)) - len(s))
+    ai = int(''.join([str(int(c)-1 if int(c)>4 else int(c)) for c in s]), 8)
+    s = re.sub('9.*$', '8', re.sub('4.*$', '3', str(b)))
+    s += '8'*(len(str(b)) - len(s))
+    bi = int(''.join([str(int(c)-1 if int(c)>4 else int(c)) for c in s]), 8)
+
+    return (b-bi) - (a-ai)

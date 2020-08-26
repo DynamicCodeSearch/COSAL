@@ -1,0 +1,9 @@
+def read_data():
+    N, M = map(int, input().split())
+    Es = [[] for _ in range(N)]
+    Cs = [[float('inf')] * N for n in range(N)]
+    for m in range(M):
+        a, b, c = map(int, input().split())
+        Es[a - 1].append(b - 1)
+        Cs[a - 1][b - 1] = -c
+    return N, M, Es, Cs

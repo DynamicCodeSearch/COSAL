@@ -1,0 +1,42 @@
+void solve() {
+    int N = in.nextInt(), K = in.nextInt();
+    int[] a = in.nextIntArray(N);
+    long[] as = new long[N + 1];
+    for (int i = 0; i < N; i++) {
+        as[i + 1] = as[i] + a[i];
+    }
+    if (K == 0) {
+        System.out.println(0);
+        return;
+    }
+    if (as[N] == K) {
+        System.out.println(1);
+        return;
+    }
+    long[][] dp = new long[N + 1][N + 1];
+    for (int i = 0; i <= N; i++) {
+        for (int j = 0; j <= N; j++) {
+            dp[i][j] = K + 10;
+        }
+    }
+    dp[1][0] = 0;
+    dp[1][1] = 1;
+    for (int i = 1; i < N; i++) {
+        for (int j = 0; j <= i; j++) {
+            long bs = dp[i][j];
+            if (bs > K)
+                continue;
+            long nb = (a[i] * bs + as[i]) / as[i];
+            if (nb <= a[i] && bs + nb <= K) {
+                dp[i + 1][j + 1] = Math.min(dp[i + 1][j + 1], bs + nb);
+            }
+            dp[i + 1][j] = Math.min(dp[i + 1][j], bs);
+        }
+    }
+    long res = 0;
+    for (int i = 0; i <= N; i++) {
+        if (dp[N][i] <= K)
+            res = i;
+    }
+    System.out.println(res);
+}

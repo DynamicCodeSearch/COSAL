@@ -1,0 +1,15 @@
+public static boolean kansuu(long T, long A, long B, int N, long[] h) {
+    double times = 0;
+    for (int i = 0; i < N; i++) {
+        double U = (double) (h[i] - B * T);
+        double K = U / (double) (A - B);
+        double Y = Math.ceil(K);
+        if (Y > 0) {
+            times = times + Y;
+        }
+    }
+    if (times <= T)
+        return true;
+    else
+        return false;
+}

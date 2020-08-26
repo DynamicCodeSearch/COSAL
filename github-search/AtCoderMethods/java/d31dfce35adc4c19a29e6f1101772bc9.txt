@@ -1,0 +1,16 @@
+public static long count(long[] a) {
+    long cnt = 0;
+    int n = a.length;
+    for (int i = 0; i < n; i++) {
+        long c = a[i] / n;
+        cnt += c;
+        a[i] -= c * (n + 1);
+    }
+    if (cnt == 0) {
+        return 0;
+    }
+    for (int i = 0; i < n; i++) {
+        a[i] += cnt;
+    }
+    return cnt + count(a);
+}

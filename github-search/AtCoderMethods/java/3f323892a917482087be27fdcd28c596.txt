@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    char[] in = s.next().toCharArray(), res;
+    char last = in[0];
+    int count = 1;
+    ArrayDeque<String> deque = new ArrayDeque<>();
+    deque.add(String.valueOf(last));
+    for (int i = 1; i < in.length; ++i) {
+        if (in[i] != last) {
+            last = in[i];
+            deque.add(String.valueOf(count));
+            deque.add(String.valueOf(last));
+            count = 1;
+        } else {
+            count++;
+        }
+    }
+    deque.add(String.valueOf(count));
+    deque.forEach(System.out::print);
+    System.out.println();
+}

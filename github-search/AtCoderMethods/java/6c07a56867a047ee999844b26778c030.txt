@@ -1,0 +1,7 @@
+public static long pow(long x, long n) {
+    if (n == 0)
+        return 1;
+    long x2 = pow(x, n / 2);
+    long ans = (n % 2 == 0 ? 1 : x);
+    return ans * x2 % MOD * x2 % MOD;
+}

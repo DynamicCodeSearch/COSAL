@@ -1,0 +1,33 @@
+public static void main(String[] args) throws IOException {
+    String S = br.readLine();
+    int T = new Integer(br.readLine());
+    int x = 0, y = 0, W = 0;
+    for (int i = 0; i < S.length(); i++) {
+        char c = S.charAt(i);
+        if (c == 'L') {
+            x--;
+        } else if (c == 'R') {
+            x++;
+        } else if (c == 'U') {
+            y--;
+        } else if (c == 'D') {
+            y++;
+        } else {
+            W++;
+        }
+    }
+    int dist = Math.abs(x) + Math.abs(y);
+    if (T == 1) {
+        dist += W;
+    } else {
+        dist = dist -= W;
+        if (dist < 0) {
+            if (dist % 2 == 0) {
+                dist = 0;
+            } else {
+                dist = 1;
+            }
+        }
+    }
+    System.out.println(dist);
+}

@@ -1,0 +1,19 @@
+public static void main(String[] args) throws IOException {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] s = new int[N];
+    sc.fill(s);
+    int sum = Arrays.stream(s).sum();
+    if (sum % 10 == 0) {
+        Arrays.sort(s);
+        for (int tokuten : s) {
+            if (tokuten % 10 != 0) {
+                System.out.println(sum - tokuten);
+                return;
+            }
+        }
+        System.out.println(0);
+    } else {
+        System.out.println(sum);
+    }
+}

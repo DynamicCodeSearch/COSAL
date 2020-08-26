@@ -1,0 +1,28 @@
+
+public void run() throws IOException {
+    int TEST_CASE = 1;
+    while (TEST_CASE-- != 0) {
+        int n = io.nextInt();
+        int D = io.nextInt();
+        int[] d = io.nextIntArray(n);
+        int Q = io.nextInt();
+        int[] q = io.nextIntArray(Q);
+        int[] x = new int[n];
+        long[] max = new long[n + 1];
+        boolean[] ok = new boolean[n];
+        for (int i = 0, cur = D; i < n; i++) {
+            cur = Math.min(cur, Math.abs(cur - d[i]));
+            x[i] = cur;
+        }
+        long cur = 1;
+        for (int i = n - 1; i >= 0; i--) {
+            max[i] = max[i + 1] + d[i];
+            int p = i > 0 ? x[i - 1] : D;
+            ok[i] = p >= cur;
+            if (d[i] - cur < cur) {
+                cur += d[i];
+            }
+        }
+        for (int qq : q) io.out.println(ok[qq - 1] ? "YES" : "NO");
+    }
+}

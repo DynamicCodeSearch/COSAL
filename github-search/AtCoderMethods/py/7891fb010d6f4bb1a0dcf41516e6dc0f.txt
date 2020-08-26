@@ -1,0 +1,10 @@
+def binary_search(min, max, hp_list, a, b):
+    median = (min + max) // 2
+    if median == min or median == max:
+        if enough(min, hp_list, a, b):
+            return min
+        return max
+    if enough(median, hp_list, a, b):
+        return binary_search(min, median, hp_list, a, b)
+    else:
+        return binary_search(median + 1, max, hp_list, a, b)

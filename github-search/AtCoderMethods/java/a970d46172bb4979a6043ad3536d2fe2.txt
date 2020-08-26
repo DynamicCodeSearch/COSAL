@@ -1,0 +1,14 @@
+public void union(int x, int y) {
+    int xRoot = find(x);
+    int yRoot = find(y);
+    if (xRoot != yRoot) {
+        if (sz[xRoot] < sz[yRoot]) {
+            id[xRoot] = yRoot;
+            sz[yRoot] += sz[xRoot];
+        } else {
+            id[yRoot] = xRoot;
+            sz[xRoot] += sz[yRoot];
+        }
+        count--;
+    }
+}

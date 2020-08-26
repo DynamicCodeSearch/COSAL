@@ -1,0 +1,10 @@
+def solve(self):
+
+    n = int(input())
+    candidate = int(math.sqrt(float(n)))
+
+    for i in range(candidate, 0, -1):
+        if n % i == 0:
+            print(max(int(math.log10(i)) + 1, int(math.log10(n / i)) + 1))
+            break
+    return None

@@ -1,0 +1,19 @@
+private long search(int d, long weight) {
+    Pair<Long> key = new Pair<>((long) d, weight);
+    if (d == N) {
+        memo.put(key, 0L);
+        return 0;
+    }
+    Long tmp = memo.get(key);
+    if (tmp != null) {
+        return tmp;
+    }
+    long r1 = 0;
+    if (weight + w[d] <= W) {
+        r1 = search(d + 1, weight + w[d]) + v[d];
+    }
+    long r2 = search(d + 1, weight);
+    long r = Math.max(r1, r2);
+    memo.put(key, r);
+    return r;
+}

@@ -1,0 +1,30 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    StringBuilder sb = new StringBuilder();
+    String[] s = br.readLine().split(" ");
+    int h = Integer.parseInt(s[0]);
+    int w = Integer.parseInt(s[1]);
+    int n = Integer.parseInt(br.readLine());
+    int[] arr = new int[n];
+    s = br.readLine().split(" ");
+    for (int i = 0; i < n; i++) {
+        arr[i] = Integer.parseInt(s[i]);
+    }
+    int[][] out = new int[h][w];
+    int index = 0;
+    int colourCount = 0;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < arr[i]; j++) {
+            int[] cell = getCell(index, h, w);
+            out[cell[0]][cell[1]] = i + 1;
+            index++;
+        }
+    }
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            sb.append(out[i][j]);
+            sb.append((j == w - 1) ? "\n" : " ");
+        }
+    }
+    System.out.print(sb);
+}

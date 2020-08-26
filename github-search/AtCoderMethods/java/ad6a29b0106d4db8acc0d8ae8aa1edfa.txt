@@ -1,0 +1,24 @@
+static int[] dijkstra(int s) {
+    int[] d = new int[v];
+    boolean[] used = new boolean[v];
+    Arrays.fill(used, false);
+    Arrays.fill(d, -1);
+    d[s] = s;
+    Queue<ver> que = new PriorityQueue<ver>();
+    que.add(new ver(s, s));
+    while (!que.isEmpty()) {
+        ver now = que.poll();
+        int point = now.num;
+        if (used[point])
+            continue;
+        used[point] = true;
+        for (Iterator<Integer> it = g[point].iterator(); it.hasNext(); ) {
+            int next = it.next();
+            if (d[next] != next) {
+                d[next] = Math.min(d[point], next);
+                que.add(new ver(next, d[next]));
+            }
+        }
+    }
+    return d;
+}

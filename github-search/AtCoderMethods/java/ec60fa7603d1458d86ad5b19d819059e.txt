@@ -1,0 +1,15 @@
+private boolean hasNextToken() {
+    if (currentToken == null && !stk.hasMoreTokens()) {
+        try {
+            if (!ensureNextToken()) {
+                return false;
+            }
+            currentTokens = new StringBuilder();
+            while (nextToken().trim().equals("")) {
+            }
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+    return currentToken != null || stk.hasMoreTokens();
+}

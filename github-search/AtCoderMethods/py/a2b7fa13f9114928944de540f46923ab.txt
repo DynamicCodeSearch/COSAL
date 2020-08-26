@@ -1,0 +1,14 @@
+def solve(): 
+    H, W = list(map(int, input().split(" ")))
+    A = []
+    for _ in range(H):
+        A.append(list(input()))
+
+    for i in range(H):
+        A[i].insert(0, "#")
+        A[i].append("#")
+
+    A.insert(0, ["#" for _ in range(W + 2)])
+    A.append(["#" for _ in range(W + 2)])
+
+    debug_print_joined(A)

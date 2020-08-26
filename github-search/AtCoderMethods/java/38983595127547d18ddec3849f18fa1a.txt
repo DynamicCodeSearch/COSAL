@@ -1,0 +1,38 @@
+public void solveB() {
+    Scanner sc = new Scanner(System.in);
+    String s = sc.next();
+    int T = sc.nextInt();
+    int q = 0;
+    int x = 0;
+    int y = 0;
+    for (char c : s.toCharArray()) {
+        switch(c) {
+            case 'L':
+                x--;
+                break;
+            case 'R':
+                x++;
+                break;
+            case 'U':
+                y--;
+                break;
+            case 'D':
+                y++;
+                break;
+            default:
+                q++;
+                break;
+        }
+    }
+    int ans;
+    
+    if (T == 1) {
+        ans = Math.abs(x) + Math.abs(y) + q;
+    } else {
+        ans = Math.abs(x) + Math.abs(y) - q;
+        if (ans < 0) {
+            ans = (-ans) % 2;
+        }
+    }
+    System.out.println(ans);
+}

@@ -1,0 +1,16 @@
+def main(args):
+    txt = input().strip()
+    txt = txt[:-1]
+
+    result = 0
+    if len(txt) % 2 == 1:
+        txt = txt[:-1]
+    while txt:
+        l = len(txt)
+        a_part = txt[:l//2]
+        b_part = txt[l//2:]
+        if a_part == b_part:
+            result = l
+            break
+        txt = txt[:-2]
+    print(result)

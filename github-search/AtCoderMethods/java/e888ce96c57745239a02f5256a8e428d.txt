@@ -1,0 +1,48 @@
+static void solve() {
+    int n = ni();
+    int[] f = na(n);
+    for (int i = 0; i < n; i++) {
+        f[i] = f[i] - 1;
+    }
+    int[] from = new int[n];
+    int[] to = new int[n];
+    for (int i = 0; i < n; i++) {
+        from[i] = f[i];
+        to[i] = i;
+    }
+    int[][] g = packU(n, from, to);
+    int[][] sp = split(g);
+    int[] par = sp[0], next = sp[1];
+    int[] ord = makeOrder(g, par);
+    int[] dp = new int[n];
+    long[] ptns = new long[n];
+    for (int i = n - 1; i >= 0; i--) {
+        int cur = ord[i];
+        dp[cur] = Long.numberOfTrailingZeros(~ptns[cur]);
+        ;
+        if (par[cur] != -1) {
+            ptns[par[cur]] |= 1L << dp[cur];
+        }
+    }
+    int[] cycle = cycle(g, next);
+    if (f[cycle[0]] == cycle[1]) {
+        for (int i = 1, j = cycle.length - 1; i < j; i++, j--) {
+            int d = cycle[i];
+            cycle[i] = cycle[j];
+            cycle[j] = d;
+        }
+    }
+    for (int j = 0; j < 32; j++) {
+        if (ptns[cycle[0]] << ~j >= 0) {
+            int cval = j;
+            for (int i = 0; i < cycle.length; i++) {
+                cval = Long.numberOfTrailingZeros(~(ptns[cycle[(i + 1) % cycle.length]] | 1L << cval));
+            }
+            if (cval == j) {
+                out.println("POSSIBLE");
+                return;
+            }
+        }
+    }
+    out.println("IMPOSSIBLE");
+}

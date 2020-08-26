@@ -1,0 +1,7 @@
+static int find(int dest, int[] a, int s, int e) {
+    if (s == e) {
+        return s;
+    }
+    int m = (s + e + 1) / 2;
+    return a[m] <= dest ? find(dest, a, s, m - 1) : find(dest, a, m, e);
+}

@@ -1,0 +1,6 @@
+private static int prev(long set, int n) {
+    long h = Long.highestOneBit(set << ~n);
+    if (h == 0L)
+        return -1;
+    return Long.numberOfTrailingZeros(h) - (63 - n);
+}

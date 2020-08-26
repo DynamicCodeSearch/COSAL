@@ -1,0 +1,27 @@
+
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int A = sc.nextInt();
+    int B = sc.nextInt();
+    long[] h = new long[N];
+    for (int i = 0; i < N; i++) {
+        h[i] = sc.nextLong();
+    }
+    Arrays.sort(h);
+    long iMin = 1;
+    long iMax = h[h.length - 1];
+    while (iMin < iMax) {
+        long iMid = (iMax + iMin) / 2;
+        if (enough(h, A, B, iMid)) {
+            iMax = iMid;
+        } else {
+            iMin = iMid;
+        }
+        if ((iMax - iMin) == 1) {
+            break;
+        }
+    }
+    System.out.println(iMax);
+}

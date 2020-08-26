@@ -1,0 +1,22 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int K = sc.nextInt();
+    Set<Integer> D = new HashSet<>();
+    for (int i = 0; i < K; i++) {
+        D.add(sc.nextInt());
+    }
+    int value = N;
+    int tmp;
+    while (true) {
+        tmp = value;
+        while (tmp > 0 && !D.contains(tmp % 10)) {
+            tmp /= 10;
+        }
+        if (tmp == 0) {
+            break;
+        }
+        value++;
+    }
+    System.out.println(value);
+}

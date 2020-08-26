@@ -1,0 +1,82 @@
+public static void main(String[] args) {
+    String str;
+    int sx, sy, tx, ty, i;
+    int x, y, c1 = 0, c2 = 0, c3 = 0, c4 = 0, c5 = 0, c6 = 0, c7 = 0, c8 = 0;
+    Scanner scan = new Scanner(System.in);
+    str = scan.next();
+    sx = Integer.parseInt(str);
+    str = scan.next();
+    sy = Integer.parseInt(str);
+    str = scan.next();
+    tx = Integer.parseInt(str);
+    str = scan.next();
+    ty = Integer.parseInt(str);
+    x = sx;
+    for (i = 1; i <= (tx - sx); i++) {
+        x++;
+        c1++;
+    }
+    y = sy;
+    for (i = 1; i <= (ty - sy); i++) {
+        y++;
+        c2++;
+    }
+    for (i = 1; i <= (tx - sx); i++) {
+        x--;
+        c3++;
+    }
+    for (i = 1; i <= (ty - sy); i++) {
+        y--;
+        c4++;
+    }
+    x--;
+    for (i = 1; i <= (ty - sy) + 1; i++) {
+        y++;
+        c5++;
+    }
+    for (i = 1; i <= (tx - sx) + 1; i++) {
+        x++;
+        c6++;
+    }
+    y--;
+    x++;
+    for (i = 1; i <= (ty - sy) + 1; i++) {
+        y--;
+        c7++;
+    }
+    for (i = 1; i <= (tx - sx) + 1; i++) {
+        x--;
+        c8++;
+    }
+    y++;
+    StringBuilder sb = new StringBuilder();
+    for (i = 1; i <= c1; i++) {
+        sb.append("R");
+    }
+    for (i = 1; i <= c2; i++) {
+        sb.append("U");
+    }
+    for (i = 1; i <= c3; i++) {
+        sb.append("L");
+    }
+    for (i = 1; i <= c4; i++) {
+        sb.append("D");
+    }
+    sb.append("L");
+    for (i = 1; i <= c5; i++) {
+        sb.append("U");
+    }
+    for (i = 1; i <= c6; i++) {
+        sb.append("R");
+    }
+    sb.append("D");
+    sb.append("R");
+    for (i = 1; i <= c7; i++) {
+        sb.append("D");
+    }
+    for (i = 1; i <= c8; i++) {
+        sb.append("L");
+    }
+    sb.append("U");
+    System.out.println(new String(sb));
+}

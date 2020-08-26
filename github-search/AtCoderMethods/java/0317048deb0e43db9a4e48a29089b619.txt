@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    try {
+        
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+        String[] str = br.readLine().split(" ");
+        int k = Integer.parseInt(str[0]);
+        int s = Integer.parseInt(str[1]);
+        int count = 0;
+        for (int x = 0; x <= k; x++) {
+            for (int y = 0; y <= k; y++) {
+                if (x + y > s) {
+                    break;
+                }
+                int z = s - (x + y);
+                if (z <= k) {
+                    count++;
+                }
+            }
+        }
+        System.out.println(count);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

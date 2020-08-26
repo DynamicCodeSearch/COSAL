@@ -1,0 +1,15 @@
+public long nextLong() throws IOException {
+    readToken();
+    long num = 0;
+    int i = 0;
+    boolean sign = false;
+    if (byteBuf[i] == MINUS) {
+        sign = true;
+        i++;
+    }
+    for (; i < totalBytes; i++) {
+        num *= 10;
+        num += byteBuf[i] - ZERO;
+    }
+    return sign ? -num : num;
+}

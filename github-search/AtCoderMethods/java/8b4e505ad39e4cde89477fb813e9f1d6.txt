@@ -1,0 +1,22 @@
+
+public static void main(String[] args) throws IOException {
+    MyScanner sc = new MyScanner();
+    StringBuilder sb = new StringBuilder();
+    
+    int N = sc.nextInt(), Q = sc.nextInt();
+    int[] osero = new int[N + 2];
+    for (int q = 0; q < Q; q++) {
+        
+        
+        int l = sc.nextInt(), r = sc.nextInt();
+        osero[l]++;
+        osero[r + 1]--;
+    }
+    int now = 0;
+    for (int i = 1; i <= N; i++) {
+        now += osero[i];
+        
+        sb.append(now % 2);
+    }
+    System.out.println(sb);
+}

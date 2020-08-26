@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    double max = 0, l;
+    int[][] p = new int[100][2];
+    for (int i = 0; i < N; i++) {
+        p[i][0] = sc.nextInt();
+        p[i][1] = sc.nextInt();
+        for (int j = 0; j < i; j++) {
+            l = Math.sqrt((p[i][0] - p[j][0]) * (p[i][0] - p[j][0]) + (p[i][1] - p[j][1]) * (p[i][1] - p[j][1]));
+            if (max < l)
+                max = l;
+        }
+    }
+    System.out.println(max);
+}

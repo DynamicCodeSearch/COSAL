@@ -1,0 +1,42 @@
+
+public void run() throws IOException {
+    
+    int TEST_CASE = 1;
+    while (TEST_CASE-- != 0) {
+        int n = io.nextInt();
+        g = new List[n];
+        for (int i = 0; i < n; i++) g[i] = new ArrayList<>();
+        for (int i = 0; i < n - 1; i++) {
+            int a = io.nextInt() - 1;
+            int b = io.nextInt() - 1;
+            g[a].add(b);
+            g[b].add(a);
+        }
+        par = new int[n];
+        init(0, -1);
+        color = new int[n];
+        color[0] = 1;
+        color[n - 1] = -1;
+        int turn = 0;
+        ArrayDeque<Integer> path = new ArrayDeque<>();
+        for (int v = par[n - 1]; v != 0; v = par[v]) path.addFirst(v);
+        for (; !path.isEmpty(); turn++) {
+            if (turn % 2 == 0) {
+                color[path.pollFirst()] = 1;
+            } else {
+                color[path.pollLast()] = -1;
+            }
+        }
+        
+        int ans = 0;
+        for (int i = 0; i < n; i++) {
+            
+            if (color[i] > 0)
+                ans += count(i, -1);
+            if (color[i] < 0)
+                ans -= count(i, -1);
+        }
+        
+        io.out.println(ans > 0 || ans == 0 && turn % 2 == 1 ? "Fennec" : "Snuke");
+    }
+}

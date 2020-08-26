@@ -1,0 +1,9 @@
+static boolean p(long mid) {
+    long extra = 0;
+    for (int i = 0; i < N; i++) {
+        long leftHealth = a[i] - (mid * B);
+        if (leftHealth > 0)
+            extra += leftHealth % (A - B) == 0 ? leftHealth / (A - B) : (leftHealth / (A - B)) + 1;
+    }
+    return extra <= mid;
+}

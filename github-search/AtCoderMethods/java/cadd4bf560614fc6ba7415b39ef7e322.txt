@@ -1,0 +1,23 @@
+private static final void solve() {
+    try (Scanner cin = new Scanner(System.in)) {
+        int length = cin.nextInt();
+        int[] array = new int[length];
+        int ans = 0;
+        for (int i = 0; i < length; i++) {
+            array[i] = cin.nextInt();
+        }
+        try {
+            for (int i = 0; i < length; i++) {
+                if (array[i] == i + 1) {
+                    ans++;
+                    if (array[i + 1] == i + 2) {
+                        i++;
+                    }
+                }
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+        }
+        System.out.println(ans);
+    } finally {
+    }
+}

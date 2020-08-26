@@ -1,0 +1,19 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    String[] name = new String[N];
+    int[] population = new int[N];
+    long popu_sum = 0;
+    for (int i = 0; i < N; i++) {
+        name[i] = sc.next();
+        population[i] = sc.nextInt();
+        popu_sum += population[i];
+    }
+    for (int i = 0; i < N; i++) {
+        if (population[i] > popu_sum / 2) {
+            System.out.println(name[i]);
+            return;
+        }
+    }
+    System.out.println("atcoder");
+}

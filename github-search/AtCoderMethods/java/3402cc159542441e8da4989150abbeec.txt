@@ -1,0 +1,26 @@
+public boolean remove(long x) {
+    int pos = h(x) & mask;
+    while (allocated[pos] != 0) {
+        if (x == keys[pos]) {
+            size--;
+            
+            int last = pos;
+            pos = pos + 1 & mask;
+            while (allocated[pos] != 0) {
+                int lh = h(keys[pos]) & mask;
+                
+                if (lh <= last && last < pos || pos < lh && lh <= last || last < pos && pos < lh) {
+                    keys[last] = keys[pos];
+                    allocated[last] = allocated[pos];
+                    last = pos;
+                }
+                pos = pos + 1 & mask;
+            }
+            keys[last] = 0;
+            allocated[last] = 0;
+            return true;
+        }
+        pos = pos + 1 & mask;
+    }
+    return false;
+}

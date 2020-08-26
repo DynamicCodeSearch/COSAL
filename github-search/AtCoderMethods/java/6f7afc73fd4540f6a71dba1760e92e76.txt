@@ -1,0 +1,89 @@
+public static void main(String[] args) throws Exception {
+    int n = 0;
+    int ng1 = 0;
+    int ng2 = 0;
+    int ng3 = 0;
+    try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
+        String line;
+        if ((line = br.readLine()) != null) {
+            String[] tokens = line.split(" ");
+            n = Integer.parseInt(tokens[0]);
+        }
+        if ((line = br.readLine()) != null) {
+            String[] tokens = line.split(" ");
+            ng1 = Integer.parseInt(tokens[0]);
+        }
+        if ((line = br.readLine()) != null) {
+            String[] tokens = line.split(" ");
+            ng2 = Integer.parseInt(tokens[0]);
+        }
+        if ((line = br.readLine()) != null) {
+            String[] tokens = line.split(" ");
+            ng3 = Integer.parseInt(tokens[0]);
+        }
+    }
+    if (ng3 < ng2 || ng3 < ng1) {
+        if (ng1 < ng2) {
+            int num = ng2;
+            ng2 = ng3;
+            ng3 = num;
+        } else {
+            int num = ng1;
+            ng1 = ng3;
+            ng3 = num;
+        }
+    }
+    if (ng2 < ng1) {
+        int num = ng1;
+        ng1 = ng2;
+        ng2 = num;
+    }
+    if (n > 300) {
+        System.out.println("NO");
+        return;
+    }
+    if (n < ng1 && n < ng2 && n < ng3) {
+        System.out.println("YES");
+        return;
+    }
+    if (n == ng1 || n == ng2 || n == ng3) {
+        System.out.println("NO");
+        return;
+    }
+    if (ng3 - ng2 == 1 && ng2 - ng1 == 1) {
+        System.out.println("NO");
+        return;
+    }
+    if (n > 297) {
+        int num = n;
+        for (int i = 0; i < 100; i++) {
+            if (num - 3 != ng1 && num - 3 != ng2 && num - 3 != ng3) {
+                num = num - 3;
+            } else {
+                if (num - 3 == ng3) {
+                    num = num - 2;
+                } else if (num - 3 == ng2) {
+                    if (num - 2 == ng3) {
+                        num = num - 1;
+                    } else {
+                        num = num - 2;
+                    }
+                } else if (num - 3 == ng1) {
+                    if (num - 2 == ng2) {
+                        num = num - 1;
+                    } else {
+                        num = num - 2;
+                    }
+                }
+            }
+            if (num <= 0) {
+                System.out.println("YES");
+                return;
+            }
+        }
+    } else {
+        System.out.println("YES");
+        return;
+    }
+    System.out.println("NO");
+}

@@ -1,0 +1,51 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    int r = sc.nextInt();
+    int c = sc.nextInt();
+    int sy = sc.nextInt() - 1;
+    int sx = sc.nextInt() - 1;
+    int gy = sc.nextInt() - 1;
+    int gx = sc.nextInt() - 1;
+    String[][] map = new String[r][c];
+    int[][] ans = new int[r][c];
+    for (int i = 0; i < r; i++) {
+        String str = sc.next();
+        for (int j = 0; j < c; j++) {
+            map[i][j] = str.substring(j, j + 1);
+            ans[i][j] = -1;
+        }
+    }
+    List<int[]> arr = new ArrayList<int[]>();
+    int[] start = { 0, sy, sx };
+    arr.add(start);
+    ans[sy][sx] = 0;
+    int arrCount = 0;
+    while (true) {
+        int[] nowArr = arr.get(arrCount);
+        int num = nowArr[0];
+        int y = nowArr[1];
+        int x = nowArr[2];
+        if (y == gy && x == gx) {
+            System.out.println(num);
+            break;
+        }
+        int[][] xyArr = { { y + 1, x }, { y - 1, x }, { y, x + 1 }, { y, x - 1 } };
+        for (int[] xy : xyArr) {
+            int y2 = xy[0];
+            int x2 = xy[1];
+            if (x2 >= 0 && x2 < c) {
+                if (y2 >= 0 && y2 < r) {
+                    if (".".equals(map[y2][x2])) {
+                        if (ans[y2][x2] == -1 || ans[y2][x2] > num + 1) {
+                            ans[y2][x2] = num + 1;
+                            int[] newArr = { num + 1, y2, x2 };
+                            arr.add(newArr);
+                        }
+                    }
+                }
+            }
+        }
+        arrCount++;
+    
+    }
+}

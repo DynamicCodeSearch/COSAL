@@ -1,0 +1,54 @@
+private static void solve() {
+    int h = sc.nextInt();
+    int w = sc.nextInt();
+    int n = sc.nextInt();
+    Map<Long, Integer> hm = new TreeMap<>();
+    for (int i = 0; i < n; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        if (a >= 2) {
+            if (b >= 2) {
+                add(a - 2, b - 2, hm);
+            }
+            if (b >= 1 && b < w - 1) {
+                add(a - 2, b - 1, hm);
+            }
+            if (b < w - 2) {
+                add(a - 2, b, hm);
+            }
+        }
+        if (a >= 1 && a < h - 1) {
+            if (b >= 2) {
+                add(a - 1, b - 2, hm);
+            }
+            if (b >= 1 && b < w - 1) {
+                add(a - 1, b - 1, hm);
+            }
+            if (b < w - 2) {
+                add(a - 1, b, hm);
+            }
+        }
+        if (a < h - 2) {
+            if (b >= 2) {
+                add(a, b - 2, hm);
+            }
+            if (b >= 1 && b < w - 1) {
+                add(a, b - 1, hm);
+            }
+            if (b < w - 2) {
+                add(a, b, hm);
+            }
+        }
+    }
+    long[] ret = new long[10];
+    for (int e : hm.values()) {
+        ret[e]++;
+    }
+    ret[0] = (long) (h - 2) * (w - 2);
+    for (int i = 1; i < 10; i++) {
+        ret[0] -= ret[i];
+    }
+    for (int i = 0; i < 10; i++) {
+        pr.println(ret[i]);
+    }
+}

@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = Integer.parseInt(sc.next());
+    int M = Integer.parseInt(sc.next());
+    int[] as = new int[N];
+    int[] bs = new int[N];
+    for (int i = 0; i < N; i++) {
+        as[i] = Integer.parseInt(sc.next());
+        bs[i] = Integer.parseInt(sc.next());
+    }
+    int[] ap = new int[M];
+    int[] bp = new int[M];
+    for (int i = 0; i < M; i++) {
+        ap[i] = Integer.parseInt(sc.next());
+        bp[i] = Integer.parseInt(sc.next());
+    }
+    for (int i = 0; i < N; i++) {
+        int minj = 0;
+        int mind = md(as[i], bs[i], ap[0], bp[0]);
+        for (int j = 1; j < M; j++) {
+            int d = md(as[i], bs[i], ap[j], bp[j]);
+            if (d < mind) {
+                minj = j;
+                mind = d;
+            }
+        }
+        System.out.println(minj + 1);
+    }
+}

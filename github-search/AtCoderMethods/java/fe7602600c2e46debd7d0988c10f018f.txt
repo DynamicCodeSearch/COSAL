@@ -1,0 +1,19 @@
+private void solve() {
+    int N = in.nextInt();
+    long[] wh = new long[N];
+    for (int i = 0; i < N; i++) {
+        long w = in.nextLong();
+        long h = in.nextLong();
+        wh[i] = (w << 32) - h;
+    }
+    Arrays.sort(wh);
+    SegTree sg = new SegTree(100005);
+    int ans = 0;
+    for (int i = 0; i < N; i++) {
+        int h = -1 * (int) ((wh[i] << 32) >> 32);
+        int now = sg.getMax(0, h, 1, 0, -1) + 1;
+        sg.add(h, now);
+        ans = Math.max(ans, now);
+    }
+    out.println(ans);
+}

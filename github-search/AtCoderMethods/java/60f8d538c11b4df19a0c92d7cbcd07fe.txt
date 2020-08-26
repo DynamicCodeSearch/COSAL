@@ -1,0 +1,22 @@
+public static void main(String[] args) throws IOException {
+    try (BufferedReader r = new BufferedReader(new InputStreamReader(System.in))) {
+        String[] line = r.readLine().split(" ");
+        H = Integer.parseInt(line[0]);
+        W = Integer.parseInt(line[1]);
+        a = new int[H][W];
+        dp = new int[H][W];
+        for (int i = 0; i < H; i++) {
+            line = r.readLine().split(" ");
+            for (int j = 0; j < W; j++) {
+                a[i][j] = Integer.parseInt(line[j]);
+            }
+        }
+        long sum = 0L;
+        for (int i = 0; i < H; i++) {
+            for (int j = 0; j < W; j++) {
+                sum = (sum + solve(j, i)) % INF;
+            }
+        }
+        System.out.println(sum);
+    }
+}

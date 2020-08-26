@@ -1,0 +1,28 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    long k = sc.nextLong();
+    for (long aa = 1; ; aa++) {
+        long a = aa;
+        long b = 0;
+        for (int i = 0; i < k; i++) {
+            if (a < b) {
+                long d = a;
+                a = b;
+                b = d;
+            }
+            long nextA;
+            long nextB = a;
+            
+            
+            
+            nextA = a + b;
+            a = nextA;
+            b = nextB;
+        }
+        if (1000000000 > a || 1000000000 > b) {
+            System.out.println(b + " " + a);
+            
+            return;
+        }
+    }
+}

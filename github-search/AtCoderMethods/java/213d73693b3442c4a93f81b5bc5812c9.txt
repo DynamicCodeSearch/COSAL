@@ -1,0 +1,35 @@
+public static void main(String[] args) {
+    
+    final int n;
+    final int[] a;
+    try (Scanner scan = new Scanner(System.in)) {
+        
+        n = scan.nextInt();
+        
+        a = new int[n];
+        for (int i = 0; i < n; i++) {
+            
+            a[i] = scan.nextInt();
+        }
+    }
+    
+    
+    List<Integer> counts = new ArrayList<>();
+    
+    int counter = 1;
+    for (int i = 0; i < n - 1; i++) {
+        if (a[i] < a[i + 1]) {
+            counter++;
+        } else {
+            
+            
+            counts.add(counter);
+            counter = 1;
+        }
+    }
+    
+    counts.add(counter);
+    long result = counts.stream().mapToLong(Main::ways).sum();
+    out.println(result);
+    out.flush();
+}

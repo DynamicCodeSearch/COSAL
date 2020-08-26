@@ -1,0 +1,14 @@
+long dfs(int u) {
+    if (dp[u] != -INF)
+        return dp[u];
+    if (vis[u])
+        return 0;
+    vis[u] = true;
+    for (Edge e : g[u]) {
+        long ncost = dfs(e.to) + e.cost;
+        if (ncost > dp[u]) {
+            dp[u] = ncost;
+        }
+    }
+    return dp[u];
+}

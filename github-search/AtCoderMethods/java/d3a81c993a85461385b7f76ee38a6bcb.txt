@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[] values = new int[n];
+    long sum = 0;
+    for (int i = 0; i < n; i++) {
+        values[i] = sc.nextInt();
+        sum += values[i];
+    }
+    long minDiff = Long.MAX_VALUE;
+    long firstPileSum = 0;
+    for (int i = 0; i < values.length - 1; i++) {
+        firstPileSum += values[i];
+        long remainSum = sum - firstPileSum;
+        long candidate = Math.abs(firstPileSum - remainSum);
+        if (candidate < minDiff) {
+            minDiff = candidate;
+        }
+    }
+    System.out.println(minDiff);
+}

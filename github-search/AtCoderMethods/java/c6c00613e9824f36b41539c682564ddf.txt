@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String[] firstLine = sc.nextLine().split(" ");
+    int N = toInt(firstLine[0]);
+    int M = toInt(firstLine[1]);
+    int[][] studentPoint = new int[N][2];
+    int[][] checkPoints = new int[M][2];
+    for (int i = 0; i < N; i++) {
+        studentPoint[i][0] = sc.nextInt();
+        studentPoint[i][1] = sc.nextInt();
+    }
+    for (int j = 0; j < M; j++) {
+        checkPoints[j][0] = sc.nextInt();
+        checkPoints[j][1] = sc.nextInt();
+    }
+    for (int i = 0; i < N; i++) {
+        int minLength = Integer.MAX_VALUE;
+        int answerForStudentI = Integer.MIN_VALUE;
+        for (int j = 0; j < M; j++) {
+            int distance = manhattanDistance(studentPoint[i][0], studentPoint[i][1], checkPoints[j][0], checkPoints[j][1]);
+            if (distance < minLength) {
+                minLength = distance;
+                answerForStudentI = j + 1;
+            }
+        }
+        System.out.println(answerForStudentI);
+    }
+}

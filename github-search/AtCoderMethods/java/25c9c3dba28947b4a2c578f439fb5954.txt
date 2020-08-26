@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    double L = sc.nextInt();
+    double X = sc.nextInt();
+    double Y = sc.nextInt();
+    double S = sc.nextInt();
+    double D = sc.nextInt();
+    double ans;
+    if (Y > X) {
+        if (S < D) {
+            ans = Math.min((D - S) / (X + Y), (L - D + S) / (Y - X));
+        } else {
+            ans = Math.min((L - S + D) / (X + Y), (S - D) / (Y - X));
+        }
+    } else {
+        if (S < D) {
+            ans = (D - S) / (X + Y);
+        } else {
+            ans = (L - S + D) / (X + Y);
+        }
+    }
+    System.out.println(ans);
+}

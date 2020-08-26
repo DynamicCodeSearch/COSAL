@@ -1,0 +1,14 @@
+def main():
+    n,W = LI()
+    a = [LI() for _ in range(n)]
+    r = 0
+    d = collections.defaultdict(int)
+    d[0] = 0
+    for w,v in a:
+        for e,f in sorted(list(d.items()), key=lambda x: -x[0]):
+            if e+w > W:
+                continue
+            if d[e+w] < d[e] + v:
+                d[e+w] = d[e] + v
+
+    return max(d.values())

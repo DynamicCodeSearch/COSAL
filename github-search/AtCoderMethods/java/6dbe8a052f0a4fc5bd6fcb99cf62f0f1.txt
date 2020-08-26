@@ -1,0 +1,13 @@
+private static void solve(ConsoleScanner cin, PrintWriter cout) {
+    int n = cin.nextInt();
+    int m = cin.nextInt();
+    int[][] abs = new int[m][];
+    for (int i = 0; i < abs.length; i++) abs[i] = new int[] { cin.nextInt(), cin.nextInt() };
+    long millis = System.currentTimeMillis();
+    boolean ans = solve(n, m, abs);
+    if (ans)
+        cout.println("POSSIBLE");
+    else
+        cout.println("IMPOSSIBLE");
+    assert null != cout.format("%d elapsed", System.currentTimeMillis() - millis);
+}

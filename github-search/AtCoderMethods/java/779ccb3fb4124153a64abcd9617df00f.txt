@@ -1,0 +1,53 @@
+
+public void run() throws IOException {
+    
+    int TEST_CASE = 1;
+    while (TEST_CASE-- != 0) {
+        char[] cs = io.next();
+        boolean fin = true;
+        boolean[] remove = new boolean[256];
+        int[] cnt = new int[256];
+        for (int i = 0; i < cs.length; i++) {
+            cnt[cs[i]]++;
+            fin &= i < 2 || cs[i] == cs[i - 2];
+            if (i % (cs.length - 1) != 0 && cs[i + 1] != cs[i - 1]) {
+                remove[cs[i]] = true;
+            }
+        }
+        if (fin) {
+            io.out.println("Second");
+            dump(0);
+            return;
+        }
+        char sel = 0;
+        for (int i = 0; i < cnt.length; i++) {
+            if (cnt[i] == 1) {
+                if (i == 0 || i + 1 == cs.length || !remove[i])
+                    continue;
+                sel = (char) i;
+            }
+        }
+        if (finish(cs, (char) 0)) {
+            io.out.println("Second");
+            dump(1);
+            return;
+        }
+        if (finish(cs, sel)) {
+            io.out.println("First");
+            dump(2);
+            return;
+        }
+        if (cs.length % 2 == 0 && cs[0] != cs[cs.length - 1]) {
+            io.out.println("Second");
+            dump(3);
+            return;
+        }
+        if (cs.length % 2 == 1 && cs[0] == cs[cs.length - 1]) {
+            io.out.println("Second");
+            dump(4);
+            return;
+        }
+        dump(5);
+        io.out.println("First");
+    }
+}

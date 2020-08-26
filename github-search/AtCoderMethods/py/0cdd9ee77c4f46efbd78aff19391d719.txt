@@ -1,0 +1,13 @@
+def move(a, A, c):
+
+  c.remove(a)
+  if(c==[]):
+    return 1
+  if(not a in A):
+    return 0
+  sum = 0
+  for i in A[a]:
+    if(i in c):
+      sum += move(i, A, list(c))
+
+  return sum

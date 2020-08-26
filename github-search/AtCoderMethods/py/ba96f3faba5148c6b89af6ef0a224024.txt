@@ -1,0 +1,16 @@
+def main():
+    line = raw_input()
+    count = Counter(line)
+    n_pairs = len(filter(lambda t: t[1] == 2, count.items()))
+    n_singles = 0
+    for t in filter(lambda t: t[1] != 2, count.items()):
+        n_pairs += t[1] / 2
+        if t[1] % 2 == 1:
+            n_singles += 1
+
+    result = n_pairs * 2
+    if n_singles > 0:
+        result = n_pairs/n_singles * 2 + 1
+    print(result)
+
+    return 0

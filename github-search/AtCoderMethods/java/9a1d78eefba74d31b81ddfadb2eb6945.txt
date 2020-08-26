@@ -1,0 +1,15 @@
+
+static int minIndex(double[] distance, boolean[] fixed) {
+    int idx = 0;
+    for (; 
+    idx < fixed.length; idx++) if (!fixed[idx])
+        break;
+    
+    if (idx == fixed.length)
+        return -1;
+    for (
+    int i = idx + 1; 
+    i < fixed.length; i++) if (!fixed[i] && distance[i] < distance[idx])
+        idx = i;
+    return idx;
+}

@@ -1,0 +1,27 @@
+def main():
+    A, B, C, D, E, F = [int(x) for x in input().split()]
+    max_rate = E / (100 + E)
+    best_weight, best_suger, best_rate = A*100, 0, 0.0
+    for a in range(F//100 +1):
+        for b in range((F-a*A)//100 + 1):
+            water = (a*A+b*B)*100
+            if water > F:
+                continue
+            for c in range((F-water)//C + 1):
+                d = min((F - water - c*C) // D, int((E*water-100*c*C) / (100*D)))
+                if d < 0:
+                    continue
+                suger = c*C + d*D
+                if water + suger > F:
+                    continue
+                if water + suger == 0:
+                    rate = 0.0
+                else:
+                    rate = suger / (water + suger)
+                if rate > max_rate:
+                    continue
+                if rate > best_rate:
+                    best_weight = water + suger
+                    best_suger = suger
+                    best_rate = rate
+    print(best_weight, best_suger)

@@ -1,0 +1,14 @@
+def factorize(n):
+	from math import sqrt
+ r = int(sqrt(n))
+ a = []
+ while not n % 2:
+		a.append(2)
+  n //= 2
+ for m in range(3,r+1,2):
+		while not n % m:
+			a.append(m)
+   n //= m
+ if n != 1:
+		a.append(n)
+ return Counter(a)

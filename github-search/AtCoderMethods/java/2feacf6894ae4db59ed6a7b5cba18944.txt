@@ -1,0 +1,17 @@
+private void solve(Scanner sc) {
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    List<List<Integer>> list = new ArrayList<>();
+    for (int i = 0; i < N; ++i) {
+        list.add(new ArrayList<>());
+    }
+    for (int i = 0; i < M; ++i) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        list.get(a).add(b);
+        list.get(b).add(a);
+    }
+    List<Integer> route = new ArrayList<>();
+    route.add(0);
+    _out.println(search(0, N, list, route, new HashSet<>()));
+}

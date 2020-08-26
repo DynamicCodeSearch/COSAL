@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    Scanner io = new Scanner(System.in);
+    int N = io.nextInt();
+    int[] col = new int[13];
+    for (int i = 0; i < N; i++) {
+        col[io.nextInt() / 400]++;
+    }
+    int min = 0;
+    for (int i = 0; i < 8; i++) {
+        if (col[i] > 0)
+            min++;
+    }
+    int topCoders = 0;
+    for (int i = 8; i < 13; i++) {
+        topCoders += col[i];
+    }
+    int max;
+    if (min == 0) {
+        min = 1;
+        max = topCoders;
+    } else if (topCoders > 0) {
+        max = min + topCoders;
+    } else {
+        max = min;
+    }
+    System.out.println(min + " " + max);
+}

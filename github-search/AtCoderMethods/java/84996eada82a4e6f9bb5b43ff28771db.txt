@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    StdIn in = new StdIn();
+    int n = in.nextInt();
+    int[] ar = in.readIntArray(n);
+    long sum = 0;
+    for (int i = 0; i < n; ++i) sum += ar[i];
+    long cumSum = 0;
+    long minDiff = Long.MAX_VALUE;
+    for (int i = 0; i < n - 1; ++i) {
+        cumSum += ar[i];
+        minDiff = Math.min(Math.abs(sum - 2 * cumSum), minDiff);
+    }
+    System.out.println(minDiff);
+}

@@ -1,0 +1,11 @@
+private int maxQuery(int a, int b, int k, int l, int r) {
+    if (r < a || b < l)
+        return Integer.MIN_VALUE;
+    if (a <= l && r <= b)
+        return maxDat[k];
+    else {
+        int vl = maxQuery(a, b, k * 2 + 1, l, (l + r) / 2);
+        int vr = maxQuery(a, b, k * 2 + 2, (l + r) / 2 + 1, r);
+        return Math.max(vl, vr);
+    }
+}

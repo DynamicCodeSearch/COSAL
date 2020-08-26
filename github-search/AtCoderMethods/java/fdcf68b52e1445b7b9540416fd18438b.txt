@@ -1,0 +1,19 @@
+static int getHonest() {
+    int need = B + 1;
+    LinkedList<Integer> list = new LinkedList<>();
+    for (int i = 0; i < N; i++) {
+        if (list.isEmpty()) {
+            list.push(i);
+        } else {
+            if (ask(list.peek(), i)) {
+                list.push(i);
+            } else {
+                list.pop();
+                need--;
+            }
+        }
+        if (list.size() >= need)
+            return list.pop();
+    }
+    return -1;
+}

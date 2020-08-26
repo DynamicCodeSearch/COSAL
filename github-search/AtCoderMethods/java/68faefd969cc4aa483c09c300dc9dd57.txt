@@ -1,0 +1,26 @@
+public void solve() {
+    int N = in.nextInt();
+    Point[] ps = new Point[N];
+    for (int i = 0; i < N; i++) {
+        ps[i] = new Point(i, in.nextInt(), in.nextInt());
+    }
+    Point[] ps_x = Arrays.copyOf(ps, N);
+    Arrays.sort(ps_x, (p1, p2) -> (p1.x - p2.x));
+    Point[] ps_y = Arrays.copyOf(ps, N);
+    Arrays.sort(ps_y, (p1, p2) -> (p1.y - p2.y));
+    UnionFindTree uft = new UnionFindTree(N);
+    PriorityQueue<Edge> pq = new PriorityQueue<Edge>();
+    for (int i = 0; i < N - 1; i++) {
+        pq.add(new Edge(ps_x[i].id, ps_x[i + 1].id, (ps_x[i + 1].x - ps_x[i].x)));
+        pq.add(new Edge(ps_y[i].id, ps_y[i + 1].id, (ps_y[i + 1].y - ps_y[i].y)));
+    }
+    long res = 0;
+    while (!pq.isEmpty()) {
+        Edge e = pq.poll();
+        if (uft.same(e.from, e.to))
+            continue;
+        res += e.weight;
+        uft.unite(e.from, e.to);
+    }
+    System.out.println(res);
+}

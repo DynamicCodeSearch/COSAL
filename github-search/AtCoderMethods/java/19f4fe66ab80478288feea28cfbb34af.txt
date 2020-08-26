@@ -1,0 +1,22 @@
+static void solve() {
+    char[] s = ns().toCharArray();
+    char[] t = ns().toCharArray();
+    int n = s.length;
+    int m = t.length;
+    int[] scum = new int[n + 1];
+    for (int i = 0; i < n; i++) {
+        scum[i + 1] = scum[i] + (s[i] == 'A' ? 1 : 2);
+    }
+    int[] tcum = new int[m + 1];
+    for (int i = 0; i < m; i++) {
+        tcum[i + 1] = tcum[i] + (t[i] == 'A' ? 1 : 2);
+    }
+    for (int Q = ni(); Q > 0; Q--) {
+        int a = ni() - 1, b = ni() - 1, c = ni() - 1, d = ni() - 1;
+        if ((scum[b + 1] - scum[a]) % 3 == (tcum[d + 1] - tcum[c]) % 3) {
+            out.println("YES");
+        } else {
+            out.println("NO");
+        }
+    }
+}

@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String o = sc.next();
+    String e = sc.next();
+    int olen = o.length();
+    int elen = e.length();
+    String ans = "";
+    for (int i = 0; i < olen + elen; i++) {
+        if (i % 2 == 0)
+            ans += String.valueOf(o.charAt((i / 2)));
+        if (i % 2 == 1)
+            ans += String.valueOf(e.charAt((i / 2)));
+    }
+    System.out.println(ans);
+}

@@ -1,0 +1,8 @@
+def check(n, a):
+    aa = Counter(a)
+    if n & 1 and (0 not in aa or aa[0] != 1):
+        return False
+    for i in range(1 + (n & 1), n + 1, 2):
+        if i not in aa or aa[i] != 2:
+            return False
+    return True

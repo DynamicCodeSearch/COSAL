@@ -1,0 +1,22 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int[] a = in.nextIntArray(n);
+    Map<Integer, Integer> countMap = ArrayUtils.getCountMap(a);
+    List<Integer> list = new ArrayList<>();
+    Set<Integer> set = countMap.keySet();
+    for (int x : set) {
+        int cnt = countMap.get(x);
+        if (cnt >= 4) {
+            list.add(x);
+            list.add(x);
+        } else if (cnt >= 2) {
+            list.add(x);
+        }
+    }
+    Collections.sort(list, Collections.reverseOrder());
+    if (list.size() < 2) {
+        out.println(0);
+    } else {
+        out.println((long) list.get(0) * list.get(1));
+    }
+}

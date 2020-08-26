@@ -1,0 +1,6 @@
+private void rdfs(int v, int k) {
+    used[v] = true;
+    cmp[v] = k;
+    for (int i = 0; i < rG.get(v).size(); i++) if (!used[rG.get(v).get(i)])
+        rdfs(rG.get(v).get(i), k);
+}

@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    long money = sc.nextLong();
+    long k = sc.nextLong();
+    long date = 0;
+    if (k != 0) {
+        while (money < threashold) {
+            money = 1 + (1 + k) * money;
+            date += 1;
+        }
+    } else {
+        if (money < threashold) {
+            date = threashold - money;
+        }
+    }
+    System.out.println(date);
+}

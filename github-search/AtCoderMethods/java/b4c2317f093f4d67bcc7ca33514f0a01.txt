@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    Queue<Integer> q = new LinkedList<Integer>();
+    Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+    int[] step = { -10, -5, -1, 1, 5, 10 };
+    int A = sc.nextInt();
+    int B = sc.nextInt();
+    int cnt;
+    q.add(A);
+    map.put(A, 0);
+    while (!q.isEmpty() && !map.containsKey(B)) {
+        cnt = q.poll();
+        for (int i : step) {
+            if (!map.containsKey(cnt + i)) {
+                q.add(cnt + i);
+                map.put(cnt + i, map.get(cnt) + 1);
+            }
+        }
+    }
+    System.out.println(map.get(B));
+}

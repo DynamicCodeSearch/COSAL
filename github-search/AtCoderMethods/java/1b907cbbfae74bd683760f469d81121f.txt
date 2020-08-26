@@ -1,0 +1,58 @@
+public static void main(String[] args) throws IOException {
+    try (Scanner sc = new Scanner(System.in)) {
+        final int N = sc.nextInt();
+        final int M = sc.nextInt();
+        ArrayList<HashMap<Integer, Long>> adj = new ArrayList<HashMap<Integer, Long>>();
+        ArrayList<HashMap<Integer, Long>> rev_adj = new ArrayList<HashMap<Integer, Long>>();
+        for (int i = 0; i < N; i++) {
+            adj.add(new HashMap<Integer, Long>());
+        }
+        for (int i = 0; i < N; i++) {
+            rev_adj.add(new HashMap<Integer, Long>());
+        }
+        for (int i = 0; i < M; i++) {
+            final int a = sc.nextInt() - 1;
+            final int b = sc.nextInt() - 1;
+            final long c = sc.nextLong();
+            adj.get(a).put(b, c);
+            rev_adj.get(b).put(a, -c);
+        }
+        boolean[] can_entry = new boolean[N];
+        bfs(N - 1, rev_adj, can_entry);
+        
+        long[] costs = new long[N];
+        Arrays.fill(costs, Long.MIN_VALUE);
+        costs[0] = 0;
+        LinkedList<Integer> queue = new LinkedList<Integer>();
+        boolean[] in_queue = new boolean[N];
+        int[] in_count = new int[N];
+        queue.add(0);
+        in_queue[0] = true;
+        in_count[0] = 1;
+        while (!queue.isEmpty()) {
+            final int node = queue.poll();
+            in_queue[node] = false;
+            if (in_count[node] > N) {
+                System.out.println("inf");
+                return;
+            }
+            for (final Entry<Integer, Long> entry : adj.get(node).entrySet()) {
+                final int next = entry.getKey();
+                final long next_cost = costs[node] + entry.getValue();
+                if (!can_entry[next]) {
+                    continue;
+                }
+                if (costs[next] >= next_cost) {
+                    continue;
+                }
+                costs[next] = next_cost;
+                if (!in_queue[next]) {
+                    queue.add(next);
+                    in_queue[next] = true;
+                    in_count[next] += 1;
+                }
+            }
+        }
+        System.out.println(costs[N - 1]);
+    }
+}

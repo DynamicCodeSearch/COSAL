@@ -1,0 +1,41 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    long[][] dp = new long[N][N];
+    for (int i = 0; i < M; i++) {
+        int u = sc.nextInt() - 1;
+        int v = sc.nextInt() - 1;
+        long l = sc.nextLong();
+        dp[u][v] = l;
+        dp[v][u] = l;
+    }
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            if (i != j && dp[i][j] == 0)
+                dp[i][j] = 100000000;
+        }
+    }
+    long[] dis = new long[N];
+    for (int i = 1; i < N; i++) {
+        dis[i] = dp[0][i];
+        dp[0][i] = 100000000;
+    }
+    for (int k = 1; k <= N; k++) {
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                dp[i][j] = Math.min(dp[i][j], dp[i][k - 1] + dp[k - 1][j]);
+            }
+        }
+    }
+    long min = Long.MAX_VALUE;
+    for (int i = 1; i < N; i++) {
+        for (int j = 1; j < N; j++) {
+            if (i != j)
+                min = Math.min(min, dis[i] + dis[j] + dp[i][j]);
+        }
+    }
+    if (min >= 100000000)
+        min = -1;
+    System.out.println(min);
+}

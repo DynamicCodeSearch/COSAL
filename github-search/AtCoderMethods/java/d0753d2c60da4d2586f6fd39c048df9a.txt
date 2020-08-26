@@ -1,0 +1,29 @@
+private static void solve() {
+    int h = ni();
+    int w = ni();
+    char[][] map = new char[h][w];
+    for (int i = 0; i < h; i++) {
+        map[i] = ns();
+    }
+    int[][] dir = new int[][] { { -1, 0 }, { 1, 0 }, { 0, 1 }, { 0, -1 }, { -1, -1 }, { -1, 1 }, { 1, -1 }, { 1, 1 } };
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            int count = 0;
+            if (map[i][j] == '.') {
+                for (int[] d : dir) {
+                    int ni = i + d[0];
+                    int nj = j + d[1];
+                    if (0 <= ni && ni < h && 0 <= nj && nj < w) {
+                        if (map[ni][nj] == '#') {
+                            count++;
+                        }
+                    }
+                }
+                map[i][j] = (char) ('0' + count);
+            }
+        }
+    }
+    for (char[] v : map) {
+        System.out.println(v);
+    }
+}

@@ -1,0 +1,10 @@
+def nCb(n, b):
+    if b > n - b:
+        b = n - b
+    r = 1
+    for k in range(n, n-b, -1):
+        r = r * k
+    d = 1
+    for k in range(1, b+1):
+        d = d * k
+    return r // d

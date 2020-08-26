@@ -1,0 +1,33 @@
+public void run() {
+    try {
+        InputStream bis = null;
+        OutputStream bos = null;
+        if (inputFilename != null) {
+            File inputFile = null;
+            File outputFile = null;
+            if (useClassResourceTopDir) {
+                File baseFile = new File(getClass().getResource("/").getFile());
+                inputFile = new File(baseFile, inputFilename);
+                outputFile = new File(baseFile, inputFilename + outSuffix);
+            } else {
+                inputFile = new File(inputFilename);
+                outputFile = new File(inputFilename + outSuffix);
+            }
+            System.out.println("Input file canonical path: " + inputFile.getCanonicalPath());
+            bis = new BufferedInputStream(new FileInputStream(inputFile), INPUT_BUFFER_SIZE);
+            bos = new BufferedOutputStream(new FileOutputStream(outputFile));
+            out = new PrintStream(bos);
+        } else {
+            bis = new BufferedInputStream(System.in, INPUT_BUFFER_SIZE);
+            bos = new BufferedOutputStream(System.out);
+            out = new PrintStream(bos);
+        }
+        scanner = new ByteScanner(bis, BUF_SIZE_INPUT, BUF_SIZE);
+        writer = new ByteWriter(bos, BUF_SIZE_OUT);
+        solveAll();
+        out.flush();
+    } catch (Exception e) {
+        e.printStackTrace();
+        System.exit(1);
+    }
+}

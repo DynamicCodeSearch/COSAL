@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner s = new Scanner(System.in);
+    final int N = s.nextInt();
+    s.nextLine();
+    Map<String, Integer> votes = new HashMap<>();
+    for (int i = 0; i < N; i++) {
+        String name = s.nextLine();
+        if (!votes.containsKey(name)) {
+            votes.put(name, 1);
+        } else {
+            Integer voted = votes.get(name);
+            votes.put(name, voted + 1);
+        }
+    }
+    s.close();
+    Integer maxVoted = 0;
+    String leader = "";
+    for (String name : votes.keySet()) {
+        if (votes.get(name) > maxVoted) {
+            maxVoted = votes.get(name);
+            leader = name;
+        }
+    }
+    System.out.println(leader);
+}

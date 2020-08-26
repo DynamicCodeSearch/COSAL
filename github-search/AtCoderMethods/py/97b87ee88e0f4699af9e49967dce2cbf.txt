@@ -1,0 +1,6 @@
+def modpowsum(a,n,m):
+    if n==0:      return 0
+    elif n%2==1:  return (1+a*modpowsum(a,n-1,m))%m
+    else:
+        t = modpowsum(a,n//2,m)
+        return (t + (t * pow(a,n//2,m))%m ) %m

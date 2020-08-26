@@ -1,0 +1,20 @@
+private static void solve() {
+    Scanner sc = new Scanner(System.in);
+    PrintWriter pr = new PrintWriter(System.out);
+    int N = sc.nextInt();
+    int Q = sc.nextInt();
+    int[] l = new int[N];
+    while (Q-- > 0) {
+        int L = sc.nextInt();
+        int R = sc.nextInt();
+        int T = sc.nextInt();
+        for (int k = L; k <= R; k++) {
+            l[k - 1] = T;
+        }
+    }
+    for (int k = 0; k < N; k++) {
+        pr.println(l[k]);
+    }
+    pr.flush();
+    sc.close();
+}

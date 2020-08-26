@@ -1,0 +1,17 @@
+def solve():
+    s = [1 if hand == 'p' else 0 for hand in input()]
+    n = len(s)
+    t = [1 if i % 2 else 0 for i in range(n)]
+    ans = 0
+
+    for h1, h2 in zip(s, t):
+        if h1 < h2:
+            ans += 1
+        elif h2 < h1:
+            ans -= 1
+        else:
+            pass
+
+    assert ans >= 0
+
+    print(ans)

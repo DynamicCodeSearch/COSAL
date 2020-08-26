@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int i = 1;
+    int n = sc.nextInt();
+    long T = sc.nextLong();
+    long[] t = new long[n];
+    long rtn = T;
+    t[0] = sc.nextLong();
+    for (i = 1; i < n; i++) {
+        t[i] = sc.nextLong();
+        rtn += Math.min(T, t[i] - t[i - 1]);
+    }
+    System.out.println(rtn);
+}

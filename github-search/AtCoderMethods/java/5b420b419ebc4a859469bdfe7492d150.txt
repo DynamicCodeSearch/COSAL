@@ -1,0 +1,25 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    final int n = Integer.valueOf(reader.readLine());
+    
+    long originalTotal = 0L;
+    
+    int[] ts = new int[n + 1];
+    
+    String[] tss = reader.readLine().split(" ");
+    for (int i = 1; i <= n; i++) {
+        ts[i] = Integer.valueOf(tss[i - 1]);
+        originalTotal += ts[i];
+    }
+    final int m = Integer.valueOf(reader.readLine());
+    long[] result = new long[m];
+    PrintWriter writer = new PrintWriter(new OutputStreamWriter(System.out));
+    for (int i = 0; i < m; i++) {
+        String[] values = reader.readLine().split(" ");
+        int num = Integer.valueOf(values[0]);
+        int val = Integer.valueOf(values[1]);
+        result[i] = originalTotal - ts[num] + val;
+    }
+    for (int i = 0; i < m; i++) writer.println(result[i]);
+    writer.close();
+}

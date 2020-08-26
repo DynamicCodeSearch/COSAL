@@ -1,0 +1,14 @@
+def main():
+    n = I()
+    a = LI()
+    d = collections.defaultdict(int)
+    for c in a:
+        d[c%4] += 1
+
+    d[1] += d[3]
+    if d[2] == 1:
+        d[1] += 1
+    if (d[1] == 0) or (d[1] - (1 if d[2] < 2 else 0) <= d[0] and d[0] > 0):
+        return 'Yes'
+
+    return 'No'

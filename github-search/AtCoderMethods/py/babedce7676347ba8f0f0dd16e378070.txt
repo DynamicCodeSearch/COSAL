@@ -1,0 +1,12 @@
+def solve(i, board):
+    if i > 7:
+        return True
+    if np.sum(board, axis=1)[i]:
+        return solve(i + 1, board)
+    for j in range(8):
+        if can_put(i, j, board):
+            board[i][j] = 1
+            if solve(i + 1, board):
+                return True
+            board[i][j] = 0
+    return False

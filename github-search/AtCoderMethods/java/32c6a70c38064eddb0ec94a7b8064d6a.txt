@@ -1,0 +1,24 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    String str = input.readLine();
+    String[] list = str.split(" ");
+    int a = Integer.parseInt(list[0]);
+    int b = Integer.parseInt(list[1]);
+    String answer = "";
+    if (a > b) {
+        if (b == 1) {
+            answer = "Bob";
+        } else {
+            answer = "Alice";
+        }
+    } else if (a == b) {
+        answer = "Draw";
+    } else if (a < b) {
+        if (a == 1) {
+            answer = "Alice";
+        } else {
+            answer = "Bob";
+        }
+    }
+    System.out.println(answer);
+}

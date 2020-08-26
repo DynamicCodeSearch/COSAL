@@ -1,0 +1,8 @@
+def main():
+    n, m = (int(x) for x in input().split())
+    adj_list = [set() for _ in range(n)]
+    for _ in range(m):
+        a, b = (int(y) - 1 for y in input().split())
+        adj_list[a].add(b)
+        adj_list[b].add(a)
+    print(count_paths(n, adj_list))

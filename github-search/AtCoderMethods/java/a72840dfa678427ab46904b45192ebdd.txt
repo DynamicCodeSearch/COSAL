@@ -1,0 +1,22 @@
+static int count(int n, String c_i, String L, String R) {
+    String tmp_c = c_i;
+    int count = 0;
+    int index = 0;
+    for (; ; ) {
+        String headchar = "";
+        if (index < (n - 1)) {
+            headchar = String.valueOf(tmp_c.charAt(index)) + String.valueOf(tmp_c.charAt(index + 1));
+        }
+        
+        if (headchar.equals(L) || headchar.equals(R)) {
+            index += 2;
+        } else {
+            index++;
+        }
+        count++;
+        if (index == n) {
+            break;
+        }
+    }
+    return count;
+}

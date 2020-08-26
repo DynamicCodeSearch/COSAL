@@ -1,0 +1,27 @@
+def main(args):
+
+
+
+
+    N, A, B = map(int, input().split())
+    monsters = [int(input()) for _ in range(N)]
+
+    total_count = 0
+    if N == 1:
+        total_count = ceil(monsters[0] / A)
+    else:
+        monsters.sort(reverse=True)
+        lb = ceil(monsters[0] / A)
+        ub = ceil(monsters[0] / B)
+
+
+
+        for _ in range(30):
+            mid = (lb + ub) // 2
+            if Cond(monsters, A, B, mid):
+                ub = mid
+            else:
+                lb = mid
+        total_count = int(ub)
+
+    print(total_count)

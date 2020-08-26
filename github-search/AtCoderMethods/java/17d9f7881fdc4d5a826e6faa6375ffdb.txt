@@ -1,0 +1,13 @@
+static void solve() {
+    long a = nl(), b = nl();
+    int mod = ni();
+    long g = gcd(a, b);
+    long ten = pow(10, g, mod);
+    int[][] M = { { (int) ten, 1 }, { 0, 1 } };
+    int[] v = new int[] { 0, 1 };
+    v = pow(M, v, a / g, mod);
+    int[][] M2 = { { 10, 1 }, { 0, 1 } };
+    int[] v2 = new int[] { 0, 1 };
+    v2 = pow(M2, v2, b, mod);
+    out.println((long) v[0] * v2[0] % mod);
+}

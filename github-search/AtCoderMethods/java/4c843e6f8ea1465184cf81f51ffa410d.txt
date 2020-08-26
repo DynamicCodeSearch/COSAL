@@ -1,0 +1,84 @@
+boolean check(int[] sheep) {
+    for (int i = 2; i < N; i++) {
+        int x;
+        int prev = sheep[i - 2];
+        if (S[i - 1] == 'o') {
+            if (sheep[i - 1] == 1) {
+                x = prev;
+            } else {
+                x = prev ^ 1;
+            }
+        } else {
+            if (sheep[i - 1] == 1) {
+                x = prev ^ 1;
+            } else {
+                x = prev;
+            }
+        }
+        if (S[i - 1] == 'o') {
+            if (sheep[i - 1] == 1) {
+                if (x != prev) {
+                    return false;
+                }
+            } else {
+                if (x == prev) {
+                    return false;
+                }
+            }
+        } else {
+            if (sheep[i - 1] == 1) {
+                if (x == prev) {
+                    return false;
+                }
+            } else {
+                if (x != prev) {
+                    return false;
+                }
+            }
+        }
+        sheep[i] = x;
+    }
+    if (S[N - 1] == 'o') {
+        if (sheep[N - 1] == 1) {
+            if (sheep[0] != sheep[N - 2]) {
+                return false;
+            }
+        } else {
+            if (sheep[0] == sheep[N - 2]) {
+                return false;
+            }
+        }
+    } else {
+        if (sheep[N - 1] == 1) {
+            if (sheep[0] == sheep[N - 2]) {
+                return false;
+            }
+        } else {
+            if (sheep[0] != sheep[N - 2]) {
+                return false;
+            }
+        }
+    }
+    if (S[0] == 'o') {
+        if (sheep[0] == 1) {
+            if (sheep[1] != sheep[N - 1]) {
+                return false;
+            }
+        } else {
+            if (sheep[1] == sheep[N - 1]) {
+                return false;
+            }
+        }
+    } else {
+        if (sheep[0] == 1) {
+            if (sheep[1] == sheep[N - 1]) {
+                return false;
+            }
+        } else {
+            if (sheep[1] != sheep[N - 1]) {
+                return false;
+            }
+        }
+    }
+    return true;
+}

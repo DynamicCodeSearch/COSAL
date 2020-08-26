@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int n = scan.nextInt();
+    int m = scan.nextInt();
+    LinkedList<Integer> q = new LinkedList<Integer>();
+    q.add(n);
+    HashMap<Integer, Integer> hm = new HashMap<Integer, Integer>();
+    hm.put(n, 0);
+    int[] a = new int[] { -10, -5, -1, 1, 5, 10 };
+    int b = 0;
+    while (!q.isEmpty() && !(hm.containsKey(m))) {
+        int now = q.poll();
+        for (int i = 0; i < a.length; i++) {
+            b = now + a[i];
+            if (!(hm.containsKey(b))) {
+                q.add(b);
+                hm.put(b, hm.get(now) + 1);
+            }
+        }
+    }
+    System.out.println(hm.get(m));
+}

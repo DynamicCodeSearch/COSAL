@@ -1,0 +1,46 @@
+int[] solver(char[] w) {
+    boolean f = true;
+    int n = w.length;
+    int[] z1 = Z(w);
+    int[] z2 = Z(reverse(w));
+    if (n == 1) {
+        return new int[] { 1, 1 };
+    } else {
+        if (z1[1] == n - 1) {
+            return new int[] { n, 1 };
+        } else {
+            int tmp = 0;
+            for (int d = 2; d * d <= n; d++) {
+                if (n % d == 0) {
+                    if (z1[d] == n - d || z1[n / d] == n - n / d) {
+                        tmp++;
+                    }
+                }
+            }
+            if (tmp == 0) {
+                return new int[] { 1, 1 };
+            }
+            boolean[] ok1 = new boolean[n];
+            boolean[] ok2 = new boolean[n];
+            Arrays.fill(ok1, true);
+            Arrays.fill(ok2, true);
+            ok1[0] = false;
+            ok2[0] = false;
+            for (int d = 1; d < n; d++) {
+                for (int k = 2; ok2[d] && (k - 1) * d <= z2[d] && k * d < n; k++) {
+                    ok2[k * d] = false;
+                }
+                for (int k = 2; ok1[d] && (k - 1) * d <= z1[d] && k * d < n; k++) {
+                    ok1[k * d] = false;
+                }
+            }
+            int ret = 0;
+            for (int i = 1; i < n; i++) {
+                if (ok1[i] && ok2[n - i]) {
+                    ret++;
+                }
+            }
+            return new int[] { 2, ret };
+        }
+    }
+}

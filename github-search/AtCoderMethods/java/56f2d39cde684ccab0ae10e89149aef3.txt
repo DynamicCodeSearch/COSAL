@@ -1,0 +1,42 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int A = sc.nextInt();
+    int B = sc.nextInt();
+    if (A <= B) {
+        System.out.println("Impossible");
+        return;
+    }
+    ArrayDeque<Integer> queue = new ArrayDeque<>();
+    int N = A + B;
+    int need = B + 1;
+    for (int i = 0; i < N; i++) {
+        if (queue.isEmpty()) {
+            queue.add(i);
+            continue;
+        }
+        System.out.println("? " + queue.peekLast() + " " + i);
+        String ans = sc.next();
+        if (ans.equals("Y")) {
+            queue.add(i);
+            if (queue.size() >= need) {
+                break;
+            }
+        } else {
+            queue.pollLast();
+            need--;
+        }
+    }
+    int honest = queue.peekLast();
+    StringBuilder sb = new StringBuilder();
+    sb.append("! ");
+    for (int i = 0; i < N; i++) {
+        System.out.println("? " + honest + " " + i);
+        String ans = sc.next();
+        if (ans.equals("Y")) {
+            sb.append("1");
+        } else {
+            sb.append("0");
+        }
+    }
+    System.out.println(sb);
+}

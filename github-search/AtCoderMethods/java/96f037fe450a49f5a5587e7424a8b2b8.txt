@@ -1,0 +1,15 @@
+public void solve() {
+    int n = io.ri();
+    int[] count = new int[110000];
+    for (int i = 0; i < n; i++) {
+        int v = io.ri() + 10;
+        count[v - 1]++;
+        count[v]++;
+        count[v + 1]++;
+    }
+    int res = 0;
+    for (int i = 0; i < count.length; i++) {
+        res = Math.max(res, count[i]);
+    }
+    io.writeLine(res + "");
+}

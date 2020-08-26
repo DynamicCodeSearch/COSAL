@@ -1,0 +1,14 @@
+public static void main(String[] args) throws IOException {
+    FastScanner in = new FastScanner(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    String s = in.next();
+    boolean good = true;
+    for (int i = 0; i < s.length(); i++) {
+        if (s.charAt(i) != s.charAt(s.length() - i - 1))
+            good = false;
+    }
+    if (good)
+        System.out.println("Yes");
+    else
+        System.out.println("No");
+}

@@ -1,0 +1,19 @@
+public static void main(String[] args) throws IOException {
+    final Scanner sc = new Scanner(System.in);
+    final char[] chs = sc.next().toCharArray();
+    long answer = 0;
+    int rest_p = 0, rest_g = 0;
+    for (final char ch : chs) {
+        if (ch == 'g') {
+            rest_g++;
+        } else if (ch == 'p') {
+            rest_p++;
+        }
+    }
+    
+    final int plus = rest_g / 2;
+    final int minus = rest_p / 2;
+    final int g_mod = rest_g % 2;
+    final int p_mod = rest_p % 2;
+    System.out.println((plus - minus) + Math.min(0, g_mod - p_mod));
+}

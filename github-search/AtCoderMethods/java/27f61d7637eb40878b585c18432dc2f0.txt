@@ -1,0 +1,29 @@
+void solve() {
+    int n = in.nextInt(), m = in.nextInt();
+    boolean[][] map = new boolean[n][n];
+    int[] x = new int[m];
+    int[] y = new int[m];
+    for (int i = 0; i < m; i++) {
+        x[i] = in.nextInt();
+        y[i] = in.nextInt();
+        map[x[i] - 1][y[i] - 1] = true;
+    }
+    long[] dp = new long[1 << n];
+    dp[0] = 1;
+    for (int i = 0; i < (1 << n); i++) {
+        for (int j = 0; j < n; j++) {
+            if ((i & (1 << j)) != 0)
+                continue;
+            int ni = i | (1 << j);
+            boolean can = true;
+            for (int k = 0; k < n; k++) {
+                if ((i & (1 << k)) == 0)
+                    continue;
+                can &= !map[k][j];
+            }
+            if (can)
+                dp[ni] += dp[i];
+        }
+    }
+    System.out.println(dp[(1 << n) - 1]);
+}

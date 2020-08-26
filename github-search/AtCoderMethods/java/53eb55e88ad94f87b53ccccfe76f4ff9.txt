@@ -1,0 +1,16 @@
+public void solve(int testNumber, FastScanner in, PrintWriter out) {
+    int n = in.nextInt();
+    long[] a = new long[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = in.nextLong();
+    }
+    long ans = Long.MAX_VALUE;
+    if (a[0] == 0) {
+        ans = Math.min(ans, 1 + solve(n, a, +1));
+        ans = Math.min(ans, 1 + solve(n, a, -1));
+    } else {
+        ans = solve(n, a, a[0]);
+        ans = Math.min(ans, Math.abs(a[0]) + 1 + solve(n, a, -Long.signum(a[0])));
+    }
+    out.println(ans);
+}

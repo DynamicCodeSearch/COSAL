@@ -1,0 +1,33 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int N = in.nextInt();
+    
+    int A = 0;
+    
+    int B = 0;
+    
+    int C = 0;
+    
+    int D = 0;
+    for (int cnt = 0; cnt < N; cnt++) {
+        int num = in.nextInt();
+        if (num % 4 == 0) {
+            A++;
+        } else if (num % 2 == 0) {
+            B++;
+            if (B % 2 == 0) {
+                B = B - 2;
+                A++;
+            }
+        } else {
+            C++;
+        }
+    }
+    
+    if (A >= N / 2) {
+        System.out.println("Yes");
+    } else {
+        System.out.println("No");
+    }
+    in.close();
+}

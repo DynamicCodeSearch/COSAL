@@ -1,0 +1,13 @@
+def f(qu, sumb):
+        if sumb == 0 or len(qu) == 0:
+                return(0)
+        if sumb % 10 == 0:
+                delnum = f2(qu)
+                if delnum == -1:
+                        return(0)
+                else:
+                        sumb -= qu.pop(delnum)
+        if sumb % 10 == 0:
+                return(f(qu, sumb))
+        else:
+                return(sumb)

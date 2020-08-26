@@ -1,0 +1,10 @@
+public static void main(String[] __) {
+    int n = s.nextInt(), k = s.nextInt();
+    long[] a = new long[n + 1];
+    for (int i = 0; i < n; i++) a[i + 1] = s.nextInt();
+    a[0] = 0;
+    Arrays.parallelPrefix(a, Long::sum);
+    long sum = 0;
+    for (int i = k; i <= n; i++) sum += a[i] - a[i - k];
+    System.out.println(sum);
+}

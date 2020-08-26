@@ -1,0 +1,10 @@
+static long div(long n) {
+    long num = n;
+    long c = Long.MAX_VALUE;
+    for (int i = 1; i <= Math.sqrt(n); i++) {
+        if ((n % i == 0)) {
+            c = Math.min(c, cdigit(n / i, i));
+        }
+    }
+    return c;
+}

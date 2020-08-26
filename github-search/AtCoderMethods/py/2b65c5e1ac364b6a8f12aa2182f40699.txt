@@ -1,0 +1,11 @@
+def calc(h, w):
+    a = h // 3
+    slist = []
+    slist.append([a * w] + calc2(h - a, w))
+    slist.append([a * w] + calc2(w, h - a))
+    slist.append([(a + 1) * w] + calc2(h - a - 1, w))
+    slist.append([(a + 1) * w] + calc2(w, h - a - 1))
+    candi = []
+    for value in slist:
+        candi.append(max(value) - min(value))
+    return min(candi)

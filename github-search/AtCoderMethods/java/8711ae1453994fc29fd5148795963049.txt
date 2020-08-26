@@ -1,0 +1,17 @@
+void bfs(int s) {
+    for (int i = 0; i < level.length; i++) level[i] = -1;
+    
+    int qs = 0, qt = 0;
+    level[s] = 0;
+    q[qt++] = s;
+    while (qs != qt) {
+        int v = q[qs++];
+        for (int e = g.head[v]; e != -1; e = g.next[e]) {
+            final int t = g.to[e];
+            if (g.cap[e] > 0 && level[t] < 0) {
+                level[t] = level[v] + 1;
+                q[qt++] = t;
+            }
+        }
+    }
+}

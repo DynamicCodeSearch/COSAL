@@ -1,0 +1,32 @@
+public static void main(String[] args) throws Exception {
+    String a = sc.next();
+    String b = sc.next();
+    if (a.length() == b.length()) {
+        int now = 0;
+        for (int i = 0; i < a.length(); i++) {
+            if ((int) a.charAt(i) > (int) b.charAt(i)) {
+                now = 1;
+                break;
+            } else if ((int) a.charAt(i) < (int) b.charAt(i)) {
+                now = 2;
+                break;
+            }
+        }
+        if (now == 0) {
+            out.println("EQUAL");
+        } else if (now == 1) {
+            out.println("GREATER");
+        } else {
+            out.println("LESS");
+        }
+    } else {
+        if (a.length() > b.length()) {
+            out.println("GREATER");
+        } else {
+            out.println("LESS");
+        }
+    }
+    out.flush();
+    sc.close();
+    out.close();
+}

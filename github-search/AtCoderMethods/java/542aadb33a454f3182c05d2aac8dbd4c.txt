@@ -1,0 +1,20 @@
+public static void main(String... args) {
+    Scanner sc = new Scanner(System.in);
+    String w = sc.next();
+    List<String> s = Arrays.asList(w.split(""));
+    String res = "Yes";
+    for (int i = 0; i < s.size(); i++) {
+        List<String> l = Arrays.asList(w.split(""));
+        int cnt = 0;
+        for (String val : l) {
+            if (s.get(i).equals(val)) {
+                cnt = cnt + 1;
+            }
+        }
+        if (cnt % 2 != 0) {
+            res = "No";
+            break;
+        }
+    }
+    System.out.println(res);
+}

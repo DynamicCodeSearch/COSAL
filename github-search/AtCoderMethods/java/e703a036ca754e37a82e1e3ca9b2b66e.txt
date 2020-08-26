@@ -1,0 +1,73 @@
+void solve() {
+    H = sc.nextInt();
+    W = sc.nextInt();
+    s = new char[H][];
+    for (int i = 0; i < H; i++) s[i] = sc.next().toCharArray();
+    int rS = -1, cS = -1;
+    int rT = -1, cT = -1;
+    for (int i = 0; i < H; i++) for (int j = 0; j < W; j++) {
+        if (s[i][j] == 'S') {
+            rS = i;
+            cS = j;
+        }
+        if (s[i][j] == 'T') {
+            rT = i;
+            cT = j;
+        }
+    }
+    if (rS == rT || cS == cT) {
+        out.println(-1);
+        return;
+    }
+    {
+        char[] t = s[rS];
+        s[rS] = s[0];
+        s[0] = t;
+    }
+    {
+        char[] t = s[rT];
+        s[rT] = s[H - 1];
+        s[H - 1] = t;
+    }
+    for (int i = 0; i < H; i++) {
+        char t = s[i][cS];
+        s[i][cS] = s[i][0];
+        s[i][0] = t;
+    }
+    for (int i = 0; i < H; i++) {
+        char t = s[i][cT];
+        s[i][cT] = s[i][W - 1];
+        s[i][W - 1] = t;
+    }
+    
+    
+    
+    boolean[][] vis1 = new boolean[H][W];
+    boolean[][] vis2 = new boolean[H][W];
+    dfs(0, 0, vis1);
+    dfs(H - 1, W - 1, vis2);
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            if (s[i][j] == 'o') {
+                if (!vis2[i][j] || !vis2[i][j])
+                    s[i][j] = '.';
+            }
+        }
+    }
+    
+    
+    
+    V[][][] vs = new V[H][W][2];
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            V from = new V();
+            V to = new V();
+            vs[i][j][0] = from;
+            vs[i][j][1] = to;
+            from.add(to, 1);
+        }
+    }
+    make_graph(vs);
+    int ans = dinic(vs[0][0][1], vs[H - 1][W - 1][0]);
+    out.println(ans);
+}

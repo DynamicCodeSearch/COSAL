@@ -1,0 +1,11 @@
+static long comb(long ln, long lr) {
+    int n = (int) ln;
+    int r = (int) lr;
+    if (n < 0 || r < 0 || r > n) {
+        return 0;
+    }
+    if (r > n / 2) {
+        r = n - r;
+    }
+    return (((_fact[n] * _invfact[n - r]) % MOD) * _invfact[r]) % MOD;
+}

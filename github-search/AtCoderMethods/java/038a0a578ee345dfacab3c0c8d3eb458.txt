@@ -1,0 +1,15 @@
+public void exec() throws IOException {
+    InputUtil in = new InputUtil();
+    PrintWriter out = new PrintWriter(System.out);
+    int N = in.nextInt();
+    int[] A = in.nextInt(new int[N]);
+    int[] cnt = new int[100000];
+    for (int i = 0; i < N; i++) cnt[A[i]]++;
+    int ans = cnt[0] + cnt[1];
+    for (int i = 1; i < 99999; i++) {
+        ans = Math.max(ans, cnt[i - 1] + cnt[i] + cnt[i + 1]);
+    }
+    ans = Math.max(ans, cnt[99998] + cnt[99999]);
+    out.println(ans);
+    out.flush();
+}

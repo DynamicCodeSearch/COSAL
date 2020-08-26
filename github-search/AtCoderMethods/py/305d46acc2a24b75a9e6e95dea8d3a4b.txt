@@ -1,0 +1,11 @@
+def solve():
+    N, K = map(int, input().split())
+    D = [str(i) for i in input().split()]
+    ans = 0
+
+    for m in range(N, 10**6):
+        if canbuy(N, D, m):
+            ans = m
+            break
+
+    print(m)

@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    try {
+        
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+        String[] strArr = br.readLine().split(" ");
+        long x = Long.parseLong(strArr[0]);
+        long a = Long.parseLong(strArr[1]);
+        long b = Long.parseLong(strArr[2]);
+        long diff = a - b;
+        if (diff >= 0) {
+            System.out.println("delicious");
+        } else {
+            if (x < Math.abs(diff)) {
+                System.out.println("dangerous");
+            } else {
+                System.out.println("safe");
+            }
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

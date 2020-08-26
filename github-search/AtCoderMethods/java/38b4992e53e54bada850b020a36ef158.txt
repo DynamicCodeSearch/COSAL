@@ -1,0 +1,14 @@
+public static void cfs(ArrayList<HashSet<Integer>> arr, int c, int p, int g, int[] vis) {
+    vis[c] = 1;
+    if (g != -1) {
+        if (!arr.get(c).contains(g)) {
+            flag = 1;
+            return;
+        }
+    }
+    for (int x : arr.get(c)) {
+        if (x != p && x != g && vis[x] == 0) {
+            cfs(arr, x, c, p, vis);
+        }
+    }
+}

@@ -1,0 +1,32 @@
+def d():
+    N  = int(input())
+    S1 = input()
+    S2 = input()
+    from collections import deque
+    s = deque(S1)
+    S = ''
+    for _ in range(N):
+        if len(s) >= 2:
+            if s[0] == s[1]:
+                S += 'Z'
+                s.popleft()
+                s.popleft()
+            else:
+                S += 'I'
+                s.popleft()
+        elif len(s) == 1:
+            S += 'I'
+            s.popleft()
+        else:
+            break
+    res = 6 if S[0] == 'Z' else 3
+    for i in range(len(S)-1):
+        if S[i:i+2] == 'II':
+            res *= 2
+        if S[i:i+2] == 'IZ':
+            res *= 2
+        if S[i:i+2] == 'ZI':
+            res *= 1
+        if S[i:i+2] == 'ZZ':
+            res *= 3
+    print(res % 1000000007)

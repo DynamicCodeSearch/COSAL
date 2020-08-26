@@ -1,0 +1,18 @@
+private static int check(int base, ArrayList<Integer> list) {
+    for (int i : list) {
+        int tmp = base - i;
+        if (tmp % 10 != 0) {
+            return tmp;
+        }
+    }
+    int result = 0;
+    for (int i = 0; i < list.size(); i++) {
+        ArrayList<Integer> list2 = (ArrayList<Integer>) list.clone();
+        list2.remove(i);
+        int tmp = check(base - list.get(i), list2);
+        if (result < tmp) {
+            result = tmp;
+        }
+    }
+    return result;
+}

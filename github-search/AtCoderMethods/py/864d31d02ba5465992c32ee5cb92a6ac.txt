@@ -1,0 +1,24 @@
+def solve(): 
+    n = int(input())
+    sides = list(map(int, input().split(" ")))
+    check_dual = {}
+    possible_sides = []
+
+    for i in sides:
+        if i in check_dual:
+            check_dual[i] += 1
+        else:
+            check_dual[i] = 1
+
+    for k, v in check_dual.items():
+        if v >=4:
+            possible_sides.append(k)
+            possible_sides.append(k)
+        elif v == 2 or v == 3:
+            possible_sides.append(k)
+
+    possible_sides.sort(reverse=True)
+    if len(possible_sides) < 2:
+        print(0)
+    else:
+        print(possible_sides[0] * possible_sides[1])

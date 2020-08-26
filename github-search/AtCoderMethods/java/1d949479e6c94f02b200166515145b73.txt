@@ -1,0 +1,13 @@
+long pow(int a, long n) {
+    long loop = n;
+    long ret = 1;
+    long x = a;
+    while (loop > 0) {
+        if (loop % 2 == 1) {
+            ret = ret * x % MOD;
+        }
+        x = x * x % MOD;
+        loop /= 2;
+    }
+    return ret;
+}

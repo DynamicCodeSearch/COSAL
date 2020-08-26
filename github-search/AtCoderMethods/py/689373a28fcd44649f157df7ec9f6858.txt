@@ -1,0 +1,9 @@
+def solve(Ts):
+    if len(Ts) == 1:
+        print(Ts[0])
+
+    else:
+        Ts_temp = []
+        for i in range(len(Ts)-1):
+            Ts_temp.append(lcm(Ts[i], Ts[i+1]))
+        solve(Ts_temp)

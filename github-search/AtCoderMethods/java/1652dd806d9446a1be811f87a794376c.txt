@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    PrintWriter out = new PrintWriter(System.out);
+    int n = sc.nextInt();
+    int[] a = sc.nextIntArray(n);
+    Arrays.sort(a);
+    int prev = 0, count = 0;
+    for (int i = 1; i < n; i++) {
+        if (a[prev] == a[i]) {
+            continue;
+        } else {
+            if ((i - prev) % 2 == 1)
+                count++;
+            prev = i;
+        }
+    }
+    if ((n - prev) % 2 == 1)
+        count++;
+    out.println(count);
+    out.flush();
+}

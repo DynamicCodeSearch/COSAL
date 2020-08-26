@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int T = sc.nextInt();
+    long ans = 0;
+    long last = -1;
+    for (int i = 0; i < N; i++) {
+        int t = sc.nextInt();
+        if (last < t)
+            ans += T;
+        else
+            ans += (T - last + t);
+        last = t + T;
+    }
+    System.out.println(ans);
+    sc.close();
+}

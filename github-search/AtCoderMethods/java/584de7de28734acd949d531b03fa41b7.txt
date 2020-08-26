@@ -1,0 +1,29 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    StringBuilder sb = new StringBuilder();
+    int n = Integer.parseInt(br.readLine());
+    int[] arr = new int[n];
+    for (int i = 0; i < n; i++) {
+        arr[i] = Integer.parseInt(br.readLine());
+    }
+    boolean[][] dp = new boolean[n + 1][10001];
+    dp[0][0] = true;
+    for (int i = 1; i <= n; i++) {
+        int val = arr[i - 1];
+        for (int j = 0; j < dp[0].length; j++) {
+            if (dp[i - 1][j]) {
+                dp[i][j] = true;
+                if (j + val < dp[0].length) {
+                    dp[i][j + val] = true;
+                }
+            }
+        }
+    }
+    int max = 0;
+    for (int i = 0; i < dp[0].length; i++) {
+        if (dp[n][i] && i % 10 != 0) {
+            max = i;
+        }
+    }
+    System.out.println(max);
+}

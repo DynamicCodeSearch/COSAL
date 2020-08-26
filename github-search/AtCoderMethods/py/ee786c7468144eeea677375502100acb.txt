@@ -1,0 +1,11 @@
+def _run(self, letter):
+    if letter == "(":
+        self.data += "("
+        self.left += 1
+    if letter == ")":
+        if self.left > 0:
+            self.left -= 1
+            self.data += ")"
+        else:
+            self.right += 1
+            self.data += ")"

@@ -1,0 +1,20 @@
+def main(H, W, S):  
+    S1 = S
+    if H % 2 == 0 or W % 2 == 0:
+        S2 = H * W / 2
+
+        if S2 < S1: 
+            return S1 - S2
+        else:
+            return S2 - S1
+
+    else:
+        S2 = max(int(H/2) * W, H * int(W/2))  
+        S3 = H * W - S2
+
+        if S1 < S2:
+            return S3 - S1
+        elif S3 < S1:
+            return S1 - S2
+        else:
+            return S3 - S2

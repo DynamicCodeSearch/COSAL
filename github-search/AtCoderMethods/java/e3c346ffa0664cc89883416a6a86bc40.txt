@@ -1,0 +1,8 @@
+int[] updateOutdegrees(int[] outdegrees, int id) {
+    int[] arr = Arrays.copyOf(outdegrees, outdegrees.length);
+    for (int i = 0; i < N; i++) {
+        if (adj[i][id] > 0 && arr[i] > 0)
+            arr[i]--;
+    }
+    return arr;
+}

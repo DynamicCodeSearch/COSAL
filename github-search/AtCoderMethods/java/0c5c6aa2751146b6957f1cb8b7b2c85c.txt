@@ -1,0 +1,25 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    String[] firstLine = input.readLine().split(" ");
+    int txa = Integer.parseInt(firstLine[0]);
+    int tya = Integer.parseInt(firstLine[1]);
+    int txb = Integer.parseInt(firstLine[2]);
+    int tyb = Integer.parseInt(firstLine[3]);
+    int T = Integer.parseInt(firstLine[4]);
+    int V = Integer.parseInt(firstLine[5]);
+    int movableDistance = T * V;
+    int n = Integer.parseInt(input.readLine());
+    String answer = "NO";
+    for (int i = 0; i < n; i++) {
+        String[] line = input.readLine().split(" ");
+        double x = Double.parseDouble(line[0]);
+        double y = Double.parseDouble(line[1]);
+        double distance1 = Math.sqrt((txa - x) * (txa - x) + (tya - y) * (tya - y));
+        double distance2 = Math.sqrt((txb - x) * (txb - x) + (tyb - y) * (tyb - y));
+        double totalDistance = distance1 + distance2;
+        if (totalDistance <= movableDistance) {
+            answer = "YES";
+        }
+    }
+    System.out.println(answer);
+}

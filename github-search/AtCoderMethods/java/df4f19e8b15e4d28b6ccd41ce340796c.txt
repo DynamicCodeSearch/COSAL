@@ -1,0 +1,13 @@
+
+public static long myPow(long a) {
+    long ans = 1L;
+    long x = a;
+    long b = 1_000_000_000 + 5L;
+    for (int i = 0; i < 64; i++) {
+        if ((b & (1L << i)) != 0L) {
+            ans = (ans * x) % MOD;
+        }
+        x = (x * x) % MOD;
+    }
+    return ans;
+}

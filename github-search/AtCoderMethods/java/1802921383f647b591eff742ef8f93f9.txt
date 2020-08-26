@@ -1,0 +1,41 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    List<Element> list = new ArrayList<Element>();
+    int i, j, n = scan.nextInt(), ans = 0;
+    for (i = 0; i < n; i++) input[i] = scan.nextInt();
+    Arrays.sort(input, 0, n);
+    for (i = 0; i < n; i++) {
+        int value = input[i];
+        int cnt = 0;
+        while (i < n && (input[i] == value)) {
+            i++;
+            cnt++;
+        }
+        i--;
+        list.add(new Element(value, cnt));
+    }
+    i = 0;
+    j = list.size() - 1;
+    while (i < j) {
+        if (list.get(i).cnt < list.get(j).cnt) {
+            int next = list.get(j).cnt - (list.get(i).cnt - 1);
+            list.get(j).cnt = next;
+            list.get(i).cnt = 1;
+            i++;
+            ans++;
+        } else if (list.get(i).cnt > list.get(j).cnt) {
+            int next = list.get(i).cnt - (list.get(j).cnt - 1);
+            list.get(i).cnt = next;
+            list.get(j).cnt = 1;
+            j--;
+            ans++;
+        } else {
+            ans += 2;
+            i++;
+            j--;
+        }
+    }
+    if (list.get(i).cnt % 2 == 1)
+        ans++;
+    System.out.println(ans);
+}

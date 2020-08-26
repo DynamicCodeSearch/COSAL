@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    try {
+        
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+        String[] strArr = br.readLine().split(" ");
+        long a = Long.parseLong(strArr[0]);
+        long b = Long.parseLong(strArr[1]);
+        long x = Long.parseLong(strArr[2]);
+        long tmp1 = b / x;
+        long tmp2 = a / x;
+        long tmp3 = 0;
+        if (a % x == 0) {
+            tmp3++;
+        }
+        System.out.println(tmp1 - tmp2 + tmp3);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

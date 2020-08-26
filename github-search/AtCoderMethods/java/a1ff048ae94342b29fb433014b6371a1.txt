@@ -1,0 +1,17 @@
+private long[] construct(long k) {
+    int n = 50;
+    long[] a = new long[n];
+    for (int i = 0; i < n; i++) {
+        a[i] += k / n + i;
+        if (i >= k % n) {
+            continue;
+        }
+        a[i] += n;
+        for (int j = 0; j < n; j++) {
+            if (j != i) {
+                a[j] -= 1;
+            }
+        }
+    }
+    return a;
+}

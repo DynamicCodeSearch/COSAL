@@ -1,0 +1,9 @@
+static void solve() {
+    int n = ni(), a = ni(), b = ni();
+    int[] xs = na(n);
+    long ret = 0;
+    for (int i = 0; i < n - 1; i++) {
+        ret += Math.min(b, (long) a * (xs[i + 1] - xs[i]));
+    }
+    out.println(ret);
+}

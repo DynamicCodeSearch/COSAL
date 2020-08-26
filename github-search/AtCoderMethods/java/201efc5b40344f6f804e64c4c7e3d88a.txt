@@ -1,0 +1,50 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int N = scan.nextInt();
+    int[][] D = new int[N][N];
+    int[][] sumd = new int[N + 1][N + 1];
+    
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            D[i][j] = scan.nextInt();
+            if (j == N - 1) {
+                sumd[i][j] = D[i][j];
+            }
+        }
+    }
+    for (int i = 0; i < N; i++) {
+        for (int j = 1; j < N + 1; j++) {
+            sumd[i][N - j] = sumd[i][N - j + 1] + D[i][N - j];
+        }
+    }
+    
+    int[] max = new int[N * N + 1];
+    int erea = 0;
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            for (int k = 0; k < i + 1; k++) {
+                for (int l = 0; l < j + 1; l++) {
+                    
+                    for (int m = 0; m < N - i; m++) {
+                        erea += sumd[k + m][l] - sumd[k + m][l + N - j];
+                    }
+                    if (erea > max[(N - i) * (N - j)]) {
+                        max[(N - i) * (N - j)] = erea;
+                    }
+                    erea = 0;
+                }
+            }
+        }
+    }
+    
+    for (int i = 1; i < N * N + 1; i++) {
+        max[i] = Math.max(max[i], max[i - 1]);
+    
+    }
+    
+    int Q = scan.nextInt();
+    for (int i = 0; i < Q; i++) {
+        int P = scan.nextInt();
+        System.out.println(max[P]);
+    }
+}

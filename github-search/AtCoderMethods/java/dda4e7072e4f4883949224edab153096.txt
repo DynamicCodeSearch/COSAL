@@ -1,0 +1,17 @@
+
+
+
+
+public static void main(String[] args) throws Exception, IOException {
+    Reader sc = new Reader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    
+    
+    double p = sc.nextDouble(), x = 1.5 * (log(p * log(2) / 1.5) / log(2));
+    if (x < 0)
+        x = p;
+    else
+        x = x + 1.5 / log(2);
+    out.println(x);
+    out.flush();
+}

@@ -1,0 +1,39 @@
+private void solve() throws IOException {
+    int N = nextInt();
+    TreeSet<Integer> ts = new TreeSet<>();
+    HashMap<Integer, Integer> hm = new HashMap<>();
+    HashMap<Integer, Integer> times = new HashMap<>();
+    int max = 0;
+    for (int i = 0; i < N; ++i) {
+        int cur = nextInt();
+        max = Math.max(max, cur);
+        ts.add(cur);
+        if (!hm.containsKey(cur)) {
+            hm.put(cur, i);
+        }
+        if (!times.containsKey(cur)) {
+            times.put(cur, 1);
+        } else {
+            times.put(cur, times.get(cur) + 1);
+        }
+    }
+    long[] ret = new long[N];
+    while (true) {
+        Integer need = ts.lower(max);
+        if (need == null) {
+            ret[(hm.get(max))] += (long) times.get(max) * (long) (max);
+            break;
+        } else {
+            long diff = max - ts.lower(max);
+            ret[(hm.get(max))] += (long) times.get(max) * (long) (diff);
+            times.put(need, times.get(need) + times.get(max));
+            if (hm.get(max) < hm.get(need)) {
+                hm.put(need, hm.get(max));
+            }
+            max = need;
+        }
+    }
+    for (int i = 0; i < ret.length; ++i) {
+        writer.println(ret[i]);
+    }
+}

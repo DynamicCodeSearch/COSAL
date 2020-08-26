@@ -1,0 +1,25 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    int n = Integer.parseInt(reader.readLine());
+    char[] str = reader.readLine().toCharArray();
+    arr = new boolean[n];
+    for (int i = 0; i < n; i++) arr[i] = str[i] == 'o';
+    boolean[] animal = new boolean[n + 1];
+    animal[0] = true;
+    animal[1] = true;
+    if (calc(animal))
+        return;
+    animal[0] = false;
+    animal[1] = false;
+    if (calc(animal))
+        return;
+    animal[0] = true;
+    animal[1] = false;
+    if (calc(animal))
+        return;
+    animal[0] = false;
+    animal[1] = true;
+    if (calc(animal))
+        return;
+    System.out.println(-1);
+}

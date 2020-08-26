@@ -1,0 +1,24 @@
+void solve() throws IOException {
+    int n = in.nextInt();
+    int ds = in.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) a[i] = in.nextInt();
+    int qn = in.nextInt();
+    int[] q = new int[qn];
+    for (int i = 0; i < qn; i++) q[i] = in.nextInt();
+    int[] d = new int[n + 1];
+    d[0] = ds;
+    for (int i = 0; i < n; i++) {
+        d[i + 1] = Math.min(d[i], Math.abs(d[i] - a[i]));
+    }
+    boolean[] ans = new boolean[n];
+    int s = 1;
+    for (int i = n - 1; i >= 0; i--) {
+        ans[i] = s <= d[i];
+        if (a[i] < 2 * s)
+            s += a[i];
+    }
+    for (int i = 0; i < qn; i++) {
+        out.println(ans[q[i] - 1] ? "YES" : "NO");
+    }
+}

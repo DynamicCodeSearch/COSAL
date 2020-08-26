@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int second = sc.nextInt();
+    int[] times = new int[3];
+    times[0] = second / 3600;
+    times[1] = second % 3600 / 60;
+    times[2] = second % 60;
+    for (int i = 0; i < times.length; i++) {
+        if (times[i] < 10) {
+            System.out.print(0);
+        }
+        System.out.print(times[i]);
+        if (i == 2) {
+            System.out.println();
+            break;
+        }
+        System.out.print(":");
+    }
+}

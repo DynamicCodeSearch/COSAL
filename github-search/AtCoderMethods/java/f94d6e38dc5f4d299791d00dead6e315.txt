@@ -1,0 +1,20 @@
+static public long count(int id, int parent) {
+    
+    if (id != 1 && map.get(id).size() == 1) {
+        black[id] = 1;
+        white[id] = 1;
+        all[id] = 2;
+        return all[id];
+    }
+    black[id] = 1;
+    white[id] = 1;
+    for (int i : map.get(id)) {
+        if (i == parent)
+            continue;
+        count(i, id);
+        black[id] = (black[id] * white[i]) % 1000000007;
+        white[id] = (white[id] * all[i]) % 1000000007;
+    }
+    all[id] = black[id] + white[id];
+    return all[id];
+}

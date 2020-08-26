@@ -1,0 +1,19 @@
+def Check(x, y):
+    if S[y][x] is ".":
+        return
+
+    flag = True
+    for i in range(8):
+        yy = y + dy[i]
+        xx = x + dx[i]
+        if (yy in range(0,H)) and (xx in range(0,W)):
+            flag = (S[yy][xx]=='#' and flag)
+
+    if flag:
+        orig[y][x] = True
+        check[y][x] = True
+        for i in range(8):
+            yy = y + dy[i]
+            xx = x + dx[i]
+            if (yy in range(0,H)) and (xx in range(0,W)):
+                check[yy][xx] = True

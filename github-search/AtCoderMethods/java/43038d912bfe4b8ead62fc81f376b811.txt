@@ -1,0 +1,7 @@
+private void ensureCapacity(int size) {
+    if (elements.length < size) {
+        int[] oldElements = elements;
+        elements = new int[Math.max(2 * elements.length, size)];
+        System.arraycopy(oldElements, 0, elements, 0, this.size);
+    }
+}

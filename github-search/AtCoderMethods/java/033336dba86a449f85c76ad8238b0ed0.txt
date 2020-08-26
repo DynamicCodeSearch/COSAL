@@ -1,0 +1,15 @@
+static void f(int N) {
+    int idx = 0;
+    int pf = primes.get(idx);
+    while (pf * pf <= N) {
+        int power = 0;
+        while (N % pf == 0) {
+            N /= pf;
+            power++;
+        }
+        cnt[pf] += power;
+        pf = primes.get(++idx);
+    }
+    if (N != 1)
+        cnt[N]++;
+}

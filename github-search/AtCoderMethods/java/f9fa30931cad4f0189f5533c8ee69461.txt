@@ -1,0 +1,8 @@
+static int find(int[] bit, int pos) {
+    int ans = 0;
+    while (pos > 0) {
+        ans += bit[pos];
+        pos -= (pos & -pos);
+    }
+    return ans;
+}

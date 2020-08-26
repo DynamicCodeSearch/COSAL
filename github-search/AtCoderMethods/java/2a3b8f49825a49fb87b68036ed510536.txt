@@ -1,0 +1,20 @@
+void solve() throws IOException {
+    int n = in.nextInt();
+    int k = in.nextInt();
+    long[] a = new long[n + 1];
+    Pair[] pair = new Pair[n + 1];
+    pair[0] = new Pair(0, 0);
+    for (int i = 1; i <= n; i++) {
+        a[i] = in.nextLong() - k;
+        a[i] += a[i - 1];
+        pair[i] = new Pair(a[i], i);
+    }
+    Arrays.sort(pair);
+    BIT bit = new BIT(n + 1);
+    long ans = 0;
+    for (Pair p : pair) {
+        ans += bit.sum((int) p.b);
+        bit.add((int) p.b, 1);
+    }
+    System.out.println(ans);
+}

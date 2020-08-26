@@ -1,0 +1,15 @@
+def roundUpTime(time_str):
+
+    if int(time_str[3:4]) == 0:
+        return time_str
+
+    if 1 <= int(time_str[3:4]) <= 5:
+        return time_str[0:3] + "5"
+
+    if 6 <= int(time_str[3:4]) <= 9:
+
+        if time_str[2:3] == "5":
+            return str(int(time_str[0:2]) + 1) + "00"
+
+        else:
+            return time_str[0:2] + str(int(time_str[2:3]) + 1) + "0"

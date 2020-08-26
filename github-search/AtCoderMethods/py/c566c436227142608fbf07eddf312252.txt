@@ -1,0 +1,13 @@
+def solve_question(first_ani, last_ani):
+    global l_ani
+    l_ani.append(first_ani)
+    next_ani = get_next_animal(last_ani, first_ani, l_ans[0])
+    l_ani.append(next_ani)
+    for i in range(1, (n_ani - 1)):
+        next_ani = get_next_animal(l_ani[i - 1], l_ani[i], l_ans[i])
+        l_ani.append(next_ani)
+
+    if l_ani[(n_ani - 1)] == last_ani and get_next_animal(l_ani[(n_ani - 2)], l_ani[(n_ani - 1)], l_ans[(n_ani - 1)]) == l_ani[0]:
+        return "ok"
+    else:
+        return "ng"

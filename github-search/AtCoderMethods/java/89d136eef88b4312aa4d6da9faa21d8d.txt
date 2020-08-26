@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String[] DirString = { "N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW" };
+    int dir = sc.nextInt();
+    int number = getDir((double) dir / 10);
+    String Dir = DirString[number];
+    double dis = sc.nextDouble();
+    BigDecimal x = new BigDecimal(dis / 60.0 + 0.005);
+    x = x.setScale(1, RoundingMode.HALF_UP);
+    int w = getW(x.doubleValue());
+    if (w == 0) {
+        Dir = "C";
+    }
+    System.out.println(Dir + " " + w);
+}

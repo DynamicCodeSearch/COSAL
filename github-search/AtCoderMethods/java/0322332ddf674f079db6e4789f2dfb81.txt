@@ -1,0 +1,17 @@
+public void solve(int testNumber, FastScanner in, PrintWriter out) {
+    int n = in.nextInt();
+    long[] d = new long[n];
+    long[] s = new long[n];
+    d[0] = n % MOD;
+    s[0] = d[0];
+    for (int i = 1; i < n; i++) {
+        
+        d[i] = d[i - 1];
+        
+        d[i] = (d[i] + (long) (n - 1) * (n - 1) % MOD) % MOD;
+        
+        d[i] = (d[i] + sum(s, i - n - 1, i - 2 - 1)) % MOD;
+        s[i] = (s[i - 1] + d[i]) % MOD;
+    }
+    out.println(d[n - 1]);
+}

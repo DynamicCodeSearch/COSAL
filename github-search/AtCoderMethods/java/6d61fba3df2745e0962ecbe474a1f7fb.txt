@@ -1,0 +1,14 @@
+static int res(int i, int p, int k) {
+    if (i == 0) {
+        return 0;
+    }
+    if (dp[i][p][k] > 0) {
+        return dp[i][p][k];
+    }
+    if (p > 0) {
+        dp[i][p][k] = Math.max(res(i - 1, p, k), res(i - 1, p - 1, k) + sigma(man, i - 1));
+    } else {
+        dp[i][p][k] = res(i - 1, p, k);
+    }
+    return dp[i][p][k];
+}

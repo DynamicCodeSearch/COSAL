@@ -1,0 +1,11 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    long n = in.nextLong();
+    int res = digits(n);
+    for (long i = 1L; i * i <= n; ++i) {
+        if (n % i != 0)
+            continue;
+        long cur = n / i;
+        res = Math.min(res, Math.max(digits(i), digits(cur)));
+    }
+    out.println(res);
+}

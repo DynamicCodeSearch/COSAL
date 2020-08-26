@@ -1,0 +1,9 @@
+static long perform(long t, List<long[]> magic) {
+    long max = Math.max(t, 0);
+    for (long[] m : magic) {
+        t += m[0];
+        max = Math.max(max, t);
+        t -= m[1];
+    }
+    return max;
+}

@@ -1,0 +1,19 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    String[] input = reader.readLine().split(" ");
+    int a = Integer.parseInt(input[0]);
+    BigDecimal b = new BigDecimal(Integer.parseInt(input[1]));
+    BigDecimal c = new BigDecimal(Integer.parseInt(input[2]));
+    for (int x = 1; x <= 100000; x++) {
+        BigDecimal ax = new BigDecimal(a * x);
+        BigDecimal remain = ax.divideAndRemainder(b)[1];
+        if (remain.compareTo(c) == 0) {
+            System.out.print("YES");
+            return;
+        }
+    }
+    System.out.println("NO");
+
+
+
+}

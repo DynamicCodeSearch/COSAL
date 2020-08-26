@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] R = new int[N];
+    double total = 0;
+    for (int i = 0; i < N; i++) {
+        R[i] = sc.nextInt();
+    }
+    Arrays.sort(R);
+    if (N == 1) {
+        System.out.printf("%.14f\n", Math.pow(R[0], 2) * Math.PI);
+    } else if (N % 2 == 0) {
+        for (int i = N - 1; i > 0; i = i - 2) {
+            total += Math.pow(R[i], 2) - Math.pow(R[i - 1], 2);
+        }
+        total = total * Math.PI;
+        System.out.printf("%.14f\n", total);
+    } else {
+        for (int i = N - 1; i > 0; i = i - 2) {
+            total += Math.pow(R[i], 2) - Math.pow(R[i - 1], 2);
+        }
+        total = (total + Math.pow(R[0], 2)) * Math.PI;
+        System.out.printf("%.14f\n", total);
+    }
+}

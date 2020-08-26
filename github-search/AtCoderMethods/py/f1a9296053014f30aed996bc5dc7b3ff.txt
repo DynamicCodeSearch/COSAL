@@ -1,0 +1,17 @@
+def main():
+    n, a = map(int, input().split())
+    y = [0] + [int(i) - a for i in input().split()]
+    x = max(max(y) + a, a)
+    dp = [[0] * (2 * n * x + 1) for _ in range(n + 1)]
+    for i in range(n + 1):
+        for j in range(2 * n * x + 1):
+            if i == 0 and j == n * x:
+                dp[i][j] = 1
+            elif i >= 1 and (j - y[i] < 0 or j - y[i] > 2 * n * x):
+                dp[i][j] = dp[i - 1][j]
+            elif i >= 1 and 0 <= j - y[i] and j - y[i] <= 2 * n * x:
+                dp[i][j] = dp[i - 1][j] + dp[i - 1][j - y[i]]
+            else:
+                dp[i][j] = 0
+
+    print(dp[n][n * x] - 1)

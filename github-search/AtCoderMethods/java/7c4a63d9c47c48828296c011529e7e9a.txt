@@ -1,0 +1,58 @@
+private int maxRectangleOfOnes(boolean[][] a) {
+    
+    int height = a.length;
+    int width = a[0].length;
+    int[] prevMaxUp = new int[width];
+    int[] maxUp = new int[width];
+    int[] stack = new int[width];
+    int[] left = new int[width];
+    int[] right = new int[width];
+    int maxArea = 0;
+    for (int r = 0; r < height; r++) {
+        for (int c = 0; c < width; c++) {
+            if (a[r][c]) {
+                maxUp[c] = 1 + prevMaxUp[c];
+            } else {
+                maxUp[c] = 0;
+            }
+        }
+        int sp = 0;
+        for (int c = 0; c < width; c++) {
+            while (sp > 0) {
+                if (maxUp[c] > maxUp[stack[sp - 1]]) {
+                    break;
+                }
+                --sp;
+            }
+            if (sp == 0) {
+                left[c] = 0;
+            } else {
+                left[c] = stack[sp - 1] + 1;
+            }
+            stack[sp++] = c;
+        }
+        sp = 0;
+        for (int c = width - 1; c >= 0; c--) {
+            while (sp > 0) {
+                if (maxUp[c] > maxUp[stack[sp - 1]]) {
+                    break;
+                }
+                --sp;
+            }
+            if (sp == 0) {
+                right[c] = width - 1;
+            } else {
+                right[c] = stack[sp - 1] - 1;
+            }
+            stack[sp++] = c;
+        }
+        for (int c = 0; c < width; c++) {
+            
+            maxArea = Math.max(maxArea, (right[c] - left[c] + 2) * (maxUp[c] + 1));
+        }
+        int[] tmp = maxUp;
+        maxUp = prevMaxUp;
+        prevMaxUp = tmp;
+    }
+    return maxArea;
+}

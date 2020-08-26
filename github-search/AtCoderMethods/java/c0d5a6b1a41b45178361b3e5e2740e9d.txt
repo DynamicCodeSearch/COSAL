@@ -1,0 +1,13 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    double a = sc.nextDouble();
+    double b = sc.nextDouble();
+    double k = sc.nextDouble();
+    double l = sc.nextDouble();
+    long min = (long) ((long) Math.ceil(k / l) * b);
+    long min2 = (long) ((long) Math.floor(k / l) * b + (k - (long) Math.floor(k / l) * l) * a);
+    if (min > min2)
+        min = min2;
+    System.out.println(min);
+    sc.close();
+}

@@ -1,0 +1,87 @@
+void solve() {
+    class Node {
+
+        int x, y, i, xi, yi;
+
+        Node(int x, int y, int i) {
+            this.x = x;
+            this.y = y;
+            this.i = i;
+        }
+
+        int d(Node n) {
+            return Math.min(Math.abs(x - n.x), Math.abs(y - n.y));
+        }
+    }
+    int n = ni();
+    Node[] l = new Node[n];
+    Node[] xl = new Node[n];
+    Node[] yl = new Node[n];
+    for (int i = 0; i < n; ++i) {
+        Node a = new Node(ni(), ni(), i);
+        l[i] = a;
+        xl[i] = a;
+        yl[i] = a;
+    }
+    Arrays.sort(xl, (a, b) -> a.x - b.x);
+    Arrays.sort(yl, (a, b) -> a.y - b.y);
+    for (int i = 0; i < n; ++i) {
+        xl[i].xi = i;
+        yl[i].yi = i;
+    }
+    int[] mincost = new int[n];
+    Arrays.fill(mincost, Integer.MAX_VALUE / 2);
+    long v = 0;
+    class State {
+
+        int i, cost;
+
+        State(int i, int cost) {
+            this.i = i;
+            this.cost = cost;
+        }
+    }
+    PriorityQueue<State> queue = new PriorityQueue<>((a, b) -> a.cost - b.cost);
+    queue.add(new State(0, 0));
+    while (queue.size() > 0) {
+        State s = queue.poll();
+        if (s.cost > mincost[s.i])
+            continue;
+        Node x = l[s.i];
+        mincost[s.i] = -1;
+        v += s.cost;
+        if (x.xi > 0) {
+            Node t = xl[x.xi - 1];
+            int c = x.d(t);
+            if (mincost[t.i] > c) {
+                mincost[t.i] = c;
+                queue.add(new State(t.i, c));
+            }
+        }
+        if (x.xi + 1 < n) {
+            Node t = xl[x.xi + 1];
+            int c = x.d(t);
+            if (mincost[t.i] > c) {
+                mincost[t.i] = c;
+                queue.add(new State(t.i, c));
+            }
+        }
+        if (x.yi > 0) {
+            Node t = yl[x.yi - 1];
+            int c = x.d(t);
+            if (mincost[t.i] > c) {
+                mincost[t.i] = c;
+                queue.add(new State(t.i, c));
+            }
+        }
+        if (x.yi + 1 < n) {
+            Node t = yl[x.yi + 1];
+            int c = x.d(t);
+            if (mincost[t.i] > c) {
+                mincost[t.i] = c;
+                queue.add(new State(t.i, c));
+            }
+        }
+    }
+    out.println(v);
+}

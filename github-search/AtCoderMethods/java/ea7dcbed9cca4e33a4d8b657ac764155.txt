@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt(), K = sc.nextInt();
+    int[] a = new int[N];
+    for (int i = 0; i < N; i++) {
+        a[i] = sc.nextInt();
+    }
+    long sum = 0;
+    for (int i = 0; i < K; i++) {
+        sum += a[i];
+    }
+    long total = sum;
+    for (int i = K; i < N; i++) {
+        sum -= a[i - K];
+        sum += a[i];
+        total += sum;
+    }
+    System.out.println(total);
+}

@@ -1,0 +1,79 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    boolean playing = true;
+    
+    int player = 0;
+    int countA = 0, countB = 0, countC = 0;
+    char[] A = scan.nextLine().toCharArray();
+    char[] B = scan.nextLine().toCharArray();
+    char[] C = scan.nextLine().toCharArray();
+    while (playing) {
+        switch(player) {
+            case 0:
+                try {
+                    switch(A[countA]) {
+                        case 'a':
+                            player = 0;
+                            break;
+                        case 'b':
+                            player = 1;
+                            break;
+                        case 'c':
+                            player = 2;
+                            break;
+                    }
+                } catch (ArrayIndexOutOfBoundsException ex) {
+                    System.out.println("A");
+                    return;
+                }
+                countA += 1;
+                break;
+            case 1:
+                try {
+                    switch(B[countB]) {
+                        case 'a':
+                            player = 0;
+                            break;
+                        case 'b':
+                            player = 1;
+                            break;
+                        case 'c':
+                            player = 2;
+                            break;
+                        default:
+                            System.out.println("B");
+                            playing = false;
+                            break;
+                    }
+                } catch (ArrayIndexOutOfBoundsException ex) {
+                    System.out.println("B");
+                    return;
+                }
+                countB += 1;
+                break;
+            case 2:
+                try {
+                    switch(C[countC]) {
+                        case 'a':
+                            player = 0;
+                            break;
+                        case 'b':
+                            player = 1;
+                            break;
+                        case 'c':
+                            player = 2;
+                            break;
+                        default:
+                            System.out.println("C");
+                            playing = false;
+                            break;
+                    }
+                } catch (ArrayIndexOutOfBoundsException ex) {
+                    System.out.println("C");
+                    return;
+                }
+                countC += 1;
+                break;
+        }
+    }
+}

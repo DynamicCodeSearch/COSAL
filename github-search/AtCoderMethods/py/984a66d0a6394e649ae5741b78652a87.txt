@@ -1,0 +1,14 @@
+def SW_check(n, s, t):
+    i = 2
+    while i < n:
+        t = t + SW_next(i, s, t)
+        i += 1
+    if t[0] == SW_next(n, s, t):
+        tmp_s = [s[n - 1]]
+        tmp_s.append(s[0])
+        tmp_t = [t[n - 1]]
+        tmp_t.append(t[0])
+        if t[1] == SW_next(2, tmp_s, tmp_t):
+            print(t)
+            return(True)
+    return(False)

@@ -1,0 +1,19 @@
+public final void answer() {
+    int[] result = new int[N + 1];
+    for (int i = 1; i <= N; i++) {
+        int n = i;
+        while (n % 2 == 0) {
+            result[i]++;
+            n = n / 2;
+        }
+    }
+    int ans = 1;
+    int max = 0;
+    for (int i = 1; i <= N; i++) {
+        if (result[i] > max) {
+            max = result[i];
+            ans = i;
+        }
+    }
+    System.out.println(ans);
+}

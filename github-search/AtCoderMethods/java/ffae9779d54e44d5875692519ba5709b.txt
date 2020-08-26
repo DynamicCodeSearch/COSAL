@@ -1,0 +1,38 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    int[] from = new int[m];
+    int[] to = new int[m];
+    for (int i = 0; i < m; i++) {
+        from[i] = sc.nextInt() - 1;
+        to[i] = sc.nextInt() - 1;
+    }
+    int arySize = 1 << n;
+    long[] ary = new long[arySize];
+    for (int i = 0; i < arySize; i++) {
+        
+        for (int j = 0; j < n; j++) {
+            if ((i & (1 << j)) > 0) {
+                
+                
+                boolean last = true;
+                for (int k = 0; k < m; k++) {
+                    if (from[k] == j && (i & (1 << to[k])) > 0) {
+                        last = false;
+                        
+                        break;
+                    }
+                }
+                if (last) {
+                    ary[i] += ary[i - (i & (1 << j))];
+                }
+            }
+        }
+        if (ary[i] == 0) {
+            ary[i] = 1;
+        }
+    
+    }
+    System.out.println(ary[arySize - 1]);
+}

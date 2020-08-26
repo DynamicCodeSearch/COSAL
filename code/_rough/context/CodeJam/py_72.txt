@@ -1,0 +1,293 @@
+### Py Tokens: npieces, needed, segmentremaining, cuts, segment, remaining, len 
+
+### Py functions
+
+def func_8abbf76460c545c7b8ad4d9195a7fa76(cuts, needed, npieces,
+    segment_remaining):
+    if len(cuts) == npieces - 1:
+        return cuts
+    segment_remaining -= needed
+    return segment_remaining
+
+def func_f4b875a64e714b3eb63bcfb9a0455bf2(cuts, needed, npieces,
+    segment_remaining):
+    if len(cuts) == npieces - 1:
+        return cuts
+    segment_remaining -= needed
+    return npieces
+
+def func_21d49f4f03064d2c9e814a20a82e2369(cuts, needed, npieces,
+    segment_remaining):
+    if len(cuts) == npieces - 1:
+        return cuts
+    segment_remaining -= needed
+    return needed
+
+def func_4f43e84461234433bb76a87ca3802667(cuts, needed, npieces,
+    segment_remaining):
+    if len(cuts) == npieces - 1:
+        return cuts
+    segment_remaining -= needed
+    return segment_remaining
+
+def func_6af3576353ea4551b71d95dd87588ffd(cuts, needed, npieces,
+    segment_remaining):
+    if len(cuts) == npieces - 1:
+        return cuts
+    segment_remaining -= needed
+    return npieces
+
+*********************************
+
+#### Score: 9.63555
+
+
+#### Java Tokens: lowerpoint, area, remainingarea, segment, lower, part, partarea, lowersegment, point, remaining 
+
+public static double func_6f37fabca3e84df8a96a12ba15f629a9(double partArea, Point[] lowerPoint) { 
+ Segment lowerSegment = new Segment(lowerPoint[0], lowerPoint[1]);
+double remainingArea = partArea;
+return remainingArea;
+}
+
+
+*********************************
+
+#### Score: 8.48912
+
+
+#### Java Tokens: lowerpoint, area, upper, lower, part, point, remaining, upperpoint, remainingarea, segment, partarea, uppersegment, lowersegment 
+
+public static double func_8db9a2efbeca4ec0add84bd29560c67a(double partArea, Point[] lowerPoint, Point[] upperPoint) { 
+ Segment upperSegment = new Segment(upperPoint[0], upperPoint[1]);
+Segment lowerSegment = new Segment(lowerPoint[0], lowerPoint[1]);
+double remainingArea = partArea;
+return remainingArea;
+}
+
+
+*********************************
+
+#### Score: 7.08858
+
+
+#### Java Tokens: cuts 
+
+public static double[] func_64be54931961469088c39fcfd74dd253(int G) { 
+ double g = G;
+double[] cuts = new double[G - 1];
+return cuts;
+}
+
+
+public static double func_5d36dad2b4a84f3990d6eb4eabab939b(int G) { 
+ double g = G;
+double[] cuts = new double[G - 1];
+return g;
+}
+
+
+*********************************
+
+#### Score: 6.54102
+
+
+#### Java Tokens: left, upper, segment, uppersegment, right 
+
+public static double func_17d984b22fd84ad6aa7c4b1a3d30121c(double x, Segment upperSegment) { 
+ double left = upperSegment.a.x;
+double right = x;
+return right;
+}
+
+
+public static double func_d6d9f293ad234798a21900f66e05eaca(double x, Segment upperSegment) { 
+ double left = upperSegment.a.x;
+double right = x;
+return left;
+}
+
+
+*********************************
+
+#### Score: 5.32442
+
+
+#### Java Tokens: upperintersection, intersect, line, upper, intersection, segment, vertical, uppersegment, point 
+
+public static Line func_28fd117d39ad4990815ffd5d71e08e26(double x, Segment upperSegment) { 
+ Line vertical = new Point(x, 0).line(new Point(x, 1));
+Point upperIntersection = upperSegment.line().intersect(vertical);
+return vertical;
+}
+
+
+public static Point func_c34bd7932df5480899b4330e83681096(double x, Segment upperSegment) { 
+ Line vertical = new Point(x, 0).line(new Point(x, 1));
+Point upperIntersection = upperSegment.line().intersect(vertical);
+return upperIntersection;
+}
+
+
+*********************************
+
+#### Score: 5.20377
+
+
+#### Java Tokens: mos.search, suffixes, binarysearch, binary, count, arrays, partial, remaining, first
+
+public static int func_49cb6fa11c814b0291566417c29b376b(int count, long first, long[] partial, long[] suffixes) { 
+ long remaining = partial[count] - first;
+int at = Arrays.binarySearch(suffixes, remaining >> 1);
+return at;
+}
+
+
+public static long func_0f4843ea97c64b42b3d5435da62b42c0(int count, long first, long[] partial, long[] suffixes) { 
+ long remaining = partial[count] - first;
+int at = Arrays.binarySearch(suffixes, remaining >> 1);
+return remaining;
+}
+
+
+*********************************
+
+#### Score: 4.53354
+
+
+#### Java Tokens: len 
+
+public static int func_dec8bf2897dd407aae2d9d4dcefc8168(int x, int i, int j, int[] p, int[] len) { 
+ p[i] = p[j];
+p[j] = x;
+x = len[i];
+len[i] = len[j];
+return x;
+}
+
+
+public static double func_1113656b20bd42bab53d4cb0e522f050(int x0, int x1, double k, double x, double[] len) { 
+ x0 = (int) x;
+x1 = x0 + 1;
+k = 1.0 * (len[x1] - len[x0]);
+return k;
+}
+
+
+public static double func_f182457770b0449b9f91890db66a448c(int x0, double x, double[] len) { 
+ int x1 = x0 + 1;
+double k = 1.0 * (len[x1] - len[x0]);
+double y = k * (x - x0) + len[x0];
+return y;
+}
+
+
+*********************************
+
+#### Score: 4.34945
+
+
+#### Java Tokens: area, part, guestcount, upper, count, totalarea, point, upperpoint, total, answer, segment, partarea, guest, uppersegment 
+
+public static double func_03dc1ff376754f57a67daf39f621f57f(int guestCount, double totalArea, Point[] upperPoint) { 
+ double partArea = totalArea / guestCount;
+double[] answer = new double[guestCount - 1];
+Segment upperSegment = new Segment(upperPoint[0], upperPoint[1]);
+return partArea;
+}
+
+
+*********************************
+
+#### Score: 4.25285
+
+
+#### Java Tokens: suffixes, max, count, remaining, mos.search, min, binarysearch, answer, binary, arrays, math, first, at2, at1
+
+public static long func_23e642bba7e14b24be3cea59aaf32b62(int count, long remaining, long first, long answer, long[] suffixes) { 
+ int at = Arrays.binarySearch(suffixes, remaining >> 1);
+if (at >= 0)
+    answer = Math.min(answer, Math.max(first, Math.max(suffixes[at], remaining - suffixes[at])));
+else {
+    int at1 = -at - 1;
+    int at2 = -at - 2;
+    if (at1 >= 0 && at1 <= count)
+        answer = Math.min(answer, Math.max(first, Math.max(suffixes[at1], remaining - suffixes[at1])));
+    if (at2 >= 0 && at2 <= count)
+        answer = Math.min(answer, Math.max(first, Math.max(suffixes[at2], remaining - suffixes[at2])));
+}
+return answer;
+}
+
+
+public static int func_a71aac85fbf040099633def0f8febf6f(int count, long remaining, long first, long answer, long[] suffixes) { 
+ int at = Arrays.binarySearch(suffixes, remaining >> 1);
+if (at >= 0)
+    answer = Math.min(answer, Math.max(first, Math.max(suffixes[at], remaining - suffixes[at])));
+else {
+    int at1 = -at - 1;
+    int at2 = -at - 2;
+    if (at1 >= 0 && at1 <= count)
+        answer = Math.min(answer, Math.max(first, Math.max(suffixes[at1], remaining - suffixes[at1])));
+    if (at2 >= 0 && at2 <= count)
+        answer = Math.min(answer, Math.max(first, Math.max(suffixes[at2], remaining - suffixes[at2])));
+}
+return at;
+}
+
+
+*********************************
+
+#### Score: 4.22009
+
+
+#### Java Tokens: len, remain 
+
+public static double func_74867c6a4e8e4664a162f2eb7c17373d(int x0, double remain, double x, double[] len) { 
+ x0 = (int) x;
+int x1 = x0 + 1;
+double k = 1.0 * (len[x1] - len[x0]);
+double y = k * (x - x0) + len[x0];
+while (remain > (y + len[x1]) * (x1 - x) / 2) {
+    remain -= (y + len[x1]) * (x1 - x) / 2;
+    x = x1;
+    x0 = (int) x;
+    x1 = x0 + 1;
+    k = 1.0 * (len[x1] - len[x0]);
+    y = k * (x - x0) + len[x0];
+}
+return x;
+}
+
+
+public static double func_18715806bb554c2eb4a17e5faaaf0bff(int x0, int x1, double remain, double x, double[] len) { 
+ double k = 1.0 * (len[x1] - len[x0]);
+double y = k * (x - x0) + len[x0];
+while (remain > (y + len[x1]) * (x1 - x) / 2) {
+    remain -= (y + len[x1]) * (x1 - x) / 2;
+    x = x1;
+    x0 = (int) x;
+    x1 = x0 + 1;
+    k = 1.0 * (len[x1] - len[x0]);
+    y = k * (x - x0) + len[x0];
+}
+return x;
+}
+
+
+public static double func_1ccda13042e8435393c51ca90ab3ac65(int x0, double remain, double x, double[] len) { 
+ x0 = (int) x;
+int x1 = x0 + 1;
+double k = 1.0 * (len[x1] - len[x0]);
+double y = k * (x - x0) + len[x0];
+while (remain > (y + len[x1]) * (x1 - x) / 2) {
+    remain -= (y + len[x1]) * (x1 - x) / 2;
+    x = x1;
+    x0 = (int) x;
+    x1 = x0 + 1;
+    k = 1.0 * (len[x1] - len[x0]);
+    y = k * (x - x0) + len[x0];
+}
+return y;
+}
+

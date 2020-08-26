@@ -1,0 +1,9 @@
+public static long comb(int n, int k, long[] fact) {
+    if (n == 0) {
+        return 1;
+    }
+    if (k == 0) {
+        return 1;
+    }
+    return (((fact[n] * mod_inv(fact[k], MOD)) % MOD) * mod_inv(fact[n - k], MOD)) % MOD;
+}

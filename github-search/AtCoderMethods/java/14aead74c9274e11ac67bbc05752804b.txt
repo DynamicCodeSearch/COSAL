@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    Counter<Character> c = new Counter<Character>(12);
+    String in = s.next();
+    for (char ch = 'A'; ch <= 'F'; ch++) c.add(ch, 0);
+    for (int i = 0; i < in.length(); i++) {
+        c.add(in.charAt(i));
+    }
+    StringBuilder sb = new StringBuilder();
+    for (int v : c.map.values()) {
+        sb.append(v);
+        sb.append(' ');
+    }
+    System.out.println(sb.deleteCharAt(sb.length() - 1).toString());
+}

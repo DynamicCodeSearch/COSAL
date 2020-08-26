@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int beforeX = scanner.nextInt(), beforeY = scanner.nextInt();
+    int afterX = scanner.nextInt(), afterY = scanner.nextInt();
+    int t = scanner.nextInt(), v = scanner.nextInt();
+    int n = scanner.nextInt();
+    int[] girlX = new int[n];
+    int[] girlY = new int[n];
+    for (int i = 0; i < n; i++) {
+        girlX[i] = scanner.nextInt();
+        girlY[i] = scanner.nextInt();
+    }
+    scanner.close();
+    boolean check = false;
+    double dis = 0;
+    for (int i = 0; i < n; i++) {
+        dis = Math.sqrt(Math.pow((beforeX - girlX[i]), 2) + Math.pow((beforeY - girlY[i]), 2));
+        dis += Math.sqrt(Math.pow((afterX - girlX[i]), 2) + Math.pow((afterY - girlY[i]), 2));
+        if (dis <= (t * v)) {
+            check = true;
+            break;
+        }
+    }
+    if (check) {
+        System.out.println("YES");
+    } else {
+        System.out.println("NO");
+    }
+}

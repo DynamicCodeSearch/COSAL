@@ -1,0 +1,17 @@
+public int scc() {
+    Arrays.fill(used, false);
+    vs.clear();
+    for (int v = 0; v < V; v++) {
+        if (!used[v]) {
+            dfs(v);
+        }
+    }
+    Arrays.fill(used, false);
+    int k = 0;
+    for (int i = vs.size() - 1; i >= 0; i--) {
+        if (!used[vs.get(i)]) {
+            rdfs(vs.get(i), k++);
+        }
+    }
+    return k;
+}

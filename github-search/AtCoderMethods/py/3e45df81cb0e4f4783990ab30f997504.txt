@@ -1,0 +1,29 @@
+def solve():
+    S = input()
+    T = int(input())
+
+    x, y = 0, 0
+    n = 0
+
+    for cmd in S:
+        if cmd == 'L':
+            x -= 1
+        elif cmd == 'R':
+            x += 1
+        elif cmd == 'U':
+            y += 1
+        elif cmd == 'D':
+            y -= 1
+        else:
+            n += 1
+
+    if T == 1:
+        ans = abs(x) + abs(y) + n
+    elif abs(x) + abs(y) - n > 0:
+        ans = abs(x) + abs(y) - n
+    elif (abs(x) + abs(y) - n) % 2:
+        ans = 1
+    else:
+        ans = 0
+
+    print(ans)

@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    char[] c = sc.next().toCharArray();
+    int ret = Integer.MAX_VALUE;
+    char[] all = { 'A', 'B', 'X', 'Y' };
+    for (char c1 : all) {
+        for (char c2 : all) {
+            for (char c3 : all) {
+                for (char c4 : all) {
+                    char[] LR = { c1, c2, c3, c4 };
+                    ret = Math.min(ret, count(c, LR));
+                }
+            }
+        }
+    }
+    System.out.println(ret);
+}

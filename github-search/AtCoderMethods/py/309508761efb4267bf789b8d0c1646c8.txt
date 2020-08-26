@@ -1,0 +1,11 @@
+def solve_large(n, a):
+    res = -10 ** 20
+    max_l = find_best(n, a)
+    b = [-x for x in reversed(a)]
+    max_r = find_best(n, b)
+    max_r.reverse()
+    for l, r in zip(max_l, max_r):
+        res0 = l + r
+        if res < res0:
+            res = res0
+    return res

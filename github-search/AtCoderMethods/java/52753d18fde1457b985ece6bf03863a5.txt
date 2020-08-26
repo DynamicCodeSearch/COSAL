@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    long A = sc.nextLong();
+    long B = sc.nextLong();
+    long ans = 0;
+    long p = sc.nextLong();
+    for (int i = 1; i < N; i++) {
+        long n = sc.nextLong();
+        long d = n - p;
+        p = n;
+        ans += Math.min(d * A, B);
+    }
+    System.out.println(ans);
+}

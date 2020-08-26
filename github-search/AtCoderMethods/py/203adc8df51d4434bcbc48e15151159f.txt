@@ -1,0 +1,14 @@
+def solution(a):
+    if len(a) == 2:
+        return abs(a[0] - a[1])
+
+    total =sum(a)
+    min_diff = 999999999999999
+    part_of_sum = 0
+    for i in range(len(a)-1):
+        part_of_sum += a[i]
+        total -= a[i]
+        if abs(part_of_sum - total) < min_diff:
+            min_diff = abs(part_of_sum - total)
+
+    return min_diff

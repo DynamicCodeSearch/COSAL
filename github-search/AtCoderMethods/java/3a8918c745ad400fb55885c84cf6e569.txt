@@ -1,0 +1,20 @@
+void update(int l, int r, int c, int x, int y, int val) {
+    if (lazy[c] != 0) {
+        lazy[2 * c + 1] ^= lazy[c];
+        lazy[2 * c + 2] ^= lazy[c];
+        if (l == r)
+            arr[c] ^= lazy[c];
+        lazy[c] = 0;
+    }
+    if (l > r || x > y || l > y || x > r)
+        return;
+    if (x <= l && y >= r) {
+        if ((r - l + 1) % 2 == 1)
+            lazy[c] ^= val;
+        return;
+    }
+    int mid = l + r >> 1;
+    update(l, mid, 2 * c + 1, x, y, val);
+    update(mid + 1, r, 2 * c + 2, x, y, val);
+    arr[c] = (arr[2 * c + 1] + arr[2 * c + 2]);
+}

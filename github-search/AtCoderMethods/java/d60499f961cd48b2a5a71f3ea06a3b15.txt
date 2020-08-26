@@ -1,0 +1,21 @@
+
+void solve() {
+    int n = in.nextInt(), m = in.nextInt(), t = in.nextInt();
+    int[] A = in.nextIntArray(n);
+    ArrayList<Edge>[] g = new ArrayList[n];
+    for (int i = 0; i < n; i++) g[i] = new ArrayList<Edge>();
+    ArrayList<Edge>[] rg = new ArrayList[n];
+    for (int i = 0; i < n; i++) rg[i] = new ArrayList<Edge>();
+    for (int i = 0; i < m; i++) {
+        int a = in.nextInt() - 1, b = in.nextInt() - 1, c = in.nextInt();
+        g[a].add(new Edge(b, c));
+        rg[b].add(new Edge(a, c));
+    }
+    long[] min1 = new Dijkstra().doit(0, g).minCost;
+    long[] min2 = new Dijkstra().doit(0, rg).minCost;
+    long res = 0;
+    for (int i = 0; i < n; i++) {
+        res = Math.max(res, A[i] * Math.max(0, t - min1[i] - min2[i]));
+    }
+    System.out.println(res);
+}

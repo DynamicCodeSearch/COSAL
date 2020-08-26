@@ -1,0 +1,23 @@
+public void calc() {
+    sb = new StringBuilder();
+    IO sc = new IO();
+    int xs = sc.nextInt();
+    int ys = sc.nextInt();
+    int xt = sc.nextInt();
+    int yt = sc.nextInt();
+    int n = sc.nextInt();
+    int[][] data = new int[n + 2][3];
+    data[0][0] = xs;
+    data[0][1] = ys;
+    data[0][2] = 0;
+    data[1][0] = xt;
+    data[1][1] = yt;
+    data[1][2] = 0;
+    for (int i = 0; i < n; i++) {
+        data[i + 2][0] = sc.nextInt();
+        data[i + 2][1] = sc.nextInt();
+        data[i + 2][2] = sc.nextInt();
+    }
+    double ans = dijkstra(0, data)[1];
+    System.out.println(ans);
+}

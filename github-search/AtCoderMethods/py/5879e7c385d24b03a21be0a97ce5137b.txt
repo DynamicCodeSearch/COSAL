@@ -1,0 +1,14 @@
+def c():
+    n, m = map(int, input().split())
+    ship_loot = []
+    for _ in range(m):
+        a, b = map(int, input().split())
+        ship_loot.append( (a, b) )
+
+    loot = { x:set() for x in range(1, n+1)}
+    for l in ship_loot:
+        a, b = l
+        loot[a].add(b)
+        loot[b].add(a)
+
+    print('POSSIBLE' if loot[1] & loot[n] else 'IMPOSSIBLE')

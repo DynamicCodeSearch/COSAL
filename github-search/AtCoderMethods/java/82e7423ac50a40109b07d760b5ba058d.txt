@@ -1,0 +1,20 @@
+private int calc(int d, int ma, int mb) {
+    String key = d + "/" + ma + "/" + mb;
+    if (memo.containsKey(key)) {
+        return memo.get(key);
+    }
+    if (d >= N) {
+        if (d == N && ma > 0 && mb > 0 && ma % Ma == 0 && mb % Mb == 0 && ma / Ma == mb / Mb) {
+            return 0;
+        }
+        return Integer.MAX_VALUE;
+    }
+    int r1 = calc(d + 1, ma, mb);
+    int r2 = calc(d + 1, ma + a[d], mb + b[d]);
+    if (r2 != Integer.MAX_VALUE) {
+        r2 = r2 + c[d];
+    }
+    int r = Math.min(r1, r2);
+    memo.put(key, r);
+    return r;
+}

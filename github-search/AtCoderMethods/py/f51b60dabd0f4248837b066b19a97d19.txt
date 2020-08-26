@@ -1,0 +1,15 @@
+def dijkstras(graph):
+    cost = [10 ** 9 for _ in range(len(graph))]
+    start = 0
+    cost[start] = 0
+    queue = [(cost[start], start)]
+
+    while queue:
+        edge_from_cost, edge_from = heapq.heappop(queue)
+        if cost[edge_from] < edge_from_cost: continue
+        for edge_to, edge_to_cost in graph[edge_from]:
+            if cost[edge_to] > edge_from_cost + edge_to_cost:
+                cost[edge_to] = cost[edge_from] + edge_to_cost
+                heapq.heappush(queue, (cost[edge_to], edge_to))
+
+    return cost

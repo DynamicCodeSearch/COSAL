@@ -1,0 +1,67 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    int[] p = new int[n];
+    for (int i = 0; i < n; i++) {
+        p[i] = in.nextInt() - 1;
+    }
+    int cycleHead = 0;
+    for (int i = 0; i < n; i++) {
+        cycleHead = p[cycleHead];
+    }
+    int head = cycleHead;
+    List<Integer> cy = new ArrayList<>();
+    for (int i = 0; i < n; i++) {
+        cy.add(head);
+        head = p[head];
+        if (head == cycleHead) {
+            break;
+        }
+    }
+    List<Integer>[] graph = new List[n];
+    for (int i = 0; i < n; i++) {
+        graph[i] = new ArrayList<>();
+    }
+    int[] degree = new int[n];
+    for (int i = 0; i < n; i++) {
+        degree[p[i]]++;
+        graph[p[i]].add(i);
+    }
+    int[] value = new int[n];
+    Arrays.fill(value, -1);
+    int[] que = new int[n * 4];
+    int qh = 0, qt = 0;
+    for (int i = 0; i < n; i++) {
+        if (degree[i] == 0) {
+            que[qh++] = i;
+        }
+    }
+    while (qt < qh) {
+        int now = que[qt++];
+        value[now] = take(value, graph, now);
+        degree[p[now]]--;
+        if (degree[p[now]] == 0) {
+            que[qh++] = p[now];
+        }
+    }
+    Set<Integer> set = new HashSet<>();
+    set.clear();
+    int chead = cy.get(0);
+    for (int to : graph[chead]) {
+        set.add(value[to]);
+    }
+    boolean answer = false;
+    int tr = 0;
+    for (int i = 0; i < n; i++) {
+        if (!set.contains(i)) {
+            value[chead] = i;
+            answer |= isValid(value.clone(), graph, p, cy);
+            if (++tr >= 2) {
+                break;
+            }
+        }
+    }
+    out.println(answer ? "POSSIBLE" : "IMPOSSIBLE");
+    out.flush();
+}

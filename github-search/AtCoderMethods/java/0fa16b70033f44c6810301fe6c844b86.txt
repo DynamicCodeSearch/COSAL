@@ -1,0 +1,14 @@
+public static void main(String[] args) throws IOException {
+    proconScan proScan = new proconScan(" ");
+    proScan.scan();
+    Long nInteger = proScan.nextLong();
+    Long mInteger = proScan.nextLong();
+    Long buf = mInteger - nInteger - nInteger;
+    if (buf < 0) {
+        buf = Math.floorDiv(mInteger, 2);
+    } else {
+        buf = nInteger + Math.floorDiv(buf, 4);
+    }
+    System.out.println(buf);
+    proScan.proconEnd();
+}

@@ -1,0 +1,23 @@
+void run() {
+    int N = sc.nextInt();
+    int Q = sc.nextInt();
+    int[] rev = new int[N + 1];
+    int[] ans = new int[N];
+    while (Q-- > 0) {
+        int l = sc.nextInt() - 1;
+        int r = sc.nextInt() - 1;
+        rev[l]++;
+        rev[r + 1]--;
+    }
+    for (int i = 0; i < N; i++) {
+        rev[i + 1] += rev[i];
+    }
+    StringBuilder s = new StringBuilder();
+    for (int i = 0; i < N; i++) {
+        if (rev[i] % 2 == 0)
+            s.append("0");
+        else
+            s.append("1");
+    }
+    System.out.println(s);
+}

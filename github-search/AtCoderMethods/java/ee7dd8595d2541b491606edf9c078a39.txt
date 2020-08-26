@@ -1,0 +1,21 @@
+private long calcIfParentIsWhite(Node prev) {
+    if (cache[this.id][0] > 0)
+        return cache[this.id][0];
+    long ans1 = 1;
+    for (int childId : con[this.id]) {
+        if (prev != nodes[childId]) {
+            ans1 *= nodes[childId].calcIfParentIsWhite(this);
+            ans1 %= MOD;
+        }
+    }
+    long ans2 = 1;
+    for (int childId : con[this.id]) {
+        if (prev != nodes[childId]) {
+            ans2 *= nodes[childId].calcIfParentIsBlack(this);
+            ans2 %= MOD;
+        }
+    }
+    long ans = (ans1 + ans2) % MOD;
+    cache[this.id][0] = ans;
+    return ans;
+}

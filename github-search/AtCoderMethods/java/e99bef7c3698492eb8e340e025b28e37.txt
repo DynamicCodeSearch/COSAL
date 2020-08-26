@@ -1,0 +1,13 @@
+public void dfs(int u) {
+    if (cntUsed == N) {
+        cntPaths++;
+    }
+    for (int v = 0; v < N; v++) if (!used[v] && G[u][v] != 0) {
+        used[v] = true;
+        path[cntUsed] = v;
+        cntUsed++;
+        dfs(v);
+        used[v] = false;
+        cntUsed--;
+    }
+}

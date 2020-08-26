@@ -1,0 +1,14 @@
+def main():
+    global b, c
+    b1 = list(map(int, input().split()))
+    b2 = list(map(int, input().split()))
+    b = [b1, b2]
+    c1 = list(map(int, input().split()))
+    c2 = list(map(int, input().split()))
+    c3 = list(map(int, input().split()))
+    c = [c1 + [0], c2 + [0], c3 + [0]]
+
+    field = [[None] * 3 for _ in range(3)]
+    score = dfs(0, field)
+    total = sum([sum(x) for x in b + c])
+    print(*[score, total - score], sep="\n")

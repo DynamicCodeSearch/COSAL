@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int V = sc.nextInt();
+    int E = sc.nextInt();
+    Set<Integer> fst = new HashSet<>();
+    Set<Integer> lst = new HashSet<>();
+    for (int i = 0; i < E; i++) {
+        int u = sc.nextInt();
+        int v = sc.nextInt();
+        if (u == 1)
+            fst.add(v);
+        if (v == V)
+            lst.add(u);
+    }
+    for (Integer i : fst) {
+        if (lst.contains(i)) {
+            System.out.println("POSSIBLE");
+            return;
+        }
+    }
+    System.out.println("IMPOSSIBLE");
+}

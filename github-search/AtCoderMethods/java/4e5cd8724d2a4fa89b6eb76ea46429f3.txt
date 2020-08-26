@@ -1,0 +1,12 @@
+public void solve() {
+    int n = in.nextInt();
+    for (int i = 0; i < Math.pow(3, n); i++) {
+        int num = i;
+        StringBuilder sBuilder = new StringBuilder();
+        for (int j = 0; j < n; j++) {
+            sBuilder.append((char) ('a' + num % 3));
+            num /= 3;
+        }
+        System.out.println(sBuilder.reverse().toString());
+    }
+}

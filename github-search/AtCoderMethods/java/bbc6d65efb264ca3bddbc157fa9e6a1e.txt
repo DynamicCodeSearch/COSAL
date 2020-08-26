@@ -1,0 +1,34 @@
+void solveB(Scanner sc) throws Throwable {
+    long redCount = sc.nextLong();
+    long blueCount = sc.nextLong();
+    long redNecesaryCount = sc.nextLong();
+    long blueNecesaryCount = sc.nextLong();
+    long minRedCount = 0;
+    long maxRedCount = Math.min(blueCount, redCount / redNecesaryCount) + 1;
+    long leftPos = 0;
+    long rightPos = 0;
+    long leftCount = 0;
+    long rightCount = 0;
+    long redBlossamCount = 0;
+    long blueBlossamCount = 0;
+    for (int i = 0; i < 100; i++) {
+        redBlossamCount = (minRedCount + maxRedCount) / 2;
+        if ((blueCount - redBlossamCount) / blueNecesaryCount > redCount - redBlossamCount * redNecesaryCount) {
+            maxRedCount = redBlossamCount;
+        } else {
+            minRedCount = redBlossamCount;
+        }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    }
+    System.out.println(Math.min((blueCount - minRedCount) / blueNecesaryCount, redCount - minRedCount * redNecesaryCount) + minRedCount);
+
+}

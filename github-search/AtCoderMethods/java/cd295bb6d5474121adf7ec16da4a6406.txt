@@ -1,0 +1,36 @@
+public static void main(String[] args) {
+    InputStreamReader is = new InputStreamReader(System.in);
+    BufferedReader br = new BufferedReader(is);
+    try {
+        
+        String s = br.readLine().trim();
+        int n = Integer.parseInt(s);
+        int a = (int) Math.sqrt(n);
+        int res = n;
+        for (int i = 0; i < a; i++) {
+            int l = a - i;
+            if (l * l <= n && (n - l * l) < res) {
+                res = n - l * l;
+            }
+            for (int j = 0; j < l; j++) {
+                int l1 = l + j;
+                int l2 = l - j;
+                int res1 = n - l1 * l2 + j * 2;
+                int res2 = n - l * l1 + j;
+                int res3 = n - l * l2 + j;
+                if (l1 * l2 <= n && res1 < res) {
+                    res = res1;
+                }
+                if (l * l1 <= n && res2 < res) {
+                    res = res2;
+                }
+                if (l * l2 <= n && res3 < res) {
+                    res = res3;
+                }
+            }
+        }
+        System.out.println(String.valueOf(res));
+    } catch (Exception e) {
+        System.out.println(e);
+    }
+}

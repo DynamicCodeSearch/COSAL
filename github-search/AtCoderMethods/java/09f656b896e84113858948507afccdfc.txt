@@ -1,0 +1,16 @@
+public void solve() {
+    N = nextInt();
+    a = new int[N];
+    sum = 0;
+    for (int i = 0; i < N; i++) {
+        a[i] = nextInt();
+        sum += a[i];
+    }
+    asum = 0;
+    long ans = Long.MAX_VALUE;
+    for (int i = 0; i < N - 1; i++) {
+        asum += a[i];
+        ans = Math.min(ans, Math.abs(asum - (sum - asum)));
+    }
+    out.println(ans);
+}

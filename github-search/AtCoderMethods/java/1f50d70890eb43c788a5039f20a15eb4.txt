@@ -1,0 +1,34 @@
+public static void main(String[] args) throws IOException {
+    Scan in = new Scan(System.in);
+    int n = in.readInt();
+    ArrayList<Edge>[] edges = new ArrayList[n];
+    for (int i = 0; i < n; i++) {
+        edges[i] = new ArrayList<>();
+    }
+    for (int i = 0; i < n - 1; i++) {
+        int from = in.readInt() - 1, to = in.readInt() - 1, w = in.readInt();
+        edges[from].add(new Edge(to, w));
+        edges[to].add(new Edge(from, w));
+    }
+    int q = in.readInt(), k = in.readInt() - 1;
+    LinkedList<Integer> queue = new LinkedList<>();
+    queue.addLast(k);
+    boolean[] used = new boolean[n];
+    long[] dist = new long[n];
+    used[k] = true;
+    while (!queue.isEmpty()) {
+        int pos = queue.pollFirst();
+        for (Edge i : edges[pos]) {
+            if (!used[i.to]) {
+                used[i.to] = true;
+                dist[i.to] = dist[pos] + i.w;
+                queue.addLast(i.to);
+            }
+        }
+    }
+    PrintWriter out = new PrintWriter(System.out);
+    for (int i = 0; i < q; i++) {
+        out.println(dist[in.readInt() - 1] + dist[in.readInt() - 1]);
+    }
+    out.close();
+}

@@ -1,0 +1,54 @@
+
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    int H = sc.nextInt();
+    int W = sc.nextInt();
+    char[][] Map = new char[H][W];
+    for (int i = 0; i < H; i++) {
+        String tmp = sc.next();
+        Map[i] = tmp.toCharArray();
+    }
+    for (int i = 0; i < H; i++) {
+        for (int k = 0; k < W; k++) {
+            char c = Map[i][k];
+            if (c != '#') {
+                int cnt = 0;
+                if (i - 1 >= 0) {
+                    for (int m = k - 1; m <= k + 1; m++) {
+                        if (m >= 0 && m < W) {
+                            char check = Map[i - 1][m];
+                            if (check == '#') {
+                                cnt++;
+                            }
+                        }
+                    }
+                }
+                if (i + 1 < H) {
+                    for (int m = k - 1; m <= k + 1; m++) {
+                        if (m >= 0 && m < W) {
+                            char check = Map[i + 1][m];
+                            if (check == '#') {
+                                cnt++;
+                            }
+                        }
+                    }
+                }
+                if (k - 1 >= 0) {
+                    char check = Map[i][k - 1];
+                    if (check == '#') {
+                        cnt++;
+                    }
+                }
+                if (k + 1 < W) {
+                    char check = Map[i][k + 1];
+                    if (check == '#') {
+                        cnt++;
+                    }
+                }
+                Map[i][k] = (char) ('0' + cnt);
+            }
+        }
+        System.out.println(Map[i]);
+    }
+}

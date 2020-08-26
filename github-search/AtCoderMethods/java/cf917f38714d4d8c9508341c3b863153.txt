@@ -1,0 +1,9 @@
+public long get(int idx) {
+    idx++;
+    long ret = 0;
+    while (idx > 0) {
+        ret = (ret + data[idx]) % MOD;
+        idx -= idx & -idx;
+    }
+    return ret;
+}

@@ -1,0 +1,51 @@
+public void calc() {
+    sb = new StringBuilder();
+    FastScanner sc = new FastScanner();
+    int h = sc.nextInt();
+    int w = sc.nextInt();
+    char[][] map = new char[h][];
+    for (int i = 0; i < h; i++) {
+        map[i] = sc.next().toCharArray();
+    }
+    boolean ans = true;
+    char[][] aMap = new char[h][w];
+    char[][] bMap = new char[h][w];
+    for (int i = 0; i < h; i++) {
+        for (int t = 0; t < w; t++) {
+            if (check(map, i, t, '.')) {
+                aMap[i][t] = '.';
+            } else {
+                aMap[i][t] = '#';
+            }
+        }
+    }
+    for (int i = 0; i < h; i++) {
+        for (int t = 0; t < w; t++) {
+            if (check(aMap, i, t, '#')) {
+                bMap[i][t] = '#';
+            } else {
+                bMap[i][t] = '.';
+            }
+        }
+    }
+    for (int i = 0; i < h; i++) {
+        for (int t = 0; t < w; t++) {
+            if (map[i][t] == bMap[i][t]) {
+            } else {
+                ans = false;
+                break;
+            }
+        }
+    }
+    if (ans) {
+        System.out.println("possible");
+        for (int i = 0; i < h; i++) {
+            for (int t = 0; t < w; t++) {
+                System.out.print(aMap[i][t]);
+            }
+            System.out.println();
+        }
+    } else {
+        System.out.println("impossible");
+    }
+}

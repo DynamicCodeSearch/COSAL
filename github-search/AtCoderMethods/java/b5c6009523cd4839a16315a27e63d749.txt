@@ -1,0 +1,32 @@
+public static ResultCluster cluster(int[] f) {
+    int n = f.length;
+    DJSet ds = new DJSet(n);
+    int[] red = new int[n + 1];
+    int p = 0;
+    for (int i = 0; i < n; i++) {
+        if (ds.union(i, f[i]))
+            red[p++] = f[i];
+    }
+    int[] clus = new int[n];
+    Arrays.fill(clus, -1);
+    int cidgen = 0;
+    for (int i = 0; i < n; i++) if (ds.upper[i] < 0)
+        clus[i] = cidgen++;
+    for (int i = 0; i < n; i++) clus[i] = clus[ds.root(i)];
+    int[][] cycles = new int[p][];
+    int[] temp = new int[n + 1];
+    for (int i = 0; i < p; i++) {
+        temp[0] = red[i];
+        int j = 1;
+        for (; ; j++) {
+            temp[j] = f[temp[j - 1]];
+            if (temp[j] == temp[0])
+                break;
+        }
+        cycles[clus[red[i]]] = Arrays.copyOf(temp, j);
+    }
+    ResultCluster rc = new ResultCluster();
+    rc.clus = clus;
+    rc.cycles = cycles;
+    return rc;
+}

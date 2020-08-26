@@ -1,0 +1,70 @@
+void run() {
+    Scanner sc = new Scanner(System.in);
+    H = sc.nextInt();
+    W = sc.nextInt();
+    String[] board = new String[H];
+    for (int i = 0; i < H; i++) {
+        board[i] = sc.next();
+    }
+    
+    int fx = -1;
+    int fy = -1;
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            if (board[i].charAt(j) == 's') {
+                fy = i;
+                fx = j;
+            }
+        }
+    }
+    
+    Queue<Integer> nowq = new LinkedList<Integer>();
+    nowq.add(encode(fy, fx));
+    
+    int[] vy = new int[] { 1, 0, -1, 0 };
+    int[] vx = new int[] { 0, 1, 0, -1 };
+    
+    boolean[][] check = new boolean[H][W];
+    check[fy][fx] = true;
+    
+    for (int i = 0; i < 3; i++) {
+        
+        Queue<Integer> nextq = new LinkedList<Integer>();
+        
+        while (!nowq.isEmpty()) {
+            
+            int now = nowq.poll();
+            int y = now / 1000;
+            int x = now % 1000;
+            
+            for (int j = 0; j < 4; j++) {
+                int ny = y + vy[j];
+                int nx = x + vx[j];
+                
+                if (!ok(ny, nx))
+                    continue;
+                
+                if (check[ny][nx])
+                    continue;
+                
+                check[ny][nx] = true;
+                
+                if (board[ny].charAt(nx) == 'g') {
+                    System.out.println("YES");
+                    return;
+                } else 
+                if (board[ny].charAt(nx) == '#') {
+                    nextq.add(encode(ny, nx));
+                } else 
+                {
+                    nowq.add(encode(ny, nx));
+                }
+            }
+        }
+        
+        nowq = nextq;
+    }
+    
+    System.out.println("NO");
+    return;
+}

@@ -1,0 +1,33 @@
+public void solve(String[] args) {
+    MyScanner scanner = new MyScanner();
+    int N = scanner.nextInt();
+    int M = scanner.nextInt();
+    HashMap<Integer, List<Integer>> map = new HashMap<Integer, List<Integer>>();
+    for (int i = 0; i < M; i++) {
+        int a = scanner.nextInt();
+        int b = scanner.nextInt();
+        List<Integer> list = map.get(a);
+        if (list == null) {
+            list = new ArrayList<Integer>();
+            map.put(a, list);
+        }
+        list.add(b);
+    }
+    List<Integer> list = map.get(1);
+    if (list == null) {
+        System.out.println("IMPOSSIBLE");
+    } else {
+        for (int c : list) {
+            List<Integer> list2 = map.get(c);
+            if (list2 != null) {
+                for (int d : list2) {
+                    if (d == N) {
+                        System.out.println("POSSIBLE");
+                        return;
+                    }
+                }
+            }
+        }
+        System.out.println("IMPOSSIBLE");
+    }
+}

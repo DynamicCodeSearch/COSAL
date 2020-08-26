@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int[][] xy = new int[100][2];
+    int N = sc.nextInt();
+    double ans = 0;
+    for (int i = 0; i < N; i++) {
+        xy[i][0] = sc.nextInt();
+        xy[i][1] = sc.nextInt();
+    }
+    for (int i = 0; i < N - 1; i++) {
+        for (int j = i + 1; j < N; j++) {
+            ans = Math.max(ans, Math.sqrt(pow(xy[i][0] - xy[j][0], 2) + pow(xy[i][1] - xy[j][1], 2)));
+        }
+    }
+    System.out.println(ans);
+}

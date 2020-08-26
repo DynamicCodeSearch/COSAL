@@ -1,0 +1,12 @@
+private static boolean[] calc(char[] str) {
+    int n = str.length;
+    int[] z = z(str);
+    boolean[] G = new boolean[n + 1];
+    Arrays.fill(G, true);
+    for (int p = 1; p < n; p++) {
+        for (int k = 2; (k - 1) * p <= z[p]; k++) {
+            G[k * p] = false;
+        }
+    }
+    return G;
+}

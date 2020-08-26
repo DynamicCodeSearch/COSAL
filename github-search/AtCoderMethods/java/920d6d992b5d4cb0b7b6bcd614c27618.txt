@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int N = scan.nextInt();
+    List<Long> a = new ArrayList<>();
+    IntStream.range(0, N).forEach(b -> a.add(scan.nextLong()));
+    ArrayList<Long> retA = new ArrayList<>();
+    ArrayList<Long> retB = new ArrayList<>();
+    boolean flag = true;
+    for (long data : a) {
+        if (flag) {
+            retA.add(data);
+            flag = false;
+        } else {
+            retB.add(data);
+            flag = true;
+        }
+    }
+    if (N % 2 == 0) {
+        IntStream.range(0, retB.size()).forEach(i -> System.out.print(retB.get(retB.size() - 1 - i) + " "));
+        retA.forEach(x -> System.out.print(x + " "));
+    } else {
+        IntStream.range(0, retA.size()).forEach(i -> System.out.print(retA.get(retA.size() - 1 - i) + " "));
+        retB.forEach(x -> System.out.print(x + " "));
+    }
+}

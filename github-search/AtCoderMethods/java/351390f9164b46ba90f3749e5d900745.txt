@@ -1,0 +1,15 @@
+private static void dfs(int c, int las, int dist) {
+    if (c == R + 1) {
+        if (result > dist)
+            result = dist;
+        return;
+    }
+    for (int i = 1; i <= R; i++) if (!usedArray[i]) {
+        usedArray[i] = true;
+        if (las == -1)
+            dfs(c + 1, i, 0);
+        else
+            dfs(c + 1, i, dist + nArray[rArray[las]][rArray[i]]);
+        usedArray[i] = false;
+    }
+}

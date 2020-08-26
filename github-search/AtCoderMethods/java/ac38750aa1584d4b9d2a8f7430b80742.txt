@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    ArrayList<String> hateList = new ArrayList<>();
+    String n = scanner.next();
+    int k = scanner.nextInt();
+    for (int i = 0; i < k; i++) {
+        hateList.add(scanner.next());
+    }
+    for (; ; ) {
+        Boolean flag = true;
+        for (int i = 0; i < k; i++) {
+            if (n.indexOf(hateList.get(i)) != -1) {
+                int num = Integer.valueOf(n);
+                num++;
+                n = String.valueOf(num);
+                flag = false;
+            }
+        }
+        if (flag == true) {
+            System.out.println(n);
+            break;
+        }
+    }
+}

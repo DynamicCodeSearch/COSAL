@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    Printer pr = new Printer(System.out);
+    int n = sc.nextInt();
+    Pair[] a = new Pair[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = new Pair(sc.nextInt(), i + 1);
+    }
+    Arrays.sort(a);
+    for (int i = a.length - 1; i >= 0; i--) {
+        pr.println(a[i].b);
+    }
+    pr.close();
+    sc.close();
+}

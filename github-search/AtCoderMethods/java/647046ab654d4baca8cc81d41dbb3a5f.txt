@@ -1,0 +1,16 @@
+private static void solve() {
+    int n = sc.nextInt();
+    int[] x = sc.na(n);
+    Arrays.sort(x);
+    Map<Integer, Integer> rt = new HashMap<>();
+    for (int p : x) {
+        rt.merge(p, 1, Math::addExact);
+    }
+    int max = 0;
+    for (int i : rt.keySet()) {
+        max = Math.max(max, rt.getOrDefault(i, 0) + rt.getOrDefault(i + 1, 0) + rt.getOrDefault(i + 2, 0));
+        max = Math.max(max, rt.getOrDefault(i, 0) + rt.getOrDefault(i + 1, 0) + rt.getOrDefault(i - 1, 0));
+        max = Math.max(max, rt.getOrDefault(i, 0) + rt.getOrDefault(i - 1, 0) + rt.getOrDefault(i - 2, 0));
+    }
+    System.out.println(max);
+}

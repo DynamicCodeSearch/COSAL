@@ -1,0 +1,20 @@
+public static void main(String[] args) throws Exception {
+    Scanner scan = new Scanner(System.in);
+    int H = scan.nextInt();
+    int W = scan.nextInt();
+    char[][] map = new char[H][W];
+    for (int i = 0; i < H; i++) {
+        String s = scan.next();
+        map[i] = s.toCharArray();
+    }
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            
+            if (map[i][j] == '#')
+                System.out.print('#');
+            else
+                System.out.print(countMine(i, j, H, W, map));
+        }
+        System.out.println();
+    }
+}

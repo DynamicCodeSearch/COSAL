@@ -1,0 +1,42 @@
+private void solve() {
+    H = in.nextInt();
+    W = in.nextInt();
+    List<Points> list = new ArrayList<>();
+    map = new HashMap<>();
+    int N = in.nextInt();
+    for (int i = 0; i < N; i++) {
+        Points p = new Points(in.nextInt(), in.nextInt());
+        list.add(p);
+        map.put(p, true);
+    }
+    long[] cnt = new long[10];
+    int[] dx = new int[] { -2, -2, -2, -1, -1, -1, 0, 0, 0 };
+    int[] dy = new int[] { -2, -1, 0, -2, -1, 0, -2, -1, 0 };
+    Map<Points, Boolean> done = new HashMap<>();
+    for (Points p : list) {
+        int x = p.x, y = p.y;
+        for (int i = 0; i < 9; i++) {
+            int nx = x + dx[i];
+            int ny = y + dy[i];
+            if ((nx > 0 && nx <= H) && (ny > 0 && ny <= W)) {
+                Points p1 = new Points(nx, ny);
+                if (!done.containsKey(p1)) {
+                    int count = cntBlack(nx, ny);
+                    if (count > 0) {
+                        
+                        cnt[count]++;
+                    }
+                    done.put(p1, true);
+                }
+            }
+        }
+    }
+    long sum = 0L;
+    for (int i = 0; i < 10; i++) {
+        sum += cnt[i];
+    }
+    cnt[0] = ((long) (H - 2) * (W - 2)) - sum;
+    for (int i = 0; i < 10; i++) {
+        out.println(cnt[i]);
+    }
+}

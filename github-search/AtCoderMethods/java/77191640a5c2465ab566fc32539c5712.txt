@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int sx = scan.nextInt();
+    int sy = scan.nextInt();
+    int tx = scan.nextInt();
+    int ty = scan.nextInt();
+    int width = tx - sx;
+    int height = ty - sy;
+    for (int i = 0; i < Math.abs(height); i++) moveY(height);
+    for (int i = 0; i < Math.abs(width); i++) moveX(width);
+    for (int i = 0; i < Math.abs(height); i++) moveY(-height);
+    for (int i = 0; i < Math.abs(width); i++) moveX(-width);
+    moveX(-width);
+    for (int i = 0; i < Math.abs(height) + 1; i++) moveY(height);
+    for (int i = 0; i < Math.abs(width) + 1; i++) moveX(width);
+    moveY(-height);
+    moveX(width);
+    for (int i = 0; i < Math.abs(height) + 1; i++) moveY(-height);
+    for (int i = 0; i < Math.abs(width) + 1; i++) moveX(-width);
+    moveY(height);
+    System.out.println();
+}

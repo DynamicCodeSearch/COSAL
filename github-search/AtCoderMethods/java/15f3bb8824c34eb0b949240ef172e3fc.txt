@@ -1,0 +1,23 @@
+public String next() {
+    try {
+        sb.setLength(0);
+        eatDelimiters();
+        int start = bufi;
+        while (true) {
+            if (bufi == bufc) {
+                sb.append(buf, start, bufi - start);
+                fillBuf();
+                start = 0;
+                if (bufc == 0)
+                    break;
+            }
+            if (isDelimiter(buf[bufi]))
+                break;
+            ++bufi;
+        }
+        sb.append(buf, start, bufi - start);
+        return sb.toString();
+    } catch (IOException e) {
+        throw new RuntimeException("IO.next: Caught IOException.");
+    }
+}

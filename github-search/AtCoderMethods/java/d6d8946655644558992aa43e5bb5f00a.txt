@@ -1,0 +1,17 @@
+static long mulmod(long a, long b, long m) {
+    if (m <= 1000000009)
+        return a * b % m;
+    long res = 0;
+    while (a > 0) {
+        if ((a & 1) != 0) {
+            res += b;
+            if (res >= m)
+                res -= m;
+        }
+        a >>= 1;
+        b <<= 1;
+        if (b >= m)
+            b -= m;
+    }
+    return res;
+}

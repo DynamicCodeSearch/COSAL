@@ -1,0 +1,13 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    while (sc.hasNext()) {
+        int n = sc.nextInt();
+        int res = Integer.MAX_VALUE;
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; i * j <= n; j++) {
+                res = Math.min(res, (n - i * j) + Math.abs(i - j));
+            }
+        }
+        System.out.println(res);
+    }
+}

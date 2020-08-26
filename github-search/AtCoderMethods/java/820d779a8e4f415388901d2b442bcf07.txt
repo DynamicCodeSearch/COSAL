@@ -1,0 +1,55 @@
+int[] dijkstra2(ArrayList<Edge>[] g, int s) {
+    int n = g.length;
+    int[] minCost = new int[n];
+    Arrays.fill(minCost, INF);
+    minCost[s] = 0;
+    HashSet<Integer>[] companies = new HashSet[n];
+    for (int i = 0; i < n; i++) {
+        companies[i] = new HashSet<>();
+    }
+    PriorityQueue<State> pq = new PriorityQueue<>();
+    pq.add(new State(s, 0));
+    Queue<State2> bfsQueue = new LinkedList<>();
+    while (!pq.isEmpty()) {
+        State ns = pq.poll();
+        if (minCost[ns.id] < ns.cost)
+            continue;
+        for (Edge e : g[ns.id]) {
+            int nid = e.to;
+            int ncompany = e.company;
+            int ncost = ns.cost;
+            if (!companies[ns.id].contains(ncompany))
+                ncost++;
+            if (minCost[nid] > ncost) {
+                minCost[nid] = ncost;
+                pq.add(new State(nid, ncost));
+                bfsQueue.add(new State2(nid, ncost, ncompany));
+                companies[nid].clear();
+            }
+            if (minCost[nid] == ncost) {
+                companies[nid].add(ncompany);
+            }
+        }
+        while (!bfsQueue.isEmpty()) {
+            State2 nns = bfsQueue.poll();
+            for (Edge e : g[nns.id]) {
+                int nid = e.to;
+                int ncompany = e.company;
+                int ncost = nns.cost;
+                if (ncompany != nns.company)
+                    continue;
+                if (companies[nid].contains(ncompany))
+                    continue;
+                if (minCost[nid] > ncost) {
+                    minCost[nid] = ncost;
+                    companies[nid].clear();
+                }
+                if (minCost[nid] == ncost) {
+                    companies[nid].add(ncompany);
+                    bfsQueue.add(new State2(nid, ncost, ncompany));
+                }
+            }
+        }
+    }
+    return minCost;
+}

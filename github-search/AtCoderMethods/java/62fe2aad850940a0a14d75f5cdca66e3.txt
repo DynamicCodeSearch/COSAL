@@ -1,0 +1,57 @@
+private static long[] solve(int n, int[] a) {
+    int dupval = -1;
+    int duppos = -1;
+    Integer[] pos = new Integer[n + 1];
+    for (int i = 0; i < a.length; i++) {
+        if (pos[a[i]] == null) {
+            pos[a[i]] = i;
+            continue;
+        }
+        dupval = a[i];
+        duppos = i;
+    }
+    
+    int combsize = n + 2;
+    ToLongBiFunction<Integer, Integer> combination = new ToLongBiFunction<Integer, Integer>() {
+
+        private final long[] modfact;
+
+        private final long[] modinv;
+
+        {
+            modfact = new long[combsize];
+            modfact[0] = 1;
+            for (int i = 1; i < combsize; i++) modfact[i] = (modfact[i - 1] * i) % MOD;
+            modinv = new long[combsize];
+            Arrays.fill(modinv, 1);
+            for (
+            int i = combsize - 1; 
+            i >= 0; 
+            i--) for (long p = modfact[i], e = MOD - 2; e != 0; e >>= 1, p = (p * p) % MOD) if ((e & 1) == 1)
+                modinv[i] = (modinv[i] * p) % MOD;
+        }
+
+        @Override
+        public long applyAsLong(Integer n, Integer k) {
+            if (0 > k || k > n)
+                return 0;
+            
+            
+            long ans = modfact[n];
+            ans *= modinv[n - k];
+            ans %= MOD;
+            ans *= modinv[k];
+            ans %= MOD;
+            return ans;
+        }
+    };
+    int outer = n - duppos + pos[dupval];
+    long[] ans = IntStream.rangeClosed(1, n + 1).mapToLong((r) -> {
+        long t = combination.applyAsLong(n + 1, r);
+        t -= combination.applyAsLong(outer, r - 1);
+        t += MOD;
+        t %= MOD;
+        return t;
+    }).toArray();
+    return ans;
+}

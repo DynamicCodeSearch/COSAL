@@ -1,0 +1,5 @@
+void dfs(int v, int p, long d) {
+    dist[v] = d;
+    for (Edge e : g[v]) if (e.t != p)
+        dfs(e.t, v, d + e.c);
+}

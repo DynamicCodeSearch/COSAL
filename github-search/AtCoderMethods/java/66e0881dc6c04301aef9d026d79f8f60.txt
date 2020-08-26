@@ -1,0 +1,17 @@
+@SuppressWarnings("unchecked")
+public void solve() {
+    N = nextInt();
+    M = nextInt();
+    graph = new ArrayList[N];
+    for (int i = 0; i < N; i++) {
+        graph[i] = new ArrayList<Integer>();
+    }
+    used = new boolean[N];
+    for (int i = 0; i < M; i++) {
+        int a = nextInt() - 1;
+        int b = nextInt() - 1;
+        graph[a].add(b);
+        graph[b].add(a);
+    }
+    out.println(dfs(0, 0));
+}

@@ -1,0 +1,25 @@
+public static void main(String[] args) throws NumberFormatException, IOException {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int temp;
+    int devideCnt;
+    int maxDevideCnt = -1;
+    int ans = 0;
+    for (int i = 1; i <= n; i++) {
+        temp = i;
+        devideCnt = 0;
+        while (true) {
+            if (temp % 2 == 0) {
+                temp = temp / 2;
+                devideCnt++;
+            } else {
+                break;
+            }
+        }
+        if (devideCnt > maxDevideCnt) {
+            ans = i;
+            maxDevideCnt = devideCnt;
+        }
+    }
+    System.out.println(ans);
+}

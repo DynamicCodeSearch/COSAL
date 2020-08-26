@@ -1,0 +1,12 @@
+def compress(l):
+    ans = [[0] * len(l[0]) for _ in range(len(l))]
+    for y in range(len(l)):
+        for x in range(len(l[0])):
+            if l[y][x] == 1:
+                for a in range(8):
+                    ny = y + dy[a]
+                    nx = x + dx[a]
+                    ans[y][x] = 1
+                    if 0 <= ny < len(l) and 0 <= nx < len(l[0]):
+                        ans[ny][nx] = 1
+    return ans

@@ -1,0 +1,25 @@
+private static void C() throws Exception {
+    
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int N = Integer.parseInt(br.readLine());
+    String[] line = br.readLine().split(" ");
+    br.close();
+    int[] ar = new int[N];
+    for (int i = 0; i < line.length; i++) {
+        ar[i] = Integer.parseInt(line[i]);
+    }
+    int cost_work = 0;
+    for (int i = -100; i <= 100; i++) {
+        
+        int cost_total = 0;
+        for (int j = 0; j < ar.length; j++) {
+            cost_total += (int) Math.pow((ar[j] - i), 2);
+        }
+        if (i == -100)
+            cost_work = cost_total;
+        if (cost_work > cost_total) {
+            cost_work = cost_total;
+        }
+    }
+    System.out.println(cost_work);
+}

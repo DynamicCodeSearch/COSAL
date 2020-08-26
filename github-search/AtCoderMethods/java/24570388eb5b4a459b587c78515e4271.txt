@@ -1,0 +1,13 @@
+public static Mint fact(int n) {
+    if (factPrevMod != Mint.getMod()) {
+        fact = null;
+        factPrevMod = Mint.getMod();
+    }
+    if (fact == null || n >= fact.length) {
+        fact = new Mint[Math.min(Mint.getMod(), Math.max(n + 1, fact == null ? 100010 : fact.length * 2))];
+        for (int i = 0; i < fact.length; i++) {
+            fact[i] = i == 0 ? Mint.ONE : fact[i - 1].mul(i);
+        }
+    }
+    return fact[n];
+}

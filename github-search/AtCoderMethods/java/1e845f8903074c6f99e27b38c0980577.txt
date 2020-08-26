@@ -1,0 +1,25 @@
+void solve() {
+    int A = fs.nextInt();
+    int B = fs.nextInt();
+    int C = fs.nextInt();
+    int Result = 0;
+    if (C % A == 0 && C % B == 0) {
+        System.out.println(Math.max(C / A, C / B));
+        return;
+    } else {
+        if ((C / A) > (C / B)) {
+            int Temp = C % A;
+            Result = C / A;
+            if (Result != 0) {
+                Result += Temp / B;
+            }
+        } else {
+            int Temp = C % B;
+            Result = C / B;
+            if (Result != 0) {
+                Result += Temp / A;
+            }
+        }
+    }
+    System.out.println(Result);
+}

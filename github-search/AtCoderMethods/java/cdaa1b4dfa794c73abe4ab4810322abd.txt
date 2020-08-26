@@ -1,0 +1,39 @@
+public void solve() {
+    N = nextInt();
+    M = nextInt();
+    S = nextInt() - 1;
+    cost = new int[N];
+    graph = new ArrayList[N];
+    Arrays.fill(cost, -1);
+    for (int i = 0; i < N; i++) {
+        graph[i] = new ArrayList<Integer>();
+    }
+    for (int i = 0; i < M; i++) {
+        int u = nextInt() - 1;
+        int v = nextInt() - 1;
+        graph[u].add(v);
+        graph[v].add(u);
+    }
+    
+    PriorityQueue<P> pq = new PriorityQueue<P>();
+    boolean[] used = new boolean[N];
+    pq.add(new P(S, S));
+    while (pq.size() > 0) {
+        P p = pq.poll();
+        if (used[p.now])
+            continue;
+        
+        used[p.now] = true;
+        cost[p.now] = p.min;
+        
+        for (int to : graph[p.now]) {
+            
+            P q = new P(Math.min(p.min, to), to);
+            pq.add(q);
+        }
+    }
+    for (int i = 0; i < N; i++) {
+        if (cost[i] >= i)
+            out.println(i + 1);
+    }
+}

@@ -1,0 +1,16 @@
+def main():
+    w, h, n = map(int, input().split())
+    x_lb = y_lb = 0
+    x_ub = w
+    y_ub = h
+    for _ in range(n):
+        x, y, a = map(int, input().split())
+        if a == 1:
+            x_lb = max(x_lb, x)
+        elif a == 2:
+            x_ub = min(x_ub, x)
+        elif a == 3:
+            y_lb = max(y_lb, y)
+        else:
+            y_ub = min(y_ub, y)
+    print(max(0, (x_ub - x_lb)) * max(0, (y_ub - y_lb)))

@@ -1,0 +1,13 @@
+def solve():
+    ans = 0.0
+    if abs(X) % D != 0 or abs(Y) % D != 0: return ans
+    xn = abs(X) // D
+    yn = abs(Y) // D
+    if xn + yn > N or (xn + yn) % 2 != N % 2 : return ans
+    for h in range(xn, N+1, 2):
+        v = N - h
+        if v < yn: break
+        xforward = xn + (h - xn) // 2
+        yforward = yn + (v - yn) // 2
+        ans += mem[N][h] * mem[h][xforward] * mem[v][yforward]
+    return ans

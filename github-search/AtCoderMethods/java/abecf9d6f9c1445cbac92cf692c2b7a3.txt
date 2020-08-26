@@ -1,0 +1,15 @@
+public int poll() {
+    if (isEmpty()) {
+        throw new IndexOutOfBoundsException();
+    }
+    int result = elements[0];
+    at[result] = -1;
+    if (size == 1) {
+        size = 0;
+        return result;
+    }
+    elements[0] = elements[--size];
+    at[elements[0]] = 0;
+    shiftDown(0);
+    return result;
+}

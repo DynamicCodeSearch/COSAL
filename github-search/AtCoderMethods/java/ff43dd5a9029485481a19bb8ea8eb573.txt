@@ -1,0 +1,14 @@
+private void sum(int l, int r, int cl, int cr, int cur) {
+    if (l <= cl && cr <= r) {
+        gsum += st[cur];
+    } else {
+        int mid = cl + cr >>> 1;
+        if (cl < r && l < mid) {
+            sum(l, r, cl, mid, 2 * cur);
+        }
+        if (mid < r && l < cr) {
+            sum(l, r, mid, cr, 2 * cur + 1);
+        }
+        gsum += plus[cur] * (Math.min(r, cr) - Math.max(l, cl));
+    }
+}

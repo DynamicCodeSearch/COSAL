@@ -1,0 +1,33 @@
+static long[] count(long z, long[] vs, char[] s) {
+    long[][] ops = new long[][] { { 0L, 1L }, { z + 1, -1L } };
+    for (int i = vs.length - 1; i >= 0; i--) {
+        for (int j = ops.length - 1; j >= 0; j--) {
+            if (ops[j][0] <= vs[i]) {
+                long sum = 0;
+                for (int k = 0; k < ops.length; k++) {
+                    if (ops[k][0] < vs[i]) {
+                        sum += ops[k][1];
+                    }
+                }
+                for (int k = 0; k < ops.length; k++) {
+                    ops[k][0] %= vs[i];
+                }
+                ops = Arrays.copyOf(ops, ops.length + 2);
+                ops[ops.length - 2] = new long[] { 0, sum };
+                ops[ops.length - 1] = new long[] { vs[i], -sum };
+                Arrays.sort(ops, (x, y) -> Long.compare(x[0], y[0]));
+                break;
+            }
+        }
+    }
+    long[] ret = new long[26];
+    long h = 0;
+    int p = 0;
+    for (int i = 0; i < s.length; i++) {
+        while (p < ops.length && ops[p][0] <= i) {
+            h += ops[p++][1];
+        }
+        ret[s[i] - 'a'] += h;
+    }
+    return ret;
+}

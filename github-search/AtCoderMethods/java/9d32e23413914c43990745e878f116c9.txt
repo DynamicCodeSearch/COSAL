@@ -1,0 +1,31 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    while (sc.hasNext()) {
+        String s = sc.next();
+        int t = sc.nextInt();
+        int x = 0, y = 0, c = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == 'U')
+                x++;
+            else if (s.charAt(i) == 'D')
+                x--;
+            else if (s.charAt(i) == 'L')
+                y--;
+            else if (s.charAt(i) == 'R')
+                y++;
+            else
+                c++;
+        }
+        if (t == 1)
+            System.out.println(Math.abs(x) + Math.abs(y) + c);
+        else {
+            int res = Math.abs(x) + Math.abs(y) - c;
+            if (res >= 0)
+                System.out.println(res);
+            else if (Math.abs(res) % 2 == 0)
+                System.out.println(0);
+            else
+                System.out.println(1);
+        }
+    }
+}

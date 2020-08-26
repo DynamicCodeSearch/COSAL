@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String s = sc.next();
+    String[] rep = new String[] { "A", "B", "C", "D", "E", "F" };
+    for (int i = 0; i < 6; i++) {
+        String m = s.replace(rep[i], "");
+        System.out.print(s.length() - m.length());
+        s = m;
+        if (i < 5) {
+            System.out.print(" ");
+        } else {
+            System.out.println("");
+        }
+    }
+}

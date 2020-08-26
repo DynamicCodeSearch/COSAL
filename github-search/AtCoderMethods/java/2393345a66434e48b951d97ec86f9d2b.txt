@@ -1,0 +1,29 @@
+void solve(FastScanner in, PrintWriter out) {
+    int N = in.nextInt();
+    int M = in.nextInt();
+    PriorityQueue<Edge> edges = new PriorityQueue<>();
+    for (int i = 0; i < M; i++) {
+        int a = in.nextInt() - 1;
+        int b = in.nextInt() - 1;
+        int y = in.nextInt();
+        edges.add(new Edge(a, b, y));
+    }
+    int Q = in.nextInt();
+    PriorityQueue<Edge> queries = new PriorityQueue<>();
+    for (int i = 0; i < Q; i++) {
+        int v = in.nextInt() - 1;
+        int y = in.nextInt();
+        queries.add(new Edge(i, v, y));
+    }
+    UnionFind unionFind = new UnionFind(N);
+    int[] ans = new int[Q];
+    while (!queries.isEmpty()) {
+        Edge query = queries.poll();
+        while (!edges.isEmpty() && edges.peek().year > query.year) {
+            Edge edge = edges.poll();
+            unionFind.unite(edge.to, edge.from);
+        }
+        ans[query.from] = unionFind.size(query.to);
+    }
+    for (int a : ans) out.println(a);
+}

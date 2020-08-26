@@ -1,0 +1,21 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    
+    String s = br.readLine();
+    String output = "";
+    int start = (int) s.charAt(0);
+    int big_to_min = (int) 'A' - (int) 'a';
+    if (start >= (int) 'a' && start <= (int) 'z') {
+        output += (char) (start + big_to_min);
+    } else {
+        output += s.charAt(0);
+    }
+    for (int i = 1; i < s.length(); i++) {
+        if ((int) s.charAt(i) >= (int) 'A' && (int) s.charAt(i) <= (int) 'Z') {
+            output += (char) ((int) s.charAt(i) - big_to_min);
+        } else {
+            output += s.charAt(i);
+        }
+    }
+    System.out.println(output);
+}

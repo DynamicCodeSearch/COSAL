@@ -1,0 +1,379 @@
+### Py Tokens: count, intersection, isinstance, corresponding, abbb, newcount, items, counter, elem, bcc, minimum, result, othercount, counts, implemented, notimplemented 
+
+### Py functions
+
+def __and__(self, other):
+
+  if not isinstance(other, Counter):
+    return NotImplemented
+  result = Counter()
+  for elem, count in self.items():
+    other_count = other[elem]
+    newcount = count if count < other_count else other_count
+    if newcount > 0:
+      result[elem] = newcount
+  return result
+*********************************
+
+#### Score: 6.19239
+
+
+#### Java Tokens: occurrences, code, string, counts, appears, isempty, abba, charsequence, empty, number, times, faster, tochararray, would, param, array, utils, generate, charat, given, pre, may, could, count, length, garbage, also, check, many, matches, look, str, stringutils, call, sequence, input, char, ups, returns, countmatches, since 
+
+
+public static int countMatches(final CharSequence str, final char ch) {
+    if (isEmpty(str)) {
+        return 0;
+    }
+    int count = 0;
+    
+    for (int i = 0; i < str.length(); i++) {
+        if (ch == str.charAt(i)) {
+            count++;
+        }
+    }
+    return count;
+}
+*********************************
+
+#### Score: 6.19239
+
+
+#### Java Tokens: larger, occurrences, sub, code, string, signature, counts, appears, isempty, abba, charsequence, substring, empty, number, times, either, found, param, utils, charsequenceutils, pre, may, index_not_found, count, length, index, check, many, matches, str, stringutils, sequence, input, char, xxx, returns, idx, indexof, countmatches, since, changed 
+
+
+
+
+public static int countMatches(final CharSequence str, final CharSequence sub) {
+    if (isEmpty(str) || isEmpty(sub)) {
+        return 0;
+    }
+    int count = 0;
+    int idx = 0;
+    while ((idx = CharSequenceUtils.indexOf(str, sub, idx)) != INDEX_NOT_FOUND) {
+        count++;
+        idx += sub.length();
+    }
+    return count;
+}
+*********************************
+
+#### Score: 5.69583
+
+
+#### Java Tokens: 4.000, eager, gwt, padchar, reach, zero, pad, character, copies, java, always, check, resulting, formatter, input, null, util, padded, reached, returns, must, formatting, minlength, code, string, beginning, checknotnull, least, link, 2010, padend, example, result, see, negative, min, strings, appended, param, builder, end, set, capabilities, necessary, length, many, consisting, appear, richer, char, stringbuilder, returned, tostring, minimum, append 
+
+
+public static String padEnd(String string, int minLength, char padChar) {
+    
+    checkNotNull(string);
+    if (string.length() >= minLength) {
+        return string;
+    }
+    StringBuilder sb = new StringBuilder(minLength);
+    sb.append(string);
+    for (int i = string.length(); i < minLength; i++) {
+        sb.append(padChar);
+    }
+    return sb.toString();
+}
+*********************************
+
+#### Score: 5.59675
+
+
+#### Java Tokens: eager, gwt, padchar, reach, zero, pad, character, copies, java, always, check, resulting, formatter, input, null, util, padded, 007, reached, returns, must, formatting, padstart, prepended, minlength, code, string, beginning, checknotnull, least, link, insert, 2010, example, result, see, negative, min, strings, param, builder, end, set, capabilities, necessary, start, length, many, consisting, appear, richer, char, stringbuilder, returned, tostring, minimum, append 
+
+
+public static String padStart(String string, int minLength, char padChar) {
+    
+    checkNotNull(string);
+    if (string.length() >= minLength) {
+        return string;
+    }
+    StringBuilder sb = new StringBuilder(minLength);
+    for (int i = string.length(); i < minLength; i++) {
+        sb.append(padChar);
+    }
+    sb.append(string);
+    return sb.toString();
+}
+*********************************
+
+#### Score: 5.02661
+
+
+#### Java Tokens: code, string, isolated, arrayutils, units, convert, codepointat, charsequence, point, pairs, points, empty, codepointcount, result, valid, character, high, array, low, param, utils, supplementary, surrogate, preceded, pre, charcount, length, count, index, converts, followed, empty_int_array, int, as-is, str, stringutils, single, sequence, converted, char, tocodepoints, returned, tostring, since 
+
+
+public static int[] toCodePoints(final CharSequence str) {
+    if (str == null) {
+        return null;
+    }
+    if (str.length() == 0) {
+        return ArrayUtils.EMPTY_INT_ARRAY;
+    }
+    final String s = str.toString();
+    final int[] result = new int[s.codePointCount(0, s.length())];
+    int index = 0;
+    for (int i = 0; i < result.length; i++) {
+        result[i] = s.codePointAt(index);
+        index += Character.charCount(result[i]);
+    }
+    return result;
+}
+*********************************
+
+#### Score: 4.70867
+
+
+#### Java Tokens: exception, occurrences, repeats, stack, mostly, objects, upper, arrayutils, wcte, isempty, illegalstateexception, output, mos, java, utils, tcte, let, text, state, greater, replaceeach, dcte, still, goal, sure, method, index, circular, no-op, matches, input, size, guess, replacementlist, math, arrays, recursing, larger, illegalargumentexception, another, requests, recursive, example, result, search, see, min, found, strings, mos.search, get, builder, repl, protect, stackoverflowerror, nomorematchesforreplindex, aba, within, textlength, one, replaced, possible, stringutils, searchlength, buf, textindex, elements, logic, stringbuilder, outputs, argument, tempindex, inputs, replace, good, empty, reference, overflow, helper, major, loop, find, repeating, match:, replaceindex, create, replacements, buffer, ignored, repeatedly, pre, need, count, less, list, illegal, done, take, measure, replaceeachrepeatedly, keep, creates, know, timetolive, assume, replacement, since, next, note, replacementlength, code, string, searching, link, mchyzer, endless, upper-bound, error, duplicated, array, param, repeat, end, passed, track, make, live, charat, temp, abcde, bound, length, match, start, aborting, increase, earliest, equal, processed, performance, searchlist, lengths, due, corresponding, harness, time, indexof, tostring, append 
+
+
+private static String replaceEach(final String text, final String[] searchList, final String[] replacementList, final boolean repeat, final int timeToLive) {
+    if (isEmpty(text) || ArrayUtils.isEmpty(searchList) || ArrayUtils.isEmpty(replacementList)) {
+        return text;
+    }
+    
+    if (timeToLive < 0) {
+        throw new IllegalStateException("Aborting to protect against StackOverflowError - " + "output of one loop is the input of another");
+    }
+    final int searchLength = searchList.length;
+    final int replacementLength = replacementList.length;
+    
+    if (searchLength != replacementLength) {
+        throw new IllegalArgumentException("Search and Replace array lengths don't match: " + searchLength + " vs " + replacementLength);
+    }
+    
+    final boolean[] noMoreMatchesForReplIndex = new boolean[searchLength];
+    
+    int textIndex = -1;
+    int replaceIndex = -1;
+    int tempIndex = -1;
+    
+    for (int i = 0; i < searchLength; i++) {
+        if (noMoreMatchesForReplIndex[i] || searchList[i] == null || searchList[i].isEmpty() || replacementList[i] == null) {
+            continue;
+        }
+        tempIndex = text.indexOf(searchList[i]);
+        
+        if (tempIndex == -1) {
+            noMoreMatchesForReplIndex[i] = true;
+        } else {
+            if (textIndex == -1 || tempIndex < textIndex) {
+                textIndex = tempIndex;
+                replaceIndex = i;
+            }
+        }
+    }
+    
+    if (textIndex == -1) {
+        return text;
+    }
+    int start = 0;
+    
+    int increase = 0;
+    
+    for (int i = 0; i < searchList.length; i++) {
+        if (searchList[i] == null || replacementList[i] == null) {
+            continue;
+        }
+        final int greater = replacementList[i].length() - searchList[i].length();
+        if (greater > 0) {
+            
+            increase += 3 * greater;
+        }
+    }
+    
+    increase = Math.min(increase, text.length() / 5);
+    final StringBuilder buf = new StringBuilder(text.length() + increase);
+    while (textIndex != -1) {
+        for (int i = start; i < textIndex; i++) {
+            buf.append(text.charAt(i));
+        }
+        buf.append(replacementList[replaceIndex]);
+        start = textIndex + searchList[replaceIndex].length();
+        textIndex = -1;
+        replaceIndex = -1;
+        tempIndex = -1;
+        
+        for (int i = 0; i < searchLength; i++) {
+            if (noMoreMatchesForReplIndex[i] || searchList[i] == null || searchList[i].isEmpty() || replacementList[i] == null) {
+                continue;
+            }
+            tempIndex = text.indexOf(searchList[i], start);
+            
+            if (tempIndex == -1) {
+                noMoreMatchesForReplIndex[i] = true;
+            } else {
+                if (textIndex == -1 || tempIndex < textIndex) {
+                    textIndex = tempIndex;
+                    replaceIndex = i;
+                }
+            }
+        }
+    
+    }
+    final int textLength = text.length();
+    for (int i = start; i < textLength; i++) {
+        buf.append(text.charAt(i));
+    }
+    final String result = buf.toString();
+    if (!repeat) {
+        return result;
+    }
+    return replaceEach(result, searchList, replacementList, repeat, timeToLive - 1);
+}
+*********************************
+
+#### Score: 4.51358
+
+
+#### Java Tokens: exception, small, argument, ghijklmno, ...is, abbrevmarkerlength, !ghijklmno, used, source, isempty, good, somewhere, ---, empty, minabbrevwidthoffset, edge, character, abcdefghij, utils, abcdefg---, greater, defined, given, isnotempty, using, pre, offset, like, going, format, specify, abbrevmarker, check, illegal, str, input, left, marker, following, ...ghij..., must, abbrev, replacement, 'ghijklmno, abra, since, note, maxwidth, illegalargumentexception, works, code, string, efghij, ::efghij::, least, turn, abbreviates, substring, necessarily, result, min, param, abcdefghi,, men, for..., allows, abbreviate, may, max, length, abcdefghi, abcdefghijklmno, abbreviation, ..., stringutils, appear, leftmost, ghij, equals, *ghijklmno, width, maximum, time, minabbrevwidth, minimum, abcdefg, abbreviated, first 
+
+
+public static String abbreviate(final String str, final String abbrevMarker, int offset, final int maxWidth) {
+    if (isEmpty(str) && isEmpty(abbrevMarker)) {
+        return str;
+    } else if (isNotEmpty(str) && EMPTY.equals(abbrevMarker) && maxWidth > 0) {
+        return str.substring(0, maxWidth);
+    } else if (isEmpty(str) || isEmpty(abbrevMarker)) {
+        return str;
+    }
+    final int abbrevMarkerLength = abbrevMarker.length();
+    final int minAbbrevWidth = abbrevMarkerLength + 1;
+    final int minAbbrevWidthOffset = abbrevMarkerLength + abbrevMarkerLength + 1;
+    if (maxWidth < minAbbrevWidth) {
+        throw new IllegalArgumentException(String.format("Minimum abbreviation width is %d", minAbbrevWidth));
+    }
+    if (str.length() <= maxWidth) {
+        return str;
+    }
+    if (offset > str.length()) {
+        offset = str.length();
+    }
+    if (str.length() - offset < maxWidth - abbrevMarkerLength) {
+        offset = str.length() - (maxWidth - abbrevMarkerLength);
+    }
+    if (offset <= abbrevMarkerLength + 1) {
+        return str.substring(0, maxWidth - abbrevMarkerLength) + abbrevMarker;
+    }
+    if (maxWidth < minAbbrevWidthOffset) {
+        throw new IllegalArgumentException(String.format("Minimum abbreviation width with offset is %d", minAbbrevWidthOffset));
+    }
+    if (offset + maxWidth - abbrevMarkerLength < str.length()) {
+        return abbrevMarker + abbreviate(str.substring(offset), abbrevMarker, maxWidth - abbrevMarkerLength);
+    }
+    return abbrevMarker + str.substring(str.length() - (maxWidth - abbrevMarkerLength));
+}
+*********************************
+
+#### Score: 4.23264
+
+
+#### Java Tokens: stringutils, noofitems, string, utils, newstringbuilder, builder, stringbuilder, items 
+
+private static StringBuilder newStringBuilder(final int noOfItems) {
+    return new StringBuilder(noOfItems * 16);
+}
+*********************************
+
+#### Score: 3.97898
+
+
+#### Java Tokens: n-th, note, code, string, signature, link, lastordinalindexof, charsequence, substring, mos, search, found, finds, param, utils, find, implemented, ordinalindexof, pre, last, method, may, within, index_not_found, match, index, check, aabaabaa, str, stringutils, sequence, input, searchstr, char, handling, uses, lastindexof, ordinal, since, changed 
+
+
+public static int lastOrdinalIndexOf(final CharSequence str, final CharSequence searchStr, final int ordinal) {
+    return ordinalIndexOf(str, searchStr, ordinal, true);
+}
+*********************************
+
+#### Score: 3.81340
+
+
+#### Java Tokens: exception, counts, javadocs, upper, gusfield, discussion, trees, character, would, sizes, utils, api, calculate, using, hippo, edit, commons-text, single-dimensional, input, size, left, difference, must, starting, illegalargumentexception, another, comes, turn, immediately, matrix, two, charsequence, example, result, see, current, min, found, jth, one, possible, right, stringutils, single, leftmost, indices, abs, decreases, returning, assist, needing, run, empty, compute, either, apache, swapped, swapping, loop, stripe, fills, ignored, pre, ensure, need, modification, suppose, iterations, http://www.merriampark.com/ld.htm, leads, allocating, http, elephant, subtlety, memory, distance, string, needed, changes, proper, back, negative, param, similarity, ignore, placeholder, charat, htm, org, bound, length, way, target, levenshteindistance, time, max_value, release, deprecated, usage, entire, number, deletion, tmp, https://commons.apache.org/proper/commons-text/javadocs/api-release/org/apache/commons/text/similarity/levenshteindistance.html, href, text, https, rightmost, greater, shorter, reduce, large, lower, forth, horizontally, following, math, arrays, requires, algorithms, iterates, doubling, getlevenshteindistance, consume, sequences, cell, commons, strings, top, computes, get, member, copy, t_j, table, may, max, change, lead, additionally, char, width, chas, minimum, first, com, argument, dimensional, minor, emerick, use, threshold, integer, aaapppp, second, dan, find, www, html, different, border, always, swap, merriampark, follows, less, constrain, fill, illegal, sequence, entry, entries, insertion, since, levenshtein, boundary, concrete, note, substitution, code, values, necessarily, running, computing, array, diagonally, unbounded, value, allows, cost, implementation, also, instead, diagonal 
+
+
+@Deprecated
+public static int getLevenshteinDistance(CharSequence s, CharSequence t, final int threshold) {
+    if (s == null || t == null) {
+        throw new IllegalArgumentException("Strings must not be null");
+    }
+    if (threshold < 0) {
+        throw new IllegalArgumentException("Threshold must not be negative");
+    }
+    
+    
+    int n = s.length();
+    
+    int m = t.length();
+    
+    if (n == 0) {
+        return m <= threshold ? m : -1;
+    } else if (m == 0) {
+        return n <= threshold ? n : -1;
+    } else if (Math.abs(n - m) > threshold) {
+        
+        return -1;
+    }
+    if (n > m) {
+        
+        final CharSequence tmp = s;
+        s = t;
+        t = tmp;
+        n = m;
+        m = t.length();
+    }
+    
+    int[] p = new int[n + 1];
+    
+    int[] d = new int[n + 1];
+    
+    int[] _d;
+    
+    final int boundary = Math.min(n, threshold) + 1;
+    for (int i = 0; i < boundary; i++) {
+        p[i] = i;
+    }
+    
+    
+    Arrays.fill(p, boundary, p.length, Integer.MAX_VALUE);
+    Arrays.fill(d, Integer.MAX_VALUE);
+    
+    for (int j = 1; j <= m; j++) {
+        
+        final char t_j = t.charAt(j - 1);
+        d[0] = j;
+        
+        final int min = Math.max(1, j - threshold);
+        final int max = j > Integer.MAX_VALUE - threshold ? n : Math.min(n, j + threshold);
+        
+        if (min > max) {
+            return -1;
+        }
+        
+        if (min > 1) {
+            d[min - 1] = Integer.MAX_VALUE;
+        }
+        
+        for (int i = min; i <= max; i++) {
+            if (s.charAt(i - 1) == t_j) {
+                
+                d[i] = p[i - 1];
+            } else {
+                
+                d[i] = 1 + Math.min(Math.min(d[i - 1], p[i]), p[i - 1]);
+            }
+        }
+        
+        _d = p;
+        p = d;
+        d = _d;
+    }
+    
+    if (p[n] <= threshold) {
+        return p[n];
+    }
+    return -1;
+}

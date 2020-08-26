@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    String[] a = new String[N];
+    HashSet set = new HashSet();
+    for (int i = 0; i < N; i++) {
+        String temp = sc.next();
+        if (set.contains(temp)) {
+            set.remove(temp);
+        } else {
+            set.add(temp);
+        }
+    }
+    System.out.println(set.size());
+}

@@ -1,0 +1,19 @@
+private void solve() throws IOException {
+    int N = nextInt();
+    int[] arr = new int[N];
+    for (int i = 0; i < N; ++i) arr[i] = nextInt();
+    Arrays.sort(arr);
+    int s = 0;
+    for (int i : arr) s += i;
+    if (s % 10 != 0) {
+        writer.println(s);
+    } else {
+        for (int i = 0; i < arr.length; ++i) {
+            if ((arr[i] % 10 != 0)) {
+                writer.println((s - arr[i]));
+                return;
+            }
+        }
+        writer.println(0);
+    }
+}

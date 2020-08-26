@@ -1,0 +1,33 @@
+private boolean check(boolean[][] b, int r, int c) {
+    for (int i = 0; i < b.length; ++i) {
+        if (i != r && b[i][c]) {
+            return false;
+        }
+    }
+    for (int i = 0; i < b[r].length; ++i) {
+        if (i != c && b[r][i]) {
+            return false;
+        }
+    }
+    for (int i = 1; i < Math.min(r, c); ++i) {
+        if (b[r - i][c - i]) {
+            return false;
+        }
+    }
+    for (int i = 1; i < r && i < b[r - i].length - c; ++i) {
+        if (b[r - i][c + i]) {
+            return false;
+        }
+    }
+    for (int i = 1; i < b.length - r && i < c; ++i) {
+        if (b[r + i][c - i]) {
+            return false;
+        }
+    }
+    for (int i = 1; i < b.length - r && i < b[r + i].length - c; ++i) {
+        if (b[r + i][c + i]) {
+            return false;
+        }
+    }
+    return true;
+}

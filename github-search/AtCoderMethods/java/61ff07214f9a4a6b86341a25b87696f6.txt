@@ -1,0 +1,19 @@
+public static int Search(int N, int NowPos, boolean[] PastPos, boolean[][] path) {
+    int cnt = 0;
+    
+    boolean all_visited = true;
+    for (boolean Posi : PastPos) all_visited = (all_visited && Posi);
+    if (all_visited)
+        cnt = 1;
+    for (int j = 1; j < N; j++) {
+        boolean[] NewPos = new boolean[N];
+        for (int i = 0; i < N; i++) NewPos[i] = PastPos[i];
+        if ((!PastPos[j]) && path[NowPos][j]) {
+            NewPos[j] = true;
+            
+            
+            cnt += Search(N, j, NewPos, path);
+        }
+    }
+    return cnt;
+}

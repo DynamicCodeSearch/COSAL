@@ -1,0 +1,23 @@
+def blocks(block,w,h):
+    x, y, p = map(int, raw_input().split())
+    if p == 1:
+        for i in range(h):
+            for j in range(w):
+                if j < x:
+                    block[i][j] = False
+    if p == 2:
+        for i in range(h):
+            for j in range(w):
+                if j >= x:
+                    block[i][j] = False
+    if p == 3:
+        for i in range(h):
+            for j in range(w):
+                if i < y:
+                    block[i][j] = False
+    if p == 4:
+        for i in range(h):
+            for j in range(w):
+                if i >= y:
+                    block[i][j] = False
+    return block

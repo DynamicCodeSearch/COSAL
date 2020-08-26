@@ -1,0 +1,19 @@
+void solve() {
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    long[] xs = new long[N];
+    long[] ys = new long[M];
+    for (int i = 0; i < N; i++) xs[i] = sc.nextInt();
+    for (int i = 0; i < M; i++) ys[i] = sc.nextInt();
+    long uy = 0;
+    for (int j = 1; j < M; j++) {
+        uy += (long) j * (M - j) % MOD * (ys[j] - ys[j - 1]) % MOD;
+        uy %= MOD;
+    }
+    long ans = 0;
+    for (int i = 1; i < N; i++) {
+        ans += uy * (xs[i] - xs[i - 1]) % MOD * i % MOD * (N - i) % MOD;
+        ans %= MOD;
+    }
+    out.println(ans % MOD);
+}

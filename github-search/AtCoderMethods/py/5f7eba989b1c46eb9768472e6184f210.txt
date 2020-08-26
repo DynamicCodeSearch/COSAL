@@ -1,0 +1,10 @@
+def is_satisfied(s):
+    ln = len(s)
+    check = sorted(list(range(ln - 1, 1, -2)) * 2)
+    if ln % 2 == 0:
+        check.insert(0, 1)
+        check.insert(0, 1)
+    else:
+        check.insert(0, 0)
+
+    return sorted(s) == check

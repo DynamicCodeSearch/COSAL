@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter w = new PrintWriter(System.out);
+    char[] a = in.readString().toCharArray();
+    char[] b = in.readString().toCharArray();
+    StringBuilder bd = new StringBuilder("");
+    int j = 0, k = 0;
+    for (int i = 0; i < a.length + b.length; i++) {
+        if (i % 2 == 0)
+            bd.append(a[j++]);
+        else
+            bd.append(b[k++]);
+    }
+    w.println(bd);
+    w.close();
+}

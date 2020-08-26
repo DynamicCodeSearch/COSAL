@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    StdIn in = new StdIn();
+    n = in.nextInt();
+    graph = new List[n];
+    weights = new int[n];
+    for (int i = 0; i < n; ++i) graph[i] = new ArrayList<Integer>();
+    for (int i = 0; i < n - 1; ++i) {
+        int a = in.nextInt() - 1, b = in.nextInt() - 1;
+        graph[a].add(b);
+        graph[b].add(a);
+    }
+    dfs1(0, -1);
+    System.out.println(n - weights[subtree] > weights[subtree] ? "Fennec" : "Snuke");
+}

@@ -1,0 +1,20 @@
+def main():
+	n = int(raw_input())
+ tmp = raw_input().split()
+ tmpt = int(tmp[0])
+ tmpa = int(tmp[1])
+ for i in range(1, n):
+		inpt = raw_input().split()
+  inptt = int(inpt[0])
+  inpta = int(inpt[1])
+  trate = tmpt / inptt
+  if tmpt % inptt != 0:
+			trate += 1
+  arate = tmpa / inpta
+  if tmpa % inpta != 0:
+			arate += 1
+  rate = larger(trate, arate)
+  tmpt = inptt * rate
+  tmpa = inpta * rate
+
+ print (tmpt + tmpa)

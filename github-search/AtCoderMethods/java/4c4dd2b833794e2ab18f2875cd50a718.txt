@@ -1,0 +1,18 @@
+public static boolean isBeatiful(String string) {
+    String letters = "abcdefghijklmnopqrstuvwxyz";
+    char[] alphabet = letters.toCharArray();
+    int[] frequency = new int[alphabet.length];
+    for (int i = 0; i < string.length(); i++) {
+        if (Character.isLetter(string.charAt(i))) {
+            frequency[string.charAt(i) - 'a']++;
+        }
+    }
+    boolean isBeatiful = true;
+    for (int i = 0; i < frequency.length; i++) {
+        if (frequency[i] % 2 != 0) {
+            isBeatiful = false;
+            break;
+        }
+    }
+    return isBeatiful;
+}

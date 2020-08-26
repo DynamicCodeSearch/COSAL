@@ -1,0 +1,63 @@
+private void solve() {
+    int H = in.nextInt();
+    int W = in.nextInt();
+    char[][] image = new char[H][W];
+    for (int i = 0; i < H; i++) {
+        image[i] = in.next().toCharArray();
+    }
+    boolean[][][] possibilities = new boolean[H][W][2];
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            if (image[i][j] == '.') {
+                possibilities[i][j][0] = true;
+                for (int[] d : D) {
+                    int ni = i + d[0];
+                    int nj = j + d[1];
+                    if (ni < 0 || ni >= H || nj < 0 || nj >= W)
+                        continue;
+                    possibilities[ni][nj][0] = true;
+                }
+            }
+        }
+    }
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            if (image[i][j] == '#') {
+                boolean changed = false;
+                if (!possibilities[i][j][0]) {
+                    possibilities[i][j][1] = true;
+                    changed = true;
+                }
+                for (int[] d : D) {
+                    int ni = i + d[0];
+                    int nj = j + d[1];
+                    if (ni < 0 || ni >= H || nj < 0 || nj >= W)
+                        continue;
+                    if (!possibilities[ni][nj][0]) {
+                        possibilities[ni][nj][1] = true;
+                        changed = true;
+                    }
+                }
+                if (!changed) {
+                    out.println("impossible");
+                    return;
+                }
+            }
+        }
+    }
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            if (!possibilities[i][j][0] && !possibilities[i][j][1]) {
+                out.println("impossible");
+                return;
+            }
+        }
+    }
+    out.println("possible");
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            out.print(possibilities[i][j][0] ? "." : "#");
+        }
+        out.println();
+    }
+}

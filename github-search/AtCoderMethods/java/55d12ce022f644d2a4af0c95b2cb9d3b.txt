@@ -1,0 +1,18 @@
+long solve(int f, int t, long[] black, long[] white) {
+    if (f != -1 && map.get(t).size() == 1) {
+        black[t] = 1;
+        return white[t] = 1;
+    }
+    long sum_black = 1;
+    long sum_white = 1;
+    for (int n : map.get(t)) if (n != f) {
+        solve(t, n, black, white);
+        long w = white[n];
+        long b = black[n];
+        sum_black = (sum_black * (w)) % EPS;
+        sum_white = (sum_white * (w + b)) % EPS;
+    }
+    white[t] = sum_white;
+    black[t] = sum_black;
+    return sum_black + sum_white;
+}

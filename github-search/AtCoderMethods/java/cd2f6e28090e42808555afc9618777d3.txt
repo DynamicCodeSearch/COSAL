@@ -1,0 +1,50 @@
+public static void main(String[] args) {
+    final long a;
+    final long b;
+    
+    final long m;
+    try (Scanner scan = new Scanner(System.in)) {
+        a = scan.nextLong();
+        b = scan.nextLong();
+        m = scan.nextLong();
+    }
+    
+    
+    long gcd = euclidean(a, b);
+    long max = Math.max(a, b);
+    long min = Math.min(a, b);
+    
+    
+    
+    
+    final int limit = 60;
+    remainders0 = new long[limit];
+    remainders0[0] = 10L % m;
+    for (int i = 1; i < remainders0.length; i++) {
+        remainders0[i] = remainders0[i - 1] * remainders0[i - 1] % m;
+    }
+    remainders1 = new long[limit];
+    
+    remainders1[0] = 1 % m;
+    for (int i = 1; i < remainders1.length; i++) {
+        
+        
+        remainders1[i] = (remainders1[i - 1] * remainders0[i - 1] + remainders1[i - 1]) % m;
+    }
+    remaindersPre2 = new long[limit];
+    remaindersPre2[0] = remainder0(gcd, m);
+    for (int i = 1; i < remaindersPre2.length; i++) {
+        remaindersPre2[i] = remaindersPre2[i - 1] * remaindersPre2[i - 1] % m;
+    }
+    remainders2 = new long[limit];
+    remainders2[0] = 1 % m;
+    for (int i = 1; i < remainders2.length; i++) {
+        
+        remainders2[i] = (remainders2[i - 1] * remaindersPre2[i - 1] + remainders2[i - 1]) % m;
+    }
+    
+    
+    
+    long result = remainder1(min, m) * remainder2(max / gcd, m) % m;
+    System.out.println(result);
+}

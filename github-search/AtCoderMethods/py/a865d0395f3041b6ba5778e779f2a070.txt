@@ -1,0 +1,8 @@
+def _nCr(n, r):
+    r = min(r, n-r)
+    if r == 0:
+        return 1
+
+    numer = functools.reduce(operator.mul, range(n, n-r, -1))
+    denom = functools.reduce(operator.mul, range(1, r+1))
+    return numer//denom

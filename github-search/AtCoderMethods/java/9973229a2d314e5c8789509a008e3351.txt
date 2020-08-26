@@ -1,0 +1,20 @@
+public static void main(String[] args) throws Exception {
+    int h = sc.nextInt();
+    int w = sc.nextInt();
+    int[] dx = { 1, 0 };
+    int[] dy = { 0, 1 };
+    int count = 0;
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            for (int k = 0; k < 2; k++) {
+                if (i + dx[k] < h && j + dy[k] < w) {
+                    count++;
+                }
+            }
+        }
+    }
+    out.println(count);
+    out.flush();
+    sc.close();
+    out.close();
+}

@@ -1,0 +1,9 @@
+public int update(int k, int v) {
+    k += this.size - 1;
+    tree[k] = v;
+    while (k > 0) {
+        k = (k - 1) / 2;
+        tree[k] = marge(tree[k * 2 + 1], tree[k * 2 + 2]);
+    }
+    return v;
+}

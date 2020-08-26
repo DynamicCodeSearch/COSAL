@@ -1,0 +1,11 @@
+def ABcnt(S):
+    ls = len(S)
+    cnt = 0
+    Rcnt = [0]*(ls+1)
+    for i in range(ls):
+        if S[i]=='A':
+            cnt += 1
+        else:
+            cnt -= 1
+        Rcnt[i+1] = cnt
+    return Rcnt

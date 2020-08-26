@@ -1,0 +1,13 @@
+
+public void delete(int i) {
+    if (i < 0 || i >= maxN)
+        throw new IndexOutOfBoundsException();
+    if (!contains(i))
+        throw new NoSuchElementException("index is not in the priority queue");
+    int index = qp[i];
+    exch(index, N--);
+    swim(index);
+    sink(index);
+    keys[i] = null;
+    qp[i] = -1;
+}

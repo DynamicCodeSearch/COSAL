@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    while (sc.hasNext()) {
+        a = sc.nextLong();
+        b = sc.nextLong();
+        m = sc.nextLong();
+        long[][] ar = { { 10, 1 }, { 0, 1 } };
+        long d = gcd(a, b);
+        long[][] t1 = pow(a - 1, ar);
+        long res = (t1[0][0] % m + t1[0][1] % m) % m;
+        ar[0][0] = pow(10, d) % m;
+        long[][] t2 = pow(b / d - 1, ar);
+        res *= (t2[0][0] % m + t2[0][1] % m) % m;
+        System.out.println(res % m);
+    }
+}

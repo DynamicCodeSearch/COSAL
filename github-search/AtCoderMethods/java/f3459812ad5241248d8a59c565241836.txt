@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    boolean first = true;
+    int[] city = null;
+    int maxNum = 0;
+    int loop = 1;
+    int num = 0;
+    while (in.hasNext()) {
+        String[] str = in.nextLine().split(" ", 0);
+        if (first) {
+            num = Integer.parseInt(str[0]);
+            city = new int[num];
+            maxNum = Integer.parseInt(str[1]);
+            first = false;
+        } else {
+            int left = Integer.parseInt(str[0]);
+            int right = Integer.parseInt(str[1]);
+            city[left - 1]++;
+            city[right - 1]++;
+            loop++;
+        }
+        if (loop == maxNum + 1) {
+            break;
+        }
+    }
+    for (int i = 0; i < num; i++) {
+        System.out.println(city[i]);
+    }
+}

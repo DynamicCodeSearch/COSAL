@@ -1,0 +1,19 @@
+void run() {
+    String str = sc.next();
+    int[] abcd = new int[4];
+    for (int i = 0; i < 4; ++i) {
+        abcd[i] = ni();
+    }
+    for (int i = 0; i <= str.length(); ++i) {
+        for (int j = 0; j < 4; ++j) {
+            if (abcd[j] == i) {
+                System.out.print("\"");
+            }
+        }
+        if (i == str.length()) {
+            break;
+        }
+        System.out.print(str.charAt(i));
+    }
+    System.out.println();
+}

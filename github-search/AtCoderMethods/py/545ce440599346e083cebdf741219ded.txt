@@ -1,0 +1,17 @@
+def solve(As, first_target):
+    ret = 0
+    for i, a in enumerate(As):
+        if i == 0:
+            ret += abs(a - first_target)
+            prev_sum = first_target
+        else:
+            curr_sum = prev_sum + a
+            if prev_sum > 0 and curr_sum >= 0:
+                ret += abs(curr_sum - (-1))
+                curr_sum = -1
+            elif prev_sum < 0 and curr_sum <= 0:
+                ret += abs(curr_sum - 1)
+                curr_sum = 1
+            prev_sum = curr_sum
+
+    return ret

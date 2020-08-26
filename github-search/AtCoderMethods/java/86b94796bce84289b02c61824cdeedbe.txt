@@ -1,0 +1,65 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    HashSet<Integer> xSet = new HashSet<Integer>();
+    HashSet<Integer> ySet = new HashSet<Integer>();
+    xplusySet = new HashSet<Integer>();
+    xminusySet = new HashSet<Integer>();
+    x = new int[3];
+    y = new int[3];
+    int index = 0;
+    for (int i = 0; i < 8; i++) {
+        String s = sc.next();
+        for (int j = 0; j < 8; j++) {
+            if (s.charAt(j) == 'Q') {
+                x[index] = i;
+                y[index] = j;
+                index++;
+                xSet.add(i);
+                ySet.add(j);
+                xplusySet.add(i + j);
+                xminusySet.add(i - j);
+            }
+        }
+    }
+    if (xSet.size() == 3 && ySet.size() == 3) {
+        row = new int[5];
+        column = new int[5];
+        int index1 = 0;
+        int index2 = 0;
+        for (int i = 0; i < 8; i++) {
+            if (!xSet.contains(i)) {
+                row[index1] = i;
+                index1++;
+            }
+            if (!ySet.contains(i)) {
+                column[index2] = i;
+                index2++;
+            }
+        }
+        p = new int[5];
+        flg = false;
+        ans = new String[8][8];
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                ans[i][j] = ".";
+            }
+        }
+        for (int i = 0; i < 3; i++) {
+            ans[x[i]][y[i]] = "Q";
+        }
+        dfs(0, 0);
+        if (flg) {
+            for (int i = 0; i < 8; i++) {
+                for (int j = 0; j < 8; j++) {
+                    System.out.print(ans[i][j]);
+                    if (j == 7)
+                        System.out.println();
+                }
+            }
+        } else {
+            System.out.println("No Answer");
+        }
+    } else {
+        System.out.println("No Answer");
+    }
+}

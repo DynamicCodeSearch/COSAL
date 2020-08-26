@@ -1,0 +1,16 @@
+def ex_subs(S, p):
+    cnt = 0
+    k = 0
+
+    for c in p:
+        for i in range(k, len(S)):
+            if c == S[i]:
+                k = i + 1
+                cnt += 1
+
+                if cnt == len(p):
+                    return True
+
+                break
+
+    return False

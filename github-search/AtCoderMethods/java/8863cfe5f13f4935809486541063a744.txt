@@ -1,0 +1,41 @@
+public static void main(String[] args) {
+    int count = 0;
+    Scanner stdIn = new Scanner(System.in);
+    int t1 = stdIn.nextInt();
+    int t2 = stdIn.nextInt();
+    int t;
+    int[] change = { -1, 1, -5, 5, -10, 10 };
+    Queue<Integer> q = new LinkedList<Integer>();
+    Queue<Integer> q2 = new LinkedList<Integer>();
+    ArrayList<Integer> list = new ArrayList<Integer>();
+    q.add(t1);
+    q2.add(0);
+    list.add(t1);
+    int head = 0;
+    int endFlg = 0;
+    int i = 0;
+    for (i = 0; endFlg == 0; i++) {
+        t = q.poll();
+        count = q2.poll();
+        if (t == t2) {
+            endFlg = 1;
+            break;
+        }
+        for (int delta : change) {
+            int innerEndFlg = 0;
+            for (int j = 0; j < list.size(); j++) {
+                if (t + delta == list.get(j)) {
+                    innerEndFlg = 1;
+                    break;
+                }
+            }
+            if (innerEndFlg == 0) {
+                list.add(t + delta);
+                q.add(t + delta);
+                q2.add(count + 1);
+            
+            }
+        }
+    }
+    System.out.println(count);
+}

@@ -1,0 +1,21 @@
+def solve(pre_is_positive, total, ans, a_list):
+    for a in a_list:
+        total += a
+        if pre_is_positive:
+            if total == 0:
+                ans += 1
+                total = -1
+            elif total > 0:
+                ans += abs(total) + 1
+                total = -1
+        elif not pre_is_positive:
+            if total == 0:
+                ans += 1
+                total = 1
+            elif total < 0:
+                ans += abs(total) + 1
+                total = 1
+
+        pre_is_positive = total > 0
+
+    return ans

@@ -1,0 +1,16 @@
+def main():
+    X, Y, W = input().split()
+    X = int(X) - 1 
+    Y = int(Y) - 1
+    W = DIRS[W]
+
+    DIGITS = tuple(input() for _ in range(9))
+
+    x, y, w = X, Y, W
+    code = ""
+    for _ in range(4):
+
+        code += DIGITS[y][x]
+        x, y, w = step(x, y, w)
+
+    print(code)

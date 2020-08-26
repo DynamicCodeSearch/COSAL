@@ -1,0 +1,58 @@
+public static void main(String[] args) {
+    
+    Scanner scan = new Scanner(System.in);
+    int N = Integer.parseInt(scan.next());
+    int[][] SN = new int[N][2];
+    String[] s = new String[N];
+    for (int i = 0; i < N; i++) {
+        s[i] = scan.next();
+    }
+    Arrays.sort(s);
+    for (int i = 0; i < N; i++) {
+        String[] in = s[i].split("-");
+        SN[i][0] = Integer.parseInt(in[0]);
+        SN[i][0] += 1000;
+        SN[i][0] -= SN[i][0] % 5;
+        SN[i][1] = Integer.parseInt(in[1]);
+        SN[i][1] += 1000;
+        SN[i][1] += (5 - SN[i][1] % 5) % 5;
+        if (SN[i][1] % 100 == 60) {
+            SN[i][1] += 40;
+        }
+    }
+    int last;
+    ArrayList<Integer> start = new ArrayList<Integer>();
+    ArrayList<Integer> end = new ArrayList<Integer>();
+    int nextst = 0;
+    last = SN[0][1];
+    boolean flag = true;
+    while (flag) {
+        start.add(SN[nextst][0]);
+        if (nextst == N - 1) {
+            
+            end.add(SN[nextst][1]);
+            break;
+        }
+        for (int i = nextst + 1; i < N; i++) {
+            if (SN[i][0] <= last) {
+                if (SN[i][1] >= last) {
+                    last = SN[i][1];
+                }
+                if (i == N - 1) {
+                    
+                    flag = false;
+                }
+            } else {
+                
+                
+                nextst = i;
+                break;
+            }
+        }
+        end.add(last);
+        last = SN[nextst][1];
+    }
+    for (int i = 0; i < start.size(); i++) {
+        System.out.println(String.format("%04d", (start.get(i) - 1000)) + "-" + String.format("%04d", (end.get(i) - 1000)));
+    }
+}

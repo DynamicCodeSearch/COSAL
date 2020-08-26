@@ -1,0 +1,16 @@
+public void exec() throws IOException {
+    InputUtil in = new InputUtil();
+    PrintWriter out = new PrintWriter(System.out);
+    int N = in.nextInt();
+    HashSet<Integer> A = new HashSet<>();
+    for (int i = 0; i < N; i++) {
+        Integer a = Integer.valueOf(in.nextInt());
+        if (A.contains(a)) {
+            A.remove(a);
+        } else {
+            A.add(a);
+        }
+    }
+    out.println(A.size());
+    out.flush();
+}

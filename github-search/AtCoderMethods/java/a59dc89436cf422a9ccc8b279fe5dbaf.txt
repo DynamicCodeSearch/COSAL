@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    long MOD = 1000000007;
+    Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+    int n = scan.nextInt();
+    for (int i = 1; i <= n; i++) {
+        int value = i;
+        for (int j = 2; j <= n; j++) {
+            if (value % j == 0) {
+                int cnt = 0;
+                while (value % j == 0) {
+                    value /= j;
+                    cnt++;
+                }
+                if (!map.containsKey(j))
+                    map.put(j, 0);
+                map.put(j, map.get(j) + cnt);
+            }
+        }
+    }
+    long ans = 1;
+    for (int value : map.values()) ans = (ans * (value + 1)) % MOD;
+    System.out.println(ans);
+}

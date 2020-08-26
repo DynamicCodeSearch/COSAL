@@ -1,0 +1,48 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int H = sc.nextInt();
+    int W = sc.nextInt();
+    boolean[][] leaf = new boolean[H][W];
+    int sx = 0, sy = 0, tx = 0, ty = 0;
+    for (int i = 0; i < H; i++) {
+        char[] c = sc.next().toCharArray();
+        for (int j = 0; j < W; j++) {
+            if (c[j] != '.') {
+                leaf[i][j] = true;
+                if (c[j] == 'S') {
+                    sy = i;
+                    sx = j;
+                } else if (c[j] == 'T') {
+                    ty = i;
+                    tx = j;
+                }
+            }
+        }
+    }
+    if (sx == tx || sy == ty) {
+        System.out.println(-1);
+        sc.close();
+        return;
+    }
+    MaxFlow mf = new MaxFlow(H * W * 2);
+    for (int i = 0; i < H; i++) {
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int j = 0; j < W; j++) if (leaf[i][j])
+            list.add(j);
+        for (int j : list) for (int k : list) if (j != k)
+            mf.addEdge((i * W + j) * 2 + 1, (i * W + k) * 2, 1);
+    }
+    for (int i = 0; i < W; i++) {
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int j = 0; j < H; j++) if (leaf[j][i])
+            list.add(j);
+        for (int j : list) for (int k : list) if (j != k)
+            mf.addEdge((j * W + i) * 2 + 1, (k * W + i) * 2, 1);
+    }
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) if (leaf[i][j])
+            mf.addEdge((i * W + j) * 2, (i * W + j) * 2 + 1, 1);
+    }
+    System.out.println(mf.getMaxFlow((sy * W + sx) * 2 + 1, (ty * W + tx) * 2));
+    sc.close();
+}

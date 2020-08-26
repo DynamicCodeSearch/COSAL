@@ -1,0 +1,33 @@
+public static void main(String[] args) {
+    Map<Integer, List<Integer>> map = new HashMap<>();
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    for (int i = 0; i < M; i++) {
+        int p = sc.nextInt(), q = sc.nextInt();
+        List<Integer> l1 = map.getOrDefault(p, new ArrayList<>());
+        l1.add(q);
+        map.put(p, l1);
+        List<Integer> l2 = map.getOrDefault(q, new ArrayList<>());
+        l2.add(p);
+        map.put(q, l2);
+    }
+    Queue<Integer> queue = new LinkedList<>();
+    List<Integer> first = map.getOrDefault(1, new ArrayList<>());
+    boolean connected = false;
+    for (int i = 0; i < first.size() && !connected; i++) {
+        queue.offer(first.get(i));
+        if (i == N)
+            connected = true;
+    }
+    while (!queue.isEmpty() && !connected) {
+        int start = queue.poll();
+        List<Integer> sec = map.get(start);
+        if (sec.contains(N))
+            connected = true;
+    }
+    if (connected)
+        System.out.println("POSSIBLE");
+    else
+        System.out.println("IMPOSSIBLE");
+}

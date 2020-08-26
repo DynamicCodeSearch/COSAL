@@ -1,0 +1,13 @@
+def main():
+    n = int(input())
+    if n == 1:
+        print(0)
+        return
+
+    ans = 10 ** 10
+    for y in range(1, n):
+        for x in range(1, n // y + 1):
+            if n >= x * y:
+                ans = min(ans, abs(y - x) + n - (y * x))
+
+    print(ans)

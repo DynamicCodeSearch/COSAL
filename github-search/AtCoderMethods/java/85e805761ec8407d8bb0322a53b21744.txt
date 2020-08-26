@@ -1,0 +1,30 @@
+
+public void run() throws IOException {
+    
+    int TEST_CASE = 1;
+    while (TEST_CASE-- != 0) {
+        long ans = 1;
+        int N = io.nextInt();
+        for (int p = 2; p <= N; p++) {
+            boolean ip = true;
+            for (int i = 2; i * i <= p; i++) {
+                if (p % i == 0) {
+                    ip = false;
+                    break;
+                }
+            }
+            if (!ip)
+                continue;
+            int c = 0;
+            for (int i = 1; i <= N; i++) {
+                for (int j = i; j % p == 0; j /= p) {
+                    c++;
+                
+                }
+            }
+            
+            ans = ans * (c + 1) % mod;
+        }
+        io.out.println(ans);
+    }
+}

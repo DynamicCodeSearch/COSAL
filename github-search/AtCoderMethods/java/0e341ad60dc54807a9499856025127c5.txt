@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int m = sc.nextInt();
+    int n = sc.nextInt();
+    int N = sc.nextInt();
+    int sum = N;
+    int d = 0;
+    while (true) {
+        int Nd = N;
+        if (N >= m) {
+            N = (N / m) * n;
+            d += Nd % m;
+        } else {
+            if ((N + d) >= m) {
+                N = ((N + d) / m) * n;
+                d = (Nd + d) % m;
+            } else {
+                break;
+            }
+        }
+        sum += N;
+    }
+    System.out.println(sum);
+    sc.close();
+}

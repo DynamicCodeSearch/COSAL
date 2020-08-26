@@ -1,0 +1,23 @@
+long inv(long a) {
+    
+    
+    long u = 1, v = 0, p = 0, q = 1, x = a, y = MODULO;
+    while (x > 1) {
+        u -= x / y * p;
+        v -= x / y * q;
+        x -= x / y * y;
+        long d = u;
+        u = p;
+        p = d;
+        d = v;
+        v = q;
+        q = d;
+        d = x;
+        x = y;
+        y = d;
+    }
+    if (u < 0) {
+        u += MODULO;
+    }
+    return u;
+}

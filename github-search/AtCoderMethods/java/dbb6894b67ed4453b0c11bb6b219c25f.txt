@@ -1,0 +1,19 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    char[] A = in.next().toCharArray();
+    char[] B = in.next().toCharArray();
+    char[] C = in.next().toCharArray();
+    List<char[]> players = new ArrayList<>(Arrays.asList(A, B, C));
+    int[] points = { A.length, B.length, C.length };
+    int[] index = { 0, 0, 0 };
+    char[] winner = { 'A', 'B', 'C' };
+    int cur = 0;
+    while (true) {
+        if (points[cur] == 0) {
+            out.println(winner[cur]);
+            break;
+        }
+        --points[cur];
+        ++index[cur];
+        cur = players.get(cur)[index[cur] - 1] - 'a';
+    }
+}

@@ -1,0 +1,9 @@
+def dfs(adj, cur, visited, N):
+    if visited == all_visited(N):
+        return 1
+    cnt = 0
+    for nex in adj[cur]:
+        if (visited >> (nex - 1)) & 1 == 1:
+            continue
+        cnt += dfs(adj, nex, (visited | (1 << (nex - 1))), N)
+    return cnt

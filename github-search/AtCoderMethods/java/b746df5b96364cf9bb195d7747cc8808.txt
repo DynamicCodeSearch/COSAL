@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    int[] from = new int[N - 1];
+    int[] to = new int[N - 1];
+    for (int i = 0; i < N - 1; i++) {
+        from[i] = sc.nextInt() - 1;
+        to[i] = sc.nextInt() - 1;
+    }
+    int[][] g = packU(N, from, to);
+    int[] path = dijkh(g, 0, N - 1);
+    int root1;
+    int root2;
+    int m = path.length;
+    if (m % 2 == 0) {
+        root1 = path[m / 2 - 1];
+        root2 = path[m / 2];
+    } else {
+        root1 = path[m / 2];
+        root2 = path[m / 2 + 1];
+    }
+    int count1 = count(root1, root2, g);
+    int count2 = count(root2, root1, g);
+    if (count1 > count2) {
+        System.out.println("Fennec");
+    } else {
+        System.out.println("Snuke");
+    }
+}

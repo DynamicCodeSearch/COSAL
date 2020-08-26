@@ -1,0 +1,26 @@
+public void run(java.io.InputStream in, java.io.PrintStream out) {
+    final java.util.Scanner sc = new java.util.Scanner(in);
+    final StringBuilder sb = new StringBuilder();
+    final Point3D[] d = new Point3D[sc.nextInt()];
+    for (int i = 0; i < d.length; ++i) {
+        d[i] = new Point3D(sc.nextInt(), i, 0);
+    }
+    sc.close();
+    java.util.Arrays.sort(d);
+    d[0].z = 0;
+    for (int i = 1; i < d.length; ++i) {
+        d[i].z = d[i - 1].z + (d[i].x == d[i - 1].x ? 0 : 1);
+    }
+    java.util.Arrays.sort(d, new java.util.Comparator<Point3D>() {
+
+        @Override
+        public int compare(Point3D o1, Point3D o2) {
+            return (o1.y - o2.y);
+        }
+    });
+    for (int i = 0; i < d.length; ++i) {
+        sb.append(d[i].z);
+        sb.append('\n');
+    }
+    out.print(sb.toString());
+}

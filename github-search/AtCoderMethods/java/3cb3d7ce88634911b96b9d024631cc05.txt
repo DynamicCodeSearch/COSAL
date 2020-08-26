@@ -1,0 +1,10 @@
+boolean containsKey(long key) {
+    int id = hash(key);
+    for (int i = 0; i < list[id].size(); ++i) {
+        if (list[id].get(i).key != key) {
+            continue;
+        }
+        return true;
+    }
+    return false;
+}

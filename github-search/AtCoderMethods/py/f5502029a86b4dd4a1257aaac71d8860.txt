@@ -1,0 +1,18 @@
+def turn_check(zikan,direct,around):
+    nokori_naka=zikan
+    for idx in range(0,N,1):
+        rem_hp=kirei_HP[idx]-around*zikan
+        if rem_hp > 0:
+            if rem_hp in myon_chache:
+                myon=myon_chache[rem_hp]
+            else:
+                myon= rem_hp//(direct-around) + (0 if rem_hp%(direct-around)==0 else 1)
+                myon_chache[rem_hp]=myon
+
+            nokori_naka=nokori_naka-myon
+            if nokori_naka < 0:
+                return False
+        else: 
+            return True
+
+    return True

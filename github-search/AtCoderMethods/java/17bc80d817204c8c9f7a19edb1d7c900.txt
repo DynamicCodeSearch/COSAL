@@ -1,0 +1,16 @@
+private void solve(Scanner in, PrintWriter out) {
+    int N = in.nextInt();
+    HashMap<Integer, Integer> hash = new HashMap<Integer, Integer>();
+    for (int i = 1; i <= N; i++) {
+        hash.put(i, dividedCount(i));
+    }
+    List<Entry<Integer, Integer>> list_entries = new ArrayList<Entry<Integer, Integer>>(hash.entrySet());
+    Collections.sort(list_entries, new Comparator<Entry<Integer, Integer>>() {
+
+        public int compare(Entry<Integer, Integer> obj1, Entry<Integer, Integer> obj2) {
+            
+            return obj2.getValue().compareTo(obj1.getValue());
+        }
+    });
+    System.out.println(list_entries.get(0).getKey());
+}

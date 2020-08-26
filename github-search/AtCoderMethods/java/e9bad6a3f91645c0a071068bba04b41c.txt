@@ -1,0 +1,91 @@
+
+
+
+
+
+
+
+public static void main(String[] args) throws Exception, IOException {
+    Reader sc = new Reader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = sc.nextInt();
+    int[] d = new int[n];
+    int[] g = new int[n];
+    int[][] f = new int[n - 1][2];
+    int[][] e = new int[n][];
+    int[] pre = new int[n];
+    String ans = "Snuke";
+    if (n == 2) {
+        out.println(ans);
+        out.flush();
+        return;
+    }
+    PriorityQueue<Integer> que = new PriorityQueue<Integer>();
+    for (int i = 0; i < n - 1; i++) {
+        int x = sc.nextInt() - 1;
+        int y = sc.nextInt() - 1;
+        g[x]++;
+        g[y]++;
+        f[i][0] = x;
+        f[i][1] = y;
+    }
+    for (int i = 0; i < n; i++) {
+        e[i] = new int[g[i]];
+        g[i] = 0;
+    }
+    for (int i = 0, fr, to; i < n - 1; i++) {
+        fr = f[i][0];
+        to = f[i][1];
+        e[fr][g[fr]++] = to;
+        e[to][g[to]++] = fr;
+    }
+    boolean[] us = new boolean[n];
+    que.add(0);
+    us[0] = true;
+    fill(pre, -1);
+    while (!que.isEmpty()) {
+        int q = que.poll();
+        for (int i = 0, t; i < g[q]; i++) {
+            t = e[q][i];
+            if (!us[t]) {
+                pre[t] = q;
+                que.add(t);
+                us[t] = true;
+            }
+        }
+    }
+    int l = 0, cr = n - 1, s = 0, st = n - 1;
+    while (true) {
+        if (pre[cr] == 0)
+            break;
+        l++;
+        cr = pre[cr];
+    }
+    cr = n - 1;
+    for (int i = 0; i < l / 2; i++) {
+        st = pre[cr];
+        cr = pre[cr];
+    }
+    que.clear();
+    que.add(st);
+    fill(us, false);
+    us[st] = true;
+    us[pre[st]] = true;
+    while (!que.isEmpty()) {
+        int q = que.poll();
+        s++;
+        for (int i = 0, t; i < g[q]; i++) {
+            t = e[q][i];
+            if (!us[t]) {
+                pre[t] = q;
+                que.add(t);
+                us[t] = true;
+            }
+        }
+    }
+    
+    if (n - s > s)
+        ans = "Fennec";
+    out.println(ans);
+    out.flush();
+}

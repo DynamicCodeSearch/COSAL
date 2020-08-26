@@ -1,0 +1,14 @@
+public static void solve(char[] a, char[] b, int index) {
+    if (index == a.length) {
+        return;
+    }
+    if (a[index] < b[index]) {
+        state = -1;
+        return;
+    } else if (a[index] > b[index]) {
+        state = 1;
+        return;
+    } else {
+        solve(a, b, index + 1);
+    }
+}

@@ -1,0 +1,19 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    String S = input.readLine();
+    int APosition = 0;
+    for (int i = 0; i < S.length(); i++) {
+        if (isA(S.charAt(i))) {
+            APosition = i;
+            break;
+        }
+    }
+    int ZPosition = S.length() - 1;
+    for (int i = S.length() - 1; i >= 0; i--) {
+        if (isZ(S.charAt(i))) {
+            ZPosition = i;
+            break;
+        }
+    }
+    System.out.println(ZPosition - APosition + 1);
+}

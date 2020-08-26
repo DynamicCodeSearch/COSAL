@@ -1,0 +1,40 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    Printer pr = new Printer(System.out);
+    int n = sc.nextInt();
+    int[] c = new int[n];
+    int[] x = new int[n];
+    int[] y = new int[n];
+    for (int i = 0; i < n; i++) {
+        x[i] = sc.nextInt();
+        y[i] = sc.nextInt();
+        c[i] = sc.nextInt();
+    }
+    double l = -100_000;
+    double r = 100_000;
+    for (int i = 0; i < 100; i++) {
+        double c1 = (l + l + r) / 3;
+        double c2 = (l + r + r) / 3;
+        if (f(c1, x, c) > f(c2, x, c)) {
+            l = c1;
+        } else {
+            r = c2;
+        }
+    }
+    double max = f(l, x, c);
+    l = -100_000;
+    r = 100_000;
+    for (int i = 0; i < 100; i++) {
+        double c1 = (l + l + r) / 3;
+        double c2 = (l + r + r) / 3;
+        if (f(c1, y, c) > f(c2, y, c)) {
+            l = c1;
+        } else {
+            r = c2;
+        }
+    }
+    max = Math.max(max, f(l, y, c));
+    pr.printf("%.5f\n", max);
+    pr.close();
+    sc.close();
+}

@@ -1,0 +1,43 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int sx = scanner.nextInt();
+    int sy = scanner.nextInt();
+    int tx = scanner.nextInt();
+    int ty = scanner.nextInt();
+    int xGap = tx - sx;
+    int yGap = ty - sy;
+    StringBuffer stringBuffer = new StringBuffer();
+    for (int i = 0; i < yGap; i++) {
+        stringBuffer.append("U");
+    }
+    for (int i = 0; i < xGap; i++) {
+        stringBuffer.append("R");
+    }
+    for (int i = 0; i < yGap; i++) {
+        stringBuffer.append("D");
+    }
+    for (int i = 0; i < xGap; i++) {
+        stringBuffer.append("L");
+    }
+    stringBuffer.append("L");
+    for (int i = 0; i < yGap; i++) {
+        stringBuffer.append("U");
+    }
+    stringBuffer.append("U");
+    for (int i = 0; i < xGap; i++) {
+        stringBuffer.append("R");
+    }
+    stringBuffer.append("R");
+    stringBuffer.append("D");
+    stringBuffer.append("R");
+    for (int i = 0; i < yGap; i++) {
+        stringBuffer.append("D");
+    }
+    stringBuffer.append("D");
+    for (int i = 0; i < xGap; i++) {
+        stringBuffer.append("L");
+    }
+    stringBuffer.append("L");
+    stringBuffer.append("U");
+    System.out.println(stringBuffer.toString());
+}

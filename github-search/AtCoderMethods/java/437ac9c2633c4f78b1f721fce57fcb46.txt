@@ -1,0 +1,15 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    int count = sc.nextInt();
+    int[] ans = new int[100000];
+    for (int i = 0; i < count; i++) {
+        final int element = Integer.parseInt(sc.next());
+        ans[element] = ans[element] + 1;
+        if (element < 99999)
+            ans[element + 1] = ans[element + 1] + 1;
+        if (element > 0)
+            ans[element - 1] = ans[element - 1] + 1;
+    }
+    int ansInt = IntStream.of(ans).parallel().max().getAsInt();
+    System.out.println(ansInt);
+}

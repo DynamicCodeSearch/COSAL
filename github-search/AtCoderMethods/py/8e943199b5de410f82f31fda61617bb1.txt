@@ -1,0 +1,16 @@
+def sentou(NT, ts):
+    N, T = map(int, NT.split())
+    before_oshitano = None
+    total_s = 0
+    for t in map(int, ts.split()):
+        if before_oshitano is None:
+            before_oshitano = t
+            continue
+        elif T > (t - before_oshitano):
+            total_s += t - before_oshitano
+        else:
+            total_s += T
+        before_oshitano = t
+    total_s += T
+
+    print(total_s)

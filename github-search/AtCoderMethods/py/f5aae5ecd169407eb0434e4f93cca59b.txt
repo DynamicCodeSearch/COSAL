@@ -1,0 +1,15 @@
+def main():
+    n,k = readLine_int_list()
+
+    l = defaultdict(lambda: 0)
+    for i in range(n):
+        a,b =readLine_int_list()
+        l[a] += b
+
+    cnt = 0
+    for key in sorted(l.keys()):
+        val = l[key]
+        cnt += val
+        if cnt >= k:
+            print(key)
+            break

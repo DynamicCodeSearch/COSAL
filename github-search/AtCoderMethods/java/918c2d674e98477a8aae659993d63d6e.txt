@@ -1,0 +1,34 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    while (sc.hasNext()) {
+        int n = sc.nextInt();
+        LinkedList<magic> m1 = new LinkedList<>();
+        LinkedList<magic> m2 = new LinkedList<>();
+        for (int i = 0; i < n; i++) {
+            magic mag = new magic();
+            mag.a = sc.nextInt();
+            mag.b = sc.nextInt();
+            if (mag.a - mag.b < 0)
+                m1.add(mag);
+            else
+                m2.add(mag);
+        }
+        Collections.sort(m1, new magicComparator1());
+        Collections.sort(m2, new magicComparator2());
+        long now = 0;
+        long max = 0;
+        while (!m1.isEmpty()) {
+            magic ma = m1.poll();
+            now += ma.a;
+            max = Math.max(now, max);
+            now -= ma.b;
+        }
+        while (!m2.isEmpty()) {
+            magic ma = m2.poll();
+            now += ma.a;
+            max = Math.max(now, max);
+            now -= ma.b;
+        }
+        System.out.println(max);
+    }
+}

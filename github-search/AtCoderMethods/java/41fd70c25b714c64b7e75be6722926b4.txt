@@ -1,0 +1,46 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int[] parents = new int[n];
+    List<List<Integer>> childlen = new ArrayList<>();
+    for (int i = 0; i < n; i++) {
+        childlen.add(new ArrayList<>());
+    }
+    parents[0] = -1;
+    for (int i = 1; i < n; i++) {
+        parents[i] = in.nextInt() - 1;
+        childlen.get(parents[i]).add(i);
+    }
+    int[] sumScore = in.nextIntArray(n);
+    int[] minWhite = new int[n];
+    for (int i = n - 1; i >= 0; i--) {
+        int min = 0;
+        for (int child : childlen.get(i)) {
+            min += Math.min(minWhite[child], sumScore[child]);
+        }
+        if (min > sumScore[i]) {
+            out.println("IMPOSSIBLE");
+            return;
+        }
+        int sum = 0;
+        for (int child : childlen.get(i)) {
+            sum += minWhite[child];
+            sum += sumScore[child];
+        }
+        TreeSet<Integer> set = new TreeSet<>();
+        set.add(0);
+        for (int child : childlen.get(i)) {
+            TreeSet<Integer> nextSet = new TreeSet<>();
+            for (int score : set) {
+                if (score + sumScore[child] <= sumScore[i]) {
+                    nextSet.add(score + sumScore[child]);
+                }
+                if (score + minWhite[child] <= sumScore[i]) {
+                    nextSet.add(score + minWhite[child]);
+                }
+            }
+            set = nextSet;
+        }
+        minWhite[i] = sum - set.last();
+    }
+    out.println("POSSIBLE");
+}

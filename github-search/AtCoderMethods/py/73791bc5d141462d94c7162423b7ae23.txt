@@ -1,0 +1,15 @@
+def Bellmanford(n, edges, r): 
+    d = [INF] * n
+    d[r] = 0
+
+    for i in range(n):
+
+
+        for (u, v, c) in edges:
+            if d[u] != INF and d[u] + c < d[v]:
+                d[v] = d[u] + c
+
+                if i == n-1 and v == n-1:
+                    return 'inf'
+
+    return -d[n-1]

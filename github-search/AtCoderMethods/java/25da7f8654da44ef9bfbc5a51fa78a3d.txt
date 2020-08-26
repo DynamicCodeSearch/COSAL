@@ -1,0 +1,26 @@
+public static void main(String[] args) throws FileNotFoundException {
+    Scanner sc = new Scanner(System.in);
+    int n = readI(sc);
+    int[] scr = new int[n];
+    for (int i = 0; i < n; i++) {
+        scr[i] = readI(sc);
+    }
+    int[][] dpt = new int[n + 1][10001];
+    dpt[0][0] = 1;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < 10000; j++) {
+            if (dpt[i][j] > 0 && j + scr[i] <= 10000) {
+                dpt[i + 1][j + scr[i]] = 1;
+                dpt[i + 1][j] = 1;
+            }
+        }
+    }
+    int ans = 0;
+    for (int i = 0; i < dpt[0].length; i++) {
+        if (dpt[n][i] > 0 && i % 10 != 0 && ans < i) {
+            ans = i;
+        }
+    }
+    puts(ans);
+    new Solver();
+}

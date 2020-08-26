@@ -1,0 +1,13 @@
+public void union(int a, int b) {
+    int r1 = root(a);
+    int r2 = root(b);
+    if (S[r1] > S[r2]) {
+        A[r2] = r1;
+        S[r1] += S[r2];
+        S[r2] = 0;
+    } else {
+        A[r1] = r2;
+        S[r2] += S[r1];
+        S[r1] = 0;
+    }
+}

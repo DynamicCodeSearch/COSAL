@@ -1,0 +1,7 @@
+void setBalance(Node... nodes) {
+    for (Node n : nodes) {
+        reheight(n);
+        n.balance = height(n.right) - height(n.left);
+        n.sz = 1 + sz(n.left) + sz(n.right);
+    }
+}

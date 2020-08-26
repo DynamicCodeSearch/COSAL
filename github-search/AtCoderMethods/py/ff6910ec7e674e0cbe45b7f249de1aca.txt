@@ -1,0 +1,16 @@
+def solve(data):
+    l_data = len(data)
+    mo4s = [x for x in data if x%4 == 0] 
+    l_mo4s = len(mo4s)
+    odds = [x for x in data if x%2 == 1]
+    l_odds = len(odds)
+    l_evens = l_data - l_odds - l_mo4s
+
+
+
+
+    if l_odds > (l_mo4s + 1):
+        return 'No'
+    if (l_odds > l_mo4s) and (l_data > (l_mo4s + l_odds)):
+        return 'No'
+    return 'Yes'

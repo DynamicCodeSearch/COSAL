@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    String a = scan.next();
+    String b = scan.next();
+    if (a.length() > b.length()) {
+        System.out.println("GREATER");
+        return;
+    }
+    if (b.length() > a.length()) {
+        System.out.println("LESS");
+        return;
+    }
+    String ans = "EQUAL";
+    for (int i = 0; i < a.length(); i++) {
+        if (a.charAt(i) > b.charAt(i)) {
+            ans = "GREATER";
+            break;
+        }
+        if (b.charAt(i) > a.charAt(i)) {
+            ans = "LESS";
+            break;
+        }
+    }
+    System.out.println(ans);
+}

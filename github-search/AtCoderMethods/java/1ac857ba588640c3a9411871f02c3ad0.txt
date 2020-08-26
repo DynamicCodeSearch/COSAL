@@ -1,0 +1,12 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] input = br.readLine().split(" ");
+    int n = Integer.parseInt(input[0]);
+    int m = Integer.parseInt(input[1]);
+    if (n >= 12) {
+        n -= 12;
+    }
+    double s = n * 30.0 + 0.5 * m;
+    double l = 6.0 * m;
+    System.out.println(Math.min(Math.abs(s - l), 360 - Math.abs(s - l)));
+}

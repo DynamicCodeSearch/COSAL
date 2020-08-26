@@ -1,0 +1,18 @@
+void solve() throws IOException {
+    int h = ni();
+    int w = ni();
+    int a = ni();
+    int b = ni();
+    memo1 = new long[h + w];
+    memo2 = new long[h + w];
+    memo1[0] = memo2[0] = memo1[1] = memo2[1] = 1;
+    for (int i = 2; i < h + w; i++) {
+        memo1[i] = mltMod(i, memo1[i - 1]);
+        memo2[i] = mltMod(rev(i), memo2[i - 1]);
+    }
+    long ans = 0;
+    for (int i = 0; i < w - b; i++) {
+        ans = addMod(ans, mltMod(combMod(h - a - 1 + b + i, b + i), combMod(a - 1 + w - b - i - 1, w - b - i - 1)));
+    }
+    out.println(ans);
+}

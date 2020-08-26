@@ -1,0 +1,14 @@
+def solve(n):
+    ans = 0
+
+    for k in range(1, int(n*(n+1)/2)+1):
+        left = k * (k-1) / 2
+        right = k * (k + 1) / 2
+
+
+
+        if (left < n) and (n <= right):
+            ans = k
+            break
+
+    return ans

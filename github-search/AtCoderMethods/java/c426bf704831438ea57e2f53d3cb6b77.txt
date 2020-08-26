@@ -1,0 +1,33 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int n = scanner.nextInt(), a = scanner.nextInt(), b = scanner.nextInt();
+    int pos = 0;
+    for (int i = 0; i < n; i++) {
+        String s = scanner.next();
+        int d = scanner.nextInt();
+        if (s.equals("West")) {
+            if (a > d) {
+                pos -= a;
+            } else if (b < d) {
+                pos -= b;
+            } else {
+                pos -= d;
+            }
+        } else {
+            if (a > d) {
+                pos += a;
+            } else if (b < d) {
+                pos += b;
+            } else {
+                pos += d;
+            }
+        }
+    }
+    if (pos < 0) {
+        System.out.println("West " + (-pos));
+    } else if (pos > 0) {
+        System.out.println("East " + pos);
+    } else {
+        System.out.println(0);
+    }
+}

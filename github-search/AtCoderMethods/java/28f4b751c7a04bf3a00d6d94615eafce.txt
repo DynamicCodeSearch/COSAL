@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int t = scanner.nextInt(), n = scanner.nextInt();
+    int[] a = new int[n];
+    int count = 0;
+    for (int i = 0; i < n; i++) {
+        a[i] = scanner.nextInt();
+    }
+    int m = scanner.nextInt();
+    int[] b = new int[m];
+    for (int i = 0; i < m; i++) {
+        b[i] = scanner.nextInt();
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            if (b[j] - a[i] <= t && b[j] - a[i] >= 0) {
+                count++;
+                a[i] = -100;
+                b[j] = -1000;
+            }
+        }
+    }
+    if (m == count) {
+        System.out.println("yes");
+    } else {
+        System.out.println("no");
+    }
+}

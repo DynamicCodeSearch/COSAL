@@ -1,0 +1,18 @@
+
+public void run() throws IOException {
+    
+    int TEST_CASE = 1;
+    while (TEST_CASE-- != 0) {
+        int n = io.nextInt();
+        int[] a = io.nextIntArray(n);
+        long s = 0;
+        long sum = a[0];
+        long ans = Long.MAX_VALUE;
+        for (int i = 0; i < n; i++) s += a[i];
+        for (int i = 1; i < n; i++) {
+            ans = Math.min(ans, Math.abs(sum - (s - sum)));
+            sum += a[i];
+        }
+        io.out.println(ans);
+    }
+}

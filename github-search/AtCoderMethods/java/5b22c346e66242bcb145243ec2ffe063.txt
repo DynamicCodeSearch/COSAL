@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    h = sc.nextInt();
+    w = sc.nextInt();
+    a = new int[h + 2][w + 2];
+    dp = new int[h + 2][w + 2];
+    for (int i = 1; i <= h; i++) {
+        for (int j = 1; j <= w; j++) {
+            a[i][j] = sc.nextInt();
+        }
+    }
+    int sum = 0;
+    for (int i = 1; i <= h; i++) {
+        for (int j = 1; j <= w; j++) {
+            sum += dp(i, j);
+            sum %= mod;
+        }
+    }
+    System.out.println(sum);
+    sc.close();
+}

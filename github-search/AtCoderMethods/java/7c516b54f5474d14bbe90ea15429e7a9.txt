@@ -1,0 +1,20 @@
+public int compareTo(Point s) {
+    try {
+        switch(points_sort_type) {
+            case SORT_TYPE_X:
+                if (x == s.x)
+                    return Double.compare(y, s.y);
+                return Double.compare(x, s.x);
+            case SORT_TYPE_Y:
+                if (y == s.y)
+                    return Double.compare(x, s.x);
+                return Double.compare(y, s.y);
+            default:
+                throw new SortTypeUndefinedException();
+        }
+    } catch (SortTypeUndefinedException e) {
+        e.printStackTrace();
+        System.exit(1);
+    }
+    return -1;
+}

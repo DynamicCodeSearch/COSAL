@@ -1,0 +1,13 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    int n, k;
+    long sum = 0, l;
+    n = in.nextInt();
+    k = in.nextInt();
+    int[] arr = new int[n];
+    for (int i = 0; i < arr.length; i++) {
+        arr[i] = in.nextInt();
+        l = Math.min(arr[i], Math.abs(k - arr[i]));
+        sum += l;
+    }
+    out.println(sum * 2);
+}

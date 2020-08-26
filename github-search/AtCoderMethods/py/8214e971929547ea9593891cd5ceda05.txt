@@ -1,0 +1,10 @@
+def solve():
+    n = int(input())
+    toku = Counter()
+
+    for i in range(n):
+        s = input()
+        toku[s] += 1
+
+    ans = sorted(toku.items(), key=itemgetter(1), reverse=True)[0][0]
+    print(ans)

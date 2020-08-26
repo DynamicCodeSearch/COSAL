@@ -1,0 +1,15 @@
+public static void fall(Node a) {
+    if (a == null)
+        return;
+    a.v += a.add;
+    if (a.left != null) {
+        a.left.add += a.add;
+        update(a.left);
+    }
+    if (a.right != null) {
+        a.right.add += a.add;
+        update(a.right);
+    }
+    a.add = 0;
+    update(a);
+}

@@ -1,0 +1,30 @@
+def main():
+    N = int(input())
+
+    i = 0
+    S = []
+    while i < N:
+        S.append(list(str(input())))
+        i += 1
+    if N == 1:
+        ans = sorted(S[0])
+        print(''.join(ans))
+        sys.exit()
+
+    i = 0
+    while i < N - 1:
+        sset = set(S[i]) & set(S[i+1])
+        i += 2
+
+    ans = []
+    for a in sset:
+        i = 0
+        n = []
+        while i < N:
+            n.append(S[i].count(a))
+            i += 1
+        small = min(n)
+        ans.append(a * small)
+
+    ans.sort()
+    print(''.join(ans))

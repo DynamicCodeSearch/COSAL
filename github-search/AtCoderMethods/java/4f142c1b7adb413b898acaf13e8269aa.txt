@@ -1,0 +1,13 @@
+private static long[] f(long d, long a, long b, long c, long X, boolean up) {
+    long[] ret = new long[3];
+    if (up) {
+        ret[0] = a + c > d ? a : Math.min(d - c, X);
+        ret[1] = Math.max(b, ret[0]);
+        ret[2] = Math.max(c - d, -X);
+    } else {
+        ret[1] = b + c + d < X ? b : Math.max(X - (c + d), 0);
+        ret[0] = Math.min(ret[1], a);
+        ret[2] = Math.min(c + d, X);
+    }
+    return ret;
+}

@@ -1,0 +1,22 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    List<Integer>[] G = new ArrayList[n];
+    for (int i = 0; i < n; i++) {
+        G[i] = new ArrayList<>();
+    }
+    for (int i = 0; i < n - 1; i++) {
+        int x = in.nextInt() - 1;
+        int y = in.nextInt() - 1;
+        G[x].add(y);
+        G[y].add(x);
+    }
+    Lca lca = new Lca(G, 0);
+    int[] depth = lca.getDepth();
+    int q = in.nextInt();
+    for (int i = 0; i < q; i++) {
+        int a = in.nextInt() - 1;
+        int b = in.nextInt() - 1;
+        int c = lca.lca(a, b);
+        out.println((depth[a] - depth[c]) + (depth[b] - depth[c]) + 1);
+    }
+}

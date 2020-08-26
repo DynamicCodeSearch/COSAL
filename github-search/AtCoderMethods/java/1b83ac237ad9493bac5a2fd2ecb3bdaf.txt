@@ -1,0 +1,52 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int n = in.nextInt();
+    long[] a = new long[n];
+    long sum1 = 0, sum2 = 0, ans1 = 0, ans2 = 0;
+    for (int j = 0; j < a.length; j++) {
+        a[j] = in.nextLong();
+    }
+    in.close();
+    for (int i = 0; i < n; i++) {
+        
+        if (sum1 + a[i] > 0) {
+            sum1 += a[i];
+        } else {
+            ans1 += 1 - (sum1 + a[i]);
+            sum1 = 1;
+        }
+        
+        i++;
+        if (i >= n)
+            break;
+        if (sum1 + a[i] < 0) {
+            sum1 += a[i];
+        } else {
+            ans1 += sum1 + a[i] + 1;
+            sum1 = -1;
+        }
+    
+    }
+    System.out.println();
+    for (int i = 0; i < n; i++) {
+        
+        if (sum2 + a[i] < 0) {
+            sum2 += a[i];
+        } else {
+            ans2 += sum2 + a[i] + 1;
+            sum2 = -1;
+        }
+        
+        i++;
+        if (i >= n)
+            break;
+        if (sum2 + a[i] > 0) {
+            sum2 += a[i];
+        } else {
+            ans2 += 1 - (sum2 + a[i]);
+            sum2 = 1;
+        }
+    
+    }
+    System.out.println(Math.min(ans1, ans2));
+}

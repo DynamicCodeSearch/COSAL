@@ -1,0 +1,17 @@
+private List<List<Integer>> permutate(List<Integer> list) {
+    List<List<Integer>> result = new ArrayList<List<Integer>>();
+    if (list.size() == 1) {
+        result.add(list);
+        return result;
+    }
+    for (Integer i : list) {
+        List<Integer> newList = new ArrayList<Integer>(list);
+        newList.remove(i);
+        List<List<Integer>> eachResult = permutate(newList);
+        for (List<Integer> item : eachResult) {
+            item.add(0, i);
+        }
+        result.addAll(eachResult);
+    }
+    return result;
+}

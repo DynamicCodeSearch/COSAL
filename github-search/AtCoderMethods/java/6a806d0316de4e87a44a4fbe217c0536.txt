@@ -1,0 +1,11 @@
+public static long getResult(String s) {
+    long[] f = f(s.length());
+    long result = 0;
+    int len = s.length();
+    for (int l = 1; l <= len; l++) {
+        for (int p = 0; p < len + 1 - l; p++) {
+            result += f[p] * f[len - l - p] * Long.parseLong(s.substring(p, p + l));
+        }
+    }
+    return result;
+}

@@ -1,0 +1,8 @@
+private void readBuf() throws IOException {
+    if (ptr >= max && dis.available() > 0) {
+        if (max > 0)
+            Arrays.fill(buf, 0, max, (byte) 0);
+        max = dis.read(buf);
+        ptr = 0;
+    }
+}

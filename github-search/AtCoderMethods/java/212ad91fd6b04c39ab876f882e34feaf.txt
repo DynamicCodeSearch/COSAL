@@ -1,0 +1,14 @@
+long solve(int f, int t, int c, long[][] dp) {
+    if (dp[t][c] >= 0)
+        return dp[t][c];
+    if (f != -1 && G[t].size() == 1) {
+        dp[t][c] = 1;
+        return dp[t][c];
+    }
+    long sum = 1;
+    for (int n : G[t]) if (n != f) {
+        long w = solve(t, n, 0, dp), b = solve(t, n, 1, dp);
+        sum = (sum * (w + (c == 1 ? 0 : b))) % EPS;
+    }
+    return dp[t][c] = sum;
+}

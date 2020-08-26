@@ -1,0 +1,27 @@
+def move(): 
+    global nodes
+    global possible_memo
+    global step
+    global counter
+    global N
+    global end_flag
+    try:
+        _=next(possible_memo[step])
+        nodes[step+1]=_
+        step+=1
+
+
+
+        if step==N-1:
+            counter+=1
+
+        possible_memo[step]=gen_get_to(nodes[step])
+    except StopIteration:
+        step-=1
+
+        if not step==-1:
+            pass
+
+        if step==-1:
+
+            end_flag=True

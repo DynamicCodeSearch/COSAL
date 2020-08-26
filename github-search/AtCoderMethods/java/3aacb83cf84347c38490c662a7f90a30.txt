@@ -1,0 +1,7 @@
+public void add(T key, int v) {
+    if (!map.containsKey(key)) {
+        map.put(key, v);
+    } else {
+        map.merge(key, v, Math::addExact);
+    }
+}

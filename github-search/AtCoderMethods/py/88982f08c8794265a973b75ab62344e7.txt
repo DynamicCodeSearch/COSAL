@@ -1,0 +1,16 @@
+def solve():
+  Deg, Dis = map(int,input().split())
+  ans1 = ('N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW','N'
+  )[ (Deg * 10 + 1125) // 2250 ]
+  Dis = int(round(0.00001 + Dis / 6))
+  ans2 = 0
+  L = (2, 15, 33, 54, 79, 107, 138, 171, 207, 244, 284, 326,)
+  for i, th in enumerate(L):
+    if th < Dis:
+      ans2 = i+1
+    else:
+      break
+
+  if ans2 == 0:
+    ans1 = 'C'
+  print(ans1, ans2)

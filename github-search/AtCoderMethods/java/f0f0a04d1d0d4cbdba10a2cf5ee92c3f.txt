@@ -1,0 +1,15 @@
+void union(int x, int y) {
+    int parX = parent(x);
+    int parY = parent(y);
+    if (parX != parY) {
+        if (rank[parX] >= rank[parY]) {
+            rank[parX] += rank[parY];
+            rank[parY] = 0;
+            par[parY] = parX;
+        } else {
+            rank[parY] += rank[parX];
+            rank[parX] = 0;
+            par[parX] = parY;
+        }
+    }
+}

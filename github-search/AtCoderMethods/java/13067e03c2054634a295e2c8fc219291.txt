@@ -1,0 +1,14 @@
+void update(int p, int L, int R, int i, long v) {
+    if (L == R - 1) {
+        a[p] = b[p] = v;
+        return;
+    }
+    int M = (L + R) / 2;
+    if (i < M) {
+        update(2 * p + 1, L, M, i, v);
+    } else {
+        update(2 * p + 2, M, R, i, v);
+    }
+    a[p] = Math.min(a[2 * p + 1], a[2 * p + 2]);
+    b[p] = Math.max(b[2 * p + 1], b[2 * p + 2]);
+}

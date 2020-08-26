@@ -1,0 +1,4 @@
+def main():
+    N = int(input())
+    P = [tuple([int(x, 10) for x in line.split(" ")]) for line in sys.stdin.readlines()]
+    print(len(LIS([x for _, x in sorted(P, key=lambda p: (p[0], -p[1]))])))

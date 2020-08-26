@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String s = sc.next();
+    int k = sc.nextInt();
+    int N = s.length();
+    List<String> word = new ArrayList<String>();
+    for (int i = 0; i < N - k + 1; i++) {
+        word.add(s.substring(i, i + k));
+    }
+    for (int i = 0; i < word.size(); i++) {
+        for (int j = i + 1; j < word.size(); j++) {
+            if (word.get(i).equals(word.get(j))) {
+                word.remove(j);
+                j--;
+                if (word.size() == 0) {
+                    System.out.println(1);
+                    return;
+                }
+            }
+        }
+    }
+    System.out.println(word.size());
+}

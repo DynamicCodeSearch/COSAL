@@ -1,0 +1,17 @@
+public void solve(int testNumber, FastScanner in, PrintWriter out) {
+    long n = in.nextLong();
+    long m = in.nextLong();
+    long l = 0;
+    long r = n + m + 1;
+    while (r - l > 1) {
+        long x = l + (r - l) / 2;
+        long additionalS = Math.max(0L, x - n);
+        long needC = 2 * x + 2 * additionalS;
+        if (needC <= m) {
+            l = x;
+        } else {
+            r = x;
+        }
+    }
+    out.println(l);
+}

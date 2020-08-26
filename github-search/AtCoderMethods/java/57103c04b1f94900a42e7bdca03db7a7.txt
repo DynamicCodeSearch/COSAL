@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    long k = in.nextLong();
+    long p50 = k / 50;
+    long m50 = k % 50;
+    long[] ans = new long[50];
+    for (int i = 0; i < 50; i++) {
+        ans[i] = i + p50;
+    }
+    for (int i = 0; i < m50; i++) {
+        for (int j = 0; j < 50; j++) {
+            if (i == j) {
+                ans[j] += 50;
+            } else {
+                ans[j] -= 1;
+            }
+        }
+    }
+    out.println(50);
+    for (int i = 0; i < 50; i++) {
+        if (i >= 1) {
+            out.print(' ');
+        }
+        out.print(ans[i]);
+    }
+    out.println();
+    out.flush();
+}

@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    int accumpencil = 0;
+    int madepencil = 0;
+    int[] Pencilrelate = new int[3];
+    Scanner scan = new Scanner(System.in);
+    Pencilrelate[0] = Integer.parseInt(scan.next());
+    Pencilrelate[1] = Integer.parseInt(scan.next());
+    Pencilrelate[2] = Integer.parseInt(scan.next());
+    while (true) {
+        if (accumpencil + Pencilrelate[2] < Pencilrelate[0]) {
+            madepencil = madepencil + Pencilrelate[2];
+            break;
+        }
+        madepencil = madepencil + Pencilrelate[2];
+        Pencilrelate[2] = accumpencil + Pencilrelate[2];
+        accumpencil = Pencilrelate[2] % Pencilrelate[0];
+        Pencilrelate[2] = ((int) Pencilrelate[2] / Pencilrelate[0]) * Pencilrelate[1];
+    }
+    System.out.println(madepencil);
+}

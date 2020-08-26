@@ -1,0 +1,25 @@
+void run() {
+    Scanner cin = new Scanner(System.in);
+    int m = cin.nextInt();
+    int n = cin.nextInt();
+    int N = cin.nextInt();
+    
+    int usedPencil = N;
+    
+    int ret = usedPencil;
+    
+    while (true) {
+        
+        if (usedPencil >= m) {
+            
+            int numRecycle = usedPencil / m;
+            
+            usedPencil -= numRecycle * m;
+            usedPencil += numRecycle * n;
+            ret += numRecycle * n;
+        } else
+            
+            break;
+    }
+    System.out.println(ret);
+}

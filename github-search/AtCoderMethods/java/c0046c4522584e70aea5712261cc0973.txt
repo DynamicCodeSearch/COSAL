@@ -1,0 +1,9 @@
+void sieve(int n) {
+    b = new boolean[n + 1];
+    b[0] = b[1] = true;
+    for (int i = 2; i * i < n; i++) {
+        if (!b[i]) {
+            for (int j = 2 * i; j < 100001; j += i) b[j] = true;
+        }
+    }
+}

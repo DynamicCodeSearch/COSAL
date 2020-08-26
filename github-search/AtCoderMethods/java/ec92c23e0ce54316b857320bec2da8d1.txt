@@ -1,0 +1,37 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    double sx = sc.nextLong();
+    double sy = sc.nextLong();
+    double tx = sc.nextLong();
+    double ty = sc.nextLong();
+    int N = sc.nextInt();
+    double[] x = new double[N + 2];
+    double[] y = new double[N + 2];
+    double[] r = new double[N + 2];
+    x[0] = sx;
+    y[0] = sy;
+    x[N + 1] = tx;
+    y[N + 1] = ty;
+    for (int i = 1; i <= N; i++) {
+        x[i] = sc.nextLong();
+        y[i] = sc.nextLong();
+        r[i] = sc.nextLong();
+    }
+    int[][] g = new int[N + 2][N + 1];
+    double[][] w = new double[N + 2][N + 1];
+    for (int i = 0; i < N + 2; i++) {
+        int ptr = 0;
+        for (int j = 0; j < N + 2; j++) {
+            if (j != i) {
+                g[i][ptr] = j;
+                double dx = x[i] - x[j];
+                double dy = y[i] - y[j];
+                double len = Math.sqrt(dx * dx + dy * dy);
+                w[i][ptr] = Math.max(0, len - r[i] - r[j]);
+                ptr++;
+            }
+        }
+    }
+    double[] ret = dijk(g, w, 0);
+    System.out.println(ret[N + 1]);
+}

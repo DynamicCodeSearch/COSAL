@@ -1,0 +1,7 @@
+public static void dfs(int u, int h) {
+    level[u] = h;
+    for (int v : adj[u]) if (v != parent[u]) {
+        parent[v] = u;
+        dfs(v, h + 1);
+    }
+}

@@ -1,0 +1,35 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    String[] S = new String[n];
+    for (int i = 0; i < n; i++) {
+        S[i] = sc.next();
+    }
+    String az = "abcdefghijklmnopqrstuvwxyz";
+    int[] cnt_az = new int[26];
+    for (int i = 0; i < cnt_az.length; i++) {
+        cnt_az[i] = Integer.MAX_VALUE;
+    }
+    for (int i = 0; i < S.length; i++) {
+        for (int j = 0; j < az.length(); j++) {
+            int cnt = 0;
+            for (char c : S[i].toCharArray()) {
+                if (c == az.charAt(j)) {
+                    cnt++;
+                }
+            }
+            cnt_az[j] = Math.min(cnt_az[j], cnt);
+        }
+    }
+    for (int i = 0; i < cnt_az.length; i++) {
+        if (cnt_az[i] == Integer.MAX_VALUE) {
+            cnt_az[i] = 0;
+        }
+    }
+    for (int i = 0; i < cnt_az.length; i++) {
+        for (int j = 0; j < cnt_az[i]; j++) {
+            System.out.print(az.charAt(i));
+        }
+    }
+    System.out.println("");
+}

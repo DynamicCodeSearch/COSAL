@@ -1,0 +1,9 @@
+def min_turns(n, x, ys):
+    zs = ys[:]
+    if zs[0] > x:
+        zs[0] = x
+    for i in range(n - 1):
+        if zs[i] + zs[i + 1] > x:
+            zs[i + 1] = x - zs[i]
+    ans = sum(y - z for y, z in zip(ys, zs))
+    return ans

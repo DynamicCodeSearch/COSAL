@@ -1,0 +1,14 @@
+public static void solve(int index, int xor) {
+    if (isBug) {
+        return;
+    }
+    if (index == n) {
+        if (xor == 0) {
+            isBug = true;
+        }
+        return;
+    }
+    for (int i = 0; i < k; i++) {
+        solve(index + 1, xor ^ nums[index][i]);
+    }
+}

@@ -1,0 +1,18 @@
+boolean check(int i) {
+    boolean[] eo = new boolean[3];
+    for (Edge e : G.get(i)) {
+        if (e.to == p[i])
+            continue;
+        if (!check(e.to))
+            return false;
+        min[i] = Math.max(min[i], min[e.to] - 1);
+        max[i] = Math.min(max[i], max[e.to] + 1);
+        eo[evenOdd[e.to]] = true;
+    }
+    if (evenOdd[i] != 0)
+        eo[3 - evenOdd[i]] = true;
+    if (eo[1] && eo[2])
+        return false;
+    evenOdd[i] = eo[1] ? 2 : (eo[2] ? 1 : 0);
+    return min[i] <= max[i];
+}

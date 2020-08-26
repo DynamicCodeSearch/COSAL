@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    
+    final int k;
+    try (Scanner scan = new Scanner(System.in)) {
+        
+        k = scan.nextInt();
+    }
+    
+    
+    int result1 = 0;
+    int result2 = 1;
+    for (int i = 0; i < k; i++) {
+        int temp = result1 + result2;
+        result1 = result2;
+        result2 = temp;
+    }
+    out.println(result1 + " " + result2);
+    out.flush();
+}

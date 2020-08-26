@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    IO io = new IO();
+    int n = io.nextInt();
+    int t = io.nextInt();
+    int[] a = io.nextIntArray(n);
+    int max = 0;
+    int count = 0;
+    int min = Integer.MAX_VALUE;
+    for (int i = 0; i < n; i++) {
+        if (min < a[i]) {
+            int profit = a[i] - min;
+            if (profit > max) {
+                max = profit;
+                count = 1;
+            } else if (profit == max) {
+                count++;
+            }
+        }
+        min = Math.min(min, a[i]);
+    }
+    System.out.println(count);
+}

@@ -1,0 +1,15 @@
+def solve():
+    N, M = map(int, input().split())
+    edges = [None] * M
+
+    for i in range(M):
+        ai, bi, ci = map(int, sys.stdin.readline().split())
+        ai, bi = ai - 1, bi - 1
+        edges[i] = (ai, bi, -ci)
+
+    ans = BellmanFord(N, M, edges)
+
+    if ans is None:
+        print('inf')
+    else:
+        print(-ans)

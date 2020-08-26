@@ -1,0 +1,14 @@
+public static Node get(Node a, int K) {
+    while (a != null) {
+        fall(a);
+        if (K < count(a.left)) {
+            a = a.left;
+        } else if (K == count(a.left)) {
+            break;
+        } else {
+            K = K - count(a.left) - 1;
+            a = a.right;
+        }
+    }
+    return a;
+}

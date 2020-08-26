@@ -1,0 +1,31 @@
+void solve() throws IOException {
+    int n = ni();
+    int ma = ni(), mb = ni();
+    int[] a = new int[n];
+    int[] b = new int[n];
+    int[] c = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = ni();
+        b[i] = ni();
+        c[i] = ni();
+    }
+    int[][] dp = new int[401][401];
+    for (int i = 0; i < 401; i++) {
+        Arrays.fill(dp[i], Integer.MAX_VALUE / 2);
+    }
+    dp[0][0] = 0;
+    for (int i = 0; i < n; i++) {
+        for (int j = 400; j >= 0; j--) {
+            for (int k = 400; k >= 0; k--) {
+                if (j + a[i] <= 400 && k + b[i] <= 400) {
+                    dp[j + a[i]][k + b[i]] = Math.min(dp[j + a[i]][k + b[i]], dp[j][k] + c[i]);
+                }
+            }
+        }
+    }
+    int ans = Integer.MAX_VALUE / 2;
+    for (int i = 1; i * ma <= 400 && i * mb <= 400; i++) {
+        ans = Math.min(ans, dp[i * ma][i * mb]);
+    }
+    out.println(ans == Integer.MAX_VALUE / 2 ? -1 : ans);
+}

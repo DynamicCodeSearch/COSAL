@@ -1,0 +1,29 @@
+def main():
+    h, w = read_int_list()
+    n = read_int()
+    a = read_int_list()
+    color = [0] * (h * w)
+    t = 0
+    for i in range(n):
+        for k in range(a[i]):
+            color[t] = i + 1
+            t += 1
+
+    c = [[0] * w for i in range(h)]
+    t = 0
+    for i in range(h):
+        if i % 2 == 0:
+            start = 0
+            stop = w
+            step = 1
+        else:
+            start = w - 1
+            stop = -1
+            step = -1
+
+        for j in range(start, stop, step):
+            c[i][j] = color[t]
+            t += 1
+
+    for row in c:
+        print(*row)

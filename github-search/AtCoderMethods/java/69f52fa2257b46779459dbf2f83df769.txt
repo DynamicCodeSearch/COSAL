@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    char[] c = in.nextToken().toCharArray();
+    int n = c.length;
+    int a = -1;
+    int b = -1;
+    for (int i = 0; i + 1 < n; i++) {
+        if (c[i] == c[i + 1]) {
+            a = i + 1;
+            b = i + 2;
+            break;
+        }
+    }
+    if (a == -1) {
+        for (int i = 0; i + 2 < n; i++) {
+            if (c[i] == c[i + 2]) {
+                a = i + 1;
+                b = i + 3;
+                break;
+            }
+        }
+    }
+    out.println(String.format("%d %d", a, b));
+    out.flush();
+}

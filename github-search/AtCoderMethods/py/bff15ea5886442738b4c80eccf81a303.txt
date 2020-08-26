@@ -1,0 +1,26 @@
+def solve():
+    W, H, N = map(int, input().split())
+    xl, xr, yb, yt = 0, W, 0, H
+
+    for tc in range(N):
+        x, y, a = map(int, input().split())
+
+        if a == 1:
+            xl = max(xl, x)
+            pass
+        elif a == 2:
+            xr = min(xr, x)
+            pass
+        elif a == 3:
+            yb = max(yb, y)
+            pass
+        else:
+            yt = min(yt, y)
+            pass
+
+    if xr > xl and yt > yb:
+        ans = (xr - xl) * (yt - yb)
+    else:
+        ans = 0
+
+    print(ans)

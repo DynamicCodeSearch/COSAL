@@ -1,0 +1,15 @@
+private static long compute(long[] x) {
+    int n = x.length;
+    long sum = 0;
+    for (int i = 0; i < n - 1; i++) {
+        long D = x[i + 1] - x[i];
+        long left = i + 1;
+        long right = n - i - 1;
+        long ptn = left * right % MOD;
+        ptn *= D;
+        ptn %= MOD;
+        sum += ptn;
+    }
+    sum %= MOD;
+    return sum;
+}

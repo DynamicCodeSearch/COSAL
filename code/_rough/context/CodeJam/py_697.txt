@@ -1,0 +1,406 @@
+### Py Tokens: snm, getpt, tuple, int, xrange, float, num, close, readline, cases, append, case, res, range, split, infile 
+
+### Py functions
+
+def func_5e2687c4bc1b444b8adeb1bf58ba0832(cases, infile):
+    for case in range(1, cases + 1):
+        n, p, q, r, s = tuple([int(i) for i in infile.readline().split()])
+        num = []
+        snm = [0]
+        for i in xrange(n):
+            num.append((i * p + q) % r + s)
+            snm.append(snm[-1] + num[-1])
+        s, t = 0, snm[n]
+        while s != t:
+            m = s + t >> 1
+            i, j = getpt(snm, 0, m)
+            k, l = getpt(snm, i, m + j)
+            l -= j
+            if snm[n] - l - j <= m:
+                t = m
+            else:
+                s = m + 1
+        res = (snm[n] - s) / float(snm[n])
+        print 'Case #%d: %.10f' % (case, res)
+    infile.close()
+    return cases
+
+*********************************
+
+#### Score: 9.34207
+
+
+#### Java Tokens: next, println, cases, system, nextint, solve, scanner, int, case 
+
+public static int func_ac187287df434b2ba9123f5a9edcdcd6(Scanner scanner) { 
+ final int cases = scanner.nextInt();
+for (int t = 0; t < cases; t++) {
+    System.out.println("Case #" + (t + 1) + ": " + A.solve(scanner));
+}
+return cases;
+}
+
+
+*********************************
+
+#### Score: 8.22823
+
+
+#### Java Tokens: next, println, nextint, casenum, num, case, int 
+
+public static int func_8a58a60116c444e19239ea1667bf2816(int caseNum, PrintWriter pw, Scanner sc) { 
+ pw.println("Case #" + caseNum + ":");
+int W = sc.nextInt();
+return W;
+}
+
+
+public static PrintWriter func_e1f830f5e127477e9e3a7f149deb5e1f(int caseNum, PrintWriter pw, Scanner sc) { 
+ pw.println("Case #" + caseNum + ":");
+int W = sc.nextInt();
+return pw;
+}
+
+
+public static int func_1bec4220e1564b1ea083cb5807151e56(int caseNum, PrintWriter pw, Scanner sc) { 
+ pw.println("Case #" + caseNum + ":");
+int W = sc.nextInt();
+int L = sc.nextInt();
+int U = sc.nextInt();
+int G = sc.nextInt();
+return U;
+}
+
+
+*********************************
+
+#### Score: 8.05300
+
+
+#### Java Tokens: next, nextint, test, perfect, casenum, num, cnt, casecnt, int, println, print, system, flush, solve, processing, close, case 
+
+public static PrintWriter func_f12e35b80f5a45849f90b476496469d3(PrintWriter pw, Scanner sc) { 
+ int caseCnt = sc.nextInt();
+for (int caseNum = 0; caseNum < caseCnt; caseNum++) {
+    System.out.println("Processing test case " + (caseNum + 1));
+    pw.print("Case #" + (caseNum + 1) + ":");
+    new Perfect().solve(sc, pw);
+}
+pw.flush();
+pw.close();
+sc.close();
+return pw;
+}
+
+
+public static int func_88d590cfe4e9440abaf20e0993b429d7(PrintWriter pw, Scanner sc) { 
+ int caseCnt = sc.nextInt();
+for (int caseNum = 0; caseNum < caseCnt; caseNum++) {
+    System.out.println("Processing test case " + (caseNum + 1));
+    pw.print("Case #" + (caseNum + 1) + ":");
+    new Perfect().solve(sc, pw);
+}
+pw.flush();
+pw.close();
+sc.close();
+return caseCnt;
+}
+
+
+public static PrintWriter func_043e15777c2245f2ace3949d7ead4e4c(PrintWriter pw, Scanner sc) { 
+ int caseCnt = sc.nextInt();
+for (int caseNum = 0; caseNum < caseCnt; caseNum++) {
+    System.out.println("Processing test case " + (caseNum + 1));
+    pw.print("Case #" + (caseNum + 1) + ":");
+    new Perfect().solve(sc, pw);
+}
+pw.flush();
+pw.close();
+return pw;
+}
+
+
+*********************************
+
+#### Score: 8.05300
+
+
+#### Java Tokens: next, nextint, test, casenum, num, cnt, casecnt, int, cheaters, println, print, system, flush, solve, processing, close, case 
+
+public static PrintWriter func_09d59f7d2de54aa6ad5c03d1dd9a0206(PrintWriter pw, Scanner sc) { 
+ int caseCnt = sc.nextInt();
+for (int caseNum = 0; caseNum < caseCnt; caseNum++) {
+    System.out.println("Processing test case " + (caseNum + 1));
+    pw.print("Case #" + (caseNum + 1) + ": ");
+    new Cheaters().solve(sc, pw);
+}
+pw.flush();
+pw.close();
+return pw;
+}
+
+
+public static int func_c8d4c03dd31f4ebaa9d0dbb08bd7aa83(PrintWriter pw, Scanner sc) { 
+ int caseCnt = sc.nextInt();
+for (int caseNum = 0; caseNum < caseCnt; caseNum++) {
+    System.out.println("Processing test case " + (caseNum + 1));
+    pw.print("Case #" + (caseNum + 1) + ": ");
+    new Cheaters().solve(sc, pw);
+}
+pw.flush();
+pw.close();
+sc.close();
+return caseCnt;
+}
+
+
+public static PrintWriter func_8854336f103d4db6836dc952494d5b44(PrintWriter pw, Scanner sc) { 
+ int caseCnt = sc.nextInt();
+for (int caseNum = 0; caseNum < caseCnt; caseNum++) {
+    System.out.println("Processing test case " + (caseNum + 1));
+    pw.print("Case #" + (caseNum + 1) + ": ");
+    new Cheaters().solve(sc, pw);
+}
+pw.flush();
+pw.close();
+sc.close();
+return pw;
+}
+
+
+*********************************
+
+#### Score: 7.81970
+
+
+#### Java Tokens: read, casenum, num, #%d:, readint, case, int, printf 
+
+public static int func_19d5994e6dba4f8dab3faea35236f0f3(int casenum) { 
+ A.pw.printf("Case #%d: ", casenum);
+int n = A.readInt();
+int p = A.readInt();
+int q = A.readInt();
+int r = A.readInt();
+int s = A.readInt();
+A.num = new long[n + 1];
+return q;
+}
+
+
+public static int func_9a13d631a6cc4e628bd8e64b4cdad37f(int casenum) { 
+ A.pw.printf("Case #%d: ", casenum);
+int n = A.readInt();
+int p = A.readInt();
+int q = A.readInt();
+int r = A.readInt();
+int s = A.readInt();
+A.num = new long[n + 1];
+return r;
+}
+
+
+public static int func_29abd794058e4c5291e30478ba81b49b(int casenum) { 
+ A.pw.printf("Case #%d: ", casenum);
+int n = A.readInt();
+int p = A.readInt();
+int q = A.readInt();
+int r = A.readInt();
+int s = A.readInt();
+A.num = new long[n + 1];
+return s;
+}
+
+
+*********************************
+
+#### Score: 7.78742
+
+
+#### Java Tokens: next, println, system, nextint, string, solve, close, int, case 
+
+public static PrintWriter func_5f57a2edef1041caa821806cabf7e9d2(PrintWriter out, Scanner in) { 
+ int T = in.nextInt();
+for (int i = 0; i < T; i++) {
+    String s = "Case #" + (i + 1) + ": " + new A().solve(in);
+    out.println(s);
+    System.out.println(s);
+}
+out.close();
+return out;
+}
+
+
+public static PrintWriter func_635e262b1c0747db8dc8487584a21618(PrintWriter out, Scanner in) { 
+ int T = in.nextInt();
+for (int i = 0; i < T; i++) {
+    String s = "Case #" + (i + 1) + ": " + new A().solve(in);
+    out.println(s);
+    System.out.println(s);
+}
+out.close();
+return out;
+}
+
+
+public static PrintWriter func_8a2c51d4894943cfb610a6c0d7c52954(PrintWriter out, Scanner in) { 
+ int T = in.nextInt();
+for (int i = 0; i < T; i++) {
+    String s = "Case #" + (i + 1) + ": " + new A().solve(in);
+    out.println(s);
+    System.out.println(s);
+}
+out.close();
+return out;
+}
+
+
+*********************************
+
+#### Score: 7.78742
+
+
+#### Java Tokens: next, print, println, nextint, len, oppa, close, int, case 
+
+public static PrintWriter func_4961a51e396740f1a0a0180470083812(int tN, PrintWriter pw, Scanner sc) { 
+ for (int tn = 0; tn < tN; tn++) {
+    int n = sc.nextInt();
+    int[] p = new int[n];
+    int[] len = new int[n];
+    for (int i = 0; i < n; i++) {
+        p[i] = sc.nextInt();
+    }
+    for (int i = 0; i < n; i++) {
+        len[i] = sc.nextInt();
+    }
+    boolean[] oppa = new boolean[n];
+    pw.print("Case #" + (tn + 1) + ":");
+    c: for (int i = 0; i < n; i++) {
+        int be = -1;
+        for (int j = 0; j < n; j++) {
+            if (!oppa[j]) {
+                if (be == -1 || len[j] * p[be] > len[be] * p[j]) {
+                    be = j;
+                }
+            }
+        }
+        oppa[be] = true;
+        pw.print(" " + be);
+    }
+    pw.println();
+}
+pw.close();
+return pw;
+}
+
+
+*********************************
+
+#### Score: 7.58760
+
+
+#### Java Tokens: test, perfect, casenum, num, cnt, casecnt, println, print, system, flush, solve, processing, close, case 
+
+public static PrintWriter func_bb6af0e9f0274125b15545382663f676(int caseCnt, PrintWriter pw, Scanner sc) { 
+ for (int caseNum = 0; caseNum < caseCnt; caseNum++) {
+    System.out.println("Processing test case " + (caseNum + 1));
+    pw.print("Case #" + (caseNum + 1) + ":");
+    new Perfect().solve(sc, pw);
+}
+pw.flush();
+pw.close();
+sc.close();
+return pw;
+}
+
+
+public static PrintWriter func_3ca9859e114842f693d0e117022dc553(int caseCnt, PrintWriter pw, Scanner sc) { 
+ for (int caseNum = 0; caseNum < caseCnt; caseNum++) {
+    System.out.println("Processing test case " + (caseNum + 1));
+    pw.print("Case #" + (caseNum + 1) + ":");
+    new Perfect().solve(sc, pw);
+}
+pw.flush();
+pw.close();
+return pw;
+}
+
+
+*********************************
+
+#### Score: 7.58760
+
+
+#### Java Tokens: test, casenum, num, cnt, casecnt, cheaters, println, print, system, flush, solve, processing, close, case 
+
+public static PrintWriter func_363a2951b82d4fa3bbd434a213cf7c0e(int caseCnt, PrintWriter pw, Scanner sc) { 
+ for (int caseNum = 0; caseNum < caseCnt; caseNum++) {
+    System.out.println("Processing test case " + (caseNum + 1));
+    pw.print("Case #" + (caseNum + 1) + ": ");
+    new Cheaters().solve(sc, pw);
+}
+pw.flush();
+pw.close();
+return pw;
+}
+
+
+public static PrintWriter func_4c43d1155f9c4045b2590cf6db25d547(int caseCnt, PrintWriter pw, Scanner sc) { 
+ for (int caseNum = 0; caseNum < caseCnt; caseNum++) {
+    System.out.println("Processing test case " + (caseNum + 1));
+    pw.print("Case #" + (caseNum + 1) + ": ");
+    new Cheaters().solve(sc, pw);
+}
+pw.flush();
+pw.close();
+sc.close();
+return pw;
+}
+
+
+*********************************
+
+#### Score: 7.54641
+
+
+#### Java Tokens: next, nextint, test, casenum, num, cnt, casecnt, int, tour, magical, println, print, system, flush, solve, processing, close, case, magicaltour 
+
+public static PrintWriter func_a4f3ee17ce4f478aac2b807625172bb9(PrintWriter pw, Scanner sc) { 
+ int caseCnt = sc.nextInt();
+for (int caseNum = 0; caseNum < caseCnt; caseNum++) {
+    System.out.println("Processing test case " + (caseNum + 1));
+    pw.print("Case #" + (caseNum + 1) + ": ");
+    new MagicalTour().solve(sc, pw);
+}
+pw.flush();
+pw.close();
+sc.close();
+return pw;
+}
+
+
+public static int func_7b1257cb01f647a19eb1164aaf250ce7(PrintWriter pw, Scanner sc) { 
+ int caseCnt = sc.nextInt();
+for (int caseNum = 0; caseNum < caseCnt; caseNum++) {
+    System.out.println("Processing test case " + (caseNum + 1));
+    pw.print("Case #" + (caseNum + 1) + ": ");
+    new MagicalTour().solve(sc, pw);
+}
+pw.flush();
+pw.close();
+sc.close();
+return caseCnt;
+}
+
+
+public static int func_fa57792ab4664252af9cdca61fa1e0d7(PrintWriter pw, Scanner sc) { 
+ int caseCnt = sc.nextInt();
+for (int caseNum = 0; caseNum < caseCnt; caseNum++) {
+    System.out.println("Processing test case " + (caseNum + 1));
+    pw.print("Case #" + (caseNum + 1) + ": ");
+    new MagicalTour().solve(sc, pw);
+}
+pw.flush();
+pw.close();
+return caseCnt;
+}
+

@@ -1,0 +1,7 @@
+def extract(self,a, b):
+    if a >= self.right or b <= self.left:
+        return 0.0
+    plus = min(self.right - a, self.height)
+    minus = max(self.right - b, 0)
+    vol = self.vol_base * (plus ** 3 - minus ** 3)
+    return vol

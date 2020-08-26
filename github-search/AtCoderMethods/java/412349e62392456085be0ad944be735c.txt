@@ -1,0 +1,10 @@
+private static int encode(List<Integer> next) {
+    int n = next.size();
+    int code = 0;
+    for (int i = 0; i < n; i++) {
+        int c = next.get(i);
+        code = (code << c) | (1 << (c - 1));
+    }
+    int all = (1 << x + y + z) - 1;
+    return code & all;
+}

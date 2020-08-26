@@ -1,0 +1,16 @@
+private static long solve(Scanner scanner) {
+    int N = Integer.parseInt(scanner.nextLine());
+    long[] a = lineToNums(scanner.nextLine());
+    long sumAll = Arrays.stream(a).sum();
+    long[] xSum = new long[N];
+    long[] ySum = new long[N];
+    xSum[0] = a[0];
+    ySum[0] = sumAll - xSum[0];
+    long ret = Math.abs(xSum[0] - ySum[0]);
+    for (int i = 1; i < N - 1; i++) {
+        xSum[i] = xSum[i - 1] + a[i];
+        ySum[i] = sumAll - xSum[i];
+        ret = Math.min(ret, Math.abs(xSum[i] - ySum[i]));
+    }
+    return ret;
+}

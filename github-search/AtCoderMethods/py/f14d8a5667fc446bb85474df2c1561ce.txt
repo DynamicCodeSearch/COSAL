@@ -1,0 +1,9 @@
+def all_split(s):
+    if len(s) == 1:
+        return [s]
+
+    ans = []
+    for i in range(2 ** (len(s) - 1)):
+        b = list(map(int, format(i, "0" + str(len(s) - 1) + "b")))
+        ans.append(split(s, b))
+    return ans

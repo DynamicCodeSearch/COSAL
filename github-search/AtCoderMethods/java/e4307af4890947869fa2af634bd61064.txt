@@ -1,0 +1,16 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    int n = in.readInt(), k = in.readInt();
+    ArrayList<Integer> list = new ArrayList<>();
+    for (int i = 0; i < n; i++) {
+        list.add(in.readInt());
+    }
+    Collections.sort(list, Comparator.reverseOrder());
+    int sum = 0;
+    for (int i = 0; i < k; i++) {
+        sum += list.get(i);
+    }
+    out.printLine(sum);
+    
+    return;
+
+}

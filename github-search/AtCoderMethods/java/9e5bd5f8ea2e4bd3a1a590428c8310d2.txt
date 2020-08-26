@@ -1,0 +1,12 @@
+void solve(FastScanner in, PrintWriter out) {
+    int N = in.nextInt();
+    int[] a = in.nextIntArray(N);
+    long[] dp = new long[N];
+    dp[0] = 0;
+    for (int i = 1; i < N; i++) {
+        dp[i] = dp[i - 1] + Math.abs(a[i - 1] - a[i]);
+        if (i > 1)
+            dp[i] = Math.min(dp[i], dp[i - 2] + Math.abs(a[i - 2] - a[i]));
+    }
+    out.println(dp[N - 1]);
+}

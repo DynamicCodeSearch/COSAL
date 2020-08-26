@@ -1,0 +1,9 @@
+void dfs2(int v) {
+    visited[v] = true;
+    br[v] = id;
+    for (int to : rail[v]) {
+        if (!visited[to]) {
+            dfs2(to);
+        }
+    }
+}

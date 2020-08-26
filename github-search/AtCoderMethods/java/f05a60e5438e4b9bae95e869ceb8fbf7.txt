@@ -1,0 +1,26 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    int n = Integer.parseInt(reader.readLine());
+    String[] input = reader.readLine().split(" ");
+    TreeSet<Stone> set = new TreeSet<Stone>();
+    for (int i = 0; i < input.length; i++) {
+        set.add(new Stone(i, Long.parseLong(input[i])));
+    }
+    
+    long[] result = new long[n];
+    while (!set.isEmpty()) {
+        Stone last = set.last();
+        set.remove(last);
+        if (set.isEmpty()) {
+            result[last.index] += last.getNum();
+        } else {
+            Stone newLast = set.last();
+            set.remove(newLast);
+            if (last.num != newLast.num)
+                result[last.index] += (last.num - newLast.num) * last.kind;
+            newLast.add(last);
+            set.add(newLast);
+        }
+    }
+    for (long _result : result) System.out.println(_result);
+}

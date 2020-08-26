@@ -1,0 +1,29 @@
+public static void main(String[] args) throws IOException {
+    final Scanner sc = new Scanner(System.in);
+    final int N = sc.nextInt();
+    final long x = sc.nextLong();
+    long[] array = new long[N];
+    for (int i = 0; i < N; i++) {
+        array[i] = sc.nextLong();
+    }
+    long answer = 0;
+    for (int i = 1; i < N; i++) {
+        final long value = array[i - 1] + array[i];
+        
+        if (value > x) {
+            final long diff = Math.min(value - x, array[i]);
+            array[i] -= diff;
+            answer += diff;
+        }
+    }
+    if (array[0] + array[1] > x) {
+        answer += (array[0] + array[1]) - x;
+        array[0] -= (array[0] + array[1]) - x;
+    }
+    if (array[N - 2] + array[N - 1] > x) {
+        answer += (array[N - 2] + array[N - 1]) - x;
+        array[N - 1] -= (array[N - 2] + array[N - 1]) - x;
+    }
+    System.out.println(answer);
+
+}

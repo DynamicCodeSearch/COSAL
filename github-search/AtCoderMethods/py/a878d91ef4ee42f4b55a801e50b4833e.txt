@@ -1,0 +1,24 @@
+def main(argv):
+    line = sys.stdin.readline()
+    while line:
+        N = int(line)
+        P = map(lambda x: int(x), sys.stdin.readline().split(" "))
+
+        counter = 0
+        for i in xrange(len(P)):
+            index = i + 1
+            if P[i] == index:
+                if i == 0:
+                    P[i], P[i + 1] = P[i + 1], P[i]
+                elif i > 0 and i < len(P) - 1:
+                    pass
+                    if P[i - 1] == index - 1:
+                        P[i] = P[i - 1]
+                    elif P[i + 1] == index + 1:
+                        P[i], P[i + 1] = P[i + 1], P[i]
+                    else:
+                        P[i] = P[i - 1]
+                counter += 1
+        print(counter)
+
+        line = sys.stdin.readline()

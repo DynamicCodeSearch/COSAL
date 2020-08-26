@@ -1,0 +1,12 @@
+public static void addNocostBranches(Queue<Branch> breanches, Map<Integer, Set<Integer>> _map) {
+    for (Map.Entry<Integer, Set<Integer>> e : _map.entrySet()) {
+        Set<Integer> set = e.getValue();
+        int preTownNum = -1;
+        for (int townNum : set) {
+            if (preTownNum != -1) {
+                breanches.add(new Branch(townNum, preTownNum, 0));
+            }
+            preTownNum = townNum;
+        }
+    }
+}

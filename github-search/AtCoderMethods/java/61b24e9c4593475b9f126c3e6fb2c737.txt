@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    sc.nextLine();
+    int result = 0;
+    HashMap<Integer, Boolean> map = new HashMap<Integer, Boolean>();
+    for (int i = 0; i < N; i++) {
+        int Ai = sc.nextInt();
+        if (map.get(Ai) != null) {
+            if (map.get(Ai)) {
+                map.put(Ai, false);
+                result--;
+            } else {
+                map.put(Ai, true);
+                result++;
+            }
+        } else {
+            map.put(Ai, true);
+            result++;
+        }
+    }
+    sc.close();
+    System.out.println(result);
+}

@@ -1,0 +1,26 @@
+static public void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    Map<Long, Integer> map = new HashMap<>();
+    for (int i = 0; i < n; i++) {
+        long d = sc.nextLong();
+        map.put(d, map.getOrDefault(d, 0) + 1);
+    }
+    TreeSet<Long> nums = new TreeSet<>(map.keySet());
+    long a = -1;
+    long b = -1;
+    Stack<Long> stack = new Stack<>();
+    for (long num : nums) {
+        if (map.get(num) >= 4) {
+            stack.push(num);
+            stack.push(num);
+        } else if (map.get(num) >= 2) {
+            stack.push(num);
+        }
+    }
+    if (stack.size() >= 2) {
+        System.out.println(stack.pop() * stack.pop());
+    } else {
+        System.out.println(0);
+    }
+}

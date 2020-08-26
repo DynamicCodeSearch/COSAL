@@ -1,0 +1,12 @@
+def group(xs):
+    result = list()
+    prev = xs[0]
+    temp = list()
+    for x in xs:
+        if x == prev:
+            temp.append(x)
+        else:
+            result.append(temp)
+            prev = x
+            temp = [x]
+    return result

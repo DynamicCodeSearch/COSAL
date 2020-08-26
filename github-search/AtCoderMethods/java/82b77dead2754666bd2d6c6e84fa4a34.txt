@@ -1,0 +1,18 @@
+void solve() throws NumberFormatException, IOException {
+    int n = in.nextInt();
+    long sum = 1;
+    long preT = 0, preA = 0;
+    for (int i = 0; i < n; i++) {
+        long t = in.nextLong();
+        long a = in.nextLong();
+        long borderT = Math.max(1, (preT + t - 1) / t);
+        long borderA = Math.max(1, (preA + a - 1) / a);
+        long s = t + a;
+        long borderSum = Math.max(1, (sum + s - 1) / s);
+        long border = Math.max(borderA, Math.max(borderT, borderSum));
+        sum = border * s;
+        preT = border * t;
+        preA = border * a;
+    }
+    System.out.println(sum);
+}

@@ -1,0 +1,55 @@
+public void solve() {
+    N = nextInt();
+    A = nextInt();
+    B = nextInt();
+    v = new long[N];
+    for (int i = 0; i < N; i++) {
+        v[i] = nextLong();
+    }
+    Arrays.sort(v);
+    for (int i = 0; i < N / 2; i++) {
+        long tmp = v[i];
+        v[i] = v[N - i - 1];
+        v[N - i - 1] = tmp;
+    }
+    ArrayList<Integer> list = new ArrayList<Integer>();
+    long c = 0;
+    long m = 1;
+    for (int i = A; i <= B; i++) {
+        long sum = 0;
+        for (int j = 0; j < i; j++) {
+            sum += v[j];
+        }
+        if (c * i < sum * m) {
+            c = sum;
+            m = i;
+        }
+    }
+    for (int i = A; i <= B; i++) {
+        long sum = 0;
+        for (int j = 0; j < i; j++) {
+            sum += v[j];
+        }
+        if (c * i == sum * m) {
+            list.add(i);
+        }
+    }
+    map = new HashMap<Long, Integer>();
+    for (int j = 0; j < N; j++) {
+        map.put(v[j], map.containsKey(v[j]) ? map.get(v[j]) + 1 : 1);
+    }
+    long ans = 0;
+    for (int i = 0; i < list.size(); i++) {
+        HashMap<Long, Integer> use = new HashMap<Long, Integer>();
+        for (int j = 0; j < list.get(i); j++) {
+            use.put(v[j], use.containsKey(v[j]) ? use.get(v[j]) + 1 : 1);
+        }
+        long sum = 1;
+        for (long key : use.keySet()) {
+            sum *= nCk(map.get(key), use.get(key));
+        }
+        ans += sum;
+    }
+    out.println(String.format("%.09f", c * 1.0 / m));
+    out.println(ans);
+}

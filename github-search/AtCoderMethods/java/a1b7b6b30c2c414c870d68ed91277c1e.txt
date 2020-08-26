@@ -1,0 +1,62 @@
+public void solve() {
+    H = nextInt();
+    W = nextInt();
+    pic = new char[H][W];
+    tmp = new int[H][W];
+    for (int i = 0; i < H; i++) {
+        pic[i] = next().toCharArray();
+    }
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            if (pic[i][j] == '.')
+                continue;
+            boolean f = true;
+            for (int k = 0; k < dx.length; k++) {
+                int nx = dx[k] + j;
+                int ny = dy[k] + i;
+                if (check(nx, ny)) {
+                    if (pic[ny][nx] == '.') {
+                        f = false;
+                        break;
+                    }
+                }
+            }
+            if (f) {
+                tmp[i][j] = 1;
+            }
+        }
+    }
+    char[][] com = new char[H][W];
+    for (int i = 0; i < H; i++) {
+        Arrays.fill(com[i], '.');
+    }
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            if (tmp[i][j] == 1) {
+                com[i][j] = '#';
+                for (int k = 0; k < dx.length; k++) {
+                    int nx = j + dx[k];
+                    int ny = i + dy[k];
+                    if (check(nx, ny)) {
+                        com[ny][nx] = '#';
+                    }
+                }
+            }
+        }
+    }
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            if (com[i][j] != pic[i][j]) {
+                out.println("impossible");
+                return;
+            }
+        }
+    }
+    out.println("possible");
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            out.print(tmp[i][j] == 1 ? '#' : '.');
+        }
+        out.println();
+    }
+}

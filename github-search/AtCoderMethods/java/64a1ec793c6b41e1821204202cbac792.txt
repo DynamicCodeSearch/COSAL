@@ -1,0 +1,33 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int N = Integer.parseInt(scanner.next());
+    int M = Integer.parseInt(scanner.next());
+    int adult, old, baby;
+    if (M < N * 2 || M > N * 4) {
+        System.out.println("-1 -1 -1");
+    } else {
+        int difference = M - N * 2;
+        int remainder = difference % 3;
+        int num = (difference - remainder) / 3;
+        if (remainder == 0) {
+            adult = N - num * 2;
+            old = num;
+            baby = num;
+        } else if (remainder == 1) {
+            adult = N - num * 2 - 1;
+            old = num + 1;
+            baby = num;
+        } else {
+            adult = N - num * 2 - 1;
+            old = num;
+            baby = num + 1;
+        }
+        if (adult < 0) {
+            int minus = -adult;
+            adult += minus;
+            old -= minus * 2;
+            baby += minus;
+        }
+        System.out.println(adult + " " + old + " " + baby);
+    }
+}

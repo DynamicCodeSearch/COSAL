@@ -1,0 +1,16 @@
+private boolean hasNextByte() {
+    if (ptr < bufferLength) {
+        return true;
+    } else {
+        ptr = 0;
+        try {
+            bufferLength = in.read(buffer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (bufferLength <= 0) {
+            return false;
+        }
+    }
+    return true;
+}

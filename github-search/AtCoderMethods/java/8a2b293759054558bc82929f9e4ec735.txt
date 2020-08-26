@@ -1,0 +1,20 @@
+public static void main(String[] args) throws IOException {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int Q = sc.nextInt();
+    int[] left = new int[Q];
+    int[] right = new int[Q];
+    for (int i = 0; i < Q; i++) {
+        left[i] = sc.nextInt();
+        right[i] = sc.nextInt();
+    }
+    boolean[] board = new boolean[N];
+    for (int i = 0; i < Q; i++) {
+        board[left[i] - 1] = !board[left[i] - 1];
+        if (right[i] < N) {
+            board[right[i]] = !board[right[i]];
+        }
+    
+    }
+    print(board, System.out);
+}

@@ -1,0 +1,25 @@
+public static long memoized_dfs(int cur_node, int parent, boolean parent_drawed, ArrayList<HashSet<Integer>> adj, long[][] memo) {
+    if (memo[parent_drawed ? 1 : 0][cur_node] >= 0) {
+        return memo[parent_drawed ? 1 : 0][cur_node];
+    }
+    long drawed_ret = parent_drawed ? 0 : 1;
+    long white_ret = 1;
+    boolean added = false;
+    for (final int next : adj.get(cur_node)) {
+        if (next == parent) {
+            continue;
+        }
+        added = true;
+        if (!parent_drawed) {
+            drawed_ret *= memoized_dfs(next, cur_node, true, adj, memo);
+            drawed_ret %= MOD;
+        }
+        white_ret *= memoized_dfs(next, cur_node, false, adj, memo);
+        white_ret %= MOD;
+    }
+    if (!added) {
+        drawed_ret = parent_drawed ? 0 : 1;
+        white_ret = 1;
+    }
+    return memo[parent_drawed ? 1 : 0][cur_node] = (drawed_ret + white_ret) % MOD;
+}

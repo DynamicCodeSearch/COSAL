@@ -1,0 +1,11 @@
+static long solve(int[] A, int k) {
+    
+    
+    int n = A.length - 1;
+    long ans = 0;
+    
+    for (int i = 1; i <= n - k + 1; i++) {
+        ans = Math.max(ans, Math.abs(A[i] - A[i + k - 1]));
+    }
+    return ans;
+}

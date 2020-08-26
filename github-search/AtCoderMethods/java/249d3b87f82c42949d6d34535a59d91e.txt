@@ -1,0 +1,19 @@
+public long dfs(long S, long X) {
+    if (S == 0)
+        return 1;
+    Key key = new Key(S, X);
+    if (map.containsKey(key)) {
+        return map.get(key);
+    }
+    long ret = 0;
+    ret += dfs(S >> 1, X >> 1) % MOD;
+    ret %= MOD;
+    if (S > 1) {
+        ret += dfs((S - 2) >> 1, X >> 1) % MOD;
+        ret %= MOD;
+    }
+    ret += dfs((S - 1) >> 1, (X - 1) >> 1) % MOD;
+    ret %= MOD;
+    map.put(key, ret);
+    return ret;
+}

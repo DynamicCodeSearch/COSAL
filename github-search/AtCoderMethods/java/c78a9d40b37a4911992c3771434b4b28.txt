@@ -1,0 +1,13 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    char[][] m = new char[N][N];
+    for (int i = 0; i < N; i++) {
+        char[] t = sc.next().toCharArray();
+        for (int j = 0; j < N; j++) {
+            m[j][N - i - 1] = t[j];
+        }
+    }
+    for (int i = 0; i < N; i++) System.out.println(String.valueOf(m[i]));
+    sc.close();
+}

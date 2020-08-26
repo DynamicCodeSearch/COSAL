@@ -1,0 +1,13 @@
+private static int[] count(String input) {
+    int[] cnt = new int[26];
+    for (int i = 0; i < 26; i++) {
+        cnt[i] = 0;
+    }
+    for (int i = 0; i < input.length(); i++) {
+        char c = input.charAt(i);
+        if ('a' <= c && c <= 'z') {
+            cnt[c - 'a']++;
+        }
+    }
+    return cnt;
+}

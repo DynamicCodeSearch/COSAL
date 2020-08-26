@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+    Queue<Integer> q = new LinkedList<Integer>();
+    Scanner sc = new Scanner(System.in);
+    int[] change = { -10, -5, -1, 1, 5, 10 };
+    int cnt = 0;
+    int tmp;
+    int init = sc.nextInt();
+    int goal = sc.nextInt();
+    q.add(init);
+    map.put(init, 0);
+    while (!q.isEmpty()) {
+        int now = q.poll();
+        if (now == goal)
+            break;
+        for (int i = 0; i < change.length; i++) {
+            tmp = now + change[i];
+            if (!map.containsKey(tmp)) {
+                map.put(tmp, map.get(now) + 1);
+                q.add(tmp);
+            }
+        }
+    }
+    System.out.println(map.get(goal));
+}

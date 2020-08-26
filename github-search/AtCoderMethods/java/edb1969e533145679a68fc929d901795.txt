@@ -1,0 +1,21 @@
+long dfs(int x, int y) {
+    if (done[y][x]) {
+        return dp[y][x];
+    }
+    long sum = 1;
+    for (int i = 0; i < 4; ++i) {
+        int nx = x + ofs[i][0];
+        int ny = y + ofs[i][1];
+        if (field[ny][nx] == 0) {
+            continue;
+        }
+        if (field[y][x] >= field[ny][nx]) {
+            continue;
+        }
+        sum += dfs(nx, ny);
+        sum %= MOD;
+    }
+    dp[y][x] = sum;
+    done[y][x] = true;
+    return sum;
+}

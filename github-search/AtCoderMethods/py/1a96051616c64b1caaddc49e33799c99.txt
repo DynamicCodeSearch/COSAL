@@ -1,0 +1,41 @@
+def solve():
+    def dfs(idx, end, value, cost, g):
+        if idx == end:
+            if cost == 0:
+                return
+
+            if value not in g:
+                g[value] = cost
+            else:
+                g[value] = min(g[value], cost)
+
+            return
+
+        a, b, c = table[idx]
+        dfs(idx + 1, end, value + b * Ma - a * Mb, cost + c, g)
+        dfs(idx + 1, end, value, cost, g)
+
+    N, Ma, Mb = map(int, input().split())
+    table = [tuple(map(int, input().split())) for i in range(N)]
+
+    g1, g2 = dict(), dict()
+    dfs(0, N // 2, 0, 0, g1)
+    dfs(N // 2, N, 0, 0, g2)
+
+    inf = 100*40 + 1
+    ans = inf
+
+    if 0 in g1:
+        ans = min(ans, g1[0])
+    if 0 in g2:
+        ans = min(ans, g2[0])
+
+    for v1, c1 in g1.items():
+        if -v1 in g2:
+            tmp = c1 + g2[-v1]
+            ans = min(ans, tmp)
+
+    if ans < inf:
+        print(ans)
+    else:
+        print(-1)

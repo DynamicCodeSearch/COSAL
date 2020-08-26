@@ -1,0 +1,20 @@
+long[][] calcRangeMax(int[] array) {
+    int n = array.length;
+    long[] sum = new long[n + 1];
+    for (int i = 0; i < n; i++) {
+        sum[i + 1] = sum[i] + array[i];
+    }
+    long[][] res = new long[n + 1][n + 1];
+    for (int i = 0; i < n + 1; i++) {
+        Arrays.fill(res[i], Long.MIN_VALUE);
+    }
+    for (int i = 0; i <= n; i++) {
+        for (int j = 0; j <= n; j++) {
+            if (i > 0)
+                res[i][j] = Math.max(res[i][j], res[i - 1][j]);
+            if (i - j >= 0)
+                res[i][j] = Math.max(res[i][j], sum[i] - sum[i - j]);
+        }
+    }
+    return res;
+}

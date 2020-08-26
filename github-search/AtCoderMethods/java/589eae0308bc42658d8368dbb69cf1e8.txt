@@ -1,0 +1,22 @@
+private void solve(Scanner sc, PrintWriter out) {
+    String S = sc.nextLine();
+    int i = 0;
+    while (i < S.length()) {
+        boolean found = false;
+        for (int j = 0; j < keys.length; ++j) {
+            int keylen = keys[j].length();
+            if (i + keylen <= S.length()) {
+                String s = S.substring(i, i + keylen);
+                if (s.equals(keys[j])) {
+                    i += keylen;
+                    found = true;
+                    break;
+                }
+            }
+        }
+        if (!found) {
+            break;
+        }
+    }
+    out.println((i == S.length() ? "YES" : "NO"));
+}

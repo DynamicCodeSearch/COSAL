@@ -1,0 +1,35 @@
+private static void solve() {
+    Scanner sc = new Scanner(System.in);
+    PrintWriter pr = new PrintWriter(System.out);
+    long L = sc.nextInt();
+    long X = sc.nextInt();
+    long Y = sc.nextInt();
+    long S = sc.nextInt();
+    long D = sc.nextInt();
+    double result;
+    long back = Math.abs(L - Math.abs(D - S));
+    long front = Math.abs(D - S);
+    long backv;
+    if (X - Y < 0) {
+        backv = Math.abs(Y - X);
+    } else
+        backv = 0;
+    long frontv = X + Y;
+    if (D - S < 0) {
+        long tmp = front;
+        front = back;
+        back = tmp;
+    }
+    if (backv != 0) {
+        result = Math.min((double) back / backv, (double) front / frontv);
+    } else {
+        result = (double) front / frontv;
+    }
+    if (D - S == 0) {
+        pr.println(0);
+    } else {
+        pr.printf("%.30f\n", result);
+    }
+    pr.flush();
+    sc.close();
+}

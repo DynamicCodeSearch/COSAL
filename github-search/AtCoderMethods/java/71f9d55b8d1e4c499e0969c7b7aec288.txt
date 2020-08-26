@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int a = scan.nextInt();
+    int b = scan.nextInt();
+    int c = scan.nextInt();
+    String ans = "NO";
+    int temp = a;
+    int count = 1;
+    while (true) {
+        if ((temp * count) % b == c) {
+            ans = "YES";
+            break;
+        }
+        if (temp > a * b) {
+            break;
+        }
+        temp = temp + a;
+    }
+    System.out.println(ans);
+}

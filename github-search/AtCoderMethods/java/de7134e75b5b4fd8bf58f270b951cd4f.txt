@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = sc.nextInt();
+    Student[] students = new Student[n];
+    for (int i = 0; i < n; i++) {
+        students[i] = new Student(i + 1, sc.nextInt());
+    }
+    sc.close();
+    Arrays.sort(students);
+    for (Student po : students) {
+        out.println(po.id);
+    }
+    out.flush();
+}

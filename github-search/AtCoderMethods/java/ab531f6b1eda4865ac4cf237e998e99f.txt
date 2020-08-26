@@ -1,0 +1,24 @@
+public void solve() {
+    N = nextInt();
+    S = new String[N];
+    for (int i = 0; i < N; i++) {
+        S[i] = next();
+    }
+    int[][] a = new int[N][26];
+    for (int i = 0; i < N; i++) {
+        for (char c : S[i].toCharArray()) {
+            a[i][c - 'a']++;
+        }
+    }
+    StringBuilder sb = new StringBuilder();
+    for (int j = 0; j < 26; j++) {
+        int min = Integer.MAX_VALUE;
+        for (int i = 0; i < N; i++) {
+            min = Math.min(min, a[i][j]);
+        }
+        for (int i = 0; i < min; i++) {
+            sb.append((char) ('a' + j));
+        }
+    }
+    out.println(sb);
+}

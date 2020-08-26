@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    char[][] matrix1 = new char[100][];
+    char[][] matrix2 = new char[100][];
+    int i, j, n, m;
+    n = scan.nextInt();
+    m = scan.nextInt();
+    for (i = 0; i < n; i++) {
+        String input = scan.next();
+        matrix1[i] = input.toCharArray();
+    }
+    for (i = 0; i < m; i++) {
+        String input = scan.next();
+        matrix2[i] = input.toCharArray();
+    }
+    boolean result = false;
+    for (i = 0; i + m - 1 < n; i++) for (j = 0; j + m - 1 < n; j++) {
+        if (equals(matrix1, matrix2, i, j)) {
+            result = true;
+        }
+    }
+    if (result)
+        System.out.println("Yes");
+    else
+        System.out.println("No");
+}

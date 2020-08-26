@@ -1,0 +1,42 @@
+public int dfs(int n, int bit) {
+    String str = Integer.toBinaryString(bit);
+    if (get(bit, 3, 0)) {
+        return pow10[N - n];
+    }
+    if (n == N) {
+        return 0;
+    }
+    if (dp[n][bit] != -1) {
+        return dp[n][bit];
+    }
+    int ans = 0;
+    for (int i = 1; i <= 10; i++) {
+        int nb = 0;
+        if (i <= X) {
+            nb = set(nb, 0, i);
+        }
+        for (int j = 1; j <= X; j++) {
+            if (get(bit, 0, j) && j + i <= X) {
+                nb = set(nb, 0, j + i);
+            }
+        }
+        if (get(bit, 0, X) && i <= Y) {
+            nb = set(nb, 1, i);
+        }
+        for (int j = 1; j <= Y; j++) {
+            if (get(bit, 1, j) && j + i <= Y) {
+                nb = set(nb, 1, j + i);
+            }
+        }
+        if (get(bit, 1, Y) && i <= Z) {
+            nb = set(nb, 2, i);
+        }
+        for (int j = 1; j <= Z; j++) {
+            if (get(bit, 2, j) && j + i <= Z) {
+                nb = set(nb, 2, j + i);
+            }
+        }
+        ans = (ans + dfs(n + 1, nb)) % mod;
+    }
+    return dp[n][bit] = ans;
+}

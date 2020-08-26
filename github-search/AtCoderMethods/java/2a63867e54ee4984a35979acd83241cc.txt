@@ -1,0 +1,20 @@
+private static long getCount(long targetNum) {
+    long count = 0;
+    String numStr = String.valueOf(targetNum);
+    for (int i = numStr.length() - 1; i >= 0; i--) {
+        int num = numStr.charAt(numStr.length() - i - 1) - '0';
+        for (int d = 0; d < num; d++) {
+            count += dp[i][d];
+        }
+        
+        if (num == 4 || num == 9) {
+            if (i > 0) {
+                count += Long.valueOf(numStr.substring(numStr.length() - i, numStr.length())) + 1;
+            } else {
+                count += 1;
+            }
+            break;
+        }
+    }
+    return count;
+}

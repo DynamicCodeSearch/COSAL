@@ -1,0 +1,12 @@
+private static String solve(long k) {
+    int n = 50;
+    long[] a = LongStream.range(0, n).toArray();
+    long x = k / n;
+    for (int i = 0; i < n; i++) a[i] += n * x - k + x;
+    long mod = k % n;
+    for (int i = 0; i < mod; i++) a[i] += n + 1;
+    String ans = Integer.toString(n) + System.lineSeparator() + Arrays.stream(a).mapToObj(Long::toString).collect(Collectors.joining(" "));
+    assert null != System.out.format("%s\r\n", ans);
+    assert k == check(n, a);
+    return ans;
+}

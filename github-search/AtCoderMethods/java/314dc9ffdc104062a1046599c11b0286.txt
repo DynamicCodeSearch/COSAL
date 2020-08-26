@@ -1,0 +1,43 @@
+void solve() {
+    char[] s = sc.next().toCharArray();
+    long ans = 0;
+    int n = s.length;
+    RollingHash h1 = new RollingHash(s);
+    RollingHash h2 = new RollingHash(s);
+    for (int i = (n + 2) / 2; i < n; i++) {
+        int lenA = 0;
+        {
+            int lo = 0;
+            int hi = n - i + 1;
+            while (hi - lo > 1) {
+                int mid = (lo + hi) / 2;
+                if (h1.get(0, mid) == h1.get(i, i + mid) && h2.get(0, mid) == h2.get(i, i + mid)) {
+                    lo = mid;
+                } else {
+                    hi = mid;
+                }
+            }
+            lenA = lo;
+        }
+        int lenC = 0;
+        {
+            int lo = 0;
+            int hi = n - i + 1;
+            while (hi - lo > 1) {
+                int mid = (lo + hi) / 2;
+                if (h1.get(i - mid, i) == h1.get(n - mid, n) && h2.get(i - mid, i) == h2.get(n - mid, n)) {
+                    lo = mid;
+                } else {
+                    hi = mid;
+                }
+            }
+            lenC = lo;
+        }
+        if (lenA == n - i)
+            lenA--;
+        if (lenC == n - i)
+            lenC--;
+        ans += max(0, (lenA + lenC + 1) - (n - i));
+    }
+    out.println(ans);
+}

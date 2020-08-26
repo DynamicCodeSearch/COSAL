@@ -1,0 +1,26 @@
+static void solve() {
+    int n = in.nextInt();
+    int k = in.nextInt();
+    int[] d = new int[k];
+    boolean[] ok = new boolean[10];
+    Arrays.fill(ok, true);
+    for (int i = 0; i < k; i++) {
+        d[i] = in.nextInt();
+        ok[d[i]] = false;
+    }
+    for (long i = n; ; i++) {
+        long x = i;
+        boolean f = true;
+        while (x != 0) {
+            if (!ok[(int) (x % 10)]) {
+                f = false;
+                break;
+            }
+            x /= 10;
+        }
+        if (f) {
+            out.println(i);
+            return;
+        }
+    }
+}

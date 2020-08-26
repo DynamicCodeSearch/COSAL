@@ -1,0 +1,14 @@
+private static void dfs(int current, int n, int tot) {
+    vis[current] = true;
+    tot++;
+    if (tot == n) {
+        ans++;
+    } else {
+        for (int i = 1; i <= n; i++) {
+            if (!vis[i] && graph[current][i]) {
+                dfs(i, n, tot);
+            }
+        }
+    }
+    vis[current] = false;
+}

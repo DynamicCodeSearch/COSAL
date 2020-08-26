@@ -1,0 +1,15 @@
+void solve() throws IOException {
+    int n = readInt();
+    int[] a = readIntArray(n);
+    int free = 0;
+    TreeSet<Integer> set = new TreeSet<>();
+    for (int x : a) {
+        if (x >= 3200)
+            free++;
+        else
+            set.add(get(x));
+    }
+    int min = Math.max(1, set.size());
+    int max = set.size() + free;
+    out.println(min + " " + max);
+}

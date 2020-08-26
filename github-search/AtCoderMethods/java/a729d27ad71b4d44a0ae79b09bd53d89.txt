@@ -1,0 +1,37 @@
+public void solve() {
+    int N = in.nextInt();
+    long A = in.nextInt(), B = in.nextInt();
+    int[] a = in.nextIntArray(N);
+    if (A == 1) {
+        Arrays.sort(a);
+        for (int i = 0; i < N; i++) {
+            System.out.print(a[i] + " ");
+        }
+        System.out.println();
+        return;
+    }
+    int[] mulCnt = new int[N];
+    int mulNum = 0;
+    PriorityQueue<Pair> pq = new PriorityQueue<>();
+    for (int i = 0; i < N; i++) {
+        pq.add(new Pair(i, Math.log10(a[i])));
+    }
+    while (B > 0 && (mulNum < N || B % N != 0)) {
+        Pair next = pq.poll();
+        if (mulCnt[next.id] == 0)
+            mulNum++;
+        mulCnt[next.id]++;
+        pq.add(new Pair(next.id, next.v + Math.log10(A)));
+        B--;
+    }
+    Pair[] ps = new Pair[N];
+    for (int i = 0; i < N; i++) {
+        mulCnt[i] += B / N;
+        ps[i] = new Pair(i, Math.log10(a[i]) + mulCnt[i] * Math.log10(A));
+    }
+    Arrays.sort(ps);
+    for (int i = 0; i < N; i++) {
+        int id = ps[i].id;
+        System.out.println(MULT(a[id], POW(A, mulCnt[id])));
+    }
+}

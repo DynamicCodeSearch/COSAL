@@ -1,0 +1,9 @@
+def memo2bits(memo):
+    bits = [False] * (24*60//5 + 1)
+
+    for start, end in memo:
+        min_ = start // 5
+        max_ = end   // 5 + (1 if end % 5 else 0)
+        bits[min_:max_] = [True] * (max_ - min_)
+
+    return bits

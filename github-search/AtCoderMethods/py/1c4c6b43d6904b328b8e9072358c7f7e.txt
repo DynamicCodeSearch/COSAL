@@ -1,0 +1,24 @@
+def main():
+    global N, graph, vis
+    N, M = map(int, input().split())
+    AB = {tuple(map(int, input().split())) for _ in [0] * M}
+
+    graph = [[False for _ in [0] * N] for _ in [0] * N]
+    for a, b in AB:
+        graph[a-1][b-1] = graph[b-1][a-1] = True
+
+    ans = 0
+    for a, b in AB:
+        graph[a-1][b-1] = graph[b-1][a-1] = False
+        vis = [False] * N
+        dfs(0)
+
+        connected = True
+        for i in range(N):
+            if not vis[i]:
+                connected = False
+        if not connected:
+            ans += 1
+        graph[a-1][b-1] = graph[b-1][a-1] = True
+
+    print(ans)

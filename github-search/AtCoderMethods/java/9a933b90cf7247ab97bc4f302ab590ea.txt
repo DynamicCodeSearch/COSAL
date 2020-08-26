@@ -1,0 +1,48 @@
+public static void main(String[] args) {
+    sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    char[][] a = new char[n][n];
+    char[][] b = new char[m][m];
+    for (int i = 0; i < a.length; i++) {
+        a[i] = sc.next().toCharArray();
+    }
+    for (int i = 0; i < b.length; i++) {
+        b[i] = sc.next().toCharArray();
+    }
+    int cnt = 0;
+    while (cnt < n - m + 1) {
+        char[][] c = new char[m][m];
+        for (int i = 0; i < c.length; i++) {
+            for (int j = 0; j < c[0].length; j++) {
+                c[i][j] = a[i + cnt][j];
+            }
+        }
+        char[][] d = new char[m][m];
+        for (int i = 0; i < d.length; i++) {
+            for (int j = 0; j < d[0].length; j++) {
+                d[i][j] = a[i][j + cnt];
+            }
+        }
+        char[][] e = new char[m][m];
+        for (int i = 0; i < e.length; i++) {
+            for (int j = 0; j < e[0].length; j++) {
+                d[i][j] = a[i + cnt][j + cnt];
+            }
+        }
+        if (IsInclude(b, c)) {
+            System.out.println("Yes");
+            return;
+        }
+        if (IsInclude(b, d)) {
+            System.out.println("Yes");
+            return;
+        }
+        if (IsInclude(b, e)) {
+            System.out.println("Yes");
+            return;
+        }
+        cnt++;
+    }
+    System.out.println("No");
+}

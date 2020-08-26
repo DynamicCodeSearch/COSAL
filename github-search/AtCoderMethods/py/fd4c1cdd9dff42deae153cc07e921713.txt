@@ -1,0 +1,14 @@
+def unite(self, x, y):
+    u = self.find_root(x)
+    v = self.find_root(y)
+
+    if u == v:
+        return
+
+    if self.rank[u] < self.rank[v]:
+        self.p[u] = v
+    else:
+        self.p[v] = u
+
+        if self.rank[u] == self.rank[v]:
+            self.rank[u] += 1

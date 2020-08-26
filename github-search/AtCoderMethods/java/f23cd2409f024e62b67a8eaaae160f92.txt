@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    Queue<Integer> q = new ArrayDeque<Integer>();
+    Queue<Integer> c = new ArrayDeque<Integer>();
+    int A = sc.nextInt();
+    int B = sc.nextInt();
+    int t = 0, count = 0;
+    q.add(A);
+    c.add(0);
+    while ((t = q.poll()) != B) {
+        count = c.poll();
+        q.add(t - 1);
+        q.add(t + 1);
+        q.add(t - 5);
+        q.add(t + 5);
+        q.add(t - 10);
+        q.add(t + 10);
+        for (int i = 0; i < 6; i++) c.add(count + 1);
+    }
+    System.out.println(c.poll());
+}

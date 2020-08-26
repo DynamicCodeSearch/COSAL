@@ -1,0 +1,17 @@
+private void solve() throws IOException {
+    int h = gInt(), w = gInt();
+    char[][] f = new char[h][];
+    for (int i = 0; i < h; ++i) {
+        f[i] = s.next().toCharArray();
+    }
+    for (int i = 0; i < h; ++i) {
+        for (int j = 0; j < w; ++j) if (f[i][j] != '#') {
+            f[i][j] = '0';
+            for (int d = 0; d < 8; ++d) if (0 <= i + dx[d] && i + dx[d] < h && 0 <= j + dy[d] && j + dy[d] < w) {
+                if (f[i + dx[d]][j + dy[d]] == '#')
+                    ++f[i][j];
+            }
+        }
+    }
+    Arrays.stream(f).map(String::valueOf).forEach(System.out::println);
+}

@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner io = new Scanner(System.in);
+    String s = io.next();
+    int top = 0, tail = 0;
+    for (int i = 0; i < s.length(); i++) {
+        if (s.charAt(i) == 'A') {
+            top = i;
+            break;
+        }
+    }
+    for (int i = s.length() - 1; i > 0; i--) {
+        if (s.charAt(i) == 'Z') {
+            tail = i;
+            break;
+        }
+    }
+    System.out.println(tail - top + 1);
+}

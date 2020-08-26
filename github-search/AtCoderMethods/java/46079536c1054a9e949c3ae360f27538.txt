@@ -1,0 +1,25 @@
+static void solve() {
+    int n = in.nextInt();
+    String[] s = new String[n];
+    int[][] cnt = new int[n][26];
+    for (int i = 0; i < n; i++) {
+        s[i] = in.next();
+        for (int j = 0; j < s[i].length(); j++) {
+            cnt[i][s[i].charAt(j) - 'a']++;
+        }
+    }
+    int[] min = new int[26];
+    Arrays.fill(min, Integer.MAX_VALUE / 2);
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < 26; j++) {
+            min[j] = Math.min(min[j], cnt[i][j]);
+        }
+    }
+    StringBuilder ans = new StringBuilder();
+    for (int i = 0; i < 26; i++) {
+        for (int j = 0; j < min[i]; j++) {
+            ans.append((char) (i + 'a'));
+        }
+    }
+    out.println(ans);
+}

@@ -1,0 +1,13 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    boolean[][] mat = new boolean[N][N];
+    for (int i = 0; i < N; i++) {
+        String s = sc.next();
+        for (int j = 0; j < s.length(); j++) {
+            if (s.charAt(j) == '1')
+                mat[i][j] = true;
+        }
+    }
+    System.out.println(rank(mat) == N ? "Odd" : "Even");
+}

@@ -1,0 +1,12 @@
+def f(n):
+    temp = n
+    c = Counter()
+    for i in range(2, n):
+        if temp==1:
+            break
+        while temp%i==0:
+            temp = temp // i
+            c.update([i])
+    else:
+        c.update([temp])
+    return c

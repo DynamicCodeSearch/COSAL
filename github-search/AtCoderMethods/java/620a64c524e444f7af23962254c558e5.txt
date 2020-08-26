@@ -1,0 +1,30 @@
+void run() {
+    long[] sum = new long[100001];
+    sum[0] = 0;
+    for (int i = 1; i <= 100000; ++i) {
+        sum[i] = sum[i - 1] + i;
+    }
+    debug(sum[100000]);
+    int n = ni();
+    int[] a = new int[n + 2];
+    for (int i = 1; i <= n; ++i) {
+        a[i] = ni();
+    }
+    a[0] = a[n + 1] = 0;
+    int left = 1;
+    int right = 1;
+    int last = 0;
+    long cnt = 0;
+    while (left <= n) {
+        if (a[right] > last) {
+            last = a[right];
+            ++right;
+        } else {
+            debug(left, right - 1, sum[right - left]);
+            last = 0;
+            cnt += sum[right - left];
+            left = right;
+        }
+    }
+    System.out.println(cnt);
+}

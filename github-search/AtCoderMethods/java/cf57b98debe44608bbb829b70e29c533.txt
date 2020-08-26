@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String S = sc.next();
+    int T = sc.nextInt();
+    int x = 0, y = 0, cnt = 0;
+    for (int i = 0; i < S.length(); i++) {
+        if (S.charAt(i) == 'L') {
+            x++;
+        } else if (S.charAt(i) == 'R') {
+            x--;
+        } else if (S.charAt(i) == 'U') {
+            y++;
+        } else if (S.charAt(i) == 'D') {
+            y--;
+        } else {
+            cnt++;
+        }
+    }
+    if (T == 1) {
+        System.out.println(Math.abs(x) + Math.abs(y) + cnt);
+    } else {
+        int total = Math.abs(x) + Math.abs(y);
+        if (total >= cnt) {
+            System.out.println(total - cnt);
+        } else {
+            System.out.println(S.length() % 2);
+        }
+    }
+}

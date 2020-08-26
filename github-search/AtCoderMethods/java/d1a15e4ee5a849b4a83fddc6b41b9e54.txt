@@ -1,0 +1,10 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    int ret = N;
+    for (int x = 1; x <= N; x++) {
+        int y = N / x;
+        ret = Math.min(ret, N - x * y + Math.abs(x - y));
+    }
+    System.out.println(ret);
+}

@@ -1,0 +1,7 @@
+static BigInteger power(BigInteger x, BigInteger y, BigInteger m) {
+    if (y.equals(new BigInteger("0")))
+        return (new BigInteger("1"));
+    BigInteger p = power(x, y.divide(new BigInteger("2")), m).mod(m);
+    p = (p.multiply(p)).mod(m);
+    return (y.mod(new BigInteger("2")).equals(new BigInteger("0"))) ? p : (p.multiply(x)).mod(m);
+}

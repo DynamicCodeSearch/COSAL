@@ -1,0 +1,21 @@
+def C_123sub(N, NG):
+
+    if N in NG:
+        return 'NO'
+    if N <= 3:
+
+        return 'YES'
+
+
+    dp = [float('inf') for _ in range(N + 1)]
+    dp[N] = 0
+    for i in range(N, -1, -1):
+        if i in NG:
+            continue
+        for j in [1, 2, 3]:
+            dp[i - j] = min(dp[i] + 1, dp[i - j])
+
+    if dp[0] <= 100:
+        return 'YES'
+    else:
+        return 'NO'

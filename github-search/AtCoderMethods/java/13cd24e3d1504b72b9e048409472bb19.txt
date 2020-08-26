@@ -1,0 +1,17 @@
+public void solve() {
+    int n = io.ri();
+    int[] count = new int[110000];
+    int k = 0;
+    int res = 0;
+    for (int i = 1; i <= n; i++) {
+        int v = io.ri();
+        if (v == i) {
+            k++;
+        } else {
+            res += (k + 1) / 2;
+            k = 0;
+        }
+    }
+    res += (k + 1) / 2;
+    io.writeLine(res + "");
+}

@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    IO io = new IO();
+    int n = io.nextInt();
+    int[] a = io.nextIntArray(n);
+    long[] dp = new long[n];
+    Arrays.fill(dp, 1L << 60);
+    dp[0] = 0;
+    for (int i = 0; i < n - 1; i++) {
+        dp[i + 1] = Math.min(dp[i + 1], dp[i] + Math.abs(a[i] - a[i + 1]));
+        if (i < n - 2) {
+            dp[i + 2] = Math.min(dp[i + 2], dp[i] + Math.abs(a[i] - a[i + 2]));
+        }
+    }
+    System.out.println(dp[n - 1]);
+}

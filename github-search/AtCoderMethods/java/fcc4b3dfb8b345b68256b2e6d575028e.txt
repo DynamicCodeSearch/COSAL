@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int x1 = sc.nextInt();
+    int y1 = sc.nextInt();
+    int r = sc.nextInt();
+    int x2 = sc.nextInt();
+    int y2 = sc.nextInt();
+    int x3 = sc.nextInt();
+    int y3 = sc.nextInt();
+    String ans1 = "YES";
+    if (x1 - r >= x2 && x1 + r <= x3 && y1 - r >= y2 && y1 + r <= y3) {
+        ans1 = "NO";
+    }
+    int[][] vertex = new int[][] { { x2, y2 }, { x3, y2 }, { x2, y3 }, { x3, y3 } };
+    String ans2 = "NO";
+    for (int i = 0; i < vertex.length; i++) {
+        int dd = (vertex[i][0] - x1) * (vertex[i][0] - x1) + (vertex[i][1] - y1) * (vertex[i][1] - y1);
+        if (dd > r * r) {
+            ans2 = "YES";
+            break;
+        }
+    }
+    System.out.println(ans1);
+    System.out.println(ans2);
+}

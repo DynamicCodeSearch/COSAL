@@ -1,0 +1,10 @@
+static void solve() {
+    int n = ni(), T = ni();
+    int[] a = na(n);
+    long ret = 0;
+    for (int i = 0; i < n - 1; i++) {
+        ret += Math.min(a[i + 1] - a[i], T);
+    }
+    ret += T;
+    out.println(ret);
+}

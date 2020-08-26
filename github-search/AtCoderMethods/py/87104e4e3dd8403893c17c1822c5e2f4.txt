@@ -1,0 +1,9 @@
+def dfs(new_vers, dist, flag, frm):
+	flag[frm - 1] = True
+ vs = new_vers[frm - 1]
+ for v in vs:
+		if flag[v[0] - 1] == False:
+			dist[v[0] - 1] = dist[frm - 1] + v[1]
+   new_ver, dist, flag, _ = dfs(new_vers, dist, flag, v[0])
+
+ return [new_vers, dist, flag, frm]

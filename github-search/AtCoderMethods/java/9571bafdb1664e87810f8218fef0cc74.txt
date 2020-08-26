@@ -1,0 +1,12 @@
+void solve() {
+    int N = cin.nextInt();
+    int T = cin.nextInt();
+    cin.nextLine();
+    int[] t = Arrays.stream(cin.nextLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+    int cnt = 0;
+    for (int i = 1; i < N; i++) {
+        cnt += min(t[i] - t[i - 1], T);
+    }
+    cnt += T;
+    System.out.println(cnt);
+}

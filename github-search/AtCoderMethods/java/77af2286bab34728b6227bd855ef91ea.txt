@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int N = scan.nextInt();
+    dp = new int[N + 1];
+    dp[0] = -1;
+    for (int i = 0; i < N; i++) {
+        dp[i + 1] = -1 >>> 1;
+    }
+    for (int i = 1; i < N + 1; i++) {
+        int c = scan.nextInt();
+        for (int j = 0; j < N + 1; j++) {
+            if (c < dp[j]) {
+                dp[j] = Math.min(dp[j], c);
+                break;
+            }
+        }
+    }
+    int count = -1;
+    for (int i = 0; i < N + 1; i++) {
+        if (dp[i] == -1 >>> 1) {
+            break;
+        }
+        count++;
+    }
+    System.out.println(N - count);
+}

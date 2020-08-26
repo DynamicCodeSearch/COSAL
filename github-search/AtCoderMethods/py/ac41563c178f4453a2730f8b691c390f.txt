@@ -1,0 +1,16 @@
+def main():
+    line_odd = sys.stdin.readline().rstrip()
+    line_ev = sys.stdin.readline().rstrip()
+
+    len_odd = len(line_odd)
+    len_ev = len(line_ev)
+    if len_odd > len_ev:
+        ans = "".join(["".join(tpl) for tpl in zip(line_odd, line_ev)]) + line_odd[-1]
+        print(ans)
+    elif len_odd < len_ev:
+        ans = "".join(["".join(tpl) for tpl in zip(line_odd, line_ev)]) + line_ev[-1]
+        print(ans)
+    else:
+        ans = "".join(["".join(tpl) for tpl in zip(line_odd, line_ev)])
+        print(ans)
+    return 0

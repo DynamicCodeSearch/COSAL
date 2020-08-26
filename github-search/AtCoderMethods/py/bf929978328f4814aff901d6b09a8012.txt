@@ -1,0 +1,16 @@
+def Q3(N, M, *arg):
+    import numpy as np
+    route = np.reshape(np.array(*arg), (M, 2))
+    string = 'IMPOSSIBLE'
+    p = [False] * N
+    q = [False] * N
+    for x in route:
+        if x[0] == 1:
+            p[x[1]] = True
+        elif x[1] == N:
+            q[x[0]] = True
+    for i in range(N):
+        if p[i] and q[i]:
+            string = 'POSSIBLE'
+            break
+    return string

@@ -1,0 +1,19 @@
+public void solve() {
+    String s = in.next();
+    String[] TEMPLATE = { "dream", "dreamer", "erase", "eraser" };
+    int n = s.length();
+    boolean[] dp = new boolean[n + 10];
+    dp[0] = true;
+    for (int i = 0; i < n; i++) {
+        if (!dp[i])
+            continue;
+        for (String t : TEMPLATE) {
+            if (i + t.length() > n)
+                continue;
+            String sub = s.substring(i, i + t.length());
+            if (sub.matches(t))
+                dp[i + t.length()] = true;
+        }
+    }
+    System.out.println(dp[n] ? "YES" : "NO");
+}

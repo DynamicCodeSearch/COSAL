@@ -1,0 +1,13 @@
+public static void main(String[] args) throws IOException {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int ans = n;
+    for (int x = 1; x <= n; x++) {
+        for (int y = 1; x * y <= n; y++) {
+            if (ans > Math.abs(x - y) + (n - x * y)) {
+                ans = Math.abs(x - y) + (n - x * y);
+            }
+        }
+    }
+    System.out.println(ans);
+}

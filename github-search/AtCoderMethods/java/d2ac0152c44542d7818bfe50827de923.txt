@@ -1,0 +1,20 @@
+void run() {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[] a = new int[n];
+    int sum = 0;
+    for (int i = 0; i < n; i++) {
+        a[i] = sc.nextInt();
+        sum += a[i];
+    }
+    int m = sc.nextInt();
+    int[] b = new int[m];
+    int[] c = new int[m];
+    for (int i = 0; i < m; i++) {
+        b[i] = sc.nextInt() - 1;
+        c[i] = sc.nextInt();
+    }
+    for (int i = 0; i < m; i++) {
+        System.out.println(sum - a[b[i]] + c[i]);
+    }
+}

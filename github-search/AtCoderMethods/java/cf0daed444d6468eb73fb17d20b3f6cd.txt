@@ -1,0 +1,14 @@
+void run() {
+    try (Scanner sc = new Scanner(System.in)) {
+        long A = sc.nextLong();
+        long B = sc.nextLong();
+        long M = sc.nextLong();
+        long g = gcd(A, B);
+        long ans = 1;
+        ans *= f(A, M);
+        ans %= M;
+        ans *= g(B / g, g, M);
+        ans %= M;
+        System.out.println(ans);
+    }
+}

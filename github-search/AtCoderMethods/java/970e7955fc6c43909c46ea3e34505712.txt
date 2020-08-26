@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    while (sc.hasNext()) {
+        long a = sc.nextLong();
+        long b = sc.nextInt();
+        long k = sc.nextInt();
+        long l = sc.nextInt();
+        long res = Long.MAX_VALUE;
+        for (long i = 0; i * l <= k + 10 * l; i++) {
+            if (i * l >= k)
+                res = Math.min(res, i * b);
+            else
+                res = Math.min(res, i * b + a * (k - i * l));
+        }
+        System.out.println(res);
+    }
+}

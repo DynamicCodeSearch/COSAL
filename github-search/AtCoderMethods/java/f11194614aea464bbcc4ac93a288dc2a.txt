@@ -1,0 +1,16 @@
+public void solve() {
+    int H = nextInt();
+    int W = nextInt();
+    int A = nextInt();
+    int B = nextInt();
+    init();
+    long ans = 0;
+    int x = B + 1;
+    int y = H - A;
+    while (x <= W && y > 0) {
+        ans = (ans + ncr(x + y - 2, x - 1) * ncr((W - x) + (H - y), (W - x))) % mod;
+        x++;
+        y--;
+    }
+    out.println(ans);
+}

@@ -1,0 +1,39 @@
+public static void main(String[] args) {
+    
+    Scanner stdin = new Scanner(System.in);
+    int takoyaki[][], n, q;
+    n = stdin.nextInt();
+    takoyaki = new int[n + 1][n + 1];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            takoyaki[j + 1][i + 1] = stdin.nextInt();
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            takoyaki[j + 1][i + 1] = takoyaki[j + 1][i + 1] + takoyaki[j + 1][i] + takoyaki[j][i + 1] - takoyaki[j][i];
+        }
+    }
+    q = stdin.nextInt();
+    StringBuilder sb = new StringBuilder();
+    for (int k = 0; k < q; k++) {
+        int max = 0;
+        int p = stdin.nextInt();
+        for (int h = 1; h <= n; h++) {
+            int w = p / h;
+            w = Math.min(w, n);
+            if (w == 0) {
+                break;
+            }
+            for (int x = 0; h + x <= n; x++) {
+                for (int y = 0; w + y <= n; y++) {
+                    int d = takoyaki[h + x][w + y] - takoyaki[x][w + y] - takoyaki[h + x][y] + takoyaki[x][y];
+                    max = Math.max(d, max);
+                }
+            }
+        }
+        sb.append(max + "\n");
+    }
+    stdin.close();
+    System.out.print(sb.toString());
+}

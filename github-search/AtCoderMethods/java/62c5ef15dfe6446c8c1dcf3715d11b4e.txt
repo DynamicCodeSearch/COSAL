@@ -1,0 +1,15 @@
+private static boolean po(long[] hs, long a, long b, long N) {
+    int n = hs.length;
+    hs = hs.clone();
+    for (int i = 0; i < n; i++) {
+        hs[i] -= b * N;
+        if (hs[i] < 0)
+            hs[i] = 0;
+    }
+    a -= b;
+    long min = 0;
+    for (int i = 0; i < n; i++) {
+        min += hs[i] / a + (hs[i] % a == 0 ? 0 : 1);
+    }
+    return min <= N;
+}

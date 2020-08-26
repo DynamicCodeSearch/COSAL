@@ -1,0 +1,6 @@
+public byte[] nextLineAsArray() throws IOException {
+    readToken((byte) 0x20);
+    byte[] out = new byte[totalBytes];
+    System.arraycopy(byteBuf, 0, out, 0, totalBytes);
+    return out;
+}

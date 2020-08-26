@@ -1,0 +1,11 @@
+def calc(array, i, j, H, W):
+    move = [[1, -1], [1, 0], [1, 1], [0, -1], [0, 1], [-1, 0], [-1, -1], [-1, 1]]
+    num_mine = 0
+    for k in range(8):
+        x = i+move[k][0]
+        y = j+move[k][1]
+        if x >= H or x < 0 or y >= W or y < 0:
+            pass
+        else:
+            num_mine += 1 if array[x][y] == "#" else 0
+    return num_mine

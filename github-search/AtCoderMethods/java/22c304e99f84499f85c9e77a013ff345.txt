@@ -1,0 +1,49 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int K = sc.nextInt();
+    String S = sc.next();
+    HashMap<String, Integer> map = new HashMap<String, Integer>();
+    for (int i = 0; i < S.length(); i++) {
+        String s = String.valueOf(S.charAt(i));
+        if (map.containsKey(s)) {
+            map.put(s, map.get(s) + 1);
+        } else {
+            map.put(s, 1);
+        }
+    }
+    ArrayList<String> list = new ArrayList<String>(map.keySet());
+    Collections.sort(list);
+    HashMap<String, Integer> map2 = (HashMap<String, Integer>) map.clone();
+    String T = "";
+    int count = 0;
+    for (int i = 0; i < S.length(); i++) {
+        String str = String.valueOf(S.charAt(i));
+        map.put(str, map.get(str) - 1);
+        for (int j = 0; j < list.size(); j++) {
+            String s = list.get(j);
+            if (map2.get(s) > 0) {
+                int a = count;
+                if (!(str.equals(s)))
+                    a++;
+                int b = 0;
+                for (int k = 0; k < list.size(); k++) {
+                    if (k != j) {
+                        b += Math.min(map.get(list.get(k)), map2.get(list.get(k)));
+                    } else {
+                        b += Math.min(map.get(list.get(k)), map2.get(list.get(k)) - 1);
+                    }
+                }
+                a += (S.length() - i - 1 - b);
+                if (a <= K) {
+                    if (!(str.equals(s)))
+                        count++;
+                    T += s;
+                    map2.put(s, map2.get(s) - 1);
+                    break;
+                }
+            }
+        }
+    }
+    System.out.println(T);
+}

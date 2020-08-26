@@ -1,0 +1,42 @@
+public static void main(String[] args) throws FileNotFoundException {
+    Scanner sc = new Scanner(System.in);
+    int n = readI(sc);
+    int[] num = readlnI(sc, " ");
+    int[] color = { 0, 0, 0, 0, 0, 0, 0, 0 };
+    int scr = 0;
+    int fr = 0;
+    for (int i = 0; i < n; i++) {
+        scr = num[i];
+        if (1 <= scr && scr <= 399) {
+            color[0] = 1;
+        } else if (400 <= scr && scr <= 799) {
+            color[1] = 1;
+        } else if (800 <= scr && scr <= 1199) {
+            color[2] = 1;
+        } else if (1200 <= scr && scr <= 1599) {
+            color[3] = 1;
+        } else if (1600 <= scr && scr <= 1999) {
+            color[4] = 1;
+        } else if (2000 <= scr && scr <= 2399) {
+            color[5] = 1;
+        } else if (2400 <= scr && scr <= 2799) {
+            color[6] = 1;
+        } else if (2800 <= scr && scr <= 3199) {
+            color[7] = 1;
+        } else {
+            fr += 1;
+        }
+    }
+    int mn = 0;
+    int mx = 0;
+    for (int i = 0; i < color.length; i++) {
+        if (color[i] == 1) {
+            mn += 1;
+        }
+    }
+    if (mn == 0) {
+        System.out.printf("%d %d\n", 1, mn + fr);
+    } else {
+        System.out.printf("%d %d\n", mn, mn + fr);
+    }
+}

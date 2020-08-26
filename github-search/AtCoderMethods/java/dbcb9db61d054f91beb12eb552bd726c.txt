@@ -1,0 +1,37 @@
+void solve() throws NumberFormatException, IOException {
+    int n = in.nextInt();
+    int m = in.nextInt();
+    Edge[] edge = new Edge[m + 1];
+    for (int i = 0; i < m; i++) {
+        int a = in.nextInt() - 1;
+        int b = in.nextInt() - 1;
+        int y = in.nextInt();
+        edge[i] = new Edge(a, b, y);
+    }
+    edge[m] = new Edge(0, 0, 0);
+    Arrays.sort(edge);
+    UnionFind uf = new UnionFind(n);
+    int q = in.nextInt();
+    Query[] p = new Query[q];
+    for (int i = 0; i < q; i++) {
+        int city = in.nextInt() - 1;
+        int year = in.nextInt();
+        p[i] = new Query(i, city, year);
+    }
+    int[] ans = new int[q];
+    Arrays.fill(ans, 1);
+    Arrays.sort(p);
+    int sp = 0;
+    while (sp < q && p[sp].y >= edge[0].y) sp++;
+    for (int i = 0; i < m; i++) {
+        Edge e = edge[i];
+        uf.unite(e.a, e.b);
+        while (sp < q && p[sp].y >= edge[i + 1].y) {
+            ans[p[sp].id] = uf.size[uf.find(p[sp].c)];
+            sp++;
+        }
+    }
+    for (int i = 0; i < q; i++) {
+        out.println(ans[i]);
+    }
+}

@@ -1,0 +1,8 @@
+def modpow(x, e):
+    result = 1
+    while e > 0:
+        if e & 1:
+            result = result * x % mod
+        e >>= 1
+        x = x * x % mod
+    return result

@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int n = scanner.nextInt();
+    int start = scanner.nextInt(), goal = scanner.nextInt();
+    int rn = scanner.nextInt();
+    int[] route = new int[rn];
+    for (int i = 0; i < rn; i++) {
+        route[i] = scanner.nextInt();
+    }
+    if (roundCheck(route, start) || roundCheck(route, goal) || overlapCheck(route)) {
+        System.out.println("NO");
+    } else {
+        System.out.println("YES");
+    }
+}

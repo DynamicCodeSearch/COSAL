@@ -1,0 +1,13 @@
+public double lowerBound(double begin, double end, DoubleChecker check) {
+    double l = begin - 1;
+    double r = end;
+    while (r - l > EPS) {
+        double m = (r + l) / 2;
+        if (check.check(m)) {
+            r = m;
+        } else {
+            l = m;
+        }
+    }
+    return r;
+}

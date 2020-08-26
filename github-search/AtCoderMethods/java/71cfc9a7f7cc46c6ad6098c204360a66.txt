@@ -1,0 +1,14 @@
+private static long solveA(long[][] balls) {
+    int n = balls.length;
+    long rmin = Long.MAX_VALUE;
+    long rmax = Long.MIN_VALUE;
+    long bmin = Long.MAX_VALUE;
+    long bmax = Long.MIN_VALUE;
+    for (int i = 0; i < n; i++) {
+        rmin = Math.min(rmin, balls[i][0]);
+        rmax = Math.max(rmax, balls[i][0]);
+        bmin = Math.min(bmin, balls[i][1]);
+        bmax = Math.max(bmax, balls[i][1]);
+    }
+    return (rmax - rmin) * (bmax - bmin);
+}

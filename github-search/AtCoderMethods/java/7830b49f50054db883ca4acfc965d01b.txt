@@ -1,0 +1,14 @@
+void setUniont(int x, int y) {
+    x = root(x);
+    y = root(y);
+    if (x == y) {
+        return;
+    }
+    if (upper[x] < upper[y]) {
+        int tmp = x;
+        x = y;
+        y = tmp;
+    }
+    upper[y] += upper[x];
+    upper[x] = y;
+}

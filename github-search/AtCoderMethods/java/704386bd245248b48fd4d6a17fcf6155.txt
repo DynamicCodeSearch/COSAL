@@ -1,0 +1,33 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    int k = in.nextInt();
+    long[] a = new long[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = in.nextInt() - k;
+    }
+    long[] imos = new long[n + 1];
+    for (int i = 0; i < n; i++) {
+        imos[i + 1] = imos[i] + a[i];
+    }
+    Set<Long> set = new HashSet<>();
+    for (int i = 0; i <= n; i++) {
+        set.add(imos[i]);
+    }
+    List<Long> arr = new ArrayList<>(set);
+    Collections.sort(arr);
+    Map<Long, Integer> mp = new HashMap<>();
+    for (int i = 0; i < arr.size(); i++) {
+        mp.put(arr.get(i), i);
+    }
+    FenwickTree fen = new FenwickTree(mp.size() + 10);
+    long ans = 0;
+    for (int r = 0; r <= n; r++) {
+        int lessOrEq = mp.get(imos[r]);
+        ans += fen.range(1, lessOrEq + 1);
+        fen.add(lessOrEq + 1, 1);
+    }
+    out.println(ans);
+    out.flush();
+}

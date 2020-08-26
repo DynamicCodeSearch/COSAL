@@ -1,0 +1,12 @@
+def add_prime_factor(x, list_N):
+    for i in range(2, x+1):
+        count = 0
+        while True:
+            if x % i != 0:
+                break
+            count += 1
+            x //= i
+        list_N[i-1] += count
+        if x == 1:
+            break
+    return list_N

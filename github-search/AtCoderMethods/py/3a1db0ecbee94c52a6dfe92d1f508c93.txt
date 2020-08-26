@@ -1,0 +1,17 @@
+def calculate_earn(self, start, end, depth):
+    if start == end:
+        return self.times * self.earn[end]
+    min_go = self.big_number
+    min_back = self.big_number
+
+    go = min(self.beam_search(start, end, depth=depth), min_go)
+    if go == self.big_number:
+        return -1
+    self.store_minimum_path([start, end, go])
+
+    back = min(self.beam_search(end, start, depth=depth), min_back)
+    if back == self.big_number:
+        return -1
+    self.store_minimum_path([end, start, back])
+    residue = self.times - go - back
+    return residue * self.earn[end]

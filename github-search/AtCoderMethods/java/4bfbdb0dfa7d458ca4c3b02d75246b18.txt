@@ -1,0 +1,12 @@
+public static int search(int h, int w, int x, int y, int[][] map, int[][] num) {
+    if (num[x][y] == -1) {
+        int up = shift(h, w, x, y, -1, 0, map, num);
+        int down = shift(h, w, x, y, 1, 0, map, num);
+        int left = shift(h, w, x, y, 0, -1, map, num);
+        int right = shift(h, w, x, y, 0, 1, map, num);
+        int tmp = ((((1 + up) % div + down) % div + left) % div + right) % div;
+        num[x][y] = tmp;
+        return tmp;
+    } else
+        return num[x][y];
+}

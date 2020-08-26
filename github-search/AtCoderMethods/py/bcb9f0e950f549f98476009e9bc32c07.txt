@@ -1,0 +1,18 @@
+def solve():
+
+    A, B, C, D, E, F = map(int, input().split())
+    memo = []
+
+    for a in range(31):
+        for b in range(31):
+            for c in range(101):
+                for d in range(101):
+                    w = (100*A)*a + (100*B)*b
+                    s = C*c + D*d
+                    if w+s > F:
+                        break
+                    else:
+                        if w/100 * E >= s:
+                            memo.append([w+s,s])
+
+    print(*sorted(memo, key=lambda x: (100*x[1] / x[0] if x[0] else 0))[-1])

@@ -1,0 +1,23 @@
+void solve() throws NumberFormatException, IOException {
+    final ContestScanner in = new ContestScanner();
+    Writer out = new Writer();
+    n = in.nextInt();
+    p = new Pos[n];
+    for (int i = 0; i < n; i++) {
+        p[i] = new Pos(in.nextInt(), in.nextInt(), in.nextInt());
+    }
+    double right = 100000;
+    double left = -100000;
+    for (int i = 0; i < 100; i++) {
+        double mid1 = (left * 2 + right) / 3;
+        double mid2 = (left + right * 2) / 3;
+        double a1 = f1(mid1);
+        double a2 = f1(mid2);
+        if (a1 < a2) {
+            right = mid2;
+        } else {
+            left = mid1;
+        }
+    }
+    System.out.println(f1(left));
+}

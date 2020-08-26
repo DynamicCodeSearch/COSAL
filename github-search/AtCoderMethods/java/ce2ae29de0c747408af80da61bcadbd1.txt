@@ -1,0 +1,16 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    char[] c = sc.next().toCharArray();
+    Map<Character, Integer> counter = new HashMap<>();
+    counter.put('1', 0);
+    counter.put('2', 0);
+    counter.put('3', 0);
+    counter.put('4', 0);
+    for (char x : c) {
+        counter.put(x, counter.get(x) + 1);
+    }
+    int max = counter.values().stream().mapToInt(Integer::intValue).max().getAsInt();
+    int min = counter.values().stream().mapToInt(Integer::intValue).min().getAsInt();
+    System.out.println(max + " " + min);
+}

@@ -1,0 +1,13 @@
+private void dfs(int v) {
+    col[v] = 1;
+    for (int u : adj[v]) {
+        if (col[u] == 0) {
+            parent[u] = v;
+            dfs(u);
+        } else if (col[u] == 1) {
+            c1 = v;
+            c2 = u;
+        }
+    }
+    col[v] = 2;
+}

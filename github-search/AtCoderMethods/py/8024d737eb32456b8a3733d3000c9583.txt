@@ -1,0 +1,15 @@
+def main():
+
+    dislike_digits_table = [False for _ in range(10)]
+
+    N, _ = sys.stdin.readline().split(' ')
+    digits = map(int, sys.stdin.readline().split(' '))
+
+    for digit in digits:
+        dislike_digits_table[digit] = True
+
+    first_like_digit = str(next(i for i, v
+                                in enumerate(dislike_digits_table)
+                                if not v))
+
+    print(solve(dislike_digits_table, first_like_digit, N))

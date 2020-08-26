@@ -1,0 +1,72 @@
+public static void main(String[] args) throws IOException {
+    final Scanner sc = new Scanner(System.in);
+    final int N = sc.nextInt();
+    final long Ma = sc.nextLong();
+    final long Mb = sc.nextLong();
+    int[] as = new int[N];
+    int[] bs = new int[N];
+    int[] cs = new int[N];
+    for (int i = 0; i < N; i++) {
+        final int a = sc.nextInt();
+        final int b = sc.nextInt();
+        final int c = sc.nextInt();
+        as[i] = a;
+        bs[i] = b;
+        cs[i] = c;
+    }
+    final int max = 10 * N;
+    int[][] DP = new int[max + 1][max + 1];
+    int[][] nextDP = new int[max + 1][max + 1];
+    for (int i = 0; i <= max; i++) {
+        for (int j = 0; j <= max; j++) {
+            DP[i][j] = -1;
+        }
+    }
+    DP[0][0] = 0;
+    for (int curr = 0; curr < N; curr++) {
+        for (int i = 0; i <= max; i++) {
+            for (int j = 0; j <= max; j++) {
+                nextDP[i][j] = DP[i][j];
+            }
+        }
+        final int a = as[curr];
+        final int b = bs[curr];
+        final int c = cs[curr];
+        for (int i = 0; i <= (max - a); i++) {
+            for (int j = 0; j <= (max - b); j++) {
+                if (DP[i][j] < 0) {
+                    continue;
+                }
+                final int next_a = i + a;
+                final int next_b = j + b;
+                final int next_money = DP[i][j] + c;
+                if (nextDP[next_a][next_b] < 0) {
+                    nextDP[next_a][next_b] = next_money;
+                } else {
+                    nextDP[next_a][next_b] = Math.min(nextDP[next_a][next_b], next_money);
+                }
+            }
+        }
+        {
+            int[][] tmp = DP;
+            DP = nextDP;
+            nextDP = tmp;
+        }
+    }
+    
+    boolean found = false;
+    int min = Integer.MAX_VALUE;
+    for (int i = 0; i <= max; i++) {
+        for (int j = 0; j <= max; j++) {
+            if (Ma * j != Mb * i) {
+                continue;
+            }
+            if (DP[i][j] <= 0) {
+                continue;
+            }
+            found = true;
+            min = Math.min(min, DP[i][j]);
+        }
+    }
+    System.out.println(found ? min : "-1");
+}

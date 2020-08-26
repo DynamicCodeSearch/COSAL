@@ -1,0 +1,11 @@
+public static int[] map(String s) {
+    int n = s.length();
+    int[] res = new int[n + 1];
+    for (int i = 0; i < n; i++) {
+        res[i + 1] = s.charAt(i) == 'A' ? 1 : 2;
+    }
+    for (int i = 1; i <= n; i++) {
+        res[i] += res[i - 1];
+    }
+    return res;
+}

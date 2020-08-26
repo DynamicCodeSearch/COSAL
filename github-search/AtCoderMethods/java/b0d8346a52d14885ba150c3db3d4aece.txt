@@ -1,0 +1,33 @@
+
+public void run() throws IOException {
+    
+    int TEST_CASE = 1;
+    while (TEST_CASE-- != 0) {
+        int n = io.nextInt();
+        int C = io.nextInt();
+        A = io.nextIntArray(n);
+        B = io.nextIntArray(n);
+        
+        
+        
+        
+        
+        
+        Arrays.fill(done[0], true);
+        memo[0][0] = 1;
+        for (int i = 0; i < pow.length; i++) {
+            pow[i][0] = 1;
+            for (int j = 1; j < pow[i].length; j++) {
+                pow[i][j] = (int) (pow[i][j - 1] * (long) i % mod);
+            }
+        }
+        for (int j = 0; j < sumPow[0].length; j++) {
+            for (int i = 1; i < sumPow.length; i++) {
+                sumPow[i][j] = sumPow[i - 1][j] + pow[i - 1][j];
+                if (sumPow[i][j] >= mod)
+                    sumPow[i][j] -= mod;
+            }
+        }
+        io.out.println(rec(n, C));
+    }
+}

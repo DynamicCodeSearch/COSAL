@@ -1,0 +1,670 @@
+### Py Tokens: sort, mintreba, vyska, profit, treba, najvacsich, minvyska, vyhra, range, bestprofit, najmensich, max, maxvyska, true, best 
+
+### Py functions
+
+def func_80aafb13023a41d98864422db59fa1b9(B, N, X):
+    X += [0] * (37 - N)
+    X.sort()
+    best_profit = 0.0
+    for najmensich in range(1, 37):
+        if X[-1] == X[najmensich - 1]:
+            continue
+        mintreba = 0
+        for i in range(najmensich):
+            mintreba += X[najmensich - 1] - X[i]
+        for i in range(najmensich, 37):
+            if X[i] == X[najmensich - 1]:
+                mintreba += 1
+        if mintreba > B:
+            continue
+        minvyska = X[najmensich - 1]
+        if True:
+            vyska = minvyska
+            treba = 0
+            vyhra = 0
+            for i in range(najmensich):
+                treba += vyska - X[i]
+                vyhra += vyska - X[i]
+            for i in range(najmensich, 37):
+                if X[i] <= vyska:
+                    treba += vyska + 1 - X[i]
+            pp = 1.0 / najmensich
+            best_profit = max(best_profit, 36.0 * pp * vyhra - treba)
+        maxvyska = X[-1]
+        while maxvyska - minvyska > 1:
+            vyska = (maxvyska + minvyska) // 2
+            treba = 0
+            vyhra = 0
+            for i in range(najmensich):
+                treba += vyska - X[i]
+                vyhra += vyska - X[i]
+            for i in range(najmensich, 37):
+                if X[i] <= vyska:
+                    treba += vyska + 1 - X[i]
+            if treba <= B:
+                pp = 1.0 / najmensich
+                best_profit = max(best_profit, 36.0 * pp * vyhra - treba)
+                minvyska = vyska
+            else:
+                maxvyska = vyska
+    treba = 0
+    vyhra = 0
+    vyska = X[-1]
+    for i in range(37):
+        treba += vyska - X[i]
+        vyhra += vyska - X[i]
+    pp = 1.0 / 37
+    if treba <= B:
+        best_profit = max(best_profit, 36.0 * pp * vyhra - treba)
+        najvacsich = 0
+        for i in range(37):
+            if X[i] == X[-1]:
+                najvacsich += 1
+        for i in range(1, najvacsich):
+            if treba + i > B:
+                break
+            pp = 1.0 / (37 - i)
+            best_profit = max(best_profit, 36.0 * pp * vyhra - treba - i)
+    return mintreba
+
+def func_3282fb47942844329bb777c408e07208(B, X):
+    X.sort()
+    best_profit = 0.0
+    for najmensich in range(1, 37):
+        if X[-1] == X[najmensich - 1]:
+            continue
+        mintreba = 0
+        for i in range(najmensich):
+            mintreba += X[najmensich - 1] - X[i]
+        for i in range(najmensich, 37):
+            if X[i] == X[najmensich - 1]:
+                mintreba += 1
+        if mintreba > B:
+            continue
+        minvyska = X[najmensich - 1]
+        if True:
+            vyska = minvyska
+            treba = 0
+            vyhra = 0
+            for i in range(najmensich):
+                treba += vyska - X[i]
+                vyhra += vyska - X[i]
+            for i in range(najmensich, 37):
+                if X[i] <= vyska:
+                    treba += vyska + 1 - X[i]
+            pp = 1.0 / najmensich
+            best_profit = max(best_profit, 36.0 * pp * vyhra - treba)
+        maxvyska = X[-1]
+        while maxvyska - minvyska > 1:
+            vyska = (maxvyska + minvyska) // 2
+            treba = 0
+            vyhra = 0
+            for i in range(najmensich):
+                treba += vyska - X[i]
+                vyhra += vyska - X[i]
+            for i in range(najmensich, 37):
+                if X[i] <= vyska:
+                    treba += vyska + 1 - X[i]
+            if treba <= B:
+                pp = 1.0 / najmensich
+                best_profit = max(best_profit, 36.0 * pp * vyhra - treba)
+                minvyska = vyska
+            else:
+                maxvyska = vyska
+    treba = 0
+    vyhra = 0
+    vyska = X[-1]
+    for i in range(37):
+        treba += vyska - X[i]
+        vyhra += vyska - X[i]
+    pp = 1.0 / 37
+    if treba <= B:
+        best_profit = max(best_profit, 36.0 * pp * vyhra - treba)
+        najvacsich = 0
+        for i in range(37):
+            if X[i] == X[-1]:
+                najvacsich += 1
+        for i in range(1, najvacsich):
+            if treba + i > B:
+                break
+            pp = 1.0 / (37 - i)
+            best_profit = max(best_profit, 36.0 * pp * vyhra - treba - i)
+    return maxvyska
+
+def func_aa044bea4d254f8cb42ad237c02d092a(B, N, X):
+    X += [0] * (37 - N)
+    X.sort()
+    best_profit = 0.0
+    for najmensich in range(1, 37):
+        if X[-1] == X[najmensich - 1]:
+            continue
+        mintreba = 0
+        for i in range(najmensich):
+            mintreba += X[najmensich - 1] - X[i]
+        for i in range(najmensich, 37):
+            if X[i] == X[najmensich - 1]:
+                mintreba += 1
+        if mintreba > B:
+            continue
+        minvyska = X[najmensich - 1]
+        if True:
+            vyska = minvyska
+            treba = 0
+            vyhra = 0
+            for i in range(najmensich):
+                treba += vyska - X[i]
+                vyhra += vyska - X[i]
+            for i in range(najmensich, 37):
+                if X[i] <= vyska:
+                    treba += vyska + 1 - X[i]
+            pp = 1.0 / najmensich
+            best_profit = max(best_profit, 36.0 * pp * vyhra - treba)
+        maxvyska = X[-1]
+        while maxvyska - minvyska > 1:
+            vyska = (maxvyska + minvyska) // 2
+            treba = 0
+            vyhra = 0
+            for i in range(najmensich):
+                treba += vyska - X[i]
+                vyhra += vyska - X[i]
+            for i in range(najmensich, 37):
+                if X[i] <= vyska:
+                    treba += vyska + 1 - X[i]
+            if treba <= B:
+                pp = 1.0 / najmensich
+                best_profit = max(best_profit, 36.0 * pp * vyhra - treba)
+                minvyska = vyska
+            else:
+                maxvyska = vyska
+    treba = 0
+    vyhra = 0
+    vyska = X[-1]
+    for i in range(37):
+        treba += vyska - X[i]
+        vyhra += vyska - X[i]
+    pp = 1.0 / 37
+    if treba <= B:
+        best_profit = max(best_profit, 36.0 * pp * vyhra - treba)
+        najvacsich = 0
+        for i in range(37):
+            if X[i] == X[-1]:
+                najvacsich += 1
+        for i in range(1, najvacsich):
+            if treba + i > B:
+                break
+            pp = 1.0 / (37 - i)
+            best_profit = max(best_profit, 36.0 * pp * vyhra - treba - i)
+    return treba
+
+def func_1e361b88b86e486faa8670944d29ccca(B, X):
+    X.sort()
+    best_profit = 0.0
+    for najmensich in range(1, 37):
+        if X[-1] == X[najmensich - 1]:
+            continue
+        mintreba = 0
+        for i in range(najmensich):
+            mintreba += X[najmensich - 1] - X[i]
+        for i in range(najmensich, 37):
+            if X[i] == X[najmensich - 1]:
+                mintreba += 1
+        if mintreba > B:
+            continue
+        minvyska = X[najmensich - 1]
+        if True:
+            vyska = minvyska
+            treba = 0
+            vyhra = 0
+            for i in range(najmensich):
+                treba += vyska - X[i]
+                vyhra += vyska - X[i]
+            for i in range(najmensich, 37):
+                if X[i] <= vyska:
+                    treba += vyska + 1 - X[i]
+            pp = 1.0 / najmensich
+            best_profit = max(best_profit, 36.0 * pp * vyhra - treba)
+        maxvyska = X[-1]
+        while maxvyska - minvyska > 1:
+            vyska = (maxvyska + minvyska) // 2
+            treba = 0
+            vyhra = 0
+            for i in range(najmensich):
+                treba += vyska - X[i]
+                vyhra += vyska - X[i]
+            for i in range(najmensich, 37):
+                if X[i] <= vyska:
+                    treba += vyska + 1 - X[i]
+            if treba <= B:
+                pp = 1.0 / najmensich
+                best_profit = max(best_profit, 36.0 * pp * vyhra - treba)
+                minvyska = vyska
+            else:
+                maxvyska = vyska
+    treba = 0
+    vyhra = 0
+    vyska = X[-1]
+    for i in range(37):
+        treba += vyska - X[i]
+        vyhra += vyska - X[i]
+    pp = 1.0 / 37
+    if treba <= B:
+        best_profit = max(best_profit, 36.0 * pp * vyhra - treba)
+        najvacsich = 0
+        for i in range(37):
+            if X[i] == X[-1]:
+                najvacsich += 1
+        for i in range(1, najvacsich):
+            if treba + i > B:
+                break
+            pp = 1.0 / (37 - i)
+            best_profit = max(best_profit, 36.0 * pp * vyhra - treba - i)
+    return minvyska
+
+def func_769a6df6f494411ba5300652c1c22b71(B, X):
+    X.sort()
+    best_profit = 0.0
+    for najmensich in range(1, 37):
+        if X[-1] == X[najmensich - 1]:
+            continue
+        mintreba = 0
+        for i in range(najmensich):
+            mintreba += X[najmensich - 1] - X[i]
+        for i in range(najmensich, 37):
+            if X[i] == X[najmensich - 1]:
+                mintreba += 1
+        if mintreba > B:
+            continue
+        minvyska = X[najmensich - 1]
+        if True:
+            vyska = minvyska
+            treba = 0
+            vyhra = 0
+            for i in range(najmensich):
+                treba += vyska - X[i]
+                vyhra += vyska - X[i]
+            for i in range(najmensich, 37):
+                if X[i] <= vyska:
+                    treba += vyska + 1 - X[i]
+            pp = 1.0 / najmensich
+            best_profit = max(best_profit, 36.0 * pp * vyhra - treba)
+        maxvyska = X[-1]
+        while maxvyska - minvyska > 1:
+            vyska = (maxvyska + minvyska) // 2
+            treba = 0
+            vyhra = 0
+            for i in range(najmensich):
+                treba += vyska - X[i]
+                vyhra += vyska - X[i]
+            for i in range(najmensich, 37):
+                if X[i] <= vyska:
+                    treba += vyska + 1 - X[i]
+            if treba <= B:
+                pp = 1.0 / najmensich
+                best_profit = max(best_profit, 36.0 * pp * vyhra - treba)
+                minvyska = vyska
+            else:
+                maxvyska = vyska
+    treba = 0
+    vyhra = 0
+    vyska = X[-1]
+    for i in range(37):
+        treba += vyska - X[i]
+        vyhra += vyska - X[i]
+    pp = 1.0 / 37
+    if treba <= B:
+        best_profit = max(best_profit, 36.0 * pp * vyhra - treba)
+        najvacsich = 0
+        for i in range(37):
+            if X[i] == X[-1]:
+                najvacsich += 1
+        for i in range(1, najvacsich):
+            if treba + i > B:
+                break
+            pp = 1.0 / (37 - i)
+            best_profit = max(best_profit, 36.0 * pp * vyhra - treba - i)
+    return mintreba
+
+*********************************
+
+#### Score: 9.69307
+
+
+#### Java Tokens: result, collections, bestresult, best, sort, profit 
+
+public static double func_2e1d178b8cfb44799660e97759d4a338(ArrayList<Long> profit) { 
+ // out.println("get profit " + l + " " + money);
+Collections.sort(profit);
+double bestResult = 0;
+return bestResult;
+}
+
+
+*********************************
+
+#### Score: 8.72244
+
+
+#### Java Tokens: add, result, money, collections, bestresult, best, sort, profit 
+
+public static long func_343bdcca14d54e9ca38bdab18991bfa7(long l, long money, long[] a, ArrayList<Long> profit) { 
+ for (long x : a) {
+    if (x < l) {
+        money -= (l - x);
+        profit.add(l - x);
+    } else if (x == l) {
+        profit.add(0L);
+    }
+}
+// out.println("get profit " + l + " " + money);
+Collections.sort(profit);
+double bestResult = 0;
+return money;
+}
+
+
+public static double func_5f96bc5b17054aab93bb46045116212e(long l, long money, long[] a, ArrayList<Long> profit) { 
+ for (long x : a) {
+    if (x < l) {
+        money -= (l - x);
+        profit.add(l - x);
+    } else if (x == l) {
+        profit.add(0L);
+    }
+}
+// out.println("get profit " + l + " " + money);
+Collections.sort(profit);
+double bestResult = 0;
+return bestResult;
+}
+
+
+*********************************
+
+#### Score: 7.65747
+
+
+#### Java Tokens: bestresult, max, startresult, start, best, sort, remove, money--, result, size, money, collections, get, math, profit 
+
+public static double func_e7ec3c235d2b46fd9a35141af4e84f15(long money, double startResult, ArrayList<Long> profit) { 
+ // out.println("get profit " + l + " " + money);
+Collections.sort(profit);
+double bestResult = 0;
+while (profit.size() > 0 && money >= 0) {
+    // remaining
+    double result = startResult + money;
+    for (int i = 0; i < profit.size(); i++) {
+        result += 36.0 * (profit.get(i)) * (1.0 / profit.size());
+    }
+    profit.remove(0);
+    money--;
+    bestResult = Math.max(bestResult, result);
+}
+return bestResult;
+}
+
+
+*********************************
+
+#### Score: 7.53028
+
+
+#### Java Tokens: add, money, collections, sort, profit 
+
+public static long func_ed9b057143b0438e85858b7ef1167777(long l, long money, long[] a, ArrayList<Long> profit) { 
+ for (long x : a) {
+    if (x < l) {
+        money -= (l - x);
+        profit.add(l - x);
+    } else if (x == l) {
+        profit.add(0L);
+    }
+}
+// out.println("get profit " + l + " " + money);
+Collections.sort(profit);
+return money;
+}
+
+
+*********************************
+
+#### Score: 7.45880
+
+
+#### Java Tokens: result, money, bestresult, max, best, math, profit, remove, money-- 
+
+public static double func_0dfa8a4bfd2d4612b8aeb0165f501cde(long money, double result, double bestResult, ArrayList<Long> profit) { 
+ profit.remove(0);
+money--;
+bestResult = Math.max(bestResult, result);
+return bestResult;
+}
+
+
+*********************************
+
+#### Score: 7.39072
+
+
+#### Java Tokens: add, bestresult, max, startresult, start, best, sort, remove, money--, result, money, size, collections, get, math, profit 
+
+public static long func_9c3e3d6d30544c8a957540405ee7cbfc(long l, long money, long[] a, double startResult, ArrayList<Long> profit) { 
+ for (long x : a) {
+    if (x < l) {
+        money -= (l - x);
+        profit.add(l - x);
+    } else if (x == l) {
+        profit.add(0L);
+    }
+}
+// out.println("get profit " + l + " " + money);
+Collections.sort(profit);
+double bestResult = 0;
+while (profit.size() > 0 && money >= 0) {
+    // remaining
+    double result = startResult + money;
+    for (int i = 0; i < profit.size(); i++) {
+        result += 36.0 * (profit.get(i)) * (1.0 / profit.size());
+    }
+    profit.remove(0);
+    money--;
+    bestResult = Math.max(bestResult, result);
+}
+return money;
+}
+
+
+public static double func_5da68e943d804a1c85429c29bdb5e585(long l, long money, long[] a, double startResult, ArrayList<Long> profit) { 
+ for (long x : a) {
+    if (x < l) {
+        money -= (l - x);
+        profit.add(l - x);
+    } else if (x == l) {
+        profit.add(0L);
+    }
+}
+// out.println("get profit " + l + " " + money);
+Collections.sort(profit);
+double bestResult = 0;
+while (profit.size() > 0 && money >= 0) {
+    // remaining
+    double result = startResult + money;
+    for (int i = 0; i < profit.size(); i++) {
+        result += 36.0 * (profit.get(i)) * (1.0 / profit.size());
+    }
+    profit.remove(0);
+    money--;
+    bestResult = Math.max(bestResult, result);
+}
+return bestResult;
+}
+
+
+*********************************
+
+#### Score: 7.28590
+
+
+#### Java Tokens: add, result, money, array, collections, bestresult, best, arraylist, sort, list, profit, long 
+
+public static long func_e7456d7a6591451b8877074d7707e8f2(long l, long money, long[] a) { 
+ ArrayList<Long> profit = new ArrayList<>();
+for (long x : a) {
+    if (x < l) {
+        money -= (l - x);
+        profit.add(l - x);
+    } else if (x == l) {
+        profit.add(0L);
+    }
+}
+// out.println("get profit " + l + " " + money);
+Collections.sort(profit);
+double bestResult = 0;
+return money;
+}
+
+
+public static double func_5984f9a79b8a49de9d1f8c26849b5b51(long l, long money, long[] a) { 
+ ArrayList<Long> profit = new ArrayList<>();
+for (long x : a) {
+    if (x < l) {
+        money -= (l - x);
+        profit.add(l - x);
+    } else if (x == l) {
+        profit.add(0L);
+    }
+}
+// out.println("get profit " + l + " " + money);
+Collections.sort(profit);
+double bestResult = 0;
+return bestResult;
+}
+
+
+public static ArrayList<Long> func_6573ef28dcdb48b7afbf727f51c17533(long l, long money, long[] a) { 
+ ArrayList<Long> profit = new ArrayList<>();
+for (long x : a) {
+    if (x < l) {
+        money -= (l - x);
+        profit.add(l - x);
+    } else if (x == l) {
+        profit.add(0L);
+    }
+}
+// out.println("get profit " + l + " " + money);
+Collections.sort(profit);
+double bestResult = 0;
+return profit;
+}
+
+
+*********************************
+
+#### Score: 6.92396
+
+
+#### Java Tokens: best, arrays, sort 
+
+public static double func_95f8a5025b6242bb92b79f6fd1f6b179(long[] a) { 
+ Arrays.sort(a);
+double best = 0;
+return best;
+}
+
+
+public static double func_afd5bff942d74f999f114261393f19be(long[] x) { 
+ Arrays.sort(x);
+// System.out.println(Arrays.toString(x));
+double best = 0;
+return best;
+}
+
+
+*********************************
+
+#### Score: 6.82246
+
+
+#### Java Tokens: result, size, money, bestresult, max, get, best, math, profit, remove, money-- 
+
+public static double func_84c1eb0c33d54eddbd685da349de93c0(long money, double result, double bestResult, ArrayList<Long> profit) { 
+ for (int i = 0; i < profit.size(); i++) {
+    result += 36.0 * (profit.get(i)) * (1.0 / profit.size());
+}
+profit.remove(0);
+money--;
+bestResult = Math.max(bestResult, result);
+return bestResult;
+}
+
+
+public static double func_ac0d7afdd23a46a19fd31baee6feac7a(long money, double result, double bestResult, ArrayList<Long> profit) { 
+ for (int i = 0; i < profit.size(); i++) {
+    result += 36.0 * (profit.get(i)) * (1.0 / profit.size());
+}
+profit.remove(0);
+money--;
+bestResult = Math.max(bestResult, result);
+return result;
+}
+
+
+*********************************
+
+#### Score: 6.73947
+
+
+#### Java Tokens: add, bestresult, startresult, start, best, arraylist, sort, list, long, result, money, array, collections, profit 
+
+public static ArrayList<Long> func_a1208e955539482f95828caef0394289(long l, long money, long[] a) { 
+ double startResult = -money;
+ArrayList<Long> profit = new ArrayList<>();
+for (long x : a) {
+    if (x < l) {
+        money -= (l - x);
+        profit.add(l - x);
+    } else if (x == l) {
+        profit.add(0L);
+    }
+}
+// out.println("get profit " + l + " " + money);
+Collections.sort(profit);
+double bestResult = 0;
+return profit;
+}
+
+
+public static double func_d6be7ba4c0364b21bd16f1d651f809b4(long l, long money, long[] a) { 
+ double startResult = -money;
+ArrayList<Long> profit = new ArrayList<>();
+for (long x : a) {
+    if (x < l) {
+        money -= (l - x);
+        profit.add(l - x);
+    } else if (x == l) {
+        profit.add(0L);
+    }
+}
+// out.println("get profit " + l + " " + money);
+Collections.sort(profit);
+double bestResult = 0;
+return startResult;
+}
+
+
+public static long func_b67cfa8f9e144b809745a7d722923da5(long l, long money, long[] a) { 
+ double startResult = -money;
+ArrayList<Long> profit = new ArrayList<>();
+for (long x : a) {
+    if (x < l) {
+        money -= (l - x);
+        profit.add(l - x);
+    } else if (x == l) {
+        profit.add(0L);
+    }
+}
+// out.println("get profit " + l + " " + money);
+Collections.sort(profit);
+double bestResult = 0;
+return money;
+}
+

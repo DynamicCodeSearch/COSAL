@@ -1,0 +1,12 @@
+public static void main(String[] $) {
+    int[] name = new int[26], kit = new int[26];
+    s.next();
+    s.next();
+    s.next().chars().forEach(i -> ++name[i - 'A']);
+    s.next().chars().forEach(i -> ++kit[i - 'A']);
+    if (REPS(26).anyMatch(i -> name[i] > 0 && kit[i] == 0)) {
+        System.out.println(-1);
+        return;
+    }
+    System.out.println(REPS(26).map(i -> name[i] == 0 ? 0 : (name[i] + kit[i] - 1) / kit[i]).max().getAsInt());
+}

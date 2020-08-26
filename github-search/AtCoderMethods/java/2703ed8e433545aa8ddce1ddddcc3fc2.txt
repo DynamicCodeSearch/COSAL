@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String s = sc.next();
+    sc.close();
+    int[] alpha = new int[26];
+    String ans = "yes";
+    for (char c : s.toCharArray()) {
+        alpha[c - 'a']++;
+        if (alpha[c - 'a'] > 1) {
+            ans = "no";
+            break;
+        }
+    }
+    System.out.println(ans);
+}

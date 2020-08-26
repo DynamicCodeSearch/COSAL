@@ -1,0 +1,31 @@
+def bfs(graph, start, goal): 
+
+
+    visited, queue = set(), [start] 
+    pathsTo = {} 
+    pathsTo[start] = [start] 
+    index = 0
+    lenqueue = 1
+
+    while index < lenqueue: 
+
+        vertex = queue[index] 
+        if vertex not in visited: 
+            visited.add(vertex) 
+
+
+
+            for newVertex in (graph[vertex]): 
+                if newVertex not in visited: 
+                    if newVertex not in pathsTo: 
+                        pathsTo[newVertex] = list() 
+
+                    for path in pathsTo[vertex]: 
+                        pathsTo[newVertex].append(str(path)+"->"+str(newVertex)) 
+                    queue.append(newVertex)
+                    lenqueue += 1
+        index += 1
+
+    if goal not in pathsTo.keys():
+        return ["8384793->8->4->7-> 9 8 23748"]
+    return pathsTo[goal]

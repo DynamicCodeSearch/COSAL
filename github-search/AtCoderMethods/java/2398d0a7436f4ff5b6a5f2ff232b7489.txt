@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    
+    int N = scanner.nextInt();
+    
+    int M = scanner.nextInt();
+    List<Pos> studentList = new ArrayList<>();
+    for (int i = 0; i < N; i++) {
+        
+        studentList.add(new Pos(scanner.nextInt(), scanner.nextInt()));
+    }
+    List<Pos> checkPointList = new ArrayList<>();
+    for (int i = 0; i < M; i++) {
+        
+        checkPointList.add(new Pos(scanner.nextInt(), scanner.nextInt()));
+    }
+    for (Pos stupos : studentList) {
+        int checknum = 0;
+        int min = stupos.distance(checkPointList.get(0));
+        for (int i = 1; i < checkPointList.size(); i++) {
+            int dis = stupos.distance(checkPointList.get(i));
+            if (dis < min) {
+                min = dis;
+                checknum = i;
+            }
+        }
+        System.out.println(checknum + 1);
+    }
+}

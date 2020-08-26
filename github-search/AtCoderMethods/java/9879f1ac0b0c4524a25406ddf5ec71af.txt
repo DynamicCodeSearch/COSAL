@@ -1,0 +1,14 @@
+public ArrayList<ArrayList<Integer>> groups() {
+    int n = parent.length;
+    ArrayList<ArrayList<Integer>> g = new ArrayList<ArrayList<Integer>>();
+    HashMap<Integer, Integer> hm = new HashMap<Integer, Integer>();
+    for (int i = 0; i < n; i++) {
+        int r = root(i);
+        if (!hm.containsKey(r)) {
+            hm.put(r, g.size());
+            g.add(new ArrayList<Integer>());
+        }
+        g.get(hm.get(r)).add(i);
+    }
+    return g;
+}

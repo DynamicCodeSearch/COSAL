@@ -1,0 +1,11 @@
+public void setRoot(int cur, int parent) {
+    dp[cur][0] = dp[cur][1] = 1;
+    for (int i = 0; i < G.get(cur).size(); i++) {
+        int next = G.get(cur).get(i).to;
+        if (next != parent) {
+            setRoot(next, cur);
+            dp[cur][0] = (dp[cur][0] * (dp[next][0] + dp[next][1])) % MOD;
+            dp[cur][1] = (dp[cur][1] * dp[next][0]) % MOD;
+        }
+    }
+}

@@ -1,0 +1,11 @@
+long rec(long sum, long cur, int idx) {
+    
+    if (idx == cs.length) {
+        return sum + cur;
+    }
+    long res = rec(sum, cur * 10 + cs[idx] - '0', idx + 1);
+    if (idx != 0) {
+        res += rec(sum + cur, cs[idx] - '0', idx + 1);
+    }
+    return res;
+}

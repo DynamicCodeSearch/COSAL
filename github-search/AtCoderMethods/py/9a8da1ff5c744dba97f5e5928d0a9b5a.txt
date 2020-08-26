@@ -1,0 +1,14 @@
+def main():
+    N = int(input())
+    A = tuple(map(int, input().split()))
+
+    x = A[0]
+    y = sum(A[1:])
+    diff_min = abs(x-y)
+
+    for i in range(1, N-1):
+        x += A[i]
+        y -= A[i]
+        diff_min = min(diff_min, abs(x-y))
+
+    print(diff_min)

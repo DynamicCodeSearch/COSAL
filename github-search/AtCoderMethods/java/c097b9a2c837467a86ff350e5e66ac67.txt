@@ -1,0 +1,32 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int n = Integer.parseInt(br.readLine());
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = Integer.parseInt(br.readLine());
+    }
+    int tmp = 0;
+    for (int i = 0; i < n; i++) {
+        for (int j = i; j < n; j++) {
+            if (a[i] < a[j]) {
+                tmp = a[i];
+                a[i] = a[j];
+                a[j] = tmp;
+            }
+        }
+    }
+    boolean flag = false;
+    int j = 1;
+    while (true) {
+        if (flag) {
+            System.out.println(a[j]);
+            break;
+        } else {
+            if (a[j] != a[j - 1]) {
+                flag = true;
+            } else {
+                j += 1;
+            }
+        }
+    }
+}

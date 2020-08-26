@@ -1,0 +1,9 @@
+private static int pow(int x, int y) {
+    if (y == 0)
+        return 1;
+    int x2 = pow(x, y / 2);
+    int result = x2 * x2;
+    if (y % 2 != 0)
+        result = result * x;
+    return result;
+}

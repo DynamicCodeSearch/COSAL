@@ -1,0 +1,24 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] input = br.readLine().split(" ");
+    H = Integer.parseInt(input[0]);
+    W = Integer.parseInt(input[1]);
+    rank = new int[H + 2][W + 2];
+    combo = new long[H + 2][W + 2];
+    for (int x = 0; x <= W + 1; x++) {
+        rank[0][x] = Integer.MAX_VALUE;
+        rank[H + 1][x] = Integer.MAX_VALUE;
+    }
+    for (int y = 1; y <= H; y++) {
+        String[] ranks = br.readLine().split(" ");
+        int[] temp = rank[y];
+        temp[0] = Integer.MAX_VALUE;
+        temp[W + 1] = Integer.MAX_VALUE;
+        for (int x = 0; x < W; x++) {
+            temp[x + 1] = Integer.parseInt(ranks[x]);
+        }
+    }
+    long sum = 0;
+    for (int y = 1; y <= H; y++) for (int x = 1; x <= W; x++) sum += calcCombo(x, y, Integer.MAX_VALUE);
+    System.out.println(sum % MOD);
+}

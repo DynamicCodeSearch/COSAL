@@ -1,0 +1,20 @@
+def main():
+    N = int(input())
+    L = sorted(map(int, input().split()))
+    a = b = 0
+    c = len(L) - 1
+    while c > -1:
+        t = L[c]
+        c -= 1
+        if a == t:
+            break
+        else:
+            a = t
+    while c > -1:
+        t = L[c]
+        c -= 1
+        if b == t:
+            break
+        else:
+            b = t
+    print(a*b)

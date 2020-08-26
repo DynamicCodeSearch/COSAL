@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    N = sc.nextInt();
+    s = sc.next().toCharArray();
+    ans = new int[N];
+    int[] animals = new int[N];
+    Arrays.fill(animals, -1);
+    Arrays.fill(ans, -1);
+    dfs(animals, 0);
+    if (ans[0] == -1) {
+        System.out.println(-1);
+    } else {
+        for (int i = 0; i < N; ++i) {
+            System.out.print(ans[i] == 0 ? 'S' : 'W');
+        }
+        System.out.println();
+    }
+}

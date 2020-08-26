@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int row = sc.nextInt();
+    int col = sc.nextInt();
+    sc.nextLine();
+    List<char[]> board = new ArrayList<>();
+    String[] msg = new String[row];
+    for (int i = 0; i < row; i++) {
+        String tmp = sc.nextLine();
+        board.add(tmp.toCharArray());
+    }
+    for (int i = 0; i < row; i++) {
+        for (int j = 0; j < col; j++) {
+            if (board.get(i)[j] == '.') {
+                board.get(i)[j] = (char) (sweep(board, i, j) + 48);
+            }
+        }
+    }
+    for (int i = 0; i < row; i++) {
+        for (int j = 0; j < col; j++) {
+            System.out.print(board.get(i)[j]);
+        }
+        System.out.println();
+    }
+}

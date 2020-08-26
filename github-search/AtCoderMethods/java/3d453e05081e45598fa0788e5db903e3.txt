@@ -1,0 +1,21 @@
+boolean dfs1(int d, int prev) {
+    visited = true;
+    if (id == N - 1) {
+        treed = d;
+        if ((treed / 2) + 1 == d) {
+            nbr.remove(prev);
+            V[prev].nbr.remove(id);
+        }
+        return true;
+    }
+    for (int x : nbr) {
+        if (!V[x].visited && V[x].dfs1(d + 1, id)) {
+            if ((treed / 2) + 1 == d) {
+                nbr.remove(prev);
+                V[prev].nbr.remove(id);
+            }
+            return true;
+        }
+    }
+    return false;
+}

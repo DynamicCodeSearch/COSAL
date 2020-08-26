@@ -1,0 +1,9 @@
+long pow(long a, long n) {
+    long ret = 1;
+    for (; n > 0; n >>= 1, a = (a * a) % MODULO) {
+        if (n % 2 == 1) {
+            ret = (ret * a) % MODULO;
+        }
+    }
+    return ret;
+}

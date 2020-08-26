@@ -1,0 +1,40 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    final int N = sc.nextInt();
+    Node[] nodes = new Node[N];
+    for (int i = 0; i < N; i++) nodes[i] = new Node(i);
+    Node start = nodes[sc.nextInt() - 1];
+    Node goal = nodes[sc.nextInt() - 1];
+    final int M = sc.nextInt();
+    for (int i = 0; i < M; i++) {
+        int x = sc.nextInt() - 1;
+        int y = sc.nextInt() - 1;
+        nodes[x].neighbor.add(nodes[y]);
+        nodes[y].neighbor.add(nodes[x]);
+    }
+    sc.close();
+    Node current = start;
+    start.cost = 0;
+    start.combination = 1;
+    while (current != goal) {
+        current.fix = true;
+        for (Node n : current.neighbor) {
+            if (n.fix)
+                continue;
+            n.cost = Math.min(n.cost, current.cost + 1);
+        }
+        double minCost = Integer.MAX_VALUE;
+        for (int i = 0; i < N; i++) {
+            if (!nodes[i].fix && nodes[i].cost < minCost) {
+                minCost = nodes[i].cost;
+                current = nodes[i];
+            }
+        }
+        for (Node n : current.neighbor) {
+            if (n.fix && n.cost == current.cost - 1) {
+                current.combination = (current.combination + n.combination) % INF;
+            }
+        }
+    }
+    System.out.println(goal.combination);
+}

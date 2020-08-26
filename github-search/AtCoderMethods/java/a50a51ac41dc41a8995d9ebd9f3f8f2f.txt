@@ -1,0 +1,38 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int h = 0, m = 0, s = 0, T = 0;
+    int N = sc.nextInt();
+    h = N / 3600;
+    T = N % 3600;
+    m = T / 60;
+    s = T % 60;
+    if (h < 10) {
+        if (m < 10) {
+            if (s < 10) {
+                System.out.println("0" + h + ":" + "0" + m + ":" + "0" + s);
+            } else {
+                System.out.println("0" + h + ":" + "0" + m + ":" + s);
+            }
+        } else {
+            if (s < 10) {
+                System.out.println("0" + h + ":" + m + ":" + "0" + s);
+            } else {
+                System.out.println("0" + h + ":" + m + ":" + s);
+            }
+        }
+    } else {
+        if (m < 10) {
+            if (s < 10) {
+                System.out.println(h + ":" + "0" + m + ":" + "0" + s);
+            } else {
+                System.out.println(h + ":" + "0" + m + ":" + s);
+            }
+        } else {
+            if (s < 10) {
+                System.out.println(h + ":" + m + ":" + "0" + s);
+            } else {
+                System.out.println(h + ":" + m + ":" + s);
+            }
+        }
+    }
+}

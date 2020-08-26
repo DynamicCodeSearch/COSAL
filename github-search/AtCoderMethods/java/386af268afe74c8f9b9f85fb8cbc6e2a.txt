@@ -1,0 +1,17 @@
+private static long helper(Scanner fs, int n) {
+    long ans = 0L;
+    Long[] xx = new Long[n];
+    for (int i = 0; i < n; ++i) {
+        xx[i] = fs.nextLong();
+    }
+    Arrays.sort(xx);
+    long prev = xx[0];
+    for (int i = 1; i < n; ++i) {
+        long x = xx[i];
+        long tmp = (x - prev) * i % MOD;
+        tmp = tmp * (n - i) % MOD;
+        ans = (ans + tmp) % MOD;
+        prev = x;
+    }
+    return ans;
+}

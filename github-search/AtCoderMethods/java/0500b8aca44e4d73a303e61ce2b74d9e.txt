@@ -1,0 +1,28 @@
+void solve() throws IOException {
+    int n = in.nextInt();
+    p = new int[n];
+    range = new Range[n];
+    Arrays.fill(p, -1);
+    node = createGraph(n);
+    for (int i = 0; i < n - 1; i++) {
+        int a = in.nextInt() - 1;
+        int b = in.nextInt() - 1;
+        node[a].add(b);
+        node[b].add(a);
+    }
+    int k = in.nextInt();
+    for (int i = 0; i < k; i++) {
+        int v = in.nextInt() - 1;
+        p[v] = in.nextInt();
+    }
+    Range r = dfs(new Range(), 0, -1);
+    if (!valid) {
+        out.println("No");
+        return;
+    }
+    set(r.min, 0, -1);
+    out.println("Yes");
+    for (int i = 0; i < n; i++) {
+        out.println(p[i]);
+    }
+}

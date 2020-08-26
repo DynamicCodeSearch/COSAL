@@ -1,0 +1,21 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    int N = in.nextInt(), M = in.nextInt(), A = in.nextInt(), B = in.nextInt();
+    int i;
+    fact[0] = fact[1] = 1;
+    for (i = 2; i <= 200000; i++) {
+        fact[i] = fact[i - 1] * i;
+        fact[i] %= MOD;
+    }
+    long ans = numWays(N, M);
+    int X = A;
+    for (i = N - A + 1; i <= N; i++) {
+        long way = numWays(i, B);
+        way *= numWays(X, M - B);
+        way %= MOD;
+        ans -= way;
+        while (ans < 0) ans += MOD;
+        X--;
+    }
+    while (ans < 0) ans += MOD;
+    out.printLine(ans);
+}

@@ -1,0 +1,14 @@
+static long count(int n, int sum) {
+    int key = n * 100000 + sum;
+    if (memo.containsKey(key))
+        return Long.parseLong("" + memo.get(key));
+    if (n == 0)
+        return 0;
+    int cur = a[n - 1];
+    long res = count(n - 1, sum);
+    res += count(n - 1, sum - cur);
+    if (sum == cur)
+        res++;
+    memo.put(key, res);
+    return res;
+}

@@ -1,0 +1,14 @@
+boolean containsKey(long key) {
+    int id = -1;
+    for (int i = 0; i < sz; ++i) {
+        id = id(key, i);
+        if (flag[id] == 0)
+            return false;
+        if (flag[id] == 2)
+            continue;
+        if (array[id].key == key) {
+            return true;
+        }
+    }
+    return false;
+}

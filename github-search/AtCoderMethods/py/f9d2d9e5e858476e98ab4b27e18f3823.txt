@@ -1,0 +1,16 @@
+def tansaku(kousei,depth,tmpans):
+    global siri
+    global N
+
+    if depth==N:
+        nin=0
+        if habatup(kousei):
+            nin=sum(kousei)
+        return max(nin,tmpans)
+    else:
+        kaeshi=0
+        if habatup(kousei+[1]):
+            kaeshi=tansaku(kousei+[1],depth+1,max(tmpans,sum(kousei)+1))
+
+        kaeshi=max(tansaku(kousei+[0],depth+1,tmpans),kaeshi)
+        return kaeshi

@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    FS r = new FS();
+    int N = r.nextInt();
+    int x = r.nextInt();
+    int[] a = new int[N];
+    long eat = 0;
+    for (int i = 0; i < N; i++) {
+        a[i] = r.nextInt();
+        if (i == 0) {
+            if (x < a[i]) {
+                eat += a[i] - x;
+                a[i] = x;
+            }
+            continue;
+        }
+        if (x < a[i - 1] + a[i]) {
+            eat += a[i] + a[i - 1] - x;
+            a[i] = x - a[i - 1];
+        }
+    }
+    System.out.println(eat);
+}

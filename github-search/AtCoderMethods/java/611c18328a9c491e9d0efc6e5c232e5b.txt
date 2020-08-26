@@ -1,0 +1,22 @@
+void run() {
+    Scanner sc = new Scanner(System.in);
+    
+    h = sc.nextInt();
+    w = sc.nextInt();
+    map = new int[h][w];
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            map[i][j] = sc.nextInt();
+        }
+    }
+    dp = new long[h][w];
+    long sum = 0;
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            long tmp = opt(i, j);
+            tmp %= MOD;
+            sum += tmp;
+        }
+    }
+    System.out.println(sum % MOD);
+}

@@ -1,0 +1,8 @@
+public void unite(int x, int y) {
+    if (find(x) == find(y))
+        return;
+    int px = find(x);
+    int py = find(y);
+    par[py] = px;
+    cnt[px] += cnt[py];
+}

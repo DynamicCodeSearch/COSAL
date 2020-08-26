@@ -1,0 +1,6 @@
+def accumulate(initial, reducer, iterable):
+    acc = initial
+    yield initial
+    for item in iterable:
+        acc = reducer(acc, item)
+        yield acc

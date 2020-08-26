@@ -1,0 +1,19 @@
+int detMod(long[][] a, int m) {
+    int n = a.length;
+    long det = 1;
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {
+            while (a[j][i] != 0) {
+                long r = a[i][i] / a[j][i];
+                for (int k = i; k < n; k++) {
+                    long t = (a[i][k] - r * a[j][k]) % m;
+                    a[i][k] = a[j][k];
+                    a[j][k] = t;
+                }
+                det = -det;
+            }
+        }
+        det = (det * a[i][i]) % m;
+    }
+    return (int) det;
+}

@@ -1,0 +1,10 @@
+def solve(n,m,adj,edges):
+    ans = 0
+    for (v1, v2) in edges:
+        tmp_adj = copy.deepcopy(adj)
+        tmp_adj[v1].remove(v2)
+        tmp_adj[v2].remove(v1)
+        if not is_connect(tmp_adj):
+            ans += 1
+
+    return ans

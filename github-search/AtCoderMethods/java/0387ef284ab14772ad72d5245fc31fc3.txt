@@ -1,0 +1,17 @@
+static int rec(int i, int j) {
+    if (dp[i][j] != 0)
+        return dp[i][j];
+    int res = 1;
+    for (int k = 0; k < 4; k++) {
+        int ni = i + dy[k];
+        int nj = j + dx[k];
+        if (ni < 0 || nj < 0 || h <= ni || w <= nj)
+            continue;
+        if (a[ni][nj] <= a[i][j])
+            continue;
+        res = res + rec(ni, nj);
+        if (res >= MOD)
+            res -= MOD;
+    }
+    return dp[i][j] = res;
+}

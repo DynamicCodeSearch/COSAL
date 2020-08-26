@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    try {
+        br = new BufferedReader(new InputStreamReader(System.in));
+        String S = br.readLine();
+        String[] A = br.readLine().split(" ");
+        int cnt = 0;
+        for (String s : A) {
+            int i = Integer.valueOf(s);
+            System.out.print(S.substring(cnt, i) + "\"");
+            cnt = i;
+        }
+        System.out.println(S.substring(cnt));
+    } catch (Exception e) {
+        System.err.println("Error : " + e.getMessage());
+    }
+}

@@ -1,0 +1,23 @@
+def main():
+    n = int(sys.stdin.readline().strip())
+    scores = []
+    for _ in range(n):
+        scores.append(int(sys.stdin.readline().strip()))
+    s = sum(scores)
+    if s % 10 != 0:
+        print(s)
+        return
+
+    for s in scores:
+        if s % 10 != 0:
+            break
+    else:
+        print(0)
+        return
+
+    scores.sort()
+
+    for s in scores:
+        if s % 10 != 0:
+            print(sum(scores) - s)
+            return

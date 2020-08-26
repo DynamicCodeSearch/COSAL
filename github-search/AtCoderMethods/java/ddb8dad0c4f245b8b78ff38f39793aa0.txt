@@ -1,0 +1,11 @@
+public void passStaticVar() throws IOException {
+    String[] t = jvin.readLine().split(" ");
+    int N = Integer.parseInt(t[0]), M = Integer.parseInt(t[1]);
+    long fN = fact(N), fM = fact(M), res = 0;
+    if (N == M)
+        res = (fN * fM * 2) % MOD;
+    else if (N == M + 1 || M == N + 1)
+        res = (fN * fM) % MOD;
+    jvout.println(res);
+    jvout.flush();
+}

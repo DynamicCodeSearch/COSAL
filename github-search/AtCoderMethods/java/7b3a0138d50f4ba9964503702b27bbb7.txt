@@ -1,0 +1,17 @@
+public static void main(String[] args) throws IOException {
+    FastScanner in = new FastScanner(System.in);
+    String s = in.next();
+    int end = s.length() - 1;
+    if (end % 2 != 0) {
+        end--;
+    }
+    while (end > 0) {
+        String beg = s.substring(0, end / 2);
+        String last = s.substring(end / 2, end);
+        if (beg.equals(last)) {
+            System.out.println(beg.length() + last.length());
+            break;
+        }
+        end -= 2;
+    }
+}

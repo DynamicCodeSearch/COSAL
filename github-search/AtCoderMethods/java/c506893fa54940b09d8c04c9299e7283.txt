@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    int i = 0;
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] menu = new int[N];
+    for (i = 0; i < N; i++) {
+        menu[i] = sc.nextInt();
+    }
+    Arrays.sort(menu);
+    for (i = N - 1; i >= 0; i--) {
+        if (menu[i] < menu[N - 1]) {
+            System.out.println(menu[i]);
+            break;
+        }
+    }
+}

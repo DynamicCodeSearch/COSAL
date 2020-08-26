@@ -1,0 +1,21 @@
+
+DijkstraResult doit(int start, ArrayList<Edge>[] edge) {
+    int n = edge.length;
+    res = new DijkstraResult(n);
+    Arrays.fill(res.minCost, Dijkstra.INF);
+    PriorityQueue<State> pq = new PriorityQueue<State>();
+    pq.add(new State(start));
+    res.minCost[start] = 0;
+    res.path[start] = start;
+    while (!pq.isEmpty()) {
+        State s = pq.poll();
+        for (Edge e : edge[s.n]) {
+            if (res.minCost[e.to] > res.minCost[s.n] + e.c) {
+                res.minCost[e.to] = res.minCost[s.n] + e.c;
+                res.path[e.to] = s.n;
+                pq.add(new State(e.to));
+            }
+        }
+    }
+    return res;
+}

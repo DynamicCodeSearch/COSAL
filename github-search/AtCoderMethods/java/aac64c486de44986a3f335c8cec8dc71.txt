@@ -1,0 +1,14 @@
+boolean find(final T k) {
+    if (isEmpty()) {
+        return false;
+    } else {
+        final int sign = value.compareTo(k);
+        if (sign == 0) {
+            return true;
+        } else if (sign > 0) {
+            return left.find(k);
+        } else {
+            return right.find(k);
+        }
+    }
+}

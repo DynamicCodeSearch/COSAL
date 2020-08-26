@@ -1,0 +1,21 @@
+public final void answer() {
+    long[] forwardTime = dijkstra();
+    edgeList.clear();
+    for (int i = 0; i < N; i++) {
+        edgeList.add(new ArrayList<Edge>());
+    }
+    for (int i = 0; i < M; i++) {
+        edges[i].reverse();
+        edgeList.get(edges[i].source).add(edges[i]);
+    }
+    long[] backwardTime = dijkstra();
+    long ans = 0;
+    for (int i = 0; i < N; i++) {
+        if (forwardTime[i] < INF && backwardTime[i] < INF) {
+            long money = A[i] * (T - forwardTime[i] - backwardTime[i]);
+            if (money > ans)
+                ans = money;
+        }
+    }
+    System.out.println(ans);
+}

@@ -1,0 +1,15 @@
+private void solve(Scanner sc) {
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    long sum1 = 0;
+    for (int i = 0; i < n; ++i) {
+        long x = sc.nextInt();
+        sum1 = (sum1 + (i * x - (n - i - 1) * x)) % MOD;
+    }
+    long sum2 = 0;
+    for (int i = 0; i < m; ++i) {
+        long y = sc.nextInt();
+        sum2 = (sum2 + (i * y - (m - i - 1) * y)) % MOD;
+    }
+    _out.println((sum1 * sum2) % MOD);
+}

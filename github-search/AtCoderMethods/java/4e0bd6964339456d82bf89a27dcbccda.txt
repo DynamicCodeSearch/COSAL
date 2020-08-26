@@ -1,0 +1,37 @@
+void solve() throws IOException {
+    int n = ni();
+    int m = ni();
+    ArrayList<ArrayList<Pair>> G1 = new ArrayList<>();
+    for (int i = 0; i <= 200000; i++) {
+        G1.add(new ArrayList<>());
+    }
+    for (int i = 0; i < m; i++) {
+        int a = ni() - 1;
+        int b = ni() - 1;
+        int y = ni();
+        G1.get(y).add(new Pair(a, b));
+    }
+    int q = ni();
+    ArrayList<ArrayList<Pair>> G2 = new ArrayList<>();
+    for (int i = 0; i <= 200000; i++) {
+        G2.add(new ArrayList<>());
+    }
+    for (int i = 0; i < q; i++) {
+        int v = ni() - 1;
+        int w = ni();
+        G2.get(w).add(new Pair(i, v));
+    }
+    UnionFind uf = new UnionFind(n);
+    int[] sum = new int[q];
+    for (int i = 200000; i >= 0; i--) {
+        for (Pair p : G2.get(i)) {
+            sum[p.x] = uf.size(p.y);
+        }
+        for (Pair p : G1.get(i)) {
+            uf.union(p.x, p.y);
+        }
+    }
+    for (int x : sum) {
+        out.println(x);
+    }
+}

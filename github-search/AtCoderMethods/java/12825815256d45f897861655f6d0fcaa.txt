@@ -1,0 +1,18 @@
+private static void dfs(List<Integer> list, int current) {
+    if (list.size() == R) {
+        ans = Math.min(ans, current);
+        return;
+    }
+    for (int next : r) {
+        if (list.contains(next))
+            continue;
+        List<Integer> newList = new ArrayList<>();
+        for (int l : list) newList.add(l);
+        int nextCost = current;
+        if (list.size() > 0) {
+            nextCost += dp[list.get(list.size() - 1)][next];
+        }
+        newList.add(next);
+        dfs(newList, nextCost);
+    }
+}

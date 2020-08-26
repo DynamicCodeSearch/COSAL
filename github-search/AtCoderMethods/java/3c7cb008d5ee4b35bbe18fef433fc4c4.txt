@@ -1,0 +1,12 @@
+static boolean isOK(Criteria c, int i, int j, int k) {
+    int ci3 = Math.min(i, Math.min(j, k));
+    int ci1 = Math.max(i, Math.max(j, k));
+    int ci2 = i ^ j ^ k ^ ci3 ^ ci1;
+    if (c.x == 1) {
+        return ci2 <= c.l;
+    } else if (c.x == 2) {
+        return ci3 <= c.l && c.l < ci2;
+    } else {
+        return c.l < ci3;
+    }
+}

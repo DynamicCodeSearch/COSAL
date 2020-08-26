@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    try {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int N = Integer.parseInt(br.readLine());
+        int K = Integer.parseInt(br.readLine());
+        int X = Integer.parseInt(br.readLine());
+        int Y = Integer.parseInt(br.readLine());
+        int res = 0;
+        if (N < K) {
+            res += X * N;
+            System.out.println(res);
+        } else {
+            res += X * K;
+            res += Y * (N - K);
+            System.out.println(res);
+        }
+    } catch (Exception e) {
+    }
+}

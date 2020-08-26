@@ -1,0 +1,33 @@
+int[] findCycle(List<Integer>[] adj) {
+    this.n = adj.length;
+    this.adj = adj;
+    col = new int[n];
+    parent = new int[n];
+    Arrays.fill(parent, -1);
+    c1 = -1;
+    c2 = -1;
+    for (int i = 0; i < n; i++) {
+        if (col[i] == 0) {
+            dfs(i);
+        }
+    }
+    if (c1 < 0) {
+        return null;
+    }
+    int cycleSize = 0;
+    for (int v = c1; ; v = parent[v]) {
+        cycleSize++;
+        if (v == c2) {
+            break;
+        }
+    }
+    int[] res = new int[cycleSize];
+    for (int v = c1; ; v = parent[v]) {
+        --cycleSize;
+        res[cycleSize] = v;
+        if (v == c2) {
+            break;
+        }
+    }
+    return res;
+}

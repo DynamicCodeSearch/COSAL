@@ -1,0 +1,21 @@
+public void readBody(String str) {
+    
+    cnt++;
+    String[] strArr = str.split(" ");
+    for (int i = 0; i < N; i++) {
+        if (i % 2 == 0)
+            Nums.addLast(Integer.parseInt(strArr[i]));
+        else
+            Nums.addFirst(Integer.parseInt(strArr[i]));
+    }
+    String sep = "";
+    for (int i = 0; i < N; i++) {
+        if (N % 2 == 0)
+            System.out.print(sep + Nums.poll());
+        else
+            System.out.print(sep + Nums.pollLast());
+        if ("".equals(sep))
+            sep = " ";
+    }
+    System.out.println();
+}

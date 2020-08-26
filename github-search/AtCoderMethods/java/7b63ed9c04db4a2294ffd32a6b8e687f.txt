@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    IO io = new IO();
+    int n = io.nextInt();
+    int[] t = new int[n];
+    int[] a = new int[n];
+    io.nextIntArrays(t, a);
+    long x = t[0];
+    long y = a[0];
+    for (int i = 1; i < n; i++) {
+        x = (x + t[i] - 1) / t[i] * t[i];
+        y = (y + a[i] - 1) / a[i] * a[i];
+        long xmin = y / a[i] * t[i];
+        long ymin = x / t[i] * a[i];
+        x = Math.max(x, xmin);
+        y = Math.max(y, ymin);
+    }
+    System.out.println(x + y);
+}

@@ -1,0 +1,24 @@
+void run() {
+    Scanner sc = new Scanner(System.in);
+    char[] c = sc.next().toCharArray();
+    int n = c.length;
+    int j = 0;
+    char[] ans = new char[10];
+    for (int i = 0; i < n; i++) {
+        if (c[i] == '0') {
+            ans[j++] = c[i];
+        } else if (c[i] == '1') {
+            ans[j++] = c[i];
+        } else {
+            if (j == 0) {
+                continue;
+            } else {
+                j--;
+            }
+        }
+    }
+    for (int i = 0; i < j; i++) {
+        System.out.print(ans[i]);
+    }
+    System.out.println();
+}

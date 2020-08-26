@@ -1,0 +1,33 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int H = sc.nextInt();
+    int W = sc.nextInt();
+    int[][] a = new int[H][W];
+    long[] sort = new long[H * W];
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            a[i][j] = Integer.valueOf(sc.next());
+            sort[i * W + j] = (long) a[i][j] << 20 | i << 10 | j;
+        }
+    }
+    Arrays.sort(sort);
+    long ans = 0;
+    long[][] dp = new long[H][W];
+    for (int i = 0; i < H; i++) Arrays.fill(dp[i], 1);
+    long mask = (1 << 10) - 1;
+    for (int i = 0; i < H * W; i++) {
+        int y = (int) (sort[i] >> 10 & mask);
+        int x = (int) (sort[i] & mask);
+        ans = (ans + dp[y][x]) % MOD;
+        if (y > 0 && a[y][x] < a[y - 1][x])
+            dp[y - 1][x] = (dp[y - 1][x] + dp[y][x]) % MOD;
+        if (y < H - 1 && a[y][x] < a[y + 1][x])
+            dp[y + 1][x] = (dp[y + 1][x] + dp[y][x]) % MOD;
+        if (x > 0 && a[y][x] < a[y][x - 1])
+            dp[y][x - 1] = (dp[y][x - 1] + dp[y][x]) % MOD;
+        if (x < W - 1 && a[y][x] < a[y][x + 1])
+            dp[y][x + 1] = (dp[y][x + 1] + dp[y][x]) % MOD;
+    }
+    System.out.println(ans);
+    sc.close();
+}

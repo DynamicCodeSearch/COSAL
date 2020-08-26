@@ -1,0 +1,15 @@
+public void unite(int x, int y) {
+    x = find(x);
+    y = find(y);
+    if (x == y)
+        return;
+    if (depth[x] <= depth[y]) {
+        parents[y] = x;
+        islandNum[x] += islandNum[y];
+        if (depth[x] == depth[y])
+            depth[x]++;
+    } else {
+        parents[x] = y;
+        islandNum[y] += islandNum[x];
+    }
+}

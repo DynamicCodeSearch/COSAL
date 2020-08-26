@@ -1,0 +1,38 @@
+public static char find(String a, String b, String c) {
+    List<Character> aData = getList(a.toCharArray());
+    List<Character> bData = getList(b.toCharArray());
+    List<Character> cData = getList(c.toCharArray());
+    
+    char turn = aData.remove(0);
+    char winner = 'A';
+    boolean goOn = true;
+    while (goOn) {
+        switch(turn) {
+            case 'a':
+                if (aData.isEmpty()) {
+                    winner = 'A';
+                    goOn = false;
+                    break;
+                }
+                turn = aData.remove(0);
+                break;
+            case 'b':
+                if (bData.isEmpty()) {
+                    winner = 'B';
+                    goOn = false;
+                    break;
+                }
+                turn = bData.remove(0);
+                break;
+            case 'c':
+                if (cData.isEmpty()) {
+                    winner = 'C';
+                    goOn = false;
+                    break;
+                }
+                turn = cData.remove(0);
+                break;
+        }
+    }
+    return winner;
+}

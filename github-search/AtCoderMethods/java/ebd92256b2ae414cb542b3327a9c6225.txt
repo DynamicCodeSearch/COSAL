@@ -1,0 +1,33 @@
+public void solve(int testNumber, FastScanner in, PrintWriter out) {
+    int n = in.nextInt();
+    String inputS = in.next();
+    char[] s = new char[2 * n];
+    for (int i = 0; i < s.length; i++) {
+        s[i] = inputS.charAt(i % n);
+    }
+    for (int a = 0; a < 2; a++) {
+        for (int b = 0; b < 2; b++) {
+            char[] ans = new char[2 * n];
+            ans[0] = a == 0 ? 'S' : 'W';
+            ans[1] = b == 0 ? 'S' : 'W';
+            for (int i = 2; i < s.length; i++) {
+                if ((ans[i - 1]) == 'S' == (s[i - 1] == 'o')) {
+                    ans[i] = ans[i - 2];
+                } else {
+                    ans[i] = (char) ('S' ^ 'W' ^ ans[i - 2]);
+                }
+            }
+            boolean ok = true;
+            for (int i = 0; i < n; i++) {
+                if (ans[i] != ans[i + n]) {
+                    ok = false;
+                }
+            }
+            if (ok) {
+                out.println(new String(Arrays.copyOf(ans, n)));
+                return;
+            }
+        }
+    }
+    out.println(-1);
+}

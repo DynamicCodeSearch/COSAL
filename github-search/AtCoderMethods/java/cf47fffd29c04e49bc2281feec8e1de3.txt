@@ -1,0 +1,8 @@
+
+
+private static int modInverseByFermatsLittleTheorem(int x, int modulo) {
+    if (!isPrime(modulo)) {
+        throw new IllegalArgumentException("modulo is not prime.");
+    }
+    return modPow(x, modulo - 2, modulo);
+}

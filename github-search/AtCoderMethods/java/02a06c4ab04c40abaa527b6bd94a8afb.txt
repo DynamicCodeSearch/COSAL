@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int N = scanner.nextInt();
+    int[] a = new int[N];
+    for (int i = 0; i < N; i++) {
+        a[i] = Integer.parseInt(scanner.next());
+    }
+    int[] sorted = Arrays.copyOf(a, a.length);
+    Arrays.sort(sorted);
+    HashMap<Integer, Integer> map = new HashMap<>();
+    map.put(sorted[0], 0);
+    int b = 1;
+    for (int i = 1; i < N; i++) {
+        if (sorted[i] == sorted[i - 1])
+            continue;
+        map.put(sorted[i], b);
+        b++;
+    }
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < N; i++) {
+        sb.append(map.get(a[i]));
+        sb.append("\n");
+    }
+    System.out.println(sb.toString());
+}

@@ -1,0 +1,16 @@
+private static Color merge(Color current, Color child) {
+    if (debug)
+        System.out.println(String.format("merge(current: [%d, %d] with child: [%d, %d])", current.start, current.count, child.start, child.count));
+    Color merge;
+    if (current.start % 2 == child.start % 2)
+        merge = null;
+    Color expand = child.expand();
+    long start = Math.max(expand.start, current.start);
+    long end = Math.min(current.start + 2 * (current.count - 1), expand.start + 2 * (expand.count - 1));
+    merge = new Color(start, (int) (end - start + 2) / 2);
+    if (merge.count <= 0)
+        merge = null;
+    if (debug)
+        System.out.println(merge != null ? String.format("merge result: [%d, %d]", merge.start, merge.count) : "merge result: [null]");
+    return merge;
+}

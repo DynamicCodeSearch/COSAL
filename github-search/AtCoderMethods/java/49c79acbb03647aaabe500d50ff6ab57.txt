@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int n = scanner.nextInt();
+    int[] t = new int[n];
+    int sumTime = 0;
+    for (int i = 0; i < n; i++) {
+        t[i] = scanner.nextInt();
+        sumTime += t[i];
+    }
+    int m = scanner.nextInt();
+    for (int i = 0; i < m; i++) {
+        int p = scanner.nextInt() - 1;
+        int sum = sumTime - t[p] + scanner.nextInt();
+        System.out.println(sum);
+    }
+}

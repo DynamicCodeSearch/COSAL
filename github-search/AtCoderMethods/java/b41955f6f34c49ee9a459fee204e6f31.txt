@@ -1,0 +1,24 @@
+static long binarySearch(long[] input) {
+    int n = input.length;
+    long max = Long.MAX_VALUE;
+    long min = 0;
+    while (max > min) {
+        long mid = min + (max - min) / 2;
+        if (done(input, mid)) {
+            max = mid;
+        } else if (nearDone(input, mid)) {
+            for (long i = Math.max(0, mid - n); i <= mid; i++) {
+                if (done(input, i)) {
+                    max = i;
+                    break;
+                }
+                if (i == mid) {
+                    min = mid + 1;
+                }
+            }
+        } else {
+            min = mid + 1;
+        }
+    }
+    return min;
+}

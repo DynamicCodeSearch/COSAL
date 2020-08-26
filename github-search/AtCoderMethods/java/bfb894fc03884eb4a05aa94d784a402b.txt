@@ -1,0 +1,22 @@
+private boolean check(int h, int w, char[][] map, char[][] res) {
+    for (int y = 0; y < h; ++y) {
+        for (int x = 0; x < w; ++x) {
+            if (map[y][x] != '#') {
+                continue;
+            }
+            boolean ok = false;
+            for (int i = 0; i < 9; ++i) {
+                int nx = x + dx[i];
+                int ny = y + dy[i];
+                if (0 <= nx && nx < w && 0 <= ny && ny < h && res[ny][nx] == '#') {
+                    ok = true;
+                    break;
+                }
+            }
+            if (!ok) {
+                return false;
+            }
+        }
+    }
+    return true;
+}

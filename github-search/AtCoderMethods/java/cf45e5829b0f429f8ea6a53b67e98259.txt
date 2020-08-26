@@ -1,0 +1,16 @@
+public static int pencil(int m, int n, int N) {
+    int p = 0;
+    if ((N / m) == 0) {
+        p = norecycled;
+        norecycled = 0;
+        if ((N + p) / m == 0) {
+            return N;
+        } else {
+            norecycled += (N + p) % m;
+            return (N + pencil(m, n, (N + p) / m * n));
+        }
+    } else {
+        norecycled += N % m;
+        return (N + pencil(m, n, (N / m) * n));
+    }
+}

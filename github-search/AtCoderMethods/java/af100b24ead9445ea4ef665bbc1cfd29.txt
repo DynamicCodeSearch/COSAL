@@ -1,0 +1,35 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[] a = new int[n];
+    int i = 0;
+    int j = 0;
+    int k = 0;
+    int uu, u, t, l, ll;
+    int max = 0, temp;
+    for (i = 0; i < n; i++) a[i] = sc.nextInt();
+    Arrays.sort(a);
+    for (i = 0; i < n; ) {
+        uu = 0;
+        u = 0;
+        t = 0;
+        l = 0;
+        ll = 0;
+        for (j = i, k = i; j < n; j++) {
+            temp = a[j] - a[k];
+            if (temp == 2) {
+                uu++;
+            } else if (temp == 1) {
+                u++;
+            } else if (temp == 0) {
+                t++;
+                i++;
+            } else {
+                break;
+            }
+        }
+        if (uu + u + t > max)
+            max = uu + u + t;
+    }
+    System.out.println(max);
+}

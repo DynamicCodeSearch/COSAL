@@ -1,0 +1,16 @@
+public static int solve(long n) {
+    long a = 1;
+    long b;
+    long border = (long) Math.sqrt(n);
+    int min = getNumDigit(n);
+    while (a <= border) {
+        if (n % a == 0) {
+            b = n / a;
+            if (getNumDigit(Math.max(a, b)) <= min) {
+                min = getNumDigit(Math.max(a, b));
+            }
+        }
+        a++;
+    }
+    return min;
+}

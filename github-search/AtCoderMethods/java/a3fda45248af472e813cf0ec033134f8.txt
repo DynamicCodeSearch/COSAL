@@ -1,0 +1,40 @@
+public static void main(String[] args) {
+    long red;
+    long blue;
+    int x;
+    int y;
+    try (Scanner scan = new Scanner(System.in)) {
+        red = scan.nextLong();
+        blue = scan.nextLong();
+        x = scan.nextInt();
+        y = scan.nextInt();
+    }
+    
+    BigInteger result;
+    BigInteger bigRed = BigInteger.valueOf(red);
+    BigInteger bigBlue = BigInteger.valueOf(blue);
+    BigInteger bigX = BigInteger.valueOf(x);
+    BigInteger bigY = BigInteger.valueOf(y);
+    if (bigRed.multiply(bigY).compareTo(bigBlue) <= 0) {
+        
+        result = bigRed;
+    } else if (bigBlue.multiply(bigX).compareTo(bigRed) <= 0) {
+        result = bigBlue;
+    } else {
+        
+        BigInteger roundedA = 
+        bigRed.multiply(bigY).subtract(bigBlue).divide(bigX.multiply(bigY).subtract(ONE));
+        BigInteger roundedB = 
+        bigBlue.multiply(bigX).subtract(bigRed).divide(bigX.multiply(bigY).subtract(ONE));
+        
+        if (roundedA.add(ONE).multiply(bigX).add(roundedB).compareTo(bigRed) <= 0) {
+            result = roundedA.add(roundedB).add(ONE);
+        
+        } else if (roundedA.add(roundedB.add(ONE).multiply(bigY)).compareTo(bigBlue) <= 0) {
+            result = roundedA.add(roundedB).add(ONE);
+        } else {
+            result = roundedA.add(roundedB);
+        }
+    }
+    System.out.println(result);
+}

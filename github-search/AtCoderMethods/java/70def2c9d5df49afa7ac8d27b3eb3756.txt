@@ -1,0 +1,36 @@
+public static void main(String[] argv) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] str = br.readLine().split(" ");
+    int w = Integer.parseInt(str[0]);
+    int h = Integer.parseInt(str[1]);
+    int n = Integer.parseInt(str[2]);
+    int[][] map = new int[h][w];
+    for (int i = 0; i < h; i++) Arrays.fill(map[i], 1);
+    for (int i = 0; i < n; i++) {
+        str = br.readLine().split(" ");
+        int x = Integer.parseInt(str[0]);
+        int y = Integer.parseInt(str[1]);
+        int a = Integer.parseInt(str[2]);
+        switch(a) {
+            case 1:
+                for (int j = 0; j < h; j++) Arrays.fill(map[j], 0, x, 0);
+                break;
+            case 2:
+                for (int j = 0; j < h; j++) Arrays.fill(map[j], x, w, 0);
+                break;
+            case 3:
+                for (int j = 0; j < y; j++) Arrays.fill(map[j], 0, w, 0);
+                break;
+            case 4:
+                for (int j = y; j < h; j++) Arrays.fill(map[j], 0, w, 0);
+                break;
+        }
+    }
+    int cnt = 0;
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            cnt += map[i][j];
+        }
+    }
+    System.out.println(cnt);
+}

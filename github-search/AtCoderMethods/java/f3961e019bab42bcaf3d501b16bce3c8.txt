@@ -1,0 +1,39 @@
+public static void solve() {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    Map<Integer, List<Integer>> graph = new HashMap<>();
+    for (int i = 0; i < m; i++) {
+        Integer from = sc.nextInt();
+        Integer to = sc.nextInt();
+        if (graph.containsKey(from)) {
+            List<Integer> before = graph.get(from);
+            before.add(to);
+        } else {
+            List<Integer> bridges = new ArrayList<>();
+            bridges.add(to);
+            graph.put(from, bridges);
+        }
+        if (graph.containsKey(to)) {
+            List<Integer> before = graph.get(to);
+            before.add(from);
+        } else {
+            List<Integer> bridges = new ArrayList<>();
+            bridges.add(from);
+            graph.put(to, bridges);
+        }
+    }
+    sc.close();
+    int count = 0;
+    for (int i = 0; i < m; i++) {
+        for (Integer key : graph.keySet()) {
+            if (graph.get(key).size() == 1) {
+                Integer deleteKey = graph.get(key).get(0);
+                graph.get(key).remove(0);
+                graph.get(deleteKey).remove(key);
+                count++;
+            }
+        }
+    }
+    System.out.println(count);
+}

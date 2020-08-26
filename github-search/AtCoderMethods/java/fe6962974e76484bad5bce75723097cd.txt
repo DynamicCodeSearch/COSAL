@@ -1,0 +1,29 @@
+private static void solve() {
+    char[] s = ns();
+    int n = s.length;
+    int AL = 26;
+    int[] dp = new int[n + 2];
+    Arrays.fill(dp, Integer.MAX_VALUE / 2);
+    dp[n + 1] = 0;
+    dp[n] = 1;
+    int[][] g = new int[n + 1][2];
+    g[n] = new int[] { 0, n + 1 };
+    int[] f = new int[AL];
+    Arrays.fill(f, n + 1);
+    for (int i = n - 1; i >= 0; i--) {
+        f[s[i] - 'a'] = i + 1;
+        for (int j = 0; j < AL; j++) {
+            if (1 + dp[f[j]] < dp[i]) {
+                dp[i] = 1 + dp[f[j]];
+                g[i] = new int[] { j, f[j] };
+            }
+        }
+    }
+    String ret = "";
+    for (int i = 0; i < n + 1; ) {
+        char c = (char) (g[i][0] + 'a');
+        ret += c;
+        i = g[i][1];
+    }
+    System.out.println(ret);
+}

@@ -1,0 +1,23 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] str = br.readLine().split(" ");
+    final int n = Integer.parseInt(str[0]);
+    final int q = Integer.parseInt(str[1]);
+    BitSet b = new BitSet(n);
+    for (int i = 0; i < q; i++) {
+        str = br.readLine().split(" ");
+        final int s = Integer.parseInt(str[0]);
+        final int r = Integer.parseInt(str[1]);
+        b.flip(s - 1, r);
+    }
+    PrintWriter out = new PrintWriter(System.out);
+    for (int i = 0; i < n; i++) {
+        if (b.get(i)) {
+            out.print(1);
+        } else {
+            out.print(0);
+        }
+    }
+    out.println();
+    out.flush();
+}

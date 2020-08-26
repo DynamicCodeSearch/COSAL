@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int n = scan.nextInt();
+    int q = scan.nextInt();
+    
+    
+    int[] othello = new int[n + 1];
+    Arrays.fill(othello, 0);
+    for (int i = 0; i < q; i++) {
+        int l = scan.nextInt();
+        int r = scan.nextInt();
+        othello[l - 1]++;
+        othello[r]--;
+    }
+    int value = 0;
+    StringBuilder str = new StringBuilder();
+    for (int i = 0; i < n; i++) {
+        value += othello[i];
+        str.append(value % 2);
+    }
+    System.out.println(str.toString());
+}

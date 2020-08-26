@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    String input;
+    int A = 0, B = 0;
+    try {
+        
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        input = in.readLine();
+        StringTokenizer box = new StringTokenizer(input);
+        
+        while (box.hasMoreTokens()) {
+            A = Integer.parseInt(box.nextToken());
+            B = Integer.parseInt(box.nextToken());
+        }
+        System.out.println(B % A == 0 ? B / A : B / A + 1);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String s = sc.next();
+    String t = sc.next();
+    sc.close();
+    Pattern candidate = Pattern.compile("a|t|c|o|d|e|r|@");
+    boolean win = true;
+    for (int i = 0; i < s.length(); i++) {
+        if (s.charAt(i) == t.charAt(i)) {
+            continue;
+        } else if (s.charAt(i) == '@') {
+            if (candidate.matcher("" + t.charAt(i)).find())
+                continue;
+        } else if (t.charAt(i) == '@') {
+            if (candidate.matcher("" + s.charAt(i)).find())
+                continue;
+        }
+        win = false;
+        break;
+    }
+    String ans = win ? "You can win" : "You will lose";
+    System.out.println(ans);
+}

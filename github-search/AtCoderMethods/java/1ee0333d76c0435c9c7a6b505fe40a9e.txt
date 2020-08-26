@@ -1,0 +1,40 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int H = sc.nextInt();
+    int W = sc.nextInt();
+    String line;
+    char[][] mineMap = new char[H + 2][W + 2];
+    for (int h = 1; h <= H; h++) {
+        line = sc.next();
+        for (int w = 1; w <= W; w++) {
+            mineMap[h][w] = line.charAt(w - 1);
+        }
+    }
+    for (int h = 1; h <= H; h++) for (int w = 1; w <= W; w++) {
+        int bombCount = 0;
+        if (mineMap[h - 1][w - 1] == '#')
+            bombCount++;
+        if (mineMap[h - 1][w] == '#')
+            bombCount++;
+        if (mineMap[h - 1][w + 1] == '#')
+            bombCount++;
+        if (mineMap[h][w - 1] == '#')
+            bombCount++;
+        if (mineMap[h][w + 1] == '#')
+            bombCount++;
+        if (mineMap[h + 1][w - 1] == '#')
+            bombCount++;
+        if (mineMap[h + 1][w] == '#')
+            bombCount++;
+        if (mineMap[h + 1][w + 1] == '#')
+            bombCount++;
+        if (mineMap[h][w] != '#')
+            mineMap[h][w] = (char) ('0' + bombCount);
+    }
+    for (int h = 1; h <= H; h++) {
+        for (int w = 1; w <= W; w++) {
+            System.out.print(mineMap[h][w]);
+        }
+        System.out.println();
+    }
+}

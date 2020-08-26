@@ -1,0 +1,5 @@
+def nCr(self, n, k):
+    a = self.fact[n] % self.mod
+    b = (self.fact[k] * self.fact[n - k]) % self.mod
+    c = pow(b, self.mod - 2, self.mod)
+    return a * c % self.mod

@@ -1,0 +1,17 @@
+void dfs(int n) {
+    if (count == R - 1)
+        min = Math.min(cost, min);
+    long p = 0;
+    for (int i = 0; i < R; i++) {
+        if (!visited[i]) {
+            p = path[r[n]][r[i]];
+            visited[i] = true;
+            cost += p;
+            count++;
+            dfs(i);
+            visited[i] = false;
+            cost -= p;
+            count--;
+        }
+    }
+}

@@ -1,0 +1,38 @@
+
+
+
+
+
+
+
+public static void main(String[] args) throws Exception, IOException {
+    Reader sc = new Reader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = sc.nextInt();
+    int[] d = new int[n];
+    int[] e = new int[n];
+    for (int i = 0; i < n; i++) {
+        int x = sc.nextInt();
+        while (x % 2 == 0) {
+            d[i]++;
+            x /= 2;
+        }
+    }
+    sort(d);
+    String a = "Yes";
+    for (int i = 0, c = 0, t; i < n / 2 + n % 2; i++) {
+        t = n - i - 1;
+        e[c++] = d[i];
+        if (i != t)
+            e[c++] = d[t];
+    }
+    
+    for (int i = 0; i + 1 < n; i++) {
+        if (e[i] + e[i + 1] < 2) {
+            a = "No";
+            break;
+        }
+    }
+    out.println(a);
+    out.flush();
+}

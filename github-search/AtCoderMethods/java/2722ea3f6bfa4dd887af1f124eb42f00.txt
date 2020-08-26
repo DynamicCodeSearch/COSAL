@@ -1,0 +1,32 @@
+
+static long[][] prime_factors(long N) {
+    int M;
+    M = (int) Math.sqrt(N) + 1;
+    if (M < 30)
+        M = 30;
+    int[] prime = new int[M / 2];
+    int prime_cnt;
+    prime_cnt = get_prime_list(M, prime);
+    
+    long[][] factors = new long[15][2];
+    int fct_cnt = 0;
+    for (int i = 1; i < prime_cnt; i++) {
+        if ((N % prime[i]) == 0) {
+            factors[fct_cnt][0] = prime[i];
+            factors[fct_cnt][1] = 1;
+            fct_cnt++;
+            N = N / prime[i];
+            while ((N % prime[i]) == 0) {
+                factors[fct_cnt - 1][1]++;
+                N = N / prime[i];
+            }
+        }
+    }
+    if (N != 1) {
+        factors[fct_cnt][0] = N;
+        factors[fct_cnt][1] = 1;
+        fct_cnt++;
+    }
+    
+    return factors;
+}

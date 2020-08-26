@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int n = scan.nextInt();
+    for (int i = 0; i < n; i++) {
+        check(scan.next());
+    }
+    int ans = -1;
+    String ansstr = null;
+    for (String key : map.keySet()) {
+        int temp = map.get(key);
+        if (temp > ans) {
+            ans = temp;
+            ansstr = key;
+        }
+    }
+    System.out.println(ansstr);
+}

@@ -1,0 +1,31 @@
+public static void main(String[] args) throws java.lang.Exception {
+    Scanner in = new Scanner(System.in);
+    int n = in.nextInt();
+    HashMap<Long, Integer> map = new HashMap<Long, Integer>();
+    int counter = 0;
+    for (int i = 0; i < n; i++) {
+        int x = in.nextInt();
+        long xx = x;
+        int groupNum = -1;
+        while (xx >= 1) {
+            if (map.containsKey(xx)) {
+                groupNum = map.get(xx);
+                break;
+            } else if (xx % 2 == 0) {
+                xx /= 2;
+            } else {
+                break;
+            }
+        }
+        int inserting = groupNum == -1 ? counter : groupNum;
+        
+        while (xx <= x) {
+            map.put(xx, inserting);
+            xx *= 2;
+        }
+        if (groupNum == -1) {
+            counter++;
+        }
+    }
+    System.out.println(counter);
+}

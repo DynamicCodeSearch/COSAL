@@ -1,0 +1,38 @@
+public void solve() {
+    char[] S = io.readLine().toCharArray();
+    char[] T = io.readLine().toCharArray();
+    int[] sa = new int[S.length + 1];
+    int[] sb = new int[S.length + 1];
+    int[] ta = new int[T.length + 1];
+    int[] tb = new int[T.length + 1];
+    for (int i = 1; i < sa.length; i++) {
+        sa[i] = sa[i - 1];
+        sb[i] = sb[i - 1];
+        if (S[i - 1] == 'A')
+            sa[i]++;
+        else
+            sb[i]++;
+    }
+    for (int i = 1; i < ta.length; i++) {
+        ta[i] = ta[i - 1];
+        tb[i] = tb[i - 1];
+        if (T[i - 1] == 'A')
+            ta[i]++;
+        else
+            tb[i]++;
+    }
+    StringBuilder res = new StringBuilder();
+    int Q = Integer.parseInt(io.readLine());
+    for (int i = 0; i < Q; i++) {
+        int[] l = io.readIntArray(4);
+        int difS = ((sa[l[1]] - sa[l[0] - 1]) - (sb[l[1]] - sb[l[0] - 1]) + 300000) % 3;
+        int difT = ((ta[l[3]] - ta[l[2] - 1]) - (tb[l[3]] - tb[l[2] - 1]) + 300000) % 3;
+        if (res.length() > 0)
+            res.append(System.lineSeparator());
+        if (difS == difT)
+            res.append("YES");
+        else
+            res.append("NO");
+    }
+    io.writeLine(res.toString());
+}

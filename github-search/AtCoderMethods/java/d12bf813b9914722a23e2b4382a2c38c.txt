@@ -1,0 +1,31 @@
+public void solve() {
+    N = nextInt();
+    K = nextInt();
+    a = new int[N];
+    for (int i = 0; i < N; i++) {
+        a[i] = nextInt() - K;
+    }
+    b = new long[N + 1];
+    b[0] = a[0];
+    for (int i = 0; i < N; i++) {
+        b[i + 1] += b[i] + a[i];
+    }
+    TreeSet<Long> set = new TreeSet<>();
+    for (int i = 0; i <= N; i++) {
+        set.add(b[i]);
+    }
+    long[] c = new long[N + 1];
+    int p = 0;
+    for (long i : set) {
+        c[p++] = i;
+    }
+    c = Arrays.copyOf(c, p);
+    init(N + 1);
+    long ans = 0;
+    for (int i = 0; i <= N; i++) {
+        int x = Arrays.binarySearch(c, b[i]);
+        ans += query(0, x + 1, 0, 0, size);
+        update(x, 1);
+    }
+    out.println(ans);
+}

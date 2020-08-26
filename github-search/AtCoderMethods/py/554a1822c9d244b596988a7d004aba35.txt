@@ -1,0 +1,9 @@
+def calc_all_section_length_sum(a):
+    n = len(a)
+    res = 0
+
+    for i, ai in enumerate(a):
+        res += (ai * (2*i + 1 - n)) % mod
+        res %= mod
+
+    return res

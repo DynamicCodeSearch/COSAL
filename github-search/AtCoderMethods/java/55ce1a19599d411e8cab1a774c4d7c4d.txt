@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    int q = in.nextInt();
+    int[][] cones = new int[n][3];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < 3; j++) {
+            cones[i][j] = in.nextInt();
+        }
+    }
+    while (--q >= 0) {
+        int a = in.nextInt();
+        int b = in.nextInt();
+        out.println(String.format("%.9f", solve(a, cones) - solve(b, cones)));
+    }
+    out.flush();
+}

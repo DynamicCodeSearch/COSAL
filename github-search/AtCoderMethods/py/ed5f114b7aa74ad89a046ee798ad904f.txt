@@ -1,0 +1,18 @@
+def C():
+
+    N = int(input())
+    s = []
+    pos = []
+    neg = []
+    for _ in range(N):
+        s.append(int(input()))
+    for i in s:
+        if i % 10 == 0:
+            pos.append(i)
+        else:
+            neg.append(i)
+    possum = sum(pos)
+    negsum = sum(neg)
+    if negsum % 10 == 0:
+        negsum -= min(neg) if neg else 0
+    print(0 if 0 == negsum else negsum + possum)

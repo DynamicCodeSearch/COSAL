@@ -1,0 +1,16 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    int m = sc.nextInt();
+    int n = sc.nextInt();
+    int N = sc.nextInt();
+    long sum = N;
+    long current = N;
+    long mod = 0;
+    while (current > 0) {
+        long temp = current + mod;
+        current = temp / m * n;
+        mod = temp % m;
+        sum += current;
+    }
+    System.out.println(sum);
+}

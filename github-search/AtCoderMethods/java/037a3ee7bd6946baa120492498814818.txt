@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    String s = scan.nextLine();
+    String[] card = s.split(" ");
+    int i = Integer.parseInt(card[0]);
+    int j = Integer.parseInt(card[1]);
+    if ((i < 14 && j < 14) && (i > 0 && j > 0)) {
+        for (int k = 0; k < powerCard.length; k++) {
+            if (powerCard[k] == i) {
+                i = k;
+                break;
+            }
+        }
+        for (int k = 0; k < powerCard.length; k++) {
+            if (powerCard[k] == j) {
+                j = k;
+                break;
+            }
+        }
+        if (i > j) {
+            System.out.println("Alice");
+        } else if (i < j) {
+            System.out.println("Bob");
+        } else {
+            System.out.println("Draw");
+        }
+    } else {
+        System.out.println("Draw");
+    }
+}

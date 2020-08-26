@@ -1,0 +1,9 @@
+public static void dfs(int[] dist, Map<Integer, List<Integer>> v, int start, int depth) {
+    if (dist[start] > -1) {
+        return;
+    }
+    dist[start] = depth;
+    for (int i : v.get(start)) {
+        dfs(dist, v, i, depth + 1);
+    }
+}

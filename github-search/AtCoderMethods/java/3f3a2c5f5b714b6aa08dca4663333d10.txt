@@ -1,0 +1,24 @@
+void run() {
+    long r = sc.nextLong();
+    long b = sc.nextLong();
+    long x = sc.nextLong();
+    long y = sc.nextLong();
+    long left = 0;
+    long right = Long.MAX_VALUE / 2;
+    long k = -1;
+    while (true) {
+        long mid = (left + right) / 2;
+        if (k == mid) {
+            break;
+        }
+        long nr = r - mid;
+        long nb = b - mid;
+        if (nr >= 0 && nb >= 0 && nr / (x - 1) + nb / (y - 1) >= mid) {
+            left = mid;
+        } else {
+            right = mid;
+        }
+        k = mid;
+    }
+    System.out.println(k);
+}

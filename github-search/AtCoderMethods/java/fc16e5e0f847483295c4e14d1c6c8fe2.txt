@@ -1,0 +1,9 @@
+static int pow(int a, int x) {
+    if (a == 1 || x == 0)
+        return 1;
+    if (x % 2 == 0) {
+        return pow(a * a, x / 2);
+    } else {
+        return a * pow(a, x - 1);
+    }
+}

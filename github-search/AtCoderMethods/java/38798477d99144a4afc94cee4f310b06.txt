@@ -1,0 +1,11 @@
+public static void main(String[] args) {
+    int n = s.nextInt(), in[] = new int[n], res;
+    HashSet<Integer> set = new HashSet<>();
+    for (int i = 0; i < n; i++) {
+        in[i] = s.nextInt();
+        set.add(in[i]);
+    }
+    Integer[] v = set.toArray(new Integer[set.size()]);
+    Arrays.parallelSort(v);
+    for (int i : in) System.out.println(Arrays.binarySearch(v, i));
+}

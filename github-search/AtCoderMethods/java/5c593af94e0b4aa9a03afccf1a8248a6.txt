@@ -1,0 +1,39 @@
+public void run() {
+    Scanner sc = new Scanner(System.in);
+    n = sc.nextInt();
+    p = new int[n];
+    g = new ArrayList[n];
+    cycle = new boolean[n];
+    f = new int[n];
+    for (int i = 0; i < n; ++i) {
+        g[i] = new ArrayList<>();
+    }
+    for (int i = 0; i < n; ++i) {
+        p[i] = sc.nextInt();
+        --p[i];
+        g[p[i]].add(i);
+    }
+    int v = 0;
+    for (int i = 0; i < n; ++i) {
+        v = p[v];
+    }
+    for (int i = 0; i < n; ++i) {
+        cycle[v] = true;
+        v = p[v];
+    }
+    Arrays.fill(f, -1);
+    for (int i = 0; i < n; ++i) {
+        if (!cycle[i] && f[i] == -1) {
+            dfs(i);
+        }
+    }
+    boolean ans = false;
+    ArrayList<Integer> lis = new ArrayList<>();
+    for (int dst : g[v]) {
+        if (f[dst] != -1)
+            lis.add(f[dst]);
+    }
+    ans |= solve(v, fgrundy(lis));
+    ans |= solve(v, sgrundy(lis));
+    System.out.println(ans ? "POSSIBLE" : "IMPOSSIBLE");
+}

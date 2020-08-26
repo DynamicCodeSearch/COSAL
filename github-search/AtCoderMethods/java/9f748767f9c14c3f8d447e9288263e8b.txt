@@ -1,0 +1,9 @@
+private int query(int a, int b, int k, int l, int r) {
+    if (r <= a || b <= l)
+        return _intMax;
+    if (a <= l && r <= b)
+        return element[k];
+    int vl = query(a, b, 2 * k + 1, l, (l + r) / 2);
+    int vr = query(a, b, 2 * k + 2, (l + r) / 2, r);
+    return Math.min(vl, vr);
+}

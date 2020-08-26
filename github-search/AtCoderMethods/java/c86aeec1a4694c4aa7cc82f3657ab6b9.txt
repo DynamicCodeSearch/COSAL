@@ -1,0 +1,63 @@
+void run() {
+    double xs = sc.nextDouble();
+    double ys = sc.nextDouble();
+    double xt = sc.nextDouble();
+    double yt = sc.nextDouble();
+    int N = sc.nextInt();
+    P[] p = new P[N];
+    for (int i = 0; i < N; i++) {
+        p[i] = new P(sc.nextDouble(), sc.nextDouble(), sc.nextDouble());
+    }
+    double[][] g = new double[N + 2][N + 2];
+    for (int i = 0; i < N + 2; i++) Arrays.fill(g[i], Long.MAX_VALUE);
+    
+    g[0][N + 1] = g[N + 1][0] = Math.hypot(xs - xt, ys - yt);
+    
+    for (int i = 0; i < N; i++) {
+        double dist = Math.hypot(xs - p[i].x, ys - p[i].y);
+        g[0][i + 1] = g[i + 1][0] = Math.max(0, dist - p[i].r);
+    }
+    
+    for (int i = 0; i < N; i++) {
+        double dist = Math.hypot(xt - p[i].x, yt - p[i].y);
+        g[N + 1][i + 1] = g[i + 1][N + 1] = Math.max(0, dist - p[i].r);
+    }
+    
+    for (int i = 0; i < N; i++) {
+        for (int j = i + 1; j < N; j++) {
+            double dist = Math.hypot(p[j].x - p[i].x, p[j].y - p[i].y);
+            if (dist <= p[j].r + p[i].r) {
+                g[i + 1][j + 1] = g[j + 1][i + 1] = 0;
+            } else {
+                g[i + 1][j + 1] = g[j + 1][i + 1] = dist - (p[j].r + p[i].r);
+            }
+        }
+    }
+    
+    
+    double[] len = new double[N + 2];
+    
+    boolean[] v = new boolean[N + 2];
+    for (int i = 0; i < N + 2; i++) {
+        len[i] = Long.MAX_VALUE;
+    }
+    len[0] = 0;
+    for (int i = 0; i < N + 2; i++) {
+        
+        int pp = 0;
+        double min = Long.MAX_VALUE;
+        for (int j = 0; j < N + 2; j++) {
+            if (!v[j] && len[j] < min) {
+                pp = j;
+                min = len[j];
+            }
+        }
+        v[pp] = true;
+        for (int j = 0; j < N + 2; j++) {
+            if ((len[pp] + g[pp][j]) < len[j]) {
+                len[j] = len[pp] + g[pp][j];
+            }
+        }
+    }
+    System.out.println(len[N + 1]);
+}

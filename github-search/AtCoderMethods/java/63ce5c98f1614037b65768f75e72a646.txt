@@ -1,0 +1,33 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    final int N = sc.nextInt();
+    int[] a = new int[N];
+    for (int i = 0; i < N; i++) a[i] = sc.nextInt();
+    sc.close();
+    int ans = Integer.MIN_VALUE;
+    for (int x = 0; x < N; x++) {
+        int maxX = Integer.MIN_VALUE;
+        int maxY = Integer.MIN_VALUE;
+        for (int y = 0; y < N; y++) {
+            if (x == y)
+                continue;
+            int s = Math.min(x, y);
+            int e = Math.max(x, y);
+            int rx = 0;
+            int ry = 0;
+            for (int i = s; i <= e; i++) {
+                if ((i - s) % 2 == 0) {
+                    rx += a[i];
+                } else {
+                    ry += a[i];
+                }
+            }
+            if (ry > maxY) {
+                maxY = ry;
+                maxX = rx;
+            }
+        }
+        ans = Math.max(maxX, ans);
+    }
+    System.out.println(ans);
+}

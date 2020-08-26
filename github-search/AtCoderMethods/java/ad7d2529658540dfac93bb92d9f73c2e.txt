@@ -1,0 +1,35 @@
+public static void main(String[] args) {
+    int n = Integer.parseInt(scan.next());
+    int[] a = new int[n];
+    int[] e;
+    int[] o;
+    if (n % 2 == 0) {
+        e = new int[n / 2];
+        o = new int[n / 2];
+    } else {
+        e = new int[n / 2 + 1];
+        o = new int[n / 2];
+    }
+    for (int i = 0; i < n; i++) {
+        if (i % 2 == 0)
+            e[i / 2] = Integer.parseInt(scan.next());
+        else
+            o[i / 2] = Integer.parseInt(scan.next());
+    }
+    if (n % 2 == 0) {
+        int length = n / 2;
+        for (int i = 0; i < length; i++) a[i] = o[length - 1 - i];
+        for (int i = 0; i < length; i++) a[i + length] = e[i];
+    } else {
+        int length = n / 2 + 1;
+        for (int i = 0; i < length; i++) a[i] = e[length - 1 - i];
+        for (int i = 0; i < length - 1; i++) a[i + length] = o[i];
+    }
+    for (int i = 0; i < n; i++) {
+        if (i == 0)
+            System.out.print(a[i]);
+        else
+            System.out.print(" " + a[i]);
+    }
+    scan.close();
+}

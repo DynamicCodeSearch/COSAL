@@ -1,0 +1,12 @@
+private void solve() {
+    long[] ret = new long[n];
+    Arrays.fill(ret, Long.MAX_VALUE);
+    boolean[] used = new boolean[n];
+    dfs(k, 0L, used, ret);
+    long d1, d2;
+    for (int i = 0; i < q; i++) {
+        d1 = ret[xs[i]];
+        d2 = ret[ys[i]];
+        System.out.println(d1 + d2);
+    }
+}

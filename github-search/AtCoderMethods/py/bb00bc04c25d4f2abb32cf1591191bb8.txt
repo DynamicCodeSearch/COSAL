@@ -1,0 +1,11 @@
+def ans(S, cnt=0):
+    H = []
+    for i in S:
+        if i == ")":
+            if H:
+                H.pop()
+            else:
+               cnt += 1
+        else:
+            H.append(1)
+    return [cnt, len(H)]

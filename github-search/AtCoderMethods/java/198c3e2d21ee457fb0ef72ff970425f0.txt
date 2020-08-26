@@ -1,0 +1,18 @@
+Node rotateRight(Node a) {
+    Node b = a.left;
+    if (a.parent != null) {
+        if (a.parent.left == a) {
+            a.parent.left = b;
+        } else {
+            a.parent.right = b;
+        }
+    }
+    b.parent = a.parent;
+    a.parent = b;
+    a.left = b.right;
+    b.right = a;
+    if (a.left != null)
+        a.left.parent = a;
+    setBalance(a, b);
+    return b;
+}

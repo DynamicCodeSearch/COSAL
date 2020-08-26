@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    try {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String[] str = br.readLine().split(" ");
+        int k = Integer.parseInt(str[0]);
+        int s = Integer.parseInt(str[1]);
+        int res = 0;
+        for (int x = 0; x <= k; x++) {
+            for (int y = 0; y <= k; y++) {
+                int z = s - x - y;
+                if (z >= 0 && z <= k)
+                    res++;
+            }
+        }
+        System.out.println(res);
+    } catch (Exception e) {
+    }
+}

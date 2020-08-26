@@ -1,0 +1,13 @@
+private int[] query(int a, int b, int k, int l, int r) {
+    if (r <= a || b <= l)
+        return new int[] { _intMax, 0 };
+    if (a <= l && r <= b)
+        return new int[] { element[k], index[k] };
+    int[] vl = query(a, b, 2 * k + 1, l, (l + r) / 2);
+    int[] vr = query(a, b, 2 * k + 2, (l + r) / 2, r);
+    if (vl[0] <= vr[0]) {
+        return new int[] { vl[0], vl[1] };
+    } else {
+        return new int[] { vr[0], vr[1] };
+    }
+}

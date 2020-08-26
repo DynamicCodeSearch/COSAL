@@ -1,0 +1,27 @@
+
+public void run() throws IOException {
+    
+    int TEST_CASE = 1;
+    while (TEST_CASE-- != 0) {
+        
+        int n = io.nextInt();
+        int T = io.nextInt() / 2;
+        int[] A = io.nextIntArray(n);
+        TreeSet<Integer> set = new TreeSet<>();
+        for (int a : A) set.add(a);
+        int ans = 0;
+        int max = Integer.MIN_VALUE;
+        for (int a : A) if (a != A[n - 1]) {
+            set.remove(a);
+            final int v = set.last() - a;
+            if (v > max) {
+                max = v;
+                ans = 0;
+            }
+            if (v == max) {
+                ans++;
+            }
+        }
+        io.out.println(ans);
+    }
+}

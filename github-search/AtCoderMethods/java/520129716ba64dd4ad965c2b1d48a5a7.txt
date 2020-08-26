@@ -1,0 +1,27 @@
+public void solve() {
+    N = io.ri();
+    int ma = io.ri();
+    int mb = io.ri();
+    int[] aa = new int[N];
+    int[] bb = new int[N];
+    int[] cc = new int[N];
+    for (int i = 0; i < N; i++) {
+        aa[i] = io.ri();
+        bb[i] = io.ri();
+        cc[i] = io.ri();
+    }
+    int[][] min = new int[403][403];
+    for (int i = 0; i < 403; i++) for (int j = 0; j < 403; j++) min[i][j] = -1;
+    min[0][0] = 0;
+    for (int i = 0; i < N; i++) {
+        int a = aa[i], b = bb[i], c = cc[i];
+        for (int q = 402; q >= 0; q--) for (int w = 402; w >= 0; w--) if (min[q][w] > -1) {
+            int k = min[q + a][w + b];
+            min[q + a][w + b] = k == -1 ? c + min[q][w] : Math.min(k, c + min[q][w]);
+        }
+    }
+    int res = Integer.MAX_VALUE;
+    for (int a = ma, b = mb; a < 403 && b < 403; a += ma, b += mb) if (min[a][b] > -1)
+        res = Math.min(res, min[a][b]);
+    io.writeLine("" + (res == Integer.MAX_VALUE ? -1 : res));
+}

@@ -1,0 +1,15 @@
+def dfs():
+    sta = []
+    ans = [-1]*(N+1)
+
+    sta.append(K)
+    ans[K] = 0
+
+    while sta:
+        nod = sta.pop()
+        for t, d in tree[nod]:
+            if ans[t] < 0:
+                ans[t] = ans[nod] + d
+                sta.append(t)
+
+    return ans

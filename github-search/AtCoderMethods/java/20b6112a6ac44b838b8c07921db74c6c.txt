@@ -1,0 +1,22 @@
+
+public static void main(String[] args) throws IOException {
+    BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+    String str = in.readLine();
+    String[] sp = str.split(" ");
+    int max = Integer.parseInt(sp[0]);
+    int num = Integer.parseInt(sp[1]);
+    int a1 = 0;
+    for (int i = 1; i <= max; i++) {
+        if (i == num) {
+            a1 = i - 1;
+            break;
+        }
+    }
+    int a2 = 0;
+    for (int i = 1; i <= max; i++) {
+        if (max - i == num) {
+            a2 = i;
+        }
+    }
+    System.out.println(a1 < a2 ? a1 : a2);
+}

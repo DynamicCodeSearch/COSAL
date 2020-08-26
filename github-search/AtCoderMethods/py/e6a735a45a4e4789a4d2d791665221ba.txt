@@ -1,0 +1,8 @@
+def read_links(lst, n):
+    for j in range(n):
+        p, q = list(map(int, input().split()))
+        p_node = lst[p] or UfNode()
+        q_node = lst[q] or UfNode()
+        union(p_node, q_node)
+        lst[p] = p_node
+        lst[q] = q_node

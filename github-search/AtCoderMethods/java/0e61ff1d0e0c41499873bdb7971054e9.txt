@@ -1,0 +1,20 @@
+private static void solve(Scanner in) {
+    int N = in.nextInt();
+    List<Integer> ps = furui(N);
+    long[] hist = new long[N + 1];
+    for (int p : ps) {
+        int h = 0;
+        int n = N;
+        while (n / p > 0) {
+            n /= p;
+            h += n;
+        }
+        hist[p] = h;
+    }
+    long count = 1;
+    for (int i = 0; i < N + 1; i++) {
+        count *= (hist[i] + 1);
+        count %= MOD;
+    }
+    System.out.println(count);
+}

@@ -1,0 +1,12 @@
+public int nextInt() {
+    int r = 0, s = 1, b = ' ';
+    try {
+        for (; Character.isWhitespace(b); b = bis.read()) ;
+        if ((s = b == '-' ? -1 : 1) < 0) {
+            b = bis.read();
+        }
+        for (; Character.isDigit(b); b = bis.read()) r = r * 10 + b - '0';
+    } catch (Exception e) {
+    }
+    return s * r;
+}

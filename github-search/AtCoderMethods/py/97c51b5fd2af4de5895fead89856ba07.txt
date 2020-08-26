@@ -1,0 +1,25 @@
+def solve():
+	N,K = [int(i) for i in input().split()]
+ S = [int(sys.stdin.readline().rstrip()) for i in range(N)]
+ if(0 in S):
+		print(N)
+  return
+ lx = rx = 0
+ ans = S[rx]
+ maxs = 0
+ while rx < N:
+		if ans <= K:
+			maxs = max(maxs , rx-lx+1)
+   rx += 1
+   if rx >= N :break
+   ans *= S[rx]
+   continue
+  elif rx > lx:
+			ans /= S[lx]
+   lx += 1
+  else:
+			lx += 1
+   if lx >= N: break
+   rx = lx
+   ans = S[rx]
+ print(maxs)

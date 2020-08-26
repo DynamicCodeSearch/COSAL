@@ -1,0 +1,8 @@
+public static Graph fromParents(int n, int[] parent) {
+    Graph g = new Graph(n);
+    for (int i = 0; i < parent.length; i++) {
+        int s = parent[i] - 1, t = i + 1;
+        g.addEdge(s, t, i);
+    }
+    return g;
+}

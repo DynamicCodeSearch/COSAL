@@ -1,0 +1,16 @@
+static ArrayList<Long> div2(long a, long b) {
+    ArrayList<Long> ans = new ArrayList<>();
+    if (a % 2 == 0 || b % 2 == 0) {
+        ans.add(a * b / 2);
+        ans.add(a * b / 2);
+    } else {
+        if (a < b) {
+            long temp = a;
+            a = b;
+            b = temp;
+        }
+        ans.add(a / 2 * b);
+        ans.add((a - a / 2) * b);
+    }
+    return ans;
+}

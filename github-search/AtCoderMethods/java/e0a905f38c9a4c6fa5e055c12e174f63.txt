@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String s = sc.nextLine();
+    sc.close();
+    ArrayList<String> ss = new ArrayList<String>();
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < s.length(); i++) {
+        if (s.charAt(i) == '+') {
+            ss.add(sb.toString());
+            sb = new StringBuilder();
+        } else {
+            sb.append(s.charAt(i));
+        }
+    }
+    ss.add(sb.toString());
+    int ans = 0;
+    for (int i = 0; i < ss.size(); i++) {
+        String temp = ss.get(i);
+        if (temp.contains("0")) {
+            ;
+        } else {
+            ans++;
+        }
+    }
+    System.out.println(ans);
+}

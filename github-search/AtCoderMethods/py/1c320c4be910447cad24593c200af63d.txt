@@ -1,0 +1,19 @@
+def main():
+    s, w = [int(x) for x in sys.stdin.readline().rstrip().split(" ")]
+    data = []
+    for line in sys.stdin:
+        data.append(list(line.rstrip()))
+
+    for i in range(s):
+        for j in range(w):
+            if data[i][j] == "#":
+                continue
+            count = 0
+            for k in range(max(i - 1, 0), min(i + 2, s)):
+                for l in range(max(j - 1, 0), min(j + 2, w)):
+                    if data[k][l] == "#":
+                        count += 1
+            data[i][j] = str(count)
+
+    for line_arr in data:
+        print("".join(line_arr))

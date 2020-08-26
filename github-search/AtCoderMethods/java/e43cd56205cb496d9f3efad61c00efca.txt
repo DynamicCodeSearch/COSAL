@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    char[] in = s.next().toCharArray();
+    int l = 0, r = 0, u = 0, d = 0, x = 0;
+    for (char c : in) {
+        if (c == 'L')
+            l++;
+        else if (c == 'R')
+            r++;
+        else if (c == 'U')
+            u++;
+        else if (c == 'D')
+            d++;
+        else
+            x++;
+    }
+    int dist = Math.abs(r - l) + Math.abs(u - d);
+    switch(s.nextByte()) {
+        case 1:
+            System.out.println(dist + x);
+            return;
+        case 2:
+            System.out.println(dist < x ? (x - dist) % 2 : dist - x);
+            return;
+    }
+}

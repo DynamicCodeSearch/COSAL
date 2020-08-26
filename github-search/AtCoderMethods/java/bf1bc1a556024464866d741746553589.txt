@@ -1,0 +1,15 @@
+public void solve(int testNumber, Scanner in, PrintWriter out) {
+    int N = in.nextInt();
+    int[] arr = new int[N];
+    int sum = 0;
+    for (int i = 0; i < N; i++) {
+        arr[i] = in.nextInt();
+        sum += arr[i];
+    }
+    sum = (int) Math.round(sum / (double) N);
+    int ans = 0;
+    for (int i = 0; i < N; i++) {
+        ans += (sum - arr[i]) * (sum - arr[i]);
+    }
+    out.println(ans);
+}

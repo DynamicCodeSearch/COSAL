@@ -1,0 +1,28 @@
+public static void solve(long n) {
+    String winner = "";
+    if (n == 1) {
+        winner = "Aoki";
+    } else if (n == 2 || n == 3) {
+        winner = "Takahashi";
+    } else {
+        int numBit = sigBit(n);
+        boolean isInArow = numBit % 2 == 0;
+        long left = (long) 1 << numBit;
+        long right = (long) 1 << (numBit + 1);
+        long zigzag = zigzag(numBit, isInArow);
+        if (isInArow) {
+            if (left <= n && n < zigzag) {
+                winner = "Takahashi";
+            } else {
+                winner = "Aoki";
+            }
+        } else {
+            if (zigzag <= n && n < right) {
+                winner = "Takahashi";
+            } else {
+                winner = "Aoki";
+            }
+        }
+    }
+    System.out.println(winner);
+}

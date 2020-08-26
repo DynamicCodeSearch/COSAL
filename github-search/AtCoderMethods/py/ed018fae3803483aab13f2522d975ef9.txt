@@ -1,0 +1,9 @@
+def main():
+    N, M = map(int, input().split())
+    for a in range(N + 1):
+        c = (M - 2 * a) - 3 * (N - a)
+        b = N - a - c
+        if a >= 0 and b >= 0 and c >= 0 and a + b + c == N and 2 * a + 3 * b + 4 * c == M:
+            print(a, b, c)
+            return
+    print(-1, -1, -1)

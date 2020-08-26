@@ -1,0 +1,35 @@
+void solve() {
+    int n = in.nextInt();
+    int[] x = new int[n];
+    int[] y = new int[n];
+    int[] c = new int[n];
+    for (int i = 0; i < n; i++) {
+        x[i] = in.nextInt();
+        y[i] = in.nextInt();
+        c[i] = in.nextInt();
+    }
+    double lo = 0, hi = MAX;
+    for (int times = 0; times < 60; times++) {
+        double mid = (lo + hi) / 2;
+        boolean can = true;
+        outer: for (int i = 0; i < n; i++) {
+            double lx1 = x[i] - mid / c[i], rx1 = x[i] + mid / c[i];
+            double ly1 = y[i] - mid / c[i], ry1 = y[i] + mid / c[i];
+            for (int j = i + 1; j < n; j++) {
+                double lx2 = x[j] - mid / c[j], rx2 = x[j] + mid / c[j];
+                double ly2 = y[j] - mid / c[j], ry2 = y[j] + mid / c[j];
+                boolean x_ok = (lx1 <= lx2 && lx2 <= rx1) || (lx1 <= rx2 && rx2 <= rx1) || (lx2 <= lx1 && lx1 <= rx2) || (lx2 <= rx1 && rx1 <= rx2);
+                boolean y_ok = (ly1 <= ly2 && ly2 <= ry1) || (ly1 <= ry2 && ry2 <= ry1) || (ly2 <= ly1 && ly1 <= ry2) || (ly2 <= ry1 && ry1 <= ry2);
+                if (!x_ok || !y_ok) {
+                    can = false;
+                    break outer;
+                }
+            }
+        }
+        if (can)
+            hi = mid;
+        else
+            lo = mid;
+    }
+    System.out.println(lo);
+}

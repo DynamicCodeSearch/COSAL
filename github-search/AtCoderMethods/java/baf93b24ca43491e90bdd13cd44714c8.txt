@@ -1,0 +1,47 @@
+private static int[] solve(char[] s) {
+    boolean found = false;
+    int a = 0;
+    int b = 0;
+    for (int i = 0; i < s.length - 1; i++) {
+        if (s[i] == s[i + 1]) {
+            return new int[] { i + 1, i + 2 };
+        }
+    }
+    List<Integer> list = new ArrayList<>();
+    loop: for (char c = 'a'; c <= 'z'; c++) {
+        list.clear();
+        list.add(0);
+        boolean same = c == s[0];
+        int now = 0;
+        for (char d : s) {
+            if (d != c && same) {
+                list.add(now);
+                now = 0;
+                same = !same;
+            } else if (d == c && !same) {
+                list.add(now);
+                now = 0;
+                same = !same;
+            }
+            now++;
+        }
+        list.add(now);
+        list.add(0);
+        boolean first = c == s[0];
+        boolean last = c == s[s.length - 1];
+        int start = first ? 2 : 1;
+        for (int i = start; i < list.size() - 1; i += 2) {
+            if (list.get(i - 1) + list.get(i + 1) > list.get(i)) {
+                int cnt = 0;
+                for (int j = 0; j < i - 1; j++) {
+                    cnt += list.get(j);
+                }
+                a = cnt + 1;
+                b = cnt + list.get(i - 1) + list.get(i) + list.get(i + 1);
+                found = true;
+                break loop;
+            }
+        }
+    }
+    return found ? new int[] { a, b } : new int[] { -1, -1 };
+}

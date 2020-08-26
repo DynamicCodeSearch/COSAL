@@ -1,0 +1,17 @@
+long go(int pos, int cnd) {
+    if (pos < 0) {
+        if (cnd == 0) {
+            return 1L;
+        }
+        return 0L;
+    }
+    if (state[pos][cnd] != -1) {
+        return state[pos][cnd];
+    }
+    long ans = 0L;
+    for (int i = 0; i <= cnd; ++i) {
+        ans = add(ans, mul(sum[pos][i], go(pos - 1, cnd - i)));
+    }
+    state[pos][cnd] = (int) ans;
+    return ans;
+}

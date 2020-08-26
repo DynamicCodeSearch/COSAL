@@ -1,0 +1,13 @@
+public static void main(String[] args) throws IOException {
+    try (Scanner sc = new Scanner(System.in)) {
+        final int N = sc.nextInt();
+        final int M = sc.nextInt();
+        if (Math.max(N, M) - Math.min(N, M) >= 2) {
+            System.out.println(0);
+        } else if (N == M) {
+            System.out.println((((fact(N) * fact(M)) % MOD) * 2) % MOD);
+        } else {
+            System.out.println(((fact(N) * fact(M)) % MOD));
+        }
+    }
+}

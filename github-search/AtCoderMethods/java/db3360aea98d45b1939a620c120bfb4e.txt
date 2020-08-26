@@ -1,0 +1,19 @@
+long daq(int l, int r) {
+    if (r - l == 0)
+        return 0;
+    if (r - l == 1)
+        return a[l] >= K ? 1 : 0;
+    int m = (l + r) / 2;
+    long ans = daq(l, m) + daq(m, r);
+    long[] sumR = new long[r - m];
+    for (int i = m, j = 0; i < r; i++, j++) sumR[j] = a[i] - K + (i == m ? 0 : sumR[j - 1]);
+    Arrays.sort(sumR);
+    long sumL = 0;
+    for (int i = m - 1; i >= l; i--) {
+        sumL += a[i] - K;
+        int j = lowerBound(sumR, -sumL);
+        
+        ans += sumR.length - j;
+    }
+    return ans;
+}

@@ -1,0 +1,11 @@
+def _init_inv(self):
+    N = self.max_n
+    mod = self.mod
+    ret = pow(self.fac[N], mod - 2, mod)
+    inv = [1] * (N + 1)
+    inv[N] = ret
+    for i in range(N-1, 0, -1):
+        ret *= i + 1
+        ret %= mod
+        inv[i] = ret
+    return inv

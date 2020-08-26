@@ -1,0 +1,42 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int N = Integer.parseInt(scanner.next());
+    int K = Integer.parseInt(scanner.next());
+    ArrayList<String> alphabet = new ArrayList<>();
+    ArrayList<String> original = new ArrayList<>();
+    String originalWord = scanner.next();
+    for (int i = 0; i < N; i++) {
+        alphabet.add(originalWord.substring(i, i + 1));
+        original.add(originalWord.substring(i, i + 1));
+    }
+    alphabet.sort(Comparator.naturalOrder());
+    int count = 0;
+    String tmp = "";
+    String confirm = "";
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N - i; j++) {
+            String alpha = alphabet.get(j);
+            tmp = tmp + alpha;
+            alphabet.remove(alpha);
+            for (int k = 0; k < tmp.length(); k++) {
+                String w = tmp.substring(k, k + 1);
+                String o = originalWord.substring(k, k + 1);
+                if (!w.equals(o)) {
+                    count++;
+                }
+            }
+            count += check(alphabet, original, i + 1);
+            if (count <= K) {
+                confirm = tmp;
+                count = 0;
+                break;
+            } else {
+                alphabet.add(alpha);
+                alphabet.sort(Comparator.naturalOrder());
+                tmp = confirm;
+                count = 0;
+            }
+        }
+    }
+    System.out.println(confirm);
+}

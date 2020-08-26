@@ -1,0 +1,12 @@
+Point calcIntersection(Line2D.Double l1, Line2D.Double l2) {
+    if (!l1.intersectsLine(l2))
+        return null;
+    double bx = l2.x2 - l2.x1;
+    double by = l2.y2 - l2.y1;
+    double d1 = Math.abs(bx * (l1.y1 - l2.y1) - by * (l1.x1 - l2.x1));
+    double d2 = Math.abs(bx * (l1.y2 - l2.y1) - by * (l1.x2 - l2.x1));
+    double t = d1 / (d1 + d2);
+    double px = l1.x1 + (l1.x2 - l1.x1) * t;
+    double py = l1.y1 + (l1.y2 - l1.y1) * t;
+    return new Point(px, py);
+}

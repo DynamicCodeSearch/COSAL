@@ -1,0 +1,21 @@
+def main():
+    n, m = reads();
+    g = [set() for _ in range(n+1)]
+    for _ in range(m):
+        a, b = reads()
+        g[a - 1].add(b - 1)
+        g[b - 1].add(a - 1)
+
+    count = 0
+    q = [(0, [])]
+    while q:
+        i, p = q.pop(0)
+        if len(p) == (n-1):
+            count += 1
+        for e in g[i]:
+            if e in p:
+                continue
+            pp = p[:]
+            pp.append(i)
+            q.append((e, pp))
+    print(count)

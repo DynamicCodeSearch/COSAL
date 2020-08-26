@@ -1,0 +1,29 @@
+public void solve(int testNumber, Scanner in, PrintWriter out) {
+    int n = in.nextInt();
+    in.nextLine();
+    String[] ss = new String[n];
+    for (int i = 0; i < n; ++i) {
+        ss[i] = in.nextLine();
+    }
+    int[] min_alphabet_count = new int[26];
+    for (int i = 0; i < 26; ++i) {
+        min_alphabet_count[i] = Integer.MAX_VALUE;
+    }
+    for (int i = 0; i < ss.length; ++i) {
+        String str = ss[i];
+        for (int j = 0; j < 26; ++j) {
+            int c = count(str, (char) ('a' + j));
+            if (c < min_alphabet_count[j]) {
+                min_alphabet_count[j] = c;
+            }
+        }
+    }
+    for (int i = 0; i < min_alphabet_count.length; ++i) {
+        int cnt = min_alphabet_count[i];
+        String str = String.valueOf((char) ('a' + i));
+        for (int j = 0; j < cnt; ++j) {
+            out.print(str);
+        }
+    }
+    out.println();
+}

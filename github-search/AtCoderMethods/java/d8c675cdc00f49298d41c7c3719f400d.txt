@@ -1,0 +1,10 @@
+private void dfsImpl(int from) {
+    Node n = ns.get(from);
+    if (n.dfsVisited != 0)
+        return;
+    n.dfsVisited = 1;
+    dfsVisit(n);
+    for (Edge e : n.es) {
+        dfsImpl(e.to);
+    }
+}

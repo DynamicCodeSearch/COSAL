@@ -1,0 +1,31 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    PrintWriter out = new PrintWriter(System.out);
+    String[] ans = { "Do", "Re", "Mi", "Fa", "So", "La", "Si" };
+    char[] in = sc.next().toCharArray();
+    char[] d = "WBWBWWBWBWBW".toCharArray();
+    IN: for (int i = 0; i < 7; i++) {
+        for (int j = 0; j < d.length; j++) {
+            if (in[j] != d[j]) {
+                char[] x = new char[d.length];
+                if (d[1] == 'B') {
+                    for (int k = 0; k < d.length - 2; k++) {
+                        x[k] = d[k + 2];
+                    }
+                    x[d.length - 2] = 'W';
+                    x[d.length - 1] = 'B';
+                } else {
+                    for (int k = 0; k < d.length - 1; k++) {
+                        x[k] = d[k + 1];
+                    }
+                    x[d.length - 1] = 'W';
+                }
+                d = x;
+                continue IN;
+            }
+        }
+        out.println(ans[i]);
+        break;
+    }
+    out.flush();
+}

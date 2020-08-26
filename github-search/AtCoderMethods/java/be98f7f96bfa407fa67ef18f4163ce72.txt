@@ -1,0 +1,45 @@
+public void calc() {
+    sb = new StringBuilder();
+    BufferedInputStream bs = new BufferedInputStream(System.in);
+    Scanner sc = new Scanner(bs);
+    String s = sc.next();
+    int t = sc.nextInt();
+    int x = 0, y = 0;
+    int hatena = 0;
+    for (char c : s.toCharArray()) {
+        switch(c) {
+            case 'R':
+                x++;
+                break;
+            case 'L':
+                x--;
+                break;
+            case 'U':
+                y++;
+                break;
+            case 'D':
+                y--;
+                break;
+            case '?':
+                hatena++;
+                break;
+        }
+    }
+    int dist = Math.abs(x) + Math.abs(y);
+    int ans = 0;
+    if (t == 1) {
+        ans = dist + hatena;
+    } else {
+        int dif = dist - hatena;
+        if (dif >= 0) {
+            ans = dist - hatena;
+        } else {
+            if (-dif % 2 == 0) {
+                ans = 0;
+            } else {
+                ans = 1;
+            }
+        }
+    }
+    System.out.println(ans);
+}

@@ -1,0 +1,13 @@
+def dfs(v):
+    global num_of_paths
+
+    if visited.count(True) == N:
+        num_of_paths += 1
+        return
+    else:
+        for next_v in E[v]:
+            if not visited[next_v]:
+                visited[next_v] = True
+                dfs(next_v)
+                visited[next_v] = False
+        return

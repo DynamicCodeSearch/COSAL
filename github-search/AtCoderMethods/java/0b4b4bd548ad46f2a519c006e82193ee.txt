@@ -1,0 +1,32 @@
+static int kruskal(int[] s, int[] t, int[] cost, int n, int[][] h, int q) {
+    DisjointSet ds = new DisjointSet(n);
+    int e = s.length;
+    int[][] edge = new int[e][2];
+    for (int i = 0; i < e; i++) {
+        edge[i][0] = cost[i];
+        edge[i][1] = i;
+    }
+    int res = 0, pos = 0;
+    Arrays.sort(edge, new Comparator<int[]>() {
+
+        public int compare(int[] a, int[] b) {
+            return b[0] - a[0];
+        }
+    });
+    for (int i = 0; i < e; i++) {
+        int cur = edge[i][1];
+        if (!ds.same(s[cur], t[cur])) {
+            while (pos < q && h[pos][1] >= cost[cur]) {
+                ans[h[pos][2]] = ds.cnt[ds.find(h[pos][0])];
+                pos++;
+            }
+            ds.unite(s[cur], t[cur]);
+            res += cost[cur];
+        }
+    }
+    while (pos < q) {
+        ans[h[pos][2]] = ds.cnt[ds.find(h[pos][0])];
+        pos++;
+    }
+    return res;
+}

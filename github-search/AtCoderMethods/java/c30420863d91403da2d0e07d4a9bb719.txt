@@ -1,0 +1,36 @@
+void run() {
+    int n = ni();
+    int m = ni();
+    PriorityQueue<Edge> edges = new PriorityQueue<>((a, b) -> b.y - a.y);
+    for (int i = 0; i < m; ++i) {
+        Edge edge = new Edge();
+        edge.a = ni();
+        edge.b = ni();
+        edge.y = ni();
+        edges.add(edge);
+    }
+    int q = ni();
+    ArrayList<Query> list = new ArrayList<>();
+    for (int i = 0; i < q; ++i) {
+        Query e = new Query();
+        e.index = i;
+        e.v = ni();
+        e.w = ni();
+        list.add(e);
+    }
+    Collections.sort(list, (a, b) -> b.w - a.w);
+    UF uf = new UF(n);
+    list.forEach(a -> {
+        int v = a.v;
+        int w = a.w;
+        while (!edges.isEmpty() && edges.peek().y > w) {
+            Edge edge = edges.poll();
+            uf.union(edge.a, edge.b);
+        }
+        a.ans = uf.size(v);
+    });
+    Collections.sort(list, (a, b) -> a.index - b.index);
+    PrintWriter pw = new PrintWriter(System.out);
+    list.forEach(a -> pw.println(a.ans));
+    pw.flush();
+}

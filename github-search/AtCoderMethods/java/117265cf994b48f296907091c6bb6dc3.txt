@@ -1,0 +1,11 @@
+public static long solveSmallW(int n, int W, int[] v, int[] w) {
+    long[] dp = new long[W + 1];
+    for (int i = 0; i < n; i++) {
+        for (int j = W; j >= 0; j--) {
+            if (j + w[i] > W)
+                continue;
+            dp[j + w[i]] = Math.max(dp[j + w[i]], dp[j] + v[i]);
+        }
+    }
+    return dp[W];
+}

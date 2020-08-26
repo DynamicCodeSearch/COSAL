@@ -1,0 +1,15 @@
+private void calcKDistance(NodeManager nm, int K) {
+    KDistance = new long[nm.N + 1];
+    KDistance[K] = 0;
+    ArrayDeque<Integer> nextNodeId = new ArrayDeque<>();
+    nextNodeId.add(K);
+    while (!nextNodeId.isEmpty()) {
+        int fromNodeId = nextNodeId.pop();
+        for (int toNodeId : nm.nodeArray[fromNodeId].distance.keySet()) {
+            if (toNodeId == K || KDistance[toNodeId] > 0)
+                continue;
+            KDistance[toNodeId] = KDistance[fromNodeId] + nm.nodeArray[fromNodeId].distance.get(toNodeId);
+            nextNodeId.add(toNodeId);
+        }
+    }
+}

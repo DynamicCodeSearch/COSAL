@@ -1,0 +1,41 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    Deque<Character> q = new ArrayDeque<>();
+    int n = scan.nextInt();
+    String s = scan.next();
+    if (n % 2 == 0) {
+        System.out.println(-1);
+        return;
+    }
+    int count = 0;
+    q.addFirst('b');
+    count++;
+    while (true) {
+        if (q.size() >= n) {
+            break;
+        }
+        if (count % 3 == 0) {
+            q.addFirst('b');
+            q.addLast('b');
+        } else if (count % 3 == 1) {
+            q.addFirst('a');
+            q.addLast('c');
+        } else if (count % 3 == 2) {
+            q.addFirst('c');
+            q.addLast('a');
+        }
+        count++;
+    }
+    boolean flag = true;
+    for (int i = 0; i < q.size(); i++) {
+        if (q.pollFirst() != s.charAt(i)) {
+            flag = false;
+            break;
+        }
+    }
+    if (flag) {
+        System.out.println(count - 1);
+    } else {
+        System.out.println(-1);
+    }
+}

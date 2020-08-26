@@ -1,0 +1,15 @@
+private void createGraph() {
+    for (int i = 1; i < n; i++) {
+        graph.get(ps[i]).add(i);
+    }
+    queue = new PriorityQueue<>((n1, n2) -> Integer.compare(n2.dist, n1.dist));
+    Queue<Node> q = new LinkedList<>();
+    q.add(new Node(0, 0));
+    while (!q.isEmpty()) {
+        Node n = q.poll();
+        for (int i : graph.get(n.id)) {
+            q.add(new Node(i, n.dist + 1));
+        }
+        queue.add(n);
+    }
+}

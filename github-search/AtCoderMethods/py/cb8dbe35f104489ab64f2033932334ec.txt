@@ -1,0 +1,12 @@
+def intersect(seg1, seg2):
+    v1 = tovec(seg1[0], seg1[1])
+    v2 = tovec(seg1[0], seg2[0])
+    v3 = tovec(seg1[0], seg2[1])
+    b1 = signum(cross(v1, v2)) != signum(cross(v1, v3))
+
+    v4 = tovec(seg2[0], seg2[1])
+    v5 = tovec(seg2[0], seg1[0])
+    v6 = tovec(seg2[0], seg1[1])
+    b2 = signum(cross(v4, v5)) != signum(cross(v4, v6))
+
+    return b1 and b2

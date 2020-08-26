@@ -1,0 +1,17 @@
+def solve(s):
+    words = ['dream', 'dreamer', 'erase', 'eraser']
+    n = len(s)
+    m = n
+    while m > 0:
+        found = False
+        for w in words:
+            stop = m
+            start = m - len(w)
+            if start >= 0:
+                if s[start:stop] == w:
+                    m = start
+                    found = True
+                    break
+        if not found:
+            return False
+    return True

@@ -1,0 +1,28 @@
+
+public void solve() {
+    int N = in.nextInt();
+    String s = in.next();
+    int M = s.length();
+    long[] prev = new long[N + 1];
+    long[] next = new long[N + 1];
+    prev[0] = 1;
+    for (int i = 0; i < N; i++) {
+        Arrays.fill(next, 0);
+        for (int j = 0; j < N; j++) {
+            
+            next[j + 1] = ADD(next[j + 1], prev[j]);
+            
+            next[j + 1] = ADD(next[j + 1], prev[j]);
+            
+            if (j != 0)
+                next[j - 1] = ADD(next[j - 1], prev[j]);
+            else
+                next[0] = ADD(next[0], prev[0]);
+        }
+        
+        long[] tmp = prev;
+        prev = next;
+        next = tmp;
+    }
+    System.out.println(DIV(prev[M], POW(2, M)));
+}

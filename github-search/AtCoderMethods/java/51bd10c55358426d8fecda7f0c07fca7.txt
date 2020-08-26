@@ -1,0 +1,98 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int H = in.nextInt();
+    int W = in.nextInt();
+    boolean ispossible = true;
+    String[] line = new String[H];
+    for (int i = 0; i < H; i++) {
+        line[i] = in.next();
+    }
+    int[][] image = new int[H][W];
+    int[][] expimage = new int[H][W];
+    int[][] conimage = new int[H][W];
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            if (line[i].substring(j, j + 1).equals(".")) {
+                image[i][j] = 0;
+            } else if (line[i].substring(j, j + 1).equals("#")) {
+                image[i][j] = 1;
+            }
+        }
+    }
+    for (int i = 0; i < image.length; i++) {
+        expimage[i] = new int[image[i].length];
+        System.arraycopy(image[i], 0, expimage[i], 0, image[i].length);
+    }
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            if (image[i][j] == 0) {
+                if (i != 0)
+                    expimage[i - 1][j] = 0;
+                if (i != H - 1)
+                    expimage[i + 1][j] = 0;
+                if (j != 0)
+                    expimage[i][j - 1] = 0;
+                if (j != W - 1)
+                    expimage[i][j + 1] = 0;
+                if (i != 0 && j != 0)
+                    expimage[i - 1][j - 1] = 0;
+                if (i != H - 1 && j != 0)
+                    expimage[i + 1][j - 1] = 0;
+                if (i != 0 && j != W - 1)
+                    expimage[i - 1][j + 1] = 0;
+                if (i != H - 1 && j != W - 1)
+                    expimage[i + 1][j + 1] = 0;
+            }
+        }
+    }
+    for (int i = 0; i < expimage.length; i++) {
+        conimage[i] = new int[expimage[i].length];
+        System.arraycopy(expimage[i], 0, conimage[i], 0, expimage[i].length);
+    }
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            if (expimage[i][j] == 1) {
+                if (i != 0)
+                    conimage[i - 1][j] = 1;
+                if (i != H - 1)
+                    conimage[i + 1][j] = 1;
+                if (j != 0)
+                    conimage[i][j - 1] = 1;
+                if (j != W - 1)
+                    conimage[i][j + 1] = 1;
+                if (i != 0 && j != 0)
+                    conimage[i - 1][j - 1] = 1;
+                if (i != H - 1 && j != 0)
+                    conimage[i + 1][j - 1] = 1;
+                if (i != 0 && j != W - 1)
+                    conimage[i - 1][j + 1] = 1;
+                if (i != H - 1 && j != W - 1)
+                    conimage[i + 1][j + 1] = 1;
+            }
+        }
+    }
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            if (image[i][j] != conimage[i][j]) {
+                ispossible = false;
+            }
+        }
+    }
+    if (ispossible == true) {
+        System.out.println("possible");
+        for (int i = 0; i < H; i++) {
+            for (int j = 0; j < W; j++) {
+                if (expimage[i][j] == 0) {
+                    System.out.print(".");
+                } else if (expimage[i][j] == 1) {
+                    System.out.print("#");
+                }
+            }
+            System.out.println("");
+        }
+    } else {
+        System.out.println("impossible");
+    }
+    System.out.println("");
+    in.close();
+}

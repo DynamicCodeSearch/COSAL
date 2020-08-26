@@ -1,0 +1,36 @@
+public void solve() {
+    S = next();
+    T = next();
+    sumS = new int[S.length() + 1];
+    sumT = new int[T.length() + 1];
+    for (int i = 0; i < S.length(); i++) {
+        sumS[i + 1] = sumS[i] + ((S.charAt(i) == 'A') ? 1 : 0);
+    }
+    for (int i = 0; i < T.length(); i++) {
+        sumT[i + 1] = sumT[i] + ((T.charAt(i) == 'A') ? 1 : 0);
+    }
+    Q = nextInt();
+    for (int i = 0; i < Q; i++) {
+        int a = nextInt() - 1;
+        int b = nextInt();
+        int c = nextInt() - 1;
+        int d = nextInt();
+        int sa = sumS[b] - sumS[a];
+        int sb = b - a - sa;
+        sa %= 3;
+        sb %= 3;
+        int ta = sumT[d] - sumT[c];
+        int tb = d - c - ta;
+        ta %= 3;
+        tb %= 3;
+        if (sa == ta && sb == tb) {
+            out.println("YES");
+        } else if ((sa + 1) % 3 == ta && (sb + 1) % 3 == tb) {
+            out.println("YES");
+        } else if ((sa + 2) % 3 == ta && (sb + 2) % 3 == tb) {
+            out.println("YES");
+        } else {
+            out.println("NO");
+        }
+    }
+}

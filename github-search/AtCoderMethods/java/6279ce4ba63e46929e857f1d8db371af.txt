@@ -1,0 +1,12 @@
+void solve() throws IOException {
+    int n = in.nextInt();
+    int[] num = new int[n];
+    for (int i = 0; i < n; i++) {
+        num[in.nextInt()]++;
+    }
+    if (!checkValid(num, n)) {
+        System.out.println(0);
+        return;
+    }
+    System.out.println(modpow(2, n / 2, 1000000007));
+}

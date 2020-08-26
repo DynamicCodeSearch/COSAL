@@ -1,0 +1,23 @@
+public void run() {
+    int n = ni();
+    int[] a = new int[n];
+    int[] tmp = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = ni();
+        tmp[i] = a[i];
+    }
+    Arrays.sort(tmp);
+    HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+    int value = 0;
+    int ba = tmp[0];
+    map.put(tmp[0], value);
+    for (int i = 1; i < n; i++) {
+        if (ba != tmp[i])
+            value++;
+        map.put(tmp[i], value);
+        ba = tmp[i];
+    }
+    for (int i = 0; i < n; i++) {
+        out.println(map.get(a[i]));
+    }
+}

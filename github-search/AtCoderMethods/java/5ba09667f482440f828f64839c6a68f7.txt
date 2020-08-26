@@ -1,0 +1,8 @@
+public void update(int i, int x) {
+    i = n + i - 1;
+    dat[i] = x;
+    while (i > 0) {
+        i = (i - 1) / 2;
+        dat[i] = Math.min(dat[i * 2 + 1], dat[i * 2 + 2]);
+    }
+}

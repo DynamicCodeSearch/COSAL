@@ -1,0 +1,58 @@
+private static boolean[] search(boolean s0, boolean s1) {
+    boolean[] s = new boolean[n];
+    s[0] = s0;
+    s[1] = s1;
+    for (int i = 1; i < n - 1; i++) {
+        if (pat[i]) {
+            s[(i + 1) % n] = s[(i - 1 + n) % n];
+        } else {
+            s[(i + 1) % n] = !s[(i - 1 + n) % n];
+        }
+        if (!s[i]) {
+            s[(i + 1) % n] = !s[(i + 1) % n];
+        }
+    }
+    if (pat[0]) {
+        if (s[0]) {
+            if (s[n - 1] != s[1]) {
+                return null;
+            }
+        } else {
+            if (s[n - 1] == s[1]) {
+                return null;
+            }
+        }
+    } else {
+        if (s[0]) {
+            if (s[n - 1] == s[1]) {
+                return null;
+            }
+        } else {
+            if (s[n - 1] != s[1]) {
+                return null;
+            }
+        }
+    }
+    if (pat[n - 1]) {
+        if (s[n - 1]) {
+            if (s[n - 2] != s[0]) {
+                return null;
+            }
+        } else {
+            if (s[n - 2] == s[0]) {
+                return null;
+            }
+        }
+    } else {
+        if (s[n - 1]) {
+            if (s[n - 2] == s[0]) {
+                return null;
+            }
+        } else {
+            if (s[n - 2] != s[0]) {
+                return null;
+            }
+        }
+    }
+    return s;
+}

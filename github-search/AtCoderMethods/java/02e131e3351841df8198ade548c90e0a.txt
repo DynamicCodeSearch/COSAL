@@ -1,0 +1,21 @@
+int query(int p, int q) {
+    int tmp = 0, log = 0, i = 0;
+    
+    if (L[p] < L[q])
+        tmp = p;
+    p = q;
+    q = tmp;
+    
+    for (log = 1; 1 << log <= L[p]; log++) ;
+    log--;
+    
+    for (i = log; i >= 0; i--) if (L[p] - (1 << i) >= L[q])
+        p = P[p][i];
+    if (p == q)
+        return p;
+    
+    for (i = log; i >= 0; i--) if (P[p][i] != -1 && P[p][i] != P[q][i])
+        p = P[p][i];
+    q = P[q][i];
+    return T[p];
+}

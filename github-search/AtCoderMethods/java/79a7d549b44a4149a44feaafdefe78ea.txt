@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    long N = sc.nextInt();
+    long MOD = 1000000007;
+    long num = 1;
+    for (int i = 2; i <= N; i++) {
+        if (isPrime(i)) {
+            long power = 0;
+            for (int k = 1; k < 10; k++) {
+                if (N >= Math.pow(i, k)) {
+                    power += (N / (long) Math.pow(i, k));
+                } else {
+                    break;
+                }
+            }
+            num = (num * (power + 1)) % MOD;
+        }
+    }
+    System.out.println(num);
+}

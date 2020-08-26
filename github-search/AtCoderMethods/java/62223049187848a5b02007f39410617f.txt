@@ -1,0 +1,21 @@
+private static void solve() {
+    int n = sc.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = sc.nextInt() - 1;
+    }
+    boolean[] f = new boolean[n];
+    int b = 0;
+    int cnt = 0;
+    f[b] = true;
+    while (b != 1) {
+        b = a[b];
+        if (f[b]) {
+            pr.println(-1);
+            return;
+        }
+        f[b] = true;
+        cnt++;
+    }
+    pr.println(cnt);
+}

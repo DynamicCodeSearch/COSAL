@@ -1,0 +1,39 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    StringBuilder sbA = new StringBuilder();
+    sbA.append(scan.nextLine());
+    StringBuilder sbB = new StringBuilder();
+    sbB.append(scan.nextLine());
+    StringBuilder sbC = new StringBuilder();
+    sbC.append(scan.nextLine());
+    char tern = sbA.charAt(0);
+    sbA.deleteCharAt(0);
+    while (true) {
+        switch(tern) {
+            case 'a':
+                if (sbA.length() == 0) {
+                    System.out.println("A");
+                    return;
+                }
+                tern = sbA.charAt(0);
+                sbA.deleteCharAt(0);
+                break;
+            case 'b':
+                if (sbB.length() == 0) {
+                    System.out.println("B");
+                    return;
+                }
+                tern = sbB.charAt(0);
+                sbB.deleteCharAt(0);
+                break;
+            case 'c':
+                if (sbC.length() == 0) {
+                    System.out.println("C");
+                    return;
+                }
+                tern = sbC.charAt(0);
+                sbC.deleteCharAt(0);
+                break;
+        }
+    }
+}

@@ -1,0 +1,26 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] a = new int[N];
+    sc.fill(a);
+    
+    int odd = 0;
+    int even = 0;
+    
+    int x4 = 0;
+    for (int i = 0; i < N; i++) {
+        if (a[i] % 4 == 0) {
+            x4++;
+        } else if (a[i] % 2 == 0) {
+            even++;
+        } else {
+            odd++;
+        }
+    }
+    debug(odd, even, x4);
+    if (odd <= x4 + ((even > 0) ? 0 : 1)) {
+        System.out.println("Yes");
+        return;
+    }
+    System.out.println("No");
+}

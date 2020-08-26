@@ -1,0 +1,42 @@
+void run() {
+    Scanner sc = new Scanner(System.in);
+    char[] c = sc.next().toCharArray();
+    int t = sc.nextInt();
+    Arrays.sort(c);
+    int x = 0, y = 0;
+    int[] dx = new int['Z'];
+    int[] dy = new int['Z'];
+    dx['R'] = 1;
+    dx['L'] = -1;
+    dy['U'] = 1;
+    dy['D'] = -1;
+    for (int i = c.length - 1; 0 <= i; i--) {
+        if (c[i] != '?') {
+            x += dx[c[i]];
+            y += dy[c[i]];
+        } else {
+            if (t == 1) {
+                if (0 < x) {
+                    x++;
+                } else if (x < 0) {
+                    x--;
+                } else if (0 < y) {
+                    y++;
+                } else {
+                    y--;
+                }
+            } else {
+                if (0 < x) {
+                    x--;
+                } else if (x < 0) {
+                    x++;
+                } else if (0 < y) {
+                    y--;
+                } else {
+                    y++;
+                }
+            }
+        }
+    }
+    System.out.println((Math.abs(x) + Math.abs(y)));
+}

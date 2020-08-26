@@ -1,0 +1,33 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String line = br.readLine();
+    String[] text = line.split(" ");
+    int N, A;
+    N = Integer.parseInt(text[0]);
+    A = Integer.parseInt(text[1]);
+    line = br.readLine();
+    text = line.split(" ");
+    int[] x = new int[N];
+    for (int i = 0; i < N; i++) {
+        x[i] = Integer.parseInt(text[i]) - A;
+    
+    }
+    long[][] dp = new long[N][N * 50 * 2 + 1];
+    int dpl = 50 * N;
+    dp[0][x[0] + dpl] = 1;
+    for (int j = 1; j < N; j++) {
+        for (int k = -1 * N * 50; k < N * 50 + 1; k++) {
+            
+            if (k + dpl - x[j] >= 0 && k + dpl - x[j] <= 50 * N * 2) {
+                
+                dp[j][k + dpl] = dp[j - 1][k + dpl] + dp[j - 1][k + dpl - x[j]];
+            } else {
+                dp[j][k + dpl] = dp[j - 1][k + dpl];
+            }
+            if (x[j] == k)
+                dp[j][k + dpl]++;
+        
+        }
+    }
+    System.out.println(dp[N - 1][dpl]);
+}

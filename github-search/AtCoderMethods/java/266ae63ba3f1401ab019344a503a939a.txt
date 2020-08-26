@@ -1,0 +1,16 @@
+void solve() throws IOException {
+    R = nl();
+    B = nl();
+    x = nl();
+    y = nl();
+    long high = Long.MAX_VALUE / 2;
+    long low = 0;
+    while (high - low > 1) {
+        long mid = (high + low) / 2;
+        if (can(mid))
+            low = mid;
+        else
+            high = mid;
+    }
+    out.println(low);
+}

@@ -1,0 +1,10 @@
+static long comb(long a, long b) {
+    long ret = 1;
+    for (int i = 0; i < b; ++i) {
+        ret *= (a - i);
+        ret %= MOD;
+        ret *= inv(i + 1);
+        ret %= MOD;
+    }
+    return ret;
+}

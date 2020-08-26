@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    P = scan.nextDouble();
+    double min = 0;
+    double max = P;
+    double time = P;
+    while (true) {
+        double a = (max - min) / 3 + min;
+        double b = 2 * (max - min) / 3 + min;
+        if (calc(a) <= calc(b)) {
+            max = b;
+        } else {
+            min = a;
+        }
+        if (b - a < 1 * Math.pow(10, -9)) {
+            time = calc(a) < calc(b) ? calc(a) : calc(b);
+            break;
+        }
+    }
+    System.out.println(time);
+}

@@ -1,0 +1,18 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    double N = Integer.parseInt(br.readLine());
+    String s = br.readLine();
+    int result = 0;
+    double sum = 0;
+    String[] d = s.split(" ", 0);
+    int[] a = new int[d.length];
+    for (int i = 0; i < d.length; i++) {
+        a[i] = Integer.parseInt(d[i]);
+        sum += a[i];
+    }
+    int x = (int) Math.round(sum / N);
+    for (int i = 0; i < a.length; i++) {
+        result += (x - a[i]) * (x - a[i]);
+    }
+    System.out.println(result);
+}

@@ -1,0 +1,6 @@
+static void dfs2(int u) {
+    for (int v : adj[u]) if (v != parent[u]) {
+        cost[v] += cost[u];
+        dfs2(v);
+    }
+}

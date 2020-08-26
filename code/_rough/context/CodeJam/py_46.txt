@@ -1,0 +1,341 @@
+### Py Tokens: sorted, set, right, res, left 
+
+### Py functions
+
+def func_df1f8601d90a4016bf1864041a08ccd0(left, right, x, xs):
+    xs = sorted(set(xs))
+    xs = [x for x in xs if left - 1e-09 <= x <= right + 1e-09]
+    res = 0
+    return xs
+
+def func_01455bf9132e40fdbb9f7d83d6824626(left, right, x, xs):
+    xs = sorted(set(xs))
+    xs = [x for x in xs if left - 1e-09 <= x <= right + 1e-09]
+    res = 0
+    return x
+
+*********************************
+
+#### Score: 9.17334
+
+
+#### Java Tokens: res, right 
+
+public static double func_1b1752aceaaf42aa927970849246ce9f(int n, double right, double[] xs, double[] ys) { 
+ double res = 0;
+for (int i = 0; i < n - 1; i++) {
+    if (right < xs[i])
+        continue;
+    if (right < xs[i + 1]) {
+        double a = (ys[i + 1] - ys[i]) / (xs[i + 1] - xs[i]);
+        double b = ys[i] - a * xs[i];
+        double y = a * right + b;
+        res += (ys[i] + y) * (right - xs[i]) / 2;
+    } else {
+        res += (ys[i] + ys[i + 1]) * (xs[i + 1] - xs[i]) / 2;
+    }
+}
+return res;
+}
+
+
+public static double func_60cdf9d906b34ae89b5a37031c5f779b(int i, double res, double right, double[] xs, double[] ys) { 
+ double a = (ys[i + 1] - ys[i]) / (xs[i + 1] - xs[i]);
+double b = ys[i] - a * xs[i];
+double y = a * right + b;
+res += (ys[i] + y) * (right - xs[i]) / 2;
+return res;
+}
+
+
+public static double func_94ac1a8305364b9e93eaa3d9cf2a89cd(int n, double res, double right, double[] xs, double[] ys) { 
+ for (int i = 0; i < n - 1; i++) {
+    if (right < xs[i])
+        continue;
+    if (right < xs[i + 1]) {
+        double a = (ys[i + 1] - ys[i]) / (xs[i + 1] - xs[i]);
+        double b = ys[i] - a * xs[i];
+        double y = a * right + b;
+        res += (ys[i] + y) * (right - xs[i]) / 2;
+    } else {
+        res += (ys[i] + ys[i + 1]) * (xs[i + 1] - xs[i]) / 2;
+    }
+}
+return res;
+
+}
+
+
+*********************************
+
+#### Score: 8.65615
+
+
+#### Java Tokens: left, right 
+
+public static double func_f328a2bad7564210944accc2c7503d97(double w) { 
+ double left = 0;
+double right = w;
+return left;
+}
+
+
+public static long func_c4c9d8488eac4e89a49b17b875ec73ca(long right, long left) { 
+ long m1 = (left * 2 + right) / 3;
+long m2 = (left + right * 2) / 3;
+return m1;
+}
+
+
+public static long func_797121d40d924bb2a5d55be16bde3934(long right, long left) { 
+ long m1 = (left * 2 + right) / 3;
+long m2 = (left + right * 2) / 3;
+return m2;
+}
+
+
+*********************************
+
+#### Score: 8.55257
+
+
+#### Java Tokens: res, length, right 
+
+public static double func_39353aa8d70f4f4e8705f0bf8341ae79(double right, double[] xs, double[] ys) { 
+ int n = xs.length;
+double res = 0;
+for (int i = 0; i < n - 1; i++) {
+    if (right < xs[i])
+        continue;
+    if (right < xs[i + 1]) {
+        double a = (ys[i + 1] - ys[i]) / (xs[i + 1] - xs[i]);
+        double b = ys[i] - a * xs[i];
+        double y = a * right + b;
+        res += (ys[i] + y) * (right - xs[i]) / 2;
+    } else {
+        res += (ys[i] + ys[i + 1]) * (xs[i + 1] - xs[i]) / 2;
+    }
+}
+return res;
+}
+
+
+public static int func_5b06e73eb57944fda1b8cc771267d608(double right, double[] xs, double[] ys) { 
+ int n = xs.length;
+double res = 0;
+for (int i = 0; i < n - 1; i++) {
+    if (right < xs[i])
+        continue;
+    if (right < xs[i + 1]) {
+        double a = (ys[i + 1] - ys[i]) / (xs[i + 1] - xs[i]);
+        double b = ys[i] - a * xs[i];
+        double y = a * right + b;
+        res += (ys[i] + y) * (right - xs[i]) / 2;
+    } else {
+        res += (ys[i] + ys[i + 1]) * (xs[i + 1] - xs[i]) / 2;
+    }
+}
+return n;
+}
+
+
+*********************************
+
+#### Score: 8.07212
+
+
+#### Java Tokens: left, start, right 
+
+public static int func_5c8003a0b5d14e508056e637da090fbe(int start, int N) { 
+ int left = start;
+int right = N;
+return right;
+}
+
+
+public static int func_f577ef2c850d41878f93f657a77ab29d(int start, int N) { 
+ int left = start;
+int right = N;
+return left;
+}
+
+
+*********************************
+
+#### Score: 8.07212
+
+
+#### Java Tokens: left, need, right 
+
+public static long func_17f71a3fbdf14d668a145dde1465d1df(int i, long eq, long left, long right) { 
+ long up = (left + right) / 2;
+long need = eq + i * up;
+return up;
+}
+
+
+public static long func_5937e82ecc73452fb8fb2543632ab580(int i, long eq, long left, long right) { 
+ long up = (left + right) / 2;
+long need = eq + i * up;
+return need;
+}
+
+
+*********************************
+
+#### Score: 8.07212
+
+
+#### Java Tokens: left, e12, right 
+
+public static long func_5204cf1bf7f14392a202908b006d479f(int n, long K, long A, long[] is) { 
+ if (n > 0) {
+    A += is[n - 1];
+    K = is[n - 1];
+}
+long left = K, right = (long) (1.05 * 1e12);
+return A;
+}
+
+
+public static long func_6a79de771ae24ff2b93edaffe1adceb1(int n, long K, long A, long[] is) { 
+ if (n > 0) {
+    A += is[n - 1];
+    K = is[n - 1];
+}
+long left = K, right = (long) (1.05 * 1e12);
+return K;
+}
+
+
+public static long func_39046d3f82034826bf4676ff31fec161(int n, long K, long A, long[] is) { 
+ if (n > 0) {
+    A += is[n - 1];
+    K = is[n - 1];
+}
+long left = K, right = (long) (1.05 * 1e12);
+return left;
+}
+
+
+*********************************
+
+#### Score: 8.07212
+
+
+#### Java Tokens: money, left, right 
+
+public static long func_b9d61fc62a2c471aa020504e651524f8(long money) { 
+ long left = 0;
+long right = money + 1;
+return left;
+}
+
+
+public static long func_0d069f942e8745af879ca3763201baaa(long money) { 
+ long left = 0;
+long right = money + 1;
+return right;
+}
+
+
+*********************************
+
+#### Score: 7.97284
+
+
+#### Java Tokens: add, sortedset, sorted, set, tree, integer, treeset 
+
+public static SortedSet<Integer> func_908a1fb2d6ea4b70bac7de1f0210bf2e(int l, int[] xl) { 
+ SortedSet<Integer> xs = new TreeSet<Integer>();
+for (int i = 0; i < l; i++) {
+    xs.add(xl[i]);
+}
+return xs;
+}
+
+
+public static SortedSet<Integer> func_33d30156f21a452c9e7e9783fd47a69d(int l, int u, int[] xu, int[] xl) { 
+ SortedSet<Integer> xs = new TreeSet<Integer>();
+for (int i = 0; i < l; i++) {
+    xs.add(xl[i]);
+}
+for (int i = 0; i < u; i++) {
+    xs.add(xu[i]);
+}
+return xs;
+}
+
+
+*********************************
+
+#### Score: 7.57770
+
+
+#### Java Tokens: add, sortedset, sorted, set, size, tree, integer, treeset 
+
+public static SortedSet<Integer> func_4ce0a44eab0542dfa8546f1c61bacac4(int l, int u, int[] xu, int[] xl) { 
+ SortedSet<Integer> xs = new TreeSet<Integer>();
+for (int i = 0; i < l; i++) {
+    xs.add(xl[i]);
+}
+for (int i = 0; i < u; i++) {
+    xs.add(xu[i]);
+}
+int[] nx = new int[xs.size()];
+return xs;
+}
+
+
+public static int[] func_1fe4188d08b24ee0990c1d1b63842dc2(int l, int u, int[] xu, int[] xl) { 
+ SortedSet<Integer> xs = new TreeSet<Integer>();
+for (int i = 0; i < l; i++) {
+    xs.add(xl[i]);
+}
+for (int i = 0; i < u; i++) {
+    xs.add(xu[i]);
+}
+int[] nx = new int[xs.size()];
+return nx;
+}
+
+
+public static int[] func_900079f612634215823886119e9e27bb(int l, int u, int[] xu, int[] xl) { 
+ SortedSet<Integer> xs = new TreeSet<Integer>();
+for (int i = 0; i < l; i++) {
+    xs.add(xl[i]);
+}
+for (int i = 0; i < u; i++) {
+    xs.add(xu[i]);
+}
+int[] nx = new int[xs.size()];
+{
+    int i = 0;
+    for (int xx : xs) {
+        nx[i++] = xx;
+    }
+}
+return nx;
+}
+
+
+*********************************
+
+#### Score: 7.56557
+
+
+#### Java Tokens: left, ans, center, right 
+
+public static long func_7dd91dcfe40246d3847c7b2c4de43122(int ans, int n, long center, long[] S) { 
+ long left = S[ans] - S[0];
+long right = S[n] - left - center;
+return left;
+}
+
+
+public static long func_49c1be7a00244ebab75c4ec5a5e7bc13(int ans, int n, long center, long[] S) { 
+ long left = S[ans] - S[0];
+long right = S[n] - left - center;
+return right;
+}
+

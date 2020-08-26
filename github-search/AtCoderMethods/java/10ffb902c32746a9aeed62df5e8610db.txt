@@ -1,0 +1,47 @@
+void solve() throws IOException {
+    int n = ni(), k = ni(), l = ni();
+    int[] p = new int[k];
+    int[] q = new int[k];
+    for (int i = 0; i < k; i++) {
+        p[i] = ni() - 1;
+        q[i] = ni() - 1;
+    }
+    int[] r = new int[l];
+    int[] s = new int[l];
+    for (int i = 0; i < l; i++) {
+        r[i] = ni() - 1;
+        s[i] = ni() - 1;
+    }
+    UnionFind uf1 = new UnionFind(n);
+    for (int i = 0; i < k; i++) {
+        uf1.union(p[i], q[i]);
+    }
+    UnionFind uf2 = new UnionFind(n);
+    for (int i = 0; i < l; i++) {
+        uf2.union(r[i], s[i]);
+    }
+    ArrayList<ArrayList<Integer>> groups = uf2.groups();
+    int[] ans = new int[n];
+    for (int i = 0; i < groups.size(); i++) {
+        ArrayList<Integer> group = groups.get(i);
+        Collections.sort(group, (x1, x2) -> uf1.root(x1) - uf1.root(x2));
+        for (int j = 0; j < group.size(); j++) {
+            int idx = j;
+            int cnt = 1;
+            while (idx < group.size() - 1 && uf1.isConnected(group.get(j), group.get(idx + 1))) {
+                idx++;
+                cnt++;
+            }
+            for (int m = j; m <= idx; m++) {
+                ans[group.get(m)] = cnt;
+            }
+            j = idx;
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        if (i > 0)
+            out.print(" ");
+        out.print(ans[i]);
+    }
+    out.println();
+}

@@ -1,0 +1,51 @@
+public static void main(String[] args) {
+    boolean possible = true;
+    Scanner input = new Scanner(System.in);
+    int h = input.nextInt();
+    int w = input.nextInt();
+    input.nextLine();
+    char[][] mat = new char[h][w];
+    String[][] sol = new String[h][w];
+    for (int r = 0; r < h; r++) {
+        String s = input.nextLine();
+        for (int c = 0; c < w; c++) {
+            mat[r][c] = s.charAt(c);
+        }
+    }
+    for (int r = 0; r < h; r++) {
+        for (int c = 0; c < w; c++) {
+            if (mat[r][c] == '#')
+                sol[r][c] = "#";
+            else {
+                int cnt = 0;
+                if (r - 1 >= 0) {
+                    if (c - 1 >= 0 && mat[r - 1][c - 1] == '#')
+                        cnt++;
+                    if (c + 1 < w && mat[r - 1][c + 1] == '#')
+                        cnt++;
+                    if (mat[r - 1][c] == '#')
+                        cnt++;
+                }
+                if (r + 1 < h) {
+                    if (c - 1 >= 0 && mat[r + 1][c - 1] == '#')
+                        cnt++;
+                    if (c + 1 < w && mat[r + 1][c + 1] == '#')
+                        cnt++;
+                    if (mat[r + 1][c] == '#')
+                        cnt++;
+                }
+                if (c - 1 >= 0 && mat[r][c - 1] == '#')
+                    cnt++;
+                if (c + 1 < w && mat[r][c + 1] == '#')
+                    cnt++;
+                sol[r][c] = "" + cnt;
+            }
+        }
+    }
+    for (int r = 0; r < h; r++) {
+        for (int c = 0; c < w; c++) {
+            System.out.print(sol[r][c]);
+        }
+        System.out.println();
+    }
+}

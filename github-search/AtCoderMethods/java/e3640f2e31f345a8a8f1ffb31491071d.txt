@@ -1,0 +1,15 @@
+private final boolean checked(double rate) {
+    for (int i = 0; i < N; i++) {
+        merits[i].index = i;
+        merits[i].merit = w[i] * (p[i] - rate);
+    }
+    Arrays.sort(merits);
+    long total = 0;
+    double salt = 0;
+    for (int i = 0; i < K; i++) {
+        int index = merits[i].index;
+        total += w[index];
+        salt += w[index] * p[index];
+    }
+    return salt / total >= rate;
+}

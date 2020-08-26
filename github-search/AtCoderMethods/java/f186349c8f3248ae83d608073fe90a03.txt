@@ -1,0 +1,50 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    int MOD = 1000000007;
+    int N = sc.nextInt();
+    int a = sc.nextInt() - 1;
+    int b = sc.nextInt() - 1;
+    ArrayList[] map = new ArrayList[N];
+    for (int i = 0; i < N; i++) {
+        map[i] = new ArrayList<Integer>();
+    }
+    int M = sc.nextInt();
+    for (int i = 0; i < M; i++) {
+        int x = sc.nextInt() - 1;
+        int y = sc.nextInt() - 1;
+        map[x].add(y);
+        map[y].add(x);
+    }
+    int[] numWay = new int[N];
+    int[] dist = new int[N];
+    int[] visited = new int[N];
+    ArrayList<Integer> q = new ArrayList<Integer>();
+    q.add(-1);
+    q.add(a);
+    q.add(0);
+    while (q.size() > 0) {
+        int prev = q.remove(0);
+        int curr = q.remove(0);
+        int distToCurr = q.remove(0);
+        if (visited[curr] == 1) {
+            if (dist[curr] == distToCurr) {
+                numWay[curr] += numWay[prev];
+                numWay[curr] %= MOD;
+            }
+            continue;
+        }
+        visited[curr] = 1;
+        numWay[curr] = prev == -1 ? 1 : numWay[prev];
+        dist[curr] = distToCurr;
+        for (int i = 0; i < map[curr].size(); i++) {
+            int next = (int) map[curr].get(i);
+            if (visited[next] == 0) {
+                q.add(curr);
+                q.add(next);
+                q.add(distToCurr + 1);
+            } else {
+            }
+        }
+    }
+    System.out.println(numWay[b]);
+}

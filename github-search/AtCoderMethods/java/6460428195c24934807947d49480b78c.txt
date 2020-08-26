@@ -1,0 +1,68 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    int m = in.nextInt();
+    int[][] conditions = in.nextIntTable(m, 3);
+    int[] gsz = new int[n + 1];
+    for (int i = 0; i < m; i++) {
+        gsz[conditions[i][1]]++;
+    }
+    int[][][] guards = new int[n + 1][][];
+    for (int i = 0; i <= n; i++) {
+        guards[i] = new int[gsz[i]][3];
+    }
+    for (int i = 0; i < m; i++) {
+        int idx = conditions[i][1];
+        guards[idx][--gsz[idx]] = conditions[i];
+    }
+    int[][][][] dp = new int[2][3][301][301];
+    dp[1][0][0][0] = 1;
+    for (int i = 1; i <= n; i++) {
+        int fr = i % 2;
+        int to = 1 - fr;
+        for (int j = 0; j <= 2; j++) {
+            for (int k = 0; k <= 300; k++) {
+                Arrays.fill(dp[to][j][k], 0);
+            }
+        }
+        for (int lastColor = 0; lastColor <= 2; lastColor++) {
+            for (int other1 = 0; other1 < i; other1++) {
+                for (int other2 = 0; other2 < i; other2++) {
+                    long base = dp[fr][lastColor][other1][other2];
+                    if (base == 0) {
+                        continue;
+                    }
+                    for (int nextColor = 0; nextColor <= 2; nextColor++) {
+                        int diff = (nextColor - lastColor + 3) % 3;
+                        int nlast = nextColor;
+                        int nother1 = diff == 1 ? i - 1 : other1;
+                        int nother2 = diff == 2 ? i - 1 : other2;
+                        boolean valid = true;
+                        for (int[] cond : guards[i]) {
+                            int kind = 1 + ((cond[0] <= nother1) ? 1 : 0) + ((cond[0] <= nother2) ? 1 : 0);
+                            if (kind != cond[2]) {
+                                valid = false;
+                                break;
+                            }
+                        }
+                        if (valid) {
+                            dp[to][nlast][nother1][nother2] += base;
+                            dp[to][nlast][nother1][nother2] -= dp[to][nlast][nother1][nother2] >= MOD ? MOD : 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    long sum = 0;
+    for (int lastColor = 0; lastColor <= 2; lastColor++) {
+        for (int other1 = 0; other1 <= n; other1++) {
+            for (int other2 = 0; other2 <= n; other2++) {
+                sum += dp[(n + 1) % 2][lastColor][other1][other2];
+            }
+        }
+    }
+    out.println(sum % MOD);
+    out.flush();
+}

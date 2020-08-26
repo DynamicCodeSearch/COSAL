@@ -1,0 +1,11 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    final long A = sc.nextLong();
+    final long B = sc.nextLong();
+    final long C = sc.nextLong();
+    sc.close();
+    long div = getInverse(getMod(A * (B + C) - B * C));
+    long c = getMod(getMod(B * (C - A)) * div);
+    long r = getMod(getMod(C * (B - A)) * div);
+    System.out.println(r + " " + c);
+}

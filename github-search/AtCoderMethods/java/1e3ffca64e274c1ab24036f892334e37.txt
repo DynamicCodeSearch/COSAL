@@ -1,0 +1,16 @@
+public static long[][] getFIF(int max, int mod) {
+    long[] fact = new long[max];
+    long[] ifact = new long[max];
+    long[] inv = new long[max];
+    inv[1] = 1;
+    for (int i = 2; i < max; i++) {
+        inv[i] = (mod - mod / i) * inv[mod % i] % mod;
+    }
+    fact[0] = 1;
+    ifact[0] = 1;
+    for (int i = 1; i < max; i++) {
+        fact[i] = fact[i - 1] * i % mod;
+        ifact[i] = ifact[i - 1] * inv[i] % mod;
+    }
+    return new long[][] { fact, ifact, inv };
+}

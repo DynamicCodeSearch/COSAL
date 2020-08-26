@@ -1,0 +1,13 @@
+def main():
+    N = int(input())
+    a_list = list(map(int, input().split()))
+    color_set = set()
+    free = 0
+    for a in a_list:
+        for i, (s, e) in enumerate([(1, 399), (400, 799), (800, 1199), (1200, 1599), (1600, 1999), (2000, 2399), (2400, 2799), (2800, 3199)]):
+            if s <= a <= e:
+                color_set.add(i)
+                break
+        else:
+            free += 1
+    print(max(1, len(color_set)), len(color_set) + free)

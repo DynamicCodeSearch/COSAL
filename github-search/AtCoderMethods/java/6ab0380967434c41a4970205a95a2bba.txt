@@ -1,0 +1,17 @@
+public static void main(String[] args) throws Exception {
+    
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] line = br.readLine().split(" ");
+    int a = Integer.parseInt(line[0]);
+    int b = Integer.parseInt(line[1]);
+    int x = Integer.parseInt(line[2]);
+    int ans = 0;
+    int amari = 0;
+    while (x > 0) {
+        ans += x;
+        amari += x;
+        x = (amari / a) * b;
+        amari %= a;
+    }
+    System.out.println(ans);
+}

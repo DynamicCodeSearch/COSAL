@@ -1,0 +1,14 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    preprocess();
+    int a = in.nextInt();
+    int b = in.nextInt();
+    if (Math.abs(a - b) > 1) {
+        out.print(0);
+    } else {
+        if (Math.abs(a - b) == 1) {
+            out.print((f[a] * f[b]) % MOD);
+        } else {
+            out.print(((long) 2 * f[a] * f[b]) % MOD);
+        }
+    }
+}

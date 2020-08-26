@@ -1,0 +1,8 @@
+private void dfs2(int v) {
+    used[v] = true;
+    railComponent.put(v, componentId);
+    for (int to : rail[v]) {
+        if (!used[to])
+            dfs2(to);
+    }
+}

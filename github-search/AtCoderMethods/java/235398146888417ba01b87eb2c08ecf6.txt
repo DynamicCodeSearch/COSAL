@@ -1,0 +1,18 @@
+void solve(int testNumber, InputReader in, PrintWriter out) {
+    n = in.nextInt();
+    int[] divisors = new int[n + 1];
+    for (int i = 1; i <= n; ++i) {
+        int x = i;
+        for (int j = 2; j <= n; ++j) {
+            while (x % j == 0) {
+                ++divisors[j];
+                x /= j;
+            }
+        }
+    }
+    long ans = 1;
+    for (int i = 2; i <= n; ++i) {
+        ans = mul(ans, divisors[i] + 1);
+    }
+    out.println(ans);
+}

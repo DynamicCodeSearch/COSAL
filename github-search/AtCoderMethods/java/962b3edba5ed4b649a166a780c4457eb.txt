@@ -1,0 +1,35 @@
+
+public static void main(String[] args) {
+    Scanner sc = new Scanner(new BufferedInputStream(System.in));
+    int n = sc.nextInt();
+    w = sc.nextInt();
+    ArrayList[] ws = new ArrayList[4];
+    for (int i = 0; i < ws.length; i++) ws[i] = new ArrayList();
+    for (int i = 0; i < n; i++) {
+        int wi = sc.nextInt();
+        if (i == 0)
+            first = wi;
+        int vi = sc.nextInt();
+        ws[(int) (wi - first)].add(vi);
+    }
+    for (int i = 0; i < ws.length; i++) Collections.sort(ws[i]);
+    ArrayList[] prf = new ArrayList[4];
+    for (int i = 0; i < prf.length; i++) {
+        prf[i] = new ArrayList();
+        prf[i].add(0L);
+    }
+    for (int i = 0; i < ws.length; i++) {
+        int k = 1;
+        int lastElem = ws[i].size() - 1;
+        for (int j = lastElem; j >= 0; j--) {
+            long val = (Integer) ws[i].get(j);
+            val += (long) prf[i].get(k - 1);
+            prf[i].add(val);
+            k++;
+        }
+    }
+    AtomicLong max = new AtomicLong();
+    int[] choice = new int[4];
+    doit(choice, ws, prf, 0, max);
+    System.out.println(max.get());
+}

@@ -1,0 +1,15 @@
+def dfs(idx, end, value, cost, g):
+    if idx == end:
+        if cost == 0:
+            return
+
+        if value not in g:
+            g[value] = cost
+        else:
+            g[value] = min(g[value], cost)
+
+        return
+
+    a, b, c = table[idx]
+    dfs(idx + 1, end, value + b * Ma - a * Mb, cost + c, g)
+    dfs(idx + 1, end, value, cost, g)

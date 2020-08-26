@@ -1,0 +1,5 @@
+Treap<T> erase(final T v) {
+    final Pair<Treap<T>, Treap<T>> pair1 = this.splitWith(v);
+    final Pair<Treap<T>, Treap<T>> pair2 = pair1.second.splitWithEq(v);
+    return pair1.first.merge(pair2.second);
+}

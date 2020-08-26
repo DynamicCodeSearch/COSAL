@@ -1,0 +1,39 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    a[0] = 1;
+    for (int i = 1; i < Main.a.length; i++) {
+        a[i] = (a[i - 1] * i) % MOD;
+    }
+    int H = sc.nextInt();
+    int W = sc.nextInt();
+    int A = sc.nextInt();
+    int B = sc.nextInt();
+    long ans = 0;
+    a[1] = 1;
+    a[0] = 1;
+    for (int i = 0; ; i++) {
+        int w = B + i + 1;
+        int h = H - A - i;
+        if (w > W || h <= 0)
+            break;
+        
+        long k1 = pp(w + h - 2) % MOD;
+        long k1k = (pp(w - 1) * pp(h - 1)) % MOD;
+        k1k = new BigInteger(String.valueOf(k1k)).modInverse(new BigInteger(String.valueOf(MOD))).longValue();
+        k1k %= MOD;
+        k1 *= k1k;
+        long k2 = pp(W - w + H - h);
+        long k2k = (pp(W - w) * pp(H - h)) % MOD;
+        k2k = new BigInteger(String.valueOf(k2k)).modInverse(new BigInteger(String.valueOf(MOD))).longValue();
+        k2k %= MOD;
+        k2 *= k2k;
+        k1 %= MOD;
+        k2 %= MOD;
+        k1 *= k2;
+        k1 %= MOD;
+        ans = ans + k1;
+        ans %= MOD;
+    }
+    System.out.println(ans);
+}

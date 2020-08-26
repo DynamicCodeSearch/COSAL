@@ -1,0 +1,9 @@
+def f1(Deg):
+    d = ['NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE',
+    'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW']
+    if Deg < 112.5 or Deg >= 3487.5:
+        return 'N'
+    for i in range(len(d)):
+        a = 337.5 + i * 225
+        if Deg < a:
+            return d[i]

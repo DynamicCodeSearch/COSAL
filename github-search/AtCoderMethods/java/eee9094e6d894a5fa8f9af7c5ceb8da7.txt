@@ -1,0 +1,11 @@
+static long h(int... x) {
+    long ret = Long.MAX_VALUE;
+    for (int i = 0; i < 4; i++) {
+        long h = 0;
+        for (int j = 0; j < 4; j++) {
+            h = h * 1000 + x[i + j & 3];
+        }
+        ret = Math.min(ret, h);
+    }
+    return ret;
+}

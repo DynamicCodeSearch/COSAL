@@ -1,0 +1,9 @@
+boolean[] fch(int n, boolean[] chs) {
+    for (int i = 0; i < N; i++) {
+        if (map[n][i] && !chs[i]) {
+            chs[i] = true;
+            fch(i, chs);
+        }
+    }
+    return chs;
+}

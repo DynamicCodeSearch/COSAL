@@ -1,0 +1,20 @@
+def main():
+    n,m = LI()
+    r = 0
+    d = collections.defaultdict(set)
+    for _ in range(m):
+        a,b = LI()
+        d[a].add(b)
+        d[b].add(a)
+    for a in itertools.permutations(range(2,n+1)):
+        if a[0] not in d[1]:
+            continue
+        f = True
+        for i in range(len(a)-1):
+            if a[i] not in d[a[i+1]]:
+                f = False
+                break
+        if f:
+            r += 1
+
+    return r

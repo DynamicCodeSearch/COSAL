@@ -1,0 +1,20 @@
+def solve():
+    N = int(input())
+    a = [int(i) for i in input().split()]
+    asum = sum(a)
+
+    if asum % N:
+        print(-1)
+        return
+
+    mean = asum // N
+    v = 0
+    ans = 0
+
+    for i in range(N):
+        v += a[i] - mean
+
+        if v != 0:
+            ans += 1
+
+    print(ans)

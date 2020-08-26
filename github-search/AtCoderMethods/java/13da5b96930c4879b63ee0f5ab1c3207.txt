@@ -1,0 +1,24 @@
+static int[] dijkstra(int N, List<Edge>[] edges, int start) {
+    boolean[] fixed = new boolean[N];
+    int[] distance = new int[N];
+    Arrays.fill(distance, Integer.MAX_VALUE);
+    distance[start] = 0;
+    Queue<Edge> q = new PriorityQueue<Edge>();
+    q.add(new Edge(start, start, 0));
+    while (!q.isEmpty()) {
+        Edge e = q.poll();
+        if (fixed[e.target]) {
+            continue;
+        }
+        fixed[e.target] = true;
+        for (Edge ei : edges[e.target]) {
+            if (!fixed[ei.target]) {
+                if (distance[e.target] + ei.cost < distance[ei.target]) {
+                    distance[ei.target] = distance[e.target] + ei.cost;
+                    q.add(new Edge(e.target, ei.target, distance[ei.target]));
+                }
+            }
+        }
+    }
+    return distance;
+}

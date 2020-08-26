@@ -1,0 +1,9 @@
+public boolean containsKey(long x) {
+    int pos = h(x) & mask;
+    while (allocated[pos] != 0) {
+        if (x == keys[pos])
+            return true;
+        pos = pos + 1 & mask;
+    }
+    return false;
+}

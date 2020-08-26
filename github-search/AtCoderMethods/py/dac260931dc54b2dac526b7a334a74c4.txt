@@ -1,0 +1,8 @@
+def binary_search_lowest_kaisu(self, low, high):
+    if low == high:
+        return low
+    mid = low + (high - low) // 2
+    if self.enough(mid):
+        return self.binary_search_lowest_kaisu(low, mid)
+    else:
+        return self.binary_search_lowest_kaisu(mid + 1, high)

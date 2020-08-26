@@ -1,0 +1,41 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    int count = 0;
+    boolean match = false;
+    char[][] a = new char[n][];
+    char[][] b = new char[m][];
+    for (int x = 0; x < n; x++) {
+        a[x] = sc.next().toCharArray();
+    }
+    for (int x = 0; x < m; x++) {
+        b[x] = sc.next().toCharArray();
+    }
+    match: for (int sx = 0; sx < n - (m - 1); sx++) {
+        for (int sy = 0; sy < n - (m - 1); sy++) {
+            count = 0;
+            int bx = 0;
+            int by = 0;
+            for (int x = sx; x < m + sx; x++) {
+                for (int y = sy; y < m + sy; y++) {
+                    if (a[x][y] == b[bx][by]) {
+                        count += 1;
+                        if (count == m * m) {
+                            match = true;
+                            break match;
+                        }
+                    }
+                    by++;
+                }
+                bx++;
+                by = 0;
+            }
+        }
+    }
+    if (match) {
+        System.out.println("Yes");
+    } else {
+        System.out.println("No");
+    }
+}

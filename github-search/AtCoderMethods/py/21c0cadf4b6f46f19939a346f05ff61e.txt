@@ -1,0 +1,19 @@
+def do_dp(N, Adj):
+    univ = 2**(N-1) - 1
+    dp = [[0]*(N-1) for i in range(univ + 1)]
+
+    for u in range(N - 1):
+        if Adj[0][u+1]:
+            dp[1<<u][u] = 1
+
+    for S in range(univ + 1):
+        for v in range(N - 1):
+            S2 = S & (univ ^ (1 << v))
+            for u in range(N):
+                if ((1 << u) & S2) and Adj[u+1][v+1]:
+                    dp[S][v] += dp[S2][u]
+
+
+    ans = sum(dp[univ][u] for u in range(N - 1))
+
+    return ans

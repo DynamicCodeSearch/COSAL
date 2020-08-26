@@ -1,0 +1,16 @@
+private final void downward(int index) {
+    int left = 2 * index + 1;
+    int right = 2 * index + 2;
+    if (right < count) {
+        int smaller = (nodes[left].value < nodes[right].value ? left : right);
+        if (nodes[index].value > nodes[smaller].value) {
+            replace(index, smaller);
+            downward(smaller);
+        }
+    } else if (left < count) {
+        if (nodes[index].value > nodes[left].value) {
+            replace(index, left);
+            downward(left);
+        }
+    }
+}

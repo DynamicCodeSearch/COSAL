@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    char[] s = scan.next().toCharArray();
+    int[] arr = new int['z' - 'a' + 1];
+    for (char c : s) arr[c - 'a']++;
+    int pairs = 0;
+    int rest = 0;
+    for (int i = 0; i < arr.length; i++) {
+        pairs += arr[i];
+        if (arr[i] % 2 != 0) {
+            pairs--;
+            rest++;
+        }
+    }
+    if (rest == 0) {
+        System.out.println(pairs);
+    } else {
+        System.out.println((pairs / 2) / rest * 2 + 1);
+    }
+}

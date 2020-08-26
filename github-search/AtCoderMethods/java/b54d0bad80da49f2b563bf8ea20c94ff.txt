@@ -1,0 +1,14 @@
+public void eat() {
+    while (tokenizer == null || !tokenizer.hasMoreTokens()) {
+        try {
+            line = reader.readLine();
+            if (line == null) {
+                tokenizer = null;
+                return;
+            }
+            tokenizer = new StringTokenizer(line);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}

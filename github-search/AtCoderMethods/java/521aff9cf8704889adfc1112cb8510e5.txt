@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    char[] S = in.nextToken().toCharArray();
+    char[] T = in.nextToken().toCharArray();
+    int[][] partialS = compute(S);
+    int[][] partialT = compute(T);
+    int q = in.nextInt();
+    while (--q >= 0) {
+        int sfrom = in.nextInt() - 1;
+        int sto = in.nextInt();
+        int tfrom = in.nextInt() - 1;
+        int tto = in.nextInt();
+        int SA = (partialS[0][sto] - partialS[0][sfrom]) % 3;
+        int SB = (partialS[1][sto] - partialS[1][sfrom]) % 3;
+        int TA = (partialT[0][tto] - partialT[0][tfrom]) % 3;
+        int TB = (partialT[1][tto] - partialT[1][tfrom]) % 3;
+        if (type(SA, SB) == type(TA, TB)) {
+            out.println("YES");
+        } else {
+            out.println("NO");
+        }
+    }
+    out.flush();
+}

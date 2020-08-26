@@ -1,0 +1,12 @@
+def solve(before, visited, now):
+    visited.append(now)
+    if len(visited) is N:
+        return 1
+    pattern = 0
+    for way in road[now]:
+        if way is now:
+            continue
+        if way in visited:
+            continue
+        pattern += solve(now, visited[:], way)
+    return pattern

@@ -1,0 +1,41 @@
+public void solve() {
+    N = nextInt();
+    A = new long[N][N];
+    B = new long[N][N];
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            A[i][j] = nextInt();
+            B[i][j] = A[i][j];
+        }
+    }
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            for (int k = 0; k < N; k++) {
+                B[j][k] = Math.min(B[j][k], B[j][i] + B[i][k]);
+            }
+        }
+    }
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            if (A[i][j] != B[i][j]) {
+                out.println(-1);
+                return;
+            }
+        }
+    }
+    long ans = 0;
+    for (int i = 0; i < N; i++) {
+        for (int j = i + 1; j < N; j++) {
+            ans += B[i][j];
+            for (int k = 0; k < N; k++) {
+                if (i == k || j == k)
+                    continue;
+                if (B[i][k] + B[k][j] == B[i][j]) {
+                    ans -= B[i][j];
+                    break;
+                }
+            }
+        }
+    }
+    out.println(ans);
+}

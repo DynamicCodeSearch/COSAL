@@ -1,0 +1,10 @@
+def dfs(curr, prev):
+    global mod, dp0, dp1, g
+    dp0[curr] = 1
+    dp1[curr] = 1
+
+    for nxt in g[curr]:
+        if nxt == prev: continue
+        dfs(nxt, curr)
+        dp0[curr] = dp0[curr] * (dp0[nxt] + dp1[nxt]) % mod
+        dp1[curr] = dp1[curr] * dp0[nxt] % mod

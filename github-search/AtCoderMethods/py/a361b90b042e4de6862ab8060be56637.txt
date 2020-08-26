@@ -1,0 +1,5 @@
+def trace(v, updated):
+    updated[v] = True
+    for b, c in edges[v]:
+        if not updated[b]:
+            trace(b, updated)

@@ -1,0 +1,13 @@
+def solve():
+    n, m = read_int_list()
+    c = Counter()
+    for i in range(m):
+        a, b = read_int_list()
+        if a == 1:
+            c[b] += 1
+        if b == n:
+            c[a] += 1
+
+    if 2 in c.values():
+        return 'POSSIBLE'
+    return 'IMPOSSIBLE'

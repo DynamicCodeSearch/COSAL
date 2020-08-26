@@ -1,0 +1,24 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    String str = input.readLine();
+    int n = Integer.parseInt(str);
+    String[] s = new String[n];
+    int[] p = new int[n];
+    String[] split;
+    int sum = 0;
+    String answer = "atcoder";
+    for (int i = 0; i < n; i++) {
+        str = input.readLine();
+        split = str.split(" ");
+        s[i] = split[0];
+        p[i] = Integer.parseInt(split[1]);
+        sum = sum + p[i];
+    }
+    for (int i = 0; i < n; i++) {
+        if (p[i] * 2 > sum) {
+            answer = s[i];
+            break;
+        }
+    }
+    System.out.println(answer);
+}

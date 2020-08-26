@@ -1,0 +1,13 @@
+def rain(a):
+
+    global flag
+    if flag:
+        flag = False
+        res_start.append(a)
+
+    if time[a+1]:
+        rain(a+1)
+        time[a+1] = False
+    else:
+        flag = True
+        res_end.append(a+1)

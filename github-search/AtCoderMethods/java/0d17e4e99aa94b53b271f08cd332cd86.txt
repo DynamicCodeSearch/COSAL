@@ -1,0 +1,15 @@
+void add_point(long[] xs, long[] ys, long px, long py) {
+    while (true) {
+        if (K < 2)
+            break;
+        long dx1 = xs[K - 1] - xs[K - 2], dx2 = px - xs[K - 2];
+        long dy1 = ys[K - 1] - ys[K - 2], dy2 = py - ys[K - 2];
+        if (dx1 * dy2 > dx2 * dy1)
+            K--;
+        else
+            break;
+    }
+    xs[K] = px;
+    ys[K] = py;
+    K++;
+}

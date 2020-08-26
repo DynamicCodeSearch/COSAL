@@ -1,0 +1,26 @@
+static void solve(ArrayList<Integer> s, int n, int mod10) {
+    Queue<ArrayList<Integer>> q = new ArrayDeque<>();
+    q.add(s);
+    while (q.peek() != null) {
+        ArrayList<Integer> num = q.poll();
+        int sum = 0;
+        for (int i = 0; i < n; i++) {
+            sum += num.get(i);
+        }
+        if (sum % 10 != 0) {
+            System.out.println(sum + mod10);
+            return;
+        }
+        for (int i = 0; i < n; i++) {
+            if (num.get(i) != 0) {
+                ArrayList<Integer> next = new ArrayList<>();
+                for (int j = 0; j < n; j++) {
+                    next.add(num.get(j));
+                }
+                next.set(i, 0);
+                q.add(next);
+            }
+        }
+    }
+    System.out.println(0);
+}

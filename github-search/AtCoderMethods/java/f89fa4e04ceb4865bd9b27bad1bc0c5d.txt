@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int n = scan.nextInt();
+    int x = scan.nextInt();
+    int ans = 0;
+    String bin = Integer.toBinaryString(x);
+    for (int i = 1; i <= bin.length(); i++) {
+        int temp = scan.nextInt();
+        if (bin.charAt(bin.length() - i) == '1') {
+            ans = ans + temp;
+        }
+    }
+    System.out.println(ans);
+}

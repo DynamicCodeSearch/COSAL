@@ -1,0 +1,40 @@
+void solve() throws NumberFormatException, IOException {
+    long sx = in.nextLong();
+    long sy = in.nextLong();
+    long tx = in.nextLong();
+    long ty = in.nextLong();
+    Circle s = new Circle(sx, sy, 0);
+    Circle t = new Circle(tx, ty, 0);
+    int n = in.nextInt();
+    Circle[] c = new Circle[n + 2];
+    for (int i = 0; i < n; i++) {
+        c[i] = new Circle(in.nextLong(), in.nextLong(), in.nextLong());
+    }
+    c[n] = s;
+    c[n + 1] = t;
+    double[][] cost = new double[n + 2][n + 2];
+    for (int i = 0; i < n + 2; i++) {
+        for (int j = i + 1; j < n + 2; j++) {
+            final double d = c[i].cost(c[j]);
+            cost[i][j] = cost[j][i] = d;
+        }
+    }
+    Queue<Pos> qu = new PriorityQueue<>();
+    qu.add(new Pos(n, 0));
+    boolean[] used = new boolean[n + 2];
+    while (!qu.isEmpty()) {
+        Pos p = qu.poll();
+        if (used[p.id])
+            continue;
+        used[p.id] = true;
+        if (p.id == n + 1) {
+            System.out.println(p.c);
+            return;
+        }
+        for (int i = 0; i < n + 2; i++) {
+            if (used[i])
+                continue;
+            qu.add(new Pos(i, p.c + cost[p.id][i]));
+        }
+    }
+}

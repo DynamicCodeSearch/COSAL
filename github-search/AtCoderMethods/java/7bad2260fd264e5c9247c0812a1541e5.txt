@@ -1,0 +1,36 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[] a = new int[n];
+    boolean iseven = n % 2 == 0;
+    for (int i = 0; i < n; i++) a[i] = sc.nextInt();
+    int[] odd, even;
+    if (n % 2 == 0) {
+        odd = new int[n / 2];
+        even = new int[n / 2];
+    } else {
+        odd = new int[(n + 1) / 2];
+        even = new int[n / 2];
+    }
+    if (iseven)
+        for (int i = 0; i < (n / 2); i++) {
+            odd[i] = a[2 * i];
+            even[i] = a[2 * i + 1];
+        }
+    else {
+        for (int i = 0; i < (n - 1) / 2; i++) {
+            odd[i] = a[2 * i];
+            even[i] = a[2 * i + 1];
+        }
+        odd[odd.length - 1] = a[a.length - 1];
+    }
+    if (iseven) {
+        System.out.print(even[even.length - 1]);
+        for (int i = even.length - 2; i >= 0; i--) System.out.print(" " + even[i]);
+        for (int i = 0; i < odd.length; i++) System.out.print(" " + odd[i]);
+    } else {
+        System.out.print(odd[odd.length - 1]);
+        for (int i = odd.length - 2; i >= 0; i--) System.out.print(" " + odd[i]);
+        for (int i = 0; i < even.length; i++) System.out.print(" " + even[i]);
+    }
+}

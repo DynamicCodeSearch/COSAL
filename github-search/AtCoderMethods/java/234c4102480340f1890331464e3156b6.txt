@@ -1,0 +1,14 @@
+public void solve(String[] args) {
+    MyScanner scanner = new MyScanner();
+    long N = scanner.nextLong();
+    List<Long> list = new ArrayList<>();
+    long ans = ("" + N).length();
+    for (long i = 1; i * i <= N; i++) {
+        if (N % i == 0) {
+            long b = N / i;
+            long c = Math.max(("" + i).length(), ("" + b).length());
+            ans = Math.min(c, ans);
+        }
+    }
+    System.out.println(ans);
+}

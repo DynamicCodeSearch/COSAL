@@ -1,0 +1,10 @@
+def main():
+    N, M = map(int, input().split())
+
+    n12 = N if N < 12 else N - 12
+    l = M * 6
+    s = n12 * 30 + M * 0.5
+    deg = abs(l - s)
+    if deg > 180:
+        deg = 360 - deg
+    print(deg)

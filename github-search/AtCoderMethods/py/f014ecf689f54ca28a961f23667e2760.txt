@@ -1,0 +1,7 @@
+def main():
+    _ = input()
+    xs = Stdin.read_line(converter=int)
+
+    ys = concat_map(xs, lambda x: [x, x+1, x-1])
+    ys.sort()
+    print(max(map(lambda x: count(x[1]), groupby(ys))))

@@ -1,0 +1,26 @@
+
+long C(int n, int r) {
+    if (n < r) {
+        return 0;
+    }
+    long sum = 1;
+    for (int i = n; 0 < i; --i) {
+        sum *= i;
+        sum %= MOD;
+    }
+    long s = 1;
+    for (int i = r; 0 < i; --i) {
+        s *= i;
+        s %= MOD;
+    }
+    sum *= pow(s, MOD - 2);
+    sum %= MOD;
+    long t = 1;
+    for (int i = n - r; 0 < i; --i) {
+        t *= i;
+        t %= MOD;
+    }
+    sum *= pow(t, MOD - 2);
+    sum %= MOD;
+    return sum;
+}

@@ -1,0 +1,13 @@
+private static int solve(int n, int[] a) {
+    int ans = 0;
+    for (int i = 0; i < n; i++) {
+        if (a[i] != i + 1)
+            continue;
+        ans += 1;
+        if (i == n - 1)
+            continue;
+        if (a[i + 1] == i + 2)
+            i += 1;
+    }
+    return ans;
+}

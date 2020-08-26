@@ -1,0 +1,22 @@
+def Main():
+    w,h ,n = map(int,input().split())
+    mnx = 0
+    mny = 0
+    mxx = w
+    mxy = h
+
+    for i in range(n):
+        x,y ,a = map(int ,input().split())
+        if a == 1:
+            mnx = max(mnx, x)
+        elif a == 2:
+            mxx = min(mxx, x)
+        elif a == 3:
+            mny = max(mny, y)
+        elif a == 4:
+            mxy = min(mxy, y)
+
+    if mxy <= mny or mxx <= mnx:
+        print(0)
+    else:
+        print((mxy - mny)*(mxx - mnx))

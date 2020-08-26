@@ -1,0 +1,19 @@
+public void solve() throws IOException {
+    n = nextInt();
+    next = new int[n];
+    for (int i = 0; i < n; i++) {
+        next[i] = nextInt() - 1;
+    }
+    int cnt = 0;
+    used = new boolean[n];
+    int k = 0;
+    while (k != 1 && !used[k]) {
+        used[k] = true;
+        k = next[k];
+        cnt++;
+    }
+    if (k == 1)
+        out.print(cnt);
+    else
+        out.print(-1);
+}

@@ -1,0 +1,11 @@
+public static int firstSplit(int h, int w, boolean splitH, boolean ForC) {
+    int xh, xw;
+    if (splitH) {
+        xh = (int) ((ForC) ? Math.floor((double) h / 3.0) : Math.ceil((double) h / 3.0));
+        xw = 0;
+    } else {
+        xw = (int) ((ForC) ? Math.floor((double) w / 3.0) : Math.ceil((double) w / 3.0));
+        xh = 0;
+    }
+    return secondSplit(h - xh, w - xw, ((xh == 0) ? h : xh) * ((xw == 0) ? w : xw));
+}

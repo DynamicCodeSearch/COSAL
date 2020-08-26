@@ -1,0 +1,13 @@
+int firstL(int p, int L, int R, long v) {
+    if (a[p] > v) {
+        return n;
+    }
+    if (L == R - 1) {
+        return L;
+    }
+    int M = (L + R) / 2;
+    if (a[2 * p + 1] > v) {
+        return firstL(2 * p + 2, M, R, v);
+    }
+    return firstL(2 * p + 1, L, M, v);
+}

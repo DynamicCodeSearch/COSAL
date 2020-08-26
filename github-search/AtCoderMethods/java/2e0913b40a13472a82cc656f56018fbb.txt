@@ -1,0 +1,20 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] params = br.readLine().split(" ");
+    Integer N = Integer.valueOf(params[0]);
+    Integer S = Integer.valueOf(params[1]);
+    Integer T = Integer.valueOf(params[2]);
+    Integer W = Integer.valueOf(br.readLine());
+    int cnt = 0;
+    if (W >= S && W <= T) {
+        cnt++;
+    }
+    for (int i = 1; i < N; i++) {
+        Integer A = Integer.valueOf(br.readLine());
+        W = W + A;
+        if (W >= S && W <= T) {
+            cnt++;
+        }
+    }
+    System.out.println(cnt);
+}

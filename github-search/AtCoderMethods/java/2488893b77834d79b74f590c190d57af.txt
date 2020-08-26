@@ -1,0 +1,33 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int A = sc.nextInt();
+    int B = sc.nextInt();
+    
+    int[] v = { 1, -1, 5, -5, 10, -10 };
+    
+    
+    Queue<Integer> q = new LinkedList<Integer>();
+    
+    Map<Integer, Integer> hm = new HashMap<Integer, Integer>();
+    
+    q.add(A);
+    
+    hm.put(A, 0);
+    while (!q.isEmpty() && !hm.containsKey(B)) {
+        
+        
+        int now = q.poll();
+        
+        int count = hm.get(now);
+        for (int i = 0; i < v.length; i++) {
+            
+            int temp = now + v[i];
+            if (!hm.containsKey(temp)) {
+                
+                q.add(temp);
+                hm.put(temp, count + 1);
+            }
+        }
+    }
+    System.out.println(hm.get(B));
+}

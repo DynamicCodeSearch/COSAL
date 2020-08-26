@@ -1,0 +1,13 @@
+public long nextLong() throws IOException {
+    int c = 0;
+    long n = 0;
+    while (!isNum(c = this.read()) && c >= 0 && c <= 255) ;
+    if (c < 0 || c > 255) {
+        throw new IOException("EOS Reached");
+    }
+    
+    do {
+        n = n * 10 + convCharToNum(c);
+    } while (isNum((char) (c = this.read())) && c >= 0 && c <= 255);
+    return n;
+}

@@ -1,0 +1,38 @@
+def main():
+    h, w = map(int, input().split())
+    sl = [list(input()) for _ in range(h)]
+    tsl = [['#' for _ in range(w)] for _ in range(h)]
+    ttsl = [['.' for _ in range(w)] for _ in range(h)]
+
+    for i in range(h):
+        for k in range(w):
+            if sl[i][k] == '#': continue
+            tsl[i][k] = '.'
+            if i > 0: tsl[i - 1][k] = '.'
+            if h > i + 1: tsl[i + 1][k] = '.'
+            if k > 0: tsl[i][k - 1] = '.'
+            if w > k + 1: tsl[i][k + 1] = '.'
+            if h > i + 1 and w > k + 1: tsl[i + 1][k + 1] = '.'
+            if i > 0 and k > 0: tsl[i - 1][k - 1] = '.'
+            if h > i + 1 and k > 0: tsl[i + 1][k - 1] = '.'
+            if i > 0 and w > k + 1: tsl[i - 1][k + 1] = '.'
+
+    for i in range(h):
+        for k in range(w):
+            if tsl[i][k] == '.': continue
+            ttsl[i][k] = '#'
+            if i > 0: ttsl[i - 1][k] = '#'
+            if h > i + 1: ttsl[i + 1][k] = '#'
+            if k > 0: ttsl[i][k - 1] = '#'
+            if w > k + 1: ttsl[i][k + 1] = '#'
+            if h > i + 1 and w > k + 1: ttsl[i + 1][k + 1] = '#'
+            if i > 0 and k > 0: ttsl[i - 1][k - 1] = '#'
+            if h > i + 1 and k > 0: ttsl[i + 1][k - 1] = '#'
+            if i > 0 and w > k + 1: ttsl[i - 1][k + 1] = '#'
+
+    if ttsl == sl:
+        print('possible')
+        for s in tsl:
+            print(''.join(s))
+    else:
+        print('impossible')

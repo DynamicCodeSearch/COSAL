@@ -1,0 +1,26 @@
+private static void makeMaze() throws Exception {
+    BufferedReader br = null;
+    try {
+        br = new BufferedReader(new InputStreamReader(System.in));
+        String hw = br.readLine();
+        String[] work1 = hw.split(" ");
+        h = Integer.parseInt(work1[0]);
+        w = Integer.parseInt(work1[1]);
+        maze = new int[h][w];
+        table = new int[h][w];
+        for (int j = 0; j < h; j++) {
+            String a = br.readLine();
+            String[] work2 = a.split(" ");
+            for (int i = 0; i < w; i++) {
+                maze[j][i] = Integer.parseInt(work2[i]);
+            }
+        }
+    } finally {
+        if (br != null) {
+            try {
+                br.close();
+            } catch (IOException e) {
+            }
+        }
+    }
+}

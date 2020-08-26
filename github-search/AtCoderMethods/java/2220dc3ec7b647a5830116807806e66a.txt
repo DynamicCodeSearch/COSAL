@@ -1,0 +1,88 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    int c = sc.nextInt();
+    int d = sc.nextInt();
+    int e = sc.nextInt();
+    int f = sc.nextInt();
+    if (a > f) {
+        System.out.println("0 0");
+    }
+    ArrayList<Integer> waterList = new ArrayList<Integer>();
+    for (int i = 1; ; i++) {
+        int ai = a * i * 100;
+        if (ai > f) {
+            break;
+        } else {
+            for (int j = 0; ; j++) {
+                int bj = b * j * 100;
+                if (ai + bj <= f) {
+                    waterList.add(ai + bj);
+                } else {
+                    break;
+                }
+            }
+        }
+    }
+    for (int i = 1; ; i++) {
+        int bi = b * i * 100;
+        if (bi > f) {
+            break;
+        }
+        waterList.add(bi);
+    }
+    Collections.sort(waterList);
+    ArrayList<Integer> saltList = new ArrayList<Integer>();
+    double conMax = (double) e * 100 / (100 + e);
+    double saltMax = conMax * (f / 100);
+    for (int i = 1; ; i++) {
+        int ci = c * i;
+        if (ci > saltMax) {
+            break;
+        } else {
+            for (int j = 0; ; j++) {
+                int dj = d * j;
+                if (ci + dj <= saltMax) {
+                    saltList.add(ci + dj);
+                } else {
+                    break;
+                }
+            }
+        }
+    }
+    for (int i = 1; ; i++) {
+        int di = d * i;
+        if (di > saltMax) {
+            break;
+        } else {
+            saltList.add(di);
+        }
+    }
+    if (saltList.size() == 0) {
+        int ans = a * 100;
+        System.out.println(ans + " 0");
+        return;
+    }
+    Collections.sort(saltList);
+    int anstotal = 0;
+    int anssalt = 0;
+    double perMax = 0;
+    for (int i = 0; i < waterList.size(); i++) {
+        int wi = waterList.get(i);
+        for (int j = 0; j < saltList.size(); j++) {
+            int sj = saltList.get(j);
+            double per = (double) sj * 100 / (sj + wi);
+            if (wi + sj > f || per > conMax) {
+                break;
+            } else {
+                if (per > perMax) {
+                    anstotal = wi + sj;
+                    anssalt = sj;
+                    perMax = per;
+                }
+            }
+        }
+    }
+    System.out.println(anstotal + " " + anssalt);
+}

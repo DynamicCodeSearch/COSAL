@@ -1,0 +1,27 @@
+public void solve(int testNumber, FastScanner in, PrintWriter out) {
+    int n = in.nextInt();
+    long k = in.nextLong();
+    long[] a = new long[n];
+    long[] s = new long[n + 1];
+    for (int i = 0; i < n; i++) {
+        a[i] = in.nextLong();
+        s[i + 1] = s[i] + a[i] - k;
+    }
+    long[] sorted = s.clone();
+    Arrays.sort(sorted);
+    Map<Long, Integer> id = new HashMap<>();
+    for (long x : sorted) {
+        if (!id.containsKey(x)) {
+            int sz = id.size();
+            id.put(x, sz);
+        }
+    }
+    int[] tree = new int[id.size()];
+    long ans = 0;
+    for (int i = 0; i < s.length; i++) {
+        int j = id.get(s[i]);
+        ans += sum(tree, j);
+        add(tree, j);
+    }
+    out.println(ans);
+}

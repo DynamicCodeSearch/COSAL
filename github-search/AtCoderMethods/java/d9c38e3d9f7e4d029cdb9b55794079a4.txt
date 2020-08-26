@@ -1,0 +1,11 @@
+private static long modPow(long x, long y) {
+    long res = 1, a = x;
+    while (y > 0) {
+        if ((y & 1) > 0) {
+            res = (res * a) % MOD;
+        }
+        a = (a * a) % MOD;
+        y >>= 1;
+    }
+    return res;
+}

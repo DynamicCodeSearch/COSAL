@@ -1,0 +1,27 @@
+public static void main(String[] args) throws java.lang.Exception {
+    Scanner in = new Scanner(System.in);
+    int n = in.nextInt();
+    int m = in.nextInt();
+    int[][] students = new int[n][2];
+    int[][] checks = new int[m][2];
+    for (int i = 0; i < n; i++) {
+        students[i][0] = in.nextInt();
+        students[i][1] = in.nextInt();
+    }
+    for (int i = 0; i < m; i++) {
+        checks[i][0] = in.nextInt();
+        checks[i][1] = in.nextInt();
+    }
+    for (int i = 0; i < n; i++) {
+        int check = -1;
+        int d = Integer.MAX_VALUE;
+        for (int j = 0; j < m; j++) {
+            int tempd = Math.abs(students[i][0] - checks[j][0]) + Math.abs(students[i][1] - checks[j][1]);
+            if (tempd < d) {
+                check = j;
+                d = tempd;
+            }
+        }
+        System.out.println(check + 1);
+    }
+}

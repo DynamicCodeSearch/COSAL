@@ -1,0 +1,30 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    String s1 = sc.next();
+    String s2 = sc.next();
+    long ans = 1;
+    for (int i = 0; i < n; i++) {
+        if (s1.charAt(i) == s2.charAt(i)) {
+            if (i == 0)
+                ans *= 3;
+            else if (s1.charAt(i - 1) == s2.charAt(i - 1)) {
+                ans *= 2;
+            }
+            ans %= mod;
+        }
+        if (i < n - 1 && s1.charAt(i) == s1.charAt(i + 1)) {
+            if (i == 0)
+                ans *= 6;
+            else {
+                if (s1.charAt(i - 1) != s2.charAt(i - 1)) {
+                    ans *= 3;
+                } else {
+                    ans *= 2;
+                }
+            }
+            ans %= mod;
+        }
+    }
+    System.out.println(ans);
+}

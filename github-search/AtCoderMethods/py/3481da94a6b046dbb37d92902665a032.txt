@@ -1,0 +1,6 @@
+def main():
+    L, X, Y, S, D = map(int, input().split())
+    ans = t(S, D, L, X + Y)
+    if Y > X:
+        ans = min(ans, t(D, S, L, Y - X))
+    print(ans)

@@ -1,0 +1,8 @@
+def solver(inf, sup):
+    mid = (inf + sup) // 2
+    if inf == sup:
+        return mid
+    elif enough(mid):
+        return solver(inf, mid)
+    else:
+        return solver(mid + 1, sup)

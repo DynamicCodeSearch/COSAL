@@ -1,0 +1,9 @@
+def main():
+    N, A, B = map(int, input().split())
+    X_list = list(map(int, input().split()))
+
+    ans = 0
+    for i in range(len(X_list) - 1):
+        d = abs(X_list[i] - X_list[i + 1])
+        ans += min(A * d, B)
+    print(ans)

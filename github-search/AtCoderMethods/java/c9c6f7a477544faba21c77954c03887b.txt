@@ -1,0 +1,41 @@
+public static void main(String[] args) throws Exception {
+    FastScanner fs = new FastScanner();
+    int n = fs.nextInt2();
+    int[][] a = new int[n][n];
+    for (int i = 0; i < n; i++) {
+        String str = fs.next();
+        for (int j = 0; j < n; j++) {
+            a[i][j] = str.charAt(j) - '0';
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        if (a[i][i] == 0) {
+            for (int j = i + 1; j < n; j++) {
+                if (a[j][i] != 0) {
+                    int[] temp = new int[n];
+                    temp = a[i];
+                    a[i] = a[j];
+                    a[j] = temp;
+                }
+            }
+        }
+        if (a[i][i] == 0) {
+            System.out.println("Even");
+            return;
+        }
+        for (int j = i + 1; j < n; j++) {
+            double rate = a[j][i] / a[i][i];
+            for (int k = i; k < n; k++) {
+                a[j][k] += a[i][k] * rate;
+                a[j][k] %= 2;
+            }
+        }
+    }
+    int result = 1;
+    for (int i = 0; i < n; i++) {
+        result *= a[i][i];
+    }
+    StringBuilder sb = new StringBuilder();
+    sb.append(result);
+    System.out.println(result % 2 == 0 ? "Even" : "Odd");
+}

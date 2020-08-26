@@ -1,0 +1,63 @@
+private static void solve() {
+    int n = sc.nextInt();
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    char[] s = sc.next().toCharArray();
+    StringBuilder[] ans = { new StringBuilder("SS"), new StringBuilder("WW"), new StringBuilder("SW"), new StringBuilder("WS") };
+    for (int i = 1; i < n; i++) {
+        for (StringBuilder ans1 : ans) {
+            if (s[i] == 'o') {
+                if (ans1.charAt(i - 1) == 'S' && ans1.charAt(i) == 'S') {
+                    ans1.append('S');
+                } else if (ans1.charAt(i - 1) == 'W' && ans1.charAt(i) == 'W') {
+                    ans1.append('S');
+                } else if (ans1.charAt(i - 1) == 'S' && ans1.charAt(i) == 'W') {
+                    ans1.append('W');
+                } else if (ans1.charAt(i - 1) == 'W' && ans1.charAt(i) == 'S') {
+                    ans1.append('W');
+                }
+            } else {
+                if (ans1.charAt(i - 1) == 'S' && ans1.charAt(i) == 'S') {
+                    ans1.append('W');
+                } else if (ans1.charAt(i - 1) == 'W' && ans1.charAt(i) == 'W') {
+                    ans1.append('W');
+                } else if (ans1.charAt(i - 1) == 'S' && ans1.charAt(i) == 'W') {
+                    ans1.append('S');
+                } else if (ans1.charAt(i - 1) == 'W' && ans1.charAt(i) == 'S') {
+                    ans1.append('S');
+                }
+            }
+        }
+    }
+    for (StringBuilder ans1 : ans) {
+        if (ans1.charAt(0) == ans1.charAt(n)) {
+            if (s[0] == 'o') {
+                if (ans1.charAt(0) == 'S' && ans1.charAt(1) == ans1.charAt(n - 1)) {
+                    pr.println(ans1.deleteCharAt(n));
+                    return;
+                } else if (ans1.charAt(0) == 'W' && ans1.charAt(1) != ans1.charAt(n - 1)) {
+                    pr.println(ans1.deleteCharAt(n));
+                    return;
+                }
+            } else {
+                if (ans1.charAt(0) == 'S' && ans1.charAt(1) != ans1.charAt(n - 1)) {
+                    pr.println(ans1.deleteCharAt(n));
+                    return;
+                } else if (ans1.charAt(0) == 'W' && ans1.charAt(1) == ans1.charAt(n - 1)) {
+                    pr.println(ans1.deleteCharAt(n));
+                    return;
+                }
+            }
+        }
+    }
+    
+    pr.println(-1);
+}

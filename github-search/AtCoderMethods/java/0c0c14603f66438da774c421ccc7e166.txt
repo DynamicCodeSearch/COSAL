@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int deg = sc.nextInt();
+    int dis = sc.nextInt();
+    String[] ddata = { "N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW" };
+    int[] wdata = { 0, 15, 93, 201, 327, 477, 645, 831, 1029, 1245, 1467, 1707, 1959 };
+    String dir = ddata[((deg + 112) % 3600) / 225];
+    int w = 0;
+    for (int i = 0; i < 13; i++) {
+        if (wdata[i] > dis) {
+            w = i - 1;
+            break;
+        }
+        if (dis >= 1959) {
+            w = 12;
+            break;
+        }
+    }
+    if (w == 0) {
+        dir = "C";
+    }
+    System.out.println(dir + " " + w);
+    sc.close();
+}

@@ -1,0 +1,18 @@
+static long dfs(long n) {
+    if (n == 1)
+        return 1;
+    if (n == 0)
+        return 0;
+    if (cache.containsKey(n)) {
+        return cache.get(n);
+    }
+    if (n % 2 == 1) {
+        long ret = (2 * dfs(n / 2) + dfs(n / 2 + 1)) % mod;
+        cache.put(n, ret);
+        return ret;
+    } else {
+        long ret = (2 * dfs(n / 2) + dfs(n / 2 - 1)) % mod;
+        cache.put(n, ret);
+        return ret;
+    }
+}

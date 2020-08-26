@@ -1,0 +1,15 @@
+
+void update(int k, int a) {
+    k += N - 1;
+    dat[k] = a;
+    while (k > 0) {
+        k = (k - 1) / 2;
+        if (dat[k * 2 + 1] < dat[k * 2 + 2]) {
+            dat[k] = dat[k * 2 + 1];
+            idx[k] = idx[k * 2 + 1];
+        } else {
+            dat[k] = dat[k * 2 + 2];
+            idx[k] = idx[k * 2 + 2];
+        }
+    }
+}

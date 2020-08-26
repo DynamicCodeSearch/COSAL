@@ -1,0 +1,19 @@
+public void solveB() {
+    long n = in.nextInt();
+    long nn = n;
+    long res = Integer.MAX_VALUE;
+    for (int i = 1; i <= n; i++) {
+        for (int j = i; j <= nn; j++) {
+            long a = i * j;
+            if (a > n) {
+                nn = j;
+                break;
+            }
+            long d = n - a;
+            long score = Math.abs(i - j) + d;
+            if (res > score)
+                res = score;
+        }
+    }
+    System.out.println(res);
+}

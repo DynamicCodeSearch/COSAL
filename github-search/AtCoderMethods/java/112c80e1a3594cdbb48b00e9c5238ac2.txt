@@ -1,0 +1,7 @@
+static int dfs(int now) {
+    int res = 1;
+    for (int next : list[now]) {
+        res += dfs(next);
+    }
+    return dp[now] = res;
+}

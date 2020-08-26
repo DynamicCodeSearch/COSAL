@@ -1,0 +1,20 @@
+public static void main(String[] __) {
+    char[] a = s.next().toCharArray(), aa = Arrays.copyOf(a, a.length), b = s.next().toCharArray(), bb = Arrays.copyOf(b, b.length);
+    for (int i = 0; i < aa.length; i++) {
+        if (aa[i] != '9') {
+            aa[i] = '9';
+            break;
+        }
+    }
+    if (bb[0] == '1') {
+        for (int i = 1; i < bb.length; i++) {
+            if (bb[i] != '0') {
+                bb[i] = '0';
+                break;
+            }
+        }
+    } else {
+        bb[0] = '1';
+    }
+    System.out.println(Math.max(miare(aa) - miare(b), miare(a) - miare(bb)));
+}

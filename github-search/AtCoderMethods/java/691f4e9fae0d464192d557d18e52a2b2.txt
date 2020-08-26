@@ -1,0 +1,16 @@
+public int read() {
+    if (count == -1) {
+        throw new InputMismatchException();
+    }
+    try {
+        if (cur >= count) {
+            cur = 0;
+            count = stream.read(buffer);
+            if (count <= 0)
+                return -1;
+        }
+    } catch (IOException e) {
+        throw new InputMismatchException();
+    }
+    return buffer[cur++];
+}

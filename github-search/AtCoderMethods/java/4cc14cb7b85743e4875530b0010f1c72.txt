@@ -1,0 +1,41 @@
+public void solve(int testNumber, MyInput in, PrintWriter out) {
+    int n = in.nextInt();
+    int[] parents = in.nextIntArray(n - 1);
+    int[] x = in.nextIntArray(n);
+    Graph g = Graph.fromParents(n, parents);
+    int[] order = g.inversedDfsOrder(0);
+    int[] val = new int[n];
+    int[] sum = new int[n];
+    String ans = "POSSIBLE";
+    for (int v : order) {
+        sum[v] += x[v];
+        for (Edge e : g.vertex[v].edges) {
+            sum[v] += sum[e.to];
+        }
+        int[] xs = new int[x[v] + 1];
+        Arrays.fill(xs, Integer.MAX_VALUE / 2);
+        xs[0] = 0;
+        for (Edge e : g.vertex[v].edges) {
+            int v0 = x[e.to];
+            int v1 = val[e.to];
+            for (int i = x[v]; i >= 0; i--) {
+                int va = Integer.MAX_VALUE / 2;
+                if (i - v0 >= 0)
+                    va = Math.min(va, xs[i - v0] + v1);
+                if (i - v1 >= 0)
+                    va = Math.min(va, xs[i - v1] + v0);
+                xs[i] = va;
+            }
+        }
+        val[v] = Integer.MAX_VALUE / 2;
+        for (int i = 0; i < xs.length; i++) {
+            val[v] = Math.min(val[v], xs[i]);
+        }
+        if (val[v] == Integer.MAX_VALUE / 2) {
+            
+            ans = "IMPOSSIBLE";
+            break;
+        }
+    }
+    out.println(ans);
+}

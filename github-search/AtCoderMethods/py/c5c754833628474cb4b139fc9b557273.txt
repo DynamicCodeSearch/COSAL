@@ -1,0 +1,29 @@
+def main():
+    global E, F
+    A, B, C, D, E, F = map(int, input().split())
+
+    waterA, waterB = 100 * A, 100 * B
+    water = set()
+    i = 0
+    while waterA * i <= F:
+        j = 0
+        while waterA * i + waterB * j <= F:
+            water.add(waterA * i + waterB * j)
+            j += 1
+        i += 1
+
+    sugar = set()
+    i = 0
+    while C * i <= F // 100 * E:
+        j = 0
+        while C * i + D * j <= F // 100 * E:
+            sugar.add(C * i + D * j)
+            j += 1
+        i += 1
+
+    ph = dict()
+    for i in persent(water, sugar):
+        ph[i[0]] = i[1], i[2]
+
+    a, b = ph[max(ph)]
+    print(a + b, b)

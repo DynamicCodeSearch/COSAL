@@ -1,0 +1,42 @@
+public void solve() {
+    N = nextInt();
+    Ma = nextInt();
+    Mb = nextInt();
+    A = new int[N];
+    B = new int[N];
+    C = new int[N];
+    for (int i = 0; i < N; i++) {
+        A[i] = nextInt();
+        B[i] = nextInt();
+        C[i] = nextInt();
+    }
+    int[][][] dp = new int[N + 1][444][444];
+    for (int i = 0; i < N + 1; i++) {
+        for (int j = 0; j < 444; j++) {
+            for (int k = 0; k < 444; k++) {
+                dp[i][j][k] = INF;
+            }
+        }
+    }
+    dp[0][0][0] = 0;
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < 444 - A[i]; j++) {
+            for (int k = 0; k < 444 - B[i]; k++) {
+                int a = j + A[i];
+                int b = k + B[i];
+                dp[i + 1][j][k] = Math.min(dp[i + 1][j][k], dp[i][j][k]);
+                dp[i + 1][a][b] = Math.min(dp[i + 1][a][b], dp[i][j][k] + C[i]);
+            }
+        }
+    }
+    int ans = INF;
+    int max = Math.max(Ma, Mb);
+    for (int i = 1; i * max < 444; i++) {
+        ans = Math.min(ans, dp[N][i * Ma][i * Mb]);
+    }
+    if (ans == INF) {
+        out.println(-1);
+    } else {
+        out.println(ans);
+    }
+}

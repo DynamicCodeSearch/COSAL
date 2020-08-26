@@ -1,0 +1,12 @@
+static void plus(String s, int p, String prev) {
+    
+    if (p == 0) {
+        list.add(prev + s);
+    
+    } else {
+        for (int i = 1; i <= s.length() - p; i++) {
+            plus(s.substring(i, s.length()), p - 1, prev + s.substring(0, i) + " ");
+        
+        }
+    }
+}

@@ -1,0 +1,31 @@
+public static void main(String[] args) throws IOException {
+    
+    boolean online = false;
+    String fileName = "B-small-attempt0";
+    PrintWriter out;
+    if (online) {
+        s.init(new FileInputStream(new File("Downloads/" + fileName + ".in")));
+        out = new PrintWriter(new FileWriter(fileName + "out.txt"));
+    } else {
+        s.init(System.in);
+        out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(System.out)));
+    
+    }
+    
+    int n = s.ni();
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) a[i] = s.ni();
+    int ct = 0;
+    for (int i = 0; i < n - 1; i++) {
+        if (a[i] == i + 1) {
+            ct++;
+            int x = a[i];
+            a[i] = a[i + 1];
+            a[i + 1] = x;
+        }
+    }
+    if (a[n - 1] == n)
+        ct++;
+    out.println(ct);
+    out.close();
+}

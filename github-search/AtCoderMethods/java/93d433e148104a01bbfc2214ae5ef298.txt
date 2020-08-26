@@ -1,0 +1,20 @@
+private void solve(Scanner sc) {
+    int N = sc.nextInt();
+    int[] s = new int[N];
+    for (int i = 0; i < N; ++i) {
+        s[i] = sc.nextInt();
+    }
+    int sum = Arrays.stream(s).sum();
+    if (sum % 10 != 0) {
+        _out.println(sum);
+    } else {
+        Arrays.sort(s);
+        for (int i = 0; i < N; ++i) {
+            if (s[i] % 10 != 0) {
+                _out.println(sum - s[i]);
+                return;
+            }
+        }
+        _out.println(0);
+    }
+}

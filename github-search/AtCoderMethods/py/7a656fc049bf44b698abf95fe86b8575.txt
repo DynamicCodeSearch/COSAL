@@ -1,0 +1,8 @@
+@memoize
+def nck(a,b,m):
+    b = min([a-b,b])
+    if (b>a or b<0 or a<0):
+        return 0
+    elif a == 0:
+        return 1
+    return (nck(a-1,b-1,m)+nck(a-1,b,m)) % m

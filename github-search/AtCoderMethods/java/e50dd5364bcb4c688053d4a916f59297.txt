@@ -1,0 +1,9 @@
+public static long query(long[] h, long A, long B, long T) {
+    long need = 0;
+    for (int i = 0; i < h.length; i++) {
+        if (h[i] - B * T > 0) {
+            need += (long) Math.ceil((double) (h[i] - B * T) / (double) (A - B));
+        }
+    }
+    return need;
+}

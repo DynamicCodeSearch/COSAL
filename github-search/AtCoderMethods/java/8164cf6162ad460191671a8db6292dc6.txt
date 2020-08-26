@@ -1,0 +1,24 @@
+
+public void run() throws IOException {
+    
+    int TEST_CASE = 1;
+    while (TEST_CASE-- != 0) {
+        int n = io.nextInt();
+        A = io.nextInt();
+        B = io.nextInt();
+        C = io.nextInt();
+        D = io.nextInt();
+        for (long[] a : memo) Arrays.fill(a, -1L);
+        for (long[] a : memo2) Arrays.fill(a, -1L);
+        for (int i = 0; i < comb.length; i++) {
+            fact[i] = i == 0 ? 1 : fact[i - 1] * i % mod;
+            comb[i][0] = comb[i][i] = 1;
+            for (int j = 1; j < i; j++) {
+                comb[i][j] = comb[i - 1][j - 1] + comb[i - 1][j];
+                if (comb[i][j] >= mod)
+                    comb[i][j] -= mod;
+            }
+        }
+        io.out.println(rec(n, B));
+    }
+}

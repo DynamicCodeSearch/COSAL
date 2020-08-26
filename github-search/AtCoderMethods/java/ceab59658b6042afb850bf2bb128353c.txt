@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int A = sc.nextInt();
+    int B = sc.nextInt();
+    int C = sc.nextInt();
+    sc.close();
+    boolean canPlus = false;
+    boolean canMinus = false;
+    if (A + B == C) {
+        canPlus = true;
+    }
+    if (A - B == C) {
+        canMinus = true;
+    }
+    char ans;
+    if (canPlus) {
+        if (canMinus) {
+            ans = '?';
+        } else {
+            ans = '+';
+        }
+    } else {
+        if (canMinus) {
+            ans = '-';
+        } else {
+            ans = '!';
+        }
+    }
+    System.out.println(ans);
+}

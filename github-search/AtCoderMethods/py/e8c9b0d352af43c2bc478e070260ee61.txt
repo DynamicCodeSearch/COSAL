@@ -1,0 +1,30 @@
+def main():
+    n,k,l = list(map(int, input().split()))
+    uk = UnionFind(n)
+    ul = UnionFind(n)
+    for _ in range(k):
+        p,q = list(map(int, input().split()))
+        uk.union(p-1,q-1)
+    for _ in range(l):
+        p,q = list(map(int, input().split()))
+        ul.union(p-1,q-1)
+
+    sk = collections.defaultdict(set)
+    sl = collections.defaultdict(set)
+    m = {}
+
+    for i in range(n):
+        sk[uk.find(i)].add(i)
+        sl[ul.find(i)].add(i)
+    r = []
+    for i in range(n):
+        if i in m:
+            r.append(m[i])
+            continue
+        ss = sk[uk.find(i)] & sl[ul.find(i)]
+        ssl = len(ss)
+        for sc in ss:
+            m[sc] = ssl
+        r.append(m[i])
+
+    return " ".join(map(str, r))

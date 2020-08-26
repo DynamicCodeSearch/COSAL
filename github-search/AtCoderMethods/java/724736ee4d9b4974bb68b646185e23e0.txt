@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    long N = scan.nextLong();
+    N %= 30;
+    byte[] cards = { 1, 2, 3, 4, 5, 6 };
+    for (int i : IntStream.range(0, (int) N).toArray()) {
+        int index = i % 5;
+        byte temp = cards[index];
+        cards[index] = cards[index + 1];
+        cards[index + 1] = temp;
+    }
+    for (int i : IntStream.range(0, cards.length).toArray()) {
+        System.out.print(cards[i]);
+    }
+    System.out.println();
+}

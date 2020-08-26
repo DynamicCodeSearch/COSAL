@@ -1,0 +1,25 @@
+private void solve() {
+    try {
+        N = scanner.nextInt();
+        s = scanner.next();
+        int[] circle = new int[N];
+        int[] pair1 = { 1, 1, 2, 2 };
+        int[] pair2 = { 1, 2, 1, 2 };
+        boolean success = false;
+        int i = 0;
+        while (!success && i < 4) {
+            circle[0] = pair1[i];
+            circle[1] = pair2[i];
+            if (isM(circle)) {
+                printCircle(circle);
+                success = true;
+            }
+            i++;
+        }
+        if (!success) {
+            System.out.println(-1);
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}

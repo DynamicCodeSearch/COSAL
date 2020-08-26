@@ -1,0 +1,17 @@
+static void recur(int water, int sugar) {
+    if (visited[water][sugar])
+        return;
+    visited[water][sugar] = true;
+    if (water + sugar != 0 && maxS * (water + sugar) < maxT * sugar && sugar <= water / 100 * e) {
+        maxT = water + sugar;
+        maxS = sugar;
+    }
+    if (water + sugar + 100 * a <= f)
+        recur(water + 100 * a, sugar);
+    if (water + sugar + 100 * b <= f)
+        recur(water + 100 * b, sugar);
+    if (water + sugar + c <= f)
+        recur(water, sugar + c);
+    if (water + sugar + d <= f)
+        recur(water, sugar + d);
+}

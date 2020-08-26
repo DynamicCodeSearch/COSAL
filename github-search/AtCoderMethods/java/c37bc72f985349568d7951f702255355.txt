@@ -1,0 +1,25 @@
+static void solve() {
+    int n = ni();
+    int[] a = na(n);
+    Arrays.sort(a);
+    Set<Long> list = new HashSet<>();
+    for (int i = 1; i < n; i++) {
+        if (a[i - 1] == a[i]) {
+            list.add((long) a[i]);
+        }
+    }
+    List<Long> ll = new ArrayList<>(list);
+    Collections.sort(ll);
+    long max = 0;
+    if (ll.size() >= 2) {
+        max = Math.max(max, ll.get(ll.size() - 1) * ll.get(ll.size() - 2));
+    }
+    long mm = 0;
+    for (int i = 3; i < n; i++) {
+        if (a[i - 1] == a[i] && a[i - 2] == a[i] && a[i - 3] == a[i]) {
+            mm = Math.max(mm, a[i]);
+        }
+    }
+    max = Math.max(max, mm * mm);
+    out.println(max);
+}

@@ -1,0 +1,26 @@
+
+public void run() throws IOException {
+    
+    int TEST_CASE = 1;
+    while (TEST_CASE-- != 0) {
+        int n = io.nextInt();
+        int[] s = io.nextIntArray(n);
+        boolean[][] ok = new boolean[n + 1][10000 + 1];
+        ok[0][0] = true;
+        for (int i = 0, sum = 0; i < n; i++) {
+            for (int j = 0; j <= sum; j++) {
+                ok[i + 1][j + s[i]] |= ok[i][j];
+                ok[i + 1][j] |= ok[i][j];
+            }
+            sum += s[i];
+        }
+        int ans = 0;
+        for (int i = ok[0].length - 1; i >= 0; i--) {
+            if (ok[n][i] && i % 10 != 0) {
+                ans = i;
+                break;
+            }
+        }
+        io.out.println(ans);
+    }
+}

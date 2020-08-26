@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int A = sc.nextInt();
+    long[][] dp = new long[N + 1][N * 50 + 1];
+    dp[0][0]++;
+    int m = 0;
+    for (int i = 0; i < N; i++) {
+        int x = sc.nextInt();
+        for (int j = N - 1; j >= 0; j--) {
+            for (int k = N * 50 - x; k >= 0; k--) {
+                dp[j + 1][k + x] += dp[j][k];
+            }
+        }
+    }
+    long ans = 0;
+    for (int i = 1; i <= N; i++) {
+        ans += dp[i][i * A];
+    }
+    System.out.println(ans);
+}

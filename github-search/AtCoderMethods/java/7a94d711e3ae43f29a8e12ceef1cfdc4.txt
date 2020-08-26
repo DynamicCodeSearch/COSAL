@@ -1,0 +1,39 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter w = new PrintWriter(System.out);
+    int n = in.nextInt(), m = in.nextInt();
+    char[][] nmat = new char[n][n];
+    char[][] mmat = new char[m][m];
+    for (int i = 0; i < n; i++) {
+        nmat[i] = in.readString().toCharArray();
+    }
+    for (int i = 0; i < m; i++) {
+        mmat[i] = in.readString().toCharArray();
+    }
+    if (n < m) {
+        w.println("No");
+    } else {
+        boolean match = true;
+        ;
+        outer: for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (j + m > n || i + m > n)
+                    continue;
+                match = true;
+                for (int k = 0; k < m; k++) {
+                    for (int l = 0; l < m; l++) {
+                        if (nmat[i + k][j + l] != mmat[k][l])
+                            match = false;
+                    }
+                }
+                if (match)
+                    break outer;
+            }
+        }
+        if (match)
+            w.println("Yes");
+        else
+            w.println("No");
+    }
+    w.close();
+}

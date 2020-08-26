@@ -1,0 +1,11 @@
+
+private static long euclidean(long a, long b) {
+    long max = Math.max(a, b);
+    long min = Math.min(a, b);
+    long remain = max % min;
+    if (remain == 0) {
+        return min;
+    } else {
+        return euclidean(remain, min);
+    }
+}

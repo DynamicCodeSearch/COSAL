@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int N = Integer.parseInt(sc.next());
+    int Q = Integer.parseInt(sc.next());
+    int[] num = new int[N + 1];
+    Arrays.fill(num, 0);
+    for (int i = 0; i < Q; i++) {
+        int l = Integer.parseInt(sc.next());
+        int r = Integer.parseInt(sc.next());
+        num[l - 1]++;
+        num[r]--;
+    }
+    for (int i = 1; i < N; i++) {
+        num[i] += num[i - 1];
+    }
+    for (int i = 0; i < N; i++) {
+        if (num[i] % 2 == 0) {
+            out.print("0");
+        } else {
+            out.print("1");
+        }
+    }
+    out.println("");
+    out.flush();
+    sc.close();
+}

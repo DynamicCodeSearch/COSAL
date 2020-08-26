@@ -1,0 +1,29 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    Map<Integer, Integer> cnt = new HashMap<>();
+    for (int i = 0; i < n; i++) {
+        int next = in.nextInt();
+        if (cnt.get(next) == null) {
+            cnt.put(next, 1);
+        } else {
+            cnt.put(next, cnt.get(next) + 1);
+        }
+        if (cnt.get(next + 1) == null) {
+            cnt.put(next + 1, 1);
+        } else {
+            cnt.put(next + 1, cnt.get(next + 1) + 1);
+        }
+        if (cnt.get(next - 1) == null) {
+            cnt.put(next - 1, 1);
+        } else {
+            cnt.put(next - 1, cnt.get(next - 1) + 1);
+        }
+    }
+    int max = 0;
+    Iterator<Integer> keys = cnt.keySet().iterator();
+    while (keys.hasNext()) {
+        int key = keys.next();
+        max = Math.max(max, cnt.get(key));
+    }
+    out.println(max);
+}

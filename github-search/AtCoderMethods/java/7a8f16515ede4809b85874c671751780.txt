@@ -1,0 +1,14 @@
+public static int tribonacci_ex(int num) {
+    int n_a = 0, n_b = 0, n_c = 1;
+    int tmp = 0;
+    for (int i = 3; i < num; ++i) {
+        tmp = (n_a + n_b + n_c) % 10007;
+        n_a = n_b;
+        n_b = n_c;
+        n_c = tmp;
+    }
+    if (num == 3)
+        tmp = n_c;
+    int result = tmp;
+    return result;
+}

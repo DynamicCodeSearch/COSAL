@@ -1,0 +1,36 @@
+public static void main(String[] args) {
+    Scanner s = new Scanner(System.in);
+    final int N = s.nextInt();
+    final int M = s.nextInt();
+    boolean[][] hasRelation = new boolean[N][N];
+    for (int i = 0; i < M; i++) {
+        int x = s.nextInt();
+        int y = s.nextInt();
+        hasRelation[x - 1][y - 1] = true;
+        hasRelation[y - 1][x - 1] = true;
+    }
+    s.close();
+    int totalPatternNumber = (int) (Math.pow(2.0, N) - 1);
+    int maxGroupNumber = 0;
+    for (int pattern = 1; pattern <= totalPatternNumber; pattern++) {
+        List<Integer> member = new ArrayList<>();
+        char[] patternBits = Integer.toBinaryString(pattern).toCharArray();
+        for (int i = 0; i < patternBits.length; i++) {
+            if (patternBits[patternBits.length - 1 - i] == '1') {
+                member.add(i);
+            }
+        }
+        boolean theyKnowEachOther = true;
+        for (int x : member) {
+            for (int y : member) {
+                if (x != y && !hasRelation[x][y]) {
+                    theyKnowEachOther = false;
+                }
+            }
+        }
+        if (theyKnowEachOther && member.size() > maxGroupNumber) {
+            maxGroupNumber = member.size();
+        }
+    }
+    System.out.println(maxGroupNumber);
+}

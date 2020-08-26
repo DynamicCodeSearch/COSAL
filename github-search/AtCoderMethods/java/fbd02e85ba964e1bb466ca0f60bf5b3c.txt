@@ -1,0 +1,21 @@
+boolean isok(int i, int j, char[][] table) {
+    int H = table.length;
+    int W = table[0].length;
+    boolean f = true;
+    for (int k = -1; k <= 1; k++) {
+        for (int l = -1; l <= 1; l++) {
+            int ni = i + k;
+            int nj = j + l;
+            if (k == 0 && l == 0) {
+                if (table[ni][nj] == '.') {
+                    f = false;
+                }
+            }
+            if (ni < 0 || nj < 0 || ni >= H || nj >= W)
+                continue;
+            if (table[ni][nj] == '.')
+                f = false;
+        }
+    }
+    return f;
+}

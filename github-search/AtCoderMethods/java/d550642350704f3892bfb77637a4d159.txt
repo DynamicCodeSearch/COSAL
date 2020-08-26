@@ -1,0 +1,16 @@
+long solve() {
+    
+    long sum = T;
+    long preEnd = T;
+    for (int i = 1; i < N; i++) {
+        if (times[i] >= preEnd) {
+            preEnd = times[i] + T;
+            sum += T;
+        } else {
+            long diff = times[i] - times[i - 1];
+            preEnd += diff;
+            sum += diff;
+        }
+    }
+    return sum;
+}

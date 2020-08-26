@@ -1,0 +1,31 @@
+private static void solve() {
+    int n = nei();
+    int m = nei();
+    int[][] xy = nis2(m, 2);
+    boolean[][] a = new boolean[n][n];
+    for (int i = 0; i < m; i++) {
+        int i1 = xy[i][0] - 1;
+        int i2 = xy[i][1] - 1;
+        a[i1][i2] = true;
+        a[i2][i1] = true;
+    }
+    long max = 1 << n;
+    int mx = 1;
+    L: for (int i = 1; i < max; i++) {
+        int pop = 0;
+        for (int j = 0; j < n; j++) {
+            if ((i & (1 << j)) == 0)
+                continue;
+            pop++;
+            for (int k = j + 1; k < n; k++) {
+                if ((i & (1 << k)) == 0)
+                    continue;
+                if (!a[j][k])
+                    continue L;
+            }
+        }
+        if (pop > mx)
+            mx = pop;
+    }
+    out(mx);
+}

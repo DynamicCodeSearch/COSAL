@@ -1,0 +1,21 @@
+def main():
+    N,M = sorted(LI())
+    if abs(N-M) > 1:
+        return 0
+    nr = 1
+    for i in range(2,N+1):
+        nr *= i
+        nr %= mod
+    if N == M:
+        nr = nr * nr
+        nr %= mod
+        nr *= 2
+        nr %= mod
+        r = nr
+    else:
+        mr = nr * M
+        mr %= mod
+        r = nr * mr
+        r %= mod
+
+    return r

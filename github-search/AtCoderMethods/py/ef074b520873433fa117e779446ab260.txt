@@ -1,0 +1,6 @@
+def divisors(n):
+  P = list(pfact(n).items())
+  res = []
+  for ds in product(*[range(e+1) for (p, e) in P]):
+    res.append(prod(P[i][0]**ds[i] for i in range(len(P))))
+  return sorted(res)

@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int times = 0;
+    int count = 0;
+    int n = sc.nextInt();
+    int test = n;
+    int i = 1;
+    int counter = 0;
+    while (n > 0) {
+        if (n % 2 == 0) {
+            while (test % 2 == 0) {
+                test /= 2;
+                times++;
+            }
+            if (count < times) {
+                count = times;
+            }
+            times = 0;
+        }
+        n--;
+        test = n;
+    }
+    while (counter < count) {
+        i = i * 2;
+        counter++;
+    }
+    System.out.println(i);
+}

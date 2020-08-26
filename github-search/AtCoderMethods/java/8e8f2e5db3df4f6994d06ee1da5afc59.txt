@@ -1,0 +1,44 @@
+public static void main(String[] args) {
+    Scanner cin = new Scanner(System.in);
+    int A = cin.nextInt();
+    String text = cin.next();
+    int left = 0;
+    int right = 0;
+    int[] left_l = new int[A];
+    int[] right_l = new int[A];
+    int countl = 0;
+    int countr = 0;
+    for (int i = 0; i < A; i++) {
+        if (text.charAt(i) == '(') {
+            left++;
+            left_l[countl] = i + 1;
+            countl++;
+        } else {
+            right++;
+            right_l[countr] = i + 1;
+            countr++;
+        }
+    }
+    int countc = 0;
+    for (int x = 0; x < A; x++) {
+        if (left_l[x] > 0) {
+            for (int y = 0; y < A; y++) {
+                if (left_l[x] < right_l[y]) {
+                    countc++;
+                    right_l[y] = 0;
+                    break;
+                }
+            }
+        }
+    }
+    left -= countc;
+    right -= countc;
+    for (int j = 0; j < right; j++) {
+        System.out.print("(");
+    }
+    System.out.print(text);
+    for (int k = 0; k < left; k++) {
+        System.out.print(")");
+    }
+    System.out.println();
+}

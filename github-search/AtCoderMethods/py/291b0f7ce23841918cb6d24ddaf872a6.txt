@@ -1,0 +1,15 @@
+def cost(xs, neg=False):
+    sign = -1 if neg else 1
+    if sign * xs[0] > 0:
+        ret = 0
+        sum_ = xs[0]
+    else:
+        ret = abs(sign - xs[0])
+        sum_ = sign
+    for x in xs[1:]:
+        sign *= -1
+        sum_ += x
+        if sum_ * sign <= 0:
+            ret += abs(sign - sum_)
+            sum_ = sign
+    return ret

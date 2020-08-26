@@ -1,0 +1,218 @@
+### Py Tokens: return, string, number, appropriate, spaces, characters, copy, tab, depending, default, expandtabs, current, column, replaced, tabsize 
+
+### Py functions
+
+def expandtabs(s, tabsize=8):
+
+  return s.expandtabs(tabsize)
+*********************************
+
+#### Score: 6.15950
+
+
+#### Java Tokens: pre, code, string, may, link, reverse, reverses, str, stringutils, input, bat, tab, param, utils, builder, returns, stringbuilder, per, tostring, reversed 
+
+
+
+
+public static String reverse(final String str) {
+    if (str == null) {
+        return null;
+    }
+    return new StringBuilder(str).reverse().toString();
+}
+*********************************
+
+#### Score: 5.47017
+
+
+#### Java Tokens: padding, leftpad, pre, code, original, string, may, necessary, str, stringutils, input, pad, size, padded, bat, left, param, utils, spaces 
+
+
+public static String leftPad(final String str, final int size) {
+    return leftPad(str, size, ' ');
+}
+*********************************
+
+#### Score: 5.47017
+
+
+#### Java Tokens: padding, pre, code, original, string, may, necessary, right, rightpad, str, stringutils, input, pad, size, padded, bat, param, utils, spaces 
+
+
+public static String rightPad(final String str, final int size) {
+    return rightPad(str, size, ' ');
+}
+*********************************
+
+#### Score: 4.75002
+
+
+#### Java Tokens: note, strong, code, string, independent, link, used, locale, platform, result, current, cased, platform-independent, param, utils, tolowercase, english, per, case, pre, abc, lowercase, method, may, lower, converts, specific, affected, str, stringutils, input, transformations, returns 
+
+
+public static String lowerCase(final String str) {
+    if (str == null) {
+        return null;
+    }
+    return str.toLowerCase();
+}
+*********************************
+
+#### Score: 4.72057
+
+
+#### Java Tokens: uppercase, exception, splits, gettype, called, use, arrayutils, type, isempty, empty, empty_string_array, character, split, tochararray, java, camel, utils, whether, lowercase_letter, camel-case, case, add, camelcase, list, splitbycharactertype, tokenstart, str, input, size, letter, following, parsed, contiguous, since, code, belong, string, rather, immediately, characters, current, strings, array, pos, param, currenttype, get, tokens, lang, so-called, types, lowercase, may, start, length, groups, arraylist, uppercase_letter, token, stringutils, newtokenstart, toarray, char, preceding, returned, complete 
+
+
+private static String[] splitByCharacterType(final String str, final boolean camelCase) {
+    if (str == null) {
+        return null;
+    }
+    if (str.isEmpty()) {
+        return ArrayUtils.EMPTY_STRING_ARRAY;
+    }
+    final char[] c = str.toCharArray();
+    final List<String> list = new ArrayList<>();
+    int tokenStart = 0;
+    int currentType = Character.getType(c[tokenStart]);
+    for (int pos = tokenStart + 1; pos < c.length; pos++) {
+        final int type = Character.getType(c[pos]);
+        if (type == currentType) {
+            continue;
+        }
+        if (camelCase && type == Character.LOWERCASE_LETTER && currentType == Character.UPPERCASE_LETTER) {
+            final int newTokenStart = pos - 1;
+            if (newTokenStart != tokenStart) {
+                list.add(new String(c, tokenStart, newTokenStart - tokenStart));
+                tokenStart = newTokenStart;
+            }
+        } else {
+            list.add(new String(c, tokenStart, pos - tokenStart));
+            tokenStart = pos;
+        }
+        currentType = type;
+    }
+    list.add(new String(c, tokenStart, c.length - tokenStart));
+    return list.toArray(new String[list.size()]);
+}
+*********************************
+
+#### Score: 4.64993
+
+
+#### Java Tokens: uppercase, note, strong, code, string, independent, upper, link, used, locale, platform, result, current, cased, platform-independent, param, utils, english, per, case, pre, abc, method, lowercase, may, lower, converts, specific, affected, str, stringutils, input, transformations, returns, touppercase 
+
+
+
+
+public static String upperCase(final String str) {
+    if (str == null) {
+        return null;
+    }
+    return str.toUpperCase();
+}
+*********************************
+
+#### Score: 4.57187
+
+
+#### Java Tokens: rotate, fgabcde, code, string, shift, substring, strlen, characters, number, negative, len, param, utils, builder, bcdefa, pre, original, offset, may, length, rotated, circular, cdefgab, right, positive, fabcde, str, stringutils, input, left, abcdef, time, stringbuilder, tostring, abcdefg, append, since 
+
+
+
+
+public static String rotate(final String str, final int shift) {
+    if (str == null) {
+        return null;
+    }
+    final int strLen = str.length();
+    if (shift == 0 || strLen == 0 || shift % strLen == 0) {
+        return str;
+    }
+    final StringBuilder builder = new StringBuilder(strLen);
+    final int offset = -(shift % strLen);
+    builder.append(substring(str, offset));
+    builder.append(substring(str, 0, offset));
+    return builder.toString();
+}
+*********************************
+
+#### Score: 4.43394
+
+
+#### Java Tokens: splits, code, string, gettype, foo, asfrules, rules, type, ab:cd:ef, number5, characters, number, character, bar, split, java, foobar, asfr, strings, param, array, utils, get, tokens, lang, pre, may, groups, splitbycharactertype, foo200bar, str, stringutils, input, 200, ules, asf, parsed, returned, complete, contiguous, since 
+
+
+public static String[] splitByCharacterType(final String str) {
+    return splitByCharacterType(str, false);
+}
+*********************************
+
+#### Score: 4.38041
+
+
+#### Java Tokens: argument, allowed, startwhitespaces, source, isempty, space, empty, reference, improved, rec, character, java, trim, tab, utils, www, xml, normalize, function, modified, href, https, actual, similar, using, manually, http://www.w3.org/tr/xpath/#function-normalize-space, count, replacing, x0b, str, feed, input, regex, size, x20, http, difference, returns, iswhitespace, whitespaces, since, whitespacescount, code, string, normalized, link, pattern, vertical, sequences, characters, xpath, see, param, actualchar, ends, normalizespace, lang, charat, may, org, length, start, instead, lang-1020, stringutils, single, http://www.w3.org/tr/rec-xml/#nt-s, performance, form, normalizing, newchars, additionally, char, whitespace, significantly, chars 
+
+
+public static String normalizeSpace(final String str) {
+    
+    if (isEmpty(str)) {
+        return str;
+    }
+    final int size = str.length();
+    final char[] newChars = new char[size];
+    int count = 0;
+    int whitespacesCount = 0;
+    boolean startWhitespaces = true;
+    for (int i = 0; i < size; i++) {
+        final char actualChar = str.charAt(i);
+        final boolean isWhitespace = Character.isWhitespace(actualChar);
+        if (isWhitespace) {
+            if (whitespacesCount == 0 && !startWhitespaces) {
+                newChars[count++] = SPACE.charAt(0);
+            }
+            whitespacesCount++;
+        } else {
+            startWhitespaces = false;
+            newChars[count++] = (actualChar == 160 ? 32 : actualChar);
+            whitespacesCount = 0;
+        }
+    }
+    if (startWhitespaces) {
+        return EMPTY;
+    }
+    return new String(newChars, 0, count - (whitespacesCount > 0 ? 1 : 0)).trim();
+}
+*********************************
+
+#### Score: 4.16253
+
+
+#### Java Tokens: codepoint, capitalizes, changing, points, strlen, character, apache, len, utils, lang3, text, per, case, algorithm, based, pre, wordutils, offset, charcount, already, count, capitalize, remaining, str, input, longer, returns, word, changed, since, code, string, link, codepointat, title, newcodepoints, point, commons, newcodepoint, characters, see, param, array, cat, copy, lang, totitlecase, may, org, length, firstcodepoint, 'cat', stringutils, uncapitalize, capitalized, inoffset, cannot, ones, first, outoffset 
+
+
+public static String capitalize(final String str) {
+    int strLen = length(str);
+    if (strLen == 0) {
+        return str;
+    }
+    final int firstCodepoint = str.codePointAt(0);
+    final int newCodePoint = Character.toTitleCase(firstCodepoint);
+    if (firstCodepoint == newCodePoint) {
+        
+        return str;
+    }
+    
+    final int[] newCodePoints = new int[strLen];
+    int outOffset = 0;
+    
+    newCodePoints[outOffset++] = newCodePoint;
+    for (int inOffset = Character.charCount(firstCodepoint); inOffset < strLen; ) {
+        final int codepoint = str.codePointAt(inOffset);
+        
+        newCodePoints[outOffset++] = codepoint;
+        inOffset += Character.charCount(codepoint);
+    }
+    return new String(newCodePoints, 0, outOffset);
+}

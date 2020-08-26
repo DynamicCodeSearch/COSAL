@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    int N = Integer.parseInt(scan.next());
+    long[] sum = new long[N + 1];
+    for (int i = 1; i <= N; i++) {
+        long a = Long.parseLong(scan.next());
+        sum[i] = sum[i - 1] + a;
+    }
+    long min = Long.MAX_VALUE;
+    for (int i = 1; i < N; i++) {
+        long point = Math.abs(2 * sum[i] - sum[N]);
+        if (point < min)
+            min = point;
+    }
+    System.out.println(min);
+    scan.close();
+}

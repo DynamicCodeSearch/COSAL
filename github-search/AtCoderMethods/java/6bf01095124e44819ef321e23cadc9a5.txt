@@ -1,0 +1,19 @@
+void solve() {
+    FastScanner in = new FastScanner(System.in);
+    long R = in.nextLong();
+    long B = in.nextLong();
+    long x = in.nextLong();
+    long y = in.nextLong();
+    long ub = R + B;
+    long lb = 0;
+    while (ub - lb > 1) {
+        long z = (ub + lb) / 2;
+        if (R - z >= 0 && B - z >= 0 && (R - z) / (x - 1) + (B - z) / (y - 1) >= z) {
+            
+            lb = z;
+        } else {
+            ub = z;
+        }
+    }
+    System.out.println(lb);
+}

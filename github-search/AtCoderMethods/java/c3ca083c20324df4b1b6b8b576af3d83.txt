@@ -1,0 +1,21 @@
+private void solve() {
+    n = in.nextInt();
+    s = in.nextLine();
+    for (int i = 0; i <= 1; i++) {
+        for (int j = 0; j <= 1; j++) {
+            List<Integer> gt = check(i, j);
+            if (gt.isEmpty())
+                continue;
+            for (int k : gt) {
+                if (k == 0) {
+                    out.print('S');
+                } else {
+                    out.print('W');
+                }
+            }
+            return;
+        }
+    }
+    out.print(-1);
+    return;
+}

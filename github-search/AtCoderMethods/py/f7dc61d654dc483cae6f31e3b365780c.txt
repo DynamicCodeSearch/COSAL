@@ -1,0 +1,19 @@
+def main():
+    N = int(input())
+
+    ans = []
+    nx = 1
+    while True:
+        ny = 1
+        while True:
+            if N < nx * (ny + 1):
+                ans.append(abs(nx - ny) + (N - nx * ny))
+                break
+            else:
+                ny += 1
+        if nx > ny:
+            break
+        else:
+            nx += 1
+
+    print(min(ans))

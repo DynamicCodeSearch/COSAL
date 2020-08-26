@@ -1,0 +1,40 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    if (M == 0) {
+        System.out.println(1);
+        return;
+    }
+    int x, y;
+    boolean[][] group = new boolean[N][N];
+    List<Integer> groupList = new ArrayList<Integer>();
+    for (int i = 0; i < M; i++) {
+        x = sc.nextInt() - 1;
+        y = sc.nextInt() - 1;
+        group[x][y] = true;
+        group[y][x] = true;
+    }
+    int maxGroup = 0;
+    boolean isGroup = false;
+    for (int i = 0; i < N; i++) {
+        groupList.add(i);
+        for (int j = 0; j < N; j++) {
+            for (int g : groupList) {
+                if (group[g][j]) {
+                    isGroup = true;
+                } else {
+                    isGroup = false;
+                    break;
+                }
+            }
+            if (isGroup)
+                groupList.add(j);
+        }
+        if (maxGroup < groupList.size()) {
+            maxGroup = groupList.size();
+        }
+        groupList.clear();
+    }
+    System.out.println(maxGroup);
+}

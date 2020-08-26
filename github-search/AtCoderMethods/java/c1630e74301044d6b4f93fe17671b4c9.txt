@@ -1,0 +1,44 @@
+private String[] split(String s) {
+    if (s == null) {
+        return new String[0];
+    }
+    int n = s.length();
+    int start = -1;
+    int end = 0;
+    int sp = 0;
+    boolean lastWhitespace = true;
+    for (int i = 0; i < n; i++) {
+        char c = s.charAt(i);
+        if (isWhitespace(c)) {
+            lastWhitespace = true;
+        } else {
+            if (lastWhitespace) {
+                sp++;
+            }
+            if (start == -1) {
+                start = i;
+            }
+            end = i;
+            lastWhitespace = false;
+        }
+    }
+    if (start == -1) {
+        return new String[0];
+    }
+    String[] res = new String[sp];
+    int last = start;
+    int x = 0;
+    lastWhitespace = true;
+    for (int i = start; i <= end; i++) {
+        char c = s.charAt(i);
+        boolean w = isWhitespace(c);
+        if (w && !lastWhitespace) {
+            res[x++] = s.substring(last, i);
+        } else if (!w && lastWhitespace) {
+            last = i;
+        }
+        lastWhitespace = w;
+    }
+    res[x] = s.substring(last, end + 1);
+    return res;
+}

@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int i, n = scan.nextInt();
+    for (i = 1; i <= n; i++) {
+        graph[i] = new ArrayList<>();
+    }
+    for (i = 0; i < n - 1; i++) {
+        int from, to;
+        from = scan.nextInt();
+        to = scan.nextInt();
+        graph[from].add(to);
+        graph[to].add(from);
+    }
+    bfs(n);
+    int cnt1 = 0, cnt2 = 0;
+    for (i = 1; i <= n; i++) {
+        if (vis1[i]) {
+            cnt1++;
+        } else {
+            cnt2++;
+        }
+    }
+    if (cnt1 > cnt2) {
+        System.out.println("Fennec");
+    } else {
+        System.out.println("Snuke");
+    }
+}

@@ -1,0 +1,49 @@
+def C_Bridge(N, M, E):
+
+    def dfs(v):
+
+        visited[v] = True
+        for v2 in range(N):
+
+            if adjacent[v][v2] == False:
+                continue
+
+            if visited[v2] == True:
+                continue
+            dfs(v2)
+
+
+    adjacent = [[0 for _ in range(N)] for _ in range(N)]
+    a = [0 for _ in range(M)]
+    b = [0 for _ in range(M)]  
+    for i in range(M):
+        a[i] = E[i][0] - 1
+        b[i] = E[i][1] - 1
+        adjacent[a[i]][b[i]] = True
+        adjacent[b[i]][a[i]] = True
+
+
+
+    ans = 0
+    visited = [False for _ in range(N)]
+    for i in range(M):
+
+        adjacent[a[i]][b[i]] = False
+        adjacent[b[i]][a[i]] = False
+
+
+        for j in range(N):
+            visited[j] = False
+
+        dfs(0)
+
+        bridge = False
+        for j in range(N):
+
+            if visited[j] == False:
+                bridge = True
+        if bridge:
+            ans += 1
+        adjacent[a[i]][b[i]] = True
+        adjacent[b[i]][a[i]] = True
+    return ans

@@ -1,0 +1,21 @@
+def simplesyakutori(seq,func,invfunc,savepredicate,shrinkpredicate):
+    returned=[]
+    i=1
+    state=seq[0]
+    numofelement=1
+    if savepredicate(state):
+        returned.append(numofelement)
+
+    while i<len(seq) or (numofelement>0 and shrinkpredicate(state)):
+
+        if shrinkpredicate(state) and numofelement!=0:
+            state=invfunc(state,seq[i-numofelement])
+            numofelement-=1
+
+        else:
+            state=func(state,seq[i])
+            numofelement+=1
+            i+=1
+        if savepredicate(state):
+            returned.append(numofelement)
+    return returned

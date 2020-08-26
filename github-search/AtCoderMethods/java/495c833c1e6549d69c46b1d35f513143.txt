@@ -1,0 +1,25 @@
+void solve(FastScanner in, PrintWriter out) throws Exception {
+    char[] S = in.next().toCharArray();
+    int N = S.length;
+    int pa = 0;
+    int win = 0;
+    int lose = 0;
+    for (int i = 0; i < N; i++) {
+        if (S[i] == 'g') {
+            if (pa > 0) {
+                pa--;
+                win++;
+            } else {
+                pa++;
+            }
+        } else {
+            if (pa > 0) {
+                pa--;
+            } else {
+                pa++;
+                lose++;
+            }
+        }
+    }
+    out.println(win - lose);
+}

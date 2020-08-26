@@ -1,0 +1,80 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    String s = sc.next();
+    char[] res = s.toCharArray();
+    char[] m = new char[N];
+    String ans = "-1";
+    boolean flg;
+    char[] sw = { 'S', 'W' };
+    
+    for (int k = 0; k < 2; k++) {
+        for (int l = 0; l < 2; l++) {
+            flg = true;
+            m[0] = sw[k];
+            m[1] = sw[l];
+            for (int i = 1; i < N - 1; i++) {
+                if (res[i] == 'o') {
+                    if (m[i] == 'S') {
+                        m[i + 1] = m[i - 1];
+                    } else {
+                        if (m[i - 1] == 'S') {
+                            m[i + 1] = 'W';
+                        } else {
+                            m[i + 1] = 'S';
+                        }
+                    }
+                } else {
+                    if (m[i] == 'S') {
+                        if (m[i - 1] == 'S') {
+                            m[i + 1] = 'W';
+                        } else {
+                            m[i + 1] = 'S';
+                        }
+                    } else {
+                        m[i + 1] = m[i - 1];
+                    }
+                }
+            }
+            
+            if (res[N - 1] == 'o') {
+                if (m[N - 1] == 'S') {
+                    if (m[N - 2] != m[0])
+                        flg = false;
+                } else {
+                    if (m[N - 2] == m[0])
+                        flg = false;
+                }
+            } else {
+                if (m[N - 1] == 'S') {
+                    if (m[N - 2] == m[0])
+                        flg = false;
+                } else {
+                    if (m[N - 2] != m[0])
+                        flg = false;
+                }
+            }
+            
+            if (res[0] == 'o') {
+                if (m[0] == 'S') {
+                    if (m[N - 1] != m[1])
+                        flg = false;
+                } else {
+                    if (m[N - 1] == m[1])
+                        flg = false;
+                }
+            } else {
+                if (m[0] == 'S') {
+                    if (m[N - 1] == m[1])
+                        flg = false;
+                } else {
+                    if (m[N - 1] != m[1])
+                        flg = false;
+                }
+            }
+            if (flg)
+                ans = new String(m);
+        }
+    }
+    System.out.println(ans);
+}

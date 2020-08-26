@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[][] alp = new int[N][26];
+    for (int i = 0; i < N; i++) {
+        for (char c : sc.next().toCharArray()) {
+            alp[i][c - 'a']++;
+        }
+    }
+    String ans = "";
+    for (int i = 0; i < 26; i++) {
+        int min = 1 << 29;
+        for (int j = 0; j < N; j++) {
+            min = Math.min(min, alp[j][i]);
+        }
+        for (int j = 0; j < min; j++) {
+            ans += (char) (i + 'a');
+        }
+    }
+    System.out.println(ans);
+}

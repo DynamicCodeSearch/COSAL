@@ -1,0 +1,13 @@
+void solve() {
+    Scanner in = new Scanner(System.in);
+    W = in.nextInt();
+    H = in.nextInt();
+    in.close();
+    dp = new long[W + H + 1];
+    dp[0] = 1;
+    for (int i = 1; i <= W + H; i++) {
+        dp[i] = dp[i - 1] * i % MOD;
+    }
+    long ans = dp[W + H - 2] * pow(dp[W - 1], MOD - 2) % MOD * pow(dp[H - 1], MOD - 2) % MOD;
+    System.out.println(ans);
+}

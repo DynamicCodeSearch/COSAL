@@ -1,0 +1,20 @@
+long rec(int idx, int C) {
+    if (done[idx][C])
+        return memo[idx][C];
+    done[idx][C] = true;
+    idx--;
+    long ans = 0;
+    for (int j = 0; j <= C; j++) {
+        long v = sumPow[B[idx] + 1][j] - sumPow[A[idx]][j];
+        
+        
+        ans += v * rec(idx, C - j) % mod;
+    }
+    
+    
+    
+    
+    
+    idx++;
+    return memo[idx][C] = (ans % mod + mod) % mod;
+}

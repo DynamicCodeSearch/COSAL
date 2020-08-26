@@ -1,0 +1,11 @@
+private void fillBuf() throws IOException {
+    bufi = 0;
+    bufc = 0;
+    while (bufc == 0) {
+        bufc = r.read(buf, 0, BUFSIZE);
+        if (bufc == -1) {
+            bufc = 0;
+            return;
+        }
+    }
+}

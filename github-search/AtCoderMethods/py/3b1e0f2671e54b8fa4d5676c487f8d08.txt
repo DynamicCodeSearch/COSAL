@@ -1,0 +1,13 @@
+def main():
+    n = int(input())
+    l = list(map(int, input().split()))
+
+    dp = [0] * n
+    dp[0] = 1
+    for i in range(n - 1):
+        if l[i + 1] > l[i]:
+            dp[i + 1] = dp[i] + 1
+        else:
+            dp[i + 1] = 1
+
+    print(sum(dp))

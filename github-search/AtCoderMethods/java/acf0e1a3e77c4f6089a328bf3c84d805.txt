@@ -1,0 +1,29 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    int t = sc.nextInt();
+    int n = sc.nextInt();
+    int[] arrayp = new int[n];
+    for (int i = 0; i < n; i++) {
+        arrayp[i] = sc.nextInt();
+    }
+    int m = sc.nextInt();
+    int[] arrayc = new int[m];
+    for (int i = 0; i < m; i++) {
+        arrayc[i] = sc.nextInt();
+    }
+    int count = 0;
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            if (arrayp[j] <= arrayc[i] && arrayc[i] <= arrayp[j] + t) {
+                arrayp[j] = Integer.MAX_VALUE;
+                count++;
+                break;
+            }
+        }
+    }
+    if (count == m) {
+        System.out.println("yes");
+    } else {
+        System.out.println("no");
+    }
+}

@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    n = scan.nextInt();
+    boxes = new Box[n];
+    int maxH = 0;
+    for (int i = 0; i < n; i++) {
+        boxes[i] = new Box(scan.nextInt(), scan.nextInt());
+        maxH = Math.max(maxH, boxes[i].h);
+    }
+    Arrays.sort(boxes);
+    bit = new Bit(maxH);
+    for (int i = 0; i < n; i++) {
+        int h = boxes[i].h;
+        int v = bit.max(h - 1);
+        bit.update(h, v + 1);
+    }
+    System.out.println(bit.max(maxH));
+}

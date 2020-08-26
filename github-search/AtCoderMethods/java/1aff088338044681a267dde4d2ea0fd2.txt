@@ -1,0 +1,43 @@
+void run() {
+    int ex = ni();
+    int ey = ni();
+    int r = ni();
+    int[][] dx = new int[4][2];
+    for (int i = 0; i < 2; ++i) {
+        dx[i][0] = ni();
+        dx[i][1] = ni();
+    }
+    dx[2][0] = dx[1][0];
+    dx[2][1] = dx[0][1];
+    dx[3][0] = dx[0][0];
+    dx[3][1] = dx[1][1];
+    int[][] e = new int[4][2];
+    e[0][0] = ex;
+    e[0][1] = ey - r;
+    e[1][0] = ex;
+    e[1][1] = ey + r;
+    e[2][0] = ex - r;
+    e[2][1] = ey;
+    e[3][0] = ex + r;
+    e[3][1] = ey;
+    boolean rf = true;
+    for (int i = 0; i < 4; ++i) {
+        rf &= dx[0][0] <= e[i][0] && e[i][0] <= dx[1][0] && dx[0][1] <= e[i][1] && e[i][1] <= dx[1][1];
+    }
+    if (rf) {
+        System.out.println("NO");
+    } else {
+        System.out.println("YES");
+    }
+    boolean df = true;
+    for (int i = 0; i < 4; ++i) {
+        int nx = ex - dx[i][0];
+        int ny = ey - dx[i][1];
+        df &= nx * nx + ny * ny <= r * r;
+    }
+    if (df) {
+        System.out.println("NO");
+    } else {
+        System.out.println("YES");
+    }
+}

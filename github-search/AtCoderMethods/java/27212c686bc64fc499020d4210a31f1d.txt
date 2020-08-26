@@ -1,0 +1,19 @@
+private void solve() {
+    try {
+        int N = scanner.nextInt();
+        createPrimeTable(N);
+        for (int i = 2; i <= N; i++) {
+            countPrime(i);
+        }
+        long count = 1;
+        for (int i = 2; i < primeNumTable.length; i++) {
+            if (primeNumTable[i] != 0) {
+                count *= primeNumTable[i] + 1;
+                count %= 1000000007;
+            }
+        }
+        System.out.println(count);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}

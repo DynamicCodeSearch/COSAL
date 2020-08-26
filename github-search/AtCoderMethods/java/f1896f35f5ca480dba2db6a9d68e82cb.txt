@@ -1,0 +1,12 @@
+public static void solve(PrintWriter out, FastScanner in) {
+    int N = in.nextInt();
+    int[] a = in.nextIntArray(N);
+    Arrays.sort(a);
+    int min = a[0];
+    int max = a[N - 1];
+    long res = Long.MAX_VALUE;
+    for (int i = min; i <= max; i++) {
+        res = Math.min(res, cost(a, i));
+    }
+    System.out.println(res);
+}

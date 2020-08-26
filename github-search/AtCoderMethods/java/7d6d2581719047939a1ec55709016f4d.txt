@@ -1,0 +1,28 @@
+public void solve(int testNumber, Scanner in, PrintWriter out) {
+    int num = in.nextInt();
+    int number;
+    int a = 0, b = 0, c = 0;
+    for (int i = 0; i < num; i++) {
+        number = in.nextInt();
+        if (number % 4 == 0) {
+            a += 1;
+        } else if (number % 2 == 0) {
+            b += 1;
+        } else {
+            c += 1;
+        }
+    }
+    if (b == 0) {
+        if (a + 1 >= c) {
+            out.println("Yes");
+        } else {
+            out.println("No");
+        }
+    } else {
+        if (a >= c) {
+            out.println("Yes");
+        } else {
+            out.println("No");
+        }
+    }
+}

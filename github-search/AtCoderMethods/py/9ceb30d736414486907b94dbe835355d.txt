@@ -1,0 +1,12 @@
+def split(xs, t):
+    total = 0
+    tmp = []
+    for i, x in enumerate(xs):
+        if i in t:
+            total += int(''.join(tmp))
+            tmp = [x]
+        else:
+            tmp.append(x)
+    if tmp:
+        total += int(''.join(tmp))
+    return total

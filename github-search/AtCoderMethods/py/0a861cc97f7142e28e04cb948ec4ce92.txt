@@ -1,0 +1,23 @@
+def solve():
+    H, W, N = map(int, sys.stdin.readline().split())
+    nb = [0] * 10
+    bm = dict()
+    bb = set()
+
+    for lp in range(N):
+        a, b = map(int, sys.stdin.readline().split())
+        a, b = a-1, b-1
+        res = search(H, W, bm, bb, a, b)
+
+        if 1 <= a <= H-2 and 1 <= b <= W-2:
+            bm[a,b] = 1 + res
+
+        bb.add((a,b))
+
+
+    for i in bm.values():
+        nb[i] += 1
+
+    nb[0] = (H-2)*(W-2) - sum(nb)
+
+    print(*nb, sep='\n')

@@ -1,0 +1,7 @@
+public static int div2(int H, int W) {
+    
+    int upper = 1 + H / 3;
+    int piece1 = upper * W;
+    int lower = H - upper;
+    return Math.min(unfair(piece1, (lower / 2) * W, (lower - (lower / 2)) * W), unfair(piece1, (W / 2) * lower, (W - (W / 2)) * lower));
+}

@@ -1,0 +1,11 @@
+public String nextLine() {
+    int c = read();
+    while (isEnd(c)) {
+        c = this.read();
+    }
+    StringBuilder res = new StringBuilder();
+    do {
+        res.appendCodePoint(c);
+    } while (!isEnd(c = this.read()));
+    return res.toString();
+}

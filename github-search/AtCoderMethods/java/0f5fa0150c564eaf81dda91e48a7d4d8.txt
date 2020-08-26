@@ -1,0 +1,15 @@
+void solve(FastScanner in, PrintWriter out) {
+    int N = in.nextInt();
+    ArrayList<int[]> list = new ArrayList<>(N);
+    for (int i = 0; i < N; i++) {
+        list.add(new int[] { i, in.nextInt() });
+    }
+    Collections.sort(list, new Comparator<int[]>() {
+
+        @Override
+        public int compare(int[] o1, int[] o2) {
+            return Integer.compare(o2[1], o1[1]);
+        }
+    });
+    for (int[] a : list) out.println(a[0] + 1);
+}

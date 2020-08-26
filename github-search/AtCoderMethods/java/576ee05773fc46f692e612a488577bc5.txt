@@ -1,0 +1,40 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int sx = sc.nextInt();
+    int sy = sc.nextInt();
+    int tx = sc.nextInt();
+    int ty = sc.nextInt();
+    StringBuilder result = new StringBuilder();
+    int xDist = tx - sx;
+    int yDist = ty - sy;
+    for (int i = 0; i < xDist; i++) {
+        result.append("R");
+    }
+    for (int i = 0; i < yDist; i++) {
+        result.append("U");
+    }
+    for (int i = 0; i < xDist; i++) {
+        result.append("L");
+    }
+    for (int i = 0; i < yDist; i++) {
+        result.append("D");
+    }
+    
+    result.append("D");
+    for (int i = -1; i < xDist; i++) {
+        result.append("R");
+    }
+    for (int i = -1; i < yDist; i++) {
+        result.append("U");
+    }
+    result.append("L");
+    result.append("U");
+    for (int i = -1; i < xDist; i++) {
+        result.append("L");
+    }
+    for (int i = -1; i < yDist; i++) {
+        result.append("D");
+    }
+    result.append("R");
+    System.out.println(result.toString());
+}

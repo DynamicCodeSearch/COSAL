@@ -1,0 +1,22 @@
+def main():
+    n,d = LI()
+    x,y = LI()
+    x,y = abs(x), abs(y)
+    if x/d != x//d or y/d != y//d:
+        return 0.0
+    a,b = x//d, y//d
+
+    r = 0
+    at = 0
+    for i in range(n+1):
+        an = i
+        bn = n-i
+        t = nCb(n,i)
+        at += t
+        if a > an or b > bn or (an-a) % 2 == 1 or (bn-b) % 2 == 1:
+            continue
+        at = nCb(an, an - (an-a)//2)
+        bt = nCb(bn, bn - (bn-b)//2)
+        r += at * bt * t
+
+    return r / 4**n

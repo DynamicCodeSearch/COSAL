@@ -1,0 +1,12 @@
+private int calcSand(int t, int aq) {
+    int pat = calcParamA(t);
+    int pbt = calcParamB(t);
+    int pct = calcParamC(t);
+    if (aq < pat) {
+        return pct;
+    } else if (pat <= aq && aq < pbt) {
+        return pct + aq - pat;
+    } else {
+        return pct + pbt - pat;
+    }
+}

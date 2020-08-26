@@ -1,0 +1,13 @@
+def main(argv):
+    line = sys.stdin.readline()
+    while line:
+        N = int(line)
+        sheet = set()
+        for i in xrange(N):
+            a = sys.stdin.readline()
+            if a in sheet:
+                sheet.remove(a)
+            else:
+                sheet.add(a)
+        print(len(sheet))
+        line = sys.stdin.readline()

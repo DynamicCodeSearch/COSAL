@@ -1,0 +1,19 @@
+static int[] Bfs(int s) {
+    int[] dis = new int[graph.length];
+    Queue<Integer> q = new LinkedList<>();
+    boolean[] visited = new boolean[dis.length];
+    visited[s] = true;
+    dis[s] = 0;
+    q.add(s);
+    while (q.size() > 0) {
+        int v = q.poll();
+        for (int u : graph[v]) {
+            if (!visited[u]) {
+                visited[u] = true;
+                dis[u] = dis[v] + 1;
+                q.add(u);
+            }
+        }
+    }
+    return dis;
+}

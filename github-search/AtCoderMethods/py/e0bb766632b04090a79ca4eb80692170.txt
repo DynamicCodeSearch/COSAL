@@ -1,0 +1,7 @@
+def dfs(v1):
+    searched.add(v1)
+    for v2 in range(1, N + 1):
+        if v2 in searched:
+            continue
+        if (v1, v2) in e_copy or                        (v2, v1) in e_copy:
+            dfs(v2)

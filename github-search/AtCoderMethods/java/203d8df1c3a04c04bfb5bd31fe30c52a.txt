@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+    Queue<Integer> queue = new LinkedList<Integer>();
+    Scanner sc = new Scanner(System.in);
+    int A = sc.nextInt();
+    int B = sc.nextInt();
+    queue.offer(A);
+    map.put(A, 0);
+    int x, y;
+    int[] re = new int[6];
+    re[0] = -1;
+    re[1] = 1;
+    re[2] = -5;
+    re[3] = 5;
+    re[4] = -10;
+    re[5] = 10;
+    while (true) {
+        x = queue.poll();
+        for (int i = 0; i < re.length; i++) {
+            y = x + re[i];
+            queue.offer(y);
+            if (!map.containsKey(y))
+                map.put(y, map.get(x) + 1);
+        }
+        if (map.containsKey(B))
+            break;
+    }
+    System.out.println(map.get(B));
+}

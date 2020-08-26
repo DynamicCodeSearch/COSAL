@@ -1,0 +1,16 @@
+public void run() {
+    try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
+        String[] nm = br.readLine().split(" ");
+        int n = Integer.parseInt(nm[0]);
+        int m = Integer.parseInt(nm[1]);
+        Map<Integer, List<Integer>> maps = new HashMap<>();
+        br.lines().map(j -> j.split(" ")).forEach(j -> maps.put(Integer.parseInt(j[0]) - 1, getAddElement(maps.getOrDefault(Integer.parseInt(j[0]) - 1, new ArrayList<Integer>()), Integer.parseInt(j[1]) - 1)));
+        check(maps, 0, n, 0);
+        if (ans)
+            System.out.println("POSSIBLE");
+        else
+            System.out.println("IMPOSSIBLE");
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}

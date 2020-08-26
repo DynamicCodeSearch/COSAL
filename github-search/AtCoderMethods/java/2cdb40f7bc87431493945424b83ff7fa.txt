@@ -1,0 +1,15 @@
+public static long powerb(long base, long exponent, long mod) {
+    if (exponent == 0)
+        return 1 % mod;
+    long result = powerb(base, exponent >> 1, mod);
+    BigInteger a = new BigInteger(result + "");
+    a = a.multiply(a);
+    a = a.mod(new BigInteger("" + mod));
+    result = a.longValue();
+    if ((exponent & 1) != 0) {
+        a = a.multiply(new BigInteger("" + base));
+        a = a.mod(new BigInteger("" + mod));
+        result = a.longValue();
+    }
+    return result;
+}

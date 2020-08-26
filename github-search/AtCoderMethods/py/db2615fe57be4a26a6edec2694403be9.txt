@@ -1,0 +1,9 @@
+def count_and_drop(xs):
+    cnt = 0
+    fst = xs[-1]
+    for x in reversed(xs):
+        if x != fst:
+            break
+        cnt += 1
+    del xs[-cnt:]
+    return cnt

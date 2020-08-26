@@ -1,0 +1,24 @@
+def solve():
+    N, M = map(int, sys.stdin.readline().split())
+    edges = [None] * M
+    Adj = [[] for i in range(N)]
+
+    for i in range(M):
+        ai, bi, ci = map(int, sys.stdin.readline().split())
+        edges[i] = (ai - 1, bi - 1, -ci)
+        Adj[bi - 1].append(ai - 1)
+
+    reachable = [False] * N
+    reachable[N - 1] = True
+    dfs(N, Adj, reachable, N - 1)
+
+    edges = [(ai, bi, ci) for (ai, bi, ci) in edges if reachable[ai] and reachable[bi]]
+
+    ans = BellmanFord(N, M, edges)
+
+    if ans is None:
+        print('inf')
+    else:
+        print(-ans)
+
+    pass

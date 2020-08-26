@@ -1,0 +1,21 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    String str = input.readLine();
+    int n = Integer.parseInt(str);
+    int[] list = new int[n];
+    int sum = 0;
+    for (int i = 0; i < n; i++) {
+        str = input.readLine();
+        list[i] = Integer.parseInt(str);
+    }
+    Arrays.sort(list);
+    for (int i = 0; i < n; i++) {
+        if ((n - i) % 2 == 1) {
+            sum = sum + (int) Math.pow(list[i], 2);
+        } else {
+            sum = sum - (int) Math.pow(list[i], 2);
+        }
+    }
+    double answer = sum * Math.PI;
+    System.out.println(answer);
+}

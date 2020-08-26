@@ -1,0 +1,12 @@
+public void solve() {
+    if (this.ai.length == 1) {
+        System.out.println(0);
+        return;
+    }
+    LinkedList<Integer> blocks = splitToBlocks(this.ai);
+    long sum = 0;
+    for (int count : blocks) {
+        sum += ((long) count * (long) (count + 1)) / 2;
+    }
+    System.out.println(sum);
+}

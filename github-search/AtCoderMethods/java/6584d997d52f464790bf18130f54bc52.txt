@@ -1,0 +1,11 @@
+static void Method(ArrayList<Integer> num, ArrayList<String> param) {
+    StringBuilder sb = new StringBuilder(param.get(0));
+    StringBuilder rev = new StringBuilder();
+    for (int i = 1; i < num.size() - 1; i += 2) {
+        rev.append(sb.substring(num.get(i) - 1, num.get(i + 1)));
+        rev.reverse();
+        sb.replace(num.get(i) - 1, num.get(i + 1), rev.toString());
+        rev.setLength(0);
+    }
+    System.out.println(sb);
+}

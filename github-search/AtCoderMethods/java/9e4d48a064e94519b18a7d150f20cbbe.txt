@@ -1,0 +1,56 @@
+public static void main(String[] $) {
+    int n = getInt();
+    ArrayList<ArrayList<Integer>> in = new ArrayList<>();
+    Boolean[] black = new Boolean[n];
+    int blacks = 0;
+    black[0] = true;
+    black[n - 1] = false;
+    for (int i = 0; i < n; ++i) in.add(new ArrayList<>());
+    for (int i = 0; i < n - 1; i++) {
+        int a = getInt() - 1, b = getInt() - 1;
+        in.get(a).add(b);
+        in.get(b).add(a);
+    }
+    ArrayDeque<Integer> stack = new ArrayDeque<>();
+    stack.add(0);
+    boolean[] searched = new boolean[n];
+    searched[0] = true;
+    loop: while (true) {
+        for (int i : in.get(stack.peekLast())) {
+            if (i == n - 1) {
+                stack.add(i);
+                break loop;
+            }
+            if (!searched[i]) {
+                searched[i] = true;
+                stack.add(i);
+                continue loop;
+            }
+        }
+        stack.pollLast();
+    }
+    
+    ArrayDeque<Integer> bfs = new ArrayDeque<>();
+    for (int i = 0; !stack.isEmpty(); i++) {
+        if (i % 2 == 0) {
+            int poll = stack.pollFirst();
+            black[poll] = true;
+            bfs.add(poll);
+            ++blacks;
+        } else {
+            black[stack.pollLast()] = false;
+        }
+    }
+    while (!bfs.isEmpty()) {
+        for (int l = bfs.size(); l > 0; --l) {
+            for (int i : in.get(bfs.poll())) {
+                if (black[i] == null) {
+                    black[i] = true;
+                    bfs.add(i);
+                    blacks++;
+                }
+            }
+        }
+    }
+    System.out.println(n - blacks < blacks ? "Fennec" : "Snuke");
+}

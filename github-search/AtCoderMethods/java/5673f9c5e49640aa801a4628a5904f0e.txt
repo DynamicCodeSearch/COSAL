@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] s = new int[N];
+    int[] e = new int[N];
+    for (int i = 0; i < N; i++) {
+        String[] memo = sc.next().split("-");
+        s[i] = toMinute(Integer.valueOf(memo[0]));
+        e[i] = toMinute(Integer.valueOf(memo[1]));
+    }
+    sc.close();
+    boolean[] time = new boolean[toMinute(2400) / 5 + 2];
+    for (int i = 0; i < N; i++) {
+        int start = (int) Math.floor((double) s[i] / 5.0);
+        int end = (int) Math.ceil((double) e[i] / 5.0);
+        for (int t = start; t < end; t++) {
+            time[t] = true;
+        }
+    }
+    for (int t = 0; t < time.length; t++) {
+        if (time[t] && (t == 0 || !time[t - 1])) {
+            System.out.print(toTime(t * 5) + "-");
+        }
+        if (!time[t] && (t > 0 && time[t - 1])) {
+            System.out.println(toTime((t) * 5));
+        }
+    }
+}

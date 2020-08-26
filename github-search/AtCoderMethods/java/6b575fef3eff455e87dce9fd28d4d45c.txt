@@ -1,0 +1,19 @@
+void solve() {
+    int N = in.nextInt();
+    int K = in.nextInt();
+    int[] a = new int[N];
+    for (int i = 0; i < N; i++) {
+        a[i] = in.nextInt();
+    }
+    long t = 0;
+    for (int i = 0; i < K; i++) {
+        t += a[i];
+    }
+    long ans = t;
+    for (int i = K; i < N; i++) {
+        t -= a[i - K];
+        t += a[i];
+        ans += t;
+    }
+    out.println(ans);
+}

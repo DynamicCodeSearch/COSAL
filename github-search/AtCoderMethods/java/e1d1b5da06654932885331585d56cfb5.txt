@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    int a;
+    int b;
+    int c;
+    int total = 0;
+    int kosu;
+    int maxkosu = 0;
+    int xmax;
+    int ymax;
+    Scanner sc = new Scanner(System.in);
+    a = sc.nextInt();
+    b = sc.nextInt();
+    c = sc.nextInt();
+    xmax = c / a;
+    ymax = c / b;
+    for (int i = 0; i <= xmax; i++) {
+        for (int j = 0; j <= ymax; j++) {
+            total = i * a + j * b;
+            if (c >= total) {
+                kosu = i + j;
+                if (maxkosu < kosu) {
+                    maxkosu = kosu;
+                }
+            }
+        }
+    }
+    System.out.println(maxkosu);
+}

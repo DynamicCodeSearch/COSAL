@@ -1,0 +1,41 @@
+public static void solve(Scanner s) {
+    char[] sa = s.next().toCharArray();
+    char[] sb = s.next().toCharArray();
+    char[] sc = s.next().toCharArray();
+    char next = 'a';
+    int ia = 0;
+    int ib = 0;
+    int ic = 0;
+    while (true) {
+        switch(next) {
+            case 'a':
+                if (ia < sa.length) {
+                    next = sa[ia];
+                }
+                ia++;
+                break;
+            case 'b':
+                if (ib < sb.length) {
+                    next = sb[ib];
+                }
+                ib++;
+                break;
+            case 'c':
+                if (ic < sc.length) {
+                    next = sc[ic];
+                }
+                ic++;
+                break;
+        }
+        if (ia == sa.length + 1) {
+            System.out.println("A");
+            break;
+        } else if (ib == sb.length + 1) {
+            System.out.println("B");
+            break;
+        } else if (ic == sc.length + 1) {
+            System.out.println("C");
+            break;
+        }
+    }
+}

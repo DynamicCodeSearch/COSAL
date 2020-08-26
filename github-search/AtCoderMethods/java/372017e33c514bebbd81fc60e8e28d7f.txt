@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    String a = sc.nextLine();
+    String[] b = a.split(" ");
+    BigInteger n = new BigInteger(b[0]);
+    BigInteger m = new BigInteger(b[1]);
+    BigInteger leftOverM = BigInteger.valueOf(0);
+    if (n.multiply(BigInteger.valueOf(2)).compareTo(m) == -1) {
+        leftOverM = m.subtract(n.multiply(BigInteger.valueOf(2)));
+        n = n.add(leftOverM.divide(BigInteger.valueOf(4)));
+        m = m.subtract(leftOverM.divide(BigInteger.valueOf(2)));
+        System.out.println(n);
+    } else {
+        System.out.println(m.divide(BigInteger.valueOf(2)));
+    }
+}

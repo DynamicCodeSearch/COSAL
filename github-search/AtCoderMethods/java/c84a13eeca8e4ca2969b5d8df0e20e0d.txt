@@ -1,0 +1,38 @@
+public final void answer() {
+    int[][] dest = new int[N][];
+    for (int i = 0; i < N; i++) {
+        dest[i] = Arrays.copyOf(A[i], N);
+    }
+    for (int k = 0; k < N; k++) {
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                dest[i][j] = Integer.min(dest[i][j], dest[i][k] + dest[k][j]);
+            }
+        }
+    }
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            if (dest[i][j] != A[i][j]) {
+                System.out.println(-1);
+                return;
+            }
+        }
+    }
+    long result = 0;
+    for (int i = 0; i < N; i++) {
+        for (int j = i + 1; j < N; j++) {
+            boolean flag = true;
+            for (int k = 0; k < N; k++) {
+                if (i == k || j == k)
+                    continue;
+                if (dest[i][j] == A[i][k] + A[k][j]) {
+                    flag = false;
+                    break;
+                }
+            }
+            if (flag)
+                result = result + dest[i][j];
+        }
+    }
+    System.out.println(result);
+}

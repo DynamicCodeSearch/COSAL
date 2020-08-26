@@ -1,0 +1,12 @@
+private static void dfs(char[] s, int n, long now) {
+    if (n == s.length) {
+        sum += now;
+        return;
+    }
+    long v = 0;
+    for (int i = n; i < s.length; i++) {
+        v *= 10;
+        v += s[i] - '0';
+        dfs(s, i + 1, now + v);
+    }
+}

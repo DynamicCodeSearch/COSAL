@@ -1,0 +1,24 @@
+void run() {
+    int n = ni(), m = ni();
+    if (n == 1 && m == 1) {
+        char p1 = nc();
+        char p2 = nc();
+        if (p1 == p2) {
+            out.println("Yes");
+        } else {
+            out.println("No");
+        }
+        return;
+    }
+    char[][] map = nm(n, n);
+    char[][] p = nm(m, m);
+    for (int i = 0; i < n - m; i++) {
+        for (int j = 0; j < n - m; j++) {
+            if (check(map, p, i, j)) {
+                out.println("Yes");
+                return;
+            }
+        }
+    }
+    out.println("No");
+}

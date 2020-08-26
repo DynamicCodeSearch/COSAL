@@ -1,0 +1,11 @@
+public static void main(String[] args) throws Exception {
+    Main bumbleBee = new Main();
+    try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+        int inputCount = Integer.valueOf(reader.readLine());
+        bumbleBee.init(inputCount);
+        for (int i = 0; i < inputCount; i++) {
+            bumbleBee.add(Integer.valueOf(reader.readLine()));
+        }
+    }
+    System.out.println(bumbleBee.getBumbledCount());
+}

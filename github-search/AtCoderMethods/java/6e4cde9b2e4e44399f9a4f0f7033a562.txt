@@ -1,0 +1,14 @@
+Integer[] bruteforce(int n, String S) {
+    Integer[] ord = new Integer[n];
+    for (int i = 0; i < n; i++) ord[i] = i;
+    Arrays.sort(ord, new Comparator<Integer>() {
+
+        @Override
+        public int compare(Integer o1, Integer o2) {
+            String s1 = S.substring(o1);
+            String s2 = S.substring(o2);
+            return (s1 + s2).compareTo(s2 + s1);
+        }
+    });
+    return ord;
+}

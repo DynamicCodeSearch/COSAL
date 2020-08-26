@@ -1,0 +1,92 @@
+void solve() throws IOException {
+    h = ni();
+    w = ni();
+    int n = ni();
+    HashMap<Long, Integer> map = new HashMap<>();
+    long tmp;
+    for (int i = 0; i < n; i++) {
+        int a = ni() - 1;
+        int b = ni() - 1;
+        if (can(a, b)) {
+            tmp = iitol(a, b);
+            if (!map.containsKey(tmp)) {
+                map.put(tmp, 1);
+            } else {
+                map.put(tmp, map.get(tmp) + 1);
+            }
+        }
+        if (can(a - 1, b - 1)) {
+            tmp = iitol(a - 1, b - 1);
+            if (!map.containsKey(tmp)) {
+                map.put(tmp, 1);
+            } else {
+                map.put(tmp, map.get(tmp) + 1);
+            }
+        }
+        if (can(a - 1, b)) {
+            tmp = iitol(a - 1, b);
+            if (!map.containsKey(tmp)) {
+                map.put(tmp, 1);
+            } else {
+                map.put(tmp, map.get(tmp) + 1);
+            }
+        }
+        if (can(a - 1, b + 1)) {
+            tmp = iitol(a - 1, b + 1);
+            if (!map.containsKey(tmp)) {
+                map.put(tmp, 1);
+            } else {
+                map.put(tmp, map.get(tmp) + 1);
+            }
+        }
+        if (can(a, b - 1)) {
+            tmp = iitol(a, b - 1);
+            if (!map.containsKey(tmp)) {
+                map.put(tmp, 1);
+            } else {
+                map.put(tmp, map.get(tmp) + 1);
+            }
+        }
+        if (can(a, b + 1)) {
+            tmp = iitol(a, b + 1);
+            if (!map.containsKey(tmp)) {
+                map.put(tmp, 1);
+            } else {
+                map.put(tmp, map.get(tmp) + 1);
+            }
+        }
+        if (can(a + 1, b - 1)) {
+            tmp = iitol(a + 1, b - 1);
+            if (!map.containsKey(tmp)) {
+                map.put(tmp, 1);
+            } else {
+                map.put(tmp, map.get(tmp) + 1);
+            }
+        }
+        if (can(a + 1, b)) {
+            tmp = iitol(a + 1, b);
+            if (!map.containsKey(tmp)) {
+                map.put(tmp, 1);
+            } else {
+                map.put(tmp, map.get(tmp) + 1);
+            }
+        }
+        if (can(a + 1, b + 1)) {
+            tmp = iitol(a + 1, b + 1);
+            if (!map.containsKey(tmp)) {
+                map.put(tmp, 1);
+            } else {
+                map.put(tmp, map.get(tmp) + 1);
+            }
+        }
+    }
+    long[] cnt = new long[10];
+    cnt[0] = (long) (h - 2) * (w - 2);
+    for (int x : map.values()) {
+        cnt[x]++;
+        cnt[0]--;
+    }
+    for (int i = 0; i < 10; i++) {
+        out.println(cnt[i]);
+    }
+}

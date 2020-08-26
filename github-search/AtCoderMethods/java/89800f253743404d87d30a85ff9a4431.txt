@@ -1,0 +1,13 @@
+static void function(String S) {
+    int N = S.length();
+    if (N % 2 == 1) {
+        function(S.substring(0, N - 1));
+    }
+    String s1 = S.substring(0, N / 2);
+    String s2 = S.substring(N / 2, N);
+    if (s1.equals(s2)) {
+        System.out.println(N);
+        System.exit(0);
+    }
+    function(S.substring(0, N - 2));
+}

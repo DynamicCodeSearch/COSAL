@@ -1,0 +1,48 @@
+void run() {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    DJSet ds = new DJSet(n);
+    int[][][] lis = new int[2][n][];
+    for (int i = 0; i < n; ++i) {
+        int x = sc.nextInt();
+        int y = sc.nextInt();
+        lis[0][i] = new int[] { x, i };
+        lis[1][i] = new int[] { y, i };
+    }
+    int[][] ref = new int[2][n];
+    Arrays.sort(lis[0], new Comparator<int[]>() {
+
+        @Override
+        public int compare(int[] o1, int[] o2) {
+            return Integer.compare(o1[0], o2[0]);
+        }
+    });
+    Arrays.sort(lis[1], new Comparator<int[]>() {
+
+        @Override
+        public int compare(int[] o1, int[] o2) {
+            return Integer.compare(o1[0], o2[0]);
+        }
+    });
+    for (int t = 0; t < 2; ++t) {
+        for (int i = 0; i < n; ++i) {
+            ref[t][lis[t][i][1]] = i;
+        }
+    }
+    PriorityQueue<Edge> pq = new PriorityQueue<>();
+    for (int t = 0; t < 2; ++t) {
+        for (int i = 0; i + 1 < n; ++i) {
+            pq.add(new Edge(lis[t][i][1], lis[t][i + 1][1], lis[t][i + 1][0] - lis[t][i][0]));
+        }
+    }
+    long ans = 0;
+    while (!pq.isEmpty()) {
+        Edge e = pq.poll();
+        if (ds.equiv(e.id[0], e.id[1])) {
+            continue;
+        }
+        ans += e.cost;
+        ds.setUnion(e.id[0], e.id[1]);
+    }
+    System.out.println(ans);
+}

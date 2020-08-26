@@ -1,0 +1,10 @@
+public long powerWithMod(long a, long b) {
+    long result = 1;
+    for (int bitMast = 1; bitMast <= b; bitMast <<= 1) {
+        if ((b & bitMast) != 0) {
+            result = multiplyWithMod(result, a);
+        }
+        a = multiplyWithMod(a, a);
+    }
+    return result;
+}

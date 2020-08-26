@@ -1,0 +1,20 @@
+public void solve() {
+    N = nextInt();
+    M = nextInt();
+    edges = new Edge[M];
+    for (int i = 0; i < M; i++) {
+        int a = nextInt() - 1;
+        int b = nextInt() - 1;
+        int c = nextInt();
+        edges[i] = new Edge(a, b, -c);
+    }
+    costs = new long[N];
+    Arrays.fill(costs, Long.MAX_VALUE / 2);
+    costs[0] = 0;
+    long ans1 = bellman_ford();
+    long ans2 = bellman_ford();
+    if (ans1 != ans2)
+        out.println("inf");
+    else
+        out.println(-ans1);
+}

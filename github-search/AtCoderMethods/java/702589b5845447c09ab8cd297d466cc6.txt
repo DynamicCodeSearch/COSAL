@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    int x = 0;
+    int y = 0;
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[] A = new int[n];
+    for (int i = 0; i < n; i++) {
+        A[i] = sc.nextInt();
+    }
+    for (int i = 0; i < n; i++) {
+        if (x <= A[i]) {
+            x = A[i];
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        if (x != A[i]) {
+            if (y <= A[i]) {
+                y = A[i];
+            }
+        }
+    }
+    System.out.println(y);
+}

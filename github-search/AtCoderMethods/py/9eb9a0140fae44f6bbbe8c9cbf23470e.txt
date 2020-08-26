@@ -1,0 +1,13 @@
+def sort_suf(c, odd):
+    if c:
+        odd.remove(c)
+    n = len(odd)
+    a, s = [None]*n, sorted(odd, reverse=1)
+    for i in range(n):
+        if init_s[i+(N-n)] in s:
+            a[i] = init_s[i+(N-n)]
+            s.remove(a[i])
+    for i in range(n):
+        if a[i] is None:
+            a[i] = s.pop()
+    return a

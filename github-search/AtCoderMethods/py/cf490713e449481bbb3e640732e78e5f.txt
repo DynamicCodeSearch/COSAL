@@ -1,0 +1,17 @@
+def main():
+    N, M = map(int, input().split())
+    I = tuple(tuple(map(int, input().split())) for _ in range(N))
+
+    m = [0] * (M + 2)
+    score = 0
+    for l, r, s in I:
+        m[l] += s
+        m[r+1] -= s
+        score += s
+
+    for i in range(1, M + 2):
+        m[i] += m[i-1]
+    m[0] = m[-1] = float('inf')
+
+    score -= min(m)
+    print(score)

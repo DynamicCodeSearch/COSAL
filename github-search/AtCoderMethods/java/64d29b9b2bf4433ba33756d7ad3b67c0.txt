@@ -1,0 +1,41 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    int a = in.nextInt();
+    int[] x = in.nextInts(n);
+    Arrays.sort(x);
+    long[][][] dp = new long[2][n + 1][2501];
+    dp[0][0][0] = 1;
+    int psum = 0;
+    for (int i = 0; i < n; i++) {
+        int fr = i % 2;
+        int to = 1 - fr;
+        for (int j = 0; j <= n; j++) {
+            Arrays.fill(dp[to][j], 0);
+        }
+        for (int picked = 0; picked < n; picked++) {
+            for (int sum = 0; sum <= psum; sum++) {
+                if (dp[fr][picked][sum] == 0) {
+                    continue;
+                }
+                long base = dp[fr][picked][sum];
+                if (sum + x[i] <= 2500) {
+                    int tp = picked + 1;
+                    int ts = sum + x[i];
+                    dp[to][tp][ts] += base;
+                }
+                dp[to][picked][sum] += base;
+            }
+        }
+        psum += x[i];
+    }
+    long total = 0;
+    for (int i = 1; i <= n; i++) {
+        if (i * a <= 2500) {
+            total += dp[n % 2][i][i * a];
+        }
+    }
+    out.println(total);
+    out.flush();
+}

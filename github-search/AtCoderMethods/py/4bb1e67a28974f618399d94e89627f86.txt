@@ -1,0 +1,15 @@
+def c(H, W):
+    HW = H * W
+    ans = HW
+    for i in range(1, H):
+        I = i * W
+        O = (H - i) // 2 * W
+        G = HW - I - O
+        ans = min(ans, max(abs(I - O), abs(G - O), abs(G - I)))
+
+    for i in range(1, H):
+        I = i * W
+        O = (H - i) * (W // 2)
+        G = HW - I - O
+        ans = min(ans, max(abs(I - O), abs(G - O), abs(G - I)))
+    return ans

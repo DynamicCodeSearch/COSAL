@@ -1,0 +1,49 @@
+void run() {
+    Scanner sc = new Scanner(System.in);
+    String S = sc.next();
+    String T = sc.next();
+    int q = sc.nextInt();
+    int[] a = new int[q];
+    int[] b = new int[q];
+    int[] c = new int[q];
+    int[] d = new int[q];
+    for (int i = 0; i < q; ++i) {
+        a[i] = sc.nextInt();
+        b[i] = sc.nextInt();
+        c[i] = sc.nextInt();
+        d[i] = sc.nextInt();
+        --a[i];
+        --b[i];
+        --c[i];
+        --d[i];
+    }
+    int[] cum1 = new int[S.length()];
+    int[] cum2 = new int[T.length()];
+    for (int i = 0; i < S.length(); ++i) {
+        if (i > 0)
+            cum1[i] = cum1[i - 1];
+        if (S.charAt(i) == 'A') {
+            cum1[i] = (cum1[i] + 1) % 3;
+        } else {
+            cum1[i] = (cum1[i] + 2) % 3;
+        }
+    }
+    for (int i = 0; i < T.length(); ++i) {
+        if (i > 0)
+            cum2[i] = cum2[i - 1];
+        if (T.charAt(i) == 'A') {
+            cum2[i] = (cum2[i] + 1) % 3;
+        } else {
+            cum2[i] = (cum2[i] + 2) % 3;
+        }
+    }
+    for (int i = 0; i < q; ++i) {
+        int c1 = (cum1[b[i]] - (a[i] > 0 ? cum1[a[i] - 1] : 0) + 3) % 3;
+        int c2 = (cum2[d[i]] - (c[i] > 0 ? cum2[c[i] - 1] : 0) + 3) % 3;
+        if (c1 != c2) {
+            System.out.println("NO");
+        } else {
+            System.out.println("YES");
+        }
+    }
+}

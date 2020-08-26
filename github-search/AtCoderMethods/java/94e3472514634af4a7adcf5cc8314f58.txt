@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    long[][] ab = new long[n][2];
+    long[][] cd = new long[m][2];
+    for (int i = 0; i < n; i++) {
+        ab[i][0] = sc.nextLong();
+        ab[i][1] = sc.nextLong();
+    }
+    for (int i = 0; i < m; i++) {
+        cd[i][0] = sc.nextLong();
+        cd[i][1] = sc.nextLong();
+    }
+    int[] result = new int[n];
+    for (int i = 0; i < n; i++) {
+        long length = 0;
+        long min = 200000000;
+        for (int j = 0; j < m; j++) {
+            length = Math.abs(ab[i][0] - cd[j][0]) + Math.abs(ab[i][1] - cd[j][1]);
+            if (length < min) {
+                min = length;
+                result[i] = j;
+            }
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        System.out.println(result[i] + 1);
+    }
+}

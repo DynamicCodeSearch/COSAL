@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    final java.util.Scanner sc = new java.util.Scanner(System.in);
+    final Cell[] a = new Cell[sc.nextInt()];
+    for (int i = 0; i < a.length; ++i) {
+        a[i] = new Cell(i + 1, sc.nextInt());
+    }
+    sc.close();
+    java.util.Arrays.sort(a);
+    try (java.io.PrintWriter pw = new java.io.PrintWriter(System.out)) {
+        for (int i = 0; i < a.length; ++i) {
+            pw.println(a[i].id);
+        }
+        pw.flush();
+    }
+}

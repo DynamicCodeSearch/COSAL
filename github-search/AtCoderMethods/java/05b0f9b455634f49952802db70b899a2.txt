@@ -1,0 +1,18 @@
+static double search() {
+    double left = -10000000;
+    double right = 10000000;
+    for (int loop = 0; loop < 100; ++loop) {
+        double X1 = (left * 2 + right) / 3;
+        double X2 = (left + right * 2) / 3;
+        double Y1 = search(X1);
+        double Y2 = search(X2);
+        if (f(X1, Y1) < f(X2, Y2)) {
+            right = (left + right * 2) / 3;
+        } else {
+            left = (left * 2 + right) / 3;
+        }
+    }
+    double retX = (right + left) * 0.5;
+    double retY = search(retX);
+    return f(retX, retY);
+}

@@ -1,0 +1,13 @@
+public static void main(String[] args) throws IOException {
+    final Scanner sc = new Scanner(System.in);
+    final int N = sc.nextInt();
+    final int M = sc.nextInt();
+    boolean[][] adj = new boolean[N][N];
+    for (int i = 0; i < M; i++) {
+        final int a = sc.nextInt() - 1;
+        final int b = sc.nextInt() - 1;
+        adj[a][b] = true;
+        adj[b][a] = true;
+    }
+    System.out.println(dfs(1, N, 0, adj, new boolean[N]));
+}

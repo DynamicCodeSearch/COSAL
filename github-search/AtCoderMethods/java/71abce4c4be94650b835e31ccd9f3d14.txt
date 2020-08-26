@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int l = sc.nextInt();
+    int x = sc.nextInt();
+    int y = sc.nextInt();
+    int s = sc.nextInt();
+    int d = sc.nextInt();
+    if (s == d) {
+        System.out.println(0);
+        System.exit(0);
+    }
+    double tv = x + y;
+    double fv = y - x;
+    double t1, t2 = Double.MAX_VALUE;
+    if (s < d) {
+        double k = (d - s) % l;
+        t1 = k / tv;
+        if (fv > 0) {
+            t2 = (l - k) / fv;
+        }
+    } else {
+        double k = (s - d) % l;
+        t1 = (l - k) / tv;
+        if (fv > 0) {
+            t2 = k / fv;
+        }
+    }
+    System.out.println(Math.min(t1, t2));
+}

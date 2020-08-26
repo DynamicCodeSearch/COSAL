@@ -1,0 +1,69 @@
+void solve() {
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    int n = ni();
+    int a = ni();
+    int b = ni();
+    long[] A = new long[n];
+    for (int i = 0; i < n; i++) {
+        A[i] = nl();
+    }
+    long sum = 0;
+    Arrays.sort(A);
+    for (int i = n - 1, cnt = a; i >= 0 && cnt >= 0; i--) {
+        cnt--;
+        if (cnt < 0)
+            break;
+        sum += A[i];
+    }
+    int left = n - a;
+    if (A[left] == A[n - 1]) {
+        
+        
+        int take = 0;
+        for (int i = n - 1; i >= 0; i--) {
+            if (A[i] != A[n - 1])
+                break;
+            take++;
+        }
+        long ans = 0;
+        for (int i = a; i <= b; i++) {
+            ans += nCr(take, i);
+        }
+        double d = (double) A[n - 1];
+        out.println(String.format("%.9f", d));
+        out.println(ans);
+    } else {
+        
+        int available = 0, required = 0;
+        
+        for (int i = n - 1; i >= 0; i--) {
+            if (A[i] == A[left]) {
+                available++;
+            }
+        }
+        for (int i = n - 1, cnt = a; i >= 0 && cnt >= 0; i--) {
+            cnt--;
+            if (cnt < 0)
+                break;
+            if (A[i] == A[left]) {
+                required++;
+            }
+        }
+        
+        
+        long ans = nCr(available, required);
+        double d = (double) sum;
+        d /= a;
+        out.println(String.format("%.9f", d));
+        out.println(ans);
+    }
+}

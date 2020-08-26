@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner s = new Scanner(System.in);
+    final int M = s.nextInt();
+    int VV = 0;
+    if (M < 100) {
+        VV = 0;
+    } else if (M <= 5_000) {
+        VV = 10 * M / 1_000;
+    } else if (6_000 <= M && M <= 30_000) {
+        VV = M / 1_000 + 50;
+    } else if (35_000 <= M && M <= 70_000) {
+        VV = (M / 1_000 - 30) / 5 + 80;
+    } else if (70_000 < M) {
+        VV = 89;
+    }
+    if (VV < 10) {
+        System.out.print("0");
+    }
+    System.out.println(VV);
+}

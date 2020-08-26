@@ -1,0 +1,12 @@
+def Q3(x):
+    N = x[0][0]
+    lst = x[1][:]
+    s = lst[0]
+    allsum = sum(lst)
+    minimum = abs(allsum - s * 2)
+
+    for k in range(1, N - 1):
+        s += lst[k]
+        a = abs(allsum - s * 2)
+        minimum = min(minimum, a)
+    return minimum

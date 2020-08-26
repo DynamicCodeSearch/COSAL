@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader();
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    depth = new long[n];
+    v = new ArrayList[n];
+    visited = new boolean[n];
+    for (int i = 0; i < n; i++) v[i] = new ArrayList<>();
+    for (int i = 0; i < n - 1; i++) {
+        int x = in.nextInt() - 1;
+        int y = in.nextInt() - 1;
+        long w = in.nextLong();
+        v[x].add(new Pair(y, w));
+        v[y].add(new Pair(x, w));
+    }
+    int q = in.nextInt();
+    int k = in.nextInt() - 1;
+    dfs(k, -1, 0);
+    for (int i = 0; i < q; i++) {
+        int x = in.nextInt() - 1;
+        int y = in.nextInt() - 1;
+        out.println(depth[x] + depth[y]);
+    }
+    out.close();
+}

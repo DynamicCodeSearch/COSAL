@@ -1,0 +1,15 @@
+private static void dfs(int i) {
+    long ret0 = 1;
+    long ret1 = 1;
+    for (int e : edges.get(i)) {
+        if (used[e]) {
+            continue;
+        }
+        used[e] = true;
+        dfs(e);
+        ret0 = (ret0 * (p[1][e] + p[0][e]) % MOD) % MOD;
+        ret1 = ret1 * p[0][e] % MOD;
+    }
+    p[0][i] = (int) ret0;
+    p[1][i] = (int) ret1;
+}

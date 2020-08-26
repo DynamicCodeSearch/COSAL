@@ -1,0 +1,17 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int k = in.nextInt();
+    int[] a = in.nextIntArray(n);
+    Arrays.sort(a);
+    int high = n;
+    int low = -1;
+    while (high - low > 1) {
+        int mid = (high + low) / 2;
+        if (isNeed(a, k, mid)) {
+            high = mid;
+        } else {
+            low = mid;
+        }
+    }
+    out.println(high);
+}

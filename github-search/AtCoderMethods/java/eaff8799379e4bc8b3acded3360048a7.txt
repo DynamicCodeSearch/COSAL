@@ -1,0 +1,11 @@
+private static int solve(int n, int[] d, int s) {
+    if (s >= n)
+        return s;
+    int res = 999999999;
+    for (int i = 0; i < 10; ++i) {
+        if (d[i] == 1)
+            continue;
+        res = Math.min(res, solve(n, d, s * 10 + i));
+    }
+    return res;
+}

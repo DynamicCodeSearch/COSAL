@@ -1,0 +1,8 @@
+void update(int i, int x) {
+    i += n - 1;
+    tree[i] = x;
+    while (i > 0) {
+        i = (i - 1) / 2;
+        tree[i] = Math.max(tree[2 * i + 1], tree[2 * i + 2]);
+    }
+}

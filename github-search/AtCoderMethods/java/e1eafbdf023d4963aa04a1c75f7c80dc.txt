@@ -1,0 +1,13 @@
+
+public LST unsetRange(int r) {
+    if (r >= 0) {
+        for (int i = 0; i < set.length; i++, r = r + 63 >>> 6) {
+            for (int j = 0; j < r + 63 >>> 6; j++) {
+                set[i][j] = 0;
+            }
+            if ((r & 63) != 0)
+                set[i][r >>> 6] &= ~((1L << r) - 1);
+        }
+    }
+    return this;
+}

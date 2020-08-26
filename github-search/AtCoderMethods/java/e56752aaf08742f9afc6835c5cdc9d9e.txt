@@ -1,0 +1,17 @@
+static int Exponential(int x, int y, int m) {
+    
+    long ans = 1;
+    int bit = 0x040000000;
+    while (bit > 0) {
+        if ((y & bit) != 0) {
+            ans = (ans * x) % m;
+        }
+        if (bit > 1) {
+            bit = bit >> 1;
+            ans = (ans * ans) % m;
+        } else {
+            bit = bit >> 1;
+        }
+    }
+    return (int) ans;
+}

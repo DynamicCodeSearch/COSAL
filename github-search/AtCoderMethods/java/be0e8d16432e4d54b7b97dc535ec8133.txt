@@ -1,0 +1,10 @@
+
+Point2D getIntersectionPoint(Line l) {
+    double d = a * l.b - l.a * b;
+    if (d == 0.0) {
+        return null;
+    }
+    double x = (b * l.c - l.b * c) / d;
+    double y = (l.a * c - a * l.c) / d;
+    return new Point2D.Double(x, y);
+}

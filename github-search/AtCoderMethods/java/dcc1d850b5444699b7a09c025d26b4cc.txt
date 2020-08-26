@@ -1,0 +1,25 @@
+public static void solve(FastReader fs, PrintWriter pw) {
+    int n = fs.nextInt();
+    long x = fs.nextLong();
+    long[] tab = fs.nextLongArray(n);
+    long ans = 0;
+    long sum = tab[0];
+    if (tab[0] > x) {
+        ans += (tab[0] - x);
+        tab[0] = x;
+    }
+    for (int i = 1; i < n; i++) {
+        sum += tab[i];
+        if (tab[i] + tab[i - 1] > x) {
+            long diff = ((tab[i] + tab[i - 1]) - x);
+            ans += diff;
+            tab[i] -= diff;
+        }
+    }
+    
+    if (x == 0) {
+        pw.println(sum);
+    } else {
+        pw.println(ans);
+    }
+}

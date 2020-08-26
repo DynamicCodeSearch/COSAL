@@ -1,0 +1,45 @@
+void solve() throws NumberFormatException, IOException {
+    final ContestScanner in = new ContestScanner();
+    Writer out = new Writer();
+    int h = in.nextInt();
+    int w = in.nextInt();
+    int[][] dp = new int[h][w];
+    int[][] map = new int[h][w];
+    
+    long[] pos = new long[h * w];
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            map[i][j] = in.nextInt();
+            pos[i * w + j] = (long) map[i][j] << 32 | i << 11 | j;
+        
+        }
+    }
+    Arrays.sort(pos);
+    final int[] dy = { 1, 0, -1, 0 };
+    final int[] dx = { 0, 1, 0, -1 };
+    final int mod = 1000000007;
+    int sum = 0;
+    long mask = (1L << 32) - 1;
+    int maskS = (1 << 11) - 1;
+    for (int t = 0; t < pos.length; t++) {
+        long p = pos[t];
+        final int y = (int) ((p & mask) >> 11);
+        final int x = (int) ((p & mask) & maskS);
+        dp[y][x]++;
+        if (dp[y][x] >= mod)
+            dp[y][x] -= mod;
+        for (int i = 0; i < 4; i++) {
+            final int ny = y + dy[i];
+            final int nx = x + dx[i];
+            if (ny < 0 || ny >= h || nx < 0 || nx >= w || map[ny][nx] <= map[y][x])
+                continue;
+            dp[ny][nx] += dp[y][x];
+            if (dp[ny][nx] >= mod)
+                dp[ny][nx] -= mod;
+        }
+        sum += dp[y][x];
+        if (sum >= mod)
+            sum -= mod;
+    }
+    System.out.println(sum);
+}

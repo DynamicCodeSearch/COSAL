@@ -1,0 +1,22 @@
+def solve(N, A):
+    head_num = A[0]
+    count_minus = 0
+    ans = 1
+
+    for ind, a in enumerate(A):
+        if a == -1:
+            count_minus += 1
+            continue
+        else:
+            if count_minus == 0:
+                head_num = a
+                continue
+            else:
+                delta = a - head_num
+                num_n = delta + count_minus
+                num_k = count_minus
+                ans *= nCk(num_n, num_k)
+                head_num = a
+                count_minus = 0
+
+    return (ans % MOD)

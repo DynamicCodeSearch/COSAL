@@ -1,0 +1,12 @@
+def treasure_hant(n, m, t, th, graph, reverse_graph):
+    cost = dijkstras(graph)
+    reverse_cost = dijkstras(reverse_graph)
+
+    max_money = 0
+
+    for i in range(n):
+        m = (t - cost[i] - reverse_cost[i]) * th[i]
+        if m > max_money:
+            max_money = m
+
+    return max_money

@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    long a = sc.nextLong();
+    long max = 2000000;
+    max *= 1000000;
+    int k = sc.nextInt();
+    double kk = 1.0 / k;
+    double n;
+    if (k != 0) {
+        n = Math.log((max + kk) / (a + kk)) / Math.log(k + 1);
+        if (n != (long) n)
+            n += 1;
+    } else {
+        n = max - a;
+    }
+    System.out.println((long) n);
+}

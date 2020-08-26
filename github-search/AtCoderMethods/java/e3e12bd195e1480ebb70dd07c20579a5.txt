@@ -1,0 +1,17 @@
+static void solve() {
+    long l = ni(), x = ni(), y = ni(), s = ni(), d = ni();
+    double min = Double.POSITIVE_INFINITY;
+    {
+        long cl = d - s;
+        if (cl < 0)
+            cl += l;
+        min = Math.min(min, (double) cl / (y + x));
+    }
+    if (y - x > 0) {
+        long cl = s - d;
+        if (cl < 0)
+            cl += l;
+        min = Math.min(min, (double) cl / (y - x));
+    }
+    out.printf("%.14f\n", min);
+}

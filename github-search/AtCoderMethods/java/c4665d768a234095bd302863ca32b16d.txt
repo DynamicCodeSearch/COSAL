@@ -1,0 +1,37 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    PrintWriter out = new PrintWriter(System.out);
+    while (sc.hasNext()) {
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        LinkedList<query> que = new LinkedList<query>();
+        for (int i = 0; i < m; i++) {
+            int a = sc.nextInt();
+            int b = sc.nextInt();
+            int y = sc.nextInt();
+            a--;
+            b--;
+            que.add(new query(-1, a, b, y));
+        }
+        int q = sc.nextInt();
+        int[] ans = new int[q];
+        for (int i = 0; i < q; i++) {
+            int v = sc.nextInt();
+            v--;
+            int w = sc.nextInt();
+            que.add(new query(i, v, w));
+        }
+        UnionFind uf = new UnionFind(n);
+        Collections.sort(que);
+        for (Iterator<query> it = que.iterator(); it.hasNext(); ) {
+            query now = it.next();
+            if (now.id == -1)
+                uf.unite(now.a, now.b);
+            else {
+                ans[now.id] = uf.cnt(now.a);
+            }
+        }
+        for (int i = 0; i < q; i++) out.println(ans[i]);
+    }
+    out.flush();
+}

@@ -1,0 +1,228 @@
+### Py Tokens: also, set, ordered, setdefault, key, get, default, ordereddict, dict 
+
+### Py functions
+
+def setdefault(self, key, default=None):
+
+  if key in self:
+    return self[key]
+  self[key] = default
+  return default
+*********************************
+
+#### Score: 5.93339
+
+
+#### Java Tokens: exception, com, code, string, nullable, log, valueof, logger, another, integer, tohexstring, lenient, proguard, default, see, common, strings, identity, get, warning, create, hex, lenientformat, behavior, value, class, threw, getclass, identityhashcode, created, format, google, getlogger, getname, forcing, system, lenienttostring, inline, name, com.google.common.base.strings, fixed, avoid, objecttostring, tostring, hash, object, base 
+
+private static String lenientToString(@Nullable Object o) {
+    try {
+        return String.valueOf(o);
+    } catch (Exception e) {
+        
+        String objectToString = o.getClass().getName() + '@' + Integer.toHexString(System.identityHashCode(o));
+        
+        Logger.getLogger("com.google.common.base.Strings").log(WARNING, "Exception during lenientFormat for " + objectToString, e);
+        return "<" + objectToString + " threw " + e.getClass().getName() + ">";
+    }
+}
+*********************************
+
+#### Score: 5.21772
+
+
+#### Java Tokens: replacechars, replace, used, isempty, strlength, empty, mos, utils, modified, shorter, ignored, pre, method, abcba, index, str, input, longer, returns, searchchars, hello, quot, since, code, string, ayzya, delete, example, replacecharslength, characters, search, param, extra, builder, jelly, charat, set, abc, may, replaces, one, length, multiple, also, ayya, stringutils, equal, buf, deleted, yzx, stringbuilder, indexof, tostring, chars, append, normally 
+
+
+public static String replaceChars(final String str, final String searchChars, String replaceChars) {
+    if (isEmpty(str) || isEmpty(searchChars)) {
+        return str;
+    }
+    if (replaceChars == null) {
+        replaceChars = EMPTY;
+    }
+    boolean modified = false;
+    final int replaceCharsLength = replaceChars.length();
+    final int strLength = str.length();
+    final StringBuilder buf = new StringBuilder(strLength);
+    for (int i = 0; i < strLength; i++) {
+        final char ch = str.charAt(i);
+        final int index = searchChars.indexOf(ch);
+        if (index >= 0) {
+            modified = true;
+            if (index < replaceCharsLength) {
+                buf.append(replaceChars.charAt(index));
+            }
+        } else {
+            buf.append(ch);
+        }
+    }
+    if (modified) {
+        return buf.toString();
+    }
+    return str;
+}
+*********************************
+
+#### Score: 3.52267
+
+
+#### Java Tokens: exception, release, deprecated, javadocs, score, children, utils, href, text, https, api, enterprises,, algorithm, based, inc., hippo, zzzzzzzz, corporation, matches, pennsylvania, commons-text, input, jarowinklerdistance, childrens, must, matched, math, hello, illegalargumentexception, increased, sum, two, charsequence, commons, matching, result, characters, default, min, file, strings, indicates, get, &amp;, wikipedia, scaling, abc, initial, stringutils, default_scaling_factor, fly, char, first, argument, getjarowinklerdistance, corp, penncisylvnia, jaro, use, wiki, enterprises, second, aaapppp, either, apache, frog, find, fitness, percentage, html, weighted, children's, pre, mtp, illegal, sequence, hallo, measure, http, gym, elephant, fog, since, code, distance, string, amp, proper, transposed, param, similarity, winkler, factor, inc, gym., org, ant, implementation, center, https://commons.apache.org/proper/commons-text/javadocs/api-release/org/apache/commons/text/similarity/jarowinklerdistance.html, http://en.wikipedia.org/wiki/jaro%e2%80%93winkler_distance, round 
+
+
+@Deprecated
+public static double getJaroWinklerDistance(final CharSequence first, final CharSequence second) {
+    final double DEFAULT_SCALING_FACTOR = 0.1;
+    if (first == null || second == null) {
+        throw new IllegalArgumentException("Strings must not be null");
+    }
+    final int[] mtp = matches(first, second);
+    final double m = mtp[0];
+    if (m == 0) {
+        return 0D;
+    }
+    final double j = ((m / first.length() + m / second.length() + (m - mtp[1]) / m)) / 3;
+    final double jw = j < 0.7D ? j : j + Math.min(DEFAULT_SCALING_FACTOR, 1D / mtp[3]) * mtp[2] * (1D - j);
+    return Math.round(jw * 100.0D) / 100.0D;
+}
+*********************************
+
+#### Score: 3.48668
+
+
+#### Java Tokens: occurrences, code, string, counts, appears, isempty, abba, charsequence, empty, number, times, faster, tochararray, would, param, array, utils, generate, charat, given, pre, may, could, count, length, garbage, also, check, many, matches, look, str, stringutils, call, sequence, input, char, ups, returns, countmatches, since 
+
+
+public static int countMatches(final CharSequence str, final char ch) {
+    if (isEmpty(str)) {
+        return 0;
+    }
+    int count = 0;
+    
+    for (int i = 0; i < str.length(); i++) {
+        if (ch == str.charAt(i)) {
+            count++;
+        }
+    }
+    return count;
+}
+*********************************
+
+#### Score: 3.18924
+
+
+#### Java Tokens: allow, forwards, thru, string, beyond, charsequence, search, found, utils, end, ordinalindexof, charsequenceutils, set, last, initial, index_not_found, length, index, backwards, str, stringutils, sequence, searchstr, lastindex, decrement, char, lastindexof, step, indexof, ordinal 
+
+
+
+private static int ordinalIndexOf(final CharSequence str, final CharSequence searchStr, final int ordinal, final boolean lastIndex) {
+    if (str == null || searchStr == null || ordinal <= 0) {
+        return INDEX_NOT_FOUND;
+    }
+    if (searchStr.length() == 0) {
+        return lastIndex ? str.length() : 0;
+    }
+    int found = 0;
+    
+    
+    int index = lastIndex ? str.length() : INDEX_NOT_FOUND;
+    do {
+        if (lastIndex) {
+            
+            index = CharSequenceUtils.lastIndexOf(str, searchStr, index - 1);
+        } else {
+            
+            index = CharSequenceUtils.indexOf(str, searchStr, index + 1);
+        }
+        if (index < 0) {
+            return index;
+        }
+        found++;
+    } while (found < ordinal);
+    return index;
+}
+*********************************
+
+#### Score: 3.05628
+
+
+#### Java Tokens: zzabyycdxx, code, string, signature, containsany, charsequence, mos, characters, search, character, tochararray, found, array, param, utils, charsequenceutils, given, aba, pre, set, may, match, check, stringutils, sequence, input, contains, checks, $.#yf, char, searchchars, chars, since, changed 
+
+
+public static boolean containsAny(final CharSequence cs, final CharSequence searchChars) {
+    if (searchChars == null) {
+        return false;
+    }
+    return containsAny(cs, CharSequenceUtils.toCharArray(searchChars));
+}
+*********************************
+
+#### Score: 2.99429
+
+
+#### Java Tokens: indexofany, zzabyycdxx, code, string, signature, isempty, charsequence, empty, mos, characters, search, character, found, tochararray, array, param, utils, find, given, aba, pre, set, may, index_not_found, match, index, check, stringutils, sequence, input, char, searchchars, chars, first, since, changed 
+
+
+public static int indexOfAny(final CharSequence cs, final String searchChars) {
+    if (isEmpty(cs) || isEmpty(searchChars)) {
+        return INDEX_NOT_FOUND;
+    }
+    return indexOfAny(cs, searchChars.toCharArray());
+}
+*********************************
+
+#### Score: 2.90636
+
+
+#### Java Tokens: code, string, abcyx, use, link, stripped, isempty, strips, remove, empty, characters, character, strip, trim, param, utils, stripstart, xyz, end, defined, allows, similar, treated, pre, set, alternatively, abc, may, start, str, stringutils, controlled, input, stripchars, returns, whitespace, stripend, iswhitespace, chars 
+
+
+public static String strip(String str, final String stripChars) {
+    if (isEmpty(str)) {
+        return str;
+    }
+    str = stripStart(str, stripChars);
+    return stripEnd(str, stripChars);
+}
+*********************************
+
+#### Score: 2.90052
+
+
+#### Java Tokens: exception, code, string, available, substring, without, required, empty, characters, negative, len, param, utils, get, pre, abc, may, length, gets, str, stringutils, input, leftmost, left, returned 
+
+
+
+
+public static String left(final String str, final int len) {
+    if (str == null) {
+        return null;
+    }
+    if (len < 0) {
+        return EMPTY;
+    }
+    if (str.length() <= len) {
+        return str;
+    }
+    return str.substring(0, len);
+}
+*********************************
+
+#### Score: 2.90052
+
+
+#### Java Tokens: exception, code, string, available, substring, without, required, empty, characters, negative, len, param, utils, get, rightmost, pre, abc, may, length, right, gets, str, stringutils, input, returned 
+
+
+public static String right(final String str, final int len) {
+    if (str == null) {
+        return null;
+    }
+    if (len < 0) {
+        return EMPTY;
+    }
+    if (str.length() <= len) {
+        return str;
+    }
+    return str.substring(str.length() - len);
+}

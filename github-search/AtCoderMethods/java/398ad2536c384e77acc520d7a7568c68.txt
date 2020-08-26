@@ -1,0 +1,8 @@
+void dfs(List<Integer>[] tree, int u, int d) {
+    depth[u] = d;
+    dfs_order[cnt++] = u;
+    for (int v : tree[u]) if (depth[v] == -1) {
+        dfs(tree, v, d + 1);
+        dfs_order[cnt++] = u;
+    }
+}

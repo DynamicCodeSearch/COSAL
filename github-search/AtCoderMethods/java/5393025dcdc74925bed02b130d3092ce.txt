@@ -1,0 +1,12 @@
+
+private boolean bothSides(LineSegment s) {
+    double ccw1 = GeomUtils.ccw(x1, y1, s.x1, s.y1, x2, y2);
+    double ccw2 = GeomUtils.ccw(x1, y1, s.x2, s.y2, x2, y2);
+    if (ccw1 == 0 && ccw2 == 0) {
+        
+        return internal(s.x1, s.y1) || internal(s.x2, s.y2);
+    } else {
+        
+        return ccw1 * ccw2 <= 0;
+    }
+}

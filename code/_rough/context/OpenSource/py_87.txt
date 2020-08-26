@@ -1,0 +1,321 @@
+### Py Tokens: formatterfieldnamesplit, get, getfield, rest, getvalue, isattr, name, obj, attr, needed, value, field, getattr, fieldname, split, getitem, formatter, loop, first 
+
+### Py functions
+
+def get_field(self, field_name, args, kwargs):
+  first, rest = field_name._formatter_field_name_split()
+
+  obj = self.get_value(first, args, kwargs)
+
+
+
+  for is_attr, i in rest:
+    if is_attr:
+      obj = getattr(obj, i)
+    else:
+      obj = obj[i]
+
+  return obj, first
+*********************************
+
+#### Score: 7.20131
+
+
+#### Java Tokens: exception, com, code, string, nullable, log, valueof, logger, another, integer, tohexstring, lenient, proguard, default, see, common, strings, identity, get, warning, create, hex, lenientformat, behavior, value, class, threw, getclass, identityhashcode, created, format, google, getlogger, getname, forcing, system, lenienttostring, inline, name, com.google.common.base.strings, fixed, avoid, objecttostring, tostring, hash, object, base 
+
+private static String lenientToString(@Nullable Object o) {
+    try {
+        return String.valueOf(o);
+    } catch (Exception e) {
+        
+        String objectToString = o.getClass().getName() + '@' + Integer.toHexString(System.identityHashCode(o));
+        
+        Logger.getLogger("com.google.common.base.Strings").log(WARNING, "Exception during lenientFormat for " + objectToString, e);
+        return "<" + objectToString + " threw " + e.getClass().getName() + ">";
+    }
+}
+*********************************
+
+#### Score: 6.60472
+
+
+#### Java Tokens: css, indexofdifference, exceeding, vary, nulls, arrayutils, integer, empty, robot, len, utils, find, loop, xyz, allstringsnull, stringpos, shorteststrlen, shortest, pre, longeststrlen, comparison, sure, index_not_found, avoids, bottom, containing, index, diff, handle, arraypos, str, sequence, entries, null, lists, difference, returns, math, position, begin, since, changed, firstdiff, checking, longest, code, string, signature, sequences, charsequence, example, across, characters, found, min, strings, array, pos, param, get, value, comparisonchar, abxyz, make, charat, anystringnull, compared, abc, may, max, abcde, length, arraylen, charsequences, compares, differ, stringutils, equal, lengths, machine, char, time, getlength, first, max_value 
+
+
+public static int indexOfDifference(final CharSequence... css) {
+    if (ArrayUtils.getLength(css) <= 1) {
+        return INDEX_NOT_FOUND;
+    }
+    boolean anyStringNull = false;
+    boolean allStringsNull = true;
+    final int arrayLen = css.length;
+    int shortestStrLen = Integer.MAX_VALUE;
+    int longestStrLen = 0;
+    
+    for (final CharSequence cs : css) {
+        if (cs == null) {
+            anyStringNull = true;
+            shortestStrLen = 0;
+        } else {
+            allStringsNull = false;
+            shortestStrLen = Math.min(cs.length(), shortestStrLen);
+            longestStrLen = Math.max(cs.length(), longestStrLen);
+        }
+    }
+    
+    if (allStringsNull || longestStrLen == 0 && !anyStringNull) {
+        return INDEX_NOT_FOUND;
+    }
+    
+    if (shortestStrLen == 0) {
+        return 0;
+    }
+    
+    int firstDiff = -1;
+    for (int stringPos = 0; stringPos < shortestStrLen; stringPos++) {
+        final char comparisonChar = css[0].charAt(stringPos);
+        for (int arrayPos = 1; arrayPos < arrayLen; arrayPos++) {
+            if (css[arrayPos].charAt(stringPos) != comparisonChar) {
+                firstDiff = stringPos;
+                break;
+            }
+        }
+        if (firstDiff != -1) {
+            break;
+        }
+    }
+    if (firstDiff == -1 && shortestStrLen != longestStrLen) {
+        
+        return shortestStrLen;
+    }
+    return firstDiff;
+}
+*********************************
+
+#### Score: 6.11933
+
+
+#### Java Tokens: exception, tocharsetname, encode, charset, named, code, string, use, link, arrayutils, manner, empty, result, see, unsupported, array, param, utils, get, otherwise, empty_byte_array, byte, thrown, getbytes, encoding, stringutils, input, calls, bytes, name, safe, charsets, null-safe, unsupportedencodingexception, supported, since 
+
+
+public static byte[] getBytes(final String string, final String charset) throws UnsupportedEncodingException {
+    return string == null ? ArrayUtils.EMPTY_BYTE_ARRAY : string.getBytes(Charsets.toCharsetName(charset));
+}
+*********************************
+
+#### Score: 5.61480
+
+
+#### Java Tokens: joins, small, added, use, objects, building, empty, zero, iterator, character, java, utils, delimiter, string_builder_size, join, hasnext, buffer, treated, containing, handle, list, separator, input, size, examples, object, next, code, string, probably, provided, values, link, two, see, param, builder, together, may, joined, one, stringutils, single, buf, obj, elements, stringbuilder, tostring, first, append 
+
+
+public static String join(final Iterator<?> iterator, final String separator) {
+    
+    if (iterator == null) {
+        return null;
+    }
+    if (!iterator.hasNext()) {
+        return EMPTY;
+    }
+    final Object first = iterator.next();
+    if (!iterator.hasNext()) {
+        return Objects.toString(first, "");
+    }
+    
+    
+    final StringBuilder buf = new StringBuilder(STRING_BUILDER_SIZE);
+    if (first != null) {
+        buf.append(first);
+    }
+    while (iterator.hasNext()) {
+        if (separator != null) {
+            buf.append(separator);
+        }
+        final Object obj = iterator.next();
+        if (obj != null) {
+            buf.append(obj);
+        }
+    }
+    return buf.toString();
+}
+*********************************
+
+#### Score: 5.45407
+
+
+#### Java Tokens: splits, used, substrings, zero, number, split, utils, limit, text, worker, treated, pre, including, last, includes, separator, str, input, returns, parsed, code, string, separatorchars, provided, specified, ab:cd:ef, characters, negative, found, strings, splitworker, array, param, delimiters, included, value, include, may, max, one, length, delimited, adjacent, parse, stringutils, elements, maximum, cd:ef, returned, whitespace, implies, separators, chars, first 
+
+
+public static String[] split(final String str, final String separatorChars, final int max) {
+    return splitWorker(str, separatorChars, max, false);
+}
+*********************************
+
+#### Score: 5.41596
+
+
+#### Java Tokens: joins, small, added, use, objects, building, empty, zero, iterator, character, java, utils, delimiter, string_builder_size, represented, join, hasnext, buffer, containing, handle, list, separator, input, size, null, examples, object, since, next, code, string, probably, provided, values, link, two, see, strings, param, builder, iteration, together, may, within, joined, one, stringutils, single, buf, obj, elements, stringbuilder, tostring, first, append 
+
+
+public static String join(final Iterator<?> iterator, final char separator) {
+    
+    if (iterator == null) {
+        return null;
+    }
+    if (!iterator.hasNext()) {
+        return EMPTY;
+    }
+    final Object first = iterator.next();
+    if (!iterator.hasNext()) {
+        return Objects.toString(first, EMPTY);
+    }
+    
+    
+    final StringBuilder buf = new StringBuilder(STRING_BUILDER_SIZE);
+    if (first != null) {
+        buf.append(first);
+    }
+    while (iterator.hasNext()) {
+        buf.append(separator);
+        final Object obj = iterator.next();
+        if (obj != null) {
+            buf.append(obj);
+        }
+    }
+    return buf.toString();
+}
+*********************************
+
+#### Score: 5.18020
+
+
+#### Java Tokens: splits, used, substrings, empty, zero, number, split, utils, limit, text, worker, treated, pre, including, last, created, includes, preserve, separator, str, input, returns, parsed, preserving, since, code, string, separatorchars, provided, specified, ab:cd:ef, characters, negative, found, strings, splitworker, array, param, delimiters, tokens, included, value, include, may, max, one, length, delimited, adjacent, parse, splitpreservealltokens, stringutils, elements, maximum, cd:ef, returned, whitespace, implies, separators, chars, first 
+
+
+public static String[] splitPreserveAllTokens(final String str, final String separatorChars, final int max) {
+    return splitWorker(str, separatorChars, max, true);
+}
+*********************************
+
+#### Score: 5.02022
+
+
+#### Java Tokens: exception, counts, javadocs, upper, gusfield, discussion, trees, character, would, sizes, utils, api, calculate, using, hippo, edit, commons-text, single-dimensional, input, size, left, difference, must, starting, illegalargumentexception, another, comes, turn, immediately, matrix, two, charsequence, example, result, see, current, min, found, jth, one, possible, right, stringutils, single, leftmost, indices, abs, decreases, returning, assist, needing, run, empty, compute, either, apache, swapped, swapping, loop, stripe, fills, ignored, pre, ensure, need, modification, suppose, iterations, http://www.merriampark.com/ld.htm, leads, allocating, http, elephant, subtlety, memory, distance, string, needed, changes, proper, back, negative, param, similarity, ignore, placeholder, charat, htm, org, bound, length, way, target, levenshteindistance, time, max_value, release, deprecated, usage, entire, number, deletion, tmp, https://commons.apache.org/proper/commons-text/javadocs/api-release/org/apache/commons/text/similarity/levenshteindistance.html, href, text, https, rightmost, greater, shorter, reduce, large, lower, forth, horizontally, following, math, arrays, requires, algorithms, iterates, doubling, getlevenshteindistance, consume, sequences, cell, commons, strings, top, computes, get, member, copy, t_j, table, may, max, change, lead, additionally, char, width, chas, minimum, first, com, argument, dimensional, minor, emerick, use, threshold, integer, aaapppp, second, dan, find, www, html, different, border, always, swap, merriampark, follows, less, constrain, fill, illegal, sequence, entry, entries, insertion, since, levenshtein, boundary, concrete, note, substitution, code, values, necessarily, running, computing, array, diagonally, unbounded, value, allows, cost, implementation, also, instead, diagonal 
+
+
+@Deprecated
+public static int getLevenshteinDistance(CharSequence s, CharSequence t, final int threshold) {
+    if (s == null || t == null) {
+        throw new IllegalArgumentException("Strings must not be null");
+    }
+    if (threshold < 0) {
+        throw new IllegalArgumentException("Threshold must not be negative");
+    }
+    
+    
+    int n = s.length();
+    
+    int m = t.length();
+    
+    if (n == 0) {
+        return m <= threshold ? m : -1;
+    } else if (m == 0) {
+        return n <= threshold ? n : -1;
+    } else if (Math.abs(n - m) > threshold) {
+        
+        return -1;
+    }
+    if (n > m) {
+        
+        final CharSequence tmp = s;
+        s = t;
+        t = tmp;
+        n = m;
+        m = t.length();
+    }
+    
+    int[] p = new int[n + 1];
+    
+    int[] d = new int[n + 1];
+    
+    int[] _d;
+    
+    final int boundary = Math.min(n, threshold) + 1;
+    for (int i = 0; i < boundary; i++) {
+        p[i] = i;
+    }
+    
+    
+    Arrays.fill(p, boundary, p.length, Integer.MAX_VALUE);
+    Arrays.fill(d, Integer.MAX_VALUE);
+    
+    for (int j = 1; j <= m; j++) {
+        
+        final char t_j = t.charAt(j - 1);
+        d[0] = j;
+        
+        final int min = Math.max(1, j - threshold);
+        final int max = j > Integer.MAX_VALUE - threshold ? n : Math.min(n, j + threshold);
+        
+        if (min > max) {
+            return -1;
+        }
+        
+        if (min > 1) {
+            d[min - 1] = Integer.MAX_VALUE;
+        }
+        
+        for (int i = min; i <= max; i++) {
+            if (s.charAt(i - 1) == t_j) {
+                
+                d[i] = p[i - 1];
+            } else {
+                
+                d[i] = 1 + Math.min(Math.min(d[i - 1], p[i]), p[i - 1]);
+            }
+        }
+        
+        _d = p;
+        p = d;
+        d = _d;
+    }
+    
+    if (p[n] <= threshold) {
+        return p[n];
+    }
+    return -1;
+}
+*********************************
+
+#### Score: 4.97987
+
+
+#### Java Tokens: splits, code, string, gettype, foo, asfrules, rules, type, ab:cd:ef, number5, characters, number, character, bar, split, java, foobar, asfr, strings, param, array, utils, get, tokens, lang, pre, may, groups, splitbycharactertype, foo200bar, str, stringutils, input, 200, ules, asf, parsed, returned, complete, contiguous, since 
+
+
+public static String[] splitByCharacterType(final String str) {
+    return splitByCharacterType(str, false);
+}
+*********************************
+
+#### Score: 4.66615
+
+
+#### Java Tokens: code, string, occurrence, isempty, substring, empty, mos, search, found, pos, param, utils, get, pre, abc, may, abcba, index_not_found, nothing, index, separator, gets, str, stringutils, input, substringbefore, returned, indexof, first, since 
+
+
+
+
+public static String substringBefore(final String str, final String separator) {
+    if (isEmpty(str) || separator == null) {
+        return str;
+    }
+    if (separator.isEmpty()) {
+        return EMPTY;
+    }
+    final int pos = str.indexOf(separator);
+    if (pos == INDEX_NOT_FOUND) {
+        return str;
+    }
+    return str.substring(0, pos);
+}

@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int N = scan.nextInt();
+    boolean[][] panel = new boolean[N][N];
+    for (int i = 0; i < N; i++) {
+        String line = scan.next();
+        for (int j = 0; j < N; j++) {
+            panel[i][j] = line.charAt(j) == 'o' ? true : false;
+        }
+    }
+    for (int i = 0; i < N; i++) {
+        for (int j = N - 1; 0 <= j; j--) {
+            if (panel[j][i]) {
+                System.out.print('o');
+            } else {
+                System.out.print('x');
+            }
+        }
+        System.out.println();
+    }
+    scan.close();
+}

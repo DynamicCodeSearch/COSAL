@@ -1,0 +1,6 @@
+public boolean isSpaceChar(int c) {
+    if (filter != null) {
+        return filter.isSpaceChar(c);
+    }
+    return isWhitespace(c);
+}

@@ -1,0 +1,23 @@
+public void solve(InputReader in, PrintWriter out) {
+    final int mod = (int) (1e9 + 7);
+    int n = in.nextInt();
+    int m = in.nextInt();
+    int mx = Math.max(n, m);
+    long fact = 1;
+    long fn = 1, fm = 1;
+    for (int i = 1; i <= mx; ++i) {
+        fact = fact * i % mod;
+        if (i == n)
+            fn = fact;
+        if (i == m)
+            fm = fact;
+    }
+    
+    long ans = 0;
+    if (n == m) {
+        ans = (2 * fn % mod) * fm % mod;
+    } else if (n == m + 1 || n + 1 == m) {
+        ans = fn * fm % mod;
+    }
+    out.println(ans);
+}

@@ -1,0 +1,10 @@
+public static long power(long x, long k) {
+    if (k == 1) {
+        return x;
+    } else if (k % 2 == 0) {
+        long a = power(x, k / 2);
+        return a * a % MOD;
+    } else {
+        return power(x, k - 1) * x % MOD;
+    }
+}

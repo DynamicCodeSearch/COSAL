@@ -1,0 +1,29 @@
+
+@SuppressWarnings("unchecked")
+public static void main(String[] args) {
+    
+    Scanner scan = new Scanner(System.in);
+    int N = Integer.parseInt(scan.next());
+    ini = new ArrayList[N];
+    V = new Heirotree[N];
+    used = new boolean[N];
+    for (int i = 0; i < N; i++) {
+        ini[i] = new ArrayList<Integer>();
+    }
+    for (int i = 0; i < N - 1; i++) {
+        int x = Integer.parseInt(scan.next()) - 1;
+        int y = Integer.parseInt(scan.next()) - 1;
+        ini[x].add(y);
+        ini[y].add(x);
+    }
+    maketree(0);
+    PrintWriter out = new PrintWriter(System.out);
+    int Q = scan.nextInt();
+    for (int i = 0; i < Q; i++) {
+        int a = Integer.parseInt(scan.next()) - 1;
+        int b = Integer.parseInt(scan.next()) - 1;
+        int lca = LCA(a, b);
+        out.println(V[a].rank + V[b].rank - 2 * lca + 1);
+    }
+    out.flush();
+}

@@ -1,0 +1,25 @@
+static void checkDist(int[][] dist, Queue<Zahyo> queue, char[][] status) {
+    Zahyo nowZahyo = queue.poll();
+    int y = nowZahyo.y;
+    int x = nowZahyo.x;
+    if (y == GOAL_Y - 1 && x == GOAL_X - 1) {
+        System.out.println(dist[y][x]);
+        return;
+    }
+    if (status[y - 1][x] == '.' && dist[y - 1][x] == -1) {
+        dist[y - 1][x] = dist[y][x] + 1;
+        queue.offer(new Zahyo(y - 1, x));
+    }
+    if (status[y + 1][x] == '.' && dist[y + 1][x] == -1) {
+        dist[y + 1][x] = dist[y][x] + 1;
+        queue.offer(new Zahyo(y + 1, x));
+    }
+    if (status[y][x - 1] == '.' && dist[y][x - 1] == -1) {
+        dist[y][x - 1] = dist[y][x] + 1;
+        queue.offer(new Zahyo(y, x - 1));
+    }
+    if (status[y][x + 1] == '.' && dist[y][x + 1] == -1) {
+        dist[y][x + 1] = dist[y][x] + 1;
+        queue.offer(new Zahyo(y, x + 1));
+    }
+}

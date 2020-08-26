@@ -1,0 +1,15 @@
+def dfs(s,idx):
+    if idx==len(s):
+        print("YES")
+        exit()
+    if idx>len(s):
+        return
+    if idx+5<=len(s) and s[idx:idx+5]=="dream":
+        dfs(s,idx+5)
+    if idx+7<=len(s) and s[idx:idx+7]=="dreamer":
+        dfs(s,idx+7)
+    if idx+5<=len(s) and s[idx:idx+5]=="erase":
+        dfs(s,idx+5)
+    if idx+6<=len(s) and s[idx:idx+6]=="eraser":
+        dfs(s,idx+6)
+    return

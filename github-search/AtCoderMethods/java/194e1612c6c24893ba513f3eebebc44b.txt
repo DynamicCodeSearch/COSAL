@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int[] inputs = new int[3];
+    for (int i = 0; i < 3; i++) {
+        inputs[i] = sc.nextInt();
+    }
+    int diffCount = 0;
+    int diffLength = inputs[0];
+    for (int i = 1; i < 3; i++) {
+        if (inputs[0] == inputs[i]) {
+        } else {
+            diffCount += 1;
+            diffLength = inputs[i];
+        }
+    }
+    if (diffCount == 2) {
+        System.out.println(inputs[0]);
+    } else if (diffCount == 1) {
+        System.out.println(diffLength);
+    } else {
+        System.out.println(inputs[0]);
+    }
+}

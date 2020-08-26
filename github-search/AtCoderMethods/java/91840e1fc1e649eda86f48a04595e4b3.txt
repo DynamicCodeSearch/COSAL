@@ -1,0 +1,31 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    int number = in.readInt();
+    List<Integer> primeList = getPrimes(number);
+    MyIntBasedPair[] numberWithExponent = new MyIntBasedPair[primeList.size()];
+    int i = 0;
+    for (Integer prime : primeList) {
+        int exponent = 0;
+        int div = prime;
+        while (true) {
+            long x = number / div;
+            if (x > 0) {
+                exponent += x;
+                div = prime * div;
+            } else {
+                break;
+            }
+        }
+        numberWithExponent[i++] = new MyIntBasedPair(prime, exponent);
+    }
+    long result = 1;
+    for (MyIntBasedPair myIntBasedPair : numberWithExponent) {
+        result = result * (myIntBasedPair.getSecond() + 1);
+        while (result > MOD) {
+            result -= MOD;
+        }
+        while (result < 0) {
+            result += MOD;
+        }
+    }
+    out.printLine(result % MOD);
+}

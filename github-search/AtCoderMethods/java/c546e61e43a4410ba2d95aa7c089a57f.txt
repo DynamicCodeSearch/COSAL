@@ -1,0 +1,12 @@
+static int dp(int i, int j) {
+    if (dp[i][j] > 0)
+        return dp[i][j];
+    int result = 1;
+    for (int k = 0; k < 4; k++) {
+        int _i = i + di[k];
+        int _j = j + dj[k];
+        if (a[i][j] < a[_i][_j])
+            result = (result + dp(_i, _j)) % MOD;
+    }
+    return dp[i][j] = result;
+}

@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int q = sc.nextInt();
+    List<Integer> suretu = new ArrayList<Integer>();
+    for (int i = 0; i < n; i++) {
+        suretu.add(0);
+    }
+    List<Integer[]> array = new ArrayList<Integer[]>();
+    for (int i = 0; i < q; i++) {
+        Integer[] hairetu = new Integer[3];
+        hairetu[0] = sc.nextInt();
+        hairetu[1] = sc.nextInt();
+        hairetu[2] = sc.nextInt();
+        array.add(hairetu);
+    }
+    for (int i = 0; i < q; i++) {
+        for (int j = array.get(i)[0]; j <= array.get(i)[1]; j++) {
+            suretu.set(j - 1, array.get(i)[2]);
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        System.out.println(suretu.get(i));
+    }
+}

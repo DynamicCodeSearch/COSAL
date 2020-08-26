@@ -1,0 +1,46 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    Printer pr = new Printer(System.out);
+    final int MOD = 1_000_000_007;
+    int n = sc.nextInt();
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    PriorityQueue<Long> pq = new PriorityQueue<>();
+    long max = 0;
+    for (int i = 0; i < n; i++) {
+        long tmp = sc.nextInt();
+        pq.add(tmp);
+        max = Math.max(max, tmp);
+    }
+    int i;
+    for (i = 0; i < b && a > 1; i++) {
+        long e = pq.peek();
+        if (e * a > max) {
+            break;
+        } else {
+            pq.remove();
+            pq.add(e * a);
+        }
+    }
+    if (a == 1 || i == b) {
+        for (int j = 0; j < n; j++) {
+            pr.println(pq.remove() % MOD);
+        }
+    } else {
+        List<Long> ret = new ArrayList<>(pq);
+        Collections.sort(ret);
+        int m = b - i;
+        for (int j = 0; j < m % n; j++) {
+            ret.set(j, ret.get(j) * a % MOD);
+        }
+        long pow = pow(a, m / n);
+        for (int j = m % n; j < n; j++) {
+            pr.println(ret.get(j) * pow % MOD);
+        }
+        for (int j = 0; j < m % n; j++) {
+            pr.println(ret.get(j) * pow % MOD);
+        }
+    }
+    pr.close();
+    sc.close();
+}

@@ -1,0 +1,32 @@
+public static void main(String[] args) throws IOException {
+    Scanner sc = new Scanner(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int N = sc.nextInt(), x[] = new int[N], y[] = new int[N];
+    TreeSet<Pair> xCoords = new TreeSet<>(), yCoords = new TreeSet<>();
+    for (int i = 0; i < N; ++i) {
+        xCoords.add(new Pair(x[i] = sc.nextInt(), i));
+        yCoords.add(new Pair(y[i] = sc.nextInt(), i));
+    }
+    long ans = 0;
+    PriorityQueue<Pair> pq = new PriorityQueue<>();
+    boolean[] vis = new boolean[N];
+    pq.add(new Pair(0, 0));
+    while (!pq.isEmpty()) {
+        Pair u = pq.remove();
+        if (vis[u.idx])
+            continue;
+        vis[u.idx] = true;
+        ans += u.coord;
+        Pair ux = new Pair(x[u.idx], u.idx), uy = new Pair(y[u.idx], u.idx);
+        xCoords.remove(ux);
+        yCoords.remove(uy);
+        Pair xBefore = xCoords.floor(ux), xAfter = xCoords.ceiling(ux);
+        Pair yBefore = yCoords.floor(uy), yAfter = yCoords.ceiling(uy);
+        checkAndAdd(pq, vis, x, xBefore, ux);
+        checkAndAdd(pq, vis, x, xAfter, ux);
+        checkAndAdd(pq, vis, y, yBefore, uy);
+        checkAndAdd(pq, vis, y, yAfter, uy);
+    }
+    out.println(ans);
+    out.close();
+}

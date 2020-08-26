@@ -1,0 +1,16 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] input;
+    int[] s = new int[3];
+    int[] e = new int[3];
+    for (int i = 0; i < 3; i++) {
+        input = br.readLine().split(" ");
+        s[i] = Integer.parseInt(input[0]);
+        e[i] = Integer.parseInt(input[1]);
+    }
+    int sum = 0;
+    for (int i = 0; i < 3; i++) {
+        sum = sum + s[i] * e[i] / 10;
+    }
+    System.out.println(sum);
+}

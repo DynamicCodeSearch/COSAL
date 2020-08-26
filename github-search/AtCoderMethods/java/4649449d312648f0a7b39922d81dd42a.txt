@@ -1,0 +1,34 @@
+public static void main(String[] args) {
+    
+    final int n;
+    final int q;
+    final int[][] a;
+    Scanner scan = new Scanner(System.in);
+    n = scan.nextInt();
+    q = scan.nextInt();
+    a = new int[q][3];
+    for (int i = 0; i < q; i++) {
+        for (int j = 0; j < 3; j++) {
+            a[i][j] = scan.nextInt();
+        }
+    }
+    int[] ans = new int[n];
+    for (int i : ans) {
+        ans[i] = 0;
+    }
+    int[] col = new int[n];
+    int l;
+    int r;
+    int t;
+    for (int i = 0; i < q; i++) {
+        l = a[i][0];
+        r = a[i][1];
+        t = a[i][2];
+        for (int j = l - 1; j < r; j++) {
+            ans[j] = t;
+        }
+    }
+    for (int i : ans) {
+        System.out.println(i);
+    }
+}

@@ -1,0 +1,11 @@
+def main():
+    L = I()
+    b = [I() for _ in range(L)]
+    a = [0] * L
+    for i in range(1,L):
+        a[i] = b[i-1] ^ a[i-1]
+
+    if a[0] ^ a[-1] != b[-1]:
+        return -1
+
+    return '\n'.join(map(str,a))

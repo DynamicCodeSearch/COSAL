@@ -1,0 +1,39 @@
+static boolean dfs(int y, char[][] board) {
+    
+    int put = 0;
+    if (y == 8)
+        return true;
+    int target = -1;
+    for (int i = 0; i < 8; i++) {
+        if (board[y][i] == 'Q') {
+            target = i;
+            put++;
+        }
+    }
+    if (put > 1) {
+        return false;
+    }
+    if (target != -1) {
+        if (isPuttable(y, target, board)) {
+            if (dfs(y + 1, board)) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    } else {
+        for (int i = 0; i < 8; i++) {
+            if (isPuttable(y, i, board)) {
+                board[y][i] = 'Q';
+                if (!dfs(y + 1, board)) {
+                    board[y][i] = '.';
+                } else {
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}

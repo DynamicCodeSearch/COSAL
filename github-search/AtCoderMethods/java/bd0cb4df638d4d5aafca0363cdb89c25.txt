@@ -1,0 +1,10 @@
+public static long[] generatePowers(long base, int count, long mod) {
+    long[] result = new long[count];
+    if (count != 0) {
+        result[0] = 1 % mod;
+    }
+    for (int i = 1; i < count; i++) {
+        result[i] = result[i - 1] * base % mod;
+    }
+    return result;
+}

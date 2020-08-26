@@ -1,0 +1,21 @@
+	def __init__(self, edge, start, length):
+		self.start=start
+  self.length=length
+  self.distance=[float("inf") for x in range(self.length)]
+  self.distance[start]=0
+  self.prev=[0 for x in range(self.length)]
+  self.prev[start]=-1
+  self.solvable=True
+  def update():
+			for i in edge:
+				d=self.distance[i[0]]+i[2]
+    if d<self.distance[i[1]]:
+					self.distance[i[1]]=d 
+     self.prev[i[1]]=i[0]
+  for i in range(length-1):
+			update()
+  memo=self.distance[-1]
+  for i in range(length-1):
+			update()
+  if memo!=self.distance[-1]:
+			self.solvable=False

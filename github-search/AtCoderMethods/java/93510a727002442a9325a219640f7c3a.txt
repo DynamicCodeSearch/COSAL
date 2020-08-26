@@ -1,0 +1,16 @@
+private void solve(FastScanner in, PrintWriter out) {
+    long K = in.nextLong();
+    long N = 50;
+    long rest = K % N;
+    long x = K / N;
+    out.println(N);
+    for (int i = 0; i < rest; i++) {
+        long a = N - 1 + (x + 1) * (N + 1) - K;
+        out.print(a + " ");
+    }
+    for (int i = 0; i < N - rest; i++) {
+        long a = N - 1 + x * (N + 1) - K;
+        out.print(a + " ");
+    }
+    out.println();
+}

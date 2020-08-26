@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    String a = sc.next();
+    String b = sc.next();
+    int flag = 0;
+    if (a.length() > b.length())
+        flag = 1;
+    else if (a.length() < b.length())
+        flag = -1;
+    else {
+        for (int i = 0; i < a.length(); i++) {
+            int aCur = a.charAt(i) - '0';
+            int bCur = b.charAt(i) - '0';
+            if (aCur > bCur) {
+                flag = 1;
+                break;
+            } else if (aCur < bCur) {
+                flag = -1;
+                break;
+            }
+        }
+    }
+    if (flag == 1) {
+        System.out.println("GREATER");
+    } else if (flag == 0) {
+        System.out.println("EQUAL");
+    } else {
+        System.out.println("LESS");
+    }
+    sc.close();
+}

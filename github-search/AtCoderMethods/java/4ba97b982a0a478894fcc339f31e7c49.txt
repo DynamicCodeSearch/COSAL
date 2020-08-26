@@ -1,0 +1,8 @@
+static long C(int n, int r) {
+    long f = fact[n];
+    f *= pow(fact[r], mod - 2);
+    f %= mod;
+    f *= pow(fact[n - r], mod - 2);
+    f %= mod;
+    return f;
+}

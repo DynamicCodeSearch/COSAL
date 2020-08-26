@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int[] input = new int[5];
+    for (int i = 0; i < 5; i++) {
+        input[i] = sc.nextInt();
+    }
+    ArrayList<Integer> sum = new ArrayList<Integer>();
+    for (int i = 0; i < 5; i++) {
+        for (int j = i + 1; j < 5; j++) {
+            for (int k = j + 1; k < 5; k++) {
+                sum.add(input[i] + input[j] + input[k]);
+            }
+        }
+    }
+    Collections.sort(sum);
+    int ans = 0;
+    int min = 400;
+    int rank = 0;
+    for (int i = sum.size() - 1; i >= 0; i--) {
+        if (min > sum.get(i)) {
+            min = sum.get(i);
+            rank++;
+        }
+        if (rank == 3) {
+            ans = min;
+            break;
+        }
+    }
+    System.out.println(ans);
+}

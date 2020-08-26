@@ -1,0 +1,19 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int m = in.nextInt();
+    Set<Integer>[] arr = new TreeSet[n + 1];
+    for (int i = 1; i <= n; ++i) arr[i] = new TreeSet<>();
+    for (int i = 0; i < m; ++i) {
+        int x = in.nextInt();
+        int y = in.nextInt();
+        arr[x].add(y);
+        arr[y].add(x);
+    }
+    for (int e : arr[1]) {
+        if (arr[n].contains(e)) {
+            out.println("POSSIBLE");
+            return;
+        }
+    }
+    out.println("IMPOSSIBLE");
+}

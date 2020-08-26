@@ -1,0 +1,19 @@
+def solve(h, w):
+	ans = h*w
+
+ for i in range(1, h):
+		sa = i*w
+
+  sb1 = (h-i)//2*w
+  sc1 = h*w - sa - sb1
+
+  sb2 = (h-i)*(w//2)
+  sc2 = h*w - sa - sb2
+
+  ans = min(
+   ans,
+   max(sa, sb1, sc1) - min(sa, sb1, sc1),
+   max(sa, sb2, sc2) - min(sa, sb2, sc2)
+   )
+
+ return ans

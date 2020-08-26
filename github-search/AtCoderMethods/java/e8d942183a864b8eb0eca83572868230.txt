@@ -1,0 +1,8 @@
+Treap<T> rotateLeft() {
+    final Treap<T> newRoot = right;
+    right = right.left;
+    newRoot.left = this;
+    update();
+    newRoot.update();
+    return newRoot;
+}

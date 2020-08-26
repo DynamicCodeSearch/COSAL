@@ -1,0 +1,24 @@
+def solve():
+    n = int(input())
+    qo = collections.deque()
+    qe = collections.deque()
+
+    for i, a in enumerate(map(int, input().split())):
+        if i % 2 == 0:
+            qe.append(a)
+        else:
+            qo.append(a)
+
+    r = []
+
+    if n % 2 == 0:
+        while qo:
+            r.append(qo.pop())
+        while qe:
+            r.append(qe.popleft())
+    else:
+        while qe:
+            r.append(qe.pop())
+        while qo:
+            r.append(qo.popleft())
+    print(" ".join(map(str, r)))

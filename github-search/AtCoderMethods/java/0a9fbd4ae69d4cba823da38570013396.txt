@@ -1,0 +1,17 @@
+boolean ok(int n, char[] c, StringBuilder s) {
+    String ss = s.toString() + s.toString();
+    for (int i = 1; i < n * 2 - 1; i++) {
+        if (ss.charAt(i) == 'S') {
+            if (c[i % n] == 'o' && !(ss.charAt(i - 1) == ss.charAt(i + 1)))
+                return false;
+            else if (c[i % n] == 'x' && !(ss.charAt(i - 1) != ss.charAt(i + 1)))
+                return false;
+        } else {
+            if (c[i % n] == 'o' && !(ss.charAt(i - 1) != ss.charAt(i + 1)))
+                return false;
+            else if (c[i % n] == 'x' && !(ss.charAt(i - 1) == ss.charAt(i + 1)))
+                return false;
+        }
+    }
+    return true;
+}

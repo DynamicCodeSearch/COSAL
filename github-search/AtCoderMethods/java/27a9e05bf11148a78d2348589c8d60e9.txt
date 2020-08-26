@@ -1,0 +1,15 @@
+public void writeInt(int num) throws IOException {
+    int byteWriteOffset = byteBuf.length;
+    if (num == 0) {
+        byteBuf[--byteWriteOffset] = ZERO;
+    } else {
+        int numAbs = Math.abs(num);
+        while (numAbs > 0) {
+            byteBuf[--byteWriteOffset] = (byte) ((numAbs % 10) + ZERO);
+            numAbs /= 10;
+        }
+        if (num < 0)
+            byteBuf[--byteWriteOffset] = MINUS;
+    }
+    os.write(byteBuf, byteWriteOffset, byteBuf.length - byteWriteOffset);
+}

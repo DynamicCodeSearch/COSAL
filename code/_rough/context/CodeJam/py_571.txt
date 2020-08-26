@@ -1,0 +1,351 @@
+### Py Tokens: append, max, profit, xrange, min, best 
+
+### Py functions
+
+def func_0c9c07a0804f4c1aa8196d464a0992c8(b, x):
+    x.append(10 ** 100)
+    m = [0] * 37
+    best = 0.0
+    for i in xrange(37):
+        if x[i] == x[i + 1]:
+            continue
+        while x[i] < x[i + 1] and b >= 0:
+            xx = x[:]
+            mm = m[:]
+            for j in xrange(min(i + 1, b)):
+                xx[i - j] += 1
+                mm[i - j] += 1
+                best = max(best, profit(xx, mm))
+            z = max(x[i + 1] - x[i] - 1, 1)
+            for j in xrange(i + 1):
+                if b < j + 1:
+                    continue
+                zz = min((b - j - 1) // (i + 1) + 1, z)
+                if zz <= 1:
+                    continue
+                xx = x[:]
+                mm = m[:]
+                for k in xrange(i + 1):
+                    q = zz if k <= j else zz - 1
+                    xx[i - k] += q
+                    mm[i - k] += q
+                best = max(best, profit(xx, mm))
+            for j in xrange(i + 1):
+                b -= z
+                x[i - j] += z
+                m[i - j] += z
+    return best
+
+*********************************
+
+#### Score: 7.45880
+
+
+#### Java Tokens: result, money, bestresult, max, best, math, profit, remove, money-- 
+
+public static double func_0dfa8a4bfd2d4612b8aeb0165f501cde(long money, double result, double bestResult, ArrayList<Long> profit) { 
+ profit.remove(0);
+money--;
+bestResult = Math.max(bestResult, result);
+return bestResult;
+}
+
+
+*********************************
+
+#### Score: 7.13614
+
+
+#### Java Tokens: cur, min, max, best, math 
+
+public static long func_3f962ac00d7b48b8ab8d40973dba07f9(int n, int r, long cur, long best, long[] s) { 
+ cur = Math.max(cur, s[n] - s[r]);
+best = Math.min(best, cur);
+return cur;
+}
+
+
+public static long func_15c2af9aa3224dbd94712e22856ad765(int n, int r, int l, long best, long[] s) { 
+ long cur = 0;
+cur = Math.max(cur, s[l - 1]);
+cur = Math.max(cur, s[r] - s[l - 1]);
+cur = Math.max(cur, s[n] - s[r]);
+best = Math.min(best, cur);
+return cur;
+}
+
+
+public static long func_6bc891ef9d5146b8b2c34fd22e73c2e3(int n, int r, long cur, long best, long[] s) { 
+ cur = Math.max(cur, s[n] - s[r]);
+best = Math.min(best, cur);
+return best;
+}
+
+
+*********************************
+
+#### Score: 7.13614
+
+
+#### Java Tokens: min, max, sum, best, math 
+
+public static long func_2ce763c92ed940a597a196483683cf96(long x, long best, long sum, Long down) { 
+ long now = Math.max(down, Math.max(x - down, sum - x));
+best = Math.min(best, now);
+return best;
+}
+
+
+public static long func_20b219fd65fb4abab993706fdfb74c0a(long x, long best, long sum, Long down) { 
+ long now = Math.max(down, Math.max(x - down, sum - x));
+best = Math.min(best, now);
+return now;
+}
+
+
+public static long func_43d26346f2ae4f848c0c47dff88b36f4(long x, long best, long sum, Long up) { 
+ long now = Math.max(up, Math.max(x - up, sum - x));
+best = Math.min(best, now);
+return now;
+}
+
+
+*********************************
+
+#### Score: 6.92178
+
+
+#### Java Tokens: result, collections, bestresult, best, sort, profit 
+
+public static double func_2e1d178b8cfb44799660e97759d4a338(ArrayList<Long> profit) { 
+ // out.println("get profit " + l + " " + money);
+Collections.sort(profit);
+double bestResult = 0;
+return bestResult;
+}
+
+
+*********************************
+
+#### Score: 6.82246
+
+
+#### Java Tokens: result, size, money, bestresult, max, get, best, math, profit, remove, money-- 
+
+public static double func_84c1eb0c33d54eddbd685da349de93c0(long money, double result, double bestResult, ArrayList<Long> profit) { 
+ for (int i = 0; i < profit.size(); i++) {
+    result += 36.0 * (profit.get(i)) * (1.0 / profit.size());
+}
+profit.remove(0);
+money--;
+bestResult = Math.max(bestResult, result);
+return bestResult;
+}
+
+
+public static double func_ac0d7afdd23a46a19fd31baee6feac7a(long money, double result, double bestResult, ArrayList<Long> profit) { 
+ for (int i = 0; i < profit.size(); i++) {
+    result += 36.0 * (profit.get(i)) * (1.0 / profit.size());
+}
+profit.remove(0);
+money--;
+bestResult = Math.max(bestResult, result);
+return result;
+}
+
+
+*********************************
+
+#### Score: 6.74372
+
+
+#### Java Tokens: add, min, max, sum, best, math 
+
+public static long func_1c70a478aeb5427987ce86dfdf10e433(long x, long best, long sum, Long down, TreeSet<Long> all) { 
+ if (down != null) {
+    long now = Math.max(down, Math.max(x - down, sum - x));
+    best = Math.min(best, now);
+}
+all.add(x);
+return best;
+}
+
+
+*********************************
+
+#### Score: 6.74372
+
+
+#### Java Tokens: cur, min, max, delta, best, math 
+
+public static int func_a4cc301248274afea27c06bac8bb547c(int n, int l, long[] s) { 
+ long best = s[n];
+for (int r = 1; r <= n; r++) {
+    while (l < r && s[l - 1] < s[r] - s[l - 1]) {
+        ++l;
+    }
+    for (int delta = -2; delta <= 2; delta++) {
+        l += delta;
+        if (l >= 1 && l <= r) {
+            long cur = 0;
+            cur = Math.max(cur, s[l - 1]);
+            cur = Math.max(cur, s[r] - s[l - 1]);
+            cur = Math.max(cur, s[n] - s[r]);
+            best = Math.min(best, cur);
+        }
+        l -= delta;
+    }
+}
+return l;
+}
+
+
+public static int func_46e8aa88c3c1453d9abe911b500d4ca2(int n, int[] a, long[] s) { 
+ for (int i = 0; i < n; i++) {
+    s[i + 1] = s[i] + a[i];
+}
+int l = 1;
+long best = s[n];
+for (int r = 1; r <= n; r++) {
+    while (l < r && s[l - 1] < s[r] - s[l - 1]) {
+        ++l;
+    }
+    for (int delta = -2; delta <= 2; delta++) {
+        l += delta;
+        if (l >= 1 && l <= r) {
+            long cur = 0;
+            cur = Math.max(cur, s[l - 1]);
+            cur = Math.max(cur, s[r] - s[l - 1]);
+            cur = Math.max(cur, s[n] - s[r]);
+            best = Math.min(best, cur);
+        }
+        l -= delta;
+    }
+}
+return l;
+}
+
+
+public static double func_45da409168324458b36304c5bb7b8751(int n, int l, long[] s) { 
+ long best = s[n];
+for (int r = 1; r <= n; r++) {
+    while (l < r && s[l - 1] < s[r] - s[l - 1]) {
+        ++l;
+    }
+    for (int delta = -2; delta <= 2; delta++) {
+        l += delta;
+        if (l >= 1 && l <= r) {
+            long cur = 0;
+            cur = Math.max(cur, s[l - 1]);
+            cur = Math.max(cur, s[r] - s[l - 1]);
+            cur = Math.max(cur, s[n] - s[r]);
+            best = Math.min(best, cur);
+        }
+        l -= delta;
+    }
+}
+return (double) (s[n] - best) / s[n];
+
+}
+
+
+*********************************
+
+#### Score: 6.39471
+
+
+#### Java Tokens: ceiling, min, max, sum, best, math, long 
+
+public static long func_658d7c60c31143fda1ef42aec14a67da(int i, long x, long best, long sum, long[] a, TreeSet<Long> all) { 
+ x += a[i];
+Long up = all.ceiling(x / 2 + 1);
+if (up != null) {
+    long now = Math.max(up, Math.max(x - up, sum - x));
+    best = Math.min(best, now);
+}
+return x;
+}
+
+
+public static Long func_df5d4a3663b54adcbd2a8dac3ce4d44f(int i, long x, long best, long sum, long[] a, TreeSet<Long> all) { 
+ x += a[i];
+Long up = all.ceiling(x / 2 + 1);
+if (up != null) {
+    long now = Math.max(up, Math.max(x - up, sum - x));
+    best = Math.min(best, now);
+}
+return up;
+}
+
+
+public static Long func_02865e74f4fc46489ac6d5a9d2579baa(long x, long best, long sum, TreeSet<Long> all) { 
+ Long up = all.ceiling(x / 2 + 1);
+if (up != null) {
+    long now = Math.max(up, Math.max(x - up, sum - x));
+    best = Math.min(best, now);
+}
+return up;
+}
+
+
+*********************************
+
+#### Score: 6.39471
+
+
+#### Java Tokens: min, max, sum, best, math, floor, long 
+
+public static long func_09c6ea16ac084147a40060ce4059926c(long x, long best, long sum, Long up, TreeSet<Long> all) { 
+ if (up != null) {
+    long now = Math.max(up, Math.max(x - up, sum - x));
+    best = Math.min(best, now);
+}
+Long down = all.floor(x / 2);
+if (down != null) {
+    long now = Math.max(down, Math.max(x - down, sum - x));
+    best = Math.min(best, now);
+}
+return best;
+}
+
+
+public static long func_a15c541b3fbd4a3c9d65dca1cfc67f1f(long x, long best, long sum, Long up, TreeSet<Long> all) { 
+ if (up != null) {
+    long now = Math.max(up, Math.max(x - up, sum - x));
+    best = Math.min(best, now);
+}
+Long down = all.floor(x / 2);
+return best;
+}
+
+
+public static long func_0fa949d0b1b94083b68aa87c6bb35dd3(long x, long best, long sum, TreeSet<Long> all) { 
+ Long down = all.floor(x / 2);
+if (down != null) {
+    long now = Math.max(down, Math.max(x - down, sum - x));
+    best = Math.min(best, now);
+}
+return best;
+}
+
+
+*********************************
+
+#### Score: 6.39471
+
+
+#### Java Tokens: sub, min, max, subsum, sum, best, math 
+
+public static long func_e52d990594594af9b1d1930546394c98(int n, long min, long subSum, long[] best, long[] A) { 
+ subSum += A[n];
+min = Math.min(min, Math.max(subSum, best[n - 1]));
+return subSum;
+}
+
+
+public static long func_cce427e621084c11ace268c6cd84ceee(int n, long min, long subSum, long[] best, long[] A) { 
+ subSum += A[n];
+min = Math.min(min, Math.max(subSum, best[n - 1]));
+return min;
+}
+

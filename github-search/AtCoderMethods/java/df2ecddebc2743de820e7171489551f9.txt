@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    int N = Integer.parseInt(scan.next());
+    int[] T = new int[N];
+    int[] A = new int[N];
+    for (int i = 0; i < N; i++) {
+        T[i] = Integer.parseInt(scan.next());
+        A[i] = Integer.parseInt(scan.next());
+    }
+    long t = 1;
+    long a = 1;
+    for (int i = 0; i < N; i++) {
+        if (t % T[i] != 0) {
+            t = (t / T[i] + 1) * T[i];
+        }
+        if (a % A[i] != 0) {
+            a = (a / A[i] + 1) * A[i];
+        }
+        long pt = t / T[i];
+        long at = a / A[i];
+        if (pt > at)
+            a = A[i] * pt;
+        else
+            t = T[i] * at;
+    }
+    System.out.println(a + t);
+    scan.close();
+}

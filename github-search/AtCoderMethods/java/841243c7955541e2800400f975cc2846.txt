@@ -1,0 +1,32 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    int[] a = new int[M];
+    int[] b = new int[M];
+    boolean[][] friends = new boolean[N][N];
+    for (int i = 0; i < M; i++) {
+        a[i] = sc.nextInt() - 1;
+        b[i] = sc.nextInt() - 1;
+        friends[a[i]][b[i]] = true;
+        friends[b[i]][a[i]] = true;
+    }
+    for (int i = 0; i < N; i++) {
+        int count = 0;
+        boolean[] f = new boolean[N];
+        for (int j = 0; j < N; j++) {
+            if (friends[i][j]) {
+                for (int k = 0; k < N; k++) {
+                    if (i != k && friends[j][k] && !friends[i][k]) {
+                        f[k] = true;
+                    }
+                }
+            }
+        }
+        for (int j = 0; j < N; j++) {
+            if (f[j])
+                count++;
+        }
+        System.out.println(count);
+    }
+}

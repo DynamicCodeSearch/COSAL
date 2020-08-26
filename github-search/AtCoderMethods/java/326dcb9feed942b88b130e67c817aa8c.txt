@@ -1,0 +1,7 @@
+static boolean f(int s, int x, int y, int z) {
+    boolean ret = true;
+    ret &= ((s >> (z - 1)) & 1) > 0;
+    ret &= ((s >> (y + z - 1)) & 1) > 0;
+    ret &= ((s >> (x + y + z - 1)) & 1) > 0;
+    return ret;
+}

@@ -1,0 +1,15 @@
+public int read() {
+    if (_numChars == -1)
+        throw new InputMismatchException();
+    if (_curChar >= _numChars) {
+        _curChar = 0;
+        try {
+            _numChars = _stream.read(_buf);
+        } catch (IOException e) {
+            throw new InputMismatchException();
+        }
+        if (_numChars <= 0)
+            return -1;
+    }
+    return _buf[_curChar++];
+}

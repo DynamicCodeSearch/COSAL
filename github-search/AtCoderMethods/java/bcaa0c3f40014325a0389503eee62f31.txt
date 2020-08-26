@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int L = scan.nextInt();
+    int X = scan.nextInt();
+    int Y = scan.nextInt();
+    int S = scan.nextInt();
+    int D = scan.nextInt();
+    int preLen = D - S;
+    if (preLen < 0)
+        preLen += L;
+    int revLen = -(D - S);
+    if (revLen < 0)
+        revLen += L;
+    double preTime = (double) preLen / (X + Y);
+    int revV = X - Y;
+    boolean revFlag = false;
+    if (revV < 0) {
+        revV *= -1;
+        revFlag = true;
+    }
+    double revTime = (double) revLen / (revV);
+    System.out.printf("%.10f\n", ((revFlag) ? ((preTime > revTime) ? revTime : preTime) : preTime));
+}

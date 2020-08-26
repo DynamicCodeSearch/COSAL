@@ -1,0 +1,14 @@
+private void block(int root, int l, int r, int L, int R, int condition) {
+    if (l > r || l > R || L > r || L > R) {
+        return;
+    }
+    if (l == L && r == R) {
+        
+        solver.addClause(ps[condition].id, n + root, ps[condition].f, true);
+        solver.addClause(n + root, ps[condition].id, false, !ps[condition].f);
+        return;
+    }
+    int m = (l + r) / 2;
+    block(2 * root + 1, l, m, L, Math.min(m, R), condition);
+    block(2 * root + 2, m + 1, r, Math.max(m + 1, L), R, condition);
+}

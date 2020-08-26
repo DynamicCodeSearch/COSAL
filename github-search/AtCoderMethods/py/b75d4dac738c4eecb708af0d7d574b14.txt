@@ -1,0 +1,18 @@
+def main():
+    N = int(input())
+    balloon_list = []
+    for _ in range(N):
+        H, S = map(int, input().split())
+        balloon_list.append((H, S))
+
+
+    low, high, ans = -1, int(1e14) - 1, -1
+    while high - low > 1:
+        middle = (low + high) // 2
+        if ok(middle, balloon_list):
+            ans = middle
+            high = middle
+        else:
+            low = middle
+
+    print(ans)

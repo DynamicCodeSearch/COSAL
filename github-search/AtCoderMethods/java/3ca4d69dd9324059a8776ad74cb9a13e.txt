@@ -1,0 +1,43 @@
+public static List<Long> allFactors(long n) {
+    if (n == 1) {
+        return new ArrayList<Long>(Arrays.asList(1L));
+    }
+    long logN = (long) Math.sqrt(n) + 1;
+    List<long[]> factors = new ArrayList<>();
+    for (int i = 2; i < logN; i++) {
+        if (n % i == 0) {
+            long[] elem = new long[] { i, 0 };
+            while (n % i == 0) {
+                elem[1]++;
+                n /= i;
+            }
+            factors.add(elem);
+        }
+    }
+    if (n != 1) {
+        factors.add(new long[] { n, 1 });
+    }
+    int[] count = new int[factors.size()];
+    int factorsSize = factors.size();
+    List<Long> list = new ArrayList<>();
+    loop: while (true) {
+        long x = 1;
+        for (int i = 0; i < factorsSize; i++) {
+            long[] v = factors.get(i);
+            for (int j = 0; j < count[i]; j++) {
+                x *= v[0];
+            }
+        }
+        list.add(x);
+        int idx = 0;
+        while (count[idx] == factors.get(idx)[1]) {
+            count[idx] = 0;
+            idx++;
+            if (idx == factorsSize) {
+                break loop;
+            }
+        }
+        count[idx]++;
+    }
+    return list;
+}

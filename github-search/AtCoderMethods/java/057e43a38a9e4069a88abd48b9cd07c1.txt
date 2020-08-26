@@ -1,0 +1,16 @@
+private void solve() throws IOException {
+    long N = nextLong();
+    long M = nextLong();
+    long low = 0L;
+    long high = 1_000_000_000_000_00L;
+    long best = 0L;
+    while (low <= high) {
+        long mid = low + (high - low) / 2L;
+        if (can(mid, N, M)) {
+            best = Math.max(best, mid);
+            low = mid + 1;
+        } else
+            high = mid - 1;
+    }
+    writer.println(best);
+}

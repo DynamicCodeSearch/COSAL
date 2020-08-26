@@ -1,0 +1,19 @@
+long dfs(int dep, int md, int ms, int upper) {
+    if (dep < 0) {
+        return md == ms ? 1 : 0;
+    }
+    if (dp[dep][md][ms][upper] >= 0)
+        return dp[dep][md][ms][upper];
+    long sum = 0;
+    if (upper == 0) {
+        for (int i = 0; i < 10; i++) {
+            sum += dfs(dep - 1, (md * 10 + i) % k, (ms + i) % k, 0);
+        }
+    } else {
+        for (int i = 0; i < a[dep]; i++) {
+            sum += dfs(dep - 1, (md * 10 + i) % k, (ms + i) % k, 0);
+        }
+        sum += dfs(dep - 1, (md * 10 + a[dep]) % k, (ms + a[dep]) % k, 1);
+    }
+    return dp[dep][md][ms][upper] = sum;
+}

@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int K = sc.nextInt();
+    int S = sc.nextInt();
+    int X, Y, Z;
+    int count = 0;
+    for (X = 0; X <= K; X++) {
+        for (Y = 0; Y <= K; Y++) {
+            if (X + Y <= S && S - (X + Y) <= K) {
+                count++;
+            }
+        }
+    }
+    System.out.println(count);
+}

@@ -1,0 +1,11 @@
+def main():
+    n = II()
+    d = collections.defaultdict(int)
+    for i in range(1,n+1):
+        for k,v in factorization(i):
+            d[k] += v
+    r = 1
+    for c in d.values():
+        r *= c+1
+        r %= mod
+    return r

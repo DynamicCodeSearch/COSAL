@@ -1,0 +1,11 @@
+public static void main(String[] args) {
+    long H = Long.parseLong(scan.next());
+    long W = Long.parseLong(scan.next());
+    long min = calcMin(H, W);
+    if (H != W) {
+        long tmp = calcMin(W, H);
+        min = tmp < min ? tmp : min;
+    }
+    System.out.println(min);
+    scan.close();
+}

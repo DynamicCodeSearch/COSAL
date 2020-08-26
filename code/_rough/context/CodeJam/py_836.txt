@@ -1,0 +1,482 @@
+### Py Tokens: dtype, list, arange, searchsorted, range, int64, max, minmax, array, cumsum 
+
+### Py functions
+
+def func_41f8ae19657e488ba8366d2088b7ab5b(N, p, q, r, s):
+    NT = (arange(N, dtype=int64) * p + q) % r + s
+    PS = array([0] + list(cumsum(NT)), dtype=int64)
+    S = PS[-1]
+    minmax = S
+    for a in range(N):
+        s1 = PS[a]
+        b0 = searchsorted(PS, s1 + (S - s1) / 2.0)
+        assert b0 >= a
+        for b in (b0 - 1, b0):
+            if 0 < b and b <= N:
+                mx = max(s1, PS[b] - PS[a], S - PS[b])
+                if mx < minmax:
+                    minmax = mx
+    return N
+
+def func_a977d66f0a53491191f6a19ce771a637(N, p, q, r, s):
+    NT = (arange(N, dtype=int64) * p + q) % r + s
+    PS = array([0] + list(cumsum(NT)), dtype=int64)
+    S = PS[-1]
+    minmax = S
+    for a in range(N):
+        s1 = PS[a]
+        b0 = searchsorted(PS, s1 + (S - s1) / 2.0)
+        assert b0 >= a
+        for b in (b0 - 1, b0):
+            if 0 < b and b <= N:
+                mx = max(s1, PS[b] - PS[a], S - PS[b])
+                if mx < minmax:
+                    minmax = mx
+    return a
+
+def func_808810ad071e437ca033b03726338f71(N, p, q, r, s):
+    NT = (arange(N, dtype=int64) * p + q) % r + s
+    PS = array([0] + list(cumsum(NT)), dtype=int64)
+    S = PS[-1]
+    minmax = S
+    for a in range(N):
+        s1 = PS[a]
+        b0 = searchsorted(PS, s1 + (S - s1) / 2.0)
+        assert b0 >= a
+        for b in (b0 - 1, b0):
+            if 0 < b and b <= N:
+                mx = max(s1, PS[b] - PS[a], S - PS[b])
+                if mx < minmax:
+                    minmax = mx
+    return q
+
+def func_8f39685c01844e85b34b198230415aae(N, p, q, r, s):
+    NT = (arange(N, dtype=int64) * p + q) % r + s
+    PS = array([0] + list(cumsum(NT)), dtype=int64)
+    S = PS[-1]
+    minmax = S
+    for a in range(N):
+        s1 = PS[a]
+        b0 = searchsorted(PS, s1 + (S - s1) / 2.0)
+        assert b0 >= a
+        for b in (b0 - 1, b0):
+            if 0 < b and b <= N:
+                mx = max(s1, PS[b] - PS[a], S - PS[b])
+                if mx < minmax:
+                    minmax = mx
+    return s
+
+def func_26d9b86f12114d8db5bc918b1ef927f2(N, p, q, r, s):
+    NT = (arange(N, dtype=int64) * p + q) % r + s
+    PS = array([0] + list(cumsum(NT)), dtype=int64)
+    S = PS[-1]
+    minmax = S
+    for a in range(N):
+        s1 = PS[a]
+        b0 = searchsorted(PS, s1 + (S - s1) / 2.0)
+        assert b0 >= a
+        for b in (b0 - 1, b0):
+            if 0 < b and b <= N:
+                mx = max(s1, PS[b] - PS[a], S - PS[b])
+                if mx < minmax:
+                    minmax = mx
+    return r
+
+*********************************
+
+#### Score: 8.50188
+
+
+#### Java Tokens: result, add, size, array, max, integer, arraylist, list 
+
+public static boolean[] func_3956e94be837457ca8c73a5714847781(int N, int[] P) { 
+ boolean[] u = new boolean[N];
+List<Integer> result = new ArrayList<Integer>(N);
+while (result.size() < N) {
+    int max = -1;
+    for (int i = 0; i < N; i++) {
+        if (u[i])
+            continue;
+        if (max == -1)
+            max = i;
+        else if (P[i] > P[max])
+            max = i;
+    }
+    u[max] = true;
+    result.add(max);
+}
+return u;
+}
+
+
+public static List<Integer> func_a9d0b7e40f0142149496aa1389f43b94(int N, int[] P) { 
+ boolean[] u = new boolean[N];
+List<Integer> result = new ArrayList<Integer>(N);
+while (result.size() < N) {
+    int max = -1;
+    for (int i = 0; i < N; i++) {
+        if (u[i])
+            continue;
+        if (max == -1)
+            max = i;
+        else if (P[i] > P[max])
+            max = i;
+    }
+    u[max] = true;
+    result.add(max);
+}
+return result;
+}
+
+
+*********************************
+
+#### Score: 8.12609
+
+
+#### Java Tokens: res, array, double, arraylist, list 
+
+public static int func_873504fabd1c4926bf18a657af8bb774(int a) { 
+ // System.out.println("TEST");
+// System.out.println(area);
+ArrayList<Double> res = new ArrayList<Double>();
+// System.out.println(slice);
+a = 0;
+return a;
+}
+
+
+public static int func_98c4291180674054b74726faed4c5c6e(int a, int b) { 
+ // System.out.println("TEST");
+// System.out.println(area);
+ArrayList<Double> res = new ArrayList<Double>();
+// System.out.println(slice);
+a = 0;
+b = 0;
+return a;
+}
+
+
+public static int func_1ec4a494938548cca3fefb2e49c45bd4(int a, int b) { 
+ // System.out.println("TEST");
+// System.out.println(area);
+ArrayList<Double> res = new ArrayList<Double>();
+// System.out.println(slice);
+a = 0;
+b = 0;
+return b;
+}
+
+
+*********************************
+
+#### Score: 8.12609
+
+
+#### Java Tokens: result, array, integer, arraylist, list 
+
+public static boolean[] func_5c9ca48b85664049b068b31f10bfa982(int N) { 
+ boolean[] u = new boolean[N];
+List<Integer> result = new ArrayList<Integer>(N);
+return u;
+}
+
+
+public static List<Integer> func_bd0db939ad234d73be5d8d95f152790b(int N) { 
+ boolean[] u = new boolean[N];
+List<Integer> result = new ArrayList<Integer>(N);
+return result;
+}
+
+
+*********************************
+
+#### Score: 8.12609
+
+
+#### Java Tokens: add, array, double, arraylist, list 
+
+public static ArrayList<Double> func_595de7b98fc54e889557ddb0d509974a(ArrayList<Double> lx) { 
+ ArrayList<Double> ly = new ArrayList<Double>();
+lx.add(0.0);
+return ly;
+}
+
+
+public static ArrayList<Double> func_4129d28294a84dbc8c0d91f413f82ab3(ArrayList<Double> lx) { 
+ ArrayList<Double> ly = new ArrayList<Double>();
+lx.add(0.0);
+ly.add(-2000.0);
+return ly;
+}
+
+
+*********************************
+
+#### Score: 8.12609
+
+
+#### Java Tokens: add, array, integer, arraylist, list 
+
+public static List<Integer> func_f630fbe153664a55a8384803d79e2799(int n) { 
+ List<Integer> p = new ArrayList<Integer>();
+for (int i = 0; i < n; i++) {
+    p.add(i);
+}
+return p;
+}
+
+
+*********************************
+
+#### Score: 7.67569
+
+
+#### Java Tokens: cur, res, array, double, arraylist, list 
+
+public static int func_cdb69d4916ba414f8d20005b2783f921(int a, int b) { 
+ double cur = 0;
+// System.out.println("TEST");
+// System.out.println(area);
+ArrayList<Double> res = new ArrayList<Double>();
+// System.out.println(slice);
+a = 0;
+b = 0;
+return b;
+}
+
+
+public static int func_13472466f671472d8ae17ed3b9b2ce25(int a, int b) { 
+ double cur = 0;
+// System.out.println("TEST");
+// System.out.println(area);
+ArrayList<Double> res = new ArrayList<Double>();
+// System.out.println(slice);
+a = 0;
+b = 0;
+return a;
+}
+
+
+public static double func_121f22baf19d40b9a27cb1e0e4c7b426(int a) { 
+ double cur = 0;
+// System.out.println("TEST");
+// System.out.println(area);
+ArrayList<Double> res = new ArrayList<Double>();
+// System.out.println(slice);
+a = 0;
+return cur;
+}
+
+
+*********************************
+
+#### Score: 7.40564
+
+
+#### Java Tokens: result, add, size, string, array, max, builder, integer, arraylist, list, stringbuilder 
+
+public static StringBuilder func_7cd29953a93449babd539824ba7484fb(int N, int[] P) { 
+ boolean[] u = new boolean[N];
+List<Integer> result = new ArrayList<Integer>(N);
+while (result.size() < N) {
+    int max = -1;
+    for (int i = 0; i < N; i++) {
+        if (u[i])
+            continue;
+        if (max == -1)
+            max = i;
+        else if (P[i] > P[max])
+            max = i;
+    }
+    u[max] = true;
+    result.add(max);
+}
+StringBuilder sb = new StringBuilder();
+return sb;
+}
+
+
+public static List<Integer> func_f21b52e2faf643798dcd148d75da6a21(int N, int[] P) { 
+ boolean[] u = new boolean[N];
+List<Integer> result = new ArrayList<Integer>(N);
+while (result.size() < N) {
+    int max = -1;
+    for (int i = 0; i < N; i++) {
+        if (u[i])
+            continue;
+        if (max == -1)
+            max = i;
+        else if (P[i] > P[max])
+            max = i;
+    }
+    u[max] = true;
+    result.add(max);
+}
+StringBuilder sb = new StringBuilder();
+return result;
+}
+
+
+public static boolean[] func_2ca13f876d9047d0986467058bd93c7a(int N, int[] P) { 
+ boolean[] u = new boolean[N];
+List<Integer> result = new ArrayList<Integer>(N);
+while (result.size() < N) {
+    int max = -1;
+    for (int i = 0; i < N; i++) {
+        if (u[i])
+            continue;
+        if (max == -1)
+            max = i;
+        else if (P[i] > P[max])
+            max = i;
+    }
+    u[max] = true;
+    result.add(max);
+}
+StringBuilder sb = new StringBuilder();
+return u;
+}
+
+
+*********************************
+
+#### Score: 7.27513
+
+
+#### Java Tokens: next, nextint, array, integer, arraylist, list, int 
+
+public static double[] func_4312c6b3e990491f89e3878fe67e0f96(Scanner in) { 
+ int n = in.nextInt();
+final double[] l = new double[n];
+final double[] r = new double[n];
+for (int i = 0; i < n; i++) {
+    l[i] = in.nextInt();
+}
+for (int i = 0; i < n; i++) {
+    r[i] = 1 - in.nextInt() * 0.01;
+}
+List<Integer> p = new ArrayList<Integer>();
+return r;
+}
+
+
+public static int func_82dc3e19e4ca423c94a1a8ed5443aa1c(Scanner in) { 
+ int n = in.nextInt();
+final double[] l = new double[n];
+final double[] r = new double[n];
+for (int i = 0; i < n; i++) {
+    l[i] = in.nextInt();
+}
+for (int i = 0; i < n; i++) {
+    r[i] = 1 - in.nextInt() * 0.01;
+}
+List<Integer> p = new ArrayList<Integer>();
+return n;
+}
+
+
+public static double[] func_64a305c06e664b1da148f65b5752a081(Scanner in) { 
+ int n = in.nextInt();
+final double[] l = new double[n];
+final double[] r = new double[n];
+for (int i = 0; i < n; i++) {
+    l[i] = in.nextInt();
+}
+for (int i = 0; i < n; i++) {
+    r[i] = 1 - in.nextInt() * 0.01;
+}
+List<Integer> p = new ArrayList<Integer>();
+return l;
+}
+
+
+*********************************
+
+#### Score: 7.27513
+
+
+#### Java Tokens: add, money, array, arraylist, list, profit, long 
+
+public static long func_889551e1c3b34b8b97f8b0702c706d29(long l, long money, long[] a) { 
+ ArrayList<Long> profit = new ArrayList<>();
+for (long x : a) {
+    if (x < l) {
+        money -= (l - x);
+        profit.add(l - x);
+    } else if (x == l) {
+        profit.add(0L);
+    }
+}
+return money;
+}
+
+
+public static ArrayList<Long> func_99a08aa050d84969a5971e5dee2aa2e2(long l, long money, long[] a) { 
+ ArrayList<Long> profit = new ArrayList<>();
+for (long x : a) {
+    if (x < l) {
+        money -= (l - x);
+        profit.add(l - x);
+    } else if (x == l) {
+        profit.add(0L);
+    }
+}
+return profit;
+}
+
+
+*********************************
+
+#### Score: 6.91656
+
+
+#### Java Tokens: next, add, nextint, array, integer, arraylist, list, int 
+
+public static double[] func_ee90b54cb42642dab06e77f774f54415(Scanner in) { 
+ int n = in.nextInt();
+final double[] l = new double[n];
+final double[] r = new double[n];
+for (int i = 0; i < n; i++) {
+    l[i] = in.nextInt();
+}
+for (int i = 0; i < n; i++) {
+    r[i] = 1 - in.nextInt() * 0.01;
+}
+List<Integer> p = new ArrayList<Integer>();
+for (int i = 0; i < n; i++) {
+    p.add(i);
+}
+return r;
+}
+
+
+public static List<Integer> func_e7e9315e0e774e9eb72db934fa19c1e6(int n, double[] r, Scanner in) { 
+ for (int i = 0; i < n; i++) {
+    r[i] = 1 - in.nextInt() * 0.01;
+}
+List<Integer> p = new ArrayList<Integer>();
+for (int i = 0; i < n; i++) {
+    p.add(i);
+}
+return p;
+}
+
+
+public static int func_58d21e6da8734e3f9f6376cedf100299(Scanner in) { 
+ int n = in.nextInt();
+final double[] l = new double[n];
+final double[] r = new double[n];
+for (int i = 0; i < n; i++) {
+    l[i] = in.nextInt();
+}
+for (int i = 0; i < n; i++) {
+    r[i] = 1 - in.nextInt() * 0.01;
+}
+List<Integer> p = new ArrayList<Integer>();
+for (int i = 0; i < n; i++) {
+    p.add(i);
+}
+return n;
+}
+

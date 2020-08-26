@@ -1,0 +1,48 @@
+public static void main(String[] args) {
+    
+    InputReader scnr = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = scnr.nextInt();
+    int[] ar = new int[n];
+    for (int i = 0; i < n; i++) {
+        ar[i] = scnr.nextInt();
+    }
+    long ct1 = 0;
+    int sum = ar[0];
+    long ct = 0;
+    sum = Math.min(-1, sum);
+    ct += Math.abs(sum - ar[0]);
+    for (int i = 1; i < n; i++) {
+        int temp = ar[i];
+        temp = temp + sum;
+        int x = temp;
+        if (sum < 0) {
+            temp = Math.max(temp, 1);
+            ct += Math.abs(temp - x);
+            sum = temp;
+        } else {
+            temp = Math.min(temp, -1);
+            ct += Math.abs(temp - x);
+            sum = temp;
+        }
+    }
+    sum = ar[0];
+    sum = Math.max(1, sum);
+    ct1 += Math.abs(sum - ar[0]);
+    for (int i = 1; i < n; i++) {
+        int temp = ar[i];
+        temp = temp + sum;
+        int x = temp;
+        if (sum < 0) {
+            temp = Math.max(temp, 1);
+            ct1 += Math.abs(temp - x);
+            sum = temp;
+        } else {
+            temp = Math.min(temp, -1);
+            ct1 += Math.abs(temp - x);
+            sum = temp;
+        }
+    }
+    out.println(Math.min(ct1, ct));
+    out.close();
+}

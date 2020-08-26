@@ -1,0 +1,14 @@
+static int[][] undirectedGraph(int n, int[] v1, int[] v2) {
+    int[] cnt = new int[n];
+    for (int i : v1) cnt[i]++;
+    for (int i : v2) cnt[i]++;
+    int[][] g = new int[n][];
+    for (int i = 0; i < n; i++) g[i] = new int[cnt[i]];
+    for (int i = 0; i < v1.length; i++) {
+        int s = v1[i];
+        int t = v2[i];
+        g[s][--cnt[s]] = t;
+        g[t][--cnt[t]] = s;
+    }
+    return g;
+}

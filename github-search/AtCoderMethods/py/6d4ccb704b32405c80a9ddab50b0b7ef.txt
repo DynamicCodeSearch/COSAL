@@ -1,0 +1,23 @@
+def num_of_4and9(n):
+    s = "{0}".format(n)
+
+    if len(s) == 1:
+        if s in '0123':
+            return 0
+        elif s in '45678':
+            return 1
+        else:
+            return 2
+
+    s1 = s[0]
+    ss = s[1:]
+    if s1 == '0':
+        return num_of_4and9(ss)
+    elif s1 in '123':
+        return (int(s1)) * (10 ** len(ss) - 8 ** len(ss)) + num_of_4and9(ss)
+    elif s1 == '4':
+        return 4 * (10 ** len(ss) - 8 ** len(ss)) + int(ss) + 1
+    elif s1 in '5678':
+        return (int(s1)-1) * (10 ** len(ss) - 8 ** len(ss)) + 10 ** len(ss) + num_of_4and9(ss)
+    elif s1 == '9':
+        return 8 * (10 ** len(ss) - 8 ** len(ss)) + 10 ** len(ss) + int(ss) + 1

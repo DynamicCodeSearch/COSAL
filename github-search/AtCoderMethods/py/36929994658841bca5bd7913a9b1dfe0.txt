@@ -1,0 +1,12 @@
+def solver():
+    global edge, memo
+    N = int(raw_input())
+    edge = [[] for _ in xrange(N)]
+    memo = [[-1,-1] for _ in xrange(N)]
+    for _ in xrange(N-1):
+        a,b = myread()
+        a -= 1
+        b -= 1
+        edge[a].append(b)
+        edge[b].append(a)
+    print (dp_go(0,False,-1) + dp_go(0,True,-1)) % MOD

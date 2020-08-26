@@ -1,0 +1,11 @@
+def calc_l_score(N, a):
+    scores = [None] * (N + 1)
+    queue = a[:N]
+    heapq.heapify(queue)
+    scores[0] = sum(queue)
+    for i in range(N):
+        na = a[N + i]
+        heapq.heappush(queue, na)
+        m = heapq.heappop(queue)
+        scores[i + 1] = scores[i] + na - m
+    return scores

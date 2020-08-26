@@ -1,0 +1,19 @@
+int solve(long level, long x) {
+    if (x >= n) {
+        return 0;
+    }
+    if (x + 2 * level - 1 <= n) {
+        return size(level);
+    }
+    level /= 2;
+    if (memo.get(level).containsKey(x)) {
+        return memo.get(level).get(x);
+    }
+    int res = solve(level, x);
+    res += solve(level, x + level);
+    res %= MOD;
+    res += solve(level, x + 2 * level);
+    res %= MOD;
+    memo.get(level).put(x, res);
+    return res;
+}

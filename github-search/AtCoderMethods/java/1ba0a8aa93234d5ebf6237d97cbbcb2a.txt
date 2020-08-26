@@ -1,0 +1,25 @@
+private long calc(long w, long h) {
+    if (w % 3 == 0 || h % 3 == 0) {
+        return 0;
+    }
+    long res = Long.MAX_VALUE;
+    for (long i = h / 3; i <= h / 2; ++i) {
+        {
+            long a1 = i * w;
+            long a2 = ((h - i) / 2) * w;
+            long a3 = (h - i - ((h - i) / 2)) * w;
+            long max = Math.max(a1, Math.max(a2, a3));
+            long min = Math.min(a1, Math.min(a2, a3));
+            res = Math.min(res, max - min);
+        }
+        {
+            long a1 = i * w;
+            long a2 = (h - i) * (w / 2);
+            long a3 = (h - i) * (w - w / 2);
+            long max = Math.max(a1, Math.max(a2, a3));
+            long min = Math.min(a1, Math.min(a2, a3));
+            res = Math.min(res, max - min);
+        }
+    }
+    return res;
+}

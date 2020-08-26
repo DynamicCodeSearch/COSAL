@@ -1,0 +1,33 @@
+def prim(self):
+
+    import heapq
+
+    nodes=list(self.nodes.keys())
+    N=len(nodes)
+
+    X=[nodes[0]]
+    unused=[]
+    for u in self.adj[X[0]]:
+        heapq.heappush(unused,(self.adj[X[0]][u],X[0],u))
+
+    total_cost=0
+    used={n:False for n in nodes}
+    used[X[0]]=True
+    while True:
+
+
+        cost,u,v=heapq.heappop(unused)
+        if used[v]:
+            continue
+        X.append(v)
+        used[v]=True
+        total_cost+=cost
+        if len(X)==N:
+            break
+
+        for u in self.adj[v]:
+            if used[u]:
+                continue
+            heapq.heappush(unused,(self.adj[u][v],v,u))
+
+    return total_cost

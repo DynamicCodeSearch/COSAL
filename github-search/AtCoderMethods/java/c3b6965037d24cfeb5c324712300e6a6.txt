@@ -1,0 +1,14 @@
+void solveB() throws IOException {
+    String str = nextString();
+    boolean[] exist = new boolean[26];
+    for (int i = 0; i < str.length(); i++) {
+        exist[str.charAt(i) - 'a'] = true;
+    }
+    for (int i = 0; i < exist.length; i++) {
+        if (!exist[i]) {
+            outln((char) ('a' + i));
+            return;
+        }
+    }
+    outln("None");
+}

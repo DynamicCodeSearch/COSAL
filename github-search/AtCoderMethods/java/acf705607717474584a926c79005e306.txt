@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int Q = sc.nextInt();
+    int[] board = new int[N];
+    for (int i = 0; i < Q; i++) {
+        int l = sc.nextInt() - 1;
+        int r = sc.nextInt();
+        board[l]++;
+        if (r < N)
+            board[r]--;
+    }
+    if (board[0] % 2 == 0) {
+        System.out.print("0");
+    } else {
+        System.out.print("1");
+    }
+    for (int i = 1; i < N; i++) {
+        board[i] += board[i - 1];
+        if (board[i] % 2 == 0) {
+            System.out.print("0");
+        } else {
+            System.out.print("1");
+        }
+    }
+    System.out.println();
+}

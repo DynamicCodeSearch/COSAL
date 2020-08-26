@@ -1,0 +1,13 @@
+void solve() throws IOException {
+    int n = ni();
+    long[][] s = new long[n][n];
+    for (int i = 0; i < n; i++) {
+        String t = ns();
+        for (int j = 0; j < n; j++) {
+            if (t.charAt(j) == '1') {
+                s[i][j] = 1;
+            }
+        }
+    }
+    out.println(detMod(s, 2) == 0 ? "Even" : "Odd");
+}

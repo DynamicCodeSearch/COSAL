@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int h = scan.nextInt();
+    int w = scan.nextInt();
+    int n = scan.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = scan.nextInt();
+    }
+    int[][] map = new int[h][w];
+    int num = 1;
+    boolean dir = true;
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            if (dir) {
+                map[i][j] = num;
+            } else {
+                map[i][w - j - 1] = num;
+            }
+            a[num - 1]--;
+            if (a[num - 1] == 0)
+                num++;
+        }
+        dir = !dir;
+    }
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            System.out.print(map[i][j] + " ");
+        }
+        System.out.println();
+    }
+}

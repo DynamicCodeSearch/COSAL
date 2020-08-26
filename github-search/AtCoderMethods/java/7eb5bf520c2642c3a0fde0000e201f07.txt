@@ -1,0 +1,32 @@
+public void solve() {
+    N = nextInt();
+    K = nextInt();
+    L = nextInt();
+    P = new int[K];
+    Q = new int[K];
+    R = new int[L];
+    S = new int[L];
+    init();
+    for (int i = 0; i < K; i++) {
+        P[i] = nextInt() - 1;
+        Q[i] = nextInt() - 1;
+        unite1(P[i], Q[i]);
+    }
+    for (int i = 0; i < L; i++) {
+        R[i] = nextInt() - 1;
+        S[i] = nextInt() - 1;
+        unite2(R[i], S[i]);
+    }
+    HashMap<Long, Integer> map = new HashMap<Long, Integer>();
+    for (int i = 0; i < N; i++) {
+        long key = root1(i) * (long) 1e9 + root2(i);
+        map.put(key, map.containsKey(key) ? map.get(key) + 1 : 1);
+    }
+    for (int i = 0; i < N; i++) {
+        if (i != 0)
+            out.print(" ");
+        long key = root1(i) * (long) 1e9 + root2(i);
+        out.print(map.get(key));
+    }
+    out.println();
+}

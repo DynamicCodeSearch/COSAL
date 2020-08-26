@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner cin = new Scanner(System.in);
+    int A = cin.nextInt();
+    int B = cin.nextInt();
+    int C = cin.nextInt();
+    cin.close();
+    int maxv = (int) Math.pow(10, 8);
+    int tmp = 101;
+    String result = "NO";
+    for (int i = 0; i < maxv; i++) {
+        tmp = (i * A - C) % B;
+        if (tmp == 0) {
+            result = "YES";
+            break;
+        }
+    }
+    System.out.println(result);
+}

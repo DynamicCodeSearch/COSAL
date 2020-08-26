@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    String x = sc.next();
+    String y = sc.next();
+    String[] g1 = { "1", "3", "5", "7", "8", "10", "12" };
+    String[] g2 = { "4", "6", "9", "11" };
+    String[] g3 = { "2" };
+    String cx = "";
+    String cy = "";
+    if (Arrays.asList(g1).contains(x)) {
+        cx = "g1";
+    } else if (Arrays.asList(g2).contains(x)) {
+        cx = "g2";
+    } else if (Arrays.asList(g3).contains(x)) {
+        cx = "g3";
+    }
+    if (Arrays.asList(g1).contains(y)) {
+        cy = "g1";
+    } else if (Arrays.asList(g2).contains(y)) {
+        cy = "g2";
+    } else if (Arrays.asList(g3).contains(y)) {
+        cy = "g3";
+    }
+    if (cx.equals(cy)) {
+        System.out.println("Yes");
+    } else {
+        System.out.println("No");
+    }
+}

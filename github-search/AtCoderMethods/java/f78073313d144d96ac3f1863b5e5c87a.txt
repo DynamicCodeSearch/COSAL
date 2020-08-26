@@ -1,0 +1,9 @@
+public TaskF.LST set(int pos) {
+    if (pos >= 0 && pos < n) {
+        
+        for (int i = 0; i < set.length; i++, pos >>>= 6) {
+            set[i][pos >>> 6] |= 1L << pos;
+        }
+    }
+    return this;
+}

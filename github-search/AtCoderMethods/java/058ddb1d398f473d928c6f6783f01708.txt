@@ -1,0 +1,25 @@
+static boolean checkboard() {
+    int[] vy = new int[] { 1, 1, 1, 0, 0, -1, -1, -1 };
+    int[] vx = new int[] { 1, 0, -1, 1, -1, 1, 0, -1 };
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            if (board[i][j] != 0) {
+                int now = board[i][j];
+                for (int k = 0; k < 8; k++) {
+                    boolean flag = true;
+                    for (int l = 0; l < 5; l++) {
+                        int y = i + vy[k] * l;
+                        int x = j + vx[k] * l;
+                        if (!ok(y, x) || board[y][x] != now) {
+                            flag = false;
+                            break;
+                        }
+                    }
+                    if (flag)
+                        return false;
+                }
+            }
+        }
+    }
+    return true;
+}

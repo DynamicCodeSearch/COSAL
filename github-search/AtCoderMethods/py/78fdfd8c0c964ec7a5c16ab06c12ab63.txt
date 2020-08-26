@@ -1,0 +1,10 @@
+def can_construct(s):
+    while len(s) > 0:
+        for word in WORDS:
+            i = s.rfind(word)
+            if i != -1 and len(s) == i + len(word):
+                s = s[:i]
+                break
+        else:
+            return False
+    return True

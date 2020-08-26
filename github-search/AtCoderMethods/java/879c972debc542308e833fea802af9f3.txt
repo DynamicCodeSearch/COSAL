@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    try {
+        
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+        String str = br.readLine();
+        StringBuffer strBuf = new StringBuffer();
+        for (int i = 0; i < str.length(); i++) {
+            char tmp = str.charAt(i);
+            if (tmp == 'a' || tmp == 'i' || tmp == 'u' || tmp == 'e' || tmp == 'o') {
+                continue;
+            } else {
+                strBuf.append(str.charAt(i));
+            }
+        }
+        System.out.println(strBuf.toString());
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

@@ -1,0 +1,32 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    String s1 = in.nextString();
+    String s2 = in.nextString();
+    List<Boolean> piledList = new ArrayList<>();
+    for (int i = 0; i < n; i++) {
+        if (s1.charAt(i) == s2.charAt(i)) {
+            piledList.add(false);
+        } else {
+            piledList.add(true);
+            i++;
+        }
+    }
+    long ans;
+    if (piledList.get(0)) {
+        ans = 6;
+    } else {
+        ans = 3;
+    }
+    long MOD = 1_000_000_007;
+    Modulo modulo = new Modulo(MOD);
+    for (int i = 1; i < piledList.size(); i++) {
+        if (piledList.get(i - 1)) {
+            if (piledList.get(i)) {
+                ans = modulo.mlt(ans, 3);
+            }
+        } else {
+            ans = modulo.mlt(ans, 2);
+        }
+    }
+    out.println(ans);
+}

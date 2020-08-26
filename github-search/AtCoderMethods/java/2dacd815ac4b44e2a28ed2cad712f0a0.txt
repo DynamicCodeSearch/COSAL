@@ -1,0 +1,21 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int N = in.nextInt();
+    int M = in.nextInt();
+    int mod = 1000000007;
+    long NF = 1;
+    long MF = 1;
+    for (int i = 1; i <= N; i++) {
+        NF = (NF * i) % mod;
+    }
+    for (int i = 1; i <= M; i++) {
+        MF = (MF * i) % mod;
+    }
+    long res = 1;
+    if (N == M) {
+        res = (NF * MF * 2) % mod;
+    } else if (N == M + 1 || M == N + 1) {
+        res = (NF * MF) % mod;
+    } else
+        res = 0;
+    out.println(res);
+}

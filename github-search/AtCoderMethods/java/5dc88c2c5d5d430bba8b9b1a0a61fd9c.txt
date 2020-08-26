@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    IO io = new IO();
+    int n = io.nextInt();
+    int[] a = io.nextIntArray(n);
+    long ans = 0;
+    int l = 0;
+    for (int r = 0; r < n; r++) {
+        if (r != 0 && a[r - 1] >= a[r]) {
+            l = r;
+        }
+        ans += r - l + 1;
+    }
+    System.out.println(ans);
+}

@@ -1,0 +1,9 @@
+int get(int l, int r, int k, int curL, int curR) {
+    if (curR <= l || curL >= r)
+        return -1;
+    if (l <= curL && curR <= r) {
+        return seg[k];
+    }
+    final int curM = (curL + curR) / 2;
+    return merge(get(l, r, 2 * k + 1, curL, curM), get(l, r, 2 * k + 2, curM, curR));
+}

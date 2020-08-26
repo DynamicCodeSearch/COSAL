@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    
+    long A = sc.nextLong();
+    
+    long K = sc.nextLong();
+    long B = 2000000000000L;
+    long Day = 0;
+    if (K == 0) {
+        System.out.println(B - A);
+    } else {
+        if (A < B) {
+            for (long X = A; X < B; X = X + 1 + X * K) {
+                Day++;
+            }
+        } else {
+            System.out.println(0);
+        }
+        System.out.println(Day);
+    }
+}

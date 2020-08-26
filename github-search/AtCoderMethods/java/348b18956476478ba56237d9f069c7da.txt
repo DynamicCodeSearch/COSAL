@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int num = sc.nextInt();
+    int line = sc.nextInt();
+    int moveNum = 0;
+    for (int i = 0; i < num; i++) {
+        int point = sc.nextInt();
+        if (point <= line / 2) {
+            moveNum += point;
+        } else {
+            moveNum += line - point;
+        }
+    }
+    System.out.println(moveNum * 2);
+}

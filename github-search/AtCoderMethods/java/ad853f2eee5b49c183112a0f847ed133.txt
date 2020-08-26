@@ -1,0 +1,9 @@
+void push(int root) {
+    add[2 * root + 1] += add[root];
+    add[2 * root + 2] += add[root];
+    min[2 * root + 1] += add[root];
+    min[2 * root + 2] += add[root];
+    fix(2 * root + 1);
+    fix(2 * root + 2);
+    add[root] = 0;
+}

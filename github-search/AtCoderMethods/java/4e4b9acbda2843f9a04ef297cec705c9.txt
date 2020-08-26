@@ -1,0 +1,10 @@
+void run() throws Exception {
+    InputStream is = INPUT.isEmpty() ? System.in : new ByteArrayInputStream(INPUT.getBytes());
+    ms = new MyScanner(is);
+    out = new PrintWriter(System.out);
+    long s = System.currentTimeMillis();
+    solve();
+    out.flush();
+    if (!INPUT.isEmpty())
+        tr(System.currentTimeMillis() - s + "ms");
+}

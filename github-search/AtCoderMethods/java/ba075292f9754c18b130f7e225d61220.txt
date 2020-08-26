@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int L = sc.nextInt();
+    int X = sc.nextInt();
+    int Y = sc.nextInt();
+    int S = sc.nextInt();
+    int D = sc.nextInt();
+    double cwd = (D - S + L) % L;
+    double ccsd = L - cwd;
+    double min = cwd / (X + Y);
+    if (Y > X)
+        min = Math.min(min, ccsd / (Y - X));
+    System.out.println(min);
+    sc.close();
+}

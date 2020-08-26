@@ -1,0 +1,22 @@
+void run() throws java.lang.Exception {
+    int[] primes = sieveEratosthenes(10000);
+    int n = ni();
+    long mod = (int) 1e9 + 7;
+    long ans = 1;
+    for (int i = 0; n / primes[i] != 0; ++i) {
+        int power = 0;
+        int pri = primes[i];
+        int f = pri;
+        int count = 1;
+        while (n / f != 0) {
+            power += n / f;
+            ++count;
+            f = (int) Math.pow(pri, count);
+        }
+        power++;
+        ans = ans * power;
+        if (ans >= mod)
+            ans %= mod;
+    }
+    out.println(ans);
+}

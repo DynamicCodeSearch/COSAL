@@ -1,0 +1,22 @@
+public int firstle(int l, int v) {
+    int cur = H + l;
+    for (int i = 1, j = Integer.numberOfTrailingZeros(H) - 1; i <= cur; j--) {
+        fall(i);
+        i = i * 2 | cur >>> j & 1;
+    }
+    while (true) {
+        fall(cur);
+        if (st[cur] <= v) {
+            if (cur < H) {
+                cur = 2 * cur;
+            } else {
+                return cur - H;
+            }
+        } else {
+            cur++;
+            if ((cur & cur - 1) == 0)
+                return -1;
+            cur = cur >>> Integer.numberOfTrailingZeros(cur);
+        }
+    }
+}

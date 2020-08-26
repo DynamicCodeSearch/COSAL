@@ -1,0 +1,30 @@
+public static void main(String[] args) throws IOException {
+    Integer in1 = null;
+    String ans = "";
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    try {
+        in1 = Integer.parseInt(br.readLine());
+        double in2 = in1 / 1000.0;
+        Integer res = 0;
+        if (in2 < 0.1) {
+            res = 0;
+        } else if (in2 <= 5) {
+            res = (int) (in2 * 10);
+        } else if (in2 <= 30) {
+            res = (int) (in2 + 50);
+        } else if (in2 <= 70) {
+            res = (int) ((in2 - 30) / 5 + 80);
+        } else {
+            res = 89;
+        }
+        if (res < 10) {
+            ans = '0' + String.valueOf(res);
+        } else {
+            ans = String.valueOf(res);
+        }
+        System.out.println(ans);
+    } catch (Exception e) {
+        System.out.println(e.getMessage());
+        System.exit(0);
+    }
+}

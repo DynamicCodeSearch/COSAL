@@ -1,0 +1,14 @@
+def main():
+    n,m = LI()
+    dk = Dijkstra()
+    t = []
+    r = 0
+    for _ in range(m):
+        a,b,c = LI()
+        dk.add(a,b,c)
+        t.append([a,b,c])
+    for a,b,c in t:
+        d = dk.search(a,b)
+        if d < c:
+            r += 1
+    return r

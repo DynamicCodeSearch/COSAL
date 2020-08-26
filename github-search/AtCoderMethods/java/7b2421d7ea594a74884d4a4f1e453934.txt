@@ -1,0 +1,16 @@
+public static void main(String[] args) throws IOException {
+    FastScanner in = new FastScanner(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    int k = in.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < a.length; i++) {
+        a[i] = in.nextInt();
+    }
+    Arrays.sort(a);
+    int best = 0;
+    for (int i = n - k; i < a.length; i++) {
+        best += a[i];
+    }
+    System.out.println(best);
+}

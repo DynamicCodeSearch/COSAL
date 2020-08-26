@@ -1,0 +1,18 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    int n = in.nextInt();
+    int[] freq = new int[26];
+    Arrays.fill(freq, 10000);
+    for (int i = 0; i < n; i++) {
+        int[] cc = new int[26];
+        for (char x : in.next().toCharArray()) {
+            cc[x - 'a']++;
+        }
+        for (int j = 0; j < 26; j++) {
+            freq[j] = Math.min(freq[j], cc[j]);
+        }
+    }
+    for (int i = 0; i < 26; i++) {
+        while (freq[i]-- > 0) out.print((char) (i + 'a'));
+    }
+    out.println();
+}

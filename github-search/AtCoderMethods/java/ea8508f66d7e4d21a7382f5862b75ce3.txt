@@ -1,0 +1,9 @@
+void update(int k, int a) {
+    k += n - 1;
+    data[k] = a;
+    while (k > 0) {
+        k = (k - 1) / 2;
+        data[k] = Math.min(data[k * 2 + 1], data[k * 2 + 2]);
+        ind[k] = minInd(k * 2 + 1, k * 2 + 2);
+    }
+}

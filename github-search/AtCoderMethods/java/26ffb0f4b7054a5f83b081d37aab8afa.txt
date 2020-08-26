@@ -1,0 +1,55 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    HashSet<String> color = new HashSet<String>();
+    if (n == 0) {
+        System.out.println("0 0");
+        return;
+    }
+    int min = 0;
+    int max = 0;
+    int colorful = 0;
+    for (int i = 0; i < n; i++) {
+        int rate = sc.nextInt();
+        switch(rate / 400) {
+            case 0:
+                color.add("gray");
+                break;
+            case 1:
+                color.add("brown");
+                break;
+            case 2:
+                color.add("green");
+                break;
+            case 3:
+                color.add("skyblue");
+                break;
+            case 4:
+                color.add("blue");
+                break;
+            case 5:
+                color.add("yellow");
+                break;
+            case 6:
+                color.add("orange");
+                break;
+            case 7:
+                color.add("red");
+                break;
+            default:
+                colorful++;
+                break;
+        }
+    }
+    if (color.size() == 0) {
+        min = 1;
+    } else {
+        min = color.size();
+    }
+    if (colorful > 0) {
+        max = color.size() + colorful;
+    } else {
+        max = color.size();
+    }
+    System.out.println(min + " " + max);
+}

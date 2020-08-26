@@ -1,0 +1,21 @@
+long solveE(long[] a) {
+    Arrays.sort(a);
+    int n = a.length;
+    long k = 0;
+    for (int i = 0; i < n; i++) {
+        long diff = (a[i] - a[0]) / (n + 1);
+        a[i] -= diff * (n + 1);
+        k += diff;
+    }
+    for (int i = 0; i < n; i++) {
+        a[i] += k;
+    }
+    long ans = k;
+    if (a[0] >= n) {
+        ans += (a[0] - (n - 1)) * n;
+        for (int i = n - 1; i >= 0; i--) {
+            a[i] -= (a[0] - (n - 1));
+        }
+    }
+    return ans + brute(a);
+}

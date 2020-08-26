@@ -1,0 +1,31 @@
+void solve() {
+    Scanner in = new Scanner(System.in);
+    int N = in.nextInt();
+    int[] b = new int[N];
+    int[] s = new int[N];
+    b[0] = -1;
+    for (int i = 1; i < N; i++) {
+        b[i] = in.nextInt() - 1;
+        s[b[i]] = -1;
+    }
+    for (int i = 0; i < N; i++) {
+        s[i]++;
+    }
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            int max = Integer.MIN_VALUE, min = Integer.MAX_VALUE;
+            boolean f = false;
+            for (int k = 0; k < N; k++) {
+                if (b[k] == j) {
+                    f = true;
+                    max = Math.max(max, s[k]);
+                    min = Math.min(min, s[k]);
+                }
+            }
+            if (f) {
+                s[j] = min + max + 1;
+            }
+        }
+    }
+    System.out.println(s[0]);
+}

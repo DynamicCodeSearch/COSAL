@@ -1,0 +1,44 @@
+
+public static void main(String[] args) throws IOException {
+    
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] tmpArray = br.readLine().split(" ");
+    int n = Integer.parseInt(tmpArray[0]);
+    int K = Integer.parseInt(tmpArray[1]);
+    Point[] points = new Point[n];
+    long[] x = new long[n];
+    long[] y = new long[n];
+    for (int i = 0; i < n; i++) {
+        tmpArray = br.readLine().split(" ");
+        points[i] = new Point(Long.parseLong(tmpArray[0]), Long.parseLong(tmpArray[1]));
+        x[i] = Long.parseLong(tmpArray[0]);
+        y[i] = Long.parseLong(tmpArray[1]);
+    }
+    
+    Arrays.sort(x);
+    Arrays.sort(y);
+    
+    long minArea = Long.MAX_VALUE;
+    
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = i + 1; j < n; j++) {
+            for (int k = 0; k < n - 1; k++) {
+                for (int l = 0; l < n; l++) {
+                    long left = x[i];
+                    long right = x[j];
+                    long bottom = y[k];
+                    long top = y[l];
+                    int count = pointInRect(left, right, top, bottom, points);
+                    
+                    if (count >= K) {
+                        long tmpArea = (right - left) * (top - bottom);
+                        if (tmpArea < minArea) {
+                            minArea = tmpArea;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    System.out.println(minArea);
+}

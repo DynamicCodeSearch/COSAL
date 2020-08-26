@@ -1,0 +1,24 @@
+static int solve(int at, int cost, int A, int B) {
+    if (at == n) {
+        double abc = A, bcd = B;
+        if (abc / bcd != (double) a / b) {
+            return (int) 1e9;
+        }
+        return cost;
+    }
+    if ((double) (A) / (double) B == (double) a / b) {
+        if (dp[A][B][at] == -1)
+            dp[A][B][at] = cost;
+        else
+            dp[A][B][at] = Math.min(cost, dp[A][B][at]);
+        return cost;
+    }
+    if (dp[A][B][at] != -1)
+        return dp[A][B][at];
+    int res = (int) 1e9;
+    
+    res = Math.min(res, solve(at + 1, cost, A + c[at].a, B + c[at].b) + c[at].c);
+    
+    res = Math.min(res, solve(at + 1, cost, A, B));
+    return dp[A][B][at] = res;
+}

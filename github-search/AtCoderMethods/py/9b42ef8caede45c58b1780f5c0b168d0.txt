@@ -1,0 +1,13 @@
+def solve():
+
+    count = 0
+
+    for i in range(N - 1):
+
+        stc = candies[i] + candies[i + 1]
+        if stc > x:
+            count += stc - x
+            candies[i] += min(0, candies[i + 1] - (stc - x))
+            candies[i + 1] = max(0, candies[i + 1] - (stc - x))
+
+    return count

@@ -1,0 +1,16 @@
+def S1(a,b):
+    c,total,ans = 0,0,0
+    for t in arr:
+        c += 1
+        if c % 2 == a:
+            if total+t <= 0:
+                ans += abs(total+t)+1
+                total = 1
+                continue
+        elif c % 2 == b:
+            if total+t >= 0:
+                ans += abs(total+t)+1
+                total = -1
+                continue
+        total += t
+    return ans

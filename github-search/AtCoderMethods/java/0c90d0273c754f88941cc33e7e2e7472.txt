@@ -1,0 +1,17 @@
+int dfs(int c, int p) {
+    parent[c] = p;
+    int s = 1;
+    int to = -1;
+    for (int d : g[c]) {
+        if (d == p)
+            continue;
+        depth[d] = depth[c] + 1;
+        s += dfs(d, c);
+        if (to == -1 || sz[d] > sz[to]) {
+            to = d;
+        }
+    }
+    sz[c] = s;
+    heavy[c] = to;
+    return s;
+}

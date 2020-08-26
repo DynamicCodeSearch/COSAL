@@ -1,0 +1,26 @@
+public static long search(long H, long W) {
+    long min = Long.MAX_VALUE;
+    for (int h = 1; h < H; h++) {
+        long S1 = h * W;
+        long H1 = H - h;
+        
+        long H2 = H1 / 2;
+        long H3 = H1 - H2;
+        long S2 = H2 * W;
+        long S3 = H3 * W;
+        long score = cal(S1, S2, S3);
+        if (score < min) {
+            min = score;
+        }
+        
+        long W2 = W / 2;
+        long W3 = W - W2;
+        S2 = H1 * W2;
+        S3 = H1 * W3;
+        score = cal(S1, S2, S3);
+        if (score < min) {
+            min = score;
+        }
+    }
+    return min;
+}

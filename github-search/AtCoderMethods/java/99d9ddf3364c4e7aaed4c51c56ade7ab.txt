@@ -1,0 +1,28 @@
+void solve() throws IOException {
+    int n = readInt();
+    int a = readInt();
+    int b = readInt();
+    int[] h = readIntArray(n);
+    int l = 0;
+    int r = 1000000000;
+    int ans = 1000000000;
+    while (l <= r) {
+        int mid = (l + r) >> 1;
+        long need = 0;
+        for (int hh : h) {
+            long ost = hh - (long) mid * b;
+            if (ost > 0) {
+                int addDamage = a - b;
+                ost = (ost + addDamage - 1) / addDamage;
+                need = Math.min(mid + 1, need + ost);
+            }
+        }
+        if (need <= mid) {
+            ans = mid;
+            r = mid - 1;
+        } else {
+            l = mid + 1;
+        }
+    }
+    out.println(ans);
+}

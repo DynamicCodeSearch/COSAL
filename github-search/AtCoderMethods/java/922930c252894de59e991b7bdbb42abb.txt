@@ -1,0 +1,28 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    Double N = Double.valueOf(br.readLine());
+    Double s = 1.0;
+    int[] count_num = new int[N.intValue() - 1];
+    for (int T = N.intValue(); T > 1; T--) {
+        N = (double) T;
+        s = Math.floor(Math.sqrt(N));
+        for (int i = 2; i <= s.intValue(); i++) {
+            if (N.intValue() % i == 0) {
+                do {
+                    N = N / i;
+                    count_num[i - 2] += 1;
+                } while (N % i == 0);
+            }
+        }
+        if (N > s) {
+            count_num[N.intValue() - 2] += 1;
+        }
+    }
+    long ans = 1;
+    for (int i = 0; i < count_num.length; i++) {
+        if (count_num[i] != 0) {
+            ans = (ans * (count_num[i] + 1)) % 1000000007;
+        }
+    }
+    System.out.println(ans);
+}

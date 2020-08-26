@@ -1,0 +1,51 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String s = sc.next();
+    String[] sp = s.split("/");
+    int y = Integer.parseInt(sp[0]);
+    int m = Integer.parseInt(sp[1]);
+    int d = Integer.parseInt(sp[2]);
+    int[] last = { -1, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+    int ansy = 0;
+    int ansm = 0;
+    int ansd = 0;
+    while (ansy == 0) {
+        int day = last[m];
+        if (m == 2) {
+            int count = 0;
+            if (y % 4 == 0)
+                count++;
+            if (y % 100 == 0)
+                count++;
+            if (y % 400 == 0)
+                count++;
+            if (count % 2 == 1)
+                day++;
+        }
+        for (int i = d; i <= day; i++) {
+            if (y % m == 0) {
+                int y1 = y / m;
+                if (y1 % i == 0) {
+                    ansy = y;
+                    ansm = m;
+                    ansd = i;
+                    break;
+                }
+            }
+        }
+        d = 1;
+        m++;
+        if (m == 13)
+            m = 1;
+        if (m == 1)
+            y++;
+    }
+    String sy = String.valueOf(ansy);
+    String sm = String.valueOf(ansm);
+    String sd = String.valueOf(ansd);
+    if (ansm < 10)
+        sm = "0" + sm;
+    if (ansd < 10)
+        sd = "0" + sd;
+    System.out.println(sy + "/" + sm + "/" + sd);
+}

@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String s = "";
+    s += sc.next();
+    s += sc.next();
+    byte[] ascii;
+    try {
+        ascii = s.getBytes("US-ASCII");
+    } catch (Exception e) {
+        e.printStackTrace();
+        return;
+    }
+    if (ascii[1] - ascii[0] == 32)
+        System.out.println("Yes");
+    else
+        System.out.println("No");
+}

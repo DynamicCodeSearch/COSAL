@@ -1,0 +1,38 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    String S = scanner.next();
+    int T = scanner.nextInt();
+    int x = 0;
+    int y = 0;
+    int q = 0;
+    for (char c : S.toCharArray()) {
+        switch(c) {
+            case 'L':
+                x--;
+                break;
+            case 'R':
+                x++;
+                break;
+            case 'U':
+                y++;
+                break;
+            case 'D':
+                y--;
+                break;
+            default:
+                q++;
+        }
+    }
+    int d = Math.abs(x) + Math.abs(y);
+    if (T == 1)
+        System.out.println(d + q);
+    else {
+        while (q-- > 0) {
+            if (d > 0)
+                d--;
+            else
+                d++;
+        }
+        System.out.println(d);
+    }
+}

@@ -1,0 +1,12 @@
+public static void choose(int maxN, int maxR) {
+    nCr = new long[maxN + 1][maxR + 1];
+    for (int i = 0; i <= maxN; i++) {
+        for (int j = 0; j <= i; j++) {
+            if (j == 0 || j == i || i == 0) {
+                nCr[i][j] = 1;
+            } else {
+                nCr[i][j] = nCr[i - 1][j - 1] + nCr[i - 1][j];
+            }
+        }
+    }
+}

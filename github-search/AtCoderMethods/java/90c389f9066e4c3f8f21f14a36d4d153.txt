@@ -1,0 +1,21 @@
+public static void main(String[] args) throws Exception {
+    String w = sc.next();
+    int[] n = new int[26];
+    for (int i = 0; i < w.length(); i++) {
+        n[(int) w.charAt(i) - (int) 'a']++;
+    }
+    boolean flag = true;
+    for (int i = 0; i < 26; i++) {
+        if (n[i] % 2 != 0) {
+            flag = false;
+        }
+    }
+    if (flag) {
+        out.println("Yes");
+    } else {
+        out.println("No");
+    }
+    out.flush();
+    sc.close();
+    out.close();
+}

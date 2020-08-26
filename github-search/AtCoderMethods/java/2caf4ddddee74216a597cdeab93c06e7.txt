@@ -1,0 +1,34 @@
+public static int[] maximalRectangles(int[] histogram) {
+    class E {
+
+        int height;
+
+        int pos;
+    }
+    histogram = Arrays.copyOf(histogram, histogram.length + 1);
+    int[] res = new int[histogram.length];
+    Stack<E> S = new Stack<>();
+    for (int i = 0; i < histogram.length; i++) {
+        E e = new E();
+        e.height = histogram[i];
+        e.pos = i;
+        if (S.isEmpty()) {
+            S.push(e);
+        } else {
+            if (S.peek().height < e.height) {
+                S.push(e);
+            } else if (S.peek().height > e.height) {
+                int target = i;
+                while (!S.empty() && S.peek().height >= e.height) {
+                    E pre = S.pop();
+                    int w = i - pre.pos;
+                    res[w] = Math.max(res[w], pre.height);
+                    target = pre.pos;
+                }
+                e.pos = target;
+                S.push(e);
+            }
+        }
+    }
+    return res;
+}

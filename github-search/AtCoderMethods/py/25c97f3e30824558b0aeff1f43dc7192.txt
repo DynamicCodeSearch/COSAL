@@ -1,0 +1,9 @@
+def dfs(cur,pre):
+    a = []
+    for nex in G[cur]:
+        if nex == pre:
+            continue
+        a.append(dfs(nex,cur))
+    if len(a) == 0:
+        return 1
+    return min(a) + max(a) + 1

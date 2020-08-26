@@ -1,0 +1,5 @@
+def merge(time_span_1, time_span_2):
+    if time_span_1.start.later_than(time_span_2.start):
+        return merge(time_span_2, time_span_1)
+    endTime = max(time_span_1.end, time_span_2.end, key=lambda time: time.total_minute())
+    return TimeSpan(time_span_1.start, endTime)

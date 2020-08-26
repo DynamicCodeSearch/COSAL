@@ -1,0 +1,17 @@
+public static boolean dfs(int idx, boolean isRed) {
+    if (color[idx] != 0) {
+        int add = isRed ? 1 : 2;
+        return color[idx] != add;
+    }
+    color[idx] |= isRed ? 1 : 2;
+    for (int i = 0; i < node[idx].e.size(); i++) {
+        if (!used[node[idx].e.get(i).idx]) {
+            if (node[idx].e.get(i).isRed == isRed) {
+                used[node[idx].e.get(i).idx] = true;
+                if (dfs(node[idx].e.get(i).to, isRed ^ true))
+                    return true;
+            }
+        }
+    }
+    return false;
+}

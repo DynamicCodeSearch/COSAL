@@ -1,0 +1,25 @@
+void run() {
+    Scanner sc = new Scanner(System.in);
+    int w = sc.nextInt();
+    int h = sc.nextInt();
+    int n = sc.nextInt();
+    int wmin = 0, wmax = w;
+    int hmin = 0, hmax = h;
+    for (int i = 0; i < n; i++) {
+        int x = sc.nextInt();
+        int y = sc.nextInt();
+        int a = sc.nextInt();
+        if (a == 1) {
+            wmin = Math.max(wmin, x);
+        } else if (a == 2) {
+            wmax = Math.min(wmax, x);
+        } else if (a == 3) {
+            hmin = Math.max(hmin, y);
+        } else {
+            hmax = Math.min(hmax, y);
+        }
+    }
+    w = Math.max(0, wmax - wmin);
+    h = Math.max(0, hmax - hmin);
+    System.out.println(w * h);
+}

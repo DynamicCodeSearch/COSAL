@@ -1,0 +1,28 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] input = br.readLine().split(" ");
+    int n = Integer.parseInt(input[0]);
+    int[] r = new int[n];
+    for (int i = 0; i < n; i++) {
+        r[i] = Integer.parseInt(br.readLine());
+    }
+    int tmp;
+    for (int i = n - 1; i > 0; i--) {
+        for (int j = n - 1; j > 0; j--) {
+            if (r[j - 1] < r[j]) {
+                tmp = r[j - 1];
+                r[j - 1] = r[j];
+                r[j] = tmp;
+            }
+        }
+    }
+    int rr = 0;
+    for (int i = 0; i < n; i++) {
+        if ((i + 1) % 2 != 0) {
+            rr += r[i] * r[i];
+        } else {
+            rr -= r[i] * r[i];
+        }
+    }
+    System.out.println(Math.abs(rr * Math.PI));
+}

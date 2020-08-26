@@ -1,0 +1,28 @@
+
+public void run() throws IOException {
+    
+    int TEST_CASE = 1;
+    while (TEST_CASE-- != 0) {
+        
+        
+        
+        
+        char[] s = io.next();
+        char[] t = io.next();
+        Seg2 seg1 = new Seg2(s.length);
+        Seg2 seg2 = new Seg2(t.length);
+        for (int i = 0; i < s.length; i++) {
+            seg1.update(i, s[i] - 'A');
+        }
+        for (int i = 0; i < t.length; i++) {
+            seg2.update(i, t[i] - 'A');
+        }
+        for (int q = io.nextInt(); q > 0; q--) {
+            int a = io.nextInt() - 1;
+            int b = io.nextInt() - 0;
+            int c = io.nextInt() - 1;
+            int d = io.nextInt() - 0;
+            io.out.println(seg1.get(a, b) == seg2.get(c, d) ? "YES" : "NO");
+        }
+    }
+}

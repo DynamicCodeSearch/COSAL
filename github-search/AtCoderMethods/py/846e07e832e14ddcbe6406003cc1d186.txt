@@ -1,0 +1,11 @@
+def main():
+    n, m = map(int, input().split())
+    weights = {}
+    for _ in range(m):
+        a, b, c = map(int, input().split())
+        a -= 1
+        b -= 1
+        weights[(a, b)] = c
+
+    res = solve2(n, m, weights)
+    print(res)

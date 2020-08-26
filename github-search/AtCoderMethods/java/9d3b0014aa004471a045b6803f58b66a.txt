@@ -1,0 +1,8 @@
+static int accum(int[] fen, int i) {
+    int ans = 0;
+    while (i > 0) {
+        ans += fen[i];
+        i -= (i & -i);
+    }
+    return ans;
+}

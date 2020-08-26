@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner sn = new Scanner(System.in);
+    int N = sn.nextInt();
+    int[] koma = new int[200000 + 2 + 1];
+    for (int i = 0; i < N; ++i) koma[i] = 0;
+    int Q = sn.nextInt();
+    int l, r;
+    for (int i = 0; i < Q; ++i) {
+        l = sn.nextInt();
+        r = sn.nextInt();
+        koma[l - 1]++;
+        koma[r]--;
+    }
+    for (int i = 0; i < N; ++i) koma[i + 1] += koma[i];
+    for (int i = 0; i < N; ++i) {
+        System.out.print(koma[i] % 2);
+    }
+    System.out.println();
+}

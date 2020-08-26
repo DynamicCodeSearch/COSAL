@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] a = new int[N];
+    IntStream.range(0, N).forEach(i -> a[i] = rateToColor(sc.nextInt()));
+    int color_unknown = (int) Arrays.stream(a).filter(i -> i == 9).count();
+    int colors = (int) Arrays.stream(a).filter(i -> i != 9).distinct().count();
+    if (color_unknown == 0) {
+        System.out.print(colors);
+        System.out.print(" ");
+        System.out.print(colors);
+        return;
+    }
+    int max;
+    
+    max = colors + color_unknown;
+    int min = Math.max(1, colors);
+    System.out.print(min);
+    System.out.print(" ");
+    System.out.print(max);
+}

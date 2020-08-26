@@ -1,0 +1,13 @@
+public static void main(String[] args) throws java.lang.Exception {
+    InputReader in = new InputReader(System.in);
+    PrintWriter w = new PrintWriter(System.out);
+    PriorityQueue<Long> q = new PriorityQueue<>(Collections.reverseOrder());
+    int n = in.nextInt(), k = in.nextInt();
+    while (n-- > 0) q.add(in.nextLong());
+    long sum = 0;
+    while (k-- > 0) {
+        sum += q.poll();
+    }
+    w.println(sum);
+    w.close();
+}

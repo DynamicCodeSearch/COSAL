@@ -1,0 +1,46 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int W = sc.nextInt();
+    int H = sc.nextInt();
+    int N = sc.nextInt();
+    int[][] points = new int[N][3];
+    for (int i = 0; i < N; i++) {
+        points[i][0] = sc.nextInt();
+        points[i][1] = sc.nextInt();
+        points[i][2] = sc.nextInt();
+    }
+    int x0 = 0;
+    int y0 = 0;
+    int x1 = W;
+    int y1 = H;
+    for (int i = 0; i < N; i++) {
+        switch(points[i][2]) {
+            case 1:
+                if (points[i][0] > x0) {
+                    x0 = points[i][0];
+                }
+                break;
+            case 2:
+                if (points[i][0] < x1) {
+                    x1 = points[i][0];
+                }
+                break;
+            case 3:
+                if (points[i][1] > y0) {
+                    y0 = points[i][1];
+                }
+                break;
+            case 4:
+                if (points[i][1] < y1) {
+                    y1 = points[i][1];
+                }
+                break;
+        }
+    }
+    if (x0 < x1 && y0 < y1) {
+        System.out.println((x1 - x0) * (y1 - y0));
+    } else {
+        System.out.println(0);
+    }
+    sc.close();
+}

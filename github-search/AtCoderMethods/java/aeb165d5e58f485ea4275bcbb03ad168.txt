@@ -1,0 +1,33 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    String S = scan.next();
+    int T = scan.nextInt();
+    
+    char[] array = S.toCharArray();
+    
+    
+    HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+    map.put('L', 0);
+    map.put('R', 0);
+    map.put('U', 0);
+    map.put('D', 0);
+    map.put('?', 0);
+    for (char c : array) {
+        map.replace(c, map.get(c) + 1);
+    }
+    
+    int X = Math.abs(map.get('L') - map.get('R'));
+    int Y = Math.abs(map.get('U') - map.get('D'));
+    int d = X + Y;
+    int c = map.get('?');
+    
+    if (T == 1) {
+        System.out.println((d + map.get('?')));
+    } else {
+        if ((d % 2) == (c % 2)) {
+            System.out.println(Math.max(d - c, 0));
+        } else {
+            System.out.println(Math.max(d - c, 1));
+        }
+    }
+}

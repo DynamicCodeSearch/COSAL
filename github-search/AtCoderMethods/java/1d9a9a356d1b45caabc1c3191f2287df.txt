@@ -1,0 +1,26 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    int[] xs = new int[n];
+    int[] ys = new int[m];
+    for (int i = 0; i < n; i++) {
+        xs[i] = sc.nextInt();
+    }
+    for (int i = 0; i < m; i++) {
+        ys[i] = sc.nextInt();
+    }
+    long mx = 0;
+    long my = 0;
+    for (int i = 0; i < n - 1; i++) {
+        long d = add(xs[i + 1], -xs[i]);
+        long c = (long) (i + 1) * (long) (n - i - 1);
+        mx = add(mx, mul(d, c));
+    }
+    for (int i = 0; i < m - 1; i++) {
+        long d = add(ys[i + 1], -ys[i]);
+        long c = (long) (i + 1) * (long) (m - i - 1);
+        my = add(my, mul(d, c));
+    }
+    System.out.println(mul(mx, my));
+}

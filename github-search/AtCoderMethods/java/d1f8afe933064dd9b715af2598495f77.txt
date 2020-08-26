@@ -1,0 +1,24 @@
+void solve(int testNumber, InputReader in, PrintWriter out) {
+    h = in.nextInt();
+    w = in.nextInt();
+    n = in.nextInt();
+    map = new TreeMap<Long, Integer>();
+    for (int i = 0; i < n; ++i) {
+        ai = in.nextInt();
+        bi = in.nextInt();
+        for (int j = -2; j <= 0; ++j) for (int k = -2; k <= 0; ++k) if (isWithin(ai + j, bi + k) && isWithin(ai + j + 2, bi + k + 2)) {
+            long hash = pack(ai + j, bi + k);
+            if (!map.containsKey(hash))
+                map.put(hash, 1);
+            else
+                map.put(hash, map.get(hash) + 1);
+        }
+    }
+    long[] total = new long[10];
+    total[0] = (long) (h - 2) * (w - 2);
+    for (long i : map.keySet()) {
+        --total[0];
+        ++total[map.get(i)];
+    }
+    for (int i = 0; i < 10; ++i) out.println(total[i]);
+}

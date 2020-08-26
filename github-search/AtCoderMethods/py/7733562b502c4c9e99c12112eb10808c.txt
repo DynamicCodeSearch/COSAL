@@ -1,0 +1,7 @@
+def main():
+    _ = input()
+    xs = Stdin.read_line(converter=int)
+    ys = chain.from_iterable([[x-1, x, x+1] for x in xs])
+    ys = sorted(list(ys))
+    m = max(map(len, group(ys)))
+    print(m)

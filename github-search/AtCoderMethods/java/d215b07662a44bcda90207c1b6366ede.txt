@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    
+    Scanner scan = new Scanner(System.in);
+    int n;
+    n = scan.nextInt();
+    n = n % 30;
+    int[] cards = { 1, 2, 3, 4, 5, 6 };
+    int tmp = 0;
+    for (int i = 0; i < n; i++) {
+        tmp = cards[(i % (cards.length - 1))];
+        cards[(i % (cards.length - 1))] = cards[(i % (cards.length - 1)) + 1];
+        cards[(i % (cards.length - 1)) + 1] = tmp;
+    }
+    for (int i = 0; i < cards.length; i++) {
+        System.out.print(cards[i]);
+    }
+    System.out.println();
+    scan.close();
+}

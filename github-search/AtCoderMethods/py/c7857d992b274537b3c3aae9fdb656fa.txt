@@ -1,0 +1,9 @@
+def dfs(now, dp):
+  if dp.count(True) == N:
+    ans[0] += 1
+  else:
+    for e in graph[now]:
+      if not dp[e]:
+        nextdp = dp[:]
+        nextdp[e] = True
+        dfs(e, nextdp)

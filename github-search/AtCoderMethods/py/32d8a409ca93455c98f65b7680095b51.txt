@@ -1,0 +1,36 @@
+def solve():
+    N, A, B = map(int, input().split())
+    a = list(map(int, input().split()))
+
+    if A == 1:
+        a.sort()
+        return a
+
+    if B <= 30 * N:
+        import heapq
+        heapq.heapify(a)
+        while B > 0:
+            x = heapq.heappop(a)
+            heapq.heappush(a, x * A)
+            B -= 1
+        a.sort()
+        return map(lambda x: x % MOD, a)
+
+    mx = max(a)
+    rest = B
+    for i in range(N):
+        while a[i] < mx:
+            a[i] *= A
+            rest -= 1
+
+    assert rest >= 0
+    a.sort()
+
+    border = rest % N
+    for i in range(N):
+        if i < border:
+            a[i] = a[i] * pow(A, rest // N + 1, MOD) % MOD
+        else:
+            a[i] = a[i] * pow(A, rest // N, MOD) % MOD
+
+    return a[border:] + a[:border]

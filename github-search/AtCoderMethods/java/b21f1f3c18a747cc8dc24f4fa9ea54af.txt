@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    int[] score = new int[M];
+    int sum = 0;
+    
+    for (int i = 0; i < N; i++) {
+        int l = sc.nextInt() - 1;
+        int r = sc.nextInt();
+        int s = sc.nextInt();
+        sum += s;
+        score[l] += s;
+        if (r < M)
+            score[r] -= s;
+    }
+    int min = score[0];
+    for (int i = 1; i < M; i++) {
+        score[i] += score[i - 1];
+        min = Math.min(min, score[i]);
+    }
+    System.out.println(sum - min);
+}

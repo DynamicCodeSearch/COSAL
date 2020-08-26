@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    
+    long A, B, M;
+    A = sc.nextLong();
+    B = sc.nextLong();
+    M = sc.nextInt();
+    long g = special_GCD(A, B);
+    
+    long m = A / g, n = B / g;
+    if (m < n) {
+        long t;
+        
+        t = m;
+        m = n;
+        n = t;
+    }
+    
+    long a1 = PowerMod(10, g, M * 9);
+    long a2 = PowerMod(a1, m, M * 9);
+    long a = (a2 - 1) / 9;
+    
+    long b = 1;
+    long e = PowerMod(10, g, M);
+    
+    b = sum(1, e, n, M);
+    long Ans = (a * b) % M;
+    
+    System.out.println(Ans);
+}

@@ -1,0 +1,18 @@
+private long solve(int n, long[] a, long sum) {
+    long res = 0;
+    for (int i = 1; i < n; i++) {
+        long x = a[i];
+        long nx = x;
+        if (Long.signum(sum) + Long.signum(sum + nx) != 0) {
+            nx = -sum;
+            if (sum > 0) {
+                --nx;
+            } else {
+                ++nx;
+            }
+        }
+        sum += nx;
+        res += Math.abs(nx - x);
+    }
+    return res;
+}

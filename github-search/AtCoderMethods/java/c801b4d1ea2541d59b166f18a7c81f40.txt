@@ -1,0 +1,13 @@
+private static long solve(int n, long[] t) {
+    ArrayDeque<Long> deq = new ArrayDeque<>();
+    deq.addAll(Arrays.stream(t).boxed().collect(Collectors.toList()));
+    while (deq.size() >= 2) {
+        long a = deq.poll();
+        long b = deq.poll();
+        long gcd = gcd(a, b);
+        long lcm = a / gcd * b;
+        deq.add(lcm);
+    }
+    long ans = deq.poll();
+    return ans;
+}

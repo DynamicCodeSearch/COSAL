@@ -1,0 +1,15 @@
+static int dfs(int v) {
+    if (allvisited())
+        return 1;
+    else {
+        int r = 0;
+        for (Integer u : graph[v]) {
+            if (!visited[u]) {
+                visited[u] = true;
+                r = r + dfs(u);
+                visited[u] = false;
+            }
+        }
+        return r;
+    }
+}

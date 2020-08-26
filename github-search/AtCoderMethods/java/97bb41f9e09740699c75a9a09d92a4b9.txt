@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String w = sc.next();
+    int count = 1;
+    int i = 0;
+    while (w.length() >= 2) {
+        for (int j = i + 1; j < w.length(); j++) {
+            if (w.substring(i, 1).equals(w.substring(j, j + 1))) {
+                count++;
+            }
+        }
+        if (count % 2 == 1) {
+            System.out.println("No");
+            break;
+        }
+        count = 1;
+        w = w.replaceAll(w.substring(0, 1), "");
+    }
+    if (w.length() == 0) {
+        System.out.println("Yes");
+    } else if (w.length() == 1) {
+        System.out.println("No");
+    }
+}

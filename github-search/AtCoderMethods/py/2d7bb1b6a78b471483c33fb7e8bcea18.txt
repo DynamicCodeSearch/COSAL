@@ -1,0 +1,23 @@
+def main():
+	n = int(input())
+ bars = list(map(int, input().split()))
+
+ bars.sort(reverse = True)
+
+ d = {}
+ used = []
+
+ for bar in bars:
+		if bar in d:
+			d[bar] += 1
+   if d[bar] == 2:
+				used.append(bar)
+    d[bar] = 0
+  else:
+			d[bar] = 1
+
+  if len(used) == 2:
+			print(used[0] * used[1])
+   break
+ else:
+		print(0)

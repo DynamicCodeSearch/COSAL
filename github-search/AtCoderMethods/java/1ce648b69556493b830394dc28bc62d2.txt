@@ -1,0 +1,33 @@
+int solve(int s, int t) {
+    int tot = 0;
+    while (true) {
+        int[] pre = new int[n];
+        Arrays.fill(pre, -1);
+        ArrayDeque<Integer> que = new ArrayDeque<>();
+        que.add(s);
+        out: while (!que.isEmpty()) {
+            int v = que.poll();
+            for (int i = 0; i < n; ++i) {
+                if (cap[v][i] - flow[v][i] > 0 && pre[i] == -1 && i != s) {
+                    pre[i] = v;
+                    que.add(i);
+                    if (i == t) {
+                        break out;
+                    }
+                }
+            }
+        }
+        if (pre[t] == -1)
+            break;
+        int inc = Integer.MAX_VALUE / 16;
+        for (int i = t; pre[i] != -1; i = pre[i]) {
+            inc = Math.min(inc, cap[pre[i]][i] - flow[pre[i]][i]);
+        }
+        for (int i = t; pre[i] != -1; i = pre[i]) {
+            flow[pre[i]][i] += inc;
+            flow[i][pre[i]] -= inc;
+        }
+        tot += inc;
+    }
+    return tot;
+}

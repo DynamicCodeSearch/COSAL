@@ -1,0 +1,13 @@
+public static void main(String[] args) throws Exception {
+    java.util.Scanner sc = new java.util.Scanner(System.in);
+    int y = sc.nextInt();
+    int m = sc.nextInt();
+    int d = sc.nextInt();
+    if (m == 1 || m == 2) {
+        y -= 1;
+        m += 12;
+    }
+    long today = 735369;
+    double backward = 365 * y + Math.floor(y / 4.0) - Math.floor(y / 100.0) + Math.floor(y / 400.0) + Math.floor(306 * (m + 1) / 10.0) + d - 429;
+    System.out.println(today - (long) backward);
+}

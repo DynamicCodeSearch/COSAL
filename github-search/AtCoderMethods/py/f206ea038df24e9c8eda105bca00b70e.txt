@@ -1,0 +1,27 @@
+def calc(H, W):
+    global ans
+    x = W // 3
+
+    s0 = x * H
+    s1 = H * ((W - x + 1) // 2)
+    s2 = H * ((W - x) // 2)
+
+    ans = min(ans, max(s0, s1, s2) - min(s0, s1, s2))
+
+    s1 = (W - x) * ((H + 1) // 2)
+    s2 = (W - x) * (H // 2)
+
+    ans = min(ans, max(s0, s1, s2) - min(s0, s1, s2))
+
+    x = (W + 2) // 3
+
+    s0 = x * H
+    s1 = H * ((W - x + 1) // 2)
+    s2 = H * ((W - x) // 2)
+
+    ans = min(ans, max(s0, s1, s2) - min(s0, s1, s2))
+
+    s1 = (W - x) * ((H + 1) // 2)
+    s2 = (W - x) * (H // 2)
+
+    ans = min(ans, max(s0, s1, s2) - min(s0, s1, s2))

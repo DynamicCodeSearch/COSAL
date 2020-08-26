@@ -1,0 +1,19 @@
+void solver() {
+    Scanner sc = new Scanner(System.in);
+    
+    long A = sc.nextLong();
+    
+    long B = sc.nextLong();
+    
+    long K = sc.nextLong();
+    long L = sc.nextLong();
+    if (((double) B) / ((double) L) >= A) {
+        System.out.println(A * K);
+    } else {
+        long min_cost = 0;
+        min_cost = K / L * B;
+        long res = K - K / L * L;
+        min_cost = Math.min(min_cost + B, min_cost + res * A);
+        System.out.println(min_cost);
+    }
+}

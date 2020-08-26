@@ -1,0 +1,19 @@
+public void calc() {
+    char[] S = in.next().toCharArray();
+    for (int i = S.length - 2; i > 0; i--) {
+        if (i % 2 == 0)
+            continue;
+        boolean isEvenString = true;
+        for (int j = i; j >= (i + 1) / 2; j--) {
+            if (S[j] != S[j - (i + 1) / 2]) {
+                isEvenString = false;
+                break;
+            }
+        }
+        if (isEvenString) {
+            out.println(i + 1);
+            break;
+        }
+    }
+    out.close();
+}

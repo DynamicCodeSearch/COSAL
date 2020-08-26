@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    int i;
+    int a3 = 0;
+    int a2 = 0;
+    int a1 = 1;
+    int answer = 0;
+    int r;
+    InputStreamReader isr = new InputStreamReader(System.in);
+    BufferedReader br = new BufferedReader(isr);
+    String buf;
+    try {
+        buf = br.readLine();
+    } catch (Exception e) {
+        return;
+    }
+    int n = Integer.parseInt(buf);
+    if (n == 1 || n == 2) {
+        answer = 0;
+    } else if (n == 3) {
+        answer = 1;
+    } else {
+        for (i = 0; i < n - 3; i++) {
+            answer = (a3 + a2 + a1) % 10007;
+            a3 = a2;
+            a2 = a1;
+            a1 = answer;
+        }
+    }
+    System.out.println(answer);
+}

@@ -1,0 +1,31 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int K = sc.nextInt();
+    boolean[] chk = new boolean[10];
+    Arrays.fill(chk, true);
+    for (int i = 0; i < K; i++) {
+        int a = sc.nextInt();
+        chk[a] = false;
+    }
+    int ans = N;
+    while (ans <= 1000000) {
+        int i = ans;
+        boolean flg = true;
+        while (true) {
+            int mod = i % 10;
+            i = i / 10;
+            if (chk[mod] == false) {
+                flg = false;
+                break;
+            } else if (i == 0) {
+                break;
+            }
+        }
+        if (flg) {
+            break;
+        }
+        ans++;
+    }
+    System.out.println(ans);
+}

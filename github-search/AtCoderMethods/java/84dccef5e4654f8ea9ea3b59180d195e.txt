@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    final FastScanner sc = new FastScanner();
+    final long Q = sc.nextLong();
+    Treap<Integer> S = new Treap<>();
+    for (int i = 0; i < Q; i++) {
+        final int T = (int) sc.nextLong();
+        final int X = (int) sc.nextLong();
+        if (T == 1) {
+            S = S.insert(X);
+        } else {
+            final int Y = S.getAt(X - 1);
+            System.out.println(Y);
+            S = S.erase(Y);
+        }
+    }
+}

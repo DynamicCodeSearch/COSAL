@@ -1,0 +1,36 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    W = sc.nextInt();
+    H = sc.nextInt();
+    N = sc.nextInt();
+    x = new int[N];
+    y = new int[N];
+    a = new int[N];
+    for (int i = 0; i < N; i++) {
+        x[i] = sc.nextInt();
+        y[i] = sc.nextInt();
+        a[i] = sc.nextInt();
+    }
+    int x0 = 0, y0 = 0, x1 = W, y1 = H;
+    for (int i = 0; i < N; i++) {
+        switch(a[i]) {
+            case 1:
+                x0 = Math.max(x0, x[i]);
+                break;
+            case 2:
+                x1 = Math.min(x1, x[i]);
+                break;
+            case 3:
+                y0 = Math.max(y0, y[i]);
+                break;
+            case 4:
+                y1 = Math.min(y1, y[i]);
+                break;
+        }
+    }
+    int S = 0;
+    if (x0 < x1 && y0 < y1) {
+        S = (x1 - x0) * (y1 - y0);
+    }
+    System.out.println(S);
+}

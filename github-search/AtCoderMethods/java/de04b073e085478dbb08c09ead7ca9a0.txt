@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String str = sc.nextLine();
+    sc.close();
+    long result = 0;
+    for (int i = str.length() - 3; i >= 0; i -= 2) {
+        String str1 = str.substring(0, (i + 1) / 2);
+        String str2 = str.substring((i + 1) / 2, i + 1);
+        if (str1.equals(str2)) {
+            result = i + 1;
+            break;
+        }
+    }
+    System.out.println(result);
+}

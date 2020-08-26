@@ -1,0 +1,32 @@
+static void solve() {
+    int n = ni(), K = ni();
+    long[][] vs = new long[2000][];
+    int p = 0;
+    for (int i = 1; i * i <= n; i++) {
+        if (n % i == 0) {
+            vs[p++] = new long[] { i, count(n, i, K) };
+            if (i * i < n) {
+                vs[p++] = new long[] { n / i, count(n, n / i, K) };
+            }
+        }
+    }
+    Arrays.sort(vs, 0, p, new Comparator<long[]>() {
+
+        public int compare(long[] a, long[] b) {
+            return Long.compare(a[0], b[0]);
+        }
+    });
+    for (int i = 0; i < p; i++) {
+        for (int j = 0; j < i; j++) {
+            if (vs[i][0] % vs[j][0] == 0) {
+                vs[i][1] -= vs[j][1];
+                if (vs[i][1] < 0)
+                    vs[i][1] += mod;
+            }
+        }
+    }
+    long ret = 0;
+    for (long[] v : vs) if (v != null)
+        ret += v[1] * v[0] % mod;
+    out.println(ret % mod);
+}

@@ -1,0 +1,12 @@
+def get(self, a, b):
+    if b <= self.a or self.b <= a:
+        return 0
+    a, b = max(self.a, a), min(self.b, b)       
+    ah = self.b - a
+    bh = self.b - b
+    ar = ah / self.h * self.r
+    if b == self.b:
+        return Cone.calc(ar ** 2 * pi, ah)
+    else:
+        br = bh / self.h * self.r
+        return Cone.calc(ar ** 2 * pi, ah) - Cone.calc(br ** 2 * pi, bh)

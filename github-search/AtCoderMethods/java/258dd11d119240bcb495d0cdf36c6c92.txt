@@ -1,0 +1,9 @@
+public static String next() {
+    if (!hasNext())
+        throw new NoSuchElementException();
+    StringBuilder sb = new StringBuilder();
+    for (int b = readByte(); isPrintableChar(b); b = readByte()) {
+        sb.appendCodePoint(b);
+    }
+    return sb.toString();
+}

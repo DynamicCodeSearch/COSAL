@@ -1,0 +1,19 @@
+def main():
+    n,k = LI()
+    r = 0
+
+    dl = divisions(k)[::-1]
+    dr = collections.defaultdict(int)
+    for di in range(len(dl)):
+        d = dl[di]
+        t = n//d
+        wa = (d * (t+1)) * t // 2
+        for dj in range(di):
+            j = dl[dj]
+            if j % d == 0:
+                wa -= dr[j]
+        dr[d] = wa % mod
+        r += wa * k // fractions.gcd(k,d) % mod
+        r %= mod
+
+    return r

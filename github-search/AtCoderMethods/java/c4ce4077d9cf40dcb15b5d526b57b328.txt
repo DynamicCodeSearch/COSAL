@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    int c = sc.nextInt();
+    sc.close();
+    List<Integer> mList = new ArrayList<Integer>();
+    String ans = "NO";
+    int i = 0;
+    while (true) {
+        int m = (i * a) % b;
+        if (m == c) {
+            ans = "YES";
+            break;
+        } else if (mList.contains(m)) {
+            break;
+        }
+        mList.add(m);
+        i++;
+    }
+    System.out.println(ans);
+}

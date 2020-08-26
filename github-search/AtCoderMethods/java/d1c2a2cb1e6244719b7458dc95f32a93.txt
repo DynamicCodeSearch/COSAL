@@ -1,0 +1,12 @@
+private static long solve(long n, long m) {
+    long best = n % 3 == 0 ? 0 : m;
+    for (int top = 1; top < n; top++) {
+        long one = top * m;
+        long two = (n - top) * (m / 2);
+        long three = (n - top) * (m - m / 2);
+        long[] oth = new long[] { one, two, three };
+        Arrays.sort(oth);
+        best = Math.min(best, oth[2] - oth[0]);
+    }
+    return best;
+}

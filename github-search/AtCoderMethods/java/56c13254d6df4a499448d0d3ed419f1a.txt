@@ -1,0 +1,22 @@
+private static long code(int[] men) {
+    int[] minOrd = men.clone();
+    for (int i = 1; i < 4; i++) {
+        int[] ord = new int[4];
+        for (int j = 0; j < 4; j++) {
+            ord[j] = men[(j + i) % 4];
+        }
+        for (int j = 0; j < 4; j++) {
+            if (minOrd[j] > ord[j]) {
+                minOrd = ord;
+                break;
+            } else if (ord[j] > minOrd[j]) {
+                break;
+            }
+        }
+    }
+    long wo = 0;
+    for (int i = 0; i < 4; i++) {
+        wo |= ((long) minOrd[i]) << (10L * i);
+    }
+    return wo;
+}

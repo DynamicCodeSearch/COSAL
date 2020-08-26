@@ -1,0 +1,12 @@
+public static void main(String[] args) throws IOException {
+    MyScanner sc = new MyScanner();
+    int N = sc.readInt();
+    Student[] students = new Student[N];
+    for (int i = 0; i < N; i++) {
+        students[i] = new Student(i + 1, sc.readInt());
+    }
+    Arrays.sort(students, (a, b) -> b.height - a.height);
+    for (Student s : students) {
+        System.out.println(s.num);
+    }
+}

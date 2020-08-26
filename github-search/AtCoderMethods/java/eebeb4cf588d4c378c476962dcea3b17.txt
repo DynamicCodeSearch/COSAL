@@ -1,0 +1,7 @@
+long power(long x, long y, long m) {
+    if (y == 0)
+        return 1;
+    long p = power(x, y / 2, m) % m;
+    p = (p * p) % m;
+    return (y % 2 == 0) ? p : (x * p) % m;
+}

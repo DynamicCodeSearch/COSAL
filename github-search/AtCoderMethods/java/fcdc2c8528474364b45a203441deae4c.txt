@@ -1,0 +1,17 @@
+long[] doit(int from) {
+    long[] dp = new long[n];
+    Queue<State> q = new PriorityQueue<>();
+    q.add(new State(from, n));
+    dp[from] = n;
+    while (q.size() >= 1) {
+        State st = q.poll();
+        for (int to : graph[st.now]) {
+            long time = Math.min(st.now, st.time);
+            if (dp[to] < time) {
+                dp[to] = time;
+                q.add(new State(to, time));
+            }
+        }
+    }
+    return dp;
+}

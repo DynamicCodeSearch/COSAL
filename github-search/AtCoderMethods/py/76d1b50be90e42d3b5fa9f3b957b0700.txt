@@ -1,0 +1,5 @@
+def dfs(v, p, d):
+    depth[v] = d
+    for to, cost in tree[v]:
+        if to != p:
+            dfs(to, v, d + cost)

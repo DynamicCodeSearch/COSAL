@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    long score = Integer.MAX_VALUE;
+    for (long i = 1; i <= n; i++) {
+        for (long j = i; j <= n; j++) {
+            if (i * j > n)
+                break;
+            long tmp = Math.abs(j - i) + (n - i * j);
+            if (tmp < score) {
+                score = tmp;
+            }
+        }
+    }
+    System.out.println(score);
+}

@@ -1,0 +1,39 @@
+public void solve() {
+    long ans = 0;
+    int length = S.length();
+    Character[] SChars = ArrayIterable.toCharacterArray(S.toCharArray());
+    RollingHash rh = new RollingHash(new ArrayIterable<Character>(SChars), length);
+    RollingHash rht = new RollingHash(new ArrayIterable<Character>(SChars) {
+
+        @Override
+        public Iterator<Character> iterator() {
+            final Character[] arr = this.arr;
+            return new Iterator<Character>() {
+
+                private int i;
+
+                {
+                    i = arr.length - 1;
+                }
+
+                public boolean hasNext() {
+                    return i >= 0;
+                }
+
+                public Character next() {
+                    return arr[i--];
+                }
+
+                public void remove() {
+                    return;
+                }
+            };
+        }
+    }, length);
+    for (int rp = length - 1 - (length - 3) / 2; rp < length - 1; rp++) {
+        int Alen = searchAlen(rh, length, rp);
+        int Clen = searchClen(rht, length, rp);
+        ans += Math.max(0, Alen + Clen - (length - rp - 1));
+    }
+    System.out.println(ans);
+}

@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    Printer pr = new Printer(System.out);
+    int n = sc.nextInt();
+    String s = sc.next();
+    int k = s.length();
+    int[][] dp = new int[n + 2][n + 1];
+    dp[0][0] = 1;
+    for (int i = 1; i <= n; i++) {
+        for (int j = 0; j <= n; j++) {
+            if (j == 0) {
+                dp[j][i] += dp[j][i - 1];
+                dp[j][i] %= MOD;
+                dp[j][i] += dp[j + 1][i - 1];
+                dp[j][i] %= MOD;
+            } else {
+                dp[j][i] += dp[j - 1][i - 1];
+                dp[j][i] %= MOD;
+                dp[j][i] += dp[j - 1][i - 1];
+                dp[j][i] %= MOD;
+                dp[j][i] += dp[j + 1][i - 1];
+                dp[j][i] %= MOD;
+            }
+        }
+    }
+    pr.println(dp[k][n] * pow((MOD + 1) / 2, k) % MOD);
+    pr.close();
+    sc.close();
+}

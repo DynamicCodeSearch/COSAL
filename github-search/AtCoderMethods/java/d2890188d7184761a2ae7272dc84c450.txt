@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    n = sc.nextInt();
+    String[] s = new String[n];
+    s[0] = sc.nextLine();
+    for (int i = 0; i < n; i++) {
+        s[i] = sc.nextLine();
+    }
+    String ans = "";
+    char[] tmp = s[0].toCharArray();
+    Arrays.sort(tmp);
+    ans = String.valueOf(tmp);
+    for (int i = 1; i < n; i++) {
+        char[] com = ans.toCharArray();
+        Arrays.sort(com);
+        char[] cur = s[i].toCharArray();
+        Arrays.sort(cur);
+        int k = 0;
+        String memo = "";
+        for (int j = 0; j < cur.length && k < com.length; j++) {
+            while (k < com.length - 1 && com[k] - 'a' < cur[j] - 'a') k++;
+            if (com[k] - 'a' == (cur[j] - 'a')) {
+                memo += com[k];
+                k++;
+            }
+        }
+        ans = memo;
+    }
+    System.out.println(ans);
+}

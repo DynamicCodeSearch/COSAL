@@ -1,0 +1,11 @@
+public long nextLong(int radix) {
+    loadBuffer();
+    long result = 0;
+    int i = buffer[0] == '-' || buffer[0] == '+' ? 1 : 0;
+    for (checkValidNumber(pos > i); i < pos; i++) {
+        int digit = buffer[i] - '0';
+        checkValidNumber(0 <= digit && digit <= radix - 1);
+        result = result * radix + digit;
+    }
+    return buffer[0] == '-' ? -result : result;
+}

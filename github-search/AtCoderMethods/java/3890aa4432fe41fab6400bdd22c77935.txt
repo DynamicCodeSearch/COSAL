@@ -1,0 +1,41 @@
+@SuppressWarnings("unchecked")
+private void solve() {
+    N = nextInt();
+    G = new ArrayList[N];
+    for (int i = 0; i < N; i++) {
+        G[i] = new ArrayList<>();
+    }
+    for (int i = 0; i < N - 1; i++) {
+        int a = nextInt() - 1;
+        int b = nextInt() - 1;
+        int c = nextInt();
+        G[a].add(new Node(b, c));
+        G[b].add(new Node(a, c));
+    }
+    Q = nextInt();
+    K = nextInt() - 1;
+    x = new int[Q];
+    y = new int[Q];
+    for (int i = 0; i < Q; i++) {
+        x[i] = nextInt() - 1;
+        y[i] = nextInt() - 1;
+    }
+    ArrayDeque<Node> q = new ArrayDeque<>();
+    q.add(new Node(K, 0));
+    minDis = new long[N];
+    Arrays.fill(minDis, Long.MAX_VALUE);
+    while (q.size() > 0) {
+        Node now = q.poll();
+        if (minDis[now.to] != Long.MAX_VALUE)
+            continue;
+        minDis[now.to] = now.d;
+        for (Node next : G[now.to]) {
+            if (minDis[next.to] != Long.MAX_VALUE)
+                continue;
+            q.add(new Node(next.to, minDis[now.to] + next.d));
+        }
+    }
+    for (int i = 0; i < Q; i++) {
+        out.println(minDis[x[i]] + minDis[y[i]]);
+    }
+}

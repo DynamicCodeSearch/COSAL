@@ -1,0 +1,23 @@
+public long recur(Node n, Node from, int t) {
+    if (n.memo[t] != 0) {
+        return n.memo[t];
+    }
+    long black = 0;
+    if (t == 1) {
+        black = 1;
+        for (Node next : n.edge) {
+            if (next != from) {
+                black *= recur(next, n, 0);
+                black %= div;
+            }
+        }
+    }
+    long white = 1;
+    for (Node next : n.edge) {
+        if (next != from) {
+            white *= recur(next, n, 1);
+            white %= div;
+        }
+    }
+    return n.memo[t] = (white + black) % div;
+}

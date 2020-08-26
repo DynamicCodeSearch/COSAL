@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    final int N = sc.nextInt();
+    final String S = sc.next();
+    sc.close();
+    int ans = 0;
+    String current = "b";
+    while (current.length() < N) {
+        if (ans % 3 == 0) {
+            current = "a" + current + "c";
+        } else if (ans % 3 == 1) {
+            current = "c" + current + "a";
+        } else if (ans % 3 == 2) {
+            current = "b" + current + "b";
+        }
+        ans++;
+    }
+    System.out.println(current.equals(S) ? ans : -1);
+}

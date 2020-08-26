@@ -1,0 +1,5 @@
+def dfs(node, parent, distance):
+    depth[node] = distance
+    for next_node, cost in Tree[node]:
+        if next_node != parent:
+            dfs(next_node, node, distance + cost)

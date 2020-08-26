@@ -1,0 +1,17 @@
+static boolean enough(long[] h, long A, long B, long T) {
+    boolean rtn = true;
+    int count = 0;
+    long addDmg = A - B;
+    for (int i = 0; i < h.length; i++) {
+        long tmp = h[i];
+        tmp = tmp - (B * T);
+        if (tmp > 0) {
+            double tCnt = (double) tmp / (double) addDmg;
+            count += Math.ceil(tCnt);
+        }
+    }
+    if (count > T) {
+        rtn = false;
+    }
+    return rtn;
+}

@@ -1,0 +1,50 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    int c = sc.nextInt();
+    int d = sc.nextInt();
+    int e = sc.nextInt();
+    int f = sc.nextInt();
+    int w = 100 * a;
+    int s = 0;
+    double density = 0;
+    double maxD = (double) 100 * e / (100 + e);
+    int an = f / (a * 100);
+    int bn = f / (b * 100);
+    for (int i = 0; i <= an; i++) {
+        for (int j = 0; j <= bn; j++) {
+            int tmpW = 100 * (a * i + b * j);
+            if (tmpW > f) {
+                break;
+            }
+            int limE = e * (a * i + b * j);
+            int cn = limE / c;
+            int dn = limE / d;
+            for (int k = 0; k <= cn; k++) {
+                if (tmpW + c * k > f) {
+                    break;
+                }
+                for (int l = 0; l <= dn; l++) {
+                    int sum = c * k + d * l;
+                    if (sum + tmpW > f) {
+                        break;
+                    }
+                    if (sum > limE) {
+                        break;
+                    }
+                    double tmpD = (double) (100 * sum) / (sum + tmpW);
+                    if (density < tmpD && tmpD <= maxD) {
+                        s = sum;
+                        w = tmpW;
+                        density = tmpD;
+                    
+                    
+                    
+                    }
+                }
+            }
+        }
+    }
+    System.out.println((s + w) + " " + s);
+}

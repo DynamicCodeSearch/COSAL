@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    FastScanner1 sc = new FastScanner1(System.in);
+    int N = sc.nextInt();
+    long L = sc.nextInt();
+    long R = sc.nextInt();
+    for (int i = 1; i < N; i++) {
+        long a = sc.nextInt();
+        long b = sc.nextInt();
+        long mulA = (L - 1) / a + 1;
+        long mulB = (R - 1) / b + 1;
+        long mul = (long) Math.max(mulA, mulB);
+        L = a * mul;
+        R = b * mul;
+    }
+    long res = L + R;
+    System.out.println(res);
+}

@@ -1,0 +1,12 @@
+static long pow(long n, long p) {
+    long result = 1;
+    if (p == 0)
+        return 1;
+    while (p != 0) {
+        if (p % 2 == 1)
+            result *= n;
+        p >>= 1;
+        n *= n;
+    }
+    return result;
+}

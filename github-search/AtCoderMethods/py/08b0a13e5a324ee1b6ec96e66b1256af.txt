@@ -1,0 +1,33 @@
+def main():
+    n = int(input())
+
+    n3 = [0, 0, 1]
+    n20 = [1298, 2628, 8017]
+    n40 = [4336, 681, 1413]
+    n60 = [5228, 6398, 488]
+    n80 = [6738, 4314, 1155]
+
+    if n > 800000:
+        i = 800000
+        a = deque(n80)
+    elif n > 600000:
+        i = 600000
+        a = deque(n60)
+    elif n > 400000:
+        i = 400000
+        a = deque(n40)
+    elif n > 200000:
+        i = 200000
+        a = deque(n20)
+    elif n > 3:
+        i = 3
+        a = deque(n3)
+    else:
+        ans = n3[n-1]
+
+    if n > 3:
+        for _ in range(i, n):
+            a.append(a[0] + a[1] + a[2])
+            a.popleft()
+        ans = a[2] % 10007
+    print(ans)

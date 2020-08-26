@@ -1,0 +1,13 @@
+private static boolean canReplace(String substring, int[] cNum, int count) {
+    int[] tmpNum = new int[26];
+    for (int i = 0; i < 26; i++) tmpNum[i] = cNum[i];
+    int replaceCount = 0;
+    for (char c : substring.toCharArray()) {
+        if (tmpNum[c - 'a'] > 0) {
+            tmpNum[c - 'a']--;
+        } else {
+            replaceCount++;
+        }
+    }
+    return count >= replaceCount;
+}

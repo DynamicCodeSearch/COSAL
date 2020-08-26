@@ -1,0 +1,13 @@
+private void up(int cur) {
+    for (int c = cur, p = c >>> 1; p >= 1 && a[p] > a[c]; c >>>= 1, p >>>= 1) {
+        int d = a[p];
+        a[p] = a[c];
+        a[c] = d;
+        int e = imap[map[p]];
+        imap[map[p]] = imap[map[c]];
+        imap[map[c]] = e;
+        e = map[p];
+        map[p] = map[c];
+        map[c] = e;
+    }
+}

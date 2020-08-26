@@ -1,0 +1,11 @@
+public static void main(String[] $) {
+    int h = getInt(), w = getInt();
+    f = new int[h][w];
+    int i = h * w - 1, n = getInt();
+    for (int k = 1; k <= n; ++k) {
+        for (int c = getInt(); c > 0; --c, --i) {
+            f[i / w][i / w % 2 == 0 ? i % w : w - 1 - i % w] = k;
+        }
+    }
+    Arrays.stream(f).map(o -> Arrays.stream(o).mapToObj(String::valueOf).collect(Collectors.joining(" "))).forEach(System.out::println);
+}

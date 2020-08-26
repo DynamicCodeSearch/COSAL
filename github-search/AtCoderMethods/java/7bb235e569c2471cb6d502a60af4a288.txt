@@ -1,0 +1,35 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int a = in.nextInt();
+    int b = in.nextInt();
+    long[] v = in.readLongArray(n);
+    Arrays.sort(v);
+    
+    long sum = 0;
+    for (int i = n - 1; i >= n - a; i--) {
+        sum += v[i];
+    }
+    double av = (double) sum / a;
+    
+    out.format("%.6f\n", av);
+    int selectMin = 1;
+    while ((selectMin < a) && (v[n - a + selectMin] == v[n - a])) {
+        selectMin++;
+    }
+    int total = selectMin;
+    int idx = n - a;
+    while ((idx > 0) && (v[idx - 1] == v[n - a])) {
+        idx--;
+        total++;
+    }
+    long result = 0;
+    if (v[n - 1] == v[n - a]) {
+        for (int i = selectMin; i <= Math.min(total, selectMin + b - a); i++) {
+            
+            result += Combinatorics.choose(total, i).longValue();
+        }
+    } else {
+        result += Combinatorics.choose(total, selectMin).longValue();
+    }
+    out.println(result);
+}

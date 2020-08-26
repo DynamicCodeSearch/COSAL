@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner scn = new Scanner(System.in);
+    int a, b;
+    a = Integer.parseInt(scn.nextLine());
+    b = Integer.parseInt(scn.nextLine());
+    scn.close();
+    int[] res = { Math.abs(b - a), Math.abs(a + 10 - b), Math.abs(b + 10 - a), Math.abs(a - b) };
+    int fa = res[0];
+    for (int i : res) {
+        if (i < fa) {
+            fa = i;
+        }
+    }
+    System.out.println(fa);
+}

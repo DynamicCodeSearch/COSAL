@@ -1,0 +1,157 @@
+### Py Tokens: callkey, ident, ordered, reprrunning, get, items, ordereddict, repr, running, dict, key, call, getident, name 
+
+### Py functions
+
+def __repr__(self, _repr_running={}):
+
+  call_key = id(self), _get_ident()
+  if call_key in _repr_running:
+    return '...'
+  _repr_running[call_key] = 1
+  try:
+    if not self:
+      return '%s()' % (self.__class__.__name__,)
+    return '%s(%r)' % (self.__class__.__name__, self.items())
+  finally:
+    del _repr_running[call_key]
+*********************************
+
+#### Score: 6.11933
+
+
+#### Java Tokens: exception, tocharsetname, encode, charset, named, code, string, use, link, arrayutils, manner, empty, result, see, unsupported, array, param, utils, get, otherwise, empty_byte_array, byte, thrown, getbytes, encoding, stringutils, input, calls, bytes, name, safe, charsets, null-safe, unsupportedencodingexception, supported, since 
+
+
+public static byte[] getBytes(final String string, final String charset) throws UnsupportedEncodingException {
+    return string == null ? ArrayUtils.EMPTY_BYTE_ARRAY : string.getBytes(Charsets.toCharsetName(charset));
+}
+*********************************
+
+#### Score: 5.58986
+
+
+#### Java Tokens: exception, com, code, string, nullable, log, valueof, logger, another, integer, tohexstring, lenient, proguard, default, see, common, strings, identity, get, warning, create, hex, lenientformat, behavior, value, class, threw, getclass, identityhashcode, created, format, google, getlogger, getname, forcing, system, lenienttostring, inline, name, com.google.common.base.strings, fixed, avoid, objecttostring, tostring, hash, object, base 
+
+private static String lenientToString(@Nullable Object o) {
+    try {
+        return String.valueOf(o);
+    } catch (Exception e) {
+        
+        String objectToString = o.getClass().getName() + '@' + Integer.toHexString(System.identityHashCode(o));
+        
+        Logger.getLogger("com.google.common.base.Strings").log(WARNING, "Exception during lenientFormat for " + objectToString, e);
+        return "<" + objectToString + " threw " + e.getClass().getName() + ">";
+    }
+}
+*********************************
+
+#### Score: 4.23264
+
+
+#### Java Tokens: stringutils, noofitems, string, utils, newstringbuilder, builder, stringbuilder, items 
+
+private static StringBuilder newStringBuilder(final int noOfItems) {
+    return new StringBuilder(noOfItems * 16);
+}
+*********************************
+
+#### Score: 4.03233
+
+
+#### Java Tokens: charsetname, exception, charset, named, code, string, use, deprecated, link, platform, unsupported, param, array, utils, constants, defaultcharset, pointer, read, converts, encoding, instead, nullpointerexception, stringutils, input, null, bytes, name, toencodedstring, tostring, unsupportedencodingexception, supported, encoded, since 
+
+
+@Deprecated
+public static String toString(final byte[] bytes, final String charsetName) throws UnsupportedEncodingException {
+    return charsetName != null ? new String(bytes, charsetName) : new String(bytes, Charset.defaultCharset());
+}
+*********************************
+
+#### Score: 3.85835
+
+
+#### Java Tokens: occurrences, code, string, counts, appears, isempty, abba, charsequence, empty, number, times, faster, tochararray, would, param, array, utils, generate, charat, given, pre, may, could, count, length, garbage, also, check, many, matches, look, str, stringutils, call, sequence, input, char, ups, returns, countmatches, since 
+
+
+public static int countMatches(final CharSequence str, final char ch) {
+    if (isEmpty(str)) {
+        return 0;
+    }
+    int count = 0;
+    
+    for (int i = 0; i < str.length(); i++) {
+        if (ch == str.charAt(i)) {
+            count++;
+        }
+    }
+    return count;
+}
+*********************************
+
+#### Score: 3.64253
+
+
+#### Java Tokens: occurrences, exception, illegalargumentexception, argument, code, string, another, replace, wcte, overloaded, example, reference, mos, search, strings, mos.search, param, utils, repeat, repeating, text, passed, replacements, replaceeach, dcte, ignored, aba, pre, method, within, replaces, abcde, list, no-op, illegal, stringutils, call, processed, input, searchlist, lengths, replacementlist, arrays, replacement, since 
+
+
+public static String replaceEach(final String text, final String[] searchList, final String[] replacementList) {
+    return replaceEach(text, searchList, replacementList, false, 0);
+}
+*********************************
+
+#### Score: 3.45139
+
+
+#### Java Tokens: occurs, isempty, empty, mos, character, either, utils, find, inclusive, blockquote, pre, like, index_not_found, index, check, aabaabaa, sequence, input, returns, updated, since, changed, code, string, signature, smallest, values, link, units, occurrence, codepointat, charsequence, specified, point, behave, search, searchchar, found, param, value, seq, charat, charsequenceutils, may, within, match, stringutils, call, furthermore, char, returned, indexof, first 
+
+
+
+
+public static int indexOf(final CharSequence seq, final int searchChar) {
+    if (isEmpty(seq)) {
+        return INDEX_NOT_FOUND;
+    }
+    return CharSequenceUtils.indexOf(seq, searchChar, 0);
+}
+*********************************
+
+#### Score: 3.39244
+
+
+#### Java Tokens: occurs, isempty, empty, mos, character, either, utils, find, inclusive, blockquote, pre, last, like, index_not_found, index, aabaabaa, ffff, sequence, input, xffff, unicode, lastindexof, returns, starting, updated, since, changed, largest, code, string, signature, values, link, range, units, codepointat, charsequence, specified, point, behave, search, searchchar, found, param, value, seq, charat, charsequenceutils, within, length, match, stringutils, call, char, returned 
+
+
+
+
+public static int lastIndexOf(final CharSequence seq, final int searchChar) {
+    if (isEmpty(seq)) {
+        return INDEX_NOT_FOUND;
+    }
+    return CharSequenceUtils.lastIndexOf(seq, searchChar, seq.length());
+}
+*********************************
+
+#### Score: 3.33566
+
+
+#### Java Tokens: equivalent, deprecated, moved, replace, abc123, source, empty, reference, compile, reg, utils, given, using, pre, method, &lt;__&gt;b, matcher, no-op, matches, resulting, abcabc123, cabc, regex, safe, matched, quot, option, since, changed, code, string, regexutils, [a-z], pattern, remove, substring, dotall, see, param, abcabc, passed, regular, expression, abc, replaceall, removepattern, &lt;.*&gt;, stringutils, call, a&lt;__&gt;, removes, replacepattern 
+
+
+@Deprecated
+public static String removePattern(final String source, final String regex) {
+    return RegExUtils.removePattern(source, regex);
+}
+*********************************
+
+#### Score: 2.94687
+
+
+#### Java Tokens: smaller, occurs, entire, isempty, empty, mos, zero, character, either, utils, find, represented, greater, always, treated, blockquote, pre, like, index_not_found, index, check, aabaabaa, searched, sequence, input, effect, restriction, unicode, returns, position, starting, updated, object, since, changed, code, string, signature, smallest, values, link, occurrence, units, codepointat, charsequence, startpos, specified, point, behave, search, negative, searchchar, found, pos, param, value, seq, charat, charsequenceutils, may, within, start, length, match, stringutils, equal, call, indices, furthermore, char, returned, indexof, first 
+
+
+public static int indexOf(final CharSequence seq, final int searchChar, final int startPos) {
+    if (isEmpty(seq)) {
+        return INDEX_NOT_FOUND;
+    }
+    return CharSequenceUtils.indexOf(seq, searchChar, startPos);
+}

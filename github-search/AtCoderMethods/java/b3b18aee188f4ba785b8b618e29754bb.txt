@@ -1,0 +1,15 @@
+void solve(BufferedReader br) throws Exception {
+    String line = br.readLine();
+    for (int i = 0; i < line.length(); i++) {
+        char ch = line.charAt(i);
+        cnt[ch - 'a']++;
+    }
+    String rc = "Yes";
+    for (int i = 0; i < 26; i++) {
+        if (cnt[i] % 2 > 0) {
+            rc = "No";
+            break;
+        }
+    }
+    pln(rc);
+}

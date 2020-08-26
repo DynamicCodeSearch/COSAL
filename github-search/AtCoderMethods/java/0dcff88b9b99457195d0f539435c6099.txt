@@ -1,0 +1,33 @@
+static void solve(FastScanner sc, PrintWriter out) {
+    char[] S = sc.ns().toCharArray();
+    int T = sc.ni();
+    int x = 0, y = 0, q = 0;
+    for (char c : S) {
+        switch(c) {
+            case 'L':
+                x--;
+                break;
+            case 'D':
+                y--;
+                break;
+            case 'R':
+                x++;
+                break;
+            case 'U':
+                y++;
+                break;
+            default:
+                q++;
+        }
+    }
+    int d = (x < 0 ? -x : x) + (y < 0 ? -y : y);
+    if (T == 1) {
+        out.println(d + q);
+    } else {
+        if (d >= q) {
+            out.println(d - q);
+        } else {
+            out.println((q - d) % 2);
+        }
+    }
+}

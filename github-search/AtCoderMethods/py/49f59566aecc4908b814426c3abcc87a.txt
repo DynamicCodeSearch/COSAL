@@ -1,0 +1,19 @@
+def s(i,t):
+    key = (i,t)
+    if key in m:
+        return m[key]
+    if len(e[i]) == 1:
+        m[key] = [1, n-1]
+        return [1, n-1]
+
+    r = []
+    for j in e[i]:
+        if j == t:
+            continue
+        k, ma = s(j,i)
+        r.append(k)
+    if r:
+        m[key] = [sum(r)+1, max(r)]
+    else:
+        m[key] = [1, 0]
+    return m[key]

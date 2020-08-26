@@ -1,0 +1,11 @@
+def bs(f, mi, ma):
+    mm = -1
+    while ma > mi:
+        mm = (ma+mi) // 2
+        if f(mm):
+            mi = mm + 1
+        else:
+            ma = mm
+    if f(mm):
+        return mm + 1
+    return mm

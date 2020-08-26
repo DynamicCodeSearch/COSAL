@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int k = sc.nextInt();
+    int a = 0;
+    int b = 0;
+    int ans = 0;
+    for (int i = 0; i < n; i++) {
+        int x = sc.nextInt();
+        a = Math.abs(x);
+        b = Math.abs(k - x);
+        if (a <= b) {
+            ans = ans + a * 2;
+        } else {
+            ans = ans + b * 2;
+        }
+    }
+    System.out.println(ans);
+}

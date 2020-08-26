@@ -1,0 +1,42 @@
+public static void main(String[] args) {
+    Scanner s = new Scanner(System.in);
+    final int N = s.nextInt();
+    final int M = s.nextInt();
+    
+    int[][] dist = new int[N + 1][N + 1];
+    for (int i = 0; i < N + 1; i++) {
+        for (int j = 0; j < N + 1; j++) {
+            dist[i][j] = Integer.MAX_VALUE / 2;
+        }
+    }
+    for (int i = 1; i < N + 1; i++) {
+        dist[i][i] = 0;
+    }
+    for (int i = 0; i < M; i++) {
+        int a_i = s.nextInt();
+        int b_i = s.nextInt();
+        int t_i = s.nextInt();
+        dist[a_i][b_i] = dist[b_i][a_i] = t_i;
+    }
+    s.close();
+    for (int k = 1; k < N + 1; k++) {
+        for (int i = 1; i < N + 1; i++) {
+            for (int j = 1; j < N + 1; j++) {
+                dist[i][j] = Math.min(dist[i][j], dist[i][k] + dist[k][j]);
+            }
+        }
+    }
+    int minWorst = Integer.MAX_VALUE;
+    for (int i = 1; i < N + 1; i++) {
+        int worst = 0;
+        for (int j = 1; j < N + 1; j++) {
+            if (dist[i][j] > worst) {
+                worst = dist[i][j];
+            }
+        }
+        if (worst < minWorst) {
+            minWorst = worst;
+        }
+    }
+    System.out.println(minWorst);
+}

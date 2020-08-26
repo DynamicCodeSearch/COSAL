@@ -1,0 +1,21 @@
+public static void main(String[] args) throws java.lang.Exception {
+    InputReader in = new InputReader(System.in);
+    PrintWriter w = new PrintWriter(System.out);
+    int n = in.nextInt();
+    int[] a = in.nextIntArray(n);
+    Deque<Integer> al = new LinkedList<>();
+    boolean last = true;
+    for (int i = 0; i < n; i++) {
+        if (last) {
+            al.addLast(a[i]);
+        } else
+            al.addFirst(a[i]);
+        last = !last;
+    }
+    if (n % 2 == 1) {
+        for (int i = al.size() - 1; i > -1; i--) w.print(al.pollLast() + " ");
+    } else {
+        for (int x : al) w.print(x + " ");
+    }
+    w.close();
+}

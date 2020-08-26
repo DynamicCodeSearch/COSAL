@@ -1,0 +1,13 @@
+private static long cost(long a, long d, long upto) {
+    long count = count(a, d, upto);
+    if (count == 0) {
+        return 0;
+    }
+    long updw = (a + (a + d * (count - 1)));
+    if (updw % 2 == 0) {
+        updw /= 2;
+    } else {
+        count /= 2;
+    }
+    return updw * count;
+}

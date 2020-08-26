@@ -1,0 +1,31 @@
+def solve():
+    S = input()
+    T = input()
+
+    ss = [0] * (len(S) + 1)
+
+    for i in range(len(S)):
+        ss[i + 1] = ss[i]
+        ss[i + 1] += 1 if S[i] == 'A' else 2
+
+    ts = [0] * (len(T) + 1)
+
+    for i in range(len(T)):
+        ts[i + 1] = ts[i]
+        ts[i + 1] += 1 if T[i] == 'A' else 2
+
+    q = int(input())
+
+    for qry in range(q):
+        a, b, c, d = map(int, sys.stdin.readline().split())
+        a, c = a-1, c-1
+
+        sc = (ss[b] - ss[a]) % 3
+        tc = (ts[d] - ts[c]) % 3
+
+        if sc == tc:
+            ans = 'YES'
+        else:
+            ans = 'NO'
+
+        print(ans)

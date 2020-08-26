@@ -1,0 +1,600 @@
+### Py functions
+
+@property
+def hypot(self):
+    return (self.x ** 2 + self.y ** 2) ** 0.5
+
+*********************************
+
+#### Score: 12.41718
+
+
+/**
+ * <p>Compare two Strings lexicographically, ignoring case differences,
+ * as per {@link String#compareToIgnoreCase(String)}, returning :</p>
+ * <ul>
+ *  <li>{@code int = 0}, if {@code str1} is equal to {@code str2} (or both {@code null})</li>
+ *  <li>{@code int < 0}, if {@code str1} is less than {@code str2}</li>
+ *  <li>{@code int > 0}, if {@code str1} is greater than {@code str2}</li>
+ * </ul>
+ *
+ * <p>This is a {@code null} safe version of :</p>
+ * <blockquote><pre>str1.compareToIgnoreCase(str2)</pre></blockquote>
+ *
+ * <p>{@code null} inputs are handled according to the {@code nullIsLess} parameter.
+ * Two {@code null} references are considered equal.
+ * Comparison is case insensitive.</p>
+ *
+ * <pre>
+ * StringUtils.compareIgnoreCase(null, null, *)     = 0
+ * StringUtils.compareIgnoreCase(null , "a", true)  &lt; 0
+ * StringUtils.compareIgnoreCase(null , "a", false) &gt; 0
+ * StringUtils.compareIgnoreCase("a", null, true)   &gt; 0
+ * StringUtils.compareIgnoreCase("a", null, false)  &lt; 0
+ * StringUtils.compareIgnoreCase("abc", "abc", *)   = 0
+ * StringUtils.compareIgnoreCase("abc", "ABC", *)   = 0
+ * StringUtils.compareIgnoreCase("a", "b", *)       &lt; 0
+ * StringUtils.compareIgnoreCase("b", "a", *)       &gt; 0
+ * StringUtils.compareIgnoreCase("a", "B", *)       &lt; 0
+ * StringUtils.compareIgnoreCase("A", "b", *)       &lt; 0
+ * StringUtils.compareIgnoreCase("ab", "abc", *)    &lt; 0
+ * </pre>
+ *
+ * @see String#compareToIgnoreCase(String)
+ * @param str1  the String to compare from
+ * @param str2  the String to compare to
+ * @param nullIsLess  whether consider {@code null} value less than non-{@code null} value
+ * @return &lt; 0, 0, &gt; 0, if {@code str1} is respectively less, equal ou greater than {@code str2},
+ *          ignoring case differences.
+ * @since 3.5
+ */
+public static int compareIgnoreCase(final String str1, final String str2, final boolean nullIsLess) {
+    if (str1 == str2) {
+        return 0;
+    }
+    if (str1 == null) {
+        return nullIsLess ? -1 : 1;
+    }
+    if (str2 == null) {
+        return nullIsLess ? 1 : -1;
+    }
+    return str1.compareToIgnoreCase(str2);
+}
+*********************************
+
+#### Score: 12.41718
+
+
+/**
+ * <p>Compare two Strings lexicographically, as per {@link String#compareTo(String)}, returning :</p>
+ * <ul>
+ *  <li>{@code int = 0}, if {@code str1} is equal to {@code str2} (or both {@code null})</li>
+ *  <li>{@code int < 0}, if {@code str1} is less than {@code str2}</li>
+ *  <li>{@code int > 0}, if {@code str1} is greater than {@code str2}</li>
+ * </ul>
+ *
+ * <p>This is a {@code null} safe version of :</p>
+ * <blockquote><pre>str1.compareTo(str2)</pre></blockquote>
+ *
+ * <p>{@code null} inputs are handled according to the {@code nullIsLess} parameter.
+ * Two {@code null} references are considered equal.</p>
+ *
+ * <pre>
+ * StringUtils.compare(null, null, *)     = 0
+ * StringUtils.compare(null , "a", true)  &lt; 0
+ * StringUtils.compare(null , "a", false) &gt; 0
+ * StringUtils.compare("a", null, true)   &gt; 0
+ * StringUtils.compare("a", null, false)  &lt; 0
+ * StringUtils.compare("abc", "abc", *)   = 0
+ * StringUtils.compare("a", "b", *)       &lt; 0
+ * StringUtils.compare("b", "a", *)       &gt; 0
+ * StringUtils.compare("a", "B", *)       &gt; 0
+ * StringUtils.compare("ab", "abc", *)    &lt; 0
+ * </pre>
+ *
+ * @see String#compareTo(String)
+ * @param str1  the String to compare from
+ * @param str2  the String to compare to
+ * @param nullIsLess  whether consider {@code null} value less than non-{@code null} value
+ * @return &lt; 0, 0, &gt; 0, if {@code str1} is respectively less, equal ou greater than {@code str2}
+ * @since 3.5
+ */
+public static int compare(final String str1, final String str2, final boolean nullIsLess) {
+    if (str1 == str2) {
+        return 0;
+    }
+    if (str1 == null) {
+        return nullIsLess ? -1 : 1;
+    }
+    if (str2 == null) {
+        return nullIsLess ? 1 : -1;
+    }
+    return str1.compareTo(str2);
+}
+*********************************
+
+#### Score: 12.37721
+
+
+/**
+ * <p>
+ * Unwraps a given string from a character.
+ * </p>
+ *
+ * <pre>
+ * StringUtils.unwrap(null, null)         = null
+ * StringUtils.unwrap(null, '\0')         = null
+ * StringUtils.unwrap(null, '1')          = null
+ * StringUtils.unwrap("a", 'a')           = "a"
+ * StringUtils.unwrap("aa", 'a')           = ""
+ * StringUtils.unwrap("\'abc\'", '\'')    = "abc"
+ * StringUtils.unwrap("AABabcBAA", 'A')   = "ABabcBA"
+ * StringUtils.unwrap("A", '#')           = "A"
+ * StringUtils.unwrap("#A", '#')          = "#A"
+ * StringUtils.unwrap("A#", '#')          = "A#"
+ * </pre>
+ *
+ * @param str
+ *          the String to be unwrapped, can be null
+ * @param wrapChar
+ *          the character used to unwrap
+ * @return unwrapped String or the original string
+ *          if it is not quoted properly with the wrapChar
+ * @since 3.6
+ */
+public static String unwrap(final String str, final char wrapChar) {
+    if (isEmpty(str) || wrapChar == CharUtils.NUL || str.length() == 1) {
+        return str;
+    }
+    if (str.charAt(0) == wrapChar && str.charAt(str.length() - 1) == wrapChar) {
+        final int startIndex = 0;
+        final int endIndex = str.length() - 1;
+        return str.substring(startIndex + 1, endIndex);
+    }
+    return str;
+}
+*********************************
+
+#### Score: 12.37535
+
+
+// Padding
+// -----------------------------------------------------------------------
+/**
+ * <p>Repeat a String {@code repeat} times to form a
+ * new String.</p>
+ *
+ * <pre>
+ * StringUtils.repeat(null, 2) = null
+ * StringUtils.repeat("", 0)   = ""
+ * StringUtils.repeat("", 2)   = ""
+ * StringUtils.repeat("a", 3)  = "aaa"
+ * StringUtils.repeat("ab", 2) = "abab"
+ * StringUtils.repeat("a", -2) = ""
+ * </pre>
+ *
+ * @param str  the String to repeat, may be null
+ * @param repeat  number of times to repeat str, negative treated as zero
+ * @return a new String consisting of the original String repeated,
+ *  {@code null} if null String input
+ */
+public static String repeat(final String str, final int repeat) {
+    if (str == null) {
+        return null;
+    }
+    if (repeat <= 0) {
+        return EMPTY;
+    }
+    final int inputLength = str.length();
+    if (repeat == 1 || inputLength == 0) {
+        return str;
+    }
+    if (inputLength == 1 && repeat <= PAD_LIMIT) {
+        return repeat(str.charAt(0), repeat);
+    }
+    final int outputLength = inputLength * repeat;
+    switch(inputLength) {
+        case 1:
+            return repeat(str.charAt(0), repeat);
+        case 2:
+            final char ch0 = str.charAt(0);
+            final char ch1 = str.charAt(1);
+            final char[] output2 = new char[outputLength];
+            for (int i = repeat * 2 - 2; i >= 0; i--, i--) {
+                output2[i] = ch0;
+                output2[i + 1] = ch1;
+            }
+            return new String(output2);
+        default:
+            final StringBuilder buf = new StringBuilder(outputLength);
+            for (int i = 0; i < repeat; i++) {
+                buf.append(str);
+            }
+            return buf.toString();
+    }
+}
+*********************************
+
+#### Score: 12.33443
+
+
+/**
+ * <p>Compares all Strings in an array and returns the initial sequence of
+ * characters that is common to all of them.</p>
+ *
+ * <p>For example,
+ * <code>getCommonPrefix(new String[] {"i am a machine", "i am a robot"}) -&gt; "i am a "</code></p>
+ *
+ * <pre>
+ * StringUtils.getCommonPrefix(null) = ""
+ * StringUtils.getCommonPrefix(new String[] {}) = ""
+ * StringUtils.getCommonPrefix(new String[] {"abc"}) = "abc"
+ * StringUtils.getCommonPrefix(new String[] {null, null}) = ""
+ * StringUtils.getCommonPrefix(new String[] {"", ""}) = ""
+ * StringUtils.getCommonPrefix(new String[] {"", null}) = ""
+ * StringUtils.getCommonPrefix(new String[] {"abc", null, null}) = ""
+ * StringUtils.getCommonPrefix(new String[] {null, null, "abc"}) = ""
+ * StringUtils.getCommonPrefix(new String[] {"", "abc"}) = ""
+ * StringUtils.getCommonPrefix(new String[] {"abc", ""}) = ""
+ * StringUtils.getCommonPrefix(new String[] {"abc", "abc"}) = "abc"
+ * StringUtils.getCommonPrefix(new String[] {"abc", "a"}) = "a"
+ * StringUtils.getCommonPrefix(new String[] {"ab", "abxyz"}) = "ab"
+ * StringUtils.getCommonPrefix(new String[] {"abcde", "abxyz"}) = "ab"
+ * StringUtils.getCommonPrefix(new String[] {"abcde", "xyz"}) = ""
+ * StringUtils.getCommonPrefix(new String[] {"xyz", "abcde"}) = ""
+ * StringUtils.getCommonPrefix(new String[] {"i am a machine", "i am a robot"}) = "i am a "
+ * </pre>
+ *
+ * @param strs  array of String objects, entries may be null
+ * @return the initial sequence of characters that are common to all Strings
+ * in the array; empty String if the array is null, the elements are all null
+ * or if there is no common prefix.
+ * @since 2.4
+ */
+public static String getCommonPrefix(final String... strs) {
+    if (ArrayUtils.isEmpty(strs)) {
+        return EMPTY;
+    }
+    final int smallestIndexOfDiff = indexOfDifference(strs);
+    if (smallestIndexOfDiff == INDEX_NOT_FOUND) {
+        // all strings were identical
+        if (strs[0] == null) {
+            return EMPTY;
+        }
+        return strs[0];
+    } else if (smallestIndexOfDiff == 0) {
+        // there were no common initial characters
+        return EMPTY;
+    } else {
+        // we found a common initial character sequence
+        return strs[0].substring(0, smallestIndexOfDiff);
+    }
+}
+*********************************
+
+#### Score: 12.32716
+
+
+/**
+ * <p>Strips any of a set of characters from the end of a String.</p>
+ *
+ * <p>A {@code null} input String returns {@code null}.
+ * An empty string ("") input returns the empty string.</p>
+ *
+ * <p>If the stripChars String is {@code null}, whitespace is
+ * stripped as defined by {@link Character#isWhitespace(char)}.</p>
+ *
+ * <pre>
+ * StringUtils.stripEnd(null, *)          = null
+ * StringUtils.stripEnd("", *)            = ""
+ * StringUtils.stripEnd("abc", "")        = "abc"
+ * StringUtils.stripEnd("abc", null)      = "abc"
+ * StringUtils.stripEnd("  abc", null)    = "  abc"
+ * StringUtils.stripEnd("abc  ", null)    = "abc"
+ * StringUtils.stripEnd(" abc ", null)    = " abc"
+ * StringUtils.stripEnd("  abcyx", "xyz") = "  abc"
+ * StringUtils.stripEnd("120.00", ".0")   = "12"
+ * </pre>
+ *
+ * @param str  the String to remove characters from, may be null
+ * @param stripChars  the set of characters to remove, null treated as whitespace
+ * @return the stripped String, {@code null} if null String input
+ */
+public static String stripEnd(final String str, final String stripChars) {
+    int end = length(str);
+    if (end == 0) {
+        return str;
+    }
+    if (stripChars == null) {
+        while (end != 0 && Character.isWhitespace(str.charAt(end - 1))) {
+            end--;
+        }
+    } else if (stripChars.isEmpty()) {
+        return str;
+    } else {
+        while (end != 0 && stripChars.indexOf(str.charAt(end - 1)) != INDEX_NOT_FOUND) {
+            end--;
+        }
+    }
+    return str.substring(0, end);
+}
+*********************************
+
+#### Score: 12.26968
+
+
+/**
+ * <p>
+ * Similar to <a
+ * href="http://www.w3.org/TR/xpath/#function-normalize-space">http://www.w3.org/TR/xpath/#function-normalize
+ * -space</a>
+ * </p>
+ * <p>
+ * The function returns the argument string with whitespace normalized by using
+ * <code>{@link #trim(String)}</code> to remove leading and trailing whitespace
+ * and then replacing sequences of whitespace characters by a single space.
+ * </p>
+ * In XML Whitespace characters are the same as those allowed by the <a
+ * href="http://www.w3.org/TR/REC-xml/#NT-S">S</a> production, which is S ::= (#x20 | #x9 | #xD | #xA)+
+ * <p>
+ * Java's regexp pattern \s defines whitespace as [ \t\n\x0B\f\r]
+ *
+ * <p>For reference:</p>
+ * <ul>
+ * <li>\x0B = vertical tab</li>
+ * <li>\f = #xC = form feed</li>
+ * <li>#x20 = space</li>
+ * <li>#x9 = \t</li>
+ * <li>#xA = \n</li>
+ * <li>#xD = \r</li>
+ * </ul>
+ *
+ * <p>
+ * The difference is that Java's whitespace includes vertical tab and form feed, which this functional will also
+ * normalize. Additionally <code>{@link #trim(String)}</code> removes control characters (char &lt;= 32) from both
+ * ends of this String.
+ * </p>
+ *
+ * @see Pattern
+ * @see #trim(String)
+ * @see <a
+ *      href="http://www.w3.org/TR/xpath/#function-normalize-space">http://www.w3.org/TR/xpath/#function-normalize-space</a>
+ * @param str the source String to normalize whitespaces from, may be null
+ * @return the modified string with whitespace normalized, {@code null} if null String input
+ *
+ * @since 3.0
+ */
+public static String normalizeSpace(final String str) {
+    // See https://github.com/librucha/commons-lang-normalizespaces-benchmark for performance test
+    if (isEmpty(str)) {
+        return str;
+    }
+    final int size = str.length();
+    final char[] newChars = new char[size];
+    int count = 0;
+    int whitespacesCount = 0;
+    boolean startWhitespaces = true;
+    for (int i = 0; i < size; i++) {
+        final char actualChar = str.charAt(i);
+        final boolean isWhitespace = Character.isWhitespace(actualChar);
+        if (isWhitespace) {
+            if (whitespacesCount == 0 && !startWhitespaces) {
+                newChars[count++] = SPACE.charAt(0);
+            }
+            whitespacesCount++;
+        } else {
+            startWhitespaces = false;
+            newChars[count++] = (actualChar == 160 ? 32 : actualChar);
+            whitespacesCount = 0;
+        }
+    }
+    if (startWhitespaces) {
+        return EMPTY;
+    }
+    return new String(newChars, 0, count - (whitespacesCount > 0 ? 1 : 0)).trim();
+}
+*********************************
+
+#### Score: 12.26065
+
+
+// Misc
+// -----------------------------------------------------------------------
+/**
+ * <p>Find the Levenshtein distance between two Strings.</p>
+ *
+ * <p>This is the number of changes needed to change one String into
+ * another, where each change is a single character modification (deletion,
+ * insertion or substitution).</p>
+ *
+ * <p>The implementation uses a single-dimensional array of length s.length() + 1. See
+ * <a href="http://blog.softwx.net/2014/12/optimizing-levenshtein-algorithm-in-c.html">
+ * http://blog.softwx.net/2014/12/optimizing-levenshtein-algorithm-in-c.html</a> for details.</p>
+ *
+ * <pre>
+ * StringUtils.getLevenshteinDistance(null, *)             = IllegalArgumentException
+ * StringUtils.getLevenshteinDistance(*, null)             = IllegalArgumentException
+ * StringUtils.getLevenshteinDistance("", "")              = 0
+ * StringUtils.getLevenshteinDistance("", "a")             = 1
+ * StringUtils.getLevenshteinDistance("aaapppp", "")       = 7
+ * StringUtils.getLevenshteinDistance("frog", "fog")       = 1
+ * StringUtils.getLevenshteinDistance("fly", "ant")        = 3
+ * StringUtils.getLevenshteinDistance("elephant", "hippo") = 7
+ * StringUtils.getLevenshteinDistance("hippo", "elephant") = 7
+ * StringUtils.getLevenshteinDistance("hippo", "zzzzzzzz") = 8
+ * StringUtils.getLevenshteinDistance("hello", "hallo")    = 1
+ * </pre>
+ *
+ * @param s  the first String, must not be null
+ * @param t  the second String, must not be null
+ * @return result distance
+ * @throws IllegalArgumentException if either String input {@code null}
+ * @since 3.0 Changed signature from getLevenshteinDistance(String, String) to
+ * getLevenshteinDistance(CharSequence, CharSequence)
+ * @deprecated as of 3.6, use commons-text
+ * <a href="https://commons.apache.org/proper/commons-text/javadocs/api-release/org/apache/commons/text/similarity/LevenshteinDistance.html">
+ * LevenshteinDistance</a> instead
+ */
+@Deprecated
+public static int getLevenshteinDistance(CharSequence s, CharSequence t) {
+    if (s == null || t == null) {
+        throw new IllegalArgumentException("Strings must not be null");
+    }
+    int n = s.length();
+    int m = t.length();
+    if (n == 0) {
+        return m;
+    } else if (m == 0) {
+        return n;
+    }
+    if (n > m) {
+        // swap the input strings to consume less memory
+        final CharSequence tmp = s;
+        s = t;
+        t = tmp;
+        n = m;
+        m = t.length();
+    }
+    final int[] p = new int[n + 1];
+    // indexes into strings s and t
+    // iterates through s
+    int i;
+    // iterates through t
+    int j;
+    int upper_left;
+    int upper;
+    // jth character of t
+    char t_j;
+    int cost;
+    for (i = 0; i <= n; i++) {
+        p[i] = i;
+    }
+    for (j = 1; j <= m; j++) {
+        upper_left = p[0];
+        t_j = t.charAt(j - 1);
+        p[0] = j;
+        for (i = 1; i <= n; i++) {
+            upper = p[i];
+            cost = s.charAt(i - 1) == t_j ? 0 : 1;
+            // minimum of cell to the left+1, to the top+1, diagonally left and up +cost
+            p[i] = Math.min(Math.min(p[i - 1] + 1, p[i] + 1), upper_left + cost);
+            upper_left = upper;
+        }
+    }
+    return p[n];
+}
+*********************************
+
+#### Score: 12.22260
+
+
+// Chopping
+// -----------------------------------------------------------------------
+/**
+ * <p>Remove the last character from a String.</p>
+ *
+ * <p>If the String ends in {@code \r\n}, then remove both
+ * of them.</p>
+ *
+ * <pre>
+ * StringUtils.chop(null)          = null
+ * StringUtils.chop("")            = ""
+ * StringUtils.chop("abc \r")      = "abc "
+ * StringUtils.chop("abc\n")       = "abc"
+ * StringUtils.chop("abc\r\n")     = "abc"
+ * StringUtils.chop("abc")         = "ab"
+ * StringUtils.chop("abc\nabc")    = "abc\nab"
+ * StringUtils.chop("a")           = ""
+ * StringUtils.chop("\r")          = ""
+ * StringUtils.chop("\n")          = ""
+ * StringUtils.chop("\r\n")        = ""
+ * </pre>
+ *
+ * @param str  the String to chop last character from, may be null
+ * @return String without last character, {@code null} if null String input
+ */
+public static String chop(final String str) {
+    if (str == null) {
+        return null;
+    }
+    final int strLen = str.length();
+    if (strLen < 2) {
+        return EMPTY;
+    }
+    final int lastIdx = strLen - 1;
+    final String ret = str.substring(0, lastIdx);
+    final char last = str.charAt(lastIdx);
+    if (last == CharUtils.LF && ret.charAt(lastIdx - 1) == CharUtils.CR) {
+        return ret.substring(0, lastIdx - 1);
+    }
+    return ret;
+}
+*********************************
+
+#### Score: 12.21991
+
+
+/**
+ * <p>Gets a substring from the specified String avoiding exceptions.</p>
+ *
+ * <p>A negative start position can be used to start/end {@code n}
+ * characters from the end of the String.</p>
+ *
+ * <p>The returned substring starts with the character in the {@code start}
+ * position and ends before the {@code end} position. All position counting is
+ * zero-based -- i.e., to start at the beginning of the string use
+ * {@code start = 0}. Negative start and end positions can be used to
+ * specify offsets relative to the end of the String.</p>
+ *
+ * <p>If {@code start} is not strictly to the left of {@code end}, ""
+ * is returned.</p>
+ *
+ * <pre>
+ * StringUtils.substring(null, *, *)    = null
+ * StringUtils.substring("", * ,  *)    = "";
+ * StringUtils.substring("abc", 0, 2)   = "ab"
+ * StringUtils.substring("abc", 2, 0)   = ""
+ * StringUtils.substring("abc", 2, 4)   = "c"
+ * StringUtils.substring("abc", 4, 6)   = ""
+ * StringUtils.substring("abc", 2, 2)   = ""
+ * StringUtils.substring("abc", -2, -1) = "b"
+ * StringUtils.substring("abc", -4, 2)  = "ab"
+ * </pre>
+ *
+ * @param str  the String to get the substring from, may be null
+ * @param start  the position to start from, negative means
+ *  count back from the end of the String by this many characters
+ * @param end  the position to end at (exclusive), negative means
+ *  count back from the end of the String by this many characters
+ * @return substring from start position to end position,
+ *  {@code null} if null String input
+ */
+public static String substring(final String str, int start, int end) {
+    if (str == null) {
+        return null;
+    }
+    // handle negatives
+    if (end < 0) {
+        // remember end is negative
+        end = str.length() + end;
+    }
+    if (start < 0) {
+        // remember start is negative
+        start = str.length() + start;
+    }
+    // check length next
+    if (end > str.length()) {
+        end = str.length();
+    }
+    // if start is greater than end, return ""
+    if (start > end) {
+        return EMPTY;
+    }
+    if (start < 0) {
+        start = 0;
+    }
+    if (end < 0) {
+        end = 0;
+    }
+    return str.substring(start, end);
+}

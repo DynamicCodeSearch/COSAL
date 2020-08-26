@@ -1,0 +1,43 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int h = sc.nextInt();
+    int w = sc.nextInt();
+    int n = sc.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = sc.nextInt();
+    }
+    int[][] map = new int[h][w];
+    int fin = 0;
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            if (i % 2 == 0) {
+                if (a[fin] > 0) {
+                    map[i][j] += fin + 1;
+                    a[fin]--;
+                } else {
+                    fin++;
+                    map[i][j] += fin + 1;
+                    a[fin]--;
+                }
+            } else {
+                if (a[fin] > 0) {
+                    map[i][w - j - 1] += fin + 1;
+                    a[fin]--;
+                } else {
+                    fin++;
+                    map[i][w - j - 1] += fin + 1;
+                    a[fin]--;
+                }
+            }
+        }
+    }
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            if (j != 0)
+                System.out.print(" ");
+            System.out.print(map[i][j]);
+        }
+        System.out.println();
+    }
+}

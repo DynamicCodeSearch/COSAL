@@ -1,0 +1,29 @@
+static void solve() {
+    int n = ni();
+    int[] a = na(n);
+    for (int i = 0; i < n; i++) {
+        int e = 0;
+        while (a[i] % 2 == 0) {
+            a[i] /= 2;
+            e++;
+        }
+        a[i] = Math.min(e, 2);
+    }
+    int[] f = new int[3];
+    for (int v : a) {
+        f[v]++;
+    }
+    if (f[1] == 0) {
+        if (f[2] >= f[0] - 1) {
+            out.println("Yes");
+        } else {
+            out.println("No");
+        }
+    } else {
+        if (f[2] >= f[0]) {
+            out.println("Yes");
+        } else {
+            out.println("No");
+        }
+    }
+}

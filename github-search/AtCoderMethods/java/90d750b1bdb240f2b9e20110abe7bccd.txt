@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    try (Scanner in = new Scanner(System.in)) {
+        int N = in.nextInt();
+        int M = in.nextInt();
+        int R = in.nextInt();
+        int[] r = new int[R];
+        for (int i = 0; i < R; i++) {
+            r[i] = in.nextInt() - 1;
+        }
+        int[][] distances = new int[N][N];
+        for (int i = 0; i < distances.length; i++) {
+            Arrays.fill(distances[i], (int) 1e9);
+        }
+        for (int i = 0; i < M; i++) {
+            int A = in.nextInt() - 1;
+            int B = in.nextInt() - 1;
+            int C = in.nextInt();
+            distances[A][B] = C;
+            distances[B][A] = C;
+        }
+        floyd(N, distances);
+        int min = dfs(0, new boolean[R], r, distances, -1);
+        System.out.println(min);
+    }
+}

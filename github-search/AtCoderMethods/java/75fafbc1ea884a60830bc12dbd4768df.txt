@@ -1,0 +1,13 @@
+static void solve() {
+    int n = ni();
+    boolean[][] M = new boolean[n][n];
+    for (int i = 0; i < n; i++) {
+        char[] row = ns(n);
+        for (int j = 0; j < n; j++) {
+            if (row[j] == '1') {
+                M[i][j] = true;
+            }
+        }
+    }
+    out.println(rank(M) == n ? "Odd" : "Even");
+}

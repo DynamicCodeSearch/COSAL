@@ -1,0 +1,8 @@
+void add(V to, int cap) {
+    E e = new E(to, cap);
+    E rev = new E(this, 0);
+    e.rev = rev;
+    rev.rev = e;
+    es.add(e);
+    to.es.add(rev);
+}

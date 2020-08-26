@@ -1,0 +1,35 @@
+void solve() {
+    int n = readNum();
+    int[] a = readNums();
+    int m = (int) pow(10, 9) + 7;
+    Arrays.sort(a);
+    if (n % 2 == 1) {
+        if (a[0] != 0) {
+            pln("0");
+            return;
+        }
+        int v = 2;
+        int ans = 1;
+        for (int i = 1; i < n; i += 2) {
+            if (a[i] != v || a[i + 1] != v) {
+                pln("0");
+                return;
+            }
+            v += 2;
+            ans = ans * 2 % m;
+        }
+        pln(ans);
+    } else {
+        int v = 1;
+        int ans = 1;
+        for (int i = 0; i < n; i += 2) {
+            if (a[i] != v || a[i + 1] != v) {
+                pln("0");
+                return;
+            }
+            v += 2;
+            ans = ans * 2 % m;
+        }
+        pln(ans);
+    }
+}

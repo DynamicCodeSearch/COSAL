@@ -1,0 +1,12 @@
+private static boolean isOK(long mid, long rr, long bb, int x, int y) {
+    if (rr < mid || bb < mid) {
+        return false;
+    }
+    long rtmp = (rr - mid) / (x - 1);
+    long btmp = (bb - mid) / (y - 1);
+    if (rtmp + btmp >= mid) {
+        return true;
+    } else {
+        return false;
+    }
+}

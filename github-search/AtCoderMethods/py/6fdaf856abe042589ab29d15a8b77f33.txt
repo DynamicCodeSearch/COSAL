@@ -1,0 +1,14 @@
+def solve():
+    N, K = map(int, sys.stdin.readline().split())
+    p = [tuple(map(int, sys.stdin.readline().split())) for i in range(N)]
+
+    p.sort()
+
+    cnt = 0
+
+    for ai, bi in p:
+        cnt += bi
+
+        if cnt >= K:
+            print(ai)
+            return

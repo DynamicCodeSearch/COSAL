@@ -1,0 +1,22 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    String a = sc.next();
+    String[] pa = a.split("");
+    String b = "ABCDEF";
+    String[] pb = b.split("");
+    int count = 0;
+    ArrayList array = new ArrayList();
+    for (int i = 0; i < pb.length; i++) {
+        for (int j = 0; j < pa.length; j++) {
+            if (pb[i].equals(pa[j])) {
+                count++;
+            }
+        }
+        array.add(count);
+        count = 0;
+    }
+    for (int k = 0; k < pb.length - 1; k++) {
+        System.out.print(array.get(k) + " ");
+    }
+    System.out.println(array.get(pb.length - 1));
+}

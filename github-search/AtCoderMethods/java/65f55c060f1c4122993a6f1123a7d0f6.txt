@@ -1,0 +1,18 @@
+private static double dfs(int n, int k, int flg) {
+    if (dp[n][k][flg] >= 0) {
+        return dp[n][k][flg];
+    }
+    if (k > K) {
+        return 0;
+    }
+    if (n == N) {
+        return flg;
+    }
+    double ret = 0;
+    ret += 1.0 * n / (n + 1) * dfs(n + 1, k, flg);
+    double a = 1.0 / (n + 1) * dfs(n + 1, k + 1, 1);
+    double b = 1.0 / (n + 1) * dfs(n + 1, k, 0);
+    ret += Math.max(a, b);
+    dp[n][k][flg] = ret;
+    return ret;
+}

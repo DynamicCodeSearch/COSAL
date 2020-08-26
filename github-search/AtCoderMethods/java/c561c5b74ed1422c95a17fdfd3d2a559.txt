@@ -1,0 +1,14 @@
+static void solve() {
+    long a = nl();
+    int K = ni();
+    long T = 2000000000000L;
+    if (K == 0) {
+        out.println(T - a);
+    } else {
+        int d = 0;
+        for (; a < T; d++) {
+            a += 1 + K * a;
+        }
+        out.println(d);
+    }
+}

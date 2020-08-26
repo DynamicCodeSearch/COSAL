@@ -1,0 +1,16 @@
+def find_best(n, a):
+    h = list()
+    s = 0
+    best_s = -10**20
+    res = list()
+    for i in range(0, 2 * n):
+        heapq.heappush(h, a[i])
+        s += a[i]
+        if len(h) > n:
+            m = heapq.heappop(h)
+            s -= m
+        if len(h) == n:
+            if best_s < s:
+                best_s = s
+            res.append(best_s)
+    return res

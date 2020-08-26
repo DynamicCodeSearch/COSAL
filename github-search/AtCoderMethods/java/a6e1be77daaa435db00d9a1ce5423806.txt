@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int N = scanner.nextInt();
+    N = N % 30;
+    int[] card = { 1, 2, 3, 4, 5, 6 };
+    for (int i = 0; i < N; i++) {
+        int index = i % 5;
+        int tmp = card[index];
+        card[index] = card[index + 1];
+        card[index + 1] = tmp;
+    }
+    for (int i = 0; i < 6; i++) {
+        System.out.print(card[i]);
+    }
+}

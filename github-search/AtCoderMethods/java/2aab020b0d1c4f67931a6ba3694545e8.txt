@@ -1,0 +1,24 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[] a = new int[n];
+    sc.fill(a);
+    List<Integer> before = new ArrayList<>();
+    List<Integer> after = new ArrayList<>();
+    for (int i = 0; i < a.length; i++) {
+        if (i % 2 == 0) {
+            after.add(a[i]);
+        } else {
+            before.add(a[i]);
+        }
+    }
+    Stream<Integer> concat;
+    if (a.length % 2 == 0) {
+        Collections.reverse(before);
+        concat = Stream.concat(before.stream(), after.stream());
+    } else {
+        Collections.reverse(after);
+        concat = Stream.concat(after.stream(), before.stream());
+    }
+    System.out.println(concat.map(v -> Integer.toString(v)).collect(Collectors.joining(" ")));
+}

@@ -1,0 +1,8 @@
+public long numWays(int x, int y) {
+    long ans = fact[(x + y - 2)];
+    ans *= IntegerUtils.extededGCD(MOD, fact[x - 1])[0];
+    ans %= MOD;
+    ans *= IntegerUtils.extededGCD(MOD, fact[y - 1])[0];
+    ans %= MOD;
+    return ans;
+}

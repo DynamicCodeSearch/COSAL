@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int N = scan.nextInt();
+    long[] ans = new long[1000000];
+    ans[0] = 0;
+    ans[1] = 0;
+    ans[2] = 1;
+    if (N <= 2) {
+        System.out.println(ans[N - 1]);
+        return;
+    }
+    if (N > 2) {
+        for (int i = 3; i < N; i++) {
+            ans[i] = (ans[i - 1] + ans[i - 2] + ans[i - 3]) % 10007;
+        }
+    }
+    System.out.println(ans[N - 1]);
+}

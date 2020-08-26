@@ -1,0 +1,56 @@
+public void run() throws Exception {
+    final int t;
+    final String s;
+    String[] a;
+    
+    List<Integer> li = new ArrayList<Integer>();
+    li.add(0);
+    li.add(0);
+    Scanner scan = new Scanner(System.in);
+    s = scan.nextLine();
+    t = scan.nextInt();
+    
+    int num = 0;
+    a = new String[s.length()];
+    for (int i = 0; i < s.length(); i++) {
+        a[i] = String.valueOf(s.charAt(i));
+    }
+    MyData l = new MyData("L", -1, 0);
+    MyData r = new MyData("R", 1, 0);
+    MyData u = new MyData("U", 0, 1);
+    MyData d = new MyData("D", 0, -1);
+    String s2 = s.replaceAll("[?]", "");
+    num = s.length() - s2.length();
+    String str;
+    for (int i = 0; i < a.length; i++) {
+        if (a[i].equals("?"))
+            continue;
+        switch(a[i]) {
+            case "L":
+                li = makeMyData(l, li);
+                break;
+            case "R":
+                li = makeMyData(r, li);
+                break;
+            case "U":
+                li = makeMyData(u, li);
+                break;
+            case "D":
+                li = makeMyData(d, li);
+                break;
+        }
+    }
+    int z, k, ans;
+    z = li.get(0);
+    k = li.get(1);
+    ans = Math.abs(li.get(0)) + Math.abs(li.get(1));
+    if (t == 1) {
+        
+        
+        ans += num;
+    } else {
+        ans = ans >= num ? ans - num : (num - ans) % 2;
+    
+    }
+    System.out.println(ans);
+}

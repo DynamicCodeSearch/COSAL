@@ -1,0 +1,29 @@
+def main():
+    K = I()
+    N = I()
+    A = [LI() for _ in range(N)]
+
+    def f(t):
+        c = 0
+        for a,d in A:
+            if a > t:
+                continue
+            c += (t-a+d) // d
+        return c < K
+
+    k = bs(f,0,10**12)
+    t = k-1
+    c = 0
+    r = 0
+    for a,d in A:
+        if a > t:
+            continue
+        ct = (t-a+d) // d
+        c += ct
+        r += a * ct
+        n = ct
+        r += (n * (n-1) // 2) * d
+    r += (K-c) * k
+
+
+    return r

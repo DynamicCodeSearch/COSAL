@@ -1,0 +1,32 @@
+public static void main(String[] args) throws Exception {
+    Scanner in = new Scanner(System.in);
+    n = in.nextInt();
+    a = new node[n + 1];
+    f1 = new long[n + 1];
+    f0 = new long[n + 1];
+    for (int i = 0; i <= n; i++) {
+        a[i] = new node();
+    }
+    for (int i = 0; i < n - 1; i++) {
+        int x = in.nextInt();
+        int y = in.nextInt();
+        a[x].c++;
+        a[x].nodes.add(y);
+        a[y].c++;
+        a[y].nodes.add(x);
+    }
+    int max = 0, maxi = 1;
+    for (int i = 1; i <= n; i++) {
+        if (a[i].c == 1) {
+            f1[i] = 1;
+            f0[i] = 1;
+        }
+        if (a[i].c > max) {
+            max = a[i].c;
+            maxi = i;
+        }
+    }
+    b = new boolean[n + 1];
+    b[maxi] = true;
+    System.out.println((f1(maxi) + f0(maxi)) % 1000000007);
+}

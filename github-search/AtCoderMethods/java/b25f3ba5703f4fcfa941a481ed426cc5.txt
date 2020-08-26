@@ -1,0 +1,25 @@
+private void solve(FastScanner in, PrintWriter out) {
+    int N = in.nextInt();
+    int M = in.nextInt();
+    boolean[] from = new boolean[N];
+    boolean[] to = new boolean[N];
+    for (int i = 0; i < M; i++) {
+        int a = in.nextInt() - 1;
+        int b = in.nextInt() - 1;
+        int x = Math.max(a, b);
+        int y = Math.min(a, b);
+        if (y == 0) {
+            from[x] = true;
+        }
+        if (x == N - 1) {
+            to[y] = true;
+        }
+    }
+    for (int i = 0; i < N; i++) {
+        if (from[i] && to[i]) {
+            out.println("POSSIBLE");
+            return;
+        }
+    }
+    out.println("IMPOSSIBLE");
+}

@@ -1,0 +1,14 @@
+def solve():
+    n = read_int()
+    a = read_int_list()
+    b = [0] * n
+    p = 0
+    q = n - 1
+    for i in range(n-1, -1, -1):
+        if i % 2 == (n-1) % 2:
+            b[p] = a[i]
+            p += 1
+        else:
+            b[q] = a[i]
+            q += -1
+    return ' '.join(map(str, b))

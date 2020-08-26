@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    int iDistance = 0;
+    String sDistance = "";
+    Scanner sc = new Scanner(System.in);
+    iDistance = sc.nextInt();
+    if (iDistance < 100) {
+        sDistance = "00";
+    } else if (iDistance >= 100 && iDistance <= 5000) {
+        if (iDistance < 1000) {
+            sDistance = "0" + (iDistance / 100);
+        } else {
+            sDistance = String.valueOf(iDistance / 100);
+        }
+    } else if (iDistance >= 6000 && iDistance <= 30000) {
+        sDistance = String.valueOf(iDistance / 1000 + 50);
+    } else if (iDistance >= 35000 && iDistance <= 70000) {
+        sDistance = String.valueOf((iDistance / 1000 - 30) / 5 + 80);
+    } else if (iDistance > 70000) {
+        sDistance = "89";
+    }
+    System.out.println(sDistance);
+}

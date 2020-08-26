@@ -1,0 +1,89 @@
+public static void main(String[] args) {
+    Scanner as = new Scanner(System.in);
+    int n = as.nextInt();
+    int m = as.nextInt();
+    int[] a, b, d;
+    int[][] e;
+    a = new int[m];
+    b = new int[m];
+    d = new int[n];
+    e = new int[n][n];
+    for (int i = 0; i < m; i++) {
+        a[i] = Integer.parseInt(as.next()) - 1;
+        b[i] = Integer.parseInt(as.next()) - 1;
+    }
+    for (int i = 0; i < m; i++) {
+        e[a[i]][b[i]] = 1;
+        e[b[i]][a[i]] = 1;
+    }
+    for (int i = 0; i < n; i++) {
+        d[i] = 0;
+    }
+    int l = 0;
+    for (int i = 1; i < n; i++) {
+        if (e[0][i] == 1 && d[i] == 0) {
+            if (n == 2) {
+                l++;
+                continue;
+            }
+            d[i]++;
+            for (int i1 = 1; i1 < n; i1++) {
+                if (e[i][i1] == 1 && d[i1] == 0) {
+                    if (n == 3) {
+                        l++;
+                        continue;
+                    }
+                    d[i1]++;
+                    for (int i2 = 1; i2 < n; i2++) {
+                        if (e[i1][i2] == 1 && d[i2] == 0) {
+                            if (n == 4) {
+                                l++;
+                                continue;
+                            }
+                            d[i2]++;
+                            for (int i3 = 1; i3 < n; i3++) {
+                                if (e[i2][i3] == 1 && d[i3] == 0) {
+                                    if (n == 5) {
+                                        l++;
+                                        continue;
+                                    }
+                                    d[i3]++;
+                                    for (int i4 = 1; i4 < n; i4++) {
+                                        if (e[i3][i4] == 1 && d[i4] == 0) {
+                                            if (n == 6) {
+                                                l++;
+                                                continue;
+                                            }
+                                            d[i4]++;
+                                            for (int i5 = 1; i5 < n; i5++) {
+                                                if (e[i4][i5] == 1 && d[i5] == 0) {
+                                                    if (n == 7) {
+                                                        l++;
+                                                        continue;
+                                                    }
+                                                    d[i5]++;
+                                                    for (int i6 = 1; i6 < n; i6++) {
+                                                        if (e[i5][i6] == 1 && d[i6] == 0) {
+                                                            l++;
+                                                        }
+                                                    }
+                                                    d[i5]--;
+                                                }
+                                            }
+                                            d[i4]--;
+                                        }
+                                    }
+                                    d[i3]--;
+                                }
+                            }
+                            d[i2]--;
+                        }
+                    }
+                    d[i1]--;
+                }
+            }
+            d[i]--;
+        }
+    }
+    System.out.println(l);
+}

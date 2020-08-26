@@ -1,0 +1,33 @@
+public static void main(String[] args) throws java.lang.Exception {
+    Scanner in = new Scanner(System.in);
+    char[] c = in.next().toCharArray();
+    int t = in.nextInt();
+    int unknown = 0;
+    int dx = 0;
+    int dy = 0;
+    for (int i = 0; i < c.length; i++) {
+        if (c[i] == '?') {
+            unknown++;
+        } else if (c[i] == 'D') {
+            dy--;
+        } else if (c[i] == 'U') {
+            dy++;
+        } else if (c[i] == 'L') {
+            dx--;
+        } else {
+            dx++;
+        }
+    }
+    int currentd = Math.abs(dx) + Math.abs(dy);
+    
+    if (t == 1) {
+        System.out.println(currentd + unknown);
+    } else 
+    {
+        if (unknown > currentd) {
+            System.out.println((unknown - currentd) % 2);
+        } else {
+            System.out.println(currentd - unknown);
+        }
+    }
+}

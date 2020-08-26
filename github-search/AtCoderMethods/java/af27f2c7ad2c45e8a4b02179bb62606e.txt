@@ -1,0 +1,21 @@
+public void solve() {
+    Arrays.sort(this.boxes);
+    SegmentTree st = new SegmentTree(100001);
+    int answer = 0;
+    int[] dp = new int[N];
+    Arrays.fill(dp, 0);
+    for (int i = 0, len = N; i < len; ) {
+        int nexti = i + 1;
+        while (nexti < len && boxes[i].w == boxes[nexti].w) nexti++;
+        for (int j = i; j < nexti; j++) {
+            dp[j] = st.query(0, boxes[j].h) + 1;
+            if (dp[j] > answer)
+                answer = dp[j];
+        }
+        for (int j = i; j < nexti; j++) {
+            st.update(boxes[j].h, Math.max(dp[j], st.query(boxes[j].h, boxes[j].h + 1)));
+        }
+        i = nexti;
+    }
+    System.out.println(answer);
+}

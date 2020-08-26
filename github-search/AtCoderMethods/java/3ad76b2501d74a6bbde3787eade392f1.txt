@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int N = scanner.nextInt();
+    int K = scanner.nextInt();
+    int[] a = new int[N];
+    for (int i = 0; i < N; i++) {
+        a[i] = scanner.nextInt();
+    }
+    long[] dp = new long[N - K + 1];
+    Arrays.fill(dp, 0);
+    for (int i = 0; i < K; i++) {
+        dp[0] += a[i];
+    }
+    for (int i = 1; i < N - K + 1; i++) {
+        dp[i] = dp[i - 1] - a[i - 1] + a[i + K - 1];
+    }
+    long sum = 0;
+    for (int i = 0; i < dp.length; i++) {
+        sum += dp[i];
+    }
+    System.out.println(sum);
+}

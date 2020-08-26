@@ -1,0 +1,17 @@
+def reduce(N):
+    from math import sqrt, ceil
+    from copy import deepcopy
+    h_reductions = []
+    for i in range(ceil(sqrt(N))):
+        if N % (i+1) == 0:
+            h_reductions.append(i+1)
+
+    reductions = deepcopy(h_reductions)
+
+    if h_reductions[-1]**2 != N:
+        for i in range(len(h_reductions)):
+            reductions.append(int(N/h_reductions[-1*i - 1]))
+    else:
+        for i in range(len(h_reductions)-1):
+            reductions.append(int(N/h_reductions[-1*i - 2]))
+    return reductions

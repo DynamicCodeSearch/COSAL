@@ -1,0 +1,16 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    int n = in.nextInt();
+    int k = in.nextInt();
+    int ans = 0;
+    Comparator<Integer> cmp = (Integer a, Integer b) -> b.compareTo(a);
+    PriorityQueue<Integer> tr = new PriorityQueue<>(cmp);
+    for (int i = 0; i < n; i++) {
+        int a = in.nextInt();
+        tr.add(a);
+    }
+    while (k > 0 && !tr.isEmpty()) {
+        ans += tr.poll();
+        k--;
+    }
+    out.printLine("\n" + ans);
+}

@@ -1,0 +1,19 @@
+long dfs(int d, long S1, long S2, long w, long h) {
+    if (w <= 0 || h <= 0)
+        return Long.MAX_VALUE;
+    if (d == 1) {
+        return Math.max(S2, w * h) - Math.min(S1, w * h);
+    }
+    long ans = Long.MAX_VALUE;
+    for (int i = -1; i <= 1; i++) {
+        long dw = w / d + i;
+        long dh = h / d + i;
+        if (dw > 0) {
+            ans = Math.min(ans, dfs(d - 1, Math.min(S1, dw * h), Math.max(S2, dw * h), w - dw, h));
+        }
+        if (dh > 0) {
+            ans = Math.min(ans, dfs(d - 1, Math.min(S1, w * dh), Math.max(S2, w * dh), w, h - dh));
+        }
+    }
+    return ans;
+}

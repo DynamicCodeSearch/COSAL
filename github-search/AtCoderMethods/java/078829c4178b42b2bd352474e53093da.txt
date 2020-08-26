@@ -1,0 +1,12 @@
+private void dfs(int x) {
+    if (z[x])
+        return;
+    z[x] = true;
+    int j = head[x];
+    while (j >= 0) {
+        int y = dst[j];
+        dfs(y);
+        j = nx[j];
+    }
+    p[pn++] = x;
+}

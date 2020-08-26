@@ -1,0 +1,21 @@
+public static void main(String[] argv) {
+    int A, B, C, D;
+    Scanner stdIn = new Scanner(System.in);
+    A = stdIn.nextInt();
+    B = stdIn.nextInt();
+    C = stdIn.nextInt();
+    D = stdIn.nextInt();
+    if (B <= C) {
+        System.out.print(0);
+    } else if (A < C && C < B && B < D) {
+        System.out.print(B - C);
+    } else if (A <= C && D <= B) {
+        System.out.print(D - C);
+    } else if (D <= A) {
+        System.out.print(0);
+    } else if (C < A && A < D && D < B) {
+        System.out.print(D - A);
+    } else if (C <= A && B <= D) {
+        System.out.print(B - A);
+    }
+}

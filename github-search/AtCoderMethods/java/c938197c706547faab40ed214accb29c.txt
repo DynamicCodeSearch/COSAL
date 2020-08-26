@@ -1,0 +1,12 @@
+public static void search(List<Integer> group, int x, int y) {
+    if (x > y) {
+        return;
+    }
+    search(group, x + 1, y);
+    if (hasRelations(group, x)) {
+        group.add(x);
+        max = Math.max(max, group.size());
+        search(group, x + 1, y);
+        group.remove(Integer.valueOf(x));
+    }
+}

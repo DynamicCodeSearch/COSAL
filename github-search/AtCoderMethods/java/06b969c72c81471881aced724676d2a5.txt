@@ -1,0 +1,22 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String line = br.readLine();
+    String[] tokens = line.split(" ");
+    int blockNumber = Integer.parseInt(tokens[0]);
+    int bluePlace = Integer.parseInt(tokens[1]);
+    int result = 0;
+    if (blockNumber == bluePlace || bluePlace == 1) {
+        result = 0;
+    } else if (blockNumber % 2 == 0) {
+        if (bluePlace <= blockNumber / 2) {
+            result = bluePlace - 1;
+        } else {
+            result = blockNumber - bluePlace;
+        }
+    } else if (bluePlace <= (blockNumber / 2) + 1) {
+        result = bluePlace - 1;
+    } else {
+        result = blockNumber - bluePlace;
+    }
+    System.out.println(result);
+}

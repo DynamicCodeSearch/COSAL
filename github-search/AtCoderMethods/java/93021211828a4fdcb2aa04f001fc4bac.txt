@@ -1,0 +1,19 @@
+public static void main(String[] ans) {
+    Scanner scanner = new Scanner(System.in);
+    int N = scanner.nextInt();
+    int M = scanner.nextInt();
+    graph = new boolean[N][N];
+    for (int i = 0; i < N; i++) {
+        Arrays.fill(graph[i], false);
+    }
+    for (int i = 0; i < M; i++) {
+        int a = scanner.nextInt();
+        int b = scanner.nextInt();
+        graph[a - 1][b - 1] = true;
+        graph[b - 1][a - 1] = true;
+    }
+    boolean[] visited = new boolean[N];
+    Arrays.fill(visited, false);
+    visited[0] = true;
+    System.out.println(dfs(0, N, visited));
+}

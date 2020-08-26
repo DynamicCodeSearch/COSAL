@@ -1,0 +1,16 @@
+void solve() {
+    int n = in.nextInt();
+    int max = (int) 1e6;
+    int[] cnt = new int[max];
+    for (int i = 0; i < n; i++) {
+        int x = in.nextInt() + 1;
+        cnt[x - 1]++;
+        cnt[x]++;
+        cnt[x + 1]++;
+    }
+    int mx = 0;
+    for (int i : cnt) {
+        mx = Math.max(mx, i);
+    }
+    out.println(mx);
+}

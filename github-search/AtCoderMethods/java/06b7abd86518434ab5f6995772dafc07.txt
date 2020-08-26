@@ -1,0 +1,26 @@
+public void readBody(String str) {
+    
+    cnt++;
+    String[] strArr = str.split(" ");
+    ArrayList<Long> cards = new ArrayList<Long>();
+    for (int i = 0; i < N; i++) {
+        cards.add(Long.parseLong(strArr[i]));
+    }
+    long total = 0;
+    for (long n : cards) {
+        
+        total += n;
+    }
+    long min = Long.MAX_VALUE;
+    long top = 0;
+    for (int i = 0; i < cards.size() - 1; i++) {
+        top += cards.get(i);
+        long diff = (total - top) - top;
+        if (diff < 0)
+            diff *= (-1);
+        
+        if (diff < min)
+            min = diff;
+    }
+    System.out.println(min);
+}

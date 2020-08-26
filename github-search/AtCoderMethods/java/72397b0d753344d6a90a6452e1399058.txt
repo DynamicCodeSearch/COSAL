@@ -1,0 +1,11 @@
+private static BigInteger combination(int a, int b, BigInteger mod) {
+    BigInteger q = BigInteger.ONE;
+    BigInteger p = BigInteger.ONE;
+    for (int i = a - b + 1; i <= a; i++) {
+        q = q.multiply(BigInteger.valueOf(i)).mod(mod);
+    }
+    for (int j = 1; j <= b; j++) {
+        p = p.multiply(BigInteger.valueOf(j)).mod(mod);
+    }
+    return q.multiply(p.modInverse(mod)).mod(mod);
+}

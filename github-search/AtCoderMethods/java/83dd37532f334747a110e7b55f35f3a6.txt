@@ -1,0 +1,33 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int N = in.nextInt();
+    int Ma = in.nextInt();
+    int Mb = in.nextInt();
+    int[] a = new int[N], b = new int[N], c = new int[N];
+    for (int i = 0; i < N; i++) {
+        a[i] = in.nextInt();
+        b[i] = in.nextInt();
+        c[i] = in.nextInt();
+    }
+    int[][][] dp = new int[41][401][401];
+    for (int i = 0; i < dp.length; i++) for (int j = 0; j < dp[i].length; j++) for (int k = 0; k < dp[i][j].length; k++) dp[i][j][k] = 5000;
+    dp[0][0][0] = 0;
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < dp[i].length; j++) {
+            for (int k = 0; k < dp[i][j].length; k++) {
+                if (dp[i][j][k] >= 5000)
+                    continue;
+                dp[i + 1][j][k] = Math.min(dp[i + 1][j][k], dp[i][j][k]);
+                dp[i + 1][j + a[i]][k + b[i]] = Math.min(dp[i + 1][j + a[i]][k + b[i]], dp[i][j][k] + c[i]);
+            }
+        }
+    }
+    int min = 5000;
+    for (int j = 0; j < dp[0].length; j++) {
+        for (int k = 0; k < dp[0][j].length; k++) {
+            if (Ma * 1.0 / Mb == j * 1.0 / k)
+                min = Math.min(min, dp[N][j][k]);
+        }
+    }
+    System.out.println(min == 5000 ? -1 : min);
+}

@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int n = in.nextInt(), a = in.nextInt();
+    int[] v = new int[n];
+    for (int i = 0; i < n; ++i) v[i] = in.nextInt();
+    long[][] dp = new long[n + 1][R + 1];
+    dp[0][0] = 1;
+    for (int i = 0; i < n; ++i) {
+        for (int j = R; j >= 0; --j) {
+            for (int k = n; k >= 0; --k) {
+                if (dp[k][j] == 0)
+                    continue;
+                dp[k + 1][j + v[i]] += dp[k][j];
+            }
+        }
+    }
+    long res = 0;
+    for (int i = 1; i <= n; ++i) {
+        for (int j = 1; j <= R; ++j) {
+            if (j / i == a && j % i == 0) {
+                res += dp[i][j];
+            }
+        }
+    }
+    System.out.println(res);
+}

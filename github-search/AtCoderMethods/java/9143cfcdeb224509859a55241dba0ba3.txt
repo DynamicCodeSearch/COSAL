@@ -1,0 +1,22 @@
+void run() {
+    int N = in.nextInt();
+    int[] a = in.nextIntArray(N);
+    Map<Integer, Integer> map = new HashMap<>();
+    for (int i = 0; i < N; i++) {
+        map.put(a[i], map.getOrDefault(a[i], 0) + 1);
+    }
+    List<Integer> list = new ArrayList<>();
+    for (Map.Entry<Integer, Integer> e : map.entrySet()) {
+        for (int i = 2; i <= e.getValue(); i += 2) {
+            list.add(e.getKey());
+        }
+    }
+    Collections.sort(list);
+    if (list.size() <= 1) {
+        System.out.println(0);
+    } else {
+        long x = list.get(list.size() - 1);
+        long y = list.get(list.size() - 2);
+        System.out.println(x * y);
+    }
+}

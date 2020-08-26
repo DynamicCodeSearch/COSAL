@@ -1,0 +1,19 @@
+
+public static int f(long a, long b) {
+    int aketa = 0;
+    int bketa = 0;
+    int cketa = 0;
+    for (int i = 1; i < 11; i++) {
+        long xx = (long) Math.pow(10, i);
+        long x = a / xx;
+        long y = b / xx;
+        if (x >= 1 && x < 10) {
+            aketa = i + 1;
+        }
+        if (y >= 1 && y < 10) {
+            bketa = i + 1;
+        }
+    }
+    cketa = Math.max(aketa, bketa);
+    return cketa;
+}

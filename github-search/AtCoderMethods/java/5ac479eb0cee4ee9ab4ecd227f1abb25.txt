@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    String s = in.nextToken();
+    int[] quote = new int[4];
+    for (int i = 0; i < 4; i++) {
+        quote[i] = in.nextInt();
+    }
+    StringBuilder line = new StringBuilder();
+    for (int i = 0; i <= s.length(); i++) {
+        for (int j = 0; j < 4; j++) {
+            if (i == quote[j]) {
+                line.append("\"");
+                break;
+            }
+        }
+        if (i < s.length()) {
+            line.append(s.charAt(i));
+        }
+    }
+    out.println(line.toString());
+    out.flush();
+}

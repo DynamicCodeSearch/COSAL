@@ -1,0 +1,10 @@
+static void sieve() {
+    isPrime = new boolean[MAX];
+    Arrays.fill(isPrime, true);
+    isPrime[0] = isPrime[1] = false;
+    primes = new ArrayList<>();
+    for (int i = 2; i < MAX; i++) if (isPrime[i]) {
+        for (int j = i * i; j < MAX; j += i) isPrime[j] = false;
+        primes.add(i);
+    }
+}

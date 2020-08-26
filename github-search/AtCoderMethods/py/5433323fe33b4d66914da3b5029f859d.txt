@@ -1,0 +1,16 @@
+def dijkstra(graph):
+    start=0
+    n=len(graph)
+    cost=[INF for _ in range(n)]
+    cost[start]=0
+    queue=[(cost[start],start)]
+    while(queue):
+        edge_from_cost,edge_from=heapq.heappop(queue)
+        if cost[edge_from]<edge_from_cost: continue
+        for edge_to,edge_to_cost in graph[edge_from]:
+            temp=edge_from_cost+edge_to_cost
+            if temp<cost[edge_to]:
+                cost[edge_to]=temp
+                heapq.heappush(queue,[temp,edge_to])
+
+    return cost

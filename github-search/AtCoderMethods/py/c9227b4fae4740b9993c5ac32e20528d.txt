@@ -1,0 +1,35 @@
+def kakudai(fig):
+    for i in range(len(fig)):
+            now=fig[i]
+            for n in range(len(now)):
+                pixel=fig[i][n]
+                if i==0:
+                    if n==0:
+                        if "." not in [fig[i][n],fig[i][n+1],fig[i+1][n],fig[i+1][n+1]] :
+                            temp2[i][n] = "#"
+                    elif n==int(W)-1:
+                        if "." not in [fig[i][n],fig[i][n-1],fig[i+1][n],fig[i+1][n-1]] :
+                            temp2[i][n] = "#"
+                    else:
+                        if "." not in [fig[i][n],fig[i][n+1],fig[i][n-1],fig[i+1][n],fig[i+1][n+1],fig[i+1][n-1]] :
+                            temp2[i][n] = "#"
+                elif i==int(H)-1:
+                    if n==0:
+                        if "." not in [fig[i][n],fig[i][n+1],fig[i-1][n],fig[i-1][n+1]] :
+                            temp2[i][n] = "#"
+                    elif n==int(W)-1:
+                        if "." not in [fig[i][n],fig[i][n-1],fig[i-1][n],fig[i-1][n-1]] :
+                            temp2[i][n] = "#"
+                    else:
+                        if "." not in [fig[i][n],fig[i][n+1],fig[i][n-1],fig[i-1][n],fig[i-1][n+1],fig[i-1][n-1]] :
+                            temp2[i][n] = "#"
+                else:
+                    if n==0:
+                        if "." not in [fig[i][n],fig[i][n+1],fig[i+1][n],fig[i+1][n+1],fig[i-1][n],fig[i-1][n+1]] :
+                            temp2[i][n] = "#"
+                    elif n==int(W)-1:
+                        if "." not in [fig[i][n],fig[i][n-1],fig[i+1][n],fig[i+1][n-1],fig[i-1][n],fig[i-1][n-1]] :
+                            temp2[i][n] = "#"
+                    else:
+                        if "." not in [fig[i][n],fig[i][n+1],fig[i][n-1],fig[i+1][n],fig[i+1][n+1],fig[i+1][n-1],fig[i-1][n],fig[i-1][n+1],fig[i-1][n-1]] :
+                            temp2[i][n] = "#"

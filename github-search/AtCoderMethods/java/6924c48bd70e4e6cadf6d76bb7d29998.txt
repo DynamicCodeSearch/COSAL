@@ -1,0 +1,41 @@
+public static void output() throws IOException {
+    String s = next();
+    int n = s.length();
+    char[] c = s.toCharArray();
+    int[][] next = new int[n][26];
+    for (int i = 0; i < 26; i++) {
+        next[n - 1][i] = n;
+    }
+    next[n - 1][c[n - 1] - 'a'] = n - 1;
+    for (int i = n - 2; i >= 0; i--) {
+        for (int j = 0; j < 26; j++) {
+            next[i][j] = next[i + 1][j];
+        }
+        next[i][c[i] - 'a'] = i;
+    }
+    StringBuffer ans = new StringBuffer();
+    long[] lengths = new long[n + 2];
+    Arrays.fill(lengths, Integer.MAX_VALUE);
+    char[] min_p = new char[n + 2];
+    Arrays.fill(min_p, 'a');
+    lengths[n + 1] = 0;
+    lengths[n] = 1;
+    lengths[n - 1] = 1;
+    for (int i = n - 2; i >= 0; i--) {
+        for (int j = 0; j < 26; j++) {
+            if (lengths[i] > 1 + lengths[next[i][j] + 1]) {
+                lengths[i] = 1 + lengths[next[i][j] + 1];
+                min_p[i] = (char) ((char) j + 'a');
+            }
+        }
+    }
+    int curr = 0;
+    while (curr != n && curr != n + 1) {
+        
+        ans.append(min_p[curr]);
+        curr = next[curr][min_p[curr] - 'a'] + 1;
+    }
+    
+    
+    println(ans);
+}

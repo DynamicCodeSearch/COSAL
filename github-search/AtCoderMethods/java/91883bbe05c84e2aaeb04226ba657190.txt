@@ -1,0 +1,12 @@
+boolean dfs_opp(long i, long j) {
+    if (i < 2 && j < 2)
+        return true;
+    boolean win = true;
+    for (long k = 1; k * 2 <= i; ++k) {
+        win &= dfs(i - k * 2, j + k);
+    }
+    for (long k = 1; k * 2 <= j; ++k) {
+        win &= dfs(i + k, j - k * 2);
+    }
+    return win;
+}

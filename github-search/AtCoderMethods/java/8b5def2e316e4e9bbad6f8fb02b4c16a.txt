@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    boolean[] hate = new boolean[10];
+    for (int i = 0; i < m; i++) {
+        hate[sc.nextInt()] = true;
+    }
+    LOOP: for (int x = n; ; x++) {
+        String s = String.valueOf(x);
+        for (int i = 0; i < s.length(); i++) {
+            if (hate[s.charAt(i) - '0']) {
+                continue LOOP;
+            }
+        }
+        System.out.println(x);
+        return;
+    }
+}

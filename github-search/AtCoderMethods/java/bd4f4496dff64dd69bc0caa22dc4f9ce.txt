@@ -1,0 +1,39 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    String x = in.nextLine();
+    String y = in.nextLine();
+    String z = in.nextLine();
+    String m = "A";
+    int flag = 1;
+    while (1 == 1) {
+        if (flag == 1) {
+            int l = x.length();
+            if (l == 0) {
+                m = "A";
+                break;
+            }
+            char c = x.charAt(0);
+            x = x.substring(1, l);
+            flag = getFlag(c);
+        } else if (flag == 2) {
+            int l = y.length();
+            if (l == 0) {
+                m = "B";
+                break;
+            }
+            char c = y.charAt(0);
+            y = y.substring(1, y.length());
+            flag = getFlag(c);
+        } else {
+            int l = z.length();
+            if (l == 0) {
+                m = "C";
+                break;
+            }
+            char c = z.charAt(0);
+            z = z.substring(1, z.length());
+            flag = getFlag(c);
+        }
+    }
+    System.out.println(m);
+}

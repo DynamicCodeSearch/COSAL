@@ -1,0 +1,36 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String[] G;
+    String[][] oldString;
+    String[] newString;
+    int N = sc.nextInt();
+    int s;
+    int cnt1 = 0;
+    boolean FC = false;
+    G = new String[N];
+    oldString = new String[N][N];
+    newString = new String[N];
+    for (int i = 0; i < N; i++) {
+        G[i] = sc.next();
+    }
+    for (int i = 0; i < N; i++) {
+        for (s = 0; s < N; s++) {
+            oldString[i][s] = G[i].substring(s, s + 1);
+        }
+    }
+    for (int i = 0; i < N; i++) {
+        for (s = N; s > 0; s--) {
+            if (FC == false) {
+                newString[i] = oldString[s - 1][cnt1];
+                FC = true;
+            } else {
+                newString[i] = newString[i] + oldString[s - 1][cnt1];
+            }
+        }
+        cnt1 = cnt1 + 1;
+        FC = false;
+    }
+    for (int i = 0; i < N; i++) {
+        System.out.println(newString[i]);
+    }
+}

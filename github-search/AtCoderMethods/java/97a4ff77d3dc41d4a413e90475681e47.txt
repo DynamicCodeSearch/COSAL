@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int w = scan.nextInt();
+    int h = scan.nextInt();
+    int n = scan.nextInt();
+    int ow = 0;
+    int oh = 0;
+    for (int i = 0; i < n; i++) {
+        int x = scan.nextInt();
+        int y = scan.nextInt();
+        int a = scan.nextInt();
+        if (a == 1 && x > ow) {
+            ow = x;
+        } else if (a == 2 && x < w) {
+            w = x;
+        } else if (a == 3 && y > oh) {
+            oh = y;
+        } else if (a == 4 && y < h) {
+            h = y;
+        }
+        if (oh > h || ow > w) {
+            System.out.println(0);
+            return;
+        }
+    }
+    System.out.println((oh - h) * (ow - w));
+}

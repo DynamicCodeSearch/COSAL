@@ -1,0 +1,10 @@
+public String nextToken() {
+    int c = next();
+    while (isSpaceChar(c)) c = next();
+    StringBuilder res = new StringBuilder();
+    do {
+        res.append((char) c);
+        c = next();
+    } while (!isSpaceChar(c));
+    return res.toString();
+}

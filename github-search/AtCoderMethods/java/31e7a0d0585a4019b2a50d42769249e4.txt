@@ -1,0 +1,16 @@
+
+public int max(int left, int right) {
+    int res = 0;
+    left |= size;
+    right |= size;
+    right++;
+    while (left < right) {
+        if ((right & 1) == 1)
+            res = Math.max(res, tree[--right]);
+        if ((left & 1) == 1)
+            res = Math.max(res, tree[left++]);
+        right >>= 1;
+        left >>= 1;
+    }
+    return res;
+}

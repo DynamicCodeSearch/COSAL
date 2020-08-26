@@ -1,0 +1,9 @@
+def main():
+    n = read()
+    r = 10**10
+    for w in range(1, n+1):
+        for h in range(1, n+1):
+            if n < w*h:
+                break
+            r = min(r, (n-w*h) + abs(w-h))
+    print(r)

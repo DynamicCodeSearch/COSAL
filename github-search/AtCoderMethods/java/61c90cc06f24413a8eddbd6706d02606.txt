@@ -1,0 +1,18 @@
+private static void solve() {
+    int n = sc.nextInt();
+    long[] a = new long[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = sc.nextLong();
+    }
+    Arrays.sort(a);
+    long cnt = 0;
+    while (a[n - 1] > n - 1) {
+        cnt += a[n - 1] / n;
+        for (int i = 0; i < n - 1; i++) {
+            a[i] += a[n - 1] / n;
+        }
+        a[n - 1] = a[n - 1] % n;
+        Arrays.sort(a);
+    }
+    pr.println(cnt);
+}

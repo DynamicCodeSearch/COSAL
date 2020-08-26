@@ -1,0 +1,43 @@
+
+public void run() throws IOException {
+    
+    int TEST_CASE = 1;
+    while (TEST_CASE-- != 0) {
+        int n = io.nextInt();
+        int m = io.nextInt();
+        TreeMap<Integer, Integer> reindex = new TreeMap<>();
+        SimpleAdjListGraph same = new SimpleAdjListGraph(m, 2 * m);
+        for (int i = 0; i < m; i++) {
+            int s = io.nextInt() - 1;
+            int t = io.nextInt() - 1;
+            int c = io.nextInt() - 1;
+            if (!reindex.containsKey(c))
+                reindex.put(c, reindex.size());
+            c = reindex.get(c);
+            same.addEdge(c, s);
+            same.addEdge(c, t);
+        }
+        UnionFindRich uf = new UnionFindRich(n);
+        WeightedAdjListGraph g = new WeightedAdjListGraph(n + m + reindex.size(), 4 * m);
+        for (int i = 0, j = n; i < m; i++) {
+            uf.clear();
+            for (int e = same.head[i]; e != -1; e = same.next[e]) {
+                int t1 = same.to[e];
+                int t2 = same.to[e = same.next[e]];
+                uf.union(t1, t2);
+            }
+            TreeSet<Integer> vis = new TreeSet<>();
+            for (int e = same.head[i]; e != -1; e = same.next[e]) {
+                int root = uf.root(same.to[e]);
+                if (vis.add(root)) {
+                    for (int v = root; v != -1; v = uf.next[v]) {
+                        g.addEdge(j, v, 1);
+                        g.addEdge(v, j, 0);
+                    }
+                    j++;
+                }
+            }
+        }
+        io.out.println(g.dijkstra(0)[n - 1]);
+    }
+}

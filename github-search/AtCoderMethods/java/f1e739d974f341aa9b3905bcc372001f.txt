@@ -1,0 +1,15 @@
+@Override
+public int compareTo(Path that) {
+    if (that.cost > this.cost) {
+        return -1;
+    } else if (that.cost < this.cost) {
+        return 1;
+    }
+    if (that.from != this.from) {
+        return this.from - that.from;
+    }
+    if (that.to != this.to) {
+        return this.to - that.to;
+    }
+    return 0;
+}

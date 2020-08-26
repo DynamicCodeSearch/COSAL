@@ -1,0 +1,10 @@
+public static void main(String[] args) {
+    Scanner s = new Scanner(System.in);
+    int n = s.nextInt();
+    int root = (int) Math.sqrt(n);
+    int min = n;
+    for (; root > 0; root--) {
+        min = Math.min(Math.abs(root - n / root) + (n % root), min);
+    }
+    System.out.println(min);
+}

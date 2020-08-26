@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    Deque<Character> q = new ArrayDeque<>();
+    int n = scan.nextInt();
+    int t = scan.nextInt();
+    int total = n * t;
+    int a = scan.nextInt();
+    for (int i = 1; i < n; i++) {
+        int temp = scan.nextInt();
+        if (temp - a < t) {
+            total = total - (t + a - temp);
+        }
+        a = temp;
+    }
+    System.out.println(total);
+}

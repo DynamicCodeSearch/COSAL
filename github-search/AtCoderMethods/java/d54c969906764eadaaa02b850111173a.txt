@@ -1,0 +1,11 @@
+private void search(int d, String s, boolean[] b) {
+    if (d == b.length) {
+        calc(s, b);
+        return;
+    }
+    for (int j = 0; j < 2; ++j) {
+        b[d] = (j == 0);
+        search(d + 1, s, b);
+        b[d] = false;
+    }
+}

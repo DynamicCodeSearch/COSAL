@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    double input = sc.nextInt();
+    double VV = 0;
+    DecimalFormat df = new DecimalFormat("00");
+    df.setMinimumIntegerDigits(2);
+    if (input < 100)
+        VV = 0;
+    else if (100 <= input && input <= 5000)
+        VV = input / 1000 * 10;
+    else if (6000 <= input && input <= 30000)
+        VV = input / 1000 + 50;
+    else if (35000 <= input && input <= 70000)
+        VV = (input / 1000 - 30) / 5 + 80;
+    else if (70000 < input)
+        VV = 89;
+    else
+        System.out.println("input error.");
+    System.out.println(df.format(VV));
+}

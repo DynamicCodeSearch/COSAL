@@ -1,0 +1,24 @@
+public static void main(String[] args) throws IOException {
+    final Scanner sc = new Scanner(System.in);
+    final int N = sc.nextInt();
+    final long T = sc.nextLong();
+    long[] array = new long[N];
+    for (int i = 0; i < N; i++) {
+        array[i] = sc.nextLong();
+    }
+    long[] max_profits = new long[N];
+    max_profits[0] = 0;
+    long min = array[0];
+    for (int i = 1; i < N; i++) {
+        max_profits[i] = array[i] - min;
+        min = Math.min(min, array[i]);
+    }
+    final long max = Arrays.stream(max_profits).max().getAsLong();
+    int max_count = 0;
+    for (int i = 0; i < N; i++) {
+        if (max_profits[i] == max) {
+            max_count++;
+        }
+    }
+    System.out.println(max_count);
+}

@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    int t = sc.nextInt();
+    long[] money = new long[N];
+    for (int i = 0; i < N; i++) {
+        money[i] = sc.nextLong();
+    }
+    Dijkstra dijkstra1 = new Dijkstra(N);
+    Dijkstra dijkstra2 = new Dijkstra(N);
+    for (int i = 0; i < M; i++) {
+        int from = sc.nextInt() - 1;
+        int to = sc.nextInt() - 1;
+        int cost = sc.nextInt();
+        dijkstra1.addDirectedEdge(from, to, cost);
+        dijkstra2.addDirectedEdge(to, from, cost);
+    }
+    long[] dist1 = dijkstra1.getDist(0);
+    long[] dist2 = dijkstra2.getDist(0);
+    long ans = 0;
+    for (int i = 0; i < N; i++) {
+        if (t >= dist1[i] + dist2[i])
+            ans = Math.max(ans, money[i] * (t - (dist1[i] + dist2[i])));
+    }
+    System.out.println(ans);
+}

@@ -1,0 +1,38 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    String[] firstLine = input.readLine().split(" ");
+    int W = Integer.parseInt(firstLine[0]);
+    int H = Integer.parseInt(firstLine[1]);
+    int N = Integer.parseInt(firstLine[2]);
+    int region = W * H;
+    int top = H;
+    int bottom = 0;
+    int right = W;
+    int left = 0;
+    for (int i = 0; i < N; i++) {
+        String[] line = input.readLine().split(" ");
+        int x = Integer.parseInt(line[0]);
+        int y = Integer.parseInt(line[1]);
+        int a = Integer.parseInt(line[2]);
+        if (a == 1) {
+            left = Math.max(left, x);
+        } else if (a == 2) {
+            right = Math.min(right, x);
+        } else if (a == 3) {
+            bottom = Math.max(bottom, y);
+        } else {
+            top = Math.min(top, y);
+        }
+    }
+    int area;
+    if (right <= left) {
+        area = 0;
+    } else if (top <= bottom) {
+        area = 0;
+    } else {
+        int height = (top) - (bottom);
+        area = (right - left) * height;
+    }
+    
+    System.out.println(area);
+}

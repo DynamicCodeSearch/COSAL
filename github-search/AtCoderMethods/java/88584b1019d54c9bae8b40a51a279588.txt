@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    String param = scan.nextLine();
+    String[] info = param.split(" ");
+    long nbTown = Long.parseLong(info[0]);
+    long walkFatigue = Long.parseLong(info[1]);
+    long teleFatigue = Long.parseLong(info[2]);
+    String townInfo = scan.nextLine();
+    String[] town = townInfo.split(" ");
+    long fatigue = 0;
+    for (int i = 1; i < nbTown; i++) {
+        long v = Long.parseLong(town[i]) - Long.parseLong(town[i - 1]);
+        if (walkFatigue * v < teleFatigue) {
+            fatigue += walkFatigue * v;
+        } else {
+            fatigue += teleFatigue;
+        }
+    }
+    System.out.println(fatigue);
+}

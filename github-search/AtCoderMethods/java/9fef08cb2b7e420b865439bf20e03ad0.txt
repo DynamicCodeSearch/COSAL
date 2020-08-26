@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    int VV = 0;
+    Scanner sc = new Scanner(System.in);
+    int m = sc.nextInt();
+    if (m < 100)
+        VV = 0;
+    if (100 <= m && m <= 5000)
+        VV = m * 10 / 1000;
+    if (6000 <= m && m <= 30000)
+        VV = m / 1000 + 50;
+    if (35000 <= m && m <= 70000)
+        VV = (m / 1000 - 30) / 5 + 80;
+    if (m > 70000)
+        VV = 89;
+    System.out.println(String.format("%02d", VV));
+}

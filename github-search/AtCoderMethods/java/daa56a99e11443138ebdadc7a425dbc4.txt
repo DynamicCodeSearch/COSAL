@@ -1,0 +1,38 @@
+void compute() {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    nodes = new Node[N];
+    Point[] lines = new Point[M];
+    for (int i = 0; i < N; i++) {
+        nodes[i] = new Node(i);
+    }
+    for (int i = 0; i < M; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        lines[i] = new Point(a, b);
+        nodes[a].linkeds.add(nodes[b]);
+        nodes[b].linkeds.add(nodes[a]);
+    }
+    int bridge = 0;
+    for (int i = 0; i < M; i++) {
+        int a = lines[i].x;
+        int b = lines[i].y;
+        nodes[a].linkeds.remove(nodes[b]);
+        nodes[b].linkeds.remove(nodes[a]);
+        boolean[] through = new boolean[N];
+        for (int j = 0; j < N; j++) {
+            through[j] = false;
+        }
+        advance(0, through);
+        for (int j = 0; j < N; j++) {
+            if (!through[j]) {
+                bridge++;
+                break;
+            }
+        }
+        nodes[a].linkeds.add(nodes[b]);
+        nodes[b].linkeds.add(nodes[a]);
+    }
+    System.out.println(bridge);
+}

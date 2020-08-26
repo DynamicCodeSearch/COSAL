@@ -1,0 +1,11 @@
+
+public static final long modPow2(long x, long n, long modulo) {
+    if (n == 0) {
+        return 1L;
+    }
+    long res = modPow2(x * x % modulo, n / 2, modulo);
+    if ((n & 1L) != 0) {
+        res = res * x % modulo;
+    }
+    return res;
+}

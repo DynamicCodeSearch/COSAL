@@ -1,0 +1,37 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    n = sc.nextInt();
+    x = new int[n];
+    y = new int[n];
+    for (int i = 0; i < n; i++) {
+        x[i] = sc.nextInt();
+        y[i] = sc.nextInt();
+    }
+    Pair[] xp = new Pair[n];
+    Pair[] yp = new Pair[n];
+    for (int i = 0; i < n; i++) {
+        xp[i] = new Pair(x[i], i);
+        yp[i] = new Pair(y[i], i);
+    }
+    Arrays.sort(xp);
+    Arrays.sort(yp);
+    Edge[] edges = new Edge[n - 1 + n - 1];
+    int sp = 0;
+    for (int i = 0; i < n - 1; i++) {
+        edges[i] = new Edge(xp[i].index, xp[i + 1].index, xp[i + 1].value - xp[i].value);
+    }
+    for (int i = 0; i < n - 1; i++) {
+        edges[i + n - 1] = new Edge(yp[i].index, yp[i + 1].index, yp[i + 1].value - yp[i].value);
+    }
+    Arrays.sort(edges);
+    UnionFindTree uf = new UnionFindTree(n);
+    long sum = 0;
+    for (int i = 0; i < edges.length; i++) {
+        Edge e = edges[i];
+        if (!uf.isSame(e.v, e.w)) {
+            uf.union(e.v, e.w);
+            sum += e.value;
+        }
+    }
+    System.out.println(sum);
+}

@@ -1,0 +1,15 @@
+public void exec() throws IOException {
+    InputUtil in = new InputUtil();
+    PrintWriter out = new PrintWriter(System.out);
+    int A = in.nextInt();
+    int B = in.nextInt();
+    int C = in.nextInt();
+    int D = in.nextInt();
+    int switchOnMax = Math.max(A, C);
+    int switchOffMin = Math.min(B, D);
+    if (switchOnMax < switchOffMin)
+        out.println(switchOffMin - switchOnMax);
+    else
+        out.println(0);
+    out.flush();
+}

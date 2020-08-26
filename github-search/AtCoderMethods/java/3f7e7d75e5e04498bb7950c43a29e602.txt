@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    for (int i = 0; i < MAX; i++) {
+        Arrays.fill(dp[i], 9);
+        dp[i][i] = 0;
+    }
+    for (int i = 0; i < MAX; i++) {
+        for (int j = 0; j < MAX; j++) {
+            for (int k : h) {
+                if (indexCheck(j + k)) {
+                    dp[i][j + k] = Math.min(dp[i][j + k], dp[i][j] + 1);
+                }
+                if (indexCheck(i + k)) {
+                    dp[i + k][j] = Math.min(dp[i + k][j], dp[i][j] + 1);
+                }
+            }
+        }
+    }
+    
+    System.out.println(dp[s.nextInt()][s.nextInt()]);
+}

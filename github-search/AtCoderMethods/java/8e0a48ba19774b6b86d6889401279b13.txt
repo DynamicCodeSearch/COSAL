@@ -1,0 +1,14 @@
+private void countPrime(int n) {
+    int index = 2;
+    while (n > 1) {
+        while (!primeTable[index]) {
+            index++;
+        }
+        int prime = index;
+        while (n % prime == 0) {
+            n /= prime;
+            primeNumTable[prime]++;
+        }
+        index++;
+    }
+}

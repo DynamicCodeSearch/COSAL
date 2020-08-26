@@ -1,0 +1,7 @@
+public long accum(int i) {
+    long sum = 0;
+    for (; i >= 0; i = (i & (i + 1)) - 1) {
+        sum += fenwick[i];
+    }
+    return sum;
+}

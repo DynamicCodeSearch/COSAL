@@ -1,0 +1,15 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int[] s = in.nextIntArray(n);
+    int sum = IntStream.of(s).sum();
+    if (sum % 10 != 0) {
+        out.println(sum);
+        return;
+    }
+    int min = Integer.MAX_VALUE;
+    for (int i = 0; i < n; i++) {
+        if (s[i] % 10 != 0)
+            min = Math.min(min, s[i]);
+    }
+    out.println(min == Integer.MAX_VALUE ? 0 : sum - min);
+}

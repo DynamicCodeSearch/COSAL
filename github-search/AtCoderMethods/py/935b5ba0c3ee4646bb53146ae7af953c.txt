@@ -1,0 +1,19 @@
+def loop(pos,last_edge):
+    global stk,vmemo,ememo
+
+    if vmemo[pos]:
+        for i in range(len(stk)-1,-1,-1):
+            _v,_e = stk[i]
+            ememo[_e] = 0
+            if _v == pos:
+                return pos
+
+    vmemo[pos] = 1
+    for v,e in path[pos]:
+        if e != last_edge:
+            stk.append((pos,e))
+            _p = loop(v,e)
+            stk.pop()
+    vmemo[pos] = 0
+
+    return -1

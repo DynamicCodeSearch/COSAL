@@ -1,0 +1,5 @@
+private State findState(int l, int r, SegmentTree[] segmentTrees) {
+    Pair nl = segmentTrees[l % 2].getMinQuery(l, r);
+    Pair nr = segmentTrees[(l + 1) % 2].getMinQuery(nl.idx + 1, r);
+    return new State(l, r, nl, nr);
+}

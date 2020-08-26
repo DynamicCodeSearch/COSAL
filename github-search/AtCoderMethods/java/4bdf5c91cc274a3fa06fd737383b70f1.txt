@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    int n = 0;
+    long t = 0;
+    long[] ts = null;
+    try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
+        String[] elems = br.readLine().split(" ");
+        n = Integer.parseInt(elems[0]);
+        t = Long.parseLong(elems[1]);
+        ts = new long[n];
+        elems = br.readLine().split(" ");
+        for (int i = 0; i < n; i++) {
+            ts[i] = Long.parseLong(elems[i]);
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    long sum = 0;
+    long next = 0;
+    long current = 0;
+    for (int i = 1; i < n; i++) {
+        if (current + t < ts[i]) {
+            sum += (current + t) - ts[i];
+            current = ts[i];
+        } else {
+            current = ts[i];
+        }
+    }
+    System.out.println(sum + (t + ts[ts.length - 1]));
+}

@@ -1,0 +1,9 @@
+
+public double nextDouble() throws IOException {
+    readToken();
+    char[] token = new char[totalBytes];
+    for (int i = 0; i < totalBytes; i++) {
+        token[i] = (char) byteBuf[i];
+    }
+    return Double.parseDouble(new String(token));
+}

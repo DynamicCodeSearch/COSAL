@@ -1,0 +1,47 @@
+void run() {
+    Scanner sc = new Scanner(System.in);
+    n = sc.nextInt();
+    m = sc.nextInt();
+    e = new Pair[m];
+    for (int j = 0; j < m; j++) {
+        int s = sc.nextInt() - 1;
+        int t = sc.nextInt() - 1;
+        int u = -sc.nextInt();
+        e[j] = new Pair(s, t, u);
+    }
+    long[] dist = new long[n];
+    Arrays.fill(dist, (long) (1E+9) * (n - 1));
+    dist[0] = 0;
+    boolean[] f = new boolean[n];
+    Arrays.fill(f, false);
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < m; j++) {
+            int s = e[j].a;
+            int t = e[j].b;
+            int u = e[j].c;
+            dist[t] = Math.min(dist[t], dist[s] + u);
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            int s = e[j].a;
+            int t = e[j].b;
+            int u = e[j].c;
+            if (dist[s] == (long) (1E+9) * (n - 1)) {
+                continue;
+            }
+            if (dist[s] + u < dist[t]) {
+                dist[t] = dist[s] + u;
+                f[t] = true;
+            }
+            if (f[s]) {
+                f[t] = true;
+            }
+        }
+    }
+    if (f[n - 1]) {
+        System.out.println("inf");
+    } else {
+        System.out.println(-dist[n - 1]);
+    }
+}

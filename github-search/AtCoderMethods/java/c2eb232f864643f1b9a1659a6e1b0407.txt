@@ -1,0 +1,17 @@
+void changeSize(int sz_) {
+    Pair[] tmp = new Pair[sz];
+    int[] tmpFlag = new int[sz];
+    for (int i = 0; i < array.length; ++i) {
+        tmp[i] = array[i];
+        tmpFlag[i] = flag[i];
+    }
+    sz = sz_;
+    array = new Pair[sz];
+    flag = new int[sz];
+    cnt = 0;
+    for (int i = 0; i < tmp.length; ++i) {
+        if (tmpFlag[i] == 1) {
+            put(tmp[i].key, tmp[i].value);
+        }
+    }
+}

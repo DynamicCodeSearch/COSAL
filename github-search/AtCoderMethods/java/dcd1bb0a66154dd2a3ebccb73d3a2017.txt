@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    double pi = Math.PI;
+    TreeSet<Integer> ts = new TreeSet<>();
+    Scanner scan = new Scanner(System.in);
+    int n = scan.nextInt();
+    boolean flag = false;
+    for (int i = 0; i < n; i++) {
+        ts.add(scan.nextInt());
+    }
+    double temp1 = Math.pow(ts.pollLast(), 2);
+    if (ts.size() == 0) {
+        System.out.println(temp1 * pi);
+        return;
+    }
+    while (!ts.isEmpty()) {
+        double temp2 = Math.pow(ts.pollLast(), 2);
+        if (flag) {
+            temp1 = temp1 + temp2;
+            flag = false;
+        } else {
+            temp1 = temp1 - temp2;
+            flag = true;
+        }
+    }
+    System.out.println(temp1 * pi);
+}

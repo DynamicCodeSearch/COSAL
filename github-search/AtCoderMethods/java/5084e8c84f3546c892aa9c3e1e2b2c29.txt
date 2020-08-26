@@ -1,0 +1,14 @@
+public static void main(String[] args) throws Exception {
+    int n = sc.nextInt();
+    long[] pre = new long[n + 1];
+    for (int i = 1; i <= n; i++) {
+        pre[i] = pre[i - 1] + sc.nextLong();
+    }
+    long min = Long.MAX_VALUE;
+    for (int i = 1; i < n; i++) {
+        long val1 = pre[i], val2 = pre[n] - pre[i];
+        min = Math.min(min, Math.abs(val1 - val2));
+    }
+    out.println(min);
+    out.close();
+}

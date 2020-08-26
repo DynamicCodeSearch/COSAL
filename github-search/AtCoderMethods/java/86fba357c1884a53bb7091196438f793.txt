@@ -1,0 +1,23 @@
+static int ni() {
+    try {
+        int num = 0;
+        boolean minus = false;
+        while ((num = is.read()) != -1 && !((num >= '0' && num <= '9') || num == '-')) ;
+        if (num == '-') {
+            num = 0;
+            minus = true;
+        } else {
+            num -= '0';
+        }
+        while (true) {
+            int b = is.read();
+            if (b >= '0' && b <= '9') {
+                num = num * 10 + (b - '0');
+            } else {
+                return minus ? -num : num;
+            }
+        }
+    } catch (IOException e) {
+    }
+    return -1;
+}

@@ -1,0 +1,14 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int k = sc.nextInt();
+    int[] x = new int[n];
+    for (int i = 0; i < n; i++) x[i] = sc.nextInt();
+    int d_sum = 0;
+    for (int i = 0; i < n; i++) {
+        int d1 = 2 * Math.abs(x[i]);
+        int d2 = 2 * Math.abs(x[i] - k);
+        d_sum += Math.min(d1, d2);
+    }
+    System.out.println(d_sum);
+}

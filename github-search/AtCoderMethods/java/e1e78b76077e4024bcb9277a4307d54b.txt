@@ -1,0 +1,22 @@
+private static boolean addBoard(int y, int x, char[][] list) {
+    for (int vy = -1; vy <= 1; vy++) {
+        for (int vx = -1; vx <= 1; vx++) {
+            if (vy == 0 && vx == 0) {
+                continue;
+            }
+            int ty = y;
+            int tx = x;
+            while (true) {
+                ty += vy;
+                tx += vx;
+                if (ty < 0 || 8 <= ty || tx < 0 || 8 <= tx) {
+                    break;
+                }
+                if (list[ty][tx] == 'Q') {
+                    return false;
+                }
+            }
+        }
+    }
+    return true;
+}

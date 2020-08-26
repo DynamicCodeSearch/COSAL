@@ -1,0 +1,26 @@
+def main():
+    args = sys.stdin.readline().split()
+    N = int(args[0])
+    A = map(int, input().split())
+
+    non_factor_cnt = 0
+    factor_of_two_cnt = 0
+    factor_of_four_cnt = 0
+    for num in A:
+        remainder = num % 4
+        if remainder != 0:
+            if remainder == 2:
+                factor_of_two_cnt += 1
+            else:
+                non_factor_cnt += 1
+        else:
+            factor_of_four_cnt += 1
+
+    if factor_of_two_cnt == 0:
+        if factor_of_four_cnt >= non_factor_cnt - 1:
+            print('Yes')
+            sys.exit()
+    if factor_of_four_cnt >= non_factor_cnt: 
+        print('Yes')
+        sys.exit()
+    print('No')

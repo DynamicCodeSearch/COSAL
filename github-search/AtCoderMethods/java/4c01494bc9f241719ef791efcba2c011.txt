@@ -1,0 +1,7 @@
+private int getChildNum(int node, Map<Integer, Set<Integer>> childMap) {
+    int sum = 0;
+    for (int child : childMap.get(node)) {
+        sum += getChildNum(child, childMap) + 1;
+    }
+    return sum;
+}

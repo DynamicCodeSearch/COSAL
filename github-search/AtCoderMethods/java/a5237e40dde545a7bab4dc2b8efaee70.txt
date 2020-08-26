@@ -1,0 +1,8 @@
+private BigInteger findGcd(BigInteger a, BigInteger b) {
+    while (b.compareTo(new BigInteger("0")) > 0) {
+        BigInteger t = a.mod(b);
+        a = b;
+        b = t;
+    }
+    return a;
+}

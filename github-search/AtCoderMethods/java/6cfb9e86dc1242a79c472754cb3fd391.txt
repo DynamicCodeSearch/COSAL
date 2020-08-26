@@ -1,0 +1,15 @@
+long treeDiameter1() {
+    dijkstra1(0);
+    Node n1 = ns.get(0);
+    for (int i = 1; i < n; i++) {
+        if (ns.get(i).dist > n1.dist)
+            n1 = ns.get(i);
+    }
+    dijkstra1(n1.idx);
+    long diam = 0;
+    for (int i = 0; i < n; i++) {
+        if (ns.get(i).dist > diam)
+            diam = ns.get(i).dist;
+    }
+    return diam;
+}

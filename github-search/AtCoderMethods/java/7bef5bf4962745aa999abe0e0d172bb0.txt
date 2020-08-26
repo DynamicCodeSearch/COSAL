@@ -1,0 +1,10 @@
+public static void main(String[] args) {
+    String a = s.next();
+    int n = s.nextInt();
+    for (int i = 0; i < n; i++) {
+        int l = s.nextInt(), r = s.nextInt();
+        StringBuffer b = new StringBuffer(a.substring(l - 1, r));
+        a = a.substring(0, l - 1) + b.reverse().toString() + a.substring(r, a.length());
+    }
+    System.out.println(a);
+}

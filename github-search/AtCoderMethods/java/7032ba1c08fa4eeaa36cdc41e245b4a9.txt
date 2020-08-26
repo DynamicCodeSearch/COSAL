@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String S = sc.next();
+    int k = sc.nextInt();
+    ArrayList<String> list = new ArrayList<>();
+    String[] nums = new String[1000000];
+    for (int i = 0; i <= S.length() - k; i++) {
+        nums[i] = S.substring(i, i + k);
+    }
+    for (String num : nums) {
+        if (num == null) {
+            break;
+        }
+        if (!list.contains(num)) {
+            list.add(num);
+        }
+    }
+    System.out.println(list.size());
+}

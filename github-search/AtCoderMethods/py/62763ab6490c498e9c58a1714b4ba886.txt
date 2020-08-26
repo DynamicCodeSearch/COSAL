@@ -1,0 +1,16 @@
+def solve(a,b,fc):
+
+    S=a*b
+
+    if fc=="ceil":
+        x=math.ceil((S/3)/a)
+    else:
+        x=math.floor((S/3)/a)
+    l=math.floor(a/2)
+    S_l=(b-x)*l
+    S_U=a*x
+    S_r=(b-x)*(a-l)
+
+    SMax=max(S_l,S_U,S_r)
+    SMin=min(S_l,S_U,S_r)
+    return abs(SMax-SMin)

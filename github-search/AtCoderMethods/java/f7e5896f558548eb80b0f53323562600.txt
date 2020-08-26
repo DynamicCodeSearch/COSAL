@@ -1,0 +1,81 @@
+public static void main(String[] args) {
+    
+    Scanner scan = new Scanner(System.in);
+    final int TH = 400;
+    int n = scan.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = scan.nextInt();
+    }
+    int gray = 0;
+    int braun = 0;
+    int green = 0;
+    int cyan = 0;
+    int blue = 0;
+    int orange = 0;
+    int bulaun = 0;
+    int red = 0;
+    int over = 0;
+    for (int hoge : a) {
+        if (hoge < TH) {
+            gray++;
+        } else if (hoge < 2 * TH) {
+            braun++;
+        } else if (hoge < 3 * TH) {
+            green++;
+        } else if (hoge < 4 * TH) {
+            cyan++;
+        } else if (hoge < 5 * TH) {
+            blue++;
+        } else if (hoge < 6 * TH) {
+            orange++;
+        } else if (hoge < 7 * TH) {
+            bulaun++;
+        } else if (hoge < 8 * TH) {
+            red++;
+        } else {
+            over++;
+        }
+    }
+    int maxColor = 0;
+    int minColor = 0;
+    if (gray > 0) {
+        maxColor++;
+        minColor++;
+    }
+    if (braun > 0) {
+        maxColor++;
+        minColor++;
+    }
+    if (green > 0) {
+        maxColor++;
+        minColor++;
+    }
+    if (cyan > 0) {
+        maxColor++;
+        minColor++;
+    }
+    if (blue > 0) {
+        maxColor++;
+        minColor++;
+    }
+    if (orange > 0) {
+        maxColor++;
+        minColor++;
+    }
+    if (bulaun > 0) {
+        maxColor++;
+        minColor++;
+    }
+    if (red > 0) {
+        maxColor++;
+        minColor++;
+    }
+    if (over > 0) {
+        maxColor += over;
+        if (minColor == 0) {
+            minColor = 1;
+        }
+    }
+    System.out.println("" + minColor + " " + maxColor);
+}

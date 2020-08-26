@@ -1,0 +1,22 @@
+int compareNodeIJ(int i, int j) {
+    if (i == j) {
+        return 0;
+    } else if (i < j) {
+        return -compareNodeIJ(j, i);
+    } else {
+        int hi = i;
+        int hj = j;
+        int il = n - i;
+        int jl = n - j;
+        
+        int res = compareNodeIJ(i, j, il);
+        if (res != 0) {
+            return res;
+        }
+        res = compareNodeIJ(j, j + il, jl - il);
+        if (res != 0) {
+            return res;
+        }
+        return compareNodeIJ(j + jl - il, i, il);
+    }
+}

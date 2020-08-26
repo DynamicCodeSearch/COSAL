@@ -1,0 +1,61 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int W, H, N;
+    W = sc.nextInt();
+    H = sc.nextInt();
+    N = sc.nextInt();
+    
+    
+    int[] x = new int[N];
+    int[] y = new int[N];
+    int[] a = new int[N];
+    int[][] xy = new int[H][W];
+    for (int i = 0; i < N; i++) {
+        x[i] = sc.nextInt();
+        y[i] = sc.nextInt();
+        a[i] = sc.nextInt();
+    }
+    for (int i = 0; i < N; i++) {
+        
+        int temp = 0;
+        if (a[i] == 1) {
+            for (int j = 0; j < H; j++) {
+                for (int k = 0; k < x[i]; k++) {
+                    xy[j][k] = 1;
+                    temp++;
+                }
+            }
+        } else if (a[i] == 2) {
+            for (int j = 0; j < H; j++) {
+                for (int k = x[i]; k < W; k++) {
+                    xy[j][k] = 1;
+                    temp++;
+                }
+            }
+        } else if (a[i] == 3) {
+            for (int j = 0; j < y[i]; j++) {
+                for (int k = 0; k < W; k++) {
+                    xy[j][k] = 1;
+                    temp++;
+                }
+            }
+        } else {
+            for (int j = y[i]; j < H; j++) {
+                for (int k = 0; k < W; k++) {
+                    xy[j][k] = 1;
+                    temp++;
+                }
+            }
+        }
+    
+    }
+    int ttl = 0;
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            ttl = ttl + xy[i][j];
+        
+        }
+    
+    }
+    System.out.println(W * H - ttl);
+}

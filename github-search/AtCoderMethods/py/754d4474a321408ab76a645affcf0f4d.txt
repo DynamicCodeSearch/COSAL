@@ -1,0 +1,9 @@
+def solve():
+    max_a, max_b = 1, 1
+    for num in range(N):
+        for ca in range(max_a, -1, -1):
+            for cb in range(max_b, -1, -1):
+                cost[ca + a[num]][cb + b[num]] = min(cost[ca][cb] + c[num], cost[ca + a[num]][cb + b[num]])
+        cost[a[num]][b[num]] = min(cost[a[num]][b[num]], c[num])
+        max_a += a[num]
+        max_b += b[num]

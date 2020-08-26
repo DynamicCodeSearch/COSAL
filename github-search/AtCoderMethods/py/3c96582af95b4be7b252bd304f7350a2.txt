@@ -1,0 +1,44 @@
+def main():
+    N, A, B = map(int, input().split())
+    v = sorted(list(map(int, input().split())), reverse=True)
+    max_avg = 0
+    max_avg_nums = {}
+    for n in range(A, B + 1):
+        sum_v = 0
+        avg_nums = {}
+        for i in range(n):
+            sum_v += v[i]
+            if v[i] not in avg_nums:
+                avg_nums[v[i]] = 0
+            avg_nums[v[i]] += 1
+        avg_v = sum_v / n
+        if max_avg < avg_v:
+            max_avg = avg_v
+            max_avg_nums = avg_nums
+    print(max_avg)
+    if len(max_avg_nums) == 1:
+        vv = list(max_avg_nums.keys())[0]
+        num_v = 0
+        for i in range(N):
+            if vv == v[i]:
+                num_v += 1
+            else:
+                break
+        ans = 0
+        max_n = min(num_v, B)
+        for i in range(A, max_n + 1):
+            ans += math.factorial(num_v) // math.factorial(num_v - i)                   // math.factorial(i)
+        print(ans)
+    else:
+        max_avg_ptn = 1
+        for num, cnt in max_avg_nums.items():
+            num_cnt = 0
+            for i in range(N):
+                if num < v[i]:
+                    continue
+                elif num == v[i]:
+                    num_cnt += 1
+                else:
+                    break
+            max_avg_ptn *= math.factorial(num_cnt)                           // math.factorial(num_cnt - cnt)                           // math.factorial(cnt)
+        print(max_avg_ptn)

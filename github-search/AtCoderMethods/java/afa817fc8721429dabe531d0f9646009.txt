@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    long H = sc.nextLong();
+    long W = sc.nextLong();
+    long ans = 0;
+    if (H % 3 != 0 && W % 3 != 0) {
+        ans = Math.min(H, W);
+        for (int i = 1; i < W; i++) {
+            long a = H * (long) i;
+            long h = H / 2;
+            long b = (long) (W - i) * h;
+            long c = (long) (W - i) * (H - h);
+            long max = a;
+            max = Math.max(Math.max(max, b), c);
+            long min = a;
+            min = Math.min(Math.min(min, b), c);
+            ans = Math.min(ans, max - min);
+        }
+        for (int i = 1; i < H; i++) {
+            long a = W * (long) i;
+            long h = W / 2;
+            long b = (long) (H - i) * h;
+            long c = (long) (H - i) * (W - h);
+            long max = a;
+            max = Math.max(Math.max(max, b), c);
+            long min = a;
+            min = Math.min(Math.min(min, b), c);
+            ans = Math.min(ans, max - min);
+        }
+    }
+    System.out.println(ans);
+}

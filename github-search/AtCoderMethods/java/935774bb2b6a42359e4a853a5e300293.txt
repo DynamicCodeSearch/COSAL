@@ -1,0 +1,10 @@
+@Override
+public T next() {
+    if (!hasNext()) {
+        throw new NoSuchElementException();
+    } else {
+        T ret = search.value;
+        search = search.next;
+        return ret;
+    }
+}

@@ -1,0 +1,12 @@
+def count_forbidden(n):
+    sn = str(n)
+    cnt = 0
+    for i in range(len(sn)):
+        a = int(sn[i])
+        if a == 0: continue
+        cnt += mem[len(sn) - i - 1][a-1]
+        if (a == 4 or a == 9) and i < len(sn) - 1:
+            remain = int(sn[i+1:])
+            cnt += remain
+            break
+    return cnt

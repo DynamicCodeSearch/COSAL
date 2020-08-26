@@ -1,0 +1,8 @@
+int rmq(int[][] m, int[] o, int a, int b) {
+    int d = Integer.highestOneBit(b - a + 1);
+    int c = Integer.bitCount(d - 1);
+    if (o[m[a][c]] > o[m[b - d + 1][c]])
+        return m[a][c];
+    else
+        return m[b - d + 1][c];
+}

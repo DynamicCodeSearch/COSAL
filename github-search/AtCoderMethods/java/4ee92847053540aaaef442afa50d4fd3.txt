@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = Integer.parseInt(sc.next());
+    int[] Items = new int[N];
+    int kind = 0;
+    int maxA = 0;
+    for (int i = 0; i < N; i++) {
+        Items[i] = sc.nextInt();
+        if (maxA < Items[i])
+            maxA = Items[i];
+    }
+    int[] Corr = new int[maxA + 1];
+    for (int i : Items) {
+        if (Corr[i] == 0) {
+            Corr[i] = 1;
+            kind++;
+        }
+    }
+    int MaxN = kind - 1 + kind % 2;
+    System.out.println(MaxN);
+    sc.close();
+}

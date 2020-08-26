@@ -1,0 +1,18 @@
+static void solve() {
+    int n = ni(), K = ni();
+    int ng = 0;
+    for (int i = 0; i < K; i++) {
+        ng |= 1 << ni();
+    }
+    outer: for (int x = n; ; x++) {
+        int y = x;
+        while (y > 0) {
+            int d = y % 10;
+            if (ng << ~d < 0)
+                continue outer;
+            y /= 10;
+        }
+        out.println(x);
+        return;
+    }
+}

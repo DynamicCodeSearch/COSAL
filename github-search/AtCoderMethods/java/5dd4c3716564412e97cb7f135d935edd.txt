@@ -1,0 +1,10 @@
+static void dp(int x1, int y1, int x2, int y2) {
+    for (int x = x1; x <= x2; x++) {
+        
+        if (map.containsKey(x) && map.get(x) >= y1 && map.get(x) <= y2) {
+            int y = map.get(x);
+            int num = sumx[x][y2] - sumx[x][y1] + zipmap[x][y1] + sumy[x2][y] - sumy[x1][y] + zipmap[x1][y] - zipmap[x][y];
+            dp[x1][y1][x2][y2] = Math.max(dp[x1][y1][x2][y2], num + dp[x1][y1][x - 1][y - 1] + dp[x + 1][y1][x2][y - 1] + dp[x1][y + 1][x - 1][y2] + dp[x + 1][y + 1][x2][y2]);
+        }
+    }
+}

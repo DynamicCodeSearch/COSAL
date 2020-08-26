@@ -1,0 +1,10 @@
+def f(a):
+    global ans
+    ans += eval('+'.join(a))
+    n = len(a)
+    for i in range(n-1):
+        b = a[:i] + [a[i]+a[i+1]] + (a[i+2:] if i != n-2 else [])
+        s = '+'.join(b)
+        if not s in memo:
+            memo.add(s)
+            f(b)

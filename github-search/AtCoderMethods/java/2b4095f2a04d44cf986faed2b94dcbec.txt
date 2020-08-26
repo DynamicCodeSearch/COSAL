@@ -1,0 +1,22 @@
+public void solve(String[] args) {
+    MyScanner scanner = new MyScanner();
+    int N = scanner.nextInt();
+    int T = scanner.nextInt();
+    long time = 0;
+    long last = -1;
+    for (int i = 0; i < N; i++) {
+        long t = scanner.nextLong();
+        if (last == -1) {
+            last = t;
+            time += T;
+        } else {
+            long diff = (t + T) - (last + T);
+            if (diff > T) {
+                diff = T;
+            }
+            last = t;
+            time += diff;
+        }
+    }
+    System.out.println(time);
+}

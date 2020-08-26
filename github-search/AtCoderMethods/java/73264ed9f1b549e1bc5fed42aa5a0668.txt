@@ -1,0 +1,29 @@
+public void solve() {
+    x1 = nextInt();
+    y1 = nextInt();
+    r = nextInt();
+    x2 = nextInt();
+    y2 = nextInt();
+    x3 = nextInt();
+    y3 = nextInt();
+    int top = y1 + r;
+    int bottom = y1 - r;
+    int left = x1 - r;
+    int right = x1 + r;
+    
+    if (y3 >= top && y2 <= bottom && x2 <= left && x3 >= right) {
+        out.println("NO");
+    } else {
+        out.println("YES");
+    }
+    double leftTop = Math.sqrt(calc(y1, y2) + calc(x1, x2));
+    double rightTop = Math.sqrt(calc(y1, y2) + calc(x1, x3));
+    double leftBottom = Math.sqrt(calc(y1, y3) + calc(x1, x2));
+    double rightBottom = Math.sqrt(calc(y1, y3) + calc(x1, x3));
+    
+    if (leftTop <= r && rightTop <= r && leftBottom <= r && rightBottom <= r) {
+        out.println("NO");
+    } else {
+        out.println("YES");
+    }
+}

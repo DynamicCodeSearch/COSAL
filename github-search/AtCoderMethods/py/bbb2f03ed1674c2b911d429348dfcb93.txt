@@ -1,0 +1,20 @@
+def main():
+    _ = input()
+
+    b0, b1, b2 = 0, 0, 0
+    for c in input().split():
+        n = int(c)
+        if n % 4 == 0: b2 += 1
+        elif n % 2 == 0: b1 += 1
+        else: b0 += 1
+
+    if b1 == 0:
+        if b0 < b2 + 2:
+            print("Yes")
+        else:
+            print("No")
+    else:
+        if b0 < b2 + 1:
+            print("Yes")
+        else:
+            print("No")

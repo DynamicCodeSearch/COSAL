@@ -1,0 +1,32 @@
+public static void main(String[] args) throws InterruptedException {
+    Scanner in = new Scanner(System.in);
+    int H = in.nextInt();
+    int W = in.nextInt();
+    char[][] map = new char[H][W];
+    for (int i = 0; i < H; i++) {
+        char[] c = in.next().toCharArray();
+        for (int j = 0; j < W; j++) {
+            map[i][j] = c[j];
+        }
+    }
+    int[] dx = new int[] { -1, -1, -1, 0, 0, 1, 1, 1 };
+    int[] dy = new int[] { -1, 0, 1, -1, 1, -1, 0, 1 };
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            int count = 0;
+            for (int k = 0; k < dx.length; k++) {
+                int ii = i + dx[k];
+                int jj = j + dy[k];
+                if (0 <= ii && ii < H && 0 <= jj && jj < W && map[ii][jj] == '#') {
+                    count++;
+                }
+            }
+            if (map[i][j] == '.') {
+                System.out.printf("%d", count);
+            } else {
+                System.out.printf("#");
+            }
+        }
+        System.out.println();
+    }
+}

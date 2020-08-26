@@ -1,0 +1,80 @@
+public void readHead(String str) {
+    String[] strArr = str.split(" ");
+    
+    
+    H = Integer.parseInt(strArr[0]);
+    W = Integer.parseInt(strArr[1]);
+    if (H % 3 == 0) {
+        System.out.println("0");
+        return;
+    }
+    if (W % 3 == 0) {
+        System.out.println("0");
+        return;
+    }
+    long l;
+    long m;
+    
+    
+    
+    
+    
+    
+    
+    long l1;
+    long m1;
+    long l2;
+    long m2;
+    long l3;
+    long m3;
+    long min = Long.MAX_VALUE;
+    l = (long) H;
+    m = (long) W;
+    
+    for (int i = 1; i <= l; i++) {
+        l1 = i;
+        m1 = m;
+        l2 = (l - l1) / 2;
+        m2 = m;
+        l3 = l - l1 - l2;
+        m3 = m;
+        
+        min = Long.min(min, diffMaxMin(l1 * m1, l2 * m2, l3 * m3));
+    }
+    
+    for (int i = 1; i <= l; i++) {
+        l1 = i;
+        m1 = m;
+        l2 = l - l1;
+        m2 = m / 2;
+        l3 = l - l1;
+        m3 = m - m2;
+        
+        min = Long.min(min, diffMaxMin(l1 * m1, l2 * m2, l3 * m3));
+    }
+    l = (long) W;
+    m = (long) H;
+    
+    for (int i = 1; i <= l; i++) {
+        l1 = i;
+        m1 = m;
+        l2 = (l - l1) / 2;
+        m2 = m;
+        l3 = l - l1 - l2;
+        m3 = m;
+        
+        min = Long.min(min, diffMaxMin(l1 * m1, l2 * m2, l3 * m3));
+    }
+    
+    for (int i = 1; i <= l; i++) {
+        l1 = i;
+        m1 = m;
+        l2 = l - l1;
+        m2 = m / 2;
+        l3 = l - l1;
+        m3 = m - m2;
+        
+        min = Long.min(min, diffMaxMin(l1 * m1, l2 * m2, l3 * m3));
+    }
+    System.out.println(min);
+}

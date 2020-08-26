@@ -1,0 +1,25 @@
+
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] array = new int[N];
+    HashMap<Integer, Integer> map = new HashMap<>();
+    for (int i = 0; i < array.length; i++) {
+        array[i] = sc.nextInt();
+        map.putIfAbsent(array[i], 0);
+        map.put(array[i], map.get(array[i]) + 1);
+    }
+    int max = 0;
+    for (Integer key : map.keySet()) {
+        int cnt = map.get(key);
+        if (map.containsKey(key - 1)) {
+            cnt += map.get(key - 1);
+        }
+        if (map.containsKey(key + 1)) {
+            cnt += map.get(key + 1);
+        }
+        max = Math.max(max, cnt);
+    }
+    System.out.println(max);
+    sc.close();
+}

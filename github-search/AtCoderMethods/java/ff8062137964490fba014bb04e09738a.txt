@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    H = scanner.nextInt();
+    W = scanner.nextInt();
+    field = new int[H][W];
+    scanner.nextLine();
+    dp = new long[H][W];
+    for (int i = 0; i < H; i++) {
+        String r = scanner.nextLine();
+        final String[] split = r.split(" ");
+        for (int j = 0; j < W; j++) {
+            field[i][j] = Integer.valueOf(split[j]);
+        }
+    }
+    long ans = 0;
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            ans += rec(i, j);
+            ans %= MOD;
+        }
+    }
+    System.out.println(ans);
+}

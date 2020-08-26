@@ -1,0 +1,11 @@
+private void calc(String s, boolean[] b) {
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < s.length(); ++i) {
+        sb.append(s.charAt(i));
+        if (i < b.length && b[i]) {
+            sum += Long.parseLong(sb.toString());
+            sb = new StringBuilder();
+        }
+    }
+    sum += Long.parseLong(sb.toString());
+}

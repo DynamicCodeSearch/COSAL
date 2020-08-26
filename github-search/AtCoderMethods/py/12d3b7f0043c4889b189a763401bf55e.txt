@@ -1,0 +1,15 @@
+def function() :
+    n = int(input())
+    s = [str(i) for i in input()]
+
+    if s[0] == 'b' and n == 1 :
+        return 0
+
+    if s[0] != 'a' and s[0] != 'b' and s[0] != 'c'   or n % 2 == 0   or s[n//2] != 'b' :
+        return -1
+
+    for i in range(n-1) :
+        if s[i] == 'a' and s[i+1] != 'b'       or s[i] == 'b' and s[i+1] != 'c'       or s[i] == 'c' and s[i+1] != 'a' :
+            return -1
+        if i == n-2 :
+            return n//2

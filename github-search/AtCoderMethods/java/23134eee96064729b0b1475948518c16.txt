@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String s = sc.next();
+    sc.close();
+    String[] ans = { "Do", "Re", "Mi", "Fa", "So", "La", "Si" };
+    int white = 0;
+    for (int i = 0; i < 14; i++) {
+        if (s.substring(i, i + 7).equals("WWBWBWW")) {
+            System.out.println(ans[(20 - white) % 7]);
+            break;
+        } else {
+            if (s.charAt(i) == 'W') {
+                white++;
+            }
+        }
+    }
+}

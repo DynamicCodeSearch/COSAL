@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int Q = sc.nextInt();
+    int[] L = new int[Q];
+    int[] R = new int[Q];
+    int[] T = new int[Q];
+    int[] a = new int[N];
+    for (int i = 0; i < N; i++) {
+        a[i] = 0;
+    }
+    for (int i = 0; i < Q; i++) {
+        L[i] = sc.nextInt();
+        R[i] = sc.nextInt();
+        T[i] = sc.nextInt();
+    }
+    for (int i = 0; i < Q; i++) {
+        for (int j = L[i] - 1; j <= R[i] - 1; j++) {
+            a[j] = T[i];
+        }
+    }
+    for (int i = 0; i < N; i++) {
+        System.out.println(a[i]);
+    }
+}

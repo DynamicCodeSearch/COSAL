@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int n = sc.nextInt();
+    long t = sc.nextLong();
+    long now = 0;
+    long ans = t;
+    for (int i = 0; i < n; i++) {
+        long next = sc.nextLong();
+        ans += Math.min(next - now, t);
+        now = next;
+    }
+    System.out.println(ans);
+    return;
+}

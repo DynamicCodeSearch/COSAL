@@ -1,0 +1,16 @@
+static long solve(int D) {
+    if (D % 9 != 0)
+        return 0;
+    D /= 9;
+    long[] B = new long[MAXL];
+    B[0] = 1;
+    for (int i = 1; i < MAXL; i++) B[i] = B[i - 1] * 10;
+    long ans = 0;
+    for (int i = 1; i <= MAXL; i++) {
+        N = (i + 1) / 2;
+        v = new long[N];
+        for (int j = 0; j < N; j++) for (int k = j; k < i - j; k++) v[j] += B[k];
+        ans += count(D, i, 0, new int[N]);
+    }
+    return ans;
+}

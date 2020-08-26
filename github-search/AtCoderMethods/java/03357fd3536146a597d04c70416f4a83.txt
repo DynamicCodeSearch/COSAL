@@ -1,0 +1,28 @@
+private static void solve() {
+    long x = nl();
+    long[][] query = new long[300000][2];
+    int ptr = 0;
+    int k = ni();
+    for (int i = 0; i < k; i++) {
+        query[ptr++] = new long[] { nl(), -1 };
+    }
+    int qq = ni();
+    for (int i = 0; i < qq; i++) {
+        query[ptr++] = new long[] { nl(), nl() };
+    }
+    query = Arrays.copyOf(query, ptr);
+    Arrays.sort(query, (o1, o2) -> Long.compare(o1[0], o2[0]));
+    long t = 0;
+    long[] now = { 0, x, 0 };
+    boolean up = true;
+    for (long[] q : query) {
+        long[] next = f(q[0] - t, now, x, up);
+        if (q[1] < 0) {
+            up = !up;
+        } else {
+            out.println(Math.max(Math.min(q[1], next[1]), next[0]) + next[2]);
+        }
+        t = q[0];
+        now = next;
+    }
+}

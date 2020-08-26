@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int s = sc.nextInt();
+    int t = sc.nextInt();
+    int w = sc.nextInt();
+    int bestBodyCount = 0;
+    if (s <= w && w <= t)
+        bestBodyCount++;
+    for (int i = 1; i < n; i++) {
+        w += sc.nextInt();
+        if (s <= w && w <= t) {
+            bestBodyCount++;
+        }
+    }
+    System.out.println(bestBodyCount);
+}

@@ -1,0 +1,17 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    String s = in.readString();
+    for (int i = 0; i < 8; i++) {
+        int start = pos[i];
+        boolean flag = true;
+        for (int j = 0; j < 20; j++) {
+            if (s.charAt(j) != c[(start + j) % 12]) {
+                flag = false;
+                break;
+            }
+        }
+        if (flag) {
+            out.printLine(key[i]);
+            return;
+        }
+    }
+}

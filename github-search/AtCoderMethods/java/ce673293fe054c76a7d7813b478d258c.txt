@@ -1,0 +1,13 @@
+long mod_pow(long x, int n, int mod) {
+    long res = 1;
+    while (n > 0) {
+        if ((n & 1) == 1) {
+            res = res * x % mod;
+            res %= mod;
+        }
+        x = x * x % mod;
+        x %= mod;
+        n >>= 1;
+    }
+    return res % mod;
+}

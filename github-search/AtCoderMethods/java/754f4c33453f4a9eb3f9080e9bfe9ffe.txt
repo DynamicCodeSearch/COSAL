@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    int n = scan.nextInt();
+    int m = scan.nextInt();
+    int t = scan.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = scan.nextInt();
+    }
+    Dijkstra d1 = new Dijkstra(n);
+    Dijkstra d2 = new Dijkstra(n);
+    for (int i = 0; i < m; i++) {
+        int l = scan.nextInt() - 1;
+        int r = scan.nextInt() - 1;
+        int c = scan.nextInt();
+        d1.addEdge(l, r, c);
+        d2.addEdge(r, l, c);
+    }
+    long[] dp1 = d1.solve(0);
+    long[] dp2 = d2.solve(0);
+    long ans = 0;
+    for (int i = 0; i < n; i++) {
+        if (dp1[i] == -1 || dp2[i] == -1)
+            continue;
+        ans = Math.max(ans, (t - dp1[i] - dp2[i]) * a[i]);
+    }
+    System.out.println(ans);
+}

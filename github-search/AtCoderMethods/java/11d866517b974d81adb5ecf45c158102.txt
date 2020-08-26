@@ -1,0 +1,44 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    int D = in.nextInt();
+    int[] a = in.nextInts(n);
+    boolean[] can = new boolean[n];
+    int[] ds = new int[n + 1];
+    for (int i = 0; i < n; i++) {
+        ds[i] = D;
+        int td = Math.abs(D - a[i]);
+        D = Math.min(D, td);
+    }
+    ds[n] = D;
+    
+    long minAvailable = 0;
+    for (int i = n - 1; i >= 0; i--) {
+        if (ds[i] == 0) {
+            can[i] = false;
+        } else {
+            if (ds[i] <= minAvailable) {
+                can[i] = false;
+            } else {
+                can[i] = true;
+            }
+        }
+        if (a[i] <= minAvailable + 1) {
+            minAvailable += a[i];
+        } else if (a[i] <= minAvailable * 2 + 1) {
+            minAvailable = a[i] + minAvailable;
+        }
+    
+    }
+    int q = in.nextInt();
+    while (--q >= 0) {
+        int qi = in.nextInt() - 1;
+        if (can[qi]) {
+            out.println("YES");
+        } else {
+            out.println("NO");
+        }
+    }
+    out.flush();
+}

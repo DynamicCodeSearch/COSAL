@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    String S = sc.next();
+    int ans = -1;
+    if (N % 2 == 1) {
+        int n = (N - 1) / 2;
+        int count = 0;
+        String s = "";
+        while (count <= n) {
+            if (count == 0) {
+                s += "b";
+            } else if (count % 3 == 1) {
+                s = "a" + s + "c";
+            } else if (count % 3 == 2) {
+                s = "c" + s + "a";
+            } else {
+                s = "b" + s + "b";
+            }
+            count++;
+        }
+        if (s.equals(S))
+            ans = n;
+    }
+    System.out.println(ans);
+}

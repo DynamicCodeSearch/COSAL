@@ -1,0 +1,36 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    ArrayList<Integer> a = new ArrayList<Integer>();
+    ArrayList<Integer> b = new ArrayList<Integer>();
+    ArrayList<Integer> c = new ArrayList<Integer>();
+    ArrayList<Integer> d = new ArrayList<Integer>();
+    for (int i = 0; i < N; i++) {
+        a.add(sc.nextInt());
+        b.add(sc.nextInt());
+    }
+    for (int i = 0; i < M; i++) {
+        c.add(sc.nextInt());
+        d.add(sc.nextInt());
+    }
+    for (int i = 0; i < N; i++) {
+        int kyori = -1;
+        int x = a.get(i);
+        int y = b.get(i);
+        int out = 1;
+        for (int j = 0; j < M; j++) {
+            int xc = c.get(j);
+            int yd = d.get(j);
+            if (kyori == -1) {
+                kyori = Math.abs(x - xc) + Math.abs(y - yd);
+            }
+            if (kyori > (Math.abs(x - xc) + Math.abs(y - yd))) {
+                kyori = Math.abs(x - xc) + Math.abs(y - yd);
+                out = j + 1;
+            }
+        }
+        System.out.println(out);
+    }
+}

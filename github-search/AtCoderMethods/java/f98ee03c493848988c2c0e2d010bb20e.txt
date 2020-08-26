@@ -1,0 +1,83 @@
+static void solve() {
+    int n = ni();
+    int[] from = new int[n - 1];
+    int[] to = new int[n - 1];
+    for (int i = 0; i < n - 1; i++) {
+        from[i] = ni() - 1;
+        to[i] = ni() - 1;
+    }
+    int[][] g = packU(n, from, to);
+    int[][] pars = parents3(g, 0);
+    int[] par = pars[0], ord = pars[1], dep = pars[2];
+    int K = ni();
+    int[] sp = new int[n];
+    Arrays.fill(sp, -1);
+    for (int i = 0; i < K; i++) {
+        sp[ni() - 1] = ni();
+    }
+    int parity = -1;
+    for (int i = 0; i < n; i++) {
+        if (sp[i] != -1) {
+            if (parity == -1) {
+                parity = (sp[i] ^ dep[i]) & 1;
+            } else {
+                if (parity != ((sp[i] ^ dep[i]) & 1)) {
+                    out.println("No");
+                    return;
+                }
+            }
+        }
+    }
+    int[] sup = new int[n];
+    Arrays.fill(sup, 2000000);
+    int[] inf = new int[n];
+    Arrays.fill(inf, -2000000);
+    {
+        PriorityQueue<Integer> q = new PriorityQueue<>(200000, (x, y) -> sup[x] - sup[y]);
+        for (int i = 0; i < n; i++) {
+            if (sp[i] != -1) {
+                q.add(i);
+                sup[i] = sp[i];
+            }
+        }
+        while (!q.isEmpty()) {
+            int cur = q.poll();
+            for (int e : g[cur]) {
+                int nsup = sup[cur] + 1;
+                if (nsup < sup[e]) {
+                    sup[e] = nsup;
+                    q.add(e);
+                }
+            }
+        }
+    }
+    {
+        PriorityQueue<Integer> q = new PriorityQueue<>(200000, (x, y) -> -(inf[x] - inf[y]));
+        for (int i = 0; i < n; i++) {
+            if (sp[i] != -1) {
+                q.add(i);
+                inf[i] = sp[i];
+            }
+        }
+        while (!q.isEmpty()) {
+            int cur = q.poll();
+            for (int e : g[cur]) {
+                int ninf = inf[cur] - 1;
+                if (ninf > inf[e]) {
+                    inf[e] = ninf;
+                    q.add(e);
+                }
+            }
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        if (inf[i] > sup[i]) {
+            out.println("No");
+            return;
+        }
+    }
+    out.println("Yes");
+    for (int i = 0; i < n; i++) {
+        out.println(sup[i]);
+    }
+}

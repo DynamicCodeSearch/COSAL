@@ -1,0 +1,12 @@
+def num_ones_in_digit(n, digit):
+    cycle = digit * 10
+
+
+    num_ones = int(n / cycle) * digit
+    res = n % cycle
+
+
+    if res + 1 > digit:
+        num_ones += min(digit, res + 1 - digit)
+
+    return num_ones

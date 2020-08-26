@@ -1,0 +1,71 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    long W = sc.nextLong();
+    long wMin = sc.nextLong();
+    if (wMin > W) {
+        System.out.println("0");
+        return;
+    }
+    ArrayList<Integer> w0 = new ArrayList<Integer>();
+    ArrayList<Integer> w1 = new ArrayList<Integer>();
+    ArrayList<Integer> w2 = new ArrayList<Integer>();
+    ArrayList<Integer> w3 = new ArrayList<Integer>();
+    w0.add(sc.nextInt());
+    for (int i = 1; i < N; i++) {
+        switch((int) (sc.nextLong() - wMin)) {
+            case 0:
+                w0.add(sc.nextInt());
+                break;
+            case 1:
+                w1.add(sc.nextInt());
+                break;
+            case 2:
+                w2.add(sc.nextInt());
+                break;
+            case 3:
+                w3.add(sc.nextInt());
+                break;
+        }
+    }
+    Collections.sort(w0, Comparator.reverseOrder());
+    Collections.sort(w1, Comparator.reverseOrder());
+    Collections.sort(w2, Comparator.reverseOrder());
+    Collections.sort(w3, Comparator.reverseOrder());
+    long ans = 0;
+    long temp = 0;
+    for (int a = 0; a <= w0.size(); a++) {
+        for (int b = 0; b <= w1.size(); b++) {
+            for (int c = 0; c <= w2.size(); c++) {
+                for (int d = 0; d <= w3.size(); d++) {
+                    temp = 0;
+                    if ((a + b + c + d) * wMin + b + 2 * c + 3 * d <= W) {
+                        if (a != 0) {
+                            for (int i = 0; i < a; i++) {
+                                temp += w0.get(i);
+                            }
+                        }
+                        if (b != 0) {
+                            for (int i = 0; i < b; i++) {
+                                temp += w1.get(i);
+                            }
+                        }
+                        if (c != 0) {
+                            for (int i = 0; i < c; i++) {
+                                temp += w2.get(i);
+                            }
+                        }
+                        if (d != 0) {
+                            for (int i = 0; i < d; i++) {
+                                temp += w3.get(i);
+                            }
+                        }
+                        ans = Math.max(ans, temp);
+                    }
+                }
+            }
+        }
+    }
+    System.out.println(ans);
+    return;
+}

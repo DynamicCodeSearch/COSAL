@@ -1,0 +1,24 @@
+def f():
+    n,a = list(map(int, input().split()))
+    x = list(map(int, input().split()))
+    x.sort()
+    b = [(a-_) for _ in x if _ < a]
+    c = [0 for _ in x if _ == a]
+    d = [(_-a) for _ in x if _ > a]
+    m = 50*50
+    ba = [0]*(m+1)
+    ba[0] = 1
+    for bi in b:
+        for j in range(m-bi,-1,-1):
+            ba[j+bi] += ba[j]
+    da = [0]*(m+1)
+    da[0] = 1
+    for di in d:
+        for j in range(m-di,-1,-1):
+            da[j+di] += da[j]
+    r = -1
+    for i in range(m+1):
+        r += ba[i] * da[i]
+    cl = len(c)
+    cr = 2**cl - 1
+    return r * (cr+1) + cr

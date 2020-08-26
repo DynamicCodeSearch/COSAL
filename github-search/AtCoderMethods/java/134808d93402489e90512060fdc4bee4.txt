@@ -1,0 +1,12 @@
+void reverse(int k, int l, int r, int ll, int rr, int[] tree) {
+    if (r <= ll || rr <= l) {
+        return;
+    }
+    if (ll <= l && r <= rr) {
+        tree[k]++;
+        return;
+    }
+    int m = (l + r) / 2;
+    reverse(2 * k, l, m, ll, rr, tree);
+    reverse(2 * k + 1, m, r, ll, rr, tree);
+}

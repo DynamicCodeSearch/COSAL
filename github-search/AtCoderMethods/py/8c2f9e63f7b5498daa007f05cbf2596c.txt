@@ -1,0 +1,9 @@
+def calc_min_bisection(g, a, b, num_iter=DEFAULT_NUM_ITER):
+    for _ in range(num_iter):
+        c = (a + b) / 2
+        if g(c) * g(a) > 0:
+            a = c
+        else:
+            b = c
+    else:
+        return (a + b) / 2

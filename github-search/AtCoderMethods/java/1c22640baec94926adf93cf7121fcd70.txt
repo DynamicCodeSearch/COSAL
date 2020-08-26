@@ -1,0 +1,29 @@
+public static boolean dfs(int x, char[][] board) {
+    if (x == 8)
+        return true;
+    int key = -1;
+    for (int i = 0; i < 8; i++) {
+        if (board[x][i] == 'Q') {
+            if (key != -1)
+                return false;
+            key = i;
+        }
+    }
+    if (key != -1) {
+        if (Sure(x, key, board)) {
+            if (dfs(x + 1, board))
+                return true;
+        }
+    } else {
+        for (int i = 0; i < 8; i++) {
+            if (Sure(x, i, board)) {
+                board[x][i] = 'Q';
+                if (dfs(x + 1, board))
+                    return true;
+                else
+                    board[x][i] = '.';
+            }
+        }
+    }
+    return false;
+}

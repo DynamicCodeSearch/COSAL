@@ -1,0 +1,12 @@
+void solve(FastScanner in, PrintWriter out) {
+    N = in.nextInt();
+    dp = new long[1 << N];
+    graph = new boolean[N][N];
+    int M = in.nextInt();
+    for (int i = 0; i < M; i++) {
+        int x = in.nextInt() - 1;
+        int y = in.nextInt() - 1;
+        graph[x][y] = true;
+    }
+    out.println(dfs((1 << N) - 1));
+}

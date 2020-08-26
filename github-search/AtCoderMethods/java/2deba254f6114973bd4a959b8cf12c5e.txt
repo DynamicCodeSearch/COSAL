@@ -1,0 +1,6 @@
+private boolean check(int u, int v) {
+    boolean ret = false;
+    for (int i = 0; i < n; i++) if (i != u && i != v)
+        ret |= dp[u][v] == dp[u][i] + dp[i][v];
+    return ret;
+}

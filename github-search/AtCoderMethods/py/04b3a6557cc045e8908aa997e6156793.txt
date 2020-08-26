@@ -1,0 +1,14 @@
+def nap(i,j):
+    key = str(i)+':'+str(j)
+    if key in nap_memo:
+        return nap_memo[key]
+    r = 0
+    if i == N:
+        r= 0
+    elif j < w[i]:
+        r= nap(i+1,j)
+    else:
+        r= max([nap(i+1,j),nap(i+1,j-w[i])+v[i]])
+
+    nap_memo[key] = r
+    return r

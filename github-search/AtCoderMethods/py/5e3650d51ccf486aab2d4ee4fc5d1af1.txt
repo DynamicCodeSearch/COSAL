@@ -1,0 +1,14 @@
+def ff(y,z):
+	if dp[y+z*n] != -1:
+		return dp[y+z*n]
+ cnt = 1
+ for i in range(len(e[y])):
+		if e[y][i] == par[y]:
+			continue
+  if z == 0:
+			cnt = cnt*(ff(e[y][i],1)+ff(e[y][i],0))
+  else:
+			cnt = cnt*ff(e[y][i],0)
+  cnt = cnt%mod
+ dp[y+z*n] = cnt
+ return cnt

@@ -1,0 +1,17 @@
+void solver() {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = sc.nextInt();
+    }
+    long ans = 1L << 60;
+    for (int i = -100; i <= 100; i++) {
+        long tmp = 0;
+        for (int j = 0; j < n; j++) {
+            tmp += (a[j] - i) * (a[j] - i);
+        }
+        ans = Math.min(ans, tmp);
+    }
+    System.out.println(ans);
+}

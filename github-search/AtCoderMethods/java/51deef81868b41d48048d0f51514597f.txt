@@ -1,0 +1,18 @@
+public static void main(String... args) {
+    Scanner sc = new Scanner(System.in);
+    int n = Integer.parseInt(sc.nextLine());
+    int[] b = new int[n % 2 == 0 ? n + 2 : n + 1];
+    int left = b.length / 2;
+    int right = left + 1;
+    for (int i = 0; i < n; i++) {
+        if (n % 2 == (i + 1) % 2) {
+            b[left--] = sc.nextInt();
+        } else {
+            b[right++] = sc.nextInt();
+        }
+    }
+    for (int i = left + 1; i < right; i++) {
+        System.out.print(b[i] + " ");
+    }
+    System.out.println();
+}

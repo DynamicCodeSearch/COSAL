@@ -1,0 +1,39 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int h = in.nextInt();
+    int w = in.nextInt();
+    int n = in.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = in.nextInt();
+    }
+    int[][] g = new int[h][w];
+    int curI, curJ;
+    curI = curJ = 0;
+    boolean right = true;
+    for (int i = 1; i <= n; i++) {
+        for (int j = 0; j < a[i - 1]; j++) {
+            g[curI][curJ] = i;
+            if (right) {
+                if (curJ + 1 == w) {
+                    curI++;
+                    right = false;
+                } else {
+                    curJ++;
+                }
+            } else {
+                if (curJ - 1 < 0) {
+                    curI++;
+                    right = true;
+                } else {
+                    curJ--;
+                }
+            }
+        }
+    }
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            out.print(g[i][j] + " ");
+        }
+        out.println();
+    }
+}

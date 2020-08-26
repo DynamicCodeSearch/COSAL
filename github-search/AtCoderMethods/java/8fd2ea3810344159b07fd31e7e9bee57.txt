@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int num = scanner.nextInt();
+    int[] flower = new int[num];
+    for (int i = 0; i < num; i++) {
+        flower[i] = scanner.nextInt();
+    }
+    scanner.close();
+    int sum = 0;
+    for (int i = 0; i < num; i++) {
+        while (flower[i] % 2 == 0 || flower[i] % 3 == 2) {
+            flower[i]--;
+            sum++;
+        }
+    }
+    System.out.println(sum);
+}

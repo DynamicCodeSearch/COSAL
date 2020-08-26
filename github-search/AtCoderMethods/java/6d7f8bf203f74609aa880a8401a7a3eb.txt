@@ -1,0 +1,72 @@
+private static void solve() {
+    INF = Integer.MAX_VALUE;
+    n = sc.nextInt();
+    p = new int[n];
+    c = new int[n];
+    for (int i = 0; i < n; i++) {
+        p[i] = sc.nextInt() - 1;
+        c[p[i]] = i;
+    }
+    rmqe = new RMQSegmentTree(n);
+    rmqo = new RMQSegmentTree(n);
+    for (int i = 0; i < n; i++) {
+        if (i % 2 == 0) {
+            rmqe.update(i, p[i]);
+        } else {
+            rmqo.update(i, p[i]);
+        }
+    }
+    PriorityQueue<Tuple> pq = new PriorityQueue<>();
+    pq.add(new Tuple(0, n));
+    List<Integer> ans = new ArrayList<>(n);
+    while (!pq.isEmpty()) {
+        Tuple e = pq.remove();
+        int oe = e.a;
+        if (oe % 2 == 0) {
+            int e2 = rmqo.query(c[e.min], e.b);
+            if (e2 < n) {
+                ans.add(e.min);
+                ans.add(e2);
+                rmqe.update(c[e.min], INF);
+                rmqo.update(c[e2], INF);
+                if (c[e.min] > e.a + 1) {
+                    pq.add(new Tuple(e.a, c[e.min]));
+                }
+                if (c[e2] > c[e.min] + 2) {
+                    pq.add(new Tuple(c[e.min] + 1, c[e2]));
+                }
+                if (e.b > c[e2] + 2) {
+                    pq.add(new Tuple(c[e2] + 1, e.b));
+                }
+            } else {
+                pr.println("error even");
+            }
+        } else {
+            int e2 = rmqe.query(c[e.min], e.b);
+            if (e2 < n) {
+                ans.add(e.min);
+                ans.add(e2);
+                rmqo.update(c[e.min], INF);
+                rmqe.update(c[e2], INF);
+                if (c[e.min] > e.a + 1) {
+                    pq.add(new Tuple(e.a, c[e.min]));
+                }
+                if (c[e2] > c[e.min] + 2) {
+                    pq.add(new Tuple(c[e.min] + 1, c[e2]));
+                }
+                if (e.b > c[e2] + 2) {
+                    pq.add(new Tuple(c[e2] + 1, e.b));
+                }
+            } else {
+                pr.println("error even");
+            }
+        }
+    }
+    for (int i = 0, size = ans.size(); i < size; i++) {
+        if (i > 0) {
+            pr.print(' ');
+        }
+        pr.print(ans.get(i) + 1);
+    }
+    pr.println();
+}

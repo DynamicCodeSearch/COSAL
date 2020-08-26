@@ -1,0 +1,6 @@
+def count(cur, prev=-1):
+    white, black = 1, 1
+    for w, b in (count(i, cur) for i in nexts[cur] - {prev}):
+        white = (white * (w + b)) % m
+        black = (black * w) % m
+    return white, black

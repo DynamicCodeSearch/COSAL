@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    sc = new Scanner(System.in);
+    
+    long n = sc.nextLong();
+    
+    long m = sc.nextLong();
+    long count = 0;
+    if (n >= m) {
+        
+        count = m / 2;
+    } else {
+        if (n * 2 > m) {
+            
+            count = m / 2;
+        } else if (m > n * 2) {
+            
+            count = n;
+            
+            count = count + ((m - 2 * n) / 4);
+        }
+    }
+    System.out.println(count);
+}

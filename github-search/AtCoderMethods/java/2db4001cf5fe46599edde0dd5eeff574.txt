@@ -1,0 +1,25 @@
+
+static public void find_path(ArrayList<node> Nodes, int start_node) {
+    waiting_q = new PriorityQueue(11, new MyComparator());
+    for (node n : Nodes) {
+        n.min_dis = LONG_MAX;
+        n.used = 0;
+        n.from_node = -1;
+    }
+    Nodes.get(start_node).min_dis = 0;
+    waiting_q.add(new node2(start_node, 0));
+    
+    int current_node_no;
+    node2 current_node;
+    while (!waiting_q.isEmpty()) {
+        current_node = (node2) waiting_q.poll();
+        current_node_no = current_node.node_no;
+        for (edge e : Nodes.get(current_node_no).Edge) {
+            int to_node = e.toNode;
+            if (Nodes.get(to_node).min_dis > (Nodes.get(current_node_no).min_dis + e.cost)) {
+                Nodes.get(to_node).min_dis = Nodes.get(current_node_no).min_dis + e.cost;
+                waiting_q.add(new node2(to_node, Nodes.get(to_node).min_dis));
+            }
+        }
+    }
+}

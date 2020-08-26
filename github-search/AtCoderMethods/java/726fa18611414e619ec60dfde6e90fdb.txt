@@ -1,0 +1,22 @@
+public static void main(String[] args) throws java.lang.Exception {
+    Scanner in = new Scanner(System.in);
+    int n = in.nextInt();
+    int[] nums = new int[n];
+    for (int i = 0; i < n; i++) {
+        nums[i] = in.nextInt();
+    }
+    long[] answer = new long[n + 1];
+    answer[n] = 0;
+    int pre = Integer.MAX_VALUE;
+    int lastIndex = n - 1;
+    for (int i = n - 1; i >= 0; i--) {
+        if (nums[i] < pre) {
+            answer[i] = answer[i + 1] + (lastIndex - i + 1);
+        } else {
+            answer[i] = answer[i + 1] + 1;
+            lastIndex = i;
+        }
+        pre = nums[i];
+    }
+    System.out.println(answer[0]);
+}

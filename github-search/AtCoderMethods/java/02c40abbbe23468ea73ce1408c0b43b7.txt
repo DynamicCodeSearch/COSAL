@@ -1,0 +1,39 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int N = scanner.nextInt();
+    int max = 0;
+    int maxIndex = 0;
+    int sum = 0;
+    
+    ArrayList<String> cityList = new ArrayList<String>();
+    
+    ArrayList<Integer> popuList = new ArrayList<Integer>();
+    for (int i = 0; i < N; i++) {
+        
+        
+        String city = scanner.next();
+        
+        int P = scanner.nextInt();
+        
+        cityList.add(city);
+        
+        popuList.add(P);
+        sum += P;
+        if (i == 0) {
+            
+            max = P;
+            maxIndex = i;
+        } else if (max < P) {
+            max = P;
+            maxIndex = i;
+        }
+    }
+    if (max > sum / 2) {
+        
+        
+        System.out.println(cityList.get(maxIndex));
+    } else {
+        
+        System.out.println("atcoder");
+    }
+}

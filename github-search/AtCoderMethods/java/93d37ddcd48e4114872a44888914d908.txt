@@ -1,0 +1,33 @@
+void solve() throws IOException {
+    String sa = ns();
+    String sb = ns();
+    String sc = ns();
+    int turn = 0;
+    int ia = 0;
+    int ib = 0;
+    int ic = 0;
+    while (true) {
+        if (turn == 0) {
+            if (ia == sa.length()) {
+                out.println("A");
+                break;
+            }
+            turn = sa.charAt(ia) - 'a';
+            ia++;
+        } else if (turn == 1) {
+            if (ib == sb.length()) {
+                out.println("B");
+                break;
+            }
+            turn = sb.charAt(ib) - 'a';
+            ib++;
+        } else {
+            if (ic == sc.length()) {
+                out.println("C");
+                break;
+            }
+            turn = sc.charAt(ic) - 'a';
+            ic++;
+        }
+    }
+}

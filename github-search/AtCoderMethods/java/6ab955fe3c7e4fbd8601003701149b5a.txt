@@ -1,0 +1,34 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    n = sc.nextInt();
+    a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = Integer.parseInt(sc.next());
+    }
+    ArrayList<Integer> s = new ArrayList<>();
+    int cnt = 1;
+    int max = 0;
+    for (int i = 0; i < n - 1; i++) {
+        if (a[i] >= a[i + 1]) {
+            s.add(cnt);
+            if (max < cnt)
+                max = cnt;
+            cnt = 0;
+        }
+        cnt++;
+        if (i == n - 2) {
+            s.add(cnt);
+            if (max < cnt)
+                max = cnt;
+        }
+    }
+    int len = s.size();
+    long sum = 0;
+    for (int i = 0; i < len; i++) {
+        long m = s.get(i);
+        if (m > 1) {
+            sum += m * (m - 1) / 2;
+        }
+    }
+    System.out.println(sum + n);
+}

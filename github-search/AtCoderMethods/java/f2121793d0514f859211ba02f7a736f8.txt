@@ -1,0 +1,9 @@
+public static ModUtil getInstance(int mod, int cap) {
+    if (instance.containsKey(mod)) {
+        return instance.get(mod);
+    } else {
+        ModUtil mi = new ModUtil(mod, cap);
+        instance.put(mod, mi);
+        return mi;
+    }
+}

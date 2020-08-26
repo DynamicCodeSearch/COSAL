@@ -1,0 +1,37 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    sc.close();
+    long MOD = 1000000007L;
+    boolean[] chk = new boolean[1010];
+    Arrays.fill(chk, true);
+    int[] prime = new int[1000];
+    int cnt = 0;
+    for (int i = 2; i <= 1000; i++) {
+        if (chk[i]) {
+            prime[cnt++] = i;
+            int x = 2 * i;
+            while (x <= 1000) {
+                chk[x] = false;
+                x += i;
+            }
+        }
+    }
+    long ans = 1L;
+    for (int i = 0; i < cnt; i++) {
+        int factor = 0;
+        for (int j = 2; j <= N; j++) {
+            int cur = j;
+            while (cur >= prime[i]) {
+                if (cur % prime[i] == 0) {
+                    factor++;
+                    cur = cur / prime[i];
+                } else {
+                    break;
+                }
+            }
+        }
+        ans = (ans * (factor + 1)) % MOD;
+    }
+    System.out.println(ans);
+}

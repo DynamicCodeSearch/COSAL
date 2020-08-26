@@ -1,0 +1,8 @@
+public static void main(String[] __) {
+    int n = s.nextInt();
+    City[] cities = new City[n];
+    for (int i = 0; i < n; i++) cities[i] = new City(s.next(), s.nextInt());
+    int sum = Arrays.stream(cities).mapToInt(o -> o.p).sum();
+    Optional<City> op = Arrays.stream(cities).filter(o -> o.p > sum / 2).findAny();
+    System.out.println(op.orElse(new City("atcoder", 0)).n);
+}

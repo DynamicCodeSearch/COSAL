@@ -1,0 +1,26 @@
+void solve() {
+    Scanner scan = new Scanner(System.in);
+    int N = scan.nextInt();
+    IntMap[] a = new IntMap[N];
+    for (int i = 0; i < N; i++) {
+        a[i] = new IntMap(i, scan.nextInt());
+    }
+    Arrays.sort(a);
+    int num = 0;
+    int[] b = new int[N];
+    b[a[0].key] = num;
+    int preValue = a[0].value;
+    for (int i = 1; i < N; i++) {
+        if (a[i].value == preValue) {
+            b[a[i].key] = num;
+        } else if (a[i].value > preValue) {
+            b[a[i].key] = ++num;
+            preValue = a[i].value;
+        }
+    }
+    StringBuilder str = new StringBuilder();
+    for (int m : b) {
+        str.append(m + "\n");
+    }
+    System.out.println(str);
+}

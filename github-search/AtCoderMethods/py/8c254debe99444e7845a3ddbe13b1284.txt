@@ -1,0 +1,15 @@
+def main():
+    p = 'dream dreamer erase eraser'.split()
+    pp = [[_, len(_)] for _ in p]
+    s = input()
+    while len(s) > 0:
+        f = False
+        for ps, pl in pp:
+            if ps == s[-pl:]:
+                s = s[:-pl]
+                f = True
+                break
+        if not f:
+            return 'NO'
+
+    return 'YES'

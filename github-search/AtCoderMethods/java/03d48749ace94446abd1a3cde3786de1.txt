@@ -1,0 +1,46 @@
+static void start(int node) {
+    Set<Integer> visiting = new HashSet<>();
+    boolean[] visited = new boolean[n];
+    long[] distance = new long[n];
+    for (int i = 0; i < n; i++) distance[i] = Long.MAX_VALUE;
+    Map<Integer, List<Integer>> map = new HashMap<>();
+    for (int i = 0; i < n; i++) {
+        map.put(i, new ArrayList<>());
+    }
+    distance[node] = 0;
+    visiting.add(node);
+    while (visiting.size() > 0) {
+        int id = -1;
+        long minDistance = Long.MAX_VALUE;
+        for (int i : visiting) {
+            if (distance[i] < minDistance) {
+                id = i;
+                minDistance = distance[id];
+            }
+        }
+        if (id == -1)
+            break;
+        visiting.remove(id);
+        visited[id] = true;
+        for (int i = 0; i < n; i++) {
+            if (connected[id][i] && !visited[i]) {
+                long newDistance = distance[id] + distances[id][i];
+                if (newDistance < distance[i]) {
+                    List<Integer> list = new ArrayList<>();
+                    list.add(id);
+                    map.put(i, list);
+                } else if (newDistance == distance[i]) {
+                    map.get(i).add(id);
+                }
+                visiting.add(i);
+                distance[i] = Math.min(newDistance, distance[i]);
+            }
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j : map.get(i)) {
+            used[i][j] = true;
+            used[j][i] = true;
+        }
+    }
+}

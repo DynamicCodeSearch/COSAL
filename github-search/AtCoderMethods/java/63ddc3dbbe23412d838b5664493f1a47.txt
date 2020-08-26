@@ -1,0 +1,22 @@
+private void runProcess(int start, int end) {
+    Queue<Integer> queue = new LinkedList<>();
+    distance[start] = 0;
+    queue.add(start);
+    while (!queue.isEmpty()) {
+        int u = queue.poll();
+        if (visited[u] > 0)
+            continue;
+        visited[u] = color;
+        if (end != Integer.MAX_VALUE && u == end)
+            break;
+        int d = distance[u];
+        for (int v : G[u]) {
+            if (visited[v] > 0)
+                continue;
+            if (distance[v] == Integer.MAX_VALUE || distance[v] > d + 1) {
+                distance[v] = d + 1;
+                queue.add(v);
+            }
+        }
+    }
+}

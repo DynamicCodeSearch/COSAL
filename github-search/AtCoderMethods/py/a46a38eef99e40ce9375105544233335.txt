@@ -1,0 +1,13 @@
+def main():
+    n = int(input())
+    a_list = list(map(int, input().split()))
+    ans = []
+    for i in range(1, len(a_list), 2):
+        ans.append(a_list[i])
+    ans = ans[::-1]
+    for i in range(0, len(a_list), 2):
+        ans.append(a_list[i])
+
+    if n % 2 != 0:
+        ans = ans[::-1]
+    print(*ans)

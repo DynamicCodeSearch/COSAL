@@ -1,0 +1,8 @@
+def main():
+    N, M = map(int, input().split())
+    adj = {}
+    for i in range(M):
+        a, b = map(int, input().split())
+        add_adj(adj, a, b)
+        add_adj(adj, b, a)
+    print(dfs(adj, 1, 1, N))

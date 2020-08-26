@@ -1,0 +1,12 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    HashMap<Integer, Integer> nums = new HashMap<Integer, Integer>();
+    int[] array = { scanner.nextInt(), scanner.nextInt(), scanner.nextInt() };
+    for (int num : array) nums.put(num, 0);
+    for (int num : array) nums.put(num, nums.get(num) + 1);
+    for (int key : nums.keySet()) {
+        if (nums.get(key) % 2 == 1)
+            System.out.println(key);
+    }
+    scanner.close();
+}

@@ -1,0 +1,12 @@
+def f(a):
+    r = set()
+    r.add((0,0))
+    for i in range(len(a)):
+        ai1,ai0 = a[i]
+        t = set()
+        t.add((ai0,ai1))
+        for c in r:
+            t.add((c[0]+ai0,c[1]+ai1))
+        r |= t
+    rl = sorted(list(r))
+    return list(rl[i] for i in range(len(rl)) if (i<1 or rl[i-1][1] < rl[i][1]))

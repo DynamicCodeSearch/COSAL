@@ -1,0 +1,11 @@
+public static int maxClusterDfs(boolean[][] graph) {
+    Map<Integer, Integer> memoization = new HashMap<Integer, Integer>();
+    boolean[] visited = new boolean[graph.length];
+    int result = 0;
+    for (int start = 0; start < graph.length; ++start) {
+        visited[start] = true;
+        result = Math.max(1 + dfs(graph, start, visited, memoization), result);
+        visited[start] = false;
+    }
+    return result;
+}

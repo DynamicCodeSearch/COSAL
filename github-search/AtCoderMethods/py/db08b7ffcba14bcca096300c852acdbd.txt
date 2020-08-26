@@ -1,0 +1,18 @@
+def count_need(string, from_left=True):
+    savings = 0
+    ng = 0
+
+    if from_left == False:
+        key = '('
+    else :
+        key = ')'
+
+    for s in string:
+        if (s == key):
+            if savings <= 0: 
+                ng += 1
+            else:
+                savings -= 1
+        else:
+            savings += 1
+    return ng

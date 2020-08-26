@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    long a = scan.nextLong();
+    long e = 0;
+    long f = a;
+    for (long i = 1; i * i <= a; i++) {
+        long b = 0;
+        if (a % i == 0) {
+            b = a / i;
+            int d = String.valueOf(b).length();
+            int c = String.valueOf(i).length();
+            e = Math.max(d, c);
+        }
+        if (e < f) {
+            f = e;
+        }
+    }
+    System.out.println(f);
+}

@@ -1,0 +1,20 @@
+def solve():
+    N, M = map(int, input().split())
+    students = []
+    points = []
+
+    for _ in range(N):
+        a, b = map(int, input().split())
+        students.append([a, b])
+
+    for _ in range(M):
+        c, d = map(int, input().split())
+        points.append([c, d])
+
+    for [a, b] in students:
+        md = []
+        for [c, d] in points:
+            md.append(abs(a-c) + abs(b-d))
+        md_min = min(md)
+        md_min_idx = md.index(md_min)
+        print(md_min_idx + 1)

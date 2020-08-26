@@ -1,0 +1,33 @@
+def solve():
+    n = read_int()
+    a = [read_int_list() for i in range(n)]
+    global p, rank
+    p = [0] * n
+    rank = [0] * n
+
+    for x in range(n):
+        make_set(x)
+
+    def get_cost(i, j):
+        return min(abs(a[i][0] - a[j][0]), abs(a[i][1] - a[j][1]))
+
+    roads = []
+    for j in range(2):
+        l = sorted(range(n), key=lambda i: a[i][j])
+        for i in range(n - 1):
+            cost = get_cost(l[i], l[i + 1])
+            road = (cost, l[i], l[i + 1])
+            roads.append(road)
+    roads.sort()
+
+    res = 0
+    m = 0
+    for road in roads:
+        c, u, v = road
+        if find_set(u) != find_set(v):
+            res += c
+            m += 1
+            _union(u, v)
+        if m == n - 1:
+            break
+    return res

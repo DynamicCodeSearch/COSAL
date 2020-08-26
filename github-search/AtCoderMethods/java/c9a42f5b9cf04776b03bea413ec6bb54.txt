@@ -1,0 +1,17 @@
+private static void solve() {
+    long aa = nextLong();
+    BigInteger a = BigInteger.valueOf(aa);
+    long kk = nextLong();
+    if (kk == 0) {
+        out(2000000000000l - aa);
+        return;
+    }
+    BigInteger k = BigInteger.valueOf(kk);
+    BigInteger twoBil = BigInteger.valueOf(2000000000000l);
+    long c = 0;
+    while (a.compareTo(twoBil) < 0) {
+        a = a.add(BigInteger.ONE.add(k.multiply(a)));
+        c++;
+    }
+    out(c);
+}

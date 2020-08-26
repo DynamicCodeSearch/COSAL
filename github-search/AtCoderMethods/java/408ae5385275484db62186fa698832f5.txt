@@ -1,0 +1,22 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    char[] A = sc.next().toCharArray();
+    char[] B = sc.next().toCharArray();
+    if (A.length > B.length) {
+        System.out.println("GREATER");
+        return;
+    } else if (A.length < B.length) {
+        System.out.println("LESS");
+        return;
+    }
+    for (int i = 0; i < A.length; i++) {
+        if (A[i] < B[i]) {
+            System.out.println("LESS");
+            return;
+        } else if (A[i] > B[i]) {
+            System.out.println("GREATER");
+            return;
+        }
+    }
+    System.out.println("EQUAL");
+}

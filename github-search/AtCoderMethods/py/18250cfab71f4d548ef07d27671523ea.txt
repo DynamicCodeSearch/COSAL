@@ -1,0 +1,22 @@
+def main():
+    h,w = LI()
+    a = [[c == '.' for c in S()] + [False] for _ in range(h)]
+    a += [[False] * (w+1)]
+
+    m = {}
+    def f(i,j):
+        if not a[i][j]:
+            return True
+        k = (i,j)
+        if k in m:
+            return m[k]
+
+        if f(i+1,j) and f(i,j+1) and f(i+1,j+1):
+            m[k] = False
+        else:
+            m[k] = True
+        return m[k]
+
+    if f(0,0):
+        return 'First'
+    return 'Second'

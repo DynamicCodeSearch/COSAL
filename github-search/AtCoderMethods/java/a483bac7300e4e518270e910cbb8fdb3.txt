@@ -1,0 +1,47 @@
+public void solve() {
+    int H = in.nextInt(), W = in.nextInt();
+    String[] map = in.nextStringArray(H);
+    char[][] res = new char[H][W];
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            boolean ok = true;
+            for (int nx = j - 1; nx <= j + 1; nx++) if (0 <= nx && nx < W) {
+                for (int ny = i - 1; ny <= i + 1; ny++) if (0 <= ny && ny < H) {
+                    if (map[ny].charAt(nx) == '.')
+                        ok = false;
+                }
+            }
+            if (ok)
+                res[i][j] = '#';
+            else
+                res[i][j] = '.';
+        }
+    }
+    char[][] after = new char[H][W];
+    for (int i = 0; i < H; i++) {
+        Arrays.fill(after[i], '.');
+    }
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            if (res[i][j] == '.')
+                continue;
+            for (int nx = j - 1; nx <= j + 1; nx++) if (0 <= nx && nx < W) {
+                for (int ny = i - 1; ny <= i + 1; ny++) if (0 <= ny && ny < H) {
+                    after[ny][nx] = '#';
+                }
+            }
+        }
+    }
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            if (map[i].charAt(j) != after[i][j]) {
+                System.out.println("impossible");
+                return;
+            }
+        }
+    }
+    System.out.println("possible");
+    for (int i = 0; i < H; i++) {
+        System.out.println(String.valueOf(res[i]));
+    }
+}

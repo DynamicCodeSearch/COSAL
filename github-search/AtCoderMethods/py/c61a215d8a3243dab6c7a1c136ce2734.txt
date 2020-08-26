@@ -1,0 +1,31 @@
+def main():
+    first_line = input()
+    second_line = input()
+
+    flag = True
+    for i in range(len(first_line)):
+        if (first_line[i] != '@') & (second_line[i] != '@'):
+            if first_line[i] == second_line[i]:
+                pass
+            else:
+                flag = False
+                break
+        elif (first_line[i] == '@') & (second_line[i] == '@'):
+            pass
+        elif first_line[i] == '@':
+            if second_line[i] in ['a', 't', 'c', 'o', 'd', 'e', 'r']:
+                pass
+            else:
+                flag = False
+                break
+        elif second_line[i] == '@':
+            if first_line[i] in ['a', 't', 'c', 'o', 'd', 'e', 'r']:
+                pass
+            else :
+                flag = False
+                break
+
+    if flag:
+        print('You can win')
+    else:
+        print('You will lose')

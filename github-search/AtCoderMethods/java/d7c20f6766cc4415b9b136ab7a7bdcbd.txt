@@ -1,0 +1,7 @@
+private long hash(int idx, int i, int j) {
+    assert (i <= j);
+    long h0 = table[idx][j] - (long) table[idx][i] * pow[idx][j - i] % primes[idx];
+    if (h0 < 0)
+        h0 += primes[idx];
+    return h0;
+}

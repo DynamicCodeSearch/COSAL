@@ -1,0 +1,15 @@
+static void dfsCount(boolean[][] map, Stack<Integer> path) {
+    int size = map.length;
+    if (path.size() == size) {
+        cnt++;
+        return;
+    }
+    int peek = path.peek();
+    for (int i = 0; i < size; i++) {
+        if (map[peek][i] && !path.contains(i)) {
+            Stack<Integer> sq = (Stack<Integer>) path.clone();
+            sq.push(i);
+            dfsCount(map, sq);
+        }
+    }
+}

@@ -1,0 +1,19 @@
+void dfs2(int v, int p, int pVal) {
+    if (p != -1) {
+        if (anything[v]) {
+            outp[v] = pVal - 1;
+        } else if (low[v] <= pVal - 1 && pVal - 1 <= high[v]) {
+            outp[v] = pVal - 1;
+        } else if (low[v] <= pVal + 1 && pVal + 1 <= high[v]) {
+            outp[v] = pVal + 1;
+        } else {
+            throw new AssertionError();
+        }
+    }
+    for (int u : g[v]) {
+        if (u == p) {
+            continue;
+        }
+        dfs2(u, v, outp[v]);
+    }
+}

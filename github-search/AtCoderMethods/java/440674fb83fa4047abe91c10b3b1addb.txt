@@ -1,0 +1,29 @@
+void compute() {
+    N = scanner.nextInt();
+    nodes = new Node[N];
+    memo = new long[N];
+    for (int i = 0; i < N; i++) {
+        nodes[i] = new Node(i);
+    }
+    for (int i = 0; i < N; i++) {
+        memo[i] = -1;
+    }
+    for (int i = 0; i < N - 1; i++) {
+        int a = scanner.nextInt();
+        int b = scanner.nextInt();
+        long c = scanner.nextLong();
+        nodes[a - 1].add(nodes[b - 1], c);
+        nodes[b - 1].add(nodes[a - 1], c);
+    }
+    int Q = scanner.nextInt();
+    int K = scanner.nextInt();
+    long[] costs = new long[N];
+    for (int i = 0; i < N; i++) {
+        costs[i] = cost(nodes[i], nodes[K - 1], null);
+    }
+    for (int i = 0; i < Q; i++) {
+        int x = scanner.nextInt();
+        int y = scanner.nextInt();
+        System.out.println(costs[x - 1] + costs[y - 1]);
+    }
+}

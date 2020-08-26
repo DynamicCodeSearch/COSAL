@@ -1,0 +1,37 @@
+private void search(StringBuilder sb) {
+    if (check(sb)) {
+        minCount = 0;
+        return;
+    }
+    int leftCount = 0;
+    boolean bFlg = (sb.charAt(0) == 'B');
+    for (int i = 1; i < sb.length(); ++i) {
+        if (sb.charAt(i) == 'B') {
+            if (!bFlg) {
+                ++leftCount;
+            }
+            bFlg = true;
+        } else if (sb.charAt(i) == 'W') {
+            if (bFlg) {
+                ++leftCount;
+            }
+            bFlg = false;
+        }
+    }
+    int rightCount = 0;
+    bFlg = (sb.charAt(0) == 'B');
+    for (int i = sb.length() - 1; i >= 0; --i) {
+        if (sb.charAt(i) == 'B') {
+            if (!bFlg) {
+                ++rightCount;
+            }
+            bFlg = true;
+        } else if (sb.charAt(i) == 'W') {
+            if (bFlg) {
+                ++rightCount;
+            }
+            bFlg = false;
+        }
+    }
+    minCount = Math.min(leftCount, rightCount);
+}

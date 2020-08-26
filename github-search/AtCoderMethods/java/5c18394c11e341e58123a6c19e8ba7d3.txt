@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    char[] s = sc.next().toCharArray();
+    int N = s.length;
+    int[] cnt = new int[26];
+    for (char c : s) cnt[c - 'a']++;
+    int odd = 0;
+    for (int i = 0; i < 26; i++) if (cnt[i] % 2 != 0)
+        odd++;
+    if (odd == 0)
+        System.out.println(N);
+    else
+        System.out.println((N - odd) / 2 / odd * 2 + 1);
+    sc.close();
+}

@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    String s = scan.next();
+    int len;
+    if (s.length() % 2 == 0) {
+        len = s.length() - 2;
+    } else {
+        len = s.length() - 1;
+    }
+    for (int i = len; i > 0; i--) {
+        if (s.substring(0, i / 2).equals(s.substring(i / 2, i))) {
+            System.out.println(i);
+            return;
+        }
+        i--;
+    }
+    System.out.println(false);
+}

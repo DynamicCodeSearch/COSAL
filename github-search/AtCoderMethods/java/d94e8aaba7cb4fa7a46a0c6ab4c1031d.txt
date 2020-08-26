@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String AtCoder = "atcoder";
+    int N = sc.nextInt();
+    String[] towns = new String[N];
+    long[] populations = new long[N];
+    long wholePopulation = 0;
+    sc.nextLine();
+    for (int i = 0; i < N; i++) {
+        String[] inputs = sc.nextLine().split(" ");
+        towns[i] = inputs[0];
+        long population = Long.parseLong(inputs[1]);
+        populations[i] = population;
+        wholePopulation += population;
+    }
+    String townName = AtCoder;
+    for (int i = 0; i < N; i++) {
+        if (isGreaterThan50Percent(populations[i], wholePopulation)) {
+            townName = towns[i];
+            break;
+        }
+    }
+    System.out.println(townName);
+}

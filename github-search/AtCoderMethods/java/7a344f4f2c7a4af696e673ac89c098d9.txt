@@ -1,0 +1,15 @@
+void solve() throws IOException {
+    n = ni();
+    int m = ni();
+    for (int i = 0; i < n; i++) {
+        G.add(new ArrayList<>());
+    }
+    for (int i = 0; i < m; i++) {
+        int a = ni() - 1;
+        int b = ni() - 1;
+        G.get(a).add(b);
+        G.get(b).add(a);
+    }
+    dfs(0, 1);
+    out.println(ans);
+}

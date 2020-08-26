@@ -1,0 +1,13 @@
+def getDirection(deg):
+	deg /= 10
+
+ direction_list = ["NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S",
+  "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"]
+
+ if deg < 11.25 or deg >= 348.75:
+		return "N"
+
+ for i in range(len(direction_list)):
+		a = 33.75 + i * 22.5
+  if deg < a:
+			return direction_list[i]

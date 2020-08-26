@@ -1,0 +1,44 @@
+def solve():
+    H, W = map(int, input().split())
+
+    ans = inf
+
+
+    for a in range(1, W):
+        Ws = W - a
+        s0 = H * a
+
+        if Ws % 2 == 0 or H % 2 == 0:
+            s1 = Ws * H // 2
+            ans = min(ans, abs(s0 - s1))
+        else:
+            c = max(Ws, H)
+            d = min(Ws, H)
+
+            s1 = d * ((c + 1) // 2)
+            s2 = d * (c // 2)
+
+            ans = min(ans, max(s0, s1, s2) - min(s0, s1, s2))
+
+
+
+
+
+    for b in range(1, H):
+        Hs = H - b
+        s0 = W * b
+
+        if Hs % 2 == 0 or W % 2 == 0:
+            s1 = Hs * W // 2
+            ans = min(ans, abs(s0 - s1))
+        else:
+            c = max(Hs, W)
+            d = min(Hs, W)
+
+            s1 = d * ((c + 1) // 2)
+            s2 = d * (c // 2)
+
+            ans = min(ans, max(s0, s1, s2) - min(s0, s1, s2))
+
+    print(ans)
+    pass

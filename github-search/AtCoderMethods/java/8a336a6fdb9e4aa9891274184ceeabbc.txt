@@ -1,0 +1,28 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    StringBuilder sb = new StringBuilder();
+    String[] str = br.readLine().split(" ");
+    int sx = Integer.parseInt(str[0]);
+    int sy = Integer.parseInt(str[1]);
+    int tx = Integer.parseInt(str[2]);
+    int ty = Integer.parseInt(str[3]);
+    int x = tx - sx;
+    int y = ty - sy;
+    StringBuilder sbx = new StringBuilder();
+    StringBuilder sby = new StringBuilder();
+    StringBuilder sbx_ = new StringBuilder();
+    StringBuilder sby_ = new StringBuilder();
+    for (int i = 0; i < x; i++) {
+        sbx.append('R');
+        sbx_.append('L');
+    }
+    for (int i = 0; i < y; i++) {
+        sby.append('U');
+        sby_.append('D');
+    }
+    sb.append(sbx.toString()).append(sby.toString());
+    sb.append(sbx_.toString()).append(sby_.toString());
+    sb.append('D').append('R').append(sbx.toString()).append(sby.toString()).append('U').append('L');
+    sb.append('U').append('L').append(sbx_.toString()).append(sby_.toString()).append('D').append('R');
+    System.out.println(sb);
+}

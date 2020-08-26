@@ -1,0 +1,43 @@
+static void solve() {
+    int n = ni();
+    int m = ni();
+    int[] a = na(n - 1);
+    int[][] b = new int[n][];
+    for (int i = 0; i < n; i++) {
+        b[i] = na(m);
+    }
+    long[][] imos = new long[n + 2][n + 2];
+    int[] row = new int[n];
+    int[] pw = new int[n];
+    int[] nw = new int[n];
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) row[j] = b[j][i];
+        enumPrevWall(row, pw);
+        enumNextWall(row, nw);
+        for (int j = 0; j < n; j++) {
+            
+            add(imos, pw[j] + 1, j, j, nw[j] - 1, row[j]);
+        }
+    }
+    for (int i = 0; i <= n; i++) {
+        for (int j = 0; j <= n; j++) {
+            imos[i][j + 1] += imos[i][j];
+        }
+    }
+    for (int i = 0; i <= n; i++) {
+        for (int j = 0; j <= n; j++) {
+            imos[j + 1][i] += imos[j][i];
+        }
+    }
+    long[] xs = new long[n];
+    for (int i = 0; i < n - 1; i++) {
+        xs[i + 1] = xs[i] + a[i];
+    }
+    long max = 0;
+    for (int i = 0; i < n; i++) {
+        for (int j = i; j < n; j++) {
+            max = Math.max(max, -(xs[j] - xs[i]) + imos[i][j]);
+        }
+    }
+    out.println(max);
+}

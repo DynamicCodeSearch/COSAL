@@ -1,0 +1,13 @@
+def main():
+    N, T = map(int, input().split())
+
+    t_list = [int(t) for t in input().split()]
+    sumv = T
+    ti_1 = 0
+    for ti in t_list[1:]:
+        if ti_1 + T <= ti:
+            sumv += T
+        else:
+            sumv += ti-ti_1
+        ti_1 = ti
+    print(sumv)

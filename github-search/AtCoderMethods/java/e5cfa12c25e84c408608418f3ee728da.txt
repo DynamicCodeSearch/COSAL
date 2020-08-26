@@ -1,0 +1,10 @@
+private boolean isWin(long count, long A, long B, List<Integer> hps) {
+    long sum = 0;
+    for (int hp : hps) {
+        long num = (hp - count * B + A - B - 1) / (A - B);
+        if (num > 0) {
+            sum += num;
+        }
+    }
+    return sum <= count;
+}

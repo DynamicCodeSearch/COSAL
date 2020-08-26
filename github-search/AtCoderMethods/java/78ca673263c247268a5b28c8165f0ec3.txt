@@ -1,0 +1,14 @@
+static void solve() {
+    int n = in.nextInt();
+    int[] v1 = new int[n - 1];
+    int[] v2 = new int[n - 1];
+    for (int i = 0; i < n - 1; i++) {
+        v1[i] = in.nextInt() - 1;
+        v2[i] = in.nextInt() - 1;
+    }
+    g = undirectedGraph(n, v1, v2);
+    dp = new long[n][2];
+    dfs(0, -1);
+    dump(dp);
+    out.println((dp[0][0] + dp[0][1]) % MOD);
+}

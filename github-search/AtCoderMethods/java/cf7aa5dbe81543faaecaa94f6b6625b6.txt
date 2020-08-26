@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = Integer.parseInt(sc.next());
+    int Q = Integer.parseInt(sc.next());
+    int[] turnStart = new int[N + 1];
+    int[] turnEnd = new int[N + 1];
+    for (int i = 1; i <= N; i++) {
+        turnStart[i] = 0;
+        turnEnd[i] = 0;
+    }
+    for (int i = 0; i < Q; i++) {
+        int a = Integer.parseInt(sc.next());
+        int b = Integer.parseInt(sc.next());
+        turnStart[a]++;
+        turnEnd[b]++;
+    }
+    int count = turnStart[1];
+    System.out.print(count % 2);
+    for (int i = 2; i <= N; i++) {
+        count += turnStart[i] + turnEnd[i - 1];
+        System.out.print(count % 2);
+    }
+    System.out.println();
+}

@@ -1,0 +1,41 @@
+public static void main(String[] args) {
+    N = sn.nextInt();
+    M = sn.nextInt();
+    for (int i = 0; i < M; ++i) {
+        int a = sn.nextInt();
+        int b = sn.nextInt();
+        int y = sn.nextInt();
+        --a;
+        --b;
+        Node n = new Node();
+        n.fs = a;
+        n.sc = b;
+        n.y = y;
+        node.add(n);
+    }
+    Collections.sort(node);
+    Q = sn.nextInt();
+    for (int i = 0; i < Q; ++i) {
+        int v = sn.nextInt();
+        int w = sn.nextInt();
+        Node n = new Node();
+        n.fs = i;
+        n.sc = --v;
+        n.y = w;
+        node2.add(n);
+    }
+    Collections.sort(node2);
+    f = new Union_Find(N);
+    int[] ans = new int[Q];
+    int l = 0;
+    for (int i = 0; i < Q; ++i) {
+        while (l < M && node.get(l).y > node2.get(i).y) {
+            f.unite(node.get(l).fs, node.get(l).sc);
+            ++l;
+        }
+        ans[node2.get(i).fs] = f.size(node2.get(i).sc);
+    }
+    for (int i = 0; i < Q; ++i) {
+        System.out.println(ans[i]);
+    }
+}

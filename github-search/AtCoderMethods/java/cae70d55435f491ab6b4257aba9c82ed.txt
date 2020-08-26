@@ -1,0 +1,38 @@
+void solve() {
+    n = in.nextInt();
+    a = in.nextInt();
+    b = in.nextInt();
+    for (int i = 1; i <= n; i++) {
+        v[i] = in.nextLong();
+        m.put(v[i], m.getOrDefault(v[i], 0) + 1);
+    }
+    Arrays.sort(v, 1, n + 1);
+    long maxsum = 0;
+    for (int j = 1, i = n; j <= a; j++, i--) {
+        maxsum += v[i];
+    }
+    if (a == n) {
+        out.printf("%.10f\n%d\n", (double) maxsum / (double) n, 1);
+    } else {
+        double ans = (double) maxsum / a;
+        BigInteger ways = null;
+        if (v[n - a] < v[n - a + 1])
+            ways = new BigInteger("1");
+        else {
+            int k = n - a + 1;
+            while (k + 1 <= n && v[k + 1] == v[k]) k++;
+            int occ = k - (n - a + 1) + 1;
+            if (occ < a) {
+                
+                ways = ncr(m.get(v[n - a + 1]), occ);
+            } else {
+                BigInteger sum = new BigInteger("0");
+                for (int x = a; x <= b; x++) {
+                    sum = sum.add(ncr(m.get(v[n - a + 1]), x));
+                }
+                ways = sum;
+            }
+        }
+        out.printf("%.10f\n%s\n", ans, ways);
+    }
+}

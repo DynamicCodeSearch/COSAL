@@ -1,0 +1,14 @@
+def ok(score, balloon_list):
+    upper_time_list = [None] * len(balloon_list)
+    for i, (h, s) in enumerate(balloon_list):
+        if h > score:
+            return False
+        t = (score - h) // s
+        upper_time_list[i] = t
+
+    upper_time_list.sort()
+    for i in range(len(upper_time_list)):
+        if upper_time_list[i] < i:
+            return False
+
+    return True

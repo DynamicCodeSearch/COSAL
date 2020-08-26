@@ -1,0 +1,13 @@
+public int get(int l, int r) {
+    int sum = 0;
+    for (int i = l; i <= r; ) {
+        if (i % n == 0 && i + n - 1 <= r) {
+            sum += arr[i / n];
+            i += n;
+        } else {
+            sum += arr[i];
+            i++;
+        }
+    }
+    return sum;
+}

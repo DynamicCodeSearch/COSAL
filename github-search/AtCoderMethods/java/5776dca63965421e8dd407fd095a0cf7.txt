@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int n = in.nextInt();
+    int[] time = new int[2400 / 5 + 1];
+    for (int i = 0; i < n; i++) {
+        String[] se = in.next().split("-");
+        time[toInt(se[0], 0)] += 1;
+        time[toInt(se[1], 1)] -= 1;
+    }
+    int sum = 0;
+    boolean rain = false;
+    for (int i = 0; i < time.length; i++) {
+        sum += time[i];
+        if (rain) {
+            if (sum == 0) {
+                System.out.println("-" + toTime(i));
+                rain = false;
+            }
+        } else {
+            if (sum > 0) {
+                System.out.print(toTime(i));
+                rain = true;
+            }
+        }
+    }
+}

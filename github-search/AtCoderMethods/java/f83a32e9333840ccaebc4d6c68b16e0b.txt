@@ -1,0 +1,43 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String str = br.readLine();
+    String[] s = str.split(" ");
+    int h = Integer.parseInt(s[0]);
+    int w = Integer.parseInt(s[1]);
+    str = br.readLine();
+    int c = Integer.parseInt(str);
+    str = br.readLine();
+    String[] a = str.split(" ");
+    int ci = 1;
+    int[] map = new int[h * w];
+    int mi = 0;
+    for (String cn_s : a) {
+        int cn = Integer.parseInt(cn_s);
+        for (int i = 0; i < cn; i++) {
+            map[mi] = ci;
+            mi++;
+        }
+        ci++;
+    }
+    for (int i = 0; i < h; i++) {
+        int[] r = new int[w];
+        System.arraycopy(map, w * i, r, 0, w);
+        if (i % 2 == 0) {
+            for (int j = 0; j < w; j++) {
+                System.out.print(r[j]);
+                if (j != w - 1)
+                    System.out.print(" ");
+                else
+                    System.out.println();
+            }
+        } else {
+            for (int j = 0; j < w; j++) {
+                System.out.print(r[w - j - 1]);
+                if (j != w - 1)
+                    System.out.print(" ");
+                else
+                    System.out.println();
+            }
+        }
+    }
+}

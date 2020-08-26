@@ -1,0 +1,10 @@
+static long[] tribonacci(int size, long mod) {
+    long[] a = new long[size];
+    if (size <= 2)
+        return a;
+    a[2] = 1;
+    for (int i = 3; i < size; i++) {
+        a[i] = (a[i - 1] + a[i - 2] + a[i - 3]) % mod;
+    }
+    return a;
+}

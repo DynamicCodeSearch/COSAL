@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int n = scan.nextInt();
+    int[] w = new int[n];
+    for (int i = 0; i < n; i++) w[i] = scan.nextInt();
+    int[] bottom = new int[n];
+    int c = 0;
+    bottom[c++] = w[0];
+    for (int i = 0; i < n; i++) {
+        boolean f = true;
+        for (int j = 0; j < c; j++) {
+            if (w[i] <= bottom[j]) {
+                bottom[j] = w[i];
+                f = false;
+                break;
+            }
+        }
+        if (f)
+            bottom[c++] = w[i];
+    }
+    System.out.println(c);
+}

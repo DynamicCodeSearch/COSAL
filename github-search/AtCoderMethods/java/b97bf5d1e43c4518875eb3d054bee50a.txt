@@ -1,0 +1,29 @@
+static boolean dfs(int y, char[][] ans) {
+    if (y == 8)
+        return true;
+    int cnt = -1;
+    for (int i = 0; i < 8; i++) {
+        if (ans[y][i] == 'Q') {
+            if (cnt == -1)
+                cnt = i;
+            else
+                return false;
+        }
+    }
+    if (cnt != -1) {
+        if (isPuttable(y, cnt, ans) && dfs(y + 1, ans)) {
+            return true;
+        }
+    } else {
+        for (int i = 0; i < 8; i++) {
+            if (isPuttable(y, i, ans)) {
+                ans[y][i] = 'Q';
+                if (dfs(y + 1, ans))
+                    return true;
+                else
+                    ans[y][i] = '.';
+            }
+        }
+    }
+    return false;
+}

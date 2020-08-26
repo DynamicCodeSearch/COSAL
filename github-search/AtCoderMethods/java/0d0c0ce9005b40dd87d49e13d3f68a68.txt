@@ -1,0 +1,22 @@
+private static long solve(long[] a) {
+    int n = a.length;
+    long sum = a[0];
+    long cost = 0;
+    for (int i = 1; i < n; i++) {
+        long tosum = sum + a[i];
+        if (tosum == 0) {
+            tosum = (sum >= 1) ? -1 : 1;
+            cost++;
+        } else {
+            if (sum > 0 && tosum > 0) {
+                cost += Math.abs(tosum) + 1;
+                tosum = -1;
+            } else if (sum < 0 && tosum < 0) {
+                cost += Math.abs(tosum) + 1;
+                tosum = 1;
+            }
+        }
+        sum = tosum;
+    }
+    return cost;
+}

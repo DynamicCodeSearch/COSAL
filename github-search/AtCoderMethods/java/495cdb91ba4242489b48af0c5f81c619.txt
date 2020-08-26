@@ -1,0 +1,47 @@
+
+
+
+
+public static void main(String[] args) throws Exception, IOException {
+    Reader sc = new Reader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    
+    int n = sc.nextInt();
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    int[] s = new int[n];
+    long sum = 0, ans = 0;
+    for (int i = 0; i < n; i++) s[i] = sc.nextInt();
+    sort(s);
+    int up = 1 << 30, dw = 0, mid = 0;
+    long bs = 0, as = 0;
+    for (int i = 0; i < 55; i++) {
+        mid = (up + dw) / 2;
+        bs = (long) mid * b;
+        boolean f = false;
+        long tmp = 0, q = 0;
+        
+        for (int t = n - 1; -1 < t; t--) {
+            tmp = s[t] - bs;
+            if (0 >= tmp) {
+                f = true;
+                break;
+            }
+            q += tmp / (a - b);
+            if (tmp % (a - b) > 0)
+                q++;
+            if (q > mid)
+                break;
+        }
+        if (q <= mid)
+            f = true;
+        if (f) {
+            ans = mid;
+            up = mid;
+        } else {
+            dw = mid;
+        }
+    }
+    out.println(ans);
+    out.flush();
+}

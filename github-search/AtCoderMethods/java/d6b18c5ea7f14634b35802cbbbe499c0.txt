@@ -1,0 +1,37 @@
+public static void main(String[] args) {
+    Scanner s = new Scanner(System.in);
+    String n_m = s.nextLine();
+    String[] conditions = n_m.split("\\s");
+    int n = Integer.parseInt(conditions[0]);
+    int m = Integer.parseInt(conditions[1]);
+    HashMap<Integer, List<Integer>> ships = new HashMap<>();
+    for (int i = 0; i < m; i++) {
+        int from = s.nextInt();
+        int to = s.nextInt();
+        List<Integer> value = ships.get(from);
+        if (value == null) {
+            value = new ArrayList<>();
+            value.add(to);
+            ships.put(from, value);
+        } else {
+            value.add(to);
+        }
+    }
+    boolean possible = false;
+    List<Integer> transits = ships.get(1);
+    for (Integer transit : transits) {
+        if (ships.containsKey(transit)) {
+            List<Integer> goals = ships.get(transit);
+            for (Integer goal : goals) {
+                if (goal == n) {
+                    possible = true;
+                }
+            }
+        }
+    }
+    if (possible) {
+        System.out.println("POSSIBLE");
+    } else {
+        System.out.println("IMPOSSIBLE");
+    }
+}

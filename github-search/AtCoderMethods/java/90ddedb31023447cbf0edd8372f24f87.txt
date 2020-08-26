@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    int deg = s.nextInt(), dis = s.nextInt(), W = 0;
+    int[] ws = { 3, 16, 34, 55, 80, 108, 139, 172, 208, 245, 285, 327, 114514 };
+    String[] ds = { "N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW" };
+    String dir = null;
+    dis = (dis + 3) / 6;
+    if (dis <= 2) {
+        System.out.println("C 0");
+        return;
+    }
+    if (deg >= 3488) {
+        dir = "N";
+    }
+    for (int i = 0; i < ds.length; i++) {
+        if (deg < i * 225 + 113) {
+            dir = ds[i];
+            break;
+        }
+    }
+    for (int i = 0; i < ws.length; i++) {
+        if (dis < ws[i]) {
+            W = i;
+            break;
+        }
+    }
+    System.out.printf("%s %d\n", dir, W);
+}

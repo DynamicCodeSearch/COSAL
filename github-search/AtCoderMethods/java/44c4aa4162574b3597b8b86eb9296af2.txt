@@ -1,0 +1,19 @@
+public static long memoized(int deep, int n, long[] memo) {
+    if (deep >= n) {
+        return 1;
+    } else if (memo[deep] >= 0) {
+        return memo[deep];
+    } else {
+        long ret = 0;
+        for (int i = n - deep + 1; i >= 1; i--) {
+            final int next_deep = deep + i;
+            ret += memoized(next_deep, n, memo);
+            ret %= MOD;
+            if (next_deep <= n && i >= 2) {
+                ret += n - 1;
+                ret %= MOD;
+            }
+        }
+        return memo[deep] = ret;
+    }
+}

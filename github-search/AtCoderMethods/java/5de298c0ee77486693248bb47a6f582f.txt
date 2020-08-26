@@ -1,0 +1,20 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    W = sc.nextInt();
+    H = sc.nextInt();
+    
+    long ans = 1;
+    for (int i = 1; i <= H + W - 2; i++) {
+        ans *= i;
+        ans %= mod;
+    }
+    for (int i = 1; i < W; i++) {
+        ans *= calc(i, mod - 2, mod);
+        ans %= mod;
+    }
+    for (int i = 1; i < H; i++) {
+        ans *= calc(i, mod - 2, mod);
+        ans %= mod;
+    }
+    System.out.println(ans);
+}

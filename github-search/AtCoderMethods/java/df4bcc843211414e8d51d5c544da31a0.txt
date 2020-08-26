@@ -1,0 +1,35 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String line = br.readLine();
+    String[] number = line.split(" ");
+    int a = Integer.parseInt(number[0]);
+    int b = Integer.parseInt(number[1]);
+    int c = Integer.parseInt(number[2]);
+    int d = Integer.parseInt(number[3]);
+    int r = 0;
+    if (a <= c) {
+        if (c < b) {
+            if (b <= d) {
+                r = b - c;
+                System.out.println(r);
+            } else if (d < b) {
+                r = d - c;
+                System.out.println(r);
+            }
+        } else if (b <= c) {
+            System.out.println(r);
+        }
+    } else if (c < a) {
+        if (a < d) {
+            if (d <= b) {
+                r = d - a;
+                System.out.println(r);
+            } else if (b < d) {
+                r = b - a;
+                System.out.println(r);
+            }
+        } else if (d <= a) {
+            System.out.println(r);
+        }
+    }
+}

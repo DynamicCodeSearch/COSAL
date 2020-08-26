@@ -1,0 +1,4 @@
+def square(n_cells,N):
+    for i in range(max(1,int(n_cells//N)),int(math.sqrt(n_cells))+1):
+        yield (i,min(N,n_cells // i))
+        yield (min(N,n_cells // i),i)

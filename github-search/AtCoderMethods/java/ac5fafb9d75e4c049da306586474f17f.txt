@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int K = sc.nextInt();
+    long[] A = new long[N + 1];
+    for (int i = 1; i <= N; i++) {
+        long tmp = sc.nextInt();
+        A[i] = A[i - 1] + tmp;
+    }
+    long ans = 0;
+    for (int i = K; i <= N; i++) {
+        long tmp = A[i] - A[i - K];
+        ans += tmp;
+    }
+    System.out.println(ans);
+}

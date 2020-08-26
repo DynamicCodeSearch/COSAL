@@ -1,0 +1,13 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String s = sc.next();
+    int k = sc.nextInt();
+    List<String> passwordList = new ArrayList<>();
+    for (int i = 0; i < s.length() - k + 1; i++) {
+        String ss = s.substring(i, i + k);
+        if (!passwordList.contains(ss)) {
+            passwordList.add(ss);
+        }
+    }
+    System.out.println(passwordList.size());
+}

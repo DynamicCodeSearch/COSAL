@@ -1,0 +1,10 @@
+def main():
+    h, w = read()
+    if h % 3 == 0 or w % 3 == 0:
+        print(0)
+        return
+
+    ans = calc(h, w)
+    h, w = w, h
+    ans = min(ans, calc(h, w))
+    print(ans)

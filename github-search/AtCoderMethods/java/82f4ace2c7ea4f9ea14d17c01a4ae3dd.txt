@@ -1,0 +1,21 @@
+public static void main(String[] args) throws IOException {
+    FastScanner in = new FastScanner(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int a = in.nextInt();
+    int b = in.nextInt();
+    int c = in.nextInt();
+    int d = in.nextInt();
+    int[] on = new int[110];
+    for (int i = a; i < b; i++) {
+        on[i]++;
+    }
+    for (int i = c; i < d; i++) {
+        on[i]++;
+    }
+    int res = 0;
+    for (int i = 0; i < on.length; i++) {
+        if (on[i] == 2)
+            res++;
+    }
+    System.out.println(res);
+}

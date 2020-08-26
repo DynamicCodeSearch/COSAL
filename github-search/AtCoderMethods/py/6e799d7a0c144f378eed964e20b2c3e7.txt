@@ -1,0 +1,22 @@
+def main():
+    N = int(input())
+    S = input()
+
+    s = S
+    while True:
+        s = s.replace('()','')
+        if s.count('()') == 0:
+            break
+
+    if len(s) == 0:
+        print(S)
+        return
+
+    left = ''
+    right = ''
+    if s[0] == ')':
+        left = '(' * s.count(')')
+    if s[-1] == '(':
+        right = ')' * s.count('(')
+
+    print('{}{}{}'.format(left, S, right))

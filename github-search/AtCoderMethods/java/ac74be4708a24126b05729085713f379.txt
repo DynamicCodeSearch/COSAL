@@ -1,0 +1,25 @@
+private static void solve(Scanner in) {
+    int N = in.nextInt(), M = in.nextInt();
+    char[][] A = new char[N][N], B = new char[M][M];
+    for (int i = 0; i < N; i++) {
+        A[i] = in.next().toCharArray();
+    }
+    for (int j = 0; j < M; j++) {
+        B[j] = in.next().toCharArray();
+    }
+    for (int h = 0; h < N - M + 1; h++) {
+        for (int w = 0; w < N - M + 1; w++) {
+            boolean ok = true;
+            for (int i = 0; i < M; i++) {
+                for (int j = 0; j < M; j++) {
+                    ok &= A[h + i][w + j] == B[i][j];
+                }
+            }
+            if (ok) {
+                System.out.println("Yes");
+                return;
+            }
+        }
+    }
+    System.out.println("No");
+}

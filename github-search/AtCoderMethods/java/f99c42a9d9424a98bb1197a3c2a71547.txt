@@ -1,0 +1,25 @@
+private void solve(Scanner sc) {
+    int N = sc.nextInt();
+    int ans = 0;
+    for (int i = 0, j = 10; i < 9; ++i, j *= 10) {
+        ans += (N / j) * (j / 10) + (N % j >= (j / 10) ? (N % j >= (j * 2 / 10) ? (j / 10) : (N % j) % (j / 10) + 1) : 0);
+    
+    }
+    if (false) {
+        int[] cnt = new int[9];
+        for (int i = 1; i <= N; ++i) {
+            String s = String.valueOf(i);
+            cnt[0] += s.matches(".*1$") ? 1 : 0;
+            cnt[1] += s.matches(".*1.$") ? 1 : 0;
+            cnt[2] += s.matches(".*1..$") ? 1 : 0;
+            cnt[3] += s.matches(".*1...$") ? 1 : 0;
+            cnt[4] += s.matches(".*1....$") ? 1 : 0;
+            cnt[5] += s.matches(".*1.....$") ? 1 : 0;
+            cnt[6] += s.matches(".*1......$") ? 1 : 0;
+            cnt[7] += s.matches(".*1.......$") ? 1 : 0;
+            cnt[8] += s.matches(".*1........$") ? 1 : 0;
+        }
+        _err.println(Arrays.toString(cnt) + ", " + Arrays.stream(cnt).sum());
+    }
+    _out.println(ans);
+}

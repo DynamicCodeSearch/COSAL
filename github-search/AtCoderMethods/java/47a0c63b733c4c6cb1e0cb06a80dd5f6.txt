@@ -1,0 +1,40 @@
+private static void solve() {
+    int r = nei();
+    int g = nei();
+    int b = nei();
+    int min = 0x7fffffff;
+    if (r / 2 + 1 + g / 2 + 1 < 100 && g / 2 + 1 + b / 2 + 1 < 100) {
+        for (int i = -101 - r / 2; i <= -99 - r / 2; i++) {
+            int r1 = i;
+            int r2 = i + r - 1;
+            for (int j = -1 - g / 2; j <= 1 - g / 2; j++) {
+                int g1 = j;
+                int g2 = j + g - 1;
+                for (int k = 99 - b / 2; k <= 101 - b / 2; k++) {
+                    int b1 = k;
+                    int b2 = k + b - 1;
+                    int c = cnt(r1, r2, -100) + cnt(g1, g2, 0) + cnt(b1, b2, 100);
+                    if (c < min)
+                        min = c;
+                }
+            }
+        }
+        kil(min);
+    }
+    for (int i = -500; i <= 500; i++) {
+        int r1 = i;
+        int r2 = i + r - 1;
+        for (int j = r2 + 1; j <= 500; j++) {
+            int g1 = j;
+            int g2 = j + g - 1;
+            for (int k = g2 + 1; k <= 500; k++) {
+                int b1 = k;
+                int b2 = k + b - 1;
+                int c = cnt(r1, r2, -100) + cnt(g1, g2, 0) + cnt(b1, b2, 100);
+                if (c < min)
+                    min = c;
+            }
+        }
+    }
+    out(min);
+}

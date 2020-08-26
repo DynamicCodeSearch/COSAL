@@ -1,0 +1,7 @@
+def dfs( v, pre ):
+	W[v]=B[v]=1
+ for l in E[v]:
+		if l != pre:
+			dfs( l, v )
+   W[v] = W[v] * (W[l] + B[l])%M
+   B[v] = B[v] * (W[l])%M

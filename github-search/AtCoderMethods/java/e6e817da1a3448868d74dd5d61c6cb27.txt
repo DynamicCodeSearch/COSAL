@@ -1,0 +1,5 @@
+void init(int v, int p) {
+    par[v] = p;
+    for (int t : g[v]) if (t != p)
+        init(t, v);
+}

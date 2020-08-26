@@ -1,0 +1,60 @@
+void solve() {
+    int n = in.nextInt();
+    char[] s1 = in.nextToken().toCharArray();
+    char[] s2 = in.nextToken().toCharArray();
+    if (n == 1) {
+        out.println(3);
+        return;
+    }
+    int[][][] dp = new int[3][3][n + 1];
+    int start = -1;
+    if (s1[0] == s1[1]) {
+        start = 2;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (i != j) {
+                    dp[i][j][start] = 1;
+                }
+            }
+        }
+    } else {
+        start = 1;
+        for (int i = 0; i < 3; i++) {
+            dp[i][i][start] = 1;
+        }
+    }
+    for (int pos = start; pos < n; pos++) {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                int val = dp[i][j][pos];
+                if (val == 0) {
+                    continue;
+                }
+                if (pos + 1 < n && s1[pos] == s1[pos + 1]) {
+                    for (int x = 0; x < 3; x++) {
+                        for (int y = 0; y < 3; y++) {
+                            if (x != y && x != i && y != j) {
+                                dp[x][y][pos + 2] += val;
+                                dp[x][y][pos + 2] %= MOD;
+                            }
+                        }
+                    }
+                } else {
+                    for (int x = 0; x < 3; x++) {
+                        if (x != i && x != j) {
+                            dp[x][x][pos + 1] += val;
+                            dp[x][x][pos + 1] %= MOD;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    int ans = 0;
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            ans = (ans + dp[i][j][n]) % MOD;
+        }
+    }
+    out.println(ans);
+}

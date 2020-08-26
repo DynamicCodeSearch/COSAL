@@ -1,0 +1,62 @@
+public static void main(String... args) {
+    Scanner sc = new Scanner(System.in);
+    String a = sc.next();
+    String b = sc.next();
+    String c = sc.next();
+    a = a.toLowerCase();
+    b = b.toLowerCase();
+    c = c.toLowerCase();
+    String[] alst = new String[a.length()];
+    for (int i = 0; i < a.length(); i++) {
+        alst[i] = String.valueOf(a.charAt(i));
+    }
+    List<String> aAr = new ArrayList<String>(Arrays.asList(alst));
+    String[] blst = new String[b.length()];
+    for (int i = 0; i < b.length(); i++) {
+        blst[i] = String.valueOf(b.charAt(i));
+    }
+    List<String> bAr = new ArrayList<String>(Arrays.asList(blst));
+    String[] clst = new String[c.length()];
+    for (int i = 0; i < c.length(); i++) {
+        clst[i] = String.valueOf(c.charAt(i));
+    }
+    List<String> cAr = new ArrayList<String>(Arrays.asList(clst));
+    String winner = null;
+    String str = null;
+    int i = 0;
+    while (true) {
+        if (i == 0) {
+            str = aAr.get(0);
+            aAr.remove(0);
+        } else {
+            if (str.equals("a")) {
+                str = aAr.get(0);
+                aAr.remove(aAr.get(0));
+            } else if (str.equals("b")) {
+                str = bAr.get(0);
+                bAr.remove(0);
+            } else if (str.equals("c")) {
+                str = cAr.get(0);
+                cAr.remove(0);
+            }
+        }
+        i++;
+        if (str.equals("a")) {
+            if (aAr.isEmpty()) {
+                winner = "A";
+                break;
+            }
+        } else if (str.equals("b")) {
+            if (bAr.isEmpty()) {
+                winner = "B";
+                break;
+            }
+        } else if (str.equals("c")) {
+            if (cAr.isEmpty()) {
+                winner = "C";
+                break;
+            }
+        }
+    }
+    System.out.println(winner);
+}

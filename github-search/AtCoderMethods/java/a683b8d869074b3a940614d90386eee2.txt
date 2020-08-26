@@ -1,0 +1,29 @@
+public void run() {
+    try {
+        Scanner s = new Scanner();
+        double l = s.nextLong();
+        double x = s.nextLong();
+        double y = s.nextLong();
+        double ss = s.nextLong();
+        double d = s.nextLong();
+        double a;
+        double b;
+        if (ss > d) {
+            a = ss - d;
+            b = l - ss + d;
+            a = a / (-x + y);
+            b = b / (x + y);
+        } else {
+            a = d - ss;
+            b = ss + l - d;
+            b = b / (-x + y);
+            a = a / (x + y);
+        }
+        if ((a > b && b >= 0) || a < 0) {
+            a = b;
+        }
+        System.out.println(a);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}

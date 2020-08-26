@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner scn = new Scanner(System.in);
+    int L, H, N;
+    int[] A;
+    String[] s = scn.nextLine().split(" ");
+    L = Integer.parseInt(s[0]);
+    H = Integer.parseInt(s[1]);
+    N = Integer.parseInt(scn.nextLine());
+    A = new int[N];
+    for (int i = 0; i < N; i++) {
+        A[i] = Integer.parseInt(scn.nextLine());
+    }
+    scn.close();
+    for (int i = 0; i < N; i++) {
+        if (A[i] >= L && A[i] <= H) {
+            System.out.println("0");
+        } else if (A[i] < L) {
+            
+            System.out.println(L - A[i]);
+        } else if (A[i] > H) {
+            
+            System.out.println("-1");
+        }
+    }
+}

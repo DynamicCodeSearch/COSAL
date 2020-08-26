@@ -1,0 +1,9 @@
+private void addImply(int from, int to) {
+    ensureEdgeCapacity(edges + 1);
+    edgeTo[edges] = to;
+    nextEdge[edges] = firstEdge[from];
+    firstEdge[from] = edges;
+    t_edgeTo[edges] = from;
+    t_nextEdge[edges] = t_firstEdge[to];
+    t_firstEdge[to] = edges++;
+}

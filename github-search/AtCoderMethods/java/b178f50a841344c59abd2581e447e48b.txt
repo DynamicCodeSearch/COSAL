@@ -1,0 +1,35 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int w = sc.nextInt();
+    int h = sc.nextInt();
+    int n = sc.nextInt();
+    char[][] map = new char[h][w];
+    int x, y, a;
+    int p = 0;
+    while (p < n) {
+        x = sc.nextInt();
+        y = sc.nextInt();
+        a = sc.nextInt();
+        for (int i = 0; i < w; i++) {
+            for (int j = 0; j < h; j++) {
+                if (a == 1 && i < x)
+                    map[j][i] = 'b';
+                else if (a == 2 && i >= x)
+                    map[j][i] = 'b';
+                else if (a == 3 && j < y)
+                    map[j][i] = 'b';
+                else if (a == 4 && j >= y)
+                    map[j][i] = 'b';
+            }
+        }
+        p++;
+    }
+    int ans = 0;
+    for (int i = 0; i < w; i++) {
+        for (int j = 0; j < h; j++) {
+            if (map[j][i] != 'b')
+                ans++;
+        }
+    }
+    System.out.println(ans);
+}

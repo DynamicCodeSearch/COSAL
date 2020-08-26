@@ -1,0 +1,17 @@
+def main():
+    N,G,E = LI()
+    p = LI()
+    e = collections.defaultdict(lambda: collections.defaultdict(int))
+    for _ in range(E):
+        a,b = LI()
+        e[a][b] += 1
+        e[b][a] += 1
+
+    for c in p:
+        e[c][N+1] = 1
+
+    f = Flow(e, N+2)
+
+    r = f.max_flow(0, N+1)
+
+    return r

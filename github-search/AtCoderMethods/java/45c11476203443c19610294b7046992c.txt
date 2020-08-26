@@ -1,0 +1,12 @@
+private void solve(FastScanner in, PrintWriter out) {
+    int N = in.nextInt();
+    long A = in.nextInt();
+    long B = in.nextInt();
+    long[] X = in.nextLongArray(N);
+    long ans = 0;
+    for (int i = 1; i < N; i++) {
+        long walk = (X[i] - X[i - 1]) * A;
+        ans += Math.min(walk, B);
+    }
+    out.println(ans);
+}

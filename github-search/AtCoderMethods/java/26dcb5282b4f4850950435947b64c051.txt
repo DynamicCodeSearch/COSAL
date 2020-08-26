@@ -1,0 +1,34 @@
+public void run() {
+    long H = nl();
+    long W = nl();
+    long N = nl();
+    HashMap<Long, Integer> map = new HashMap<>();
+    for (long i = 0; i < N; i++) {
+        long a = nl();
+        long b = nl();
+        for (long y = a - 1; y <= a + 1; y++) {
+            for (long x = b - 1; x <= b + 1; x++) {
+                if (x - 1 < 1 || x + 1 > W || y - 1 < 1 || y + 1 > H) {
+                    continue;
+                }
+                
+                long key = y * 10_0000_0000L + x;
+                if (map.containsKey(key)) {
+                    map.put(key, map.get(key) + 1);
+                } else {
+                    map.put(key, 1);
+                }
+            }
+        }
+    }
+    long[] result = new long[10];
+    long sum = 0;
+    for (Integer i : map.values()) {
+        result[i]++;
+        sum++;
+    }
+    result[0] = ((H - 2) * (W - 2)) - sum;
+    for (int i = 0; i < 10; i++) {
+        out.println(result[i]);
+    }
+}

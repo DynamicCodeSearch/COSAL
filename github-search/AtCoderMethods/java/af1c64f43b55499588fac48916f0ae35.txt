@@ -1,0 +1,19 @@
+static int backTrack(int i, int[] perm, boolean[] used, int[][] dist) {
+    if (i == r) {
+        int sum = 0;
+        for (int j = 0; j + 1 < r; j++) {
+            sum += dist[perm[j]][perm[j + 1]];
+        }
+        return sum;
+    }
+    int min = INF;
+    for (int j = 0; j < r; j++) {
+        if (!used[j]) {
+            perm[i] = p[j];
+            used[j] = true;
+            min = Math.min(min, backTrack(i + 1, perm, used, dist));
+            used[j] = false;
+        }
+    }
+    return min;
+}

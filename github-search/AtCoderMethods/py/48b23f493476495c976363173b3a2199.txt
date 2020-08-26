@@ -1,0 +1,18 @@
+def bit_list(i, n, bit_str):
+
+    tmp = bit_str[:]
+    if (i*2+1 == n):
+        tmp = "".join(tmp)
+        tmp = tmp.split('+')
+        tmp = sum(list(map(int, tmp)))
+
+
+        s_p_list.append(tmp)
+        return
+
+
+    tmp[i*2+1] = ''
+    bit_list(i+1, n, tmp)
+
+    tmp[i*2+1] = '+'
+    bit_list(i+1, n, tmp)

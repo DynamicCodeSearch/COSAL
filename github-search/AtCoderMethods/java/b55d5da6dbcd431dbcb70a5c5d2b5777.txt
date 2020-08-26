@@ -1,0 +1,13 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    long a = sc.nextLong();
+    long b = sc.nextLong();
+    m = sc.nextLong();
+    long[][] mt1 = { { 10 % m, 1 }, { 0, 1 } };
+    long oneA = mxVector(mxNthPow(mt1, a), new long[][] { { 0 }, { 1 } })[0][0];
+    long gcd = GCD(a, b);
+    long d = b / gcd;
+    long[][] mt2 = { { pow(10, gcd), 1 }, { 0, 1 } };
+    long oneF = mxVector(mxNthPow(mt2, d), new long[][] { { 0 }, { 1 } })[0][0];
+    System.out.println((oneA * oneF) % m);
+}

@@ -1,0 +1,12 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    long[] d = new long[1000001];
+    d[1] = 0;
+    d[2] = 0;
+    d[3] = 1;
+    for (int i = 4; i <= 1000000; i++) {
+        d[i] = (d[i - 3] + d[i - 2] + d[i - 1]) % 10007;
+    }
+    int n = Integer.parseInt(br.readLine());
+    System.out.println(d[n]);
+}

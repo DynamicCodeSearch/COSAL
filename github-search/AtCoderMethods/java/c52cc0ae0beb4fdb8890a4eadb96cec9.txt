@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    N = sc.nextInt();
+    edge = new int[N][N];
+    int M = sc.nextInt();
+    for (int i = 0; i < M; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        edge[a][b] = 1;
+        edge[b][a] = 1;
+    }
+    dfs(1, 1);
+    System.out.println(ans);
+}

@@ -1,0 +1,16 @@
+public static void main(String[] args) throws Exception {
+    
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] strArray = br.readLine().split(" ");
+    
+    int sum = 0;
+    int maxPrice = 0;
+    for (int i = 0; i < 3; i++) {
+        int tmp = Integer.parseInt(strArray[i]);
+        sum += tmp;
+        if (tmp > maxPrice) {
+            maxPrice = tmp;
+        }
+    }
+    System.out.println(sum - maxPrice);
+}

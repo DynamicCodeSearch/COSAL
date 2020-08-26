@@ -1,0 +1,12 @@
+public static double ternarySearchMin(double l, double r, double eps, UnaryOperator<Double> f) {
+    while (r - l >= eps) {
+        double x1 = (l * 2 + r) / 3;
+        double x2 = (l + r * 2) / 3;
+        if (f.apply(x1) < f.apply(x2)) {
+            r = x2;
+        } else {
+            l = x1;
+        }
+    }
+    return (l + r) / 2;
+}

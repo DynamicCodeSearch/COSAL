@@ -1,0 +1,17 @@
+def nCr(n, r):
+
+
+
+    r = min(r, n-r)
+
+
+    numerator = 1
+    for i in range(n, n-r, -1):
+        numerator *= i
+
+
+    denominator = 1
+    for i in range(r, 1, -1):
+        denominator *= i
+
+    return numerator // denominator

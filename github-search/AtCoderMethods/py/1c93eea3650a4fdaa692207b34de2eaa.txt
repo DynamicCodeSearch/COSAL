@@ -1,0 +1,36 @@
+def solve():
+    if ask(10 ** 9):
+
+        for k in range(10):
+            if ask(2 * 10 ** k):
+                return 10 ** k
+
+
+    l = 1
+    while ask(10 ** l):
+        l += 1
+
+    d = [9] * l
+    for p in range(l):
+
+        a = 0
+        if p == 0:
+            a = 1
+        b = 9
+
+        d[p] = a
+        n = int(''.join(map(str, d)))
+        if ask(10 * n):
+            continue
+
+        while b - a > 1:
+            m = (a + b) // 2
+            d[p] = m
+            n = int(''.join(map(str, d)))
+            if ask(10 * n):
+                b = m
+            else:
+                a = m
+        d[p] = b
+    n = int(''.join(map(str, d)))
+    return n

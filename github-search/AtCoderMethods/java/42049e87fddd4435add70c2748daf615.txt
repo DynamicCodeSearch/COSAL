@@ -1,0 +1,9 @@
+void dfs(int pos, int parent, long cost) {
+    fromK[pos] = cost;
+    for (Cost c : list[pos]) {
+        if (c.to == parent) {
+            continue;
+        }
+        dfs(c.to, pos, cost + c.cost);
+    }
+}

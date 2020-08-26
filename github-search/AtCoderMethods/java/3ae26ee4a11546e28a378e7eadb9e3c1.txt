@@ -1,0 +1,26 @@
+void run() {
+    MyScanner sc = new MyScanner();
+    double l = sc.nextInt();
+    double x = sc.nextInt();
+    double y = sc.nextInt();
+    double s = sc.nextInt();
+    double d = sc.nextInt();
+    double n, m;
+    double ans = 0;
+    if (s < d) {
+        n = d - s;
+        m = l - n;
+        ans = n / (x + y);
+        if (y - x > 0) {
+            ans = Math.min(ans, m / (y - x));
+        }
+    } else {
+        n = s - d;
+        m = l - n;
+        ans = m / (x + y);
+        if (y - x > 0) {
+            ans = Math.min(ans, n / (y - x));
+        }
+    }
+    System.out.println(ans);
+}

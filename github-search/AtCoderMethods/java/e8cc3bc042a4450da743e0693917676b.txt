@@ -1,0 +1,31 @@
+public void calc() {
+    sb = new StringBuilder();
+    BufferedInputStream bs = new BufferedInputStream(System.in);
+    Scanner sc = new Scanner(bs);
+    double p = sc.nextDouble();
+    double ans = 0;
+    double l = 0;
+    double r = p;
+    for (int i = 0; i < 100; i++) {
+        double m = r - l;
+        int minI = 0;
+        double min = p + 100;
+        for (int t = 0; t <= 10; t++) {
+            double cal = cp(p, l + m / 10 * t);
+            if (min > cal) {
+                min = cal;
+                minI = t;
+            }
+        }
+        if (minI == 0) {
+            r = l + m / 10;
+        } else if (minI == 10) {
+            l = r - m / 10;
+        } else {
+            l = l + (r - l) / 10 * (minI - 1);
+            r = l + (r - l) / 10 * (minI + 1);
+        }
+        ans = min;
+    }
+    System.out.println(ans);
+}

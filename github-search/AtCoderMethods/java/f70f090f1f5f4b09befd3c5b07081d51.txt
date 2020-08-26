@@ -1,0 +1,28 @@
+void solve() {
+    String S = sc.next();
+    
+    
+    
+    
+    String base = "WBWBWWBWBWBWWBWBWWBWBWBWWBWBWWBWBWBWWBWBWWBWBWBW";
+    
+    
+    
+    int mark = 0;
+    int m = 0;
+    for (int i = 0; i < S.length(); i++) {
+        if (i == 0 && S.charAt(i) == 'B') {
+            i = -1;
+            m++;
+            mark = m;
+        } else if (S.charAt(i) == base.charAt(mark)) {
+            mark++;
+        } else {
+            
+            i = -1;
+            m++;
+            mark = m;
+        }
+    }
+    System.out.println(p[m]);
+}

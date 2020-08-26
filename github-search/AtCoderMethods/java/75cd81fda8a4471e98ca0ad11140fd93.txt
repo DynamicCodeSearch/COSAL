@@ -1,0 +1,27 @@
+static public void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int N = scanner.nextInt();
+    long x = scanner.nextLong();
+    long[] arr = new long[N];
+    for (int i = 0; i < N; i++) {
+        arr[i] = scanner.nextLong();
+    }
+    long count = 0;
+    for (int i = 0; i < N - 2; i++) {
+        long s1 = arr[i] + arr[i + 1];
+        if (s1 > x) {
+            if (s1 - x <= arr[i + 1]) {
+                count += s1 - x;
+                arr[i + 1] -= s1 - x;
+            } else {
+                arr[i + 1] = 0;
+                count += s1 - x - arr[i + 1];
+                arr[i] -= s1 - x - arr[i + 1];
+            }
+        }
+    }
+    if (arr[N - 2] + arr[N - 1] > x) {
+        count += arr[N - 2] + arr[N - 1] - x;
+    }
+    System.out.println(count);
+}

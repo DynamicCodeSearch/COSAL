@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    long k = in.nextInt();
+    int n = in.nextInt();
+    long[][] a = new long[n][2];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < 2; j++) {
+            a[i][j] = in.nextInt();
+        }
+    }
+    long min = 0;
+    long max = (long) (1e11);
+    while (max - min > 1) {
+        long med = (min + max) / 2;
+        if (isOK(a, med, k)) {
+            max = med;
+        } else {
+            min = med;
+        }
+    }
+    debug(min, max);
+    long build = 0;
+    long money = 0;
+    for (int i = 0; i < n; i++) {
+        money += cost(a[i][0], a[i][1], min);
+        build += count(a[i][0], a[i][1], min);
+    }
+    money += (k - build) * max;
+    out.println(money);
+    out.flush();
+}

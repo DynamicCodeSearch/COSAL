@@ -1,0 +1,19 @@
+
+public static long[][] Pascal(int max) {
+    long[][] pascal = new long[max + 1][max + 1];
+    pascal[0][0] = 1;
+    for (int i = 0; i < max + 1; i++) {
+        for (int j = 0; j < i + 1; j++) {
+            if (i == 0 && j == 0) {
+                continue;
+            } else if (j == 0) {
+                pascal[i][j] = pascal[i - 1][j];
+            } else if (j == i) {
+                pascal[i][j] = pascal[i - 1][j - 1];
+            } else {
+                pascal[i][j] = pascal[i - 1][j - 1] + pascal[i - 1][j];
+            }
+        }
+    }
+    return pascal;
+}

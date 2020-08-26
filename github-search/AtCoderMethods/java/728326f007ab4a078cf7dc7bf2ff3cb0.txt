@@ -1,0 +1,9 @@
+static void init() {
+    fact[1] = 1;
+    rev[1] = 1;
+    for (long i = 2; i < fact.length; i++) {
+        fact[(int) i] = i * fact[(int) (i - 1)];
+        fact[(int) i] %= mod;
+        rev[(int) i] = rev(fact[(int) i], mod);
+    }
+}

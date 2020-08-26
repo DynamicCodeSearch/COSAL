@@ -1,0 +1,20 @@
+public static void main(String[] args) throws Exception {
+    int n = sc.nextInt();
+    int[] a = new int[n];
+    TreeSet<Integer> tree = new TreeSet<Integer>();
+    for (int i = 0; i < n; i++) {
+        a[i] = sc.nextInt();
+        tree.add(a[i]);
+    }
+    HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+    int x = tree.size();
+    for (int i = 0; i < x; i++) {
+        map.put(tree.pollFirst(), i);
+    }
+    for (int i = 0; i < n; i++) {
+        out.println(map.get(a[i]));
+        out.flush();
+    }
+    sc.close();
+    out.close();
+}

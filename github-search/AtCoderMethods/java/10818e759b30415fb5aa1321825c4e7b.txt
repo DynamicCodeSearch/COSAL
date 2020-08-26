@@ -1,0 +1,68 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int R = sc.nextInt();
+    int C = sc.nextInt();
+    int sy = sc.nextInt() - 1;
+    int sx = sc.nextInt() - 1;
+    int gy = sc.nextInt() - 1;
+    int gx = sc.nextInt() - 1;
+    char[][] maze = new char[R][C];
+    for (int i = 0; i < R; i++) {
+        String s = sc.next();
+        for (int j = 0; j < C; j++) {
+            maze[i][j] = s.charAt(j);
+        }
+    }
+    int[][] minStep = new int[R][C];
+    for (int i = 0; i < R; i++) {
+        for (int j = 0; j < C; j++) {
+            minStep[i][j] = Integer.MAX_VALUE;
+        }
+    }
+    LinkedList<int[]> que = new LinkedList<int[]>();
+    minStep[sy][sx] = 0;
+    int[] start = { sy, sx };
+    que.add(start);
+    while (que.size() > 0) {
+        int[] pos = que.poll();
+        int y = pos[0];
+        int x = pos[1];
+        int y1 = y - 1;
+        int x1 = x;
+        int y2 = y;
+        int x2 = x + 1;
+        int y3 = y + 1;
+        int x3 = x;
+        int y4 = y;
+        int x4 = x - 1;
+        if ((y1 >= 0) && (maze[y1][x1] == '.')) {
+            if (minStep[y1][x1] == Integer.MAX_VALUE) {
+                int[] a = { y1, x1 };
+                minStep[y1][x1] = minStep[y][x] + 1;
+                que.add(a);
+            }
+        }
+        if ((x2 < C) && (maze[y2][x2] == '.')) {
+            if (minStep[y2][x2] == Integer.MAX_VALUE) {
+                int[] a = { y2, x2 };
+                minStep[y2][x2] = minStep[y][x] + 1;
+                que.add(a);
+            }
+        }
+        if ((y3 < R) && (maze[y3][x3] == '.')) {
+            if (minStep[y3][x3] == Integer.MAX_VALUE) {
+                int[] a = { y3, x3 };
+                minStep[y3][x3] = minStep[y][x] + 1;
+                que.add(a);
+            }
+        }
+        if ((x4 >= 0) && (maze[y4][x4] == '.')) {
+            if (minStep[y4][x4] == Integer.MAX_VALUE) {
+                int[] a = { y4, x4 };
+                minStep[y4][x4] = minStep[y][x] + 1;
+                que.add(a);
+            }
+        }
+    }
+    System.out.println(minStep[gy][gx]);
+}

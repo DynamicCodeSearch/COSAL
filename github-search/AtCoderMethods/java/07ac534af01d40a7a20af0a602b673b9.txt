@@ -1,0 +1,26 @@
+private void test() {
+    Random random = new Random();
+    while (true) {
+        long K = random.nextInt(100) + 3;
+        ArrayList<Long> list = new ArrayList<>();
+        long N = 20;
+        long rest = K % N;
+        long x = K / N;
+        for (int i = 0; i < rest; i++) {
+            long a = N - 1 + (x + 1) * (N + 1) - K;
+            list.add(a);
+        }
+        for (int i = 0; i < N - rest; i++) {
+            long a = N - 1 + x * (N + 1) - K;
+            list.add(a);
+        }
+        long[] ans = new long[(int) N];
+        for (int i = 0; i < N; i++) {
+            ans[i] = list.get(i);
+        }
+        long actual = solve(ans);
+        if (actual != K) {
+            throw new IllegalStateException();
+        }
+    }
+}

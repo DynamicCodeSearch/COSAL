@@ -1,0 +1,14 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    int num = in.nextInt();
+    String str = new String(num + "");
+    boolean flag = true;
+    for (int i = 0; i < str.length() / 2; i++) {
+        if (str.charAt(i) == str.charAt(str.length() - i - 1)) {
+            continue;
+        } else {
+            flag = false;
+            break;
+        }
+    }
+    out.print(flag == false ? "No" : "Yes");
+}

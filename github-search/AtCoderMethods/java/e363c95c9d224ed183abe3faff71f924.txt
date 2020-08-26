@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int R, C, sy, sx, gy, gx;
+    R = in.nextInt();
+    C = in.nextInt();
+    sy = in.nextInt();
+    sx = in.nextInt();
+    gy = in.nextInt();
+    gx = in.nextInt();
+    int[][] map = new int[R][C];
+    for (int i = 0; i < R; i++) {
+        String s = in.next();
+        for (int j = 0; j < C; j++) {
+            map[i][j] = (s.charAt(j) == '#' ? -1 : 0);
+        }
+    }
+    map[sy - 1][sx - 1] = 1;
+    Deque<Pair> q = new ArrayDeque<>();
+    q.add(new Pair(sx - 1, sy - 1));
+    int[] dx = { 0, 1, 0, -1 };
+    int[] dy = { -1, 0, 1, 0 };
+    while (q.size() > 0) {
+        Pair p = q.poll();
+        for (int i = 0; i < 4; i++) {
+            if (map[p.y + dy[i]][p.x + dx[i]] == 0) {
+                map[p.y + dy[i]][p.x + dx[i]] = map[p.y][p.x] + 1;
+                q.add(new Pair(p.x + dx[i], p.y + dy[i]));
+            }
+        }
+    }
+    System.out.println(map[gy - 1][gx - 1] - 1);
+}

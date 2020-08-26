@@ -1,0 +1,25 @@
+private static void solve() {
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    int c = sc.nextInt();
+    int d = sc.nextInt();
+    int e = sc.nextInt();
+    int f = sc.nextInt();
+    long maxa = 100 * a;
+    long maxb = 0;
+    for (int aa = 0; aa * a * 100 <= f; aa++) {
+        for (int bb = 0; (aa * a + bb * b) * 100 <= f; bb++) {
+            for (int cc = 0; (aa * a + bb * b) * e >= cc * c && (aa * a * 100 + bb * b * 100 + cc * c <= f); cc++) {
+                for (int dd = 0; (aa * a + bb * b) * e >= cc * c + dd * d && (aa * a * 100 + bb * b * 100 + cc * c + dd * d <= f); dd++) {
+                    long tmpa = (aa * a + bb * b) * 100;
+                    long tmpb = cc * c + dd * d;
+                    if (100 * maxb * (tmpa + tmpb) < 100 * tmpb * (maxa + maxb)) {
+                        maxa = tmpa;
+                        maxb = tmpb;
+                    }
+                }
+            }
+        }
+    }
+    pr.printf("%d %d\n", maxa + maxb, maxb);
+}

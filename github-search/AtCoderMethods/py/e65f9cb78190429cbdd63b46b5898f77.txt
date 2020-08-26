@@ -1,0 +1,13 @@
+def solve():
+    w, h, N = data()
+    rect = [0, w, 0, h]
+
+    for i in range(N):
+        x, y, a = data()
+        if [1, -1][a % 2] * ([x, y][a > 2] - rect[a - 1]) < 0:
+            rect[a - 1] = [x, y][a > 2]
+
+        if (rect[1] - rect[0]) <= 0 & (rect[3] - rect[2]) <= 0:
+            return 0
+
+    return (rect[1] - rect[0]) * (rect[3] - rect[2])

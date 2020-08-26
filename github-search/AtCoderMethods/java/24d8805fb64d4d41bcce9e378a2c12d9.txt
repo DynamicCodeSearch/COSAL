@@ -1,0 +1,14 @@
+public void solve() {
+    long r = 1000, l = 0, m = -1;
+    while (r - l > 1) {
+        m = (r + l) / 2;
+        long v = m * m * m * m;
+        if (v == X)
+            break;
+        else if (v > X)
+            r = m;
+        else if (v < X)
+            l = m;
+    }
+    System.out.println(m);
+}

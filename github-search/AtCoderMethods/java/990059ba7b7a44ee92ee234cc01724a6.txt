@@ -1,0 +1,44 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int N = in.nextInt();
+    ArrayList<Long> nums = new ArrayList<Long>();
+    HashMap<Long, Integer> count = new HashMap<Long, Integer>();
+    for (int i = 0; i < N; i++) {
+        long n = in.nextLong();
+        if (count.containsKey(n)) {
+            int c = count.get(n);
+            count.put(n, c + 1);
+        } else {
+            count.put(n, 1);
+            nums.add(n);
+        }
+    }
+    nums.sort(null);
+    long largest = -1;
+    long secondLargest = -1;
+    int index = nums.size() - 1;
+    while (index >= 0 && (largest == -1 || secondLargest == -1)) {
+        long len = nums.get(index);
+        int lenCount = count.get(len);
+        if (lenCount >= 4) {
+            if (largest == -1) {
+                largest = len;
+                secondLargest = len;
+            } else {
+                secondLargest = len;
+            }
+        } else if (lenCount >= 2) {
+            if (largest == -1) {
+                largest = len;
+            } else {
+                secondLargest = len;
+            }
+        }
+        index--;
+    }
+    if (largest != -1 && secondLargest != -1) {
+        System.out.println(largest * secondLargest);
+    } else {
+        System.out.println(0);
+    }
+}

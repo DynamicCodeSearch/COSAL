@@ -1,0 +1,12 @@
+def search(A):
+  B = list(set(A))
+  if len(A)-len(B) == 0: return 0 
+
+  a1 = 0
+  for n,(i, j) in enumerate(zip(A[0:-1], A[1:])):
+    if i == j:
+      a1 = i
+      break
+  del(A[:n+2])
+
+  return a1

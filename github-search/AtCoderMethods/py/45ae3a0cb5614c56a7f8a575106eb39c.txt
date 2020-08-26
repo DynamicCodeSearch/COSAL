@@ -1,0 +1,18 @@
+def solve(h, w):
+    if h % 3 == 0 or w % 3 == 0:
+        return 0
+    d1 = w // 3
+    areas1 = sorted([h * d1] + div2(h, w - d1))
+    ans1 = areas1[-1] - areas1[0]
+    d1 += 1
+    areas2 = sorted([h * d1] + div2(h, w - d1))
+    ans2 = areas2[-1] - areas2[0]
+
+    d2 = h // 3
+    areas3 = sorted([d2 * w] + div2(h - d2, w))
+    ans3 = areas3[-1] - areas3[0]
+    d2 += 1
+    areas4 = sorted([d2 * w] + div2(h - d2, w))
+    ans4 = areas4[-1] - areas4[0]
+
+    return min(ans1, ans2, ans3, ans4)

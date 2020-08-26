@@ -1,0 +1,11 @@
+
+private static boolean isConnected(int N, int M, int[] a, int[] b, int[][] g, int i) {
+    boolean[] f = new boolean[N];
+    dfs(N, g, a[i] - 1, b[i] - 1, f, 0);
+    
+    boolean result = true;
+    for (int j = 0; j < N; j++) {
+        result &= f[j];
+    }
+    return result;
+}

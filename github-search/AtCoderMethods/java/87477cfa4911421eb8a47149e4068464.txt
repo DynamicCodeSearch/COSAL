@@ -1,0 +1,22 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int t = in.nextInt();
+    int[] times = new int[n];
+    int ans = t;
+    if (n == 1) {
+        out.println(t);
+        return;
+    }
+    for (int i = 0; i < n; i++) {
+        times[i] = in.nextInt();
+    }
+    for (int i = 1; i < n; i++) {
+        int diff = times[i] - times[i - 1];
+        if (diff >= t) {
+            ans += t;
+        } else {
+            ans += diff;
+        }
+    }
+    out.println(ans);
+}

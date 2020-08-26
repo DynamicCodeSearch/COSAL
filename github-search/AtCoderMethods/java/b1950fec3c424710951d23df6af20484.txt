@@ -1,0 +1,33 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    Vertex[] ls = new Vertex[n + 1];
+    for (int i = 1; i <= n; ++i) ls[i] = new Vertex(i);
+    for (int i = 0; i < n - 1; ++i) {
+        int a = in.nextInt();
+        int b = in.nextInt();
+        int c = in.nextInt();
+        ls[a].adj.add(new Edge(ls[b], c));
+        ls[b].adj.add(new Edge(ls[a], c));
+    }
+    int q = in.nextInt();
+    int k = in.nextInt();
+    Queue<Vertex> qq = new LinkedList<>();
+    qq.add(ls[k]);
+    long[] bst = new long[n + 1];
+    Arrays.fill(bst, Long.MAX_VALUE);
+    bst[k] = 0;
+    while (!qq.isEmpty()) {
+        Vertex top = qq.poll();
+        for (Edge e : top.adj) {
+            if (bst[top.id] + e.cost < bst[e.to.id]) {
+                bst[e.to.id] = bst[top.id] + e.cost;
+                qq.add(e.to);
+            }
+        }
+    }
+    for (int i = 0; i < q; ++i) {
+        int a = in.nextInt();
+        int b = in.nextInt();
+        out.println(bst[a] + bst[b]);
+    }
+}

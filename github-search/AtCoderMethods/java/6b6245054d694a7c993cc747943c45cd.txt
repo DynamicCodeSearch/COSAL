@@ -1,0 +1,18 @@
+double[] getDist(int s) {
+    PriorityQueue<Pair> Q = new PriorityQueue<>();
+    Q.add(new Pair(s, 0));
+    double[] dist = new double[n];
+    Arrays.fill(dist, INF);
+    boolean[] used = new boolean[n];
+    while (!Q.isEmpty()) {
+        Pair p = Q.poll();
+        if (used[p.x])
+            continue;
+        used[p.x] = true;
+        dist[p.x] = p.y;
+        for (Edge e : G.get(p.x)) {
+            Q.add(new Pair(e.to, p.y + e.cost));
+        }
+    }
+    return dist;
+}

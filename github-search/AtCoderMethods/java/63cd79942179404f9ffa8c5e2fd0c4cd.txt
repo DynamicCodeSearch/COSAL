@@ -1,0 +1,19 @@
+public final void answer() {
+    long ans = 0;
+    long[][] result = new long[H][W];
+    for (int i = 0; i < H * W; i++) {
+        int h = nodes[i].h;
+        int w = nodes[i].w;
+        result[h][w]++;
+        if (w + 1 < W && nodes[i].a < a[h][w + 1])
+            result[h][w] = (result[h][w] + result[h][w + 1]) % MOD;
+        if (h - 1 > -1 && nodes[i].a < a[h - 1][w])
+            result[h][w] = (result[h][w] + result[h - 1][w]) % MOD;
+        if (w - 1 > -1 && nodes[i].a < a[h][w - 1])
+            result[h][w] = (result[h][w] + result[h][w - 1]) % MOD;
+        if (h + 1 < H && nodes[i].a < a[h + 1][w])
+            result[h][w] = (result[h][w] + result[h + 1][w]) % MOD;
+        ans = (ans + result[h][w]) % MOD;
+    }
+    System.out.println(ans);
+}

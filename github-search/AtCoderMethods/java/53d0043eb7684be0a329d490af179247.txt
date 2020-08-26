@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int n = in.nextInt(), A = in.nextInt(), B = in.nextInt();
+    int[] h = new int[n];
+    for (int i = 0; i < n; i++) {
+        h[i] = in.nextInt();
+    }
+    int lo = 0, hi = (int) (1e9 + 10);
+    while (hi - lo > 1) {
+        int mid = (lo + hi) / 2;
+        if (can(h, A, B, mid))
+            hi = mid;
+        else
+            lo = mid;
+    }
+    System.out.println(hi);
+}

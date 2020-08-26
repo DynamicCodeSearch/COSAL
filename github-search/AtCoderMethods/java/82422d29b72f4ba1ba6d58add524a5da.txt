@@ -1,0 +1,33 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    n = sc.nextInt();
+    m = sc.nextInt();
+    t = sc.nextInt();
+    a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = sc.nextInt();
+    }
+    G = new ArrayList<List<Edge>>(n);
+    R = new ArrayList<List<Edge>>(n);
+    for (int i = 0; i < n; i++) {
+        G.add(new ArrayList<Edge>());
+        R.add(new ArrayList<Edge>());
+    }
+    for (int i = 0; i < m; i++) {
+        int aa = sc.nextInt() - 1, bb = sc.nextInt() - 1, cc = sc.nextInt();
+        G.get(aa).add(new Edge(aa, bb, cc));
+        R.get(bb).add(new Edge(bb, aa, cc));
+    }
+    dist1 = new int[n];
+    dijkstra(G, 0, dist1);
+    dist2 = new int[n];
+    dijkstra(R, 0, dist2);
+    long best = -1;
+    for (int i = 0; i < n; i++) {
+        int d = dist1[i] + dist2[i];
+        if (d <= t) {
+            best = Math.max(best, (long) (t - d) * a[i]);
+        }
+    }
+    System.out.println(best);
+}

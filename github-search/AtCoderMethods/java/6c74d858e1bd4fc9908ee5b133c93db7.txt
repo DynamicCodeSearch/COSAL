@@ -1,0 +1,50 @@
+public void solve() {
+    N = nextInt();
+    A = new int[N][N];
+    long[][] ans = new long[N][N];
+    Pair[] pair = new Pair[N * (N + 1) / 2];
+    int idx = 0;
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            A[i][j] = nextInt();
+            if (i < j) {
+                pair[idx++] = new Pair(i, j, A[i][j]);
+            }
+            if (i == j)
+                ans[i][j] = 0;
+            else
+                ans[i][j] = Integer.MAX_VALUE;
+        }
+    }
+    Arrays.sort(pair, 0, idx, (a, b) -> Integer.compare(a.d, b.d));
+    long sum = 0;
+    for (int i = 0; i < idx; i++) {
+        Pair p = pair[i];
+        if (ans[p.u][p.v] == p.d) {
+            continue;
+        } else if (ans[p.u][p.v] < p.d) {
+            sum = -1;
+            break;
+        }
+        sum += p.d;
+        ans[p.u][p.v] = p.d;
+        ans[p.v][p.u] = p.d;
+        for (int j = 0; j < N; j++) {
+            for (int k = 0; k < N; k++) {
+                ans[j][k] = Math.min(ans[j][k], ans[j][p.u] + p.d + ans[p.v][k]);
+                ans[k][j] = Math.min(ans[k][j], ans[k][p.v] + p.d + ans[p.u][j]);
+            }
+        }
+    }
+    boolean flg = true;
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            flg &= ans[i][j] == A[i][j];
+        }
+    }
+    if (flg) {
+        out.println(sum);
+    } else {
+        out.println(-1);
+    }
+}

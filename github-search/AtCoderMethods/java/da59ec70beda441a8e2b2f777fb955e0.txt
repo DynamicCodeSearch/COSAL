@@ -1,0 +1,22 @@
+
+boolean unite(int x, int y) {
+    
+    x = find(x);
+    y = find(y);
+    
+    if (x == y)
+        return false;
+    
+    if (sizes[x] < sizes[y]) {
+        int tx = x;
+        x = y;
+        y = tx;
+    }
+    
+    par[y] = x;
+    sizes[x] += sizes[y];
+    
+    sizes[y] = 0;
+    size--;
+    return true;
+}

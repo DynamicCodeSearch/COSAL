@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    PrintWriter out = new PrintWriter(System.out);
+    int t = sc.nextInt();
+    int n = sc.nextInt();
+    int[] a = sc.nextIntArray(n);
+    int m = sc.nextInt();
+    int[] b = sc.nextIntArray(m);
+    boolean flag = true;
+    int _j = 0;
+    for (int i = 0; i < m && flag; i++) {
+        flag = false;
+        for (int j = _j; j < n && a[j] <= b[i]; j++) {
+            if (b[i] <= a[j] + t) {
+                _j = j + 1;
+                flag = true;
+                break;
+            }
+        }
+    }
+    out.println(flag ? "yes" : "no");
+    out.flush();
+}

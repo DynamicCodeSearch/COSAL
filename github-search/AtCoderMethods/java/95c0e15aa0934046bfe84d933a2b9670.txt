@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    Long N = sc.nextLong();
+    Long M = sc.nextLong();
+    Long ans = 0L;
+    Long s_num = N;
+    Long c_num = M / 2;
+    Long scc_num = s_num < c_num ? s_num : c_num;
+    ans += scc_num;
+    N -= scc_num;
+    M -= scc_num * 2;
+    ans += M / 4;
+    System.out.println(ans);
+    sc.close();
+}

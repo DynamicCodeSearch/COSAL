@@ -1,0 +1,13 @@
+static public void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    long limitW = sc.nextLong();
+    long[] w = new long[n];
+    long[] v = new long[n];
+    for (int i = 0; i < n; i++) {
+        w[i] = sc.nextLong();
+        v[i] = sc.nextLong();
+    }
+    Knapsack knapsack = new Knapsack(n, limitW, w, v);
+    System.out.println(knapsack.calc());
+}

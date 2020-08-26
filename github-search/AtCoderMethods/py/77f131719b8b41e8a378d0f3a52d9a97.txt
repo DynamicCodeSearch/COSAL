@@ -1,0 +1,30 @@
+def solve():
+    global adj
+    global p
+    global state
+    n = read_int()
+    pairs = [read_int_list() for i in range(n - 1)]
+    adj = [[] for i in range(n)]
+    for x, y in pairs:
+        x -= 1
+        y -= 1
+        adj[x].append(y)
+        adj[y].append(x)
+    state = [0] * n
+    p = [-1] * n
+    dfs(0, -1)
+
+    j = n - 1
+    q = []
+    while j != 0:
+        q.append(j)
+        j = p[j]
+    q.append(0)
+
+    lq = len(q)
+    half = lq // 2
+
+    s = get_size(q[half - 1])
+    if n - s > s:
+        return 'Fennec'
+    return 'Snuke'

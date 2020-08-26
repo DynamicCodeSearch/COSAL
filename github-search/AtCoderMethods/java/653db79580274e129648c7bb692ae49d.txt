@@ -1,0 +1,20 @@
+void start() {
+    Scanner in = new Scanner(System.in);
+    int m = in.nextInt();
+    double km = m / 1000.0;
+    if (km < 0.1) {
+        System.out.println("00");
+    } else if (km <= 5) {
+        if (km >= 1) {
+            System.out.println((int) (km * 10));
+        } else {
+            System.out.println("0" + (int) (km * 10));
+        }
+    } else if (6 <= km && km <= 30) {
+        System.out.println((int) km + 50);
+    } else if (35 <= km && km <= 70) {
+        System.out.println((int) ((km - 30) / 5 + 80));
+    } else if (km > 70) {
+        System.out.println(89);
+    }
+}

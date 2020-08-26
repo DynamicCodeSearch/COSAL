@@ -1,0 +1,19 @@
+public static int calcMinAllareaTree(Node[] townGroup, Queue<Branch> branches) {
+    int result = 0;
+    while (!branches.isEmpty()) {
+        
+        
+        Branch branch = branches.poll();
+        Node group1 = townGroup[branch.n1].getParent();
+        Node group2 = townGroup[branch.n2].getParent();
+        
+        if (group1 != group2) {
+            
+            result += branch.value;
+            Node newParent = new Node();
+            group1.parent = newParent;
+            group2.parent = newParent;
+        }
+    }
+    return result;
+}

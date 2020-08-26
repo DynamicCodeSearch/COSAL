@@ -1,0 +1,6 @@
+static final long[] fal_rnd(int size) {
+    AtomicInteger l = new AtomicInteger(-1), r = new AtomicInteger(size);
+    long[] res = new long[size];
+    INS(size).unordered().parallel().mapToLong(Long::parseLong).forEach(v -> res[ThreadLocalRandom.current().nextBoolean() ? l.incrementAndGet() : r.decrementAndGet()] = v);
+    return res;
+}

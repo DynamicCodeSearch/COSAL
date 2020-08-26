@@ -1,0 +1,7 @@
+static long C(int n, int r) {
+    if (n < r || Math.min(n, r) < 0)
+        return 0;
+    long val1 = fact[n], val2 = inv_fact[r], val3 = inv_fact[n - r];
+    long val4 = (val2 * val3) % mod;
+    return (val1 * val4) % mod;
+}

@@ -1,0 +1,12 @@
+public String nextLine() {
+    if (!hasNextLine()) {
+        throw new NoSuchElementException();
+    }
+    StringBuilder sb = new StringBuilder();
+    int b = readByte();
+    while (!isNewLine(b)) {
+        sb.appendCodePoint(b);
+        b = readByte();
+    }
+    return sb.toString();
+}

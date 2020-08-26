@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String O = sc.next();
+    String E = sc.next();
+    int N1 = O.length();
+    int N2 = E.length();
+    String word = "";
+    if (N1 == N2) {
+        for (int i = 0; i < N1; i++) {
+            word += String.valueOf(O.charAt(i));
+            word += String.valueOf(E.charAt(i));
+        }
+    } else {
+        for (int i = 0; i < N1; i++) {
+            word += String.valueOf(O.charAt(i));
+            if (i < N1 - 1) {
+                word += String.valueOf(E.charAt(i));
+            }
+        }
+    }
+    System.out.println(word);
+}

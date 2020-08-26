@@ -1,0 +1,37 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    int K = sc.nextInt();
+    int L = sc.nextInt();
+    UnionFind a = new UnionFind(N);
+    UnionFind b = new UnionFind(N);
+    for (int i = 0; i < K; i++) {
+        int p = sc.nextInt() - 1;
+        int q = sc.nextInt() - 1;
+        a.union(p, q);
+    }
+    for (int i = 0; i < L; i++) {
+        int r = sc.nextInt() - 1;
+        int s = sc.nextInt() - 1;
+        b.union(r, s);
+    }
+    int[] ret = new int[N];
+    Arrays.fill(ret, -1);
+    Map<Long, Integer> map = new HashMap<>();
+    for (int i = 0; i < N; i++) {
+        long rootA = a.find(i);
+        long rootB = b.find(i);
+        long hash = rootA * 1000000L + rootB;
+        int now = map.containsKey(hash) ? map.get(hash) : 0;
+        map.put(hash, now + 1);
+    }
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < N; i++) {
+        long rootA = a.find(i);
+        long rootB = b.find(i);
+        long hash = rootA * 1000000L + rootB;
+        sb.append(map.get(hash));
+        sb.append(" ");
+    }
+    System.out.println(sb.substring(0, sb.length() - 1));
+}

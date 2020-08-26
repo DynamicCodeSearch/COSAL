@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    int N = 0;
+    int K = 0;
+    boolean[] a = new boolean[10];
+    try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
+        String[] elems = br.readLine().split(" ");
+        N = Integer.parseInt(elems[0]);
+        K = Integer.parseInt(elems[1]);
+        elems = br.readLine().split(" ");
+        for (int i = 0; i < K; i++) {
+            a[Integer.parseInt(elems[i])] = true;
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    int ans = N;
+    String ansStr;
+    while (true) {
+        ansStr = Integer.toString(ans);
+        boolean flg = true;
+        for (int i = 0; i < ansStr.length(); i++) {
+            flg &= !a[ansStr.charAt(i) - '0'];
+        }
+        if (flg)
+            break;
+        ans++;
+    }
+    System.out.println(ans);
+}

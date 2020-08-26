@@ -1,0 +1,11 @@
+def main():
+  N = int(input())
+  K = int(input())
+  x_i = input().split()
+  x_i = [ int(x) for x in x_i ]
+  ans = 0
+
+  for i in range(0, N):
+    ans += 2 * min(math.fabs(x_i[i] - 0), math.fabs(x_i[i] - K)) 
+
+  print(int(ans))

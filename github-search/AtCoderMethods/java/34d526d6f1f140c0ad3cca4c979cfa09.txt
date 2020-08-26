@@ -1,0 +1,34 @@
+Treap<T> delete(final T k) {
+    if (isEmpty()) {
+        throw new NoSuchElementException();
+    }
+    final int sign = value.compareTo(k);
+    if (sign == 0) {
+        if (!right.isEmpty() && !left.isEmpty()) {
+            if (left.priority <= right.priority) {
+                final Treap<T> temp = rotateRight();
+                temp.right = temp.right.delete(k);
+                temp.update();
+                return temp;
+            } else {
+                final Treap<T> temp = rotateLeft();
+                temp.left = temp.left.delete(k);
+                temp.update();
+                return temp;
+            }
+        } else if (!left.isEmpty()) {
+            return left;
+        } else if (!right.isEmpty()) {
+            return right;
+        } else {
+            value = null;
+            update();
+        }
+    } else if (sign > 0) {
+        left = left.delete(k);
+    } else {
+        right = right.delete(k);
+    }
+    this.update();
+    return this;
+}

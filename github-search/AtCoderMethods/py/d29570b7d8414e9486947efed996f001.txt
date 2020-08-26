@@ -1,0 +1,16 @@
+def solve():
+    n = int(input())
+    l = []
+
+    for i in range(n):
+        l.append(int(input()))
+
+    a = 1
+    hist = set([])
+    while(True):
+        if(a-1 in hist):
+            return -1
+        if(a-1 == 1):
+            return len(hist)
+        hist.add(a-1)
+        a = l[a-1]

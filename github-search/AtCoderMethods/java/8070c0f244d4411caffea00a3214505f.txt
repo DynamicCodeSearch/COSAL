@@ -1,0 +1,8 @@
+public void add(long x) {
+    a[pos++] = x;
+    for (int c = pos - 1, p = c >>> 1; p >= 1 && a[c] < a[p]; c >>>= 1, p >>>= 1) {
+        long d = a[p];
+        a[p] = a[c];
+        a[c] = d;
+    }
+}

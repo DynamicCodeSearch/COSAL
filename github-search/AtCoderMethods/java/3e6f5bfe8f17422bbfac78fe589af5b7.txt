@@ -1,0 +1,23 @@
+private static void solve() throws IOException {
+    for (int i = N; i >= 0; --i) {
+        boolean fl = false;
+        for (int nex = 0; nex <= 'z' - 'a'; ++nex) {
+            if (pos[nex] == 0) {
+                dp[i] = 1;
+                trace[i] = nex;
+                fl = true;
+                break;
+            }
+        }
+        if (!fl) {
+            for (int nex = 0; nex <= 'z' - 'a'; ++nex) {
+                if (dp[i] > dp[pos[nex]] + 1) {
+                    dp[i] = dp[pos[nex]] + 1;
+                    trace[i] = pos[nex];
+                }
+            }
+        }
+        if (i > 0)
+            pos[s.charAt(i) - 'a'] = i;
+    }
+}

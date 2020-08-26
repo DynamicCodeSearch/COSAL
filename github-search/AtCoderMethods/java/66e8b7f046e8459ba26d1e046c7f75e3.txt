@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner stdin = new Scanner(System.in);
+    int k, n, a, b, c, total = 0, min = Integer.MAX_VALUE;
+    k = stdin.nextInt();
+    n = stdin.nextInt();
+    int[] point;
+    point = new int[n + 2];
+    for (int i = 0; i < k; i++) {
+        a = stdin.nextInt();
+        b = stdin.nextInt();
+        c = stdin.nextInt();
+        total = total + c;
+        point[a] = point[a] + c;
+        point[b + 1] = point[b + 1] - c;
+    }
+    for (int i = 0; i < n + 1; i++) {
+        point[i + 1] = point[i] + point[i + 1];
+    }
+    for (int i = 1; i < n + 1; i++) {
+        if (min > point[i]) {
+            min = point[i];
+        }
+    }
+    System.out.println(total - min);
+}

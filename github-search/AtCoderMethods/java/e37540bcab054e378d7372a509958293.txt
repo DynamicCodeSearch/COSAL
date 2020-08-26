@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    String s = in.next();
+    int k = in.nextInt();
+    HashMap<String, Integer> map = new HashMap<String, Integer>();
+    int index = 0;
+    int answer = 0;
+    while (index + k <= s.length()) {
+        String sub = s.substring(index, index + k);
+        if (!map.containsKey(sub)) {
+            answer++;
+            map.put(sub, 1);
+        }
+        index++;
+    }
+    System.out.println(answer);
+}

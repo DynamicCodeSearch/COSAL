@@ -1,0 +1,33 @@
+boolean dfs(int v) {
+    if (val[v] == -INF) {
+        range[v][0] = Math.max(range[v][0], val[prev[v]] - 1);
+        range[v][1] = Math.min(range[v][1], val[prev[v]] + 1);
+        boolean ok = false;
+        for (int i = -1; i <= 1; i += 2) {
+            val[v] = val[prev[v]] + i;
+            if (val[v] >= range[v][0] && val[v] <= range[v][1]) {
+                ok = true;
+                break;
+            }
+        }
+        if (!ok) {
+            
+            return false;
+        }
+    }
+    if (!(val[v] >= range[v][0] && val[v] <= range[v][1])) {
+        return false;
+    }
+    for (int e = g.head[v]; e != -1; e = g.next[e]) {
+        int t = g.to[e];
+        if (t == prev[v])
+            continue;
+        if (!dfs(t)) {
+            return false;
+        }
+        if (Math.abs(val[v] - val[t]) != 1) {
+            return false;
+        }
+    }
+    return true;
+}

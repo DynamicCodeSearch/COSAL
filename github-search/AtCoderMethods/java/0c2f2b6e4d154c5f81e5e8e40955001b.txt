@@ -1,0 +1,15 @@
+public static long f1(int p) {
+    long ttt = 1;
+    for (int i = 0; i < a[p].c; i++) if (!b[a[p].nodes.get(i)]) {
+        b[a[p].nodes.get(i)] = true;
+        if (f1[a[p].nodes.get(i)] == 0) {
+            f1[a[p].nodes.get(i)] = f1(a[p].nodes.get(i));
+        }
+        if (f0[a[p].nodes.get(i)] == 0) {
+            f0[a[p].nodes.get(i)] = f0(a[p].nodes.get(i));
+        }
+        ttt = (ttt * (f1[a[p].nodes.get(i)] + f0[a[p].nodes.get(i)])) % 1000000007;
+        b[a[p].nodes.get(i)] = false;
+    }
+    return ttt;
+}

@@ -1,0 +1,18 @@
+def solve(s, t):
+    if len(G[s]) == 1 or len(G[t]) == 1:
+        return 1
+    used = [0]*n
+    que = deque()
+    used[s] = 1
+    for v in G[s]:
+        if v == t:
+            continue
+        used[v] = 1
+        que.append(v)
+    while que:
+        u = que.popleft()
+        for v in G[u]:
+            if not used[v]:
+                used[v] = 1
+                que.append(v)
+    return sum(used) != n

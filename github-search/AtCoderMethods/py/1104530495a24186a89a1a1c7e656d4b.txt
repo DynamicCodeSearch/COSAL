@@ -1,0 +1,10 @@
+def square_from_origin(x, y):
+    s = 0
+    if x < 0 or y < 0:
+        return 0
+    if square_memo[x][y] == -1:
+        mini_dss = dss[:y+1]
+        for ds in mini_dss:
+            s += sum(ds[:x+1])
+        square_memo[x][y] = s
+    return square_memo[x][y]

@@ -1,0 +1,21 @@
+def main():
+    a = [int(i) for i in input()]
+    b = [int(i) for i in input()]
+
+    if len(a) > len(b):
+        print("GREATER")
+    elif len(a) < len(b):
+        print("LESS")
+    else:
+        flag = 1
+        for m, n in zip(a, b):
+            if m > n:
+                print("GREATER")
+                flag = 0
+                break
+            elif m < n:
+                print("LESS")
+                flag = 0
+                break
+        if flag:
+            print("EQUAL")

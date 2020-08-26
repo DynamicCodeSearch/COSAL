@@ -1,0 +1,15 @@
+public void union(int x, int y) {
+    access(x);
+    access(y);
+    if ((x = root(x)) != (y = root(y))) {
+        if (data[y] < data[x]) {
+            final int t = x;
+            x = y;
+            y = t;
+        }
+        next[last[x]] = y;
+        last[x] = last[y];
+        data[x] += data[y];
+        data[y] = x;
+    }
+}

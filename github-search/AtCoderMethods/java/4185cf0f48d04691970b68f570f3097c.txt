@@ -1,0 +1,14 @@
+public void s2(long N) {
+    HashSet<Long> set = new HashSet<>();
+    for (int i = 0; i <= N; i++) {
+        for (int j = 0; j <= N; j++) {
+            if (i + j <= N && (i ^ j) <= N) {
+                set.add((long) (i + j) << 32 | (i ^ j));
+            }
+        }
+    }
+    for (long v : set) {
+        System.err.println((v & 0xffffffffL) + " " + (v >> 32));
+    }
+    System.err.println(set.size());
+}

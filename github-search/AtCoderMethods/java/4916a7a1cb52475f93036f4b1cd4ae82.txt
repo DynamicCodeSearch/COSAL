@@ -1,0 +1,53 @@
+private static long solve(int[] a, int[] b) {
+    int n = a.length;
+    int[] apos = new int[n];
+    int[] bpos = new int[n];
+    for (int i = 0; i < n; i++) {
+        apos[a[i]] = i;
+        bpos[b[i]] = i;
+    }
+    long[][][] dp = new long[2 * n + 1][n][4];
+    dp[0][0][1] = 1;
+    for (int i = 0; i < 2 * (n - 1); i++) {
+        for (int last = 0; last < n; last++) {
+            int[][] pt = new int[2][2];
+            if (i >= 1) {
+                pt[0][0] = apos[last];
+                pt[0][1] = i - apos[last];
+                pt[1][0] = i - bpos[last];
+                pt[1][1] = bpos[last];
+            }
+            for (int flg = 1; flg <= 3; flg++) {
+                if (dp[i][last][flg] == 0) {
+                    continue;
+                }
+                long base = dp[i][last][flg];
+                
+                Map<Integer, Integer> flgMap = new HashMap<>();
+                for (int p = 0; p <= 1; p++) {
+                    if ((flg & (1 << p)) >= 1) {
+                        if (pt[p][1] + 1 < n) {
+                            flgMap.put(a[pt[p][0]], flgMap.getOrDefault(a[pt[p][0]], 0) | 1);
+                        }
+                        if (pt[p][0] + 1 < n) {
+                            flgMap.put(b[pt[p][1]], flgMap.getOrDefault(b[pt[p][1]], 0) | 2);
+                        }
+                    }
+                }
+                
+                for (int use : flgMap.keySet()) {
+                    int tflg = flgMap.get(use);
+                    dp[i + 1][use][tflg] += base;
+                    dp[i + 1][use][tflg] -= dp[i + 1][use][tflg] >= MOD ? MOD : 0;
+                }
+            }
+        }
+    }
+    long ans = 0;
+    for (int i = 0; i < n; i++) {
+        for (int f = 1; f <= 3; f++) {
+            ans += dp[2 * (n - 1)][i][f];
+        }
+    }
+    return ans % MOD;
+}

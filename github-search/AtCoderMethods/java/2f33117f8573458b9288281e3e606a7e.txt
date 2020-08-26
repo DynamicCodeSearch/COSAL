@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int N = scan.nextInt();
+    int M = scan.nextInt();
+    int rest = M - N * 2;
+    if (rest < 0 || N * 2 < rest) {
+        System.out.println("-1 -1 -1");
+        return;
+    }
+    int baby = rest / 2;
+    int grandma = rest % 2;
+    int man = N - baby - grandma;
+    System.out.println(man + " " + grandma + " " + baby);
+}

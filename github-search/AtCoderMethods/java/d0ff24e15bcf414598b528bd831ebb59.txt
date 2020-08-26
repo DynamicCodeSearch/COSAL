@@ -1,0 +1,11 @@
+int get(int a, int b, int i, int l, int h) {
+    if (h <= a || b <= l) {
+        return MAX;
+    }
+    if (a <= l && h <= b) {
+        return tree[i];
+    }
+    int vl = get(a, b, 2 * i + 1, l, (l + h) / 2);
+    int vr = get(a, b, 2 * i + 2, (l + h) / 2, h);
+    return Math.min(vl, vr);
+}

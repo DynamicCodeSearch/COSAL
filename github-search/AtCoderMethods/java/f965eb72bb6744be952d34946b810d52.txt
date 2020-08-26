@@ -1,0 +1,32 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] str = br.readLine().split(" ");
+    int h = Integer.parseInt(str[0]);
+    int w = Integer.parseInt(str[1]);
+    String[] mp = new String[h];
+    for (int i = 0; i < h; i++) mp[i] = br.readLine();
+    String[][] ans = new String[h][w];
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            int cnt = 0;
+            if (mp[i].charAt(j) == '#') {
+                ans[i][j] = "#";
+            } else {
+                for (int x = -1; x <= 1; x++) {
+                    for (int y = -1; y <= 1; y++) {
+                        int dx = j + x;
+                        int dy = i + y;
+                        if (0 <= dx && dx < w && 0 <= dy && dy < h) {
+                            if (mp[dy].charAt(dx) == '#')
+                                cnt++;
+                        }
+                    }
+                }
+                ans[i][j] = Integer.toString(cnt);
+            }
+        }
+    }
+    for (int i = 0; i < h; i++) {
+        System.out.println(String.join("", ans[i]));
+    }
+}

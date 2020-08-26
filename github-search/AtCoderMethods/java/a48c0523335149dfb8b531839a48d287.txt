@@ -1,0 +1,8 @@
+long getCnt(long R, long B, long useR, long x, long y) {
+    long cnt = Math.min(useR, B);
+    R -= cnt * x;
+    B -= cnt;
+    if (B > 0)
+        cnt += Math.min(B / y, R);
+    return cnt;
+}

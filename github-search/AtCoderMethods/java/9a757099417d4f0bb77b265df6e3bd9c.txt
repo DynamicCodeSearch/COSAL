@@ -1,0 +1,10 @@
+static void dfs(int u) {
+    vis[u] = true;
+    N++;
+    for (int v : g[u]) if (!vis[v])
+        dfs(v);
+    if (N == V)
+        ans++;
+    vis[u] = false;
+    N--;
+}

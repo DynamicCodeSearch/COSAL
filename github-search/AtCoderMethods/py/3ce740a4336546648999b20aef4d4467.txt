@@ -1,0 +1,24 @@
+def main():
+    N, M = map(int, input().split())
+    name = input()
+    kit  = input()
+
+    cnt_name = Counter(name)
+    cnt_kit  = Counter(kit)
+    if 0:
+        print(cnt_name)
+        print(cnt_kit)
+
+    ans = 0
+    for c in string.ascii_uppercase:
+        cn = cnt_name[c]
+        ck = cnt_kit[c]
+        if cn == 0: continue
+        if ck == 0:
+            print(-1)
+            return
+        q = cn // ck
+        r = cn %  ck
+        ans = max(ans, q + (1 if r else 0))
+
+    print(ans)

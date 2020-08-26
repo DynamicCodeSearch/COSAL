@@ -1,0 +1,17 @@
+
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int k = scanner.nextInt();
+    scanner.close();
+    long a = 1;
+    long b = 0;
+    for (int i = 0; i < k; i++) {
+        long temp = a + b;
+        if (i < 3) {
+            temp += a;
+        }
+        b = a;
+        a = temp;
+    }
+    System.out.println(a + " " + b);
+}

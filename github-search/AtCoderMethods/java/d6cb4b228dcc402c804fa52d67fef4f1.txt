@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int X = sc.nextInt();
+    int[] candyBox = new int[N];
+    for (int i = 0; i < N; i++) {
+        candyBox[i] = sc.nextInt();
+    }
+    long cnt = 0;
+    if (N == 1) {
+        cnt = X - candyBox[0];
+    }
+    for (int i = 1; i < N; i++) {
+        if (candyBox[i] + candyBox[i - 1] > X) {
+            cnt += candyBox[i] + candyBox[i - 1] - X;
+            if (candyBox[i - 1] >= X) {
+                candyBox[i] = 0;
+            } else {
+                candyBox[i] = X - candyBox[i - 1];
+            }
+        }
+    
+    }
+    if (cnt < 0)
+        cnt = 0;
+    System.out.println(cnt);
+    sc.close();
+}

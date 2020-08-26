@@ -1,0 +1,26 @@
+def main(args):
+    N = int(input())
+    cities = []
+    for i in range(1, N+1):
+        x, y = map(int, input().split())
+        cities.append([x, y, i])
+
+    es = []
+    cities.sort(key=lambda x: x[0])
+    prev_x, _, prev_i = cities[0]
+    for x, y, i in cities[1:]:
+        es.append(edge(prev_i, i, x - prev_x))
+
+        prev_x = x
+        prev_i = i
+
+    cities.sort(key=lambda x: x[1])
+    _, prev_y, prev_i = cities[0]
+    for x, y, i in cities[1:]:
+        es.append(edge(prev_i, i, y - prev_y))
+
+        prev_y = y
+        prev_i = i
+
+    result = kruskal(N+1, len(es), es)
+    print(result)

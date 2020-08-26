@@ -1,0 +1,15 @@
+public static void main(String[] args) throws java.lang.Exception {
+    InputReader in = new InputReader(System.in);
+    PrintWriter w = new PrintWriter(System.out);
+    HashMap<Long, Boolean> hm = new HashMap<>();
+    int n = in.nextInt(), ans = 0;
+    while (n-- > 0) {
+        long temp = in.nextLong();
+        if (!hm.containsKey(temp))
+            hm.put(temp, false);
+        hm.put(temp, !hm.get(temp));
+        ans += (hm.get(temp) ? 1 : -1);
+    }
+    w.println(ans);
+    w.close();
+}

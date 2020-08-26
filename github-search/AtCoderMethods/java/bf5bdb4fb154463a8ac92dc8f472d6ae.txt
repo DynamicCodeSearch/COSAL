@@ -1,0 +1,22 @@
+double goldenSectionSearch(double left, double right, Function<Double, Double> f, Comparator<Double> comp) {
+    double c1 = divideInternally(left, right, 1, GOLDEN_RATIO);
+    double c2 = divideInternally(left, right, GOLDEN_RATIO, 1);
+    double d1 = f.apply(c1);
+    double d2 = f.apply(c2);
+    while (right - left > 1e-9) {
+        if (comp.compare(d1, d2) > 0) {
+            right = c2;
+            c2 = c1;
+            d2 = d1;
+            c1 = divideInternally(left, right, 1, GOLDEN_RATIO);
+            d1 = f.apply(c1);
+        } else {
+            left = c1;
+            c1 = c2;
+            d1 = d2;
+            c2 = divideInternally(left, right, GOLDEN_RATIO, 1);
+            d2 = f.apply(c2);
+        }
+    }
+    return right;
+}

@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int a = sc.nextInt();
+    ArrayList<Integer> array = new ArrayList<Integer>();
+    array.add(0);
+    array.add(0);
+    array.add(1);
+    if (a < 4) {
+        System.out.print(array.get(a - 1));
+        return;
+    }
+    for (int i = 3; i < a; i++) {
+        array.add((array.get(i - 3) + array.get(i - 2) + array.get(i - 1)) % 10007);
+    }
+    System.out.println(array.get(a - 1));
+}

@@ -1,0 +1,11 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    long[] a = in.nextLongArray(n);
+    long sum = Arrays.stream(a).sum();
+    long[] sumArray = ArrayUtils.calcCumulativeSum0First(a);
+    long ans = Long.MAX_VALUE;
+    for (int i = 1; i < n; i++) {
+        ans = Math.min(ans, Math.abs(sum - 2 * sumArray[i]));
+    }
+    out.println(ans);
+}

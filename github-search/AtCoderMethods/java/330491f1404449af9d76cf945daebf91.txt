@@ -1,0 +1,11 @@
+static long[][] matmult(long[][] x, long[][] y) {
+    long[][] ans = new long[K][K];
+    for (int j = 0; j < K; j++) {
+        for (int k = 0; k < K; k++) {
+            for (int l = 0; l < K; l++) {
+                ans[j][k] = ans[j][k] ^ (x[j][l] & y[l][k]);
+            }
+        }
+    }
+    return ans;
+}

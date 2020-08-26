@@ -1,0 +1,56 @@
+
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    List<Node> l1 = new ArrayList<Node>();
+    List<Node> l2 = new ArrayList<Node>();
+    int n = sc.nextInt();
+    for (int i = 0; i < n; i++) {
+        Node nd = new Node();
+        nd.num = i;
+        nd.x = sc.nextInt();
+        nd.y = sc.nextInt();
+        l1.add(nd);
+        l2.add(nd);
+    }
+    Collections.sort(l1, new Comparator<Node>() {
+
+        public int compare(Node n1, Node n2) {
+            return n1.x - n2.x;
+        }
+    });
+    Collections.sort(l2, new Comparator<Node>() {
+
+        public int compare(Node n1, Node n2) {
+            return n1.y - n2.y;
+        }
+    });
+    List<Edge> l3 = new ArrayList<Edge>();
+    for (int i = 0; i < n - 1; i++) {
+        Edge e = new Edge();
+        e.from = l1.get(i).num;
+        e.to = l1.get(i + 1).num;
+        e.length = l1.get(i + 1).x - l1.get(i).x;
+        l3.add(e);
+        e = new Edge();
+        e.from = l2.get(i).num;
+        e.to = l2.get(i + 1).num;
+        e.length = l2.get(i + 1).y - l2.get(i).y;
+        l3.add(e);
+    }
+    Collections.sort(l3, new Comparator<Edge>() {
+
+        public int compare(Edge e1, Edge e2) {
+            return e1.length - e2.length;
+        }
+    });
+    UnionFind u = new UnionFind(n);
+    long price = 0;
+    for (Edge e : l3) {
+        if (u.find(e.from) != u.find(e.to)) {
+            u.union(e.from, e.to);
+            price += e.length;
+        }
+    }
+    System.out.println(price);
+}

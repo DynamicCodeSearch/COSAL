@@ -1,0 +1,35 @@
+private void solve() {
+    long n = in.nextLong();
+    long s = in.nextLong();
+    if (n == s) {
+        out.print(n + 1);
+        return;
+    }
+    List<Long> lst = new ArrayList<>();
+    for (int i = 2; i <= (int) Math.sqrt(n); i++) {
+        if (calC(i, n) == s) {
+            out.print(i);
+            return;
+        }
+    }
+    long a = n - s;
+    if (a < 0) {
+        out.print(-1);
+        return;
+    }
+    for (int i = 1; i <= (int) Math.sqrt(a); i++) {
+        if (a % i == 0) {
+            lst.add((long) i + 1);
+            if (i != a / i)
+                lst.add(a / i + 1);
+        }
+    }
+    Collections.sort(lst);
+    for (long i : lst) {
+        if (i > (long) Math.sqrt(n) && calC(i, n) == s) {
+            out.print(i);
+            return;
+        }
+    }
+    out.print(-1);
+}

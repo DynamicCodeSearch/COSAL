@@ -1,0 +1,13 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int T = sc.nextInt();
+    int[] t = new int[N];
+    sc.fill(t);
+    long X = T;
+    for (int i = 1; i < N; i++) {
+        X += T;
+        X -= Math.max(0, T - (t[i] - t[i - 1]));
+    }
+    System.out.println(X);
+}

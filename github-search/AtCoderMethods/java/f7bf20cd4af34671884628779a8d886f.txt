@@ -1,0 +1,34 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    String s = scan.next();
+    int t = scan.nextInt();
+    int x = 0;
+    int y = 0;
+    int count = 0;
+    for (int i = 0; i < s.length(); i++) {
+        if (s.charAt(i) == 'L') {
+            x--;
+        } else if (s.charAt(i) == 'R') {
+            x++;
+        } else if (s.charAt(i) == 'U') {
+            y++;
+        } else if (s.charAt(i) == 'D') {
+            y--;
+        } else {
+            count++;
+        }
+    }
+    int ans = Math.abs(x) + Math.abs(y);
+    if (t == 1) {
+        System.out.println(ans + count);
+    } else {
+        for (int i = 0; i < count; i++) {
+            if (ans > 0) {
+                ans--;
+            } else {
+                ans++;
+            }
+        }
+        System.out.println(Math.abs(ans));
+    }
+}

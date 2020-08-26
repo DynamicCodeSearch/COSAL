@@ -1,0 +1,43 @@
+
+
+
+
+
+
+
+public static void main(String[] args) throws Exception, IOException {
+    Reader sc = new Reader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = sc.nextInt();
+    long ans = 0;
+    P[] px = new P[n - 1];
+    P[] py = new P[n - 1];
+    
+    
+    Q[] dx = new Q[n];
+    Q[] dy = new Q[n];
+    for (int i = 0; i < n; i++) {
+        dx[i] = new Q(sc.nextInt(), i);
+        dy[i] = new Q(sc.nextInt(), i);
+    }
+    sort(dx);
+    sort(dy);
+    PriorityQueue<P> que = new PriorityQueue<P>();
+    for (int i = 0; i < n - 1; i++) {
+        que.add(new P(abs(dx[i + 1].diff - dx[i].diff), dx[i].id, dx[i + 1].id));
+        que.add(new P(abs(dy[i + 1].diff - dy[i].diff), dy[i].id, dy[i + 1].id));
+    }
+    QuickUnionWeighted uf = new QuickUnionWeighted(n);
+    for (int i = 0; i < 2 * (n - 1); i++) {
+        P p = que.poll();
+        
+        if (uf.connected(p.id1, p.id2))
+            continue;
+        ans += p.diff;
+        uf.union(p.id1, p.id2);
+        if (uf.sz(p.id1) == n)
+            break;
+    }
+    out.println(ans);
+    out.flush();
+}

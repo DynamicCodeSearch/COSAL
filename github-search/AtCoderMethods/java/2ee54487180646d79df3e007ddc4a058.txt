@@ -1,0 +1,17 @@
+void dfs(int s) {
+    used[s] = true;
+    long gg = 1;
+    long ff = 1;
+    for (Edge e : edge[s]) {
+        if (used[e.to])
+            continue;
+        dfs(e.to);
+        gg *= f[e.to];
+        ff *= g[e.to];
+        gg %= mod;
+        ff %= mod;
+    }
+    ff += (gg % mod);
+    g[s] = gg % mod;
+    f[s] = ff % mod;
+}

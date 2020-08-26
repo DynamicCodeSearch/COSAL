@@ -1,0 +1,6 @@
+public int count() {
+    int ct = 0;
+    for (int u : upper) if (u < 0)
+        ct++;
+    return ct;
+}

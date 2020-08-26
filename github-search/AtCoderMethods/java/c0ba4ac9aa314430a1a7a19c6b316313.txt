@@ -1,0 +1,45 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int Q = sc.nextInt();
+    double[] X = new double[N];
+    double[] R = new double[N];
+    double[] H = new double[N];
+    for (int i = 0; i < N; i++) {
+        X[i] = sc.nextInt();
+        R[i] = sc.nextInt();
+        H[i] = sc.nextInt();
+    }
+    DecimalFormat df = new DecimalFormat("#.######");
+    for (int j = 0; j < Q; j++) {
+        double A = sc.nextInt();
+        double B = sc.nextInt();
+        double ans = 0.0;
+        for (int i = 0; i < N; i++) {
+            double r1 = 0.0;
+            double r2 = 0.0;
+            if (X[i] <= A) {
+                if (X[i] + H[i] <= A) {
+                
+                } else {
+                    r1 = (X[i] + H[i] - A) / H[i] * R[i];
+                    if (X[i] + H[i] <= B) {
+                        ans += 1.0 / 3.0 * r1 * r1 * (X[i] + H[i] - A);
+                    } else {
+                        r2 = (X[i] + H[i] - B) / H[i] * R[i];
+                        ans += 1.0 / 3.0 * (r1 * r1 * (X[i] + H[i] - A) - r2 * r2 * (X[i] + H[i] - B));
+                    }
+                }
+            } else if (X[i] <= B) {
+                r1 = R[i];
+                if (X[i] + H[i] <= B) {
+                    ans += 1.0 / 3.0 * r1 * r1 * H[i];
+                } else {
+                    r2 = (X[i] + H[i] - B) / H[i] * R[i];
+                    ans += 1.0 / 3.0 * (r1 * r1 * H[i] - r2 * r2 * (X[i] + H[i] - B));
+                }
+            }
+        }
+        System.out.println(df.format(ans * Math.PI));
+    }
+}

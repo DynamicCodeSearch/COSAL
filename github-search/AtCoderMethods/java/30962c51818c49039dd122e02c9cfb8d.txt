@@ -1,0 +1,19 @@
+void solve() throws IOException {
+    String w = ns();
+    int[] cnt = new int[26];
+    for (int i = 0; i < w.length(); i++) {
+        cnt[w.charAt(i) - 'a']++;
+    }
+    boolean flg = true;
+    for (int i = 0; i < 26; i++) {
+        if (cnt[i] % 2 != 0) {
+            flg = false;
+            break;
+        }
+    }
+    if (flg) {
+        out.println("Yes");
+    } else {
+        out.println("No");
+    }
+}

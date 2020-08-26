@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    try (Scanner sc = new Scanner(System.in)) {
+        int h = sc.nextInt();
+        int w = sc.nextInt();
+        Target target = new Target(h, w);
+        for (int i = 1; i <= h; i++) {
+            for (int j = 1; j <= w; j++) {
+                target.setValue(i, j, sc.nextInt());
+            }
+        }
+        long sum = 0L;
+        for (int i = 1; i <= h; i++) {
+            for (int j = 1; j <= w; j++) {
+                sum += target.getRouteCount(i, j);
+            }
+        }
+        System.out.println(sum % UNIT);
+    } finally {
+    }
+}

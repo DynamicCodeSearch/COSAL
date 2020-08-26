@@ -1,0 +1,8 @@
+public static void addRangeFenwick(long[] ft0, long[] ft1, int a, int b, long v) {
+    if (a <= b) {
+        addFenwick(ft1, b + 1, -v);
+        addFenwick(ft0, b + 1, v * (b + 1));
+        addFenwick(ft1, a, v);
+        addFenwick(ft0, a, -v * a);
+    }
+}

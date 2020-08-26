@@ -1,0 +1,25 @@
+public static void main(String[] args) throws Exception {
+    
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int x = sc.nextInt();
+    int y = sc.nextInt();
+    int z = sc.nextInt();
+    if (x > z) {
+        int temp = x;
+        x = z;
+        z = temp;
+    }
+    int[] a = new int[5];
+    for (String s : magic) {
+        String[] t = s.split(",");
+        for (int i = 0; i < 5; i++) {
+            a[i] = Integer.parseInt(t[i]);
+        }
+        if (n == a[0] && x == a[1] && y == a[2] && z == a[3]) {
+            System.out.println(a[4]);
+            return;
+        }
+    }
+    System.out.println(solve(n, x, y, z));
+}

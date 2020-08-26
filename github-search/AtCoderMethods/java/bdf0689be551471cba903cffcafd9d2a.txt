@@ -1,0 +1,14 @@
+private static int dfs(int now, int shift, int depth) {
+    if (now == 0) {
+        return depth;
+    }
+    if (shift == N) {
+        return Integer.MAX_VALUE;
+    }
+    int min = Integer.MAX_VALUE;
+    for (int i = shift + 1; i < N; i++) {
+        int v = dfs(now & code[i], i, depth + 1);
+        min = Math.min(v, min);
+    }
+    return min;
+}

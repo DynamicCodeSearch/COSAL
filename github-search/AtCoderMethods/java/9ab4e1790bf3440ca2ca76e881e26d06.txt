@@ -1,0 +1,14 @@
+public static void main(String[] args) throws IOException {
+    Scanner sc = new Scanner(new InputStreamReader(System.in));
+    int kids = sc.nextInt();
+    int adult = sc.nextInt();
+    int discount = sc.nextInt();
+    int num = sc.nextInt();
+    int k_num = sc.nextInt();
+    int a_num = sc.nextInt();
+    int price = kids * k_num + adult * a_num;
+    if (a_num + k_num >= num) {
+        price = (kids * k_num + adult * a_num) - ((k_num + a_num) * discount);
+    }
+    System.out.println(price);
+}

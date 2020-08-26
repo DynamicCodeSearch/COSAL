@@ -1,0 +1,29 @@
+private void solveC() {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    sc.nextLine();
+    int[] min = new int[26];
+    for (int i = 0; i < 26; i++) {
+        min[i] = 51;
+    }
+    for (int i = 0; i < n; i++) {
+        int[] tmp = new int[26];
+        String buffer = sc.nextLine();
+        for (int j = 0; j < buffer.length(); j++) {
+            char asc = buffer.charAt(j);
+            tmp[(asc - 'a')]++;
+        }
+        for (int j = 0; j < 26; j++) {
+            if (min[j] > tmp[j]) {
+                min[j] = tmp[j];
+            }
+        }
+    }
+    StringBuilder sb = new StringBuilder();
+    for (char c = 'a'; c <= 'z'; c++) {
+        for (int i = 0; i < min[c - 'a']; i++) {
+            sb.append(c);
+        }
+    }
+    System.out.println(sb.toString());
+}

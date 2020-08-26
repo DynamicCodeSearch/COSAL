@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    char[] S = sc.next().toCharArray();
+    char[] T = sc.next().toCharArray();
+    int[] arrayS = new int[S.length];
+    int[] arrayT = new int[T.length];
+    for (int i = 0; i < S.length; i++) {
+        arrayS[i] = S[i] == 'B' ? 1 : 0;
+    }
+    for (int i = 0; i < T.length; i++) {
+        arrayT[i] = T[i] == 'B' ? 1 : 0;
+    }
+    SegmentTreeRSQ stS = new SegmentTreeRSQ(arrayS);
+    SegmentTreeRSQ stT = new SegmentTreeRSQ(arrayT);
+    int q = sc.nextInt();
+    int[][] query = sc.nextIntTable(q, 4);
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < q; i++) {
+        long qS = stS.sum(query[i][0] - 1, query[i][1]);
+        long qT = stT.sum(query[i][2] - 1, query[i][3]);
+        int sLen = query[i][1] - query[i][0] + 1;
+        int tLen = query[i][3] - query[i][2] + 1;
+        qS += 2 * (sLen - qS);
+        qT += 2 * (tLen - qT);
+        if ((qS - qT) % 3 == 0) {
+            sb.append("YES\n");
+        } else {
+            sb.append("NO\n");
+        }
+    }
+    System.out.println(sb);
+}

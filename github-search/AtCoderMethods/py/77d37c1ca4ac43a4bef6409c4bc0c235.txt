@@ -1,0 +1,15 @@
+def main():
+    N = int(input())
+    a = list(map(int,input().split()))
+    s = sum(a)
+    if s % N != 0:
+        print(-1)
+        return
+    avg = int(s/N)
+    curr = 0
+    ans = 0
+    for v in a:
+        curr += (v - avg)
+        if curr != 0:
+            ans = ans + 1
+    print(ans)

@@ -1,0 +1,4 @@
+Treap<T> insert(final T v) {
+    final Pair<Treap<T>, Treap<T>> pair = this.splitWith(v);
+    return pair.first.merge(Treap.of(v)).merge(pair.second);
+}

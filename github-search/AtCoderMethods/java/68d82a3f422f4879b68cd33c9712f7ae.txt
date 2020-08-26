@@ -1,0 +1,11 @@
+public static boolean compare(int[][] a, int[][] b, int ai, int aj) {
+    if (ai + b.length > a.length || aj + b.length > a.length)
+        return false;
+    for (int i = ai; i < ai + b.length; i++) {
+        for (int j = aj; j < aj + b.length; j++) {
+            if (a[i][j] != b[i - ai][j - aj])
+                return false;
+        }
+    }
+    return true;
+}

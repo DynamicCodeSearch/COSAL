@@ -1,0 +1,47 @@
+private void solve(Scanner sc, PrintWriter out) {
+    int W = sc.nextInt();
+    int H = sc.nextInt();
+    int N = sc.nextInt();
+    int[] x = new int[N];
+    int[] y = new int[N];
+    int[] a = new int[N];
+    for (int i = 0; i < N; ++i) {
+        x[i] = sc.nextInt();
+        y[i] = sc.nextInt();
+        a[i] = sc.nextInt();
+    }
+    b = new boolean[H][W];
+    for (int i = 0; i < N; ++i) {
+        switch(a[i]) {
+            case 1:
+                blackout(0, x[i] - 1, 0, H - 1);
+                break;
+            case 2:
+                blackout(x[i], W - 1, 0, H - 1);
+                break;
+            case 3:
+                blackout(0, W - 1, 0, y[i] - 1);
+                break;
+            case 4:
+                blackout(0, W - 1, y[i], H - 1);
+                break;
+        }
+    }
+    int count = 0;
+    for (int i = 0; i < H; ++i) {
+        for (int j = 0; j < W; ++j) {
+            if (!b[i][j]) {
+                ++count;
+            }
+        }
+    }
+    if (debug) {
+        for (int i = b.length - 1; i >= 0; --i) {
+            for (int j = 0; j < b[i].length; ++j) {
+                System.err.print(b[i][j] ? '#' : ' ');
+            }
+            System.err.println();
+        }
+    }
+    out.println(count);
+}

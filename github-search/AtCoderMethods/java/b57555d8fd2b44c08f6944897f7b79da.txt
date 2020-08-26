@@ -1,0 +1,16 @@
+void run() {
+    int n = sc.nextInt();
+    Pair[] p = new Pair[n];
+    for (int i = 0; i < n; i++) {
+        p[i] = new Pair(sc.nextInt(), sc.nextInt());
+    }
+    Arrays.sort(p);
+    int[] a = new int[n];
+    int[] b = new int[n];
+    for (int i = 0; i < n; i++) b[i] = p[i].b;
+    Arrays.fill(a, MOD);
+    for (int i = 0; i < n; i++) {
+        a[lower_bound(a, b[i])] = b[i];
+    }
+    System.out.println(lower_bound(a, MOD));
+}

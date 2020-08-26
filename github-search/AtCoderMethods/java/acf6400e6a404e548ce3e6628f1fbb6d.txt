@@ -1,0 +1,42 @@
+public static void main(String[] args) {
+    
+    Scanner scan = new Scanner(System.in);
+    int N = Integer.parseInt(scan.nextLine());
+    int[] SN = new int[2];
+    String s;
+    int[] S = new int[N];
+    int x, y;
+    for (int i = 0; i < N; i++) {
+        s = scan.nextLine();
+        x = Integer.parseInt(s.substring(0, 4));
+        x += 1000;
+        x -= x % 5;
+        y = Integer.parseInt(s.substring(5, 9));
+        y += 1000;
+        y += (5 - y % 5) % 5;
+        if (y % 100 == 60) {
+            y += 40;
+        }
+        S[i] = x * 10000 + y;
+    }
+    Arrays.sort(S);
+    int last = S[0] % 10000;
+    int start = S[0] / 10000;
+    for (int i = 0; i < N; i++) {
+        SN[0] = S[i] / 10000;
+        SN[1] = S[i] % 10000;
+        if (SN[0] <= last) {
+            if (SN[1] >= last) {
+                last = SN[1];
+            }
+        } else {
+            
+            System.out.print(String.format("%04d", (start - 1000)));
+            System.out.println("-" + String.format("%04d", (last - 1000)));
+            start = S[i] / 10000;
+            last = S[i] % 10000;
+        }
+    }
+    System.out.print(String.format("%04d", (start - 1000)));
+    System.out.println("-" + String.format("%04d", (last - 1000)));
+}

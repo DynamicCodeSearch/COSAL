@@ -1,0 +1,9 @@
+public static Graph transposed(Graph graph) {
+    Graph res = new Graph(graph.size());
+    for (int i = 0; i < graph.size(); i++) {
+        for (Edge e : graph.edges(i)) {
+            res.add(e.transposed());
+        }
+    }
+    return res;
+}

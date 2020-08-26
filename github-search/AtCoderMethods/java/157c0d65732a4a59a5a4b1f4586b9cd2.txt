@@ -1,0 +1,9 @@
+public long getHeadSum(int idx) {
+    int idx2 = idx + 1;
+    long sum = 0;
+    while (idx2 > 0) {
+        sum += data[idx2];
+        idx2 = idx2 & (idx2 - 1);
+    }
+    return sum;
+}

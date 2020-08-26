@@ -1,0 +1,13 @@
+def solve(routes, N):
+    result = 'IMPOSSIBLE'
+    to_middle = set()           
+    from_middle = set()         
+    for f, t in routes:
+        if f == 1:
+            to_middle.add(t)
+        elif t == N:
+            from_middle.add(f)
+
+    if to_middle & from_middle:
+        result = 'POSSIBLE'
+    return result

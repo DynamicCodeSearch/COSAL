@@ -1,0 +1,24 @@
+public static void main(String[] args) throws IOException {
+    Scanner input = new Scanner(System.in);
+    String whole = input.nextLine();
+    ArrayList<Integer> lens = new ArrayList<Integer>();
+    while (whole.indexOf("A") >= 0 && whole.lastIndexOf("Z") >= whole.indexOf("A")) {
+        
+        int A = whole.indexOf("A");
+        
+        whole = whole.substring(A);
+        
+        int Z = whole.lastIndexOf("Z");
+        
+        lens.add((Z + 1));
+        
+        whole = whole.substring(Z);
+    }
+    int largest = 0;
+    for (int i = 0; i < lens.size(); i++) {
+        if (lens.get(i) > largest) {
+            largest = lens.get(i);
+        }
+    }
+    System.out.println(largest);
+}

@@ -1,0 +1,6 @@
+public static void main(String[] __) {
+    int n = s.nextInt();
+    Pair[] p = new Pair[n];
+    for (int i = 0; i < n; i++) p[i] = new Pair(i + 1, s.nextInt());
+    Arrays.stream(p).parallel().sorted(Comparator.comparingInt(Pair::getV).reversed()).mapToInt(Pair::getN).forEachOrdered(System.out::println);
+}

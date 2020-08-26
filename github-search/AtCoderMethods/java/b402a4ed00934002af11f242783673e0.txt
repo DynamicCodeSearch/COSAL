@@ -1,0 +1,15 @@
+private static long[] enumDiv(long n) {
+    long[] ret = new long[2000];
+    int ptr = 0;
+    for (long i = 1; i * i <= n; i++) {
+        if (n % i == 0) {
+            ret[ptr++] = i;
+            if (i * i != n) {
+                ret[ptr++] = n / i;
+            }
+        }
+    }
+    ret = Arrays.copyOf(ret, ptr);
+    Arrays.sort(ret);
+    return ret;
+}

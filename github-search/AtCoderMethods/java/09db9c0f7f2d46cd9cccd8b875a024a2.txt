@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    in = new InputReader(System.in);
+    out = new PrintWriter(System.out);
+    int n = in.nextInt(), k = in.nextInt();
+    int[] d = in.nextIntArray(k);
+    for (int i = n; i <= 100000; i++) {
+        char[] num = Integer.toString(i).toCharArray();
+        boolean isValid = true;
+        for (int j = 0; j < num.length; j++) {
+            for (int ii : d) {
+                if (ii == (int) num[j] - (int) '0')
+                    isValid = false;
+            }
+        }
+        if (isValid) {
+            out.println(i);
+            break;
+        }
+    }
+    out.close();
+}

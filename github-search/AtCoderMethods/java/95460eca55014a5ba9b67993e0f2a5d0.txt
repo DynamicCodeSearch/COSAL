@@ -1,0 +1,12 @@
+char[] ns(int n) {
+    char[] c = new char[n];
+    int i, b = skip();
+    for (i = 0; i < n; i++) {
+        if (isSpaceChar(b)) {
+            break;
+        }
+        c[i] = (char) b;
+        b = readByte();
+    }
+    return i == n ? c : Arrays.copyOf(c, i);
+}

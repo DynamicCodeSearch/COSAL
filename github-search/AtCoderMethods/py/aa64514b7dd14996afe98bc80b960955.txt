@@ -1,0 +1,17 @@
+def think_appr_square_with_tiles(n):
+
+    ceil = int(math.sqrt(n))
+    if ceil ** 2 == n:
+
+        return 0, 0 
+
+    diff, remain = n, n
+    for i in range(ceil, 0, -1):
+        m = n // i
+        d = abs(i - m)
+        r = n % m
+        if diff + remain > d + r:
+
+            diff, remain = d, r 
+
+    return diff, remain

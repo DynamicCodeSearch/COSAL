@@ -1,0 +1,16 @@
+static long count(int[] a, int sum) {
+    int n = a.length;
+    int key = n * 100000 + sum;
+    if (memo.containsKey(key))
+        return Long.parseLong("" + memo.get(key));
+    if (n == 0)
+        return 0;
+    int cur = a[n - 1];
+    int[] b = Arrays.copyOf(a, n - 1);
+    long res = count(b, sum);
+    res += count(b, sum - cur);
+    if (sum == cur)
+        res++;
+    memo.put(key, res);
+    return res;
+}

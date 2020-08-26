@@ -1,0 +1,32 @@
+public static void main(String... args) {
+    Scanner in = new Scanner(System.in);
+    int n = in.nextInt();
+    String[] ss = new String[n];
+    for (int i = 0; i < n; i++) {
+        ss[i] = in.next();
+    }
+    int[] num = new int['z' - 'a' + 1];
+    Arrays.fill(num, 5000);
+    for (char c = 'a'; c <= 'z'; ++c) {
+        for (int i = 0; i < ss.length; i++) {
+            int tmp = 0;
+            for (int j = 0; j < ss[i].length(); j++) {
+                if (ss[i].charAt(j) == (char) c) {
+                    tmp++;
+                }
+            }
+            if (num[c - 'a'] > tmp) {
+                num[c - 'a'] = tmp;
+            }
+        }
+    }
+    String ans = "";
+    for (int i = 0; i < num.length; i++) {
+        if (num[i] > 0) {
+            for (int j = 0; j < num[i]; j++) {
+                ans += (char) (i + 'a');
+            }
+        }
+    }
+    System.out.println(ans);
+}

@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    int n = ni();
+    int[] ps = generatePrimes(1000);
+    long res = 1;
+    for (int prime : ps) {
+        int co = 0;
+        int pp = prime;
+        while (pp <= n) {
+            co += n / pp;
+            pp *= prime;
+        }
+        res = (res * (co + 1)) % 1000000007;
+    }
+    pl(res);
+    flush();
+}

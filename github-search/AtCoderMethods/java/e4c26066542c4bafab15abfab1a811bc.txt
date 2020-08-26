@@ -1,0 +1,23 @@
+
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    
+    int n = scanner.nextInt();
+    
+    int k = scanner.nextInt();
+    List<Integer> x = new ArrayList<>();
+    for (int i = 0; i < n; i++) {
+        x.add(scanner.nextInt());
+    }
+    int result = 0;
+    for (int i = 0; i < n; i++) {
+        
+        int tmp = k - x.get(i);
+        if (Math.abs(tmp) < x.get(i)) {
+            result = result + tmp * 2;
+        } else {
+            result = result + x.get(i) * 2;
+        }
+    }
+    System.out.println(result);
+}

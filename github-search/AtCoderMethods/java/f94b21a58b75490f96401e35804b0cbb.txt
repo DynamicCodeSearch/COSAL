@@ -1,0 +1,24 @@
+public void solve(int testNumber, FastScanner in, PrintWriter out) {
+    int n = in.nextInt();
+    int W = in.nextInt();
+    int[] w = new int[n];
+    int[] v = new int[n];
+    for (int i = 0; i < n; i++) {
+        w[i] = in.nextInt();
+        v[i] = in.nextInt();
+    }
+    List<Integer>[] vs = new List[4];
+    for (int i = 0; i < vs.length; i++) {
+        vs[i] = new ArrayList<>();
+    }
+    for (int i = 0; i < n; i++) {
+        vs[w[i] - w[0]].add(v[i]);
+    }
+    for (int i = 0; i < vs.length; i++) {
+        Collections.sort(vs[i]);
+        Collections.reverse(vs[i]);
+    }
+    ans = 0;
+    rec(w[0], 0, 0, 0L, W, vs);
+    out.println(ans);
+}

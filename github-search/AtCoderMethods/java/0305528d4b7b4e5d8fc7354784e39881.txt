@@ -1,0 +1,17 @@
+static boolean dfs(int n) {
+    if (n == SIZE)
+        return true;
+    for (int m = 0; m < SIZE; m++) {
+        if (board[n][m] == 'Q')
+            return dfs(n + 1);
+    }
+    for (int m = 0; m < SIZE; m++) {
+        if (!judge(n, m))
+            continue;
+        board[n][m] = 'Q';
+        if (dfs(n + 1))
+            return true;
+        board[n][m] = '.';
+    }
+    return false;
+}

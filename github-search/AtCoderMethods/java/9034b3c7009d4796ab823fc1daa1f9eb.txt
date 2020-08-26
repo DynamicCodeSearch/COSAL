@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int x_min = 0;
+    int x_max = sc.nextInt();
+    int y_min = 0;
+    int y_max = sc.nextInt();
+    int n = sc.nextInt();
+    int x, y, a;
+    for (int i = 0; i < n; i++) {
+        x = sc.nextInt();
+        y = sc.nextInt();
+        a = sc.nextInt();
+        if (a == 1 && x > x_min)
+            x_min = x;
+        else if (a == 2 && x < x_max)
+            x_max = x;
+        else if (a == 3 && y > y_min)
+            y_min = y;
+        else if (a == 4 && y < y_max)
+            y_max = y;
+    }
+    int result = (x_max - x_min) * (y_max - y_min);
+    if (x_min > x_max)
+        result = 0;
+    else if (y_min > y_max)
+        result = 0;
+    System.out.println(String.valueOf(result));
+}

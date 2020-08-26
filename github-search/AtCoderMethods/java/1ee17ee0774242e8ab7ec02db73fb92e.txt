@@ -1,0 +1,27 @@
+private static long dfs(int N, int state, Graph g) {
+    if (state == ((1 << N) - 1)) {
+        return 1;
+    }
+    if (dp[state] >= 0) {
+        return dp[state];
+    }
+    long ret = 0;
+    for (int i = 0; i < N; i++) {
+        if (((state >> i) & 1) == 0) {
+            boolean ok = true;
+            for (Graph.Path p : g.get(i)) {
+                if (((state >> p.to) & 1) == 1) {
+                    ok = false;
+                    break;
+                }
+            }
+            if (!ok) {
+                dp[state] = 0;
+                return 0;
+            }
+            ret += dfs(N, state | (1 << i), g);
+        }
+    }
+    dp[state] = ret;
+    return ret;
+}

@@ -1,0 +1,26 @@
+
+public static void addNexttoRowBranches(Queue<Branch> branches, Queue<MySet> pq, Map<Integer, Set<Integer>> tate, Map<Integer, Set<Integer>> yoko) {
+    while (!pq.isEmpty()) {
+        MySet ms = pq.poll();
+        Map<Integer, Set<Integer>> _map = null;
+        if (ms.isTate) {
+            _map = tate;
+        } else {
+            _map = yoko;
+        }
+        
+        Set<Integer> set1 = _map.get(ms.index);
+        Set<Integer> set2 = _map.get(ms.index - ms.value);
+        int townNum1 = -1;
+        int townNum2 = -1;
+        for (int i : set1) {
+            townNum1 = i;
+            break;
+        }
+        for (int i : set2) {
+            townNum2 = i;
+            break;
+        }
+        branches.add(new Branch(townNum1, townNum2, ms.value));
+    }
+}

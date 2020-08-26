@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int n = scan.nextInt();
+    if (n == 1) {
+        System.out.println(0);
+        return;
+    }
+    int output = n;
+    for (int i = 1; i <= n / 2; i++) {
+        int j = n / i;
+        int temp = Math.abs(i - j) + (n - i * j);
+        if (output > temp)
+            output = temp;
+    }
+    System.out.println(output);
+}

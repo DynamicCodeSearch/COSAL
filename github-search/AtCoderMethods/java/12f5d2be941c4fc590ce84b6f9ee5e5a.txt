@@ -1,0 +1,31 @@
+public static void main(String[] args) {
+    try {
+        
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+        String str = br.readLine();
+        ArrayList<String> arr = new ArrayList<String>();
+        int count = 0;
+        String before = "";
+        for (int i = 0; i < str.length(); i++) {
+            String tmp = str.substring(i, i + 1);
+            if ("".equals(before)) {
+                before = tmp;
+                count++;
+            } else if (tmp.equals(before)) {
+                count++;
+            } else {
+                arr.add(before + count);
+                before = tmp;
+                count = 1;
+            }
+        }
+        arr.add(before + count);
+        for (int i = 0; i < arr.size(); i++) {
+            System.out.print(arr.get(i));
+        }
+        System.out.println();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

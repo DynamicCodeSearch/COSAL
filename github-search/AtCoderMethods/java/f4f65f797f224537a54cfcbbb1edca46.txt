@@ -1,0 +1,17 @@
+void solve() {
+    int x1 = sc.nextInt();
+    int y1 = sc.nextInt();
+    r = sc.nextInt();
+    x2 = sc.nextInt() - x1;
+    y2 = sc.nextInt() - y1;
+    x3 = sc.nextInt() - x1;
+    y3 = sc.nextInt() - y1;
+    int ans = 0;
+    ans |= f(0, r);
+    ans |= f(0, -r);
+    ans |= f(r, 0);
+    ans |= f(-r, 0);
+    for (int x = x2; x <= x3; x++) for (int y = y2; y <= y3; y++) ans |= f(x, y);
+    out.println((ans & 1) != 0 ? "YES" : "NO");
+    out.println((ans & 2) != 0 ? "YES" : "NO");
+}

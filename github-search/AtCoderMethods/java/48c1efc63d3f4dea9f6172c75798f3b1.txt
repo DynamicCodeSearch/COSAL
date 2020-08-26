@@ -1,0 +1,65 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    
+    int N = sc.nextInt();
+    int A = sc.nextInt();
+    int B = sc.nextInt();
+    double[] v = new double[N];
+    for (int i = 0; i < N; i++) {
+        v[i] = sc.nextLong();
+    }
+    Arrays.sort(v);
+    
+    long[][] pascal = Pascal(N);
+    
+    double suma = 0;
+    for (int i = 0; i < A; i++) {
+        suma = suma + v[N - 1 - i];
+    }
+    double avea = (double) suma / A;
+    String ansave = String.format("%.6f", avea);
+    
+    
+    
+    int samea = 1;
+    for (int i = 0; i < A - 1; i++) {
+        if (v[N - A] == v[N - A + 1 + i]) {
+            samea += 1;
+        } else {
+            break;
+        }
+    }
+    int bunboa = samea;
+    
+    for (int i = 0; i < N - A; i++) {
+        if (v[N - A] == v[N - A - i - 1]) {
+            samea += 1;
+        } else {
+            break;
+        }
+    }
+    int bunshia = samea;
+    
+    long comba = pascal[bunshia][bunboa];
+    
+    int sameb = 0;
+    long combb = 0;
+    long sumcombb = 0;
+    if (B > A) {
+        
+        for (int i = 0; i < N; i++) {
+            if (v[N - 1 - i] == v[N - 1]) {
+                sameb += 1;
+            }
+        }
+        
+        for (int i = 0; i < B - A; i++) {
+            combb = pascal[sameb][A + 1 + i];
+            sumcombb += combb;
+        }
+    }
+    long sumcombab = comba + sumcombb;
+    
+    System.out.println(ansave);
+    System.out.println(sumcombab);
+}

@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    int N = sc.nextInt();
+    int T = sc.nextInt();
+    int min = Integer.MAX_VALUE;
+    int diff = 0;
+    int[] A = new int[N];
+    for (int i = 0; i < N; i++) {
+        A[i] = sc.nextInt();
+        min = Math.min(min, A[i]);
+        diff = Math.max(diff, A[i] - min);
+    }
+    min = Integer.MAX_VALUE;
+    int max = 0;
+    int minCount = 0;
+    int maxCount = 0;
+    int ans = 0;
+    for (int i = 0; i < N; i++) {
+        if (A[i] < min) {
+            ans += Math.min(minCount, maxCount);
+            min = A[i];
+            minCount = 1;
+            maxCount = 0;
+        } else if (A[i] == min) {
+            ++minCount;
+        }
+        if (A[i] == min + diff) {
+            ++maxCount;
+        }
+    }
+    ans += Math.min(minCount, maxCount);
+    System.out.println(ans);
+}

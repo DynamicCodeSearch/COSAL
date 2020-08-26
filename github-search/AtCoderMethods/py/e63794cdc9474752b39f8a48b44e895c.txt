@@ -1,0 +1,27 @@
+def main():
+    w, h, n = map(int, input().split())
+    f = [[1] * w for _ in range(h)]
+
+    for _ in range(n):
+        x, y, a = map(int, input().split())
+        if a == 1:
+            for i in range(h):
+                for j in range(x):
+                    f[i][j] = 0
+        if a == 2:
+            for i in range(h):
+                for j in range(x, w):
+                    f[i][j] = 0
+        if a == 3:
+            for i in range(h - y, h):
+                for j in range(w):
+                    f[i][j] = 0
+        if a == 4:
+            for i in range(h - y):
+                for j in range(w):
+                    f[i][j] = 0
+
+    ans = 0
+    for l in f:
+        ans += sum(l)
+    print(ans)

@@ -1,0 +1,12 @@
+void update() {
+    for (int i = 1; i <= N; i++) {
+        int trg = xs[i - 1];
+        for (int j = 0; j < dp[0].length; j++) {
+            if (j < trg || j > 2 * nx - trg) {
+                dp[i][j] = dp[i - 1][j];
+            } else if (j - trg >= 0 && j - trg < dp[0].length) {
+                dp[i][j] = dp[i - 1][j] + dp[i - 1][j - trg];
+            }
+        }
+    }
+}

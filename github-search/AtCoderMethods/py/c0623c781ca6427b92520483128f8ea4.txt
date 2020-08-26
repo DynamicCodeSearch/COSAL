@@ -1,0 +1,48 @@
+def D(N, TIME):
+
+    time = []
+    for lst in TIME:
+        S_hh = int(lst[0:2])  
+        S_mm = int(lst[2:4])  
+        E_hh = int(lst[5:7])  
+        E_mm = int(lst[7:9])  
+        start = S_hh * 60 + S_mm  
+        end = E_hh * 60 + E_mm  
+        start -= start % 5  
+        end += (5 - (end % 5)) % 5
+        time.append([start, end])
+    time.sort()  
+
+
+    time_part = [0] * 1442  
+    for lst in time:
+        start_index = lst[0]
+        end_index = lst[1]
+        time_part[start_index] += 1
+        time_part[end_index + 1] -= 1
+    for i in range(len(time_part) - 1):
+        time_part[i + 1] += time_part[i]
+
+
+    f = 0  
+    s = []
+    t = []
+    for i in range(len(time_part)):
+        if time_part[i] > 0 and f == 0:
+            s.append(i)
+            f = 1
+        if time_part[i] == 0 and f == 1:
+            t.append(i - 1)
+            f = 0
+
+
+    rain_time = ''
+    for i in range(len(s)):
+        s_hh = s[i] // 60
+        s_mm = s[i] % 60
+        e_hh = t[i] // 60
+        e_mm = t[i] % 60
+        rain_time += '{0:02d}{1:02d}-{2:02d}{3:02d}\n'.format(
+            s_hh, s_mm, e_hh, e_mm)
+    rain_time = rain_time[:-1]
+    return rain_time

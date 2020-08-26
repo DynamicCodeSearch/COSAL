@@ -1,0 +1,22 @@
+private void solve() {
+    part(0, n);
+    int count = 0;
+    while (!queue.isEmpty()) {
+        Val v = queue.poll();
+        ans[count++] = as[v.st];
+        ans[count++] = as[v.ed];
+        if (v.st - v.rangeST > 0)
+            part(v.rangeST, v.st);
+        if (v.ed - v.st - 1 > 0)
+            part(v.st + 1, v.ed);
+        if (v.rangeED - v.ed - 1 > 0)
+            part(v.ed + 1, v.rangeED);
+    }
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < n - 1; i++) {
+        sb.append(ans[i]);
+        sb.append(" ");
+    }
+    sb.append(ans[n - 1]);
+    System.out.println(sb.toString());
+}

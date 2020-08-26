@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    InputStreamReader is = new InputStreamReader(System.in);
+    BufferedReader br = new BufferedReader(is);
+    String input1;
+    String input2;
+    try {
+        input1 = br.readLine();
+        input2 = br.readLine();
+    } catch (IOException e) {
+        return;
+    }
+    int N = Integer.valueOf(input1);
+    String[] cardS = input2.split(" ");
+    HashSet<String> hs = new HashSet<String>();
+    for (String s : cardS) hs.add(s);
+    int unique = hs.size();
+    if ((N - unique) % 2 == 1)
+        System.out.print(unique - 1);
+    else
+        System.out.print(unique);
+}

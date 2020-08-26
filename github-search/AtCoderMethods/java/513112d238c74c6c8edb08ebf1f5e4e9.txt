@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    sc.nextLine();
+    BigDecimal[] array = new BigDecimal[n];
+    for (int i = 0; i < n; i++) {
+        array[i] = new BigDecimal(sc.nextLine());
+    }
+    sc.close();
+    Arrays.sort(array);
+    BigDecimal b = array[n - 1];
+    BigDecimal comparer = new BigDecimal(0);
+    BigDecimal[] divideArray = new BigDecimal[2];
+    BigDecimal nT = new BigDecimal(0);
+    for (int i = n - 2; i >= 0; i--) {
+        divideArray = b.divideAndRemainder(array[i]);
+        nT = array[i];
+        while (divideArray[1].compareTo(comparer) != 0) {
+            BigDecimal mT = nT;
+            nT = divideArray[1];
+            divideArray = mT.divideAndRemainder(nT);
+        }
+        if (nT.compareTo(comparer) != 0) {
+            b = b.multiply(array[i]).divide(nT);
+        }
+    }
+    System.out.println(b.toString());
+}

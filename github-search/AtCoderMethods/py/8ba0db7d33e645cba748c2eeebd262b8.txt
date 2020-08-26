@@ -1,0 +1,19 @@
+def main():
+    N = I()
+    a = LI()
+    r = 0
+    f = True
+    while f:
+        f = False
+        for i in range(N):
+            if a[i] < N:
+                continue
+            f = True
+            t = a[i] // N
+            r += t
+            for j in range(N):
+                if i == j:
+                    continue
+                a[j] += t
+            a[i] -= t * N
+    return r

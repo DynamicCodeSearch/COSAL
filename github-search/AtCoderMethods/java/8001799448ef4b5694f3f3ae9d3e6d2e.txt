@@ -1,0 +1,9 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    List<Position> list = new ArrayList<>();
+    IntStream.range(0, N).forEach(i -> list.add(new Position(sc.nextInt(), sc.nextInt())));
+    int max = 0;
+    for (Position l : list) for (Position r : list) max = Math.max(max, r.Dist(l));
+    System.out.println(Math.sqrt(max));
+}

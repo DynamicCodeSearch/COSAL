@@ -1,0 +1,54 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    Long n = sc.nextLong();
+    Long h = sc.nextLong();
+    Long a = sc.nextLong();
+    Long b = sc.nextLong();
+    Long c = sc.nextLong();
+    Long d = sc.nextLong();
+    Long e = sc.nextLong();
+    Long goodFood;
+    Long goodFoodMoney;
+    Long badFood;
+    Long badFoodMoney;
+    {
+        double d1 = ((double) (b)) / a;
+        double d2 = ((double) (d)) / c;
+        if (d1 > d2) {
+            goodFoodMoney = a;
+            goodFood = b;
+            badFoodMoney = c;
+            badFood = d;
+        } else {
+            goodFoodMoney = c;
+            goodFood = d;
+            badFoodMoney = a;
+            badFood = b;
+        }
+    }
+    Long now = h;
+    Long money = new Long(0);
+    Long goodCount = new Long(0);
+    for (int i = 0; i < n; i++) {
+        if (now - e > 0) {
+            now = now - e;
+        } else {
+            now = now + goodFood;
+            money = money + goodFoodMoney;
+            goodCount++;
+        }
+    }
+    for (int i = 0; i < goodCount; i++) {
+        Long now2 = h + (i * goodFood) - (e * (n - i));
+        Long money2 = i * goodFoodMoney;
+        Long badCount = (-1 * now2) / (badFood + e);
+        
+        badCount++;
+        
+        money2 = money2 + (badCount * badFoodMoney);
+        if (money > money2) {
+            money = money2;
+        }
+    }
+    System.out.println(money);
+}

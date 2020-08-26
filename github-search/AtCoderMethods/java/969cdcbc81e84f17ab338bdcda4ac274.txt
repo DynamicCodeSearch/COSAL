@@ -1,0 +1,9 @@
+private void dfs(int i) {
+    visited[i] = true;
+    for (int next : graph.nexts(i)) {
+        if (!visited[next]) {
+            dfs(next);
+        }
+    }
+    rev[rvn++] = i;
+}

@@ -1,0 +1,41 @@
+def solution():
+	n,m = [int(x) for x in input().split(' ')]
+ e = []
+ ans = 0 
+
+ for i in range(m):
+		_x,_y = [int(x) for x in input().split(' ')]
+  e.append((_x-1,_y-1))
+
+ for i in range(m):
+		matrix = []
+  for _i in range(n):
+				matrix.append([-1]*n)
+  for _i in range(m):
+			if _i != i: 
+				_e = e[_i]
+    matrix[_e[0]][_e[1]]  = 1
+    matrix[_e[1]][_e[0]]  = 1
+
+  for k in range(n):
+			for _i in range(n):
+				for _j in range(n):
+					if _i!=_j:
+						if matrix[_i][k] >0 and matrix[k][_j] > 0:
+							if matrix[_i][_j]>0:
+								matrix[_i][_j] = min(matrix[_i][_j],matrix[_i][k]+matrix[k][_j])
+       else:
+								matrix[_i][_j] = matrix[_i][k]+matrix[k][_j]
+  isconnected = True
+  for _i in range(n):
+			if not(isconnected):
+				break   
+   for _j in range(n):
+				if _i == _j:
+					continue
+    if matrix[_i][_j] == -1:
+					isconnected = False
+     ans+=1
+     break
+
+ print(ans)

@@ -1,0 +1,32 @@
+long calc(int x, int y) {
+    
+    Point[] ps = new Point[y];
+    for (int j = 1; j <= y; j++) {
+        ps[j - 1] = new Point(j, Bmax[y][j]);
+    }
+    Polygon convexHull = new Polygon(ps).getUpperConvexHull();
+    int size = convexHull.getSize();
+    long[] xs = new long[size];
+    long[] ys = new long[size];
+    for (int i = 0; i < size; i++) {
+        xs[i] = (long) convexHull.ps[i].x;
+        ys[i] = (long) convexHull.ps[i].y;
+    }
+    long res = Long.MIN_VALUE;
+    for (int nx = 1; nx <= x; nx++) {
+        int lo = 0, hi = size - 1;
+        while (hi - lo > 2) {
+            int d = (hi - lo) / 3;
+            int mid1 = lo + d;
+            int mid2 = hi - d;
+            if (xs[mid1] * Amax[x][nx] + ys[mid1] * nx < xs[mid2] * Amax[x][nx] + ys[mid2] * nx)
+                lo = mid1;
+            else
+                hi = mid2;
+        }
+        for (int j = lo; j <= hi; j++) {
+            res = Math.max(res, xs[j] * Amax[x][nx] + ys[j] * nx);
+        }
+    }
+    return res;
+}

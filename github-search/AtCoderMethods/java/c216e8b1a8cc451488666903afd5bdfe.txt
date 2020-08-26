@@ -1,0 +1,16 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int[] array = in.nextIntArray0indexed(n);
+    int ans = 0;
+    for (int i = 0; i < n - 2; i++) {
+        if (array[i] == i) {
+            ans++;
+            int tmp = array[i];
+            array[i] = array[i + 1];
+            array[i + 1] = tmp;
+        }
+    }
+    if (array[n - 2] == n - 2 || array[n - 1] == n - 1)
+        ans++;
+    out.println(ans);
+}

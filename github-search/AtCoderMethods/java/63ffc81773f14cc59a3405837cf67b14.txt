@@ -1,0 +1,22 @@
+boolean check(int[] a, int x) {
+    if (a[x] >= k)
+        return false;
+    boolean[] dp = new boolean[k * 2 + 1];
+    dp[a[x]] = true;
+    for (int i = 0; i < n; i++) {
+        if (i == x)
+            continue;
+        if (a[i] >= k)
+            break;
+        for (int j = dp.length - 1 - a[i]; j >= 0; j--) {
+            if (!dp[j])
+                continue;
+            dp[j + a[i]] = true;
+        }
+    }
+    for (int i = k; i < k + a[x]; i++) {
+        if (dp[i])
+            return false;
+    }
+    return true;
+}

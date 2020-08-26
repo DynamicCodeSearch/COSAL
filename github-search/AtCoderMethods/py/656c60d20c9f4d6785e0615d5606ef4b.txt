@@ -1,0 +1,21 @@
+def Restoring_Road_Network3():
+
+    import scipy.sparse.csgraph as graph
+
+    MAX = [10000000000]*N  
+    d = np.diag(MAX)
+    C = A.copy()
+    C += d
+    total_dis = 0
+    n_path = 0
+    for i in range(N-1):
+        for j in range(i+1, N):
+            dis_two_node = np.min(C[i] + C[j])
+            if dis_two_node > C[i,j]:
+                total_dis += C[i,j]
+
+            elif dis_two_node < C[i,j]:
+                print(-1)
+                exit()
+
+    print(total_dis)

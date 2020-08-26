@@ -1,0 +1,21 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String o = br.readLine();
+    char[] arr1 = o.toCharArray();
+    System.out.println("");
+    String e = br.readLine();
+    char[] arr2 = e.toCharArray();
+    int size = arr1.length + arr2.length;
+    char[] arr3 = new char[size];
+    int j = 0;
+    for (int i = 0; i < size; i++) {
+        if (i % 2 == 0) {
+            arr3[i] = arr1[j];
+        } else if (i % 2 == 1) {
+            arr3[i] = arr2[j];
+            j++;
+        }
+    }
+    String res = new String(arr3);
+    System.out.println(res);
+}

@@ -1,0 +1,43 @@
+private void solve() {
+    int n = in.nextInt();
+    int m = in.nextInt();
+    int[] a = new int[1001];
+    int[] b = new int[1001];
+    int[] c = new int[1001];
+    int[][] dist = new int[101][101];
+    for (int i = 0; i <= 100; i++) {
+        for (int j = 0; j <= 100; j++) {
+            if (i == j)
+                dist[i][j] = 0;
+            else
+                dist[i][j] = (int) 1e7;
+        }
+    }
+    for (int i = 0; i < m; i++) {
+        a[i] = in.nextInt() - 1;
+        b[i] = in.nextInt() - 1;
+        c[i] = in.nextInt();
+        dist[a[i]][b[i]] = c[i];
+        dist[b[i]][a[i]] = c[i];
+    }
+    for (int k = 0; k < n; k++) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (dist[i][k] + dist[k][j] < dist[i][j]) {
+                    dist[i][j] = dist[i][k] + dist[k][j];
+                }
+            }
+        }
+    }
+    int ans = m;
+    for (int j = 0; j < m; j++) {
+        boolean check = false;
+        for (int i = 0; i < n; i++) {
+            if (dist[i][a[j]] + c[j] == dist[i][b[j]] || dist[i][b[j]] + c[j] == dist[i][a[j]])
+                check = true;
+        }
+        if (check)
+            ans--;
+    }
+    out.print(ans);
+}

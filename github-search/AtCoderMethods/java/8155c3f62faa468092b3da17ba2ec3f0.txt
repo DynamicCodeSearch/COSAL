@@ -1,0 +1,14 @@
+public int getMaxFlow(int src, int tank) {
+    this.tank = tank;
+    int res = 0;
+    while (dinic_bfs(src)) {
+        Arrays.fill(ptr, 0);
+        while (true) {
+            int df = dinic_dfs(src, Integer.MAX_VALUE);
+            if (df == 0)
+                break;
+            res += df;
+        }
+    }
+    return res;
+}

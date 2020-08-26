@@ -1,0 +1,22 @@
+public void solve() {
+    N = nextInt();
+    a = new int[N];
+    for (int i = 0; i < N; i++) {
+        a[i] = nextInt();
+    }
+    int[] abs = new int[N];
+    for (int i = 0; i < N; i++) {
+        abs[a[i]]++;
+    }
+    long ans = 1;
+    for (int i = N % 2 == 0 ? 1 : 0; i < N; i += 2) {
+        if (i == 0) {
+            ans *= abs[i] == 1 ? 1 : 0;
+            ans %= MOD;
+        } else {
+            ans *= abs[i] == 2 ? 2 : 0;
+            ans %= MOD;
+        }
+    }
+    out.println(ans);
+}

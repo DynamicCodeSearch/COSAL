@@ -1,0 +1,31 @@
+private static String dubiousDocument(String[] arr) {
+    int[][] map = new int[arr.length][26];
+    
+    for (int i = 0; i < arr.length; i++) {
+        for (char c : arr[i].toCharArray()) {
+            map[i][c - 'a']++;
+        }
+    }
+    int[] minMap = new int[26];
+    
+    for (int j = 0; j < 26; j++) {
+        minMap[j] = Integer.MAX_VALUE;
+        for (int i = 0; i < arr.length; i++) {
+            if (map[i][j] == 0) {
+                
+                minMap[j] = 0;
+                break;
+            } else {
+                minMap[j] = Math.min(minMap[j], map[i][j]);
+            }
+        }
+    }
+    
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < 26; i++) {
+        for (int j = 0; j < minMap[i]; j++) {
+            sb.append((char) ('a' + i));
+        }
+    }
+    return sb.toString();
+}

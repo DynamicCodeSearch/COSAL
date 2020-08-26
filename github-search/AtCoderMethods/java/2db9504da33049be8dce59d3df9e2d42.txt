@@ -1,0 +1,30 @@
+public void solve(ArrayList<String> inLines) {
+    N = Integer.parseInt(inLines.get(0));
+    str = inLines.get(1);
+    animals = new char[N];
+    animals[0] = 'S';
+    animals[1] = 'S';
+    if (check()) {
+        System.out.println(animals);
+        return;
+    }
+    animals[0] = 'S';
+    animals[1] = 'W';
+    if (check()) {
+        System.out.println(animals);
+        return;
+    }
+    animals[0] = 'W';
+    animals[1] = 'S';
+    if (check()) {
+        System.out.println(animals);
+        return;
+    }
+    animals[0] = 'W';
+    animals[1] = 'W';
+    if (check()) {
+        System.out.println(animals);
+        return;
+    }
+    System.out.println(-1);
+}

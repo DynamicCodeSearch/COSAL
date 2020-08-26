@@ -1,0 +1,21 @@
+public static void test() {
+    int n = 5;
+    int m = 7;
+    int[][] count = new int[n][m];
+    for (int i1 = 0; i1 < n; i1++) {
+        for (int i2 = i1; i2 < n; i2++) {
+            for (int j1 = 0; j1 < m; j1++) {
+                for (int j2 = j1; j2 < m; j2++) {
+                    for (int i = i1; i <= i2; i++) {
+                        for (int j = j1; j <= j2; j++) {
+                            count[i][j]++;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        System.out.println(Arrays.toString(count[i]));
+    }
+}

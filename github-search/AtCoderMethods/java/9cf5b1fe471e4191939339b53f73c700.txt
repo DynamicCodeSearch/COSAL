@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int N = scanner.nextInt();
+    int M = scanner.nextInt();
+    int[] a = new int[M], b = new int[M];
+    Set<Integer> land1 = new HashSet<>(), landN = new HashSet<>();
+    for (int i = 0; i < M; i++) {
+        a[i] = scanner.nextInt();
+        b[i] = scanner.nextInt();
+        if (a[i] == 1) {
+            land1.add(b[i]);
+        }
+        if (b[i] == N) {
+            landN.add(a[i]);
+        }
+    }
+    boolean result = (land1.stream().filter(landN::contains).count() != 0);
+    System.out.println(result ? "POSSIBLE" : "IMPOSSIBLE");
+}

@@ -1,0 +1,18 @@
+static void solve() {
+    int n = ni();
+    int ans = 0;
+    HashMap<Integer, Integer> h = new HashMap<>();
+    for (int i = 0; i < n; i++) {
+        int tmp = ni();
+        if (h.get(tmp) != null) {
+            h.put(tmp, h.get(tmp) + 1);
+        } else {
+            h.put(tmp, 1);
+        }
+    }
+    for (int i : h.keySet()) {
+        ans += h.get(i) % 2;
+    }
+    System.out.println(ans);
+
+}

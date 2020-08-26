@@ -1,0 +1,14 @@
+private final boolean containsBlack(char[][] image, int i, int j) {
+    boolean result = false;
+    for (int u = i - 1; u <= i + 1; u++) {
+        if (result == true)
+            break;
+        for (int v = j - 1; v <= j + 1; v++) {
+            if (isValid(u, v) && image[u][v] == BLACK) {
+                result = true;
+                break;
+            }
+        }
+    }
+    return result;
+}

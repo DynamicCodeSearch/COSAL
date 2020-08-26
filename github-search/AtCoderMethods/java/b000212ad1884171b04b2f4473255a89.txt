@@ -1,0 +1,33 @@
+public static void main(String[] $) {
+    int n = getInt(), a[] = INS(n * 3).toArray();
+    PriorityQueue<Integer> left = new PriorityQueue<>(), right = new PriorityQueue<>();
+    long[] lres = new long[n + 1];
+    {
+        for (int i = 0; i < n; ++i) {
+            int v = a[i];
+            lres[0] += v;
+            left.add(v);
+        }
+        for (int i = 1; i <= n; ++i) {
+            int v = a[n + i - 1];
+            left.add(v);
+            lres[i] = lres[i - 1] + v - left.poll();
+        }
+    
+    }
+    long[] rres = new long[n + 1];
+    {
+        for (int i = 0; i < n; ++i) {
+            int v = -a[n * 3 - 1 - i];
+            rres[0] += v;
+            right.add(v);
+        }
+        for (int i = 1; i <= n; ++i) {
+            int v = -a[n * 2 - i];
+            right.add(v);
+            rres[i] = rres[i - 1] + v - right.poll();
+        }
+    
+    }
+    System.out.println(REPS(n + 1).mapToLong(i -> lres[i] + rres[n - i]).max().getAsLong());
+}

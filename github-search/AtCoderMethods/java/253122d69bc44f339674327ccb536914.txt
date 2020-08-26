@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = Integer.parseInt(sc.next());
+    int M = Integer.parseInt(sc.next());
+    boolean[][] path = new boolean[N][N];
+    for (int i = 0; i < N; i++) for (int j = 0; j < N; j++) path[i][j] = false;
+    for (int i = 0; i < M; i++) {
+        
+        int a = Integer.parseInt(sc.next());
+        int b = Integer.parseInt(sc.next());
+        path[(a - 1)][(b - 1)] = true;
+        path[(b - 1)][(a - 1)] = true;
+    }
+    
+    boolean[] position = new boolean[N];
+    position[0] = true;
+    
+    for (int i = 1; i < N; i++) position[i] = false;
+    int cnt = Search(N, 0, position, path);
+    System.out.println(cnt);
+    sc.close();
+}

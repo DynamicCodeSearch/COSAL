@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    int n = s.nextInt(), ng[] = { s.nextInt(), s.nextInt(), s.nextInt() };
+    for (int k = 0; k < 3; k++) if (n == ng[k]) {
+        System.out.println("NO");
+        return;
+    }
+    loop: for (int i = 0; i < 100 && n > 0; i++) {
+        
+        check: for (int j = 3; j >= 1; j--) {
+            for (int k = 0; k < 3; k++) {
+                if (n - j == ng[k])
+                    continue check;
+            }
+            n -= j;
+            continue loop;
+        }
+        break;
+    }
+    if (n <= 0) {
+        System.out.println("YES");
+    } else {
+        System.out.println("NO");
+    }
+}

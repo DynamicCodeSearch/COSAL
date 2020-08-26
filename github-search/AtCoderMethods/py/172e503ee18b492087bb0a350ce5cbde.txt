@@ -1,0 +1,25 @@
+def solve():
+    def dfs(child, v):
+        if not child[v]:
+            return 1
+
+        max_k = 0
+        min_k = inf
+
+        for u in child[v]:
+            tmp = dfs(child, u)
+            max_k = max(max_k, tmp)
+            min_k = min(min_k, tmp)
+
+        return 1 + max_k + min_k
+
+    N = int(input())
+    child = [[] for i in range(N)]
+
+    for i in range(1, N):
+        b = int(input()) - 1
+        child[b].append(i)
+
+    ans = dfs(child, 0)
+
+    print(ans)

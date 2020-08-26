@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int m = sc.nextInt();
+    int n = sc.nextInt();
+    int N = sc.nextInt();
+    int count = N;
+    while (true) {
+        count += (N / m) * n;
+        N = N % m + (N / m) * n;
+        if (N / m == 0)
+            break;
+    }
+    System.out.println(count);
+}

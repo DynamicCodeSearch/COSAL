@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    int K = sc.nextInt();
+    int[][] w = sc.nextIntTable(N, N);
+    long[] dp = new long[1 << N];
+    long[] memo = new long[1 << N];
+    for (int state = 0; state < (1 << N); state++) {
+        for (int i = 0; i < N; i++) {
+            for (int j = i + 1; j < N; j++) {
+                if (((state >> i) & 1) == 1 && ((state >> j) & 1) == 1) {
+                    memo[state] += w[i][j];
+                }
+            }
+        }
+    }
+    for (int state = 0; state < (1 << N); state++) {
+        int sub = state;
+        do {
+            if (sub != 0) {
+                long m = memo[state] - memo[sub] - memo[state ^ sub];
+                dp[state] = Math.max(dp[state], K + dp[state ^ sub] - m);
+            }
+            sub = (sub - 1) & state;
+        } while (sub != state);
+    }
+    System.out.println(dp[(1 << N) - 1]);
+}

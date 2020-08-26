@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    String line = in.nextLine();
+    in.close();
+    String[] ary = line.split(" ");
+    boolean w7 = false;
+    boolean[] w5 = { false, false };
+    for (String w : ary) {
+        int intW = Integer.parseInt(w.trim());
+        if (intW != 5 && intW != 7) {
+            System.out.println("NO");
+            return;
+        } else if (intW == 7 && w7) {
+            System.out.println("NO");
+            return;
+        } else if (intW == 5 && w5[0] && w5[1]) {
+            System.out.println("NO");
+            return;
+        } else if (intW == 7 && w7 == false) {
+            w7 = true;
+        } else if (intW == 5) {
+            if (w5[0] == false) {
+                w5[0] = true;
+            } else if (w5[1] == false) {
+                w5[1] = true;
+            }
+        }
+    }
+    if (w7 && w5[0] && w5[1]) {
+        System.out.println("YES");
+    }
+}

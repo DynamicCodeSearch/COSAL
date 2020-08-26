@@ -1,0 +1,6 @@
+public static void addFenwick(long[] ft, int i, int v) {
+    if (v == 0 || i < 0)
+        return;
+    int n = ft.length;
+    for (i++; i < n; i += i & -i) ft[i] += v;
+}

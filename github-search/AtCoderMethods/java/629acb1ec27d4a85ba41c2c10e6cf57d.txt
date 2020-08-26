@@ -1,0 +1,11 @@
+static int find(int i, int j) {
+    int cnt = 0;
+    int[][] d = { { -1, -1 }, { -1, 0 }, { -1, 1 }, { 0, 1 }, { 0, -1 }, { 1, -1 }, { 1, 0 }, { 1, 1 } };
+    for (int p = 0; p < 8; p++) {
+        int x = i + d[p][0];
+        int y = j + d[p][1];
+        if (valid(x, y) && s[x][y] == '#')
+            cnt++;
+    }
+    return cnt;
+}

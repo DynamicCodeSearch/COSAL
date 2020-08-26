@@ -1,0 +1,66 @@
+void solve() throws IOException {
+    int n = ni();
+    String s = ns();
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 2; j++) {
+            int[] a = new int[n];
+            a[0] = i;
+            a[1] = j;
+            for (int k = 2; k < n; k++) {
+                boolean isSame = s.charAt(k - 1) == 'o';
+                if (a[k - 1] == 1)
+                    isSame = !isSame;
+                a[k] = isSame ? a[k - 2] : 1 - a[k - 2];
+            }
+            if (a[n - 1] == 0) {
+                if (s.charAt(n - 1) == 'o') {
+                    if (a[n - 2] != a[0]) {
+                        continue;
+                    }
+                } else {
+                    if (a[n - 2] == a[0]) {
+                        continue;
+                    }
+                }
+            } else {
+                if (s.charAt(n - 1) == 'o') {
+                    if (a[n - 2] == a[0]) {
+                        continue;
+                    }
+                } else {
+                    if (a[n - 2] != a[0]) {
+                        continue;
+                    }
+                }
+            }
+            if (a[0] == 0) {
+                if (s.charAt(0) == 'o') {
+                    if (a[n - 1] != a[1]) {
+                        continue;
+                    }
+                } else {
+                    if (a[n - 1] == a[1]) {
+                        continue;
+                    }
+                }
+            } else {
+                if (s.charAt(0) == 'o') {
+                    if (a[n - 1] == a[1]) {
+                        continue;
+                    }
+                } else {
+                    if (a[n - 1] != a[1]) {
+                        continue;
+                    }
+                }
+            }
+            StringBuilder sb = new StringBuilder();
+            for (int k = 0; k < n; k++) {
+                sb.append(a[k] == 0 ? "S" : "W");
+            }
+            out.println(sb);
+            return;
+        }
+    }
+    out.println(-1);
+}

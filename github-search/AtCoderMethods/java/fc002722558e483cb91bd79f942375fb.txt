@@ -1,0 +1,12 @@
+static void mark_around(int y, int x, char c, char[][] compressed) {
+    int[] arr = { -1, 0, 1 };
+    for (int i : arr) {
+        for (int j : arr) {
+            int posX = x + j;
+            int posY = y + i;
+            if (0 <= posY && posY < H && 0 <= posX && posX < W) {
+                compressed[posY][posX] = c;
+            }
+        }
+    }
+}

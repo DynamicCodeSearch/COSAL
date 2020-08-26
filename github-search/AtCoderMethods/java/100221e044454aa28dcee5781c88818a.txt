@@ -1,0 +1,16 @@
+public void run() {
+    String s = next();
+    for (int i = 0; i < s.length() - 1; i++) {
+        if (s.charAt(i) == s.charAt(i + 1)) {
+            out.printf("%d %d", i + 1, i + 1 + 1);
+            return;
+        }
+    }
+    for (int i = 0; i < s.length() - 2; i++) {
+        if (s.charAt(i) == s.charAt(i + 2)) {
+            out.printf("%d %d", i + 1, i + 1 + 2);
+            return;
+        }
+    }
+    out.println("-1 -1");
+}

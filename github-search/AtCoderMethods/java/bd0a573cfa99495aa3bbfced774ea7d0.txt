@@ -1,0 +1,8 @@
+static long pow(long a, long x) {
+    if (x == 1)
+        return a;
+    else if (x % 2 == 0)
+        return pow((a * a) % m, x / 2);
+    else
+        return (pow((a * a) % m, x / 2) * a) % m;
+}

@@ -1,0 +1,31 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int h = in.nextInt();
+    int w = in.nextInt();
+    char[][] map = new char[h][];
+    for (int i = 0; i < h; i++) {
+        map[i] = in.nextToken().toCharArray();
+    }
+    MaxFlowDinic dinic = new MaxFlowDinic();
+    dinic.init(h + w + 2);
+    int source = h + w;
+    int sink = source + 1;
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            if (map[i][j] == 'S') {
+                dinic.edge(source, i, INF);
+                dinic.edge(source, h + j, INF);
+            } else if (map[i][j] == 'T') {
+                dinic.edge(i, sink, INF);
+                dinic.edge(h + j, sink, INF);
+            } else if (map[i][j] == 'o') {
+                dinic.edge(i, h + j, 1);
+                dinic.edge(h + j, i, 1);
+            }
+        }
+    }
+    int ret = dinic.max_flow(source, sink);
+    out.println(ret >= INF ? -1 : ret);
+    out.flush();
+}

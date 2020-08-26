@@ -1,0 +1,15 @@
+public final void update(int nodeIndex, long value) {
+    int index = search(nodeIndex);
+    if (index < 0) {
+        add(new Node(nodeIndex, value));
+    } else {
+        Node node = nodes[index];
+        if (value < node.value) {
+            node.value = value;
+            upward(index);
+        } else if (value > node.value) {
+            node.value = value;
+            downward(index);
+        }
+    }
+}

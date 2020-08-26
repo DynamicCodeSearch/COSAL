@@ -1,0 +1,12 @@
+public int binary(int w) {
+    if (w <= 0)
+        return 0;
+    int x = 0;
+    for (int k = n % 2 == 0 ? n : n - 1; k > 0; k /= 2) {
+        if (x + k <= n && bit[x + k] < w) {
+            w -= bit[x + k];
+            x += k;
+        }
+    }
+    return x + 1;
+}

@@ -1,0 +1,27 @@
+public static void main(String[] args) throws IOException {
+    MyScanner sc = new MyScanner(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = sc.nextInt(), m = sc.nextInt();
+    g = new ArrayList[n];
+    for (int i = 0; i < n; i++) g[i] = new ArrayList<>();
+    for (int i = 0; i < m; i++) {
+        int u = sc.nextInt() - 1, v = sc.nextInt() - 1;
+        g[u].add(v);
+        g[v].add(u);
+    }
+    int[] dist = new int[n];
+    Arrays.fill(dist, oo);
+    dist[0] = 0;
+    Queue<Integer> q = new LinkedList<>();
+    q.add(0);
+    while (!q.isEmpty()) {
+        int u = q.poll();
+        for (int v : g[u]) if (dist[v] == oo) {
+            q.add(v);
+            dist[v] = dist[u] + 1;
+        }
+    }
+    out.println(dist[n - 1] > 2 ? "IMPOSSIBLE" : "POSSIBLE");
+    out.flush();
+    out.close();
+}

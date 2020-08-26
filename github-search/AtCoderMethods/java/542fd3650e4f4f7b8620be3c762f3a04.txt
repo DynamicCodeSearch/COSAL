@@ -1,0 +1,21 @@
+static void func1() {
+    PriorityQueue<Long> q = new PriorityQueue<>();
+    boolean[] visited = new boolean[N];
+    minB = new int[N];
+    q.add(0l);
+    while (q.size() > 0) {
+        Long cur = q.poll();
+        long cost = cur / N;
+        int town = (int) (cur % N);
+        if (visited[town])
+            continue;
+        visited[town] = true;
+        minB[town] = (int) cost;
+        for (int i = 0; i < node[town].e.size(); i++) {
+            int next = node[town].e.get(i);
+            int c = node[town].c.get(i);
+            if (!visited[next])
+                q.add((cost + c) * N + next);
+        }
+    }
+}

@@ -1,0 +1,5 @@
+static void solve(FastScanner sc, PrintWriter out) {
+    int[] cnt = new int[26];
+    sc.ns().chars().map(i -> i - 97).forEach(i -> cnt[i]++);
+    out.println(Arrays.stream(cnt).filter(i -> i % 2 == 0).count() == cnt.length ? "Yes" : "No");
+}

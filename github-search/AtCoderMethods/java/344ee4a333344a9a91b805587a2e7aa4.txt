@@ -1,0 +1,22 @@
+private static void solve() {
+    int n = sc.nextInt();
+    int x = sc.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = sc.nextInt();
+    }
+    long ret = 0;
+    for (int i = 1; i < n; i++) {
+        int sum1 = a[i - 1] + a[i];
+        int tmp = Math.min(a[i], Math.max(0, sum1 - x));
+        a[i] -= tmp;
+        ret += tmp;
+    }
+    for (int i = 0; i < n - 1; i++) {
+        int sum2 = a[i] + a[i + 1];
+        int tmp = Math.min(a[i], Math.max(0, sum2 - x));
+        ret += tmp;
+        a[i] -= tmp;
+    }
+    pr.println(ret);
+}

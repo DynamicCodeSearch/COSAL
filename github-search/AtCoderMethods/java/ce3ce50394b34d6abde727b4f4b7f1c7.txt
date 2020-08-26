@@ -1,0 +1,17 @@
+void exec() {
+    long ans = 0;
+    long count = 1;
+    int prev = a[0];
+    for (int i = 1; i < N; i++) {
+        if (prev >= a[i]) {
+            
+            ans += count * (1 + count) / 2;
+            count = 1;
+        } else {
+            count++;
+        }
+        prev = a[i];
+    }
+    ans += count * (1 + count) / 2;
+    System.out.println(ans);
+}

@@ -1,0 +1,25 @@
+void run() {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    list = new LinkedList[n];
+    
+    for (int i = 0; i < n; i++) {
+        list[i] = new LinkedList<Integer>();
+    }
+    
+    for (int i = 0; i < n - 1; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        list[a].add(b);
+        list[b].add(a);
+    }
+    
+    parent = new int[n];
+    
+    Arrays.fill(parent, -1);
+    parent[0] = 0;
+    makeParent(0);
+    a = new long[n];
+    b = new long[n];
+    System.out.println((a(0) + b(0)) % MOD);
+}

@@ -1,0 +1,11 @@
+public void update(int ind, long value) {
+    assert ind > 0;
+    ind = ind + 1;
+    while (ind < array.length) {
+        array[ind] ^= value;
+        
+        
+        
+        ind += ind & (-ind);
+    }
+}

@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String in = sc.nextLine();
+    String[] inArray = in.split(" ");
+    int N = Integer.parseInt(inArray[0]);
+    int L = Integer.parseInt(inArray[1]);
+    List<String> inList = new ArrayList<String>();
+    for (int i = 0; i < N; i++) {
+        String inStr = sc.nextLine();
+        inList.add(inStr);
+    }
+    Collections.sort(inList);
+    StringBuffer buf = new StringBuffer();
+    for (int i = 0; i < inList.size(); i++) {
+        buf.append(inList.get(i));
+    }
+    System.out.println(buf.toString());
+    sc.close();
+}

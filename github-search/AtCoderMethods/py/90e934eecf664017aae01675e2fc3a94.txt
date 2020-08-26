@@ -1,0 +1,29 @@
+def main(args):
+    A, B, C, D, E, F = map(int, input().split())
+
+    w = []
+    s = []
+    for i in range(int(F/100/A+1)):
+        for j in range(int(F/100/B+1)):
+            water = 100*A*i + 100*B*j
+            if  water <= F and water > 0:
+                w.append(water)
+
+    for i in range(int(F/C+1)):
+        for j in range(int(F/D+1)):
+            sugar = C*i + D*j
+            if sugar <= F and sugar > 0:
+                s.append(sugar)
+
+    max_density = (E*100) / (E+100)
+    record_density = 0.0
+    record = [w[0], 0]
+    for i in w:
+        for j in s:
+            if i+j <= F:
+                density = (100 * j) / (i + j)
+                if density > record_density and density <= max_density:
+                        record_density = density
+                        record = [i+j, j]
+
+    print(*record)

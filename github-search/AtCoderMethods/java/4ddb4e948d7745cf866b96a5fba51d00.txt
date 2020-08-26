@@ -1,0 +1,14 @@
+@SuppressWarnings("unchecked")
+void solve() throws Exception {
+    FastScanner in = new FastScanner(System.in);
+    int n = in.nextInt();
+    long[] a = new long[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = in.nextLong();
+    }
+    long[] b = a.clone();
+    for (int i = 0; i < b.length; i++) {
+        b[i] = -b[i];
+    }
+    System.out.println(Math.min(f(a), f(b)));
+}

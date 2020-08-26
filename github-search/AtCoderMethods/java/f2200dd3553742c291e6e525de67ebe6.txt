@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int K = sc.nextInt();
+    double[] w = new double[N];
+    double[] p = new double[N];
+    for (int i = 0; i < N; i++) {
+        w[i] = sc.nextDouble();
+        p[i] = sc.nextDouble();
+    }
+    double ok = 0;
+    double ng = 100;
+    for (int i = 0; i < 100; i++) {
+        double med = (ok + ng) / (double) 2;
+        ArrayList<Double> list = new ArrayList<Double>();
+        for (int j = 0; j < N; j++) {
+            list.add(w[j] * ((p[j] - med) / (double) 100));
+        }
+        Collections.sort(list);
+        Collections.reverse(list);
+        double flg = 0;
+        for (int j = 0; j < K; j++) {
+            flg += list.get(j);
+        }
+        if (flg >= 0) {
+            ok = med;
+        } else {
+            ng = med;
+        }
+    }
+    System.out.println(ok);
+}

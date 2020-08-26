@@ -1,0 +1,18 @@
+public String toString() {
+    StringBuilder sb = new StringBuilder();
+    boolean onLine = false;
+    for (int i = 0; i < table.length; i++) {
+        if (onLine) {
+            if (!table[i]) {
+                onLine = false;
+                sb.append(String.format("%02d%02d\r\n", (i - 1) / 60, (i - 1) % 60));
+            }
+        } else {
+            if (table[i]) {
+                onLine = true;
+                sb.append(String.format("%02d%02d-", i / 60, i % 60));
+            }
+        }
+    }
+    return sb.toString();
+}

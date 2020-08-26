@@ -1,0 +1,30 @@
+public void solve() {
+    N = nextInt();
+    X = new int[N];
+    for (int i = 0; i < N; i++) {
+        X[i] = nextInt();
+    }
+    L = nextInt();
+    Q = nextInt();
+    AB = new Query[Q];
+    for (int i = 0; i < Q; i++) {
+        int a = nextInt() - 1;
+        int b = nextInt() - 1;
+        AB[i] = new Query(i, Math.min(a, b), Math.max(a, b));
+    }
+    Xn = new int[N][20];
+    int nn = 0;
+    for (int i = 0; i < N; i++) {
+        while (nn < N && X[nn] - X[i] <= L) nn++;
+        Xn[i][0] = nn - 1;
+    }
+    for (int d = 1; d < Xn[0].length; d++) {
+        for (int i = 0; i < N; i++) {
+            Xn[i][d] = Xn[Xn[i][d - 1]][d - 1];
+        }
+    }
+    for (int i = 0; i < Q; i++) {
+        int ans = 0;
+        out.println(count(AB[i].a, AB[i].b));
+    }
+}

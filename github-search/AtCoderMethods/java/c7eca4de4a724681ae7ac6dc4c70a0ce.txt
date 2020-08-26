@@ -1,0 +1,18 @@
+static void solve() throws IOException {
+    String S = readString();
+    String ans = "";
+    int[] A = readArr(4);
+    int idx = 0;
+    if (A[0] == 0) {
+        ans += "\"";
+        idx++;
+    }
+    for (int i = 0; i < S.length(); i++) {
+        ans += S.charAt(i);
+        if (idx < 4 && i + 1 == A[idx]) {
+            ans += "\"";
+            idx++;
+        }
+    }
+    out.println(ans);
+}

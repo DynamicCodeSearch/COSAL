@@ -1,0 +1,24 @@
+int dijkstra(int x) {
+    boolean[] visited = new boolean[n];
+    Arrays.fill(visited, false);
+    int[] d = new int[n];
+    for (int i = 0; i < n; i++) {
+        d[i] = INF;
+    }
+    d[x] = 0;
+    while (true) {
+        int v = -1;
+        for (int u = 0; u < n; u++) {
+            if (!visited[u] && (v == -1 || d[u] < d[v])) {
+                v = u;
+            }
+        }
+        if (v == -1)
+            break;
+        visited[v] = true;
+        for (int u = 0; u < n; u++) {
+            d[u] = Math.min(d[u], d[v] + path[v][u]);
+        }
+    }
+    return d[0];
+}

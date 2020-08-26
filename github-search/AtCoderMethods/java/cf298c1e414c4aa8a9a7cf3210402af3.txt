@@ -1,0 +1,21 @@
+public static void main(String[] args) throws IOException {
+    in = new InputReader();
+    out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < a.length; i++) {
+        a[i] = in.nextInt();
+    }
+    Deque<Integer> q = new LinkedList<>();
+    for (int i = 1; i <= n; i++) {
+        if (i % 2 == n % 2) {
+            q.addFirst(a[i - 1]);
+        } else {
+            q.addLast(a[i - 1]);
+        }
+    }
+    while (!q.isEmpty()) {
+        out.print(q.removeFirst() + " ");
+    }
+    out.close();
+}

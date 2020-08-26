@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    PrintWriter pw = new PrintWriter(System.out);
+    int N = sc.nextInt();
+    int Q = sc.nextInt();
+    int[] X = new int[N];
+    int[] R = new int[N];
+    int[] H = new int[N];
+    for (int i = 0; i < N; i++) {
+        X[i] = sc.nextInt();
+        R[i] = sc.nextInt();
+        H[i] = sc.nextInt();
+    }
+    for (int i = 0; i < Q; i++) {
+        int A = sc.nextInt();
+        int B = sc.nextInt();
+        double sum = 0;
+        for (int j = 0; j < N; j++) {
+            if (B <= X[j] || X[j] + H[j] <= A)
+                continue;
+            double p1 = Math.min(1, Math.max(0, ((double) H[j] + X[j] - A) / H[j]));
+            sum += (double) R[j] * R[j] * H[j] * p1 * p1 * p1;
+            double p2 = Math.min(1, Math.max(0, ((double) H[j] + X[j] - B) / H[j]));
+            sum -= (double) R[j] * R[j] * H[j] * p2 * p2 * p2;
+        }
+        pw.println(sum * Math.PI / 3);
+    }
+    sc.close();
+    pw.close();
+}

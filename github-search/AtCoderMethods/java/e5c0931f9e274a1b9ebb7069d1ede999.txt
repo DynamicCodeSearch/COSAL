@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    int i = 0, pluck = 0;
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[] flower = new int[n];
+    for (i = 0; i < n; i++) {
+        flower[i] = sc.nextInt();
+    }
+    for (i = 0; i < n; i++) {
+        for (; ; ) {
+            if (flower[i] % 6 == 1 || flower[i] % 6 == 3) {
+                break;
+            } else {
+                flower[i] -= 1;
+                pluck += 1;
+            }
+        }
+    }
+    System.out.println(pluck);
+}

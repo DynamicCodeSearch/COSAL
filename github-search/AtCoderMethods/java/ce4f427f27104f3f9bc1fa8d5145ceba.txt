@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String s = sc.next();
+    int l = s.length();
+    String[] arr = new String[l];
+    String mozi;
+    int j = 0;
+    for (int i = 0; i < l; i++) {
+        if (i != l - 1) {
+            mozi = s.substring(i, i + 1);
+        } else {
+            mozi = s.substring(l - 1);
+        }
+        if (!mozi.equals("B")) {
+            arr[j] = mozi;
+            j++;
+        } else {
+            if (j != 0) {
+                j--;
+                arr[j] = "";
+            }
+        }
+    }
+    for (int i = 0; i < l; i++) {
+        if (arr[i] != null) {
+            System.out.print(arr[i]);
+        }
+    }
+    System.out.println();
+}

@@ -1,0 +1,22 @@
+public static Node update(Node a) {
+    if (a == null)
+        return null;
+    a.count = 1;
+    if (a.left != null)
+        a.count += a.left.count;
+    if (a.right != null)
+        a.count += a.right.count;
+    a.val = a.myval;
+    if (a.left != null)
+        a.val += a.left.val;
+    if (a.right != null)
+        a.val += a.right.val;
+    a.val = a.val * a.mul % mod;
+    a.val2 = a.myval * a.myval;
+    if (a.left != null)
+        a.val2 += a.left.val2;
+    if (a.right != null)
+        a.val2 += a.right.val2;
+    a.val2 = a.val2 % mod * a.mul % mod * a.mul % mod;
+    return a;
+}

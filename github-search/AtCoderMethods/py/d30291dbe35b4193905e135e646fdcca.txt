@@ -1,0 +1,7 @@
+def powmod(a, b, m):
+    if b == 0:
+        return 1
+    if b % 2:
+        return a * powmod(a, b - 1, m) % m
+    else:
+        return powmod(a, b // 2, m) ** 2 % m

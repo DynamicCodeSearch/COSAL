@@ -1,0 +1,48 @@
+private void compute() throws IOException {
+    int n = pint();
+    List<Map<Integer, Long>> edges = new ArrayList<>();
+    for (int i = 0; i < n; i++) {
+        edges.add(new HashMap<>());
+    }
+    for (int i = 0; i < n - 1; i++) {
+        int[] a = intarr();
+        a[0]--;
+        a[1]--;
+        edges.get(a[0]).put(a[1], (long) a[2]);
+        edges.get(a[1]).put(a[0], (long) a[2]);
+    }
+    int[] qk = intarr();
+    int q = qk[0];
+    int start = qk[1] - 1;
+    Queue<Integer> queue = new ArrayDeque<>();
+    long[] dist = new long[n];
+    for (int i = 0; i < n; i++) {
+        if (i != start) {
+            dist[i] = INF;
+        }
+    }
+    queue.add(start);
+    while (!queue.isEmpty()) {
+        int node = queue.poll();
+        long curDist = dist[node];
+        for (Map.Entry<Integer, Long> e : edges.get(node).entrySet()) {
+            int next = e.getKey();
+            long len = e.getValue();
+            if (dist[next] > curDist + len) {
+                dist[next] = curDist + len;
+                queue.add(next);
+            }
+        }
+    }
+    StringBuilder buf = new StringBuilder();
+    for (int i = 0; i < q; i++) {
+        int[] a = intarr();
+        a[0]--;
+        a[1]--;
+        if (buf.length() > 0) {
+            buf.append('\n');
+        }
+        buf.append(dist[a[0]] + dist[a[1]]);
+    }
+    out(buf);
+}

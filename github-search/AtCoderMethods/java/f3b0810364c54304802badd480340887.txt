@@ -1,0 +1,11 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int n = Integer.parseInt(br.readLine());
+    int h2 = n / 3600;
+    int m2 = (n - h2 * 3600) / 60;
+    int s2 = n - h2 * 3600 - m2 * 60;
+    String h = String.format("%02d", h2);
+    String m = String.format("%02d", m2);
+    String s = String.format("%02d", s2);
+    System.out.println(String.valueOf(h) + ":" + String.valueOf(m) + ":" + String.valueOf(s));
+}

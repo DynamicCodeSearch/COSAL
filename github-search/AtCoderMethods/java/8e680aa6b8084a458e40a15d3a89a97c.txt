@@ -1,0 +1,24 @@
+public void run(java.io.InputStream in, java.io.PrintStream out) {
+    final java.util.Scanner sc = new java.util.Scanner(in);
+    double l, r;
+    d = new Point[sc.nextInt()];
+    for (int i = 0; i < d.length; ++i) {
+        final int x = sc.nextInt();
+        final int y = sc.nextInt();
+        final int c = sc.nextInt();
+        d[i] = new Point(x, y, c);
+    }
+    sc.close();
+    l = -1e-4;
+    for (r = 1.; !validate(r); ) {
+        r *= 2.;
+    }
+    for (; r - l >= 1e-4; ) {
+        final double m = (l + r) / 2.;
+        if (validate(m))
+            r = m;
+        else
+            l = m;
+    }
+    out.printf("%.5f\n", (l + r) / 2.);
+}

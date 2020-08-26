@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String A = sc.nextLine();
+    String answer = null;
+    int length = A.length();
+    if (length == 1 && A.charAt(0) == 'a') {
+        System.out.println(-1);
+    } else {
+        StringBuilder builder = new StringBuilder();
+        boolean isAllSmallA = false;
+        for (int i = 0; i < length; i++) {
+            if (A.charAt(i) == 'a') {
+                builder.append('a');
+                isAllSmallA = true;
+            } else {
+                builder.append((char) (A.charAt(i) - 1));
+                isAllSmallA = false;
+                break;
+            }
+        }
+        if (isAllSmallA) {
+            System.out.println(builder.toString().substring(0, length - 1));
+        } else {
+            System.out.println(builder.toString());
+        }
+    }
+}

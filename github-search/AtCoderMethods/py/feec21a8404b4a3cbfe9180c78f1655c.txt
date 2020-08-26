@@ -1,0 +1,8 @@
+def NCK(a,b,c):
+    if c < 0: return 0
+    r = 1
+    s = a+b+c
+    for i in xrange(s-a): r *= s-i
+    for i in xrange(b): r /= i+1
+    for i in xrange(c): r /= i+1
+    return r

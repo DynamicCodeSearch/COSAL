@@ -1,0 +1,20 @@
+def main():
+    N, A, B = map(int, input().split())
+    S = [tuple(input().split()) for _ in range(N)]
+
+    dist = {'East': 0, 'West': 0}
+    for s in S:
+        d = int(s[1])
+        if d < A:
+            dist[s[0]] += A
+        elif d > B:
+            dist[s[0]] += B
+        else:
+            dist[s[0]] += d
+
+    if dist['East'] > dist['West']:
+        print('East', dist['East'] - dist['West'])
+    elif dist['East'] < dist['West']:
+        print('West', dist['West'] - dist['East'])
+    else:
+        print(0)

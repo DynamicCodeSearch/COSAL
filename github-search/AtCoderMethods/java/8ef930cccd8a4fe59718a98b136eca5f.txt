@@ -1,0 +1,40 @@
+public void solve() {
+    H = nextInt();
+    W = nextInt();
+    N = nextInt();
+    color = new TreeSet<P>();
+    point = new TreeSet<P>();
+    a = new int[N];
+    b = new int[N];
+    cnt = new long[10];
+    cnt[0] = (long) (H - 2) * (W - 2);
+    for (int k = 0; k < N; k++) {
+        a[k] = nextInt() - 1;
+        b[k] = nextInt() - 1;
+        color.add(new P(a[k], b[k]));
+        for (int i = -2; i <= 0; i++) {
+            for (int j = -2; j <= 0; j++) {
+                if (a[k] + i >= 0 && b[k] + j >= 0 && a[k] + i + 3 <= H && b[k] + j + 3 <= W) {
+                    point.add(new P(a[k] + i, b[k] + j));
+                }
+            }
+        }
+    }
+    for (P p : point) {
+        int c = 0;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (color.contains(new P(p.y + i, p.x + j))) {
+                    c++;
+                }
+            }
+        }
+        cnt[c]++;
+    }
+    for (int i = 1; i <= 9; i++) {
+        cnt[0] -= cnt[i];
+    }
+    for (int i = 0; i < 10; i++) {
+        out.println(cnt[i]);
+    }
+}

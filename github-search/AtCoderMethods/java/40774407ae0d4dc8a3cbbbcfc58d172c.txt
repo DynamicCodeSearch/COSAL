@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    boolean isTwo = false;
+    int tmp = 0;
+    Scanner in = new java.util.Scanner(System.in);
+    int N = in.nextInt();
+    int[] array = new int[N];
+    boolean[] flags = new boolean[N];
+    for (int i = 0; i < array.length; i++) {
+        tmp = in.nextInt();
+        if (tmp == 2) {
+            isTwo = true;
+        }
+        array[i] = tmp;
+    }
+    if (isTwo == false) {
+        System.out.print("-1");
+        System.exit(0);
+    }
+    int count = 0;
+    count++;
+    int now = 1;
+    while (array[now - 1] != 2) {
+        if (flags[now - 1] == true) {
+            System.out.print("-1");
+            System.exit(0);
+        }
+        flags[now - 1] = true;
+        now = array[now - 1];
+        count++;
+    }
+    System.out.print(count);
+}

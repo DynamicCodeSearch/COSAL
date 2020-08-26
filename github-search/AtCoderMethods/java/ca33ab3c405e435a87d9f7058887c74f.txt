@@ -1,0 +1,37 @@
+static void solve() {
+    int n = ni(), m = ni();
+    int S = ni() - 1;
+    int[] from = new int[m];
+    int[] to = new int[m];
+    for (int i = 0; i < m; i++) {
+        from[i] = ni() - 1;
+        to[i] = ni() - 1;
+    }
+    int[][] g = packU(n, from, to);
+    int[] h = new int[n];
+    Arrays.fill(h, -1);
+    MinHeap q = new MinHeap(n);
+    q.add(S, -S);
+    h[S] = S;
+    int[] ret = new int[n];
+    int p = 0;
+    while (q.size() > 0) {
+        int cur = q.argmin();
+        int val = -q.min();
+        q.remove(cur);
+        if (cur <= val) {
+            ret[p++] = cur;
+        }
+        for (int e : g[cur]) {
+            int nval = Math.min(val, e);
+            if (nval > h[e]) {
+                h[e] = nval;
+                q.update(e, -nval);
+            }
+        }
+    }
+    Arrays.sort(ret, 0, p);
+    for (int i = 0; i < p; i++) {
+        out.println(ret[i] + 1);
+    }
+}

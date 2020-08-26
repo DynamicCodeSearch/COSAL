@@ -1,0 +1,23 @@
+public static void main(String[] args) throws IOException {
+    String ans1 = "";
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    try {
+        String temp = br.readLine();
+        String[] str = temp.split(" ");
+        Integer x1 = Integer.parseInt(str[0]);
+        Integer y1 = Integer.parseInt(str[1]);
+        Integer x2 = Integer.parseInt(str[2]);
+        Integer y2 = Integer.parseInt(str[3]);
+        Integer x3 = Integer.parseInt(str[4]);
+        Integer y3 = Integer.parseInt(str[5]);
+        
+        Integer aaa = x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2);
+        if (aaa < 0) {
+            aaa = aaa * -1;
+        }
+        System.out.println(aaa * 0.5);
+    } catch (Exception e) {
+        System.out.println(e.getMessage());
+        System.exit(0);
+    }
+}

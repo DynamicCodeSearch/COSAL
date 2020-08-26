@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[][] p = new int[n][2];
+    double max = 0;
+    for (int i = 0; i < n; i++) {
+        p[i][0] = sc.nextInt();
+        p[i][1] = sc.nextInt();
+    
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {
+            double d = Math.sqrt((p[i][0] - p[j][0]) * (p[i][0] - p[j][0]) + (p[i][1] - p[j][1]) * (p[i][1] - p[j][1]));
+            if (d > max) {
+                max = d;
+            }
+        }
+    }
+    System.out.println(max);
+}

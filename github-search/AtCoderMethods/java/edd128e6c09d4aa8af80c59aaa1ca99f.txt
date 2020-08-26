@@ -1,0 +1,15 @@
+private static long calcDiff(long divlen1, long divlen2) {
+    long diff = divlen1 * divlen2;
+    for (int i = 1; i < divlen1; i++) {
+        long s1 = i * divlen2;
+        
+        long s2 = (int) ((divlen1 - i) / 2) * divlen2;
+        long s3 = divlen1 * divlen2 - s1 - s2;
+        diff = minDiff(s1, s2, s3, diff);
+        
+        s2 = (divlen1 - i) * (int) (divlen2 / 2);
+        s3 = divlen1 * divlen2 - s1 - s2;
+        diff = minDiff(s1, s2, s3, diff);
+    }
+    return diff;
+}

@@ -1,0 +1,19 @@
+def f():
+    n,m = map(int,input().split(" "))
+    s = []
+    w = [[] for i in range(n+2)]
+    for i in range(m):
+        a,b = map(int,input().split(" "))
+
+        if a==1:
+            s.append(b)
+        if b==1:
+            s.append(a)
+        w[a].append(b)
+        w[b].append(a)
+    for i in s:
+        if n in w[i]:
+            print("POSSIBLE")
+            return 0
+    print("IMPOSSIBLE")
+    return 0

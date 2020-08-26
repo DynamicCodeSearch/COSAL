@@ -1,0 +1,11 @@
+public String generate(String s, int a, int b, int c, int d) {
+    if (!REGEXP.matcher(s).matches()) {
+        throw new IllegalArgumentException("a");
+    }
+    if (0 > a || a >= b || a >= c || a >= d || b >= c || b >= d || c >= d || d > s.length()) {
+        throw new IllegalArgumentException("number arguments should meet the following condition: a > b > c > d");
+    }
+    StringBuilder sb = new StringBuilder();
+    sb.append(s.substring(0, a)).append('"').append(s.substring(a, b)).append('"').append(s.substring(b, c)).append('"').append(s.substring(c, d)).append('"').append(s.substring(d));
+    return sb.toString();
+}

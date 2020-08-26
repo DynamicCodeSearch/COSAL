@@ -1,0 +1,20 @@
+public static int value(int i, int wMax) {
+    Point p = new Point(i, wMax);
+    
+    if (map.containsKey(p)) {
+        
+        return map.get(p);
+    }
+    
+    
+    int val;
+    if (i == 0) {
+        val = 0;
+    } else if (wMax < w[i]) {
+        val = value(i - 1, wMax);
+    } else {
+        val = Math.max(value(i - 1, wMax), value(i - 1, wMax - w[i]) + v[i]);
+    }
+    map.put(p, val);
+    return val;
+}

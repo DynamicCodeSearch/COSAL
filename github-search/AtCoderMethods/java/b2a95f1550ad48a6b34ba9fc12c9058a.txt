@@ -1,0 +1,47 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    
+    int N = scan.nextInt();
+    
+    int M = scan.nextInt();
+    int[][] root = new int[N][N];
+    for (int i = 0; i < M; i++) {
+        int a = scan.nextInt() - 1;
+        int b = scan.nextInt() - 1;
+        int t = scan.nextInt();
+        root[a][b] = root[b][a] = t;
+    }
+    final int INF = 10000000;
+    int[][] dp = new int[N][N];
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            if (i == j) {
+                dp[i][j] = 0;
+            } else if (root[i][j] > 0) {
+                dp[i][j] = root[i][j];
+            } else {
+                dp[i][j] = INF;
+            }
+        }
+    }
+    for (int k = 0; k < N; k++) {
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                dp[i][j] = Math.min(dp[i][j], dp[i][k] + dp[k][j]);
+            }
+        }
+    }
+    int min = INF;
+    for (int i = 0; i < N; i++) {
+        int max = 0;
+        for (int j = 0; j < N; j++) {
+            if (dp[i][j] != INF) {
+                
+                max = Math.max(max, dp[i][j]);
+            }
+        }
+        
+        min = Math.min(min, max);
+    }
+    System.out.println(min);
+}

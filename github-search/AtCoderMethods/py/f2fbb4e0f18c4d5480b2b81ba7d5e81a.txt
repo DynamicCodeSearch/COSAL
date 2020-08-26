@@ -1,0 +1,11 @@
+def nibun(func ,min_ ,max_ ):
+    left = min_
+    right= max_
+    while not(left==right):
+        mid = (left+right) //2
+        tmp = func(mid)
+        if tmp:
+            right = mid
+        else:
+            left = mid+1
+    return left

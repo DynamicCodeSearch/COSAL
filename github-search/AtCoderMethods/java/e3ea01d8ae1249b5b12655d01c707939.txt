@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    double max = 0;
+    double d = 0;
+    double[][] points = new double[N][2];
+    for (int i = 0; i < N; i++) {
+        points[i][0] = sc.nextDouble();
+        points[i][1] = sc.nextDouble();
+    }
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            d = Math.sqrt((points[i][0] - points[j][0]) * (points[i][0] - points[j][0]) + (points[i][1] - points[j][1]) * (points[i][1] - points[j][1]));
+            if (d > max)
+                max = d;
+        }
+    }
+    System.out.printf("%.6f\n", max);
+}

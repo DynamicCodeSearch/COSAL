@@ -1,0 +1,28 @@
+
+
+
+
+
+
+
+public static void main(String[] args) throws Exception, IOException {
+    Reader sc = new Reader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = sc.nextInt();
+    long s = 0, ss = 0, min;
+    int[] d = new int[n];
+    for (int i = 0; i < n; i++) {
+        d[i] = sc.nextInt();
+        s += d[i];
+    }
+    ss = d[0];
+    s -= d[0];
+    min = abs(s - ss);
+    for (int i = 1; i < n - 1; i++) {
+        ss += d[i];
+        s -= d[i];
+        min = min(abs(s - ss), min);
+    }
+    out.println(min);
+    out.flush();
+}

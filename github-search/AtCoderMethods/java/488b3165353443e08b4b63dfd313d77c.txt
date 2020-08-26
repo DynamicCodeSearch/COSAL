@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int n = scan.nextInt();
+    int h = 0;
+    int m = 0;
+    int s = 0;
+    if (n / 3600 > 0) {
+        h = h + n / 3600;
+        n = n - h * 3600;
+    }
+    if (n / 60 > 0) {
+        m = m + n / 60;
+        n = n - m * 60;
+    }
+    s = n;
+    System.out.println(String.format("%02d", h) + ":" + String.format("%02d", m) + ":" + String.format("%02d", s));
+}

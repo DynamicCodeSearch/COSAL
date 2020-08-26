@@ -1,0 +1,22 @@
+void solve(BufferedReader in) throws Exception {
+    int n = toInt(in.readLine());
+    int[] a = toInts(in.readLine());
+    int d2 = 0;
+    int d4 = 0;
+    int d1 = 0;
+    for (int x : a) {
+        if (x % 4 == 0)
+            d4++;
+        else if (x % 2 == 0)
+            d2++;
+        else
+            d1++;
+    }
+    if (d2 != 0)
+        d1++;
+    if (d4 >= d1 - 1) {
+        System.out.println("Yes");
+    } else {
+        System.out.println("No");
+    }
+}

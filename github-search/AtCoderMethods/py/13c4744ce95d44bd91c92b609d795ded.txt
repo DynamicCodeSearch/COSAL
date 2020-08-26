@@ -1,0 +1,16 @@
+def solve():
+    n = int(input())
+    a = list(map(int, input().split()))
+
+    if not check(n, a):
+        return 0
+
+    exp = n // 2
+    if exp < 30:
+        return 2 ** exp
+    c = 2 ** 29
+    d = int(1e9) + 7
+    exp -= 29
+    for _ in range(exp):
+        c = c * 2 % d
+    return c

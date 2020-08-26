@@ -1,0 +1,11 @@
+static long lcd(long a, long b) {
+    long p = a;
+    long q = b;
+    long r = a % b;
+    while (r != 0) {
+        p = q;
+        q = r;
+        r = p % q;
+    }
+    return a / q * b;
+}

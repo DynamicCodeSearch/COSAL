@@ -1,0 +1,5 @@
+static long modCombi(int n, int r) {
+    long a = BigInteger.valueOf(fac[r]).modInverse(MOD).longValue();
+    long b = BigInteger.valueOf(fac[n - r]).modInverse(MOD).longValue();
+    return fac[n] * a % mod * b % mod;
+}

@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    String s = scan.next();
+    StringBuilder str = new StringBuilder();
+    for (int i = 0; i < s.length(); i++) {
+        switch(s.charAt(i)) {
+            case '0':
+                str.append('0');
+                break;
+            case '1':
+                str.append('1');
+                break;
+            case 'B':
+                if (str.length() > 0) {
+                    str.deleteCharAt(str.length() - 1);
+                }
+                break;
+        }
+    }
+    System.out.println(str.toString());
+    scan.close();
+}

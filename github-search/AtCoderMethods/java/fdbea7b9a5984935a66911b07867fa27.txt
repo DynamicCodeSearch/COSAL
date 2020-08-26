@@ -1,0 +1,8 @@
+public static void main(String[] args) {
+    int N = in.nextInt();
+    int[] c = new int[9];
+    Arrays.fill(c, 0);
+    for (int i = 0; i < N; c[Math.min(in.nextInt() / 400, 8)]++, i++) ;
+    int sum = (int) Arrays.stream(Arrays.copyOf(c, 8)).filter(a -> a > 0).count();
+    System.out.println((sum == 0 ? 1 : sum) + " " + (sum + c[8]));
+}

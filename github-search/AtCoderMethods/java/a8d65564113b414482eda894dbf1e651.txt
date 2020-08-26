@@ -1,0 +1,21 @@
+public void solve() {
+    N = nextInt();
+    s = new int[N];
+    for (int i = 0; i < N; i++) {
+        s[i] = nextInt();
+    }
+    dp = new int[N + 1][10];
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < 10; j++) {
+            if (dp[i][j] % 10 != j)
+                continue;
+            dp[i + 1][(j + s[i]) % 10] = Math.max(dp[i + 1][(j + s[i]) % 10], dp[i][j] + s[i]);
+            dp[i + 1][j] = Math.max(dp[i + 1][j], dp[i][j]);
+        }
+    }
+    int max = 0;
+    for (int i = 1; i < 10; i++) {
+        max = Math.max(max, dp[N][i]);
+    }
+    out.println(max);
+}

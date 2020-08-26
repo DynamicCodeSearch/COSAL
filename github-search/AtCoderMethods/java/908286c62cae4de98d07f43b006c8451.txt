@@ -1,0 +1,17 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int h = in.nextInt();
+    int w = in.nextInt();
+    String[] a = in.nextStringArray(h);
+    char[][] c = new char[h + 2][w + 2];
+    for (int i = 0; i <= h + 1; i++) {
+        Arrays.fill(c[i], '#');
+    }
+    for (int i = 1; i <= h; i++) {
+        for (int j = 1; j <= w; j++) {
+            c[i][j] = a[i - 1].charAt(j - 1);
+        }
+    }
+    for (int i = 0; i <= h + 1; i++) {
+        out.println(new String(c[i]));
+    }
+}

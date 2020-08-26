@@ -1,0 +1,37 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    n = sc.nextInt();
+    m = sc.nextInt();
+    r = sc.nextInt();
+    p = new int[r];
+    for (int i = 0; i < r; i++) {
+        p[i] = sc.nextInt() - 1;
+    }
+    a = new int[m];
+    b = new int[m];
+    c = new int[m];
+    for (int i = 0; i < m; i++) {
+        a[i] = sc.nextInt() - 1;
+        b[i] = sc.nextInt() - 1;
+        c[i] = sc.nextInt();
+    }
+    int[][] dist = new int[n][n];
+    for (int i = 0; i < n; i++) {
+        Arrays.fill(dist[i], INF);
+    }
+    for (int i = 0; i < n; i++) {
+        dist[i][i] = 0;
+    }
+    for (int i = 0; i < m; i++) {
+        dist[a[i]][b[i]] = dist[b[i]][a[i]] = c[i];
+    }
+    for (int k = 0; k < n; k++) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                dist[i][j] = Math.min(dist[i][j], dist[i][k] + dist[k][j]);
+            }
+        }
+    }
+    int ans = backTrack(0, new int[r], new boolean[r], dist);
+    System.out.println(ans);
+}

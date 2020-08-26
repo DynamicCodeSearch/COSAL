@@ -1,0 +1,21 @@
+static void solve() {
+    int n = ni(), K = ni();
+    double[][][] dp = new double[n + 1][K + 1][2];
+    for (int j = 0; j <= K; j++) {
+        dp[0][j][0] = 0.;
+        dp[0][j][1] = 1.;
+    }
+    for (int i = 1; i <= n; i++) {
+        for (int j = 0; j <= K; j++) {
+            
+            if (j > 0) {
+                dp[i][j][0] = 1. / (n - i + 1) * Math.max(dp[i - 1][j][0], dp[i - 1][j - 1][1]) + (1. - 1. / (n - i + 1)) * dp[i - 1][j][0];
+                dp[i][j][1] = 1. / (n - i + 1) * Math.max(dp[i - 1][j][0], dp[i - 1][j - 1][1]) + (1. - 1. / (n - i + 1)) * dp[i - 1][j][1];
+            } else {
+                dp[i][j][0] = 1. / (n - i + 1) * dp[i - 1][j][0] + (1. - 1. / (n - i + 1)) * dp[i - 1][j][0];
+                dp[i][j][1] = 1. / (n - i + 1) * dp[i - 1][j][0] + (1. - 1. / (n - i + 1)) * dp[i - 1][j][1];
+            }
+        }
+    }
+    out.printf("%.14f\n", dp[n][K][0]);
+}

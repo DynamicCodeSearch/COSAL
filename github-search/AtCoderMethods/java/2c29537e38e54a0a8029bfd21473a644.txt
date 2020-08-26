@@ -1,0 +1,24 @@
+static public void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    long K = sc.nextLong();
+    Map<Integer, Long> map = new HashMap<>();
+    for (int i = 0; i < N; i++) {
+        int a = sc.nextInt();
+        long b = sc.nextLong();
+        map.put(a, map.getOrDefault(a, 0L) + b);
+    }
+    List<Integer> keys = new ArrayList(map.keySet());
+    Collections.sort(keys);
+    long count = 0;
+    int ans = 0;
+    for (int key : keys) {
+        long newCount = count + map.get(key);
+        if (count <= K && K <= newCount) {
+            ans = key;
+            break;
+        }
+        count = newCount;
+    }
+    System.out.println(ans);
+}

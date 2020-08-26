@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    while (sc.hasNext()) {
+        n = sc.nextInt();
+        p = new per[n];
+        for (int i = 0; i < n; i++) p[i] = new per(sc.nextDouble(), sc.nextDouble(), sc.nextDouble());
+        double min = 0, max = 10e10;
+        while (max - min > 10e-6) {
+            double mid = (min + max) / 2;
+            if (check(mid))
+                max = mid;
+            else
+                min = mid;
+        }
+        System.out.println(min);
+    }
+}

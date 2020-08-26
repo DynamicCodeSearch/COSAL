@@ -1,0 +1,31 @@
+def d():
+    h, w = map(int, input().split())
+    n = int(input())
+    a = [int(ai) for ai in input().split()]
+    s = ''
+    tmp = ''
+    for i in range(h*w):
+        if (i // w) % 2 == 0:
+
+
+            tmp += '{'+str(i)+'}'
+            if i%w == w-1:
+                tmp += '\n'
+                s += tmp
+                tmp = ''
+            else:
+                tmp += ' '
+        else:
+
+
+            tmp = '{'+str(i)+'}' + tmp
+            if i%w == w-1:
+                tmp += '\n'
+                s += tmp
+                tmp = ''
+            else:
+                tmp = ' ' + tmp
+    aa = []
+    for i, n in enumerate(a):
+        aa += [i+1]*n
+    print(s.format(*aa)[:-1])

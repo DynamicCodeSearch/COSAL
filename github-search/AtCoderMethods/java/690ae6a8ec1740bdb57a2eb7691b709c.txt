@@ -1,0 +1,52 @@
+public void solve() {
+    int answer = 0;
+    int rank;
+    for (rank = 1; rank <= N; rank = rank * 10) ;
+    rank = rank / 10;
+    boolean change = false;
+    boolean backtrack = false;
+    int r = rank;
+    int x = (N % (r * 10)) / r;
+    while ((!change || backtrack) && r > 0) {
+        int j = 0;
+        backtrack = false;
+        do {
+            for (j = 0; j < K; j++) {
+                if (D[j] == x) {
+                    x++;
+                    change = true;
+                    break;
+                }
+            }
+            if (x > 9)
+                backtrack = true;
+        } while (j < K && !backtrack);
+        if (backtrack) {
+            r = r * 10;
+            x = (answer % 10 + 1);
+            answer = answer / 10;
+        } else {
+            r = r / 10;
+            answer = answer * 10 + x;
+            if (r == 0)
+                break;
+            x = (N % (r * 10)) / r;
+        }
+    }
+    if (change) {
+        for (; r > 0; r = r / 10) {
+            int y = 0;
+            int j = 0;
+            do {
+                for (j = 0; j < K; j++) {
+                    if (D[j] == y) {
+                        y++;
+                        break;
+                    }
+                }
+            } while (j < K);
+            answer = answer * 10 + y;
+        }
+    }
+    System.out.println(answer);
+}

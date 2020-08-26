@@ -1,0 +1,24 @@
+private static long solve(int N, int A, int[] nums, int X) {
+    long[][][] dp = new long[N + 1][N + 1][N * X + 1];
+    dp[0][0][0] = 1L;
+    for (int i = 1; i < N + 1; i++) {
+        for (int j = 0; j < N + 1; j++) {
+            for (int k = 0; k < N * X + 1; k++) {
+                int prevJ = j - 1;
+                int prevK = k - nums[i - 1];
+                if (prevJ < 0 || prevK < 0) {
+                    dp[i][j][k] = dp[i - 1][j][k];
+                } else {
+                    dp[i][j][k] = dp[i - 1][prevJ][prevK] + dp[i - 1][j][k];
+                }
+            }
+        }
+    }
+    long ret = 0;
+    for (int t = 1; t <= N; t++) {
+        if (t * A <= t * X) {
+            ret += dp[N][t][t * A];
+        }
+    }
+    return ret;
+}

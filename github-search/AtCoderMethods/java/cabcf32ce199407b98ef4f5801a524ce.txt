@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter w = new PrintWriter(System.out);
+    int n = in.nextInt();
+    int[] a = new int[n];
+    long avg = 0;
+    for (int i = 0; i < n; i++) {
+        a[i] = in.nextInt();
+        avg = avg + a[i];
+    }
+    avg = (long) Math.round(avg * 1.0 / n);
+    long c = 0;
+    for (int i = 0; i < n; i++) {
+        c = c + (long) Math.pow(a[i] - avg, 2);
+    }
+    w.println(c);
+    w.close();
+}

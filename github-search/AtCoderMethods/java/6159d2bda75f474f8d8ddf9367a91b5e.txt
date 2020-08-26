@@ -1,0 +1,8 @@
+private void readToken(byte acceptFrom) throws IOException {
+    totalBytes = 0;
+    while ((by = nextByte()) < acceptFrom) ;
+    byteBuf[totalBytes++] = by;
+    while ((by = nextByte()) >= acceptFrom) {
+        byteBuf[totalBytes++] = by;
+    }
+}

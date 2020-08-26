@@ -1,0 +1,42 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int R = sc.nextInt();
+    int C = sc.nextInt();
+    char[][] c = new char[R][C];
+    int sy = sc.nextInt() - 1;
+    int sx = sc.nextInt() - 1;
+    int gy = sc.nextInt() - 1;
+    int gx = sc.nextInt() - 1;
+    for (int i = 0; i < R; i++) {
+        String str = sc.next();
+        c[i] = str.toCharArray();
+    }
+    Deque<Pair> q = new ArrayDeque<>();
+    q.addLast(new Pair(sx, sy, 0));
+    int[][] d = new int[R][C];
+    for (int i = 0; i < R; i++) {
+        for (int j = 0; j < C; j++) {
+            d[i][j] = -1;
+        }
+    }
+    d[sy][sx] = 0;
+    int ans = -1;
+    while (!q.isEmpty()) {
+        Pair p = q.pollFirst();
+        if (p.x == gx && p.y == gy) {
+            ans = p.d;
+            break;
+        }
+        int[] dx = { -1, 0, 1, 0 };
+        int[] dy = { 0, 1, 0, -1 };
+        for (int i = 0; i < 4; i++) {
+            int nx = p.x + dx[i];
+            int ny = p.y + dy[i];
+            if (0 <= ny && ny < R && 0 <= nx && nx < C && d[ny][nx] == -1 && c[ny][nx] != '#') {
+                d[ny][nx] = p.d + 1;
+                q.addLast(new Pair(nx, ny, p.d + 1));
+            }
+        }
+    }
+    System.out.println(ans);
+}

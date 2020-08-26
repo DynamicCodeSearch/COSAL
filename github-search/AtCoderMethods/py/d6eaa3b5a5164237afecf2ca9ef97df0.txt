@@ -1,0 +1,25 @@
+def main():
+    H, W = map(int, input().split())
+    b = [
+        list(input())
+        for _ in range(H)
+    ]
+
+    ans = copy.deepcopy(b)
+
+    for h in range(H):
+        for w, s in enumerate(b[h]):
+            if s == "#":
+                continue
+
+            w_left = max(w - 1, 0)
+            h_top = max(h - 1, 0)
+            h_bottom = min(h + 2, H)
+            n = 0
+            for _h in range(h_top, h_bottom):
+                n += b[_h][w_left:w + 2].count("#")
+
+            ans[h][w] = str(n)
+
+    for a in ans:
+        print("".join(a))

@@ -1,0 +1,17 @@
+void solve(int testNumber, InputReader in, PrintWriter out) {
+    s = in.next();
+    int a = -1, b = -1;
+    for (int i = 1; a == -1 && i < s.length(); ++i) {
+        if (s.charAt(i - 1) == s.charAt(i)) {
+            a = i;
+            b = i + 1;
+        }
+    }
+    for (int i = 2; a == -1 && i < s.length(); ++i) {
+        if (s.charAt(i - 2) == s.charAt(i)) {
+            a = i - 1;
+            b = i + 1;
+        }
+    }
+    out.println(a + " " + b);
+}

@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int N = scanner.nextInt();
+    int M = scanner.nextInt();
+    pair[] a = new pair[N];
+    for (int i = 0; i < N; i++) {
+        long tempa = scanner.nextLong();
+        long tempb = scanner.nextLong();
+        a[i] = new pair(tempa, tempb);
+    }
+    pair[] b = new pair[M];
+    for (int i = 0; i < M; i++) {
+        long tempa = scanner.nextLong();
+        long tempb = scanner.nextLong();
+        b[i] = new pair(tempa, tempb);
+    }
+    for (int i = 0; i < N; i++) {
+        long min = 999999999;
+        int minN = M - 1;
+        for (int j = M - 1; j >= 0; j--) {
+            long temp = Math.abs(a[i].a - b[j].a) + Math.abs(a[i].b - b[j].b);
+            
+            if (min >= temp) {
+                min = temp;
+                minN = j + 1;
+            }
+        }
+        System.out.println(minN);
+    }
+}

@@ -1,0 +1,8 @@
+def rec(s):
+    if s in dp:
+        return dp[s]
+    ret = int(s)
+    for i in range(1, len(s)):
+        ret += int(s[:i]) * (2**(len(s)-i-1)) + rec(s[i:])
+    dp[s] = ret
+    return ret

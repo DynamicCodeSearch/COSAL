@@ -1,0 +1,23 @@
+static long solve(long a, long b) {
+    long x = a;
+    long y = b;
+    long ans;
+    while (true) {
+        if (x > y) {
+            if (x % y == 0) {
+                ans = x;
+                break;
+            } else {
+                x = x + a;
+            }
+        } else {
+            if (y % x == 0) {
+                ans = y;
+                break;
+            } else {
+                y = y + b;
+            }
+        }
+    }
+    return ans;
+}

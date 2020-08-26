@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int k = sc.nextInt();
+    boolean[] isHate = new boolean[10];
+    Arrays.fill(isHate, false);
+    for (int i = 0; i < k; i++) {
+        isHate[sc.nextInt()] = true;
+    }
+    long num = n;
+    while (isContainsHateNumber(isHate, num) >= 0) {
+        num++;
+    }
+    System.out.println(num);
+}

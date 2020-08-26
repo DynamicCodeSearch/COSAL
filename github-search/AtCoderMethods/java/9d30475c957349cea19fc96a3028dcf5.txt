@@ -1,0 +1,34 @@
+private void solve(FastScanner in, PrintWriter out) {
+    long N = in.nextInt();
+    long M = in.nextInt();
+    if (N == M) {
+        long ans = 1;
+        for (int i = 1; i <= M; i++) {
+            ans *= i;
+            ans %= MOD;
+        }
+        for (int i = 1; i <= M; i++) {
+            ans *= i;
+            ans %= MOD;
+        }
+        ans *= 2;
+        ans %= MOD;
+        out.println(ans);
+        return;
+    } else if (Math.abs(N - M) > 1) {
+        out.println(0);
+        return;
+    }
+    long L = Math.max(M, N);
+    long S = Math.min(M, N);
+    long ans = 1;
+    for (int i = 1; i <= L; i++) {
+        ans *= i;
+        ans %= MOD;
+    }
+    for (int i = 1; i <= S; i++) {
+        ans *= i;
+        ans %= MOD;
+    }
+    out.println(ans);
+}

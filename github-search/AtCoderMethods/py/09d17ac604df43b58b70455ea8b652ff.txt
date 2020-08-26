@@ -1,0 +1,12 @@
+def main():
+    h, w = map(int, input().split())
+    if h % 3 == 0 or w % 3 == 0:
+        return 0
+
+    cand = split_3(h, w)
+    score = float("inf")
+    for h1, w1, h2, w2 in cand:
+        r1 = h1 * w1
+        for r2, r3 in split_2(h2, w2):
+            score = min(score, max(r1, r2, r3) - min(r1, r2, r3))
+    return score

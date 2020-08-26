@@ -1,0 +1,17 @@
+static void solve(int X) {
+    int L = 0;
+    int R = 1000000000;
+    while (true) {
+        int M = (L + R) / 2;
+        if (L == M)
+            break;
+        if (check(M, X)) {
+            R = M;
+        } else {
+            L = M;
+        }
+    }
+    if (!check(L, X))
+        L++;
+    System.out.println(L);
+}

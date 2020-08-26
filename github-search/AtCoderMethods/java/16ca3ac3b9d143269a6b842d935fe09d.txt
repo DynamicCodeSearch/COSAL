@@ -1,0 +1,33 @@
+void solve() throws IOException {
+    long n = in.nextLong();
+    long s = in.nextLong();
+    
+    for (long i = 2; i * i <= n + 10; i++) {
+        if (f(i, n) == s) {
+            System.out.println(i);
+            return;
+        }
+    }
+    long ans = -1;
+    if (s == n)
+        ans = n + 1;
+    if (s == 1)
+        ans = n;
+    long rtn = (long) (Math.sqrt(n) - 1);
+    for (int i = 1; i <= rtn; i++) {
+        if (i + 1 == n / 25104) {
+            System.err.println();
+        }
+        final long bmax = n / i;
+        final long modmin = n % bmax;
+        final long bmin = n / (i + 1) + 1;
+        final long modmax = n % bmin;
+        if (s < modmin + i || modmax + i < s)
+            continue;
+        final long diff = s - (modmin + i);
+        if (diff % i != 0)
+            continue;
+        ans = bmax - diff / i;
+    }
+    System.out.println(ans);
+}

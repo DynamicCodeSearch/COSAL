@@ -1,0 +1,13 @@
+long get(int l, int r, int k, int curL, int curR) {
+    if (curR <= l || curL >= r)
+        return 0;
+    if (l <= curL && curR <= r) {
+        return seg[k];
+    }
+    propagate(curL, curR, k);
+    final int curM = (curL + curR) / 2;
+    long ans = 0;
+    ans += get(l, r, 2 * k + 1, curL, curM);
+    ans += get(l, r, 2 * k + 2, curM, curR);
+    return ans;
+}

@@ -1,0 +1,38 @@
+long nextLong() {
+    try {
+        
+        boolean negative = false;
+        long res = 0;
+        long limit = -Long.MAX_VALUE;
+        int radix = 10;
+        int fc = nextPrintable();
+        if (fc < '0') {
+            if (fc == '-') {
+                negative = true;
+                limit = Long.MIN_VALUE;
+            } else if (fc != '+') {
+                throw new NumberFormatException();
+            }
+            fc = br.read();
+        }
+        long multmin = limit / radix;
+        int ch = fc;
+        do {
+            int digit = ch - '0';
+            if (digit < 0 || digit >= radix) {
+                throw new NumberFormatException();
+            }
+            if (res < multmin) {
+                throw new NumberFormatException();
+            }
+            res *= radix;
+            if (res < limit + digit) {
+                throw new NumberFormatException();
+            }
+            res -= digit;
+        } while (isPrintable(ch = br.read()));
+        return negative ? res : -res;
+    } catch (IOException e) {
+        throw new NoSuchElementException();
+    }
+}

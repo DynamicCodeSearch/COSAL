@@ -1,0 +1,15 @@
+def factorize(n_init):
+	facs = {}
+ n = n_init
+ i = 2
+ while (n > 1) and (i < n):
+		if n%i == 0:
+			add_facs(facs, factorize(i))
+   n = n//i
+  else:
+			i += 1
+
+ if (n == i):
+		facs[n] = 1
+
+ return facs

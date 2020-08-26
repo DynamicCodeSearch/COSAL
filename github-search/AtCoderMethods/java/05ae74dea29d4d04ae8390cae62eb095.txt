@@ -1,0 +1,15 @@
+private static int read() {
+    if (bufferLength < 0)
+        throw new RuntimeException();
+    if (bufferIndex >= bufferLength) {
+        try {
+            bufferLength = System.in.read(inputBuffer);
+            bufferIndex = 0;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        if (bufferLength <= 0)
+            return (bufferLength = -1);
+    }
+    return inputBuffer[bufferIndex++];
+}

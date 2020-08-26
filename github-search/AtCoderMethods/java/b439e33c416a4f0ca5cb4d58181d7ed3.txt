@@ -1,0 +1,17 @@
+public void solve(int taskNumber, InputReaderMain in, PrintWriter out) {
+    int N;
+    int K;
+    N = in.nextInt();
+    K = in.nextInt();
+    int[] arr = new int[K];
+    for (int i = 0; i < K; ++i) {
+        int a = in.nextInt();
+        arr[i] = a;
+    }
+    for (int i = N; i < N * 10; ++i) {
+        if (check(i, arr)) {
+            System.out.println(i);
+            return;
+        }
+    }
+}

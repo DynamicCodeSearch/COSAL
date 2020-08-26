@@ -1,0 +1,36 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    String s = in.nextString();
+    String t = in.nextString();
+    int q = in.nextInt();
+    int[] a = new int[q];
+    int[] b = new int[q];
+    int[] c = new int[q];
+    int[] d = new int[q];
+    for (int i = 0; i < q; i++) {
+        a[i] = in.nextInt() - 1;
+        b[i] = in.nextInt() - 1;
+        c[i] = in.nextInt() - 1;
+        d[i] = in.nextInt() - 1;
+    }
+    int n = s.length();
+    int m = t.length();
+    int[] sumS = new int[n + 1];
+    for (int i = 0; i < n; i++) {
+        sumS[i + 1] = s.charAt(i) == 'A' ? 1 : 2;
+    }
+    for (int i = 0; i < n; i++) {
+        sumS[i + 1] += sumS[i];
+    }
+    int[] sumT = new int[m + 1];
+    for (int i = 0; i < m; i++) {
+        sumT[i + 1] = t.charAt(i) == 'A' ? 1 : 2;
+    }
+    for (int i = 0; i < m; i++) {
+        sumT[i + 1] += sumT[i];
+    }
+    for (int i = 0; i < q; i++) {
+        int x = sumS[b[i] + 1] - sumS[a[i]];
+        int y = sumT[d[i] + 1] - sumT[c[i]];
+        out.println(x % 3 == y % 3 ? "YES" : "NO");
+    }
+}

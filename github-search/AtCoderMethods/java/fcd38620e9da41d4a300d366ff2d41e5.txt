@@ -1,0 +1,13 @@
+void solve() throws IOException {
+    int n = in.nextInt();
+    long a = in.nextInt();
+    long b = in.nextLong();
+    long pre = in.nextLong();
+    long ans = 0;
+    for (int i = 1; i < n; i++) {
+        long x = in.nextLong();
+        ans += Math.min((x - pre) * a, b);
+        pre = x;
+    }
+    System.out.println(ans);
+}

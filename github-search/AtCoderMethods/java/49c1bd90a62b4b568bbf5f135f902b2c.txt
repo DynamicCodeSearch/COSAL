@@ -1,0 +1,13 @@
+public static void main(String[] args) {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    try {
+        int N = Integer.parseInt(reader.readLine());
+        Student[] s = new Student[N];
+        String[] params = reader.readLine().split(" ");
+        for (int i = 0; i < N; i++) s[i] = new Student(i + 1, Integer.parseInt(params[i]));
+        Arrays.sort(s);
+        for (int i = 0; i < N; i++) System.out.println(s[i].num);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

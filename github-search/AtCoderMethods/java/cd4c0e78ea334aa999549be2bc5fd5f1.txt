@@ -1,0 +1,15 @@
+public LinkedList<Integer> splitToBlocks(final int[] nums) {
+    LinkedList<Integer> blockLengthList = new LinkedList<Integer>();
+    int last = nums[0];
+    for (int i = 1, len = nums.length, count = 1; i <= len; i++) {
+        if (i < len && last < nums[i]) {
+            ++count;
+            last = nums[i];
+        } else {
+            blockLengthList.add(count);
+            count = 1;
+            last = (i < len) ? nums[i] : -1;
+        }
+    }
+    return blockLengthList;
+}

@@ -1,0 +1,19 @@
+void solve() {
+    int N = in.nextInt();
+    int[] a = new int[N];
+    for (int i = 0; i < N; i++) {
+        a[i] = in.nextInt();
+    }
+    TreeSet<Integer> ts = new TreeSet();
+    for (int x : a) {
+        ts.add(x);
+    }
+    Map<Integer, Integer> map = new HashMap();
+    int i = 0;
+    for (int x : ts) {
+        map.put(x, i++);
+    }
+    for (int x : a) {
+        out.println(map.get(x));
+    }
+}

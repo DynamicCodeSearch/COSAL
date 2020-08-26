@@ -1,0 +1,39 @@
+public static void main(String[] args) {
+    IO io = new IO();
+    int n = io.nextInt();
+    int m1 = io.nextInt();
+    int m2 = io.nextInt();
+    UnionFind uf1 = new UnionFind(n);
+    UnionFind uf2 = new UnionFind(n);
+    for (int i = 0; i < m1; i++) {
+        int u = io.nextInt() - 1;
+        int v = io.nextInt() - 1;
+        uf1.union(u, v);
+    }
+    for (int i = 0; i < m2; i++) {
+        int u = io.nextInt() - 1;
+        int v = io.nextInt() - 1;
+        uf2.union(u, v);
+    }
+    HashMap<Long, Integer> hm = new HashMap<>();
+    for (int i = 0; i < n; i++) {
+        long key = (long) uf1.root(i) * 200010 + uf2.root(i);
+        
+        Integer count = hm.get(key);
+        if (count == null) {
+            count = 0;
+        }
+        count++;
+        hm.put(key, count);
+    }
+    for (int i = 0; i < n; i++) {
+        if (i > 0) {
+            io.print(' ');
+        }
+        long key = (long) uf1.root(i) * 200010 + uf2.root(i);
+        
+        io.print(hm.get(key));
+    }
+    io.println();
+    io.flush();
+}

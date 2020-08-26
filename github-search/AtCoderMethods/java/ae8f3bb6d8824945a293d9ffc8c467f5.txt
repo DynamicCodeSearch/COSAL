@@ -1,0 +1,12 @@
+static <T extends Comparable<? super T>> int lowerBound(ArrayList<T> a, T k) {
+    int n = a.size();
+    int l = -1, r = n;
+    while (r - l > 1) {
+        int m = (l + r) / 2;
+        if (k.compareTo(a.get(m)) <= 0)
+            r = m;
+        else
+            l = m;
+    }
+    return r;
+}

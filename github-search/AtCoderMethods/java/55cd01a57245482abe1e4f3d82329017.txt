@@ -1,0 +1,39 @@
+public static void main(String[] args) throws IOException {
+    Scanner sc = new Scanner(System.in);
+    int H = sc.nextInt();
+    int W = sc.nextInt();
+    int N = sc.nextInt();
+    Set<Box> fills = new HashSet<>();
+    for (int i = 0; i < N; i++) {
+        fills.add(new Box(sc.nextInt() - 1, sc.nextInt() - 1));
+    }
+    Set<Box> boards = new HashSet<Box>();
+    for (Box box : fills) {
+        for (int y = -2; y <= 0; y++) {
+            for (int x = -2; x <= 0; x++) {
+                int yy = box.y + y;
+                int xx = box.x + x;
+                if ((yy >= 0 && xx >= 0) && (yy < H - 2 && xx < W - 2)) {
+                    boards.add(new Box(yy, xx));
+                }
+            }
+        }
+    }
+    long[] group = new long[10];
+    for (Box box : boards) {
+        int count = 0;
+        for (int y = box.y; y <= box.y + 2; y++) {
+            for (int x = box.x; x <= box.x + 2; x++) {
+                if (fills.contains(new Box(y, x))) {
+                    count++;
+                }
+            }
+        }
+        group[count]++;
+    }
+    long zero = ((long) (H - 2) * (W - 2)) - LongStream.of(group).sum();
+    System.out.println(zero);
+    for (int i = 1; i < group.length; i++) {
+        System.out.println(group[i]);
+    }
+}

@@ -1,0 +1,28 @@
+static void check(int x, int y, int h, int w, String[][] arr) {
+    int count = 0;
+    if (x - 1 >= 0 && y - 1 >= 0) {
+        count += checkNum(x - 1, y - 1, arr);
+    }
+    if (x + 1 <= h - 1 && y + 1 <= w - 1) {
+        count += checkNum(x + 1, y + 1, arr);
+    }
+    if (y - 1 >= 0 && x <= h - 1 && x >= 0) {
+        count += checkNum(x, y - 1, arr);
+    }
+    if (x + 1 <= h - 1 && y - 1 >= 0) {
+        count += checkNum(x + 1, y - 1, arr);
+    }
+    if (x - 1 >= 0 && y <= w - 1 && y >= 0) {
+        count += checkNum(x - 1, y, arr);
+    }
+    if (x + 1 <= h - 1 && y <= w - 1 && y >= 0) {
+        count += checkNum(x + 1, y, arr);
+    }
+    if (x - 1 >= 0 && y + 1 <= w - 1) {
+        count += checkNum(x - 1, y + 1, arr);
+    }
+    if (x <= h - 1 && x >= 0 && y + 1 <= w - 1) {
+        count += checkNum(x, y + 1, arr);
+    }
+    arr[x][y] = String.valueOf(count);
+}

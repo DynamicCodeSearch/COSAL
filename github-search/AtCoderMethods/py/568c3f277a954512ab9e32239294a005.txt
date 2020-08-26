@@ -1,0 +1,8 @@
+def unite(x, y):
+    x, y = root(x), root(y)
+    if x != y:
+        if upper[y] < upper[x]:
+            x, y = y, x
+        upper[x] += upper[y]
+        upper[y] = x
+    return x == y

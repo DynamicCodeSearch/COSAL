@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    int N = Integer.parseInt(scan.next());
+    int total = 0;
+    int[] T = new int[N];
+    for (int i = 0; i < N; i++) {
+        int tmp = Integer.parseInt(scan.next());
+        total += tmp;
+        T[i] = tmp;
+    }
+    int M = Integer.parseInt(scan.next());
+    int[] P = new int[M];
+    int[] X = new int[M];
+    for (int i = 0; i < M; i++) {
+        P[i] = Integer.parseInt(scan.next()) - 1;
+        X[i] = Integer.parseInt(scan.next());
+    }
+    for (int i = 0; i < M; i++) {
+        System.out.println(total - (T[P[i]] - X[i]));
+    }
+    scan.close();
+}

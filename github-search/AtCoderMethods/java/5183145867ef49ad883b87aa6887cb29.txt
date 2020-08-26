@@ -1,0 +1,38 @@
+private void solve(Scanner sc) {
+    int N = sc.nextInt();
+    int[] a = new int[N];
+    for (int i = 0; i < N; ++i) {
+        a[i] = sc.nextInt();
+    }
+    IntSummaryStatistics stat = Arrays.stream(a).summaryStatistics();
+    if (stat.getMax() == stat.getMin()) {
+        _out.println(0);
+        return;
+    } else if (stat.getSum() % stat.getCount() != 0) {
+        _out.println(-1);
+        return;
+    }
+    int target = (int) stat.getAverage();
+    boolean[] b = new boolean[N - 1];
+    int idx = 0;
+    do {
+        int sum = a[idx];
+        int cnt = 1;
+        ++idx;
+        while (idx < N && (sum % cnt != 0 || sum / cnt != target)) {
+            if (idx > 0) {
+                b[idx - 1] = true;
+            }
+            sum += a[idx];
+            ++cnt;
+            ++idx;
+        }
+    } while (idx < N);
+    int cnt = 0;
+    for (int i = 0; i < b.length; ++i) {
+        if (b[i]) {
+            ++cnt;
+        }
+    }
+    _out.println(cnt);
+}

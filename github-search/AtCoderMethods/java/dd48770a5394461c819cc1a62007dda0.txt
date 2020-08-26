@@ -1,0 +1,13 @@
+public static void core(final Scanner in) {
+    int n = in.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = in.nextInt();
+    }
+    long[] cost = new long[n];
+    cost[1] = Math.abs(a[1] - a[0]);
+    for (int i = 2; i < n; i++) {
+        cost[i] = Math.min(cost[i - 2] + Math.abs(a[i] - a[i - 2]), cost[i - 1] + Math.abs(a[i] - a[i - 1]));
+    }
+    System.out.println(cost[n - 1]);
+}

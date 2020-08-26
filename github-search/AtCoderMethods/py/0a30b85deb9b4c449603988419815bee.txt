@@ -1,0 +1,26 @@
+def solve(N, C):
+
+    fir_ind = 0
+    for ind, ele in enumerate(C):
+        if ele != C[0]:
+            fir_ind = ind
+            break
+    else:
+        return -1
+
+    C_2 = C * 2
+    max_len = 0
+    now_len = 1
+    now_color = C[fir_ind]
+
+    for i in range(fir_ind, fir_ind + N):
+        if C_2[i] != now_color:
+            max_len = max(max_len, now_len)
+            now_len = 1
+            now_color = C_2[i]
+        else:
+            now_len += 1
+    else:
+        max_len = max(max_len, now_len)
+
+    return (max_len - 1) // 2 + 1

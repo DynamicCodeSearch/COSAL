@@ -1,0 +1,9 @@
+def get_dir(deg, beaufort_scale):
+    if beaufort_scale == 0:
+        return "C"
+
+    shifted_deg = deg + (360 / 32)
+    if shifted_deg > 360:
+        shifted_deg -= 360
+
+    return DIRECTIONS[int(shifted_deg // (360 / 16))]

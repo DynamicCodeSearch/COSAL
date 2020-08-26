@@ -1,0 +1,13 @@
+def main():
+    S = input()
+    while len(S) != 0:
+        change = False
+        for s in ["dream", "dreamer", "erase", "eraser"]:
+            if S.endswith(s):
+                S = S[:-len(s)]
+                change = True
+                break
+        if not change:
+            break
+
+    print("YES" if len(S) == 0 else "NO")

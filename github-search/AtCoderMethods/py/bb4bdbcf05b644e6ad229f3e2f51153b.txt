@@ -1,0 +1,8 @@
+def wf(d):
+    N = len(d[0])
+    for k in range(N):
+        for i in range(N):
+            for j in range(N):
+                if d[i][j] > d[i][k] + d[k][j]:
+                    d[i][j] = d[i][k] + d[k][j]
+    return d

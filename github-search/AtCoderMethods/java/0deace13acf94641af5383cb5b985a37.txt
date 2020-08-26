@@ -1,0 +1,50 @@
+
+
+private static long[] nttmb(long[] src, int n, boolean inverse, int P, int g) {
+    long[] dst = Arrays.copyOf(src, n);
+    int h = Integer.numberOfTrailingZeros(n);
+    long K = Integer.highestOneBit(P) << 1;
+    int H = Long.numberOfTrailingZeros(K) * 2;
+    long M = K * K / P;
+    int[] wws = new int[1 << h - 1];
+    long dw = inverse ? pow(g, P - 1 - (P - 1) / n, P) : pow(g, (P - 1) / n, P);
+    long w = (1L << 32) % P;
+    for (int k = 0; k < 1 << h - 1; k++) {
+        wws[k] = (int) w;
+        w = modh(w * dw, M, H, P);
+    }
+    long J = invl(P, 1L << 32);
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < 1 << i; j++) {
+            for (int k = 0, s = j << h - i, t = s | 1 << h - i - 1; k < 1 << h - i - 1; k++, s++, t++) {
+                long u = (dst[s] - dst[t] + 2 * P) * wws[k];
+                dst[s] += dst[t];
+                if (dst[s] >= 2 * P)
+                    dst[s] -= 2 * P;
+                
+                long Q = (u << 32) * J >>> 32;
+                dst[t] = (u >>> 32) - (Q * P >>> 32) + P;
+            }
+        }
+        if (i < h - 1) {
+            for (int k = 0; k < 1 << h - i - 2; k++) wws[k] = wws[k * 2];
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        if (dst[i] >= P)
+            dst[i] -= P;
+    }
+    for (int i = 0; i < n; i++) {
+        int rev = Integer.reverse(i) >>> -h;
+        if (i < rev) {
+            long d = dst[i];
+            dst[i] = dst[rev];
+            dst[rev] = d;
+        }
+    }
+    if (inverse) {
+        long in = invl(n, P);
+        for (int i = 0; i < n; i++) dst[i] = modh(dst[i] * in, M, H, P);
+    }
+    return dst;
+}

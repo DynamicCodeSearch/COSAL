@@ -1,0 +1,12 @@
+static void merge(int a, int b, int[] parent, int[] rank) {
+    int repa = find(a, parent);
+    int repb = find(b, parent);
+    if (repa == repb)
+        return;
+    if (rank[repa] > rank[repb])
+        parent[repb] = repa;
+    else
+        parent[repa] = repb;
+    if (rank[repa] == rank[repb])
+        ++rank[repb];
+}

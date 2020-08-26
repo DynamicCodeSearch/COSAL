@@ -1,0 +1,44 @@
+void run() {
+    Scanner sc = new Scanner(System.in);
+    h = sc.nextInt();
+    w = sc.nextInt();
+    n = sc.nextInt();
+    set = new TreeSet<P>();
+    for (int i = 0; i < n; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        set.add(new P(b, a));
+    }
+    dxy();
+    long[] ans = new long[10];
+    for (P p : set) {
+        L: for (int i = 0; i < 9; i++) {
+            List<P> list = new LinkedList<P>();
+            for (int j = 0; j < 8; j++) {
+                int nx = p.x + dx[i][j];
+                int ny = p.y + dy[i][j];
+                P np = new P(nx, ny);
+                if (nx < 0 || w <= nx || ny < 0 || h <= ny) {
+                    continue L;
+                }
+                if (!set.contains(np)) {
+                    continue;
+                }
+                if (np.compareTo(p) < 0) {
+                    continue L;
+                }
+                
+                list.add(np);
+            }
+            
+            ans[list.size() + 1]++;
+        }
+    }
+    ans[0] = (h - 2) * (w - 2);
+    for (int i = 1; i < 10; i++) {
+        ans[0] -= ans[i];
+    }
+    for (int i = 0; i < 10; i++) {
+        System.out.println(ans[i]);
+    }
+}

@@ -1,0 +1,24 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String line = br.readLine();
+    String[] cut = line.split(" ");
+    int n = Integer.parseInt(cut[0]);
+    int s = Integer.parseInt(cut[1]);
+    int t = Integer.parseInt(cut[2]);
+    int[] set = new int[n];
+    int count = 0;
+    for (int i = 0; i < n; i++) {
+        line = br.readLine();
+        set[i] = Integer.parseInt(line);
+    }
+    int w = set[0];
+    for (int i = 0; i < n; i++) {
+        if (i > 0) {
+            w = w + set[i];
+        }
+        if (w >= s && w <= t) {
+            count++;
+        }
+    }
+    System.out.println(count);
+}

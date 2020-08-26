@@ -1,0 +1,22 @@
+public static Person[] resolve(MyScanner sc) throws IOException {
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    Road[] roads = new Road[M];
+    for (int i = 0; i < M; i++) {
+        roads[i] = new Road(sc.nextInt(), sc.nextInt(), sc.nextInt(), i + 1);
+    }
+    int Q = sc.nextInt();
+    Person[] people = new Person[Q];
+    for (int i = 0; i < Q; i++) {
+        people[i] = new Person(sc.nextInt(), sc.nextInt(), M + i + 1);
+    }
+    Element[] elements = new Element[M + Q];
+    System.arraycopy(roads, 0, elements, 0, roads.length);
+    System.arraycopy(people, 0, elements, roads.length, people.length);
+    Arrays.sort(elements);
+    TownMap townMap = new TownMap(N);
+    for (Element e : elements) {
+        e.process(townMap);
+    }
+    return people;
+}

@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String S = sc.nextLine();
+    int k = sc.nextInt();
+    Set<String> passwordSet = new HashSet<>();
+    int count = 0;
+    if (k > S.length()) {
+        System.out.println(count);
+    } else {
+        for (int i = 0; i < (S.length() - k + 1); i++) {
+            String possiblePassword = S.substring(i, i + k);
+            if (passwordSet.contains(possiblePassword)) {
+            } else {
+                passwordSet.add(possiblePassword);
+                count += 1;
+            }
+        }
+        System.out.println(count);
+    }
+}

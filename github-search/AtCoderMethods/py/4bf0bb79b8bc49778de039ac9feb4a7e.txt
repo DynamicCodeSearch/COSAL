@@ -1,0 +1,16 @@
+def my_func(N, T, As):
+    buys = T // 2
+    counts = 0
+    val_earn = 0
+    val_min = 10E10
+    for val in As:
+        if val < val_min:
+            val_min = val
+        else:
+            diff = val - val_min
+            if diff == val_earn:
+                counts += 1
+            elif diff > val_earn:
+                val_earn = diff
+                counts = 1
+    print(counts)

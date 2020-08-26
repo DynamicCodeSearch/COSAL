@@ -1,0 +1,39 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    String s = sc.next();
+    int T = sc.nextInt();
+    int x = 0;
+    int y = 0;
+    int qCount = 0;
+    for (char c : s.toCharArray()) {
+        if (c == 'L') {
+            x--;
+        } else if (c == 'R') {
+            x++;
+        } else if (c == 'U') {
+            y++;
+        } else if (c == 'D') {
+            y--;
+        } else if (c == '?') {
+            qCount++;
+        }
+    }
+    x = Math.abs(x);
+    y = Math.abs(y);
+    if (x > y) {
+        int tmp = x;
+        x = y;
+        y = tmp;
+    }
+    if (T == 1) {
+        System.out.println(x + y + qCount);
+    } else {
+        int last = x + y;
+        if (last > qCount) {
+            System.out.println(last - qCount);
+        } else {
+            qCount -= last;
+            System.out.println(qCount % 2);
+        }
+    }
+}

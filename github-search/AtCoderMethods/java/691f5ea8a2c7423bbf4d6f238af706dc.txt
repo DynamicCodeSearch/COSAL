@@ -1,0 +1,14 @@
+public void check(Map<Integer, List<Integer>> maps, int now, int goal, int count) {
+    if (count > 2)
+        ans = ans || false;
+    else if (
+    now == goal - 1)
+        ans = ans || true;
+    else {
+        if (maps.containsKey(now)) {
+            for (int s : maps.get(now)) {
+                check(maps, s, goal, count + 1);
+            }
+        }
+    }
+}

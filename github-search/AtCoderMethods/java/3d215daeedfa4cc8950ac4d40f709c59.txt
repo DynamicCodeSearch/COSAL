@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] card = { 1, 2, 3, 4, 5, 6 };
+    int keep;
+    N = N % 30;
+    for (int i = 0; i < N; i++) {
+        keep = card[i % 5];
+        card[i % 5] = card[i % 5 + 1];
+        card[i % 5 + 1] = keep;
+    }
+    for (int i = 0; i < 6; i++) {
+        System.out.print(card[i]);
+    }
+    System.out.println(" ");
+    sc.close();
+}

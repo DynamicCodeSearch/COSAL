@@ -1,0 +1,12 @@
+public static void main(String[] Args) {
+    Scanner scan = new Scanner(System.in);
+    int oldp = scan.nextInt();
+    int newp = scan.nextInt();
+    int makep = scan.nextInt();
+    int sum = makep;
+    while (makep >= oldp) {
+        sum += makep / oldp * newp;
+        makep = makep / oldp * newp + makep % oldp;
+    }
+    System.out.println(sum);
+}

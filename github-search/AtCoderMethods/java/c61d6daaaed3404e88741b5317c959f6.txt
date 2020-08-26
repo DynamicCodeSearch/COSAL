@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    long K = sc.nextLong();
+    int[][] x = sc.nextIntTable(N, 2);
+    Arrays.sort(x, (a, b) -> a[0] - b[0]);
+    long total = 0;
+    for (int[] v : x) {
+        total += v[1];
+        if (total >= K) {
+            System.out.println(v[0]);
+            break;
+        }
+    }
+}

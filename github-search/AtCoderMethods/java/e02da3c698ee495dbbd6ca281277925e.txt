@@ -1,0 +1,40 @@
+public static void main(String[] agrs) {
+    Scanner cin = new Scanner(System.in);
+    int N, M;
+    N = cin.nextInt();
+    M = cin.nextInt();
+    int[][] edge = new int[N][];
+    for (int i = 0; i < N; i++) {
+        edge[i] = new int[N];
+        Arrays.fill(edge[i], 0);
+    }
+    for (int i = 0; i < M; i++) {
+        int x, y;
+        x = cin.nextInt() - 1;
+        y = cin.nextInt() - 1;
+        edge[y][x] = -1;
+    }
+    long[] dp = new long[1 << N];
+    dp[0] = 1;
+    for (int i = 0; i < (1 << N); i++) {
+        for (int j = 0; j < N; j++) {
+            if ((i & (1 << j)) != 0) {
+                continue;
+            }
+            boolean flag = true;
+            for (int k = 0; k < N; k++) {
+                if ((i & (1 << k)) == 0) {
+                    continue;
+                }
+                if (edge[k][j] == -1) {
+                    flag = false;
+                    break;
+                }
+            }
+            if (flag) {
+                dp[i | (1 << j)] += dp[i];
+            }
+        }
+    }
+    System.out.println(dp[(1 << N) - 1]);
+}

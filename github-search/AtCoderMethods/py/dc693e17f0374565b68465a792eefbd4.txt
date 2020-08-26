@@ -1,0 +1,19 @@
+def main():
+    g = {}
+    N = int(input())
+    for i in range(N+1):
+        g[i] = []
+    for _ in range(N-1):
+        a, b, c = list(map(int, input().split(' ')))
+        g[a] += [(b, c)]
+        g[b] += [(a, c)]
+    Q, K = list(map(int, input().split(' ')))
+    dist = [None]*(N+1)
+    dist[K] = 0
+    search_dist(g, dist, K)
+    cood = []
+    for _ in range(Q):
+        cood.append(list(map(int, input().split(' '))))
+
+    for x, y in cood:
+        print(dist[x]+dist[y])

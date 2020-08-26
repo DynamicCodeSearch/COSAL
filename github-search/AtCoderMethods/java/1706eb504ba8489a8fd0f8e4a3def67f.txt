@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int n = scan.nextInt();
+    int t = scan.nextInt();
+    int[] jikan = new int[n];
+    for (int i = 0; i < n; i++) {
+        jikan[i] = scan.nextInt();
+    }
+    int ans = 0;
+    for (int i = 1; i < n; i++) {
+        if (jikan[i] - jikan[i - 1] <= t) {
+            ans += jikan[i] - jikan[i - 1];
+        } else {
+            ans += t;
+        }
+    }
+    System.out.println(ans + t);
+}

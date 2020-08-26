@@ -1,0 +1,29 @@
+public void solve() {
+    N = nextInt();
+    M = nextInt();
+    X = new int[N];
+    Y = new int[M];
+    for (int i = 0; i < N; i++) {
+        X[i] = nextInt();
+    }
+    for (int i = 0; i < M; i++) {
+        Y[i] = nextInt();
+    }
+    Arrays.sort(X);
+    long sum = 0;
+    long prev = 0;
+    for (int i = 1; i < N; i++) {
+        long d = X[i] - X[i - 1];
+        prev = ((d * i) % MOD + prev) % MOD;
+        sum = (sum + prev) % MOD;
+    }
+    Arrays.sort(Y);
+    long sum2 = 0;
+    prev = 0;
+    for (int i = 1; i < M; i++) {
+        long d = Y[i] - Y[i - 1];
+        prev = ((d * i) % MOD + prev) % MOD;
+        sum2 = (sum2 + prev) % MOD;
+    }
+    out.println((sum * sum2) % MOD);
+}

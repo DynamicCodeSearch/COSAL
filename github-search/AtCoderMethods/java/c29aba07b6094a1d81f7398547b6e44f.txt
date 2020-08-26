@@ -1,0 +1,16 @@
+static public void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    n = sc.nextInt();
+    int m = sc.nextInt();
+    connected = new boolean[n][n];
+    for (int i = 0; i < m; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        connected[a][b] = true;
+        connected[b][a] = true;
+    }
+    Set<Integer> visited = new HashSet<>();
+    visited.add(0);
+    int count = countPattern(0, visited);
+    System.out.println(count);
+}

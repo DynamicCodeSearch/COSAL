@@ -1,0 +1,12 @@
+public static void main(String[] args) throws IOException {
+    Scanner scan = new Scanner(System.in);
+    int n = scan.nextInt();
+    ArrayList<Integer> list = new ArrayList<>();
+    for (int i = 0; i < n; i++) {
+        list.add(scan.nextInt());
+    }
+    Set<Integer> set = new HashSet<>(list);
+    List<Integer> sort = new ArrayList<>(set);
+    Collections.sort(sort);
+    System.out.println(sort.get(sort.size() - 2));
+}

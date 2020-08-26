@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int n = scan.nextInt();
+    int[] arr = new int[100005];
+    HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+    int cnt = 0;
+    for (int i = 0; i < n; i++) {
+        int a = scan.nextInt();
+        if (map.containsKey(a) == false) {
+            map.put(a, cnt);
+            cnt++;
+        }
+        arr[map.get(a)] += 1;
+    }
+    int ans = 0;
+    for (int i = 0; i < cnt; i++) {
+        if (arr[i] % 2 == 1)
+            ans++;
+    }
+    System.out.printf("%d\n", ans);
+    scan.close();
+}

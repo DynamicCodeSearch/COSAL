@@ -1,0 +1,23 @@
+public static void main(String[] args) throws Exception {
+    Scanner scan = new Scanner(System.in);
+    int N = scan.nextInt();
+    String S = scan.next();
+    String answer = S;
+    Deque<Character> stack = new ArrayDeque<>();
+    for (int i = 0; i < S.length(); i++) {
+        if (S.charAt(i) == ')') {
+            if (stack.isEmpty() || stack.peek() != '(') {
+                answer = '(' + answer;
+            } else {
+                stack.poll();
+            }
+        } else {
+            stack.offerFirst(S.charAt(i));
+        }
+    }
+    while (!stack.isEmpty()) {
+        stack.poll();
+        answer += ')';
+    }
+    System.out.println(answer);
+}

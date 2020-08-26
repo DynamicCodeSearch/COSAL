@@ -1,0 +1,15 @@
+boolean del(int idx) {
+    if (!exist(idx)) {
+        return false;
+    }
+    arr[idx] = NIL;
+    if (pre[idx] != NIL && exist(pre[idx])) {
+        ne[pre[idx]] = ne[idx];
+    }
+    if (ne[idx] != NIL && exist(ne[idx])) {
+        pre[ne[idx]] = pre[idx];
+    }
+    pre[idx] = NIL;
+    ne[idx] = NIL;
+    return true;
+}

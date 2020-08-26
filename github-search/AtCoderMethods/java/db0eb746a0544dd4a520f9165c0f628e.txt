@@ -1,0 +1,16 @@
+public long find(int[] data) {
+    Arrays.sort(data);
+    List<Long> list = new ArrayList<>();
+    int min = data[0];
+    int max = data[data.length - 1];
+    long s = 0;
+    for (int c = min; c <= max; c++) {
+        for (int i = 0; i < data.length; i++) {
+            s += (data[i] - c) * (data[i] - c);
+        }
+        list.add(s);
+        s = 0;
+    }
+    long result = minimum(list);
+    return result;
+}

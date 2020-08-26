@@ -1,0 +1,23 @@
+public static void main(String[] args) throws NumberFormatException, IOException {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] p = new int[N + 1];
+    for (int i = 1; i <= N; i++) {
+        p[i] = sc.nextInt();
+    }
+    int swap = 0;
+    boolean skip = false;
+    for (int i = 1; i <= N; i++) {
+        if (skip) {
+            skip = false;
+            continue;
+        }
+        if (i == p[i]) {
+            swap++;
+            if (i < N && i + 1 == p[i + 1]) {
+                skip = true;
+            }
+        }
+    }
+    System.out.println(swap);
+}

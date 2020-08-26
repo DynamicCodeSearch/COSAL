@@ -1,0 +1,17 @@
+def deg2dir(deg):
+    DIRS = (
+        "N", "NNE", "NE", "ENE",
+        "E", "ESE", "SE", "SSE",
+        "S", "SSW", "SW", "WSW",
+        "W", "WNW", "NW", "NNW"
+    )
+
+    STEP = 36000 / 16
+
+    for i in range(1, 16):
+        lower = STEP*i - STEP//2
+        upper = STEP*i + STEP//2
+        if lower <= 10*deg < upper:
+            return DIRS[i]
+
+    return DIRS[0]

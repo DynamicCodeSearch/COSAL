@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String X = sc.next();
+    int N = X.length();
+    for (int i = 0; i < N; i++) {
+        if (X.charAt(i) != 'c' && X.charAt(i) != 'h' && X.charAt(i) != 'o' && X.charAt(i) != 'k' && X.charAt(i) != 'u') {
+            System.out.println("NO");
+            return;
+        } else {
+            if ((i == 0 && X.charAt(i) == 'h') || (i == N - 1 && X.charAt(i) == 'c')) {
+                System.out.println("NO");
+                return;
+            } else if (X.charAt(i) == 'c' && X.charAt(i + 1) != 'h') {
+                System.out.println("NO");
+                return;
+            } else if (X.charAt(i) == 'h' && X.charAt(i - 1) != 'c') {
+                System.out.println("NO");
+                return;
+            }
+        }
+    }
+    System.out.println("YES");
+}

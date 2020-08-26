@@ -1,0 +1,20 @@
+def scan(a, sgn):
+    if a[0] * sgn > 0:
+        res = 0
+        v = a[0]
+    else:
+        res = abs(a[0] - sgn)
+        v = sgn
+
+    for ai in a[1:]:
+        if v * (v + ai) < 0:
+            v += ai
+        else:
+            if v > 0:
+                res += abs(v + ai + 1)
+                v = -1
+            else:
+                res += abs(v + ai - 1)
+                v = 1
+
+    return res

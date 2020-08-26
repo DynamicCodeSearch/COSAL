@@ -1,0 +1,18 @@
+def prime_factor_decomposition(n):
+    import math
+    m = defaultdict(int)
+    while n > 1:
+        find_factor = False
+        for i in range(2, int(math.sqrt(n)) + 1):
+
+            if n % i == 0:
+                m[i] += 1
+                n //= i
+                find_factor = True
+                break
+
+        if not find_factor:
+            m[n] += 1
+            break
+
+    return m

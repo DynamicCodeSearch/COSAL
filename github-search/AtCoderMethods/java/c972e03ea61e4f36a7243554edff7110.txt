@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    try {
+        
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+        String[] strArr = br.readLine().split(" ");
+        String str1 = strArr[0];
+        int str1Length = str1.length();
+        String str2 = strArr[1];
+        int str2Length = str2.length();
+        String str3 = strArr[2];
+        if (str1.substring(str1Length - 1, str1Length).equals(str2.substring(0, 1)) && str2.substring(str2Length - 1, str2Length).equals(str3.substring(0, 1))) {
+            System.out.println("YES");
+        } else {
+            System.out.println("NO");
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

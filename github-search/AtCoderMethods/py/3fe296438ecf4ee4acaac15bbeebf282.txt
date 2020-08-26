@@ -1,0 +1,9 @@
+def dfs(vis, graph, x, n):
+    vis[x] = True
+    for i in range(n):
+        if graph[x][i] == False:
+            continue
+        if vis[i] == True:
+            continue
+        dfs(vis, graph, i, n)
+    return vis

@@ -1,0 +1,15 @@
+static void Method(ArrayList<Integer> num, ArrayList<String> param) {
+    int target = (int) Math.sqrt((int) num.get(0));
+    int result = 0;
+    int answer = 999999999;
+    for (int i = -100; i < 100; i++) {
+        for (int j = -100; j < 100; j++) {
+            if (num.get(0) - (target + i) * (target + j) < 0)
+                break;
+            result = (num.get(0) - (target + i) * (target + j) + Math.abs((target + i) - (target + j)));
+            if (answer > result)
+                answer = result;
+        }
+    }
+    System.out.println(answer);
+}

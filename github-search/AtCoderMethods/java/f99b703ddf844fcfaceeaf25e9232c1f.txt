@@ -1,0 +1,10 @@
+int dfs2(int u) {
+    vis[u] = true;
+    int res = imos[u];
+    for (Edge e : g[u]) {
+        if (vis[e.to])
+            continue;
+        res += dfs2(e.to);
+    }
+    return imos[u] = res;
+}

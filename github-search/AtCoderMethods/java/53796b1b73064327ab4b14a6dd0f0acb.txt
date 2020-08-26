@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    long N = sc.nextLong();
+    ArrayList<Long> set = new ArrayList<Long>();
+    for (long i = Math.max(1, N - 1000); i < N; i++) {
+        long val = i + f(i);
+        if (val == N) {
+            set.add(i);
+        }
+    }
+    System.out.println(set.size());
+    for (long c : set) {
+        System.out.println(c);
+    }
+}

@@ -1,0 +1,14 @@
+public static void main(String[] $) {
+    int[] p = new int[10];
+    for (int i = 0; i < 10; ++i) p[getInt()] = i;
+    ArrayList<Pair<String, Integer>> l = new ArrayList<>();
+    REPS(getInt()).mapToObj(i -> s.next()).forEach(o -> {
+        char[] v = o.toCharArray();
+        for (int x = 0; x < v.length; ++x) {
+            v[x] = (char) (p[v[x] - '0'] + '0');
+        }
+        l.add(new Pair<>(o, Integer.parseInt(String.valueOf(v))));
+    });
+    
+    l.stream().sorted(Comparator.<Pair<String, Integer>, Integer>comparing(Pair::getR)).map(Pair::getL).forEach(System.out::println);
+}

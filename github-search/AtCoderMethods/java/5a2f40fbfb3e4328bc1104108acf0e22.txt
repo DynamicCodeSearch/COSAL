@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    
+    int l = sc.nextInt();
+    
+    int x = sc.nextInt();
+    
+    int y = sc.nextInt();
+    
+    int s = sc.nextInt();
+    
+    int d = sc.nextInt();
+    double ft = forwardTime(l, x, y, s, d);
+    double bt = backwardTime(l, x, y, s, d);
+    double ans;
+    if (s == d)
+        ans = 0;
+    else if (bt < 0)
+        ans = ft;
+    else
+        ans = ft < bt ? ft : bt;
+    System.out.println(ans);
+    sc.close();
+}

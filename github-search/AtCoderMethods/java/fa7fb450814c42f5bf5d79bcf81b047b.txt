@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int n = scanner.nextInt();
+    int min = Integer.MAX_VALUE;
+    int x = 0, y = 0;
+    for (int i = 1; i < n; i++) {
+        for (int j = 1; j < n; j++) {
+            if (i * j > n) {
+                break;
+            } else {
+                min = Math.min(Math.abs(i - j) + n - (i * j), min);
+            }
+        }
+    }
+    if (n == 1) {
+        System.out.println(0);
+    } else {
+        System.out.println(min);
+    }
+}

@@ -1,0 +1,71 @@
+static void solve() {
+    int mod = 1000000007;
+    int n = ni();
+    int[] a = na(n - 1);
+    int[][] ps = enumPartitions(n)[n];
+    int m = ps.length;
+    Map<Long, Integer> map = new HashMap<>();
+    for (int i = 0; i < m; i++) {
+        map.put(h(ps[i]), i);
+    }
+    long[] dp = new long[m];
+    dp[0] = 1;
+    int w = 1;
+    for (int i = 0; i < n - 1; i++) {
+        while (w < a[i]) {
+            for (int j = 0; j < m; j++) {
+                int rem = 0;
+                for (int k = 1; k <= n; k++) {
+                    rem += (k * (k - 1) / 2 - (k - 1)) * ps[j][k];
+                }
+                rem -= w - 1 - i;
+                if (rem > 0) {
+                    dp[j] = dp[j] * rem % mod;
+                } else {
+                    dp[j] = 0;
+                }
+            }
+            w++;
+        }
+        long[] ndp = new long[m];
+        for (int j = 0; j < m; j++) {
+            if (dp[j] == 0)
+                continue;
+            for (int k = 1; k <= n; k++) {
+                if (ps[j][k] >= 1) {
+                    ps[j][k]--;
+                    for (int l = k; l <= n; l++) {
+                        if (ps[j][l] >= 1) {
+                            ps[j][l]--;
+                            ps[j][k + l]++;
+                            int to = map.get(h(ps[j]));
+                            ps[j][k + l]--;
+                            ndp[to] += dp[j] * (k == l ? ((ps[j][k] + 2) * k) * (((ps[j][k] + 2) * k) - 1) / 2 - (ps[j][k] + 2) * (k * (k - 1) / 2) : (ps[j][k] + 1) * k * (ps[j][l] + 1) * l);
+                            ndp[to] %= mod;
+                            ps[j][l]++;
+                        }
+                    }
+                    ps[j][k]++;
+                }
+            }
+        }
+        dp = ndp;
+        w++;
+    }
+    while (w <= n * (n - 1) / 2) {
+        for (int j = 0; j < m; j++) {
+            int rem = 0;
+            for (int k = 1; k <= n; k++) {
+                rem += (k * (k - 1) / 2 - (k - 1)) * ps[j][k];
+            }
+            rem -= w - 1 - (n - 1);
+            if (rem > 0) {
+                dp[j] = dp[j] * rem % mod;
+            } else {
+                dp[j] = 0;
+            }
+        }
+        w++;
+    }
+    out.println(dp[m - 1]);
+}

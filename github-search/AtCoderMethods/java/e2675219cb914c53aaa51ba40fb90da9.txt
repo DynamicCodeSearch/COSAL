@@ -1,0 +1,19 @@
+public static void fill(int index) {
+    if (index == n - 1) {
+        return;
+    }
+    if (answer[index] == 'S') {
+        if (arr[index] == 'o') {
+            answer[index + 1] = answer[index - 1];
+        } else if (arr[index] == 'x') {
+            answer[index + 1] = answer[index - 1] == 'S' ? 'W' : 'S';
+        }
+    } else {
+        if (arr[index] == 'o') {
+            answer[index + 1] = answer[index - 1] == 'S' ? 'W' : 'S';
+        } else if (arr[index] == 'x') {
+            answer[index + 1] = answer[index - 1];
+        }
+    }
+    fill(index + 1);
+}

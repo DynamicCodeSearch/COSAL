@@ -1,0 +1,38 @@
+
+
+
+
+
+
+
+public static void main(String[] args) throws Exception, IOException {
+    Reader sc = new Reader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = sc.nextInt();
+    int[] d = new int[n];
+    HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+    for (int i = 0; i < n; i++) {
+        d[i] = sc.nextInt();
+        if (map.containsKey(d[i])) {
+            map.put(d[i], 1 + map.get(d[i]));
+        } else {
+            map.put(d[i], 1);
+        }
+    }
+    sort(d);
+    long ans = 0;
+    for (int i = n - 1, c = 0, h = 0; -1 < i; i--) {
+        int k = map.get(d[i]);
+        if (k > 1) {
+            c++;
+            if (c == 2) {
+                ans = (long) h * d[i];
+                break;
+            }
+            h = d[i];
+            map.put(d[i], k - 2);
+        }
+    }
+    out.println(ans);
+    out.flush();
+}

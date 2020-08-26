@@ -1,0 +1,10 @@
+void buildTree(int node, int left, int right) {
+    if (left == right) {
+        minPos[node] = dfs_order[left];
+        return;
+    }
+    int mid = (left + right) >> 1;
+    buildTree(2 * node + 1, left, mid);
+    buildTree(2 * node + 2, mid + 1, right);
+    minPos[node] = depth[minPos[2 * node + 1]] < depth[minPos[2 * node + 2]] ? minPos[2 * node + 1] : minPos[2 * node + 2];
+}

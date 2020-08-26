@@ -1,0 +1,43 @@
+@functools.lru_cache(maxsize = 10000)
+
+def Main():
+  N, M = map(int , input().split())
+  A, B, C, D = [], [], [], []
+  for _ in range(N):
+    x, y = map(int , input().split())
+    A.append(x)
+    B.append(y)
+
+  for _ in range(M):
+    x, y = map(int, input().split())
+    C.append(x)
+    D.append(y)
+
+  cnt  = 0
+  res = []
+  zemi = []
+  mn = 123456789256913
+
+  bal = 0
+  sal = M
+  rez = []
+  zakia , zemi = [], []
+  for i in range(N):
+    for j in range( M):
+      X = abs(A[i] - C[j]) + abs(B[i] - D[j])
+      zemi.append(X)
+    zakia = zemi
+
+    chk = min(zemi)
+
+
+    for l in range(len(zakia)):
+      if chk == zakia[l]:
+
+        rez.append(l+1)
+        break
+
+    zemi.clear()
+
+  for i in range(len(rez)):
+    print(rez[i])

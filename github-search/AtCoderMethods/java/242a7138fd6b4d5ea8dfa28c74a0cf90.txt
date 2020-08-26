@@ -1,0 +1,26 @@
+public static void main(String... args) {
+    final Scanner sc = new Scanner(System.in);
+    final int N = sc.nextInt();
+    final char[] S1 = sc.next().toCharArray();
+    final char[] S2 = sc.next().toCharArray();
+    final int C = Color.values().length;
+    final long[][] dp = new long[N + 1][C];
+    dp[0][Color.None.ordinal()] = 1;
+    for (int i = 0; i < N; ) if (S1[i] == S2[i]) {
+        dp[i + 1][Color.RR.ordinal()] = dp[i][Color.BB.ordinal()] + dp[i][Color.GG.ordinal()] + dp[i][Color.BG.ordinal()] + dp[i][Color.GB.ordinal()] + dp[i][Color.None.ordinal()];
+        dp[i + 1][Color.BB.ordinal()] = dp[i][Color.GG.ordinal()] + dp[i][Color.RR.ordinal()] + dp[i][Color.GR.ordinal()] + dp[i][Color.RG.ordinal()] + dp[i][Color.None.ordinal()];
+        dp[i + 1][Color.GG.ordinal()] = dp[i][Color.RR.ordinal()] + dp[i][Color.BB.ordinal()] + dp[i][Color.RB.ordinal()] + dp[i][Color.BR.ordinal()] + dp[i][Color.None.ordinal()];
+        i++;
+    } else {
+        dp[i + 2][Color.RB.ordinal()] = dp[i][Color.BR.ordinal()] + dp[i][Color.GR.ordinal()] + dp[i][Color.BG.ordinal()] + dp[i][Color.GG.ordinal()] + dp[i][Color.None.ordinal()];
+        dp[i + 2][Color.BG.ordinal()] = dp[i][Color.GB.ordinal()] + dp[i][Color.BR.ordinal()] + dp[i][Color.GB.ordinal()] + dp[i][Color.RR.ordinal()] + dp[i][Color.None.ordinal()];
+        dp[i + 2][Color.GR.ordinal()] = dp[i][Color.RG.ordinal()] + dp[i][Color.RB.ordinal()] + dp[i][Color.BG.ordinal()] + dp[i][Color.BB.ordinal()] + dp[i][Color.None.ordinal()];
+        dp[i + 2][Color.BR.ordinal()] = dp[i][Color.RB.ordinal()] + dp[i][Color.RG.ordinal()] + dp[i][Color.GB.ordinal()] + dp[i][Color.GG.ordinal()] + dp[i][Color.None.ordinal()];
+        dp[i + 2][Color.RG.ordinal()] = dp[i][Color.GR.ordinal()] + dp[i][Color.GB.ordinal()] + dp[i][Color.BR.ordinal()] + dp[i][Color.BB.ordinal()] + dp[i][Color.None.ordinal()];
+        dp[i + 2][Color.GB.ordinal()] = dp[i][Color.BG.ordinal()] + dp[i][Color.BR.ordinal()] + dp[i][Color.RG.ordinal()] + dp[i][Color.RR.ordinal()] + dp[i][Color.None.ordinal()];
+        i += 2;
+    }
+    long ans = 0;
+    for (final long i : dp[N]) ans = (ans + i) % MOD;
+    System.out.println(ans);
+}

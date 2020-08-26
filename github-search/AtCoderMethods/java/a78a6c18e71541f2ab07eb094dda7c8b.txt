@@ -1,0 +1,15 @@
+private void solveD() {
+    Scanner sc = new Scanner(System.in);
+    long H = sc.nextLong();
+    long W = sc.nextLong();
+    long A = sc.nextLong();
+    long B = sc.nextLong();
+    long startRowIndex = H - A;
+    long startColIndex = B + 1;
+    long answer = 0L;
+    for (long shiftIndex = 0; startRowIndex - shiftIndex > 0 && startColIndex + shiftIndex <= W; shiftIndex++) {
+        answer += pointComb(H, W, H - A - shiftIndex, B + 1 + shiftIndex);
+        answer %= MOD;
+    }
+    System.out.println(answer);
+}

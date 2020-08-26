@@ -1,0 +1,21 @@
+static void longdis1(int x1, int y1, int x2, int y2) {
+    int sx = x1, sy = y1 - 1, ex = x2 + 1, ey = y2;
+    StringBuilder b = new StringBuilder("D");
+    while (sx != ex || sy != ey) {
+        if (sx < ex) {
+            sx++;
+            b.append("R");
+        } else if (ex < sx) {
+            sx--;
+            b.append("L");
+        } else if (sy < ey) {
+            sy++;
+            b.append("U");
+        } else {
+            sy--;
+            b.append("D");
+        }
+    }
+    b.append("L");
+    w.print(b);
+}

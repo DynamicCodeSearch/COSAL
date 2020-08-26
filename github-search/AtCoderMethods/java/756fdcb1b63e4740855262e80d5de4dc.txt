@@ -1,0 +1,18 @@
+void run() {
+    Scanner sc = new Scanner(System.in);
+    char[] c = sc.next().toCharArray();
+    String s = "WBWBWWBWBWBW";
+    char[] t = (s + s + s + s).toCharArray();
+    int n = c.length;
+    int m = t.length;
+    String[] ans = { "Do", "", "Re", "", "Mi", "Fa", "", "So", "", "La", "", "Si" };
+    L: for (int j = 0; j < m; j++) {
+        for (int i = 0; i < n; i++) {
+            if (c[i] != t[j + i]) {
+                continue L;
+            }
+        }
+        System.out.println(ans[j % 12]);
+        return;
+    }
+}

@@ -1,0 +1,25 @@
+public static void main(String[] aa) {
+    Scanner sc = new Scanner(System.in);
+    String[] st = sc.nextLine().split(" ");
+    
+    String[] st2 = sc.nextLine().split(" ");
+    int N = Integer.parseInt(st[0]);
+    int K = Integer.parseInt(st[1]);
+    int r = N - K;
+    int leng = st2.length;
+    int[] array = new int[leng];
+    int i = 0;
+    for (String s : st2) {
+        array[i] = Integer.parseInt(s);
+        ++i;
+    }
+    Arrays.sort(array);
+    double c = 0;
+    for (int j = 0; j < K; j++) {
+        
+        c = (c + array[r]) / 2;
+        r++;
+    }
+    out.println(c + "\n");
+    sc.close();
+}

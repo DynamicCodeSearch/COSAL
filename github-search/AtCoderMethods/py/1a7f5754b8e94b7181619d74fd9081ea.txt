@@ -1,0 +1,14 @@
+@functools.lru_cache(maxsize=10000)
+
+def prime_numbers(limit=50001):
+    yield 2
+    sub_limit = int(limit**0.5)
+    flags = [True, True] + [False] * (limit - 2)
+    for i in range(3, limit, 2):
+        if flags[i]:
+            continue
+        yield i
+
+        if i <= sub_limit:
+            for j in range(i*i, limit, i<<1):
+                flags[j] = True

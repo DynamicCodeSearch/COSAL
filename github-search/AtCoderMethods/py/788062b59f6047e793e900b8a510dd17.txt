@@ -1,0 +1,17 @@
+def solve_knapsack(L, M):
+    min_acc = sum([min(color1[j], color2[j]) for j in L])
+    if min_acc > M:
+        return -1
+    else:
+        add_can = M - min_acc
+        add_set = set([0])
+        for j in L:
+            add_j = max(color1[j], color2[j]) - min(color1[j], color2[j])
+            add_set_ = set(add_set)
+            for s in add_set:
+                if s + add_j <= add_can:
+                    add_set_.add(s + add_j)
+            add_set = add_set_
+
+        total = sum([color1[j]+color2[j] for j in L])
+        return total - max(add_set) - min_acc

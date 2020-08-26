@@ -1,0 +1,46 @@
+void run() {
+    int n = ni();
+    int k = ni();
+    int sum = 0;
+    int[] a = new int[n];
+    for (int i = 0; i < n; ++i) {
+        a[i] = ni();
+        sum += a[i];
+    }
+    if (sum == k) {
+        System.out.println(1);
+    } else {
+        int[][] dp = new int[n + 1][n + 1];
+        for (int i = 0; i <= n; ++i) {
+            Arrays.fill(dp[i], Integer.MAX_VALUE);
+        }
+        dp[0][0] = 0;
+        long s = 0;
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j <= n; ++j) {
+                if (dp[i][j] == Integer.MAX_VALUE) {
+                    continue;
+                }
+                
+                dp[i + 1][j] = Math.min(dp[i + 1][j], dp[i][j]);
+                
+                long u = dp[i][j];
+                long ns = s + a[i];
+                long v;
+                if (s == 0) {
+                    v = 1;
+                } else {
+                    v = (u * ns) / s + 1;
+                }
+                dp[i + 1][j + 1] = Math.min(dp[i + 1][j + 1], (int) v);
+            }
+            s += a[i];
+        }
+        for (int i = n; 0 <= i; --i) {
+            if (dp[n][i] <= k) {
+                System.out.println(i);
+                break;
+            }
+        }
+    }
+}

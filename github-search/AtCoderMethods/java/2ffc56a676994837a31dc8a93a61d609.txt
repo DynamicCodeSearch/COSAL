@@ -1,0 +1,30 @@
+public static void main(String[] args) throws Throwable {
+    InputStream is = null;
+    if (IS_TEST) {
+        String input = "5\n" + "1 4 3 5 2";
+        is = new ByteArrayInputStream(input.getBytes());
+    } else {
+        is = System.in;
+    }
+    try (BufferedReader r = new BufferedReader(new InputStreamReader(is))) {
+        int N = readInt(r);
+        int[] ps = readInts(r);
+        int manipCount = 0;
+        for (int i = 0; i < ps.length; i++) {
+            if (ps[i] == i + 1) {
+                if (i == ps.length - 1) {
+                    int buf = ps[i - 1];
+                    ps[i - 1] = i;
+                    ps[i] = buf;
+                    manipCount++;
+                } else {
+                    int buf = ps[i + 1];
+                    ps[i + 1] = i;
+                    ps[i] = buf;
+                    manipCount++;
+                }
+            }
+        }
+        System.out.println(manipCount);
+    }
+}

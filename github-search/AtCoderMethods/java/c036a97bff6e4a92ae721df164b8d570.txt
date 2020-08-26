@@ -1,0 +1,17 @@
+private static void abc015_3(BufferedReader br) throws IOException {
+    String[] target = br.readLine().split(" ");
+    questionNum = Integer.parseInt(target[0]);
+    optionNum = Integer.parseInt(target[1]);
+    targetNum = new int[questionNum][optionNum];
+    for (int i = 0; i < questionNum; i++) {
+        String[] questions = br.readLine().split(" ");
+        for (int n = 0; n < optionNum; n++) {
+            targetNum[i][n] = Integer.parseInt(questions[n]);
+        }
+    }
+    if (cross(0, 0)) {
+        System.out.println("Found");
+    } else {
+        System.out.println("Nothing");
+    }
+}

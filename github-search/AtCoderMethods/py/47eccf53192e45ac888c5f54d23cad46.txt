@@ -1,0 +1,13 @@
+def f(m):
+    a = list(range(n))
+    def g(i):
+        if a[i] == i:
+            return i
+        a[i] = g(a[i])
+        return a[i]
+    for _ in range(m):
+        p,q = map(int, input().split())
+        i = g(p-1)
+        j = g(q-1)
+        a[j] = i
+    return g

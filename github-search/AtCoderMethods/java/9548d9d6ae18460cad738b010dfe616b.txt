@@ -1,0 +1,13 @@
+private static boolean isOK(int e, int next, int[] minv, int[] maxv) {
+    if (minv[e] % 2 == 0 && minv[next] > -INF && minv[next] % 2 == 0) {
+        return false;
+    } else if (minv[e] % 2 != 0 && minv[next] > -INF && minv[next] % 2 != 0) {
+        return false;
+    }
+    if (minv[e] > maxv[next] + 1 || maxv[e] < minv[next] - 1) {
+        return false;
+    }
+    minv[next] = Math.max(minv[next], minv[e] - 1);
+    maxv[next] = Math.min(maxv[next], maxv[e] + 1);
+    return true;
+}

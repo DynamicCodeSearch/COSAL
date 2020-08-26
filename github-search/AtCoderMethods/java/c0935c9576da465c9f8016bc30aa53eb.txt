@@ -1,0 +1,19 @@
+public static void main(String[] args) throws java.lang.Exception {
+    Scanner in = new Scanner(System.in);
+    char[] c1 = in.next().toCharArray();
+    char[] c2 = in.next().toCharArray();
+    if (c1.length > c2.length) {
+        state = 1;
+    } else if (c1.length < c2.length) {
+        state = -1;
+    } else {
+        solve(c1, c2, 0);
+    }
+    if (state == -1) {
+        System.out.println("LESS");
+    } else if (state == 1) {
+        System.out.println("GREATER");
+    } else {
+        System.out.println("EQUAL");
+    }
+}

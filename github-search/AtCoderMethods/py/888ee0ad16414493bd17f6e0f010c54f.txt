@@ -1,0 +1,27 @@
+def dfs(v, f, l):
+    bcnt = fcnt = 0
+    c_used[v] = True
+    for t in g[v]:
+        if not c_used[t]:
+            ll = []
+            ret = dfs(t, v, ll)
+            if ret>0:
+                l += ll
+            else:
+                b_g[t] = ll
+                for u in ll:
+                    b_g[u].append(t)
+                l.append(t)
+            bcnt += ret
+        else:
+            if t==f:
+                if fcnt==1:
+                    c_memo[f] -= 1
+                    bcnt += 1
+                fcnt += 1
+            elif not bl[t]:
+                c_memo[t] -= 1
+                bcnt += 1
+    bl[v] = True
+    bcnt += c_memo[v]
+    return bcnt

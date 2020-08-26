@@ -1,0 +1,11 @@
+void dfs(int u, int p, int curr) {
+    size[u] = 1;
+    level[u] = curr;
+    parent[u] = p;
+    for (int x : g[u]) {
+        if (x != p) {
+            dfs(x, u, curr + 1);
+            size[u] += size[x];
+        }
+    }
+}

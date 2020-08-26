@@ -1,0 +1,20 @@
+def main():
+    N = int(input())
+    S = input()
+
+    t = ""
+    for ans in range(1000):
+        if ans == 0:
+            t = "b"
+        elif ans % 3 == 0:
+            t = "b" + t + "b"
+        elif ans % 3 == 1:
+            t = "a" + t + "c"
+        elif ans % 3 == 2:
+            t = "c" + t + "a"
+
+        if t == S:
+            print(ans)
+            break
+    else:
+        print(-1)

@@ -1,0 +1,12 @@
+def main(argv):
+    N, K = map(lambda x: int(x), sys.stdin.readline().split(" ", 2))
+    while N and K:
+        L = map(lambda x: int(x), raw_input().split(" ", N))
+        print(sum(sorted(L)[-K:]))
+
+        line = sys.stdin.readline()
+        if line:
+            N, K = map(lambda x: int(x), line.split(" ", 2))
+        else:
+            N = None
+            K = None

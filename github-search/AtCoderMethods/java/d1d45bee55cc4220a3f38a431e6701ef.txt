@@ -1,0 +1,18 @@
+public static void main(String[] args) throws IOException {
+    Scanner sc = new Scanner(System.in);
+    long N = sc.nextLong();
+    int min = 1 << 29;
+    long limit = (long) Math.sqrt(N);
+    for (long i = 1; i <= limit; i++) {
+        if (N % i == 0) {
+            int left = Long.toString(N / i).length();
+            int right = Long.toString(i).length();
+            int tmp = Math.max(left, right);
+            if (tmp < min) {
+                debug(left, right, tmp);
+                min = tmp;
+            }
+        }
+    }
+    System.out.println(min);
+}

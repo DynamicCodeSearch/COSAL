@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String s = sc.next();
+    sc.close();
+    String ans = "";
+    char before = s.charAt(0);
+    int count = 1;
+    for (int i = 1; i < s.length(); i++) {
+        char c = s.charAt(i);
+        if (c == before) {
+            count++;
+        } else {
+            ans += String.valueOf(before) + count;
+            count = 1;
+        }
+        before = c;
+    }
+    ans += String.valueOf(before) + count;
+    System.out.println(ans);
+}

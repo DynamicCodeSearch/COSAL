@@ -1,0 +1,16 @@
+public static void main(String[] __) {
+    int n = s.nextInt();
+    long k = s.nextLong();
+    TreeMap<Integer, Long> map = new TreeMap<>();
+    for (int i = 0; i < n; i++) {
+        map.merge(s.nextInt(), s.nextLong(), Long::sum);
+    }
+    long sum = 0;
+    for (Entry<Integer, Long> e : map.entrySet()) {
+        sum += e.getValue();
+        if (k <= sum) {
+            System.out.println(e.getKey());
+            return;
+        }
+    }
+}

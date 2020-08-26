@@ -1,0 +1,11 @@
+long get(int root, int L, int R, int pos) {
+    if (L == R) {
+        return min[root];
+    }
+    push(root);
+    int M = (L + R) / 2;
+    if (pos <= M) {
+        return get(2 * root + 1, L, M, pos);
+    }
+    return get(2 * root + 2, M + 1, R, pos);
+}

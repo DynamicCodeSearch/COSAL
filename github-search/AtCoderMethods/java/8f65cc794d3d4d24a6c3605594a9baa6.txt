@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    long N = Long.parseLong(scan.next());
+    int digit = (int) (Math.log10(N) / Math.log10(2) + 1.0);
+    int[] bitN = new int[digit];
+    for (int i = 0; i < digit; i++) {
+        bitN[digit - 1 - i] = (int) (N % 2);
+        N = N / 2;
+    }
+    long[][] dp = new long[digit + 1][3];
+    dp[0][0] = 1;
+    for (int i = 1; i <= digit; i++) {
+        if (bitN[i - 1] == 1) {
+            dp[i][0] = dp[i - 1][0];
+            dp[i][1] = (dp[i - 1][0] + dp[i - 1][1]) % MOD;
+            dp[i][2] = (2 * dp[i - 1][1] + 3 * dp[i - 1][2]) % MOD;
+        } else {
+            dp[i][0] = (dp[i - 1][0] + dp[i - 1][1]) % MOD;
+            dp[i][1] = dp[i - 1][1];
+            dp[i][2] = (dp[i - 1][1] + 3 * dp[i - 1][2]) % MOD;
+        }
+    }
+    long ans = (dp[digit][0] + dp[digit][1] + dp[digit][2]) % MOD;
+    System.out.println(ans);
+    scan.close();
+}

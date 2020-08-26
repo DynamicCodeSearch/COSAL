@@ -1,0 +1,7 @@
+def link(self, x, y):
+    if self.rank[x] > self.rank[y]:
+        self.p[y] = x
+    else:
+        self.p[x] = y
+        if self.rank[x] == self.rank[y]:
+            self.rank[y] += 1

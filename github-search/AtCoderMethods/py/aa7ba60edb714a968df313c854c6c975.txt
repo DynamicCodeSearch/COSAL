@@ -1,0 +1,10 @@
+def ans(s):
+	if len(s) == 1:
+		return int(s)
+ else:
+		length = len(s)
+  res = int(s)
+  for i in range(1, length):
+			x = 1 << (length - i - 1)
+   res += int(s[0: i]) * x + ans(s[i:len(s)])
+  return res

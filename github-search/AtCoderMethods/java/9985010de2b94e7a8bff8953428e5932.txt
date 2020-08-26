@@ -1,0 +1,22 @@
+public static void dfs(int v) {
+    
+    int t = 0;
+    for (int i = 0; i < n; i++) {
+        if (visited[i] == true) {
+            t++;
+        }
+    }
+    if (t == n) {
+        ans++;
+        return;
+    }
+    for (int i = 0; i < n; i++) {
+        
+        if (!(isPath[v][i] == true && visited[i] == false)) {
+            continue;
+        }
+        visited[i] = true;
+        dfs(i);
+        visited[i] = false;
+    }
+}

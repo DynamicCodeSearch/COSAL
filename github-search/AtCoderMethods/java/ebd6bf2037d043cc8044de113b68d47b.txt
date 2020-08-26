@@ -1,0 +1,31 @@
+void make_graph(V[][][] vs) {
+    int[] q = new int[H * W * 2];
+    boolean[][] vis = new boolean[H][W];
+    int a = 0, b = 0;
+    q[b++] = 0;
+    q[b++] = 0;
+    vis[0][0] = true;
+    while (a < b) {
+        int r = q[a++];
+        int c = q[a++];
+        if (s[r][c] == 'T')
+            continue;
+        for (int i = 0; i < H; i++) if (s[i][c] == 'o' || s[i][c] == 'T') {
+            vs[r][c][1].add(vs[i][c][0], INF);
+            if (!vis[i][c]) {
+                vis[i][c] = true;
+                q[b++] = i;
+                q[b++] = c;
+            }
+        }
+        for (int j = 0; j < W; j++) if (s[r][j] == 'o' || s[r][j] == 'T') {
+            vs[r][c][1].add(vs[r][j][0], INF);
+            if (!vis[r][j]) {
+                vis[r][j] = true;
+                q[b++] = r;
+                q[b++] = j;
+            }
+            dfs(r, j, vis);
+        }
+    }
+}

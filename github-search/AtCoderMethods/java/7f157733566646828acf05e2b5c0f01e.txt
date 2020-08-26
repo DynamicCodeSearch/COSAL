@@ -1,0 +1,25 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String line;
+    String[] words;
+    int N = parseInt(br.readLine());
+    boolean[][] dp = new boolean[N + 1][MAX + 1];
+    dp[0][0] = true;
+    for (int i = 1; i <= N; i++) {
+        int s = parseInt(br.readLine());
+        for (int j = 0; j <= MAX; j++) {
+            if (dp[i - 1][j]) {
+                dp[i][j] = true;
+                dp[i][j + s] = true;
+            }
+        }
+    }
+    int ans = 0;
+    for (int i = MAX; i >= 0; i--) {
+        if (dp[N][i] && (i % 10) != 0) {
+            ans = i;
+            break;
+        }
+    }
+    System.out.println(ans);
+}

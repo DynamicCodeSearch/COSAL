@@ -1,0 +1,13 @@
+public static Boolean overlapCheck(int[] checkList) {
+    Boolean result = false;
+    Set<Integer> checkHash = new HashSet<Integer>();
+    for (int i = 0; i < checkList.length; i++) {
+        if (checkHash.contains(checkList[i])) {
+            result = true;
+            break;
+        } else {
+            checkHash.add(checkList[i]);
+        }
+    }
+    return result;
+}

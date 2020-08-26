@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner cin = new Scanner(System.in);
+    String tmp = cin.next();
+    String result = "yes";
+    HashMap<Character, Integer> check = new HashMap<Character, Integer>();
+    for (int i = 0; i < tmp.length(); i++) {
+        if (check.containsKey(tmp.charAt(i))) {
+            result = "no";
+            break;
+        } else {
+            check.put(tmp.charAt(i), 1);
+        }
+    }
+    System.out.println(result);
+}

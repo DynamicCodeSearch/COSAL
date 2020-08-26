@@ -1,0 +1,16 @@
+public static void main(String[] args) throws Throwable {
+    MyScanner sc = new MyScanner();
+    PrintWriter pw = new PrintWriter(System.out);
+    int n = sc.nextInt();
+    TreeSet<Integer> set = new TreeSet<Integer>();
+    while (n-- > 0) {
+        int x = sc.nextInt();
+        if (set.contains(x))
+            set.remove(x);
+        else
+            set.add(x);
+    }
+    pw.println(set.size());
+    pw.flush();
+    pw.close();
+}

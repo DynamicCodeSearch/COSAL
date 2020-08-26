@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int[] a = new int[4];
+    for (int i = 1; i <= 3; i++) {
+        a[i] = sc.nextInt();
+    }
+    int[] b = a.clone();
+    Arrays.sort(b);
+    for (int i = 1; i <= 3; i++) {
+        for (int j = 1; j <= 3; j++) {
+            if (a[i] == b[j]) {
+                System.out.println(4 - j);
+            }
+        }
+    }
+}

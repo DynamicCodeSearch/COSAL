@@ -1,0 +1,33 @@
+public static long func(long x) {
+    if (x < 4)
+        return 0;
+    if (x >= 4 && x < 9)
+        return 1;
+    if (x == 9)
+        return 2;
+    long ret = 0;
+    String str = String.valueOf(x);
+    String subStr = str.substring(1, str.length());
+    int len = str.length();
+    long subNum = Long.parseLong(subStr);
+    int firstDigit = Integer.parseInt(String.valueOf(str.charAt(0)));
+    long a = func((long) Math.pow(10, len - 1) - 1);
+    long b = func(subNum);
+    ret += a;
+    for (int i = 1; i <= firstDigit; i++) {
+        if (i == firstDigit) {
+            if ((i == 4) || (i == 9)) {
+                ret += (subNum + 1);
+            } else {
+                ret += b;
+            }
+        } else {
+            if ((i == 4) || (i == 9)) {
+                ret += (long) Math.pow(10, len - 1);
+            } else {
+                ret += a;
+            }
+        }
+    }
+    return ret;
+}

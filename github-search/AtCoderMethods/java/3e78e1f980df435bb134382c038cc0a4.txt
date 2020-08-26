@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int xs = sc.nextInt();
+    int ys = sc.nextInt();
+    xt = sc.nextInt();
+    yt = sc.nextInt();
+    N = sc.nextInt();
+    data = new Tuple[N];
+    for (int i = 0; i < N; i++) {
+        Tuple t = new Tuple();
+        t.x = sc.nextInt();
+        t.y = sc.nextInt();
+        t.r = sc.nextInt();
+        t.index = i;
+        data[i] = t;
+    }
+    Tuple start = new Tuple();
+    start.x = xs;
+    start.y = ys;
+    PriorityQueue<Tuple> queue = new PriorityQueue<>();
+    double[] dp = new double[N + 1];
+    Arrays.fill(dp, Double.MAX_VALUE);
+    setNext(queue, start, dp);
+    while (queue.size() > 0) {
+        final Tuple poll = queue.poll();
+        if (dp[poll.index] > poll.cost) {
+            dp[poll.index] = poll.cost;
+            setNext(queue, poll, dp);
+        }
+    }
+    System.out.println(dp[N]);
+}

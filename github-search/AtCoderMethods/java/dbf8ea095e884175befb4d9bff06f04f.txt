@@ -1,0 +1,25 @@
+static void solver() {
+    Scanner sc = new Scanner(System.in);
+    int n = ni();
+    int k = ni();
+    int[] d = new int[k];
+    Set<Integer> set = new HashSet<>();
+    for (int i = 0; i < k; i++) {
+        d[i] = ni();
+        set.add(d[i]);
+    }
+    while (true) {
+        int tmp = n;
+        while (tmp >= 1) {
+            if (set.contains(tmp % 10)) {
+                break;
+            }
+            tmp /= 10;
+        }
+        if (tmp == 0) {
+            out.println(n);
+            return;
+        }
+        n++;
+    }
+}

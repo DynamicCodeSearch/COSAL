@@ -1,0 +1,43 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String S = sc.next();
+    int n = S.length();
+    int T = sc.nextInt();
+    char[] s = new char[n];
+    for (int i = 0; i < n; i++) {
+        s[i] = S.charAt(i);
+    }
+    int x = 0, y = 0;
+    int z = 0;
+    for (int i = 0; i < n; i++) {
+        if (s[i] == 'L') {
+            x--;
+        } else if (s[i] == 'R') {
+            x++;
+        } else if (s[i] == 'U') {
+            y++;
+        } else if (s[i] == 'D') {
+            y--;
+        } else {
+            z++;
+        }
+    }
+    if (x < 0) {
+        x = -1 * x;
+    }
+    if (y < 0) {
+        y = -1 * y;
+    }
+    if (T == 1) {
+        System.out.println(x + y + z);
+    }
+    if (T == 2) {
+        if (x + y <= z && n % 2 == 0) {
+            System.out.println("0");
+        } else if (x + y <= z && n % 2 == 1) {
+            System.out.println("1");
+        } else {
+            System.out.println(x + y - z);
+        }
+    }
+}

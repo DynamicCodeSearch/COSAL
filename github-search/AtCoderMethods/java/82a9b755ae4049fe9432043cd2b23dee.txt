@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int a = scan.nextInt();
+    int b = scan.nextInt();
+    int[][] d = new int[2][a];
+    int[][] e = new int[2][b];
+    for (int i = 0; i < a; i++) {
+        d[0][i] = scan.nextInt();
+        d[1][i] = scan.nextInt();
+    }
+    for (int i = 0; i < b; i++) {
+        e[0][i] = scan.nextInt();
+        e[1][i] = scan.nextInt();
+    }
+    for (int i = 0; i < a; i++) {
+        int c = 0;
+        int[] f = new int[b];
+        for (int n = 0; n < b; n++) {
+            f[n] = Math.abs(d[0][i] - e[0][n]) + Math.abs(d[1][i] - e[1][n]);
+            if (f[c] > f[n]) {
+                c = n;
+            }
+        }
+        System.out.println(c + 1);
+    }
+}

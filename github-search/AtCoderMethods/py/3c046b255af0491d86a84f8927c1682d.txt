@@ -1,0 +1,14 @@
+def FS():
+    ans = (100*A,0)
+    for a in range(0,F,100*A):
+        for b in range(0,F,100*B):
+            for c in range(0,F,C):
+                for d in range(0,F,D):
+                    wat,sug = (a + b),(c + d)
+                    if wat == 0 or wat+sug > F or 100*sug > E*wat:
+                        break
+                    elif 100*sug == E*wat:
+                        return (wat,sug)
+                    elif sug*ans[0] > ans[1]*wat:
+                        ans = (wat,sug)  
+    return ans

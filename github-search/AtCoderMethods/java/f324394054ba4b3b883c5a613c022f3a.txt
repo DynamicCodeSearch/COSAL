@@ -1,0 +1,24 @@
+long solveSmallK(long k, long m) {
+    this.k = (int) k;
+    List<Integer> digit = new ArrayList<>();
+    long tmp = m;
+    while (tmp > 0) {
+        digit.add((int) (tmp % 10));
+        tmp /= 10;
+    }
+    int size = digit.size();
+    a = new int[size];
+    for (int i = 0; i < size; i++) {
+        a[i] = digit.get(i);
+    }
+    int modmax = (int) Math.min(k, 9 * size);
+    dp = new long[size][this.k][modmax][2];
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < k; j++) {
+            for (int l = 0; l < modmax; l++) {
+                dp[i][j][l][0] = dp[i][j][l][1] = -1;
+            }
+        }
+    }
+    return dfs(size - 1, 0, 0, 1);
+}

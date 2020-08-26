@@ -1,0 +1,9 @@
+def check(pos, s, SW):
+    N = len(s)
+    pre  = (pos - 1) % N
+    post = (pos + 1) % N
+    if(s[pos] == 'o' and SW[pre]+SW[pos]+SW[post] in ['WSW', 'SSS', 'SWW', 'WWS']):
+        return True
+    if(s[pos] == 'x' and SW[pre]+SW[pos]+SW[post] in ['WSS', 'SSW', 'SWS', 'WWW']):
+        return True
+    return False

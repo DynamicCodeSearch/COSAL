@@ -1,0 +1,24 @@
+private static long solve(int n, int[][] xs, int[][] ys) {
+    
+    
+    PriorityQueue<int[]> edges = new PriorityQueue<>(Comparator.comparingInt((edge) -> edge[0]));
+    Arrays.sort(xs, Comparator.comparingInt((vi) -> vi[0]));
+    Arrays.sort(ys, Comparator.comparingInt((vi) -> vi[0]));
+    for (int[][] vis : new int[][][] { xs, ys }) for (int i = 1; i < n; i++) edges.add(new int[] { Math.abs(vis[i - 1][0] - vis[i][0]), vis[i - 1][1], vis[i][1] });
+    
+    
+    
+    long ans = 0;
+    rt = new int[n];
+    Arrays.fill(rt, -1);
+    while (!edges.isEmpty()) {
+        int[] edge = edges.remove();
+        int w = edge[0];
+        int fr = edge[1];
+        int to = edge[2];
+        if (!unite(fr, to))
+            continue;
+        ans += w;
+    }
+    return ans;
+}

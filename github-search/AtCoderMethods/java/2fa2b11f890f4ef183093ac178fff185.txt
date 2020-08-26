@@ -1,0 +1,53 @@
+private static String turn(String w, Point p) {
+    switch(w) {
+        case "R":
+            if (p.x == 8)
+                return "L";
+            break;
+        case "L":
+            if (p.x == 0)
+                return "R";
+            break;
+        case "U":
+            if (p.y == 0)
+                return "D";
+            break;
+        case "D":
+            if (p.y == 8)
+                return "U";
+            break;
+        case "RU":
+            if (p.x == 8 && p.y == 0)
+                return "LD";
+            if (p.x == 8)
+                return "LU";
+            if (p.y == 0)
+                return "RD";
+            break;
+        case "RD":
+            if (p.x == 8 && p.y == 8)
+                return "LU";
+            if (p.x == 8)
+                return "LD";
+            if (p.y == 8)
+                return "RU";
+            break;
+        case "LU":
+            if (p.x == 0 && p.y == 0)
+                return "RD";
+            if (p.x == 0)
+                return "RU";
+            if (p.y == 0)
+                return "LD";
+            break;
+        case "LD":
+            if (p.x == 0 && p.y == 8)
+                return "RU";
+            if (p.x == 0)
+                return "RD";
+            if (p.y == 8)
+                return "LU";
+            break;
+    }
+    return w;
+}

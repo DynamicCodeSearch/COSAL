@@ -1,0 +1,38 @@
+static void solve() {
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    int T = sc.nextInt();
+    int[] A = new int[N];
+    int[] a = new int[M];
+    int[] b = new int[M];
+    int[] c = new int[M];
+    for (int i = 0; i < N; i++) {
+        A[i] = sc.nextInt();
+    }
+    for (int i = 0; i < M; i++) {
+        a[i] = sc.nextInt() - 1;
+        b[i] = sc.nextInt() - 1;
+        c[i] = sc.nextInt();
+    }
+    @SuppressWarnings("unchecked")
+    List<Edge>[] edges = new List[N];
+    @SuppressWarnings("unchecked")
+    List<Edge>[] back_edges = new List[N];
+    for (int i = 0; i < N; i++) {
+        edges[i] = new ArrayList<Edge>();
+        back_edges[i] = new ArrayList<Edge>();
+    }
+    for (int i = 0; i < M; i++) {
+        edges[a[i]].add(new Edge(a[i], b[i], c[i]));
+        back_edges[b[i]].add(new Edge(b[i], a[i], c[i]));
+    }
+    int[] distance = dijkstra(N, edges, 0);
+    int[] back_distance = dijkstra(N, back_edges, 0);
+    long ans = 0;
+    for (int i = 0; i < N; i++) {
+        long total = (long) distance[i] + (long) back_distance[i];
+        ans = max(ans, (long) A[i] * (T - total));
+    }
+    out.println(ans);
+    out.flush();
+}

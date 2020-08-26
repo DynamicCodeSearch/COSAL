@@ -1,0 +1,23 @@
+private static int solve(String[] s, int t) {
+    int l = 0;
+    int u = 0;
+    int x = 0;
+    for (String val : s) {
+        if (val.equals("L"))
+            l++;
+        else if (val.equals("R"))
+            l--;
+        else if (val.equals("U"))
+            u++;
+        else if (val.equals("D"))
+            u--;
+        else
+            x++;
+    }
+    int d = Math.abs(l) + Math.abs(u);
+    if (t == 1)
+        return d + x;
+    if (d < x)
+        return (x - d) % 2 == 0 ? 0 : 1;
+    return d - x;
+}

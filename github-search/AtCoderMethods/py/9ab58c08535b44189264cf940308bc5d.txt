@@ -1,0 +1,17 @@
+def is_connected(npmat):
+    mat = np.copy(npmat)
+    dim = mat.shape[0]
+    for i in range(dim):
+        mat[i][i] = 0
+    accessible = set([0])
+    queue = [0]
+    while len(queue) > 0:
+        i = queue.pop()
+        js = filter(lambda x:x[1], enumerate(mat[i] > 0))
+        for j, bool in js:
+            if not j in accessible:
+                accessible.add(j)
+                if len(accessible) == dim :
+                    return True
+                queue.append(j)
+    return len(accessible) == dim

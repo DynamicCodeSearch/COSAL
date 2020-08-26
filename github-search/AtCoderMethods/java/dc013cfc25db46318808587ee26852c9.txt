@@ -1,0 +1,18 @@
+void solve() throws IOException {
+    int N = ni();
+    int[] T = new int[N];
+    int[] A = new int[N];
+    for (int i = 0; i < N; i++) {
+        T[i] = ni();
+        A[i] = ni();
+    }
+    long t = T[0];
+    long a = A[0];
+    for (int i = 1; i < N; i++) {
+        long x = (t % T[i] == 0) ? t / T[i] : (t / T[i] + 1);
+        long y = (a % A[i] == 0) ? a / A[i] : (a / A[i] + 1);
+        t = T[i] * Math.max(x, y);
+        a = A[i] * Math.max(x, y);
+    }
+    out.println(t + a);
+}

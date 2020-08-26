@@ -1,0 +1,12 @@
+def enough(self, kaisu):
+    hps_remain = []
+    for x in self.h:
+        hp_remain = x - kaisu * self.B
+        if hp_remain > 0:
+            hps_remain.append(hp_remain)
+    counter = 0
+    for hp_remain in hps_remain:
+        counter += math.ceil(hp_remain / self.extra_damage)
+        if counter > kaisu:
+            return False
+    return True

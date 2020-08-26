@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    final Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    TreeMap<String, Integer> m = new TreeMap<>();
+    for (int i = 0; i < N; i++) {
+        String s = sc.next();
+        int in = sc.nextInt();
+        m.put(s, in);
+    }
+    Collection c = m.values();
+    int all = 0;
+    for (Object o : c) {
+        int a = (int) o;
+        all += a;
+    }
+    all /= 2;
+    Collection col = m.keySet();
+    for (Object o : col) {
+        String string = (String) o;
+        if (m.get(string) > all) {
+            System.out.println(string);
+            System.exit(0);
+        }
+    }
+    System.out.println("atcoder");
+}

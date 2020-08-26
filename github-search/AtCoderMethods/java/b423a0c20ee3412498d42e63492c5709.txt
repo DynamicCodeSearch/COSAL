@@ -1,0 +1,15 @@
+long expression(String sb) {
+    long res = term(sb);
+    for (; index < sb.length(); ) {
+        if (sb.charAt(index) == '+') {
+            index++;
+            res += term(sb);
+        } else if (sb.charAt(index) == '-') {
+            index++;
+            res -= term(sb);
+        } else {
+            break;
+        }
+    }
+    return res;
+}

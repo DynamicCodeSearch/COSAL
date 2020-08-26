@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int A = sc.nextInt();
+    int B = sc.nextInt();
+    int C = sc.nextInt();
+    List<Integer> list = new LinkedList<>();
+    for (int i = 1; ; i++) {
+        int num = A * i % B;
+        if (num == 0)
+            break;
+        list.add(num);
+    }
+    Collections.sort(list);
+    boolean flag = false;
+    for (int i = list.size() - 1; 0 <= i; i--) {
+        int num = C % list.get(i);
+        if (num == 0) {
+            flag = true;
+            break;
+        }
+        C = num;
+    }
+    if (flag) {
+        System.out.println("YES");
+    } else {
+        System.out.println("NO");
+    }
+    sc.close();
+}

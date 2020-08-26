@@ -1,0 +1,25 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    int a = in.nextInt(), b = in.nextInt(), c = in.nextInt(), d = in.nextInt(), e = in.nextInt(), f = in.nextInt();
+    boolean[] can = new boolean[f / 100 + 1];
+    can[0] = true;
+    for (int i = 1; i < can.length; i++) {
+        can[i] = (i >= a && can[i - a]) || (i >= b && can[i - b]);
+    }
+    boolean[] can2 = new boolean[e * can.length + 1];
+    can2[0] = true;
+    for (int i = 1; i < can2.length; i++) {
+        can2[i] = (i >= c && can2[i - c]) || (i >= d && can2[i - d]);
+    }
+    int bestn = a, beste = 0;
+    for (int i = 0; i < can.length; i++) {
+        for (int j = 0; j <= e * i; j++) {
+            if (i * 100 + j <= f && can[i] && can2[j]) {
+                if (j * (bestn * 100 + beste) > beste * (i * 100 + j)) {
+                    bestn = i;
+                    beste = j;
+                }
+            }
+        }
+    }
+    out.println((bestn * 100 + beste) + " " + beste);
+}

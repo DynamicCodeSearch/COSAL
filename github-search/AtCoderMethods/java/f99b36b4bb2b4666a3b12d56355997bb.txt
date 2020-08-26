@@ -1,0 +1,32 @@
+void run() {
+    sc = new FastScanner();
+    String[] cards = new String[3];
+    for (int i = 0; i < 3; i++) {
+        cards[i] = sc.next();
+    }
+    int[] cardsNum = new int[3];
+    final int PLAYER_A = 0;
+    final int PLAYER_B = 1;
+    final int PLAYER_C = 2;
+    int player = PLAYER_A;
+    cardsNum[PLAYER_A] = cards[PLAYER_A].length();
+    cardsNum[PLAYER_B] = cards[PLAYER_B].length();
+    cardsNum[PLAYER_C] = cards[PLAYER_C].length();
+    String winner = "";
+    while (true) {
+        if (cardsNum[player] == 0) {
+            break;
+        }
+        char tmp = cards[player].charAt(cards[player].length() - cardsNum[player]);
+        cardsNum[player] = cardsNum[player] - 1;
+        player = Character.getNumericValue(tmp) - 10;
+    }
+    if (player == PLAYER_A) {
+        winner = "A";
+    } else if (player == PLAYER_B) {
+        winner = "B";
+    } else {
+        winner = "C";
+    }
+    System.out.println(winner);
+}

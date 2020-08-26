@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    int[] from = new int[M];
+    int[] to = new int[M];
+    int[] cost = new int[M];
+    for (int i = 0; i < M; i++) {
+        from[i] = sc.nextInt() - 1;
+        to[i] = sc.nextInt() - 1;
+        cost[i] = sc.nextInt();
+    }
+    int[][][] g = packWU(N, from, to, cost);
+    long[][] d = warshallFloyd(g);
+    int count = 0;
+    for (int i = 0; i < M; i++) {
+        if (cost[i] > d[from[i]][to[i]]) {
+            count++;
+        }
+    }
+    System.out.println(count);
+}

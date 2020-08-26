@@ -1,0 +1,13 @@
+public static void main(String[] args) {
+    int N = scan.nextInt();
+    int K = scan.nextInt();
+    long[] s = new long[N + 1];
+    for (int i = 1; i <= N; i++) {
+        s[i] = s[i - 1] + scan.nextInt();
+    }
+    long sum = 0L;
+    for (int i = 0; i < N - K + 1; i++) {
+        sum += (s[i + K] - s[i]);
+    }
+    System.out.println(sum);
+}

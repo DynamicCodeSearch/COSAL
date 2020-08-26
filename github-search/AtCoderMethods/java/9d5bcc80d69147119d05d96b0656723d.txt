@@ -1,0 +1,24 @@
+
+public void run() throws IOException {
+    
+    int TEST_CASE = 1;
+    while (TEST_CASE-- != 0) {
+        int n = io.nextInt();
+        int m = io.nextInt();
+        if (Math.abs(n - m) > 1) {
+            io.out.println(0);
+            return;
+        }
+        if (n > m) {
+            int t = m;
+            m = n;
+            n = t;
+        }
+        long[] fact = new long[m + 1];
+        fact[0] = 1;
+        for (int i = 1; i < fact.length; i++) {
+            fact[i] = fact[i - 1] * i % mod;
+        }
+        io.out.println(fact[n] * fact[m] % mod * (n == m ? 2 : 1) % mod);
+    }
+}

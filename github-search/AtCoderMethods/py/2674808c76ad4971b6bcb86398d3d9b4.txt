@@ -1,0 +1,18 @@
+def compress(a):
+    n = len(a)
+    a = [(ai, i) for i, ai in enumerate(a)]
+    a.sort()
+
+    num = -1
+    p = -1
+
+    b = [None] * n
+
+    for val, idx in a:
+        if val > p:
+            num += 1
+
+        b[idx] = num
+        p = val
+
+    return b

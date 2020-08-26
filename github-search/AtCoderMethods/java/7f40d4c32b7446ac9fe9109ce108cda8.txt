@@ -1,0 +1,8 @@
+static Quadruple solve(int l, int r) {
+    int p = l % 2;
+    if (r < 0 || l >= n || l > r)
+        return new Quadruple(Integer.MAX_VALUE, Integer.MAX_VALUE, l, r);
+    int min1 = p == 0 ? stEven.query(l, r) : stOdd.query(l, r), minPos1 = pos[min1];
+    int min2 = p == 0 ? stOdd.query(minPos1 + 1, r) : stEven.query(minPos1 + 1, r);
+    return new Quadruple(min1, min2, l, r);
+}

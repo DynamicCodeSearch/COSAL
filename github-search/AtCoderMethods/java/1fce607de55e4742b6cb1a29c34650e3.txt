@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int sn = (int) Math.sqrt(n);
+    int t = Integer.MAX_VALUE;
+    for (int i = sn / 4; i < sn * 2; i++) {
+        for (int j = i; j < sn * 4; j++) {
+            if (i * j > n) {
+                continue;
+            }
+            int m = n - i * j;
+            int p = Math.abs(i - j) + m;
+            t = Math.min(p, t);
+        }
+    }
+    System.out.println(t);
+}

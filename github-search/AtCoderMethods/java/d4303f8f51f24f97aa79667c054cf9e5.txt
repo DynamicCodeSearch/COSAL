@@ -1,0 +1,12 @@
+private void solve(Scanner sc, PrintWriter out) {
+    int N = sc.nextInt();
+    List<Pair> list = new ArrayList<>(N);
+    for (int i = 0; i < N; ++i) {
+        list.add(new Pair(sc.nextInt(), i + 1));
+    }
+    Collections.sort(list);
+    Collections.reverse(list);
+    for (Pair pair : list) {
+        out.println(pair.b);
+    }
+}

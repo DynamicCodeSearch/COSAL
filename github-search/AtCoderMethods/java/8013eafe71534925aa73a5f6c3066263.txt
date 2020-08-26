@@ -1,0 +1,33 @@
+public void solve() {
+    N = nextInt();
+    M = nextInt();
+    ch = next().toCharArray();
+    l = new int[M];
+    r = new int[M];
+    for (int i = 0; i < M; i++) {
+        l[i] = nextInt() - 1;
+        r[i] = nextInt() - 1;
+    }
+    newR = new int[N + 1];
+    for (int i = 0; i < N; i++) {
+        newR[i] = i;
+    }
+    for (int i = 0; i < M; i++) {
+        newR[l[i]] = Math.max(newR[l[i]], r[i]);
+    }
+    for (int i = 1; i < N; i++) {
+        newR[i] = Math.max(newR[i], newR[i - 1]);
+    }
+    sum = new int[N];
+    for (int i = 0; i < N; i++) {
+        sum[i] = ch[i] - '0';
+    }
+    for (int i = 0; i < N - 1; i++) {
+        sum[i + 1] += sum[i];
+    }
+    dp = new long[N + 1][N + 1];
+    for (int i = 0; i < N + 1; i++) {
+        Arrays.fill(dp[i], -1);
+    }
+    out.println(dfs(0, newR[0], sum[newR[0]]));
+}

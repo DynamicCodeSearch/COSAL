@@ -1,0 +1,19 @@
+
+public void run() throws IOException {
+    
+    int TEST_CASE = 1;
+    while (TEST_CASE-- != 0) {
+        int n = io.nextInt();
+        long minT = 0;
+        long minA = 0;
+        for (int i = 0; i < n; i++) {
+            int t = io.nextInt();
+            int a = io.nextInt();
+            long c = Math.max(1, Math.max((t + minT - 1) / t, (a + minA - 1) / a));
+            minT = c * t;
+            minA = c * a;
+        
+        }
+        io.out.println(minT + minA);
+    }
+}

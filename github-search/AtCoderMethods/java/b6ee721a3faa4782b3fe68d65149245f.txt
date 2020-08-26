@@ -1,0 +1,25 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    int n = in.nextInt();
+    TaskD.Point[] p = new TaskD.Point[n];
+    for (int i = 0; i < n; i++) {
+        p[i] = new TaskD.Point(in.nextInt(), in.nextInt(), i);
+    }
+    TaskD.Edge[] e = new TaskD.Edge[2 * (n - 1)];
+    Arrays.sort(p, Comparator.comparingInt(q -> q.x));
+    for (int i = 0; i + 1 < n; i++) {
+        e[i] = new TaskD.Edge(p[i].idx, p[i + 1].idx, Math.min(Math.abs(p[i + 1].x - p[i].x), Math.abs(p[i + 1].y - p[i].y)));
+    }
+    Arrays.sort(p, Comparator.comparingInt(q -> q.y));
+    for (int i = 0; i + 1 < n; i++) {
+        e[i + n - 1] = new TaskD.Edge(p[i].idx, p[i + 1].idx, Math.min(Math.abs(p[i + 1].x - p[i].x), Math.abs(p[i + 1].y - p[i].y)));
+    }
+    Arrays.sort(e, Comparator.comparingInt(q -> q.cost));
+    int[] pp = DisjointSets.createSets(n);
+    long ans = 0;
+    for (TaskD.Edge ee : e) {
+        if (DisjointSets.unite(pp, ee.from, ee.to)) {
+            ans += ee.cost;
+        }
+    }
+    out.println(ans);
+}

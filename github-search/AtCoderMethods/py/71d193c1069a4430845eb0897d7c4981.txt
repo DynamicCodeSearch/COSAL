@@ -1,0 +1,11 @@
+def f(i,k):
+    a[i] = k
+
+    ff = True
+    for c in d[i]:
+        if a[c] < 0:
+            if not f(c, k+1):
+                ff = False
+        elif k - a[c] != 1:
+            ff = False
+    return ff

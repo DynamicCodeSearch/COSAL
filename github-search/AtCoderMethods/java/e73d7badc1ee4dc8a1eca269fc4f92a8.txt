@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int cc, ptr, ans, n, out;
+    int[] input = new int[100000];
+    n = scan.nextInt();
+    for (int i = 0; i < n; i++) {
+        input[i] = scan.nextInt();
+    }
+    Arrays.sort(input, 0, n);
+    ans = out = ptr = 0;
+    while (ptr < n) {
+        cc = input[ptr];
+        ans = 0;
+        while (ptr < n && input[ptr] == cc) {
+            ptr++;
+            ans++;
+        }
+        out = out + (ans % 2);
+    }
+    System.out.println(out);
+}

@@ -1,0 +1,7 @@
+def main():
+    N = int(input())
+    a = list(map(int, input().split()))
+
+    ls = calc_l_score(N, a)
+    rs = calc_r_score(N, a)
+    return max([l - r for l, r in zip(ls, rs)])

@@ -1,0 +1,24 @@
+def LCM(T):
+	l = len(T)
+
+
+
+ if(l == 1):
+		return T[0]
+
+ elif(l == 2):
+		return lcm(T[0], T[1])
+
+
+
+ T1, T2 = [], []
+
+ for i in range(l // 2):
+		T1.append(T[i])
+
+ for j in range(l - l // 2):
+		T2.append(T[j + l // 2])
+
+
+
+ return lcm(LCM(T1), LCM(T2))

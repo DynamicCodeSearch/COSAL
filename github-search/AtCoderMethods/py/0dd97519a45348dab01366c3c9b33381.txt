@@ -1,0 +1,11 @@
+def mainC():
+
+    N = int(input())
+    a = list(map(int, input().split()))
+    s = sum(a)
+    d2 = a[0]
+    m = abs(s-2*d2)
+    for i in range(1, N-1):
+        d2 += a[i]
+        m = min( m, abs(s-2*d2) )
+    print( m )

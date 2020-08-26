@@ -1,0 +1,13 @@
+private void dfs(Vertex v) {
+    v.visited = true;
+    v.value1 = 1;
+    v.value2 = 1;
+    for (int i = 0; i < v.neighbor.length; ++i) {
+        if (v.neighbor[i].visited) {
+            continue;
+        }
+        dfs(v.neighbor[i]);
+        v.value1 = (v.value1 * (v.neighbor[i].value1 + v.neighbor[i].value2)) % M;
+        v.value2 = (v.value2 * (v.neighbor[i].value1)) % M;
+    }
+}

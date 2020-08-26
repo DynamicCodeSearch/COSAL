@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    final int N = sc.nextInt();
+    sc.close();
+    Map<Integer, List<String>> dp = new HashMap<>();
+    int sum = 0;
+    for (int i = 1; i <= 9; i++) {
+        for (int j = 1; j <= 9; j++) {
+            List<String> list = dp.containsKey(i * j) ? dp.get(i * j) : new ArrayList<>();
+            list.add(String.format("%d x %d", i, j));
+            dp.put(i * j, list);
+            sum += i * j;
+        }
+    }
+    for (String ans : dp.get(sum - N)) {
+        System.out.println(ans);
+    }
+}

@@ -1,0 +1,33 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    int[] p = sc.nextIntList(N);
+    st[0] = new SegmentTreeRMQPos(N);
+    st[1] = new SegmentTreeRMQPos(N);
+    queue = new PriorityQueue<>((o1, o2) -> o1[2] - o2[2]);
+    for (int i = 0; i < N; i++) {
+        st[i % 2].update(i, p[i]);
+    }
+    queue.add(new int[] { 0, N, p[min(0, N)] });
+    int[] ret = new int[N];
+    int ptr = 0;
+    while (queue.size() > 0) {
+        int[] range = queue.poll();
+        int left = min(range[0], range[1]);
+        int right = min(left + 1, range[1]);
+        ret[ptr++] = p[left];
+        ret[ptr++] = p[right];
+        int[] nl = { range[0], left + 1, right + 1 };
+        int[] nr = { left, right, range[1] };
+        for (int i = 0; i < 3; i++) {
+            if (nl[i] < nr[i])
+                queue.add(new int[] { nl[i], nr[i], p[min(nl[i], nr[i])] });
+        }
+    }
+    StringBuilder sb = new StringBuilder();
+    for (int v : ret) {
+        sb.append(v);
+        sb.append(" ");
+    }
+    System.out.println(sb.substring(0, sb.length() - 1));
+}

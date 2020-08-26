@@ -1,0 +1,23 @@
+private static void bfs(int i, int j, char[][] c, int[][] abc, int cnt) {
+    int[] dx = { 1, 1, 0, -1, -1, -1, 0, 1 };
+    int[] dy = { 0, 1, 1, 1, 0, -1, -1, -1 };
+    int h = c.length;
+    int w = c[0].length;
+    Queue<Pair> q = new ArrayDeque<>();
+    q.add(new Pair(i, j));
+    abc[i][j] = cnt;
+    while (!q.isEmpty()) {
+        Pair e = q.remove();
+        for (int k = 0, size = dx.length; k < size; k++) {
+            int nx = e.b + dx[k];
+            int ny = e.a + dy[k];
+            if (nx < 0 || nx >= w || ny < 0 || ny >= h) {
+                continue;
+            }
+            if (c[ny][nx] == 'o' && abc[ny][nx] == 0) {
+                q.add(new Pair(ny, nx));
+                abc[ny][nx] = cnt;
+            }
+        }
+    }
+}

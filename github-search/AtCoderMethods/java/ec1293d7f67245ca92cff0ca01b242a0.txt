@@ -1,0 +1,32 @@
+private void solve(Scanner sc) {
+    int N = sc.nextInt();
+    int[] a = new int[N];
+    for (int i = 0; i < N; ++i) {
+        a[i] = sc.nextInt();
+    }
+    int maxT = Integer.MIN_VALUE;
+    for (int i = 0; i < N; ++i) {
+        int maxA = Integer.MIN_VALUE;
+        int maxTSub = Integer.MIN_VALUE;
+        for (int j = 0; j < N; ++j) {
+            if (i != j) {
+                int sumT = 0;
+                int sumA = 0;
+                for (int k = Math.min(i, j); k <= Math.max(i, j); ++k) {
+                    if ((k - Math.min(i, j) + 1) % 2 == 1) {
+                        sumT += a[k];
+                    } else {
+                        sumA += a[k];
+                    }
+                }
+                if (sumA > maxA) {
+                    maxA = sumA;
+                    
+                    maxTSub = sumT;
+                }
+            }
+        }
+        maxT = Math.max(maxT, maxTSub);
+    }
+    _out.println(maxT);
+}

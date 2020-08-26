@@ -1,0 +1,11 @@
+private long go(int id, long cur) {
+    if (id == N - 1)
+        return 0L;
+    if (dp[id] != -1)
+        return dp[id];
+    long best = Long.MAX_VALUE;
+    
+    best = Math.min(best, go(id + 1, x[id + 1]) + (A * Math.abs(x[id + 1] - cur)));
+    best = Math.min(best, go(id + 1, x[id + 1]) + B);
+    return dp[id] = best;
+}

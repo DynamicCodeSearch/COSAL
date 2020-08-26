@@ -1,0 +1,45 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    
+    int maxX = sc.nextInt();
+    int maxY = sc.nextInt();
+    int squearNum = sc.nextInt();
+    
+    boolean[][] squear = new boolean[maxX][maxY];
+    
+    int x;
+    int y;
+    int positionPaint;
+    for (int i = 0; i < squearNum; i++) {
+        x = sc.nextInt();
+        y = sc.nextInt();
+        positionPaint = sc.nextInt();
+        
+        switch(positionPaint) {
+            case 1:
+                paintX(squear, x, 0, maxY);
+                break;
+            case 2:
+                paintX(squear, maxX, x, maxY);
+                break;
+            case 3:
+                paintY(squear, y, 0, maxX);
+                break;
+            case 4:
+                paintY(squear, maxY, y, maxX);
+                break;
+            default:
+        }
+    }
+    int count = 0;
+    
+    for (int i = 0; i < maxX; i++) {
+        for (int j = 0; j < maxY; j++) {
+            if (!squear[i][j]) {
+                count++;
+            }
+        }
+    }
+    System.out.println(count);
+}

@@ -1,0 +1,19 @@
+def main():
+    L,X,Y,S,D = map(int,raw_input().split())
+
+
+    if D >= S:
+        a = (D-S)/(X+Y*1.0)
+    else:
+        a = (D+L-S)/(X+Y*1.0)
+
+
+    if Y-X > 0:
+        if D < S:
+            b = (S-D)/(Y-X*1.0)
+        else:
+            b = (S+L-D)/(Y-X*1.0)
+    else:
+        b = float("inf")
+
+    print(min(a,b))

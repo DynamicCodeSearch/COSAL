@@ -1,0 +1,14 @@
+def solve(N, xs, ys):
+    xs.sort()
+    ys.sort()
+    es = add_edges(xs)
+    es.extend(add_edges(ys))
+    es.sort()
+    ds = DisjointSet(N)
+    cost = 0
+    for d, i, j in es:
+        if ds.find_set(i) == ds.find_set(j):
+            continue
+        ds.union(i, j)
+        cost += d
+    return cost

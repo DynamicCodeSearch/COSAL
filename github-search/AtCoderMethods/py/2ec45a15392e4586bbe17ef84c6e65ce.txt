@@ -1,0 +1,11 @@
+def recursion_pay(num):
+    _sub = sub[num]
+    if not _sub:
+        return 1
+
+    subs_pay = []
+    for i in _sub:
+        subs_pay.append(recursion_pay(i + 1))
+
+    pay = min(subs_pay) + max(subs_pay) + 1
+    return pay

@@ -1,0 +1,16 @@
+private static void solve() {
+    long A = nl();
+    long K = nl();
+    long t = A;
+    long day = 0;
+    long n = 2 * (long) Math.pow(10, 12);
+    if (K == 0) {
+        System.out.println(n - t);
+        return;
+    }
+    while (t < n) {
+        t += 1 + t * K;
+        day++;
+    }
+    System.out.println(day);
+}

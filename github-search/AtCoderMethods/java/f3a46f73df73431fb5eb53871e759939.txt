@@ -1,0 +1,22 @@
+static double[] daikd(double[][] G, int start) {
+    int n = G.length;
+    double[] d = new double[n];
+    boolean[] used = new boolean[n];
+    for (int i = 0; i < n; i++) {
+        d[i] = 1000000000.0;
+        used[i] = false;
+    }
+    d[start] = 0.0;
+    while (true) {
+        int v = -1;
+        for (int u = 0; u < n; u++) {
+            if (!used[u] && (v == -1 || d[u] < d[v]))
+                v = u;
+        }
+        if (v == -1)
+            break;
+        used[v] = true;
+        for (int u = 0; u < n; u++) d[u] = Math.min(d[u], d[v] + G[v][u]);
+    }
+    return d;
+}

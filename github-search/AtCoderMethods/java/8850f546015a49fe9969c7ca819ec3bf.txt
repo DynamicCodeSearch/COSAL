@@ -1,0 +1,13 @@
+private void solve(Scanner sc) {
+    String s = sc.nextLine();
+    int k = sc.nextInt();
+    if (k > s.length()) {
+        _out.println(0);
+        return;
+    }
+    Set<String> set = new HashSet<>();
+    for (int i = 0; i < s.length() - k + 1; ++i) {
+        set.add(s.substring(i, i + k));
+    }
+    _out.println(set.size());
+}

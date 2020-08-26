@@ -1,0 +1,36 @@
+private static void solve() {
+    int n = sc.nextInt();
+    int k = sc.nextInt();
+    double[][] dp = new double[k + 1][n + 1];
+    double[][] dp2 = new double[k + 1][n + 1];
+    for (int i = 0; i <= k; i++) {
+        dp2[i][0] = 1;
+    }
+    for (int i = 1; i <= n; i++) {
+        
+        double p = (double) 1 / (n - i + 1);
+        for (int j = 0; j <= k; j++) {
+            
+            
+            dp[j][i] = dp[j][i - 1] * (1 - p);
+            dp2[j][i] = dp2[j][i - 1] * (1 - p);
+            double tmp = 0;
+            if (j > 0) {
+                
+                
+                tmp = dp2[j - 1][i - 1] * p;
+            } else {
+            
+            
+            }
+            dp[j][i] += Math.max(tmp, dp[j][i - 1] * p);
+            dp2[j][i] += Math.max(tmp, dp[j][i - 1] * p);
+        }
+    }
+    
+    
+    
+    
+    
+    pr.printf("%.7f\n", dp[k][n]);
+}

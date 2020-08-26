@@ -1,0 +1,19 @@
+def main():
+    sa,sb = LS()
+    r = -999
+    a = int(sa)
+    b = int(sb)
+    for i in range(3):
+        ia = int(sa[:i] + '9' + sa[i+1:])
+        if ia - b > r:
+            r = ia - b
+    for i in range(3):
+        t = '0'
+        if i == 0:
+            t = '1'
+        ib = int(sb[:i] + t + sb[i+1:])
+        if a - ib > r:
+            r = a - ib
+
+
+    return r

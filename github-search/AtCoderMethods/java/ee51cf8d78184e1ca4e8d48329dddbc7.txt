@@ -1,0 +1,26 @@
+private Node<E> insert(Node<E> x, E value, int pri) {
+    if (x == null) {
+        modCount++;
+        Node<E> y = new Node<>(value, pri);
+        Node.update(y);
+        return y;
+    }
+    int cmp = comparator.compare(value, x.value);
+    if (cmp < 0) {
+        x.left = insert(x.left, value, pri);
+        Node.update(x);
+        if (x.priority < x.left.priority) {
+            return rotateRight(x);
+        }
+        return x;
+    } else if (cmp > 0) {
+        x.right = insert(x.right, value, pri);
+        Node.update(x);
+        if (x.priority < x.right.priority) {
+            return rotateLeft(x);
+        }
+        return x;
+    } else {
+        return x;
+    }
+}

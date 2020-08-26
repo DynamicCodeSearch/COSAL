@@ -1,0 +1,9 @@
+private static char[] ns(int n) {
+    char[] buf = new char[n];
+    int b = skip(), p = 0;
+    while (p < n && !(isSpaceChar(b))) {
+        buf[p++] = (char) b;
+        b = readByte();
+    }
+    return n == p ? buf : Arrays.copyOf(buf, p);
+}

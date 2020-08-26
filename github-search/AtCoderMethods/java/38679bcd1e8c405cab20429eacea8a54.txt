@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    
+    Scanner scn = new Scanner(System.in);
+    String S = scn.next();
+    StringBuilder sb = new StringBuilder(S);
+    int k = 0;
+    while (sb.length() != k) {
+        if (sb.charAt(k) <= '9' && sb.charAt(k) >= '0') {
+            k++;
+        } else {
+            sb.delete(k, k + 1);
+        }
+    }
+    System.out.println(Integer.parseInt(sb.toString()));
+    scn.close();
+}

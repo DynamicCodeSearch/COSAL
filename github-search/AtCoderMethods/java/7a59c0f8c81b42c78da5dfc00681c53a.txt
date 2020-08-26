@@ -1,0 +1,33 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    List<Integer> numList = new ArrayList<>();
+    if (n == 1) {
+        System.out.println(1);
+        return;
+    }
+    for (int i = 1; i <= n; i++) {
+        numList.add(i);
+    }
+    BigInteger result = new BigInteger("1");
+    for (int i = 1; i < n; i++) {
+        int sNum = numList.get(i);
+        if (sNum == 1)
+            continue;
+        int count = 0;
+        for (int j = i; j < n; j++) {
+            int tNum = numList.get(j);
+            while (tNum % sNum == 0) {
+                tNum /= sNum;
+                count++;
+            }
+            numList.set(j, tNum);
+        }
+        if (count != 0) {
+            BigInteger tmpNum = new BigInteger(Integer.toString(count + 1));
+            result = result.multiply(tmpNum);
+        }
+    }
+    BigInteger seven = new BigInteger("7");
+    System.out.println(result.remainder(BigInteger.TEN.pow(9).add(seven)));
+}

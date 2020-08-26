@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    try {
+        
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+        String[] strArr = br.readLine().split(" ");
+        long n = Long.parseLong(strArr[0]);
+        long k = Long.parseLong(strArr[1]);
+        TreeMap<Long, Long> map = new TreeMap<Long, Long>();
+        for (int i = 0; i < n; i++) {
+            strArr = br.readLine().split(" ");
+            long num = Long.parseLong(strArr[0]);
+            long count = Long.parseLong(strArr[1]);
+            if (map.containsKey(num)) {
+                long before = map.get(num);
+                map.put(num, count + before);
+            } else {
+                map.put(num, count);
+            }
+        }
+        long temp = 0;
+        for (long nKey : map.keySet()) {
+            temp = temp + map.get(nKey);
+            if (temp >= k) {
+                System.out.println(nKey);
+                break;
+            }
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

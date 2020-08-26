@@ -1,0 +1,45 @@
+public void solve() {
+    N = nextInt();
+    Ma = nextInt();
+    Mb = nextInt();
+    A = new int[N];
+    B = new int[N];
+    C = new int[N];
+    for (int i = 0; i < N; i++) {
+        A[i] = nextInt();
+        B[i] = nextInt();
+        C[i] = nextInt();
+        sumA += A[i];
+        sumB += B[i];
+    }
+    int[][][] dp = new int[N + 1][sumA + 10][sumB + 10];
+    for (int i = 0; i < N + 1; i++) {
+        for (int j = 0; j < sumA + 10; j++) {
+            for (int k = 0; k < sumB + 10; k++) {
+                dp[i][j][k] = INF;
+            }
+        }
+    }
+    dp[0][0][0] = 0;
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < sumA + 1 - A[i]; j++) {
+            for (int k = 0; k < sumB + 1 - B[i]; k++) {
+                int a = j + A[i];
+                int b = k + B[i];
+                dp[i + 1][j][k] = Math.min(dp[i + 1][j][k], dp[i][j][k]);
+                dp[i + 1][a][b] = Math.min(dp[i + 1][a][b], dp[i][j][k] + C[i]);
+            }
+        }
+    }
+    int ans = INF;
+    int max = Math.max(Ma, Mb);
+    int min = Math.min(sumA, sumB);
+    for (int i = 1; i * max <= min; i++) {
+        ans = Math.min(ans, dp[N][i * Ma][i * Mb]);
+    }
+    if (ans == INF) {
+        out.println(-1);
+    } else {
+        out.println(ans);
+    }
+}

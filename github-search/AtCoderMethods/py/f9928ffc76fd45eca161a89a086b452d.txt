@@ -1,0 +1,20 @@
+def solve(self):
+
+    s = input()
+    d = Counter()
+    for c in s:
+        d[c] += 1
+
+    odd = 0
+    even = 0
+    for k, v in d.items():
+        even += v // 2
+        odd += v % 2
+
+
+    if odd == 0:
+        ans = even * 2
+    else:
+        ans = ((even // odd) * 2) + 1
+    print(ans)
+    return None

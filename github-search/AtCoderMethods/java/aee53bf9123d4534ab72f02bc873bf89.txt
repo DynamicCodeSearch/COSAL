@@ -1,0 +1,29 @@
+private static long dfs(int i, int parent, int rootColor) {
+    if (dp[i][rootColor] > 0) {
+        return dp[i][rootColor];
+    }
+    long ret;
+    if (rootColor == 1) {
+        ret = 1;
+        for (Graph.Path p : g.get(i)) {
+            if (p.to != parent) {
+                ret *= dfs(p.to, i, 0);
+                ret %= MOD;
+            }
+        }
+    } else {
+        long ret1 = 1;
+        long ret2 = 1;
+        for (Graph.Path p : g.get(i)) {
+            if (p.to != parent) {
+                ret1 *= dfs(p.to, i, 0);
+                ret1 %= MOD;
+                ret2 *= dfs(p.to, i, 1);
+                ret2 %= MOD;
+            }
+        }
+        ret = (ret1 + ret2) % MOD;
+    }
+    dp[i][rootColor] = ret;
+    return ret;
+}

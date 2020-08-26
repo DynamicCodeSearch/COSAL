@@ -1,0 +1,11 @@
+public static int[][] makeBuckets(int[] a) {
+    int n = a.length;
+    int sup = 0;
+    for (int v : a) sup = Math.max(sup, v);
+    int[][] bucket = new int[sup + 1][];
+    int[] bp = new int[sup + 1];
+    for (int i = 0; i < n; i++) bp[a[i]]++;
+    for (int i = 0; i <= sup; i++) bucket[i] = new int[bp[i]];
+    for (int i = n - 1; i >= 0; i--) bucket[a[i]][--bp[a[i]]] = i;
+    return bucket;
+}

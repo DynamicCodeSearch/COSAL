@@ -1,0 +1,19 @@
+private void down(int cur) {
+    for (int c = cur; 2 * c < pos; ) {
+        int b = a[2 * c] < a[2 * c + 1] ? 2 * c : 2 * c + 1;
+        if (a[b] < a[c]) {
+            int d = a[c];
+            a[c] = a[b];
+            a[b] = d;
+            int e = imap[map[c]];
+            imap[map[c]] = imap[map[b]];
+            imap[map[b]] = e;
+            e = map[c];
+            map[c] = map[b];
+            map[b] = e;
+            c = b;
+        } else {
+            break;
+        }
+    }
+}

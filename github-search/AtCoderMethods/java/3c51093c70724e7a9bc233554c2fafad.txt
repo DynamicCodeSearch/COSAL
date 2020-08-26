@@ -1,0 +1,17 @@
+public static void main(String[] args) throws IOException {
+    Scanner sc = new Scanner(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int[] fac = new int[100001];
+    fac[0] = 1;
+    for (int i = 1; i <= 100000; ++i) fac[i] = (int) (1l * fac[i - 1] * i % mod);
+    int N = sc.nextInt(), M = sc.nextInt();
+    if (Math.abs(N - M) > 1)
+        out.println(0);
+    else {
+        long ans = (int) (1l * fac[N] * fac[M] % mod);
+        if (N == M)
+            ans = ans * 2 % mod;
+        out.println(ans);
+    }
+    out.close();
+}

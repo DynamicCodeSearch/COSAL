@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    ArrayList<String> S = new ArrayList<String>();
+    ArrayList<String> T = new ArrayList<String>();
+    String s = sc.next();
+    String t = sc.next();
+    Set<String> set = new HashSet<>();
+    Collections.addAll(set, "a", "t", "c", "o", "d", "e", "r");
+    for (int k = 0; k < s.length(); k++) {
+        String W = String.valueOf(s.charAt(k));
+        S.add(W);
+    }
+    for (int k = 0; k < t.length(); k++) {
+        String W = String.valueOf(t.charAt(k));
+        T.add(W);
+    }
+    for (int i = 0; ; i++) {
+        if (S.get(i).equals(T.get(i))) {
+        } else if (S.get(i).equals("@") && set.contains(T.get(i))) {
+        } else if (T.get(i).equals("@") && set.contains(S.get(i))) {
+        } else {
+            System.out.println("You will lose");
+            break;
+        }
+        if (i == S.size() - 1) {
+            System.out.println("You can win");
+            break;
+        }
+    }
+}

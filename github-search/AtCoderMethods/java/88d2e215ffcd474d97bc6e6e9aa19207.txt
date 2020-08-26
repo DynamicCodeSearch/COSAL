@@ -1,0 +1,25 @@
+void solve() throws IOException {
+    int n = in.nextInt();
+    int m = in.nextInt();
+    char[][] a = new char[n][];
+    char[][] b = new char[m][];
+    for (int i = 0; i < n; i++) {
+        a[i] = in.nextToken().toCharArray();
+    }
+    for (int i = 0; i < m; i++) {
+        b[i] = in.nextToken().toCharArray();
+    }
+    for (int ox = 0; ox <= n - m; ox++) {
+        out: for (int oy = 0; oy <= n - m; oy++) {
+            for (int i = 0; i < m; i++) {
+                for (int j = 0; j < m; j++) {
+                    if (a[ox + i][oy + j] != b[i][j])
+                        continue out;
+                }
+            }
+            System.out.println("Yes");
+            return;
+        }
+    }
+    System.out.println("No");
+}

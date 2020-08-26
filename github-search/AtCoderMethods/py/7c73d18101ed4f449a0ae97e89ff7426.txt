@@ -1,0 +1,20 @@
+def main():
+    N, M = map(int, input().split())
+    A = [input() for _ in range(N)]
+    B = [input() for _ in range(M)]
+
+    for sy in range(N):
+        for sx in range(N):
+
+            ok = True
+            for y in range(M):
+                for x in range(M):
+                    if sy + y < N and sx + x < N:
+                        ok &= A[sy + y][sx + x] == B[y][x]
+                    else:
+                        ok = False
+
+            if ok:
+                print("Yes")
+                return
+    print("No")

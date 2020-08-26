@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int one_p = in.nextInt();
+    int pack_p = in.nextInt();
+    int need = in.nextInt();
+    int pack = in.nextInt();
+    
+    long packnum = need / pack;
+    
+    long pack_orange = packnum * pack;
+    
+    long kakutei = packnum * pack_p;
+    long nokori = Math.min((need - pack_orange) * one_p, pack_p);
+    System.out.println(kakutei + nokori);
+    in.close();
+}

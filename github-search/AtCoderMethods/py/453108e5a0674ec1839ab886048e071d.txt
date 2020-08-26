@@ -1,0 +1,18 @@
+def main():
+    N, A, B = map(int, input().split())
+    v_list = list(sorted(list(map(int, input().split()))))
+    c_entire = Counter(v_list)
+    total = sum(v_list[-A:])
+
+    ans = 0
+    for n in range(A, B + 1):
+        p = v_list[-n:]
+        if sum(p) * A == total * n:
+            c = Counter(p)
+            t = 1
+            for k, v in c.items():
+                t *= aCb(c_entire[k], v)
+            ans += t
+
+    print("{0:.7f}".format(total / A))
+    print(ans)

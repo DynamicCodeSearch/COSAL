@@ -1,0 +1,34 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    debug(code(new int[] { 0, 1, 1, 0 }), code(new int[] { 1, 1, 0, 0 }));
+    int n = in.nextInt();
+    int[][] panels = in.nextIntTable(n, 4);
+    long[] panelCodes = new long[n];
+    for (int i = 0; i < n; i++) {
+        panelCodes[i] = code(panels[i]);
+    }
+    long ans = 0;
+    for (int top = 0; top < n; top++) {
+        for (int bottom = top + 1; bottom < n; bottom++) {
+            int[][] sidePanels = new int[n][];
+            long[] sideCodes = new long[n];
+            int sidx = 0;
+            for (int i = top + 1; i < n; i++) {
+                if (i == bottom) {
+                    continue;
+                }
+                sidePanels[sidx] = panels[i];
+                sideCodes[sidx++] = panelCodes[i];
+            }
+            sidePanels = Arrays.copyOf(sidePanels, sidx);
+            sideCodes = Arrays.copyOf(sideCodes, sidx);
+            for (int d = 0; d < 4; d++) {
+                int[][] men = new int[][] { { panels[top][1], panels[top][0], panels[bottom][(d + 3) % 4], panels[bottom][(d + 2) % 4] }, { panels[top][2], panels[top][1], panels[bottom][(d + 2) % 4], panels[bottom][(d + 1) % 4] }, { panels[top][3], panels[top][2], panels[bottom][(d + 1) % 4], panels[bottom][(d + 0) % 4] }, { panels[top][0], panels[top][3], panels[bottom][(d + 0) % 4], panels[bottom][(d + 3) % 4] } };
+                ans += solve(men, sidePanels, sideCodes);
+            }
+        }
+    }
+    out.println(ans);
+    out.flush();
+}

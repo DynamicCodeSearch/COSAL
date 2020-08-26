@@ -1,0 +1,6 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    double p = sc.nextDouble();
+    UnaryOperator<Double> f = (x) -> x + p * Math.pow(2, -x / 1.5);
+    System.out.println(String.format("%.9f", f.apply(ternarySearchMin(0, 150, 1e-9, f))));
+}

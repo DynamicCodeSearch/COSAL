@@ -1,0 +1,39 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    n = sc.nextInt();
+    m = sc.nextInt();
+    a = new int[m];
+    b = new int[m];
+    c = new long[m];
+    for (int i = 0; i < m; i++) {
+        a[i] = sc.nextInt() - 1;
+        b[i] = sc.nextInt() - 1;
+        c[i] = sc.nextInt();
+    }
+    long[] dist = new long[n];
+    Arrays.fill(dist, INF);
+    dist[0] = 0;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            if (dist[a[j]] != INF && dist[b[j]] > dist[a[j]] - c[j]) {
+                dist[b[j]] = dist[a[j]] - c[j];
+            }
+        }
+    }
+    boolean[] cycle = new boolean[n];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            if (dist[a[j]] != INF && dist[a[j]] - c[j] < dist[b[j]]) {
+                cycle[b[j]] = true;
+            }
+            if (cycle[a[j]]) {
+                cycle[b[j]] = true;
+            }
+        }
+    }
+    if (cycle[n - 1]) {
+        System.out.println("inf");
+    } else {
+        System.out.println(-dist[n - 1]);
+    }
+}

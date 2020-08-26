@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    p = sc.nextDouble();
+    sc.close();
+    double left = 0, right = p;
+    while (right - left > eps) {
+        if (f((left * 2 + right) / 3) < f((left + right * 2) / 3)) {
+            right = (left + right * 2) / 3;
+        } else {
+            left = (left * 2 + right) / 3;
+        }
+    }
+    System.out.println(f((left + right) / 2));
+}

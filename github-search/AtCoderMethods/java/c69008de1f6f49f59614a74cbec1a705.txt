@@ -1,0 +1,20 @@
+private static String solve(int a, int b, int c, int d, int e, int f) {
+    int[] ans = { 100 * a, 0 };
+    double max = 0;
+    for (int i = 0; 100 * i * b <= f; i++) for (int j = 0; 100 * (i * b + j * a) <= f; j++) {
+        if (i + j == 0)
+            continue;
+        int w100 = i * b + j * a;
+        for (int s = 0; 100 * w100 + s * d <= f; s++) for (int t = 0; 100 * w100 + s * d + t * c <= f; t++) {
+            int sug = s * d + t * c;
+            if (w100 * e < sug)
+                break;
+            double dens = sug / (100.0 * w100 + sug);
+            if (max < dens) {
+                max = dens;
+                ans = new int[] { 100 * w100 + sug, sug };
+            }
+        }
+    }
+    return ans[0] + " " + ans[1];
+}

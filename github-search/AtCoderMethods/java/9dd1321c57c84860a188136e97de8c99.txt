@@ -1,0 +1,12 @@
+public void solve(int testNumber, Scanner in, PrintWriter out) {
+    int m, n;
+    m = in.nextInt();
+    n = in.nextInt();
+    if (Math.abs(n - m) >= 2) {
+        out.println(0);
+    } else if (Math.abs(n - m) == 1) {
+        out.println(Sum(n) * Sum(m) % MOD);
+    } else {
+        out.println(2 * Sum(n) * Sum(m) % MOD);
+    }
+}

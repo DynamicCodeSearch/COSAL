@@ -1,0 +1,8 @@
+public static long C(long n, long r) {
+    long comb = 1;
+    for (int i = 0; i < r; i++) {
+        comb = (comb * (n - i)) % mod;
+        comb = (comb * inverse(r - i)) % mod;
+    }
+    return comb;
+}

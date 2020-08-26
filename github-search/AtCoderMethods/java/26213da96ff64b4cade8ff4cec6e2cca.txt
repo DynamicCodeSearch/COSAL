@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    H = Integer.parseInt(scanner.next());
+    W = Integer.parseInt(scanner.next());
+    a = new long[H][W];
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            a[i][j] = Long.parseLong(scanner.next());
+        }
+    }
+    dp = new long[H][W];
+    long ans = 0;
+    for (int i = 0; i < H; i++) {
+        Arrays.fill(dp[i], (long) 0);
+    }
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            ans += rec(i, j);
+            ans = ans % BASE;
+        }
+    }
+    System.out.println(ans);
+}

@@ -1,0 +1,51 @@
+void solve() throws IOException {
+    int xs = ni();
+    int ys = ni();
+    int xt = ni();
+    int yt = ni();
+    int n = ni();
+    int[] x = new int[n];
+    int[] y = new int[n];
+    int[] r = new int[n];
+    for (int i = 0; i < n; i++) {
+        x[i] = ni();
+        y[i] = ni();
+        r[i] = ni();
+    }
+    ArrayList<ArrayList<Edge>> G = new ArrayList<>();
+    for (int i = 0; i < n + 2; i++) {
+        G.add(new ArrayList<>());
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {
+            double t = d(x[i], y[i], x[j], y[j]);
+            if (t > r[i] + r[j]) {
+                G.get(i).add(new Edge(j, t - r[i] - r[j]));
+                G.get(j).add(new Edge(i, t - r[i] - r[j]));
+            } else {
+                G.get(i).add(new Edge(j, 0));
+                G.get(j).add(new Edge(i, 0));
+            }
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        double t = d(xs, ys, x[i], y[i]);
+        if (t > r[i]) {
+            G.get(n).add(new Edge(i, t - r[i]));
+        } else {
+            G.get(n).add(new Edge(i, 0));
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        double t = d(xt, yt, x[i], y[i]);
+        if (t > r[i]) {
+            G.get(i).add(new Edge(n + 1, t - r[i]));
+        } else {
+            G.get(i).add(new Edge(n + 1, 0));
+        }
+    }
+    G.get(n).add(new Edge(n + 1, d(xs, ys, xt, yt)));
+    Dijkstra dijk = new Dijkstra(G);
+    double[] dist = dijk.getDist(n);
+    out.println(dist[n + 1]);
+}

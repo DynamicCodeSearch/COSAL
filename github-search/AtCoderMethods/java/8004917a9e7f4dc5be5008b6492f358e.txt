@@ -1,0 +1,34 @@
+void solve() {
+    int[] ia = readNums();
+    int n = ia[0];
+    int k = ia[1];
+    int l = ia[2];
+    UnionFind uf = new UnionFind(n + 1);
+    UnionFind uf2 = new UnionFind(n + 1);
+    for (int i = 0; i < k; i++) {
+        ia = readNums();
+        uf.merge(ia[0], ia[1]);
+    }
+    for (int i = 0; i < l; i++) {
+        ia = readNums();
+        uf2.merge(ia[0], ia[1]);
+    }
+    Map<Point, Integer> map = new HashMap<>();
+    for (int i = 1; i <= n; i++) {
+        Point pt = new Point(uf.root(i), uf2.root(i));
+        Integer v = map.get(pt);
+        if (v == null) {
+            map.put(pt, 1);
+        } else {
+            map.put(pt, v + 1);
+        }
+    }
+    for (int i = 1; i <= n; i++) {
+        Point pt = new Point(uf.root(i), uf2.root(i));
+        Integer v = map.get(pt);
+        if (i != 1)
+            p(" ");
+        p(v);
+    }
+    pln("");
+}

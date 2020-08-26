@@ -1,0 +1,55 @@
+public void solve() {
+    N = nextInt();
+    M = nextInt();
+    R = nextInt();
+    r = new int[R];
+    for (int i = 0; i < R; i++) {
+        r[i] = nextInt() - 1;
+    }
+    G = new long[N][N];
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            G[i][j] = Integer.MAX_VALUE;
+        }
+    }
+    for (int i = 0; i < M; i++) {
+        int a = nextInt() - 1;
+        int b = nextInt() - 1;
+        int c = nextInt();
+        G[a][b] = c;
+        G[b][a] = c;
+    }
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            for (int k = 0; k < N; k++) {
+                G[j][k] = Math.min(G[j][k], G[j][i] + G[i][k]);
+            }
+        }
+    }
+    long[][] dp = new long[1 << R][R];
+    for (int i = 0; i < 1 << R; i++) {
+        for (int j = 0; j < R; j++) {
+            dp[i][j] = Integer.MAX_VALUE;
+        }
+    }
+    dp[0][0] = 0;
+    for (int i = 0; i < R; i++) {
+        dp[1 << i][i] = 0;
+    }
+    for (int i = 0; i < 1 << R; i++) {
+        for (int j = 0; j < R; j++) {
+            if (((i >> j) & 1) == 0)
+                continue;
+            for (int k = 0; k < R; k++) {
+                if (((i >> k) & 1) == 1)
+                    continue;
+                dp[i | (1 << k)][k] = Math.min(dp[i | (1 << k)][k], dp[i][j] + G[r[j]][r[k]]);
+            }
+        }
+    }
+    long ans = Integer.MAX_VALUE;
+    for (int i = 0; i < R; i++) {
+        ans = Math.min(ans, dp[(1 << R) - 1][i]);
+    }
+    out.println(ans);
+}

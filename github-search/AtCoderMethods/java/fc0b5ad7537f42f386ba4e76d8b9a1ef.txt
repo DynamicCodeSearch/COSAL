@@ -1,0 +1,17 @@
+public long dfs(int y, int x) {
+    if (cost[y][x] != -1) {
+        return cost[y][x];
+    }
+    cost[y][x] = 1;
+    for (int i = 0; i < 4; i++) {
+        int ny = dy[i] + y;
+        int nx = dx[i] + x;
+        if (check(nx, ny) && a[ny][nx] > a[y][x] && !used[ny][nx]) {
+            used[ny][nx] = true;
+            cost[y][x] += dfs(ny, nx) % INF;
+            cost[y][x] %= INF;
+            used[ny][nx] = false;
+        }
+    }
+    return cost[y][x] %= INF;
+}

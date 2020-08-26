@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    try {
+        
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+        int n = Integer.parseInt(br.readLine());
+        String[] strArr = br.readLine().split(" ");
+        HashMap<Integer, Long> map = new HashMap<Integer, Long>();
+        for (int i = 0; i < n; i++) {
+            map.put(i + 1, Long.parseLong(strArr[i]));
+        }
+        List<Entry<Integer, Long>> list_entries = new ArrayList<Entry<Integer, Long>>(map.entrySet());
+        Collections.sort(list_entries, new Comparator<Entry<Integer, Long>>() {
+
+            public int compare(Entry<Integer, Long> obj1, Entry<Integer, Long> obj2) {
+                return obj2.getValue().compareTo(obj1.getValue());
+            }
+        });
+        for (Entry<Integer, Long> entry : list_entries) {
+            System.out.println(entry.getKey());
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

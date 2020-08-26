@@ -1,0 +1,16 @@
+public static void main(String[] args) throws IOException {
+    final Scanner sc = new Scanner(System.in);
+    final int N = sc.nextInt();
+    long answer = 0;
+    long fst = 1, snd = 1;
+    for (int i = 0; i < N; i++) {
+        final int T = sc.nextInt();
+        final int A = sc.nextInt();
+        final long fst_over = (fst + T - 1) / T;
+        final long snd_over = (snd + A - 1) / A;
+        fst = T * Math.max(fst_over, snd_over);
+        snd = A * Math.max(fst_over, snd_over);
+    
+    }
+    System.out.println((fst + snd));
+}

@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int H = sc.nextInt();
+    int W = sc.nextInt();
+    int A = sc.nextInt();
+    int B = sc.nextInt();
+    
+    long[] f = new long[2 * (int) Math.pow(10, 5) + 1];
+    
+    long[] g = new long[2 * (int) Math.pow(10, 5) + 1];
+    f[0] = 1;
+    g[0] = 1;
+    for (int i = 1; i < f.length; i++) {
+        f[i] = (f[i - 1] * i) % MOD;
+        g[i] = func(f[i], MOD - 2);
+    }
+    long ans = (((f[H + W - 2] * g[H - 1]) % MOD) * g[W - 1]) % MOD;
+    for (int r = 0; r < B; r++) {
+        long a = (((f[H - A - 1 + r] * g[r]) % MOD) * g[H - A - 1]) % MOD;
+        long b = (((f[W - r - 1 + A - 1] * g[W - r - 1]) % MOD) * g[A - 1]) % MOD;
+        ans -= (a * b) % MOD;
+        if (ans < 0)
+            ans += MOD;
+    }
+    System.out.println(ans);
+}

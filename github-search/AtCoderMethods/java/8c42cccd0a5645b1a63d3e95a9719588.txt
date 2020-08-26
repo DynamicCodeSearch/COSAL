@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    final int n = sc.nextInt();
+    List<Integer> se = new ArrayList();
+    for (int i = 0; i < n; i++) {
+        String[] tmp = sc.next().split("-");
+        int start = (Integer.parseInt(tmp[0].substring(0, 2)) * 60 + Integer.parseInt(tmp[0].substring(2, 4))) / 5;
+        int end = (Integer.parseInt(tmp[1].substring(0, 2)) * 60 + Integer.parseInt(tmp[1].substring(2, 4)) + 4) / 5;
+        se.add(start);
+        se.add(end);
+    }
+    final int range = 24 * 60 / 5 + 1;
+    boolean[] schedule = new boolean[range];
+    for (int i = 0; i < 2 * n; i += 2) {
+        Arrays.fill(schedule, se.get(i), se.get(i + 1), true);
+    }
+    boolean state = true;
+    for (int i = 0; i < range; i++) {
+        if (schedule[i] == state) {
+            System.out.print(String.format("%02d", i * 5 / 60));
+            System.out.print(String.format("%02d", i * 5 % 60));
+            if (state)
+                System.out.print("-");
+            else
+                System.out.println();
+            state = !state;
+        }
+    }
+}

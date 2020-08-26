@@ -1,0 +1,10 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int hh = sc.nextInt() % 12;
+    double h = (double) hh;
+    double m = sc.nextInt();
+    h = h * 30 + (m * 30 / 60);
+    m = 360 * m / 60;
+    double ans = Math.abs(h - m);
+    System.out.println(ans <= 180 ? ans : 360 - ans);
+}

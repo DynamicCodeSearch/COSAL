@@ -1,0 +1,25 @@
+void solve() throws NumberFormatException, IOException {
+    int w = in.nextInt();
+    int h = in.nextInt();
+    int n = in.nextInt();
+    int l = 0, r = w, b = 0, t = h;
+    for (int i = 0; i < n; i++) {
+        int x = in.nextInt();
+        int y = in.nextInt();
+        int a = in.nextInt();
+        if (a == 1) {
+            l = Math.max(l, x);
+        } else if (a == 2) {
+            r = Math.min(r, x);
+        } else if (a == 3) {
+            b = Math.max(b, y);
+        } else {
+            t = Math.min(t, y);
+        }
+    }
+    if (l >= r || b >= t) {
+        System.out.println(0);
+    } else {
+        System.out.println((r - l) * (t - b));
+    }
+}

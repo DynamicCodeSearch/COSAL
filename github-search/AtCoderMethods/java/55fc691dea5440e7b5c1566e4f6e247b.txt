@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int p = sc.nextInt();
+    int q = 0;
+    long l = 0;
+    long ans = n;
+    for (int i = 1; i < n; i++) {
+        q = sc.nextInt();
+        if (p < q) {
+            l++;
+        } else {
+            ans += l * (l + 1) / 2;
+            l = 0;
+        }
+        p = q;
+    }
+    sc.close();
+    ans += l * (l + 1) / 2;
+    System.out.println(ans);
+}

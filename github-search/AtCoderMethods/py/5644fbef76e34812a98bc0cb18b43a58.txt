@@ -1,0 +1,31 @@
+def main():
+    H, W = map(int, input().split(" "))
+
+    board = []
+    for _ in range(H):
+        row = list(input())
+        board.append(row)
+
+    dhs = [-1, -1, -1,  0, 0,  1, 1, 1]
+    dws = [-1,  0,  1, -1, 1, -1, 0, 1]
+
+    for i in range(H):
+        for j in range(W):
+            if board[i][j] == "#":
+                print("#", end="")
+                continue
+
+            num_bombs = 0
+            for dh, dw in zip(dhs, dws):
+                new_i = i + dh
+                new_j = j + dw
+
+                if new_i < 0 or new_i >= H:
+                    continue
+                if new_j < 0 or new_j >= W:
+                    continue
+
+                if board[new_i][new_j] == "#":
+                    num_bombs += 1
+            print(num_bombs, end="")
+        print()

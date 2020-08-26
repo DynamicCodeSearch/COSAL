@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    int[][] m = new int[N + 1][N + 1];
+    for (int i = 0; i < M; i++) {
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        m[a][b] = 1;
+        m[b][a] = 1;
+    }
+    int ans = 0;
+    for (int i = 1; i <= N; i++) {
+        for (int j = i + 1; j <= N; j++) {
+            if (m[i][j] == 1 && m[j][i] == 1) {
+                m[i][j] = 0;
+                m[j][i] = 0;
+                ArrayList<Integer> visited = new ArrayList<>();
+                dfs(1, m, visited, N);
+                if (visited.size() != N)
+                    ans++;
+                m[i][j] = 1;
+                m[j][i] = 1;
+            }
+        }
+    }
+    System.out.println(ans);
+}

@@ -1,0 +1,19 @@
+def main():
+    n = int(input())
+    d = {chr(i):0 for i in range(ord('a'), ord('z')+1)}
+    line = input()
+    for i in range(ord('a'), ord('z')+1):
+        d[chr(i)] += line.count(chr(i))
+
+    for _ in range(n-1):
+        line = input()
+        for i in range(ord('a'), ord('z')+1):
+            cnt = line.count(chr(i))
+            if d[chr(i)] != 0 and d[chr(i)] > cnt:
+                d[chr(i)] = cnt
+
+    ans = ''
+    for key, value in sorted(d.items(), key=lambda x: x[0]):
+        if value != 0:
+            ans += key*value
+    print(ans)

@@ -1,0 +1,28 @@
+private static void solve() {
+    int x = sc.nextInt();
+    int y = sc.nextInt();
+    int[][] g = { { 1, 3, 5, 7, 8, 10, 12 }, { 4, 6, 9, 11 }, { 2 } };
+    int gx = 0;
+    out: for (int i = 0; i < 3; i++) {
+        for (int e : g[i]) {
+            if (x == e) {
+                gx = i;
+                break out;
+            }
+        }
+    }
+    int gy = 0;
+    out: for (int i = 0; i < 3; i++) {
+        for (int e : g[i]) {
+            if (y == e) {
+                gy = i;
+                break out;
+            }
+        }
+    }
+    if (gx == gy) {
+        pr.println("Yes");
+    } else {
+        pr.println("No");
+    }
+}

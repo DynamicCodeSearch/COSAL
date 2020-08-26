@@ -1,0 +1,56 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    N = sc.nextInt();
+    A = sc.nextInt();
+    B = sc.nextInt();
+    
+    
+    long[][] c = new long[51][51];
+    for (int i = 0; i < 51; i++) {
+        for (int j = 0; j <= i; j++) {
+            if (j == 0 || j == i)
+                c[i][j] = 1;
+            else {
+                c[i][j] = c[i - 1][j] + c[i - 1][j - 1];
+            }
+        }
+    }
+    Long[] v = new Long[N];
+    for (int i = 0; i < N; i++) {
+        v[i] = sc.nextLong();
+    }
+    Arrays.sort(v, Comparator.reverseOrder());
+    double max_Ave = 0;
+    long max_sum = 0;
+    for (int i = 0; i < A; i++) {
+        max_sum += v[i];
+    }
+    max_Ave = (double) max_sum / (double) A;
+    String ans = String.format("%.6f", max_Ave);
+    System.out.println(ans);
+    if (v[0].equals(v[A - 1])) {
+        int X = 0;
+        for (int i = 0; i < N; i++) {
+            if (v[i].equals(v[0])) {
+                X++;
+            }
+        }
+        long sum = 0;
+        for (int i = A; i <= B; i++) {
+            sum += c[X][i];
+        }
+        System.out.println(sum);
+    } else {
+        int X = 0;
+        int Y = 0;
+        for (int i = 0; i < N; i++) {
+            if (v[i].equals(v[A - 1]))
+                X++;
+        }
+        for (int i = 0; i < A; i++) {
+            if (v[i].equals(v[A - 1]))
+                Y++;
+        }
+        System.out.println(c[X][Y]);
+    }
+}

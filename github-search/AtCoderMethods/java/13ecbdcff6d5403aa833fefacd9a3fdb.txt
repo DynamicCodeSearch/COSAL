@@ -1,0 +1,21 @@
+public static long[] calcMinSum(long[] array, int k) {
+    int n = array.length;
+    long[] ret = new long[n];
+    long sum = 0;
+    PriorityQueue<Long> queue = new PriorityQueue<>(Comparator.reverseOrder());
+    for (int i = 0; i < n; i++) {
+        if (queue.size() < k) {
+            queue.add(array[i]);
+            sum += array[i];
+        } else {
+            long max = queue.peek();
+            if (array[i] < max) {
+                queue.poll();
+                queue.add(array[i]);
+                sum -= max - array[i];
+            }
+        }
+        ret[i] = sum;
+    }
+    return ret;
+}

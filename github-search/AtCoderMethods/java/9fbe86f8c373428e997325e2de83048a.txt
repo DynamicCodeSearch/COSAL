@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int n = scanner.nextInt();
+    String s = scanner.next();
+    if (n % 2 == 1) {
+        if (n % 3 == 0 && s.matches("(abc)*(abc)+(abc)*")) {
+            System.out.println((n - 1) / 2);
+        } else if (n % 3 == 2 && s.matches("(cab)*(cabca)+(bca)*")) {
+            System.out.println((n - 1) / 2);
+        } else if (n % 3 == 1 && s.matches("(bca)*b+(cab)*")) {
+            System.out.println((n - 1) / 2);
+        } else {
+            System.out.println(-1);
+        }
+    } else {
+        System.out.println(-1);
+    }
+}

@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    
+    Scanner scan = new Scanner(System.in);
+    int cellNum = 4;
+    String[][] cellArray = new String[cellNum][cellNum];
+    String[][] rotatedCellArray = new String[cellNum][cellNum];
+    
+    for (int i = 0; i < cellNum; i++) {
+        cellArray[i] = scan.nextLine().split(" ", 0);
+    }
+    
+    scan.close();
+    
+    rotatedCellArray = rotateArray(cellArray);
+    
+    for (int i = 0; i < cellNum; i++) {
+        for (int j = 0; j < cellNum; j++) {
+            System.out.print(rotatedCellArray[i][j]);
+            if (j == cellNum - 1) {
+                break;
+            }
+            System.out.print(" ");
+        }
+        System.out.print("\n");
+    }
+}

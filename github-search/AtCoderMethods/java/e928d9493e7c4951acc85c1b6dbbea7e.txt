@@ -1,0 +1,21 @@
+static void solve() {
+    String s = in.next();
+    int n = s.length();
+    StringBuilder sb = new StringBuilder(s);
+    sb.reverse();
+    for (int i = 0; i < n; ) {
+        boolean f = false;
+        for (int j = 0; j < 4; j++) {
+            if (i + ss[j].length() <= n && sb.substring(i, i + ss[j].length()).toString().equals(ss[j])) {
+                f = true;
+                i += ss[j].length();
+                break;
+            }
+        }
+        if (!f) {
+            out.println("NO");
+            return;
+        }
+    }
+    out.println("YES");
+}

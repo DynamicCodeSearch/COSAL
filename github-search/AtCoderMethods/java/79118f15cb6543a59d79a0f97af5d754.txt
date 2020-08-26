@@ -1,0 +1,25 @@
+public static long kruskal(long[][] e, int num) {
+    int[] parent = new int[num];
+    int[] rank = new int[num];
+    for (int i = 0; i < num; ++i) {
+        parent[i] = i;
+        rank[i] = 0;
+    }
+    long min_cost = 0;
+    for (int i = 0; i < e.length; ++i) {
+        int xRoot = find((int) e[i][0], parent);
+        int yRoot = find((int) e[i][1], parent);
+        if (xRoot != yRoot) {
+            min_cost += e[i][2];
+            if (rank[xRoot] > rank[yRoot]) {
+                parent[yRoot] = xRoot;
+            } else if (rank[xRoot] < rank[yRoot]) {
+                parent[xRoot] = yRoot;
+            } else {
+                parent[yRoot] = xRoot;
+                rank[xRoot]++;
+            }
+        }
+    }
+    return min_cost;
+}

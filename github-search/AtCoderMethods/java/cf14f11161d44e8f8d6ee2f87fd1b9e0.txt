@@ -1,0 +1,13 @@
+int fgrundy(ArrayList<Integer> lis) {
+    Collections.sort(lis);
+    if (lis.isEmpty() || lis.get(0) != 0)
+        return 0;
+    else {
+        for (int i = 1; i < lis.size(); ++i) {
+            if (lis.get(i - 1) + 1 < lis.get(i)) {
+                return lis.get(i - 1) + 1;
+            }
+        }
+        return lis.get(lis.size() - 1) + 1;
+    }
+}

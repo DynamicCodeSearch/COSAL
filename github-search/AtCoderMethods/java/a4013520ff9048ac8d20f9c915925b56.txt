@@ -1,0 +1,16 @@
+static void dfs(int i, ArrayList<Integer> memberList, ArrayList<Integer> list, boolean[][] Relational, ArrayList<ArrayList<Integer>> result) {
+    if (i == n) {
+        result.add(new ArrayList<Integer>(list));
+        return;
+    }
+    boolean isOk = true;
+    for (int k : list) {
+        isOk = isOk && Relational[k][i];
+    }
+    dfs(i + 1, memberList, list, Relational, result);
+    if (isOk) {
+        list.add(memberList.get(i));
+        dfs(i + 1, memberList, list, Relational, result);
+        list.remove(list.size() - 1);
+    }
+}

@@ -1,0 +1,25 @@
+public void solve(int testNumber, FastScanner in, PrintWriter out) {
+    int N = in.nextInt();
+    String s = in.nextLine();
+    int cntOpen = 0;
+    int cntClose = 0;
+    for (int i = 1; i <= N; i++) {
+        if (s.charAt(i - 1) == '(') {
+            cntOpen++;
+        } else {
+            if (cntOpen > 0) {
+                cntOpen--;
+            } else {
+                cntClose++;
+            }
+        }
+    }
+    for (int i = 1; i <= cntOpen; i++) {
+        s += ')';
+    }
+    for (int i = 1; i <= cntClose; i++) {
+        String s1 = '(' + s;
+        s = s1;
+    }
+    out.print(s);
+}

@@ -1,0 +1,12 @@
+
+public static final int extgcd(int a, int b, int[] x, int[] y) {
+    int d = a;
+    if (b != 0) {
+        d = extgcd(b, a % b, y, x);
+        y[0] -= (a / b) * x[0];
+    } else {
+        x[0] = 1;
+        y[0] = 0;
+    }
+    return d;
+}

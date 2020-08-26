@@ -1,0 +1,12 @@
+void solve() {
+    int H = sc.nextInt() - 1;
+    int W = sc.nextInt() - 1;
+    int A = sc.nextInt() - 1;
+    int B = sc.nextInt() - 1;
+    long ans = f(H, W);
+    for (int a = 0; a <= A; a++) {
+        long k = f(a, W - B - 1) * f(B, H - a) % MOD;
+        ans = (ans - k + MOD) % MOD;
+    }
+    out.println(ans);
+}

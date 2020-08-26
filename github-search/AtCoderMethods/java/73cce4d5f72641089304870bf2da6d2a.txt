@@ -1,0 +1,20 @@
+
+public void run() throws IOException {
+    
+    int TEST_CASE = 1;
+    while (TEST_CASE-- != 0) {
+        int n = io.nextInt();
+        int x = io.nextInt();
+        int[] a = io.nextIntArray(n);
+        long ans = 0;
+        for (int i = 1; i < n; i++) {
+            long v = a[i] + a[i - 1] - x;
+            if (v > 0) {
+                ans += v;
+                a[i] = (int) Math.max(0, a[i] - v);
+            }
+        
+        }
+        io.out.println(ans);
+    }
+}

@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    try (Scanner sc = new Scanner(System.in)) {
+        long N = sc.nextLong();
+        int ans = 100000;
+        for (long i = 1; i <= Math.sqrt(N) + 1; i++) {
+            if (N % i == 0) {
+                long M = N / i;
+                int count = 0;
+                while (M != 0) {
+                    M /= 10;
+                    count++;
+                }
+                ans = Math.min(count, ans);
+            }
+        }
+        System.out.println(ans);
+    }
+}

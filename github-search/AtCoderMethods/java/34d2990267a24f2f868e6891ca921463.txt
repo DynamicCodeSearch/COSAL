@@ -1,0 +1,28 @@
+public void solve() {
+    N = nextInt();
+    M = nextInt();
+    comp = new int[N][N];
+    for (int i = 0; i < M; i++) {
+        int x = nextInt() - 1;
+        int y = nextInt() - 1;
+        comp[x][y] = -1;
+        comp[y][x] = 1;
+    }
+    memo = new long[1 << N];
+    memo[0] = 1;
+    for (int i = 1; i <= (1 << N); i++) {
+        for (int j = 0; j < N; j++) {
+            if (get(i, j)) {
+                boolean flg = true;
+                for (int k = 0; k < N; k++) {
+                    if (j != k && get(i, k) && comp[j][k] > 0) {
+                        flg = false;
+                    }
+                }
+                if (flg)
+                    memo[i] += memo[unset(i, j)];
+            }
+        }
+    }
+    out.println(memo[(1 << N) - 1]);
+}

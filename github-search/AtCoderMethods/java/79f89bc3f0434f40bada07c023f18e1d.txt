@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int a = 0;
+    char c1, c2;
+    String s1 = sc.next();
+    String s2 = sc.next();
+    for (int i = 0; i < s1.length(); i++) {
+        if (s1.charAt(i) == s2.charAt(i)) {
+            a++;
+        } else if (s1.charAt(i) == '@' || s2.charAt(i) == '@') {
+            c1 = s1.charAt(i);
+            c2 = s2.charAt(i);
+            if (c1 == '@' && (c2 == 'a' || c2 == 't' || c2 == 'c' || c2 == 'o' || c2 == 'd' || c2 == 'e' || c2 == 'r')) {
+                a++;
+            }
+            if (c2 == '@' && (c1 == 'a' || c1 == 't' || c1 == 'c' || c1 == 'o' || c1 == 'd' || c1 == 'e' || c1 == 'r')) {
+                a++;
+            }
+        }
+    }
+    if (a == s1.length()) {
+        System.out.println("You can win");
+    } else {
+        System.out.println("You will lose");
+    }
+    sc.close();
+}

@@ -1,0 +1,41 @@
+static void solve() {
+    int h = ni(), w = ni(), n = ni();
+    Set<Long> co = new HashSet<>();
+    for (int i = 0; i < n; i++) {
+        long r = nl() - 1, c = nl() - 1;
+        co.add(r * w + c);
+    }
+    long[] F = new long[10];
+    F[0] = (long) (h - 2) * (w - 2);
+    for (long cod : co) {
+        long r = cod / w, c = cod % w;
+        for (int k = 0; k < 3; k++) {
+            inner2: for (int l = 0; l < 3; l++) {
+                long br = r - k, bc = c - l;
+                if (br >= 0 && br + 2 < h && bc >= 0 && bc + 2 < w) {
+                    boolean ped = false;
+                    int ct = 0;
+                    for (int u = 0; u < 3; u++) {
+                        for (int v = 0; v < 3; v++) {
+                            if (u == k && l == v)
+                                ped = true;
+                            long code = (br + u) * w + (bc + v);
+                            boolean has = co.contains(code);
+                            if (!ped && has)
+                                continue inner2;
+                            if (has)
+                                ct++;
+                        }
+                    }
+                    if (ct > 0) {
+                        F[0]--;
+                        F[ct]++;
+                    }
+                }
+            }
+        }
+    }
+    for (int i = 0; i <= 9; i++) {
+        out.println(F[i]);
+    }
+}

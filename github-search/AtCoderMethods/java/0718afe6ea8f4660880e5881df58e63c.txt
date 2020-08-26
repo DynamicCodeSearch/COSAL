@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N, M;
+    long ans = 1;
+    N = Integer.parseInt(sc.next());
+    M = Integer.parseInt(sc.next());
+    if (Math.abs(N - M) == 0) {
+        for (int i = N; i > 0; i--) {
+            ans = (ans * i) % (int) (Math.pow(10, 9) + 7);
+        }
+        for (int i = M; i > 0; i--) {
+            ans = (ans * i) % (int) (Math.pow(10, 9) + 7);
+        }
+        ans = (ans * 2) % (int) (Math.pow(10, 9) + 7);
+    } else if (Math.abs(N - M) == 1) {
+        for (int i = N; i > 0; i--) {
+            ans = (ans * i) % (int) (Math.pow(10, 9) + 7);
+        }
+        for (int i = M; i > 0; i--) {
+            ans = (ans * i) % (int) (Math.pow(10, 9) + 7);
+        }
+    } else {
+        ans = 0;
+    }
+    System.out.println(ans);
+}

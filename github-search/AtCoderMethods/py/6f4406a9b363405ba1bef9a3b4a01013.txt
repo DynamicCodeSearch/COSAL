@@ -1,0 +1,25 @@
+def bermn_ford(self,start,init=0):
+
+    nodes=self.nodes
+    dists={}
+    for n in nodes:
+        dists[n]=float("inf")
+
+    dists[start]=init
+    edges=self.makeEdgeobj()
+
+    for i in range(len(nodes)):
+        update=False
+        for k in range(len(edges)):
+            e=edges[k]
+            if  dists[e.node_from]!=float("inf") and dists[e.node_to]>dists[e.node_from]+e.cost:
+                dists[e.node_to]=dists[e.node_from]+e.cost
+                update=True
+
+        if i==len(nodes)-1:
+            return False
+
+        if not update:
+            break
+
+    return dists

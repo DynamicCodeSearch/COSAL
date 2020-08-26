@@ -1,0 +1,13 @@
+public static int dfs(int cost, int pos, boolean[] visited, int[] r, int[][] dist) {
+    int min = Integer.MAX_VALUE;
+    for (int i = 0; i < visited.length; i++) {
+        if (i == pos)
+            continue;
+        if (!visited[i]) {
+            visited[i] = true;
+            min = Math.min(min, dfs(cost + dist[r[pos]][r[i]], i, visited, r, dist));
+            visited[i] = false;
+        }
+    }
+    return min == Integer.MAX_VALUE ? cost : min;
+}

@@ -1,0 +1,13 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    StringBuilder sb = new StringBuilder();
+    long n = Long.parseLong(br.readLine());
+    int f = Integer.MAX_VALUE;
+    for (long i = 100000; i > 0; i--) {
+        if (n % i == 0) {
+            long a = n / i;
+            f = Math.min(f, Math.max(String.valueOf(a).length(), String.valueOf(i).length()));
+        }
+    }
+    System.out.println(f);
+}

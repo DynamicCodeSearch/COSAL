@@ -1,0 +1,13 @@
+public static void main(String[] args) throws java.lang.Exception {
+    Scanner in = new Scanner(System.in);
+    int n = in.nextInt();
+    int k = in.nextInt();
+    HashMap<Integer, Integer> avoid = new HashMap<Integer, Integer>();
+    for (int i = 0; i < k; i++) {
+        avoid.put(in.nextInt(), 1);
+    }
+    while (!isConditionMet(avoid, n)) {
+        n++;
+    }
+    System.out.println(n);
+}

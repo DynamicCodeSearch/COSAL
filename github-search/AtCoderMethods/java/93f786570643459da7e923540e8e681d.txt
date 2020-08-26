@@ -1,0 +1,9 @@
+public static void addEdge(HashMap<Long, ArrayList<Integer>> hm, int pos, int col, int edge) {
+    long key = pos * BIG + col;
+    ArrayList<Integer> al = hm.get(key);
+    if (al == null) {
+        al = new ArrayList<>();
+    }
+    al.add(edge);
+    hm.put(key, al);
+}

@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int k = sc.nextInt();
+    long[] temp = new long[(int) n];
+    for (int i = 0; i < n; i++) {
+        temp[i] = sc.nextLong();
+    }
+    long sum = 0;
+    long memo = 0;
+    int now = 0;
+    for (int i = 0; i < k; i++) {
+        memo += temp[i];
+    }
+    sum = memo;
+    for (int i = k; i < temp.length; i++) {
+        memo = memo - temp[now] + temp[i];
+        sum += memo;
+        now++;
+    }
+    System.out.println(sum);
+}

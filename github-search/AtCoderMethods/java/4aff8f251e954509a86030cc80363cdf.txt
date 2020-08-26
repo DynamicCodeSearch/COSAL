@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    StdIn in = new StdIn();
+    int h = in.nextInt(), w = in.nextInt(), n = in.nextInt();
+    int[] a = in.readIntArray(n);
+    int[][] grid = new int[h][w];
+    int curColor = 0, usedCurColor = 0;
+    for (int i = 0; i < h; ++i) {
+        for (int j = i % 2 == 0 ? 0 : w - 1; i % 2 == 0 ? j < w : j >= 0; j += i % 2 == 0 ? 1 : -1) {
+            if (usedCurColor == a[curColor]) {
+                ++curColor;
+                usedCurColor = 0;
+            }
+            grid[i][j] = curColor + 1;
+            ++usedCurColor;
+        }
+    }
+    for (int i = 0; i < h; ++i) {
+        for (int j = 0; j < w; ++j) {
+            System.out.print(grid[i][j] + " ");
+        }
+        System.out.println();
+    }
+}

@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    int i;
+    int j;
+    int flowerNum = 0;
+    int fertilizationNum = 0;
+    int[] flowerArray;
+    
+    ArrayList<String> lines = new ArrayList<String>();
+    Scanner sc = new Scanner(System.in);
+    
+    while (sc.hasNextLine()) {
+        lines.add(sc.nextLine());
+        flowerNum++;
+    }
+    flowerArray = new int[flowerNum];
+    
+    for (int arrayNum = 1; arrayNum < flowerNum; arrayNum++) {
+        flowerArray[arrayNum] = Integer.parseInt(lines.get(arrayNum));
+    }
+    
+    for (i = 0; i < flowerNum - 1; i++) {
+        for (j = i + 1; j < flowerNum; j++) {
+            if (flowerArray[i] == flowerArray[j]) {
+                fertilizationNum++;
+                
+                break;
+            }
+        }
+    }
+    
+    System.out.println(fertilizationNum);
+}

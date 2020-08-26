@@ -1,0 +1,10 @@
+def solve():
+    d = [INF for i in range(N)]
+    d[0] = 0
+    for i in range(N):
+        for fr,to,cost in es:
+            if d[fr] == INF: continue
+            if d[to] > d[fr] + cost:
+                d[to] = d[fr] + cost
+                if i == N-1 and to == N-1: return 'inf'
+    return -d[N-1]

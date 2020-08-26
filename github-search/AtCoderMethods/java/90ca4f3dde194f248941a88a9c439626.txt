@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int L = sc.nextInt();
+    int X = sc.nextInt();
+    int Y = sc.nextInt();
+    int S = sc.nextInt();
+    int D = sc.nextInt();
+    int now = S;
+    double INF = 2L << 50;
+    double TIME = INF;
+    if (D - S >= 0)
+        TIME = Math.min(TIME, (D - S) / (double) (X + Y));
+    TIME = Math.min(TIME, (L - S + D) / (double) (X + Y));
+    if (Y - X > 0) {
+        if (S - D >= 0) {
+            TIME = Math.min(TIME, (S - D) / (double) (Y - X));
+        } else {
+            TIME = Math.min(TIME, (L + S - D) / (double) (Y - X));
+        }
+    }
+    System.out.printf("%.20f\n", TIME);
+}

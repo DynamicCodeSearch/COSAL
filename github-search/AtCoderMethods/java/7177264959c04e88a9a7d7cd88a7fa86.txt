@@ -1,0 +1,28 @@
+public void solve(String[] args) {
+    MyScanner scanner = new MyScanner();
+    int N = scanner.nextInt();
+    int M = scanner.nextInt();
+    List<Point> personList = new ArrayList<>();
+    List<Point> checkPointList = new ArrayList<>();
+    for (int i = 0; i < N; i++) {
+        Point p = new Point(scanner.nextInt(), scanner.nextInt());
+        personList.add(p);
+    }
+    for (int i = 0; i < M; i++) {
+        Point p = new Point(scanner.nextInt(), scanner.nextInt());
+        checkPointList.add(p);
+    }
+    for (Point person : personList) {
+        long min = 1000000000;
+        long minCheckPoint = -1;
+        for (int i = 0; i < M; i++) {
+            Point checkPoint = checkPointList.get(i);
+            long d = Math.abs(person.x - checkPoint.x) + Math.abs(person.y - checkPoint.y);
+            if (d < min) {
+                min = d;
+                minCheckPoint = i + 1;
+            }
+        }
+        System.out.println(minCheckPoint);
+    }
+}

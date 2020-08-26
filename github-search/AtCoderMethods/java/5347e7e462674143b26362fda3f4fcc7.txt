@@ -1,0 +1,23 @@
+public static void main(String[] args) throws IOException {
+    Scanner cin = new Scanner(System.in);
+    String line;
+    for (; cin.hasNext(); ) {
+        line = cin.nextLine();
+        
+        int N = Integer.valueOf(line);
+        line = cin.nextLine();
+        
+        String[] inputGroup = line.split(" ");
+        int targetNum = 0;
+        for (String a : inputGroup) {
+            targetNum += Integer.valueOf(a);
+        }
+        float targetNum2 = (float) targetNum / inputGroup.length;
+        targetNum = Math.round(targetNum2);
+        int cost = 0;
+        for (String a : inputGroup) {
+            cost += (Integer.valueOf(a) - targetNum) * (Integer.valueOf(a) - targetNum);
+        }
+        System.out.println(cost);
+    }
+}

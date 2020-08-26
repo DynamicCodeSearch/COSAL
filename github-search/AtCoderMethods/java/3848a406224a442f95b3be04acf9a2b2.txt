@@ -1,0 +1,22 @@
+static BigDecimal c(int count) {
+    if (cache[count] != null) {
+        return cache[count];
+    }
+    if (count == 0 || count == 1) {
+        return new BigDecimal(1);
+    }
+    int n = count - 1;
+    int result = 0;
+    for (int i = 1; i <= n; i++) {
+        int r = 1;
+        for (int j = 0; j < i; j++) {
+            r = r * (n - j);
+        }
+        for (int j = 0; j < i; j++) {
+            r = r / (i - j);
+        }
+        result += r;
+    }
+    cache[count] = new BigDecimal(result + 1);
+    return cache[count];
+}

@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int before = scanner.nextInt();
+    int after = scanner.nextInt();
+    scanner.close();
+    int difference = before - after;
+    int count = 0;
+    while (difference != 0) {
+        if (difference > 7) {
+            difference -= 10;
+            count++;
+        } else if (difference > 2) {
+            difference -= 5;
+            count++;
+        } else if (difference < -7) {
+            difference += 10;
+            count++;
+        } else if (difference < -2) {
+            difference += 5;
+            count++;
+        } else {
+            count += Math.abs(difference);
+            difference = 0;
+        }
+    }
+    System.out.println(count);
+}

@@ -1,0 +1,18 @@
+public static void main(String[] args) throws java.lang.Exception {
+    InputReader in = new InputReader(System.in);
+    PrintWriter w = new PrintWriter(System.out);
+    n = in.nextInt();
+    m = in.nextInt();
+    mat = new char[n][m];
+    for (int i = 0; i < n; i++) mat[i] = in.next().toCharArray();
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            if (mat[i][j] == '.')
+                w.print(count(i, j));
+            else
+                w.print(mat[i][j]);
+        }
+        w.println();
+    }
+    w.close();
+}

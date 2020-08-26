@@ -1,0 +1,16 @@
+public void solve() {
+    char[] SChars = S.toCharArray();
+    String ans = null;
+    for (int i = 0; ; i++) {
+        int j;
+        for (j = 0; j < 20; j++) {
+            if (kenbanmap[SChars[j]] != kenban[(i + j) % kenban.length])
+                break;
+        }
+        if (j == 20) {
+            ans = onkainames[onkai[i % onkai.length]];
+            break;
+        }
+    }
+    System.out.println(ans);
+}

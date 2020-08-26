@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int n = scanner.nextInt();
+    String s = scanner.next();
+    String[] pattern = { "AA", "BB", "XX", "YY", "AB", "AX", "AY", "BA", "BX", "BY", "XA", "XB", "XY", "YA", "YB", "YX" };
+    int min = Integer.MAX_VALUE;
+    for (int i = 0; i < pattern.length; i++) {
+        for (int j = i + 1; j < pattern.length; j++) {
+            String dummy = s;
+            dummy = dummy.replaceAll(pattern[i], "R");
+            dummy = dummy.replaceAll(pattern[j], "L");
+            min = Math.min(min, dummy.length());
+        }
+    }
+    System.out.println(min);
+}

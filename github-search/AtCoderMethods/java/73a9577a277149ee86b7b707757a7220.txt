@@ -1,0 +1,24 @@
+void solve() {
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    int S = sc.nextInt() - 1;
+    IntVec[] g = new IntVec[N];
+    for (int i = 0; i < N; i++) g[i] = new IntVec(10);
+    for (int i = 0; i < M; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        if (a < b)
+            g[a].add(b);
+        if (b < a)
+            g[b].add(a);
+    }
+    UnionFind uf = new UnionFind(N);
+    boolean[] can = new boolean[N];
+    for (int i = N - 1; i >= 0; i--) {
+        for (int j = 0; j < g[i].size(); j++) uf.link(i, g[i].get(j));
+        if (uf.same(S, i))
+            can[i] = true;
+    }
+    for (int i = 0; i < N; i++) if (can[i])
+        out.println(i + 1);
+}

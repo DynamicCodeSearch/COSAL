@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    ArrayList<Integer> R = new ArrayList<Integer>();
+    int N = sc.nextInt();
+    int K = sc.nextInt();
+    double C = 0;
+    for (int i = 0; i < N; i++) {
+        int r = sc.nextInt();
+        R.add(r);
+    }
+    Collections.sort(R);
+    for (int i = 0; i < K; i++) {
+        C = (double) (C + R.get(N - K + i)) / 2;
+    }
+    System.out.println(C);
+}

@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    long money = in.nextLong();
+    int k = in.nextInt();
+    long day = 0;
+    if (k == 0) {
+        day = 1000000000;
+        day *= 2000;
+        day -= money;
+    } else {
+        while (true) {
+            day++;
+            money += money * k;
+            money++;
+            if (money / 1000000000 >= 2000) {
+                break;
+            }
+        }
+    }
+    System.out.println(day);
+    in.close();
+}

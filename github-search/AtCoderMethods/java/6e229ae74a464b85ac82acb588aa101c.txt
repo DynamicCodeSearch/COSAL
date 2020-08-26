@@ -1,0 +1,12 @@
+@Override
+public int compareTo(Pair o) {
+    if (dif < 0 && o.dif < 0) {
+        return x - o.x;
+    } else if (dif < 0 && o.dif >= 0) {
+        return -1;
+    } else if (dif >= 0 && o.dif < 0) {
+        return 1;
+    } else {
+        return o.y - y;
+    }
+}

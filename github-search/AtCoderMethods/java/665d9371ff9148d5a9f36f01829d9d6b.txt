@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int n = in.nextInt();
+    
+    
+    
+    double answer = 0;
+    int[] r = new int[n];
+    for (int i = 0; i < n; i++) {
+        r[i] = in.nextInt();
+    }
+    Arrays.sort(r);
+    int isRed = 1;
+    for (int i = n - 1; i >= 0; i--) {
+        double area = area(r[i]);
+        if (isRed % 2 == 1) {
+            answer += area;
+        } else {
+            answer -= area;
+        }
+        isRed++;
+    }
+    System.out.println(answer);
+}

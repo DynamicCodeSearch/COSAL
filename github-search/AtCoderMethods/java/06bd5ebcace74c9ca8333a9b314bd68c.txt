@@ -1,0 +1,52 @@
+void solve() {
+    int n = in.nextInt();
+    graph = new List[n];
+    for (int i = 0; i < n; i++) {
+        graph[i] = new ArrayList<>();
+    }
+    for (int i = 0; i < n - 1; i++) {
+        int from = in.nextInt() - 1, to = in.nextInt() - 1;
+        graph[from].add(to);
+        graph[to].add(from);
+    }
+    int[] q = new int[n];
+    int head = 0, tail = 0;
+    int[] prev = new int[n];
+    int[] dist = new int[n];
+    Arrays.fill(dist, -1);
+    dist[0] = 0;
+    q[tail++] = 0;
+    while (head < tail) {
+        int cur = q[head++];
+        for (int v : graph[cur]) {
+            if (dist[v] == -1) {
+                dist[v] = dist[cur] + 1;
+                prev[v] = cur;
+                q[tail++] = v;
+            }
+        }
+    }
+    color = new int[n];
+    Arrays.fill(color, -1);
+    int len = dist[n - 1];
+    int cur = n - 1;
+    while (cur > 0) {
+        if (dist[cur] <= len / 2) {
+            color[cur] = 0;
+        } else {
+            color[cur] = 1;
+        }
+        cur = prev[cur];
+    }
+    color[0] = 0;
+    for (int i = 0; i < n; i++) {
+        if (color[i] != -1) {
+            dfs(i, color[i]);
+        }
+    }
+    int[] cnt = new int[2];
+    for (int i = 0; i < n; i++) {
+        cnt[color[i]]++;
+    }
+    out.println(cnt[0] > cnt[1] ? "Fennec" : "Snuke");
+}

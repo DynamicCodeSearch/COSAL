@@ -1,0 +1,25 @@
+def main():
+    rain_memo = list()
+    N = get_ln_int_inputs()[0]
+
+    for _ in range(N):
+        rain_memo.append(get_span(get_ln_inputs()[0]))
+
+    time = Time(0, 0)
+    end_time = Time(24, 0)
+    span_records = sorted(rain_memo, key=lambda span: span.start.total_minute())
+
+    index = 0
+    while index < len(span_records) - 1:
+        record = span_records[index]
+        record_next = span_records[index + 1]
+        if record.overlaps(record_next):
+            merged_span = merge(record, record_next)
+            span_records.pop(index)
+            span_records.pop(index)
+            span_records.insert(index, merged_span)
+        else:
+            index += 1
+
+    for span in span_records:
+        print(span.get_plain())

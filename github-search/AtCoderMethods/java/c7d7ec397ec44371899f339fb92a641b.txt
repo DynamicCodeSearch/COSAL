@@ -1,0 +1,19 @@
+public void solve() {
+    N = nextInt();
+    K = nextLong();
+    bin = new long[100000 + 1];
+    for (int i = 0; i < N; i++) {
+        int a = nextInt() - 1;
+        int b = nextInt();
+        bin[a] += b;
+    }
+    long sum = 0;
+    for (int i = 0; i < 100000 + 1; i++) {
+        if (bin[i] + sum < K) {
+            sum += bin[i];
+            continue;
+        }
+        out.println(i + 1);
+        return;
+    }
+}

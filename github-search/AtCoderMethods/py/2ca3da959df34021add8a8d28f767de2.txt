@@ -1,0 +1,11 @@
+def decomp(n):
+    i = 2
+    res = {}
+    while i * i <= n:
+        while n % i == 0:
+            n //= i
+            res[i] = res.get(i, 0) + 1
+        i += 1
+    if n > 1:
+        res[n] = 1
+    return res

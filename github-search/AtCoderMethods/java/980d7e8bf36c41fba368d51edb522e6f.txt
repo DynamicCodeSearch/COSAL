@@ -1,0 +1,30 @@
+public static long dp(int ind, int state) {
+    if (ind == n) {
+        return (long) 1;
+    }
+    if (ind == n - 1) {
+        if (state == 0) {
+            return (long) 2;
+        } else {
+            return (long) 1;
+        }
+    }
+    if (cache[ind][state] != -1) {
+        return cache[ind][state];
+    }
+    long ret = 1;
+    if (check2(ind)) {
+        if (state == 0) {
+            ret = (((long) 2) * dp(ind + 2, 1)) % mod;
+        } else {
+            ret = (((long) 3) * dp(ind + 2, 1)) % mod;
+        }
+    } else {
+        if (state == 0) {
+            ret = (((long) 2) * dp(ind + 1, 0)) % mod;
+        } else {
+            ret = dp(ind + 1, 0);
+        }
+    }
+    return ret;
+}

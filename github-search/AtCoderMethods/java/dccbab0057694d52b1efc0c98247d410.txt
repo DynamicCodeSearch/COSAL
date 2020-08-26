@@ -1,0 +1,79 @@
+public static void main(String[] args) throws IOException {
+    
+    BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
+    String[] tokens = r.readLine().split(" ");
+    int H = Integer.valueOf(tokens[0]).intValue();
+    int W = Integer.valueOf(tokens[1]).intValue();
+    BitSet[] matrix = new BitSet[H];
+    BitSet[] visited = new BitSet[H];
+    for (int i = 0; i < H; i++) {
+        matrix[i] = new BitSet(W);
+        visited[i] = new BitSet(W);
+        String line = r.readLine();
+        for (int j = 0; j < W; j++) {
+            if (line.charAt(j) == 'o')
+                matrix[i].set(j);
+        }
+    }
+    
+    int match_cnt_a = 0;
+    int match_cnt_b = 0;
+    int match_cnt_c = 0;
+    for (int h = 0; h < H; h++) {
+        for (int w = 0; w < W; w++) {
+            if (!matrix[h].get(w) || visited[h].get(w))
+                continue;
+            boolean found = true;
+            int unit;
+            for (unit = 142; unit > 0; unit--) {
+                found = true;
+                for (int i = 0; i < unit; i++) {
+                    for (int j = 0; j < unit; j++) {
+                        if (!matrix[h + i].get(w + j)) {
+                            found = false;
+                            break;
+                        }
+                        if (!found)
+                            break;
+                    }
+                    if (!found)
+                        break;
+                }
+                if (found)
+                    break;
+            }
+            
+            LinkedList<Point> list = new LinkedList<Point>();
+            list.addLast(new Point(h, w));
+            visited[h].set(w);
+            int cnt = 1;
+            while (!list.isEmpty()) {
+                Point point = list.pollFirst();
+                for (int i = point.x - 1; i < point.x + 2; i++) {
+                    for (int j = point.y - 1; j < point.y + 2; j++) {
+                        if (!matrix[i].get(j) || visited[i].get(j))
+                            continue;
+                        cnt++;
+                        list.addLast(new Point(i, j));
+                        visited[i].set(j);
+                    }
+                }
+            }
+            
+            
+            int num = cnt / (unit * unit);
+            switch(num) {
+                case 12:
+                    match_cnt_a++;
+                    break;
+                case 16:
+                    match_cnt_b++;
+                    break;
+                case 11:
+                    match_cnt_c++;
+                    break;
+            }
+        }
+    }
+    System.out.println(match_cnt_a + " " + match_cnt_b + " " + match_cnt_c);
+}

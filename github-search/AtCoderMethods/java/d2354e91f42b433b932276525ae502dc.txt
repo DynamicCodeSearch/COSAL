@@ -1,0 +1,32 @@
+void solveC() throws IOException {
+    int n = nextInt();
+    int[] arr = nextIntArr(n);
+    Arrays.sort(arr);
+    List<Integer> val = new ArrayList<>();
+    List<Integer> cnt = new ArrayList<>();
+    int start = 0;
+    while (start < n) {
+        int end = start;
+        while (end < n && arr[end] == arr[start]) {
+            end++;
+        }
+        val.add(arr[start]);
+        cnt.add(end - start);
+        start = end;
+    }
+    int res = 0;
+    for (int i = 0; i < val.size(); i++) {
+        res = Math.max(res, cnt.get(i));
+        if (i < val.size() - 1) {
+            if (val.get(i + 1) - val.get(i) <= 2) {
+                res = Math.max(res, cnt.get(i) + cnt.get(i + 1));
+                if (i < val.size() - 2) {
+                    if (val.get(i + 2) - val.get(i) <= 2) {
+                        res = Math.max(res, cnt.get(i) + cnt.get(i + 1) + cnt.get(i + 2));
+                    }
+                }
+            }
+        }
+    }
+    outln(res);
+}

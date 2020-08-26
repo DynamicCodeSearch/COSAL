@@ -1,0 +1,13 @@
+public static void add(Node a, int L, int R, long V) {
+    if (a == null || L >= R || L >= count(a) || R <= 0)
+        return;
+    if (L <= 0 && R >= count(a)) {
+        a.add += V;
+    } else {
+        add(a.left, L, R, V);
+        add(a.right, L - count(a.left) - 1, R - count(a.left) - 1, V);
+        if (L <= count(a.left) && count(a.left) < R)
+            a.v += V;
+    }
+    update(a);
+}

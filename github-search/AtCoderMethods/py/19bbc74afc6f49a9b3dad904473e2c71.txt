@@ -1,0 +1,15 @@
+def ternarySearch(small, big):
+	END = 5e-9
+ VOL = 1e-9  
+ def func(small, big):
+		midl = (big + small) / 2
+  midr = midl + VOL
+  if big - small < END:  
+			return big
+  else:
+			if check(midl) >= check(midr):
+				return func(midl, big)
+   else:
+				return func(small, midr)
+
+ return func(small, big)

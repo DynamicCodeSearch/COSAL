@@ -1,0 +1,49 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String S = sc.next();
+    int T = sc.nextInt();
+    sc.close();
+    int x = 0;
+    int y = 0;
+    
+    int cntQ = 0;
+    
+    int distance = 0;
+    for (int i = 0; i < S.length(); i++) {
+        switch(S.charAt(i)) {
+            case 'U':
+                y++;
+                break;
+            case 'D':
+                y--;
+                break;
+            case 'L':
+                x--;
+                break;
+            case 'R':
+                x++;
+                break;
+            case '?':
+            default:
+                cntQ++;
+                break;
+        }
+    }
+    
+    distance = Math.abs(x) + Math.abs(y);
+    if (T == 1) {
+        distance += cntQ;
+    } else {
+        
+        if (distance >= cntQ) {
+            distance -= cntQ;
+        } else {
+            if ((cntQ - distance) % 2 == 0) {
+                distance = 0;
+            } else {
+                distance = 1;
+            }
+        }
+    }
+    System.out.println(distance);
+}

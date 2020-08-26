@@ -1,0 +1,25 @@
+
+public static void main(String[] args) throws IOException {
+    BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+    int n = 0;
+    int k = 0;
+    int x = 0;
+    int y = 0;
+    String str = in.readLine();
+    n = Integer.parseInt(str);
+    str = in.readLine();
+    k = Integer.parseInt(str);
+    str = in.readLine();
+    x = Integer.parseInt(str);
+    str = in.readLine();
+    y = Integer.parseInt(str);
+    int anser = 0;
+    for (int i = 1; i < n + 1; i++) {
+        if (i > k) {
+            anser += y;
+        } else {
+            anser += x;
+        }
+    }
+    System.out.println(anser);
+}

@@ -1,0 +1,11 @@
+public void union(int x, int y) {
+    if ((x = root(x)) != (y = root(y))) {
+        if (data[y] < data[x]) {
+            final int t = x;
+            x = y;
+            y = t;
+        }
+        data[x] += data[y];
+        data[y] = x;
+    }
+}

@@ -1,0 +1,5 @@
+public static void main(String[] $) {
+    HashMap<Integer, Integer> m = new HashMap<>();
+    REPS(getInt()).forEach(i -> m.put(i + 1, getInt()));
+    m.entrySet().stream().sorted(Entry.<Integer, Integer>comparingByValue().reversed()).map(Entry::getKey).forEach(System.out::println);
+}

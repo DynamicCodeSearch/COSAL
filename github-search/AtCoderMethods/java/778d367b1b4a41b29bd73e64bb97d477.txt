@@ -1,0 +1,35 @@
+static public void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    char[][] chs = new char[2][n];
+    chs[0] = sc.next().toCharArray();
+    chs[1] = sc.next().toCharArray();
+    List<Boolean> isOneBlocks = new ArrayList<>();
+    for (int i = 0; i < n; ) {
+        if (chs[0][i] == chs[1][i]) {
+            isOneBlocks.add(true);
+            i += 1;
+        } else {
+            isOneBlocks.add(false);
+            i += 2;
+        }
+    }
+    long ans = 1;
+    if (isOneBlocks.get(0)) {
+        ans *= 3;
+    } else {
+        ans *= 6;
+    }
+    for (int i = 1; i < isOneBlocks.size(); i++) {
+        if (isOneBlocks.get(i - 1)) {
+            ans *= 2;
+            ans %= MOD;
+        } else {
+            if (!isOneBlocks.get(i)) {
+                ans *= 3;
+                ans %= MOD;
+            }
+        }
+    }
+    System.out.println(ans);
+}

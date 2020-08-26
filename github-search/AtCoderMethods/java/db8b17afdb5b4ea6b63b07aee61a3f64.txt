@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int T = scan.nextInt();
+    int N = scan.nextInt();
+    List<Integer> A = new ArrayList<>(N);
+    for (int i : IntStream.range(0, N).toArray()) {
+        A.add(scan.nextInt());
+    }
+    int M = scan.nextInt();
+    List<Integer> B = new ArrayList<>(M);
+    for (int i : IntStream.range(0, M).toArray()) {
+        B.add(scan.nextInt());
+    }
+    int takoIndex = -1;
+    try {
+        for (int customer : B) {
+            int tako;
+            do {
+                takoIndex++;
+                tako = A.get(takoIndex);
+            } while (customer - tako > T);
+            if (tako > customer) {
+                System.out.println("no");
+                return;
+            }
+        }
+    } catch (Exception e) {
+        System.out.println("no");
+        return;
+    }
+    System.out.println("yes");
+}

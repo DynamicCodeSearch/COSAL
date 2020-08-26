@@ -1,0 +1,16 @@
+public static void main(String[] args) throws java.lang.Exception {
+    Scanner sc = new Scanner(System.in);
+    String S = sc.next();
+    int[] a = new int[26];
+    for (int i = 0; i < S.length(); i++) {
+        char ch = S.charAt(i);
+        a[(char) ch - 'a']++;
+    }
+    for (int i = 0; i < 26; i++) {
+        if (a[i] >= 2) {
+            System.out.println("no");
+            return;
+        }
+    }
+    System.out.println("yes");
+}

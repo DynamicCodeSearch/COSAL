@@ -1,0 +1,17 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    N = sc.nextInt();
+    f = new Long[N];
+    g = new Long[N];
+    edge = new List[N];
+    used = new boolean[N];
+    for (int i = 0; i < N; i++) edge[i] = new ArrayList<Edge>();
+    for (int i = 0; i < N - 1; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        addEdge(a, b);
+        addEdge(b, a);
+    }
+    dfs(0);
+    System.out.println(f[0]);
+}

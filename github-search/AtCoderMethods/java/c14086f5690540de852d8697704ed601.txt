@@ -1,0 +1,21 @@
+public static void main(String[] args) throws Exception {
+    FastScanner fs = new FastScanner();
+    long result = Integer.MIN_VALUE;
+    n = fs.nextInt2();
+    Pair[] a = new Pair[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = new Pair(fs.nextInt2(), fs.nextInt2());
+    }
+    quicksort(a, 0, n - 1);
+    long count = 0;
+    for (int i = 0; i < n; i++) {
+        count += a[i].a;
+        if (count > result) {
+            result = count;
+        }
+        count -= a[i].b;
+    }
+    StringBuilder sb = new StringBuilder();
+    sb.append(result);
+    System.out.println(sb.toString());
+}

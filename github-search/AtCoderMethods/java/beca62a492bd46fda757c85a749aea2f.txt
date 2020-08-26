@@ -1,0 +1,32 @@
+public double getVolume(int A, int B) {
+    double ret = 0.0;
+    for (int i = 0; i < N; i++) {
+        
+        if (X[i] >= B || X[i] + H[i] <= A)
+            continue;
+        
+        if (X[i] >= A && X[i] + H[i] <= B) {
+            
+            ret += (double) R[i] * R[i] * Math.PI * H[i] / 3;
+        } else 
+        if (X[i] < A && X[i] + H[i] > B) {
+            double a = (double) (X[i] + H[i] - B) / H[i];
+            double b = (double) (X[i] + H[i] - A) / H[i];
+            double c = (R[i] * a) * (R[i] * a) * Math.PI * (H[i] * a) / 3;
+            double d = (R[i] * b) * (R[i] * b) * Math.PI * (H[i] * b) / 3;
+            ret += d - c;
+        } else 
+        if (X[i] < A && X[i] + H[i] <= B) {
+            double a = (double) (X[i] + H[i] - A) / H[i];
+            double c = (R[i] * a) * (R[i] * a) * Math.PI * (H[i] * a) / 3;
+            ret += c;
+        } else 
+        if (X[i] >= A && X[i] + H[i] > B) {
+            double a = (double) (X[i] + H[i] - B) / H[i];
+            double c = (R[i] * a) * (R[i] * a) * Math.PI * H[i] * a / 3;
+            double d = (double) R[i] * R[i] * Math.PI * H[i] / 3;
+            ret += d - c;
+        }
+    }
+    return ret;
+}

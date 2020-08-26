@@ -1,0 +1,21 @@
+private static void solve() {
+    int n = sc.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = sc.nextInt();
+    }
+    Arrays.sort(a);
+    List<Integer> ans = new ArrayList<>();
+    for (int i = n - 2; i >= 0 && ans.size() < 2; i--) {
+        if (a[i] == a[i + 1]) {
+            ans.add(a[i]);
+            i--;
+        }
+    }
+    if (ans.size() < 2) {
+        pr.println(0);
+    } else {
+        long s = (long) ans.get(0) * ans.get(1);
+        pr.println(s);
+    }
+}

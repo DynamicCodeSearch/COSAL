@@ -1,0 +1,28 @@
+List<Integer> next() {
+    out: while (!ist.isEmpty()) {
+        int k = ist.pop();
+        if (k != -1) {
+            
+            used[k] = false;
+            perm.remove(perm.size() - 1);
+        } else {
+            
+            int pos = perm.size();
+            if (pos == n) {
+                
+                return perm;
+            
+            }
+        }
+        for (int i = k + 1; i < n; i++) {
+            if (!used[i]) {
+                ist.push(i);
+                used[i] = true;
+                perm.add(i);
+                ist.push(-1);
+                continue out;
+            }
+        }
+    }
+    return null;
+}

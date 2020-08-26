@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String str = sc.next();
+    int n = str.length();
+    str = str.substring(0, n - 1);
+    n = n - 1;
+    String str1, str2;
+    int m = 0;
+    if (n % 2 == 1) {
+        str = str.substring(0, n - 1);
+    }
+    for (int a = 0; a <= n / 2; a++) {
+        m = str.length();
+        str1 = str.substring(0, m / 2);
+        str2 = str.substring(m / 2, m);
+        if (str1.equals(str2)) {
+            System.out.println(m);
+            break;
+        } else {
+            str = str.substring(0, m - 2);
+        }
+    }
+}

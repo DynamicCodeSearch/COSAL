@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int cx = scanner.nextInt();
+    int cy = scanner.nextInt();
+    int cr = scanner.nextInt();
+    int x1 = scanner.nextInt();
+    int y1 = scanner.nextInt();
+    int x2 = scanner.nextInt();
+    int y2 = scanner.nextInt();
+    
+    if ((cx + cr) <= x2 && (cx - cr) >= x1 && (cy + cr) <= y2 && (cy - cr) >= y1) {
+        System.out.println("NO");
+        System.out.println("YES");
+    } else if (Math.sqrt((x1 - cx) * (x1 - cx) + (y1 - cy) * (y1 - cy)) <= cr && Math.sqrt((x2 - cx) * (x2 - cx) + (y2 - cy) * (y2 - cy)) <= cr && Math.sqrt((x1 - cx) * (x1 - cx) + (y2 - cy) * (y2 - cy)) <= cr && Math.sqrt((x2 - cx) * (x2 - cx) + (y1 - cy) * (y1 - cy)) <= cr) {
+        System.out.println("YES");
+        System.out.println("NO");
+    } else {
+        System.out.println("YES");
+        System.out.println("YES");
+    }
+}

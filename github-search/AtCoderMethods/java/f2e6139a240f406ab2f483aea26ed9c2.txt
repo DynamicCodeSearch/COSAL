@@ -1,0 +1,40 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    int K = sc.nextInt();
+    int[] a = sc.nextIntList(N);
+    Arrays.sort(a);
+    int left = 0;
+    int right = N - 1;
+    while (left <= right) {
+        int k = (left + right) / 2;
+        int[] from = new int[K];
+        int[] to = new int[K];
+        from[0] = 1;
+        for (int i = 0; i < N; i++) {
+            if (i != k) {
+                for (int j = 0; j < from.length; j++) {
+                    if (from[j] == 1 || j >= a[i] && from[j - a[i]] == 1) {
+                        to[j] = 1;
+                    }
+                }
+                int[] tmp = from;
+                from = to;
+                to = tmp;
+            }
+        }
+        boolean flg = true;
+        for (int i = Math.max(0, K - a[k]); i < K; i++) {
+            if (from[i] == 1) {
+                flg = false;
+                break;
+            }
+        }
+        if (!flg) {
+            right = k - 1;
+        } else {
+            left = k + 1;
+        }
+    }
+    System.out.println(left);
+}

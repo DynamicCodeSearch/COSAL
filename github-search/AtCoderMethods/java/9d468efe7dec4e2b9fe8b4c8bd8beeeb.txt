@@ -1,0 +1,39 @@
+public static void main(String[] args) {
+    Sc sc = new Sc(System.in);
+    int N = sc.nI();
+    int A = sc.nI();
+    int[] x = new int[N];
+    for (int i = 0; i < N; i++) {
+        x[i] = sc.nI();
+    }
+    TreeSet<Col> set = new TreeSet<>();
+    Col newc = new Col(0, 0, 1);
+    set.add(newc);
+    for (int i = 0; i < N; i++) {
+        TreeSet<Col> newset = new TreeSet<>();
+        for (Col c : set) {
+            Col nc = new Col(c.sum + x[i], c.cards + 1, c.amount);
+            Col contains = newset.ceiling(nc);
+            if (contains != null && nc.compareTo(contains) == 0) {
+                contains.amount += nc.amount;
+            } else {
+                newset.add(nc);
+            }
+            contains = newset.ceiling(c);
+            if (contains != null && c.compareTo(contains) == 0) {
+                contains.amount += c.amount;
+            } else {
+                newset.add(c);
+            }
+        }
+        set = newset;
+    }
+    long amount = 0;
+    for (int i = 1; i <= N; i++) {
+        Col nc = new Col(A * i, i, 0);
+        Col contains = set.ceiling(nc);
+        if (contains != null && nc.compareTo(contains) == 0)
+            amount += contains.amount;
+    }
+    System.out.println(amount);
+}

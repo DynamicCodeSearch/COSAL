@@ -1,0 +1,48 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int A = sc.nextInt();
+    int B = sc.nextInt();
+    long[] w = new long[N];
+    for (int i = 0; i < N; i++) {
+        w[i] = sc.nextLong();
+    }
+    Arrays.sort(w);
+    long[] v = new long[N];
+    for (int i = 0; i < N; i++) {
+        v[N - 1 - i] = w[i];
+    }
+    long border = v[A - 1];
+    int borderNum = 0;
+    for (int i = A - 1; i >= 0; i--) {
+        if (v[i] != border) {
+            break;
+        }
+        borderNum++;
+    }
+    int p = borderNum;
+    long result = 0;
+    for (int i = A; i < N; i++) {
+        if (v[i] != border) {
+            break;
+        }
+        borderNum++;
+    }
+    if (v[A - 1] == v[0]) {
+        for (int i = A - 1; i < B; i++) {
+            if (v[i] != border) {
+                break;
+            }
+            result += calcCombination(borderNum, p + i - A + 1);
+        }
+    } else {
+        result += calcCombination(borderNum, p);
+    }
+    long sum = 0;
+    for (int i = 0; i < A; i++) {
+        sum += v[i];
+    }
+    System.out.println((double) sum / (double) A);
+    System.out.println(result);
+    return;
+}

@@ -1,0 +1,14 @@
+def main(args):
+    N = int(input())
+    S = input().strip()
+
+
+    result = check_balance(S)
+    while result != 0:
+        if result < 0:
+            S = '(' + S
+        elif result > 0:
+            S = S + ')'
+        result = check_balance(S)
+
+    print(S)

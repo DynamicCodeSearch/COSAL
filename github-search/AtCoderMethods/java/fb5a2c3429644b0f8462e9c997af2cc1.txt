@@ -1,0 +1,16 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    h = 0;
+    n = in.nextInt();
+    for (int i = 0; i < n; i++) {
+        int a;
+        a = in.nextInt();
+        if (hashMap.containsKey(a)) {
+            h--;
+            hashMap.remove(a);
+        } else {
+            h++;
+            hashMap.put(a, false);
+        }
+    }
+    out.println(h);
+}

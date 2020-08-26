@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int x = sc.nextInt();
+    long[] a = new long[N];
+    for (int i = 0; i < N; ++i) {
+        a[i] = sc.nextInt();
+    }
+    long c = 0;
+    for (int i = 1; i < N; ++i) {
+        if (a[i] + a[i - 1] > x) {
+            c += a[i] + a[i - 1] - x;
+            a[i] -= a[i] + a[i - 1] - x;
+            if (a[i] < 0) {
+                a[i - 1] += a[i];
+                a[i] = 0;
+            }
+        }
+    }
+    System.out.println(c);
+}

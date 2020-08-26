@@ -1,0 +1,8 @@
+def dfs(NOW,PRE):
+    global a0,a1,P,X
+    a0[NOW] = a1[NOW] = 1
+    for NEXT in P[NOW]:
+        if PRE == NEXT: continue
+        dfs(NEXT,NOW)
+        a0[NOW] = a0[NOW] * (a0[NEXT]+a1[NEXT]) % X
+        a1[NOW] = a1[NOW] * a0[NEXT] % X

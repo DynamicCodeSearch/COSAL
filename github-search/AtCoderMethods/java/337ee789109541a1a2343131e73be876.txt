@@ -1,0 +1,23 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+    Integer[] NM = Arrays.stream(in.readLine().split(" ")).map(Integer::parseInt).toArray(Integer[]::new);
+    int N = NM[0];
+    int M = NM[1];
+    if (Math.abs(N - M) > 1) {
+        System.out.println(0);
+        return;
+    }
+    BigInteger nRes = BigInteger.ONE;
+    for (int i = 1; i <= N; i++) {
+        nRes = BigInteger.valueOf(i).multiply(nRes).mod(CONST);
+    }
+    BigInteger mRes = BigInteger.ONE;
+    for (int i = 1; i <= M; i++) {
+        mRes = BigInteger.valueOf(i).multiply(mRes).mod(CONST);
+    }
+    if (N == M) {
+        System.out.println(nRes.multiply(mRes).multiply(TWO).mod(CONST));
+    } else {
+        System.out.println(nRes.multiply(mRes).mod(CONST));
+    }
+}

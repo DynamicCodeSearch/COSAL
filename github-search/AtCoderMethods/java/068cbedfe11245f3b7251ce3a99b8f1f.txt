@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String w = sc.next();
+    
+    char[] alpha = new char[26];
+    String str = "abcdefghijklmnopqrstuvwxyz";
+    for (int i = 0; i < 26; i++) {
+        
+        alpha[i] = str.charAt(i);
+    }
+    
+    int[] count = new int[26];
+    for (int i = 0; i < w.length(); i++) {
+        for (int j = 0; j < 26; j++) {
+            if (
+            w.charAt(i) == alpha[j])
+                count[j]++;
+        }
+    }
+    for (int i = 0; i < 26; i++) {
+        
+        if (count[i] % 2 != 0) {
+            
+            System.out.println("No");
+            System.exit(0);
+        }
+    }
+    
+    System.out.println("Yes");
+}

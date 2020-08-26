@@ -1,0 +1,12 @@
+def solve():
+    N = int(input())
+    A = [int(i) for i in input().split()]
+
+    ans = (-100) * 50
+
+    for i in range(N):
+        ans = max(ans, calc_score(N, A, i))
+
+    assert ans > (-100) * 50
+
+    print(ans)

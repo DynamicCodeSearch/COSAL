@@ -1,0 +1,41 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    StringBuilder sb = new StringBuilder();
+    String[] str = br.readLine().split(" ");
+    int n = Integer.parseInt(str[0]);
+    int m = Integer.parseInt(str[1]);
+    int[] a = new int[n];
+    int[] b = new int[n];
+    for (int i = 0; i < n; i++) {
+        String[] str1 = br.readLine().split(" ");
+        a[i] = Integer.parseInt(str1[0]);
+        b[i] = Integer.parseInt(str1[1]);
+    }
+    int[] c = new int[m];
+    int[] d = new int[m];
+    for (int i = 0; i < m; i++) {
+        String[] str1 = br.readLine().split(" ");
+        c[i] = Integer.parseInt(str1[0]);
+        d[i] = Integer.parseInt(str1[1]);
+    }
+    for (int i = 0; i < n; i++) {
+        int x = c[0];
+        int y = d[0];
+        int distx = Math.abs(a[i] - x);
+        int disty = Math.abs(b[i] - y);
+        int pos = 1;
+        for (int j = 1; j < m; j++) {
+            int tx = Math.abs(a[i] - c[j]);
+            int ty = Math.abs(b[i] - d[j]);
+            if (distx + disty > tx + ty) {
+                x = c[j];
+                y = d[j];
+                distx = tx;
+                disty = ty;
+                pos = j + 1;
+            }
+        }
+        sb.append(pos).append("\n");
+    }
+    System.out.println(sb);
+}

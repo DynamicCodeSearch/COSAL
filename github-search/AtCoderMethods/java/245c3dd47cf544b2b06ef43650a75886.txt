@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    char[][] A = new char[N][N];
+    char[][] B = new char[M][M];
+    for (int i = 0; i < N; i++) {
+        A[i] = sc.next().toCharArray();
+    }
+    for (int i = 0; i < M; i++) {
+        B[i] = sc.next().toCharArray();
+    }
+    for (int i = 0; i <= N - M; i++) {
+        for (int j = 0; j <= N - M; j++) {
+            a: for (int k = 0; k < M; k++) {
+                for (int l = 0; l < M; l++) {
+                    if (A[i + k][j + l] != B[k][l]) {
+                        break a;
+                    } else if (k == M - 1 && l == M - 1) {
+                        System.out.println("Yes");
+                        return;
+                    }
+                }
+            }
+        }
+    }
+    System.out.println("No");
+}

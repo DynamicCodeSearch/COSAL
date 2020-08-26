@@ -1,0 +1,92 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int W = sc.nextInt();
+    int[] w = new int[N];
+    int[] v = new int[N];
+    for (int i = 0; i < N; i++) {
+        w[i] = sc.nextInt();
+        v[i] = sc.nextInt();
+    }
+    int[] w0 = new int[N];
+    int[] v0 = new int[N];
+    int w0_cnt = 0;
+    int[] w1 = new int[N];
+    int[] v1 = new int[N];
+    int w1_cnt = 0;
+    int[] w2 = new int[N];
+    int[] v2 = new int[N];
+    int w2_cnt = 0;
+    int[] w3 = new int[N];
+    int[] v3 = new int[N];
+    int w3_cnt = 0;
+    for (int i = 0; i < N; i++) {
+        if (w[i] == w[0]) {
+            w0[w0_cnt] = w[i];
+            v0[w0_cnt] = v[i];
+            w0_cnt++;
+        } else if (w[i] == w[0] + 1) {
+            w1[w1_cnt] = w[i];
+            v1[w1_cnt] = v[i];
+            w1_cnt++;
+        } else if (w[i] == w[0] + 2) {
+            w2[w2_cnt] = w[i];
+            v2[w2_cnt] = v[i];
+            w2_cnt++;
+        } else if (w[i] == w[0] + 3) {
+            w3[w3_cnt] = w[i];
+            v3[w3_cnt] = v[i];
+            w3_cnt++;
+        }
+    }
+    Arrays.sort(v0);
+    long[] v0_sum = new long[w0_cnt + 1];
+    v0_sum[0] = 0;
+    if (w0_cnt != 0) {
+        for (int i = 1; i <= w0_cnt; i++) {
+            v0_sum[i] += v0_sum[i - 1] + v0[N - i];
+        }
+    }
+    Arrays.sort(v1);
+    long[] v1_sum = new long[w1_cnt + 1];
+    v1_sum[0] = 0;
+    if (w1_cnt != 0) {
+        for (int i = 1; i <= w1_cnt; i++) {
+            v1_sum[i] += v1_sum[i - 1] + v1[N - i];
+        }
+    }
+    Arrays.sort(v2);
+    long[] v2_sum = new long[w2_cnt + 1];
+    v2_sum[0] = 0;
+    if (w2_cnt != 0) {
+        for (int i = 1; i <= w2_cnt; i++) {
+            v2_sum[i] += v2_sum[i - 1] + v2[N - i];
+        }
+    }
+    Arrays.sort(v3);
+    long[] v3_sum = new long[w3_cnt + 1];
+    v3_sum[0] = 0;
+    if (w3_cnt != 0) {
+        for (int i = 1; i <= w3_cnt; i++) {
+            v3_sum[i] += v3_sum[i - 1] + v3[N - i];
+        }
+    }
+    int l;
+    long sum = 0;
+    long max = 0;
+    for (int i = 0; i <= W / w[0] && i <= w0_cnt; i++) {
+        for (int j = 0; j <= (W - w[0] * i) / (w[0] + 1) && j <= w1_cnt; j++) {
+            for (int k = 0; k <= (W - w[0] * i - (w[0] + 1) * j) / (w[0] + 2) && k <= w2_cnt; k++) {
+                l = (int) ((W - w[0] * i - (w[0] + 1) * j - (w[0] + 2) * k) / (w[0] + 3));
+                if (l > w3_cnt) {
+                    l = w3_cnt;
+                }
+                sum = v0_sum[i] + v1_sum[j] + v2_sum[k] + v3_sum[l];
+                if (sum > max) {
+                    max = sum;
+                }
+            }
+        }
+    }
+    System.out.print(max);
+}

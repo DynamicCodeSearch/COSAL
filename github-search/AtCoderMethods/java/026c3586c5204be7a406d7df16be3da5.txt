@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    
+    final int x1, y1, x2, y2, x3, y3, r;
+    try (Scanner scan = new Scanner(System.in)) {
+        
+        x1 = scan.nextInt();
+        y1 = scan.nextInt();
+        
+        r = scan.nextInt();
+        
+        x2 = scan.nextInt();
+        
+        y2 = scan.nextInt();
+        x3 = scan.nextInt();
+        y3 = scan.nextInt();
+    }
+    
+    boolean redNotExists = (x2 <= x1 - r && x1 + r <= x3) && (y2 <= y1 - r && y1 + r <= y3);
+    
+    boolean blueNotExists = inCircle(x2, y2, x1, y1, r) && inCircle(x2, y3, x1, y1, r) && inCircle(x3, y2, x1, y1, r) && inCircle(x3, y3, x1, y1, r);
+    out.println(redNotExists ? "NO" : "YES");
+    out.print(blueNotExists ? "NO" : "YES");
+    out.flush();
+}

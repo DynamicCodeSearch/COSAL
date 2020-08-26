@@ -1,0 +1,14 @@
+boolean check(char[][] map, char[][] p, int i, int j) {
+    int n = map.length;
+    int m = p.length;
+    for (int k = i; k < i + m; k++) {
+        for (int d = j; d < j + m; d++) {
+            if (map[k][d] == p[k - i][d - j]) {
+                continue;
+            } else {
+                return false;
+            }
+        }
+    }
+    return true;
+}

@@ -1,0 +1,8 @@
+def main():
+    n = int(input())
+    l = list(map(int, input().split()))
+    ans = 10 ** 20
+    for x in range(-100, 101):
+        ans = min(ans, sum([(x - a) ** 2 for a in l]))
+
+    print(ans)

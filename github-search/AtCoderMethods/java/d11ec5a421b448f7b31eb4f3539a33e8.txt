@@ -1,0 +1,7 @@
+static int root(int x, int[] par) {
+    if (par[x] == x) {
+        return x;
+    } else {
+        return (par[x] = root(par[x], par));
+    }
+}

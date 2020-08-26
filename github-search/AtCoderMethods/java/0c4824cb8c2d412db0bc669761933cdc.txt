@@ -1,0 +1,18 @@
+public static int getcost(int c, HashMap<Integer, ArrayList<Integer>> m) {
+    int max = 0;
+    int min = INF;
+    if (!m.containsKey(c)) {
+        return 1;
+    } else {
+        for (int next : m.get(c)) {
+            int temp = getcost(next, m);
+            if (temp > max) {
+                max = temp;
+            }
+            if (temp < min) {
+                min = temp;
+            }
+        }
+        return max + min + 1;
+    }
+}

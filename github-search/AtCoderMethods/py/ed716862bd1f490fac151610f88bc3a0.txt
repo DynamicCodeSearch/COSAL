@@ -1,0 +1,13 @@
+def dfs(i, g):
+    global n_matrix
+    global visited
+    if i == g:
+        return 1
+    visited[i] = 1
+    cand = np.nonzero(n_matrix[i, :])[0]
+    for c in cand:
+        if visited[c] == 0 and dfs(c, g) > 0:
+            n_matrix[i, c] = 0
+            n_matrix[c, i] = 1
+            return 1
+    return -1

@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    N = sc.nextInt();
+    M = sc.nextInt();
+    for (int i = 0; i < M; i++) {
+        a[i] = sc.nextInt() - 1;
+        b[i] = sc.nextInt() - 1;
+        graph[a[i]][b[i]] = graph[b[i]][a[i]] = true;
+    }
+    int ans = 0;
+    for (int i = 0; i < M; i++) {
+        graph[a[i]][b[i]] = graph[b[i]][a[i]] = false;
+        for (int j = 0; j < N; j++) visited[j] = false;
+        dfs(0);
+        boolean bridge = false;
+        for (int j = 0; j < N; j++) {
+            if (!visited[j]) {
+                bridge = true;
+            }
+        }
+        if (bridge) {
+            ans++;
+        }
+        graph[a[i]][b[i]] = graph[b[i]][a[i]] = true;
+    }
+    System.out.println(ans);
+}

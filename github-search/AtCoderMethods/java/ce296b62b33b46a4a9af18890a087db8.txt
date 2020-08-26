@@ -1,0 +1,25 @@
+public static void main(String[] args) throws IOException {
+    FastScanner in = new FastScanner();
+    int n = in.nextInt();
+    int m = in.nextInt();
+    
+    ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
+    for (int i = 0; i < n; i++) {
+        graph.add(new ArrayList<>());
+    }
+    for (int i = 0; i < m; i++) {
+        int a = in.nextInt() - 1;
+        int b = in.nextInt() - 1;
+        graph.get(a).add(b);
+        graph.get(b).add(a);
+    }
+    for (int i = 0; i < graph.get(0).size(); i++) {
+        for (int j = 0; j < graph.get(graph.get(0).get(i)).size(); j++) {
+            if (graph.get(graph.get(0).get(i)).get(j) == n - 1) {
+                System.out.println("POSSIBLE");
+                return;
+            }
+        }
+    }
+    System.out.println("IMPOSSIBLE");
+}

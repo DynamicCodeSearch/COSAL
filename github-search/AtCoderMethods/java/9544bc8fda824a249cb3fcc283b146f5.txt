@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    Scanner s = new Scanner(System.in);
+    final int R = s.nextInt();
+    final int C = s.nextInt();
+    final int START_Y = s.nextInt();
+    final int START_X = s.nextInt();
+    GOAL_Y = s.nextInt();
+    GOAL_X = s.nextInt();
+    
+    s.nextLine();
+    char[][] status = new char[R][C];
+    Zahyo[][] banmen = new Zahyo[R][C];
+    for (int i = 0; i < R; i++) {
+        String line = s.next();
+        for (int j = 0; j < C; j++) {
+            status[i][j] = line.charAt(j);
+            banmen[i][j] = new Zahyo(i, j);
+        }
+    }
+    int[][] dist = new int[R][C];
+    for (int i = 0; i < R; i++) {
+        Arrays.fill(dist[i], -1);
+    }
+    dist[START_Y - 1][START_X - 1] = 0;
+    Queue<Zahyo> queue = new LinkedList<>();
+    queue.offer(new Zahyo(START_Y - 1, START_X - 1));
+    while (!queue.isEmpty()) {
+        checkDist(dist, queue, status);
+    }
+}

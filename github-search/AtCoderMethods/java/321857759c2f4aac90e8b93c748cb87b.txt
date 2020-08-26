@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    PrintWriter out = new PrintWriter(System.out);
+    int n = sc.nextInt();
+    ArrayDeque<Integer> ad = new ArrayDeque<>();
+    for (int i = 0; i < n / 2; i++) {
+        ad.push(sc.nextInt());
+        ad.offer(sc.nextInt());
+    }
+    Iterator<Integer> itr = ad.descendingIterator();
+    if (n % 2 == 1) {
+        ad.push(sc.nextInt());
+        itr = ad.iterator();
+    }
+    out.print(itr.next());
+    while (itr.hasNext()) {
+        out.print(" " + itr.next());
+    }
+    out.println();
+    out.flush();
+}

@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int all = 0, rest = 0;
+    int m = sc.nextInt();
+    int n = sc.nextInt();
+    int N = sc.nextInt();
+    all = N;
+    for (int i = 0; ; i++) {
+        all = all + (N / m) * n;
+        N = (N / m) * n + N % m;
+        if (N < m) {
+            break;
+        }
+    }
+    System.out.println(all);
+}

@@ -1,0 +1,19 @@
+
+
+public static final void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    final String line = scanner.next();
+    HashMap<Character, AtomicInteger> map = new HashMap<>();
+    for (char c : line.toCharArray()) {
+        if (map.containsKey(c)) {
+            map.get(c).incrementAndGet();
+        } else {
+            map.put(c, new AtomicInteger(1));
+        }
+    }
+    if (map.entrySet().stream().filter(entry -> entry.getValue().get() % 2 == 0).count() == map.size()) {
+        System.out.print("Yes");
+    } else {
+        System.out.print("No");
+    }
+}

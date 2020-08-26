@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter w = new PrintWriter(System.out);
+    long n = in.nextLong();
+    int d = in.nextInt();
+    HashSet<Long> hs = new HashSet<>();
+    for (int i = 0; i < d; i++) hs.add(in.nextLong());
+    long temp;
+    while (true) {
+        temp = n;
+        boolean bad = false;
+        while (temp > 0) {
+            long dig = temp % 10;
+            bad = hs.contains(dig);
+            if (bad)
+                break;
+            temp = temp / 10;
+        }
+        if (!bad)
+            break;
+        n++;
+    }
+    w.println(n);
+    w.close();
+}

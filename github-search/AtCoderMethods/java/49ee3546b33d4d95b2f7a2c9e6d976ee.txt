@@ -1,0 +1,14 @@
+void solve() throws IOException {
+    char[] a = readString().toCharArray();
+    boolean[] dp = new boolean[a.length + 1];
+    dp[0] = true;
+    for (int i = 1; i <= a.length; i++) {
+        boolean ok = false;
+        for (String s : temps) {
+            if (eq(a, i - s.length(), s) && dp[i - s.length()])
+                ok = true;
+        }
+        dp[i] = ok;
+    }
+    out.println(dp[a.length] ? "YES" : "NO");
+}

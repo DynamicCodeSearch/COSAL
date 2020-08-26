@@ -1,0 +1,24 @@
+
+int lca(int u, int v) {
+    
+    if (depth[u] > depth[v]) {
+        int temp = u;
+        u = v;
+        v = temp;
+    }
+    for (int k = 0; k < MAX_LOG; k++) {
+        if ((((depth[v] - depth[u]) >> k) & 1) == 1) {
+            v = parent[k][v];
+        }
+    }
+    if (u == v)
+        return u;
+    
+    for (int k = MAX_LOG - 1; k >= 0; k--) {
+        if (parent[k][u] != parent[k][v]) {
+            u = parent[k][u];
+            v = parent[k][v];
+        }
+    }
+    return parent[0][u];
+}

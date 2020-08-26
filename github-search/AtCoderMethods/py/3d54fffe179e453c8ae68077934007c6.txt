@@ -1,0 +1,13 @@
+def main():
+    N, K = map(int, input().split())
+    d = defaultdict(int)
+    for _ in range(N):
+        a, b = map(int, input().split())
+        d[a] += b
+
+    total = 0
+    for k, v in sorted(d.items()):
+        if total < K <= total + v:
+            print(k)
+            return
+        total += v

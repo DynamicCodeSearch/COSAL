@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    String s = scan.next();
+    String t = scan.next();
+    char[] c = { 'a', 't', 'c', 'o', 'd', 'e', 'r' };
+    for (int i = 0; i < s.length(); i++) {
+        boolean f = true;
+        if (s.charAt(i) == '@' && t.charAt(i) == '@') {
+            continue;
+        } else if (s.charAt(i) == '@') {
+            for (int j = 0; j < c.length; j++) if (c[j] == t.charAt(i))
+                f = false;
+        } else if (t.charAt(i) == '@')
+            for (int j = 0; j < c.length; j++) if (c[j] == s.charAt(i))
+                f = false;
+        if (s.charAt(i) != t.charAt(i) && f) {
+            System.out.println("You will lose");
+            return;
+        }
+    }
+    System.out.println("You can win");
+    scan.close();
+}

@@ -1,0 +1,35 @@
+public void solve() throws IOException {
+    long k = nextLong();
+    if (k == 0) {
+        out.print("4\n" + "3 3 3 3");
+        return;
+    }
+    if (k < 10000000000000000l) {
+        if (k % 2 == 1) {
+            out.println(2);
+            out.print(k / 2);
+            out.print(" ");
+            out.print(k + 1 - k / 2);
+        } else {
+            out.println(2);
+            out.print((k + 2) / 2);
+            out.print(" ");
+            out.print((k + 2) / 2);
+        }
+        return;
+    }
+    out.println(50);
+    long[] mas = new long[50];
+    for (int i = 0; i < 50; i++) {
+        mas[i] = k / 50 - 1;
+    }
+    for (long l = 0; l < k % 50; l++) {
+        mas[(int) l] += 101 - k % 50;
+    }
+    for (long i = k % 50; i < 50; i++) {
+        mas[(int) i] += 50 - k % 50;
+    }
+    for (int i = 0; i < 50; i++) {
+        out.print(mas[i] + " ");
+    }
+}

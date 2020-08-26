@@ -1,0 +1,33 @@
+ArrayList<Integer> getPath() {
+    int[] log = new int[n];
+    int[] prev = new int[n];
+    Arrays.fill(log, Integer.MAX_VALUE);
+    PriorityQueue<Node> queue = new PriorityQueue<>((n1, n2) -> Integer.compare(n2.rank, n1.rank));
+    log[0] = 0;
+    Arrays.fill(prev, -1);
+    prev[0] = 0;
+    for (Edge e : es.get(0)) {
+        queue.add(new Node(e.to, 1));
+        prev[e.to] = 0;
+    }
+    while (!queue.isEmpty()) {
+        Node n = queue.poll();
+        if (n.rank > log[n.id])
+            continue;
+        log[n.id] = n.rank;
+        for (Edge e : es.get(n.id)) {
+            if (log[e.to] > log[n.id] + 1) {
+                prev[e.to] = n.id;
+                queue.add(new Node(e.to, log[n.id] + 1));
+            }
+        }
+    }
+    ArrayList<Integer> path = new ArrayList<>(n - 1);
+    int current = n - 1;
+    while (current != 0) {
+        path.add(0, current);
+        current = prev[current];
+    }
+    path.add(0, 0);
+    return path;
+}

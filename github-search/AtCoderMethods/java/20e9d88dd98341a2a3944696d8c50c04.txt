@@ -1,0 +1,17 @@
+private int solve(int n) {
+    
+    int min = n;
+    for (
+    int w = 1; 
+    w <= n; ++w) {
+        
+        int h = n / w;
+        
+        int r = n - (w * h);
+        if (r < 0) {
+            continue;
+        }
+        min = Math.min(min, Math.abs(w - h) + r);
+    }
+    return min;
+}

@@ -1,0 +1,11 @@
+def partition(v,f = identity):
+
+    result = {}
+    for item in v:
+        key = f(item)
+        s = result.get(key)
+        if s:
+            s.append(item)
+        else:
+            result.update({key:[item]})
+    return result

@@ -1,0 +1,13 @@
+public void solve() {
+    int N = in.nextInt();
+    long curT = in.nextInt(), curA = in.nextInt();
+    for (int i = 0; i < N - 1; i++) {
+        int t = in.nextInt(), a = in.nextInt();
+        long needT = (curT + t - 1) / t;
+        long needA = (curA + a - 1) / a;
+        long x = Math.max(needT, needA);
+        curT = t * x;
+        curA = a * x;
+    }
+    System.out.println(curT + curA);
+}

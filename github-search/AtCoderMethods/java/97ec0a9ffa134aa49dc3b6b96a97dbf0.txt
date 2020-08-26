@@ -1,0 +1,15 @@
+void run() {
+    p = sc.nextDouble();
+    double left = 0;
+    double right = p;
+    while (right - left > 1e-9) {
+        double mid = (left + right) / 2.0;
+        double v = f_(mid);
+        if (v > 0) {
+            right = mid;
+        } else {
+            left = mid;
+        }
+    }
+    System.out.println(f(right));
+}

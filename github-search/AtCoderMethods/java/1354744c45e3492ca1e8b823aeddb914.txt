@@ -1,0 +1,16 @@
+public void run() {
+    try {
+        timeBegin = System.currentTimeMillis();
+        memoryTotal = Runtime.getRuntime().freeMemory();
+        init();
+        solve();
+        out.close();
+        if (System.getProperty("ONLINE_JUDGE") == null) {
+            time();
+            memory();
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+        System.exit(-1);
+    }
+}

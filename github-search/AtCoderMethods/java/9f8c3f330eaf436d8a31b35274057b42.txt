@@ -1,0 +1,15 @@
+
+
+
+
+int S(long n, int r) {
+    
+    long ret = 0;
+    for (int i = 1; i <= r; i++) {
+        long tmp = (r - i) % 2 == 0 ? 1 : -1;
+        tmp *= pow(i, n) * C(r, i) % MOD;
+        ret = (ret + tmp + MOD) % MOD;
+    }
+    ret = ret * ifact[r] % MOD;
+    return (int) ret;
+}

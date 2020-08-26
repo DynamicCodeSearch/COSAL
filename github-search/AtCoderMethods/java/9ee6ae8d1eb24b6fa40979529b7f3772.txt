@@ -1,0 +1,37 @@
+public static void main(String[] args) {
+    String s = Fs.next();
+    String[] hai = { "dream", "dreamer", "erase", "eraser" };
+    boolean bo = false;
+    for (int i = 0; i < s.length(); ) {
+        if (s.indexOf("dream", i) == i) {
+            if (s.indexOf("dreamer", i) == i) {
+                i += 7;
+                bo = true;
+                continue;
+            } else
+                i += 5;
+        } else if (s.indexOf("erase", i) == i) {
+            
+            if (s.indexOf("eraser", i) == i) {
+                i += 6;
+                bo = true;
+                continue;
+            } else
+                i += 5;
+        } else if (bo && s.indexOf("ase", i) == i) {
+            if (s.indexOf("aser", i) == i) {
+                i += 4;
+                bo = true;
+                continue;
+            } else
+                i += 3;
+        } else {
+            Fs.pl("NO");
+            Fs.flush();
+            return;
+        }
+        bo = false;
+    }
+    Fs.pl("YES");
+    Fs.flush();
+}

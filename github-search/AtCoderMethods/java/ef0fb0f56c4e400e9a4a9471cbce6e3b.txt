@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String a = sc.nextLine();
+    StringBuilder sb = new StringBuilder();
+    for (char c : a.toCharArray()) {
+        if (c != 'B') {
+            sb.append(c);
+        } else {
+            if (sb.length() != 0) {
+                sb.deleteCharAt(sb.length() - 1);
+            }
+        }
+    }
+    System.out.println(sb.toString());
+}

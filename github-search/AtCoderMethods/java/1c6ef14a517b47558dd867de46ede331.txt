@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    int K = sc.nextInt();
+    long[] divs = enumDiv(N);
+    long[] dp = new long[2000];
+    long ret = 0;
+    for (int i = 0; i < divs.length; i++) {
+        dp[i] = powMod(K, (divs[i] + 1) / 2, mod);
+        for (int j = 0; j < i; j++) {
+            if (divs[i] % divs[j] == 0) {
+                dp[i] += mod - dp[j];
+                dp[i] %= mod;
+            }
+        }
+        if (divs[i] % 2 == 0) {
+            ret += dp[i] * divs[i] / 2;
+        } else {
+            ret += dp[i] * divs[i];
+        }
+        ret %= mod;
+    }
+    System.out.println(ret);
+}

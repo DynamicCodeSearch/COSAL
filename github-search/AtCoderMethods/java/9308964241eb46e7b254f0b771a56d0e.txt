@@ -1,0 +1,14 @@
+void run() {
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    if (Math.abs(n - m) > 1) {
+        System.out.println(0);
+        return;
+    }
+    long fn = factMod(n);
+    long fm = factMod(m);
+    long res = (fn * fm) % MOD;
+    if (n == m)
+        res = (res * 2) % MOD;
+    System.out.println(res);
+}

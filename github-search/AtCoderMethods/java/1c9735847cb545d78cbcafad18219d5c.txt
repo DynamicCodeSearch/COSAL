@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    IO io = new IO();
+    int q = io.nextInt();
+    TreapSet<Integer> ts = new TreapSet<>(Integer::compare);
+    for (int qq = 0; qq < q; qq++) {
+        int t = io.nextInt();
+        int x = io.nextInt();
+        if (t == 1) {
+            ts.add(x);
+        } else {
+            Integer y = ts.kthLowest(x - 1);
+            ts.remove(y);
+            io.println(y);
+        }
+    
+    }
+    io.flush();
+}

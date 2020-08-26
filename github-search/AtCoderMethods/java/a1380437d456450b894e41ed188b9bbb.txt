@@ -1,0 +1,15 @@
+static void a(StringBuilder Sa, StringBuilder Sb, StringBuilder Sc) {
+    if (Sa.length() == 0) {
+        System.out.println("A");
+        return;
+    }
+    String SaHead = Sa.substring(0, 1);
+    Sa.deleteCharAt(0);
+    if (SaHead.equals("a")) {
+        a(Sa, Sb, Sc);
+    } else if (SaHead.equals("b")) {
+        b(Sa, Sb, Sc);
+    } else {
+        c(Sa, Sb, Sc);
+    }
+}

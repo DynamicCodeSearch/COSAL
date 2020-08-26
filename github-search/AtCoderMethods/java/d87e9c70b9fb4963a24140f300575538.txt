@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner s = new Scanner(System.in);
+    long a = s.nextLong();
+    long k = s.nextLong();
+    if (k == 0) {
+        System.out.println(TARGET - a);
+        return;
+    }
+    for (int i = 1; true; i++) {
+        a = 1 + (k + 1) * a;
+        if (a >= TARGET) {
+            System.out.println(i);
+            return;
+        }
+    }
+}

@@ -1,0 +1,22 @@
+private void solveC() {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] rates = new int[9];
+    for (int i = 0; i < N; i++) {
+        int a = sc.nextInt();
+        int index = a / 400;
+        rates[index > 8 ? 8 : index]++;
+    }
+    int kind = 0;
+    for (int j = 0; j < 8; j++) {
+        if (rates[j] > 0) {
+            kind++;
+        }
+    }
+    int min = kind;
+    if (rates[8] > 0 && min == 0) {
+        min = 1;
+    }
+    int max = kind + rates[8];
+    System.out.println(min + " " + max);
+}

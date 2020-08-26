@@ -1,0 +1,25 @@
+static void solve() throws IOException {
+    int N = readInt();
+    int[] a = readArr(N);
+    Pair[] pair = new Pair[N];
+    for (int i = 0; i < N; i++) {
+        pair[i] = new Pair(a[i], i);
+    }
+    Arrays.sort(pair);
+    int[] ans = new int[N];
+    int num = 0;
+    ans[0] = num;
+    for (int i = 1; i < N; i++) {
+        if (pair[i - 1].val != pair[i].val)
+            num++;
+        ans[i] = num;
+    }
+    Pair[] pair2 = new Pair[N];
+    for (int i = 0; i < N; i++) {
+        pair2[i] = new Pair(pair[i].num, ans[i]);
+    }
+    Arrays.sort(pair2);
+    for (int i = 0; i < N; i++) {
+        out.println(pair2[i].num);
+    }
+}

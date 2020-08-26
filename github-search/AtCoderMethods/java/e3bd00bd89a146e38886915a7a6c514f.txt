@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    sc = new Scanner(System.in);
+    int i, N, e, o;
+    e = 0;
+    o = 0;
+    N = sc.nextInt();
+    int[] A = new int[N];
+    for (i = 0; i < N; i++) {
+        A[i] = sc.nextInt();
+    }
+    for (i = 0; i < N; i++) {
+        if (e < A[i]) {
+            e = A[i];
+        }
+    }
+    for (i = 0; i < N; i++) {
+        if (e != A[i]) {
+            o = Math.max(o, A[i]);
+        }
+    }
+    System.out.println(o);
+}

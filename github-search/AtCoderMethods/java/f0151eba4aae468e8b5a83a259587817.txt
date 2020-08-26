@@ -1,0 +1,10 @@
+private static int rightValue(int f, int krag, int[] digit) {
+    int L = -digit[f];
+    if (f >= 1 && (krag & (1 << (f - 1))) >= 1) {
+        L--;
+    }
+    if ((krag & (1 << f)) >= 1) {
+        L += 10;
+    }
+    return L;
+}

@@ -1,0 +1,9 @@
+public void update(int a, int val) {
+    if (a == 0) {
+        System.err.println("Caution : \"a\" in bitUpdate function is 0. It causes infinite loop");
+        System.exit(1);
+    }
+    for (int i = a; i <= bitA; i += i & (-i)) {
+        bit[i] += val;
+    }
+}

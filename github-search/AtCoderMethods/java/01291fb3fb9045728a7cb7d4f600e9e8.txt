@@ -1,0 +1,18 @@
+public static void main(String[] args) throws IOException {
+    Scanner scan = new Scanner(System.in);
+    int n = scan.nextInt();
+    int a, sum = 0;
+    ArrayList<Integer> bag = new ArrayList<>();
+    for (int i = 0; i < n; i++) {
+        a = scan.nextInt();
+        if (a != 0) {
+            bag.add(a);
+            sum += a;
+        }
+    }
+    if (sum % bag.size() == 0) {
+        System.out.println(sum / bag.size());
+    } else {
+        System.out.println(sum / bag.size() + 1);
+    }
+}

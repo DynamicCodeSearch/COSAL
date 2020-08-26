@@ -1,0 +1,16 @@
+void solve() throws IOException {
+    int n = in.nextInt();
+    long T = in.nextLong();
+    long pre = Integer.MIN_VALUE;
+    long sum = 0;
+    for (int i = 0; i < n; i++) {
+        long t = in.nextInt();
+        if (pre + T < t) {
+            sum += T;
+        } else {
+            sum += t - pre;
+        }
+        pre = t;
+    }
+    System.out.println(sum);
+}

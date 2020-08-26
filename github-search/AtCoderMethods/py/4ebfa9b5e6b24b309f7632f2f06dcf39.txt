@@ -1,0 +1,20 @@
+def exchangeOutput(given):
+
+    a = given % 30
+
+    b = a // 5
+
+    c = a % 5
+
+    numSeq = ["1","2","3","4","5","6"]
+
+    for i in range(b):
+        x = numSeq.pop(0)
+        numSeq.append(x)
+
+    for i in range(c):
+        x = numSeq[i]
+        numSeq[i] = numSeq[i+1]
+        numSeq[i+1] = x
+
+    return "".join(numSeq)

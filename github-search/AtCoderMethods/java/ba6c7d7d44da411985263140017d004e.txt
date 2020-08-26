@@ -1,0 +1,35 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int Ma = sc.nextInt();
+    int Mb = sc.nextInt();
+    int[] a = new int[N];
+    int[] b = new int[N];
+    int[] c = new int[N];
+    for (int i = 0; i < N; i++) {
+        a[i] = sc.nextInt();
+        b[i] = sc.nextInt();
+        c[i] = sc.nextInt();
+    }
+    int L = N * 10 + 1;
+    int[][] dp = new int[L][L];
+    for (int i = 0; i < L; i++) Arrays.fill(dp[i], Integer.MAX_VALUE);
+    dp[0][0] = 0;
+    for (int i = 0; i < N; i++) {
+        for (int j = L - 1; j >= 0; j--) {
+            for (int k = L - 1; k >= 0; k--) {
+                if (dp[j][k] < Integer.MAX_VALUE) {
+                    dp[j + a[i]][k + b[i]] = Math.min(dp[j + a[i]][k + b[i]], dp[j][k] + c[i]);
+                }
+            }
+        }
+    }
+    int ans = Integer.MAX_VALUE;
+    for (int i = 1; i * Ma < L && i * Mb < L; i++) {
+        if (dp[i * Ma][i * Mb] < Integer.MAX_VALUE) {
+            ans = Math.min(ans, dp[i * Ma][i * Mb]);
+        }
+    }
+    System.out.println(ans < Integer.MAX_VALUE ? ans : -1);
+    sc.close();
+}

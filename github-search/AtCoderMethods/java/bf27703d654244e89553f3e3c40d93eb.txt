@@ -1,0 +1,34 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    String[] S = new String[n];
+    for (int i = 0; i < n; i++) {
+        S[i] = sc.next();
+    }
+    int[] count = new int[26];
+    int[] intersection = new int[26];
+    for (int i = 0; i < n; i++) {
+        while (S[i].length() > 0) {
+            int cToInt = (int) S[i].charAt(0) - 97;
+            S[i] = S[i].substring(1);
+            count[cToInt]++;
+        }
+        if (i == 0) {
+            for (int j = 0; j < 26; j++) {
+                intersection[j] = count[j];
+            }
+        } else {
+            for (int j = 0; j < 26; j++) {
+                intersection[j] = Math.min(intersection[j], count[j]);
+                count[j] = 0;
+            }
+        }
+    }
+    for (int j = 0; j < 26; j++) {
+        while (intersection[j] > 0) {
+            char c = (char) (97 + j);
+            System.out.print(c);
+            intersection[j]--;
+        }
+    }
+}

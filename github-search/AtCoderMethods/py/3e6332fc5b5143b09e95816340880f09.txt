@@ -1,0 +1,17 @@
+def get_cols(rates):
+    col_flags = [False for _ in range(8)]
+    wild_colors = 0
+    for rate in rates:
+        if rate >= 3200:
+            wild_colors += 1
+        else:
+            col_flags[rate // 400] = True
+
+    decided_cols = col_flags.count(True)
+    max_cols = decided_cols + wild_colors
+
+    if decided_cols > 0:
+        min_cols = decided_cols
+    else:
+        min_cols = 1
+    return (min_cols, max_cols)

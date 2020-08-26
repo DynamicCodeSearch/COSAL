@@ -1,0 +1,8 @@
+def main():
+    memo = read_memo()
+
+    bits = memo2bits(memo)
+
+    for start, end in bits2ranges(bits):
+        start_hhmm, end_hhmm = map(min2hhmm, (start, end))
+        print("{}-{}".format(start_hhmm, end_hhmm))

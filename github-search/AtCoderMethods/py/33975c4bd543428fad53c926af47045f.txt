@@ -1,0 +1,14 @@
+def main():
+    N = int(input())
+    C = tuple([int(input()) for _ in range(N)])
+
+    val = 0
+    for i in range(0, N):
+        indexes = [j for j, x in enumerate(C) if not C[i] % x]
+        s = len(indexes) - 1
+        if s & 1:
+            val += 0.5
+        else:
+            val += (s + 2) / (2 * s + 2)
+
+    print(val)

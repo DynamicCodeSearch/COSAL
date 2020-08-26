@@ -1,0 +1,34 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    Map<Long, Long> map = new HashMap<>();
+    for (int i = 0; i < n; ++i) {
+        long x = in.nextInt();
+        if (!map.containsKey(x)) {
+            map.put(x, 1L);
+        } else {
+            map.put(x, map.get(x) + 1L);
+        }
+    }
+    List<Pair> list = new ArrayList<>();
+    for (Long key : map.keySet()) {
+        list.add(new Pair(key, map.get(key)));
+    }
+    Collections.sort(list);
+    boolean got = false;
+    boolean have = false;
+    long[] res = new long[2];
+    res[1] = 1L;
+    for (Pair pair : list) {
+        if (pair.y < 2)
+            continue;
+        have = true;
+        if (pair.y >= 4) {
+            res[0] = Math.max(res[0], pair.x * pair.x);
+        }
+        res[1] *= pair.x;
+        if (got)
+            break;
+        got = true;
+    }
+    out.println(have ? Math.max(res[0], res[1]) : Math.max(res[0], 0));
+}

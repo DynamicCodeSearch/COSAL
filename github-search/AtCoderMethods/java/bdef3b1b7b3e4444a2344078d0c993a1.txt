@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    Main c = new Main();
+    c.before = sc.nextInt();
+    c.after = sc.nextInt();
+    c.stock = sc.nextInt();
+    c.sold += c.stock;
+    while (true) {
+        if (c.can_sell()) {
+            c.sell();
+        } else {
+            if (c.stock_available()) {
+                c.add_stock();
+            } else {
+                break;
+            }
+        }
+    }
+    System.out.println(c.sold);
+}

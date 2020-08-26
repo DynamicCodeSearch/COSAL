@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    int[] a = sc.nextIntList(N * 3);
+    PriorityQueue<int[]> q1 = new PriorityQueue<>((o1, o2) -> o1[1] == o2[1] ? o1[0] - o2[0] : o1[1] - o2[1]);
+    PriorityQueue<int[]> q2 = new PriorityQueue<>((o1, o2) -> o1[1] == o2[1] ? o2[0] - o1[0] : o2[1] - o1[1]);
+    for (int i = 0; i < N; i++) {
+        q1.add(new int[] { i, a[i] });
+    }
+    for (int i = N * 2; i < N * 3; i++) {
+        q2.add(new int[] { i, a[i] });
+    }
+    long[] max = new long[N + 1];
+    long[] min = new long[N + 1];
+    for (int[] v : q1) max[0] += v[1];
+    for (int[] v : q2) min[0] += v[1];
+    for (int i = 0; i < N; i++) {
+        int ptr1 = i + N;
+        int ptr2 = N * 2 - i - 1;
+        q1.add(new int[] { ptr1, a[ptr1] });
+        q2.add(new int[] { ptr2, a[ptr2] });
+        max[i + 1] = max[i] + a[ptr1] - q1.poll()[1];
+        min[i + 1] = min[i] + a[ptr2] - q2.poll()[1];
+    }
+    long ret = Long.MIN_VALUE;
+    for (int i = 0; i <= N; i++) {
+        ret = Math.max(ret, max[i] - min[N - i]);
+    }
+    System.out.println(ret);
+}

@@ -1,0 +1,16 @@
+public void readHead(String str) {
+    
+    
+    
+    int t = 1;
+    for (; ; t++) {
+        if ((str.length() - t) % 2 != 0)
+            continue;
+        String s1 = str.substring(0, (str.length() - t) / 2);
+        String s2 = str.substring((str.length() - t) / 2, (str.length() - t));
+        
+        if (s1.equals(s2))
+            break;
+    }
+    System.out.println((str.length() - t));
+}

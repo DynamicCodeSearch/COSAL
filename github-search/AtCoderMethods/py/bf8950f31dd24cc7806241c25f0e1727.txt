@@ -1,0 +1,19 @@
+def main():
+    R, C = map(int, input().split())
+    SY, SX = map(int, input().split())
+    GY, GX = map(int, input().split())
+    Ci = tuple([input() for _ in range(R)])
+
+    c1 = deque([(SX - 1, SX - 1)])
+    c2 = [[None for i in range(C)] for j in range(R)]
+    c2[SX-1][SY-1] = 0
+    while len(c1) > 0:
+        x, y = c1.popleft()
+        if (x, y) == (GX- 1, GY - 1):
+            break
+        for i, j in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+            if '.' in Ci[y+j][x+i] and c2[y+j][x+i] == None:
+                c1.append((x+i, y+j))
+                c2[y+j][x+i] = c2[y][x] + 1
+
+    print(c2[y][x])

@@ -1,0 +1,17 @@
+private void solve() {
+    int n = in.nextInt();
+    int[] array = new int[n];
+    for (int i = 0; i < n; ++i) {
+        array[i] = in.nextInt();
+    }
+    long minCost = Long.MAX_VALUE;
+    for (int j = -200; j < 200; ++j) {
+        long curCost = 0;
+        for (int i = 0; i < n; ++i) {
+            curCost += (array[i] - j) * (array[i] - j);
+        }
+        if (minCost > curCost)
+            minCost = curCost;
+    }
+    out.println(minCost);
+}

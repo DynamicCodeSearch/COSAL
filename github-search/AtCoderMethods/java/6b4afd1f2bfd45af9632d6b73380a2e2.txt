@@ -1,0 +1,32 @@
+void run() {
+    Scanner sc = new Scanner();
+    int n = sc.nextInt();
+    int k = sc.nextInt();
+    long[] x = new long[n];
+    long[] y = new long[n];
+    for (int i = 0; i < n; ++i) {
+        x[i] = sc.nextLong();
+        y[i] = sc.nextLong();
+    }
+    long ans = Long.MAX_VALUE;
+    for (long x1 : x) {
+        for (long x2 : x) {
+            for (long y1 : y) {
+                for (long y2 : y) {
+                    if (x1 >= x2 || y1 >= y2)
+                        continue;
+                    int cnt = 0;
+                    for (int i = 0; i < n; ++i) {
+                        if (x1 <= x[i] && x[i] <= x2 && y1 <= y[i] && y[i] <= y2) {
+                            ++cnt;
+                        }
+                    }
+                    if (cnt >= k) {
+                        ans = Math.min(ans, (x2 - x1) * (y2 - y1));
+                    }
+                }
+            }
+        }
+    }
+    System.out.println(ans);
+}

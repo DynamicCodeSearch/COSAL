@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int N = scan.nextInt();
+    int cnt = 0;
+    String word = scan.next();
+    String[][] a = new String[N][N];
+    String[][] b = new String[N][N];
+    for (int i = 0; i < N - 1; i++) {
+        word = word + scan.next();
+    }
+    String[] splitWord = word.split("", 0);
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            a[i][j] = splitWord[cnt];
+            cnt++;
+        }
+    }
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            b[j][N - 1 - i] = a[i][j];
+        }
+    }
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            System.out.print(b[i][j]);
+        }
+        System.out.println("");
+    }
+}

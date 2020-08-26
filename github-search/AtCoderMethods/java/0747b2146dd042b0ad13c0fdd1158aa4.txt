@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    String as = scanner.nextLine();
+    String bs = scanner.nextLine();
+    String cs = scanner.nextLine();
+    Map<Character, char[]> members = new HashMap<>();
+    members.put(Character.valueOf('a'), as.toCharArray());
+    members.put(Character.valueOf('b'), bs.toCharArray());
+    members.put(Character.valueOf('c'), cs.toCharArray());
+    char current = 'a';
+    while (true) {
+        char[] cards = members.get(current);
+        if (cards.length == 0) {
+            System.out.println(String.valueOf(current).toUpperCase());
+            break;
+        }
+        char prev = current;
+        current = cards[0];
+        char[] tmpCards = new char[cards.length - 1];
+        for (int i = 0; i < cards.length - 1; i++) {
+            tmpCards[i] = cards[i + 1];
+        }
+        members.put(Character.valueOf(prev), tmpCards);
+    }
+    scanner.close();
+}

@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int l = scan.nextInt();
+    String str = scan.next();
+    String str1 = "I";
+    String str2 = "D";
+    String[] strArray = new String[l];
+    int x = 0;
+    int tmp = x;
+    for (int i = 0; i < l; i++) {
+        
+        if ((String.valueOf(str.charAt(i))).equals(str1)) {
+            x += 1;
+        } else {
+            x -= 1;
+        }
+        tmp = Math.max(tmp, x);
+    }
+    System.out.println(tmp);
+}

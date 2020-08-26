@@ -1,0 +1,11 @@
+long query(int l, int r, int a, int b, int k) {
+    if (r <= a || b <= l) {
+        return Long.MAX_VALUE / 16;
+    } else if (a <= l && r <= b) {
+        return v[k];
+    } else {
+        long vl = query(l, (l + r) / 2, a, b, 2 * k + 1);
+        long vr = query((l + r) / 2, r, a, b, 2 * k + 2);
+        return Math.min(vl, vr);
+    }
+}

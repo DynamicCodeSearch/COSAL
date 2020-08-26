@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner scn = new Scanner(System.in);
+    int N = scn.nextInt();
+    int[] a = new int[N + 1];
+    for (int i = 0; i < N; i++) {
+        a[i] = scn.nextInt();
+    }
+    a[N] = Integer.MAX_VALUE;
+    Arrays.sort(a);
+    a[N] = -1;
+    int flag = 1;
+    int ans = 0;
+    for (int i = 0; i < a.length - 1; i++) {
+        if (a[i] == a[i + 1]) {
+            flag++;
+        } else {
+            if (flag % 2 == 1) {
+                ans++;
+            }
+            flag = 1;
+        }
+    }
+    System.out.println(ans);
+}

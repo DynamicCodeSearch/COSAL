@@ -1,0 +1,24 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    String str = input.readLine();
+    int n = Integer.parseInt(str);
+    String[][] list = new String[n][n];
+    String[][] answer = new String[n][n];
+    for (int i = 0; i < n; i++) {
+        str = input.readLine();
+        list[i] = str.split("");
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            answer[j][n - i - 1] = list[i][j];
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            System.out.print(answer[i][j]);
+            if (j == n - 1) {
+                System.out.println();
+            }
+        }
+    }
+}

@@ -1,0 +1,20 @@
+private void solve(Scanner sc) {
+    int N = sc.nextInt();
+    long K = sc.nextLong();
+    List<Pair<Integer>> list = new ArrayList<>();
+    for (int i = 0; i < N; ++i) {
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        list.add(new Pair<>(a, b));
+    }
+    Collections.sort(list);
+    long sum = 0;
+    for (int i = 0; i < N; ++i) {
+        Pair<Integer> p = list.get(i);
+        sum += p.b;
+        if (sum >= K) {
+            _out.println(p.a);
+            break;
+        }
+    }
+}

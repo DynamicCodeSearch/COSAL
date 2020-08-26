@@ -1,0 +1,10 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int ans = 1 << 30;
+    for (int i = 1; i <= n; ++i) {
+        int x = i, y = (int) Math.floor(n / i);
+        ans = Math.min(ans, Math.abs(x - y) + n - x * y);
+    }
+    System.out.println(ans);
+}

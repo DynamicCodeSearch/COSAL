@@ -1,0 +1,11 @@
+def bugged(ss):
+    ss2 = list(sorted(ss))
+    total = sum(ss2)
+    if total % 10 != 0:
+        return total
+    elm = None
+    for s in ss2:
+        if s % 10 != 0:
+            elm = s
+            break
+    return total - elm if elm else 0

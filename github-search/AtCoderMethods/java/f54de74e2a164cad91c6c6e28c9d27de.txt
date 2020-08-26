@@ -1,0 +1,39 @@
+void run() {
+    int h, w;
+    h = ni();
+    w = ni();
+    long min = Long.MAX_VALUE;
+    for (int i = 1; i <= h / 2; ++i) {
+        
+        {
+            int j = (h - i) / 2;
+            int k = h - (i + j);
+            long v = g(i, w, j, w, k, w);
+            min = Math.min(min, v);
+        }
+        
+        {
+            int j = w / 2;
+            int k = w - j;
+            long v = g(i, w, h - i, j, h - i, k);
+            min = Math.min(min, v);
+        }
+    }
+    for (int i = 1; i <= w / 2; ++i) {
+        
+        {
+            int j = h / 2;
+            int k = h - j;
+            long v = g(h, i, j, w - i, k, w - i);
+            min = Math.min(min, v);
+        }
+        
+        {
+            int j = (h - i) / 2;
+            int k = h - (i + j);
+            long v = g(h, i, h, j, h, k);
+            min = Math.min(min, v);
+        }
+    }
+    System.out.println(min);
+}

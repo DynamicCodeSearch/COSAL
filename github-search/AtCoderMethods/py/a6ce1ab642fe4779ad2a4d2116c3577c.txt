@@ -1,0 +1,12 @@
+def search_unbalanced_substr(s):
+    n = len(s)
+
+    for i in range(n - 1):
+        if s[i] == s[i + 1]:
+            return i, i + 1
+
+    for i in range(n - 2):
+        if s[i] == s[i + 2]:
+            return i, i + 2
+
+    return NO_SOL

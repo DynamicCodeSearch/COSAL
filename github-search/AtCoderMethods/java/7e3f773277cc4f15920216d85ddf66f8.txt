@@ -1,0 +1,19 @@
+public void solve() {
+    long ansX = 0;
+    for (int x1 = 0; x1 < N - 1; x1++) {
+        int x2 = x1 + 1;
+        long s = (X[x2] - X[x1]) % MOD;
+        s = (s * (N - 1 - x1)) % MOD;
+        s = (s * (x1 + 1)) % MOD;
+        ansX = (ansX + s) % MOD;
+    }
+    long ansY = 0;
+    for (int y1 = 0; y1 < M - 1; y1++) {
+        int y2 = y1 + 1;
+        long s = (Y[y2] - Y[y1]) % MOD;
+        s = (s * (M - 1 - y1)) % MOD;
+        s = (s * (y1 + 1)) % MOD;
+        ansY = (ansY + s) % MOD;
+    }
+    System.out.println((ansX * ansY) % MOD);
+}

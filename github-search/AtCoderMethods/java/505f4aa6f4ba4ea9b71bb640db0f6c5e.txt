@@ -1,0 +1,14 @@
+void read() {
+    Scanner sc = new Scanner(System.in);
+    n = sc.nextInt();
+    es = new ArrayList<>(n);
+    for (int i = 0; i < n; i++) {
+        es.add(new ArrayList<>());
+    }
+    for (int i = 0; i < n - 1; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        es.get(a).add(new Edge(a, b));
+        es.get(b).add(new Edge(b, a));
+    }
+}

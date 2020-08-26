@@ -1,0 +1,47 @@
+void run() {
+    Scanner sc = new Scanner();
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < n; ++i) {
+        a[i] = sc.nextInt() - 1;
+    }
+    long[] d1 = new long[m + 1];
+    long[] d2 = new long[m + 1];
+    for (int i = 0; i + 1 < n; ++i) {
+        int t = a[i + 1];
+        int s = a[i];
+        if (s <= t) {
+            d1[0] += t - s;
+            d1[s + 1] -= t - s;
+            d1[s + 1] += t + 1;
+            d1[t + 1] -= t + 1;
+            d2[s + 1] += -1;
+            d2[t + 1] -= -1;
+            d1[t + 1] += t - s;
+            d1[m] -= t - s;
+        } else {
+            d1[0] += t + 1;
+            d1[t + 1] -= t + 1;
+            d2[0] += -1;
+            d2[t + 1] -= -1;
+            d1[t + 1] += m + t - s;
+            d1[s + 1] -= m + t - s;
+            d1[s + 1] += t + m + 1;
+            d1[m] -= t + m + 1;
+            d2[s + 1] += -1;
+            d2[m] -= -1;
+        }
+    }
+    long ans = Long.MAX_VALUE;
+    for (int i = 0; i < m; ++i) {
+        if (i > 0) {
+            d1[i] += d1[i - 1];
+            d2[i] += d2[i - 1];
+        }
+    }
+    for (int i = 0; i < m; ++i) {
+        ans = Math.min(ans, d1[i] + d2[i] * i);
+    }
+    System.out.println(ans);
+}

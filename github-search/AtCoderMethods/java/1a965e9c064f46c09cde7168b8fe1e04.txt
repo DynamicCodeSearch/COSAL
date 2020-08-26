@@ -1,0 +1,16 @@
+public void solve() {
+    a = nextInt();
+    b = nextInt();
+    c = nextInt();
+    boolean[] used = new boolean[b];
+    int now = a % b;
+    while (!used[now]) {
+        used[now] = true;
+        if (now == c) {
+            out.println("YES");
+            return;
+        }
+        now = (now + a) % b;
+    }
+    out.println("NO");
+}

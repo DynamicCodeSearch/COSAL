@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    int l = m * n;
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = sc.nextInt();
+    }
+    long[][][] dp = new long[n + 1][n + 1][l + 1];
+    dp[0][0][0] = 1;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j <= n; j++) {
+            for (int k = 0; k <= l; k++) {
+                dp[i + 1][j][k] += dp[i][j][k];
+                if (j < n && k + a[i] <= l) {
+                    dp[i + 1][j + 1][k + a[i]] += dp[i][j][k];
+                }
+            }
+        }
+    }
+    long ans = 0;
+    for (int i = 1; i <= n; i++) {
+        ans += dp[n][i][i * m];
+    }
+    
+    System.out.println(ans);
+}

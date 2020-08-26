@@ -1,0 +1,17 @@
+long getScore() {
+    while (top.size() > n) {
+        Q q = top.pollFirst();
+        sum -= q.value;
+        down.add(q);
+    }
+    while (top.size() < n && down.size() > 0) {
+        Q q = down.pollLast();
+        sum += q.value;
+        top.add(q);
+    }
+    if (top.size() == n) {
+        return sum;
+    } else {
+        return Long.MAX_VALUE;
+    }
+}

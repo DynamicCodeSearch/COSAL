@@ -1,0 +1,15 @@
+public static void main(String[] args) throws IOException {
+    Scanner scanner = new Scanner(System.in);
+    int k = scanner.nextInt() + 1;
+    int s = scanner.nextInt();
+    int count = 0;
+    for (int i = 0; i < k; i++) {
+        for (int j = 0; j < k; j++) {
+            int a = s - (i + j);
+            if (a <= k - 1 && a >= 0) {
+                count++;
+            }
+        }
+    }
+    System.out.println(count);
+}

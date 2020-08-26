@@ -1,0 +1,38 @@
+void run() {
+    n = ni();
+    m = ni();
+    t = ni();
+    int[] A = new int[n + 1];
+    for (int i = 1; i <= n; ++i) {
+        A[i] = ni();
+    }
+    list = new ArrayList<>();
+    for (int i = 0; i <= n; ++i) {
+        list.add(new ArrayList<>());
+    }
+    rev = new ArrayList<>();
+    for (int i = 0; i <= n; ++i) {
+        rev.add(new ArrayList<>());
+    }
+    for (int i = 0; i < m; ++i) {
+        int a = ni();
+        int b = ni();
+        int c = ni();
+        Edge e = new Edge();
+        e.to = b;
+        e.cost = c;
+        list.get(a).add(e);
+        Edge r = new Edge();
+        r.to = a;
+        r.cost = c;
+        rev.get(b).add(r);
+    }
+    long[] from1 = dijkstra(1);
+    long[] to1 = dijkstra2(1);
+    long max = 0;
+    for (int i = 1; i <= n; ++i) {
+        long now = Math.min(t, from1[i] + to1[i]);
+        max = Math.max(max, (t - now) * A[i]);
+    }
+    System.out.println(max);
+}

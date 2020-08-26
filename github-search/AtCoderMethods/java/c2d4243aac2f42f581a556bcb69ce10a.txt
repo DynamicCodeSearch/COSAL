@@ -1,0 +1,23 @@
+public void solve(int testNumber, FastReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int m = in.nextInt();
+    char[][] map = in.nextCharacterMap(n, m);
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < m; ++j) {
+            if (map[i][j] == '#')
+                continue;
+            int ct = 0;
+            for (int dr = -1; dr <= 1; ++dr) {
+                for (int dc = -1; dc <= 1; ++dc) {
+                    int nr = i + dr;
+                    int nc = j + dc;
+                    if (MiscUtils.isValidCell(nr, nc, n, m) && map[nr][nc] == '#') {
+                        ++ct;
+                    }
+                }
+            }
+            map[i][j] = (char) (ct + '0');
+        }
+    }
+    for (int i = 0; i < n; ++i) out.println(new String(map[i]));
+}

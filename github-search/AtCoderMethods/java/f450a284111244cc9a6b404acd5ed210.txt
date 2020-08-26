@@ -1,0 +1,16 @@
+private void go(int i) {
+    long left = (long) Math.pow(10, i - 1), right = (long) (Math.pow(10, i) - 1);
+    left--;
+    right++;
+    while (left < right - 1) {
+        long mid = (left + right) >>> 1;
+        out.println("? " + mid + "0");
+        out.flush();
+        if (get()) {
+            right = mid;
+        } else {
+            left = mid;
+        }
+    }
+    answer(right);
+}

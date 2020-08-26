@@ -1,0 +1,13 @@
+void setUnion(int x, int y) {
+    x = root(x);
+    y = root(y);
+    if (x == y)
+        return;
+    if (upper[x] < upper[y]) {
+        int d = x;
+        x = y;
+        y = d;
+    }
+    upper[y] += upper[x];
+    upper[x] = y;
+}

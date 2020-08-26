@@ -1,0 +1,15 @@
+def main():
+    N, A, B = map(int, input().split())
+    now = 0
+    for _ in range(N):
+        s, d = input().split()
+        if s == "East":
+            now -= max(A, min(int(d), B))
+        else:
+            now += max(A, min(int(d), B))
+    if now < 0:
+        print("East", abs(now))
+    elif now > 0:
+        print("West", now)
+    else:
+        print(0)

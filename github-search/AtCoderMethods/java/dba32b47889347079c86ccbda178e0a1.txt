@@ -1,0 +1,18 @@
+int getAsSetOf(int w) {
+    w++;
+    if (w <= 0) {
+        return -1;
+    }
+    int x = 0;
+    int k = 1;
+    while (k * 2 <= N) {
+        k *= 2;
+    }
+    for (; k > 0; k /= 2) {
+        if (x + k <= N && data[x + k - 1] < w) {
+            w -= data[x + k - 1];
+            x += k;
+        }
+    }
+    return x;
+}

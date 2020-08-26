@@ -1,0 +1,13 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt(), m = in.nextInt();
+    precalc(Math.max(n, m) + 3);
+    int ans = (int) ((long) fact[n] * fact[m] % MOD);
+    if (n == m) {
+        ans *= 2;
+        ans %= MOD;
+    }
+    if (n > m + 1 || m > n + 1) {
+        ans = 0;
+    }
+    out.println(ans);
+}

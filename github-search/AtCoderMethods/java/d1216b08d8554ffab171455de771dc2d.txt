@@ -1,0 +1,9 @@
+private byte read() {
+    try {
+        if (bufferPointer == bytesRead)
+            fillBuffer();
+        return buffer[bufferPointer++];
+    } catch (IOException e) {
+        throw new RuntimeException();
+    }
+}

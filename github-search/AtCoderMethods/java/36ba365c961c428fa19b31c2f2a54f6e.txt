@@ -1,0 +1,22 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    StringBuilder sb = new StringBuilder();
+    int n = Integer.parseInt(br.readLine());
+    String[] str = br.readLine().split(" ");
+    int[] a = new int[n];
+    int[] ans = new int[n];
+    int pos = 0;
+    for (int i = 0; i < n; i++) {
+        a[i] = Integer.parseInt(str[n - i - 1]);
+        if (i % 2 == 0) {
+            ans[pos] = a[i];
+        } else {
+            ans[n - pos - 1] = a[i];
+            pos++;
+        }
+    }
+    System.out.print(ans[0]);
+    for (int i = 1; i < n; i++) {
+        System.out.print(" " + ans[i]);
+    }
+}

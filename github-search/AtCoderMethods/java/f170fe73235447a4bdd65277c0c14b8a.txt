@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int sx = sc.nextInt();
+    int sy = sc.nextInt();
+    int tx = sc.nextInt();
+    int ty = sc.nextInt();
+    int w = tx - sx;
+    int h = ty - sy;
+    String ans = "";
+    ans += ms('D', 1);
+    ans += ms('R', w + 1);
+    ans += ms('U', h + 1);
+    ans += ms('L', w + 1);
+    ans += ms('D', h);
+    ans += ms('R', w);
+    ans += ms('U', h + 1);
+    ans += ms('L', w + 1);
+    ans += ms('D', h + 1);
+    ans += ms('R', 1);
+    System.out.println(ans);
+}

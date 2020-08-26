@@ -1,0 +1,18 @@
+def allocate(n, ss):
+    ts = [s == "o" for s in ss]
+    for x0, x1 in itertools.product((True, False), repeat=2):
+        xs = [None for _ in range(n + 1)]
+        xs[0] = xs[-1] = x0
+        xs[1] = x1
+        for i in range(n - 2):
+            diff = xs[i + 1] ^ ts[i + 1]
+            xs[i + 2] = xs[i] ^ diff
+        for i in range(n):
+            left = xs[(i - 1) % n]
+            right = xs[(i + 1) % n]
+            diff = xs[i] ^ ts[i]
+            if diff != (left != right):
+                break
+        else:
+            return xs[:n]
+    return None

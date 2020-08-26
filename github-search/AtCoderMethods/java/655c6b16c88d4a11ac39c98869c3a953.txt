@@ -1,0 +1,21 @@
+private void solve() {
+    String s = in.nextLine();
+    a = new int[s.length()];
+    n = s.length();
+    for (int i = 0; i < s.length(); i++) {
+        a[i] = s.charAt(i) - '0';
+    }
+    long ret = 0;
+    for (int i = 0; i < (1 << n - 1); i++) {
+        int st = 0;
+        for (int j = 0; j < n - 1; j++) {
+            if ((i & (1 << j)) != 0) {
+                ret += calculate(st, j);
+                st = j + 1;
+            }
+        }
+        ret += calculate(st, n - 1);
+    
+    }
+    out.print(ret);
+}

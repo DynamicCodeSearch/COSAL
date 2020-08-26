@@ -1,0 +1,44 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int n = scanner.nextInt();
+    int a = scanner.nextInt();
+    List<Integer> smalls = new ArrayList<>();
+    List<Integer> larges = new ArrayList<>();
+    List<Integer> sames = new ArrayList<>();
+    int min = 0;
+    int max = 0;
+    for (int i = 0; i < n; i++) {
+        int data = scanner.nextInt();
+        int remain = data - a;
+        if (remain > 0) {
+            max += remain;
+            larges.add(remain);
+        } else if (remain < 0) {
+            min += remain;
+            smalls.add(-remain);
+        } else {
+            sames.add(remain);
+        }
+    }
+    BigDecimal sameB = new BigDecimal(1);
+    for (int i = 1; i <= sames.size(); i++) {
+        sameB = sameB.add(count(sames.size(), i));
+    }
+    BigDecimal result = new BigDecimal(0);
+    result = result.add(sameB).subtract(new BigDecimal(1));
+    max = Math.min(max, -min);
+    BigDecimal[][] cache2 = new BigDecimal[50][max + 1];
+    BigDecimal[][] cache3 = new BigDecimal[50][max + 1];
+    for (int i = 1; i <= max; i++) {
+        BigDecimal r = find(larges, 0, i, cache2);
+        if (r.compareTo(new BigDecimal(0)) == 0) {
+            continue;
+        }
+        BigDecimal r2 = find(smalls, 0, i, cache3);
+        if (r2.compareTo(new BigDecimal(0)) == 0) {
+            continue;
+        }
+        result = result.add(r.multiply(r2).multiply(sameB));
+    }
+    System.out.println(result);
+}

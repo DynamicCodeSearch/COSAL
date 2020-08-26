@@ -1,0 +1,13 @@
+public static long solve(int index, long weight, long value) {
+    String s = index + "," + weight;
+    if (w < weight) {
+        return Integer.MIN_VALUE;
+    } else if (index == n) {
+        return value;
+    } else if (memo.containsKey(s)) {
+        return memo.get(s);
+    }
+    long temp = Math.max(solve(index + 1, weight, value), solve(index + 1, weight + weights[index], value + values[index]));
+    memo.put(s, temp);
+    return temp;
+}

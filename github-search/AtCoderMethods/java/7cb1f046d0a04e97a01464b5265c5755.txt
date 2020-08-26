@@ -1,0 +1,10 @@
+static String at(int deg, int dis) {
+    double deg2 = (double) deg / 10;
+    String dir = getDir(deg2);
+    double sok = ((double) dis / (double) 60);
+    double sok2 = new BigDecimal(String.valueOf(sok)).setScale(1, BigDecimal.ROUND_HALF_UP).doubleValue();
+    int w = getW(sok2);
+    if (w <= 0)
+        dir = "C";
+    return dir + " " + w;
+}

@@ -1,0 +1,34 @@
+public static void main(String[] arg) throws IOException {
+    String message;
+    int n = 0;
+    int k = 0;
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    message = br.readLine();
+    String[] num = message.split(" ");
+    message = br.readLine();
+    String[] nagasa = message.split(" ");
+    n = Integer.parseInt(num[0]);
+    k = Integer.parseInt(num[1]);
+    int[] numnum = new int[n];
+    for (int i = 0; i < n; i++) {
+        numnum[i] = Integer.parseInt(nagasa[i]);
+    }
+    int max = 0;
+    int nowmax = 9999;
+    int maxlong = 0;
+    int hantei = 0;
+    for (int i = 0; i < k; i++) {
+        for (int j = 0; j < n; j++) {
+            if (numnum[j] > max && nowmax >= numnum[j]) {
+                max = numnum[j];
+                hantei = j;
+            }
+        }
+        maxlong += max;
+        nowmax = max;
+        numnum[hantei] = 0;
+        hantei = 0;
+        max = 0;
+    }
+    System.out.println("" + maxlong);
+}

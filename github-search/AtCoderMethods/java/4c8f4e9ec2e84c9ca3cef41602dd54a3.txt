@@ -1,0 +1,27 @@
+public void solve(int testNumber, Scanner in, PrintWriter out) {
+    int n = in.nextInt();
+    Map<Integer, Integer> counts = new HashMap<>();
+    for (int i = 0; i < n; i++) {
+        int a = in.nextInt();
+        if (counts.get(a) == null) {
+            counts.put(a, 0);
+        }
+        int count = counts.get(a);
+        counts.put(a, count + 1);
+    }
+    int oddDistinct = 0;
+    int evenDistinct = 0;
+    for (Map.Entry<Integer, Integer> entries : counts.entrySet()) {
+        int c = entries.getValue();
+        if (c % 2 == 0) {
+            evenDistinct++;
+        } else {
+            oddDistinct++;
+        }
+    }
+    if (evenDistinct % 2 == 0) {
+        System.out.println(counts.size());
+    } else {
+        System.out.println(counts.size() - 1);
+    }
+}

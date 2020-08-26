@@ -1,0 +1,45 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    s = sc.next();
+    t = sc.nextInt();
+    int x = 0, y = 0, count = 0;
+    for (int i = 0; i < s.length(); i++) {
+        switch(s.charAt(i)) {
+            case 'U':
+                --y;
+                break;
+            case 'D':
+                ++y;
+                break;
+            case 'L':
+                --x;
+                break;
+            case 'R':
+                ++x;
+                break;
+            default:
+                ++count;
+                break;
+        }
+    }
+    int ans = 0;
+    if (t == 1) {
+        ans = Math.abs(x) + Math.abs(y) + count;
+    } else {
+        int d = Math.abs(x) + Math.abs(y);
+        if (d % 2 == 0) {
+            if (count % 2 == 0) {
+                ans = Math.max(0, d - count);
+            } else {
+                ans = Math.max(1, d - count);
+            }
+        } else {
+            if (count % 2 == 0) {
+                ans = Math.max(1, d - count);
+            } else {
+                ans = Math.max(0, d - count);
+            }
+        }
+    }
+    System.out.println(ans);
+}

@@ -1,0 +1,6 @@
+def cal2(h,w):
+    x1,x2 = math.floor(w/2),math.ceil(w/2)
+    y1,y2 = math.floor((2*h)/3),math.ceil((2*h)/3)
+    def cal(x,y):
+        return max(x*y,(w-x)*y,(h-y)*w) - min(x*y,(w-x)*y,(h-y)*w)
+    return min(cal(x1,y1),cal(x2,y1),cal(x1,y2),cal(x2,y2))

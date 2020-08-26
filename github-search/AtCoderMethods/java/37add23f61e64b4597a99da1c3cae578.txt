@@ -1,0 +1,34 @@
+private int[] dfs(int v, int p, int l, int r) {
+    int cl = l;
+    int cr = r;
+    for (int u : adj[v]) {
+        if (u == p) {
+            continue;
+        }
+        int nl, nr;
+        if (!fixed[u]) {
+            int[] seg = dfs(u, v, l - 1, r + 1);
+            if (seg == null) {
+                return null;
+            }
+            nl = seg[0] - 1;
+            nr = seg[1] + 1;
+        } else {
+            nl = a[u] - 1;
+            nr = a[u] + 1;
+        }
+        boolean e1 = cl % 2 == 0;
+        boolean e2 = nl % 2 == 0;
+        if (e1 != e2) {
+            return null;
+        }
+        cl = Math.max(cl, nl);
+        cr = Math.min(cr, nr);
+    }
+    if (cl > cr) {
+        return null;
+    }
+    ls[v] = cl;
+    rs[v] = cr;
+    return new int[] { cl, cr };
+}

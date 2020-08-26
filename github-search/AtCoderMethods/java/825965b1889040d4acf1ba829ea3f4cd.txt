@@ -1,0 +1,31 @@
+private long[] getBack(int[] a, int sz) {
+    TreeMap<Integer, Integer> mm = new TreeMap<>();
+    long sum = 0;
+    for (int i = 3 * sz - 1; i >= 2 * sz; --i) {
+        if (mm.containsKey(a[i])) {
+            mm.put(a[i], mm.get(a[i]) + 1);
+        } else {
+            mm.put(a[i], 1);
+        }
+        sum += a[i];
+    }
+    long[] back = new long[3 * sz];
+    back[2 * sz] = sum;
+    for (int i = 2 * sz - 1; i >= sz; --i) {
+        if (a[i] < mm.lastKey()) {
+            sum += a[i] - mm.lastKey();
+            if (mm.containsKey(a[i])) {
+                mm.put(a[i], mm.get(a[i]) + 1);
+            } else {
+                mm.put(a[i], 1);
+            }
+            if (mm.get(mm.lastKey()) == 1) {
+                mm.remove(mm.lastKey());
+            } else {
+                mm.put(mm.lastKey(), mm.get(mm.lastKey()) - 1);
+            }
+        }
+        back[i] = sum;
+    }
+    return back;
+}

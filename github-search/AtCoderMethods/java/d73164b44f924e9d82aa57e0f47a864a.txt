@@ -1,0 +1,25 @@
+
+private static boolean isNeed(int mid, int[] a, int k) {
+    int n = a.length;
+    if (a[mid] >= k) {
+        return true;
+    }
+    boolean[] dp = new boolean[k];
+    dp[0] = true;
+    for (int i = 0; i < n; i++) {
+        if (i == mid) {
+            continue;
+        }
+        for (int j = k - 1; j >= 0; j--) {
+            if (dp[j] && j + a[i] < k) {
+                dp[j + a[i]] = true;
+            }
+        }
+    }
+    for (int i = k - a[mid]; i < k; i++) {
+        if (dp[i]) {
+            return true;
+        }
+    }
+    return false;
+}

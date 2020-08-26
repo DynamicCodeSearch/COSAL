@@ -1,0 +1,30 @@
+public static void main(String[] args) throws IOException {
+    
+    BufferedReader bf = new BufferedReader(new InputStreamReader(System.in), 1);
+    int N = Integer.parseInt(bf.readLine());
+    int[] x = new int[N], y = new int[N], c = new int[N];
+    for (int i = 0; i < N; i++) {
+        String[] lines = bf.readLine().split(" ");
+        x[i] = Integer.parseInt(lines[0]);
+        y[i] = Integer.parseInt(lines[1]);
+        c[i] = Integer.parseInt(lines[2]);
+    }
+    double left = 0, right = 1e8;
+    for (int cnt = 0; cnt < 100; cnt++) {
+        double t = (right + left) / 2;
+        double maxX = 1e8, maxY = 1e8;
+        double minX = -1e8, minY = -1e8;
+        for (int i = 0; i < N; i++) {
+            maxX = Math.min(maxX, x[i] + t / c[i]);
+            minX = Math.max(minX, x[i] - t / c[i]);
+            maxY = Math.min(maxY, y[i] + t / c[i]);
+            minY = Math.max(minY, y[i] - t / c[i]);
+        }
+        if (maxX > minX && maxY > minY) {
+            right = t;
+        } else {
+            left = t;
+        }
+    }
+    System.out.printf("%.20f\n", right);
+}

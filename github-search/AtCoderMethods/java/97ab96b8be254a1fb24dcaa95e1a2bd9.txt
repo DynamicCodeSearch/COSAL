@@ -1,0 +1,13 @@
+static boolean dfs(int n, int m, boolean[][] board) {
+    if (m == 0)
+        return true;
+    if (n == 64)
+        return false;
+    if (koreOkerukana(n, board)) {
+        board[n / 8][n % 8] = true;
+        if (dfs(n + 1, m - 1, board))
+            return true;
+        board[n / 8][n % 8] = false;
+    }
+    return dfs(n + 1, m, board);
+}

@@ -1,0 +1,18 @@
+public static void solve() throws IOException {
+    
+    FastReader sc = new FastReader();
+    int n = sc.I();
+    long[] a = new long[n + 1];
+    long[] sum1 = new long[n + 1];
+    long[] sum2 = new long[n + 1];
+    for (int i = 1; i <= n; i++) a[i] = sc.L();
+    for (int i = 1; i <= n; i++) sum1[i] = sum1[i - 1] + a[i];
+    for (int i = n; i > 0; i--) if (i == n)
+        sum2[i] = a[i];
+    else
+        sum2[i] = sum2[i + 1] + a[i];
+    long mn = Long.MAX_VALUE;
+    for (int i = 1; i < n; i++) mn = Math.min(mn, Math.abs(sum1[i] - sum2[i + 1]));
+    pw.println(mn);
+    pw.close();
+}

@@ -1,0 +1,61 @@
+static long dfs(int now, List<Integer> g) {
+    if (now == n - 1) {
+        return unit;
+    }
+    if (memo[now].containsKey(g)) {
+        return memo[now].get(g);
+    }
+    int sum = 0;
+    int freedom = 0;
+    for (int i = 0; i < g.size(); i++) {
+        sum += g.get(i);
+        freedom += g.get(i) * (g.get(i) - 1) / 2 - (g.get(i) - 1);
+    }
+    int one = n - sum;
+    long base = 1;
+    if (now >= 1) {
+        int leftFreedom = freedom - notUsed[now - 1];
+        int pickFreedom = notUsed[now] - notUsed[now - 1];
+        if (leftFreedom < 0) {
+            base = 0;
+        } else {
+            base *= cmb[leftFreedom][pickFreedom] * fact[pickFreedom] % MOD;
+        }
+    }
+    long ret = 0;
+    if (base >= 1) {
+        if (one >= 2) {
+            List<Integer> tg = new ArrayList<>(g);
+            tg.add(2);
+            Collections.sort(tg);
+            ret += dfs(now + 1, tg) * cmb[one][2] % MOD;
+            ret %= MOD;
+        }
+        
+        for (int i = 0; i < g.size(); i++) {
+            for (int j = i + 1; j < g.size(); j++) {
+                int tsz = g.get(i) + g.get(j);
+                List<Integer> tg = new ArrayList<>(g);
+                tg.remove(j);
+                tg.remove(i);
+                tg.add(tsz);
+                Collections.sort(tg);
+                ret += dfs(now + 1, tg) * g.get(i) * g.get(j) % MOD;
+                ret %= MOD;
+            }
+        }
+        if (one >= 1) {
+            for (int i = 0; i < g.size(); i++) {
+                List<Integer> tg = new ArrayList<>(g);
+                tg.remove(i);
+                tg.add(g.get(i) + 1);
+                Collections.sort(tg);
+                ret += dfs(now + 1, tg) * g.get(i) * one % MOD;
+            }
+        }
+    }
+    ret *= base;
+    ret %= MOD;
+    memo[now].put(g, ret);
+    return ret;
+}

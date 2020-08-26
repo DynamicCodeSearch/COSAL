@@ -1,0 +1,34 @@
+
+void solve() throws IOException {
+    int n = in.nextInt();
+    int m = in.nextInt();
+    int k = in.nextInt();
+    int[] a = new int[k];
+    for (int i = 0; i < k; i++) a[i] = in.nextInt();
+    int s = 0;
+    int c = 0;
+    int[][] ans = new int[n][m];
+    for (int i = 0; i < n; i++) {
+        if (s == 0)
+            for (int j = 0; j < m; j++) {
+                if (a[c] == 0)
+                    c++;
+                ans[i][j] = c + 1;
+                a[c]--;
+            }
+        if (s == 1)
+            for (int j = m - 1; j >= 0; j--) {
+                if (a[c] == 0)
+                    c++;
+                ans[i][j] = c + 1;
+                a[c]--;
+            }
+        s = 1 - s;
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            out.print(ans[i][j] + " ");
+        }
+        out.println();
+    }
+}

@@ -1,0 +1,59 @@
+public static void main(String[] args) {
+    H = Integer.parseInt(scan.next());
+    W = Integer.parseInt(scan.next());
+    int N = Integer.parseInt(scan.next());
+    Grid[] black = new Grid[N];
+    for (int i = 0; i < N; i++) {
+        int a = Integer.parseInt(scan.next()) - 1;
+        int b = Integer.parseInt(scan.next()) - 1;
+        black[i] = new Grid(a, b);
+    }
+    Arrays.sort(black, new Comparator<Grid>() {
+
+        @Override
+        public int compare(Grid o1, Grid o2) {
+            return o1.dist() - o2.dist();
+        }
+    });
+    long[] ans = new long[10];
+    List<Grid> m0 = new ArrayList<Grid>();
+    List<Grid> m1 = new ArrayList<Grid>();
+    List<Grid> m2 = new ArrayList<Grid>();
+    int current = 0;
+    for (int i = 0; i < N; i++) {
+        if (black[i].dist() != current) {
+            current = black[i].dist();
+            for (Grid s : m2) {
+                ans[s.count]++;
+            }
+            m2 = m1;
+            m1 = m0;
+            m0 = new ArrayList<Grid>();
+        }
+        List<Grid> square = getSquare(black[i]);
+        for (Grid s : square) {
+            int index;
+            if ((index = m2.indexOf(s)) >= 0) {
+                m2.get(index).count++;
+            } else if ((index = m1.indexOf(s)) >= 0) {
+                m1.get(index).count++;
+            } else if ((index = m0.indexOf(s)) >= 0) {
+                m0.get(index).count++;
+            } else {
+                s.count = 1;
+                m0.add(s);
+            }
+        }
+    }
+    for (Grid s : m2) ans[s.count]++;
+    for (Grid s : m1) ans[s.count]++;
+    for (Grid s : m0) ans[s.count]++;
+    ans[0] = (long) (H - 2) * (W - 2);
+    for (int i = 1; i < 10; i++) {
+        ans[0] = ans[0] - ans[i];
+    }
+    for (int i = 0; i < 10; i++) {
+        System.out.println(ans[i]);
+    }
+    scan.close();
+}

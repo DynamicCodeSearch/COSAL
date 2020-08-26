@@ -1,0 +1,40 @@
+def solution(A, B, C, D, E, F):
+    max_percentage = -1
+    mass = 0
+    mass_sugar = 0
+
+    for c in xrange(0, int(F/C) + 1):
+        if (c * C) > F:
+            break
+
+        for d in xrange(0, int(F/D) + 1):
+            sugar = c * C + d * D
+            if sugar > F:
+                break
+
+            for a in xrange(0, int(F/A) + 1):
+                if (sugar + 100 * a * A) > F:
+                    break
+
+                for b in xrange(0, int(F/B) + 1):
+                    water = 100 * a * A + 100 * b * B
+                    if (sugar + water) > F:
+                        break
+                    elif (sugar + water) == 0:
+                        continue
+
+                    if sugar <= (int(water / 100) * E):
+                        if water > 0:
+                            percentage = float(sugar) / water * 100
+                        else:
+                            percentage = 0
+
+                        if percentage > max_percentage:
+                            mass = sugar + water
+                            mass_sugar = sugar
+                            max_percentage = percentage
+
+                        if max_percentage == 100:
+                            return mass, mass_sugar
+
+    return mass, mass_sugar

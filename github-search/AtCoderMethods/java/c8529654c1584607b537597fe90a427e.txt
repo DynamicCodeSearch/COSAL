@@ -1,0 +1,14 @@
+void solve(FastScanner in, PrintWriter out) {
+    int cost = Integer.MAX_VALUE / 2;
+    int N = in.nextInt();
+    int[] a = in.nextIntArray(N);
+    for (int line = -100; line <= 100; line++) {
+        int c = 0;
+        for (int i = 0; i < N; i++) {
+            int dx = a[i] - line;
+            c += dx * dx;
+        }
+        cost = Math.min(cost, c);
+    }
+    out.println(cost);
+}

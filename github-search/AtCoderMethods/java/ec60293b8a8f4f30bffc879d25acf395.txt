@@ -1,0 +1,36 @@
+private static boolean checkQ(int y, char[][] list) {
+    int target = -1;
+    if (y == 8) {
+        return true;
+    }
+    for (int i = 0; i < num; i++) {
+        if (list[y][i] == 'Q') {
+            target = i;
+        } else if (list[y][i] == 'Q' && target != -1) {
+            return false;
+        }
+    }
+    if (target != -1) {
+        if (addBoard(y, target, list)) {
+            if (checkQ(y + 1, list)) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    } else if (target == -1) {
+        for (int i = 0; i < num; i++) {
+            if (addBoard(y, i, list)) {
+                list[y][i] = 'Q';
+                if (checkQ(y + 1, list) == false) {
+                    list[y][i] = '.';
+                } else {
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}

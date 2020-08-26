@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    int[] w = sc.nextIntList(N);
+    int[] now = new int[N];
+    Arrays.fill(now, Integer.MAX_VALUE);
+    for (int v : w) {
+        int idx = 0;
+        for (; idx < N; idx++) {
+            if (now[idx] >= v) {
+                break;
+            }
+        }
+        now[idx] = v;
+        Arrays.sort(now);
+    }
+    int count = 0;
+    for (int v : now) {
+        if (v < Integer.MAX_VALUE) {
+            count++;
+        }
+    }
+    System.out.println(count);
+}

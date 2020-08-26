@@ -1,0 +1,13 @@
+def main():
+    N = int(input())
+    A = list(map(int, input().split()))
+
+    D = [0] * (10**5 + 1)
+
+    for a in A:
+        D[a] += 1
+        D[a+1] += 1
+        if a-1 >= 0:
+            D[a-1] += 1
+
+    print(max(D))

@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int i;
+    long[] T = new long[N];
+    long gcd;
+    long lcm;
+    long a, b, r;
+    for (i = 0; i < N; i++) T[i] = sc.nextLong();
+    for (i = 1; i < N; i++) {
+        a = T[i - 1];
+        b = T[i];
+        while (b != 0) {
+            r = a % b;
+            a = b;
+            b = r;
+        }
+        gcd = a;
+        lcm = T[i - 1] / a;
+        lcm *= T[i];
+        T[i] = lcm;
+    }
+    
+    System.out.println(T[N - 1]);
+}

@@ -1,0 +1,13 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    double longAng = 6 * m;
+    double shortAng = 0;
+    if (n < 12) {
+        shortAng = (double) (30 * n) + (double) m / (double) 2;
+    } else {
+        shortAng = (double) (30 * (n - 12)) + (double) m / (double) 2;
+    }
+    System.out.println(Math.min(Math.abs(longAng - shortAng), 360 - Math.abs(longAng - shortAng)));
+}

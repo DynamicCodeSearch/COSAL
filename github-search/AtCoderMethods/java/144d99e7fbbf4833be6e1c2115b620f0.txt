@@ -1,0 +1,13 @@
+
+long dfs(int at, int rest) {
+    if (at == N) {
+        return (rest == 0) ? 1 : 0;
+    }
+    if (dp[at][rest] != Long.MAX_VALUE)
+        return dp[at][rest];
+    long res = 0;
+    for (int nrest = 0; nrest <= rest; nrest++) {
+        res = ADD(res, MULT(SUB(powSum[B[at] + 1][(rest - nrest)], powSum[A[at]][(rest - nrest)]), dfs(at + 1, nrest)));
+    }
+    return dp[at][rest] = res;
+}

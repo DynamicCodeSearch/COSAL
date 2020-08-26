@@ -1,0 +1,16 @@
+void solve() {
+    int N = in.nextInt();
+    int M = in.nextInt();
+    ArrayList<Edge>[] g = new ArrayList[N];
+    for (int i = 0; i < N; i++) g[i] = new ArrayList<Edge>();
+    for (int i = 0; i < M; i++) {
+        int type = in.nextInt();
+        int u = in.nextInt(), v = in.nextInt();
+        g[u].add(new Edge(v, type));
+        g[v].add(new Edge(u, type));
+    }
+    int[] res = bfs(g, 0);
+    for (int i = 0; i < N; i++) {
+        System.out.println(res[i]);
+    }
+}

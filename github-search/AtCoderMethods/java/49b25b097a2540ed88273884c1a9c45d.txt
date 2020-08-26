@@ -1,0 +1,18 @@
+void solve(Scanner sc) throws Throwable {
+    String s = sc.next();
+    int[] ss = new int[4];
+    for (int i = 0; i < 4; i++) {
+        ss[i] = sc.nextInt();
+    }
+    int sIndex = 0;
+    for (int i = 0; i <= s.length(); i++) {
+        if (sIndex < 4 && ss[sIndex] == i) {
+            System.out.print('"');
+            sIndex++;
+        }
+        if (s.length() == i)
+            break;
+        System.out.print(s.charAt(i));
+    }
+    System.out.println();
+}

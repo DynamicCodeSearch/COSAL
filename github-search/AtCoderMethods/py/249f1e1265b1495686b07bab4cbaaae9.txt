@@ -1,0 +1,8 @@
+def dai(board,count,b,c,ms):
+    score = -10000
+    for i in range(9):
+        if board[i] != 0: continue
+        board[i] = 1
+        score = max(score, ko(list(board),count,b,c,ms))
+        board[i] = 0
+    return score

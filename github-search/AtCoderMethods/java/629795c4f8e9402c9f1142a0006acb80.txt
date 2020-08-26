@@ -1,0 +1,36 @@
+public static void main(String[] args) throws java.lang.Exception {
+    InputReader in = new InputReader(System.in);
+    PrintWriter w = new PrintWriter(System.out);
+    int n = in.nextInt();
+    long[] a = in.nextLongArray(n * 3);
+    PriorityQueue<Long> q1 = new PriorityQueue<>();
+    long sum1 = 0;
+    long sum2 = 0;
+    PriorityQueue<Long> q2 = new PriorityQueue<>(Collections.reverseOrder());
+    for (int i = 0; i < n; i++) {
+        q1.add(a[i]);
+        sum1 += a[i];
+        q2.add(a[3 * n - 1 - i]);
+        sum2 += a[3 * n - 1 - i];
+    }
+    long max = (sum1 - sum2);
+    long[] md1 = new long[n + 1];
+    long[] md2 = new long[n + 1];
+    md1[0] = sum1;
+    md2[0] = sum2;
+    for (int i = n; i < 2 * n; i++) {
+        q1.add(a[i]);
+        sum1 += a[i];
+        sum1 -= q1.poll();
+        md1[i - n + 1] = sum1;
+        q2.add(a[3 * n - 1 - i]);
+        sum2 += a[3 * n - 1 - i];
+        sum2 -= q2.poll();
+        md2[i - n + 1] = sum2;
+    }
+    for (int i = 0; i < md1.length; i++) {
+        max = Math.max(max, md1[i] - md2[md1.length - 1 - i]);
+    }
+    w.println(max);
+    w.close();
+}

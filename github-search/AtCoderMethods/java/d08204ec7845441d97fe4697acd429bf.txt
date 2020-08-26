@@ -1,0 +1,38 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    s = sc.next();
+    int n = s.length();
+    long ans = 0;
+    for (int ss = 0; ss < (1 << (n - 1)); ss++) {
+        int[] tmp = new int[n - 1];
+        int sp = 0;
+        for (int i = 0; i < n - 1; i++) {
+            if ((ss & (1 << i)) != 0) {
+                tmp[sp++] = 2 * i + 1;
+            }
+        }
+        char[] str = new char[n + n - 1];
+        Arrays.fill(str, ' ');
+        for (int i = 0; i < sp; i++) {
+            str[tmp[i]] = '+';
+        }
+        int c = 0;
+        for (int i = 0; i < n; i++) {
+            str[2 * i] = s.charAt(i);
+        }
+        long sum = 0;
+        for (int i = 0; i < n + n - 1; i++) {
+            if (str[i] == ' ') {
+                continue;
+            }
+            if (str[i] != '+') {
+                sum = (sum + str[i] - '0') * 10;
+            } else {
+                ans += sum / 10;
+                sum = 0;
+            }
+        }
+        ans += sum / 10;
+    }
+    System.out.println(ans);
+}

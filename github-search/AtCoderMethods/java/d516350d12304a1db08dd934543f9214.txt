@@ -1,0 +1,37 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+public static long pow(long base, long exp, long mod) {
+    if (exp == 0) {
+        return 1;
+    }
+    if (exp == 1) {
+        return base;
+    }
+    long temp = exp / 2;
+    long val = pow(base, temp, mod);
+    long result = val * val;
+    result = (result % mod);
+    long AND = exp & 1;
+    if (AND == 1) {
+        result *= base;
+        result = (result % mod);
+    }
+    return result;
+}

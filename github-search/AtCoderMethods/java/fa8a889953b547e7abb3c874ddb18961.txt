@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int[] a = new int[100000];
+    int N = scanner.nextInt();
+    int amari = (N + 1) % 2;
+    int flag = 1;
+    for (int i = 0; i < N; i++) {
+        int temp = scanner.nextInt();
+        if (temp % 2 != amari)
+            flag = 0;
+        a[temp / 2]++;
+        if (a[temp / 2] > 2)
+            flag = 0;
+    }
+    if (amari == 0 && a[0] != 1)
+        flag = 0;
+    long ans = 1;
+    if (flag == 0) {
+        System.out.println("0");
+    } else {
+        for (int i = 0; i < N / 2; i++) {
+            ans = ans * 2 % MOD;
+        }
+        System.out.println(ans);
+    }
+}

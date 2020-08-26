@@ -1,0 +1,14 @@
+def solve():
+    N, M = map(int, input().split())
+    Adj = [[0]*N for i in range(N)]
+
+    for i in range(M):
+        a, b = map(int, input().split())
+        a -= 1
+        b -= 1
+        Adj[a][b] = 1
+        Adj[b][a] = 1
+
+    ans = do_dp(N, Adj)
+
+    print(ans)

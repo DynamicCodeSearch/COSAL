@@ -1,0 +1,67 @@
+
+public void run() throws IOException {
+    
+    int TEST_CASE = 1;
+    while (TEST_CASE-- != 0) {
+        int n = io.nextInt();
+        int[][] C = io.nextIntArray2D(n, 4);
+        long ans = 0;
+        
+        int[] p2 = new int[] { 1, 0, 3, 2 };
+        RollingHashMod[] rh = new RollingHashMod[n];
+        for (int i = 0; i < n; i++) rh[i] = new RollingHashMod(C[i]);
+        final TreeMap<Long, Integer> mp = new TreeMap<>();
+        for (int i = 0; i < n; i++) {
+            long h = rh[i].minRotateHash();
+            mp.put(h, mp.getOrDefault(h, 0) + 1);
+        
+        }
+        
+        int[] dup = new int[4];
+        
+        for (int i = 0; i < n; i++) {
+            mp.put(rh[i].minRotateHash(), mp.get(rh[i].minRotateHash()) - 1);
+            for (int j = i + 1; j < n; j++) for (int d = 0; d < 4; d++) {
+                Arrays.fill(dup, 1);
+                RollingHashMod[] hs = new RollingHashMod[4];
+                for (int s = 0; s < 4; s++) {
+                    hs[s] = new RollingHashMod(C[i][(s + 1) & 3], C[i][(s + 0) & 3], C[j][p2[(s + d + 0) & 3]], C[j][p2[(s + d + 1) & 3]]);
+                }
+                long val = 1;
+                for (int s = 0; s < 4; s++) if (dup[s] == 1) {
+                    for (int k = s + 1; k < 4; k++) {
+                        if (hs[s].minRotateHash() == hs[k].minRotateHash()) {
+                            dup[k] = -1;
+                            dup[s]++;
+                        }
+                    }
+                    
+                    int cnt = mp.getOrDefault(hs[s].minRotateHash(), 0);
+                    if (rh[j].minRotateHash() == hs[s].minRotateHash()) {
+                        cnt--;
+                    }
+                    int hi = hs[s].minRotateIndex();
+                    int sym = 1;
+                    if (hs[s].minRotateHash() == hs[s].hash((hi + 1) % 4, (hi + 1) % 4)) {
+                        sym = 4;
+                    } else if (hs[s].minRotateHash() == hs[s].hash((hi + 2) % 4, (hi + 2) % 4)) {
+                        sym = 2;
+                    }
+                    long pow = 1;
+                    long comb_fact = 1;
+                    for (int k = 0; k < dup[s]; k++) {
+                        pow *= sym;
+                        comb_fact *= cnt - k;
+                    }
+                    val *= pow * comb_fact;
+                
+                
+                
+                }
+                
+                ans += val;
+            }
+        }
+        io.out.println(ans);
+    }
+}

@@ -1,0 +1,22 @@
+private void solve(Scanner sc, PrintWriter out) {
+    n = sc.nextLong();
+    s = sc.nextLong();
+    if (n == s) {
+        out.println((n + 1));
+        return;
+    }
+    for (long i = 2; i <= Math.sqrt(n); ++i) {
+        if (f(i, n) == s) {
+            out.println(i);
+            return;
+        }
+    }
+    for (long i = (long) Math.sqrt(n); i > 0; --i) {
+        long b = (n - s) / i + 1;
+        if (b > 1 && f(b, n) == s) {
+            out.println(b);
+            return;
+        }
+    }
+    out.println(-1);
+}

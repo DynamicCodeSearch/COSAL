@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int a = sc.nextInt();
+    if (a < 100) {
+        System.out.println("00");
+    } else if (a <= 5000) {
+        double b = a / 1000.0 * 10;
+        if (b < 10.0) {
+            System.out.println("0" + String.valueOf(b).substring(0, 1));
+        } else {
+            System.out.println(String.valueOf(b).substring(0, 2));
+        }
+    } else if (a <= 30000) {
+        double b = a / 1000.0 + 50;
+        System.out.println(String.valueOf(b).substring(0, 2));
+    } else if (a <= 70000) {
+        double b = (a / 1000.0 - 30) / 5 + 80;
+        System.out.println(String.valueOf(b).substring(0, 2));
+    } else {
+        System.out.println("89");
+    }
+}

@@ -1,0 +1,12 @@
+public void recur(String s, int index, int length, long cum) {
+    
+    if (index == length) {
+        if (s.length() == 0)
+            ans += cum;
+        return;
+    }
+    recur(s, index + 1, length, cum);
+    cum += Long.parseLong(s.substring(0, index + 1));
+    s = s.substring(index + 1);
+    recur(s, 0, s.length(), cum);
+}

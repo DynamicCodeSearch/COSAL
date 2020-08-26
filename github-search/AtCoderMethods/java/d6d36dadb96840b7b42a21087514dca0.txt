@@ -1,0 +1,15 @@
+private void solve(Scanner sc, PrintWriter out) {
+    N = sc.nextInt();
+    a = new int[N];
+    int sum = 0;
+    for (int i = 0; i < N; ++i) {
+        a[i] = sc.nextInt();
+        sum += a[i];
+    }
+    int t = (int) Math.round(1.0 * sum / N);
+    int cost = 0;
+    for (int i = 0; i < N; ++i) {
+        cost += (a[i] - t) * (a[i] - t);
+    }
+    out.println(cost);
+}

@@ -1,0 +1,11 @@
+static int gdc(int x, int y) {
+    if (x < y) {
+        x ^= y;
+        y ^= x;
+        x ^= y;
+    }
+    int z = x % y;
+    if (z == 0)
+        return y;
+    return gdc(y, z);
+}

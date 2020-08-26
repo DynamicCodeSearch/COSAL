@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    int sevenCounter = 0;
+    int fiveCounter = 0;
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String line;
+    try {
+        while ((line = br.readLine()) != null) {
+            StringTokenizer token = new StringTokenizer(line);
+            while (token.hasMoreElements()) {
+                if (Integer.parseInt(token.nextElement().toString()) == 7)
+                    sevenCounter++;
+                else
+                    fiveCounter++;
+            }
+        }
+    } catch (Exception ex) {
+    }
+    if (sevenCounter == 1 && fiveCounter == 2) {
+        System.out.println("YES");
+    } else {
+        System.out.println("NO");
+    }
+}

@@ -1,0 +1,24 @@
+def solve(N, edges, Q, K, query):
+    K -= 1
+    weight_from_k = [None] * N
+    weight_from_k[K] = 0
+    used = [False] * N
+    used[K] = True
+    queue = edges[K]
+    while len(queue) != 0:
+        next_queue = []
+        for fro, to, weight in queue:
+            if used[to]:
+                continue
+            weight_from_k[to] = weight_from_k[fro] + weight
+            used[to] = True
+            for e in edges[to]:
+                next_queue.append(e)
+        queue = next_queue
+
+    ans = []
+    for x, y in query:
+        ans.append(weight_from_k[x - 1] + weight_from_k[y - 1])
+
+    ans = "\n".join(map(str, ans))
+    return ans

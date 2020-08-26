@@ -1,0 +1,7 @@
+long dfs(int depth, boolean[] contained) {
+    if (depth == nums.length - 1) {
+        contained[contained.length - 1] = false;
+        return calculateSum(contained);
+    }
+    return dfs(depth + 1, copyArray(contained)) + dfs(depth + 1, setFlagAtIndex(contained, depth));
+}

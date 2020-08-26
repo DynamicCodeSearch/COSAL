@@ -1,0 +1,6 @@
+static long countMore(Node x, Node y) {
+    if (x == null)
+        return 0L;
+    fall(x);
+    return (countMore(x.left, y) + countMore(x.right, y) + countMore(y, x.id) * x.myval) % mod;
+}

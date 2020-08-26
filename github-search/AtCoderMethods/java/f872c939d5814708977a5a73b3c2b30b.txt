@@ -1,0 +1,22 @@
+public static void solve(PrintWriter out, FastScanner in) {
+    int N = in.nextInt();
+    
+    long ansT = 1;
+    
+    long ansA = 1;
+    for (int i = 0; i < N; i++) {
+        long pt = in.nextLong();
+        long pa = in.nextLong();
+        long m = Math.max(ansT / pt, ansA / pa);
+        m = Math.max(1, m);
+        long t = m * pt;
+        long a = m * pa;
+        while (t < ansT || a < ansA) {
+            t += pt;
+            a += pa;
+        }
+        ansA = a;
+        ansT = t;
+    }
+    System.out.println(ansA + ansT);
+}

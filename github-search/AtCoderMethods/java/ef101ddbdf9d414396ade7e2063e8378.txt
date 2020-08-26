@@ -1,0 +1,10 @@
+public static void main(String[] __) {
+    int n = s.nextInt(), m = s.nextInt();
+    int[][] ar = new int[n][n];
+    for (int i = 0; i < m; i++) {
+        int a = s.nextInt() - 1, b = s.nextInt() - 1;
+        ar[a][b]++;
+        ar[b][a]++;
+    }
+    Arrays.stream(ar).mapToInt(i -> Arrays.stream(i).sum()).forEach(System.out::println);
+}

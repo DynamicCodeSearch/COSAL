@@ -1,0 +1,22 @@
+public void solve(int testNumber, Scanner in, PrintWriter out) {
+    int N = in.nextInt();
+    char[] arr = in.next().toCharArray();
+    StringBuilder sb = new StringBuilder();
+    Stack<Character> stk = new Stack<>();
+    StringBuilder ans = new StringBuilder();
+    for (char c : arr) {
+        sb.append(c);
+        if (c == '(') {
+            stk.push(c);
+        } else if (!stk.isEmpty()) {
+            stk.pop();
+        } else {
+            ans.append('(');
+        }
+    }
+    while (!stk.isEmpty()) {
+        sb.append(')');
+        stk.pop();
+    }
+    out.print(ans.toString() + "" + sb.toString());
+}

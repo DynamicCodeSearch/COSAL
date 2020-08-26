@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    char[] a = sc.next().toCharArray();
+    int n = sc.nextInt();
+    int x = 0;
+    int y = 0;
+    int q = 0;
+    for (int i = 0; i < a.length; i++) {
+        char c = a[i];
+        if (c == 'U')
+            y++;
+        if (c == 'D')
+            y--;
+        if (c == 'R')
+            x++;
+        if (c == 'L')
+            x--;
+        if (c == '?')
+            q++;
+    }
+    int d = Math.abs(x) + Math.abs(y);
+    int ret = 0;
+    if (n == 1) {
+        ret = d + q;
+    } else {
+        if (q <= d) {
+            ret = d - q;
+        } else {
+            ret = Math.abs((d - q) % 2);
+        }
+    }
+    System.out.println(ret);
+}

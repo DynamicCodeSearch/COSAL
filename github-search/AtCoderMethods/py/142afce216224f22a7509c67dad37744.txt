@@ -1,0 +1,11 @@
+def judge_match(N_l, M_l):
+    slide_count = len(N_l[0]) - len(M_l[0]) + 1
+    count = 0
+    for j in range(slide_count):
+        count = 0
+        for i in range(len(N_l)):
+            if N_l[i][j:j+len(M_l[0])] == M_l[i]:
+                count += 1
+                if count == len(M_l):
+                    return count
+    return count

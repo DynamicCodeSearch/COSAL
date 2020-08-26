@@ -1,0 +1,13 @@
+public static void main(String... args) {
+    int[] t = new int[4];
+    FastScanner fs = new FastScanner();
+    for (int i = 0; i < 4; i++) {
+        t[i] = fs.nextInt();
+    }
+    if (t[0] < t[2] && t[1] < t[2] || t[2] < t[0] && t[3] < t[0])
+        System.out.println("0");
+    else {
+        Arrays.sort(t);
+        System.out.println(t[2] - t[1]);
+    }
+}

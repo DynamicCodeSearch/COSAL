@@ -1,0 +1,12 @@
+def calc(people_points, check_points):
+    ans = []
+
+
+    for x_p, y_p in people_points:
+        dists = [ dist(x_p, y_p, check_point[0], check_point[1]) for check_point in check_points ]
+        ans_ind, ans_dist = sorted(list(enumerate(dists)), key=lambda tpl:tpl[1])[0]
+        ans_tpl = (ans_ind, ans_dist)
+        ans.append(ans_tpl)
+
+
+    return ans

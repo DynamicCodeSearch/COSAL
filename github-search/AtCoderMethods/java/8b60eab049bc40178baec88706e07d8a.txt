@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner cin = new Scanner(System.in);
+    String[] line = cin.nextLine().split(" ");
+    int curTemp = Integer.parseInt(line[0]);
+    int tarTemp = Integer.parseInt(line[1]);
+    int diff = Math.abs(curTemp - tarTemp);
+    int count = 0;
+    
+    int[] tab = { 0, 1, 2, 3, 2, 1, 2, 3, 3, 2 };
+    count += diff / 10;
+    diff -= (diff / 10) * 10;
+    count += tab[diff];
+    System.out.println(count);
+    cin.close();
+}

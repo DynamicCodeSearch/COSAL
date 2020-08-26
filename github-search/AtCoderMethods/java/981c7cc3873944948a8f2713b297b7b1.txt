@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    long[] x = new long[n];
+    for (int i = 0; i < n; i++) {
+        x[i] = sc.nextLong();
+    }
+    long[] y = new long[m];
+    for (int i = 0; i < m; i++) {
+        y[i] = sc.nextLong();
+    }
+    sc.close();
+    long MOD = 1000000007L;
+    long[][] Z = new long[2][];
+    Z[0] = x;
+    Z[1] = y;
+    long[] ll = new long[2];
+    for (int i = 0; i < Z.length; i++) {
+        for (int j = 0; j < Z[i].length - 1; j++) {
+            long a = (Z[i][j + 1] - Z[i][j]) % MOD;
+            a = (a * (j + 1)) % MOD;
+            a = (a * (Z[i].length - j - 1)) % MOD;
+            ll[i] = (ll[i] + a) % MOD;
+        }
+    }
+    System.out.println((ll[0] * ll[1]) % MOD);
+}

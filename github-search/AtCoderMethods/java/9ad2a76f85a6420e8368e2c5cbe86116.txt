@@ -1,0 +1,23 @@
+private void initTree(int root, int l, int r, boolean countOnly) {
+    maxNodeId = Math.max(maxNodeId, root);
+    if (l == r) {
+        
+        if (countOnly) {
+            return;
+        }
+        solver.addClause(n + root, ps[l].id, true, !ps[l].f);
+        solver.addClause(ps[l].id, n + root, ps[l].f, false);
+        return;
+    }
+    int m = (l + r) / 2;
+    initTree(2 * root + 1, l, m, countOnly);
+    initTree(2 * root + 2, m + 1, r, countOnly);
+    if (countOnly) {
+        return;
+    }
+    for (int child = 2 * root + 1; child <= 2 * root + 2; child++) {
+        
+        solver.addClause(n + root, n + child, true, true);
+        solver.addClause(n + child, n + root, false, false);
+    }
+}

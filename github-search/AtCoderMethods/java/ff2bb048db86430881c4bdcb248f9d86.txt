@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    Deque<Integer> stack = new ArrayDeque<Integer>();
+    HashMap<Integer, Integer> hm = new HashMap<Integer, Integer>();
+    for (int i = 1; i < n + 1; i++) {
+        hm.put(sc.nextInt(), i);
+    }
+    Object[] mapkey = hm.keySet().toArray();
+    Arrays.sort(mapkey);
+    for (Object nKey : mapkey) {
+        
+        stack.push(hm.get(nKey));
+    }
+    for (int i = 0; i < n; i++) {
+        System.out.println(stack.pop());
+    }
+}

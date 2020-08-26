@@ -1,0 +1,18 @@
+public void solve() {
+    int N = nextInt();
+    int prev = Integer.MAX_VALUE;
+    long prevlen = 0;
+    long ans = 0;
+    for (int i = 0; i < N; i++) {
+        int v = nextInt();
+        if (prev < v) {
+            prevlen += 1;
+            ans += prevlen;
+        } else {
+            prevlen = 1;
+            ans += prevlen;
+        }
+        prev = v;
+    }
+    out.println(ans);
+}

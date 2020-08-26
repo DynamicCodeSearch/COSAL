@@ -1,0 +1,40 @@
+public static void main(String[] args) throws IOException {
+    
+    
+    
+    List<Range> ranges;
+    try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
+        int n = Integer.parseInt(br.readLine());
+        
+        
+        
+        
+        
+        
+        ranges = new ArrayList<>(n);
+        for (int i = 0; i < n; i++) {
+            String[] s = br.readLine().split("-");
+            
+            
+            
+            
+            int startHour = getHour(s[0]);
+            int endHour = getHour(s[1]);
+            int startMinitue = getMinitue(s[0]);
+            int endMinitue = getMinitue(s[1]);
+            int startMinitueFloor = (startMinitue / 5) * 5;
+            int endMinitueCeil = (int) Math.ceil(endMinitue / 5.0) * 5;
+            Range range = new Range(startHour * 60 + startMinitueFloor, endHour * 60 + endMinitueCeil);
+            Iterator<Range> it = ranges.iterator();
+            while (it.hasNext()) {
+                Range r = it.next();
+                if (range.isContain(r)) {
+                    range = range.getComb(r);
+                    it.remove();
+                }
+            }
+            ranges.add(range);
+        }
+    }
+    ranges.stream().sorted().forEach(System.out::println);
+}

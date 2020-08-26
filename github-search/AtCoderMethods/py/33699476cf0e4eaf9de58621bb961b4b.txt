@@ -1,0 +1,18 @@
+def main():
+    n, m = map(int, input().split())
+
+    student = []
+    for _ in range(n):
+        a, b = map(int, input().split())
+        student.append([a, b])
+
+    checkpoint = []
+    for _ in range(m):
+        c, d = map(int, input().split())
+        checkpoint.append([c, d])
+
+    for s in student:
+        d = {}
+        for i, c in enumerate(checkpoint):
+            d[i] = manhattan_distance(s, c)
+        print(sorted(d.items(), key=lambda x: x[1])[0][0]+1)

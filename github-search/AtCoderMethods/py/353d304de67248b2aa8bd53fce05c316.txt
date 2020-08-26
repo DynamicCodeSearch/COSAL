@@ -1,0 +1,19 @@
+def lcs(xs, ys):
+    if (xs, ys) in table:
+        return table[(xs, ys)]
+
+    ret = ""
+    if xs == "" or ys == "":
+        ret = ""
+    elif xs[-1] == ys[-1]:
+        ret = lcs(xs[:-1], ys[:-1]) + xs[-1]
+    else:
+        l = lcs(xs[:-1], ys)
+        r = lcs(xs, ys[:-1])
+        if len(l) > len(r):
+            ret = l
+        else:
+            ret = r
+
+    table[(xs, ys)] = ret
+    return ret

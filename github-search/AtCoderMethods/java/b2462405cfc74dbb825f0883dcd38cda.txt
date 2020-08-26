@@ -1,0 +1,21 @@
+public void run() {
+    Scanner sc = new Scanner(System.in);
+    PrintWriter pw = new PrintWriter(System.out);
+    int n = sc.nextInt();
+    HLDecomposition hl = new HLDecomposition(n);
+    for (int i = 0; i < n - 1; ++i) {
+        int x = sc.nextInt() - 1;
+        int y = sc.nextInt() - 1;
+        hl.ae(x, y);
+    }
+    hl.pre();
+    int q = sc.nextInt();
+    while (q-- > 0) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        int lca = hl.lca(a, b);
+        int ans = hl.depth[a] + hl.depth[b] - 2 * hl.depth[lca] + 1;
+        pw.println(ans);
+    }
+    pw.close();
+}

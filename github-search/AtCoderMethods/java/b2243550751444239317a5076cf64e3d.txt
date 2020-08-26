@@ -1,0 +1,43 @@
+private static void solve() throws IOException {
+    for (int i = 1; i <= N; ++i) {
+        if (i < N && s1.charAt(i - 1) == s1.charAt(i))
+            continue;
+        if (s1.charAt(i - 1) == s2.charAt(i - 1)) {
+            if (i == 1) {
+                for (int u = 0; u < 3; ++u) {
+                    for (int v = 0; v < 3; ++v) if (u == v) {
+                        dp[i][u][v] = 1;
+                    }
+                }
+            } else {
+                for (int u = 0; u < 3; ++u) for (int v = 0; v < 3; ++v) if (u == v)
+                    for (int x = 0; x < 3; ++x) if (x != u)
+                        for (int y = 0; y < 3; ++y) if (y != v) {
+                            dp[i][u][v] = (dp[i][u][v] + dp[i - 1][x][y]) % INF;
+                        }
+            }
+        } else {
+            if (i == 2) {
+                for (int u = 0; u < 3; ++u) for (int v = 0; v < 3; ++v) if (u != v) {
+                    dp[i][u][v] = 1;
+                }
+            } else {
+                for (int u = 0; u < 3; ++u) {
+                    for (int v = 0; v < 3; ++v) if (u != v)
+                        for (int x = 0; x < 3; ++x) if (x != u) {
+                            for (int y = 0; y < 3; ++y) if (y != v) {
+                                dp[i][u][v] = (dp[i][u][v] + dp[i - 2][x][y]) % INF;
+                            }
+                        }
+                }
+            }
+        }
+    }
+    long res = 0;
+    for (int u = 0; u < 3; ++u) {
+        for (int v = 0; v < 3; ++v) {
+            res = (res + dp[N][u][v]) % INF;
+        }
+    }
+    output.println(res);
+}

@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    sc.close();
+    long ans = n;
+    for (long i = 1; i < 100000; i++) {
+        for (long j = i; j < 100000; j++) {
+            if (i * j > n)
+                break;
+            ans = Math.min(ans, n - i * j + j - i);
+        }
+    }
+    System.out.println(ans);
+}

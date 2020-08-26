@@ -1,0 +1,11 @@
+def main():
+    n = int(input())
+
+    a = [0, 0, 1]
+    if n > 3:
+        for _ in range(3, n):
+            a[0], a[1], a[2] = a[1], a[2], (a[0] + a[1] + a[2]) % 10007
+        ans = a[2]
+    else:
+        ans = a[n-1]
+    print(ans)

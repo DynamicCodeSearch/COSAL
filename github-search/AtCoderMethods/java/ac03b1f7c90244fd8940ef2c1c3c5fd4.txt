@@ -1,0 +1,38 @@
+public void run() {
+    int N = in.nextInt();
+    int K = in.nextInt();
+    Point[] ps = new Point[N];
+    int[] sortx = new int[N];
+    int[] sorty = new int[N];
+    long minmen = -1;
+    for (int i = 0; i < N; i++) {
+        ps[i] = new Point(in.nextInt(), in.nextInt());
+        sortx[i] = ps[i].x;
+        sorty[i] = ps[i].y;
+    }
+    Arrays.sort(sortx);
+    Arrays.sort(sorty);
+    for (int i = N - 1; i >= 0; i--) {
+        for (int j = N - 1; j >= 0; j--) {
+            for (int k = 0; k < i; k++) {
+                for (int l = 0; l < j; l++) {
+                    int count = 0;
+                    for (int h = 0; h < N; h++) {
+                        if (ps[h].x <= sortx[i] && ps[h].x >= sortx[k] && ps[h].y <= sorty[j] && ps[h].y >= sorty[l]) {
+                            count++;
+                        }
+                    }
+                    if (count >= K) {
+                        long yoko = (sortx[i] - sortx[k]);
+                        long tate = (sorty[j] - sorty[l]);
+                        long tmp = yoko * tate;
+                        if (tmp < minmen || minmen == -1) {
+                            minmen = tmp;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    out.println(minmen);
+}

@@ -1,0 +1,19 @@
+void run(int start) {
+    d = new int[vn];
+    Arrays.fill(d, Integer.MAX_VALUE);
+    d[start] = 0;
+    Queue<Edge> queue = new PriorityQueue<>();
+    queue.add(new Edge(start, 0));
+    while (!queue.isEmpty()) {
+        Edge e1 = queue.poll();
+        if (d[e1.target] < e1.cost) {
+            continue;
+        }
+        for (Edge e2 : edges[e1.target]) {
+            if (d[e2.target] > d[e1.target] + e2.cost) {
+                d[e2.target] = d[e1.target] + e2.cost;
+                queue.add(new Edge(e2.target, d[e2.target]));
+            }
+        }
+    }
+}

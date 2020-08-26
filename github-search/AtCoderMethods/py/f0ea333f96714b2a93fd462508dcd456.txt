@@ -1,0 +1,10 @@
+def main():
+    n, q = map(int, input().split())
+    xs = [0 for _ in range(n)]
+    for _ in range(q):
+        l, r, t = map(int, input().split())
+        l -= 1
+        r -= 1
+        xs[l: r + 1] = [t for _ in range(r - l + 1)]
+    for x in xs:
+        print(x)

@@ -1,0 +1,13 @@
+private static int helper(int h, int w, int a, int b) {
+    
+    long total = h * w;
+    int forbid = a * b;
+    long size = (total - forbid) - h - w + 1;
+    if (size <= 0)
+        return 1;
+    int res = 1;
+    for (int i = 0; i < size; i++) {
+        res = (res * 2) % 1000000007;
+    }
+    return res;
+}

@@ -1,0 +1,14 @@
+static boolean question(int a, int b) {
+    if (a == b) {
+        return true;
+    }
+    if (map[a][b] == 0) {
+        out.println(String.format("? %d %d", a, b));
+        out.flush();
+        char ret = in.nextToken().toCharArray()[0];
+        map[a][b] = ret == 'Y' ? 1 : -1;
+        return ret == 'Y';
+    } else {
+        return map[a][b] == 1;
+    }
+}

@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    n = in.nextInt();
+    x = in.nextInt();
+    y = in.nextInt();
+    z = in.nextInt();
+    flg = 1 << (x + y + z);
+    pow10 = new long[n + 1];
+    pow10[0] = 1;
+    for (int i = 1; i <= n; i++) {
+        pow10[i] = pow10[i - 1] * 10 % MOD;
+    }
+    table = new int[11][1 << x + y + z + 1];
+    memo = new int[n + 1][1 << x + y + z + 1];
+    for (int i = 0; i <= 10; i++) {
+        Arrays.fill(table[i], -1);
+    }
+    for (int i = 0; i <= n; i++) {
+        Arrays.fill(memo[i], -1);
+    }
+    out.println(dfs(0, 0));
+    out.flush();
+}

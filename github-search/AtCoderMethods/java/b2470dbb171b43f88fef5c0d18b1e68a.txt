@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    StdIn in = new StdIn();
+    long k = in.nextLong();
+    long a = k / 50, b = k % 50;
+    long[] ar = new long[50];
+    Arrays.fill(ar, 49 + a);
+    for (int i = 0; i < b; ++i) {
+        for (int j = 0; j < 50; ++j) {
+            if (i == j)
+                ar[j] += 50;
+            else
+                --ar[j];
+        }
+    }
+    System.out.println(50);
+    for (int i = 0; i < 50; ++i) System.out.print(ar[i] + " ");
+}

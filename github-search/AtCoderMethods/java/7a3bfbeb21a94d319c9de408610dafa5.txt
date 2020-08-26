@@ -1,0 +1,35 @@
+private void solve() {
+    PriorityQueue<Color> queue = new PriorityQueue<>((c1, c2) -> Integer.compare(c2.num, c1.num));
+    for (Color c : cs) queue.add(c);
+    boolean flip = false;
+    Color c = queue.poll();
+    for (int i = 0; i < H; i++) {
+        if (flip) {
+            for (int j = W - 1; j >= 0; j--) {
+                if (c.num == 0)
+                    c = queue.poll();
+                ans[i][j] = c.color;
+                c.num--;
+            }
+            flip = false;
+        } else {
+            for (int j = 0; j < W; j++) {
+                if (c.num == 0)
+                    c = queue.poll();
+                ans[i][j] = c.color;
+                c.num--;
+            }
+            flip = true;
+        }
+    }
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W - 1; j++) {
+            sb.append(ans[i][j]);
+            sb.append(" ");
+        }
+        sb.append(ans[i][W - 1]);
+        sb.append("\n");
+    }
+    System.out.println(sb.toString());
+}

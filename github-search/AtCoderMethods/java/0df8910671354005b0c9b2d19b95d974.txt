@@ -1,0 +1,38 @@
+static void dijkstra(int a) {
+    
+    boolean[] used = new boolean[n];
+    int[] shortest = new int[n];
+    Ed[] myEdge = new Ed[n];
+    for (int i = 0; i < n; i++) {
+        shortest[i] = 999999999;
+    }
+    shortest[a] = 0;
+    for (int i = 0; i < n; i++) {
+        int next = 999999999;
+        int nextN = a;
+        for (int j = 0; j < n; j++) {
+            if (!used[j] && shortest[j] < next) {
+                next = shortest[j];
+                nextN = j;
+            }
+        }
+        used[nextN] = true;
+        if (nextN != a) {
+            myEdge[nextN].used = true;
+            for (int j = 0; j < gragh[nextN].size(); j++) {
+                Ed e = (Ed) gragh[nextN].get(j);
+                if (shortest[nextN] - e.cost == shortest[e.node]) {
+                    e.used = true;
+                }
+            }
+        }
+        for (int j = 0; j < gragh[nextN].size(); j++) {
+            Ed edge = (Ed) gragh[nextN].get(j);
+            if (shortest[edge.node] > shortest[nextN] + edge.cost) {
+                shortest[edge.node] = shortest[nextN] + edge.cost;
+                myEdge[edge.node] = edge;
+            }
+        }
+    }
+    return;
+}

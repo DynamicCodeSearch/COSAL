@@ -1,0 +1,11 @@
+int find(int x) {
+    int y = x, p;
+    while (father[y] != y) {
+        y = father[y];
+    }
+    for (; x != y; x = p) {
+        p = father[x];
+        father[x] = y;
+    }
+    return y;
+}

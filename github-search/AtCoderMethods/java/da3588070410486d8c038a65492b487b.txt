@@ -1,0 +1,15 @@
+public static boolean hasRelations(List<Integer> group, int x) {
+    for (int y : group) {
+        boolean flag = false;
+        for (Relation e : relations) {
+            if ((e.a == x && e.b == y) || (e.a == y && e.b == x)) {
+                flag = true;
+                break;
+            }
+        }
+        if (!flag) {
+            return false;
+        }
+    }
+    return true;
+}

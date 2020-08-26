@@ -1,0 +1,7 @@
+long f(long x, long M) {
+    if (x == 0)
+        return 0;
+    if (x % 2 == 1)
+        return (10L * f(x - 1, M) + 1) % M;
+    return f(x / 2, M) * (1 + mod_pow(10, x / 2, M)) % M;
+}

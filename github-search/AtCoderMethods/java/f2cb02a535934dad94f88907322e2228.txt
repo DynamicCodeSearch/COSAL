@@ -1,0 +1,17 @@
+public static void main(String[] args) throws Exception {
+    int n = sc.nextInt(), m = sc.nextInt();
+    if (Math.abs(n - m) > 1) {
+        out.println(0);
+    } else {
+        long val1 = 1, val2 = 1;
+        for (int i = 1; i <= n; i++) {
+            val1 = (val1 * i) % mod;
+        }
+        for (int i = 1; i <= m; i++) {
+            val2 = (val2 * i) % mod;
+        }
+        long curr = (n == m ? 2 : 1), res = (val1 * val2 * curr) % mod;
+        out.println(res);
+    }
+    out.close();
+}

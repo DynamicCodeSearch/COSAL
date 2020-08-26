@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    long a = sc.nextLong();
+    long k = sc.nextLong();
+    long n = 0;
+    if (k == 0) {
+        n = 2000000000000l - a;
+    } else {
+        while (a < 2000000000000l) {
+            a = a + a * k + 1;
+            n++;
+        }
+    }
+    System.out.println(n);
+}

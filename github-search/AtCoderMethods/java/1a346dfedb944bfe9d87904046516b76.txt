@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int cPrice = sc.nextInt();
+    int aPrice = sc.nextInt();
+    int dWaribiki = sc.nextInt();
+    int dNum = sc.nextInt();
+    int child = sc.nextInt();
+    int adult = sc.nextInt();
+    sc.close();
+    int totalPrice = cPrice * child + aPrice * adult;
+    int totalNum = child + adult;
+    if (totalNum >= dNum) {
+        totalPrice -= dWaribiki * totalNum;
+    }
+    System.out.println(totalPrice);
+}

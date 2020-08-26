@@ -1,0 +1,13 @@
+private static long findB2(long n, long s) {
+    if (n == s)
+        return n + 1;
+    List<Long> list = allFactors(n - s);
+    Collections.sort(list);
+    for (long x : list) {
+        long b = x + 1;
+        if (b >= 2 && f(b, n) == s) {
+            return b;
+        }
+    }
+    return -1;
+}

@@ -1,0 +1,30 @@
+void run() {
+    int n = ni();
+    char[][] map = new char[n][256];
+    for (int i = 0; i < n; ++i) {
+        for (char c : sc.next().toCharArray()) {
+            map[i][c]++;
+        }
+    }
+    for (; ; ) {
+        boolean flag = false;
+        for (char c = 'a'; c <= 'z'; ++c) {
+            boolean ok = true;
+            for (int i = 0; i < n; ++i) {
+                ok &= map[i][c] > 0;
+            }
+            if (ok) {
+                flag = true;
+                System.out.print(c);
+                for (int i = 0; i < n; ++i) {
+                    map[i][c]--;
+                }
+                break;
+            }
+        }
+        if (!flag) {
+            break;
+        }
+    }
+    System.out.println();
+}

@@ -1,0 +1,15 @@
+public void solve(int testNumber, FastReader in, PrintWriter out) {
+    long n = in.nextLong();
+    Set<Long> divisors = new HashSet<>();
+    long ans = 9999999999L;
+    for (long i = 1; i * i <= n; i++) {
+        if (n % i == 0) {
+            if (i != n / i) {
+                ans = Math.min(Math.max(f(i), f(n / i)), ans);
+            } else {
+                ans = Math.min(Math.max(f(i), f(i)), ans);
+            }
+        }
+    }
+    out.println(ans);
+}

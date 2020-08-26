@@ -1,0 +1,23 @@
+void solve() throws IOException {
+    int n = in.nextInt();
+    int m = in.nextInt();
+    Range[] r = new Range[n];
+    for (int i = 0; i < n; i++) {
+        r[i] = new Range(in.nextInt(), in.nextInt());
+    }
+    Arrays.sort(r);
+    BIT bit = new BIT(m + 2);
+    int ri = 0;
+    for (int i = 1; i <= m; i++) {
+        while (ri < n && r[ri].sz < i) {
+            Range rg = r[ri++];
+            bit.add(rg.l, 1);
+            bit.add(rg.r + 1, -1);
+        }
+        int ans = n - ri;
+        for (int j = 0; j <= m; j += i) {
+            ans += bit.sum(j);
+        }
+        out.println(ans);
+    }
+}

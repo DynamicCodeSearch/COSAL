@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] s = new int[N];
+    for (int i = 0; i < N; i++) {
+        s[i] = sc.nextInt();
+    }
+    Arrays.sort(s);
+    int total = 0;
+    for (int i = 0; i < N; i++) {
+        total += s[i];
+    }
+    for (int i = 0; i < N; i++) {
+        if (total % 10 != 0) {
+            System.out.println(total);
+            return;
+        } else if (s[i] % 10 != 0) {
+            total -= s[i];
+        }
+    }
+    System.out.println(0);
+}

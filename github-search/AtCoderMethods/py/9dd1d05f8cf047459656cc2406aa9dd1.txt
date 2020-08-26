@@ -1,0 +1,27 @@
+def has_cross_point(t1, t2, s1, s2, s3):
+
+  if s3 < s1:
+    minimum = (s3 - s1) ** 2 - r ** 2 + (t2 - t1) ** 2
+    if minimum >= 0:
+      return False
+    maximum = (s2 - s1) ** 2 - r ** 2 + (t2 - t1) ** 2
+  elif ((s2 + s3) / 2 <= s1) and s1 <= s3:
+    minimum = - r ** 2 + (t2 - t1) ** 2
+    if minimum >= 0:
+      return False
+    maximum = (s2 - s1) ** 2 - r ** 2 + (t2 - t1) ** 2
+  elif s2 <= s1 and (s1 <= (s2 + s3) / 2):
+    minimum = - r ** 2 + (t2 - t1) ** 2
+    if minimum >= 0:
+      return False
+    maximum = (s3 - s1) ** 2 - r ** 2 + (t2 - t1) ** 2
+  elif s1 < s2:
+    minimum = (s2 - s1) ** 2 - r ** 2 + (t2 - t1) ** 2
+    if minimum >= 0:
+      return False
+    maximum = (s3 - s1) ** 2 - r ** 2 + (t2 - t1) ** 2
+
+  if minimum < 0 and 0 < maximum:
+    return True
+  else:
+    return False

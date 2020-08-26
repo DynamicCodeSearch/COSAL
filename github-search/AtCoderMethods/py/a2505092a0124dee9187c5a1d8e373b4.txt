@@ -1,0 +1,8 @@
+def calculate_3(x, y):
+    min_d = 1e12
+    for i in range(x):
+        w1 = i
+        w2 = (x-i)//2
+        w3 = x - w1 -w2
+        min_d = min(min_d, (max(w1,w2,w3)-min(w1,w2,w3))*y)
+    return min_d

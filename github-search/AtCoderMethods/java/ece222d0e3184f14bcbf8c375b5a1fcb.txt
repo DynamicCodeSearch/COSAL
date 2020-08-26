@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int n = scan.nextInt();
+    long[] str = new long[n];
+    for (int i = 0; i < n; i++) {
+        str[i] = scan.nextLong();
+    }
+    Arrays.sort(str);
+    long sq = 1;
+    int count = 0;
+    for (int i = n - 1; i > 0; i--) {
+        if (str[i] == str[i - 1]) {
+            sq = sq * str[i];
+            i--;
+            count++;
+            if (count >= 2) {
+                break;
+            }
+        }
+    }
+    if (count < 2) {
+        System.out.println(0);
+    } else {
+        System.out.println(sq);
+    }
+}

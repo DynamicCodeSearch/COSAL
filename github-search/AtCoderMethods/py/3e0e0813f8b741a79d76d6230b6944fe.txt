@@ -1,0 +1,9 @@
+def dfs(i, p):
+    if(p == n):
+        return 1
+    if(i == 2):
+        return 0
+    ret = 0
+    for q in adj[p]:
+        ret += dfs(i+1, q)
+    return ret

@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    long[][] mati = new long[N][3];
+    for (int i = 0; i < N; ++i) {
+        mati[i][0] = sc.nextLong();
+        mati[i][1] = sc.nextLong();
+        mati[i][2] = i;
+    }
+    long[][] edge = new long[2 * (N - 1)][3];
+    int p = 0;
+    quickSort(mati, 0, 0, N);
+    for (int i = 1; i < N; ++i) {
+        edge[p][0] = mati[i][2];
+        edge[p][1] = mati[i - 1][2];
+        edge[p][2] = (mati[i][0] - mati[i - 1][0]);
+        p++;
+    }
+    quickSort(mati, 1, 0, N);
+    for (int i = 1; i < N; ++i) {
+        edge[p][0] = mati[i][2];
+        edge[p][1] = mati[i - 1][2];
+        edge[p][2] = (mati[i][1] - mati[i - 1][1]);
+        p++;
+    }
+    quickSort(edge, 2, 0, 2 * (N - 1));
+    long ans = kruskal(edge, N);
+    System.out.println(ans);
+    return;
+}

@@ -1,0 +1,23 @@
+public void solve() throws IOException {
+    int n = nextInt(), m = nextInt();
+    if (Math.abs(m - n) > 1) {
+        out.print(0);
+        return;
+    }
+    long nf = 1;
+    long mf = 1;
+    long mod = 1000000000 + 7;
+    for (long i = 2; i <= n; i++) {
+        nf *= i;
+        nf %= mod;
+    }
+    for (long i = 2; i <= m; i++) {
+        mf *= i;
+        mf %= mod;
+    }
+    if (n == m) {
+        out.print((((nf * mf) % mod) * 2) % mod);
+    } else {
+        out.print((nf * mf) % mod);
+    }
+}

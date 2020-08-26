@@ -1,0 +1,29 @@
+def avg_com(v,A,B):
+    Max=max(v)
+    n=v[Max]
+    if n<A:
+        iter=sorted(v.elements(),reverse=True)[0:A]
+        avg=sum(iter)/A
+        last=iter[-1]
+        if last!=1:
+            num=v[last]
+            dex=iter.index(last)
+            iter=iter[:dex]
+            front=len(iter)
+            c=C(num,A-front)
+        else :c=1
+
+
+    elif A<=n<=B:
+        avg=max(v)
+        c=0
+        for r in  range(A,n+1):
+            c+=C(n,r)
+    elif B<n:
+
+        avg=max(v)
+        c=0
+        for r in range(A,B+1):
+            c+=C(n,r)
+
+    return avg,c

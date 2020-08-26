@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int a = sc.nextInt();
+    if (a < 100) {
+        System.out.println("00");
+    } else if (a >= 100 && a <= 5000) {
+        if (a < 1000) {
+            System.out.println("0" + String.valueOf(a / 100));
+        } else {
+            System.out.println(a / 100);
+        }
+    } else if (a >= 6000 && a <= 30000) {
+        System.out.println(a / 1000 + 50);
+    } else if (a >= 35000 && a <= 70000) {
+        System.out.println((a / 1000 - 30) / 5 + 80);
+    } else {
+        System.out.println(89);
+    }
+}

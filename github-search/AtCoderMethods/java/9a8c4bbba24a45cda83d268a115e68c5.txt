@@ -1,0 +1,13 @@
+void add(int y, int x) {
+    if (x < 1 || y < 1 || x + 2 > w || y + 2 > h) {
+        return;
+    }
+    String key = x + "," + y;
+    
+    Integer i = map.get(key);
+    if (i == null) {
+        map.put(key, 1);
+    } else {
+        map.put(key, i + 1);
+    }
+}

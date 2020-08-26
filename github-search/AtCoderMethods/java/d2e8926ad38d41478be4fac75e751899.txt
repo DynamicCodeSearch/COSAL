@@ -1,0 +1,17 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int mod = 10007;
+    if (n < 3) {
+        System.out.println("0");
+    } else {
+        long[] array = new long[n];
+        array[0] = 0;
+        array[1] = 0;
+        array[2] = 1;
+        for (int i = 3; i < n; i++) {
+            array[i] = (array[i - 1] + array[i - 2] + array[i - 3]) % mod;
+        }
+        System.out.println(array[n - 1]);
+    }
+}

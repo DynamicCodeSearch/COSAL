@@ -1,0 +1,14 @@
+long[] solve2(long k) {
+    long[] a = new long[50];
+    int n = a.length;
+    for (int i = 0; i < n; i++) {
+        a[i] = n - 1 + k / n;
+    }
+    for (int i = 0; i < k % n; i++) {
+        a[i] += n + 1;
+        for (int j = 0; j < n; j++) {
+            a[j]--;
+        }
+    }
+    return a;
+}

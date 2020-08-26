@@ -1,0 +1,17 @@
+def main():
+    s = S()
+    d = collections.defaultdict(int)
+    sl = len(s)
+    for c in s:
+        d[c] += 1
+    t = 0
+    for c in d.values():
+        if c%2 == 1:
+            t += 1
+
+    if t < 2:
+        return sl
+
+    tl = sl - t
+
+    return (tl//2//t)*2 + 1

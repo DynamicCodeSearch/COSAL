@@ -1,0 +1,36 @@
+void run() {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    boolean[][] table = new boolean[n + 1][n + 1];
+    for (int i = 0; i < n + 1; i++) {
+        for (int j = 0; j < n + 1; j++) {
+            table[i][j] = false;
+        }
+    }
+    for (int i = 0; i < m; i++) {
+        int value1 = sc.nextInt();
+        int value2 = sc.nextInt();
+        table[value1][value2] = table[value2][value1] = true;
+    }
+    int maxhabatsu = -1;
+    for (int i = 0; i < (1 << (n + 1)); i++) {
+        ArrayList<Integer> list = new ArrayList<>();
+        boolean ishabatsu = true;
+        for (int j = 0; j < n + 1; j++) {
+            if ((i >> j) % 2 == 1)
+                list.add(j);
+        }
+        for (int j = 0; j < list.size() - 1; j++) {
+            for (int k = j + 1; k < list.size(); k++) {
+                if (!table[list.get(j)][list.get(k)])
+                    ishabatsu = false;
+            }
+        }
+        if (ishabatsu) {
+            if (maxhabatsu < list.size())
+                maxhabatsu = list.size();
+        }
+    }
+    System.out.println(maxhabatsu);
+}

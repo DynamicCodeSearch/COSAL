@@ -1,0 +1,15 @@
+def main():
+    n=int(raw_input())
+    ta=[map(int,raw_input().split()) for _ in xrange(n)]
+    for i in xrange(1,n):
+        if ta[i-1][0]>ta[i][0] and ta[i-1][1]>ta[i][1]:
+            mx=max((ta[i-1][0]-1)/ta[i][0]+1,(ta[i-1][1]-1)/ta[i][1]+1)
+            ta[i][0]=ta[i][0]*mx
+            ta[i][1]=ta[i][1]*mx
+        elif ta[i-1][0]>ta[i][0]:
+            ta[i][1]=ta[i][1]*((ta[i-1][0]-1)/ta[i][0]+1)
+            ta[i][0]=ta[i][0]*((ta[i-1][0]-1)/ta[i][0]+1)
+        elif ta[i-1][1]>ta[i][1]:
+            ta[i][0]=ta[i][0]*((ta[i-1][1]-1)/ta[i][1]+1)
+            ta[i][1]=ta[i][1]*((ta[i-1][1]-1)/ta[i][1]+1)
+    print(ta[n-1][0]+ta[n-1][1])

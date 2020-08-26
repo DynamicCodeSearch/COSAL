@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    int i = 0, save1 = 0, save2 = 0;
+    int[] data = { 1, 2, 3, 4, 5, 6 };
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    for (i = 0; i < N % 30; i++) {
+        if ((i % N + 1) % 5 == 0) {
+            save1 = data[(i % N) % 5];
+            save2 = data[5];
+            data[(i % N) % 5] = save2;
+            data[5] = save1;
+        } else {
+            save1 = data[(i % N) % 5];
+            save2 = data[(i % N + 1) % 5];
+            data[(i % N) % 5] = save2;
+            data[(i % N + 1) % 5] = save1;
+        }
+    }
+    for (i = 0; i < 5; i++) {
+        System.out.print(data[i]);
+    }
+    System.out.println(data[5]);
+}

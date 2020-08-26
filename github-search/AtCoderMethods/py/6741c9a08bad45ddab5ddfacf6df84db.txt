@@ -1,0 +1,21 @@
+def add_combo(c, len_S, len_combo, S):
+    S_copy = copy.deepcopy(S)
+    total_len = len_S + len_combo
+    combo_total = 0
+    cnt = 1
+    for i in c:
+        S_copy.insert(i+cnt, '+')
+        cnt += 1
+    last = 0
+    nums = []
+    plus_count = 0
+    for j in range(0, total_len):
+        if S_copy[j] == '+':
+            nums.append(S_copy[last:j])
+            plus_count += 1
+            if plus_count == len_combo:
+                nums.append(S_copy[j+1:])
+            last = j+1
+    for n in nums:
+        combo_total += int("".join(n))
+    return combo_total

@@ -1,0 +1,27 @@
+public static void main(String[] args) throws Exception {
+    FastScanner fs = new FastScanner();
+    int l = fs.nextInt2();
+    int x = fs.nextInt2();
+    int y = fs.nextInt2();
+    int s = fs.nextInt2();
+    int d = fs.nextInt2();
+    double result;
+    if (y <= x) {
+        result = (double) ((d - s + l) % l) / (x + y);
+    } else {
+        if (s > d) {
+            result = (double) (s - d) / (y - x);
+            if ((double) (d - s + l) / (x + y) < result) {
+                result = (double) (d - s + l) / (x + y);
+            }
+        } else {
+            result = (double) (l - d + s) / (y - x);
+            if ((double) (d - s) / (y + x) < result) {
+                result = (double) (d - s) / (y + x);
+            }
+        }
+    }
+    StringBuilder sb = new StringBuilder();
+    sb.append(result);
+    System.out.println(sb.toString());
+}

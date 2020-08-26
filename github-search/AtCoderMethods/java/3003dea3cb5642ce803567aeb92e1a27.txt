@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    final int N = 5;
+    final int R = 3;
+    List<Integer> list = new ArrayList<Integer>();
+    Scanner sc = new Scanner(System.in);
+    int[] a = new int[N];
+    for (int i = 0; i < N; i++) a[i] = sc.nextInt();
+    sc.close();
+    for (int i = 1; i < 0x1 << 5; i++) {
+        if (Integer.bitCount(i) == R) {
+            int sum = 0;
+            for (int d = 0; d < N; d++) {
+                if ((i & 0x1 << d) > 0)
+                    sum += a[d];
+            }
+            if (!list.contains(sum))
+                list.add(sum);
+        }
+    }
+    Collections.sort(list);
+    System.out.println(list.get(list.size() - 3));
+}

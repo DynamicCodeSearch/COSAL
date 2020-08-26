@@ -1,0 +1,22 @@
+public static void main(String[] args) throws java.lang.Exception {
+    InputReader in = new InputReader(System.in);
+    PrintWriter w = new PrintWriter(System.out);
+    int n = in.nextInt(), k = in.nextInt(), l = in.nextInt();
+    DJSet ds1 = new DJSet(n);
+    DJSet ds2 = new DJSet(n);
+    for (int i = 0; i < k; i++) ds1.union(in.nextInt() - 1, in.nextInt() - 1);
+    for (int i = 0; i < l; i++) ds2.union(in.nextInt() - 1, in.nextInt() - 1);
+    HashMap<Pair, Integer> hm = new HashMap<>();
+    for (int i = 0; i < n; i++) {
+        int r1 = ds1.root(i), r2 = ds2.root(i);
+        Pair p = new Pair(r1, r2);
+        if (hm.containsKey(p))
+            hm.put(p, hm.get(p) + 1);
+        else
+            hm.put(p, 1);
+    }
+    for (int i = 0; i < n; i++) {
+        w.print(hm.get(new Pair(ds1.root(i), ds2.root(i))) + " ");
+    }
+    w.close();
+}

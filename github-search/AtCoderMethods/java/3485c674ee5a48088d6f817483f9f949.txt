@@ -1,0 +1,13 @@
+void solve(BufferedReader br) throws Exception {
+    String line = br.readLine();
+    int n = Integer.parseInt(line);
+    int rc = Integer.MAX_VALUE;
+    for (int i = 1; i <= n; i++) {
+        int j = n / i;
+        if (i > j)
+            break;
+        int d = j - i + n - i * j;
+        rc = Math.min(rc, d);
+    }
+    pln(rc);
+}

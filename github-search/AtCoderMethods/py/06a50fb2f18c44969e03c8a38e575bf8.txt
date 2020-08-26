@@ -1,0 +1,28 @@
+def breadthFirstSearch(board, start, goal):
+    minReachNum = 0  
+
+    board[start[0]][start[1]] = minReachNum
+    targetLoc = []  
+    confirmLoc = []  
+    targetLoc.append(start)
+
+    while True:
+        minReachNum += 1
+
+        for target in targetLoc:
+
+            adjacent = [[target[0] - 1, target[1]], [target[0] + 1, target[1]], [target[0], target[1] - 1],
+                        [target[0], target[1] + 1]]
+
+            for adj in adjacent:
+                if board[adj[0]][adj[1]] == ".":
+                    board[adj[0]][adj[1]] = minReachNum
+                    confirmLoc.append(adj)  
+        del targetLoc[:]
+        targetLoc.extend(confirmLoc)
+        del confirmLoc[:]
+
+        if boardMatrix[goal[0]][goal[1]] != ".":
+            break
+
+    return minReachNum

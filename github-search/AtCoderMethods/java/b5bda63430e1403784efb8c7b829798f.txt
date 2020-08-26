@@ -1,0 +1,13 @@
+public static void main(String[] args) throws IOException {
+    final Scanner sc = new Scanner(System.in);
+    final long L = sc.nextLong();
+    final long X = sc.nextLong();
+    final long Y = sc.nextLong();
+    final long S = sc.nextLong();
+    final long D = sc.nextLong();
+    if (S < D) {
+        System.out.printf("%.8f\n", Math.min((double) (D - S) / (X + Y), Y <= X ? Double.MAX_VALUE : (double) (L - (D - S)) / Math.abs(Y - X)));
+    } else {
+        System.out.printf("%.8f\n", Math.min((double) (L - (S - D)) / (Y + X), Y <= X ? Double.MAX_VALUE : (double) (S - D) / Math.abs(Y - X)));
+    }
+}

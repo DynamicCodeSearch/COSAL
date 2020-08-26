@@ -1,0 +1,42 @@
+
+public void run() throws IOException {
+    
+    int TEST_CASE = 1;
+    while (TEST_CASE-- != 0) {
+        int n = io.nextInt();
+        int[] a = io.nextIntArray(n);
+        int[] wall = new int[n];
+        int[] idx = new int[n];
+        int len = 0;
+        for (int i = 0, cur = 0; i < n; i++) {
+            if (cur < a[i]) {
+                wall[len] = cur = a[i];
+                idx[len] = i;
+                len++;
+            }
+        }
+        long sum = 0;
+        TreeMap<Integer, Long> mp = new TreeMap<>();
+        for (int i = 0; i < n; i++) {
+            sum += a[i];
+            mp.put(a[i], mp.getOrDefault(a[i], 0L) + 1);
+        }
+        long[] times = new long[n];
+        for (int i = len - 2; i >= 0; i--) {
+            
+            int cnt = 0;
+            while (mp.lastKey() > wall[i]) {
+                Entry<Integer, Long> e = mp.pollLastEntry();
+                times[idx[i + 1]] += (e.getKey() - wall[i]) * e.getValue();
+                cnt += e.getValue();
+            }
+            mp.put(wall[i], mp.getOrDefault(wall[i], 0L) + cnt);
+        }
+        
+        times[0] = sum;
+        for (int i = 1; i < n; i++) {
+            times[0] -= times[i];
+        }
+        for (long t : times) io.out.println(t);
+    }
+}

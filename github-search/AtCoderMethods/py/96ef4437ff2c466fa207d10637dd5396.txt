@@ -1,0 +1,26 @@
+def main():
+    N = I()
+    d = [LI() for _ in range(N)]
+    rui = Ruiwa(d)
+    t = [0] * (N*N+1)
+    for i in range(N):
+        for j in range(i,N):
+            for k in range(N):
+                for l in range(k,N):
+                    s = (j-i+1) * (l-k+1)
+                    tt = rui.search(i,k,j,l)
+                    if t[s] < tt:
+                        t[s] = tt
+    c = t[0]
+    for i in range(1,N*N+1):
+        if t[i] < c:
+            t[i] = c
+        else:
+            c = t[i]
+    r = []
+    q = I()
+    for _ in range(q):
+        p = I()
+        r.append(t[p])
+
+    return '\n'.join(map(str,r))

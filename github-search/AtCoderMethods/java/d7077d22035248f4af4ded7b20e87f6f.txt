@@ -1,0 +1,15 @@
+int[] goEmpty(int n) {
+    int[] ret = new int[n + 1];
+    ret[0] = 1;
+    int[] dp = { 1 };
+    for (int i = 1; i <= n; i++) {
+        int[] nxt = new int[i + 1];
+        nxt[0] = i == 1 ? 1 : (dp[0] + dp[1]) % P;
+        for (int j = 1; j <= i; j++) {
+            nxt[j] = (2 * dp[j - 1] % P + (j + 1 < i ? dp[j + 1] : 0)) % P;
+        }
+        dp = nxt;
+        ret[i] = dp[0];
+    }
+    return ret;
+}

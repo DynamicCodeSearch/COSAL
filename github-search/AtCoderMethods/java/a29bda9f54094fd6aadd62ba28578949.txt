@@ -1,0 +1,24 @@
+public void solve() {
+    N = nextInt();
+    node = new Node[N];
+    for (int i = 0; i < N; i++) {
+        node[i] = new Node(i);
+    }
+    for (int i = 0; i < N - 1; i++) {
+        int a = nextInt() - 1;
+        int b = nextInt() - 1;
+        node[a].next.add(node[b]);
+        node[b].next.add(node[a]);
+    }
+    dfs(node[0], 0, 1);
+    dfs(node[N - 1], 0, 2);
+    int[] sum = new int[3];
+    for (int i = 1; i < N - 1; i++) {
+        sum[node[i].color]++;
+    }
+    if (sum[1] > sum[2]) {
+        out.println("Fennec");
+    } else {
+        out.println("Snuke");
+    }
+}

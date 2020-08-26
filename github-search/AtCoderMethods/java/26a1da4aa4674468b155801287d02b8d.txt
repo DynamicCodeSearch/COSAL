@@ -1,0 +1,45 @@
+void solve() throws Exception {
+    try (Scanner cin = new Scanner(System.in)) {
+        int count = cin.nextInt();
+        List<Integer> list = new ArrayList<>(count);
+        list.add(cin.nextInt());
+        boolean even;
+        if (count % 2 == 0) {
+            even = true;
+        } else {
+            even = false;
+        }
+        while (cin.hasNext()) {
+            list.add(cin.nextInt());
+        }
+        int index = 0;
+        if (even) {
+            index = list.size() - 1;
+            System.out.print(list.get(index));
+            index -= 2;
+            while (index >= 0) {
+                System.out.print(" " + list.get(index));
+                index -= 2;
+            }
+            index = 0;
+            while (index < list.size()) {
+                System.out.print(" " + list.get(index));
+                index += 2;
+            }
+        } else {
+            index = list.size() - 1;
+            System.out.print(list.get(index));
+            index -= 2;
+            while (index >= 0) {
+                System.out.print(" " + list.get(index));
+                index -= 2;
+            }
+            index = 1;
+            while (index < list.size()) {
+                System.out.print(" " + list.get(index));
+                index += 2;
+            }
+        }
+    } finally {
+    }
+}

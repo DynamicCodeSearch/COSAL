@@ -1,0 +1,10 @@
+private void solveWF(int[][] edge) {
+    
+    for (int k = 0; k < edge.length; k++) {
+        for (int i = 0; i < edge.length; i++) {
+            for (int j = 0; j < edge.length; j++) {
+                edge[i][j] = Math.min(edge[i][j], edge[i][k] + edge[k][j]);
+            }
+        }
+    }
+}

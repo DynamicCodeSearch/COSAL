@@ -1,0 +1,54 @@
+public static void main(String[] args) {
+    final Scanner sc = new Scanner(System.in);
+    final int N = sc.nextInt();
+    int[] xs = new int[N];
+    int[] ys = new int[N];
+    int[] cs = new int[N];
+    for (int i = 0; i < N; i++) {
+        final int x = sc.nextInt();
+        final int y = sc.nextInt();
+        final int c = sc.nextInt();
+        xs[i] = x;
+        ys[i] = y;
+        cs[i] = c;
+    }
+    double lower_time = 0, upper_time = Integer.MAX_VALUE;
+    while (upper_time - lower_time > 1e-6) {
+        final double middle_time = (upper_time + lower_time) / 2;
+        boolean flg = true;
+        double common_left_x = xs[0] - (middle_time / cs[0]);
+        double common_right_x = xs[0] + (middle_time / cs[0]);
+        double common_up_y = ys[0] - (middle_time / cs[0]);
+        double common_down_y = ys[0] + (middle_time / cs[0]);
+        for (int i = 1; i < N; i++) {
+            final double snd_rect_size = (middle_time / cs[i]);
+            final double snd_rect_left_x = xs[i] - snd_rect_size;
+            final double snd_rect_right_x = xs[i] + snd_rect_size;
+            final double snd_rect_up_y = ys[i] - snd_rect_size;
+            final double snd_rect_down_y = ys[i] + snd_rect_size;
+            if (common_left_x > snd_rect_right_x) {
+                flg = false;
+                break;
+            } else if (common_right_x < snd_rect_left_x) {
+                flg = false;
+                break;
+            } else if (common_up_y > snd_rect_down_y) {
+                flg = false;
+                break;
+            } else if (common_down_y < snd_rect_up_y) {
+                flg = false;
+                break;
+            }
+            common_left_x = Math.max(snd_rect_left_x, common_left_x);
+            common_right_x = Math.min(snd_rect_right_x, common_right_x);
+            common_up_y = Math.max(snd_rect_up_y, common_up_y);
+            common_down_y = Math.min(snd_rect_down_y, common_down_y);
+        }
+        if (flg) {
+            upper_time = middle_time;
+        } else {
+            lower_time = middle_time;
+        }
+    }
+    System.out.printf("%.8f\n", upper_time);
+}

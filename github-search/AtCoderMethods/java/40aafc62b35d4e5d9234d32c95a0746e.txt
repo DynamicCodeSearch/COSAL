@@ -1,0 +1,15 @@
+void put(long key, long value) {
+    int id = hash(key);
+    for (int i = 0; i < list[id].size(); ++i) {
+        if (list[id].get(i).key == key) {
+            list[id].get(i).value = value;
+            return;
+        }
+    }
+    list[id].add(new Pair(key, value));
+    ++cnt;
+    if (cnt > sz) {
+        changeSize(2 * sz);
+    }
+    return;
+}

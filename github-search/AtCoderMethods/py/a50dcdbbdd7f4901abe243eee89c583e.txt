@@ -1,0 +1,14 @@
+def BFS(K,path,N):
+
+  import queue
+  dist=[-1]*N
+  dist[K]=0
+  que=queue.Queue()
+  que.put(K)
+  while que.qsize():
+    label=que.get()
+    for i,c in path[label]:
+      if dist[i]==-1:
+        dist[i]=dist[label]+c
+        que.put(i)
+  return dist

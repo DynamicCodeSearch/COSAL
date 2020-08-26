@@ -1,0 +1,9 @@
+def min_cost_from_left_to_right_inner(a, out_min_cost):
+    out_min_cost[0] = 0
+    for i in range(1, len(a)):
+        for diff in [1, 2]:
+            pre = i - diff
+            if pre < 0:
+                continue
+            d = out_min_cost[pre] + abs(a[pre] - a[i])
+            out_min_cost[i] = min(out_min_cost[i], d)

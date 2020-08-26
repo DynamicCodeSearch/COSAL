@@ -1,0 +1,37 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    int[][] d = new int[N + 1][N + 1];
+    int[][] e = new int[N + 1][N + 1];
+    for (int i = 1; i <= N; i++) {
+        for (int j = 1; j <= N; j++) {
+            d[i][j] = INF;
+        }
+    }
+    for (int i = 0; i < M; i++) {
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        int c = sc.nextInt();
+        d[a][b] = c;
+        d[b][a] = c;
+        e[a][b] = c;
+        e[b][a] = c;
+    }
+    for (int k = 1; k <= N; k++) {
+        for (int i = 1; i <= N; i++) {
+            for (int j = 1; j <= N; j++) {
+                d[i][j] = Math.min(d[i][j], d[i][k] + d[k][j]);
+            }
+        }
+    }
+    int ans = 0;
+    for (int i = 1; i <= N; i++) {
+        for (int j = 1; j <= N; j++) {
+            if (d[i][j] < e[i][j])
+                ans++;
+        }
+    }
+    System.out.println(ans / 2);
+}

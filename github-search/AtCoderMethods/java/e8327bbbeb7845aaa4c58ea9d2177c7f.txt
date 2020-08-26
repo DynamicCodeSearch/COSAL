@@ -1,0 +1,42 @@
+public static long solve(int n, int x, int y, int z) {
+    HashMap<ArrayList<Integer>, Long> hm = new HashMap<>();
+    ArrayList<Integer> empty = new ArrayList<>();
+    hm.put(empty, 1L);
+    for (int i = 0; i < n; i++) {
+        
+        HashMap<ArrayList<Integer>, Long> hm2 = new HashMap<>();
+        for (Entry<ArrayList<Integer>, Long> e : hm.entrySet()) {
+            ArrayList<Integer> al = e.getKey();
+            for (int k = 1; k <= 10; k++) {
+                if (!xyz(al, k, x, y, z)) {
+                    ArrayList<Integer> key = new ArrayList<>();
+                    if (k < x + y + z) {
+                        key.add(k);
+                        int sum = k;
+                        for (int j = al.size() - 1; j >= 0; j--) {
+                            sum += al.get(j);
+                            if (sum < x + y + z) {
+                                key.add(al.get(j));
+                            }
+                        }
+                    }
+                    Collections.reverse(key);
+                    Long v = hm2.get(key);
+                    long value = v == null ? 0 : v;
+                    value += e.getValue();
+                    if (value >= MOD)
+                        value -= MOD;
+                    hm2.put(key, value);
+                }
+            }
+        }
+        hm = hm2;
+    }
+    long ans = 0;
+    for (long v : hm.values()) {
+        ans += v;
+        if (ans >= MOD)
+            ans -= MOD;
+    }
+    return n(pow(10, n, MOD) - ans, MOD);
+}

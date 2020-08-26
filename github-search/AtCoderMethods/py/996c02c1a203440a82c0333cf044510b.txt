@@ -1,0 +1,27 @@
+def main():
+    n,m = LI()
+    a = [-1] * n
+    d = collections.defaultdict(set)
+    for _ in range(m):
+        u,v = LI_()
+        d[u].add(v)
+        d[v].add(u)
+
+    def f(i,k):
+        a[i] = k
+
+        ff = True
+        for c in d[i]:
+            if a[c] < 0:
+                if not f(c, k+1):
+                    ff = False
+            elif k - a[c] != 1:
+                ff = False
+        return ff
+
+    r = 0
+    for i in range(n):
+        if a[i] < 0 and f(i,1):
+            r += 1
+
+    return r

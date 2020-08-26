@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int n = scanner.nextInt();
+    long k = scanner.nextLong();
+    long[] list = new long[100001];
+    for (int i = 0; i < n; i++) {
+        int a = scanner.nextInt();
+        int b = scanner.nextInt();
+        list[a] += b;
+    }
+    long x = k;
+    for (int i = 1; i < 100001; i++) {
+        if (x <= list[i]) {
+            System.out.println(i);
+            break;
+        }
+        x -= list[i];
+    }
+}

@@ -1,0 +1,27 @@
+public void solve() {
+    A = nextInt();
+    B = nextInt();
+    C = nextInt();
+    D = nextInt();
+    E = nextInt();
+    F = nextInt();
+    memo = new boolean[F / 100 + 1][F + 1];
+    dfs(0, 0);
+    double max = 0;
+    int maxi = A;
+    int maxj = 0;
+    for (int i = 0; i < memo.length; i++) {
+        for (int j = 0; j < memo[i].length; j++) {
+            if (i + j == 0)
+                continue;
+            if (memo[i][j]) {
+                if (E * i >= j && max < (double) j / (i * 100 + j)) {
+                    max = (double) j / (i * 100 + j);
+                    maxi = i;
+                    maxj = j;
+                }
+            }
+        }
+    }
+    out.printf("%d %d\n", maxi * 100 + maxj, maxj);
+}

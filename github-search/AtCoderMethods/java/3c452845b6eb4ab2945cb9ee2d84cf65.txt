@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int tile = scan.nextInt();
+    int[] result = new int[tile + 1];
+    
+    for (int height = 1; height <= tile; height++) {
+        
+        
+        int countW = 1;
+        while (true) {
+            if (tile < height * countW) {
+                
+                countW--;
+                break;
+            } else {
+                countW++;
+            }
+        }
+        int absHW = Math.abs(countW - height);
+        int tileAmari = tile - height * countW;
+        result[height] = absHW + tileAmari;
+    }
+    Arrays.sort(result);
+    System.out.println(result[1]);
+}

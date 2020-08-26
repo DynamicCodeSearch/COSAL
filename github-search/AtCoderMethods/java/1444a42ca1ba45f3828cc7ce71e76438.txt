@@ -1,0 +1,13 @@
+void solve(ContestScanner in, Writer out) throws IOException {
+    long a = in.nextLong();
+    long b = in.nextLong();
+    long k = in.nextLong();
+    long l = in.nextLong();
+    if (a * l > b) {
+        final long set = (k / l) * b;
+        final long mod = k % l;
+        System.out.println(set + Math.min(mod * a, b));
+    } else {
+        System.out.println(k * a);
+    }
+}

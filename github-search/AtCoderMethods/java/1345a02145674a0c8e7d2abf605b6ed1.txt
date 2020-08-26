@@ -1,0 +1,19 @@
+private static void quicksort(int[] a, int left, int right) {
+    int s, i, j;
+    if (left < right) {
+        s = a[(left + right) / 2];
+        i = left - 1;
+        j = right + 1;
+        while (true) {
+            while (a[++i] < s) ;
+            while (a[--j] > s) ;
+            if (i >= j)
+                break;
+            int t = a[i];
+            a[i] = a[j];
+            a[j] = t;
+        }
+        quicksort(a, left, i - 1);
+        quicksort(a, j + 1, right);
+    }
+}

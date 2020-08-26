@@ -1,0 +1,10 @@
+def dfs(deep,now,v):
+    if deep == n:
+        return 1
+    res = 0
+    for i in range(1,n+1):
+        if v[i] == 0 and e[now][i] == 1:
+            v[i] = 1
+            res = res + dfs(deep+1, i, v)
+            v[i] = 0
+    return res

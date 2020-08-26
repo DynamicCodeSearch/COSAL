@@ -1,0 +1,29 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(in);
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    int[][] arr = new int[n][2];
+    int[][] brr = new int[m][2];
+    for (int i = 0; i < n; i++) {
+        arr[i][0] = sc.nextInt();
+        arr[i][1] = sc.nextInt();
+    }
+    for (int i = 0; i < m; i++) {
+        brr[i][0] = sc.nextInt();
+        brr[i][1] = sc.nextInt();
+    }
+    int k = 0;
+    int[] ans = new int[n];
+    for (int i = 0; i < n; i++) {
+        ans[i] = Math.abs(arr[i][0] - brr[0][0]) + Math.abs(arr[i][1] - brr[0][1]);
+        k = 1;
+        
+        for (int j = m - 1; j >= 0; j--) {
+            if ((Math.abs(arr[i][0] - brr[j][0]) + Math.abs(arr[i][1] - brr[j][1])) <= ans[i]) {
+                k = j + 1;
+                ans[i] = Math.abs(arr[i][0] - brr[j][0]) + Math.abs(arr[i][1] - brr[j][1]);
+            }
+        }
+        out.println(k);
+    }
+}

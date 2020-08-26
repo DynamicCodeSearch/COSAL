@@ -1,0 +1,31 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int m = in.nextInt();
+    int r = in.nextInt();
+    rs = new int[r];
+    dist = new long[n][n];
+    for (int i = 0; i < n; i++) {
+        Arrays.fill(dist[i], INF);
+    }
+    for (int i = 0; i < r; i++) {
+        rs[i] = in.nextInt() - 1;
+    }
+    for (int i = 0; i < m; i++) {
+        int a = in.nextInt() - 1;
+        int b = in.nextInt() - 1;
+        int c = in.nextInt();
+        dist[a][b] = dist[b][a] = c;
+    }
+    for (int k = 0; k < n; k++) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                dist[i][j] = Math.min(dist[i][j], dist[i][k] + dist[k][j]);
+            }
+        }
+    }
+    vis = new boolean[n];
+    nvis = r;
+    min = Integer.MAX_VALUE;
+    rec(-1);
+    out.println(min);
+}

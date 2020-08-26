@@ -1,0 +1,11 @@
+long pow(long a, long b) {
+    long ans = 1;
+    while (b > 0) {
+        if ((b & 1) != 0) {
+            ans = mod(ans * a);
+        }
+        b >>= 1;
+        a = mod(a * a);
+    }
+    return ans;
+}

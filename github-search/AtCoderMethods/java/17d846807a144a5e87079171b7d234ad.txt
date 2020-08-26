@@ -1,0 +1,10 @@
+private void insert(Node root, String word, int index) {
+    if (index >= word.length())
+        return;
+    char c = word.charAt(index);
+    if (!root.children.containsKey(c)) {
+        root.addChild(c);
+    }
+    Node next = root.children.get(c);
+    insert(next, word, index + 1);
+}

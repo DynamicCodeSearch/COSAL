@@ -1,0 +1,13 @@
+public static long solve(int n, List<Integer> A) {
+    long sum = 0;
+    for (long a : A) {
+        sum += a;
+    }
+    long min = Math.abs(2 * A.get(0) - sum);
+    long runningSum = A.get(0);
+    for (int i = 1; i < A.size() - 1; i++) {
+        runningSum += A.get(i);
+        min = Math.min(min, Math.abs(2 * runningSum - sum));
+    }
+    return min;
+}

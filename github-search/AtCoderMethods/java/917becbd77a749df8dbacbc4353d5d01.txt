@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N;
+    N = Integer.parseInt(sc.next());
+    int[] a = new int[N];
+    int[] num = new int[N];
+    for (int i = 0; i < N; i++) {
+        a[i] = Integer.parseInt(sc.next());
+        num[i] = a[i];
+    }
+    quick_sort(num, 0, N - 1);
+    HashMap map = new HashMap<Integer, Integer>();
+    int before = num[0];
+    map.put(num[0], 0);
+    int count = 1;
+    for (int i = 1; i < N; i++) {
+        if (num[i] != before) {
+            map.put(num[i], count++);
+        }
+        before = num[i];
+    }
+    for (int i = 0; i < N; i++) {
+        System.out.println(map.get(a[i]));
+    }
+}

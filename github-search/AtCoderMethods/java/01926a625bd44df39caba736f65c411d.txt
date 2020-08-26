@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    double h = scanner.nextInt(), m = scanner.nextInt();
+    if (h > 12) {
+        h -= 12;
+    }
+    double hangle = h * 30 + m * 0.5;
+    double mangle = m * 6;
+    double result = hangle - mangle;
+    result = Math.abs(result);
+    if (result > 180) {
+        result = 360 - result;
+        if ((double) result == (int) result) {
+            System.out.println((int) result);
+        } else {
+            System.out.println(result);
+        }
+    } else {
+        if ((double) result == (int) result) {
+            System.out.println((int) result);
+        } else {
+            System.out.println(result);
+        }
+    }
+}

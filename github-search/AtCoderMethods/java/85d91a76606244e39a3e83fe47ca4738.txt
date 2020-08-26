@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    final int N = sc.nextInt();
+    final int M = sc.nextInt();
+    boolean[][] shaken = new boolean[N][N];
+    for (int i = 0; i < M; i++) {
+        int x = sc.nextInt() - 1;
+        int y = sc.nextInt() - 1;
+        shaken[x][y] = true;
+        shaken[y][x] = true;
+    }
+    List<Integer> l = new ArrayList<Integer>();
+    int result = saiki(0, l, shaken, N);
+    System.out.println(result);
+}

@@ -1,0 +1,34 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int n = scan.nextInt();
+    int total = 0;
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = scan.nextInt();
+        total = total + a[i];
+    }
+    if (total == 0) {
+        System.out.println(0);
+        return;
+    }
+    if (total % n != 0) {
+        System.out.println(-1);
+        return;
+    }
+    int av = total / n;
+    int count = 0;
+    double temp = 0;
+    int index = 0;
+    for (int i = 0; i < n; i++) {
+        index++;
+        temp = temp + a[i];
+        if (temp != 0) {
+            if (temp / (index) == av) {
+                count++;
+                temp = 0;
+                index = 0;
+            }
+        }
+    }
+    System.out.println(n - count);
+}

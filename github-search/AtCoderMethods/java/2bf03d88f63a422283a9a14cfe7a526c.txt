@@ -1,0 +1,11 @@
+static void solve() {
+    int n = ni();
+    int[] a = na(n);
+    int[] f = new int[100005];
+    for (int v : a) f[v]++;
+    int max = 0;
+    for (int i = 1; i < 100004; i++) {
+        max = Math.max(max, f[i - 1] + f[i] + f[i + 1]);
+    }
+    out.println(max);
+}

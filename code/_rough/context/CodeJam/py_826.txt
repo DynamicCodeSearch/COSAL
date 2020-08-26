@@ -1,0 +1,966 @@
+### Py Tokens: tmp, xrange, float, sum1, sum0, allv, bestanswer, len, max, answer, best 
+
+### Py functions
+
+def func_84008eed65974d5ea4c5604707ddde5d(a, n):
+    n = len(a)
+    sum0 = [0] * (n + 1)
+    sum1 = [0] * (n + 1)
+    for i in xrange(n):
+        sum0[i + 1] = sum0[i] + a[i]
+    for i in xrange(n - 1, -1, -1):
+        sum1[i] = sum1[i + 1] + a[i]
+    allv = sum0[-1]
+    bestAnswer = allv
+    j = 0
+    for i in xrange(n + 1):
+        if sum0[i] >= allv:
+            break
+        ps = allv - sum0[i]
+        j = max(j - 1, i)
+        while j <= n:
+            v1 = sum1[j]
+            tmp = max(sum0[i], v1, ps - v1)
+            if tmp < bestAnswer:
+                bestAnswer = tmp
+            if float(v1) > ps / 2.0:
+                j += 1
+            else:
+                break
+    answer = 1.0 - float(bestAnswer) / float(allv)
+    return sum1
+
+def func_fa7e8531d0dc474c8a80e0c20b674bbd(a, n):
+    n = len(a)
+    sum0 = [0] * (n + 1)
+    sum1 = [0] * (n + 1)
+    for i in xrange(n):
+        sum0[i + 1] = sum0[i] + a[i]
+    for i in xrange(n - 1, -1, -1):
+        sum1[i] = sum1[i + 1] + a[i]
+    allv = sum0[-1]
+    bestAnswer = allv
+    j = 0
+    for i in xrange(n + 1):
+        if sum0[i] >= allv:
+            break
+        ps = allv - sum0[i]
+        j = max(j - 1, i)
+        while j <= n:
+            v1 = sum1[j]
+            tmp = max(sum0[i], v1, ps - v1)
+            if tmp < bestAnswer:
+                bestAnswer = tmp
+            if float(v1) > ps / 2.0:
+                j += 1
+            else:
+                break
+    answer = 1.0 - float(bestAnswer) / float(allv)
+    return bestAnswer
+
+def func_806e930697524185bbebeb204eb8d107(aa, n, x):
+    a = [x for x in aa if x != 0]
+    n = len(a)
+    sum0 = [0] * (n + 1)
+    sum1 = [0] * (n + 1)
+    for i in xrange(n):
+        sum0[i + 1] = sum0[i] + a[i]
+    for i in xrange(n - 1, -1, -1):
+        sum1[i] = sum1[i + 1] + a[i]
+    allv = sum0[-1]
+    bestAnswer = allv
+    j = 0
+    for i in xrange(n + 1):
+        if sum0[i] >= allv:
+            break
+        ps = allv - sum0[i]
+        j = max(j - 1, i)
+        while j <= n:
+            v1 = sum1[j]
+            tmp = max(sum0[i], v1, ps - v1)
+            if tmp < bestAnswer:
+                bestAnswer = tmp
+            if float(v1) > ps / 2.0:
+                j += 1
+            else:
+                break
+    return sum0
+
+def func_8832bda2cfa8498696187812379a848a(n, p, q, r, s):
+    aa = [((x * p + q) % r + s) for x in xrange(n)]
+    a = [x for x in aa if x != 0]
+    n = len(a)
+    sum0 = [0] * (n + 1)
+    sum1 = [0] * (n + 1)
+    for i in xrange(n):
+        sum0[i + 1] = sum0[i] + a[i]
+    for i in xrange(n - 1, -1, -1):
+        sum1[i] = sum1[i + 1] + a[i]
+    allv = sum0[-1]
+    bestAnswer = allv
+    j = 0
+    for i in xrange(n + 1):
+        if sum0[i] >= allv:
+            break
+        ps = allv - sum0[i]
+        j = max(j - 1, i)
+        while j <= n:
+            v1 = sum1[j]
+            tmp = max(sum0[i], v1, ps - v1)
+            if tmp < bestAnswer:
+                bestAnswer = tmp
+            if float(v1) > ps / 2.0:
+                j += 1
+            else:
+                break
+    answer = 1.0 - float(bestAnswer) / float(allv)
+    return tmp
+
+def func_b93910b6f3524c5984ad8c3ec37e1e71(aa, n, x):
+    a = [x for x in aa if x != 0]
+    n = len(a)
+    sum0 = [0] * (n + 1)
+    sum1 = [0] * (n + 1)
+    for i in xrange(n):
+        sum0[i + 1] = sum0[i] + a[i]
+    for i in xrange(n - 1, -1, -1):
+        sum1[i] = sum1[i + 1] + a[i]
+    allv = sum0[-1]
+    bestAnswer = allv
+    j = 0
+    for i in xrange(n + 1):
+        if sum0[i] >= allv:
+            break
+        ps = allv - sum0[i]
+        j = max(j - 1, i)
+        while j <= n:
+            v1 = sum1[j]
+            tmp = max(sum0[i], v1, ps - v1)
+            if tmp < bestAnswer:
+                bestAnswer = tmp
+            if float(v1) > ps / 2.0:
+                j += 1
+            else:
+                break
+    return i
+
+*********************************
+
+#### Score: 9.17180
+
+
+#### Java Tokens: sum1, sum2, max, rate, tmp, ans, maxsum, sum, math, sum3 
+
+public static int func_ba7d6bf035784de2ad588a9e168b8e20(int n, int x, int y, long sum, long[] a) { 
+ long tmp = 0;
+for (int i = 0; i < n; i++) {
+    tmp += a[i];
+    if (tmp * 3 <= sum) {
+        x = i;
+    }
+    if (tmp * 3 <= sum * 2) {
+        y = i;
+    }
+}
+double ans = 0;
+for (int dx = -3; dx <= 3; dx++) {
+    for (int dy = -3; dy <= 3; dy++) {
+        int rx = x + dx;
+        int ry = y + dy;
+        if (rx < 0 || rx >= n || ry < 0 || ry >= n) {
+            continue;
+        }
+        long sum1 = 0, sum2 = 0, sum3 = 0;
+        for (int i = 0; i < n; i++) {
+            if (i < rx) {
+                sum1 += a[i];
+            } else {
+                if (i <= ry) {
+                    sum2 += a[i];
+                } else {
+                    sum3 += a[i];
+                }
+            }
+        }
+        long maxSum = Math.max(sum1, Math.max(sum2, sum3));
+        double rate = (sum - maxSum) * 1.0 / sum;
+        if (rate > ans) {
+            ans = rate;
+        }
+    // out.write(maxSum + " " + sum + "\n");
+    }
+}
+return x;
+}
+
+
+public static long[] func_af9d5e4d1f7b448c957c054b2cb5b76b(int n, int p, int q, int s, int r) { 
+ long[] a = new long[n];
+long sum = 0;
+for (int i = 0; i < n; i++) {
+    a[i] = ((long) i * p + q) % r + s;
+    sum += a[i];
+}
+int x = 0, y = 0;
+long tmp = 0;
+for (int i = 0; i < n; i++) {
+    tmp += a[i];
+    if (tmp * 3 <= sum) {
+        x = i;
+    }
+    if (tmp * 3 <= sum * 2) {
+        y = i;
+    }
+}
+double ans = 0;
+for (int dx = -3; dx <= 3; dx++) {
+    for (int dy = -3; dy <= 3; dy++) {
+        int rx = x + dx;
+        int ry = y + dy;
+        if (rx < 0 || rx >= n || ry < 0 || ry >= n) {
+            continue;
+        }
+        long sum1 = 0, sum2 = 0, sum3 = 0;
+        for (int i = 0; i < n; i++) {
+            if (i < rx) {
+                sum1 += a[i];
+            } else {
+                if (i <= ry) {
+                    sum2 += a[i];
+                } else {
+                    sum3 += a[i];
+                }
+            }
+        }
+        long maxSum = Math.max(sum1, Math.max(sum2, sum3));
+        double rate = (sum - maxSum) * 1.0 / sum;
+        if (rate > ans) {
+            ans = rate;
+        }
+    // out.write(maxSum + " " + sum + "\n");
+    }
+}
+return a;
+}
+
+
+public static int func_07f330766e934324a76e4c3e8d07ee60(int n, int p, int q, int s, int r) { 
+ long[] a = new long[n];
+long sum = 0;
+for (int i = 0; i < n; i++) {
+    a[i] = ((long) i * p + q) % r + s;
+    sum += a[i];
+}
+int x = 0, y = 0;
+long tmp = 0;
+for (int i = 0; i < n; i++) {
+    tmp += a[i];
+    if (tmp * 3 <= sum) {
+        x = i;
+    }
+    if (tmp * 3 <= sum * 2) {
+        y = i;
+    }
+}
+double ans = 0;
+for (int dx = -3; dx <= 3; dx++) {
+    for (int dy = -3; dy <= 3; dy++) {
+        int rx = x + dx;
+        int ry = y + dy;
+        if (rx < 0 || rx >= n || ry < 0 || ry >= n) {
+            continue;
+        }
+        long sum1 = 0, sum2 = 0, sum3 = 0;
+        for (int i = 0; i < n; i++) {
+            if (i < rx) {
+                sum1 += a[i];
+            } else {
+                if (i <= ry) {
+                    sum2 += a[i];
+                } else {
+                    sum3 += a[i];
+                }
+            }
+        }
+        long maxSum = Math.max(sum1, Math.max(sum2, sum3));
+        double rate = (sum - maxSum) * 1.0 / sum;
+        if (rate > ans) {
+            ans = rate;
+        }
+    // out.write(maxSum + " " + sum + "\n");
+    }
+}
+return x;
+}
+
+
+*********************************
+
+#### Score: 8.08315
+
+
+#### Java Tokens: next, nextint, max, ans, maxsum, sum, int, sum1, sum2, rate, tmp, math, sum3 
+
+public static double func_f8ee74f6c8d2414ba8c642a802cd501b(int n, int p, int q, int r, Scanner sc) { 
+ int s = sc.nextInt();
+long[] a = new long[n];
+long sum = 0;
+for (int i = 0; i < n; i++) {
+    a[i] = ((long) i * p + q) % r + s;
+    sum += a[i];
+}
+int x = 0, y = 0;
+long tmp = 0;
+for (int i = 0; i < n; i++) {
+    tmp += a[i];
+    if (tmp * 3 <= sum) {
+        x = i;
+    }
+    if (tmp * 3 <= sum * 2) {
+        y = i;
+    }
+}
+double ans = 0;
+for (int dx = -3; dx <= 3; dx++) {
+    for (int dy = -3; dy <= 3; dy++) {
+        int rx = x + dx;
+        int ry = y + dy;
+        if (rx < 0 || rx >= n || ry < 0 || ry >= n) {
+            continue;
+        }
+        long sum1 = 0, sum2 = 0, sum3 = 0;
+        for (int i = 0; i < n; i++) {
+            if (i < rx) {
+                sum1 += a[i];
+            } else {
+                if (i <= ry) {
+                    sum2 += a[i];
+                } else {
+                    sum3 += a[i];
+                }
+            }
+        }
+        long maxSum = Math.max(sum1, Math.max(sum2, sum3));
+        double rate = (sum - maxSum) * 1.0 / sum;
+        if (rate > ans) {
+            ans = rate;
+        }
+    // out.write(maxSum + " " + sum + "\n");
+    }
+}
+return ans;
+}
+
+
+public static long func_79e06d6f149548ffa1368fc3ad73ed29(int n, int p, int q, int r, Scanner sc) { 
+ int s = sc.nextInt();
+long[] a = new long[n];
+long sum = 0;
+for (int i = 0; i < n; i++) {
+    a[i] = ((long) i * p + q) % r + s;
+    sum += a[i];
+}
+int x = 0, y = 0;
+long tmp = 0;
+for (int i = 0; i < n; i++) {
+    tmp += a[i];
+    if (tmp * 3 <= sum) {
+        x = i;
+    }
+    if (tmp * 3 <= sum * 2) {
+        y = i;
+    }
+}
+double ans = 0;
+for (int dx = -3; dx <= 3; dx++) {
+    for (int dy = -3; dy <= 3; dy++) {
+        int rx = x + dx;
+        int ry = y + dy;
+        if (rx < 0 || rx >= n || ry < 0 || ry >= n) {
+            continue;
+        }
+        long sum1 = 0, sum2 = 0, sum3 = 0;
+        for (int i = 0; i < n; i++) {
+            if (i < rx) {
+                sum1 += a[i];
+            } else {
+                if (i <= ry) {
+                    sum2 += a[i];
+                } else {
+                    sum3 += a[i];
+                }
+            }
+        }
+        long maxSum = Math.max(sum1, Math.max(sum2, sum3));
+        double rate = (sum - maxSum) * 1.0 / sum;
+        if (rate > ans) {
+            ans = rate;
+        }
+    // out.write(maxSum + " " + sum + "\n");
+    }
+}
+return tmp;
+}
+
+
+public static int func_89ebe863a99343199e84c208c5255fae(Scanner sc) { 
+ int n = sc.nextInt();
+int p = sc.nextInt();
+int q = sc.nextInt();
+int r = sc.nextInt();
+int s = sc.nextInt();
+long[] a = new long[n];
+long sum = 0;
+for (int i = 0; i < n; i++) {
+    a[i] = ((long) i * p + q) % r + s;
+    sum += a[i];
+}
+int x = 0, y = 0;
+long tmp = 0;
+for (int i = 0; i < n; i++) {
+    tmp += a[i];
+    if (tmp * 3 <= sum) {
+        x = i;
+    }
+    if (tmp * 3 <= sum * 2) {
+        y = i;
+    }
+}
+double ans = 0;
+for (int dx = -3; dx <= 3; dx++) {
+    for (int dy = -3; dy <= 3; dy++) {
+        int rx = x + dx;
+        int ry = y + dy;
+        if (rx < 0 || rx >= n || ry < 0 || ry >= n) {
+            continue;
+        }
+        long sum1 = 0, sum2 = 0, sum3 = 0;
+        for (int i = 0; i < n; i++) {
+            if (i < rx) {
+                sum1 += a[i];
+            } else {
+                if (i <= ry) {
+                    sum2 += a[i];
+                } else {
+                    sum3 += a[i];
+                }
+            }
+        }
+        long maxSum = Math.max(sum1, Math.max(sum2, sum3));
+        double rate = (sum - maxSum) * 1.0 / sum;
+        if (rate > ans) {
+            ans = rate;
+        }
+    // out.write(maxSum + " " + sum + "\n");
+    }
+}
+return r;
+}
+
+
+*********************************
+
+#### Score: 7.73751
+
+
+#### Java Tokens: sub, min, answer, max, subsum, best, sum, math, n-- 
+
+public static long func_46d07cdc1d3b47cca724f82eda3730df(int N, long sum, long[] best, long[] A) { 
+ long min = best[N - 1];
+long subSum = 0;
+for (int n = N - 1; n >= 1; n--) {
+    subSum += A[n];
+    min = Math.min(min, Math.max(subSum, best[n - 1]));
+}
+double answer = (sum - min) / (double) sum;
+return subSum;
+}
+
+
+public static double func_2377f49406914e328597a05e642104f5(int N, long sum, long[] best, long[] A) { 
+ long min = best[N - 1];
+long subSum = 0;
+for (int n = N - 1; n >= 1; n--) {
+    subSum += A[n];
+    min = Math.min(min, Math.max(subSum, best[n - 1]));
+}
+double answer = (sum - min) / (double) sum;
+return answer;
+}
+
+
+public static long func_2aa1ff7540e34c8a9c69da057b4deee9(int N, long sum, long[] best, long[] A) { 
+ long min = best[N - 1];
+long subSum = 0;
+for (int n = N - 1; n >= 1; n--) {
+    subSum += A[n];
+    min = Math.min(min, Math.max(subSum, best[n - 1]));
+}
+double answer = (sum - min) / (double) sum;
+return min;
+}
+
+
+*********************************
+
+#### Score: 7.73751
+
+
+#### Java Tokens: sub, min, answer, max, subsum, sum, best, math, n-- 
+
+public static double func_08bcd5b6ab6845fa8f67aae442da48b7(int N, long min, long sum, long[] best, long[] A) { 
+ long subSum = 0;
+for (int n = N - 1; n >= 1; n--) {
+    subSum += A[n];
+    min = Math.min(min, Math.max(subSum, best[n - 1]));
+}
+double answer = (sum - min) / (double) sum;
+return answer;
+}
+
+
+public static long func_99dff45c18cd4546a25e6f2af492f72e(int N, long min, long sum, long[] best, long[] A) { 
+ long subSum = 0;
+for (int n = N - 1; n >= 1; n--) {
+    subSum += A[n];
+    min = Math.min(min, Math.max(subSum, best[n - 1]));
+}
+double answer = (sum - min) / (double) sum;
+return min;
+}
+
+
+public static long func_f54dd5f559284bf38ab30e60bee0cebb(int N, long min, long sum, long[] best, long[] A) { 
+ long subSum = 0;
+for (int n = N - 1; n >= 1; n--) {
+    subSum += A[n];
+    min = Math.min(min, Math.max(subSum, best[n - 1]));
+}
+double answer = (sum - min) / (double) sum;
+return subSum;
+}
+
+
+*********************************
+
+#### Score: 6.67522
+
+
+#### Java Tokens: res, max, tmp, cnt, length, math 
+
+public static double func_a204f7df34bf45f6955308bf316d912c(int p, int[] x, int[] xx) { 
+ int cnt = 0;
+for (int tmp : x) if (tmp == x[0])
+    ++cnt;
+double res = 0;
+for (int i = 0; i < x.length; ++i) if (x[i] == x[0])
+    res += Math.max((x[i] - xx[i]) * 36.0 / cnt, 0.0);
+return Math.max(res - p, 0);
+
+}
+
+
+public static int func_06f74862d68841b8babbd4f13ed05ad5(int[] x, int[] xx) { 
+ int cnt = 0;
+for (int tmp : x) if (tmp == x[0])
+    ++cnt;
+double res = 0;
+for (int i = 0; i < x.length; ++i) if (x[i] == x[0])
+    res += Math.max((x[i] - xx[i]) * 36.0 / cnt, 0.0);
+return cnt;
+}
+
+
+public static double func_f47e19cec4094934a9ffd7849e212d90(int cnt, int[] x, int[] xx) { 
+ for (int tmp : x) if (tmp == x[0])
+    ++cnt;
+double res = 0;
+for (int i = 0; i < x.length; ++i) if (x[i] == x[0])
+    res += Math.max((x[i] - xx[i]) * 36.0 / cnt, 0.0);
+return res;
+}
+
+
+*********************************
+
+#### Score: 6.52425
+
+
+#### Java Tokens: sub, half, beforehalf, max, sum, best, beforehalfsum, n--, min, answer, subsum, math, value 
+
+public static long func_496996da5dcc4e44afa510507ade5a86(int N, int beforeHalf, long[] best, long[] A) { 
+ long beforeHalfSum = 0;
+long sum = 0;
+for (int n = 0; n < N; n++) {
+    sum += A[n];
+    while (beforeHalf < n && beforeHalfSum + A[beforeHalf] < sum / 2) {
+        beforeHalfSum += A[beforeHalf];
+        beforeHalf++;
+    }
+    long max = sum;
+    if (beforeHalf > 0) {
+        max = Math.max(beforeHalfSum, sum - beforeHalfSum);
+    }
+    if (beforeHalf <= n - 1) {
+        long value = Math.max(beforeHalfSum + A[beforeHalf], sum - beforeHalfSum - A[beforeHalf]);
+        max = Math.min(max, value);
+    }
+    best[n] = max;
+}
+long min = best[N - 1];
+long subSum = 0;
+for (int n = N - 1; n >= 1; n--) {
+    subSum += A[n];
+    min = Math.min(min, Math.max(subSum, best[n - 1]));
+}
+double answer = (sum - min) / (double) sum;
+return min;
+}
+
+
+public static double func_36c6552bf0a74c17b3492d4c55478d74(int N, int beforeHalf, long[] best, long[] A) { 
+ long beforeHalfSum = 0;
+long sum = 0;
+for (int n = 0; n < N; n++) {
+    sum += A[n];
+    while (beforeHalf < n && beforeHalfSum + A[beforeHalf] < sum / 2) {
+        beforeHalfSum += A[beforeHalf];
+        beforeHalf++;
+    }
+    long max = sum;
+    if (beforeHalf > 0) {
+        max = Math.max(beforeHalfSum, sum - beforeHalfSum);
+    }
+    if (beforeHalf <= n - 1) {
+        long value = Math.max(beforeHalfSum + A[beforeHalf], sum - beforeHalfSum - A[beforeHalf]);
+        max = Math.min(max, value);
+    }
+    best[n] = max;
+}
+long min = best[N - 1];
+long subSum = 0;
+for (int n = N - 1; n >= 1; n--) {
+    subSum += A[n];
+    min = Math.min(min, Math.max(subSum, best[n - 1]));
+}
+double answer = (sum - min) / (double) sum;
+return answer;
+}
+
+
+public static long func_8c2da18f2ce44d95acbf383680c8dc30(int N, int beforeHalf, long[] best, long[] A) { 
+ long beforeHalfSum = 0;
+long sum = 0;
+for (int n = 0; n < N; n++) {
+    sum += A[n];
+    while (beforeHalf < n && beforeHalfSum + A[beforeHalf] < sum / 2) {
+        beforeHalfSum += A[beforeHalf];
+        beforeHalf++;
+    }
+    long max = sum;
+    if (beforeHalf > 0) {
+        max = Math.max(beforeHalfSum, sum - beforeHalfSum);
+    }
+    if (beforeHalf <= n - 1) {
+        long value = Math.max(beforeHalfSum + A[beforeHalf], sum - beforeHalfSum - A[beforeHalf]);
+        max = Math.min(max, value);
+    }
+    best[n] = max;
+}
+long min = best[N - 1];
+long subSum = 0;
+for (int n = N - 1; n >= 1; n--) {
+    subSum += A[n];
+    min = Math.min(min, Math.max(subSum, best[n - 1]));
+}
+double answer = (sum - min) / (double) sum;
+return beforeHalfSum;
+}
+
+
+*********************************
+
+#### Score: 6.52425
+
+
+#### Java Tokens: sub, beforehalf, half, max, best, sum, beforehalfsum, n--, min, answer, subsum, math, value 
+
+public static long func_464f343c945d4d4191350cb335002739(int N, long[] A) { 
+ long[] best = new long[N];
+int beforeHalf = 0;
+long beforeHalfSum = 0;
+long sum = 0;
+for (int n = 0; n < N; n++) {
+    sum += A[n];
+    while (beforeHalf < n && beforeHalfSum + A[beforeHalf] < sum / 2) {
+        beforeHalfSum += A[beforeHalf];
+        beforeHalf++;
+    }
+    long max = sum;
+    if (beforeHalf > 0) {
+        max = Math.max(beforeHalfSum, sum - beforeHalfSum);
+    }
+    if (beforeHalf <= n - 1) {
+        long value = Math.max(beforeHalfSum + A[beforeHalf], sum - beforeHalfSum - A[beforeHalf]);
+        max = Math.min(max, value);
+    }
+    best[n] = max;
+}
+long min = best[N - 1];
+long subSum = 0;
+for (int n = N - 1; n >= 1; n--) {
+    subSum += A[n];
+    min = Math.min(min, Math.max(subSum, best[n - 1]));
+}
+double answer = (sum - min) / (double) sum;
+return subSum;
+}
+
+
+public static long func_2103ae7a7f6d4f4c9830a9789d8f17cb(int N, long q, long p, long r, long s) { 
+ long[] A = new long[N];
+for (int n = 0; n < N; n++) {
+    A[n] = (n * p + q) % r + s;
+}
+long[] best = new long[N];
+int beforeHalf = 0;
+long beforeHalfSum = 0;
+long sum = 0;
+for (int n = 0; n < N; n++) {
+    sum += A[n];
+    while (beforeHalf < n && beforeHalfSum + A[beforeHalf] < sum / 2) {
+        beforeHalfSum += A[beforeHalf];
+        beforeHalf++;
+    }
+    long max = sum;
+    if (beforeHalf > 0) {
+        max = Math.max(beforeHalfSum, sum - beforeHalfSum);
+    }
+    if (beforeHalf <= n - 1) {
+        long value = Math.max(beforeHalfSum + A[beforeHalf], sum - beforeHalfSum - A[beforeHalf]);
+        max = Math.min(max, value);
+    }
+    best[n] = max;
+}
+long min = best[N - 1];
+long subSum = 0;
+for (int n = N - 1; n >= 1; n--) {
+    subSum += A[n];
+    min = Math.min(min, Math.max(subSum, best[n - 1]));
+}
+double answer = (sum - min) / (double) sum;
+return beforeHalfSum;
+}
+
+
+public static long func_fbdaadd299fd4452a97fdfab10007e83(int N, long[] A) { 
+ long[] best = new long[N];
+int beforeHalf = 0;
+long beforeHalfSum = 0;
+long sum = 0;
+for (int n = 0; n < N; n++) {
+    sum += A[n];
+    while (beforeHalf < n && beforeHalfSum + A[beforeHalf] < sum / 2) {
+        beforeHalfSum += A[beforeHalf];
+        beforeHalf++;
+    }
+    long max = sum;
+    if (beforeHalf > 0) {
+        max = Math.max(beforeHalfSum, sum - beforeHalfSum);
+    }
+    if (beforeHalf <= n - 1) {
+        long value = Math.max(beforeHalfSum + A[beforeHalf], sum - beforeHalfSum - A[beforeHalf]);
+        max = Math.min(max, value);
+    }
+    best[n] = max;
+}
+long min = best[N - 1];
+long subSum = 0;
+for (int n = N - 1; n >= 1; n--) {
+    subSum += A[n];
+    min = Math.min(min, Math.max(subSum, best[n - 1]));
+}
+double answer = (sum - min) / (double) sum;
+return beforeHalfSum;
+}
+
+
+*********************************
+
+#### Score: 6.52425
+
+
+#### Java Tokens: sub, beforehalf, half, max, sum, best, beforehalfsum, n--, min, answer, subsum, math, value 
+
+public static long func_8265b0e17fc949a380399f9693f41bd4(int N, long[] best, long[] A) { 
+ int beforeHalf = 0;
+long beforeHalfSum = 0;
+long sum = 0;
+for (int n = 0; n < N; n++) {
+    sum += A[n];
+    while (beforeHalf < n && beforeHalfSum + A[beforeHalf] < sum / 2) {
+        beforeHalfSum += A[beforeHalf];
+        beforeHalf++;
+    }
+    long max = sum;
+    if (beforeHalf > 0) {
+        max = Math.max(beforeHalfSum, sum - beforeHalfSum);
+    }
+    if (beforeHalf <= n - 1) {
+        long value = Math.max(beforeHalfSum + A[beforeHalf], sum - beforeHalfSum - A[beforeHalf]);
+        max = Math.min(max, value);
+    }
+    best[n] = max;
+}
+long min = best[N - 1];
+long subSum = 0;
+for (int n = N - 1; n >= 1; n--) {
+    subSum += A[n];
+    min = Math.min(min, Math.max(subSum, best[n - 1]));
+}
+double answer = (sum - min) / (double) sum;
+return subSum;
+}
+
+
+public static long func_c720c1c22ad143649c271c9e7b6e1a2f(int N, int beforeHalf, long beforeHalfSum, long[] best, long[] A) { 
+ long sum = 0;
+for (int n = 0; n < N; n++) {
+    sum += A[n];
+    while (beforeHalf < n && beforeHalfSum + A[beforeHalf] < sum / 2) {
+        beforeHalfSum += A[beforeHalf];
+        beforeHalf++;
+    }
+    long max = sum;
+    if (beforeHalf > 0) {
+        max = Math.max(beforeHalfSum, sum - beforeHalfSum);
+    }
+    if (beforeHalf <= n - 1) {
+        long value = Math.max(beforeHalfSum + A[beforeHalf], sum - beforeHalfSum - A[beforeHalf]);
+        max = Math.min(max, value);
+    }
+    best[n] = max;
+}
+long min = best[N - 1];
+long subSum = 0;
+for (int n = N - 1; n >= 1; n--) {
+    subSum += A[n];
+    min = Math.min(min, Math.max(subSum, best[n - 1]));
+}
+double answer = (sum - min) / (double) sum;
+return beforeHalfSum;
+}
+
+
+public static long func_e3225d8680fc41cbba56021b6b7d2de1(int N, long[] best, long[] A) { 
+ int beforeHalf = 0;
+long beforeHalfSum = 0;
+long sum = 0;
+for (int n = 0; n < N; n++) {
+    sum += A[n];
+    while (beforeHalf < n && beforeHalfSum + A[beforeHalf] < sum / 2) {
+        beforeHalfSum += A[beforeHalf];
+        beforeHalf++;
+    }
+    long max = sum;
+    if (beforeHalf > 0) {
+        max = Math.max(beforeHalfSum, sum - beforeHalfSum);
+    }
+    if (beforeHalf <= n - 1) {
+        long value = Math.max(beforeHalfSum + A[beforeHalf], sum - beforeHalfSum - A[beforeHalf]);
+        max = Math.min(max, value);
+    }
+    best[n] = max;
+}
+long min = best[N - 1];
+long subSum = 0;
+for (int n = N - 1; n >= 1; n--) {
+    subSum += A[n];
+    min = Math.min(min, Math.max(subSum, best[n - 1]));
+}
+double answer = (sum - min) / (double) sum;
+return sum;
+}
+
+
+*********************************
+
+#### Score: 6.44213
+
+
+#### Java Tokens: toadd, add, answer, max, math, win 
+
+public static long func_04347b26a8e240779d233405efef964d(int i, long win, long required, long toAdd, double answer) { 
+ win += toAdd * i;
+answer = Math.max(answer, 36d / i * win - required);
+return win;
+}
+
+
+public static double func_2d1ae8ca31d84299af32ee6559aa4570(int i, long win, long required, long toAdd, double answer) { 
+ win += toAdd * i;
+answer = Math.max(answer, 36d / i * win - required);
+return answer;
+}
+
+
+*********************************
+
+#### Score: 6.39916
+
+
+#### Java Tokens: sum1, sum2, max, maxsum, sum, math, sum3 
+
+public static long func_b67e9ae03acc46b9b5b27ef83cbf5970(int n, int ry, int rx, long[] a) { 
+ long sum1 = 0, sum2 = 0, sum3 = 0;
+for (int i = 0; i < n; i++) {
+    if (i < rx) {
+        sum1 += a[i];
+    } else {
+        if (i <= ry) {
+            sum2 += a[i];
+        } else {
+            sum3 += a[i];
+        }
+    }
+}
+long maxSum = Math.max(sum1, Math.max(sum2, sum3));
+return maxSum;
+}
+
+
+public static long func_144d752ff467476c81adfa313ea3d83c(int n, int ry, int rx, long[] a) { 
+ long sum1 = 0, sum2 = 0, sum3 = 0;
+for (int i = 0; i < n; i++) {
+    if (i < rx) {
+        sum1 += a[i];
+    } else {
+        if (i <= ry) {
+            sum2 += a[i];
+        } else {
+            sum3 += a[i];
+        }
+    }
+}
+long maxSum = Math.max(sum1, Math.max(sum2, sum3));
+return sum1;
+}
+
+
+public static long func_12a758e4adfd4eb9ba582d8adb82035e(int n, int ry, int rx, long[] a) { 
+ long sum1 = 0, sum2 = 0, sum3 = 0;
+for (int i = 0; i < n; i++) {
+    if (i < rx) {
+        sum1 += a[i];
+    } else {
+        if (i <= ry) {
+            sum2 += a[i];
+        } else {
+            sum3 += a[i];
+        }
+    }
+}
+long maxSum = Math.max(sum1, Math.max(sum2, sum3));
+return sum2;
+}
+

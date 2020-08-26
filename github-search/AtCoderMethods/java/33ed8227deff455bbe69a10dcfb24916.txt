@@ -1,0 +1,9 @@
+
+char readChar(boolean skip) throws java.io.IOException {
+    if (skip) {
+        byte c;
+        while ((c = read()) == ' ' || c == '\n' || c == '\r') ;
+        return (char) c;
+    }
+    return (char) read();
+}

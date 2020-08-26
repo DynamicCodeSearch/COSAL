@@ -1,0 +1,14 @@
+public void solve(int testNumber, Scanner in, PrintWriter out) {
+    int h = in.nextInt(), w = in.nextInt();
+    if (h % 3 == 0 || w % 3 == 0) {
+        out.println(0);
+    } else {
+        int res = Integer.MAX_VALUE;
+        if (h > 2)
+            res = Math.min(res, w);
+        if (w > 2)
+            res = Math.min(res, h);
+        int tmp = Math.min(gao(h, w), gao(w, h));
+        out.println(Math.min(res, tmp));
+    }
+}

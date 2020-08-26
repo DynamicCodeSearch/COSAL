@@ -1,0 +1,16 @@
+void solve() throws IOException {
+    int N = ni();
+    int[] a = nia(N);
+    int l, r;
+    long sum = 0;
+    for (l = 0, r = 1; r < N; r++) {
+        if (a[r] <= a[r - 1]) {
+            long n = r - l;
+            sum += n * (n + 1) / 2;
+            l = r;
+        }
+    }
+    long n2 = r - l;
+    sum += n2 * (n2 + 1) / 2;
+    out.println(sum);
+}

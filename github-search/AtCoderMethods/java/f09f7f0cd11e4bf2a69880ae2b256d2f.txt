@@ -1,0 +1,25 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    long n = sc.nextInt(), m = sc.nextInt();
+    long min = Long.MAX_VALUE;
+    for (long i = 0; i < n - 1; i++) {
+        long first = (i + 1) * m;
+        long leftRows = n - i - 1;
+        long second = (m / 2) * leftRows, third = ((m + 1) / 2) * leftRows;
+        long second2 = (leftRows / 2) * m, third2 = ((leftRows + 1) / 2) * m;
+        min = Math.min(min, Math.max(first, Math.max(second, third)) - Math.min(first, Math.min(second, third)));
+        min = Math.min(min, Math.max(first, Math.max(second2, third2)) - Math.min(first, Math.min(second2, third2)));
+    }
+    for (int i = 0; i < m - 1; i++) {
+        long first = (i + 1) * n;
+        long leftCols = m - i - 1;
+        long second = (n / 2) * leftCols, third = ((n + 1) / 2) * leftCols;
+        long second2 = (leftCols / 2) * n, third2 = ((leftCols + 1) / 2) * n;
+        min = Math.min(min, Math.max(first, Math.max(second, third)) - Math.min(first, Math.min(second, third)));
+        min = Math.min(min, Math.max(first, Math.max(second2, third2)) - Math.min(first, Math.min(second2, third2)));
+    }
+    out.println(min);
+    out.flush();
+    out.close();
+}

@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    int n;
+    int[] a = new int[100010];
+    int[] dp = new int[100010];
+    Scanner input = new Scanner(System.in);
+    n = input.nextInt();
+    for (int i = 0; i < n; i++) {
+        a[i] = input.nextInt();
+    }
+    for (int i = 0; i < n + 5; i++) {
+        dp[i] = 1001001001;
+    }
+    dp[0] = 0;
+    for (int i = 0; i < n; i++) {
+        dp[i + 1] = Math.min(dp[i + 1], dp[i] + Math.abs(a[i] - a[i + 1]));
+        dp[i + 2] = Math.min(dp[i + 2], dp[i] + Math.abs(a[i] - a[i + 2]));
+    }
+    System.out.println(dp[n - 1]);
+}

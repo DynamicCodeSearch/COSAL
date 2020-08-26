@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    try (Scanner scan = new Scanner(System.in)) {
+        int A = Integer.parseInt(scan.next());
+        int B = Integer.parseInt(scan.next());
+        int C = Integer.parseInt(scan.next());
+        int sum = 0;
+        if (A < B) {
+            sum += (C / A);
+            int rem = (C % A);
+            sum += (rem / B);
+        } else {
+            sum += (C / B);
+            int rem = (C % B);
+            sum += (rem / A);
+        }
+        System.out.println(sum);
+    }
+}

@@ -1,0 +1,11 @@
+public int MaxFlow(int s, int t) {
+    build();
+    int flow = 0;
+    for (; ; ) {
+        bfs(s);
+        if (level[t] < 0)
+            return flow;
+        for (int i = 0; i < iter.length; i++) iter[i] = g.head[i];
+        for (int f = 0; (f = dfs(s, t, INF)) > 0; ) flow += f;
+    }
+}

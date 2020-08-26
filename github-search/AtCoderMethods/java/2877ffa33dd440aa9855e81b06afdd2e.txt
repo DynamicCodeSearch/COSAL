@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    long want = 2_000_000_000_000L;
+    long a = sc.nextLong();
+    long k = sc.nextLong();
+    if (k == 0) {
+        System.out.println(want - a);
+    } else {
+        long x = a;
+        for (int i = 1; ; i++) {
+            x += 1 + k * x;
+            if (x >= want) {
+                System.out.println(i);
+                return;
+            }
+        }
+    }
+}

@@ -1,0 +1,39 @@
+void run() {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    Box[] box = new Box[n];
+    for (int i = 0; i < n; i++) {
+        box[i] = new Box(sc.nextInt(), sc.nextInt());
+    }
+    Arrays.sort(box, new Comparator<Box>() {
+
+        @Override
+        public int compare(Box o1, Box o2) {
+            if (o1.w != o2.w) {
+                return o1.w - o2.w;
+            }
+            return o2.h - o1.h;
+        }
+    });
+    for (int i = 0; i < n; i++) {
+        box[i].num = i;
+    }
+    Arrays.sort(box, new Comparator<Box>() {
+
+        @Override
+        public int compare(Box o1, Box o2) {
+            if (o1.h != o2.h) {
+                return o1.h - o2.h;
+            }
+            return o2.w - o1.w;
+        }
+    });
+    SegmentTree st = new SegmentTree(n + 1);
+    int max = 0;
+    for (int i = 0; i < n; i++) {
+        int val = st.max(0, box[i].num);
+        st.update(box[i].num, val + 1);
+        max = Math.max(max, val + 1);
+    }
+    System.out.println(max);
+}

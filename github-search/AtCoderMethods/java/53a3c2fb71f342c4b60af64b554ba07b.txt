@@ -1,0 +1,41 @@
+public static void main(String[] args) throws Exception {
+    String sa = scn.next();
+    String sb = scn.next();
+    String sc = scn.next();
+    int la = sa.length();
+    int lb = sb.length();
+    int lc = sc.length();
+    int a = 0;
+    int b = 0;
+    int c = 0;
+    int n = 0;
+    while (true) {
+        char t = ' ';
+        if (n == 0) {
+            if (a == la) {
+                System.out.println("A");
+                return;
+            }
+            t = sa.charAt(a++);
+        } else if (n == 1) {
+            if (b == lb) {
+                System.out.println("B");
+                return;
+            }
+            t = sb.charAt(b++);
+        } else if (n == 2) {
+            if (c == lc) {
+                System.out.println("C");
+                return;
+            }
+            t = sc.charAt(c++);
+        }
+        if (t == 'a') {
+            n = 0;
+        } else if (t == 'b') {
+            n = 1;
+        } else if (t == 'c') {
+            n = 2;
+        }
+    }
+}

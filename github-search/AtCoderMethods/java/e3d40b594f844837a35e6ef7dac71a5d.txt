@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    InputStream inputStream = System.in;
+    OutputStream outputStream = System.out;
+    Reader sn = new Reader(inputStream);
+    PrintWriter out = new PrintWriter(outputStream);
+    int n = sn.nextInt();
+    int k = sn.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < a.length; i++) {
+        a[i] = sn.nextInt();
+    }
+    
+    int res = 0;
+    Arrays.sort(a);
+    for (int i = n - k; i < n; i++) {
+        res += a[i];
+    }
+    out.println(res);
+    out.close();
+}

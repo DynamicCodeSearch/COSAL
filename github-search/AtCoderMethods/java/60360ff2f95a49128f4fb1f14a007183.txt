@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    Printer pr = new Printer(System.out);
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    int t = sc.nextInt();
+    int[] aa = new int[n];
+    for (int i = 0; i < n; i++) {
+        aa[i] = sc.nextInt();
+    }
+    Dijkstra di1 = new Dijkstra(n);
+    Dijkstra di2 = new Dijkstra(n);
+    for (int i = 0; i < m; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        int c = sc.nextInt();
+        di1.addEdge(a, b, c);
+        di2.addEdge(b, a, c);
+    }
+    long max = 0;
+    for (int i = 0; i < n; i++) {
+        long rem = t - di1.getShortestPath(0, i) - di2.getShortestPath(0, i);
+        if (rem >= 0) {
+            max = Math.max(max, rem * aa[i]);
+        }
+    }
+    System.out.println(max);
+    pr.close();
+    sc.close();
+}

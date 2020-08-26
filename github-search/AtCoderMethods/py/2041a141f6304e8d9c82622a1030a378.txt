@@ -1,0 +1,12 @@
+def check(H,W):
+    x = int(W/3)
+    x2 = int((W-x)/2)
+    x3 = int(W-x-x2)
+    S = [x*H, x2*H, x3*H]
+    mx = max(S) - min(S)
+    y = int(H/3)
+    y2 = int((H-y)/2)
+    y3 = int(H-y-y2)
+    S = [W*y, W*y2, W*y3]
+    my = max(S) - min(S)
+    return min(mx, my)

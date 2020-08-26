@@ -1,0 +1,16 @@
+private static boolean isOKx(int jx, int jy, int mask) {
+    int lx = jx - 1;
+    int rx = jx + 1;
+    if (lx < 0 || rx >= 5) {
+        return true;
+    }
+    int ltmp = 0x1 << (lx + jy * 5);
+    int rtmp = 0x1 << (rx + jy * 5);
+    if ((mask & ltmp) == 0 && (mask & rtmp) == 0) {
+        return true;
+    }
+    if ((mask & ltmp) != 0 && (mask & rtmp) != 0) {
+        return true;
+    }
+    return false;
+}

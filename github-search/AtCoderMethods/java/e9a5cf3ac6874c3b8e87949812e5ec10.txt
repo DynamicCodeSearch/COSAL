@@ -1,0 +1,36 @@
+private static void solve() {
+    final int INF = Integer.MAX_VALUE / 2;
+    int n = sc.nextInt();
+    int ma = sc.nextInt();
+    int mb = sc.nextInt();
+    int[][] dp = new int[n * 10 + 1][n * 10 + 1];
+    for (int i = 0; i < n * 10 + 1; i++) {
+        Arrays.fill(dp[i], INF);
+    }
+    dp[0][0] = 0;
+    for (int k = 0; k < n; k++) {
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        int c = sc.nextInt();
+        for (int i = 1 + a; i <= n * 10 + 1; i++) {
+            for (int j = 1 + b; j <= n * 10 + 1; j++) {
+                dp[n * 10 + 1 - i + a][n * 10 + 1 - j + b] = Math.min(dp[n * 10 + 1 - i + a][n * 10 + 1 - j + b], dp[n * 10 + 1 - i][n * 10 + 1 - j] + c);
+                dp[n * 10 + 1 - i + a][n * 10 + 1 - j + b] = Math.min(dp[n * 10 + 1 - i + a][n * 10 + 1 - j + b], INF);
+            }
+        }
+    }
+    int ret = INF;
+    for (int scale = 1; true; scale++) {
+        int a = ma * scale;
+        int b = mb * scale;
+        if (a > n * 10 || b > n * 10) {
+            break;
+        }
+        ret = Math.min(ret, dp[a][b]);
+    }
+    if (ret == INF) {
+        pr.println(-1);
+    } else {
+        pr.println(ret);
+    }
+}

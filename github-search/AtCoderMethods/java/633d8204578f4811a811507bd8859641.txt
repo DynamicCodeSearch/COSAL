@@ -1,0 +1,21 @@
+static char[] cost(int n, char on, char tw, char[] s) {
+    char[] r = new char[n];
+    r[0] = on;
+    r[1] = tw;
+    for (int i = 2; i < n; i++) {
+        if (s[i - 1] == 'o') {
+            if (r[i - 1] == 'S') {
+                r[i] = r[i - 2];
+            } else {
+                r[i] = (r[i - 2] == 'S' ? 'W' : 'S');
+            }
+        } else {
+            if (r[i - 1] == 'S') {
+                r[i] = (r[i - 2] == 'S' ? 'W' : 'S');
+            } else {
+                r[i] = r[i - 2];
+            }
+        }
+    }
+    return r;
+}

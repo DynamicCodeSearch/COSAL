@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    
+    int n = in.nextInt();
+    int t = in.nextInt();
+    
+    int answer = 0;
+    int[] num = new int[n];
+    for (int i = 0; i < n; i++) {
+        num[i] = in.nextInt();
+    }
+    int time = num[0];
+    int doorOpenTill = num[0] + t;
+    for (int i = 1; i < n; i++) {
+        
+        if (num[i] > doorOpenTill) {
+            answer += doorOpenTill - time;
+            time = num[i];
+            doorOpenTill = num[i] + t;
+        } else {
+            answer += num[i] - time;
+            time = num[i];
+            doorOpenTill = num[i] + t;
+        }
+    }
+    answer += doorOpenTill - time;
+    System.out.println(answer);
+}

@@ -1,0 +1,27 @@
+def beam_search(self, start, end, depth=5):
+    if start in self.path and end in self.path[start]:
+        return self.path[start][end]
+    minimum_value = self.big_number
+    stack = [[0, start]]
+    answer = self.big_number
+    while bool(len(stack)):
+        tmp_stack = []
+        for _ in range(depth):
+            if len(stack) == 0:
+                break
+            tmp = heapq.heappop(stack)
+            if tmp[0] >= minimum_value:
+                break
+            if tmp[-1] in self.path:
+                for key in self.path[tmp[-1]]:
+                    value = tmp[0] + self.path[tmp[-1]][key]
+                    if key == end:
+                        if minimum_value >= value:
+                            answer = value
+                            minimum_value = value
+                    else:
+                        if minimum_value >= value and key not in tmp[1:]:
+                            tmp_stack.append([value] + tmp[1:] + [key])
+        for ele in tmp_stack:
+            heapq.heappush(stack, ele)
+    return answer

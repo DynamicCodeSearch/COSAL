@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    try (Scanner sc = new Scanner(System.in)) {
+        int A = sc.nextInt(), B = sc.nextInt(), C = sc.nextInt();
+        boolean[] f = new boolean[B];
+        int now = 0;
+        while (true) {
+            now += A;
+            now %= B;
+            if (now == C) {
+                System.out.println("YES");
+                break;
+            }
+            if (f[now]) {
+                System.out.println("NO");
+                break;
+            }
+            f[now] = true;
+        }
+    }
+}

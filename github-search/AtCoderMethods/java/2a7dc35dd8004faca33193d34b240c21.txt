@@ -1,0 +1,27 @@
+public static void main(String[] args) throws Throwable {
+    MyScanner sc = new MyScanner();
+    PrintWriter pw = new PrintWriter(System.out);
+    n = sc.nextInt();
+    m = sc.nextInt();
+    r = sc.nextInt();
+    a = new int[r];
+    for (int i = 0; i < r; i++) a[i] = sc.nextInt() - 1;
+    adj = new int[n][n];
+    for (int[] x : adj) Arrays.fill(x, inf);
+    for (int i = 0; i < n; i++) adj[i][i] = 0;
+    while (m-- > 0) {
+        int u = sc.nextInt() - 1;
+        int v = sc.nextInt() - 1;
+        int c = sc.nextInt();
+        adj[u][v] = c;
+        adj[v][u] = c;
+    }
+    for (int k = 0; k < n; k++) for (int i = 0; i < n; i++) for (int j = 0; j < n; j++) adj[i][j] = Math.min(adj[i][j], adj[i][k] + adj[k][j]);
+    mem = new int[r][1 << r];
+    for (int[] x : mem) Arrays.fill(x, -1);
+    int ans = dp(0, 1);
+    for (int i = 1; i < r; i++) ans = Math.min(ans, dp(i, 1 << i));
+    pw.println(ans);
+    pw.flush();
+    pw.close();
+}

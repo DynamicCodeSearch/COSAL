@@ -1,0 +1,29 @@
+void delete(Node node) {
+    if (node.left == null && node.right == null) {
+        if (node.parent == null) {
+            root = null;
+            return;
+        }
+        Node parent = node.parent;
+        if (parent.left == node)
+            parent.left = null;
+        else
+            parent.right = null;
+        rebalance(parent);
+    }
+    if (node.left != null) {
+        Node child = node.left;
+        while (child.right != null) {
+            child = child.right;
+        }
+        node.key = child.key;
+        delete(child);
+    } else if (node.right != null) {
+        Node child = node.right;
+        while (child.left != null) {
+            child = child.left;
+        }
+        node.key = child.key;
+        delete(child);
+    }
+}

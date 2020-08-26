@@ -1,0 +1,17 @@
+static HashMap<Integer, Integer> primeFactor(int n) {
+    HashMap<Integer, Integer> res = new HashMap();
+    for (int i = 2; i * i <= n; i++) {
+        while (n % i == 0) {
+            if (res.containsKey(i)) {
+                res.replace(i, res.get(i) + 1);
+            } else {
+                res.put(i, 1);
+            }
+            n /= i;
+        }
+    }
+    if (n != 1) {
+        res.put(n, 1);
+    }
+    return res;
+}

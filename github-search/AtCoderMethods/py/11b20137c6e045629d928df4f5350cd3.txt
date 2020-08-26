@@ -1,0 +1,10 @@
+@classmethod
+def solve(cls, A, B):
+
+    diff = abs(A - B)
+
+    c = [0] + [diff] * 40
+    for i in range(1, diff + 1):
+        c[i] = min(c[abs(i-1)], c[abs(i-5)], c[abs(i-10)]) + 1
+
+    return c[diff]

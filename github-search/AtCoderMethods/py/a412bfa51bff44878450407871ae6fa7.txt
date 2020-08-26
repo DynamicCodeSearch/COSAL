@@ -1,0 +1,18 @@
+def sol(n, w, wis, vis):
+    rv = 0
+    w1 = wis[0]
+    coll = [[] for _ in xrange(n)]
+    for wi, vi in izip(wis, vis):
+        coll[wi - w1].append(vi)
+    coll = map(lambda x: sorted(x, reverse=True), coll)
+    lis = map(len, coll)
+    for k1 in xrange(min(lis[0] + 1, n + 1)):
+        for k2 in xrange(min(lis[1] + 1, n + 1 - k1)):
+            for k3 in xrange(min(lis[2] + 1, n + 1 - k1 - k2)):
+                for k4 in xrange(min(lis[3] + 1, n + 1 - k1 - k2 - k3)):
+                    kis = [k1, k2, k3, k4]
+                    if sum([(w1 + i) * kis[i] for i in xrange(4)]) > w:
+                        continue
+                    rv = max(rv, sum([sum(coll[i][:kis[i]]) for i in xrange(4)]))
+
+    return rv

@@ -1,0 +1,9 @@
+int get(int ss, int se, int l, int r, int si) {
+    if (l > se || r < ss || l > r)
+        return Integer.MAX_VALUE;
+    if (l <= ss && r >= se)
+        return st[si];
+    int mid = (ss + se) / 2;
+    int val = 2 * si;
+    return (get(ss, mid, l, r, val) + get(mid + 1, se, l, r, val + 1));
+}

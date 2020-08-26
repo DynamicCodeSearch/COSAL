@@ -1,0 +1,46 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int i1 = sc.nextInt();
+    int i2 = sc.nextInt();
+    int i1g = 3;
+    int i2g = 4;
+    int[] g1 = new int[7];
+    int[] g2 = new int[4];
+    g1[0] = 1;
+    g1[1] = 3;
+    g1[2] = 5;
+    g1[3] = 7;
+    g1[4] = 8;
+    g1[5] = 10;
+    g1[6] = 12;
+    g2[0] = 4;
+    g2[1] = 6;
+    g2[2] = 9;
+    g2[3] = 11;
+    if (i1 == 2 && i2 == 2) {
+        System.out.println("Yes");
+    } else {
+        for (int i = 0; i < 7; i++) {
+            if (i1 == g1[i]) {
+                i1g = 1;
+            }
+            if (i2 == g1[i]) {
+                i2g = 1;
+            }
+        }
+        for (int i = 0; i < 4; i++) {
+            if (i1 == g2[i]) {
+                i1g = 2;
+            }
+            if (i2 == g2[i]) {
+                i2g = 2;
+            }
+        }
+        if (i1g == i2g) {
+            System.out.println("Yes");
+        } else {
+            System.out.println("No");
+        }
+    }
+    sc.close();
+}

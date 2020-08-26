@@ -1,0 +1,14 @@
+private static void union(long dy, UnionFind uf, ArrayList<Pair>[] points, int[][] imos, Pair p, int[] degree, Integer x2) {
+    if (x2 == null) {
+        return;
+    }
+    int i1 = Bound.lowerBound(points[x2], p.y - dy);
+    int i2 = Bound.upperBound(points[x2], p.y + dy);
+    if (i1 > i2) {
+        return;
+    }
+    degree[p.i] += i2 - i1 + 1;
+    imos[x2][i1]++;
+    imos[x2][i2]--;
+    uf.union(p.i, points[x2].get(i1).i);
+}

@@ -1,0 +1,36 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String s = sc.next();
+    String[] piano = { "Do", "", "Re", "", "Mi", "Fa", "", "So", "", "La", "", "Si" };
+    int i = 0;
+    int fl = 0;
+    int firstw = -1;
+    int secondw = -1;
+    while (true) {
+        String now = s.substring(i, i + 1);
+        if (now.equals("W")) {
+            fl++;
+            if (fl == 2) {
+                fl = 0;
+                if (firstw == -1) {
+                    firstw = i;
+                } else {
+                    secondw = i;
+                    break;
+                }
+            }
+        } else {
+            fl = 0;
+        }
+        i++;
+    }
+    if (secondw - firstw == 5) {
+        System.out.println(piano[12 - firstw]);
+    } else {
+        if (5 - firstw >= 0) {
+            System.out.println(piano[5 - firstw]);
+        } else {
+            System.out.println(piano[12 - (firstw - 5)]);
+        }
+    }
+}

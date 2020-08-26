@@ -1,0 +1,33 @@
+def main():
+    n = int(sys.stdin.readline())
+
+    line = sys.stdin.readline()
+    lst = line.split()
+
+    cnt_dic = defaultdict(int)
+
+
+
+
+    for ch in lst:
+        rating = int(ch)
+        n = rating // 400
+        if n <= 7:
+            cnt_dic[n] += 1
+        else:
+            cnt_dic[8] += 1
+
+    ans_max = 0
+    ans_min = 0
+    for i in range(0,8):
+        if cnt_dic[i] > 0:
+            ans_max += 1
+            ans_min += 1
+
+    if cnt_dic[8] > 0:
+        ans_max += cnt_dic[8]
+        if ans_min == 0:
+            ans_min += 1
+
+    print("%d %d" % (ans_min, ans_max))
+    return 0

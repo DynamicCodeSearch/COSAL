@@ -1,0 +1,30 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = null;
+    try {
+        br = new BufferedReader(new InputStreamReader(System.in));
+        String nk = br.readLine();
+        String[] work1 = nk.split(" ");
+        int n = Integer.parseInt(work1[0]);
+        int k = Integer.parseInt(work1[1]);
+        String num = br.readLine();
+        String[] work2 = num.split(" ");
+        int[] number = new int[n];
+        for (int i = 0; i < n; i++) {
+            number[i] = Integer.parseInt(work2[i]);
+        }
+        long result = 0;
+        for (int i = 0; i < n - k + 1; i++) {
+            for (int j = i; j < i + k; j++) {
+                result = result + number[j];
+            }
+        }
+        System.out.println(result);
+    } finally {
+        if (br != null) {
+            try {
+                br.close();
+            } catch (IOException e) {
+            }
+        }
+    }
+}

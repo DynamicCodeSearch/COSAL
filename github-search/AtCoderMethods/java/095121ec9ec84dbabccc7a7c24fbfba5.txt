@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    n = sc.nextInt();
+    k = sc.nextLong();
+    a = new int[n];
+    b = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = sc.nextInt();
+        b[i] = sc.nextInt();
+    }
+    Pair[] ba = new Pair[n];
+    for (int i = 0; i < n; i++) {
+        ba[i] = new Pair(a[i], b[i]);
+    }
+    Arrays.sort(ba);
+    int ans = -1;
+    long sum = 0;
+    for (int i = 0; i < n; i++) {
+        sum += (long) ba[i].c;
+        if (sum >= k) {
+            ans = ba[i].v;
+            break;
+        }
+    }
+    System.out.println(ans);
+}

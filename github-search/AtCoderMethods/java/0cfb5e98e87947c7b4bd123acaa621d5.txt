@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String S = sc.nextLine();
+    int N = sc.nextInt();
+    int stringLenfth = S.length();
+    for (int i = 0; i < N; i++) {
+        int left = sc.nextInt() - 1;
+        int right = sc.nextInt();
+        String leftSide = S.substring(0, left);
+        String rightSide = S.substring(right, stringLenfth);
+        String middle = new StringBuilder(S.substring(left, right)).reverse().toString();
+        S = leftSide + middle + rightSide;
+    }
+    System.out.println(S);
+}

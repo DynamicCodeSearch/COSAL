@@ -1,0 +1,12 @@
+static long BinarySearch() {
+    long low = 0, high = (int) 1e9, ans = 0;
+    while (low <= high) {
+        long mid = low + ((high - low) >> 1);
+        if (p(mid)) {
+            high = mid - 1;
+            ans = mid;
+        } else
+            low = mid + 1;
+    }
+    return ans;
+}

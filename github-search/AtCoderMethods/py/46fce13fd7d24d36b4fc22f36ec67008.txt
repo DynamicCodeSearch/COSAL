@@ -1,0 +1,9 @@
+def main():
+    N, K = map(int, input().split())
+    a_list = list(map(int, input().split()))
+
+    c = CumulativeSum(a_list)
+    ans = 0
+    for i in range(N - K + 1):
+        ans += c.total(i, i + K - 1)
+    print(ans)

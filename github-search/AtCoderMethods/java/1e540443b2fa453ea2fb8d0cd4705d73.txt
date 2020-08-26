@@ -1,0 +1,15 @@
+static long PowerMod(long a, long b, long m) {
+    long tempo;
+    if (b == 0)
+        tempo = 1;
+    else if (b == 1)
+        tempo = a;
+    else {
+        long temp = PowerMod(a, b / 2, m);
+        if (b % 2 == 0)
+            tempo = (temp * temp) % m;
+        else
+            tempo = ((temp * temp) % m) * a % m;
+    }
+    return tempo;
+}

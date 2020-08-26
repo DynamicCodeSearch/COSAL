@@ -1,0 +1,14 @@
+public static void main(String[] args) throws Exception {
+    Scanner scanner = new Scanner(System.in);
+    int n = scanner.nextInt();
+    long min = Long.MAX_VALUE;
+    for (int i = 1; i <= n; i++) {
+        int width = i;
+        int height = n / i;
+        long sum = Math.abs(width - height) + (n - width * height);
+        if (sum < min) {
+            min = sum;
+        }
+    }
+    System.out.println(min);
+}

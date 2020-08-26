@@ -1,0 +1,14 @@
+long rec(int y, int x) {
+    if (dp[y][x] > 0)
+        return dp[y][x];
+    long ans = 1;
+    if (y > 0 && a[y][x] > a[y - 1][x])
+        ans = (ans + rec(y - 1, x)) % MOD;
+    if (y < h - 1 && a[y][x] > a[y + 1][x])
+        ans = (ans + rec(y + 1, x)) % MOD;
+    if (x > 0 && a[y][x] > a[y][x - 1])
+        ans = (ans + rec(y, x - 1)) % MOD;
+    if (x < w - 1 && a[y][x] > a[y][x + 1])
+        ans = (ans + rec(y, x + 1)) % MOD;
+    return dp[y][x] = ans;
+}

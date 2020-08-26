@@ -1,0 +1,9 @@
+public String next() throws IOException {
+    int read = skip();
+    do {
+        buffer.append((char) read);
+    } while ((read = inputStream.read()) > 0x20);
+    String text = buffer.toString();
+    buffer.delete(0, buffer.length());
+    return text;
+}

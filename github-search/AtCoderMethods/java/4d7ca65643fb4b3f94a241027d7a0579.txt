@@ -1,0 +1,12 @@
+private boolean can(long packs, long n, long m) {
+    if (m / 2 < packs)
+        return false;
+    m -= packs * 2L;
+    if (n >= packs)
+        return true;
+    long need = 0L;
+    if (n < packs) {
+        need += (packs - n) * 2L;
+    }
+    return m >= need;
+}

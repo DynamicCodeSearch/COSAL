@@ -1,0 +1,34 @@
+public void solve() {
+    long R = nextLong();
+    long B = nextLong();
+    int x = nextInt();
+    int y = nextInt();
+    
+    long low = 0;
+    
+    long high = 1L << 62;
+    long mid = 0;
+    while (low + 1 < high) {
+        mid = (low + high) / 2;
+        
+        long remainR = R - mid;
+        
+        long remainB = B - mid;
+        
+        if (remainR < 0 || remainB < 0) {
+            high = mid;
+            continue;
+        }
+        
+        long red = remainR / (x - 1);
+        
+        long blue = remainB / (y - 1);
+        
+        if (red + blue >= mid) {
+            low = mid;
+        } else {
+            high = mid;
+        }
+    }
+    out.println(low);
+}

@@ -1,0 +1,27 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] a = sc.nextInt(N);
+    boolean[] used = new boolean[N];
+    PriorityQueue<Bar> queue = new PriorityQueue<>(N);
+    queue.add(new Bar(0, 0));
+    while (!queue.isEmpty()) {
+        Bar bar = queue.poll();
+        if (bar.now == N - 1) {
+            System.out.println(bar.cost);
+            return;
+        }
+        if (used[bar.now]) {
+            continue;
+        }
+        used[bar.now] = true;
+        for (int i = 0; i < 2; i++) {
+            int next = bar.now + i + 1;
+            if (next >= N) {
+                break;
+            }
+            int cost = Math.abs(a[bar.now] - a[next]);
+            queue.add(new Bar(bar.cost + cost, next));
+        }
+    }
+}

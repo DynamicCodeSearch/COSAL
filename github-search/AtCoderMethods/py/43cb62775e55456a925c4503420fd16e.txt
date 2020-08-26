@@ -1,0 +1,16 @@
+def main(argv):
+    line = sys.stdin.readline()
+    while line:
+        n, t = map(lambda x: int(x), line.split(" ", 2))
+        showers = map(lambda x: int(x), raw_input().split(" "))
+
+        water = 0
+        stop = 0
+        for shower in showers:
+            if stop > shower:
+                water -= (stop - shower)
+            water += t
+            stop = shower + t
+        print(water)
+
+        line = sys.stdin.readline()

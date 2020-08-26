@@ -1,0 +1,20 @@
+def solve(n, m, weights):
+    score = [-inf] * n
+    score[0] = 0
+    pred = [-1] * n
+
+    for step in range(n):
+        for edge, c in weights.items():
+            a, b = edge
+            if score[b] < score[a] + c:
+                score[b] = score[a] + c
+                pred[b] = a
+
+    b = n - 1
+    while b != 0:
+        a = pred[b]
+        c = weights[(a, b)]
+        if score[b] < score[a] + c:
+            return 'inf'
+        b = a
+    return score[n-1]

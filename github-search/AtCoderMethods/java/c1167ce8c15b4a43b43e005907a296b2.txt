@@ -1,0 +1,19 @@
+public static List<Integer> getPrimes(int limit) {
+    boolean[] primes = new boolean[limit + 1];
+    Arrays.fill(primes, true);
+    primes[1] = false;
+    for (int i = 2; i <= limit; i++) {
+        if (primes[i]) {
+            for (int j = i + i; j <= limit; j += i) {
+                primes[j] = false;
+            }
+        }
+    }
+    List<Integer> listPrimes = new ArrayList<>();
+    for (int i = 2; i <= limit; i++) {
+        if (primes[i]) {
+            listPrimes.add(i);
+        }
+    }
+    return listPrimes;
+}

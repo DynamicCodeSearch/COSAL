@@ -1,0 +1,33 @@
+void solve() throws IOException {
+    int N = ni();
+    int M = ni();
+    int S = ni();
+    G = new ArrayList<>();
+    for (int i = 0; i < N; i++) {
+        G.add(new ArrayList<>());
+    }
+    for (int i = 0; i < M; i++) {
+        int u = ni() - 1;
+        int v = ni() - 1;
+        G.get(u).add(v);
+        G.get(v).add(u);
+    }
+    PriorityQueue<Pair> Q = new PriorityQueue<>();
+    Q.add(new Pair(S - 1, S - 1));
+    int[] max = new int[N];
+    boolean[] used = new boolean[N];
+    while (!Q.isEmpty()) {
+        Pair p = Q.poll();
+        if (used[p.x])
+            continue;
+        used[p.x] = true;
+        max[p.x] = Math.max(max[p.x], p.y);
+        for (int next : G.get(p.x)) {
+            Q.add(new Pair(next, Math.min(next, max[p.x])));
+        }
+    }
+    for (int i = 0; i < N; i++) {
+        if (i <= max[i])
+            out.println(i + 1);
+    }
+}

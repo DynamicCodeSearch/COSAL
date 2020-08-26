@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    n = sc.nextInt();
+    a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = sc.nextInt();
+    }
+    long sum = n;
+    int s = 0, t = 1;
+    while (s <= t && s < n) {
+        long count = 0;
+        while (t < n && a[t - 1] < a[t]) {
+            ++count;
+            ++t;
+        }
+        sum += count * (count + 1) / 2;
+        s = t;
+        t++;
+    }
+    System.out.println(sum);
+}

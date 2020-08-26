@@ -1,0 +1,14 @@
+static long MulMod(long a, long n, long m) {
+    a = a % m;
+    if (a < 0)
+        a = a + m;
+    long mu = 0;
+    while (n >= 1) {
+        if ((n % 2) == 1) {
+            mu = (a + mu) % m;
+        }
+        a = (a * 2) % m;
+        n = n / 2;
+    }
+    return (mu % m);
+}

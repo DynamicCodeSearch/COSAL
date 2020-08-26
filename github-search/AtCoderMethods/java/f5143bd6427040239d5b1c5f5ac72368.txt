@@ -1,0 +1,8 @@
+private static long[] nextCount(int[] rate, long[] count) {
+    int r0 = rate[0];
+    int r1 = rate[1];
+    long n = Math.max((count[0] + r0 - 1) / r0, (count[1] + r1 - 1) / r1);
+    count[0] = r0 * n;
+    count[1] = r1 * n;
+    return count;
+}

@@ -1,0 +1,14 @@
+int msd(boolean[][] map, int[] d, int n) {
+    if (Arrays.stream(d).sum() == d.length)
+        return 1;
+    int ret = 0;
+    for (int i = 0; i < d.length; i++) {
+        if (d[i] != 0 || !map[n][i]) {
+            continue;
+        }
+        int[] nd = d.clone();
+        nd[i] = 1;
+        ret += msd(map, nd, i);
+    }
+    return ret;
+}

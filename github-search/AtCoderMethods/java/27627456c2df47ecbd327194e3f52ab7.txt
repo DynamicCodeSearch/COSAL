@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    PrintWriter out = new PrintWriter(System.out);
+    long a = sc.nextLong();
+    long k = sc.nextLong();
+    if (k == 0) {
+        out.println(2000000000000l - a);
+    } else {
+        long day = 0;
+        while (a < 2000000000000l) {
+            a += 1 + k * a;
+            day++;
+        }
+        out.println(day);
+    }
+    out.flush();
+}

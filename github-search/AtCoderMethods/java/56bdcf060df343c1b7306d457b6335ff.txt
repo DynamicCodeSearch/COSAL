@@ -1,0 +1,40 @@
+public static void solve(PrintWriter out, FastScanner in) {
+    String a = in.next();
+    String b = in.next();
+    String c = in.next();
+    int na = a.length();
+    int nb = b.length();
+    int nc = c.length();
+    int ia = 1;
+    int ib = 0;
+    int ic = 0;
+    char prev = a.charAt(0);
+    loop: while (ia <= na && ib <= nb && ic <= nc) {
+        switch(prev) {
+            case 'a':
+                if (ia == na) {
+                    System.out.println("A");
+                    break loop;
+                }
+                prev = a.charAt(ia);
+                ia++;
+                break;
+            case 'b':
+                if (ib == nb) {
+                    System.out.println("B");
+                    break loop;
+                }
+                prev = b.charAt(ib);
+                ib++;
+                break;
+            case 'c':
+                if (ic == nc) {
+                    System.out.println("C");
+                    break loop;
+                }
+                prev = c.charAt(ic);
+                ic++;
+                break;
+        }
+    }
+}

@@ -1,0 +1,10 @@
+def main():
+    n,m = LI()
+    dk = Dijkstra()
+    for _ in range(m):
+        a,b,t = LI()
+        dk.add(a,b,t)
+
+    r = [dk.search(i) for i in range(1,n+1)]
+
+    return min(r)

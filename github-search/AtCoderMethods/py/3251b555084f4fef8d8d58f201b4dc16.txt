@@ -1,0 +1,11 @@
+def main():
+    k = read_int()
+    n = 50
+    q, r = divmod(k, n)
+    a = [q + (n - 1)] * n
+    for i in range(r):
+        a[i] += n - r + 1
+    for i in range(r, n):
+        a[i] -= r
+    print(n)
+    print(*a)

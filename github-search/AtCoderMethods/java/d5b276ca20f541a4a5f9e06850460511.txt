@@ -1,0 +1,22 @@
+public int getMaxPattern() {
+    int patterns = 0;
+    for (Map.Entry<Rate, Integer> entry : rateDispersion.entrySet()) {
+        if (!entry.getKey().isFreeColor() && entry.getValue() != null && entry.getValue() > 0) {
+            patterns += 1;
+        }
+    }
+    
+    List<Rate> freeColorList = new ArrayList<>();
+    for (Map.Entry<Rate, Integer> entry : rateDispersion.entrySet()) {
+        if (entry.getKey().isFreeColor()) {
+            freeColorList.add(entry.getKey());
+        }
+    }
+    for (Rate freeColorRate : freeColorList) {
+        Integer count = rateDispersion.get(freeColorRate);
+        for (int i = 0; i < count; i++) {
+            patterns += 1;
+        }
+    }
+    return patterns;
+}

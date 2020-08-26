@@ -1,0 +1,31 @@
+def solve(): 
+    n = int(input())
+    sides = list(map(int, input().split(" ")))
+    check_dual = {}
+    possible_sides = []
+
+    for i in sides:
+        if i in check_dual:
+            check_dual[i] += 1
+        else:
+            check_dual[i] = 1
+
+    tmp_square = 0
+    for k, v in check_dual.items():
+        if v >= 4 and k > tmp_square:
+            tmp_square = k
+            possible_sides.append(k)
+        elif v == 2 or v == 3:
+            possible_sides.append(k)
+        else:
+            pass
+
+    possible_sides.sort(reverse=True)
+    if tmp_square == 0 and len(possible_sides) < 2:
+        print(0)
+    elif tmp_square != 0 and len(possible_sides) == 0:
+        print(tmp_square ** 2)
+    elif tmp_square != 0 and len(possible_sides) == 1:
+        print(max(tmp_square ** 2, tmp_square * possible_sides[0]))
+    else:
+        print(max(tmp_square ** 2, possible_sides[0] * possible_sides[1]))

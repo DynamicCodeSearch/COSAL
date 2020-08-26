@@ -1,0 +1,11 @@
+def f2():
+	dp = [[0] * (W + 1) for i in range(N + 1)]
+ for n in range(1,N + 1):
+		w,v = L[n - 1]
+  if w > W:
+			continue
+  for m in range(w):
+			dp[n][m] = dp[n - 1][m]
+  for m in range(w,W + 1):
+			dp[n][m] = max(dp[n - 1][m - w] + v, dp[n - 1][m])
+ return max(dp[-1])

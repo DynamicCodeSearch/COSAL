@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int K = sc.nextInt();
+    int[][] score = new int[N][K];
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < K; j++) {
+            score[i][j] = sc.nextInt();
+        }
+    }
+    String ans = "Nothing";
+    for (int i = 0; i < (int) Math.pow(K, N); i++) {
+        int s = i;
+        int temp = 0;
+        for (int j = N - 1; j >= 0; j--) {
+            int a = s / (int) Math.pow(K, j);
+            temp = temp ^ score[N - j - 1][a];
+            s -= a * (int) Math.pow(K, j);
+        }
+        if (temp == 0) {
+            ans = "Found";
+            break;
+        }
+    }
+    System.out.println(ans);
+}

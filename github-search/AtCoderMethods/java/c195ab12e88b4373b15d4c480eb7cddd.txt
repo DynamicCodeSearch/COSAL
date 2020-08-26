@@ -1,0 +1,45 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    StringTokenizer st = new StringTokenizer(br.readLine());
+    ;
+    
+    int v = Integer.parseInt(st.nextToken());
+    
+    int m = Integer.parseInt(st.nextToken());
+    
+    int[] a = new int[m];
+    int[] b = new int[m];
+    int[] c = new int[m];
+    for (int i = 0; i < m; i++) {
+        st = new StringTokenizer(br.readLine());
+        a[i] = Integer.parseInt(st.nextToken()) - 1;
+        b[i] = Integer.parseInt(st.nextToken()) - 1;
+        c[i] = Integer.parseInt(st.nextToken());
+    }
+    
+    
+    
+    int[][] dp = new int[v][v];
+    for (int i = 0; i < v; i++) {
+        Arrays.fill(dp[i], INF);
+    }
+    for (int i = 0; i < m; i++) {
+        dp[a[i]][b[i]] = c[i];
+        dp[b[i]][a[i]] = c[i];
+    }
+    for (int k = 0; k < v; k++) {
+        for (int i = 0; i < v; i++) {
+            for (int j = 0; j < v; j++) {
+                dp[i][j] = (int) Math.min(dp[i][j], (dp[i][k] + dp[k][j]));
+            }
+        }
+    }
+    
+    
+    int count = 0;
+    for (int i = 0; i < m; i++) {
+        if (dp[a[i]][b[i]] < c[i])
+            count++;
+    }
+    System.out.println(count);
+}

@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    double l = (double) sc.nextInt();
+    double x = (double) sc.nextInt();
+    double y = (double) sc.nextInt();
+    double s = (double) sc.nextInt();
+    double d = (double) sc.nextInt();
+    double normal, counter;
+    if (d < s) {
+        normal = (s - d) / (y - x);
+        counter = (l + d - s) / (y + x);
+    } else {
+        normal = (d - s) / (y + x);
+        counter = (s + l - d) / (y - x);
+    }
+    double ansMin = Math.min(normal, counter);
+    double ansMax = Math.max(normal, counter);
+    if (ansMin < 0) {
+        System.out.println(ansMax);
+    } else {
+        System.out.println(ansMin);
+    }
+}

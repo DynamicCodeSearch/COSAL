@@ -1,0 +1,8 @@
+def modcomb(n, r):
+    if n - r < r:
+        r = n - r
+
+    if r == 0:
+        return 1
+
+    return (((n - r + 1) * modcomb(n, r - 1)) % MOD) * modinv(r, MOD) % MOD

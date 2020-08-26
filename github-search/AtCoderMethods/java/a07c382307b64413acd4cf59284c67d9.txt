@@ -1,0 +1,10 @@
+private int[] toArray(int cur, int l, int r, int[] ret) {
+    if (r - l == 1) {
+        ret[cur - H] = st[cur];
+    } else {
+        toArray(2 * cur, l, l + r >>> 1, ret);
+        toArray(2 * cur + 1, l + r >>> 1, r, ret);
+        for (int i = l; i < r; i++) ret[i] += plus[cur];
+    }
+    return ret;
+}

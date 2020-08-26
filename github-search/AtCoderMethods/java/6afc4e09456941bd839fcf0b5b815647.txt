@@ -1,0 +1,16 @@
+void solve(ContestScanner in, Writer out) throws NumberFormatException, IOException {
+    double l = in.nextDouble();
+    double x = in.nextDouble();
+    double y = in.nextDouble();
+    double s = in.nextDouble();
+    double d = in.nextDouble();
+    s -= d;
+    if (s < 0)
+        s += l;
+    double t1 = (l - s) / (x + y);
+    double t2 = y > x ? s / (y - x) : -1;
+    if (t2 == -1)
+        System.out.println(t1);
+    else
+        System.out.println(Math.min(t1, t2));
+}

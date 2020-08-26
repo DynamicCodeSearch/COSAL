@@ -1,0 +1,21 @@
+private void solve(Scanner sc, PrintWriter out) {
+    String w = sc.nextLine();
+    Map<Character, Integer> map = new HashMap<>();
+    for (int i = 0; i < w.length(); ++i) {
+        char ch = w.charAt(i);
+        Integer cnt = map.get(ch);
+        if (cnt == null) {
+            cnt = 0;
+        }
+        ++cnt;
+        map.put(ch, cnt);
+    }
+    boolean ok = true;
+    for (Integer cnt : map.values()) {
+        if (cnt % 2 != 0) {
+            ok = false;
+            break;
+        }
+    }
+    out.println((ok ? "Yes" : "No"));
+}

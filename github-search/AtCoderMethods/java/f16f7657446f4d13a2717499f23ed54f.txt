@@ -1,0 +1,38 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int n = scan.nextInt();
+    int[] rate_min = new int[8];
+    int[] rate_max = new int[8];
+    rate_min[0] = 1;
+    rate_max[0] = 399;
+    for (int i = 1; i < 8; i++) {
+        rate_min[i] = i * 400;
+        rate_max[i] = rate_min[i] + 399;
+    }
+    int cnt = 0;
+    int[] a = new int[n];
+    boolean[] jdg = new boolean[8];
+    for (int i = 0; i < n; i++) {
+        a[i] = scan.nextInt();
+        for (int j = 0; j < 8; j++) {
+            if (rate_min[j] <= a[i] && a[i] <= rate_max[j]) {
+                jdg[j] = true;
+            }
+        }
+        if (a[i] >= 3200) {
+            cnt++;
+        }
+    }
+    int ans = 0;
+    for (int i = 0; i < 8; i++) {
+        if (jdg[i]) {
+            ans++;
+        }
+    }
+    if (ans != 0) {
+        System.out.print(ans + " ");
+        System.out.println((ans + cnt));
+    } else {
+        System.out.println(1 + " " + cnt);
+    }
+}

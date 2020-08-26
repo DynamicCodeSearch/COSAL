@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    n = s.nextInt();
+    m = s.nextInt();
+    graph = new boolean[n][n];
+    checked = new boolean[n];
+    for (int i = 0; i < m; i++) {
+        byte a = s.nextByte(), b = s.nextByte();
+        graph[--a][--b] = true;
+        graph[b][a] = true;
+    }
+    int max = -114514;
+    for (int i = 0; i < n; i++) {
+        max = Math.max(max, check(i, 1));
+    }
+    System.out.println(max);
+}

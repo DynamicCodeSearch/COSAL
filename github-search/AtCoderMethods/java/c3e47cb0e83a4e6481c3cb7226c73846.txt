@@ -1,0 +1,23 @@
+private static void B() throws Exception {
+    
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String S = br.readLine();
+    br.close();
+    String[] AR = S.split("");
+    String[] BR = new String[AR.length];
+    for (int i = 0, j = 0; i < AR.length; i++) {
+        if (!AR[i].equals("B")) {
+            BR[j] = AR[i];
+            j++;
+        } else if (j > 0) {
+            j--;
+            BR[j] = null;
+        }
+    }
+    for (int i = 0; i < BR.length; i++) {
+        if (BR[i] == null)
+            break;
+        System.out.print(BR[i]);
+    }
+    System.out.println("");
+}

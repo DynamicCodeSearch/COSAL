@@ -1,0 +1,43 @@
+void run() {
+    int n = ni();
+    int m = ni();
+    int s = ni();
+    List<List<Integer>> adj = new ArrayList<>();
+    for (int i = 0; i <= n; ++i) {
+        adj.add(new LinkedList<>());
+    }
+    for (int i = 0; i < m; ++i) {
+        int u = ni();
+        int v = ni();
+        adj.get(u).add(v);
+        adj.get(v).add(u);
+    }
+    PriorityQueue<Integer> queue = new PriorityQueue<>((a, b) -> b - a);
+    int[] d = new int[n + 1];
+    boolean[] done = new boolean[n + 1];
+    queue.add(s);
+    d[s] = s;
+    while (queue.size() > 0) {
+        int e = queue.poll();
+        if (done[e]) {
+            continue;
+        }
+        done[e] = true;
+        
+        for (Integer i : adj.get(e)) {
+            int c = Math.min(d[e], i);
+            if (c > d[i]) {
+                d[i] = c;
+                queue.add(i);
+            }
+        }
+    }
+    
+    PrintWriter pw = new PrintWriter(System.out);
+    for (int i = 1; i <= n; ++i) {
+        if (d[i] >= i) {
+            pw.println(i);
+        }
+    }
+    pw.flush();
+}

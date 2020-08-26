@@ -1,0 +1,11 @@
+def solve():
+    S = input()
+    N = len(S) - 1
+    ans = 0
+
+    for i in range(2**N):
+        bi = bin(i)[2:].zfill(N)
+
+        ans += calc(S, bi)
+
+    print(ans)

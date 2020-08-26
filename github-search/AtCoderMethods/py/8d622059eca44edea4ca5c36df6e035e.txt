@@ -1,0 +1,16 @@
+def main():
+    A = int(input())
+    B = int(input())
+
+    red = deque(range(10))
+    blue = deque(range(10))
+
+    i = 1
+    while True:
+        red.rotate(-1)
+        blue.rotate(1)
+        if red[A] == B or blue[A] == B:
+            break
+        i += 1
+
+    print(i)

@@ -1,0 +1,12 @@
+public static long comp(int a, int b) {
+    if (map[a][b] != 0)
+        return map[a][b];
+    long ans = 0;
+    if (b == 0 || b == a) {
+        ans = 1;
+    } else {
+        ans = comp(a - 1, b - 1) + comp(a - 1, b);
+    }
+    map[a][b] = ans;
+    return ans;
+}

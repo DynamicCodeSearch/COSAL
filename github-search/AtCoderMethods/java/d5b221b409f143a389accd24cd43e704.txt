@@ -1,0 +1,25 @@
+
+public void run() throws IOException {
+    
+    int TEST_CASE = 1;
+    while (TEST_CASE-- != 0) {
+        int n = io.nextInt();
+        long a = io.nextInt();
+        long b = io.nextInt();
+        a -= b;
+        int[] h = io.nextIntArray(n);
+        int low = 0, high = (int) 1e9 + 1;
+        while (high - low > 1) {
+            int mid = (low + high) / 2;
+            long t = 0;
+            for (int v : h) {
+                t += Math.max(0, (v - b * mid + a - 1) / a);
+            }
+            if (t > mid)
+                low = mid;
+            else
+                high = mid;
+        }
+        io.out.println(high);
+    }
+}

@@ -1,0 +1,17 @@
+def compare_image(A, B, N, M):
+    for i in range(N):
+        for j in range(N):
+
+            if (i+M <= N) and (j+M <= N):
+                b_flag = True
+
+                for k in range(M):
+                    str_a = A[i+k][j:j+M]
+                    str_b = B[k]
+                    if str_a != str_b:
+                        b_flag = False
+
+                if b_flag:
+                    return True
+
+    return False

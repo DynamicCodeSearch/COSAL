@@ -1,0 +1,31 @@
+public void solve(int testNumber, FastReader fs, PrintWriter pw) {
+    int n = fs.nextInt();
+    int m = fs.nextInt();
+    int[][] f = new int[n][n];
+    int[][] g = new int[n][n];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (i != j)
+                f[i][j] = f[j][i] = INF;
+        }
+    }
+    for (int i = 0; i < m; i++) {
+        int a = fs.nextInt() - 1, b = fs.nextInt() - 1, c = fs.nextInt();
+        g[a][b] = g[b][a] = f[a][b] = f[b][a] = c;
+    }
+    for (int k = 0; k < n; k++) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                f[i][j] = Math.min(f[i][j], f[i][k] + f[k][j]);
+            }
+        }
+    }
+    int ans = 0;
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {
+            if (g[i][j] > f[i][j])
+                ++ans;
+        }
+    }
+    pw.println(ans);
+}

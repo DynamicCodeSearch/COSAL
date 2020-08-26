@@ -1,0 +1,11 @@
+def left_scores(L):
+  s = sum(L[:N])
+  scores = [s]
+  q = L[:N]
+  heapify(q)
+
+  for e in L[N:2*N]:
+    s -= heappushpop(q, e)
+    s += e
+    scores.append(s)
+  return scores

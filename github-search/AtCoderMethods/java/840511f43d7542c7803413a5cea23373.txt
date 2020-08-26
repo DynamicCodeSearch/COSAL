@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = sc.nextInt();
+    int q = sc.nextInt();
+    int[] power = new int[n];
+    for (int i = 0; i < q; i++) {
+        int l = Integer.parseInt(sc.next()) - 1;
+        int r = Integer.parseInt(sc.next()) - 1;
+        power[l] += 1;
+        if (r + 1 != n)
+            power[r + 1] -= 1;
+    }
+    int[] res = new int[n];
+    int now = 0;
+    for (int i = 0; i < power.length; i++) {
+        now += power[i];
+        res[i] = now % 2;
+        out.print(res[i]);
+    }
+    out.println();
+    out.flush();
+}

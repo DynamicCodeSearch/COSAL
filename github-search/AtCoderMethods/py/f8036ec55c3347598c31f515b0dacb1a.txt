@@ -1,0 +1,19 @@
+def solve(N, x, y):
+    edges = []
+    x.sort(key=lambda x: x[1])
+    y.sort(key=lambda x: x[1])
+    for i in range(N - 1):
+        x_s, x_e = x[i], x[i + 1]
+        y_s, y_e = y[i], y[i + 1]
+        edges.append((x_s[0], x_e[0], x_e[1] - x_s[1]))
+        edges.append((y_s[0], y_e[0], y_e[1] - y_s[1]))
+
+    edges.sort(key=lambda x: x[2])
+    union_find = UnionFind(N)
+    ans = 0
+    for edge in edges:
+        if not union_find.in_the_same_set(edge[0], edge[1]):
+            union_find.unite(edge[0], edge[1])
+            ans += edge[2]
+
+    return ans

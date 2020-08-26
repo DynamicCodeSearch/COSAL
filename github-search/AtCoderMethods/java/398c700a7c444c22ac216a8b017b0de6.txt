@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int i, k, N, a;
+    double sum = 0;
+    N = sc.nextInt();
+    int[] R = new int[N];
+    for (i = 0; i < N; i++) {
+        R[i] = sc.nextInt();
+    }
+    for (i = 0; i < N - 1; i++) {
+        for (k = i + 1; k < N; k++) {
+            if (R[k] < R[i]) {
+                a = R[i];
+                R[i] = R[k];
+                R[k] = a;
+            }
+        }
+    }
+    if (N % 2 == 1) {
+        sum += R[0] * R[0] * Math.PI;
+        for (i = 2; i < N; i += 2) {
+            sum = sum + (R[i] * R[i] * Math.PI - R[i - 1] * R[i - 1] * Math.PI);
+        }
+    } else {
+        for (i = 1; i < N; i += 2) {
+            sum += R[i] * R[i] * Math.PI - R[i - 1] * R[i - 1] * Math.PI;
+        }
+    }
+    System.out.println(sum);
+}

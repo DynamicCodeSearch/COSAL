@@ -1,0 +1,29 @@
+void solve(int N, int Q, int A, int B, int[] x) {
+    long[] f = new long[N];
+    Arrays.fill(f, Long.MAX_VALUE / 16);
+    Seg sAdd = new Seg(N);
+    Seg sSub = new Seg(N);
+    f[B] = Math.abs(A - x[0]);
+    f[A] = Math.abs(B - x[0]);
+    sAdd.setVal(A, f[A] + A);
+    sAdd.setVal(B, f[B] + B);
+    sSub.setVal(A, f[A] - A);
+    sSub.setVal(B, f[B] - B);
+    long pending = 0;
+    for (int i = 1; i < Q; ++i) {
+        long add = Math.abs(x[i] - x[i - 1]);
+        pending += add;
+        
+        long cur = f[x[i]];
+        cur = Math.min(cur, -x[i] + sAdd.query(x[i], N) - add);
+        cur = Math.min(cur, x[i] + sSub.query(0, x[i]) - add);
+        f[x[i - 1]] = cur;
+        sAdd.setVal(x[i - 1], f[x[i - 1]] + x[i - 1]);
+        sSub.setVal(x[i - 1], f[x[i - 1]] - x[i - 1]);
+    }
+    long ans = Long.MAX_VALUE / 16;
+    for (int i = 0; i < N; ++i) {
+        ans = Math.min(ans, f[i] + pending);
+    }
+    System.out.println(ans);
+}

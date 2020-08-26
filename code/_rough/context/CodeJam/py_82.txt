@@ -1,0 +1,430 @@
+### Py Tokens: upper, lower, frac, xnext, lnext, yupper, ylower, unext 
+
+### Py functions
+
+def func_ebdd1177df93499bbe3c764f3810c7be(li, lower, ui, upper):
+    lnext = lower[li + 1]
+    unext = upper[ui + 1]
+    if lnext[0] == unext[0]:
+        xnext = lnext[0]
+        h2 = unext[1] - lnext[1]
+        li += 1
+        ui += 1
+    elif lnext[0] < upper[ui + 1][0]:
+        xnext = lnext[0]
+        frac = 1.0 * (xnext - upper[ui][0]) / (unext[0] - upper[ui][0])
+        yupper = upper[ui][1] + frac * (unext[1] - upper[ui][1])
+        h2 = yupper - lnext[1]
+        li += 1
+    else:
+        xnext = unext[0]
+        frac = 1.0 * (xnext - lower[li][0]) / (lnext[0] - lower[li][0])
+        ylower = lower[li][1] + frac * (lnext[1] - lower[li][1])
+        h2 = unext[1] - ylower
+        ui += 1
+    return frac
+
+def func_a35f96ad42bc4b42bea5d0a916972c7c(li, lnext, lower, ui, upper):
+    unext = upper[ui + 1]
+    if lnext[0] == unext[0]:
+        xnext = lnext[0]
+        h2 = unext[1] - lnext[1]
+        li += 1
+        ui += 1
+    elif lnext[0] < upper[ui + 1][0]:
+        xnext = lnext[0]
+        frac = 1.0 * (xnext - upper[ui][0]) / (unext[0] - upper[ui][0])
+        yupper = upper[ui][1] + frac * (unext[1] - upper[ui][1])
+        h2 = yupper - lnext[1]
+        li += 1
+    else:
+        xnext = unext[0]
+        frac = 1.0 * (xnext - lower[li][0]) / (lnext[0] - lower[li][0])
+        ylower = lower[li][1] + frac * (lnext[1] - lower[li][1])
+        h2 = unext[1] - ylower
+        ui += 1
+    return xnext
+
+def func_7f2e0259f5f74abf92a530e2cb29cafb(li, lower, ui, upper):
+    lnext = lower[li + 1]
+    unext = upper[ui + 1]
+    if lnext[0] == unext[0]:
+        xnext = lnext[0]
+        h2 = unext[1] - lnext[1]
+        li += 1
+        ui += 1
+    elif lnext[0] < upper[ui + 1][0]:
+        xnext = lnext[0]
+        frac = 1.0 * (xnext - upper[ui][0]) / (unext[0] - upper[ui][0])
+        yupper = upper[ui][1] + frac * (unext[1] - upper[ui][1])
+        h2 = yupper - lnext[1]
+        li += 1
+    else:
+        xnext = unext[0]
+        frac = 1.0 * (xnext - lower[li][0]) / (lnext[0] - lower[li][0])
+        ylower = lower[li][1] + frac * (lnext[1] - lower[li][1])
+        h2 = unext[1] - ylower
+        ui += 1
+    return lnext
+
+def func_b5487326344a4be0bc91aa5a2f5f2a2a(li, lnext, lower, ui, upper):
+    unext = upper[ui + 1]
+    if lnext[0] == unext[0]:
+        xnext = lnext[0]
+        h2 = unext[1] - lnext[1]
+        li += 1
+        ui += 1
+    elif lnext[0] < upper[ui + 1][0]:
+        xnext = lnext[0]
+        frac = 1.0 * (xnext - upper[ui][0]) / (unext[0] - upper[ui][0])
+        yupper = upper[ui][1] + frac * (unext[1] - upper[ui][1])
+        h2 = yupper - lnext[1]
+        li += 1
+    else:
+        xnext = unext[0]
+        frac = 1.0 * (xnext - lower[li][0]) / (lnext[0] - lower[li][0])
+        ylower = lower[li][1] + frac * (lnext[1] - lower[li][1])
+        h2 = unext[1] - ylower
+        ui += 1
+    return ylower
+
+def func_07817f29fa9e4166ac4be2a85f101654(li, lnext, lower, ui, upper):
+    unext = upper[ui + 1]
+    if lnext[0] == unext[0]:
+        xnext = lnext[0]
+        h2 = unext[1] - lnext[1]
+        li += 1
+        ui += 1
+    elif lnext[0] < upper[ui + 1][0]:
+        xnext = lnext[0]
+        frac = 1.0 * (xnext - upper[ui][0]) / (unext[0] - upper[ui][0])
+        yupper = upper[ui][1] + frac * (unext[1] - upper[ui][1])
+        h2 = yupper - lnext[1]
+        li += 1
+    else:
+        xnext = unext[0]
+        frac = 1.0 * (xnext - lower[li][0]) / (lnext[0] - lower[li][0])
+        ylower = lower[li][1] + frac * (lnext[1] - lower[li][1])
+        h2 = unext[1] - ylower
+        ui += 1
+    return li
+
+*********************************
+
+#### Score: 6.60564
+
+
+#### Java Tokens: size, upper, lower 
+
+public static int func_2f79491f19b54a30ad516ae05177d605(ArrayList<Point> lower, ArrayList<Point> upper) { 
+ int u = upper.size();
+int l = lower.size();
+return l;
+}
+
+
+public static int func_2ddf71a890e64c73ad89d2f3eda1a899(ArrayList<Point> lower, ArrayList<Point> upper) { 
+ int u = upper.size();
+int l = lower.size();
+return u;
+}
+
+
+public static ArrayList<Point> func_99683052cf9c428f93ad5d0e9a9385a3(ArrayList<Point> lower, ArrayList<Point> upper) { 
+ int u = upper.size();
+int l = lower.size();
+return upper;
+}
+
+
+*********************************
+
+#### Score: 5.83797
+
+
+#### Java Tokens: size, last, upper, lower, lastx 
+
+public static double func_052c8eccdefb487eaf36cb72797024c2(ArrayList<Point> lower, ArrayList<Point> upper) { 
+ int u = upper.size();
+int l = lower.size();
+double lastX = 0;
+return lastX;
+}
+
+
+public static ArrayList<Point> func_841846f506c64d949c3eead004f6ca88(ArrayList<Point> lower, ArrayList<Point> upper) { 
+ int u = upper.size();
+int l = lower.size();
+double lastX = 0;
+return lower;
+}
+
+
+public static int func_31fb1b921e4b400993fcc498fe66b711(ArrayList<Point> lower, ArrayList<Point> upper) { 
+ int u = upper.size();
+int l = lower.size();
+double lastX = 0;
+return u;
+}
+
+
+*********************************
+
+#### Score: 5.83797
+
+
+#### Java Tokens: cur, curl, size, upper, lower 
+
+public static int func_54f5d6c14dba4b419a3963f02647dd3f(ArrayList<Point> lower, ArrayList<Point> upper) { 
+ int curL = 1;
+int u = upper.size();
+int l = lower.size();
+return curL;
+}
+
+
+public static ArrayList<Point> func_f442a76ee1cb450aba4ffc8dae930992(ArrayList<Point> lower, ArrayList<Point> upper) { 
+ int curL = 1;
+int u = upper.size();
+int l = lower.size();
+return lower;
+}
+
+
+public static int func_b12c995c5bfd4652bc4eb29652457345(ArrayList<Point> lower, ArrayList<Point> upper) { 
+ int curL = 1;
+int u = upper.size();
+int l = lower.size();
+return l;
+}
+
+
+*********************************
+
+#### Score: 5.52156
+
+
+#### Java Tokens: next, nextint, lower, upper, point, int 
+
+public static Point[] func_88f582a302a74754a6172f5351050534(int u, int l, Scanner in) { 
+ Point[] lower = new Point[l];
+for (int i = 0; i < l; ++i) {
+    lower[i] = new Point(in.nextInt(), in.nextInt());
+}
+Point[] upper = new Point[u];
+return lower;
+}
+
+
+public static Point[] func_2acacabb9eab481db2f9422761422a08(int u, int l, Scanner in) { 
+ Point[] lower = new Point[l];
+for (int i = 0; i < l; ++i) {
+    lower[i] = new Point(in.nextInt(), in.nextInt());
+}
+Point[] upper = new Point[u];
+return upper;
+}
+
+
+*********************************
+
+#### Score: 5.52156
+
+
+#### Java Tokens: next, nextint, lower, upper, int, point 
+
+public static int func_f79f76c8b8394259ba5d3ff02f5e16a0(Scanner in) { 
+ // lower points
+int l = in.nextInt();
+// upper points
+int u = in.nextInt();
+int // guests
+g = in.nextInt();
+Point[] lower = new Point[l];
+for (int i = 0; i < l; ++i) {
+    lower[i] = new Point(in.nextInt(), in.nextInt());
+}
+Point[] upper = new Point[u];
+return g;
+}
+
+
+public static int func_31e6357e45b24d7889fa4cdad859452b(Scanner in) { 
+ int // width
+w = in.nextInt();
+// lower points
+int l = in.nextInt();
+// upper points
+int u = in.nextInt();
+int // guests
+g = in.nextInt();
+Point[] lower = new Point[l];
+for (int i = 0; i < l; ++i) {
+    lower[i] = new Point(in.nextInt(), in.nextInt());
+}
+Point[] upper = new Point[u];
+for (int i = 0; i < u; ++i) {
+    upper[i] = new Point(in.nextInt(), in.nextInt());
+}
+return w;
+}
+
+
+public static Point[] func_978373b2b2c1406ca5a5011c2683a647(int u, int l, Scanner in) { 
+ int // guests
+g = in.nextInt();
+Point[] lower = new Point[l];
+for (int i = 0; i < l; ++i) {
+    lower[i] = new Point(in.nextInt(), in.nextInt());
+}
+Point[] upper = new Point[u];
+return lower;
+}
+
+
+*********************************
+
+#### Score: 5.52156
+
+
+#### Java Tokens: cur, curl, size, upper, lower, curu 
+
+public static int func_d04b7ab6d3cf42c9a9bd18ba031b8622(ArrayList<Point> lower, ArrayList<Point> upper) { 
+ int curU = 1;
+int curL = 1;
+int u = upper.size();
+int l = lower.size();
+return u;
+}
+
+
+public static ArrayList<Point> func_5746a9d6b88443a49a9e517ec0157c29(ArrayList<Point> lower, ArrayList<Point> upper) { 
+ int curU = 1;
+int curL = 1;
+int u = upper.size();
+int l = lower.size();
+return upper;
+}
+
+
+public static int func_6dea6053cd8f4214b37f282377f502c1(ArrayList<Point> lower, ArrayList<Point> upper) { 
+ int curU = 1;
+int curL = 1;
+int u = upper.size();
+int l = lower.size();
+return curL;
+}
+
+
+*********************************
+
+#### Score: 5.24015
+
+
+#### Java Tokens: cur, curl, size, last, upper, lower, lastx 
+
+public static double func_001c8f48fc3a4f01a4e612e43e9316d3(ArrayList<Point> lower, ArrayList<Point> upper) { 
+ int curL = 1;
+int u = upper.size();
+int l = lower.size();
+double lastX = 0;
+return lastX;
+}
+
+
+public static ArrayList<Point> func_b1722b3ee7b14a6ab9040b9c6625588a(ArrayList<Point> lower, ArrayList<Point> upper) { 
+ int curL = 1;
+int u = upper.size();
+int l = lower.size();
+double lastX = 0;
+return upper;
+}
+
+
+public static ArrayList<Point> func_654a13da2de748e7bc1abd95c82704d6(ArrayList<Point> lower, ArrayList<Point> upper) { 
+ int curL = 1;
+int u = upper.size();
+int l = lower.size();
+double lastX = 0;
+return lower;
+}
+
+
+*********************************
+
+#### Score: 5.24015
+
+
+#### Java Tokens: cur, upper, get, lower, curheight, curu, height 
+
+public static double func_98ade43ed9ad443788728c811e4d5838(ArrayList<Point> lower, ArrayList<Point> upper) { 
+ double curHeight = 1.0 * upper.get(0).y - lower.get(0).y;
+int curU = 1;
+return curHeight;
+}
+
+
+public static int func_c1dc0a267e0a4bf48e5b8172af43dc23(ArrayList<Point> lower, ArrayList<Point> upper) { 
+ double curHeight = 1.0 * upper.get(0).y - lower.get(0).y;
+int curU = 1;
+return curU;
+}
+
+
+*********************************
+
+#### Score: 5.24015
+
+
+#### Java Tokens: cur, last, upper, lower, curheight, lastx, height 
+
+public static int func_8a022725c9214d70bcb8353708fc63fa(Point[] upper, Point[] lower) { 
+ int lastX = 0;
+double curHeight = 1.0 * upper[0].y - lower[0].y;
+return lastX;
+}
+
+
+public static double func_456b07764b49421db69aab521398d5d1(Point[] upper, Point[] lower) { 
+ int lastX = 0;
+double curHeight = 1.0 * upper[0].y - lower[0].y;
+return curHeight;
+}
+
+
+*********************************
+
+#### Score: 4.98825
+
+
+#### Java Tokens: cheaters, amount, middle, joined, lower, upper, possible, budget 
+
+public static long func_439e03f277e54908b9660edc26eaf1f0(int joined, long budget, long lower, long upper, long[] amount) { 
+ long middle = (lower + upper) / 2;
+if (Cheaters.possible(amount, joined, middle, budget))
+    lower = middle;
+else
+    upper = middle;
+return upper;
+}
+
+
+public static long func_26d14819276b43d6920bbe7f4844c13c(int joined, long budget, long lower, long upper, long[] amount) { 
+ long middle = (lower + upper) / 2;
+if (Cheaters.possible(amount, joined, middle, budget))
+    lower = middle;
+else
+    upper = middle;
+return middle;
+}
+
+
+public static long func_88b014f884204e52a5a8af7ece77a679(int joined, long budget, long lower, long upper, long[] amount) { 
+ long middle = (lower + upper) / 2;
+if (Cheaters.possible(amount, joined, middle, budget))
+    lower = middle;
+else
+    upper = middle;
+return lower;
+}
+

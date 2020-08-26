@@ -1,0 +1,16 @@
+public static void input() {
+    Scanner scan = new Scanner(System.in);
+    N = scan.nextInt();
+    M = scan.nextInt();
+    r = scan.nextInt();
+    t = scan.nextInt();
+    node = new List[N];
+    for (int i = 0; i < N; i++) node[i] = new ArrayList<>();
+    for (int i = 0; i < M; i++) {
+        int a = scan.nextInt() - 1;
+        int b = scan.nextInt() - 1;
+        int c = scan.nextInt();
+        node[a].add(new Edge(b, c));
+        node[b].add(new Edge(a, c));
+    }
+}

@@ -1,0 +1,9 @@
+private static int toId(int fst, int snd) {
+    long lid = iToL(fst, snd);
+    Integer id = idMap.get(lid);
+    if (id == null) {
+        idMap.put(lid, id = idMap.size());
+        g.assoc.add(new ArrayList<>());
+    }
+    return id;
+}

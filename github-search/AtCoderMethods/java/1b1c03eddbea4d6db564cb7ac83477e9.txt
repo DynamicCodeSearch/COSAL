@@ -1,0 +1,37 @@
+void solve(int testNumber, InputReader in, PrintWriter out) {
+    n = in.nextInt();
+    m = in.nextInt();
+    sz = m + 1;
+    l = new int[n];
+    r = new int[n];
+    PairII[] a = new PairII[n];
+    for (int i = 0; i < n; ++i) {
+        l[i] = in.nextInt();
+        r[i] = in.nextInt();
+        a[i] = new PairII(r[i] - l[i] + 1, i);
+    }
+    Arrays.sort(a);
+    int[] tree = new int[sz + 1];
+    int[] cnttree = new int[sz + 1];
+    for (int i = 0; i < n; ++i) {
+        add(tree, l[i] + 1, 1);
+        add(tree, r[i] + 2, -1);
+    }
+    int ptr = n - 1;
+    for (int d = m; d >= 1; --d) {
+        while (ptr >= 0 && a[ptr].a >= d) {
+            add(tree, l[a[ptr].b] + 1, -1);
+            add(tree, r[a[ptr].b] + 2, 1);
+            add(cnttree, 1, 1);
+            add(cnttree, d + 2, -1);
+            --ptr;
+        }
+        for (int i = 1; i <= m + 1; i += d) {
+            add(cnttree, d + 1, sum(tree, i));
+            add(cnttree, d + 2, -sum(tree, i));
+        }
+    }
+    for (int i = 2; i <= m + 1; ++i) {
+        out.println(sum(cnttree, i));
+    }
+}

@@ -1,0 +1,407 @@
+### Py Tokens: bets, nummin, num, min, xrange, size 
+
+### Py functions
+
+def func_b227f1b80d3944ad890e4eba06f4833f(bets, i, num_min, size, t):
+    for i in xrange(num_min):
+        assert size >= bets[i]
+        t += size - bets[i]
+    for i in xrange(num_min, 37):
+        if bets[i] <= size:
+            t += size + 1 - bets[i]
+    if bets[i] <= size:
+        t += size + 1 - bets[i]
+    return size
+
+def func_7fff50ecae104efa9452e07cdec1e26a(bets, num_min, size, t):
+    t = 0
+    for i in xrange(num_min):
+        assert size >= bets[i]
+        t += size - bets[i]
+    for i in xrange(num_min, 37):
+        if bets[i] <= size:
+            t += size + 1 - bets[i]
+    return num_min
+
+def func_cd0cac1c615948d4a4e63cee7d984735(bets, num_min, size, t):
+    t = 0
+    for i in xrange(num_min):
+        assert size >= bets[i]
+        t += size - bets[i]
+    return bets
+
+def func_f3f1e4d3d02644b98aa2acde64d5225d(bets, num_min, size, t):
+    t = 0
+    for i in xrange(num_min):
+        assert size >= bets[i]
+        t += size - bets[i]
+    for i in xrange(num_min, 37):
+        if bets[i] <= size:
+            t += size + 1 - bets[i]
+    return bets
+
+def func_b741fd71172543bb8d618d804b02c65f(bets, num_min, size, t):
+    t = 0
+    for i in xrange(num_min):
+        assert size >= bets[i]
+        t += size - bets[i]
+    return num_min
+
+*********************************
+
+#### Score: 7.03485
+
+
+#### Java Tokens: min, getmin, get, bets 
+
+public static long func_ed76ef5004cc4d0d8e4c55bd73d8d154(int N, long[] x, long[] bets) { 
+ long min = A.getMin(x);
+for (int j = 0; j < N; j++) {
+    if (x[j] == min) {
+        x[j]++;
+        bets[j]++;
+        break;
+    }
+}
+return min;
+}
+
+
+*********************************
+
+#### Score: 6.26186
+
+
+#### Java Tokens: min, max, need, length, mid, bets 
+
+public static long func_de542dcb5cab4d5a9b75ce7361c4b9d0(long min, long max, long[] bets) { 
+ long mid = (min + max) / 2;
+long need = 0;
+for (int i = 0; i < bets.length; i++) {
+    if (bets[i] < mid) {
+        need += mid - bets[i];
+    }
+}
+return mid;
+}
+
+
+public static long func_3f52bc1f3660404e95b908abc8ae0fe8(long min, long max, long[] bets) { 
+ long mid = (min + max) / 2;
+long need = 0;
+for (int i = 0; i < bets.length; i++) {
+    if (bets[i] < mid) {
+        need += mid - bets[i];
+    }
+}
+return need;
+}
+
+
+*********************************
+
+#### Score: 6.26186
+
+
+#### Java Tokens: min, getmin, get, bets, win, getwin 
+
+public static double func_832fcaa90dcb4ed3b3ea3b7b4da679e2(int i, int N, int W, long[] x, long[] bets) { 
+ long min = A.getMin(x);
+for (int j = 0; j < N; j++) {
+    if (x[j] == min) {
+        x[j]++;
+        bets[j]++;
+        break;
+    }
+}
+double win = A.getWin(x, bets, W) - i;
+return win;
+}
+
+
+public static long func_4ce8842fcb3e4fbfaa65f3d63f819edc(int i, int N, int W, long[] x, long[] bets) { 
+ long min = A.getMin(x);
+for (int j = 0; j < N; j++) {
+    if (x[j] == min) {
+        x[j]++;
+        bets[j]++;
+        break;
+    }
+}
+double win = A.getWin(x, bets, W) - i;
+return min;
+}
+
+
+*********************************
+
+#### Score: 5.93951
+
+
+#### Java Tokens: col, min, mincol, level, need, need1, bets 
+
+public static long func_e21b160d1e4f4426a7661c183a95418b(int minCol, long level, long need1, long[] bets) { 
+ for (int i = 0; i < minCol; i++) {
+    if (bets[i] > level) {
+        return -1;
+    }
+    need1 += level - bets[i];
+}
+return need1;
+}
+
+
+*********************************
+
+#### Score: 5.93951
+
+
+#### Java Tokens: col, need2, min, mincol, level, need, bets 
+
+public static long func_82020f0209134b359b7fd54845139a5b(int minCol, long need2, long level, long[] bets) { 
+ for (int i = minCol; i < 37; i++) {
+    if (bets[i] < level + 1) {
+        need2 += level + 1 - bets[i];
+    }
+}
+return need2;
+}
+
+
+*********************************
+
+#### Score: 5.93951
+
+
+#### Java Tokens: min, need, max, length, mid, bets, budget 
+
+public static long func_55132fc7851f48aea3774e899ddf078f(long mid, long min, long budget, long max, long[] bets) { 
+ long need = 0;
+for (int i = 0; i < bets.length; i++) {
+    if (bets[i] < mid) {
+        need += mid - bets[i];
+    }
+}
+if (need > budget) {
+    max = mid;
+} else {
+    min = mid;
+}
+return need;
+}
+
+
+public static long func_f3babecabc374053ba9d0b2b48a2ea7d(long mid, long min, long budget, long max, long[] bets) { 
+ long need = 0;
+for (int i = 0; i < bets.length; i++) {
+    if (bets[i] < mid) {
+        need += mid - bets[i];
+    }
+}
+if (need > budget) {
+    max = mid;
+} else {
+    min = mid;
+}
+return min;
+}
+
+
+public static long func_fff32c123e46460a8d948e10b0899b9e(long mid, long min, long budget, long max, long[] bets) { 
+ long need = 0;
+for (int i = 0; i < bets.length; i++) {
+    if (bets[i] < mid) {
+        need += mid - bets[i];
+    }
+}
+if (need > budget) {
+    max = mid;
+} else {
+    min = mid;
+}
+return max;
+}
+
+
+*********************************
+
+#### Score: 5.93951
+
+
+#### Java Tokens: min, getmin, ans, get, bets, win, getwin 
+
+public static long[] func_c1f6f426706946bbad64f400ca9d859e(int N, int W, long b, long[] x) { 
+ long[] bets = new long[N];
+double ans = 0;
+for (int i = 1; i <= b; i++) {
+    long min = A.getMin(x);
+    for (int j = 0; j < N; j++) {
+        if (x[j] == min) {
+            x[j]++;
+            bets[j]++;
+            break;
+        }
+    }
+    double win = A.getWin(x, bets, W) - i;
+    /*System.out.println(i + " " + min + " " + win);
+				System.out.println(Arrays.toString(x));
+				System.out.println(Arrays.toString(bets));
+				System.out.println("------------------");*/
+    if (win > ans)
+        ans = win;
+}
+return bets;
+}
+
+
+public static double func_b3f54aa5b66f48c1a86d4e4f2564b58b(int N, int W, long b, long[] x, long[] bets) { 
+ double ans = 0;
+for (int i = 1; i <= b; i++) {
+    long min = A.getMin(x);
+    for (int j = 0; j < N; j++) {
+        if (x[j] == min) {
+            x[j]++;
+            bets[j]++;
+            break;
+        }
+    }
+    double win = A.getWin(x, bets, W) - i;
+    /*System.out.println(i + " " + min + " " + win);
+				System.out.println(Arrays.toString(x));
+				System.out.println(Arrays.toString(bets));
+				System.out.println("------------------");*/
+    if (win > ans)
+        ans = win;
+}
+return ans;
+}
+
+
+public static double func_a90e5c378c5642ca8d079921162da582(int N, int W, long b, long[] x) { 
+ long[] bets = new long[N];
+double ans = 0;
+for (int i = 1; i <= b; i++) {
+    long min = A.getMin(x);
+    for (int j = 0; j < N; j++) {
+        if (x[j] == min) {
+            x[j]++;
+            bets[j]++;
+            break;
+        }
+    }
+    double win = A.getWin(x, bets, W) - i;
+    /*System.out.println(i + " " + min + " " + win);
+				System.out.println(Arrays.toString(x));
+				System.out.println(Arrays.toString(bets));
+				System.out.println("------------------");*/
+    if (win > ans)
+        ans = win;
+}
+return ans;
+}
+
+
+*********************************
+
+#### Score: 5.93951
+
+
+#### Java Tokens: col, min, level, need, mincol, need1, bets 
+
+public static long func_739218ec93c84b8ba8123729256ed94f(int minCol, long level, long[] bets) { 
+ if (level <= 0) {
+    return -1;
+}
+long need1 = 0;
+for (int i = 0; i < minCol; i++) {
+    if (bets[i] > level) {
+        return -1;
+    }
+    need1 += level - bets[i];
+}
+return need1;
+}
+
+
+*********************************
+
+#### Score: 5.93951
+
+
+#### Java Tokens: need2, col, min, need, mincol, level, bets 
+
+public static long func_50bc85f1a7ca44d5aed33b9e209f9e53(int minCol, long level, long[] bets) { 
+ long need2 = 0;
+for (int i = minCol; i < 37; i++) {
+    if (bets[i] < level + 1) {
+        need2 += level + 1 - bets[i];
+    }
+}
+return need2;
+}
+
+
+*********************************
+
+#### Score: 5.93951
+
+
+#### Java Tokens: min, max, need, length, mid, bets, budget 
+
+public static long func_ba808e1c1a284ae3a6e8ffdef18447f2(long budget, long[] bets) { 
+ long min = 0;
+long max = budget + 1;
+while (min + 1 < max) {
+    long mid = (min + max) / 2;
+    long need = 0;
+    for (int i = 0; i < bets.length; i++) {
+        if (bets[i] < mid) {
+            need += mid - bets[i];
+        }
+    }
+    if (need > budget) {
+        max = mid;
+    } else {
+        min = mid;
+    }
+}
+return min;
+}
+
+
+public static long func_1049596d1e3341a9aaf9cb603ef32d60(long min, long budget, long max, long[] bets) { 
+ long mid = (min + max) / 2;
+long need = 0;
+for (int i = 0; i < bets.length; i++) {
+    if (bets[i] < mid) {
+        need += mid - bets[i];
+    }
+}
+if (need > budget) {
+    max = mid;
+} else {
+    min = mid;
+}
+return mid;
+}
+
+
+public static long func_eec93578e112462c87cd708b02b12d83(long min, long budget, long[] bets) { 
+ long max = budget + 1;
+while (min + 1 < max) {
+    long mid = (min + max) / 2;
+    long need = 0;
+    for (int i = 0; i < bets.length; i++) {
+        if (bets[i] < mid) {
+            need += mid - bets[i];
+        }
+    }
+    if (need > budget) {
+        max = mid;
+    } else {
+        min = mid;
+    }
+}
+return min;
+}
+

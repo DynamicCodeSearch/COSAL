@@ -1,0 +1,11 @@
+def main():
+    N, X = map(int, input().split())
+    A = tuple(map(int, input().split()))
+
+    price = 0
+    i = 0
+    while i < N:
+        if X & 1<<i:
+            price += A[i]
+        i += 1
+    print(price)

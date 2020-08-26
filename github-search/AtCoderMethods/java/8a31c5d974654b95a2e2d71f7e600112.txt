@@ -1,0 +1,19 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    r = sc.nextLong();
+    b = sc.nextLong();
+    x = sc.nextLong();
+    y = sc.nextLong();
+    long upper = 1000000000000000000L;
+    long low = 0;
+    while (upper - low > 1) {
+        
+        long mid = (upper + low) / 2;
+        if (check(mid)) {
+            low = mid;
+        } else {
+            upper = mid;
+        }
+    }
+    System.out.println(low);
+}

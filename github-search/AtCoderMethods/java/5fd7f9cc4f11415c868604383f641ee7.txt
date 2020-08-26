@@ -1,0 +1,13 @@
+public static long func(long a, long x) {
+    if (x == 0)
+        return 1;
+    if (x % 2 == 0) {
+        long t = func(a, x / 2);
+        return (t * t) % MOD;
+    } else {
+        long t = func(a, x / 2);
+        long s = (a * t) % MOD;
+        s = (s * t) % MOD;
+        return s;
+    }
+}

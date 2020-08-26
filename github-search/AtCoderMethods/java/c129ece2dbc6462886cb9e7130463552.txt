@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    char[] a = s.next().toCharArray(), b = s.next().toCharArray();
+    String atcoder = "atcoder";
+    for (int i = 0; i < a.length; i++) {
+        if (a[i] != b[i]) {
+            if (a[i] == '@' && atcoder.contains(String.valueOf(b[i])))
+                continue;
+            if (b[i] == '@' && atcoder.contains(String.valueOf(a[i])))
+                continue;
+            System.out.println("You will lose");
+            return;
+        }
+    }
+    System.out.println("You can win");
+}

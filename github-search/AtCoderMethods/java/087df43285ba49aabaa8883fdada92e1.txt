@@ -1,0 +1,15 @@
+
+long my_pow(long x, long n) {
+    if (n == 0) {
+        return 1;
+    }
+    if (n == 1) {
+        return x;
+    }
+    long tmp = my_pow(x, n / 2) % MOD;
+    if (n % 2 == 0) {
+        return (tmp * tmp) % MOD;
+    } else {
+        return ((tmp * tmp) % MOD) * x % MOD;
+    }
+}

@@ -1,0 +1,38 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    boolean[][] rel = new boolean[N][N];
+    for (int i = 0; i < M; i++) {
+        int n1 = sc.nextInt();
+        int n2 = sc.nextInt();
+        rel[n1 - 1][n2 - 1] = true;
+        rel[n2 - 1][n1 - 1] = true;
+    }
+    sc.close();
+    int patternNum = (int) (Math.pow(2.0, N) - 1);
+    int ans = 0;
+    for (int p = patternNum; p > 0; p--) {
+        String pattern = Integer.toBinaryString(p);
+        List<Integer> mans = new ArrayList<>();
+        for (int m = 0; m < pattern.length(); m++) {
+            if (pattern.charAt(pattern.length() - 1 - m) == '1')
+                mans.add(m);
+        }
+        boolean ok = true;
+        for (int m : mans) {
+            for (int other : mans) {
+                if (m != other && !rel[m][other]) {
+                    ok = false;
+                    break;
+                }
+            }
+            if (!ok)
+                break;
+        }
+        if (ok) {
+            ans = Math.max(ans, mans.size());
+        }
+    }
+    System.out.println(ans);
+}

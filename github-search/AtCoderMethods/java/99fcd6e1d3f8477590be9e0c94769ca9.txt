@@ -1,0 +1,16 @@
+void solve() {
+    int N = sc.nextInt();
+    long T = sc.nextLong();
+    long[] t = new long[N];
+    for (int i = 0; i < N; i++) t[i] = sc.nextLong();
+    long ans = 0;
+    long r = 0;
+    for (int i = 0; i < N; i++) {
+        ans += T;
+        if (r > t[i]) {
+            ans -= r - t[i];
+        }
+        r = t[i] + T;
+    }
+    out.println(ans);
+}

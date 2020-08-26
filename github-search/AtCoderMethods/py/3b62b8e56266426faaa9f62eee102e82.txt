@@ -1,0 +1,18 @@
+def dijkstra(n, edges, start, stop):
+    inf = float("inf")
+    vertices = [(inf,None) for _ in [None]*n]
+    vertices[start] = (0, None)
+    q = [(0, start)]
+
+    while q:
+        cost, v = heappop(q)
+        if vertices[v][0] < cost:
+            continue
+
+        for dest in edges[v]:
+            newcost = cost + 1
+            if vertices[dest][0] > newcost:
+                vertices[dest] = (newcost, v)
+                if not dest in stop:
+                    heappush(q, (newcost, dest))
+    return vertices

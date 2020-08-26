@@ -1,0 +1,24 @@
+public long getShortestPath(int i, int j) {
+    if (nf) {
+        return -INF;
+    }
+    if (result == null) {
+        for (int kk = 0; kk < n; kk++) {
+            for (int ii = 0; ii < n; ii++) {
+                for (int jj = 0; jj < n; jj++) {
+                    if (d[ii][kk] != INF && d[kk][jj] != INF && d[ii][jj] > d[ii][kk] + d[kk][jj]) {
+                        d[ii][jj] = d[ii][kk] + d[kk][jj];
+                    }
+                }
+            }
+        }
+        for (int k = 0; k < n; k++) {
+            if (d[k][k] < 0) {
+                nf = true;
+                return -INF;
+            }
+        }
+        result = d;
+    }
+    return result[i][j];
+}

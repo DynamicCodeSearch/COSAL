@@ -1,0 +1,31 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    Vector<Integer> a = new Vector<>();
+    Vector<Integer> b = new Vector<>();
+    int x = in.nextInt();
+    int y = in.nextInt();
+    if (x == 2 || y == 2) {
+        out.print("No");
+        return;
+    }
+    a.add(1);
+    a.add(3);
+    a.add(5);
+    a.add(7);
+    a.add(8);
+    a.add(10);
+    a.add(12);
+    b.add(4);
+    b.add(6);
+    b.add(9);
+    b.add(11);
+    if (Collections.binarySearch(a, x) >= 0 && Collections.binarySearch(a, y) >= 0) {
+        out.println("Yes");
+        return;
+    }
+    if (Collections.binarySearch(b, x) >= 0 && Collections.binarySearch(b, y) >= 0) {
+        out.println("Yes");
+        return;
+    }
+    out.println("No");
+    return;
+}

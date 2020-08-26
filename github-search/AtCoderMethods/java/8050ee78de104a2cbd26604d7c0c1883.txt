@@ -1,0 +1,10 @@
+static void dfs2(Node[] nodes, Edge[] edges, Node current, boolean[] looked, byte color) {
+    looked[current.no] = true;
+    current.color = color;
+    for (Edge e : current.edges) {
+        Node next = e.from == current ? e.to : e.from;
+        if (!looked[next.no] && color * next.color != -1) {
+            dfs2(nodes, edges, next, looked, color);
+        }
+    }
+}

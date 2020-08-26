@@ -1,0 +1,23 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    int[] l = new int[N];
+    int[] r = new int[N];
+    int[] s = new int[N];
+    int scoresum = 0;
+    for (int i = 0; i < N; i++) {
+        l[i] = sc.nextInt() - 1;
+        r[i] = sc.nextInt() - 1;
+        s[i] = sc.nextInt();
+        scoresum += s[i];
+    }
+    int[] sum = new int[M];
+    for (int i = 0; i < N; i++) {
+        for (int j = l[i]; j <= r[i]; j++) {
+            sum[j] += s[i];
+        }
+    }
+    Arrays.sort(sum);
+    System.out.println(scoresum - sum[0]);
+}

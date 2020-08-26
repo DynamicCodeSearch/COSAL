@@ -1,0 +1,17 @@
+private void dfs(int root, int prev, int distance) {
+    if (root == r && res > distance) {
+        res = distance;
+        return;
+    }
+    for (int i = 0; i < r; ++i) {
+        if (vis[i])
+            continue;
+        vis[i] = true;
+        if (prev == -1) {
+            dfs(root + 1, i, 0);
+        } else {
+            dfs(root + 1, i, dp[towns[prev]][towns[i]] + distance);
+        }
+        vis[i] = false;
+    }
+}

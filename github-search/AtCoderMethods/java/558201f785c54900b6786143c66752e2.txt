@@ -1,0 +1,13 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    char[] S = sc.nextLine().toCharArray();
+    
+    long sum = 0;
+    int l = S.length - 2;
+    for (int i = 0; i < S.length; i++) {
+        for (int j = l; j >= i; j--) sum += (S[i] - '0') * Math.pow(10, l - j) * (1 << j);
+        sum += (S[i] - '0') * Math.pow(10, l - i + 1) * (1 << i);
+    }
+    System.out.println(sum);
+    sc.close();
+}

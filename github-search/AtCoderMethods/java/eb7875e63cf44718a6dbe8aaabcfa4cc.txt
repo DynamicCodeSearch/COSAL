@@ -1,0 +1,15 @@
+void run() {
+    int N = in.nextInt();
+    int[] a = in.nextIntArray(N);
+    
+    SegmentTree[] segmentTrees = { new SegmentTree(N), new SegmentTree(N) };
+    for (int i = 0; i < N; i++) {
+        segmentTrees[i % 2].update(i, a[i]);
+    }
+    List<Integer> res = find(N, segmentTrees);
+    for (int v : res) {
+        out.print(v + " ");
+    }
+    out.println();
+    out.close();
+}

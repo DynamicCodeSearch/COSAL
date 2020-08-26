@@ -1,0 +1,55 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[][] a = new int[n][n];
+    boolean enable = true;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            a[i][j] = sc.nextInt();
+        }
+    }
+    sc.close();
+    int[][] wf = new int[n][n];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            wf[i][j] = a[i][j];
+        }
+    }
+    for (int k = 0; k < n; k++) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (wf[i][j] > wf[i][k] + wf[k][j]) {
+                    enable = false;
+                }
+            }
+        }
+    }
+    boolean[][] remove = new boolean[n][n];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            remove[i][j] = false;
+        }
+    }
+    for (int k = 0; k < n; k++) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (wf[i][j] != 0 && wf[i][j] >= wf[i][k] + wf[k][j] && k != i && k != j) {
+                    remove[i][j] = true;
+                }
+            }
+        }
+    }
+    long sum = 0;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (!remove[i][j]) {
+                sum += wf[i][j];
+            }
+        }
+    }
+    if (!enable) {
+        System.out.println("-1");
+    } else {
+        System.out.println("" + sum / 2);
+    }
+}

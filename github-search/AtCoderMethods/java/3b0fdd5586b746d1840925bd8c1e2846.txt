@@ -1,0 +1,12 @@
+private static void solve() {
+    long n = sc.nextLong();
+    int min = Integer.MAX_VALUE;
+    for (long a = 1; a * a <= n; a++) {
+        if (n % a != 0) {
+            continue;
+        }
+        long b = n / a;
+        min = Math.min(min, Math.max(Long.toString(a).length(), Long.toString(b).length()));
+    }
+    pr.println(min);
+}

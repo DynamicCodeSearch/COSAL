@@ -1,0 +1,16 @@
+void run() {
+    sc = new FastScanner();
+    int n = sc.nextInt();
+    Map<Integer, Integer> sortedDic = new TreeMap<Integer, Integer>(new Comparator<Integer>() {
+
+        public int compare(Integer m, Integer n) {
+            return ((Integer) m).compareTo(n) * -1;
+        }
+    });
+    for (int i = 0; i < n; i++) {
+        sortedDic.put(sc.nextInt(), i + 1);
+    }
+    for (Entry<Integer, Integer> e : sortedDic.entrySet()) {
+        System.out.println(e.getValue());
+    }
+}

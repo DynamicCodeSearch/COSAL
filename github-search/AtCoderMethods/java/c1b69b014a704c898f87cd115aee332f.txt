@@ -1,0 +1,12 @@
+public static void main(String[] args) {
+    int N = Integer.parseInt(scan.next());
+    for (int i = 1; i <= N; i++) {
+        factorization(i);
+    }
+    long ans = 1;
+    for (int i = 2; i <= N; i++) {
+        ans = ans * (count[i] + 1) % MOD;
+    }
+    System.out.println(ans);
+    scan.close();
+}

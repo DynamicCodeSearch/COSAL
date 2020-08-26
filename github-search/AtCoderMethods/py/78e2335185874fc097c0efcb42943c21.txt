@@ -1,0 +1,16 @@
+def prime_factors(num):
+    factor_list = []
+    while num % 2 == 0:
+        factor_list.append(2)
+        num //= 2
+    i = 3
+    while i <= math.sqrt(num):
+        if num % i == 0:
+            factor_list.append(i)
+            num //= i
+            i = 3
+        else:
+            i += 2
+    if num > 1:
+        factor_list.append(num)
+    return factor_list

@@ -1,0 +1,15 @@
+private void ban(int l, int r, int fr, int i, int L, int R) {
+    if (L >= r || l >= R)
+        return;
+    if (L >= l && R <= r) {
+        if (R == L + 1) {
+            sat2.addEdge(fr, (q[L] ^ 1) + 2 * k);
+        } else {
+            sat2.addEdge(fr, 2 * i);
+        }
+        return;
+    }
+    int M = (L + R) / 2;
+    ban(l, r, fr, 2 * i + 1, L, M);
+    ban(l, r, fr, 2 * i + 2, M, R);
+}

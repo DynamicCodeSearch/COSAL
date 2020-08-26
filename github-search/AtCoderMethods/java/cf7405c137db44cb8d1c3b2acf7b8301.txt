@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    String s = scan.next();
+    boolean flag = true;
+    for (int i = 0; i < s.length(); i++) {
+        if (s.charAt(i) == 'o') {
+            continue;
+        } else if (s.charAt(i) == 'k') {
+            continue;
+        } else if (s.charAt(i) == 'u') {
+            continue;
+        } else if (s.charAt(i) == 'c') {
+            if (i != s.length() - 1) {
+                if (s.charAt(i + 1) == 'h') {
+                    i++;
+                    continue;
+                }
+            }
+        }
+        flag = false;
+        break;
+    }
+    if (flag) {
+        System.out.println("YES");
+    } else {
+        System.out.println("NO");
+    }
+}

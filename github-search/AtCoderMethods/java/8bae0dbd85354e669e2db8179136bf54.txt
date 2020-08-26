@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String s = sc.next();
+    s = s.substring(0, s.length() - 2);
+    for (int i = s.length() - 1; i > 0; i--) {
+        if (s.length() % 2 == 0) {
+            String a = s.substring(0, s.length() / 2 - 1);
+            String b = s.substring(s.length() / 2, s.length() - 1);
+            if (a.equals(b)) {
+                System.out.println(s.length());
+                break;
+            }
+        }
+        s = s.substring(0, s.length() - 2);
+    }
+    if (s.length() == 1) {
+        System.out.println(0);
+    }
+}

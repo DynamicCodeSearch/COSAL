@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int T = sc.nextInt();
+    int[] A = new int[N];
+    int total = 0;
+    for (int i = 0; i < N; i++) {
+        A[i] = sc.nextInt();
+    }
+    for (int i = 0; i < N - 1; i++) {
+        if (T > A[i + 1] - A[i]) {
+            total += A[i + 1] - A[i];
+        } else {
+            total += T;
+        }
+    }
+    System.out.println(total + T);
+}

@@ -1,0 +1,24 @@
+def bs(n, a, b, hp, min=0, max=10**9):
+    left = min
+    right = max
+    def count(num):
+        base = b * num
+        attackcount = 0
+        diff = a-b
+        for i in range(n):
+            tmp = math.ceil((hp[i] - base) / diff)
+            if tmp <= 0:
+                pass
+            else:
+                attackcount += tmp
+        if attackcount <= num:
+            return True
+        else:
+            return False
+    while left != right:
+        mid = (left + right) // 2
+        if count(mid):
+            right = mid
+        else:
+            left = mid + 1
+    return left

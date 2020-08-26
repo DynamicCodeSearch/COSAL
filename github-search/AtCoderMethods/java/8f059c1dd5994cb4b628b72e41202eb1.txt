@@ -1,0 +1,15 @@
+void unite(int x, int y) {
+    x = find(x);
+    y = find(y);
+    if (x == y)
+        return;
+    if (rank[x] > rank[y]) {
+        par[x] = y;
+        size[y] += size[x];
+    } else {
+        size[x] += size[y];
+        par[y] = x;
+        if (rank[x] == rank[y])
+            rank[x]++;
+    }
+}

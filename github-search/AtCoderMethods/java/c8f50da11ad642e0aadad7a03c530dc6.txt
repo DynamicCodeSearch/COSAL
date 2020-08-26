@@ -1,0 +1,17 @@
+public boolean hasNextInt() {
+    while (hasNext()) {
+        try {
+            String s = next();
+            currentToken = s;
+            try {
+                Integer.parseInt(s);
+                return true;
+            } catch (NumberFormatException e) {
+                return false;
+            }
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+    return false;
+}

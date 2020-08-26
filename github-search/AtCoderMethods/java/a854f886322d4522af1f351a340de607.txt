@@ -1,0 +1,23 @@
+private boolean check(int ri, int gi, int bi) {
+    int d = max(ri, gi, bi);
+    int ci3 = min(ri, gi, bi);
+    int ci1 = max(ri, gi, bi);
+    
+    int ci2 = ri ^ gi ^ bi ^ ci3 ^ ci1;
+    for (int i : list.get(d)) {
+        if (x[i] == 1) {
+            if (ci2 >= l[i]) {
+                return false;
+            }
+        } else if (x[i] == 2) {
+            if (ci3 >= l[i] || l[i] > ci2) {
+                return false;
+            }
+        } else {
+            if (l[i] > ci3) {
+                return false;
+            }
+        }
+    }
+    return true;
+}

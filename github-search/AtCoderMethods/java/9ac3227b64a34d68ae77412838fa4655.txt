@@ -1,0 +1,14 @@
+static long pow(long v, long p) {
+    if (p == 0)
+        return 1;
+    if (p == 1)
+        return v;
+    long ret = pow(v, p / 2);
+    ret *= ret;
+    ret %= MOD;
+    if (p % 2 == 1) {
+        ret *= v;
+        ret %= MOD;
+    }
+    return ret;
+}

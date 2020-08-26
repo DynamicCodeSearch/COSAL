@@ -1,0 +1,14 @@
+private static int paths(Graph G, int v, int i) {
+    if (i == G.V() - 1) {
+        return 1;
+    }
+    marked[v] = true;
+    int paths = 0;
+    for (int w : G.adj(v)) {
+        if (!marked[w]) {
+            paths += paths(G, w, i + 1);
+        }
+    }
+    marked[v] = false;
+    return paths;
+}

@@ -1,0 +1,47 @@
+public static void main(String[] args) throws IOException {
+    try (Scanner sc = new Scanner(System.in)) {
+        final int N = sc.nextInt();
+        long[][] in_adj = new long[N][N];
+        long[][] wf_adj = new long[N][N];
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                in_adj[i][j] = wf_adj[i][j] = sc.nextLong();
+            }
+        }
+        int[][] nexts = new int[N][N];
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                nexts[i][j] = j;
+            }
+        }
+        for (int k = 0; k < N; k++) {
+            for (int i = 0; i < N; i++) {
+                for (int j = 0; j < N; j++) {
+                    if (wf_adj[i][j] >= wf_adj[i][k] + wf_adj[k][j]) {
+                        if (i != k && j != k) {
+                            nexts[i][j] = nexts[i][k];
+                        }
+                        wf_adj[i][j] = wf_adj[i][k] + wf_adj[k][j];
+                    }
+                }
+            }
+        }
+        long answer = 0;
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                if (in_adj[i][j] != wf_adj[i][j]) {
+                    System.out.println(-1);
+                    return;
+                }
+            }
+        }
+        for (int i = 0; i < N; i++) {
+            for (int j = i + 1; j < N; j++) {
+                if (nexts[i][j] == j) {
+                    answer += wf_adj[i][j];
+                }
+            }
+        }
+        System.out.println(answer);
+    }
+}

@@ -1,0 +1,350 @@
+### Py Tokens: range, used, exp, len, ans 
+
+### Py functions
+
+def func_70222247c393440a8f53fc1016eccbdf(B, i, l, ns, r):
+    r = 10 ** 19
+    if not ok(l, ns, i, B):
+        return 0
+    while l <= r:
+        m = (l + r) // 2
+        if ok(m, ns, i, B):
+            l = m + 1
+        else:
+            r = m - 1
+    ans = r
+    used = 0
+    for j in range(i):
+        used += ans - ns[j]
+    for j in range(i, len(ns)):
+        if ans + 1 > ns[j]:
+            used += ans + 1 - ns[j]
+    if ans + 1 > ns[j]:
+        used += ans + 1 - ns[j]
+    exp = 0.0
+    return r
+
+def func_e4400fedead344e48441a422ca7125d1(B, i, ns):
+    i += 1
+    l = ns[i - 1]
+    r = 10 ** 19
+    if not ok(l, ns, i, B):
+        return 0
+    while l <= r:
+        m = (l + r) // 2
+        if ok(m, ns, i, B):
+            l = m + 1
+        else:
+            r = m - 1
+    ans = r
+    used = 0
+    for j in range(i):
+        used += ans - ns[j]
+    for j in range(i, len(ns)):
+        if ans + 1 > ns[j]:
+            used += ans + 1 - ns[j]
+    if ans + 1 > ns[j]:
+        used += ans + 1 - ns[j]
+    exp = 0.0
+    return j
+
+def func_c952bb82bd8f4fc89022a8bb82e2ff76(ans, i, ns, used):
+    used = 0
+    for j in range(i):
+        used += ans - ns[j]
+    for j in range(i, len(ns)):
+        if ans + 1 > ns[j]:
+            used += ans + 1 - ns[j]
+    if ans + 1 > ns[j]:
+        used += ans + 1 - ns[j]
+    exp = 0.0
+    return j
+
+def func_35d76e6b743c4d9b8b4497a8f6d8a7f4(B, i, l, ns, r):
+    if not ok(l, ns, i, B):
+        return 0
+    while l <= r:
+        m = (l + r) // 2
+        if ok(m, ns, i, B):
+            l = m + 1
+        else:
+            r = m - 1
+    ans = r
+    used = 0
+    for j in range(i):
+        used += ans - ns[j]
+    for j in range(i, len(ns)):
+        if ans + 1 > ns[j]:
+            used += ans + 1 - ns[j]
+    if ans + 1 > ns[j]:
+        used += ans + 1 - ns[j]
+    exp = 0.0
+    return l
+
+def func_1c7f5cff7b384187a6497191e66a7fdd(B, i, ns):
+    i += 1
+    l = ns[i - 1]
+    r = 10 ** 19
+    if not ok(l, ns, i, B):
+        return 0
+    while l <= r:
+        m = (l + r) // 2
+        if ok(m, ns, i, B):
+            l = m + 1
+        else:
+            r = m - 1
+    ans = r
+    used = 0
+    for j in range(i):
+        used += ans - ns[j]
+    for j in range(i, len(ns)):
+        if ans + 1 > ns[j]:
+            used += ans + 1 - ns[j]
+    if ans + 1 > ns[j]:
+        used += ans + 1 - ns[j]
+    exp = 0.0
+    return l
+
+*********************************
+
+#### Score: 8.27157
+
+
+#### Java Tokens: exp 
+
+public static double[] func_b7a0fb8ef63d45dcb9c139633e9e6d50(int n, double[] l, double[] d) { 
+ double[] exp = new double[n];
+for (int j = 0; j < n; j++) {
+    if (d[j] == 0) {
+        exp[j] = 0;
+    } else {
+        exp[j] = l[j] * d[j] / (100 - d[j]);
+    }
+}
+return exp;
+}
+
+
+*********************************
+
+#### Score: 7.95205
+
+
+#### Java Tokens: used 
+
+public static double func_6e8835d8238743609b30f6df997d929f(int g, double hi, double used) { 
+ used = hi;
+--g;
+return used;
+}
+
+
+public static double func_2a45fa6422de4dda92c6af59288b7fac(int p, double used) { 
+ ++p;
+used = 0.0;
+return used;
+}
+
+
+public static double func_35ffb733a09f48e4b100d879867f86a3(double used) { 
+ double hi = 1.0;
+double lo = used;
+return lo;
+}
+
+
+*********************************
+
+#### Score: 7.67229
+
+
+#### Java Tokens: width, exp 
+
+public static double func_8cb3d25a275a4c0cbc9d3e24201804e7(int width, int j, long ma, long all, double exp) { 
+ exp += ma * 36.0;
+exp -= all + ma * width + j;
+return exp;
+}
+
+
+*********************************
+
+#### Score: 7.67229
+
+
+#### Java Tokens: pos, exp 
+
+public static int func_d0a7c296e021459dacf6b862a210eb59(int n, double[] exp) { 
+ int pos = 0;
+for (int k = 1; k < n; k++) {
+    if (exp[k] > exp[pos]) {
+        pos = k;
+    }
+}
+return pos;
+}
+
+
+*********************************
+
+#### Score: 7.37720
+
+
+#### Java Tokens: cand, used 
+
+public static double func_f2ec4ae2c57942a4969cac1808f9f871(double hi, double lo, double b, double a, double used) { 
+ double mi = (hi + lo) / 2.0;
+double cand = ((b - a) * used + a + (b - a) * mi + a) * (mi - used) / 2.0;
+return mi;
+}
+
+
+public static double func_9c95879db0404acaa6d5e45361a4a357(double hi, double lo, double b, double a, double used) { 
+ double mi = (hi + lo) / 2.0;
+double cand = ((b - a) * used + a + (b - a) * mi + a) * (mi - used) / 2.0;
+return cand;
+}
+
+
+*********************************
+
+#### Score: 7.37720
+
+
+#### Java Tokens: cur, used 
+
+public static double func_869045cb96b14858a9393546c57decb8(int g, double hi, double cur, double used) { 
+ cur = 0.0;
+used = hi;
+--g;
+return used;
+}
+
+
+public static double func_6fc5c58cc80b4abebf4948055174c374(double hi, double cur, double used) { 
+ cur = 0.0;
+used = hi;
+return used;
+}
+
+
+public static double func_aedd5bedf8974c219e559e6cd561ebd2(int g, double hi, double cur, double used) { 
+ cur = 0.0;
+used = hi;
+--g;
+return cur;
+}
+
+
+*********************************
+
+#### Score: 7.15815
+
+
+#### Java Tokens: print, pos, exp 
+
+public static PrintWriter func_177d5cfe488a4c8db123900770909d9a(int n, int pos, double[] exp, PrintWriter pw) { 
+ for (int k = 1; k < n; k++) {
+    if (exp[k] > exp[pos]) {
+        pos = k;
+    }
+}
+pw.print(pos + " ");
+return pw;
+}
+
+
+public static int func_c428b901829146a491027271a1d95e14(int n, double[] exp, PrintWriter pw) { 
+ int pos = 0;
+for (int k = 1; k < n; k++) {
+    if (exp[k] > exp[pos]) {
+        pos = k;
+    }
+}
+pw.print(pos + " ");
+return pos;
+}
+
+
+public static int func_062ef56765224815b11b1e7607714d4f(int n, int pos, double[] exp, PrintWriter pw) { 
+ for (int k = 1; k < n; k++) {
+    if (exp[k] > exp[pos]) {
+        pos = k;
+    }
+}
+pw.print(pos + " ");
+return pos;
+}
+
+
+*********************************
+
+#### Score: 7.15815
+
+
+#### Java Tokens: print, exp, case 
+
+public static double[] func_93fb8b880be1427f90e120d60febedc3(int i, int n, double[] l, double[] d, PrintWriter pw) { 
+ double[] exp = new double[n];
+for (int j = 0; j < n; j++) {
+    if (d[j] == 0) {
+        exp[j] = 0;
+    } else {
+        exp[j] = l[j] * d[j] / (100 - d[j]);
+    }
+}
+pw.print("Case #" + (i + 1) + ": ");
+return exp;
+}
+
+
+public static PrintWriter func_ae6b9a6c25e5400db86c47c8855d3965(int i, int n, double[] l, double[] d, PrintWriter pw) { 
+ double[] exp = new double[n];
+for (int j = 0; j < n; j++) {
+    if (d[j] == 0) {
+        exp[j] = 0;
+    } else {
+        exp[j] = l[j] * d[j] / (100 - d[j]);
+    }
+}
+pw.print("Case #" + (i + 1) + ": ");
+return pw;
+}
+
+
+*********************************
+
+#### Score: 7.15815
+
+
+#### Java Tokens: min, math, exp 
+
+public static double func_7a898988c3d3423bb8d6716f982d4ba6(int width, int j, long mh, long all, double exp) { 
+ long ma = Math.min(mh, (A.B - all - j) / width);
+exp += ma * 36.0;
+return exp;
+}
+
+
+public static long func_69a05bd9dedd49148ac9636c3b9675ba(int width, int j, long mh, long all, double exp) { 
+ long ma = Math.min(mh, (A.B - all - j) / width);
+exp += ma * 36.0;
+return ma;
+}
+
+
+*********************************
+
+#### Score: 7.15815
+
+
+#### Java Tokens: width, exp, height 
+
+public static double func_894551d7df1740048adf5d1d0ac4acdd(int width, int j, long height) { 
+ double exp = 0;
+for (int k = 0; k < width - j; ++k) {
+    exp += 36.0 * (height - A.X[k]) / (width - j);
+}
+return exp;
+}
+

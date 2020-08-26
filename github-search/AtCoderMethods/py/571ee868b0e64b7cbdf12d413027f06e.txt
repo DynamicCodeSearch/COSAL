@@ -1,0 +1,8 @@
+def power(n, a):
+    res, exp = 1, n
+    while(a):
+        if a & 1:
+            res = res * exp % MOD
+        exp = exp * exp % MOD
+        a = a >> 1
+    return res

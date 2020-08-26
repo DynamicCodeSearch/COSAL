@@ -1,0 +1,38 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int H = in.nextInt();
+    int W = in.nextInt();
+    char[][] S = new char[H + 1][W + 1];
+    int[][] flag = new int[H + 3][W + 3];
+    for (int cnth = 0; cnth < H; cnth++) {
+        String str = in.next();
+        for (int cntw = 0; cntw < W; cntw++) {
+            S[cnth][cntw] = str.charAt(cntw);
+        
+        }
+    }
+    for (int cnth = 0; cnth < H; cnth++) {
+        for (int cntw = 0; cntw < W; cntw++) {
+            if (S[cnth][cntw] == '#') {
+                flag[cnth][cntw]++;
+                flag[cnth][cntw + 1]++;
+                flag[cnth][cntw + 2]++;
+                flag[cnth + 1][cntw]++;
+                flag[cnth + 1][cntw + 2]++;
+                flag[cnth + 2][cntw]++;
+                flag[cnth + 2][cntw + 1]++;
+                flag[cnth + 2][cntw + 2]++;
+            }
+        }
+    }
+    for (int cnth = 0; cnth < H; cnth++) {
+        for (int cntw = 0; cntw < W; cntw++) {
+            if (S[cnth][cntw] == '#') {
+                System.out.print(S[cnth][cntw]);
+            } else {
+                System.out.print(flag[cnth + 1][cntw + 1]);
+            }
+        }
+        System.out.println();
+    }
+}

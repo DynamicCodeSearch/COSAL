@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    char[][] map = new char[n][n];
+    for (int i = 0; i < n; i++) {
+        String tmp = sc.next();
+        for (int j = 0; j < n; j++) {
+            map[i][j] = tmp.charAt(j);
+        }
+    }
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < n; i++) {
+        for (int j = n - 1; j >= 0; j--) {
+            sb.append(map[j][i]);
+        }
+        sb.append("\n");
+    }
+    System.out.println(sb);
+}

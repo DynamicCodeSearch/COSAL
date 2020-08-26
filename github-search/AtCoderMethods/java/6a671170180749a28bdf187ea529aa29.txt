@@ -1,0 +1,13 @@
+public void union(int x, int y) {
+    int xRoot = getRoot(x);
+    int yRoot = getRoot(y);
+    if (xRoot == yRoot)
+        return;
+    if (rank[xRoot] > rank[yRoot]) {
+        rank[xRoot] += rank[yRoot];
+        elem[yRoot] = xRoot;
+    } else {
+        rank[yRoot] += rank[xRoot];
+        elem[xRoot] = yRoot;
+    }
+}

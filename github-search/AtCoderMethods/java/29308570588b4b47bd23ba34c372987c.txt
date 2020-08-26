@@ -1,0 +1,44 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    long[] center = new long[N];
+    PriorityQueue<Long> apq = new PriorityQueue<>();
+    PriorityQueue<Long> bpq = new PriorityQueue<>(Comparator.reverseOrder());
+    long asum = 0;
+    for (int i = 0; i < N; i++) {
+        long a = sc.nextLong();
+        apq.add(a);
+        asum += a;
+    }
+    for (int i = 0; i < N; i++) {
+        center[i] = sc.nextLong();
+    }
+    long bsum = 0;
+    for (int i = 0; i < N; i++) {
+        long b = sc.nextLong();
+        bpq.add(b);
+        bsum += b;
+    }
+    long[] amax = new long[N + 1];
+    amax[0] = asum;
+    for (int i = 0; i < N; i++) {
+        asum += center[i];
+        apq.add(center[i]);
+        asum -= apq.poll();
+        amax[i + 1] = asum;
+    }
+    long[] bmin = new long[N + 1];
+    bmin[N] = bsum;
+    for (int i = N - 1; i >= 0; i--) {
+        bsum += center[i];
+        bpq.add(center[i]);
+        bsum -= bpq.poll();
+        bmin[i] = bsum;
+    }
+    long ans = -Long.MAX_VALUE;
+    for (int i = 0; i <= N; i++) {
+        ans = Math.max(ans, amax[i] - bmin[i]);
+    }
+    System.out.println(ans);
+}

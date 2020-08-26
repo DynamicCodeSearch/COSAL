@@ -1,0 +1,18 @@
+public static void main(String[] args) throws NumberFormatException, IOException {
+    
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String str = br.readLine();
+    long N = Long.parseLong(str.substring(0, str.indexOf(" ")));
+    long M = Long.parseLong(str.substring(str.indexOf(" ") + 1));
+    long s = 0;
+    long n = N;
+    long m = M / 2;
+    if (n <= m)
+        s += n;
+    else
+        s += m;
+    M -= 2 * s;
+    if (M >= 4)
+        s += M / 4;
+    System.out.println(s);
+}

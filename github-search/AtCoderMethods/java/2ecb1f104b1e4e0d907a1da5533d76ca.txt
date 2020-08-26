@@ -1,0 +1,13 @@
+public int dfs(int n, int weight) {
+    if (n == N)
+        return 0;
+    if (map[n].containsKey(weight)) {
+        return map[n].get(weight);
+    }
+    int ret = 0;
+    if (weight + w[n] <= W)
+        ret = Math.max(ret, dfs(n + 1, weight + w[n]) + v[n]);
+    ret = Math.max(ret, dfs(n + 1, weight));
+    map[n].put(weight, ret);
+    return ret;
+}

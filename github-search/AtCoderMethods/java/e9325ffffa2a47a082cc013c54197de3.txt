@@ -1,0 +1,15 @@
+public static void filldp(int op, int pre) {
+    
+    if (pre + 3 < n + 1 && dp[pre + 3] == 0 && pre + 3 != a && pre + 3 != b && pre + 3 != c) {
+        dp[pre + 3] = dp[pre] + 1;
+        filldp(op + 1, pre + 3);
+    }
+    if (pre + 2 < n + 1 && dp[pre + 2] == 0 && pre + 2 != a && pre + 2 != b && pre + 2 != c) {
+        dp[pre + 2] = dp[pre] + 1;
+        filldp(op + 1, pre + 2);
+    }
+    if (pre + 1 < n + 1 && dp[pre + 1] == 0 && pre + 1 != a && pre + 1 != b && pre + 1 != c) {
+        dp[pre + 1] = dp[pre] + 1;
+        filldp(op + 1, pre + 1);
+    }
+}

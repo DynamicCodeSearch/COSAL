@@ -1,0 +1,7 @@
+def resolve(x, n):
+    res = []
+    for i in itertools.count():
+        xi = x * i
+        if xi > n: break
+        res.append(abs(x - i) + n - xi)
+    return min(res)

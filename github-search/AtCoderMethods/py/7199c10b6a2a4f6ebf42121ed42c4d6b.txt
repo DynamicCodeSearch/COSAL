@@ -1,0 +1,34 @@
+def solve():
+    N = int(input())
+    S = [True if i == 'o' else False for i in input()]
+
+
+    for i, j in [(False, False), (False, True), (True, False), (True, True)]:
+        pat = [i, j]
+        for k in range(2, N):
+            if pat[k - 1]:
+                if S[k - 1]:
+                    pat.append(pat[k - 2])
+                else:
+                    pat.append(not pat[k - 2])
+            else:
+                if S[k - 1]:
+                    pat.append(not pat[k - 2])
+                else:
+                    pat.append(pat[k - 2])
+
+
+
+        for k in range(N):
+            if pat[k]:
+                if S[k] != is_same(pat, k, N):
+                    break
+            else:
+                if S[k] == is_same(pat, k, N):
+                    break
+        else:
+            ans = ['S' if pat[k] else 'W' for k in range(N)]
+            print(''.join(ans))
+            return None
+
+    print(-1)

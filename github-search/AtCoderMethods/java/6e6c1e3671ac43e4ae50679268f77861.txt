@@ -1,0 +1,18 @@
+
+public void run() throws IOException {
+    
+    int TEST_CASE = 1;
+    while (TEST_CASE-- != 0) {
+        int n = io.nextInt();
+        long k = io.nextLong();
+        int[][] ab = io.nextIntArray2D(n, 2);
+        Arrays.sort(ab, (a, b) -> a[0] - b[0]);
+        for (int i = 0; i < n; i++) {
+            k -= ab[i][1];
+            if (k <= 0) {
+                io.out.println(ab[i][0]);
+                break;
+            }
+        }
+    }
+}

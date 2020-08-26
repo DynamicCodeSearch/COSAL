@@ -1,0 +1,14 @@
+def go(start, g, ind):
+    n = len(g)
+    ved = [False] * n
+    q = [start]
+    j = 0
+    ved[start] = True
+    while(j < len(q)):
+        cur = q[j]
+        for e in g[cur]:
+            if not ved[e[ind]]:
+                ved[e[ind]] = True
+                q.append(e[ind])
+        j += 1
+    return ved

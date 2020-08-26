@@ -1,0 +1,76 @@
+public static void main(String[] args) {
+    Scanner s = new Scanner(System.in);
+    final int DEG = s.nextInt();
+    final int DIS = s.nextInt();
+    double fuSoku = DIS / 60.0;
+    fuSoku = Math.round(fuSoku * 10) / 10.0;
+    int fuRyoku;
+    if (fuSoku <= 0.2) {
+        fuRyoku = 0;
+    } else if (fuSoku <= 1.5) {
+        fuRyoku = 1;
+    } else if (fuSoku <= 3.3) {
+        fuRyoku = 2;
+    } else if (fuSoku <= 5.4) {
+        fuRyoku = 3;
+    } else if (fuSoku <= 7.9) {
+        fuRyoku = 4;
+    } else if (fuSoku <= 10.7) {
+        fuRyoku = 5;
+    } else if (fuSoku <= 13.8) {
+        fuRyoku = 6;
+    } else if (fuSoku <= 17.1) {
+        fuRyoku = 7;
+    } else if (fuSoku <= 20.7) {
+        fuRyoku = 8;
+    } else if (fuSoku <= 24.4) {
+        fuRyoku = 9;
+    } else if (fuSoku <= 28.4) {
+        fuRyoku = 10;
+    } else if (fuSoku <= 32.6) {
+        fuRyoku = 11;
+    } else {
+        fuRyoku = 12;
+    }
+    String dir;
+    if (fuRyoku == 0) {
+        dir = "C";
+    } else {
+        if (DEG < 3600 / 32.0) {
+            dir = "N";
+        } else if (3600.0 / 32.0 <= DEG && DEG <= 3600.0 * 3 / 32.0) {
+            dir = "NNE";
+        } else if (DEG <= 3600.0 * 5 / 32.0) {
+            dir = "NE";
+        } else if (DEG <= 3600.0 * 7 / 32.0) {
+            dir = "ENE";
+        } else if (DEG <= 3600.0 * 9 / 32.0) {
+            dir = "E";
+        } else if (DEG <= 3600.0 * 11 / 32.0) {
+            dir = "ESE";
+        } else if (DEG <= 3600.0 * 13 / 32.0) {
+            dir = "SE";
+        } else if (DEG <= 3600.0 * 15 / 32.0) {
+            dir = "SSE";
+        } else if (DEG <= 3600.0 * 17 / 32.0) {
+            dir = "S";
+        } else if (DEG <= 3600.0 * 19 / 32.0) {
+            dir = "SSW";
+        } else if (DEG <= 3600.0 * 21 / 32.0) {
+            dir = "SW";
+        } else if (DEG <= 3600.0 * 23 / 32.0) {
+            dir = "WSW";
+        } else if (DEG <= 3600.0 * 25 / 32.0) {
+            dir = "W";
+        } else if (DEG <= 3600.0 * 27 / 32.0) {
+            dir = "WNW";
+        } else if (DEG <= 3600.0 * 29 / 32.0) {
+            dir = "NW";
+        } else if (DEG <= 3600.0 * 31 / 32.0) {
+            dir = "NNW";
+        } else {
+            dir = "N";
+        }
+    }
+    System.out.println(dir + " " + fuRyoku);
+}

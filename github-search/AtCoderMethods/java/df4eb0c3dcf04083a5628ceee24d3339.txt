@@ -1,0 +1,16 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    int n = in.nextInt();
+    int[] a = in.readIntArray(n);
+    AUtils.sort(a);
+    int x1 = 0, x2 = 0;
+    for (int i = n - 1; x2 == 0 && i >= 1; i--) {
+        if (a[i] == a[i - 1]) {
+            if (x1 != 0)
+                x2 = a[i];
+            else
+                x1 = a[i];
+            i--;
+        }
+    }
+    out.println(1L * x1 * x2);
+}

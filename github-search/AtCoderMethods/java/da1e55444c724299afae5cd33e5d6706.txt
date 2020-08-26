@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int m = Integer.parseInt(sc.nextLine());
+    double km = m / 1000.0;
+    if (km < 0.1)
+        System.out.println("00");
+    else if (0.1 <= km && km <= 5.0)
+        if (km <= 0.9)
+            System.out.println("0" + (int) (10 * km));
+        else
+            System.out.println((int) (10 * km));
+    else if (6.0 <= km && km <= 30.0)
+        System.out.println((int) (km + 50));
+    else if (35.0 <= km && km <= 70.0)
+        System.out.println((int) (km - 30) / 5 + 80);
+    else if (km >= 70.0)
+        System.out.println(89);
+}

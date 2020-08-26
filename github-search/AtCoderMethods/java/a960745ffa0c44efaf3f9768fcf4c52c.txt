@@ -1,0 +1,24 @@
+void solve() {
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    int[] F = sc.nextIntArray(N);
+    long[] dp = new long[N + 1];
+    dp[0] = 1;
+    int[] mark = new int[M + 1];
+    int tail = 0;
+    long acc = 0;
+    for (int i = 0; i < N; i++) {
+        acc += dp[i];
+        acc %= MOD;
+        ++mark[F[i]];
+        while (mark[F[i]] >= 2) {
+            mark[F[tail]]--;
+            acc -= dp[tail];
+            acc = (acc + MOD) % MOD;
+            tail++;
+        }
+        dp[i + 1] = acc;
+    }
+    long ans = dp[N];
+    out.println(ans);
+}

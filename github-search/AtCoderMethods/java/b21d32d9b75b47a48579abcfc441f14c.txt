@@ -1,0 +1,22 @@
+private static BigDecimal find(List<Integer> datas, int index, int target, BigDecimal[][] cache) {
+    if (target == 0) {
+        return new BigDecimal(1);
+    }
+    if (datas.size() == index) {
+        return new BigDecimal(0);
+    }
+    if (cache[index][target] != null) {
+        return cache[index][target];
+    }
+    BigDecimal r = new BigDecimal(0);
+    Integer integer = datas.get(index);
+    if (target - integer >= 0) {
+        BigDecimal rr = find(datas, index + 1, target - integer, cache).add(find(datas, index + 1, target, cache));
+        cache[index][target] = rr;
+        return rr;
+    } else {
+        BigDecimal rr = find(datas, index + 1, target, cache);
+        cache[index][target] = rr;
+        return rr;
+    }
+}

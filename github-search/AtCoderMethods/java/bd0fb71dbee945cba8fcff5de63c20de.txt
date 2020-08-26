@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int m = sc.nextInt();
+    int n = sc.nextInt();
+    int N = sc.nextInt();
+    int sold = 0;
+    int notused = 0;
+    sold += N;
+    while (N + notused >= m) {
+        N += notused;
+        notused = N % m;
+        N = (N - notused) * n / m;
+        sold += N;
+    }
+    System.out.println(sold);
+}

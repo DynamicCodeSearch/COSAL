@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    int n = s.nextInt(), m = s.nextInt();
+    int[][] graph = new int[n][n];
+    int[][] graphini = new int[n][n];
+    {
+        for (int i = 0; i < n; i++) {
+            Arrays.fill(graph[i], 114514);
+            Arrays.fill(graphini[i], 114514);
+            graph[i][i] = 0;
+            graphini[i][i] = 0;
+        }
+    }
+    {
+        int x, y, w;
+        for (int i = 0; i < m; i++) {
+            x = s.nextInt() - 1;
+            y = s.nextInt() - 1;
+            w = s.nextInt();
+            graph[x][y] = w;
+            graph[y][x] = w;
+            graphini[x][y] = w;
+        }
+    }
+    for (int d = 0; d < n; d++) for (int x = 0; x < n; x++) for (int y = 0; y < n; y++) graph[x][y] = Math.min(graph[x][y], graph[x][d] + graph[d][y]);
+    int r = 0;
+    for (int x = 0; x < n; x++) for (int y = 0; y < n; y++) if (graphini[x][y] != 114514 && graphini[x][y] > graph[x][y])
+        r++;
+    System.out.println(r);
+}

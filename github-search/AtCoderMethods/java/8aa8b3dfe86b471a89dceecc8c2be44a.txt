@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String str = sc.next();
+    sc.close();
+    String[] oto = { "Do", "Re", "Mi", "Fa", "So", "La", "Si" };
+    int first = -1, second = -1;
+    for (int i = 0; i < str.length() - 1; i++) {
+        if (str.charAt(i) == 'W' && str.charAt(i + 1) == 'W') {
+            if (first == -1) {
+                first = i;
+            } else {
+                second = i;
+                break;
+            }
+        }
+    }
+    String ans;
+    if (second - first < 7) {
+        ans = oto[6 - first / 2];
+    } else {
+        ans = oto[2 - first / 2];
+    }
+    System.out.println(ans);
+}

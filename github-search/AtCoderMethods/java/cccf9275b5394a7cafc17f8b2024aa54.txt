@@ -1,0 +1,25 @@
+static void exec4() {
+    
+    BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+    String n_str, a_str;
+    try {
+        n_str = new String(in.readLine());
+        a_str = new String(in.readLine());
+        int n = Integer.parseInt(n_str);
+        if (n < 1 || n > 100)
+            throw new Exception();
+        if (n != a_str.length())
+            throw new Exception();
+        while (is_valid(a_str) != 0) {
+            if (is_valid(a_str) < 0)
+                a_str = "(" + a_str;
+            if (is_valid(a_str) > 0)
+                a_str = a_str + ")";
+        }
+        System.out.println(a_str);
+    } catch (IOException e) {
+        e.printStackTrace();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}

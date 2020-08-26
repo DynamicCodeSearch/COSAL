@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    Map<Integer, List<Integer>> routes = new HashMap<>(n);
+    for (int i = 1; i <= n; i++) {
+        routes.put(i, new ArrayList<>());
+    }
+    for (int i = 0; i < m; i++) {
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        routes.get(a).add(b);
+        routes.get(b).add(a);
+    }
+    boolean canReach = false;
+    for (Integer firstStop : routes.get(1)) {
+        List<Integer> secondStops = routes.get(firstStop);
+        if (secondStops.contains(n)) {
+            canReach = true;
+            break;
+        }
+    }
+    System.out.println(canReach ? "POSSIBLE" : "IMPOSSIBLE");
+}

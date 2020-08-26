@@ -1,0 +1,10 @@
+long modpow(long n, long a, long mod) {
+    long res = 1;
+    while (a > 0) {
+        if ((a & 1) == 1)
+            res = (res * n) % mod;
+        n = (long) (((long) n * n) % mod);
+        a >>= 1;
+    }
+    return (long) res;
+}

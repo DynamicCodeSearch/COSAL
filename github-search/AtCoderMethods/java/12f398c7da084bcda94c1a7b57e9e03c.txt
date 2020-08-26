@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    
+    String str = sc.nextLine();
+    String befhalf, afthalf;
+    while (str.length() > 0) {
+        str = str.substring(0, str.length() - 1);
+        befhalf = str.substring(0, str.length() / 2);
+        afthalf = str.substring((str.length() / 2), str.length());
+        
+        if (befhalf.equals(afthalf)) {
+            System.out.println(str.length());
+            str = "";
+        }
+    }
+}

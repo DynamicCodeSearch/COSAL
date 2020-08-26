@@ -1,0 +1,36 @@
+
+public void run() throws IOException {
+    
+    int TEST_CASE = 1;
+    while (TEST_CASE-- != 0) {
+        String[] p = new String[] { "dreamer", "eraser", "dream", "erase" };
+        char[] cs = io.next();
+        for (int i = 0; i < cs.length; ) {
+            if (match("dreamer", cs, i)) {
+                boolean er = i + 7 >= cs.length || cs[i + 7] != 'a';
+                if (er) {
+                    i += 7;
+                    continue;
+                }
+            }
+            if (match("eraser", cs, i)) {
+                boolean er = i + 6 >= cs.length || cs[i + 6] != 'a';
+                if (er) {
+                    i += 6;
+                    continue;
+                }
+            }
+            if (match("dream", cs, i)) {
+                i += 5;
+                continue;
+            }
+            if (match("erase", cs, i)) {
+                i += 5;
+                continue;
+            }
+            io.out.println("NO");
+            return;
+        }
+        io.out.println("YES");
+    }
+}

@@ -1,0 +1,35 @@
+private static final void solve() {
+    try (Scanner cin = new Scanner(System.in)) {
+        int length = cin.nextInt();
+        int[] array = new int[length];
+        for (int i = 0; i < length; i++) {
+            array[i] = cin.nextInt();
+        }
+        Arrays.sort(array);
+        int ans = 1;
+        int num = array[0];
+        int index = 0;
+        int nextIndex = 0;
+        for (int i = 0; i < length; i++) {
+            if (nextIndex == 0 && array[i] != num) {
+                nextIndex = i;
+            }
+            if (array[i] > num + 2) {
+                if (i - index > ans) {
+                    ans = i - index;
+                }
+                i = nextIndex;
+                index = nextIndex;
+                num = array[nextIndex];
+                nextIndex = 0;
+            }
+            if (i == length - 1) {
+                if (i - index + 1 > ans) {
+                    ans = i - index + 1;
+                }
+            }
+        }
+        System.out.println(ans);
+    } finally {
+    }
+}

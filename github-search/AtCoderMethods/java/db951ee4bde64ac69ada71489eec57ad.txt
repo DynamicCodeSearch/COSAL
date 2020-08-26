@@ -1,0 +1,23 @@
+public void solve(int testNumber, FastReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int[] a = in.nextIntArray(n);
+    long ret = Long.MAX_VALUE;
+    for (int x = -1; x <= 1; x += 2) {
+        long s = 0;
+        long sg = x;
+        long cost = 0;
+        for (int i = 0; i < n; i++, sg = -sg) {
+            s += a[i];
+            if (Long.signum(s) == sg) {
+            } else if (sg == 1) {
+                cost += 1 - s;
+                s = 1;
+            } else {
+                cost += s - (-1);
+                s = -1;
+            }
+        }
+        ret = Math.min(ret, cost);
+    }
+    out.println(ret);
+}

@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    int N = Integer.parseInt(scan.next());
+    int K = Integer.parseInt(scan.next());
+    int[] D = new int[K];
+    for (int i = 0; i < K; i++) {
+        D[i] = Integer.parseInt(scan.next());
+    }
+    int money = N;
+    for (; money <= 100000; money++) {
+        if (contains(money, D))
+            continue;
+        else
+            break;
+    }
+    System.out.println(money);
+    scan.close();
+}

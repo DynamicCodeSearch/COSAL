@@ -1,0 +1,21 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int[] res = new int[26];
+    Arrays.fill(res, 0);
+    int n = in.nextInt();
+    for (int i = 0; i < n; ++i) {
+        char[] arr = in.next().toCharArray();
+        int[] amount = new int[26];
+        Arrays.fill(amount, 0);
+        for (char x : arr) amount[x - 'a']++;
+        for (int k = 0; k < 26; ++k) {
+            res[k] = i == 0 ? Math.max(res[k], amount[k]) : Math.min(res[k], amount[k]);
+        }
+    }
+    StringBuilder sb = new StringBuilder();
+    char cur = 'a';
+    for (int x : res) {
+        for (int i = 0; i < x; ++i) sb.append(cur);
+        ++cur;
+    }
+    out.println(new String(sb));
+}

@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    try {
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        long[] list = new long[N];
+        long F = 0;
+        long B = 0;
+        for (int i = 0; i < N; i++) {
+            list[i] = sc.nextLong();
+            B += list[i];
+        }
+        F = list[0];
+        B -= F;
+        long result = Math.abs(B - F);
+        for (int i = 1; i < N - 1; i++) {
+            F += list[i];
+            B -= list[i];
+            long temp = Math.abs(B - F);
+            result = (temp < result) ? temp : result;
+        }
+        System.out.println(result);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}

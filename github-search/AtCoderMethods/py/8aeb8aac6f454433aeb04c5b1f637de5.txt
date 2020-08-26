@@ -1,0 +1,15 @@
+def reverse_append(nums):
+    ans = [0] * len(nums)
+    left = len(nums) % 2 == 1
+    right_i = (len(nums)+1) // 2
+    left_i = right_i - 1
+    for i in range(len(nums)):
+        if left:
+            left = not left
+            ans[left_i] = nums[i]
+            left_i -= 1
+        else:
+            left = not left
+            ans[right_i] = nums[i]
+            right_i += 1
+    return ans

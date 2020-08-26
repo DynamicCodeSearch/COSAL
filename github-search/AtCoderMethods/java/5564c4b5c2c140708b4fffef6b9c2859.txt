@@ -1,0 +1,32 @@
+void solve() {
+    int n = in.nextInt();
+    State[] stNeg = new State[n];
+    State[] stPos = new State[n];
+    {
+        int curNeg = 0, curPos = 0;
+        for (int i = 0; i < n; i++) {
+            int a = in.nextInt();
+            int b = in.nextInt();
+            if (a - b >= 0) {
+                stPos[curPos++] = new State(a, b);
+            } else {
+                stNeg[curNeg++] = new State(a, b);
+            }
+        }
+        stNeg = Arrays.copyOf(stNeg, curNeg);
+        stPos = Arrays.copyOf(stPos, curPos);
+    }
+    Arrays.sort(stNeg, (s1, s2) -> (s1.a - s2.a));
+    Arrays.sort(stPos, (s1, s2) -> (s2.b - s1.b));
+    long res = 0;
+    long cur = 0;
+    for (int i = 0; i < stNeg.length; i++) {
+        res = Math.max(res, cur + stNeg[i].a);
+        cur += stNeg[i].a - stNeg[i].b;
+    }
+    for (int i = 0; i < stPos.length; i++) {
+        res = Math.max(res, cur + stPos[i].a);
+        cur += stPos[i].a - stPos[i].b;
+    }
+    System.out.println(res);
+}

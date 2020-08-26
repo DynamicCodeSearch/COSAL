@@ -1,0 +1,10 @@
+def dijkstra(roads, st, ed, n):
+    length = [float("inf") if i != st else 0 for i in range(n + 1)]
+    q = set(range(n + 1))
+    while len(q) != 0:
+        a, ml = min([(i, x) for i, x in enumerate(length) if i in q], key=lambda x: x[1])
+        q.remove(a)
+        for b, l in roads[a].items():
+            if length[b] > l + ml:
+                length[b] = l + ml
+    return length[ed]

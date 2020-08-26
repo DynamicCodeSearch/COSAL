@@ -1,0 +1,14 @@
+def solve():
+    n = int(input())
+    lst = [int(input())-1 for _ in[0]*n]
+    visit = set()
+    current = 0
+    while True:
+        visit.add(current)
+        current = lst[current]
+        if current == 1:
+            print(len(visit))
+            break
+        if current in visit:
+            print(-1)
+            break

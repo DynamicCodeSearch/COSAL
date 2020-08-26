@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    long a = sc.nextLong();
+    long b = sc.nextLong();
+    long ans = 0;
+    if (a * 2 >= b) {
+        ans += b / 2;
+        b -= ans * 2;
+    } else {
+        ans += a;
+        a -= ans;
+        b -= ans * 2;
+    }
+    if (b >= 4) {
+        ans += b / 4;
+    }
+    System.out.println(ans);
+}

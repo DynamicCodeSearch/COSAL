@@ -1,0 +1,68 @@
+static void solve() {
+    long K = nl();
+    long m = nl();
+    if (K == 1) {
+        out.println(m + 1);
+        return;
+    }
+    if (K >= 200000) {
+        int ct = 0;
+        for (long i = 0; i <= m; i += K) {
+            for (long j = i; j <= i + 91 && j <= m; j++) {
+                if (j == 0)
+                    continue;
+                long dsum = 0;
+                long num = j;
+                while (num > 0) {
+                    dsum += num % 10;
+                    num /= 10;
+                }
+                if (j % K == dsum % K) {
+                    ct++;
+                }
+            }
+        }
+        out.println(ct);
+    } else {
+        char[] s = Long.toString(m).toCharArray();
+        int ki = (int) K;
+        long[] ps = new long[13];
+        ps[0] = 1;
+        for (int i = 0; i < 12; i++) {
+            ps[i + 1] = ps[i] * 10 % K;
+        }
+        for (int i = 0; i <= 12; i++) {
+            ps[i]--;
+            if (ps[i] < 0)
+                ps[i] += K;
+        }
+        long[][] dp = new long[s.length + 1][ki];
+        long edge = 0;
+        for (int i = 0; i < s.length; i++) {
+            for (int j = 0; j < ki; j++) {
+                for (int k = 0; k < 10; k++) {
+                    int nj = (int) ((j + ps[s.length - 1 - i] * k) % K);
+                    dp[i + 1][nj] += dp[i][j];
+                }
+            }
+            if (i == 0) {
+                for (int k = 1; k < s[i] - '0'; k++) {
+                    int nj = (int) (ps[s.length - 1 - i] * k % K);
+                    dp[i + 1][nj]++;
+                }
+            } else {
+                for (int k = 0; k < s[i] - '0'; k++) {
+                    int nj = (int) ((edge + ps[s.length - 1 - i] * k) % K);
+                    dp[i + 1][nj]++;
+                }
+                for (int k = 1; k <= 9; k++) {
+                    int nj = (int) (ps[s.length - 1 - i] * k % K);
+                    dp[i + 1][nj]++;
+                }
+            }
+            edge = (edge + ps[s.length - 1 - i] * (s[i] - '0')) % K;
+        }
+        dp[s.length][(int) edge]++;
+        out.println(dp[s.length][0]);
+    }
+}

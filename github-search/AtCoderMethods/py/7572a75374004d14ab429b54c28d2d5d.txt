@@ -1,0 +1,15 @@
+def main():
+    n = int(input())
+    a_list = list(map(int, input().split()))
+
+    total = a_list[0]
+    if total == 0:
+        ans = solve(True, 1, 1, a_list[1:])
+        ans = min(ans, solve(False, -1, 1, a_list[1:]))
+    elif total > 0:
+        ans = solve(True, total, 0, a_list[1:])
+        ans = min(ans, solve(False, -1, abs(total) + 1, a_list[1:]))
+    else:
+        ans = solve(False, total, 0, a_list[1:])
+        ans = min(ans, solve(True, 1, abs(total) + 1, a_list[1:]))
+    print(ans)

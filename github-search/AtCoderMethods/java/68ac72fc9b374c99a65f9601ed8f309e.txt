@@ -1,0 +1,23 @@
+private static void solve() {
+    String s = sc.next();
+    int n = s.length();
+    boolean[] dp = new boolean[n + 1];
+    dp[n] = true;
+    for (int i = n - 1; i >= 0; i--) {
+        if (i + 5 <= n) {
+            dp[i] |= s.startsWith("dream", i) && dp[i + 5];
+            dp[i] |= s.startsWith("erase", i) && dp[i + 5];
+        }
+        if (i + 6 <= n) {
+            dp[i] |= s.startsWith("eraser", i) && dp[i + 6];
+        }
+        if (i + 7 <= n) {
+            dp[i] |= s.startsWith("dreamer", i) && dp[i + 7];
+        }
+    }
+    if (dp[0]) {
+        pr.println("YES");
+    } else {
+        pr.println("NO");
+    }
+}

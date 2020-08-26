@@ -1,0 +1,20 @@
+public void exec() throws IOException {
+    InputUtil in = new InputUtil();
+    PrintWriter out = new PrintWriter(System.out);
+    int N = in.nextInt();
+    int[] P = in.nextInt(new int[N]);
+    int cnt = 0;
+    boolean flg = false;
+    for (int i = 0; i < N; i++) {
+        if (flg) {
+            cnt++;
+            flg = false;
+        } else if (P[i] == i + 1) {
+            flg = true;
+        }
+    }
+    if (flg)
+        cnt++;
+    out.println(cnt);
+    out.flush();
+}

@@ -1,0 +1,22 @@
+def isNextMatch(self):
+    for (i,str_val) in enumerate(str_list):
+        if self.string.startswith(str_val):
+            self.string = self.string.split(str_val,1)[1]
+            if len(self.string) == 0:
+                return True
+            if i ==0:
+                if self.string.startswith(self.string_list[0]) or self.string.startswith(self.string_list[2]):
+                    return True
+            elif i == 1:
+                if self.string.startswith(self.string_list[0]) or self.string.startswith(self.string_list[1]) or self.string.startswith(self.string_list[4]):
+                    return True
+            elif i == 2:
+                if self.string.startswith(self.string_list[0]) or self.string.startswith(self.string_list[1]) or self.string.startswith(self.string_list[3]):
+                    return True
+            elif i == 3:
+                if self.string.startswith(self.string_list[0]) or self.string.startswith(self.string_list[1])  or self.string.startswith(self.string_list[4]):
+                    return True
+            elif i == 4:
+                if self.string.startswith(self.string_list[0]) or self.string.startswith(self.string_list[1]):
+                    return True
+    return False

@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    g = new Graph(N);
+    for (int i = 0; i < M; i++) {
+        g.add(sc.nextInt(), sc.nextInt());
+    }
+    boolean[] history = new boolean[N + 1];
+    Arrays.fill(history, false);
+    search(1, history);
+    System.out.println(cnt);
+    sc.close();
+}

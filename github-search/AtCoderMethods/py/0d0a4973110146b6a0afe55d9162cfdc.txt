@@ -1,0 +1,16 @@
+def add(i, w_max):
+    if results[i][w_max] != -1:
+        return results[i][w_max]
+
+    if i == N:
+        return 0;
+
+    if w_max < items[i]['w']:
+        res = add(i+1, w_max)
+    else:
+        res = max(
+            add(i+1, w_max),
+            add(i+1, w_max - items[i]['w']) + items[i]['v']
+        )
+    results[i][w_max] = res
+    return res

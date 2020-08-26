@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[] hight = new int[n];
+    for (int i = 0; i < n; i++) {
+        hight[i] = sc.nextInt();
+    }
+    int[] shortest = new int[n];
+    shortest[0] = 0;
+    shortest[1] = Math.abs(hight[0] - hight[1]);
+    for (int i = 2; i < n; i++) {
+        shortest[i] = Math.min(shortest[i - 2] + Math.abs(hight[i] - hight[i - 2]), shortest[i - 1] + Math.abs(hight[i] - hight[i - 1]));
+    }
+    System.out.println(shortest[n - 1]);
+}

@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    H = sc.nextInt();
+    W = sc.nextInt();
+    cums = new int[H + 1][W + 1];
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            int a = sc.nextInt();
+            if ((i + j) % 2 == 1)
+                a *= -1;
+            cums[i + 1][j + 1] = a + cums[i][j + 1] + cums[i + 1][j] - cums[i][j];
+        }
+    }
+    int ans = 0;
+    for (int ys = 0; ys < H; ys++) {
+        for (int ye = ys + 1; ye < H + 1; ye++) {
+            for (int xs = 0; xs < W; xs++) {
+                for (int xe = xs + 1; xe < W + 1; xe++) {
+                    int range = (ye - ys) * (xe - xs);
+                    if (range <= ans)
+                        continue;
+                    int tmp = cums[ye][xe] - cums[ye][xs] - cums[ys][xe] + cums[ys][xs];
+                    if (tmp == 0)
+                        ans = Math.max(ans, range);
+                }
+            }
+        }
+    }
+    System.out.println(ans);
+}

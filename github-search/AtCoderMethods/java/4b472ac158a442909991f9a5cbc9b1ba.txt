@@ -1,0 +1,11 @@
+private static boolean hasNextByte() {
+    if (ptr < len)
+        return true;
+    ptr = 0;
+    try {
+        len = in.read(buffer);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    return len > 0;
+}

@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    int n = Fs.nextInt();
+    int[] a = Fs.nextIntArray(n);
+    long mod = 1000000007;
+    long res = Fs.modPow(2, n / 2, mod);
+    Arrays.sort(a);
+    boolean bo = true;
+    for (int i = 0; i < n; i++) {
+        if (n % 2 == 0) {
+            if (a[i] != (i / 2 * 2 + 1))
+                bo = false;
+        } else {
+            if (a[i] != ((i + 1) / 2 * 2))
+                bo = false;
+        }
+    }
+    Fs.pl(bo ? res : 0);
+    Fs.flush();
+}

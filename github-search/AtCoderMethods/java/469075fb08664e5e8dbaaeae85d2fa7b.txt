@@ -1,0 +1,44 @@
+
+
+void dfs(int cur, int par, ArrayList<Integer>[] g, int[] x) {
+    f[cur] = 0;
+    long base = 0;
+    ArrayList<Long> add = new ArrayList<>();
+    for (int dst : g[cur]) {
+        if (dst == par) {
+            continue;
+        }
+        dfs(dst, cur, g, x);
+        if (Math.max(f[dst], x[dst]) == INF) {
+            f[cur] = INF;
+            return;
+        }
+        base += Math.min(x[dst], f[dst]);
+        add.add(Math.max(x[dst], f[dst]) - Math.min(x[dst], f[dst]));
+    }
+    if (base > x[cur]) {
+        f[cur] = INF;
+        return;
+    }
+    boolean[] h = new boolean[(int) (x[cur] - base + 1)];
+    h[0] = true;
+    int sum = 0;
+    int max = 0;
+    for (long v : add) {
+        sum += v;
+        for (int i = h.length - 1; i >= 0; --i) {
+            if (i + v >= h.length)
+                continue;
+            h[(int) (i + v)] |= h[i];
+        }
+    }
+    for (int i = 0; i < h.length; ++i) {
+        if (h[i])
+            max = Math.max(max, i);
+    }
+    if (base > x[cur]) {
+        f[cur] = INF;
+        return;
+    }
+    f[cur] = base + (sum - max);
+}

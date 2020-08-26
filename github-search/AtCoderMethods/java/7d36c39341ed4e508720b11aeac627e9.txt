@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    Scanner stdIn = new Scanner(System.in);
+    int n = stdIn.nextInt(), k = stdIn.nextInt();
+    int[] l = new int[n];
+    for (int count = 0; count < n; count++) {
+        l[count] = stdIn.nextInt();
+    }
+    Arrays.sort(l);
+    int sum = 0;
+    for (int count2 = 1; count2 < k + 1; count2++) {
+        sum = sum + l[n - count2];
+    }
+    System.out.println(sum);
+}

@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String s = sc.next();
+    String rev = new StringBuffer(s).reverse().toString();
+    int l = s.length();
+    int ctr = 0;
+    int fA = 0;
+    int fZ = 0;
+    while (fA == 0) {
+        if (s.charAt(ctr) == 'A') {
+            fA = ctr;
+            ctr = 0;
+            break;
+        }
+        ctr++;
+    }
+    while (fZ == 0) {
+        if (rev.charAt(ctr) == 'Z') {
+            fZ = ctr;
+            break;
+        }
+        ctr++;
+    }
+    System.out.println(l - fZ - fA);
+}

@@ -1,0 +1,21 @@
+public static void main(String[] args) throws IOException {
+    InputStreamReader isr = new InputStreamReader(System.in);
+    BufferedReader reader = new BufferedReader(isr);
+    String str = reader.readLine();
+    int n = Integer.valueOf(str.split(" ")[0]);
+    int q = Integer.valueOf(str.split(" ")[1]);
+    int ary[] = new int[n], l, r, t;
+    for (int i = 0; i < q; i++) {
+        str = reader.readLine();
+        l = Integer.valueOf(str.split(" ")[0]) - 1;
+        r = Integer.valueOf(str.split(" ")[1]);
+        t = Integer.valueOf(str.split(" ")[2]);
+        for (; l < r; l++) {
+            ary[l] = t;
+        }
+    }
+    for (int var : ary) {
+        System.out.println(var);
+    }
+    reader.close();
+}

@@ -1,0 +1,27 @@
+void run() {
+    Scanner sc = new Scanner(System.in);
+    int h = sc.nextInt();
+    int w = sc.nextInt();
+    int[][] s = new int[h][w];
+    for (int i = 0; i < h; ++i) {
+        char[] S = new char[w];
+        S = sc.next().toCharArray();
+        for (int j = 0; j < w; ++j) {
+            if (S[j] == '#') {
+                s[i][j] = 1;
+            }
+        }
+    }
+    int[][] map = new int[h - 1][w - 1];
+    for (int i = 0; i + 1 < h; ++i) {
+        for (int j = 0; j + 1 < w; ++j) {
+            if ((s[i][j] + s[i + 1][j] + s[i + 1][j + 1] + s[i][j + 1]) % 2 != 0) {
+                ++map[i][j];
+            }
+        }
+    }
+    int ans = solver(map);
+    ans = Math.max(ans, h);
+    ans = Math.max(ans, w);
+    System.out.println(ans);
+}

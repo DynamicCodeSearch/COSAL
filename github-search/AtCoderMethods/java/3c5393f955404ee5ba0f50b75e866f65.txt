@@ -1,0 +1,33 @@
+public void solve(int testNumber, FastScanner in, PrintWriter out) {
+    int height = in.nextInt();
+    int width = in.nextInt();
+    int n = in.nextInt();
+    int[] am = new int[n];
+    for (int i = 0; i < n; i++) {
+        am[i] = in.nextInt();
+    }
+    int[][] a = new int[height][width];
+    int cur = 1;
+    for (int r = 0; r < height; r++) {
+        for (int c = 0; c < width; c++) {
+            int nc = c;
+            if (r % 2 == 1) {
+                nc = width - c - 1;
+            }
+            while (am[cur - 1] == 0) {
+                ++cur;
+            }
+            a[r][nc] = cur;
+            --am[cur - 1];
+        }
+    }
+    for (int r = 0; r < height; r++) {
+        for (int c = 0; c < width; c++) {
+            if (c > 0) {
+                out.print(" ");
+            }
+            out.print(a[r][c]);
+        }
+        out.println();
+    }
+}

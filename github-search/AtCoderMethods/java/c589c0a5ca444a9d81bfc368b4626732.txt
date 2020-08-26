@@ -1,0 +1,17 @@
+static long solve2() {
+    long cnt = 0;
+    long[] plus_list = new long[2500];
+    long[] minus_list = new long[2500];
+    comb_list(plus_i, plus, plus_list);
+    comb_list(minus_i, minus, minus_list);
+    for (int i = 1; i < 2500; i++) {
+        cnt = cnt + plus_list[i] * minus_list[i];
+    }
+    if (zero_i > 0) {
+        
+        
+        cnt = (cnt * power_2(zero_i)) + power_2(zero_i) - 1;
+        return cnt;
+    } else
+        return cnt;
+}

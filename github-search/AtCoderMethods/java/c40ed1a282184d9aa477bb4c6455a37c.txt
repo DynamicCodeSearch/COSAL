@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int n = scan.nextInt();
+    int m = scan.nextInt();
+    if ((2 * n > m) || (4 * n < m)) {
+        System.out.println(-1 + " " + -1 + " " + -1);
+        return;
+    }
+    int a = 0;
+    int b = 0;
+    int c = 0;
+    if ((m >= 2 * n) && (3 * n >= m)) {
+        a = n;
+        b = m - 2 * n;
+        a = a - b;
+    } else {
+        b = n;
+        c = m - 3 * n;
+        b = b - c;
+    }
+    System.out.println(a + " " + b + " " + c);
+}

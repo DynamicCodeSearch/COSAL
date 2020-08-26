@@ -1,0 +1,18 @@
+private static boolean solve(Tree tree, Color[] color, int parent, int node) {
+    if (debug)
+        System.out.println(String.format("solve(tree, color, %d, %d)", parent, node));
+    if (color[node] == null)
+        color[node] = color[parent].expand();
+    Node child = tree.first(node);
+    while (child != null) {
+        if (child.node != parent) {
+            if (!solve(tree, color, node, child.node))
+                return false;
+            color[node] = merge(color[node], color[child.node]);
+            if (color[node] == null)
+                return false;
+        }
+        child = tree.next(child);
+    }
+    return true;
+}

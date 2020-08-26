@@ -1,0 +1,11 @@
+def calc(temp):
+	i = 0
+
+ n = len(temp)
+ while max(temp) >= n:
+		sum_count = sum([x // n for x in temp])
+  i += sum_count
+  temp = [x - (x // n) * n + sum_count - (x // n) for x in temp]
+
+
+ return i

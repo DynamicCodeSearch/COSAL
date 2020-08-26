@@ -1,0 +1,29 @@
+int getLargestRectangle(int size, int[] buffer) {
+    Stack<Rectangle> S = new Stack<>();
+    int maxv = 0;
+    buffer[size] = 0;
+    for (int i = 0; i <= size; i++) {
+        Rectangle rect = new Rectangle();
+        rect.height = buffer[i];
+        rect.pos = i;
+        if (S.isEmpty()) {
+            S.push(rect);
+        } else {
+            if (S.peek().height < rect.height) {
+                S.push(rect);
+            } else if (S.peek().height > rect.height) {
+                int target = i;
+                while (!S.empty() && S.peek().height >= rect.height) {
+                    Rectangle pre = S.peek();
+                    S.pop();
+                    int area = (pre.height + 1) * (i - pre.pos + 1);
+                    maxv = Math.max(maxv, area);
+                    target = pre.pos;
+                }
+                rect.pos = target;
+                S.push(rect);
+            }
+        }
+    }
+    return maxv;
+}

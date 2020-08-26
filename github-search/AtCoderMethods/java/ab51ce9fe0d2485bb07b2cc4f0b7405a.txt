@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    int r = s.nextInt(), c = s.nextInt(), sy = s.nextInt() - 1, sx = s.nextInt() - 1, gy = s.nextInt() - 1, gx = s.nextInt() - 1, maze[][] = new int[r][c];
+    for (int i = 0; i < r; i++) {
+        String buf = s.next();
+        for (int j = 0; j < c; j++) maze[i][j] = buf.charAt(j) == '#' ? -1 : 114514;
+    }
+    Point goal = new Point(gx, gy), b;
+    ArrayDeque<Point> deque = new ArrayDeque<>(100);
+    deque.add(new Point(sx, sy));
+    int depth = -1;
+    all: while (true) {
+        depth++;
+        for (int l = deque.size(); l > 0; l--) {
+            b = deque.poll();
+            if (maze[b.y][b.x] != 114514)
+                continue;
+            maze[b.y][b.x] = depth;
+            if (b.equals(goal))
+                break all;
+            if (maze[b.y - 1][b.x] == 114514)
+                deque.add(new Point(b.x, b.y - 1));
+            if (maze[b.y + 1][b.x] == 114514)
+                deque.add(new Point(b.x, b.y + 1));
+            if (maze[b.y][b.x - 1] == 114514)
+                deque.add(new Point(b.x - 1, b.y));
+            if (maze[b.y][b.x + 1] == 114514)
+                deque.add(new Point(b.x + 1, b.y));
+        }
+    }
+    
+    System.out.println(depth);
+}

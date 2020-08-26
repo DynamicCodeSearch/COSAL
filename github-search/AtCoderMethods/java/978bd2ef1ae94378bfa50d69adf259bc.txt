@@ -1,0 +1,31 @@
+public void exec() throws IOException {
+    InputUtil in = new InputUtil();
+    PrintWriter out = new PrintWriter(System.out);
+    int H = in.nextInt();
+    int W = in.nextInt();
+    int N = in.nextInt();
+    int[] A = in.nextInt(new int[N]);
+    int[] B = new int[N];
+    int ptrA = 0;
+    int[][] HW = new int[H][W];
+    for (int y = 0; y < H; y++) {
+        int x = (y % 2 == 0) ? 0 : W - 1;
+        int dx = (y % 2 == 0) ? 1 : -1;
+        while (0 <= x && x < W) {
+            if (A[ptrA] <= B[ptrA])
+                ptrA++;
+            HW[y][x] = ptrA + 1;
+            B[ptrA]++;
+            x += dx;
+        }
+    }
+    for (int y = 0; y < H; y++) {
+        out.print(HW[y][0]);
+        for (int x = 1; x < W; x++) {
+            out.print(" ");
+            out.print(HW[y][x]);
+        }
+        out.println("");
+    }
+    out.flush();
+}

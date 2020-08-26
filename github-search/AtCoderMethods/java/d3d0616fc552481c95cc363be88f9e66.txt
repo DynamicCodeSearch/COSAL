@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String s = sc.next();
+    int n = sc.nextInt();
+    int[] l = new int[n];
+    int[] r = new int[n];
+    String c = "";
+    for (int i = 0; i < n; i++) {
+        l[i] = sc.nextInt();
+        r[i] = sc.nextInt();
+    }
+    for (int i = 0; i < n; i++) {
+        String a = s.substring(0, l[i] - 1);
+        String b = s.substring(r[i]);
+        c = s.substring(l[i] - 1, r[i]);
+        String rev = new StringBuilder(c).reverse().toString();
+        s = a + rev + b;
+    }
+    System.out.println(s);
+}

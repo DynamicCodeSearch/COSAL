@@ -1,0 +1,53 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    n = in.nextInt();
+    String s = in.next();
+    arr = s.toCharArray();
+    answer = new char[n];
+    boolean isDone = false;
+    answer[0] = 'S';
+    answer[1] = 'S';
+    fill(1);
+    if (isConsistent()) {
+        isDone = true;
+        for (int i = 0; i < n; i++) {
+            System.out.printf("%c", answer[i]);
+        }
+    }
+    if (!isDone) {
+        answer[0] = 'S';
+        answer[1] = 'W';
+        fill(1);
+        if (isConsistent()) {
+            isDone = true;
+            for (int i = 0; i < n; i++) {
+                System.out.printf("%c", answer[i]);
+            }
+        }
+    }
+    if (!isDone) {
+        answer[0] = 'W';
+        answer[1] = 'W';
+        fill(1);
+        if (isConsistent()) {
+            isDone = true;
+            for (int i = 0; i < n; i++) {
+                System.out.printf("%c", answer[i]);
+            }
+        }
+    }
+    if (!isDone) {
+        answer[0] = 'W';
+        answer[1] = 'S';
+        fill(1);
+        if (isConsistent()) {
+            isDone = true;
+            for (int i = 0; i < n; i++) {
+                System.out.printf("%c", answer[i]);
+            }
+        }
+    }
+    if (!isDone) {
+        System.out.println(-1);
+    }
+}

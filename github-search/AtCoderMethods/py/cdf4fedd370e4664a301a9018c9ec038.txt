@@ -1,0 +1,14 @@
+def main():
+    N = int(input())
+    R = [int(input()) for _ in range(N)]
+
+    red = sorted(R, reverse=True)[0::2]
+    white = sorted(R, reverse=True)[1::2]
+    r = 0
+    w = 0
+    for i in red:
+        r += i ** 2 * math.pi
+    for i in white:
+        w += i ** 2 * math.pi
+
+    print(r - w)

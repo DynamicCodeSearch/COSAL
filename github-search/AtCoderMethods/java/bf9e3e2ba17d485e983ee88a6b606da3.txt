@@ -1,0 +1,15 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    long n = in.nextInt();
+    long h = in.nextInt();
+    long a = in.nextInt();
+    long b = in.nextInt();
+    long c = in.nextInt();
+    long d = in.nextInt();
+    long e = in.nextInt();
+    long ans = Long.MAX_VALUE;
+    for (long x = 0; x <= n; x++) {
+        long y = Math.max(0, ((n - x) * e - h - x * b + d + e) / (d + e));
+        ans = Math.min(ans, x * a + y * c);
+    }
+    out.println(ans);
+}

@@ -1,0 +1,50 @@
+
+
+
+
+static void solve() {
+    BigInteger x = new BigInteger(ns());
+    BigInteger y = x.add(BigInteger.ONE);
+    BigInteger x2 = x.multiply(x);
+    BigInteger y2 = y.multiply(y);
+    String sx = x2.toString();
+    String sy = y2.toString();
+    for (int i = (sy.length() - 1); i >= 1; i--) {
+        if (i >= sx.length())
+            continue;
+        String ssy = sy.substring(0, sy.length() - i);
+        String ssx = sx.substring(0, sx.length() - i);
+        BigInteger bssx = new BigInteger(ssx);
+        BigInteger bssy = new BigInteger(ssy);
+        
+        if (i % 2 == 0) {
+            boolean ok = false;
+            for (int j = sx.length() - i; j < sx.length(); j++) {
+                if (sx.charAt(j) != '0')
+                    ok = true;
+            }
+            if (!ok) {
+                out.println(bssx);
+                return;
+            }
+        }
+        if (bssy.compareTo(bssx) > 0 && i % 2 == 0) {
+            if (bssy.equals(bssx.add(BigInteger.ONE))) {
+                boolean ok = false;
+                for (int j = sy.length() - i; j < sy.length(); j++) {
+                    if (sy.charAt(j) != '0')
+                        ok = true;
+                }
+                if (!ok)
+                    continue;
+            }
+            out.println(bssx.add(BigInteger.ONE));
+            return;
+        }
+    
+    
+    
+    
+    }
+    out.println(sx);
+}

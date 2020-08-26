@@ -1,0 +1,45 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] Ss = new int[N];
+    for (int i = 0; i < N; i++) {
+        Ss[i] = sc.nextInt();
+    }
+    IntStream tens = Arrays.stream(Ss.clone()).filter(i -> {
+        if (i % 10 == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    });
+    IntStream notens = Arrays.stream(Ss.clone()).filter(i -> {
+        if (i % 10 == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    });
+    int notensSum = Arrays.stream(Ss.clone()).filter(i -> {
+        if (i % 10 == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }).sum();
+    int[] notensAry = Arrays.stream(Ss.clone()).filter(i -> {
+        if (i % 10 == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }).sorted().toArray();
+    int notensLen = notensAry.length;
+    for (int i = 0; i < notensLen && notensSum % 10 == 0; i++) {
+        notensSum -= notensAry[i];
+    }
+    if (notensSum == 0) {
+        System.out.print(0);
+    } else {
+        System.out.print(tens.sum() + notensSum);
+    }
+}

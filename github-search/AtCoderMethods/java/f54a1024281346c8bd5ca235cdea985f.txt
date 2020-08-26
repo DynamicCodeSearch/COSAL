@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    int times = 0;
+    Scanner scanner = new Scanner(System.in);
+    int N = scanner.nextInt();
+    int[] plist = new int[N];
+    for (int i = 0; i < N; i++) {
+        plist[i] = scanner.nextInt();
+    }
+    for (int i = 0; i < N; i++) {
+        if (i == 0 && plist[i] == 1) {
+            swap(0, 1, plist);
+            i++;
+            times++;
+        } else if (i == N - 1 && plist[i] == N) {
+            swap(N - 1, N - 2, plist);
+            i++;
+            times++;
+        } else if (plist[i] == i + 1) {
+            if (plist[i - 1] != i) {
+                swap(i, i - 1, plist);
+                i++;
+                times++;
+            } else {
+                swap(i, i + 1, plist);
+                i++;
+                times++;
+            }
+        }
+    }
+    System.out.println("");
+    System.out.println(times);
+}

@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String s = sc.next();
+    int l = s.length();
+    boolean flag = false;
+    for (int i = 1; i < s.length(); i++) {
+        String ss = s.substring(0, l - i);
+        if (ss.substring(0, (l - i) / 2).equals(ss.substring((l - i) / 2, l - i)))
+            if ((l - i) % 2 == 0) {
+                System.out.println(l - i);
+                break;
+            } else {
+                System.out.println(l - i - 1);
+                break;
+            }
+    }
+}

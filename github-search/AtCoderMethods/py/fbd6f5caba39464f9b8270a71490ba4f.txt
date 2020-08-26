@@ -1,0 +1,16 @@
+def main():
+    S = input()
+
+    if len(S) == 1:
+        print(S + '1')
+    else:
+        i = 0
+        j = 1
+        while i < len(S) - 1:
+            i += 1
+            if S[i-1] != S[i]:
+                print(S[i-1] + str(j), end='')
+                j = 1
+            else:
+                j += 1
+        print(S[i] + str(j))

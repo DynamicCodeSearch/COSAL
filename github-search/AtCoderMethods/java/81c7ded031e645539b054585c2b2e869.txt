@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    String[] board = new String[2];
+    board[0] = sc.next();
+    board[1] = sc.next();
+    ArrayList<Integer> arr = new ArrayList<Integer>();
+    for (int i = 0; i < n; i++) {
+        if (board[0].charAt(i) == board[1].charAt(i)) {
+            arr.add(1);
+        } else {
+            arr.add(2);
+            ++i;
+        }
+    }
+    long res = (arr.get(0) == 1 ? 3 : 6);
+    for (int i = 1; i < arr.size(); i++) {
+        if (arr.get(i) == 1 && arr.get(i - 1) == 1)
+            res *= 2;
+        else if (arr.get(i) == 2 && arr.get(i - 1) == 1)
+            res *= 2;
+        else if (arr.get(i) == 2 && arr.get(i - 1) == 2)
+            res *= 3;
+        res %= 1000000007;
+    }
+    System.out.println(res);
+}

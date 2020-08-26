@@ -1,0 +1,34 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    try {
+        int n = Integer.parseInt(br.readLine());
+        int[] A = new int[(n + 1) / 2];
+        Arrays.fill(A, 0);
+        String st = br.readLine();
+        String[] s = st.split(" ", 0);
+        BigInteger answer = BigInteger.ONE;
+        int error = 0;
+        for (int i = 0; i < n; i++) {
+            int a = Integer.parseInt(s[i]);
+            if ((n % 2 == 1 && a % 2 == 1) || (n % 2 == 0 && a % 2 == 0)) {
+                error++;
+                break;
+            }
+            A[a / 2]++;
+            if (A[a / 2] > 2 || (A[0] > 1 && n % 2 == 1)) {
+                error++;
+                break;
+            }
+        }
+        BigInteger k = BigInteger.ZERO;
+        if (error == 0) {
+            for (int i = 0; i < n / 2; i++) {
+                answer = answer.multiply(new BigInteger(String.valueOf(2)));
+            }
+            k = answer.remainder(new BigInteger("1000000007"));
+        }
+        System.out.println(k);
+    } catch (Exception ex) {
+        System.exit(0);
+    }
+}

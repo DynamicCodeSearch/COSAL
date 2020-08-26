@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    String[] S = new String[N];
+    int[] P = new int[N];
+    int total = 0;
+    String toshi = "atcoder";
+    for (int i = 0; i < N; i++) {
+        S[i] = sc.next();
+        P[i] = sc.nextInt();
+        total += P[i];
+    }
+    
+    for (int i = 0; i < N; i++) {
+        if (total / 2 < P[i]) {
+            toshi = S[i];
+        }
+    }
+    System.out.println(toshi);
+}

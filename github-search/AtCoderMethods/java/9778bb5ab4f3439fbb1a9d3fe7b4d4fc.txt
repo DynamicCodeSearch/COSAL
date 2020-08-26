@@ -1,0 +1,24 @@
+public void run() {
+    try {
+        Scanner s = new Scanner();
+        long n = s.nextInt();
+        long amari = 0;
+        long min = Long.MAX_VALUE;
+        long sa = 0;
+        for (int a = 0; a <= (long) Math.sqrt(n); a++) {
+            for (int i = 0; i <= n; i++) {
+                if (a * i > n) {
+                    break;
+                }
+                amari = n - a * i;
+                if (amari + (long) Math.abs(a - i) <= min) {
+                    sa = (long) Math.abs(a - i);
+                    min = amari + sa;
+                }
+            }
+        }
+        System.out.println(min);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}

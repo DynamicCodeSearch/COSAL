@@ -1,0 +1,40 @@
+private void solve(Scanner sc, PrintWriter out) {
+    String s = sc.nextLine();
+    if (s.length() < 2) {
+        out.println("-1 -1");
+        return;
+    }
+    Map<Character, Integer> map = new HashMap<>();
+    for (int i = 0; i < 2; ++i) {
+        char ch = s.charAt(i);
+        Integer cnt = map.get(ch);
+        if (cnt == null) {
+            cnt = 0;
+        }
+        map.put(ch, cnt + 1);
+    }
+    if (s.length() == 2) {
+        if (map.size() == 1) {
+            out.println("1 2");
+            return;
+        }
+    }
+    for (int i = 0; i < s.length() - 2; ++i) {
+        if (i > 0) {
+            char old = s.charAt(i - 1);
+            Integer cnt = map.get(old);
+            map.put(old, cnt - 1);
+        }
+        char ch = s.charAt(i + 2);
+        Integer cnt = map.get(ch);
+        if (cnt == null) {
+            cnt = 0;
+        }
+        map.put(ch, cnt + 1);
+        if (cnt + 1 >= 2) {
+            out.println((i + 1) + " " + (i + 3));
+            return;
+        }
+    }
+    out.println("-1 -1");
+}

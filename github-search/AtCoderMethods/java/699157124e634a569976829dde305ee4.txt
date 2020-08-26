@@ -1,0 +1,12 @@
+public final int ans() {
+    int min = Integer.MAX_VALUE;
+    for (int h = 1; h <= n; h++) {
+        for (int w = 1; h * w <= n; w++) {
+            int r = n - h * w;
+            int cost = Math.abs(h - w) + r;
+            if (cost < min)
+                min = cost;
+        }
+    }
+    return min;
+}

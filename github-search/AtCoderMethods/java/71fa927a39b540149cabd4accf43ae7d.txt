@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int n = scan.nextInt(), sum = 0;
+    int[] data = new int[n];
+    boolean[] dp = new boolean[(n + 1) * 100];
+    Arrays.fill(dp, false);
+    for (int i = 0; i < n; i++) {
+        data[i] = scan.nextInt();
+        sum += data[i];
+    }
+    dp[0] = true;
+    for (int i = 0; i < n; i++) {
+        for (int j = dp.length - 1; j >= 0; j--) {
+            if (dp[j]) {
+                dp[j + data[i]] = true;
+            }
+        }
+    }
+    int ans = 1010001000;
+    for (int i = sum; i >= sum / 2; i--) {
+        if (dp[i] && dp[sum - i]) {
+            if (ans > sum - i) {
+                ans = i;
+            }
+        }
+    }
+    System.out.println(ans);
+}

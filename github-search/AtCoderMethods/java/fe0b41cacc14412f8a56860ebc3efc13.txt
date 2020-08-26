@@ -1,0 +1,13 @@
+void solve() {
+    long A = in.nextLong(), K = in.nextLong();
+    if (K == 0) {
+        System.out.println((long) (2e12) - A);
+        return;
+    }
+    long res = 0;
+    while (A < (long) 2e12) {
+        A += 1 + K * A;
+        res++;
+    }
+    System.out.println(res);
+}

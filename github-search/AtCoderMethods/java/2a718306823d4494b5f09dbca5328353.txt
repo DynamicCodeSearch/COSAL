@@ -1,0 +1,58 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    int[][] rt = sc.nextIntTable(M, 3);
+    int Q = sc.nextInt();
+    int[][] q = new int[Q][3];
+    for (int i = 0; i < Q; i++) {
+        q[i][0] = sc.nextInt();
+        q[i][1] = sc.nextInt();
+        q[i][2] = i;
+    }
+    Arrays.sort(rt, new Comparator<int[]>() {
+
+        @Override
+        public int compare(int[] o1, int[] o2) {
+            return o2[2] - o1[2];
+        }
+    });
+    Arrays.sort(q, new Comparator<int[]>() {
+
+        @Override
+        public int compare(int[] o1, int[] o2) {
+            return o2[1] - o1[1];
+        }
+    });
+    UnionFind uf = new UnionFind(N + 1);
+    int[] num = new int[N + 1];
+    Arrays.fill(num, 1);
+    int[][] ret = new int[Q][3];
+    int now = 0;
+    for (int i = 0; i < Q; i++) {
+        while (now < M && rt[now][2] > q[i][1]) {
+            int r1 = uf.find(rt[now][0]);
+            int r2 = uf.find(rt[now][1]);
+            if (r1 != r2) {
+                uf.union(r1, r2);
+                int nr = uf.find(r1);
+                num[nr] = num[r1] + num[r2];
+            }
+            now++;
+        }
+        ret[i][0] = num[uf.find(q[i][0])];
+        ret[i][1] = q[i][2];
+    }
+    Arrays.sort(ret, new Comparator<int[]>() {
+
+        @Override
+        public int compare(int[] o1, int[] o2) {
+            return o1[1] - o2[1];
+        }
+    });
+    PrintWriter pw = new PrintWriter(System.out);
+    for (int[] r : ret) {
+        pw.println(r[0]);
+    }
+    pw.flush();
+}

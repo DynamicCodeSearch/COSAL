@@ -1,0 +1,13 @@
+double dfs(int look, int eat, int isMax) {
+    if (eat > K)
+        return 0;
+    if (dp[look][eat][isMax] != Double.MAX_VALUE)
+        return dp[look][eat][isMax];
+    if (look == N)
+        return isMax;
+    double p = 1.0 / (look + 1);
+    double res = 0;
+    res += dfs(look + 1, eat, isMax) * (1 - p);
+    res += Math.max(dfs(look + 1, eat + 1, 1), dfs(look + 1, eat, 0)) * p;
+    return dp[look][eat][isMax] = res;
+}

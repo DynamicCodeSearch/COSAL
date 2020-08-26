@@ -1,0 +1,13 @@
+private List<Long> getSumList(List<Long> list, PriorityQueue<Long> queue, int limitSize) {
+    List<Long> sumList = new ArrayList<>();
+    long sum = 0L;
+    for (long value : list) {
+        queue.add(value);
+        sum += value;
+        if (queue.size() > limitSize) {
+            sum -= queue.remove();
+        }
+        sumList.add(sum);
+    }
+    return sumList;
+}

@@ -1,0 +1,59 @@
+public final void answer() {
+    long ans = 1;
+    Type present = null;
+    Type previous = null;
+    int index = 0;
+    if (N > 1) {
+        previous = classify(index);
+        switch(previous) {
+            case HOR:
+                ans = 6;
+                index += 2;
+                break;
+            case VER:
+                ans = 3;
+                index++;
+                break;
+        }
+    } else {
+        ans = 3;
+        index++;
+    }
+    for (; index < N; index++) {
+        if (index == N - 1) {
+            switch(previous) {
+                case HOR:
+                    break;
+                case VER:
+                    ans = ans * 2 % MOD;
+                    break;
+            }
+        } else {
+            present = classify(index);
+            switch(present) {
+                case HOR:
+                    switch(previous) {
+                        case HOR:
+                            ans = ans * 3 % MOD;
+                            break;
+                        case VER:
+                            ans = ans * 2 % MOD;
+                            break;
+                    }
+                    index++;
+                    break;
+                case VER:
+                    switch(previous) {
+                        case HOR:
+                            break;
+                        case VER:
+                            ans = ans * 2 % MOD;
+                            break;
+                    }
+                    break;
+            }
+        }
+        previous = present;
+    }
+    System.out.println(ans);
+}

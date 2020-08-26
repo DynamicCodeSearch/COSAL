@@ -1,0 +1,44 @@
+public static void main(String[] args) throws IOException {
+    try (Scanner sc = new Scanner(System.in)) {
+        final int A = sc.nextInt();
+        final int B = sc.nextInt();
+        final int C = sc.nextInt();
+        final int D = sc.nextInt();
+        final int E = sc.nextInt();
+        final int F = sc.nextInt();
+        int max_sweets = 0;
+        int max_waters = 0;
+        for (int a_t = 0; a_t <= 30; a_t++) {
+            for (int b_t = 0; b_t <= 30; b_t++) {
+                final int waters = 100 * A * a_t + 100 * B * b_t;
+                if (waters > F) {
+                    continue;
+                }
+                final int limit_sweets = (A * a_t + B * b_t) * E;
+                for (int c_t = 0; c_t <= 100; c_t++) {
+                    for (int d_t = 0; d_t <= 100; d_t++) {
+                        final int sweets = C * c_t + D * d_t;
+                        if (waters + sweets > F) {
+                            continue;
+                        }
+                        if (sweets > limit_sweets) {
+                            continue;
+                        }
+                        if (max_sweets == 0) {
+                            max_sweets = sweets;
+                            max_waters = waters;
+                        } else {
+                            final int max_sum = max_sweets + max_waters;
+                            final int max_cur = waters + sweets;
+                            if (sweets * max_sum > max_cur * max_sweets) {
+                                max_sweets = sweets;
+                                max_waters = waters;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        System.out.println((max_waters + max_sweets) + " " + max_sweets);
+    }
+}

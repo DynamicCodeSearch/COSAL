@@ -1,0 +1,18 @@
+private void solve(Scanner sc) {
+    n = sc.nextInt();
+    a = sc.nextLong();
+    b = sc.nextLong();
+    x = new long[n];
+    for (int i = 0; i < n; ++i) {
+        x[i] = sc.nextLong();
+    }
+    long cost = 0;
+    for (int i = 0; i < n - 1; ++i) {
+        if ((x[i + 1] - x[i]) * a > b) {
+            cost += b;
+        } else {
+            cost += (x[i + 1] - x[i]) * a;
+        }
+    }
+    _out.println(cost);
+}

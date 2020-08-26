@@ -1,0 +1,19 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int n = Integer.parseInt(br.readLine());
+    String line = br.readLine();
+    int x = 0;
+    int max = 0;
+    for (int i = 0; i < n; i++) {
+        String s = line.substring(i, i + 1);
+        if (s.equals("I")) {
+            x++;
+        } else if (s.equals("D")) {
+            x--;
+        }
+        if (max < x) {
+            max = x;
+        }
+    }
+    System.out.println(max);
+}

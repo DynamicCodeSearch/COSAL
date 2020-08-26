@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int sizeA = sc.nextInt();
+    int sizeB = sc.nextInt();
+    String[] pictureA = new String[sizeA];
+    String[] pictureB = new String[sizeB];
+    for (int i = 0; i < sizeA; i++) {
+        pictureA[i] = sc.next();
+    }
+    for (int i = 0; i < sizeB; i++) {
+        pictureB[i] = sc.next();
+    }
+    int count = 0;
+    for (int i = 0; i <= sizeA - sizeB; i++) {
+        for (int j = 0; j <= sizeA - sizeB; j++) {
+            int a = 0;
+            for (int k = i; k < i + sizeB; k++) {
+                if (!((pictureA[k].substring(j, j + sizeB)).equals(pictureB[k - i])))
+                    a++;
+            }
+            if (a == 0)
+                count++;
+        }
+    }
+    String res = "";
+    if (count > 0) {
+        res = "Yes";
+    } else {
+        res = "No";
+    }
+    System.out.println(res);
+}

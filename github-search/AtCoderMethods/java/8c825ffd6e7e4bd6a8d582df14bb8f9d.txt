@@ -1,0 +1,9 @@
+private static long combination(int n, int r) {
+    if (C[n][r] > 0)
+        return C[n][r];
+    if (n - r < r)
+        return C[n][r] = combination(n, n - r);
+    if (r - 1 >= 0)
+        return C[n][r] = n * combination(n - 1, r - 1) / r;
+    return C[n][r] = 1;
+}

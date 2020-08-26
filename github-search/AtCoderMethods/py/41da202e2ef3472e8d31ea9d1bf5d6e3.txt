@@ -1,0 +1,16 @@
+def main():
+    K = I()
+    N = 50
+    a = [49] * 50
+    k = K // 50
+    kp = K % 50
+    for i in range(N):
+        t = k
+        if i < kp:
+            t += 1
+        for j in range(N):
+            if i == j:
+                continue
+            a[j] -= t
+        a[i] += t * 50
+    return '{}\n{}'.format(N, ' '.join(map(str,a)))

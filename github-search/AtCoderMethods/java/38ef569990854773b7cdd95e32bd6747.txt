@@ -1,0 +1,42 @@
+void run() {
+    h = ni();
+    w = ni();
+    field = new int[h + 2][w + 2];
+    dp = new long[h + 2][w + 2];
+    PriorityQueue<Node> queue = new PriorityQueue<>((a, b) -> b.value - a.value);
+    for (int i = 1; i <= h; ++i) {
+        for (int j = 1; j <= w; ++j) {
+            field[i][j] = ni();
+            dp[i][j] = 1;
+        }
+    }
+    for (int i = 1; i <= h; ++i) {
+        for (int j = 1; j <= w; ++j) {
+            Node node = new Node(j, i, field[i][j]);
+            queue.add(node);
+        }
+    }
+    while (queue.size() > 0) {
+        Node atom = queue.poll();
+        for (int i = 0; i < 4; ++i) {
+            int nx = atom.x + ofs[i][0];
+            int ny = atom.y + ofs[i][1];
+            if (field[ny][nx] == 0) {
+                continue;
+            }
+            if (field[atom.y][atom.x] <= field[ny][nx]) {
+                continue;
+            }
+            dp[ny][nx] += dp[atom.y][atom.x];
+            dp[ny][nx] %= MOD;
+        }
+    }
+    long sum = 0;
+    for (int i = 1; i <= h; ++i) {
+        for (int j = 1; j <= w; ++j) {
+            sum += dp[i][j];
+            sum %= MOD;
+        }
+    }
+    System.out.println(sum);
+}

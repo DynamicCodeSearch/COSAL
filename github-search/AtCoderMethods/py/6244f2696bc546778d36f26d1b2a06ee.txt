@@ -1,0 +1,11 @@
+def main():
+    s = input()
+    n = len(s)
+    sum = 0
+    for sym in prod(["","+"],repeat=n-1):
+        exp = ""
+        for i,c in enumerate(s[:-1]):
+            exp += ( c + sym[i] )
+        exp += s[-1:]
+        sum += eval(exp)
+    print(sum)

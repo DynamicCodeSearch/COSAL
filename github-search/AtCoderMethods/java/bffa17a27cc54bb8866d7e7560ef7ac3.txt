@@ -1,0 +1,19 @@
+static boolean dfs1(int node, int parent) {
+    boolean a = false;
+    weights[node] = 1;
+    if (node == n - 1) {
+        eDepth = cDepth;
+        a = true;
+    }
+    ++cDepth;
+    for (int neighbor : graph[node]) {
+        if (neighbor == parent)
+            continue;
+        a = dfs1(neighbor, node) || a;
+        weights[node] += weights[neighbor];
+    }
+    --cDepth;
+    if (a && cDepth == eDepth / 2 + 1)
+        subtree = node;
+    return a;
+}

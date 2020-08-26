@@ -1,0 +1,11 @@
+static void sum(long a, String s) {
+    if (s.isEmpty()) {
+        sum += a;
+        return;
+    }
+    int len = s.length();
+    for (int i = 1; i <= len; i++) {
+        long b = parseLong(s.substring(0, i));
+        sum(a + b, s.substring(i));
+    }
+}

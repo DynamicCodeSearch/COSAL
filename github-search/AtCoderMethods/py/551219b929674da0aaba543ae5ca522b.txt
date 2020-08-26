@@ -1,0 +1,27 @@
+def sol2():
+    A,B,C,D,E,F = map(int, input().split(' '))
+    na, nb, nc, nd = ceil(F/A/100),ceil(F/B/100),ceil(E*F/C/100),ceil(E*F/D/100) 
+    sug = np.arange(0,nc).reshape(1,1,nc,1)*C+np.arange(0,nd).reshape(1,1,1,nd)*D
+    wat = np.arange(0,na).reshape(na,1,1,1)*A*100+np.arange(0,nb).reshape(1,nb,1,1)*B*100
+    sug2=np.unique(sug[sug<=F*F/100])
+    wat2=np.unique(wat[wat<=F])
+
+    if len(wat2)==1:
+        print(0,0)
+        return
+    elif E==0:
+        print(wat2[1],0)
+        return
+
+    tot =  wat2[1:].reshape(len(wat2[1:]),1) + sug2
+    e2 = E/(100+E)
+    dense = (sug2/tot)[tot<=F]
+
+    maxi = np.argmax(dense[dense<=e2])
+    stot = tot[tot<=F][dense<=e2]
+    ssug = (sug2 + tot*0)[tot<=F][dense<=e2]
+
+    if dense[maxi] ==0:
+        print(wat2[1],0)
+    else:
+        print(int(stot[maxi]),int(ssug[maxi]))

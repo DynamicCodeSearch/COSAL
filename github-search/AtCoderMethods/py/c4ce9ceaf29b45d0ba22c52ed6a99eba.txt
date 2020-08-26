@@ -1,0 +1,17 @@
+def main():
+    a = input()
+    b = input()
+    c = input()
+
+    d = {"a": a, "b": b, "c": c}
+
+    now_player = "a"
+    while True:
+        if len(d[now_player]) == 0:
+            break
+
+        next_player = d[now_player][0]
+        d[now_player] = d[now_player][1:]
+        now_player = next_player
+
+    print(now_player.upper())

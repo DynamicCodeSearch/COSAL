@@ -1,0 +1,10 @@
+def findpath(graph, root, rest):
+    if len(rest) == 0:
+        return 1
+    res = 0
+    for n in graph[root]:
+        if n in rest:
+            rest.remove(n)
+            res += findpath(graph, n, rest)
+            rest.add(n)
+    return res

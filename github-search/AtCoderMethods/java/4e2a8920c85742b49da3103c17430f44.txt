@@ -1,0 +1,12 @@
+public static int calcMax(int max, int[] haiten) {
+    if (max % 10 != 0) {
+        return max;
+    }
+    Arrays.sort(haiten);
+    for (int i = 0; i < haiten.length; i++) {
+        if (haiten[i] % 10 != 0) {
+            return max - haiten[i];
+        }
+    }
+    return 0;
+}

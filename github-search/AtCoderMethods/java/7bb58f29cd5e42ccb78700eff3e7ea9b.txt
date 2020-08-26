@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int n = scanner.nextInt();
+    int[] px = new int[n];
+    int[] py = new int[n];
+    for (int i = 0; i < n; i++) {
+        px[i] = scanner.nextInt();
+        py[i] = scanner.nextInt();
+    }
+    double max = 0;
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {
+            double k = dis(px[i], py[i], px[j], py[j]);
+            max = Math.max(max, k);
+        }
+    }
+    System.out.println(max);
+}

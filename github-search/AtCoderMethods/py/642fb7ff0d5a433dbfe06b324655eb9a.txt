@@ -1,0 +1,14 @@
+def C_pushpush(x):
+    from collections import deque
+
+    n = int(x[0])
+    a = deque(x[1:])
+    b = deque([])
+    n_parity = n & 1
+    for i in range(n):
+        if n_parity == (i + 1) & 1:
+
+            b.appendleft(a[i])
+        else:
+            b.append(a[i])
+    print(' '.join(b))

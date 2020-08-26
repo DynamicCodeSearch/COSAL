@@ -1,0 +1,25 @@
+def main():
+    s = input()
+    t = int(input())
+    cnt = 0
+    x,y = 0,0
+    for c in s:
+        if c == '?':
+            cnt = cnt + 1
+        elif c == 'L':
+            x = x - 1
+        elif c == 'R':
+            x = x + 1
+        elif c == 'U':
+            y = y + 1
+        elif c == 'D':
+            y = y - 1
+    ans = abs(x) + abs(y)
+    if t == 1:
+        print(ans+cnt)
+    else:
+        if ans >= cnt:
+            print(ans-cnt)
+        else:
+            rem = cnt - ans
+            print(rem%2)

@@ -1,0 +1,15 @@
+long[][] p2(long[][] a, long m) {
+    int n = a.length;
+    long[][] ret = new long[n][n];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            long sum = 0;
+            for (int k = 0; k < n; k++) {
+                sum += a[i][k] * a[k][j];
+                sum %= m;
+            }
+            ret[i][j] = sum;
+        }
+    }
+    return ret;
+}

@@ -1,0 +1,14 @@
+def solve():
+    m, n, N = map(int, input().split())
+    ans = N
+    rem = 0
+
+    while N > 0:
+        if N // m == 0:
+            N += rem
+            rem = 0
+        rem += N % m
+        ans += (N//m)*n
+        N = (N//m)*n
+
+    print(ans)

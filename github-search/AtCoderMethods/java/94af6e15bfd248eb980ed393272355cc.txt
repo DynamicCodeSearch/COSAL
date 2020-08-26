@@ -1,0 +1,29 @@
+public void solve(int testNumber, FastScanner in, PrintWriter out) {
+    int n = in.nextInt();
+    int[] a = new int[3];
+    for (int i = 0; i < n; i++) {
+        int x = in.nextInt();
+        int p = 0;
+        while (x % 2 == 0) {
+            ++p;
+            x /= 2;
+        }
+        p = Math.min(p, 2);
+        ++a[p];
+    }
+    boolean spareTwo = false;
+    if (a[0] > 0) {
+        if (a[0] > a[2] + 1) {
+            out.println("No");
+            return;
+        }
+        if (a[0] < a[2] + 1) {
+            spareTwo = true;
+        }
+    }
+    if ((a[1] == 1 || a[0] > 0 && a[1] > 0) && !spareTwo) {
+        out.println("No");
+        return;
+    }
+    out.println("Yes");
+}

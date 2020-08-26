@@ -1,0 +1,25 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String x = br.readLine();
+    String a = x.substring(0, 1);
+    String b = x.substring(1, 2);
+    String c = x.substring(2, 3);
+    String d = x.substring(3, 4);
+    String e = x.substring(4, 5);
+    String[] v = { "0", a, b, c, d, e };
+    String y = br.readLine();
+    int z = Integer.parseInt(y);
+    String w = "0";
+    if (z >= 1 && 5 >= z) {
+        w = a + v[z];
+    } else if (10 >= z) {
+        w = b + v[z - 5];
+    } else if (15 >= z) {
+        w = c + v[z - 10];
+    } else if (20 >= z) {
+        w = d + v[z - 15];
+    } else {
+        w = e + v[z - 20];
+    }
+    System.out.println(w);
+}

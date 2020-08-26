@@ -1,0 +1,13 @@
+boolean isExistPath() {
+    if (p[0] != 0)
+        return false;
+    int curr = p[0];
+    for (int i = 1; i < N; i++) {
+        int next = p[i];
+        if (adj[curr][next] != 1) {
+            return false;
+        }
+        curr = next;
+    }
+    return true;
+}

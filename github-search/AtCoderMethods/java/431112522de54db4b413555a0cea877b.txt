@@ -1,0 +1,9 @@
+public void add(DualList<T> list) {
+    tail.next = list.head;
+    list.head.prev = tail;
+    tail = list.tail;
+    if (!hasNext()) {
+        search = list.head;
+    }
+    count += list.count;
+}

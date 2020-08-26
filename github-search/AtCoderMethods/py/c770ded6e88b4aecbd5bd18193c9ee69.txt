@@ -1,0 +1,20 @@
+def search(H, W, bm, bb, a, b):
+    res = 0
+    dx = (1, 0, -1, 0, 1, 1, -1, -1)
+    dy = (0, 1, 0, -1, 1, -1, 1, -1)
+
+    for j in range(8):
+        if (a + dx[j], b + dy[j]) in bb:
+            res += 1
+
+        if a + dx[j] < 1 or a + dx[j] > H - 2:
+            continue
+        if b + dy[j] < 1 or b + dy[j] > W - 2:
+            continue
+
+        if (a + dx[j], b + dy[j]) not in bm:
+            bm[a + dx[j], b + dy[j]] = 0
+
+        bm[a + dx[j], b + dy[j]] += 1
+
+    return res

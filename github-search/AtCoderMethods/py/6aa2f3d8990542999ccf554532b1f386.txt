@@ -1,0 +1,7 @@
+def is_intersected(ax1, ay1, ax2, ay2, bx1, by1, bx2, by2):
+    ta = (bx1 - bx2) * (ay1 - by1) + (by1 - by2) * (bx1 - ax1)
+    tb = (bx1 - bx2) * (ay2 - by1) + (by1 - by2) * (bx1 - ax2)
+    tc = (ax1 - ax2) * (by1 - ay1) + (ay1 - ay2) * (ax1 - bx1)
+    td = (ax1 - ax2) * (by2 - ay1) + (ay1 - ay2) * (ax1 - bx2)
+
+    return tc * td < 0 and ta * tb < 0

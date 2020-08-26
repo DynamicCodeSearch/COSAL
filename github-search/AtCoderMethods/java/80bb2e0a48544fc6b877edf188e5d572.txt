@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    long n = in.nextLong();
+    long m = in.nextLong();
+    long ans;
+    if (n * 2 >= m) {
+        ans = m / 2;
+    } else {
+        ans = n;
+        m -= n * 2;
+        ans += m / 4;
+    }
+    out.println(ans);
+    out.flush();
+}

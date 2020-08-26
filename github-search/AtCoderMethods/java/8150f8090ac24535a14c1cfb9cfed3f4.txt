@@ -1,0 +1,93 @@
+private void solve(FastScanner in, PrintWriter out) {
+    int N = in.nextInt();
+    ArrayList<ArrayList<Integer>> tree = new ArrayList<>();
+    for (int i = 0; i < N; i++) {
+        tree.add(new ArrayList<>());
+    }
+    int[] parent = new int[N];
+    for (int i = 0; i < N; i++) {
+        int p = in.nextInt() - 1;
+        parent[i] = p;
+        tree.get(p).add(i);
+    }
+    ArrayList<Integer> cycle = getOneCycle(tree);
+    if (cycle.isEmpty()) {
+        out.println("POSSIBLE");
+        return;
+    }
+    TreeSet<Integer>[] children = new TreeSet[N];
+    for (int i = 0; i < N; i++) {
+        children[i] = new TreeSet<>();
+    }
+    ArrayDeque<Integer> bfs = new ArrayDeque<>();
+    int[] vis = new int[N];
+    int[] grundy = new int[N];
+    Arrays.fill(grundy, -1);
+    for (int i = 0; i < N; i++) {
+        if (tree.get(i).isEmpty()) {
+            bfs.add(i);
+            grundy[i] = 0;
+        }
+    }
+    while (!bfs.isEmpty()) {
+        int v = bfs.poll();
+        int p = parent[v];
+        vis[p]++;
+        if (vis[p] == tree.get(p).size()) {
+            bfs.add(p);
+        }
+        if (tree.get(v).isEmpty()) {
+            continue;
+        }
+        TreeSet<Integer> set = children[v];
+        for (int u : tree.get(v)) {
+            set.add(grundy[u]);
+        }
+        grundy[v] = getGrundy(set);
+    }
+    for (int c : cycle) {
+        for (int u : tree.get(c)) {
+            if (grundy[u] >= 0) {
+                children[c].add(grundy[u]);
+            }
+        }
+    }
+    int x = cycle.get(0);
+    int g1 = getGrundy(children[x]);
+    grundy[x] = g1;
+    {
+        int M = cycle.size();
+        int cur = x;
+        TreeSet<Integer>[] copy = copy(children);
+        for (int i = 0; i < M; i++) {
+            int p = parent[cur];
+            copy[p].add(grundy[cur]);
+            grundy[p] = getGrundy(copy[p]);
+            cur = p;
+        }
+        if (g1 == grundy[x]) {
+            out.println("POSSIBLE");
+            return;
+        }
+    }
+    children[x].add(g1);
+    int g2 = getGrundy(children[x]);
+    children[x].remove(g1);
+    grundy[x] = g2;
+    {
+        int M = cycle.size();
+        int cur = x;
+        TreeSet<Integer>[] copy = copy(children);
+        for (int i = 0; i < M; i++) {
+            int p = parent[cur];
+            copy[p].add(grundy[cur]);
+            grundy[p] = getGrundy(copy[p]);
+            cur = p;
+        }
+        if (g2 == grundy[x]) {
+            out.println("POSSIBLE");
+            return;
+        }
+    }
+    out.println("IMPOSSIBLE");
+}

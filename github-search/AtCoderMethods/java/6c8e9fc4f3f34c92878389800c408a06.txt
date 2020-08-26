@@ -1,0 +1,13 @@
+public static List<Point> getNeighbourPoints(Point point) {
+    List<Point> neighbourPoints = new ArrayList<>();
+    int currentX = point.getX();
+    int currentY = point.getY();
+    int[] vx = { 0, 1, 0, -1 };
+    int[] vy = { 1, 0, -1, 0 };
+    for (int i = 0; i < 4; i++) {
+        int nx = currentX + vx[i];
+        int ny = currentY + vy[i];
+        neighbourPoints.add(new Point(nx, ny));
+    }
+    return neighbourPoints;
+}

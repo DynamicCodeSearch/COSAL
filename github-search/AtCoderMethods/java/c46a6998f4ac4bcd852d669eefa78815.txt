@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    InputStreamReader is = new InputStreamReader(System.in);
+    BufferedReader br = new BufferedReader(is);
+    try {
+        String l1 = br.readLine().trim();
+        String l2 = br.readLine().trim();
+        String[] l1s = l1.split(" ", 0);
+        String[] l2s = l2.split(" ", 0);
+        int h1 = Integer.parseInt(l1s[0]);
+        int w1 = Integer.parseInt(l1s[1]);
+        int h2 = Integer.parseInt(l2s[0]);
+        int w2 = Integer.parseInt(l2s[1]);
+        if (h1 == h2 || w1 == w2) {
+            System.out.print("YES");
+        } else if (h1 == w2 || w1 == h2) {
+            System.out.print("YES");
+        } else {
+            System.out.print("NO");
+        }
+    } catch (Exception e) {
+        System.out.println(e);
+    }
+}

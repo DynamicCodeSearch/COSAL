@@ -1,0 +1,18 @@
+static void dijkstra(Node[] nodes, long[] dp, int s) {
+    Arrays.fill(dp, -1);
+    dp[s] = 0;
+    LinkedList<Node> q = new LinkedList<>();
+    q.add(nodes[s]);
+    while (!q.isEmpty()) {
+        Node now = q.poll();
+        for (int i = 0; i < now.edges.size(); i++) {
+            int toId = now.edges.get(i).toId;
+            long toCost = now.edges.get(i).toCost;
+            long nextCost = dp[now.id] + toCost;
+            if (dp[toId] < 0 || nextCost < dp[toId]) {
+                dp[toId] = nextCost;
+                q.add(nodes[toId]);
+            }
+        }
+    }
+}

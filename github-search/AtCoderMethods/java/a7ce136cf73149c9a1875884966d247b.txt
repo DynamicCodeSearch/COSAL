@@ -1,0 +1,21 @@
+
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    String w = sc.next();
+    int[] num = new int[26];
+    for (int i = 0; i < w.length(); i++) {
+        for (char c = 'a'; c < 'z' + 1; c++) {
+            if (w.charAt(i) == c) {
+                num[c - 'a']++;
+            }
+        }
+    }
+    for (int i = 0; i < num.length; i++) {
+        if (num[i] % 2 != 0) {
+            System.out.println("No");
+            System.exit(0);
+        }
+    }
+    System.out.println("Yes");
+}

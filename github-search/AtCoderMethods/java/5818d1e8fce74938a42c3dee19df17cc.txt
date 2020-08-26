@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    HashMap<Integer, Integer> map = new HashMap<>();
+    int n = in.nextInt();
+    for (int i = 0; i < n; i++) {
+        int a = in.nextInt();
+        if (map.containsKey(a)) {
+            map.put(a, map.get(a) + 1);
+        } else {
+            map.put(a, 1);
+        }
+    }
+    Object[] list = (Object[]) (map.keySet().stream().filter(m -> map.get(m) > 1).toArray());
+    Arrays.sort(list);
+    if (list.length > 1) {
+        int a = (Integer) (list[list.length - 1]);
+        int b = (Integer) (list[list.length - 2]);
+        if (map.get(list[list.length - 1]) > 3) {
+            System.out.println((long) a * (long) a);
+        } else {
+            System.out.println((long) a * (long) b);
+        }
+    } else {
+        System.out.println(0);
+    }
+}

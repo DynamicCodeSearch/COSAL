@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int yLineNum = sc.nextInt();
+    int robotBPlace = sc.nextInt();
+    ArrayList<Integer> xList = new ArrayList<>();
+    for (int i = 0; i < yLineNum; i++) {
+        xList.add(sc.nextInt());
+    }
+    int idoKyori = 0;
+    for (int x : xList) {
+        int robotAKyori = (int) Math.pow(x, 2);
+        int robotBKyori = (int) Math.pow(x - robotBPlace, 2);
+        if (robotAKyori <= robotBKyori) {
+            idoKyori += Math.sqrt(robotAKyori) * 2;
+        } else {
+            idoKyori += Math.sqrt(robotBKyori) * 2;
+        }
+    }
+    System.out.println(idoKyori);
+}

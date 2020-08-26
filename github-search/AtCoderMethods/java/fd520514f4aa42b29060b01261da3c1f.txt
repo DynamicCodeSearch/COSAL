@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    PrintWriter out = new PrintWriter(System.out);
+    int N = sc.nextInt();
+    int[] w = new int[N];
+    int[] h = new int[N];
+    Data[] data = new Data[N];
+    for (int i = 0; i < N; i++) {
+        w[i] = sc.nextInt();
+        h[i] = sc.nextInt();
+        data[i] = new Data(w[i], h[i]);
+    }
+    Arrays.sort(data);
+    SegmentTree st1 = new SegmentTree(100001);
+    for (int i = 0; i < N; i++) {
+        int w1 = data[i].w;
+        int h1 = data[i].h;
+        st1.add(h1, Math.max(st1.get(0, h1) + 1, 1));
+    }
+    System.out.println(st1.get(0, 100001));
+}

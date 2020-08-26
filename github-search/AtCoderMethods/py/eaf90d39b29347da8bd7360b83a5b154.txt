@@ -1,0 +1,16 @@
+def main():
+
+    NumCount = 0
+
+    lines = sys.stdin.readlines()
+    for i,line in enumerate(lines):
+        if i==0:
+            continue
+        else:
+            value = line.split()
+            if len(value)==1:
+                NumCount += 1
+            else:
+                NumCount += int(value[1])-int(value[0]) + 1
+    print(NumCount)
+    return

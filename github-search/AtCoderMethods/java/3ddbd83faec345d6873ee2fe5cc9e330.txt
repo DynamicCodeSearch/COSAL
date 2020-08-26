@@ -1,0 +1,50 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String a = sc.next();
+    String b = sc.next();
+    String c = sc.next();
+    String n = a;
+    while (n.length() > 0) {
+        if (n.equals(a)) {
+            if (a.substring(0, 1).equals("a")) {
+                a = a.substring(1);
+                n = a;
+            } else if (a.substring(0, 1).equals("b")) {
+                a = a.substring(1);
+                n = b;
+            } else if (a.substring(0, 1).equals("c")) {
+                a = a.substring(1);
+                n = c;
+            }
+        } else if (n.equals(b)) {
+            if (b.substring(0, 1).equals("a")) {
+                b = b.substring(1);
+                n = a;
+            } else if (b.substring(0, 1).equals("b")) {
+                b = b.substring(1);
+                n = b;
+            } else if (b.substring(0, 1).equals("c")) {
+                b = b.substring(1);
+                n = c;
+            }
+        } else if (n.equals(c)) {
+            if (c.substring(0, 1).equals("a")) {
+                c = c.substring(1);
+                n = a;
+            } else if (c.substring(0, 1).equals("b")) {
+                c = c.substring(1);
+                n = b;
+            } else if (c.substring(0, 1).equals("c")) {
+                c = c.substring(1);
+                n = c;
+            }
+        }
+    }
+    if (n == a) {
+        System.out.println("A");
+    } else if (n == b) {
+        System.out.println("B");
+    } else if (n == c) {
+        System.out.println("C");
+    }
+}

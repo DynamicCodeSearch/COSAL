@@ -1,0 +1,39 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    int S = sc.nextInt();
+    UnionFind uf = new UnionFind(N + 1);
+    int[][] edge = new int[M][3];
+    for (int i = 0; i < M; i++) {
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        edge[i][0] = a;
+        edge[i][1] = b;
+        edge[i][2] = Math.min(a, b);
+    }
+    Arrays.sort(edge, new Comparator<int[]>() {
+
+        @Override
+        public int compare(int[] o1, int[] o2) {
+            return o2[2] - o1[2];
+        }
+    });
+    List<Integer> ret = new ArrayList<>();
+    int idx = 0;
+    for (int i = N; i >= 0; i--) {
+        while (idx < M && edge[idx][2] >= i) {
+            uf.union(edge[idx][0], edge[idx][1]);
+            idx++;
+        }
+        if (uf.find(i) == uf.find(S)) {
+            ret.add(i);
+        }
+    }
+    Collections.sort(ret);
+    PrintWriter pw = new PrintWriter(System.out);
+    for (int i : ret) {
+        pw.println(i);
+    }
+    pw.flush();
+}

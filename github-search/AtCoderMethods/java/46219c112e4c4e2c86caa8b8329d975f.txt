@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    List<Integer> list = new ArrayList<>();
+    int N = sc.nextInt();
+    for (int i = 0; i < N; i++) {
+        list.add(sc.nextInt());
+    }
+    Collections.sort(list);
+    int sum = 0;
+    for (int i : list) {
+        sum += i;
+    }
+    if (sum % 10 != 0) {
+        System.out.println(sum);
+        return;
+    }
+    int tmp = sum;
+    for (int i : list) {
+        if (sum % 10 == 0 && i % 10 != 0) {
+            sum -= i;
+        }
+    }
+    if (tmp == sum)
+        sum = 0;
+    System.out.println(sum);
+}

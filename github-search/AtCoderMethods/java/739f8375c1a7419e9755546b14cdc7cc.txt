@@ -1,0 +1,12 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] sequence = new int[N + 3];
+    sequence[0] = 0;
+    sequence[1] = 0;
+    sequence[2] = 1;
+    for (int i = 3; i < N; i++) {
+        sequence[i] = mod10007(mod10007(sequence[i - 1]) + mod10007(sequence[i - 2]) + mod10007(sequence[i - 3]));
+    }
+    System.out.println(sequence[N - 1]);
+}

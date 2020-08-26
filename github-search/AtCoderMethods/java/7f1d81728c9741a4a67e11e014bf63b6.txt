@@ -1,0 +1,18 @@
+void solve() {
+    String[] Sound = { "Do", "Re", "Mi", "Fa", "So", "La", "Si" };
+    String keyBoard = "WBWBWWBWBWBW";
+    char[] keyBoardArray = keyBoard.toCharArray();
+    int[] Pos = { 0, 2, 4, 5, 7, 9, 11 };
+    String matchStr = "";
+    String S = fs.next();
+    for (int i = 0; i < 7; i++) {
+        for (int j = Pos[i]; j < (Pos[i] + 20); j++) {
+            matchStr += String.valueOf(keyBoardArray[j % 12]);
+        }
+        if (matchStr.equals(S)) {
+            System.out.println(Sound[i]);
+            return;
+        }
+        matchStr = "";
+    }
+}

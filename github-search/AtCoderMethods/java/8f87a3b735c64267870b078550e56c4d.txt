@@ -1,0 +1,12 @@
+static void solve() {
+    int n = in.nextInt();
+    int q = in.nextInt();
+    FenwickTree ft = new FenwickTree(n);
+    for (int i = 0; i < q; i++) {
+        ft.add(in.nextInt() - 1, in.nextInt(), 1);
+    }
+    for (int i = 0; i < n; i++) {
+        out.print(ft.get(i) % 2);
+    }
+    out.println();
+}

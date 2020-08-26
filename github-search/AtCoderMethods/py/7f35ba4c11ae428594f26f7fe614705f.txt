@@ -1,0 +1,17 @@
+def min_s_diff(x, y):
+    if x % 3 == 0:
+        return 0
+    if x % 3 == 1:
+        a = x // 3
+        b = y // 2
+        s1 = a * y
+        s2 = (x - a) * b
+        s3 = x * y - s1 - s2
+        return max(s1, s2, s3) - min(s1, s2, s3)
+    if x % 3 == 2:
+        a = x // 3 + 1
+        b = y // 2
+        s1 = a * y
+        s2 = (x - a) * b
+        s3 = x * y - s1 -s2
+        return max(s1, s2, s3) - min(s1, s2, s3)

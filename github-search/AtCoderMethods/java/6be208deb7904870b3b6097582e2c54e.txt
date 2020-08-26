@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int x = sc.nextInt();
+    int y = sc.nextInt();
+    int x_group = -1;
+    int y_group = -1;
+    int[][] group = { { 1, 3, 5, 7, 8, 10, 12 }, { 4, 6, 9, 11 }, { 2 } };
+    for (int i = 0; i < group.length; i++) {
+        for (int j = 0; j < group[i].length; j++) {
+            if (x == group[i][j]) {
+                x_group = i;
+            }
+            if (y == group[i][j]) {
+                y_group = i;
+            }
+        }
+    }
+    if (x_group == y_group) {
+        System.out.println("Yes");
+    } else {
+        System.out.println("No");
+    }
+}

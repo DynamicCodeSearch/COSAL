@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    final Scanner sc = new Scanner(System.in);
+    final int N = sc.nextInt();
+    final int Q = sc.nextInt();
+    int[] revs = new int[N + 1];
+    for (int i = 0; i < Q; i++) {
+        final int l = sc.nextInt() - 1;
+        final int r = sc.nextInt() - 1;
+        revs[l]++;
+        revs[r + 1]--;
+    }
+    for (int i = 1; i <= N; i++) {
+        revs[i] += revs[i - 1];
+    }
+    PrintWriter pw = new PrintWriter(System.out);
+    for (int i = 0; i < N; i++) {
+        pw.print(revs[i] % 2);
+    }
+    pw.println();
+    pw.flush();
+}

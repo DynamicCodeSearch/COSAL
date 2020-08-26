@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    n = in.nextInt();
+    graph = buildGraph(in, n, n - 1);
+    par = new int[n];
+    cnt = new int[n];
+    dfs(0, -1);
+    List<Integer> ord = new ArrayList<>();
+    int head = n - 1;
+    while (head != 0) {
+        ord.add(head);
+        head = par[head];
+    }
+    ord.add(0);
+    Collections.reverse(ord);
+    int center = ord.get((ord.size() - 1) - (ord.size() / 2 - 1));
+    int snuke = cnt[center];
+    int fennec = n - snuke;
+    if (fennec > snuke) {
+        out.println("Fennec");
+    } else {
+        out.println("Snuke");
+    }
+    out.flush();
+}

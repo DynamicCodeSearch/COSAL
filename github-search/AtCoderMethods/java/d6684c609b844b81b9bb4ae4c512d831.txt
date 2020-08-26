@@ -1,0 +1,13 @@
+public void solve() {
+    long L = nextLong();
+    long X = nextLong();
+    long Y = nextLong();
+    long S = nextLong();
+    long D = nextLong();
+    double d1 = (double) (((D - S) + L) % L) / (X + Y);
+    double d2 = Integer.MAX_VALUE;
+    if (X < Y) {
+        d2 = (double) (((S - D) + L) % L) / (Y - X);
+    }
+    out.println(Math.min(d1, d2));
+}

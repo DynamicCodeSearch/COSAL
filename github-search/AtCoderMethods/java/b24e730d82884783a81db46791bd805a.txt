@@ -1,0 +1,12 @@
+public static int saiki(int cur, List<Integer> group, final boolean[][] shaken, final int N) {
+    if (cur >= N)
+        return group.size();
+    int lResult = saiki(cur + 1, group, shaken, N);
+    for (int i = 0; i < N; i++) if (group.contains(i) && !shaken[cur][i])
+        
+        return lResult;
+    group.add(0, cur);
+    int rResult = saiki(cur + 1, group, shaken, N);
+    group.remove(0);
+    return Math.max(rResult, lResult);
+}

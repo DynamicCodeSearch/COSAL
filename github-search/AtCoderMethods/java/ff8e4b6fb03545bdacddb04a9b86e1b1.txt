@@ -1,0 +1,15 @@
+private void solve() {
+    int[] cnt = new int[26];
+    Arrays.fill(cnt, 0);
+    String txt = in.nextLine();
+    for (int i = 0; i < txt.length(); i++) {
+        cnt[txt.charAt(i) - 'a']++;
+    }
+    for (int i = 0; i < 26; i++) {
+        if (cnt[i] % 2 != 0) {
+            out.print("No");
+            return;
+        }
+    }
+    out.print("Yes");
+}

@@ -1,0 +1,15 @@
+void run() {
+    Scanner sc = new Scanner(System.in);
+    int m = sc.nextInt();
+    int n = sc.nextInt();
+    int N = sc.nextInt();
+    int junk = N;
+    int used = N;
+    for (; junk >= m; ) {
+        int tmp = junk / m * n;
+        junk %= m;
+        junk += tmp;
+        used += tmp;
+    }
+    System.out.println(used);
+}

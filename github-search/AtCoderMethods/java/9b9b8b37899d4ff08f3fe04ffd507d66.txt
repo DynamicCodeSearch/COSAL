@@ -1,0 +1,46 @@
+private void solve(Scanner sc) {
+    int N = sc.nextInt();
+    Map<Integer, Node> nodes = new HashMap<>();
+    List<List<Node>> list = new ArrayList<>();
+    for (int i = 0; i < N; ++i) {
+        list.add(new ArrayList<>());
+        nodes.put(i, new Node(i));
+    }
+    nodes.get(0).color = -1;
+    nodes.get(N - 1).color = 1;
+    for (int i = 1; i <= N - 1; ++i) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        list.get(a).add(nodes.get(b));
+        list.get(b).add(nodes.get(a));
+    }
+    Deque<Node> q = new ArrayDeque<>();
+    q.offer(nodes.get(0));
+    q.offer(nodes.get(N - 1));
+    int black = 0;
+    int white = 0;
+    Set<Integer> visited = new HashSet<>();
+    while (!q.isEmpty()) {
+        Node node = q.poll();
+        if (visited.contains(node.no)) {
+            continue;
+        }
+        visited.add(node.no);
+        List<Node> l = list.get(node.no);
+        for (Node n : l) {
+            if (n.color == 0) {
+                n.color = node.color;
+                q.offer(n);
+            }
+        }
+    }
+    int color = 0;
+    for (Node node : nodes.values()) {
+        color += node.color;
+    }
+    if (color < 0) {
+        _out.println("Fennec");
+    } else {
+        _out.println("Snuke");
+    }
+}

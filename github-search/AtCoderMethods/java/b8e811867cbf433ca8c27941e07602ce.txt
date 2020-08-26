@@ -1,0 +1,44 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    n = sc.nextInt();
+    x = sc.nextInt();
+    a = new long[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = sc.nextInt();
+    }
+    boolean[] flag = new boolean[n];
+    for (int i = 0; i < n - 1; i++) {
+        if (a[i] + a[i + 1] > x) {
+            flag[i] = flag[i + 1] = true;
+        }
+    }
+    long sum = 0;
+    int s = 0;
+    while (s < n) {
+        while (s < n && !flag[s]) {
+            ++s;
+        }
+        int t = s + 1;
+        while (t < n && flag[t]) {
+            ++t;
+        }
+        if (t - s == 2) {
+            sum += a[s] + a[s + 1] - x;
+        } else {
+            for (int i = s; i < t - 1; i++) {
+                if (a[i] + a[i + 1] > x) {
+                    long diff = Math.min(a[i + 1], a[i] + a[i + 1] - x);
+                    a[i + 1] -= diff;
+                    sum += diff;
+                }
+                if (a[i] + a[i + 1] > x) {
+                    long diff = Math.min(a[i], a[i] + a[i + 1] - x);
+                    a[i] -= diff;
+                    sum += diff;
+                }
+            }
+        }
+        s = t;
+    }
+    System.out.println(sum);
+}

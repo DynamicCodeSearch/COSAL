@@ -1,0 +1,9 @@
+public int query(int start, int end, int k, int l, int r) {
+    if (r <= start || end <= l)
+        return 0;
+    else if (start <= l && r <= end)
+        return tree[k];
+    int lv = query(start, end, k * 2 + 1, l, (l + r) / 2);
+    int rv = query(start, end, k * 2 + 2, (l + r) / 2, r);
+    return marge(lv, rv);
+}

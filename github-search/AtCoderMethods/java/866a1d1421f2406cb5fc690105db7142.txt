@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    long A = scan.nextLong();
+    long K = scan.nextLong();
+    long m = A;
+    long count = 0;
+    if (K == 0) {
+        count = (long) ((long) 2 * Math.pow(10, 12) - A);
+        System.out.println(count);
+        return;
+    }
+    while (m < 2 * Math.pow(10, 12)) {
+        m += 1 + m * K;
+        count++;
+    }
+    System.out.println(count);
+}

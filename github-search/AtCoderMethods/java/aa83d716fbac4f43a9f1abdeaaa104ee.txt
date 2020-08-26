@@ -1,0 +1,23 @@
+public void solve(int testNumber, Scanner in, PrintWriter out) {
+    long H = in.nextInt(), W = in.nextInt();
+    long minDiff = H * W;
+    for (long h = 0; h <= H; h++) {
+        long A = h * W;
+        long B = ((H - h) / 2) * W;
+        long C = H * W - A - B;
+        minDiff = Math.min(minDiff, maxOfThree(A, B, C) - minOfThree(A, B, C));
+        B = (H - h) * (W / 2);
+        C = H * W - A - B;
+        minDiff = Math.min(minDiff, maxOfThree(A, B, C) - minOfThree(A, B, C));
+    }
+    for (int w = 0; w < W; w++) {
+        long A = w * H;
+        long B = ((W - w) / 2) * H;
+        long C = H * W - A - B;
+        minDiff = Math.min(minDiff, maxOfThree(A, B, C) - minOfThree(A, B, C));
+        B = (W - w) * (H / 2);
+        C = H * W - A - B;
+        minDiff = Math.min(minDiff, maxOfThree(A, B, C) - minOfThree(A, B, C));
+    }
+    out.println(minDiff);
+}

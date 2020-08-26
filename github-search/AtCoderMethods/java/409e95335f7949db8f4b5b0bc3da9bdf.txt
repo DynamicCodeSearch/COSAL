@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    while (sc.hasNext()) {
+        int[] a = new int['z' - 'a' + 1];
+        String str = sc.next();
+        for (int i = 0; i < str.length(); i++) a[str.charAt(i) - 'a']++;
+        boolean flag = true;
+        for (int i = 0; i < a.length; i++) if (a[i] % 2 != 0)
+            flag = false;
+        if (flag)
+            System.out.println("Yes");
+        else
+            System.out.println("No");
+    }
+}

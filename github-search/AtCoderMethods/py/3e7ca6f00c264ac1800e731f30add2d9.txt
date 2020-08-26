@@ -1,0 +1,16 @@
+def main():
+    o=deque()
+    e=deque()
+    n=int(input())
+    s=input().split()
+
+    for i in range(0,len(s)):
+        j=int(s[i])
+        if i%2==0:
+            o.append(j)
+        else:
+            e.append(j)
+    if n%2==0:
+        print(" ".join([str(k) for k in e][::-1])+" "+" ".join([str(m) for m in o]))
+    else:
+        print(" ".join([str(k) for k in o][::-1])+" "+" ".join([str(m) for m in e]))

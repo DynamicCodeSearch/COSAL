@@ -1,0 +1,32 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] in = br.readLine().split(" ");
+    int n = Integer.parseInt(in[0]);
+    int a = Integer.parseInt(in[1]);
+    int b = Integer.parseInt(in[2]);
+    String[] s = new String[n];
+    int[] d = new int[n];
+    for (int i = 0; i < n; i++) {
+        in = br.readLine().split(" ");
+        s[i] = in[0];
+        d[i] = Integer.parseInt(in[1]);
+    }
+    int pos = 0;
+    for (int i = 0; i < n; i++) {
+        int m = d[i];
+        m = Math.max(a, m);
+        m = Math.min(b, m);
+        if (s[i].equals("East")) {
+            pos += m;
+        } else {
+            pos -= m;
+        }
+    }
+    if (pos == 0) {
+        System.out.println(0);
+    } else if (pos > 0) {
+        System.out.println("East " + pos);
+    } else {
+        System.out.println("West " + (-pos));
+    }
+}

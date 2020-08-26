@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String S = sc.nextLine();
+    char current = S.charAt(0);
+    int currentCharLength = 1;
+    StringBuilder builder = new StringBuilder();
+    for (int i = 1; i < S.length(); i++) {
+        if (current == S.charAt(i)) {
+            currentCharLength += 1;
+        } else {
+            builder.append(current + Integer.toString(currentCharLength));
+            current = S.charAt(i);
+            currentCharLength = 1;
+        }
+    }
+    builder.append(current + Integer.toString(currentCharLength));
+    System.out.println(builder.toString());
+}

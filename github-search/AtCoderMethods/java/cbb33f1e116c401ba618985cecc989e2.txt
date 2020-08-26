@@ -1,0 +1,17 @@
+public void bfs(int s) {
+    Arrays.fill(level, -1);
+    int qh = 0;
+    int qt = 0;
+    level[s] = 0;
+    que[qh++] = s;
+    while (qt < qh) {
+        int v = que[qt++];
+        for (int i = 0; i < graph[v].size(); i++) {
+            int[] e = graph[v].get(i);
+            if (e[1] > 0 && level[e[0]] < 0) {
+                level[e[0]] = level[v] + 1;
+                que[qh++] = e[0];
+            }
+        }
+    }
+}

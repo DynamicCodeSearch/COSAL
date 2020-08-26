@@ -1,0 +1,40 @@
+
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    
+    double a = scanner.nextInt();
+    
+    double b = scanner.nextInt();
+    
+    double c = scanner.nextInt();
+    
+    double d = scanner.nextInt();
+    
+    double e = scanner.nextInt();
+    
+    double f = scanner.nextInt();
+    double satoumizu = 100 * a;
+    double satou = 0.0;
+    double noudo = 0.0;
+    for (int i = 0; i * a * 100 <= f; i++) {
+        for (int j = 0; (i * a + j * b) * 100 <= f; j++) {
+            
+            double mizu = (i * a + j * b) * 100;
+            double satouLimit = (i * a + j * b) * e < f - mizu ? (i * a + j * b) * e : f - mizu;
+            for (int k = 0; k * c <= satouLimit; k++) {
+                int dsSatouLimitCount = (int) ((satouLimit - k * c) / d);
+                double newSatou = k * c + dsSatouLimitCount * d;
+                double newSatoumizu = mizu + newSatou;
+                if (i + j != 0 && k + dsSatouLimitCount != 0) {
+                    double newnoudo = newSatou * 100 / newSatoumizu;
+                    if (noudo < newnoudo && satoumizu <= f) {
+                        satou = newSatou;
+                        satoumizu = newSatoumizu;
+                        noudo = newnoudo;
+                    }
+                }
+            }
+        }
+    }
+    System.out.println((int) satoumizu + " " + (int) satou);
+}

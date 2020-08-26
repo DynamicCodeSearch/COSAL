@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[][] point = new int[N][2];
+    int i, j, max = 0, x1, x2, y1, y2, len;
+    for (i = 0; i < N; i++) {
+        point[i][0] = sc.nextInt();
+        point[i][1] = sc.nextInt();
+    }
+    for (i = 0; i < N - 1; i++) {
+        x1 = point[i][0];
+        y1 = point[i][1];
+        for (j = i + 1; j < N; j++) {
+            x2 = point[j][0];
+            y2 = point[j][1];
+            len = (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2);
+            if (max < len)
+                max = len;
+        }
+    }
+    double answer = Math.sqrt((double) max);
+    System.out.println(answer);
+}

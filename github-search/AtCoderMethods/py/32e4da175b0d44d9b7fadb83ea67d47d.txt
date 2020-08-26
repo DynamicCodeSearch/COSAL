@@ -1,0 +1,12 @@
+def solve(a):
+    m, diff, ans = 10 ** 10, 0, 0
+    for i in range(len(a)):
+        if a[i] < m:
+            m = a[i]
+        elif a[i] - m > diff:
+            diff = a[i] - m
+            ans = 1
+        elif a[i] - m == diff:
+            ans += 1
+
+    return ans

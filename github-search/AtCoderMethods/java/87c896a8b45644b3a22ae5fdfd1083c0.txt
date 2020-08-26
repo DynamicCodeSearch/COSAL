@@ -1,0 +1,38 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    double deg = sc.nextDouble();
+    double dis = sc.nextDouble();
+    deg = deg / (double) 10;
+    dis = dis / (double) 60;
+    dis += 0.0000001;
+    BigDecimal x = new BigDecimal(dis);
+    x = x.setScale(1, BigDecimal.ROUND_HALF_UP);
+    dis = x.doubleValue();
+    String orient = "";
+    String speed = "";
+    double[] angle = new double[16];
+    for (int i = 0; i < 16; i++) {
+        angle[i] = 11.25 + 22.5 * (double) i;
+    }
+    String[] orients = { "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW" };
+    for (int i = 0; i < 15; i++) {
+        if ((deg >= angle[i]) && (deg < angle[i + 1])) {
+            orient = orients[i];
+            break;
+        }
+    }
+    if (orient.equals(""))
+        orient = "N";
+    double[] power = { 0.0, 0.2, 0.3, 1.5, 1.6, 3.3, 3.4, 5.4, 5.5, 7.9, 8.0, 10.7, 10.8, 13.8, 13.9, 17.1, 17.2, 20.7, 20.8, 24.4, 24.5, 28.4, 28.5, 32.6 };
+    for (int i = 0; i < power.length; i++) {
+        if ((i % 2 == 0) && (dis >= power[i]) && (dis <= power[i + 1])) {
+            speed = String.valueOf(i / 2);
+            break;
+        }
+    }
+    if (speed.equals(""))
+        speed = "12";
+    if (speed.equals("0"))
+        orient = "C";
+    System.out.println(orient + " " + speed);
+}

@@ -1,0 +1,39 @@
+public static void main(String[] args) throws NumberFormatException, IOException {
+    
+    
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String line = br.readLine();
+    String[] text = line.split(" ");
+    N = Integer.parseInt(text[0]);
+    M = Integer.parseInt(text[1]);
+    
+    x = new int[M + 1];
+    y = new int[M + 1];
+    
+    int range = (int) Math.pow(2, N);
+    dp = new long[range];
+    Arrays.fill(dp, -1);
+    dp[0] = 1;
+    int idx = 0;
+    int time = 0;
+    while (idx < M) {
+        line = br.readLine();
+        text = line.split(" ");
+        x[idx] = Integer.parseInt(text[0]) - 1;
+        y[idx] = Integer.parseInt(text[1]) - 1;
+        
+        
+        idx++;
+    }
+    double sTime = System.nanoTime();
+    for (int i = 1; i < range; i++) {
+        
+        function(i);
+    }
+    System.out.println(dp[range - 1]);
+    long a;
+
+
+
+
+}

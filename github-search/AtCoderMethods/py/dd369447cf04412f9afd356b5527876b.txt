@@ -1,0 +1,16 @@
+def solve():
+    S = input()
+    pos = len(S)
+
+    while pos > 0:
+        if S[pos - 5:pos] == 'dream' or S[pos - 5:pos] == 'erase':
+            pos -= 5
+        elif S[pos - 7:pos] == 'dreamer':
+            pos -= 7
+        elif S[pos - 6:pos] == 'eraser':
+            pos -= 6
+        else:
+            print('NO')
+            return None
+
+    print('YES')

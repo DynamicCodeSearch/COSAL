@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int i, N, T;
+    int sum = 0;
+    N = sc.nextInt();
+    T = sc.nextInt();
+    int[] A = new int[N];
+    for (i = 0; i < N; i++) {
+        A[i] = sc.nextInt();
+    }
+    for (i = 0; i < N - 1; i++) {
+        if (A[i + 1] - A[i] < T) {
+            sum += A[i + 1] - A[i];
+        } else {
+            sum += T;
+        }
+    }
+    sum += T;
+    System.out.println(sum);
+}

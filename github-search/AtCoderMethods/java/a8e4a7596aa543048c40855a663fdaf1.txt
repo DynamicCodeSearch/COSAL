@@ -1,0 +1,58 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int h = sc.nextInt();
+    int w = sc.nextInt();
+    String[] s = new String[h];
+    for (int i = 0; i < h; i++) s[i] = sc.next();
+    char[][] map = new char[h + 2][w + 2];
+    char[][] map_before = new char[h + 2][w + 2];
+    char[][] map_after = new char[h + 2][w + 2];
+    for (int i = 0; i < h + 2; i++) {
+        for (int j = 0; j < w + 2; j++) {
+            if (i == 0 || i == h + 1 || j == 0 || j == w + 1)
+                map[i][j] = '.';
+            else {
+                map_before[i][j] = map[i][j] = s[i - 1].charAt(j - 1);
+            }
+        }
+    }
+    
+    for (int i = 1; i < h + 1; i++) {
+        for (int j = 1; j < w + 1; j++) {
+            if (map[i][j] == '.') {
+                for (int k = -1; k <= 1; k++) {
+                    for (int l = -1; l <= 1; l++) {
+                        map_before[i + k][j + l] = '.';
+                    }
+                }
+            }
+            map_after[i][j] = '.';
+        }
+    }
+    
+    for (int i = 1; i < h + 1; i++) {
+        for (int j = 1; j < w + 1; j++) {
+            for (int k = -1; k <= 1; k++) {
+                for (int l = -1; l <= 1; l++) {
+                    if (map_before[i + k][j + l] == '#')
+                        map_after[i][j] = '#';
+                }
+            }
+        }
+    }
+    for (int i = 1; i < h + 1; i++) {
+        for (int j = 1; j < w + 1; j++) {
+            if (map[i][j] != map_after[i][j]) {
+                System.out.println("impossible");
+                return;
+            }
+        }
+    }
+    System.out.println("possible");
+    for (int i = 1; i < h + 1; i++) {
+        for (int j = 1; j < w + 1; j++) {
+            System.out.print(map_before[i][j]);
+        }
+        System.out.println();
+    }
+}

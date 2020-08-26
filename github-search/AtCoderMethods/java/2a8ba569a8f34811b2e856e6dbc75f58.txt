@@ -1,0 +1,11 @@
+public void solve(int testNumber, Scanner in, PrintWriter out) {
+    int N = in.nextInt();
+    int M = in.nextInt();
+    init();
+    if (Math.abs(N - M) >= 2)
+        out.println(0);
+    else if (Math.abs(N - M) == 1)
+        out.println((fact[N] * fact[M]) % MOD);
+    else
+        out.println((((fact[N] * fact[M]) % MOD) * 2) % MOD);
+}

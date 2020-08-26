@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int i = 0;
+    int[] x = new int[100];
+    int[] y = new int[100];
+    double max = 0;
+    while (i < n) {
+        x[i] = sc.nextInt();
+        y[i] = sc.nextInt();
+        i++;
+    }
+    for (int j = 0; j < n; j++) {
+        for (int k = j + 1; k < n; k++) {
+            double W = Math.pow(x[k] - x[j], 2) + Math.pow(y[k] - y[j], 2);
+            if (W > max) {
+                max = W;
+            }
+        }
+    }
+    double answer = Math.sqrt(max);
+    System.out.println(answer);
+}

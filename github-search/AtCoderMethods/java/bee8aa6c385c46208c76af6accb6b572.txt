@@ -1,0 +1,30 @@
+public void solve(int testNumber, FastScanner in, PrintWriter out) {
+    this.in = in;
+    this.out = out;
+    if (send("" + (int) 1e9)) {
+        int ans = 1;
+        while (!send("" + (ans + 1))) {
+            ans *= 10;
+        }
+        out.println("! " + ans);
+        out.flush();
+        return;
+    }
+    int len = 1;
+    while (send("" + (int) (Math.pow(10, len - 1)))) {
+        ++len;
+    }
+    --len;
+    int l = (int) (Math.pow(10, len - 1));
+    int r = (int) (Math.pow(10, len)) - 1;
+    while (r - l > 1) {
+        int m = (l + r) / 2;
+        if (!send("" + m + "0")) {
+            l = m;
+        } else {
+            r = m;
+        }
+    }
+    out.println("! " + r);
+    out.flush();
+}

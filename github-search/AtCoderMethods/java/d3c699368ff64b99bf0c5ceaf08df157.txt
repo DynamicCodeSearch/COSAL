@@ -1,0 +1,37 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    Point[] p = new Point[N];
+    for (int i = 0; i < N; i++) p[i] = new Point(i, sc.nextInt(), sc.nextInt());
+    ArrayList<Road> roads = new ArrayList<>();
+    Arrays.sort(p, new Comparator<Point>() {
+
+        public int compare(Point p1, Point p2) {
+            return p1.x - p2.x;
+        }
+    });
+    for (int i = 0; i < N - 1; i++) roads.add(new Road(p[i + 1].x - p[i].x, p[i].idx, p[i + 1].idx));
+    Arrays.sort(p, new Comparator<Point>() {
+
+        public int compare(Point p1, Point p2) {
+            return p1.y - p2.y;
+        }
+    });
+    for (int i = 0; i < N - 1; i++) roads.add(new Road(p[i + 1].y - p[i].y, p[i].idx, p[i + 1].idx));
+    Collections.sort(roads, new Comparator<Road>() {
+
+        public int compare(Road r1, Road r2) {
+            return r1.cost - r2.cost;
+        }
+    });
+    long ans = 0;
+    UnionFind uf = new UnionFind(N);
+    for (Road r : roads) {
+        if (!uf.same(r.a, r.b)) {
+            uf.unite(r.a, r.b);
+            ans += r.cost;
+        }
+    }
+    System.out.println(ans);
+    sc.close();
+}

@@ -1,0 +1,21 @@
+static void maketree(int v) {
+    if (used[v])
+        return;
+    dfs.add(v);
+    used[v] = true;
+    V[v] = new Heirotree();
+    V[v].tree = new ArrayList<Integer>();
+    int size = dfs.size();
+    V[v].rank = size;
+    int two = 1;
+    while (two <= size) {
+        V[v].tree.add(dfs.get(size - two));
+        two *= 2;
+    }
+    
+    V[v].tree.add(-1);
+    for (int i = 0; i < ini[v].size(); i++) {
+        maketree(ini[v].get(i));
+    }
+    dfs.remove(dfs.size() - 1);
+}

@@ -1,0 +1,8 @@
+private Node<E> rotateRight(Node<E> x) {
+    Node<E> y = x.left;
+    x.left = y.right;
+    y.right = x;
+    Node.update(x);
+    Node.update(y);
+    return y;
+}

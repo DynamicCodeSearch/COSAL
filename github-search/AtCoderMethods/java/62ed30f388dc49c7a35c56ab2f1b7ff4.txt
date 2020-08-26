@@ -1,0 +1,10 @@
+static long pow(long a, long x) {
+    long mod = 1000000007;
+    if (a == 1 || x == 0)
+        return 1;
+    if (x % 2 == 0) {
+        return pow(a * a % mod, x / 2) % mod;
+    } else {
+        return a * pow(a, x - 1) % mod;
+    }
+}

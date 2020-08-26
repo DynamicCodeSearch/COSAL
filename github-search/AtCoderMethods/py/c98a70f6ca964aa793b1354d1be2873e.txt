@@ -1,0 +1,18 @@
+def main():
+    N = int(input())
+    graph = Graph(N)
+    for i in range(N-1):
+        n1, n2 = map(int, input().split())
+        graph.path(n1, n2)
+    path = graph.dfs(1, None)
+    l = len(path)
+    fb = path[l // 2]
+    sb = path[l // 2 - 1]
+    fr = graph.region(1, sb, None)
+    sr = graph.region(N, fb, None)
+
+
+    if fr > sr:
+        print("Fennec")
+    else:
+        print("Snuke")

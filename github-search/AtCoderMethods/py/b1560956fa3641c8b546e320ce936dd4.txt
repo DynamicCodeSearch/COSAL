@@ -1,0 +1,25 @@
+def test(T, TAKOYAKI, CUSTOMER):
+    flag = True
+    takoyaki = [0 for i in range(T + 1)]
+
+    for time in range(CUSTOMER[-1] + 1):
+        for i in range(T - 1, -1, -1):
+            takoyaki[i + 1] = takoyaki[i]
+        takoyaki[0] = TAKOYAKI.count(time)
+        customer = CUSTOMER.count(time)
+
+        for i in range(T, -1, -1):
+            if customer > takoyaki[i]:
+                customer -= takoyaki[i]
+                takoyaki[i] = 0
+            else:
+                takoyaki[i] -= customer
+                customer = 0
+            if customer == 0:
+                break
+
+        if customer > 0:
+            flag = False
+            break
+
+    return flag

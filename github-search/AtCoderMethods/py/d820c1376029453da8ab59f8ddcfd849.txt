@@ -1,0 +1,22 @@
+def solve():
+    def binom(n, k):
+        res = (modfact[n] * factinv[k]) % mod
+        res = (res * factinv[n - k]) % mod
+        return res
+
+    h, w, a, b = map(int, input().split())
+    ans = 0
+    modfact = [1] * (h + w)
+    factinv = [1] * (h + w)
+    inv = [1] * (h + w)
+
+    for i in range(2, h + w):
+        modfact[i] = (i * modfact[i - 1]) % mod
+        inv[i] = (-(mod // i) * inv[mod % i]) % mod
+        factinv[i] = (inv[i] * factinv[i - 1]) % mod
+
+    for i in range(h - a):
+        ans += (binom(b + i - 1, i) * binom(w + h - b - i - 2, h - i - 1)) % mod
+        ans %= mod
+
+    print(ans)

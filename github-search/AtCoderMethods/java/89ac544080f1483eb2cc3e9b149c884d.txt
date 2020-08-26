@@ -1,0 +1,29 @@
+void solve() {
+    int deg = sc.nextInt();
+    int dis = sc.nextInt();
+    String dir = null;
+    int dl = 112;
+    String[] dirs = new String[] { "N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW" };
+    for (int i = 0; i < dirs.length; i++) {
+        if (deg <= dl) {
+            dir = dirs[i];
+            break;
+        }
+        dl += 225;
+    }
+    if (dir == null)
+        dir = "N";
+    double ms = Math.round((double) dis / 6.0) / 10.0;
+    double[] wl = new double[] { 0.2, 1.5, 3.3, 5.4, 7.9, 10.7, 13.8, 17.1, 20.7, 24.4, 28.4, 32.6 };
+    int w = 12;
+    for (int i = 0; i < wl.length; i++) {
+        if (ms <= wl[i]) {
+            w = i;
+            break;
+        }
+    }
+    if (w == 0)
+        System.out.println("C " + 0);
+    else
+        System.out.println(dir + " " + w);
+}

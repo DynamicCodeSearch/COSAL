@@ -1,0 +1,6 @@
+public static void main(String[] $) {
+    long[] v = INS(getInt()).asLongStream().toArray();
+    long sum = Arrays.stream(v).sum();
+    Arrays.parallelPrefix(v, Long::sum);
+    System.out.println(Arrays.stream(v).limit(v.length - 1).map(i -> Math.abs((sum - i) - i)).min().getAsLong());
+}

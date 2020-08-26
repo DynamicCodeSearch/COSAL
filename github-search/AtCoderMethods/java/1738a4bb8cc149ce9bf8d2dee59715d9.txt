@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int K = sc.nextInt();
+    char[] D = new char[K];
+    for (int i = 0; i < K; i++) {
+        D[i] = sc.next().charAt(0);
+    }
+    IN: for (int i = N; ; i++) {
+        char[] check = String.valueOf(i).toCharArray();
+        for (int j = 0; j < check.length; j++) {
+            for (int k = 0; k < D.length; k++) {
+                if (check[j] == D[k]) {
+                    continue IN;
+                }
+            }
+        }
+        System.out.println(i);
+        break;
+    }
+}

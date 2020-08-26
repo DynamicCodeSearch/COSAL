@@ -1,0 +1,20 @@
+static double dfs(int idx, int left) {
+    if (left == 0 || idx == n) {
+        return 0.0d;
+    }
+    if (memo[idx][left] >= 0) {
+        return memo[idx][left];
+    }
+    double rateofN = 1.0d / (n - idx);
+    double best = rateofN + (1.0d - rateofN) * 1.0d / (idx + 1);
+    double bestIsN = rateofN / best;
+    double ret = 0;
+    
+    double eat = best * (bestIsN + (1.0d - bestIsN) * dfs(idx + 1, left - 1));
+    double noteat = best * (1.0d - bestIsN) * dfs(idx + 1, left);
+    ret += Math.max(eat, noteat);
+    
+    ret += (1.0d - best) * dfs(idx + 1, left);
+    memo[idx][left] = ret;
+    return ret;
+}

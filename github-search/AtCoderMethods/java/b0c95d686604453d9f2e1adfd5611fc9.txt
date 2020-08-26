@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    int[] a = new int[M];
+    int sum = 0;
+    for (int i = 0; i < N; i++) {
+        int l = sc.nextInt() - 1;
+        int r = sc.nextInt();
+        int s = sc.nextInt();
+        sum += s;
+        a[l] += s;
+        if (r < M)
+            a[r] -= s;
+    }
+    int min = a[0];
+    for (int i = 1; i < M; i++) {
+        a[i] += a[i - 1];
+        min = Math.min(min, a[i]);
+    }
+    System.out.println(sum - min);
+}

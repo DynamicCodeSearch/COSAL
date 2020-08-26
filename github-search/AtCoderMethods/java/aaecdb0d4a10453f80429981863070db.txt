@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int n = scan.nextInt();
+    int shift = n / 5;
+    int s = (6 * 100000000 - shift) % 6;
+    int[] card = new int[6];
+    for (int i = 0; i < 6; i++) {
+        card[s] = i + 1;
+        s = (s + 1) % 6;
+    }
+    int c = n % 5;
+    for (int i = 0; i < c; i++) {
+        int ex = card[i];
+        card[i] = card[i + 1];
+        card[i + 1] = ex;
+    }
+    for (int i = 0; i < 6; i++) {
+        System.out.print(card[i]);
+    }
+    System.out.println();
+}

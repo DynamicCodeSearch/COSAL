@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    String[] dst = new String[n];
+    for (int i = 0; i < n; i++) {
+        dst[i] = "";
+    }
+    for (int i = 0; i < n; i++) {
+        String s = sc.next();
+        for (int j = 0; j < n; j++) {
+            dst[j] = s.charAt(j) + dst[j];
+        }
+    }
+    sc.close();
+    for (int i = 0; i < n; i++) {
+        System.out.println(dst[i]);
+    }
+}

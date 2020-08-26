@@ -1,0 +1,26 @@
+static void solve() {
+    int n = ni(), x = ni(), y = ni(), z = ni();
+    int mod = 1000000007;
+    long[][] dp = new long[n + 1][1 << x + y + z];
+    long[] ep = new long[n + 1];
+    dp[0][0] = 1;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < 1 << x + y + z; j++) {
+            for (int k = 1; k <= 10; k++) {
+                int nj = (j << k | 1 << k - 1) & (1 << x + y + z) - 1;
+                if (nj << ~(z - 1) < 0 && nj << ~(y + z - 1) < 0 && nj << ~(x + y + z - 1) < 0) {
+                    ep[i + 1] += dp[i][j];
+                    if (ep[i + 1] >= mod)
+                        ep[i + 1] -= mod;
+                } else {
+                    dp[i + 1][nj] += dp[i][j];
+                    if (dp[i + 1][nj] >= mod)
+                        dp[i + 1][nj] -= mod;
+                }
+            }
+        }
+        ep[i + 1] += ep[i] * 10;
+        ep[i + 1] %= mod;
+    }
+    out.println(ep[n]);
+}

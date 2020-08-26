@@ -1,0 +1,36 @@
+def solution():
+	h,v  = [int(x) for x in input().split(' ')]
+ ls = []
+ ans = []
+ for i in range(h):
+		ls.append(list(input()))
+  ans.append([0]*v)
+
+ for i in range(h):
+		for j in range(v):
+			if ls[i][j] == '#':
+				if i>0:
+					ans[i-1][j]+=1
+     if j>0:
+						ans[i-1][j-1]+=1
+     if j<v-1:
+						ans[i-1][j+1]+=1
+    if i<h-1:
+					ans[i+1][j]+=1
+     if j>0:
+						ans[i+1][j-1]+=1
+     if j<v-1:
+						ans[i+1][j+1]+=1
+    if j>0:
+					ans[i][j-1]+=1
+    if j<v-1:
+					ans[i][j+1]+=1
+
+ for i in range(h):
+		for j in range(v):
+			if  ls[i][j] == '#':
+				print('#',end='')
+   else:
+				print(ans[i][j],end='')
+
+  print("")

@@ -1,0 +1,31 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[] a = new int[n];
+    ArrayDeque<Integer> q = new ArrayDeque<Integer>();
+    for (int i = 0; i < n; i++) {
+        int e = sc.nextInt();
+        if (i % 2 == 0) {
+            q.addLast(e);
+        } else {
+            q.addFirst(e);
+        }
+    }
+    Iterator iter;
+    if (n % 2 == 1) {
+        iter = q.descendingIterator();
+    } else {
+        iter = q.iterator();
+    }
+    int i = 1;
+    while (iter.hasNext()) {
+        if (i == n) {
+            System.out.print(iter.next());
+        } else {
+            System.out.print(iter.next());
+            System.out.print(" ");
+        }
+        i++;
+    }
+}

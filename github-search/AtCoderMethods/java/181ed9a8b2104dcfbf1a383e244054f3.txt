@@ -1,0 +1,42 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    List<Node> l = new ArrayList<>();
+    for (int i = 1; i <= n; i++) l.add(new Node());
+    for (int i = 0; i < n - 1; i++) {
+        Node a = l.get(in.nextInt() - 1);
+        Node b = l.get(in.nextInt() - 1);
+        a.neighbors.add(b);
+        b.neighbors.add(a);
+    }
+    Queue<Node> q = new LinkedList<>();
+    Set<Node> seen = new HashSet<>();
+    q.offer(l.get(0));
+    seen.add(l.get(0));
+    while (!q.isEmpty()) {
+        Node cur = q.poll();
+        for (Node node : cur.neighbors) {
+            if (!seen.contains(node)) {
+                node.first = cur.first + 1;
+                q.offer(node);
+                seen.add(node);
+            }
+        }
+    }
+    seen = new HashSet<>();
+    q.offer(l.get(n - 1));
+    seen.add(l.get(n - 1));
+    int size = 0;
+    while (!q.isEmpty()) {
+        Node cur = q.poll();
+        if (cur.second < cur.first)
+            size++;
+        for (Node node : cur.neighbors) {
+            if (!seen.contains(node)) {
+                node.second = cur.second + 1;
+                q.offer(node);
+                seen.add(node);
+            }
+        }
+    }
+    out.println(size >= n - size ? "Snuke" : "Fennec");
+}

@@ -1,0 +1,22 @@
+void run() {
+    int nn = sc.nextInt();
+    n = 1;
+    while (n < nn) n *= 2;
+    t = sc.nextInt();
+    a = sc.nextIntArray(nn);
+    init();
+    for (int i = 0; i < nn; i++) {
+        update(i, a[i]);
+    }
+    int max = 0;
+    for (int i = 0; i < nn; i++) {
+        int upper_max = query(i + 1, nn, 0, 0, n);
+        max = Math.max(max, upper_max - a[i]);
+    }
+    int cnt = 0;
+    for (int i = 0; i < nn; i++) {
+        if (query(i + 1, nn, 0, 0, n) - a[i] == max)
+            cnt++;
+    }
+    System.out.println(cnt);
+}

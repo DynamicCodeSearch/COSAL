@@ -1,0 +1,18 @@
+void run() {
+    int maxHappiness = 0;
+    
+    for (int i = 0; i < 1 << N; i++) {
+        if (flagCount(i) != P)
+            continue;
+        int[] scores = new int[M];
+        for (int j = 0; j < N; j++) {
+            
+            if ((i >> j & 1) == 1)
+                getScores(j, scores);
+        }
+        Arrays.sort(scores);
+        int tmpMax = getMaxScore(scores);
+        maxHappiness = Math.max(maxHappiness, tmpMax);
+    }
+    System.out.println(maxHappiness);
+}

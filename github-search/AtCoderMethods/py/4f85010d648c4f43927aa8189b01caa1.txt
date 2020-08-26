@@ -1,0 +1,18 @@
+def solve():
+    N = int(input())
+    Adj = [[] for i in range(N)]
+
+    for i in range(N-1):
+        a, b = map(int, sys.stdin.readline().split())
+        a, b = a - 1, b - 1
+        Adj[a].append(b)
+        Adj[b].append(a)
+
+    f = [0] * N
+    g = [0] * N
+    visited = [False] * N
+
+    dfs(N, Adj, f, g, visited, 0)
+
+    ans = f[0]
+    print(ans)

@@ -1,0 +1,61 @@
+
+
+
+
+
+
+
+public static void main(String[] args) throws Exception, IOException {
+    Reader sc = new Reader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = sc.nextInt();
+    n++;
+    int[] d = new int[n];
+    int[] ans = new int[n];
+    int map[] = new int[100005], dup = 0, fst = 0, sec = 0;
+    long[][] com = new long[5][5];
+    for (int i = 0; i < n; i++) {
+        d[i] = sc.nextInt();
+        map[d[i]]++;
+        if (map[d[i]] == 2) {
+            dup = d[i];
+            sec = i;
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        if (d[i] == dup) {
+            fst = i;
+            break;
+        }
+    }
+    db(fst, sec, d);
+    int mod = 1000000007, sz = 100005;
+    long[] fr = new long[sz];
+    long[] inv = new long[sz];
+    fr[0] = inv[0] = 1;
+    fr[1] = inv[1] = 1;
+    for (int i = 2; i < sz; ++i) {
+        inv[i] = inv[mod % i] * (mod - mod / i) % mod;
+    }
+    for (int i = 2; i < sz; ++i) {
+        fr[i] = fr[i - 1] * i % mod;
+        inv[i] = inv[i - 1] * inv[i] % mod;
+    }
+    for (int i = 1; i <= fst + n - sec - 1; i++) {
+        ans[i] -= (fr[fst + n - sec - 1] * inv[i] % mod) * inv[fst + n - sec - 1 - i] % mod;
+        ans[i] %= mod;
+    }
+    ans[0]--;
+    for (int i = 1; i <= n; i++) {
+        ans[i - 1] += (fr[n] * inv[i] % mod) * inv[n - i] % mod;
+        ans[i - 1] %= mod;
+        if (ans[i - 1] < 0) {
+            ans[i - 1] += mod;
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        out.println(ans[i]);
+    }
+    
+    out.flush();
+}

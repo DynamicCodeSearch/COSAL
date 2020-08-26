@@ -1,0 +1,13 @@
+private Map<Integer, Integer> compress(int[] a) {
+    int[] b = a.clone();
+    Arrays.sort(b);
+    Map<Integer, Integer> m = new HashMap<>();
+    m.put(0, 0);
+    for (int x : b) {
+        if (!m.containsKey(x)) {
+            int sz = m.size();
+            m.put(x, sz);
+        }
+    }
+    return m;
+}

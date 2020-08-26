@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int m = sc.nextInt();
+    int res = 0;
+    if (100 <= m && m <= 5000)
+        res = m / 100;
+    else if (6000 <= m && m <= 30000)
+        res = m / 1000 + 50;
+    else if (35000 <= m && m <= 70000)
+        res = (((m / 1000) - 30) / 5) + 80;
+    else if (70000 < m)
+        res = 89;
+    if (res < 10)
+        System.out.println("0" + res);
+    else
+        System.out.println(res);
+}

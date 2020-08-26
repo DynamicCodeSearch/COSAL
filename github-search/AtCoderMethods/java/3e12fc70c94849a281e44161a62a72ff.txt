@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int i = 0, j = 0, output = 0;
+    int N = sc.nextInt();
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    int K = sc.nextInt();
+    int[] P = new int[K];
+    for (i = 0; i < K; i++) {
+        P[i] = sc.nextInt();
+        if (P[i] == a || P[i] == b) {
+            output = 1;
+            break;
+        }
+        for (j = 0; j < i; j++) {
+            if (P[i] == P[j]) {
+                output = 1;
+                break;
+            }
+        }
+        if (output == 1) {
+            break;
+        }
+    }
+    if (output == 1) {
+        System.out.println("NO");
+    } else {
+        System.out.println("YES");
+    }
+}

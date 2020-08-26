@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int input1 = scan.nextInt();
+    int last = scan.nextInt();
+    long ans = 0;
+    int count = 1;
+    for (int i = 1; i < input1; i++) {
+        int next = scan.nextInt();
+        if (last < next) {
+            count++;
+        } else {
+            ans += getPow(count);
+            count = 1;
+        }
+        last = next;
+    }
+    ans += getPow(count);
+    System.out.println(ans);
+}

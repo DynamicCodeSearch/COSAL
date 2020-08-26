@@ -1,0 +1,29 @@
+void solve() throws IOException {
+    int n = ni();
+    ArrayList<Pair> list1 = new ArrayList<>();
+    ArrayList<Pair2> list2 = new ArrayList<>();
+    for (int i = 0; i < n; i++) {
+        int a = ni();
+        int b = ni();
+        if (a < b) {
+            list1.add(new Pair(a, b));
+        } else {
+            list2.add(new Pair2(a, b));
+        }
+    }
+    Collections.sort(list1);
+    Collections.sort(list2);
+    long sum = 0;
+    long ans = 0;
+    for (Pair p : list1) {
+        sum += p.x;
+        ans = Math.max(ans, sum);
+        sum -= p.y;
+    }
+    for (Pair2 p : list2) {
+        sum += p.x;
+        ans = Math.max(ans, sum);
+        sum -= p.y;
+    }
+    out.println(ans);
+}

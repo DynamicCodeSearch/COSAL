@@ -1,0 +1,8 @@
+def main():
+    N = int(input())
+    t, a = map(int, input().split())
+    for _ in range(N - 1):
+        T, A = map(int, input().split())
+        p = Decimal(max(math.ceil(t / T), math.ceil(a / A)))
+        t, a = T * p, A * p
+    print(t + a)

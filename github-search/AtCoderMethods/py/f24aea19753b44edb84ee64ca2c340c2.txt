@@ -1,0 +1,10 @@
+def shukuyaku(H, W, T, U):
+    dx = [1, 0, -1, 0, 1, 1, -1, -1, 0]
+    dy = [0, 1, 0, -1, 1, -1, 1, -1, 0]
+
+    for y in range(H):
+        for x in range(W):
+            if T[y][x] == 1:
+                for i in range(len(dx)):
+                    if 0 <= x + dx[i] < W and 0 <= y + dy[i] < H:
+                        U[y + dy[i]][x + dx[i]] = 1

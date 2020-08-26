@@ -1,0 +1,8 @@
+@SuppressWarnings({ "unchecked" })
+public int compareTo(Pair<U, V> o) {
+    int value = ((Comparable<U>) first).compareTo(o.first);
+    if (value != 0) {
+        return value;
+    }
+    return ((Comparable<V>) second).compareTo(o.second);
+}

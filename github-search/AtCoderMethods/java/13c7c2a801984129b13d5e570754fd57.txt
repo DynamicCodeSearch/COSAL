@@ -1,0 +1,38 @@
+public static void main(String[] args) throws InterruptedException {
+    Scanner scanner = new Scanner(System.in);
+    String in = scanner.nextLine();
+    String[] all = new String[] { "dreamer", "eraser", "dream", "erase" };
+    int prev = 0;
+    int next = 0;
+    for (int i = 0; i < in.length(); ) {
+        boolean found = false;
+        for (int j = next; j < all.length; j++) {
+            String target = all[j];
+            int index = in.indexOf(target, i);
+            if (index == i) {
+                i += target.length();
+                found = true;
+                prev = j;
+                next = 0;
+                break;
+            }
+        }
+        if (!found) {
+            if (next == 3) {
+                System.out.println("NO");
+                return;
+            } else if (prev != -1) {
+                i -= all[prev].length();
+                if (prev == 3) {
+                    System.out.println("NO");
+                    return;
+                }
+                next = prev + 1;
+            } else {
+                System.out.println("NO");
+                return;
+            }
+        }
+    }
+    System.out.println("YES");
+}

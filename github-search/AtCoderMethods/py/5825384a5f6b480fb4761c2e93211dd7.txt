@@ -1,0 +1,21 @@
+def Dijkstra(N, v_st, v_go):
+    cost = [float('inf') for i in range(N)]
+
+    pq = []
+    heapq.heappush(pq, (0, v_st))
+
+    while pq:
+        c, v_now = heapq.heappop(pq)
+
+        if v_now == v_go:
+            return c
+
+        if cost[-v_now] < c:
+            continue
+
+        cost[-v_now] = c
+
+        for v, c2 in adj[-v_now]:
+            if cost[-v_now] + c2 < cost[-v]:
+                cost[-v] = cost[-v_now] + c2
+                heapq.heappush(pq, (cost[-v], v))

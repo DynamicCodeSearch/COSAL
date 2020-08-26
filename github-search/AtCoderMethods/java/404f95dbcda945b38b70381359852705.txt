@@ -1,0 +1,16 @@
+static Map<Integer, Long> sumCount(int[] x) {
+    Map<Integer, Long> result = new HashMap<>();
+    result.put(0, 1L);
+    for (int i : x) {
+        List<Integer> keySet = new ArrayList<>(result.keySet());
+        keySet.sort((k, l) -> l - k);
+        
+        for (Integer j : keySet) {
+            
+            result.put(j + i, result.getOrDefault(j + i, 0L) + result.get(j));
+        
+        
+        }
+    }
+    return result;
+}

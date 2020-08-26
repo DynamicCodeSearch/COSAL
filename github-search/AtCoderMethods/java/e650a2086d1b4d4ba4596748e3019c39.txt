@@ -1,0 +1,52 @@
+public static void main(String[] args) throws IOException {
+    final Scanner sc = new Scanner(System.in);
+    final int N = sc.nextInt();
+    final int A = sc.nextInt();
+    final int B = sc.nextInt();
+    long[] vs = new long[N];
+    for (int i = 0; i < N; i++) {
+        final long v = sc.nextLong();
+        vs[i] = v;
+    }
+    TreeMap<Long, Integer> counts = new TreeMap<Long, Integer>(Collections.reverseOrder());
+    for (final long v : vs) {
+        if (!counts.containsKey(v)) {
+            counts.put(v, 0);
+        }
+        counts.put(v, counts.get(v) + 1);
+    }
+    long[][] comp = new long[N + 1][N + 1];
+    comp[0][0] = 1;
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j <= i; j++) {
+            comp[i + 1][j] += comp[i][j];
+            comp[i + 1][j + 1] += comp[i][j];
+        }
+    }
+    int rest_A = A;
+    int rest_B = B;
+    long sum = 0;
+    for (final long v : counts.keySet()) {
+        final int count = counts.get(v);
+        if (count <= rest_A) {
+            sum += v * count;
+            rest_A -= count;
+            rest_B -= count;
+        } else {
+            if (sum == 0) {
+                System.out.println(v);
+                long opt = 0;
+                for (int i = rest_A; i <= Math.min(rest_B, count); i++) {
+                    opt += comp[count][i];
+                }
+                System.out.println(opt);
+                return;
+            } else {
+                sum += v * rest_A;
+                System.out.printf("%.08f\n", sum / (double) (A));
+                System.out.println(comp[count][rest_A]);
+                return;
+            }
+        }
+    }
+}

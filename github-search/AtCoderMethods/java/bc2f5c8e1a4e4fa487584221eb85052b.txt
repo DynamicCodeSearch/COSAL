@@ -1,0 +1,19 @@
+private static long solve(int n, long[] a) {
+    long ans = 0;
+    long[] opes = new long[n];
+    while (true) {
+        boolean any = false;
+        long sum = 0;
+        for (int i = 0; i < n; i++) {
+            opes[i] = a[i] / n;
+            sum += opes[i];
+            any |= opes[i] != 0;
+            a[i] %= n;
+        }
+        for (int i = 0; i < n; i++) a[i] += sum - opes[i];
+        ans += sum;
+        if (!any)
+            break;
+    }
+    return ans;
+}

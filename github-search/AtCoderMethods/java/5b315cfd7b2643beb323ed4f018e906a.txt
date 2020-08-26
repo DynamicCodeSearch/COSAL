@@ -1,0 +1,28 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    IntPair[] a = new IntPair[n], b = new IntPair[n];
+    for (int i = 0; i < n; ++i) {
+        int x = in.nextInt(), y = in.nextInt();
+        a[i] = new IntPair(x, i);
+        b[i] = new IntPair(y, i);
+    }
+    Arrays.sort(a);
+    Edge[] edges = new Edge[2 * (n - 1)];
+    for (int i = 0; i + 1 < a.length; ++i) {
+        edges[i] = new Edge(a[i].second, a[i + 1].second, a[i + 1].first - a[i].first);
+    }
+    Arrays.sort(b);
+    for (int i = 0; i + 1 < b.length; ++i) {
+        edges[(n - 1) + i] = new Edge(b[i].second, b[i + 1].second, b[i + 1].first - b[i].first);
+    }
+    Arrays.sort(edges, (o1, o2) -> o1.cost - o2.cost);
+    long ans = 0;
+    DSU f = new DSU(n);
+    for (Edge e : edges) {
+        if (f.find(e.x) != f.find(e.y)) {
+            ans += e.cost;
+            f.union(e.x, e.y);
+        }
+    }
+    out.println(ans);
+}

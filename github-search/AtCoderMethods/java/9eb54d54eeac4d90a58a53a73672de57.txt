@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int m = sc.nextInt();
+    int n = sc.nextInt();
+    int N = sc.nextInt();
+    int ans = 0;
+    int a = N;
+    ans = ans + N;
+    int b = 0;
+    int p = 0;
+    while (p == 0) {
+        if (N >= m) {
+            a = (a / m) * n;
+            b = b + (N % m);
+            N = a;
+            ans = ans + N;
+        } else if (N < m) {
+            N = b + N;
+            a = N;
+            b = 0;
+            if (N < m) {
+                p++;
+            }
+        }
+    }
+    System.out.println(ans);
+}

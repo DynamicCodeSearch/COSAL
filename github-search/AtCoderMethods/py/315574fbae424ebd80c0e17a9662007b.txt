@@ -1,0 +1,15 @@
+def get_ans(A, B):
+    ans = A * B
+    for A1 in range(1, A):
+        A2 = (A - A1) // 2
+        A3 = A - A1 - A2
+        S = [A1 * B, A2 * B, A3 * B]
+        ans = min(ans, max(S) - min(S))
+
+    for A1 in range(1, A):
+        B2 = B // 2
+        B3 = B - B2
+        S = [A1 * B, (A - A1) * B2, (A - A1) * B3]
+        ans = min(ans, max(S) - min(S))
+
+    return ans

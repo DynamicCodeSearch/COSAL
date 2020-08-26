@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    char[] s = sc.next().toCharArray();
+    int[][] arr = { { 1, 1 }, { -1, -1 }, { 1, -1 }, { -1, 1 } };
+    int[] ret = null;
+    for (int[] v : arr) {
+        ret = make(v[0], v[1], s);
+        if (ret != null) {
+            break;
+        }
+    }
+    if (ret == null) {
+        System.out.println(-1);
+    } else {
+        StringBuilder sb = new StringBuilder();
+        for (int v : ret) {
+            sb.append(v == 1 ? "S" : "W");
+        }
+        System.out.println(sb);
+    }
+}

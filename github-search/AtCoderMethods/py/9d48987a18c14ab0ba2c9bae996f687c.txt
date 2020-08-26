@@ -1,0 +1,7 @@
+def region(self, start, block, f):
+
+    s = 1
+    for nn in self.paths[start]:
+        if nn != f and nn != block:
+            s += self.region(nn, block, start)
+    return s

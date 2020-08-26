@@ -1,0 +1,15 @@
+static void solve() {
+    int mod = 1000000007;
+    int n = ni(), m = ni(), K = ni();
+    int[][] fif = enumFIF(1000000, mod);
+    long[] cx = enumCombSums(m, K, fif, mod);
+    long ret = 0;
+    for (int t = n; t <= n + m + K; t++) {
+        ret = ret * 3;
+        ret += C(t - 1, n - 1, mod, fif) * cx[t - n];
+        ret %= mod;
+    }
+    if (ret < 0)
+        ret += mod;
+    out.println(ret);
+}

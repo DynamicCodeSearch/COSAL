@@ -1,0 +1,21 @@
+void solve() {
+    int a = in.nextInt(), b = in.nextInt(), c = in.nextInt(), d = in.nextInt(), e = in.nextInt(), f = in.nextInt();
+    int result = a * 100, resSugar = 0;
+    double ans = 0;
+    for (int cntA = 0; cntA * a * 100 <= f; cntA++) {
+        for (int cntB = 0; cntA * a * 100 + cntB * b * 100 <= f; cntB++) {
+            for (int cntC = 0; cntA * a * 100 + cntB * b * 100 + cntC * c <= f; cntC++) {
+                for (int cntD = 0; cntA * a * 100 + cntB * b * 100 + cntC * c + cntD * d <= f; cntD++) {
+                    int sugar = cntC * c + cntD * d;
+                    int water = 100 * (cntA * a + cntB * b);
+                    if (sugar * 100 <= water * e && sugar * 1.0 / (sugar + water) > ans) {
+                        ans = sugar * 1.0 / (sugar + water);
+                        result = sugar + water;
+                        resSugar = sugar;
+                    }
+                }
+            }
+        }
+    }
+    out.println(result + " " + resSugar);
+}

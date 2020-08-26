@@ -1,0 +1,20 @@
+def solve():
+    n = int(input())
+    s = [int(input()) for i in range(n)]
+
+    lim = n * 100
+    dp = [False] * (lim + 1)
+    dp[0] = True
+
+    for i in range(n):
+        for j in range(lim, s[i] - 1, -1):
+            dp[j] |= dp[j - s[i]]
+
+    for i in range(lim, 0, -1):
+        if i % 10 == 0:
+            continue
+        if dp[i]:
+            print(i)
+            return
+
+    print(0)

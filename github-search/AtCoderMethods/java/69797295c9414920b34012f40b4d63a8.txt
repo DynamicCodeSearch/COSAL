@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    
+    String tmp = sc.nextLine();
+    int n = Integer.parseInt(tmp);
+    ArrayList<Point> point_array = new ArrayList<Point>();
+    for (int i = 0; i < n; i++) {
+        tmp = sc.nextLine();
+        
+        String[] xy = tmp.split("[\\s]+", 0);
+        
+        point_array.add(new Point(Integer.parseInt(xy[0]), Integer.parseInt(xy[1])));
+    }
+    
+    double max = 0;
+    for (int i = 0; i < point_array.size(); i++) {
+        for (int j = 0; j < point_array.size(); j++) {
+            double cal = Point.calcDistance(point_array.get(i), point_array.get(j));
+            if (max < cal) {
+                max = cal;
+            }
+        }
+    }
+    System.out.println(max);
+}

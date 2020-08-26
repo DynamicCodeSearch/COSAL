@@ -1,0 +1,18 @@
+def dfs(N, Adj, p, pos, mask):
+    global cnt
+
+    if pos == N:
+        for i in range(N - 1):
+            if not Adj[p[i]][p[i + 1]]:
+                break
+        else:
+            cnt += 1
+
+        return None
+
+    for i in range(N):
+        if mask & (1 << i):
+            p[pos] = i
+            dfs(N, Adj, p, pos + 1, (mask ^ (1 << i)))
+
+    return None

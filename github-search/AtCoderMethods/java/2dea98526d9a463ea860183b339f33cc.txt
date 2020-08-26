@@ -1,0 +1,21 @@
+private boolean undirectedGraphTraversalWaysHelper(ArrayList nodes) {
+    boolean flag = true;
+    for (boolean visitedFlag : visited) {
+        flag &= visitedFlag;
+    }
+    if (flag) {
+        return true;
+    }
+    for (Object node : nodes) {
+        int index = ((Integer) node).intValue();
+        if (visited[index]) {
+            continue;
+        }
+        visited[index] = true;
+        if (undirectedGraphTraversalWaysHelper(graph[index])) {
+            count++;
+        }
+        visited[index] = false;
+    }
+    return false;
+}

@@ -1,0 +1,19 @@
+def main():
+    n = read_int()
+    t = read_int_list()
+    m = read_int()
+    p = [0] * m
+    x = [0] * m
+    for i in range(m):
+        p[i], x[i] = read_int_list()
+        p[i] -= 1
+
+    for i in range(m):
+        res = 0
+        for j in range(n):
+            if j == p[i]:
+                time = x[i]
+            else:
+                time = t[j]
+            res += time
+        print(res)

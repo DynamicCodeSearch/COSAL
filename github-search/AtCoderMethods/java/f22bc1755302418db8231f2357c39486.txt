@@ -1,0 +1,28 @@
+private void doit() {
+    Scanner sc = new Scanner(System.in);
+    long mod = 1000000007;
+    while (sc.hasNext()) {
+        int n = sc.nextInt();
+        int t = sc.nextInt();
+        int[] data = new int[n];
+        for (int i = 0; i < n; i++) {
+            data[i] = sc.nextInt();
+        }
+        int[] calc = new int[n];
+        calc[n - 1] = data[n - 1];
+        for (int i = n - 2; i >= 0; i--) {
+            calc[i] = Math.max(calc[i + 1], data[i]);
+        }
+        int max = 0;
+        for (int i = 0; i < n; i++) {
+            max = Math.max(max, calc[i] - data[i]);
+        }
+        int count = 0;
+        for (int i = 0; i < n; i++) {
+            if (max == calc[i] - data[i]) {
+                count++;
+            }
+        }
+        System.out.println(count);
+    }
+}

@@ -1,0 +1,20 @@
+def solve(dislike_digits_table, first_like_digit, N):
+
+    for i, _ in enumerate(N):
+        c = N[i]
+        while dislike_digits_table[int(c)]:
+            if c == '9':
+                if i == 0:
+                    return solve(dislike_digits_table,
+                                 first_like_digit,
+                                 '1' + '0' * len(N))
+                else:
+                    return solve(dislike_digits_table,
+                                 first_like_digit,
+                                 str(int(N[0:i+1]) + 1)
+                                    + '0' * len(N[i+1:]))
+            else:
+                c = chr(ord(c) + 1)
+            N = N[0:i] + c + '0' * len(N[i+1:])
+
+    return N

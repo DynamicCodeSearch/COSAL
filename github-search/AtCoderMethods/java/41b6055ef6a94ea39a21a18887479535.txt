@@ -1,0 +1,13 @@
+public static void main(String[] args) throws Exception {
+    Scanner in = new Scanner(System.in);
+    int[] ary = { 1, 2, 3, 4, 5, 6 };
+    int n = in.nextInt();
+    for (int i = 0; i < n % 30; i++) {
+        int a;
+        a = ary[i % 5];
+        ary[i % 5] = ary[i % 5 + 1];
+        ary[i % 5 + 1] = a;
+    }
+    for (int i : ary) System.out.print(i);
+    System.out.println();
+}

@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    Printer pr = new Printer(System.out);
+    char[] s = sc.next().toCharArray();
+    int[] cnt = new int[26];
+    for (char c : s) {
+        cnt[c - 'a']++;
+    }
+    int odd = 0;
+    for (int e : cnt) {
+        if (e % 2 == 1) {
+            odd++;
+        }
+    }
+    if (odd == 0) {
+        pr.println(s.length);
+    } else {
+        pr.println(Math.max(1, (s.length - odd) / 2 / odd * 2 + 1));
+    }
+    pr.close();
+    sc.close();
+}

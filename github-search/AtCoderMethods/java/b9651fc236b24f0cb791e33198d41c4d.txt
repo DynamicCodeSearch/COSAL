@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    try (Scanner sc = new Scanner(System.in)) {
+        int n = sc.nextInt();
+        int k = sc.nextInt();
+        BigDecimal[] a = new BigDecimal[n];
+        BigDecimal totalSum = BigDecimal.ZERO;
+        for (int i = 1; i <= n; i++) {
+            a[i - 1] = BigDecimal.valueOf(sc.nextInt());
+            totalSum = totalSum.add(a[i - 1]);
+        }
+        BigDecimal leftCut = BigDecimal.ZERO;
+        BigDecimal rightCut = BigDecimal.ZERO;
+        for (int i = 1; i <= n - k; i++) {
+            BigDecimal coeff = BigDecimal.valueOf(n - k - (i - 1));
+            leftCut = leftCut.add(a[i - 1].multiply(coeff));
+            rightCut = rightCut.add(a[n - i].multiply(coeff));
+        }
+        BigDecimal sum = totalSum.multiply(BigDecimal.valueOf(n - k + 1)).subtract(leftCut).subtract(rightCut);
+        System.out.println(sum);
+    } finally {
+    }
+}

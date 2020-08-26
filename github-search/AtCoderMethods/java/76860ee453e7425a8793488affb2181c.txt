@@ -1,0 +1,28 @@
+void solve() {
+    int N = in.nextInt(), Q = in.nextInt();
+    State[] st = new State[N];
+    for (int i = 0; i < N; i++) {
+        int x = in.nextInt();
+        int r = in.nextInt();
+        int h = in.nextInt();
+        st[i] = new State(x, h, r);
+    }
+    for (int i = 0; i < Q; i++) {
+        int A = in.nextInt(), B = in.nextInt();
+        double res = 0;
+        for (int j = 0; j < N; j++) {
+            int left = Math.max(st[j].x, A);
+            int right = Math.min(st[j].x + st[j].h, B);
+            if (left < right) {
+                double ld = st[j].x + st[j].h - left;
+                double rd = st[j].x + st[j].h - right;
+                double br = (double) (ld * st[j].r) / st[j].h;
+                double sr = (double) (rd * st[j].r) / st[j].h;
+                res += area(br) * ld - area(sr) * rd;
+            }
+        }
+        res /= 3.;
+        out.println(res);
+    }
+    out.close();
+}

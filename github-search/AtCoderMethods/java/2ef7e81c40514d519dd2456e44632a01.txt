@@ -1,0 +1,19 @@
+public void calc() {
+    String S = in.next();
+    char[] carray = S.toCharArray();
+    Arrays.sort(carray);
+    String alphabet = "abcdefghijklmnopqrstuvwxyz";
+    int index = 0;
+    String ans = "None";
+    for (char c : alphabet.toCharArray()) {
+        if (index >= carray.length || carray[index] != c) {
+            ans = c + "";
+            break;
+        }
+        while (index < carray.length && carray[index] == c) {
+            index++;
+        }
+    }
+    out.println(ans);
+    out.close();
+}

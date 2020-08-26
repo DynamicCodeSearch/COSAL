@@ -1,0 +1,29 @@
+static void solve() {
+    int mod = 1000000007;
+    int Z = 1000000;
+    int[] ep = new int[Z + 5];
+    ep[0] = 1;
+    ep[1] = 1;
+    ep[2] = 1;
+    int[] sep = new int[Z + 5];
+    sep[0] = 1;
+    sep[1] = 2;
+    sep[2] = 3;
+    for (int i = 3; i < ep.length; i++) {
+        ep[i] = ep[i - 1] + sep[i - 3];
+        ep[i] %= mod;
+        sep[i] = sep[i - 1] + ep[i];
+        sep[i] %= mod;
+    }
+    int n = ni();
+    if (n == 1) {
+        out.println(1);
+        return;
+    }
+    long ret = 0;
+    ret += (long) sep[n - 1] * (n - 1) % mod;
+    ret += (long) (n - 1) * (n - 2) % mod * sep[n - 2] % mod;
+    ret += (long) (n - 1) * sep[n - 2] % mod;
+    ret += 1;
+    out.println(ret % mod);
+}

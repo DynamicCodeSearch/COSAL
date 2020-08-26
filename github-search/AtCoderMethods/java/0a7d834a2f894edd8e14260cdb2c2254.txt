@@ -1,0 +1,38 @@
+
+public void run() throws IOException {
+    
+    int TEST_CASE = 1;
+    while (TEST_CASE-- != 0) {
+        int n = io.nextInt();
+        int m = io.nextInt();
+        int[][] d = new int[n][n];
+        for (int[] x : d) Arrays.fill(x, 1 << 29);
+        for (int i = 0; i < n; i++) d[i][i] = 0;
+        int[][] es = io.nextIntArray2D(m, 3);
+        for (int[] e : es) {
+            --e[0];
+            --e[1];
+            d[e[0]][e[1]] = d[e[1]][e[0]] = e[2];
+        }
+        for (int k = 0; k < n; k++) {
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    d[i][j] = Math.min(d[i][j], d[i][k] + d[k][j]);
+                }
+            }
+        }
+        int ans = m;
+        LOOP: for (int[] e : es) {
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    
+                    if (d[i][j] == d[i][e[0]] + d[e[1]][j] + e[2]) {
+                        ans--;
+                        continue LOOP;
+                    }
+                }
+            }
+        }
+        io.out.println(ans);
+    }
+}

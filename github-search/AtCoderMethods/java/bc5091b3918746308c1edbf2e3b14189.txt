@@ -1,0 +1,15 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    String str = sc.next();
+    int start = str.length();
+    int end = 0;
+    for (int i = 0; i < str.length(); i++) {
+        if (str.charAt(i) == 'A') {
+            start = Math.min(start, i);
+        } else if (str.charAt(i) == 'Z') {
+            end = Math.max(end, i);
+        }
+    }
+    System.out.println(end - start + 1);
+    sc.close();
+}

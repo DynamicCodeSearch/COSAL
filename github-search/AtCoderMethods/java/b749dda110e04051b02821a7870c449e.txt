@@ -1,0 +1,9 @@
+static void dfs(int source, int parent, long d) {
+    visited[source] = true;
+    depth[source] = d;
+    for (Pair a : v[source]) {
+        if (!visited[a.to]) {
+            dfs(a.to, source, d + a.w);
+        }
+    }
+}

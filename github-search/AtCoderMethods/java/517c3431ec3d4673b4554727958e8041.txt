@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int m = sc.nextInt();
+    int n = sc.nextInt();
+    int N = sc.nextInt();
+    int first = N;
+    int sum = first;
+    while (first >= m) {
+        int next = first / m;
+        first -= next * m;
+        first += next * n;
+        sum += next * n;
+    }
+    System.out.println(sum);
+}

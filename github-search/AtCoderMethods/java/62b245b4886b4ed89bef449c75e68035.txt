@@ -1,0 +1,15 @@
+public static void dfs(int N, int K, int[][] table, ArrayList<Integer> list) {
+    if (list.size() == N) {
+        int v = table[0][list.get(0)];
+        for (int i = 1; i < list.size(); i++) {
+            v = v ^ table[i][list.get(i)];
+        }
+        value.add(v);
+    } else {
+        for (int i = 0; i < K; i++) {
+            ArrayList<Integer> li = new ArrayList<Integer>(list);
+            li.add(i);
+            dfs(N, K, table, li);
+        }
+    }
+}

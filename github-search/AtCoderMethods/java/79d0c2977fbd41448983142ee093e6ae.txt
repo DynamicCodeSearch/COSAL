@@ -1,0 +1,42 @@
+static void solve() {
+    int n = in.nextInt();
+    int q = in.nextInt();
+    double[] x = new double[n];
+    double[] r = new double[n];
+    double[] h = new double[n];
+    for (int i = 0; i < n; i++) {
+        x[i] = in.nextInt();
+        r[i] = in.nextInt();
+        h[i] = in.nextInt();
+    }
+    while (q-- > 0) {
+        double ans = 0;
+        int a = in.nextInt();
+        int b = in.nextInt();
+        for (int i = 0; i < n; i++) {
+            if (a <= x[i] && x[i] + h[i] <= b) {
+                ans += r[i] * r[i] * h[i];
+            } else if (a < x[i] + h[i] && x[i] + h[i] <= b) {
+                double P = x[i] + h[i] - a;
+                double Q = h[i];
+                double R = r[i] * P / Q;
+                ans += R * R * P;
+            } else if (a <= x[i] && x[i] < b) {
+                double P = x[i] + h[i] - b;
+                double Q = h[i];
+                double R = r[i] * P / Q;
+                ans += r[i] * r[i] * h[i] - R * R * P;
+            } else if (x[i] < a && b < x[i] + h[i]) {
+                double P = x[i] + h[i] - b;
+                double Q = h[i];
+                double R = r[i] * P / Q;
+                double v = R * R * P;
+                P = x[i] + h[i] - a;
+                Q = h[i];
+                R = r[i] * P / Q;
+                ans += R * R * P - v;
+            }
+        }
+        out.printf("%.10f\n", ans * Math.PI / 3);
+    }
+}

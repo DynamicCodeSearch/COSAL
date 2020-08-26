@@ -1,0 +1,32 @@
+public static void main(String[] args) throws NumberFormatException, IOException {
+    Scanner sc = new Scanner(System.in);
+    int H = sc.nextInt();
+    int W = sc.nextInt();
+    int[][] direction = new int[][] { { -1, 0 }, { -1, -1 }, { 0, -1 }, { 1, -1 }, { 1, 0 }, { 1, 1 }, { 0, 1 }, { -1, 1 } };
+    String S;
+    char[][] ch = new char[H][W];
+    for (int i = 0; i < H; i++) {
+        S = sc.next();
+        ch[i] = S.toCharArray();
+    }
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            if (ch[i][j] != '#') {
+                int bomb = 0;
+                for (int k = 0; k < direction.length; k++) {
+                    int x = i + direction[k][1];
+                    int y = j + direction[k][0];
+                    if (x >= 0 && x < H && y >= 0 && y < W) {
+                        if (ch[x][y] == '#') {
+                            bomb++;
+                        }
+                    }
+                    ch[i][j] = (char) ('0' + bomb);
+                }
+            }
+        }
+    }
+    for (int i = 0; i < H; i++) {
+        System.out.println(String.valueOf(ch[i]));
+    }
+}

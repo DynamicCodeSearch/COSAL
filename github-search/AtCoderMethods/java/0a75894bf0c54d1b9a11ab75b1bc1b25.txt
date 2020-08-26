@@ -1,0 +1,15 @@
+public static long calc(long[] vs, long D) {
+    long res = 1;
+    long ten = 10;
+    for (int i = 0; i < vs.length; i++) {
+        long now = 0;
+        while (D % ten != 0 && now < 9) {
+            D -= vs[i];
+            now++;
+        }
+        D = Math.abs(D);
+        ten *= 10;
+        res *= (i == 0) ? (9 - now) : (10 - now);
+    }
+    return D == 0 ? res : 0;
+}

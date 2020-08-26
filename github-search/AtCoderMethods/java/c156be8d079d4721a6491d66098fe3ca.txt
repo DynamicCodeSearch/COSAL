@@ -1,0 +1,41 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    long n = in.nextLong();
+    int maxBit = 61;
+    long[][][] dp = new long[maxBit + 2][2][2];
+    dp[0][0][0] = 1;
+    for (int i = 0; i <= maxBit; i++) {
+        boolean isOne = ((n >> (maxBit - i)) & 1) == 1;
+        for (int mustCaryOver = 0; mustCaryOver <= 1; mustCaryOver++) {
+            for (int lower = 0; lower <= 1; lower++) {
+                long base = dp[i][mustCaryOver][lower];
+                for (int borrow = 0; borrow <= 1; borrow++) {
+                    for (int sum = 0; sum <= 2; sum++) {
+                        int tsum = sum + borrow;
+                        if (mustCaryOver == 1 && tsum <= 1) {
+                            continue;
+                        }
+                        if (mustCaryOver == 0 && tsum >= 2) {
+                            continue;
+                        }
+                        int result = tsum % 2;
+                        if (lower == 0 && !isOne && result == 1) {
+                            continue;
+                        }
+                        int ti = i + 1;
+                        int tm = borrow;
+                        int tl = isOne && result == 0 ? 1 : lower;
+                        dp[ti][tm][tl] += base;
+                        if (dp[ti][tm][tl] >= MOD) {
+                            dp[ti][tm][tl] -= MOD;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    long sum = dp[maxBit + 1][0][0] + dp[maxBit + 1][0][1];
+    out.println(sum % MOD);
+    out.flush();
+}

@@ -1,0 +1,17 @@
+def main():
+    N, M = map(int, input().split())
+
+
+
+
+
+    hi = M // 2 + 1
+    lo = M // 4
+    while hi - lo > 1:
+        mid = (hi + lo) // 2
+        if possible(N, M, mid):
+            lo = mid
+        else:
+            hi = mid
+
+    print(lo)

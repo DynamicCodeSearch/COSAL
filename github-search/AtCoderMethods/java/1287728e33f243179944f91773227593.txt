@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    int n = sc.nextInt();
+    ArrayDeque<Integer> q = new ArrayDeque<>();
+    for (int i = 0; i < n; i++) {
+        if (i % 2 == 0) {
+            q.add(sc.nextInt());
+        } else {
+            q.push(sc.nextInt());
+        }
+    }
+    StringBuilder ans = new StringBuilder();
+    if (n % 2 == 0) {
+        while (!q.isEmpty()) {
+            ans.append(q.pollFirst());
+            if (!q.isEmpty()) {
+                ans.append(" ");
+            }
+        }
+    } else {
+        while (!q.isEmpty()) {
+            ans.append(q.pollLast());
+            if (!q.isEmpty()) {
+                ans.append(" ");
+            }
+        }
+    }
+    System.out.println(ans);
+}

@@ -1,0 +1,8 @@
+private static int solve(int n, int[] a) {
+    int max_ai = 100000;
+    int[] cnt = new int[max_ai + 2];
+    for (int x : a) cnt[x] += 1;
+    int ans = -1;
+    for (int i = 1; i <= max_ai; i++) ans = Math.max(ans, cnt[i - 1] + cnt[i] + cnt[i + 1]);
+    return ans;
+}

@@ -1,0 +1,11 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    int n = in.readInt();
+    int k = in.readInt();
+    base = n - k + 1;
+    answer = new long[n + 1][n + 1];
+    sum = new long[n + 1][n + 1];
+    ArrayUtils.fill(answer, -1);
+    ArrayUtils.fill(sum, -1);
+    long answer = go(n, n) * IntegerUtils.power(2, Math.max(n - k - 1, 0), MiscUtils.MOD7) % MiscUtils.MOD7;
+    out.printLine(answer);
+}

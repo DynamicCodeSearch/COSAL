@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    String S = scan.nextLine();
+    int ww1 = S.indexOf("WW");
+    int ww2 = S.indexOf("WW", ww1 + 1);
+    int ww = ww2 - ww1;
+    
+    int countdown = 11;
+    String[] key = { "Do", "Do", "Re", "Re", "Mi", "Fa", "Fa", "So", "So", "La", "La", "Si" };
+    if (ww == 5) {
+        countdown = 11;
+        while (ww1 > 0) {
+            ww1--;
+            countdown--;
+            if (countdown <= -1) {
+                countdown = 11;
+            }
+        }
+    } else {
+        countdown = 4;
+        while (ww1 > 0) {
+            ww1--;
+            countdown--;
+            if (countdown <= -1) {
+                countdown = 11;
+            }
+        }
+    }
+    System.out.println(key[countdown]);
+
+
+}

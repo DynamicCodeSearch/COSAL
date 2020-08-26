@@ -1,0 +1,24 @@
+void solve() {
+    long H = sc.nextInt();
+    long W = sc.nextInt();
+    long res = Long.MAX_VALUE;
+    res = Math.min(res, W % 3 == 0 ? 0 : ((W / 3 + 1) * H) - ((W / 3) * H));
+    res = Math.min(res, H % 3 == 0 ? 0 : ((H / 3 + 1) * W) - ((H / 3) * W));
+    for (long w = 1; w < W; w++) {
+        long a = w * H;
+        long b = (H / 2) * (W - w);
+        long c = (H - (H / 2)) * (W - w);
+        long max = Math.max(a, Math.max(b, c));
+        long min = Math.min(a, Math.min(b, c));
+        res = Math.min(res, max - min);
+    }
+    for (long h = 1; h < H; h++) {
+        long a = h * W;
+        long b = (W / 2) * (H - h);
+        long c = (W - (W / 2)) * (H - h);
+        long max = Math.max(a, Math.max(b, c));
+        long min = Math.min(a, Math.min(b, c));
+        res = Math.min(res, max - min);
+    }
+    System.out.println(res);
+}

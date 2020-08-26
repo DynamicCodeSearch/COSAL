@@ -1,0 +1,26 @@
+public static void main(String[] args) throws IOException {
+    FastScanner in = new FastScanner();
+    int n = in.nextInt();
+    int numOdd = 0;
+    int numEven = 0;
+    int numFour = 0;
+    for (int i = 0; i < n; i++) {
+        int j = in.nextInt();
+        if (j % 4 == 0) {
+            numFour++;
+        } else if (j % 2 == 0) {
+            numEven++;
+        } else {
+            numOdd++;
+        }
+    }
+    boolean good = false;
+    if (numEven == 0 && numFour >= numOdd - 1)
+        good = true;
+    else if (numFour >= numOdd)
+        good = true;
+    if (good) {
+        System.out.println("Yes");
+    } else
+        System.out.println("No");
+}

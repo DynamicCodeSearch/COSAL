@@ -1,0 +1,42 @@
+private void search(int cnt, Point current, Point target, Set<Point> set, StringBuilder route) {
+    if (cnt == 4) {
+        _out.println(route);
+        done = true;
+        return;
+    }
+    if (done) {
+        return;
+    }
+    Map<String, Point> directionMap = new HashMap<>();
+    int minDistance = Integer.MAX_VALUE;
+    String minDirection = null;
+    for (Map.Entry<String, int[]> entry : map.entrySet()) {
+        int[] d = entry.getValue();
+        Point p = new Point(current.x + d[0], current.y + d[1]);
+        if (!(set.contains(p) || target.equals(t) && p.equals(s) || target.equals(s) && p.equals(t))) {
+            int distance = distance(p, target);
+            if (distance < minDistance) {
+                minDistance = distance;
+                minDirection = entry.getKey();
+            }
+            directionMap.put(entry.getKey(), p);
+        }
+    }
+    Point p = directionMap.get(minDirection);
+    if (p.equals(target)) {
+        if (cnt % 2 == 0) {
+            target = s;
+        } else {
+            target = t;
+        }
+        route.append(minDirection);
+        search(cnt + 1, p, target, set, route);
+        route.delete(route.length() - 1, route.length());
+    } else if (!set.contains(p)) {
+        set.add(p);
+        route.append(minDirection);
+        search(cnt, p, target, set, route);
+        set.remove(p);
+        route.delete(route.length() - 1, route.length());
+    }
+}

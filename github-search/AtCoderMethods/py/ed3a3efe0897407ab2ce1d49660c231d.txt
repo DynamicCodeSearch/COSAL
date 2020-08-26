@@ -1,0 +1,11 @@
+def solve(N):
+    if N == 1:
+        return False
+    now = 2
+    for x in count(2, 2):
+        now += 2 ** x
+        if N < now:
+            return True
+        now += 2 ** x
+        if N < now:
+            return False

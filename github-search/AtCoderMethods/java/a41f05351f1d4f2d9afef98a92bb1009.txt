@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    if (n < 100) {
+        System.out.println("00");
+    } else if (n >= 100 && n <= 5000) {
+        n /= 100;
+        System.out.println(String.format("%02d", n));
+    } else if (n >= 6000 && n <= 30000) {
+        n /= 1000;
+        n += 50;
+        System.out.println(n);
+    } else if (n >= 35000 && n <= 70000) {
+        n /= 1000;
+        n -= 30;
+        n /= 5;
+        n += 80;
+        System.out.println(n);
+    } else if (n > 70000) {
+        System.out.println("89");
+    }
+}

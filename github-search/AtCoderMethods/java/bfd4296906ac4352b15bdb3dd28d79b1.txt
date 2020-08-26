@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    final int N = sc.nextInt();
+    final int K = sc.nextInt();
+    final long[] w = new long[N];
+    final int[] p = new int[N];
+    for (int i = 0; i < N; i++) {
+        w[i] = sc.nextLong();
+        p[i] = sc.nextInt();
+    }
+    double ok = 0;
+    double ng = 100;
+    double mid = 0;
+    for (int t = 0; t < 1000; t++) {
+        mid = (ng + ok) / 2;
+        double[] tmp = new double[N];
+        for (int i = 0; i < N; i++) {
+            tmp[i] = w[i] * ((double) (p[i] - mid) / 100);
+        }
+        Arrays.sort(tmp);
+        double sum = 0;
+        for (int i = N - 1; i >= N - K; i--) {
+            sum += tmp[i];
+        }
+        if (sum >= 0) {
+            ok = mid;
+        } else {
+            ng = mid;
+        }
+    }
+    System.out.println(ok);
+}

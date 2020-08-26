@@ -1,0 +1,16 @@
+def main():
+    S = input()
+    ans = 0
+
+    n = len(S) - 1
+    for b in range(2 ** n):
+        p_list = [i for i in range(n) if b & 1 << i]
+        x, s = [], S[:]
+        for p in p_list[::-1]:
+            a, s = s[p + 1:], s[:p + 1]
+            x.append(a)
+        if s:
+            x.append(s)
+        ans += eval("+".join(x))
+
+    print(ans)

@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int num = sc.nextInt();
+    double bugs_sum = 0;
+    int non_bug_count = 0;
+    for (int i = 0; i < num; ++i) {
+        int input = sc.nextInt();
+        if (input == 0) {
+            ++non_bug_count;
+        }
+        bugs_sum += input;
+    }
+    num -= non_bug_count;
+    int result = (int) Math.ceil(bugs_sum / num);
+    System.out.println(result);
+}

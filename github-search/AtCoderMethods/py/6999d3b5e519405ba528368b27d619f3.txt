@@ -1,0 +1,14 @@
+def dijkstra(g, start):
+    n = len(g)
+    ds = [1e18] * n
+    ds[start] = 0
+    h = []
+    heappush(h, (0, start))
+    while len(h) > 0:
+        d, cur = heappop(h)
+        if d != ds[cur]: continue
+        for e, ew in g[cur]:
+            if d + ew < ds[e]:
+                ds[e] = d + ew
+                heappush(h, (ds[e], e))
+    return ds

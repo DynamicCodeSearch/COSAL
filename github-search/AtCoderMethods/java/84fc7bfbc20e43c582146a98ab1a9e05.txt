@@ -1,0 +1,29 @@
+public static void main(String[] __) {
+    h = s.nextInt();
+    w = s.nextInt();
+    char[][] in = new char[h][], r = new char[h][w], c = new char[h][w];
+    REP(h, i -> in[i] = s.next().toCharArray());
+    
+    REP(h, i -> {
+        REP(w, j -> {
+            r[i][j] = in[i][j] == '#' && REPS(8).filter(k -> rangeCheck(i + dx[k], j + dy[k])).mapToObj(k -> in[i + dx[k]][j + dy[k]]).noneMatch(Character.valueOf('.')::equals) ? '#' : '.';
+        });
+    });
+    REP(h, i -> Arrays.fill(c[i], '.'));
+    REP(h, i -> {
+        REP(w, j -> {
+            if (r[i][j] == '#') {
+                c[i][j] = '#';
+                REPS(8).filter(k -> rangeCheck(i + dx[k], j + dy[k])).forEach(k -> c[i + dx[k]][j + dy[k]] = '#');
+            }
+        });
+    });
+    
+    if (REPS(h).anyMatch(i -> !Arrays.equals(in[i], c[i]))) {
+        System.out.println("impossible");
+    } else {
+        System.out.println("possible");
+        Arrays.stream(r).map(String::valueOf).forEach(System.out::println);
+        ;
+    }
+}

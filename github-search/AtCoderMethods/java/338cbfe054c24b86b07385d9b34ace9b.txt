@@ -1,0 +1,13 @@
+static void solve() {
+    int n = ni();
+    int[] a = na(n);
+    long mincost = Long.MAX_VALUE;
+    for (int v = -100; v <= 100; v++) {
+        long cost = 0;
+        for (int i = 0; i < n; i++) {
+            cost += (a[i] - v) * (a[i] - v);
+        }
+        mincost = Math.min(mincost, cost);
+    }
+    out.println(mincost);
+}

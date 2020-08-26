@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    final Scanner sc = new Scanner(System.in);
+    String s1 = sc.next();
+    String s2 = sc.next();
+    List<String> s = new ArrayList<>();
+    for (int i = 0; i < s1.length(); i++) {
+        if (s1.substring(i, i + 1).equals("@") || s2.substring(i, i + 1).equals("@")) {
+            s.add(s1.substring(i, i + 1));
+            s.add(s2.substring(i, i + 1));
+            continue;
+        }
+        if (!s1.substring(i, i + 1).equals(s2.substring(i, i + 1))) {
+            System.out.println("You will lose");
+            System.exit(0);
+        }
+    }
+    if (s.size() > 0) {
+        for (int i = 0; i < s.size(); i++) {
+            String st = s.get(i);
+            if (st.equals("a") || st.equals("t") || st.equals("c") || st.equals("o") || st.equals("d") || st.equals("e") || st.equals("r") || st.equals("@")) {
+            } else {
+                System.out.println("You will lose");
+                System.exit(0);
+            }
+        }
+    }
+    System.out.println("You can win");
+}

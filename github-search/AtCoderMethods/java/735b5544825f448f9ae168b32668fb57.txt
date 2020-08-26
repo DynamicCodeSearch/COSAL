@@ -1,0 +1,36 @@
+public static void main(String[] args) throws Exception {
+    int h, w;
+    String[] aaaaa = sc.nextLine().split(" ");
+    h = Integer.parseInt(aaaaa[0]);
+    w = Integer.parseInt(aaaaa[1]);
+    char[][] are = new char[h][w];
+    int[][] arere = new int[h][w];
+    for (int i = 0; i < h; i++) {
+        are[i] = sc.nextLine().toCharArray();
+    }
+    sc.close();
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            if (are[i][j] == '#') {
+                for (int p = -1; p <= 1; p++) {
+                    for (int q = -1; q <= 1; q++) {
+                        try {
+                            arere[p + i][q + j]++;
+                        } catch (ArrayIndexOutOfBoundsException e) {
+                        }
+                    }
+                }
+            }
+        }
+    }
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            if (are[i][j] != '#') {
+                are[i][j] = String.valueOf(arere[i][j]).toCharArray()[0];
+            }
+        }
+    }
+    for (int i = 0; i < h; i++) {
+        System.out.println(are[i]);
+    }
+}

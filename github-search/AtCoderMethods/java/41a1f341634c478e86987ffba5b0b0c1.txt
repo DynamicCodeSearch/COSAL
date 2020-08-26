@@ -1,0 +1,39 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int h = sc.nextInt();
+    int w = sc.nextInt();
+    String[] s = new String[h];
+    for (int i = 0; i < h; i++) {
+        s[i] = sc.next();
+    }
+    String[][] x = new String[h][w];
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            x[i][j] = "" + s[i].charAt(j);
+        }
+    }
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            if (x[i][j].equals(".")) {
+                int cnt = 0;
+                for (int k = i - 1; k <= i + 1; k++) {
+                    for (int l = j - 1; l <= j + 1; l++) {
+                        if (k < 0 || k > h - 1 || l < 0 || l > w - 1) {
+                            continue;
+                        }
+                        if (x[k][l].equals("#")) {
+                            cnt++;
+                        }
+                    }
+                }
+                x[i][j] = String.valueOf(cnt);
+            }
+        }
+    }
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            System.out.print(x[i][j]);
+        }
+        System.out.println();
+    }
+}

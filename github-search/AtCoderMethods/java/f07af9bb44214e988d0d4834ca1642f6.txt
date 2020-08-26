@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    long a = in.nextLong();
+    long b = in.nextLong();
+    long x = in.nextLong();
+    long first = a;
+    long last = b;
+    if (first % x != 0) {
+        first += (x - a % x);
+    }
+    if (last % x != 0) {
+        last -= b % x;
+    }
+    System.out.println((last - first) / x + 1);
+}

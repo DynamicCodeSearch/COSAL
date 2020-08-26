@@ -1,0 +1,14 @@
+def is_connect(adj):
+    is_already = defaultdict(bool)
+    is_already[list(adj.keys())[0]] = True;
+
+    queue = []
+    queue.append(1)
+    while len(queue) > 0:
+        v = queue.pop()
+        for node in adj[v]:
+            if not is_already[node]:
+                is_already[node] = True
+                queue.append(node)
+
+    return all([is_already[node] for node in adj.keys()])

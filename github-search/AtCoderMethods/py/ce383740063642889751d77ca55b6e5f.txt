@@ -1,0 +1,38 @@
+def D():
+    n = int(input())
+    data = []
+    x = ""
+    hypen = 0
+    s = 0
+    e = 0
+    for i in range(n):
+        x = input()
+        hyphen = x.find("-")
+        s = int(x[0:hyphen])
+        e =  int(x[hyphen+1:])
+        s = s-s%5
+        if e%5 != 0:
+            if e%100 < 55:
+                e = e+5-e%5
+            else:
+                e = e+100-e%100
+        data.append(s*10000+e)
+    data.sort()
+    j = 0
+    ie = 0
+    d = 0
+    je = 0
+    for i in range(n):
+        if data[i] == -1:
+            continue
+        for j in range(i+1,n):
+            ie = data[i]%10000
+            d = data[j]
+            je = d%10000
+            if ie*10000 < d-je:
+                break
+            if ie < je:
+                data[i] = data[i]-ie+je
+            data[j] = -1
+        d = data[i]
+        print("{0:04d}-{1:04d}".format(int((d-d%10000)/10000),d%10000))

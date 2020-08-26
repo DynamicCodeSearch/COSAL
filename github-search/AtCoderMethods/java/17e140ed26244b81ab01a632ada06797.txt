@@ -1,0 +1,28 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+    int N = Integer.parseInt(reader.readLine());
+    int[] table = new int[N];
+    for (int i = 0; i < N; i++) {
+        table[i] = Integer.parseInt(reader.readLine());
+    }
+    Arrays.sort(table);
+    int[] b = new int[N];
+    int currentIndex = 0;
+    int currentNum = 0;
+    for (int i = 0; i < N; i++) {
+        if (currentNum == table[i]) {
+            b[currentIndex] += 1;
+        } else {
+            currentNum = table[i];
+            currentIndex += 1;
+            b[currentIndex] += 1;
+        }
+    }
+    int counter = 0;
+    for (int i = 1; i < N; i++) {
+        if (b[i] % 2 == 1) {
+            counter += 1;
+        }
+    }
+    System.out.println(counter);
+}

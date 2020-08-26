@@ -1,0 +1,19 @@
+def C_Sphinx(N, M):
+    adult = 0  
+    aged = 0  
+    baby = 0  
+
+    if M % 2 != 0:
+
+
+        aged = 1
+
+
+    tmp = (M - aged - 2 * N) // 2
+    adult = N - tmp - aged
+    baby = tmp
+
+    if adult < 0 or baby < 0:
+        return '-1 -1 -1'
+    else:
+        return '{} {} {}'.format(adult, aged, baby)

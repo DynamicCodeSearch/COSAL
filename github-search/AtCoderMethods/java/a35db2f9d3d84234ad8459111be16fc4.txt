@@ -1,0 +1,32 @@
+public static void main(String[] args) throws Exception {
+    
+    
+    
+    Scanner scan = new Scanner(System.in);
+    String a = scan.next();
+    String b = scan.next();
+    int h = 0;
+    String[] A = new String[10];
+    String[] B = new String[10];
+    A = a.split("");
+    B = b.split("");
+    for (int i = 0; i < A.length; i++) {
+        if (A[i].equals(B[i]))
+            continue;
+        if (A[i].equals("@")) {
+            if (B[i].equals("a") || B[i].equals("t") || B[i].equals("c") || B[i].equals("o") || B[i].equals("d") || B[i].equals("e") || B[i].equals("r") || B[i].equals("@")) {
+                continue;
+            }
+        }
+        if (B[i].equals("@"))
+            if (A[i].equals("a") || A[i].equals("t") || A[i].equals("c") || A[i].equals("o") || A[i].equals("d") || A[i].equals("e") || A[i].equals("r"))
+                continue;
+        h = 1;
+        break;
+    }
+    if (h == 0)
+        System.out.println("You can win");
+    else
+        System.out.println("You will lose");
+
+}

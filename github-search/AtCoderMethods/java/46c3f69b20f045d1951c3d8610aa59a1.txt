@@ -1,0 +1,18 @@
+static int calc(int i, int j) {
+    if (b[i][j] > 0)
+        return b[i][j];
+    b[i][j] = 1;
+    for (int k = 0; k < 4; k++) {
+        int x = i + dx[k];
+        int y = j + dy[k];
+        if (x >= 0 && x < h && y >= 0 && y < w) {
+            if (a[x][y] < a[i][j]) {
+                b[i][j] += calc(x, y);
+                b[i][j] %= 1000000007;
+            }
+        }
+    }
+    result += b[i][j];
+    result %= 1000000007;
+    return b[i][j];
+}

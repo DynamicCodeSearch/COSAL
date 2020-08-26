@@ -1,0 +1,33 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int N = scan.nextInt();
+    String str = scan.next();
+    int[] c = new int[N];
+    int[] count = { 0, 0, 0, 0 };
+    for (int i = 0; i < N; i++) {
+        c[i] = Character.getNumericValue(str.charAt(i));
+        switch(c[i]) {
+            case 1:
+                count[0]++;
+                break;
+            case 2:
+                count[1]++;
+                break;
+            case 3:
+                count[2]++;
+                break;
+            case 4:
+                count[3]++;
+                break;
+        }
+    }
+    int max = 0;
+    int min = N + 1;
+    for (int i = 0; i < 4; i++) {
+        if (max < count[i])
+            max = count[i];
+        if (min > count[i])
+            min = count[i];
+    }
+    System.out.println(max + " " + min);
+}

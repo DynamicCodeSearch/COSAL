@@ -1,0 +1,42 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    int[][] C = sc.nextIntTable(N, 4);
+    Map<Long, Integer> map = new HashMap<>();
+    Map<Long, Long> rot = new HashMap<>();
+    long[] hash = new long[N];
+    for (int i = 0; i < N; i++) {
+        long h = hash(C[i][0], C[i][1], C[i][2], C[i][3]);
+        if (!map.containsKey(h)) {
+            map.put(h, 0);
+        }
+        map.put(h, map.get(h) + 1);
+        rot.put(h, rot(C[i]));
+        hash[i] = h;
+    }
+    int[][] idx = { { 0, 4, 7, 1 }, { 1, 7, 6, 2 }, { 3, 2, 6, 5 }, { 0, 3, 5, 4 } };
+    long count = 0;
+    for (int i = 0; i < N; i++) {
+        for (int j = i + 1; j < N; j++) {
+            loop: for (int k = 0; k < 4; k++) {
+                Map<Long, Integer> tmp = new HashMap<>();
+                tmp.put(hash[i], 1);
+                tmp.put(hash[j], hash[i] == hash[j] ? 2 : 1);
+                int[] c = { C[i][0], C[i][1], C[i][2], C[i][3], C[j][(0 + k) % 4], C[j][(1 + k) % 4], C[j][(2 + k) % 4], C[j][(3 + k) % 4] };
+                long nc = 1;
+                for (int[] v : idx) {
+                    long h = hash(c[v[0]], c[v[1]], c[v[2]], c[v[3]]);
+                    if (!tmp.containsKey(h))
+                        tmp.put(h, 0);
+                    if (!map.containsKey(h) || tmp.get(h) >= map.get(h)) {
+                        continue loop;
+                    }
+                    nc *= (map.get(h) - tmp.get(h)) * rot.get(h);
+                    tmp.put(h, tmp.get(h) + 1);
+                }
+                count += nc;
+            }
+        }
+    }
+    System.out.println(count * 2 / 6);
+}

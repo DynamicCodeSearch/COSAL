@@ -1,0 +1,14 @@
+def slv(n, a):
+    if sum(a) % n != 0:
+        print(-1)
+        return
+
+    y = sum(a) / n
+    x = 0
+    l = 0
+    for i in range(0, n):
+        l += a[i]
+        if l != (i + 1) * y:
+            x+=1
+    print(x)
+    return

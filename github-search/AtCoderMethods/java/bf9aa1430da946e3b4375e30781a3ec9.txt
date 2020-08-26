@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    int m = in.nextInt();
+    int[][][] graph = buildWeightedGraph(in, n, m);
+    Dijkstra dijk = new Dijkstra(graph);
+    int[][] ptnA = dijk.prec(0);
+    long[] min = new long[n];
+    for (int i = 0; i < n; i++) {
+        min[i] = compute(ptnA[i][0], ptnA[i][1]);
+    }
+    int[][] ptnB = dijk.doreal(0);
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < ptnB[i].length; j++) {
+            if (ptnB[i][j] == Dijkstra.INF) {
+                continue;
+            }
+            min[i] = Math.min(min[i], compute(ptnB[i][j], j));
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        out.println(min[i]);
+    }
+    out.flush();
+}

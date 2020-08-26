@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    
+    int n = in.nextInt();
+    int a = in.nextInt();
+    int b = in.nextInt();
+    
+    
+    int loc = 0;
+    while (n-- > 0) {
+        String s = in.next();
+        int d = in.nextInt();
+        if (d < a) {
+            d = a;
+        } else if (d > b) {
+            d = b;
+        }
+        if (s.equals("East")) {
+            loc += d;
+        } else {
+            loc -= d;
+        }
+    }
+    if (loc < 0) {
+        System.out.printf("West %d\n", Math.abs(loc));
+    } else if (loc > 0) {
+        System.out.printf("East %d\n", loc);
+    } else {
+        System.out.println("0");
+    }
+
+}

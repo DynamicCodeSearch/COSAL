@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    try {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String str = br.readLine();
+        int n = str.length();
+        char[] ch = new char[n];
+        for (int i = 0; i < n; i++) {
+            ch[i] = str.charAt(i);
+        }
+        StringBuilder stb = new StringBuilder();
+        for (int i = 0; i < n; i++) {
+            if (ch[i] == '0' || ch[i] == '1') {
+                stb.append(ch[i]);
+            } else if (ch[i] == 'B' && stb.length() != 0) {
+                stb.deleteCharAt(stb.length() - 1);
+            }
+        }
+        System.out.println(stb.toString());
+    } catch (Exception e) {
+    }
+}

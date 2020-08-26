@@ -1,0 +1,33 @@
+private static long solve(Scanner scanner) {
+    scanner.nextLine();
+    String s1 = scanner.nextLine();
+    String s2 = scanner.nextLine();
+    boolean lastPattern;
+    boolean pattern;
+    int pointer;
+    long ret;
+    if (s1.charAt(0) == s2.charAt(0)) {
+        lastPattern = true;
+        pointer = 1;
+        ret = 3;
+    } else {
+        lastPattern = false;
+        pointer = 2;
+        ret = 6;
+    }
+    while (pointer < s1.length()) {
+        pattern = s1.charAt(pointer) == s2.charAt(pointer);
+        if (lastPattern) {
+            
+            ret = mod1000000007(ret, 2L);
+        } else if (pattern) {
+            ret = ret;
+        } else {
+            
+            ret = mod1000000007(ret, 3L);
+        }
+        pointer += pattern ? 1 : 2;
+        lastPattern = pattern;
+    }
+    return ret % 1000000007;
+}

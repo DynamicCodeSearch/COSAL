@@ -1,0 +1,30 @@
+def main():
+    N, M, R = read_int_list()
+
+    r = [a-1 for a in read_int_list()]
+
+    d = [[float('inf')]*N for _ in range(N)]
+
+    for _ in range(M):
+        a, b, c = read_int_list()
+        d[a-1][b-1] = c
+        d[b-1][a-1] = c
+
+    for a in range(N):
+        d[a][a] = 0
+
+    res = float('inf')
+
+    for k in range(N):
+        for i in range(N):
+            for j in range(N):
+                if d[i][k]+d[k][j] < d[i][j]:
+                    d[i][j] = d[i][k]+d[k][j]
+
+    for perm in itertools.permutations(r):
+        a = 0
+        for i in range(len(perm)-1):
+            a += d[perm[i]][perm[i+1]]
+        res = min(a, res)
+
+    print(res)

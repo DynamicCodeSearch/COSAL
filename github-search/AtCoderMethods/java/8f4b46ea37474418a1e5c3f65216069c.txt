@@ -1,0 +1,62 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    int A = sc.nextInt();
+    int B = sc.nextInt();
+    int C = sc.nextInt();
+    int D = sc.nextInt();
+    int E = sc.nextInt();
+    int F = sc.nextInt();
+    sc.close();
+    ArrayList<Integer> x = new ArrayList<Integer>();
+    for (int i = 0; i * A * 100 <= F; i++) {
+        for (int j = 0; j * B * 100 <= F; j++) {
+            x.add(100 * A * i + 100 * B * j);
+        }
+    }
+    ArrayList<Integer> y = new ArrayList<Integer>();
+    for (int i = 0; i * C <= F; i++) {
+        for (int j = 0; j * D <= F; j++) {
+            y.add(C * i + D * j);
+        }
+    }
+    int maxtotal = 100 * A;
+    int maxs = 0;
+    double maxper = 0;
+    for (int i = 0; i < x.size(); i++) {
+        for (int j = 0; j < y.size(); j++) {
+            int amounts = y.get(j);
+            int amountw = x.get(i);
+            if (amounts == 0 && amountw == 0)
+                continue;
+            if (amounts + amountw <= F && 100 * amounts <= E * amountw) {
+                if ((double) amounts / (double) (amounts + amountw) > maxper) {
+                    maxtotal = amounts + amountw;
+                    maxs = amounts;
+                    maxper = (double) (amounts) / (amounts + amountw);
+                }
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    System.out.println(maxtotal + " " + maxs);
+}

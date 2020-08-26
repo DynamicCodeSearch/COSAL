@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    PrintWriter out = new PrintWriter(System.out);
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    int[] a = new int[n];
+    int[] b = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = sc.nextInt();
+        b[i] = sc.nextInt();
+    }
+    int[] c = new int[m];
+    int[] d = new int[m];
+    for (int i = 0; i < m; i++) {
+        c[i] = sc.nextInt();
+        d[i] = sc.nextInt();
+    }
+    for (int i = 0; i < n; i++) {
+        int min = manh(a[i], b[i], c[0], d[0]), idx = 0;
+        for (int j = 1; j < m; j++) {
+            int dist = manh(a[i], b[i], c[j], d[j]);
+            if (dist < min) {
+                min = dist;
+                idx = j;
+            }
+        }
+        out.println(idx + 1);
+    }
+    out.flush();
+}

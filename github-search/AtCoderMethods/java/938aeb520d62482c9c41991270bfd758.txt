@@ -1,0 +1,14 @@
+public boolean hasNext() {
+    while (sc == null || !sc.hasMoreTokens()) {
+        try {
+            String s = br.readLine();
+            if (s == null) {
+                return false;
+            }
+            sc = new StringTokenizer(s);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    return sc.hasMoreTokens();
+}

@@ -1,0 +1,20 @@
+private boolean check() {
+    boolean res = true;
+    for (int i = 0; i < n; i++) {
+        for (int j : adj[i]) {
+            used[mex[j]] = true;
+        }
+        for (int c = 0; c < mex[i]; c++) {
+            if (!used[c]) {
+                res = false;
+            }
+        }
+        if (used[mex[i]]) {
+            res = false;
+        }
+        for (int j : adj[i]) {
+            used[mex[j]] = false;
+        }
+    }
+    return res;
+}

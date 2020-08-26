@@ -1,0 +1,32 @@
+public void solve() {
+    R = in.nextInt();
+    C = in.nextInt();
+    int N = in.nextInt();
+    List<Point> ps = new ArrayList<>();
+    for (int i = 0; i < N; i++) {
+        int x1 = in.nextInt(), y1 = in.nextInt();
+        int x2 = in.nextInt(), y2 = in.nextInt();
+        if (x1 != 0 && x1 != R && y1 != 0 && y1 != C)
+            continue;
+        if (x2 != 0 && x2 != R && y2 != 0 && y2 != C)
+            continue;
+        ps.add(new Point(x1, y1, i));
+        ps.add(new Point(x2, y2, i));
+    }
+    Collections.sort(ps);
+    Set<Integer> hash = new HashSet<>();
+    Stack<Integer> stack = new Stack<>();
+    boolean res = true;
+    for (Point p : ps) {
+        if (hash.contains(p.id)) {
+            if (stack.pop() != p.id) {
+                res = false;
+                break;
+            }
+        } else {
+            stack.push(p.id);
+            hash.add(p.id);
+        }
+    }
+    System.out.println(res ? "YES" : "NO");
+}

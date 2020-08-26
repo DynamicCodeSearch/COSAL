@@ -1,0 +1,28 @@
+def solve():
+    N, M = map(int, stdin.readline().split())
+    douros = [[int(i) for i in stdin.readline().split()] for j in range(M)]
+    Q = int(stdin.readline())
+    persons = [[int(i) for i in stdin.readline().split()] + [j] for j in range(Q)]
+
+    douros.sort(key=itemgetter(2), reverse=True)
+    persons.sort(key=itemgetter(1), reverse=True)
+
+    left = 0
+    uf = UnionFind(N)
+    ans = [0] * Q
+
+    for v, w, j in persons:
+        for i in range(left, M):
+            a, b, y = douros[i]
+
+            if y <= w:
+                left = i
+                break
+
+            uf.unite(a - 1, b - 1)
+        else:
+            left = M
+
+        ans[j] = uf.get_size(v - 1)
+
+    print(*ans, sep='\n')

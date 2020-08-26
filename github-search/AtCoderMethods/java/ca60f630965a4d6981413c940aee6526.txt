@@ -1,0 +1,23 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    StringBuilder sb = new StringBuilder();
+    int n = Integer.parseInt(br.readLine());
+    int[] arr = new int[n];
+    int nOdd = 0;
+    int n4 = 0;
+    int n2 = 0;
+    String[] s = br.readLine().split(" ");
+    for (int i = 0; i < n; i++) {
+        int val = Integer.parseInt(s[i]);
+        if (val % 4 == 0)
+            n4++;
+        else if (val % 2 == 0)
+            n2++;
+        else
+            nOdd++;
+    }
+    if (n4 >= nOdd || (n4 == nOdd - 1 && n4 + nOdd == n))
+        System.out.println("Yes");
+    else
+        System.out.println("No");
+}

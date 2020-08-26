@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int h = sc.nextInt();
+    int w = sc.nextInt();
+    ArrayList<String> x = new ArrayList<String>();
+    for (int i = 0; i < h; i++) {
+        x.add(sc.next());
+    }
+    for (int j = 0; j < h + 2; j++) {
+        if (j == 0 || j == h + 1) {
+            for (int k = 0; k < w + 2; k++) {
+                System.out.print("#");
+            }
+            System.out.println("");
+        } else {
+            System.out.println("#" + x.get(j - 1) + "#");
+        }
+    }
+}

@@ -1,0 +1,10 @@
+
+public void changeKey(int i, Key key) {
+    if (i < 0 || i >= maxN)
+        throw new IndexOutOfBoundsException();
+    if (!contains(i))
+        throw new NoSuchElementException("index is not in the priority queue");
+    keys[i] = key;
+    swim(qp[i]);
+    sink(qp[i]);
+}

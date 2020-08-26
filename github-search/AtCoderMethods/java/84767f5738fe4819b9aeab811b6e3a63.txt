@@ -1,0 +1,18 @@
+private static int[][] adjacentList(int[][] fromTo) {
+    int mx = -1;
+    for (int[] ft : fromTo) mx = Math.max(mx, Math.max(ft[0], ft[1]));
+    int[] sz = new int[mx + 1];
+    for (int[] ft : fromTo) {
+        sz[ft[0]] += 1;
+        sz[ft[1]] += 1;
+    }
+    int[][] ans = new int[mx + 1][];
+    for (int i = 0; i < ans.length; i++) ans[i] = new int[sz[i]];
+    for (int[] ft : fromTo) {
+        sz[ft[0]] -= 1;
+        sz[ft[1]] -= 1;
+        ans[ft[0]][sz[ft[0]]] = ft[1];
+        ans[ft[1]][sz[ft[1]]] = ft[0];
+    }
+    return ans;
+}

@@ -1,0 +1,39 @@
+static void solve() {
+    int n = ni();
+    int[] par = new int[n];
+    par[0] = -1;
+    for (int i = 1; i < n; i++) par[i] = ni() - 1;
+    int[] a = na(n);
+    int[][] g = parentToG(par);
+    int[][] pars = parents3(g, 0);
+    int[] ord = pars[1];
+    int[] ides = new int[n];
+    outer: for (int i = n - 1; i >= 0; i--) {
+        int cur = ord[i];
+        int[] dp = new int[5001];
+        dp[0] = 1;
+        int allsum = 0;
+        for (int e : g[cur]) {
+            if (par[cur] == e)
+                continue;
+            int[] ndp = new int[5001];
+            for (int j = 0; j + a[e] <= 5000; j++) {
+                ndp[j + a[e]] |= dp[j];
+            }
+            for (int j = 0; j + ides[e] <= 5000; j++) {
+                ndp[j + ides[e]] |= dp[j];
+            }
+            allsum += a[e] + ides[e];
+            dp = ndp;
+        }
+        for (int j = a[cur]; j >= 0; j--) {
+            if (dp[j] == 1) {
+                ides[cur] = allsum - j;
+                continue outer;
+            }
+        }
+        out.println("IMPOSSIBLE");
+        return;
+    }
+    out.println("POSSIBLE");
+}

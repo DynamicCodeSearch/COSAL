@@ -1,0 +1,12 @@
+def unite(_x, _y):
+    _x = find(_x)
+    _y = find(_y)
+    if _x == _y:
+        return
+
+    if rank[_x] < rank[_y]:
+        par[_x] = _y
+    else:
+        par[_y] = _x
+        if rank[_x] == rank[_y]:
+            rank[_x] += 1

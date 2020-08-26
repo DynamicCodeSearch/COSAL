@@ -1,0 +1,39 @@
+public static void main(String[] args) throws Exception {
+    Map<Integer, Set<Integer>> m = new HashMap();
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    int[] vert = new int[a + 1];
+    for (int i = 0; i < b; i++) {
+        int x = sc.nextInt();
+        int y = sc.nextInt();
+        Set<Integer> s1 = m.getOrDefault(x, new HashSet<Integer>());
+        Set<Integer> s2 = m.getOrDefault(y, new HashSet<Integer>());
+        s1.add(y);
+        s2.add(x);
+        m.put(x, s1);
+        m.put(y, s2);
+        vert[x]++;
+        vert[y]++;
+    }
+    int count = 0;
+    while (true) {
+        boolean tag = true;
+        for (int i = 1; i < a + 1; i++) {
+            if (vert[i] == 1) {
+                Set<Integer> s = m.get(i);
+                Iterator<Integer> ite = s.iterator();
+                int value = ite.next();
+                m.remove(i);
+                s = m.get(value);
+                s.remove(i);
+                vert[i]--;
+                vert[value]--;
+                count++;
+                tag = false;
+            }
+        }
+        if (tag)
+            break;
+    }
+    System.out.println(count);
+}

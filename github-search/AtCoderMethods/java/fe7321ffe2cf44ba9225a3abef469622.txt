@@ -1,0 +1,10 @@
+private void update(int a, long x, int k, int l, int r) {
+    
+    if (l <= a && a < r) {
+        segMin[k] = Math.min(segMin[k], x);
+        if (r - l >= 2) {
+            update(a, x, k * 2 + 1, l, (l + r) / 2);
+            update(a, x, k * 2 + 2, (l + r) / 2, r);
+        }
+    }
+}

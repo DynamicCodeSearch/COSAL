@@ -1,0 +1,18 @@
+public void exec() throws IOException {
+    Scanner input = new Scanner(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int N = input.nextInt();
+    int K = input.nextInt();
+    int[] l = new int[N];
+    int ans = 0;
+    for (int i = 0; i < l.length; i++) {
+        l[i] = input.nextInt();
+    }
+    Arrays.sort(l);
+    for (int i = 0; i < K; i++) {
+        ans += l[N - 1 - i];
+    }
+    out.println(ans);
+    out.flush();
+    input.close();
+}

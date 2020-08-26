@@ -1,0 +1,29 @@
+def solve():
+    N, M = map(int, sys.stdin.readline().split())
+
+    cost = [[inf]*N for i in range(N)]
+
+    for mi in range(M):
+        a, b, c = map(int, sys.stdin.readline().split())
+        a, b = a-1, b-1
+        cost[a][b] = cost[b][a] = c
+
+    dist = [[0]*N for i in range(N)]
+
+    for i in range(N):
+        for j in range(i + 1, N):
+            dist[i][j] = dist[j][i] = cost[i][j]
+
+    for k in range(N):
+        for i in range(N):
+            for j in range(i + 1, N):
+                dist[j][i] = dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])
+
+    ans = 0
+
+    for i in range(N):
+        for j in range(i + 1, N):
+            if cost[i][j] < inf and cost[i][j] != dist[i][j]:
+                ans += 1
+
+    print(ans)

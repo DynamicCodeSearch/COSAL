@@ -1,0 +1,15 @@
+int dfs(int v, int t, int f) {
+    if (v == t)
+        return f;
+    for (int i = iter[v]; i != -1; i = iter[v] = g.next[i]) {
+        if (g.cap[i] > 0 && level[v] < level[g.to[i]]) {
+            int d = dfs(g.to[i], t, Math.min(f, g.cap[i]));
+            if (d > 0) {
+                g.cap[i] -= d;
+                g.cap[g.rev[i]] += d;
+                return d;
+            }
+        }
+    }
+    return 0;
+}

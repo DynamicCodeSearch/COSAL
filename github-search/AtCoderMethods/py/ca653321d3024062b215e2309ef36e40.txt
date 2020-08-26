@@ -1,0 +1,34 @@
+def get_ops(init_sign):
+    prev_sign = init_sign
+    sigma = A[0]
+    operations = 0
+
+    if A[0] == 0 and init_sign == '+':
+        sigma = 1
+        operations = 1
+    elif A[0] == 0 and init_sign == '-':
+        sigma = -1
+        operations = 1
+    elif A[0] > 0 and init_sign == '-':
+        sigma = -1
+        operations = A[0] + 1
+    elif A[0] < 0 and init_sign == '+':
+        sigma = 1
+        operations = abs(A[0]) + 1
+
+    for a in A[1:]:
+        sigma += a
+        if sigma >= 0 and prev_sign == '+':
+            diff = sigma+1
+            sigma -= diff
+            operations += diff
+        elif sigma <= 0 and prev_sign == '-':
+            diff = abs(sigma)+1
+            sigma += diff
+            operations += diff
+        if prev_sign == '+':
+            prev_sign = '-'
+        elif prev_sign == '-':
+            prev_sign = '+'
+
+    return operations

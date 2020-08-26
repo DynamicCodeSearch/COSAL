@@ -1,0 +1,14 @@
+void solve(FastScanner in, PrintWriter out) {
+    char[] s = in.next().toCharArray();
+    ArrayDeque<Character> deque = new ArrayDeque<>();
+    for (char c : s) {
+        if (c == 'B') {
+            if (!deque.isEmpty())
+                deque.pollLast();
+        } else {
+            deque.addLast(c);
+        }
+    }
+    while (!deque.isEmpty()) out.print(deque.pollFirst());
+    out.println();
+}

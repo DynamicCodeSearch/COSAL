@@ -1,0 +1,16 @@
+long b(int k) {
+    if (b[k] != 0) {
+        return b[k];
+    }
+    b[k] = 1;
+    for (Integer child : e[k]) {
+        if (child == parent[k]) {
+            continue;
+        }
+        long tmp = a(child) + b(child);
+        tmp %= MOD;
+        b[k] *= tmp;
+        b[k] %= MOD;
+    }
+    return b[k];
+}

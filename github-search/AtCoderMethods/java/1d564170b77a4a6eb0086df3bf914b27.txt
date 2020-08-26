@@ -1,0 +1,6 @@
+@SafeVarargs
+static <T> T ofAll(BiFunction<T, T, T> funk, T... a) {
+    T t = a[0];
+    for (int i = 1; i < a.length; i++) t = funk.apply(t, a[i]);
+    return t;
+}

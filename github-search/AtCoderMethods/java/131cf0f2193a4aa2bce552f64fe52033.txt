@@ -1,0 +1,21 @@
+public static void solve(FastReader fs, PrintWriter pw) {
+    n = fs.nextInt();
+    A = fs.nextInt();
+    tab = new int[n];
+    int mx = 2550;
+    for (int i = 0; i < n; i++) tab[i] = fs.nextInt();
+    long[][] f = new long[n + 1][3000];
+    f[0][0] = 1;
+    for (int i = 1; i <= n; i++) {
+        for (int j = i - 1; j >= 0; j--) {
+            for (int k = 0; k < mx; k++) {
+                f[j + 1][k + tab[i - 1]] += f[j][k];
+            }
+        }
+    }
+    long ans = 0;
+    for (int i = 1; i <= n; i++) {
+        ans += f[i][i * A];
+    }
+    pw.println(ans);
+}

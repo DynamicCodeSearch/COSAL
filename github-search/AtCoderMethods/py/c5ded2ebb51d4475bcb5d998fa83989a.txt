@@ -1,0 +1,12 @@
+def main(argv):
+    for line in sys.stdin:
+        N, M = map(lambda x: int(x), line.split(" ", 2))
+
+        arrangement = 0
+        if M == N:
+            arrangement = factorial(M)**2 * 2
+        elif abs(M - N) == 1:
+            minimum = min(M, N)
+            arrangement = factorial(minimum)**2 * (minimum + 1)
+
+        print(arrangement % _BASE)

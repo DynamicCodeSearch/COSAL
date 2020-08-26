@@ -1,0 +1,17 @@
+public long dfs(int i, int cnt, int sum) {
+    if (i == N) {
+        if (cnt != 0 && A * cnt == sum) {
+            return 1;
+        } else {
+            return 0;
+        }
+    } else {
+        if (dp[i][cnt][sum] != -1) {
+            return dp[i][cnt][sum];
+        }
+        long ans = 0;
+        ans += dfs(i + 1, cnt, sum);
+        ans += dfs(i + 1, cnt + 1, sum + X[i]);
+        return dp[i][cnt][sum] = ans;
+    }
+}

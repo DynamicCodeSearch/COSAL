@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    long A = sc.nextLong();
+    long K = sc.nextLong();
+    long G = 2000000000000l;
+    if (K == 0) {
+        System.out.println(G - A);
+    } else {
+        int day = 0;
+        while (A < G) {
+            A += 1 + K * A;
+            day++;
+        }
+        System.out.println(day);
+    }
+    sc.close();
+}

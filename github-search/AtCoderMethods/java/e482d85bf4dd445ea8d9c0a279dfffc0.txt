@@ -1,0 +1,28 @@
+public void solve(String[] args) {
+    MyScanner scanner = new MyScanner();
+    int A = scanner.nextInt();
+    int B = scanner.nextInt();
+    int C = scanner.nextInt();
+    int D = scanner.nextInt();
+    boolean a = false;
+    boolean b = false;
+    int ans = 0;
+    for (int i = 0; i <= 100; i++) {
+        if (i == A) {
+            a = true;
+        }
+        if (i == B) {
+            a = false;
+        }
+        if (i == C) {
+            b = true;
+        }
+        if (i == D) {
+            b = false;
+        }
+        if (a && b) {
+            ans++;
+        }
+    }
+    System.out.println(ans);
+}

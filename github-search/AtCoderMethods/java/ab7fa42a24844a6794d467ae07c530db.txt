@@ -1,0 +1,27 @@
+public void solve(InputReader in, PrintWriter out) {
+    int n = in.nextInt(), m = 0;
+    int[] a = new int[n + 1];
+    int[] b = new int[n];
+    for (int i = 1; i <= n; ++i) a[i] = in.nextInt();
+    if (n % 2 == 1) {
+        for (int i = n; i > 0; i -= 2) {
+            b[m++] = a[i];
+        }
+        for (int i = 2; i <= n; i += 2) {
+            b[m++] = a[i];
+        }
+    } else {
+        for (int i = n; i > 0; i -= 2) {
+            b[m++] = a[i];
+        }
+        for (int i = 1; i <= n; i += 2) {
+            b[m++] = a[i];
+        }
+    }
+    for (int i = 0; i < n; ++i) {
+        if (i == n - 1)
+            out.println(b[i]);
+        else
+            out.print(b[i] + " ");
+    }
+}

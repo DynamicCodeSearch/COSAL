@@ -1,0 +1,42 @@
+public static void main(String[] args) {
+    
+    input();
+    
+    int count_row = 0;
+    
+    int count_col = 0;
+    int num = 1;
+    boolean flag = true;
+    int j = 0;
+    while (j < N) {
+        
+        for (int i = 0; i < a[j]; i++) {
+            if (count_row == H) {
+                flag = !flag;
+                count_row--;
+                count_col++;
+            }
+            if (count_row == -1) {
+                flag = !flag;
+                count_row++;
+                count_col++;
+            }
+            if (
+            flag)
+                
+                table[count_row++][count_col] = num;
+            else
+                
+                table[count_row--][count_col] = num;
+        }
+        num++;
+        j++;
+    }
+    
+    for (int i = 0; i < H; i++) {
+        for (int k = 0; k < W; k++) {
+            System.out.print(table[i][k] + "  ");
+        }
+        System.out.println();
+    }
+}

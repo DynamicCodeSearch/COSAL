@@ -1,0 +1,12 @@
+private static void sort(String[] words) {
+    for (int i = words.length - 1; i > 0; i--) {
+        for (int j = 0; j < i; j++) {
+            String w1 = words[j];
+            String w2 = words[j + 1];
+            if (compare(w1, w2)) {
+                words[j] = w2;
+                words[j + 1] = w1;
+            }
+        }
+    }
+}

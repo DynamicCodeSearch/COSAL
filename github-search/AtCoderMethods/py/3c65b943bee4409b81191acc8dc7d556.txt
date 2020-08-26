@@ -1,0 +1,7 @@
+def main():
+    n, q = map(int, input().split())
+    cones = [Cone(*map(int, input().split())) for _ in range(n)]
+    for _ in range(q):
+        a, b = map(int, input().split())
+        v = sum(cone.frustum_volume(a, b) for cone in cones)
+        print("{:.6f}".format(v))

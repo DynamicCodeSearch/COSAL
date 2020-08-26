@@ -1,0 +1,15 @@
+def check(x, y):
+    def __check(tx, ty):
+        if tx < 0 or tx >= w or ty < 0 or ty >= h:
+            return True
+        if p[ty][tx] == '#':
+            return True
+        else:
+            return False
+
+    f = True
+    for mx, my in ((i, j) for i in range(-1, 2) for j in range(-1, 2)):
+        if not __check(x + mx, y + my):
+            f = False
+            break
+    return f

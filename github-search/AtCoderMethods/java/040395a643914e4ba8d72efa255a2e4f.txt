@@ -1,0 +1,42 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    long[] A = new long[N + 1];
+    long[] B = new long[N + 1];
+    boolean[] p = new boolean[N + 1];
+    p[1] = true;
+    for (int i = 1; i <= N; i++) {
+        if (i > 1) {
+            p[i] = sc.next().equals("+");
+        }
+        A[i] = sc.nextLong();
+        B[i] = A[i] * (p[i] ? 1 : -1);
+    }
+    long[][] dp = new long[N + 1][3];
+    for (long[] v : dp) Arrays.fill(v, Long.MIN_VALUE / 2);
+    dp[0][0] = 0;
+    for (int i = 0; i < N; i++) {
+        if (p[i + 1]) {
+            dp[i + 1][0] = Math.max(dp[i + 1][0], dp[i][0] + A[i + 1]);
+            dp[i + 1][0] = Math.max(dp[i + 1][0], dp[i][1] + A[i + 1]);
+            dp[i + 1][0] = Math.max(dp[i + 1][0], dp[i][2] + A[i + 1]);
+            dp[i + 1][1] = Math.max(dp[i + 1][1], dp[i][1] - A[i + 1]);
+            dp[i + 1][1] = Math.max(dp[i + 1][1], dp[i][2] - A[i + 1]);
+            dp[i + 1][2] = Math.max(dp[i + 1][2], dp[i][2] + A[i + 1]);
+        } else {
+            dp[i + 1][0] = Math.max(dp[i + 1][0], dp[i][0] - A[i + 1]);
+            dp[i + 1][0] = Math.max(dp[i + 1][0], dp[i][1] - A[i + 1]);
+            dp[i + 1][0] = Math.max(dp[i + 1][0], dp[i][2] - A[i + 1]);
+            dp[i + 1][1] = Math.max(dp[i + 1][1], dp[i][0] - A[i + 1]);
+            dp[i + 1][1] = Math.max(dp[i + 1][1], dp[i][1] + A[i + 1]);
+            dp[i + 1][1] = Math.max(dp[i + 1][1], dp[i][2] + A[i + 1]);
+            dp[i + 1][2] = Math.max(dp[i + 1][2], dp[i][1] + A[i + 1]);
+            dp[i + 1][2] = Math.max(dp[i + 1][2], dp[i][2] + A[i + 1]);
+        }
+    }
+    long max = Long.MIN_VALUE / 2;
+    max = Math.max(dp[N][0], max);
+    max = Math.max(dp[N][1], max);
+    max = Math.max(dp[N][2], max);
+    System.out.println(max);
+}

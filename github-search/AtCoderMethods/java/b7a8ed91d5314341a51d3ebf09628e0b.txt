@@ -1,0 +1,14 @@
+void run() {
+    Scanner sc = new Scanner(System.in);
+    n = sc.nextInt();
+    m = sc.nextInt();
+    e = new int[n][n];
+    for (int i = 0; i < m; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        e[a][b] = e[b][a] = 1;
+    }
+    boolean[] f = new boolean[n];
+    f[0] = true;
+    System.out.println(calc(0, f));
+}

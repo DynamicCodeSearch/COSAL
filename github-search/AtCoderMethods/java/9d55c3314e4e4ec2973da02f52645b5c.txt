@@ -1,0 +1,59 @@
+public static void main(String[] args) {
+    
+    Scanner scan = new Scanner(System.in);
+    int N = scan.nextInt();
+    int[][] D = new int[N][N];
+    SumD[][] sumd = new SumD[N][N];
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            sumd[i][j] = new SumD();
+            D[i][j] = scan.nextInt();
+        }
+    }
+    int sum = 0;
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            for (int k = j; k < N; k++) {
+                sum += D[i][k];
+                sumd[i][j].add(sum);
+            }
+            sum = 0;
+        }
+    }
+    int[][] max = new int[N][N];
+    int erea = 0;
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            
+            for (int k = 0; k < i + 1; k++) {
+                for (int l = 0; l < j + 1; l++) {
+                    for (int m = 0; m < N - i; m++) {
+                        erea += sumd[k + m][l].get(N - 1 - j);
+                    }
+                    if (erea > max[N - 1 - i][N - 1 - j]) {
+                        max[N - 1 - i][N - 1 - j] = erea;
+                    }
+                    erea = 0;
+                }
+            }
+        }
+    }
+    int ereap = 0;
+    int Q = scan.nextInt();
+    for (int i = 0; i < Q; i++) {
+        int P = scan.nextInt();
+        for (int j = 0; j < N; j++) {
+            for (int k = 0; k < N; k++) {
+                if ((j + 1) * (k + 1) > P) {
+                    break;
+                } else {
+                    if (max[j][k] > ereap) {
+                        ereap = max[j][k];
+                    }
+                }
+            }
+        }
+        System.out.println(ereap);
+        ereap = 0;
+    }
+}

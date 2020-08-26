@@ -1,0 +1,24 @@
+public String nextLine() throws IOException {
+    StringBuilder sb = new StringBuilder();
+    for (readBuf(); ptr < max; readBuf()) {
+        char c = buf[ptr];
+        if (isCrLf(c)) {
+            skipOneCrLf();
+            break;
+        } else {
+            int strPtr = ptr++;
+            int endPtr = -1;
+            for (int i = ptr; i < max; i++) {
+                if (isCrLf(buf[i])) {
+                    endPtr = i;
+                    break;
+                }
+            }
+            if (endPtr == -1)
+                endPtr = max;
+            sb.append(String.valueOf(buf, strPtr, endPtr - strPtr));
+            ptr = endPtr;
+        }
+    }
+    return sb.toString();
+}

@@ -1,0 +1,10 @@
+def w_div_h_div(H, W):
+    min_diff = 10000000000
+    for w in range(1, W):
+        a1 = w * H
+        a2 = (W - w) * (H // 2)
+        a3 = W * H - a2 - a1
+        diff = max(a1, a2, a3) - min(a1, a2, a3)
+        if diff < min_diff:
+            min_diff = diff
+    return min_diff

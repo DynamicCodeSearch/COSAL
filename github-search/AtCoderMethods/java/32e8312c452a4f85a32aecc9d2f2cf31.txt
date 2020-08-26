@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    
+    
+    int n;
+    
+    String[][] s;
+    try (Scanner scan = new Scanner(System.in)) {
+        n = scan.nextInt();
+        s = new String[n][];
+        for (int i = 0; i < n; i++) {
+            s[i] = new String[n];
+            String line = scan.next();
+            for (int j = 0; j < n; j++) {
+                s[i][j] = line.substring(j, j + 1);
+            }
+        }
+    }
+    
+    StringBuilder result = new StringBuilder();
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            result.append(s[n - 1 - j][i]);
+        }
+        result.append("\n");
+    }
+    System.out.print(result.toString());
+}

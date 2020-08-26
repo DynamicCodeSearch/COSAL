@@ -1,0 +1,18 @@
+private long sum(int l, int r, int shift, int idx, long add) {
+    final int index = idx | 1 << bits - shift;
+    if (r < l) {
+        hold[index] += add;
+        value[index] += add * (1 << shift);
+        return 0;
+    }
+    value[index] += add * (1 << shift);
+    if (r - l + 1 < (1 << shift)) {
+        final int nidx = idx << 1 | 1;
+        final long next = hold[index] + add;
+        hold[index] = 0;
+        return sum(l, Math.min(r, (nidx << shift - 1) - 1), shift - 1, nidx - 1, next) + sum(Math.max(l, nidx << shift - 1), r, shift - 1, nidx, next);
+    } else {
+        hold[index] += add;
+        return value[index];
+    }
+}

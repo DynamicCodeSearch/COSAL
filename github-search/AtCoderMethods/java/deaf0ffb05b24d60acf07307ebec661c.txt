@@ -1,0 +1,18 @@
+private static String check() {
+    for (int i = 0; i <= n - m; i++) {
+        for (int j = 0; j <= n - m; j++) {
+            boolean com = true;
+            label: for (int k = i; k < i + m; k++) {
+                for (int l = j; l < j + m; l++) {
+                    if (a[k][l] != b[k - i][l - j]) {
+                        com = false;
+                        break label;
+                    }
+                }
+            }
+            if (com)
+                return "Yes";
+        }
+    }
+    return "No";
+}

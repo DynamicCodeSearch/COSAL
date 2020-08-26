@@ -1,0 +1,12 @@
+void solve(FastScanner in, PrintWriter out) throws Exception {
+    char[] S = in.next().toCharArray();
+    int cnt = 1;
+    char cur = S[0];
+    for (int i = 1; i < S.length; i++) {
+        if (S[i] != cur) {
+            cnt++;
+            cur = S[i];
+        }
+    }
+    out.println(cnt - 1);
+}

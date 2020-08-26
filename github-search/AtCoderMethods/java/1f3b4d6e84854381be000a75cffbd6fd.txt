@@ -1,0 +1,13 @@
+public static void main(String[] args) throws IOException {
+    final Scanner sc = new Scanner(System.in);
+    final String fromDo = "WBWBWWBWBWBW" + "WBWBWWBWBWBW" + "WBWBWWBWBWBW" + "WBWBWWBWBWBW" + "WBWBWWBWBWBW" + "WBWBWWBWBWBW";
+    final String from = sc.next();
+    final String[] sounds = { "Do", "Re", "Mi", "Fa", "So", "La", "Si" };
+    final int[] offsets = { 0, 2, 4, 5, 7, 9, 11 };
+    for (int i = 0; i < sounds.length; i++) {
+        if (from.startsWith(fromDo.substring(offsets[i], offsets[i] + from.length()))) {
+            System.out.println(sounds[i]);
+            return;
+        }
+    }
+}

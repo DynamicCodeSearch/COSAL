@@ -1,0 +1,22 @@
+public static void main(String[] args) throws IOException {
+    Scanner scanner = new Scanner(System.in);
+    int n = scanner.nextInt();
+    int[] cost = new int[n + 1];
+    int[] height = new int[n + 1];
+    cost[0] = cost[1] = 0;
+    height[0] = 0;
+    for (int i = 1; i < n + 1; i++) {
+        height[i] = scanner.nextInt();
+    }
+    cost[2] = Math.abs(height[1] - height[2]);
+    for (int i = 3; i < n + 1; i++) {
+        int a = Math.abs(height[i - 1] - height[i]) + cost[i - 1];
+        int b = Math.abs(height[i - 2] - height[i]) + cost[i - 2];
+        if (a < b) {
+            cost[i] = a;
+        } else {
+            cost[i] = b;
+        }
+    }
+    System.out.println(cost[n]);
+}

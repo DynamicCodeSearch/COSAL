@@ -1,0 +1,42 @@
+public static void main(String[] args) throws IOException {
+    final Scanner sc = new Scanner(System.in);
+    final int n = sc.nextInt();
+    final int m = sc.nextInt();
+    int[] from = new int[m];
+    int[] to = new int[m];
+    int[] cost = new int[m];
+    for (int i = 0; i < m; i++) {
+        final int f = sc.nextInt() - 1;
+        final int t = sc.nextInt() - 1;
+        final int c = sc.nextInt();
+        from[i] = f;
+        to[i] = t;
+        cost[i] = c;
+    }
+    long[][] adj = new long[n][n];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            adj[i][j] = Integer.MAX_VALUE;
+        }
+    }
+    for (int i = 0; i < m; i++) {
+        adj[from[i]][to[i]] = adj[to[i]][from[i]] = cost[i];
+    }
+    for (int k = 0; k < n; k++) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                adj[i][j] = Math.min(adj[i][j], adj[i][k] + adj[k][j]);
+            }
+        }
+    }
+    int count = 0;
+    for (int i = 0; i < m; i++) {
+        final int f = from[i];
+        final int t = to[i];
+        final int c = cost[i];
+        if (adj[f][t] < c) {
+            count++;
+        }
+    }
+    System.out.println(count);
+}

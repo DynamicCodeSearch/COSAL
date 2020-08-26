@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+    int N = sc.nextInt();
+    int[] a = new int[N + 1];
+    for (int i = 1; i <= N; i++) {
+        a[i] = sc.nextInt();
+        map.put(a[i], i);
+    }
+    Arrays.sort(a);
+    for (int i = N; i >= 1; i--) {
+        int ans = map.get(a[i]);
+        System.out.println(ans);
+    }
+}

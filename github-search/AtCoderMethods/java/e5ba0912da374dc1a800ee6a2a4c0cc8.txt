@@ -1,0 +1,24 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+    String[] s = in.readLine().split(" ", 0);
+    int n = Integer.parseInt(s[0]);
+    int q = Integer.parseInt(s[1]);
+    int[] boards = new int[n + 1];
+    int l, r;
+    for (int i = 0; i < q; i++) {
+        s = in.readLine().split(" ", 0);
+        l = Integer.parseInt(s[0]);
+        r = Integer.parseInt(s[1]);
+        boards[l - 1]++;
+        boards[r]--;
+    }
+    int ans = 0;
+    for (int i = 0; i < n; i++) {
+        if ((ans += boards[i]) % 2 == 0) {
+            System.out.print(0);
+        } else {
+            System.out.print(1);
+        }
+    }
+    System.out.println("");
+}

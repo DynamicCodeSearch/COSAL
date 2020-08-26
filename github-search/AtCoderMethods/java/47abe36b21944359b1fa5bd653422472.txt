@@ -1,0 +1,36 @@
+public static void main(String[] args) {
+    int N = Integer.parseInt(scan.next());
+    long[] a = new long[N];
+    for (int i = 0; i < N; i++) {
+        a[i] = Long.parseLong(scan.next());
+    }
+    long s1 = 0;
+    long s2 = 0;
+    long count1 = 0;
+    long count2 = 0;
+    for (int i = 0; i < N; i++) {
+        s1 += a[i];
+        s2 += a[i];
+        if (i % 2 == 0) {
+            if (s1 <= 0) {
+                count1 += (1 - s1);
+                s1 = 1;
+            }
+            if (s2 >= 0) {
+                count2 += (s2 + 1);
+                s2 = -1;
+            }
+        } else {
+            if (s1 >= 0) {
+                count1 += (s1 + 1);
+                s1 = -1;
+            }
+            if (s2 <= 0) {
+                count2 += (1 - s2);
+                s2 = 1;
+            }
+        }
+    }
+    System.out.println(count1 < count2 ? count1 : count2);
+    scan.close();
+}

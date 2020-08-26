@@ -1,0 +1,11 @@
+static long pow(long a, long b) {
+    long x = 1, y = a;
+    while (b > 0) {
+        if (b % 2 == 1) {
+            x = (x * y) % mod;
+        }
+        y = (y * y) % mod;
+        b = b / 2;
+    }
+    return x;
+}

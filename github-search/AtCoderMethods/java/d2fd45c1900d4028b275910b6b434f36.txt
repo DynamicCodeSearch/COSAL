@@ -1,0 +1,13 @@
+public static void solve(Node node) {
+    if (node.v)
+        flag = true;
+    if (node.top)
+        flag2 = true;
+    for (int i = 0; i < node.to.size(); ++i) {
+        int next = node.to.get(i) - 'A';
+        if (alpha[next].visit)
+            continue;
+        alpha[next].visit = true;
+        solve(alpha[next]);
+    }
+}

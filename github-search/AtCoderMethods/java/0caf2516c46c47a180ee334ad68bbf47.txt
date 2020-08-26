@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    StringBuilder word = new StringBuilder(sc.nextLine()).reverse();
+    sc.close();
+    while (word.length() > 0) {
+        switch(word.charAt(0)) {
+            case 'o':
+            case 'k':
+            case 'u':
+                word.deleteCharAt(0);
+                break;
+            case 'h':
+                if (word.length() >= 2)
+                    if (word.charAt(1) == 'c') {
+                        word.delete(0, 2);
+                        break;
+                    }
+            default:
+                System.out.println("NO");
+                System.exit(0);
+        }
+    }
+    System.out.println("YES");
+}

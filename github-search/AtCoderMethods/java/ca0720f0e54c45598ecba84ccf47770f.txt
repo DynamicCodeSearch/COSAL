@@ -1,0 +1,20 @@
+static long inv(long a, long mod) {
+    
+    
+    a = a % mod;
+    long b = mod;
+    long p = 1, q = 0;
+    while (b > 1) {
+        long c = b / a;
+        b = b % a;
+        q = q - p * c;
+        long d = b;
+        b = a;
+        a = d;
+        d = p;
+        p = q;
+        q = d;
+    }
+    while (q < 0) q += mod;
+    return q;
+}

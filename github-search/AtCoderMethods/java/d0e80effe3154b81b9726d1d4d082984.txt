@@ -1,0 +1,21 @@
+public static void main(String[] __) {
+    int n = s.nextInt();
+    int[] res = new int[26], resbuf = new int[26];
+    Arrays.fill(res, 114514);
+    for (int i = 0; i < n; i++) {
+        Arrays.fill(resbuf, 0);
+        Counter<Character> counter = new Counter<>(26);
+        for (char c : s.next().toCharArray()) {
+            counter.add(c);
+        }
+        for (Entry<Character, Integer> e : counter.map.entrySet()) {
+            resbuf[e.getKey().charValue() - 'a'] = e.getValue();
+        }
+        for (int j = 0; j < 26; j++) res[j] = Math.min(res[j], resbuf[j]);
+    }
+    StringBuilder sb = new StringBuilder();
+    for (char c = 'a'; c <= 'z'; c++) if (res[c - 'a'] != 114514) {
+        for (int i = 0; i < res[c - 'a']; i++) sb.append(c);
+    }
+    System.out.println(sb.toString());
+}

@@ -1,0 +1,36 @@
+private boolean isM(int[] circle) {
+    for (int i = 1; i < N - 1; i++) {
+        String ox = s.substring(i, i + 1);
+        if ((circle[i] == 1 && ox.equals("o")) || (circle[i] == 2 && ox.equals("x"))) {
+            circle[i + 1] = circle[i - 1];
+        }
+        if ((circle[i] == 1 && ox.equals("x")) || (circle[i] == 2 && ox.equals("o"))) {
+            circle[i + 1] = circle[i - 1] == 1 ? 2 : 1;
+        }
+    }
+    boolean success1 = false;
+    String first = s.substring(0, 1);
+    if (circle[1] == circle[N - 1]) {
+        if ((circle[0] == 1 && first.equals("o")) || (circle[0] == 2 && first.equals("x"))) {
+            success1 = true;
+        }
+    }
+    if (circle[1] != circle[N - 1]) {
+        if ((circle[0] == 1) && first.equals("x") || (circle[0] == 2 && first.equals("o"))) {
+            success1 = true;
+        }
+    }
+    boolean success2 = false;
+    String last = s.substring(s.length() - 1);
+    if (circle[0] == circle[N - 2]) {
+        if ((circle[N - 1] == 1 && last.equals("o")) || (circle[N - 1] == 2 && last.equals("x"))) {
+            success2 = true;
+        }
+    }
+    if (circle[0] != circle[N - 2]) {
+        if ((circle[N - 1] == 1) && last.equals("x") || (circle[N - 1] == 2 && last.equals("o"))) {
+            success2 = true;
+        }
+    }
+    return success1 && success2;
+}

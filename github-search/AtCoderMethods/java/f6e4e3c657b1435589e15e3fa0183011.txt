@@ -1,0 +1,17 @@
+public static void main(String[] args) throws IOException {
+    final Scanner sc = new Scanner(System.in);
+    final long limit = 2 * 1000000000000l;
+    final long A = sc.nextLong();
+    final long K = sc.nextLong();
+    if (K == 0) {
+        System.out.println(limit - A);
+    } else {
+        long curr = A, time = 0;
+        ;
+        while (curr < limit) {
+            time++;
+            curr += 1 + K * curr;
+        }
+        System.out.println(time);
+    }
+}

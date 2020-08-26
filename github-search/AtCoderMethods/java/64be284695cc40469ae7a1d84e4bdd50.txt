@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String s = sc.next();
+    s = s + s;
+    char[] c = s.toCharArray();
+    String ocs = "WWBWBWW";
+    char[] oc = ocs.toCharArray();
+    int ans = 0;
+    bi: for (; ans < c.length; ans++) {
+        for (int j = 0; j < oc.length; j++) {
+            if (oc[j] != c[ans + j]) {
+                continue bi;
+            }
+        }
+        break;
+    }
+    ans = 12 - ans;
+    ans = ans % 12;
+    String[] o = { "Si", "Do", "Do", "Re", "Re", "Mi", "Fa", "Fa", "So", "So", "La", "La" };
+    System.out.println(o[ans]);
+}

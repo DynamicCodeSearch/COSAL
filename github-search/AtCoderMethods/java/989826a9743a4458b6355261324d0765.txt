@@ -1,0 +1,14 @@
+void modify(int rt, int l, int r, int L, int R, long v) {
+    if (R < l || L > r)
+        return;
+    if (L <= l && R >= r) {
+        mx[rt] += v;
+        tag[rt] += v;
+        return;
+    }
+    push(rt);
+    int mid = (l + r) >> 1;
+    modify(lson(rt), l, mid, L, R, v);
+    modify(rson(rt), mid + 1, r, L, R, v);
+    mx[rt] = max(mx[lson(rt)], mx[rson(rt)]);
+}

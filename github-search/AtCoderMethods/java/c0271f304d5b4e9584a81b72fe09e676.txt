@@ -1,0 +1,8 @@
+void dfs(int now, int prev, long value) {
+    close[now] = value;
+    for (Edge e : pass.get(now)) {
+        if (e.to == prev)
+            continue;
+        dfs(e.to, now, value + e.cost);
+    }
+}

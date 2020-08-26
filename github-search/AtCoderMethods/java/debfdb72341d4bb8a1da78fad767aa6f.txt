@@ -1,0 +1,29 @@
+
+public void solve() {
+    int N = in.nextInt();
+    String s = in.next();
+    int M = s.length();
+    long[][] dp = new long[2][N + 1];
+    int prev = 0;
+    dp[prev][0] = 1;
+    for (int i = 0; i < N; i++) {
+        int next = prev ^ 1;
+        for (int j = 0; j <= i; j++) {
+            dp[next][j] = 0;
+        }
+        for (int j = 0; j <= i; j++) {
+            if (dp[prev][j] == 0)
+                continue;
+            
+            dp[next][j + 1] = ADD(dp[next][j + 1], 2 * dp[prev][j]);
+            
+            if (j != 0)
+                dp[next][j - 1] = ADD(dp[next][j - 1], dp[prev][j]);
+            else
+                dp[next][0] = ADD(dp[next][0], dp[prev][0]);
+        }
+        
+        prev = next;
+    }
+    System.out.println(DIV(dp[prev][M], POW(2, M)));
+}

@@ -1,0 +1,29 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] s = br.readLine().split("");
+    int n = Integer.parseInt(br.readLine());
+    String[] input;
+    int[] l = new int[n];
+    int[] r = new int[n];
+    String tmp;
+    for (int i = 0; i < n; i++) {
+        input = br.readLine().split(" ");
+        l[i] = Integer.parseInt(input[0]);
+        r[i] = Integer.parseInt(input[1]);
+    }
+    int k = 0;
+    for (int i = 0; i < n; i++) {
+        k = 0;
+        for (int j = l[i] - 1; j < (l[i] + r[i]) / 2; j++) {
+            tmp = s[j];
+            s[j] = s[r[i] - k - 1];
+            s[r[i] - k - 1] = tmp;
+            k += 1;
+        }
+    }
+    String output = "";
+    for (int i = 0; i < s.length; i++) {
+        output += s[i];
+    }
+    System.out.println(output);
+}

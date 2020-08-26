@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    char[] s = in.nextToken().toCharArray();
+    int n = s.length;
+    long sum = 0;
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j <= n; j++) {
+            long val = Long.valueOf(String.valueOf(Arrays.copyOfRange(s, i, j)));
+            int left = i;
+            int right = n - j;
+            int mul = Math.max(left - 1, 0) + Math.max(right - 1, 0);
+            sum += val * Math.pow(2, mul);
+        }
+    }
+    out.println(sum);
+    out.flush();
+}

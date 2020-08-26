@@ -1,0 +1,13 @@
+def main():
+    n, x = read_int_list()
+    a = read_int_list()
+    res = 0
+    if a[0] > x:
+        res += a[0] - x
+        a[0] = x
+    for i in range(1, n):
+        if a[i - 1] + a[i] > x:
+            diff = a[i - 1] + a[i] - x
+            res += diff
+            a[i] -= diff
+    print(res)

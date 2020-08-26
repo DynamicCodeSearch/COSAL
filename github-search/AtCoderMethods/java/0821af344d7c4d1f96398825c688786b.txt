@@ -1,0 +1,23 @@
+void solve() {
+    int N = in.nextInt();
+    int M = in.nextInt();
+    List<Query> queries = new ArrayList();
+    for (int i = 0; i < M; i++) {
+        queries.add(new Query(i, in.nextInt(), in.nextInt(), in.nextInt(), true));
+    }
+    int Q = in.nextInt();
+    for (int i = 0; i < Q; i++) {
+        queries.add(new Query(i, in.nextInt(), -1, in.nextInt(), false));
+    }
+    queries.sort((x, y) -> x.y == y.y ? (x.isAddQuery == y.isAddQuery ? 0 : x.isAddQuery ? 1 : -1) : y.y - x.y);
+    UnionFind uf = new UnionFind(N + 1);
+    int[] answers = new int[Q];
+    for (Query q : queries) {
+        if (q.b > 0) {
+            uf.merge(q.a, q.b);
+        } else {
+            answers[q.id] = uf.getSize(q.a);
+        }
+    }
+    for (int a : answers) out.println(a);
+}

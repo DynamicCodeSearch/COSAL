@@ -1,0 +1,14 @@
+def main():
+
+
+
+    n, a, b = [int(x) for x in input().split()]
+    nums = [int(x) for x in input().split()]
+    nums.sort(reverse=True)
+    hml = how_many_largest(nums)
+    if hml <= a:
+        hml_less(n, a, b, nums, hml)
+    elif a < hml < b:
+        hml_between(n, a, b, nums, hml)
+    else:
+        hml_between(n, a, b, nums, b)

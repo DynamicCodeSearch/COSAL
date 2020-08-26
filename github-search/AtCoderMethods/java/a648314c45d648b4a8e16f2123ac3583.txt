@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    int N = in.nextInt();
+    ArrayList<S> ss = new ArrayList<>();
+    for (int i = 0; i < N; i++) {
+        ss.add(new S(i + 1, in.nextInt()));
+    }
+    ss.sort(new Comparator<S>() {
+
+        public int compare(S s1, S s2) {
+            return s1.a < s2.a ? 1 : -1;
+        }
+    });
+    ss.forEach(s -> {
+        System.out.println(s.n);
+    });
+}

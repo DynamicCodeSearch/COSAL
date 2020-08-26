@@ -1,0 +1,12 @@
+private void eatDelimiters() throws IOException {
+    while (true) {
+        if (bufi == bufc) {
+            fillBuf();
+            if (bufc == 0)
+                throw new RuntimeException("IO: Out of input.");
+        }
+        if (!isDelimiter(buf[bufi]))
+            break;
+        ++bufi;
+    }
+}

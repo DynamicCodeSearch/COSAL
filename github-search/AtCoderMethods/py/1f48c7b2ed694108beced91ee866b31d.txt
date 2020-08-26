@@ -1,0 +1,9 @@
+def solve(A,loop):
+    result = 1
+    temp = A
+    binloop = reversed(str(bin(loop))[2:])
+    for i in binloop:
+        if i == "1":
+            result = (result * temp) % 1000000007
+        temp = temp * temp % 1000000007
+    return result

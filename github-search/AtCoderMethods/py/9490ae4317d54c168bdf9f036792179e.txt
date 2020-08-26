@@ -1,0 +1,10 @@
+def main():
+    height, width = map(int, input().split())
+    pict = [list(input()) for _ in range(height)]
+    cand = dilate(height, width, pict)
+    if pict == erode(height, width, cand):
+        print("possible")
+        for line in cand:
+            print("".join(line))
+    else:
+        print("impossible")

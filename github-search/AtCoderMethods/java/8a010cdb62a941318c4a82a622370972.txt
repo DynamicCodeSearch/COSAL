@@ -1,0 +1,22 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = sc.nextInt(), m = sc.nextInt();
+    boolean[] direct = new boolean[n + 1];
+    int[] x = new int[m], y = new int[m];
+    for (int i = 0; i < m; i++) {
+        x[i] = sc.nextInt();
+        y[i] = sc.nextInt();
+        if (x[i] == n)
+            direct[y[i]] = true;
+        if (y[i] == n)
+            direct[x[i]] = true;
+    }
+    boolean ok = false;
+    for (int i = 0; i < m; i++) {
+        ok |= x[i] == 1 && direct[y[i]] || y[i] == 1 && direct[x[i]];
+    }
+    out.println(ok ? "POSSIBLE" : "IMPOSSIBLE");
+    out.flush();
+    out.close();
+}

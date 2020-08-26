@@ -1,0 +1,19 @@
+private static long solveLargeK(long k, long m) {
+    long ret = 0;
+    for (long mod = 0; mod <= 100; mod++) {
+        long now = mod;
+        while (now <= m) {
+            long nn = now;
+            long ds = 0;
+            while (nn > 0) {
+                ds += nn % 10;
+                nn /= 10;
+            }
+            if (ds == mod) {
+                ret++;
+            }
+            now += k;
+        }
+    }
+    return ret - 1;
+}

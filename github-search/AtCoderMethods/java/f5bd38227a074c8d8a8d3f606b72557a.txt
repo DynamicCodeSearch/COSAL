@@ -1,0 +1,25 @@
+public boolean next() {
+    if (used.cardinality() == 0) {
+        for (int i = 0; i < n; i++) {
+            p[i] = i;
+        }
+        used.set(0, n);
+        return true;
+    }
+    int i;
+    for (i = n - 1; i >= 0; i--) {
+        used.clear(p[i]);
+        if ((used.nextClearBit(p[i] + 1)) < max)
+            break;
+    }
+    if (i < 0)
+        return false;
+    p[i] = used.nextClearBit(p[i] + 1);
+    used.set(p[i]);
+    int idx = i + 1;
+    for (i = used.nextClearBit(0); i < max && idx < n; i = used.nextClearBit(i + 1)) {
+        p[idx++] = i;
+        used.set(i);
+    }
+    return true;
+}

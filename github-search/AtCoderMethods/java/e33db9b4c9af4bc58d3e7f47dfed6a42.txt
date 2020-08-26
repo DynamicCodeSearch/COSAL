@@ -1,0 +1,10 @@
+
+static long getPower(long a, int n) {
+    if (n == 0) {
+        return 1;
+    } else if (n % 2 == 0) {
+        return getPower(getMod(a * a), n / 2);
+    } else {
+        return getMod(a * getPower(a, n - 1));
+    }
+}

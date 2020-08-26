@@ -1,0 +1,24 @@
+void run() {
+    int H = in.nextInt(), W = in.nextInt();
+    String[] s = in.nextStringArray(H);
+    String res = "";
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            if (s[i].charAt(j) == '#') {
+                res += "#";
+                continue;
+            }
+            int cnt = 0;
+            for (int vx = -1; vx <= 1; vx++) {
+                for (int vy = -1; vy <= 1; vy++) {
+                    int x = j + vx, y = i + vy;
+                    if (0 <= x && x < W && 0 <= y && y < H && s[y].charAt(x) == '#')
+                        cnt++;
+                }
+            }
+            res += cnt;
+        }
+        res += "\n";
+    }
+    System.out.println(res);
+}

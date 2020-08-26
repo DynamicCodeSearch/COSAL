@@ -1,0 +1,26 @@
+private void solve() {
+    n = in.nextInt();
+    m = in.nextInt();
+    edges = new ArrayList[n + 1];
+    for (int i = 0; i < n; i++) {
+        edges[i] = new ArrayList<>();
+    }
+    for (int i = 0; i < m; i++) {
+        int a = in.nextInt();
+        int b = in.nextInt();
+        int c = in.nextInt();
+        edges[a - 1].add(new Edge(a - 1, b - 1, c, i));
+        edges[b - 1].add(new Edge(b - 1, a - 1, c, i));
+    }
+    mrk = new boolean[m + 1];
+    Arrays.fill(mrk, false);
+    for (int i = 0; i < n; i++) {
+        dijkstra(i);
+    }
+    int ans = 0;
+    for (int i = 0; i < m; i++) {
+        if (!mrk[i])
+            ans++;
+    }
+    out.print(ans);
+}

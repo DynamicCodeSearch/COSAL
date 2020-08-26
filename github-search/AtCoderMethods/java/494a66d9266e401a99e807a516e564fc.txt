@@ -1,0 +1,53 @@
+void run() {
+    int N = in.nextInt();
+    String s1 = in.next(), s2 = in.next();
+    
+    int[][] prev = new int[4][4];
+    int[][] next = new int[4][4];
+    prev[0][0] = 1;
+    for (int i = 0; i < N; i++) {
+        for (int c1 = 0; c1 <= 3; c1++) for (int c2 = 0; c2 <= 3; c2++) {
+            next[c1][c2] = 0;
+        }
+        for (int c1 = 0; c1 <= 3; c1++) for (int c2 = 0; c2 <= 3; c2++) {
+            for (int nc1 = 1; nc1 <= 3; nc1++) for (int nc2 = 1; nc2 <= 3; nc2++) {
+                if (c1 == nc1 || c2 == nc2)
+                    continue;
+                if (i != N - 1 && s1.charAt(i) == s1.charAt(i + 1)) {
+                    
+                    if (nc1 == nc2)
+                        continue;
+                } else {
+                    
+                    if (nc1 != nc2)
+                        continue;
+                }
+                next[nc1][nc2] = (next[nc1][nc2] + prev[c1][c2]) % MOD;
+            }
+        }
+        if (i != N - 1 && s1.charAt(i) == s1.charAt(i + 1)) {
+            
+            i++;
+        } else {
+        
+        }
+        
+        int[][] tmp = prev;
+        prev = next;
+        next = tmp;
+    }
+    int res = 0;
+    for (int c1 = 1; c1 <= 3; c1++) {
+        for (int c2 = 1; c2 <= 3; c2++) {
+            if (s1.charAt(N - 1) == s2.charAt(N - 1)) {
+                if (c1 != c2)
+                    continue;
+            } else {
+                if (c1 == c2)
+                    continue;
+            }
+            res = (res + prev[c1][c2]) % MOD;
+        }
+    }
+    System.out.println(res);
+}

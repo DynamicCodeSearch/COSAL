@@ -1,0 +1,26 @@
+void solve() {
+    Scanner in = new Scanner(System.in);
+    int n = in.nextInt();
+    int[] c = new int[n];
+    for (int i = 0; i < c.length; i++) {
+        c[i] = in.nextInt();
+    }
+    int[] d = new int[n];
+    for (int i = 0; i < c.length; i++) {
+        for (int j = 0; j < c.length; j++) {
+            if (i == j)
+                continue;
+            if (c[i] % c[j] == 0)
+                d[i]++;
+        }
+    }
+    double ans = 0;
+    for (int i = 0; i < d.length; i++) {
+        if (d[i] % 2 == 0) {
+            ans += (double) (d[i] + 2) / (double) (2 * (d[i] + 1));
+        } else {
+            ans += 0.5;
+        }
+    }
+    System.out.println(ans);
+}

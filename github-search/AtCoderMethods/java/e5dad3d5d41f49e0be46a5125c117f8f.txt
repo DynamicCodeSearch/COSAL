@@ -1,0 +1,35 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String input = sc.next();
+    String[] PARTS = { "dream", "dreamer", "erase", "eraser" };
+    boolean flag = true;
+    boolean able = true;
+    int cnt = 0;
+    while (flag) {
+        flag = false;
+        if (input.regionMatches(input.length() - 5 - cnt, PARTS[0], 0, 5) || input.regionMatches(input.length() - 5 - cnt, PARTS[2], 0, 5)) {
+            cnt += 5;
+            flag = true;
+        } else {
+            if (input.regionMatches(input.length() - 6 - cnt, PARTS[3], 0, 6)) {
+                cnt += 6;
+                flag = true;
+            } else {
+                if (input.regionMatches(input.length() - 7 - cnt, PARTS[1], 0, 7)) {
+                    cnt += 7;
+                    flag = true;
+                }
+            }
+        }
+        if (input.length() == cnt)
+            able = true;
+        else
+            able = false;
+    }
+    if (able) {
+        System.out.println("YES");
+    } else {
+        System.out.println("NO");
+    }
+    sc.close();
+}

@@ -1,0 +1,35 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    int n = in.readInt();
+    int m = in.readInt();
+    int[] l = new int[n];
+    int[] r = new int[n];
+    IOUtils.readIntArrays(in, l, r);
+    int[] answer = new int[m + 1];
+    int[] delta = new int[m + 2];
+    for (int i = 0; i < n; i++) {
+        for (int j = 1; j <= BUBEN && j <= m; j++) {
+            if (r[i] / j * j >= l[i]) {
+                answer[j]++;
+            }
+        }
+        int last = m + 1;
+        for (int j = 1; last > BUBEN + 1; j++) {
+            int from = Math.max(BUBEN + 1, (l[i] + j - 1) / j);
+            int to = Math.min(r[i] / j, last - 1);
+            if (from <= to) {
+                delta[from]++;
+                delta[to + 1]--;
+            }
+            last = from;
+        }
+    }
+    int add = 0;
+    for (int i = 1; i <= m; i++) {
+        add += delta[i];
+        answer[i] += add;
+    }
+    answer = Arrays.copyOfRange(answer, 1, m + 1);
+    for (int i : answer) {
+        out.printLine(i);
+    }
+}

@@ -1,0 +1,12 @@
+def solve(nums):
+    counts = sorted([pair for pair in Counter(nums).items() if pair[1] >= 2], reverse=True)
+
+    if len(counts) == 0:
+        return 0
+    elif len(counts) == 1:
+        (val, cnt) = counts[0]
+        return 0 if cnt < 4 else val * val
+    else:
+        (val1, cnt1) = counts[0]
+        (val2, cnt2) = counts[1]
+        return val1 * val2 if cnt1 < 4 else val1 * val1

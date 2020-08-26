@@ -1,0 +1,33 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int N = Integer.parseInt(scanner.next());
+    int NG1 = Integer.parseInt(scanner.next());
+    int NG2 = Integer.parseInt(scanner.next());
+    int NG3 = Integer.parseInt(scanner.next());
+    if (N == NG1 || N == NG2 || N == NG3) {
+        System.out.println("NO");
+        return;
+    }
+    int count = 0;
+    int num = N;
+    while (num > 0) {
+        if (num - 3 != NG1 && num - 3 != NG2 && num - 3 != NG3) {
+            num -= 3;
+            count++;
+        } else if (num - 2 != NG1 && num - 2 != NG2 && num - 2 != NG3) {
+            num -= 2;
+            count++;
+        } else if (num - 1 != NG1 && num - 1 != NG2 && num - 1 != NG3) {
+            num -= 1;
+            count++;
+        } else {
+            System.out.println("NO");
+            return;
+        }
+    }
+    if (count <= 100) {
+        System.out.println("YES");
+    } else {
+        System.out.println("NO");
+    }
+}

@@ -1,0 +1,14 @@
+def main():
+    N = int(input())
+    a_list = list(map(int, input().split()))
+    total = sum(a_list)
+
+    dp1 = [0] * N
+    dp1[0] = a_list[0]
+    for i in range(1, N):
+        dp1[i] = a_list[i] + dp1[i - 1]
+
+    ans = INF
+    for i in range(N - 1):
+        ans = min(ans, abs(dp1[i] - (total - dp1[i])))
+    print(ans)

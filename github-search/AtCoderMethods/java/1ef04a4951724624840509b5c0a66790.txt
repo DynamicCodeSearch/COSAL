@@ -1,0 +1,10 @@
+long mod_pow(long x, long k) {
+    long res = 1;
+    while (k > 0) {
+        if ((k & 1) == 1)
+            res = res * x % mod;
+        x = x * x % mod;
+        k /= 2;
+    }
+    return res;
+}

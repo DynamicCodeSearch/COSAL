@@ -1,0 +1,17 @@
+private static void visit(int i) {
+    int sum = 0;
+    for (int k = 1; k <= point; k++) {
+        sum += visited[k];
+    }
+    if (sum == point) {
+        counter++;
+        return;
+    }
+    for (int j = 1; j <= point; j++) {
+        if (a[i][j] == 1 && visited[j] == 0) {
+            visited[j] = 1;
+            visit(j);
+            visited[j] = 0;
+        }
+    }
+}

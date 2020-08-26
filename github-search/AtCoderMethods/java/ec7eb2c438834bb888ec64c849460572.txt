@@ -1,0 +1,53 @@
+public static void solve(PrintWriter out, FastScanner in) {
+    
+    
+    
+    
+    String S = in.next();
+    char[] c = S.toCharArray();
+    char[] cr = new char[c.length];
+    for (int i = 0; i < c.length; i++) {
+        cr[i] = c[c.length - 1 - i];
+    }
+    S = String.valueOf(cr);
+    int idx = 0;
+    while (idx < S.length() - 1) {
+        String str3 = S.substring(idx, idx + 3);
+        String str5 = S.substring(idx, idx + 5);
+        if (str3.equals("mae")) {
+            if (str5.equals("maerd")) {
+                idx += 5;
+            } else {
+                System.out.println("NO");
+                return;
+            }
+        } else if (str3.equals("rem")) {
+            String str7 = S.substring(idx, idx + 7);
+            if (str7.equals("remaerd")) {
+                idx += 7;
+            } else {
+                System.out.println("NO");
+                return;
+            }
+        } else if (str3.equals("esa")) {
+            if (str5.equals("esare")) {
+                idx += 5;
+            } else {
+                System.out.println("NO");
+                return;
+            }
+        } else if (str3.equals("res")) {
+            String str6 = S.substring(idx, idx + 6);
+            if (str6.equals("resare")) {
+                idx += 6;
+            } else {
+                System.out.println("NO");
+                return;
+            }
+        } else {
+            System.out.println("NO");
+            return;
+        }
+    }
+    System.out.println("YES");
+}

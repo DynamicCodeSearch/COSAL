@@ -1,0 +1,14 @@
+private static void getBuckets(BaseArray C, BaseArray B, int k, boolean end) {
+    int i, sum = 0;
+    if (end != false) {
+        for (i = 0; i < k; ++i) {
+            sum += C.get(i);
+            B.set(i, sum);
+        }
+    } else {
+        for (i = 0; i < k; ++i) {
+            sum += C.get(i);
+            B.set(i, sum - C.get(i));
+        }
+    }
+}

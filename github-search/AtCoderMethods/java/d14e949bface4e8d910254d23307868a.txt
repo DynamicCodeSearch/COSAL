@@ -1,0 +1,57 @@
+public static void main(String[] args) throws IOException {
+    try (Scanner sc = new Scanner(System.in)) {
+        final int N = sc.nextInt();
+        final int M = sc.nextInt();
+        final int R = sc.nextInt();
+        int[] rs = sc.nextIntArray(R);
+        int[][] adj = new int[N][N];
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                adj[i][j] = i == j ? 0 : Integer.MAX_VALUE / 2 - 1;
+            }
+        }
+        for (int i = 0; i < M; i++) {
+            final int a = sc.nextInt() - 1;
+            final int b = sc.nextInt() - 1;
+            final int c = sc.nextInt();
+            adj[a][b] = adj[b][a] = c;
+        }
+        for (int k = 0; k < N; k++) {
+            for (int i = 0; i < N; i++) {
+                for (int j = 0; j < N; j++) {
+                    adj[i][j] = Math.min(adj[i][j], adj[i][k] + adj[k][j]);
+                }
+            }
+        }
+        long[][] DP = new long[1 << R][R];
+        for (final long[] arr : DP) {
+            Arrays.fill(arr, INF);
+        }
+        for (int i = 0; i < R; i++) {
+            DP[1 << i][i] = 0;
+        }
+        for (int bit = 1; bit < (1 << R); bit++) {
+            for (int curr = 0; curr < R; curr++) {
+                if ((bit & (1 << curr)) == 0) {
+                    continue;
+                }
+                if (DP[bit][curr] >= INF) {
+                    continue;
+                }
+                for (int next = 0; next < R; next++) {
+                    if ((bit & (1 << next)) != 0) {
+                        continue;
+                    }
+                    final int next_bit = bit | (1 << next);
+                    final long next_cost = DP[bit][curr] + adj[rs[curr] - 1][rs[next] - 1];
+                    DP[next_bit][next] = Math.min(DP[next_bit][next], next_cost);
+                }
+            }
+        }
+        long answer = INF;
+        for (int i = 0; i < R; i++) {
+            answer = Math.min(answer, DP[(1 << R) - 1][i]);
+        }
+        System.out.println(answer);
+    }
+}

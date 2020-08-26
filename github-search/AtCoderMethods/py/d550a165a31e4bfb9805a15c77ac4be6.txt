@@ -1,0 +1,8 @@
+def add_edges(xs):
+    es = []
+    prev_x, prev_i = xs[0]
+    for x, i in xs[1:]:
+        es.append((x - prev_x, prev_i, i))
+        prev_x = x
+        prev_i = i
+    return es

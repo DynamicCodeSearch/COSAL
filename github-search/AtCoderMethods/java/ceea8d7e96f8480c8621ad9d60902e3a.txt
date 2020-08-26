@@ -1,0 +1,15 @@
+public int read() {
+    if (bufLen == -1)
+        throw new InputMismatchException();
+    if (bufPtr >= bufLen) {
+        bufPtr = 0;
+        try {
+            bufLen = in.read(buf);
+        } catch (IOException e) {
+            throw new InputMismatchException();
+        }
+        if (bufLen <= 0)
+            return -1;
+    }
+    return buf[bufPtr++];
+}

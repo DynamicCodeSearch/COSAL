@@ -1,0 +1,9 @@
+private int query(int a, int b, int i, int l, int r) {
+    if (a >= r || b <= l) {
+        return INF;
+    }
+    if (a <= l && b >= r) {
+        return st[i];
+    }
+    return Math.min(query(a, b, i * 2 + 1, l, (l + r) / 2), query(a, b, i * 2 + 2, (l + r) / 2, r));
+}

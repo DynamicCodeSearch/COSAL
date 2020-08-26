@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    Scanner as = new Scanner(System.in);
+    int n = Integer.parseInt(as.next());
+    int[] t;
+    t = new int[n];
+    for (int i = 0; i < n; i++) {
+        t[i] = Integer.parseInt(as.next());
+    }
+    int m = Integer.parseInt(as.next());
+    int[] p, x, l;
+    p = new int[m];
+    x = new int[m];
+    l = new int[m];
+    for (int i = 0; i < m; i++) {
+        p[i] = Integer.parseInt(as.next());
+        x[i] = Integer.parseInt(as.next());
+        l[i] = 0;
+    }
+    int a = 0;
+    for (int i = 0; i < n; i++) {
+        a += t[i];
+    }
+    for (int i = 0; i < m; i++) {
+        l[i] = a - t[p[i] - 1] + x[i];
+    }
+    for (int i = 0; i < m; i++) {
+        System.out.println(l[i]);
+    }
+}

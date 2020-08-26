@@ -1,0 +1,18 @@
+def solve(p):
+    x,y = p
+    if x > y:
+        x,y = y,x
+    if (x, y) in memo:
+        return memo[(x,y)]
+    if x < 2 and y < 2:
+        return False
+    hand = []
+    for i in range(2, x+1, 2):
+        hand.append((x-i, y+i//2))
+    for i in range(2, y+1, 2):
+        hand.append((x+i//2, y-i))
+    if all(map(solve, hand)):
+        memo[(x,y)] = False
+    else:
+        memo[(x,y)] = True    
+    return memo[(x,y)]

@@ -1,0 +1,39 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    int n = in.nextInt();
+    long[] a = new long[n + 1];
+    long[] pre = new long[n + 1];
+    Arrays.fill(a, 0);
+    Arrays.fill(pre, 0);
+    long[] pro = new long[n + 1];
+    Arrays.fill(pro, 0);
+    long res = 0;
+    long ans = 0;
+    for (int i = 1; i <= n; i++) {
+        a[i] = in.nextLong();
+        pre[i] = pre[i - 1] + a[i];
+        if ((i & 1) == 1 && pre[i] <= 0) {
+            ans += Math.abs(1 - pre[i]);
+            pre[i] = 1;
+            continue;
+        }
+        if ((i & 1) == 0 && pre[i] >= 0) {
+            ans += Math.abs(1 + pre[i]);
+            pre[i] = -1;
+            continue;
+        }
+    }
+    for (int i = 1; i <= n; i++) {
+        pro[i] = pro[i - 1] + a[i];
+        if ((i & 1) == 0 && pro[i] <= 0) {
+            res += Math.abs(1 - pro[i]);
+            pro[i] = 1;
+            continue;
+        }
+        if ((i & 1) == 1 && pro[i] >= 0) {
+            res += Math.abs(1 + pro[i]);
+            pro[i] = -1;
+            continue;
+        }
+    }
+    out.printLine(Math.min(res, ans));
+}

@@ -1,0 +1,27 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    char[] input = br.readLine().toCharArray();
+    HashMap<Character, Long> map = new HashMap<Character, Long>();
+    for (char c : input) {
+        Long i = map.get(c);
+        if (i == null) {
+            map.put(new Character(c), new Long(1));
+        } else {
+            map.put(new Character(c), new Long(i + 1));
+        }
+    }
+    int numberOfOdds = 0;
+    for (Map.Entry<Character, Long> e : map.entrySet()) {
+        if ((e.getValue() % 2) == 1) {
+            numberOfOdds += 1;
+        }
+    }
+    long pairs = (input.length - numberOfOdds) / 2;
+    long result;
+    if (numberOfOdds < 2) {
+        result = input.length;
+    } else {
+        result = 1 + (pairs / numberOfOdds * 2);
+    }
+    System.out.println(result);
+}

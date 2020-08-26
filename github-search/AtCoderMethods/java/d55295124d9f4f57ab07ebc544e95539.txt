@@ -1,0 +1,16 @@
+long solve(int n, int cm) {
+    if (answer[n][cm] != -1) {
+        return answer[n][cm];
+    }
+    if ((cm & mask) == mask) {
+        return answer[n][cm] = ten[n];
+    }
+    if (n == 0) {
+        return answer[n][cm] = 0;
+    }
+    answer[n][cm] = 0;
+    for (int i = 1; i <= 10; i++) {
+        answer[n][cm] += solve(n - 1, ((cm << i) + 1) & end);
+    }
+    return answer[n][cm] %= MiscUtils.MOD7;
+}

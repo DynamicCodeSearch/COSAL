@@ -1,0 +1,21 @@
+public void run() {
+    Scanner sc = new Scanner(System.in);
+    N = sc.nextInt();
+    Q = sc.nextInt();
+    ensui = new long[N][3];
+    for (int i = 0; i < N; i++) {
+        ensui[i][0] = sc.nextLong();
+        ensui[i][1] = sc.nextLong();
+        ensui[i][2] = sc.nextLong();
+    }
+    double[] ans = new double[Q];
+    for (int i = 0; i < Q; i++) {
+        int A = sc.nextInt();
+        int B = sc.nextInt();
+        ans[i] = solve(A, B);
+    }
+    for (int i = 0; i < Q; i++) {
+        System.out.println(ans[i]);
+    }
+    sc.close();
+}

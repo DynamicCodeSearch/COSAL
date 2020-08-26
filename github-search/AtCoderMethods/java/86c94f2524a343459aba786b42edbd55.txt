@@ -1,0 +1,31 @@
+public void run() {
+    try {
+        Scanner s = new Scanner();
+        String S = s.nextString();
+        HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+        for (int i = 0; i < S.length(); i++) {
+            if (map.containsKey(S.charAt(i))) {
+                map.put(S.charAt(i), map.get(S.charAt(i)) + 1);
+            } else {
+                map.put(S.charAt(i), 1);
+            }
+        }
+        int kisu = 0;
+        int pair = 0;
+        for (Character key : map.keySet()) {
+            pair += map.get(key) / 2;
+            if (map.get(key) % 2 == 1) {
+                kisu++;
+            }
+        }
+        int ret = 0;
+        if (kisu == 0) {
+            ret = S.length();
+        } else {
+            ret = pair / kisu * 2 + 1;
+        }
+        System.out.println(ret);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}

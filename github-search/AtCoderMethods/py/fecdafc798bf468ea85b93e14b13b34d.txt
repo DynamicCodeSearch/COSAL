@@ -1,0 +1,17 @@
+def solve(n, a_lst):
+    dic = {}
+
+    for i in range(1, n + 1, 2):
+        j = n - i
+        dic[j] = 1 if j == 0 else 2
+
+    for i in a_lst:
+        if i not in dic:
+            return 0
+
+        dic[i] -= 1
+
+        if dic[i] < 0:
+            return 0
+
+    return pow(2, n // 2) % (pow(10, 9) + 7)

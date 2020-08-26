@@ -1,0 +1,12 @@
+public static int dfs(HashMap<Integer, ArrayList<Integer>> sub, int id) {
+    ArrayList<Integer> list = sub.get(id);
+    if (list.size() == 0)
+        return 1;
+    int max = 0;
+    int min = Integer.MAX_VALUE;
+    for (int i : list) {
+        max = Math.max(max, dfs(sub, i));
+        min = Math.min(min, dfs(sub, i));
+    }
+    return max + min + 1;
+}

@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int N = scanner.nextInt();
+    int a = scanner.nextInt();
+    int b = scanner.nextInt();
+    int K = scanner.nextInt();
+    HashSet<Integer> hashSet = new HashSet<Integer>();
+    {
+        hashSet.add(a);
+        hashSet.add(b);
+    }
+    for (int i = 0; i < K; i++) {
+        int p = scanner.nextInt();
+        hashSet.add(p);
+    }
+    String answer = "NO";
+    if (hashSet.size() == K + 2) {
+        answer = "YES";
+    }
+    System.out.println(answer);
+}

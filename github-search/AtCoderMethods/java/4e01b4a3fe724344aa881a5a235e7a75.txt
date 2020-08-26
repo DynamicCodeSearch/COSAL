@@ -1,0 +1,39 @@
+public void solve() throws IOException {
+    int n = nextInt();
+    int[][] a = new int[n][n];
+    int[][] b = new int[n][n];
+    int[][] c = new int[n][n];
+    long ans = 0;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            a[i][j] = nextInt();
+            b[i][j] = a[i][j];
+        }
+    }
+    for (int k = 0; k < n; k++) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (a[i][j] < a[i][k] + a[k][j]) {
+                    c[i][j]++;
+                }
+                b[i][j] = Math.min(b[i][j], a[i][k] + a[k][j]);
+            }
+        }
+    }
+    boolean flag = false;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (a[i][j] != b[i][j]) {
+                flag = true;
+            }
+            if (c[i][j] == n - 2) {
+                ans += a[i][j];
+            }
+        }
+    }
+    if (flag) {
+        out.println(-1);
+    } else {
+        out.println(ans / 2);
+    }
+}

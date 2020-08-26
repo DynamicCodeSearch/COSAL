@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    int ansx = -1;
+    int ansy = -1;
+    int ansz = -1;
+    for (int x = 0; x <= N; x++) {
+        int y = (-2) * x + 4 * N - M;
+        int z = x + M - 3 * N;
+        if ((y >= 0) && (z >= 0)) {
+            ansx = x;
+            ansy = y;
+            ansz = z;
+            break;
+        }
+    }
+    System.out.println(ansx + " " + ansy + " " + ansz);
+}

@@ -1,0 +1,14 @@
+public void update(int queryStart, int queryEnd, int value) {
+    if (queryEnd < start || end < queryStart) {
+        return;
+    }
+    if (queryStart <= start && end <= queryEnd) {
+        cost += value;
+        updated += value;
+        return;
+    }
+    propagate();
+    for (Node node : nodes) {
+        node.update(queryStart, queryEnd, value);
+    }
+}

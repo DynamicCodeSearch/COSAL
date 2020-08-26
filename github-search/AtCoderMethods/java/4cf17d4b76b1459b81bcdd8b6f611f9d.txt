@@ -1,0 +1,8 @@
+private Tuple query(int a, int b, int k, int l, int r) {
+    if (r <= a || b <= l)
+        return new Tuple(Integer.MAX_VALUE, -1);
+    if (a <= l && r <= b)
+        return ts[k];
+    int mid = (l + r) / 2;
+    return query(a, b, k * 2 + 1, l, mid).min(query(a, b, k * 2 + 2, mid, r));
+}

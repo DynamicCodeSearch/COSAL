@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    HashMap<Integer, Long> map = new HashMap<Integer, Long>();
+    int N = sc.nextInt();
+    long K = sc.nextLong();
+    int ans = 0;
+    long sum = 0;
+    for (int i = 0; i < N; i++) {
+        int a = sc.nextInt();
+        long b = sc.nextLong();
+        if (map.containsKey(a)) {
+            map.put(a, map.get(a) + b);
+        } else {
+            map.put(a, b);
+        }
+    }
+    ArrayList<Integer> list = new ArrayList<>(map.keySet());
+    Collections.sort(list);
+    for (int i = 0; i < list.size(); i++) {
+        sum += map.get(list.get(i));
+        if (sum >= K) {
+            ans = list.get(i);
+            break;
+        }
+    }
+    System.out.println(ans);
+}

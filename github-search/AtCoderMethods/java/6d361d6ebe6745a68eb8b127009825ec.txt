@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String s = sc.next();
+    String word = "";
+    int N = s.length();
+    for (int i = 0; i < N; i++) {
+        int cnt = 1;
+        if (i == N - 1) {
+            word += String.valueOf(s.charAt(i)) + cnt;
+        }
+        for (int j = i + 1; j < N; j++) {
+            if (s.charAt(i) == s.charAt(j)) {
+                cnt++;
+                if (j == N - 1) {
+                    word += String.valueOf(s.charAt(i)) + cnt;
+                    System.out.println(word);
+                    return;
+                }
+            } else {
+                word += String.valueOf(s.charAt(i)) + cnt;
+                i += cnt - 1;
+                break;
+            }
+        }
+    }
+    System.out.println(word);
+}

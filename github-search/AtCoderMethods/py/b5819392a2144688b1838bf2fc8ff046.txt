@@ -1,0 +1,11 @@
+def main():
+    N, T = map(int, input().split())
+    TN = tuple(map(int, input().split()))
+
+    i = 0
+    t = 0
+    while i < N - 1:
+        t += min(TN[i+1] - TN[i], T)
+        i += 1
+
+    print(t + T)

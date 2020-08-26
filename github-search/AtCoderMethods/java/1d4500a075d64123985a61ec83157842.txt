@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int N = scan.nextInt();
+    Map<Integer, Set<Integer>> tree = new HashMap<>();
+    for (int i : IntStream.range(0, N - 1).toArray()) {
+        int a = Integer.parseInt(scan.next());
+        int b = Integer.parseInt(scan.next());
+        Set<Integer> map = tree.getOrDefault(a, new HashSet<>());
+        map.add(b);
+        tree.put(a, map);
+        map = tree.getOrDefault(b, new HashSet<>());
+        map.add(a);
+        tree.put(b, map);
+    }
+    int blackCount = bfs(tree, N);
+    if (blackCount > 0) {
+        System.out.println("Fennec");
+    } else {
+        System.out.println("Snuke");
+    }
+}

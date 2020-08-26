@@ -1,0 +1,10 @@
+String readString() throws IOException {
+    while (!tok.hasMoreTokens()) {
+        try {
+            tok = new StringTokenizer(in.readLine(), " :");
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    return tok.nextToken();
+}

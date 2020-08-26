@@ -1,0 +1,16 @@
+public void solve(FastScanner sc, PrintWriter out) throws IOException {
+    int x, y;
+    Integer[] groupA = { 1, 3, 5, 7, 8, 10, 12 };
+    Integer[] groupB = { 4, 6, 9, 11 };
+    int groupC = 2;
+    x = sc.nextInt();
+    y = sc.nextInt();
+    if (x == 2 || y == 2) {
+        out.println("No");
+        return;
+    }
+    if ((Arrays.asList(groupA).contains(x) && Arrays.asList(groupA).contains(y)) || (Arrays.asList(groupB).contains(x) && Arrays.asList(groupB).contains(y)))
+        out.println("Yes");
+    else
+        out.println("No");
+}

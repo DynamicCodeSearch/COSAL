@@ -1,0 +1,13 @@
+
+private static long remainder1(long n, long m) {
+    
+    BitSet bit = BitSet.valueOf(new long[] { n - 1 });
+    long remain = 1L;
+    for (int i = 0; i < remainders1.length; i++) {
+        
+        if (bit.get(i)) {
+            remain = (remain * remainders0[i] + remainders1[i]) % m;
+        }
+    }
+    return remain;
+}

@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int sx = sc.nextInt();
+    int sy = sc.nextInt();
+    int tx = sc.nextInt();
+    int ty = sc.nextInt();
+    String path = "";
+    for (int i = 0; i < tx - sx; i++) path = path + "R";
+    for (int i = 0; i < ty - sy; i++) path = path + "U";
+    for (int i = 0; i < tx - sx; i++) path = path + "L";
+    for (int i = 0; i < ty - sy; i++) path = path + "D";
+    path = path + "D";
+    for (int i = 0; i < tx - sx + 1; i++) path = path + "R";
+    for (int i = 0; i < ty - sy + 1; i++) path = path + "U";
+    path = path + "L";
+    path = path + "U";
+    for (int i = 0; i < tx - sx + 1; i++) path = path + "L";
+    for (int i = 0; i < ty - sy + 1; i++) path = path + "D";
+    path = path + "R";
+    System.out.println(path);
+}

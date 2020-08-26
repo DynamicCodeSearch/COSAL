@@ -1,0 +1,15 @@
+public static long cal(String s) {
+    
+    long r = 0;
+    if (!s.contains("+")) {
+        return Long.parseLong(s);
+    }
+    String[] m = s.split("\\+");
+    int size = m.length;
+    for (int i = 0; i < size; ++i) {
+        
+        long k = Long.parseLong(m[i]);
+        r += k;
+    }
+    return r;
+}

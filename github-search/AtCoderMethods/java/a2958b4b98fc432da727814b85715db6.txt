@@ -1,0 +1,9 @@
+long lcm(long[] p) {
+    long g = gcd(p[0], p[1]);
+    long l = (p[0] / g) * p[1];
+    for (int i = 2; i < p.length; i++) {
+        g = gcd(l, p[i]);
+        l = l / g * p[i];
+    }
+    return l;
+}

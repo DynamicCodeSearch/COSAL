@@ -1,0 +1,10 @@
+static void prec(int n) {
+    _fact = new long[n + 1];
+    _invfact = new long[n + 1];
+    _fact[0] = 1;
+    _invfact[0] = 1;
+    for (int i = 1; i <= n; i++) {
+        _fact[i] = _fact[i - 1] * i % MOD;
+        _invfact[i] = inv(_fact[i]);
+    }
+}

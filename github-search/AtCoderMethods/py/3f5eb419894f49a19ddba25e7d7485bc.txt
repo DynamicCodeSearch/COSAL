@@ -1,0 +1,15 @@
+def get_distance(start):
+    visited = set([start,])
+    distance = [999999999999999999 for _ in range(N)]
+    distance[start ] =0
+    to_visit = deque([ (1,a) for a in d[start]])
+
+    while to_visit:
+        dist,now = to_visit.popleft()
+        visited.add(now)
+        distance[now]=dist
+        for a in d[now]:
+            if a not in visited:
+                to_visit.append((dist+1,a))
+
+    return distance

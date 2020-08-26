@@ -1,0 +1,20 @@
+def main():
+    N = int(input())
+
+    d = collections.defaultdict(int)
+    for a in map(int, input().split()):
+        d[a] += 1
+
+
+    cands = filter(lambda item: item[1] >= 2, d.items())
+    l = sorted(cands, key=lambda item: item[0], reverse=True)
+
+
+    if len(l) == 0:
+        print(0)
+    elif len(l) == 1 and l[0][1] < 4:
+        print(0)
+    elif l[0][1] >= 4:
+        print(l[0][0] ** 2)
+    else:
+        print(l[0][0] * l[1][0])

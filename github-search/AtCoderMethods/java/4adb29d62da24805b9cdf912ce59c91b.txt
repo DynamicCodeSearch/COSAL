@@ -1,0 +1,16 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    String str = input.readLine();
+    String answer = "YES";
+    while (str.length() > 0) {
+        if (str.startsWith("ch")) {
+            str = str.substring(2);
+        } else if (str.startsWith("o") || str.startsWith("k") || str.startsWith("u")) {
+            str = str.substring(1);
+        } else {
+            answer = "NO";
+            break;
+        }
+    }
+    System.out.println(answer);
+}

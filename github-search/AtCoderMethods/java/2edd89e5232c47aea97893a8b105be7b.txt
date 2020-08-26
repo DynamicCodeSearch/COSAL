@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    int N = Integer.parseInt(scan.next());
+    int[] a = new int[N];
+    int total = 0;
+    for (int i = 0; i < N; i++) {
+        a[i] = Integer.parseInt(scan.next());
+        total += a[i];
+    }
+    int A1 = total / N;
+    int A2 = A1 + 1;
+    int score1 = 0;
+    int score2 = 0;
+    for (int i = 0; i < N; i++) {
+        score1 += (a[i] - A1) * (a[i] - A1);
+        score2 += (a[i] - A2) * (a[i] - A2);
+    }
+    System.out.println(Integer.min(score1, score2));
+    scan.close();
+}

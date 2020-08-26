@@ -1,0 +1,24 @@
+public int[] readIntArray(int n) {
+    int[] res = new int[n];
+    char[] all = this.readLine().toCharArray();
+    int cur = 0;
+    boolean have = false;
+    int k = 0;
+    boolean neg = false;
+    for (int i = 0; i < all.length; i++) {
+        if (all[i] >= '0' && all[i] <= '9') {
+            cur = cur * 10 + all[i] - '0';
+            have = true;
+        } else if (all[i] == '-') {
+            neg = true;
+        } else if (have) {
+            res[k++] = neg ? -cur : cur;
+            cur = 0;
+            have = false;
+            neg = false;
+        }
+    }
+    if (have)
+        res[k++] = neg ? -cur : cur;
+    return res;
+}

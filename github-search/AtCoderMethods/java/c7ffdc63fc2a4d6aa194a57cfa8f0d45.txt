@@ -1,0 +1,8 @@
+public int findParent() {
+    if (parent == -1) {
+        return id;
+    }
+    int p = c[parent].findParent();
+    parent = p;
+    return p;
+}

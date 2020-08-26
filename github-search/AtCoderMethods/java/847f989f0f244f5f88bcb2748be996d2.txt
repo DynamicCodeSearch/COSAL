@@ -1,0 +1,22 @@
+public static void main(String[] args) throws IOException {
+    try (Scanner sc = new Scanner(System.in)) {
+        final int n = sc.nextInt();
+        int[] alpha = new int[26];
+        Arrays.fill(alpha, Integer.MAX_VALUE);
+        for (int i = 0; i < n; i++) {
+            int[] inner_alpha = new int[26];
+            for (final char c : sc.next().toCharArray()) {
+                inner_alpha[c - 'a']++;
+            }
+            for (int j = 0; j < 26; j++) {
+                alpha[j] = Math.min(alpha[j], inner_alpha[j]);
+            }
+        }
+        for (int i = 0; i < 26; i++) {
+            for (int j = 0; j < alpha[i]; j++) {
+                System.out.print((char) (i + 'a'));
+            }
+        }
+        System.out.println();
+    }
+}

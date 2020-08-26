@@ -1,0 +1,10 @@
+private void dfs(int start, long d) {
+    if (seen[start])
+        return;
+    dist[start] = d;
+    seen[start] = true;
+    for (int i = 0; i < tree.get(start).size(); i++) {
+        Edge e = tree.get(start).get(i);
+        dfs(e.to, d + e.length);
+    }
+}

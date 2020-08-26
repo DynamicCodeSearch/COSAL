@@ -1,0 +1,20 @@
+public static void main(String[] args) throws IOException {
+    final Scanner sc = new Scanner(System.in);
+    final int N = sc.nextInt();
+    final int K = sc.nextInt();
+    String[] not_in = new String[K];
+    for (int i = 0; i < K; i++) {
+        not_in[i] = sc.next();
+    }
+    int answer = N;
+    LOOP: while (true) {
+        for (final String in : not_in) {
+            if (Integer.toString(answer).contains(in)) {
+                answer++;
+                continue LOOP;
+            }
+        }
+        System.out.println(answer);
+        break;
+    }
+}

@@ -1,0 +1,19 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int s = sc.nextInt();
+    int t = sc.nextInt();
+    int w = sc.nextInt();
+    long[] a = new long[n];
+    a[0] = w;
+    int day = 0;
+    for (int i = 1; i < n; i++) {
+        a[i] = sc.nextLong();
+        a[i] = a[i] + a[i - 1];
+    }
+    for (int i = 0; i < n; i++) {
+        if (s <= a[i] && a[i] <= t)
+            day++;
+    }
+    System.out.println(day);
+}

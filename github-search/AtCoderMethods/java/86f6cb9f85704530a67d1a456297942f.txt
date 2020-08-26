@@ -1,0 +1,41 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int n = Integer.parseInt(br.readLine());
+    String s = br.readLine();
+    if (s.length() % 2 == 0) {
+        System.out.println(-1);
+        return;
+    }
+    if (s.equals("b")) {
+        System.out.println(0);
+        return;
+    }
+    int center = s.length() / 2;
+    int ans = 0;
+    boolean isCreate = true;
+    for (int i = 1; i <= center; i++) {
+        if (i % 3 == 1) {
+            if (s.charAt(center - i) == 'a' && s.charAt(center + i) == 'c') {
+                ans++;
+            } else {
+                isCreate = false;
+                break;
+            }
+        } else if (i % 3 == 2) {
+            if (s.charAt(center - i) == 'c' && s.charAt(center + i) == 'a') {
+                ans++;
+            } else {
+                isCreate = false;
+                break;
+            }
+        } else if (i % 3 == 0) {
+            if (s.charAt(center - i) == 'b' && s.charAt(center + i) == 'b') {
+                ans++;
+            } else {
+                isCreate = false;
+                break;
+            }
+        }
+    }
+    System.out.println(isCreate ? ans : -1);
+}

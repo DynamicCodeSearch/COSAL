@@ -1,0 +1,11 @@
+def solve(n, a):
+    res = -10 ** 20
+    for i in range(n, 2 * n + 1):
+        l = a[0:i]
+        r = a[i:3 * n]
+        l.sort(reverse=True)
+        r.sort()
+        res0 = sum(l[0:n]) - sum(r[0:n])
+        if res0 > res:
+            res = res0
+    return res

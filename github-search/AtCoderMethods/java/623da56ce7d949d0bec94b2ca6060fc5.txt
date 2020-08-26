@@ -1,0 +1,40 @@
+public void solve() {
+    H = nextInt();
+    W = nextInt();
+    long ans = Long.MAX_VALUE;
+    for (int i = 1; i <= W; i++) {
+        long one = (long) i * H;
+        {
+            long two = (long) (W - i) * (H / 2);
+            long three = (long) H * W - one - two;
+            long max = Math.max(one, Math.max(two, three));
+            long min = Math.min(one, Math.min(two, three));
+            ans = Math.min(ans, max - min);
+        }
+        {
+            long two = (long) (W - i) / 2 * H;
+            long three = (long) H * W - one - two;
+            long max = Math.max(one, Math.max(two, three));
+            long min = Math.min(one, Math.min(two, three));
+            ans = Math.min(ans, max - min);
+        }
+    }
+    for (int i = 1; i <= H; i++) {
+        long one = (long) i * W;
+        {
+            long two = (long) (H - i) * (W / 2);
+            long three = (long) H * W - one - two;
+            long max = Math.max(one, Math.max(two, three));
+            long min = Math.min(one, Math.min(two, three));
+            ans = Math.min(ans, max - min);
+        }
+        {
+            long two = (long) (H - i) / 2 * W;
+            long three = (long) H * W - one - two;
+            long max = Math.max(one, Math.max(two, three));
+            long min = Math.min(one, Math.min(two, three));
+            ans = Math.min(ans, max - min);
+        }
+    }
+    out.println(ans);
+}

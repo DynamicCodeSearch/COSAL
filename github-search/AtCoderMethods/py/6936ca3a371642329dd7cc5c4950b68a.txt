@@ -1,0 +1,11 @@
+def bin_pow(a,n):
+    ans = 1
+    mag = a
+    while(n>0):
+        if n%2==0:
+            mag = (mag*mag)%INF
+            n /= 2
+        else:        
+            ans = ans* mag%INF
+            n -= 1
+    return ans

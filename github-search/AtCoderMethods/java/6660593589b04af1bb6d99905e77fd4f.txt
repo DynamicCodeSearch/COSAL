@@ -1,0 +1,27 @@
+public static void main(String[] args) throws IOException {
+    
+    FastScanner f = new FastScanner();
+    int n = f.nextInt();
+    int m = f.nextInt();
+    ArrayList<ArrayList<Integer>> boats = new ArrayList<ArrayList<Integer>>();
+    for (int i = 0; i < n; i++) {
+        boats.add(new ArrayList<Integer>());
+    }
+    for (int i = 0; i < m; i++) {
+        int a = f.nextInt() - 1;
+        int b = f.nextInt() - 1;
+        boats.get(a).add(b);
+        boats.get(b).add(a);
+    }
+    boolean exit = false;
+    for (int i = 0; i < boats.get(0).size(); i++) {
+        if (boats.get(boats.get(0).get(i)).contains(n - 1)) {
+            System.out.println("POSSIBLE");
+            exit = true;
+            break;
+        }
+    }
+    if (!exit) {
+        System.out.println("IMPOSSIBLE");
+    }
+}

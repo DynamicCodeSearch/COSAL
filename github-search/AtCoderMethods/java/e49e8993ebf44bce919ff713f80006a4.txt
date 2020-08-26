@@ -1,0 +1,17 @@
+void run() {
+    String a = sc.next();
+    String b = sc.next();
+    String c = sc.next();
+    String[] abc = new String[] { a, b, c };
+    int t = 0;
+    for (; ; ) {
+        String e = abc[t];
+        if (e.length() == 0) {
+            break;
+        }
+        int next = abc[t].charAt(0) - 'a';
+        abc[t] = abc[t].substring(1);
+        t = next;
+    }
+    System.out.println(new String[] { "A", "B", "C" }[t]);
+}

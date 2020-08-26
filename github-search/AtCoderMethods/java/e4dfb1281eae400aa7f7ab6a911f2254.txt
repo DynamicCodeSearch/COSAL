@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    long want = (long) 2e12;
+    long a = in.nextLong();
+    long k = in.nextLong();
+    if (k == 0) {
+        out.println(want - a);
+    } else {
+        int t = 0;
+        while (a < want) {
+            a += 1 + k * a;
+            t++;
+        }
+        out.println(t);
+    }
+    out.flush();
+}

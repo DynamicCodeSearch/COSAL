@@ -1,0 +1,24 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] param = br.readLine().split(" ");
+    Integer m = Integer.valueOf(param[0]);
+    Integer n = Integer.valueOf(param[1]);
+    Integer N = Integer.valueOf(param[2]);
+    Integer uriage = N;
+    Integer recycle = N / m;
+    recycle = recycle * n;
+    Integer amari = N % m;
+    uriage = uriage + recycle;
+    Integer sozai = recycle + amari;
+    while (true) {
+        recycle = sozai / m;
+        if (recycle == 0) {
+            break;
+        }
+        recycle = recycle * n;
+        amari = sozai % m;
+        uriage = uriage + recycle;
+        sozai = recycle + amari;
+    }
+    System.out.println(uriage);
+}

@@ -1,0 +1,9 @@
+void dfs(int now, int d, int[] dis) {
+    v[now] = true;
+    dis[now] = d;
+    for (int next : g[now]) {
+        if (v[next])
+            continue;
+        dfs(next, d + 1, dis);
+    }
+}

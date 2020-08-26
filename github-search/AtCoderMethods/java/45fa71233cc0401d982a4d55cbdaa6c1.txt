@@ -1,0 +1,15 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    int operationCount = in.readInt();
+    char[] array = in.readString().toCharArray();
+    int answer = 0;
+    int result = 0;
+    for (char c : array) {
+        if (c == 'I') {
+            answer += 1;
+        } else {
+            answer -= 1;
+        }
+        result = Math.max(result, answer);
+    }
+    out.printLine(result);
+}

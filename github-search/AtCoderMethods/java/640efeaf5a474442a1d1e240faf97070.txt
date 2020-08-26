@@ -1,0 +1,13 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    int[] a = new int[5];
+    for (int i = 0; i < 5; i++) {
+        a[i] = sc.nextInt();
+    }
+    Arrays.sort(a);
+    int ade = a[0] + a[3] + a[4];
+    int bce = a[1] + a[2] + a[4];
+    int bcd = a[1] + a[2] + a[3];
+    int ans = Math.max(bcd, Math.max(ade, bce));
+    System.out.println(ans);
+}

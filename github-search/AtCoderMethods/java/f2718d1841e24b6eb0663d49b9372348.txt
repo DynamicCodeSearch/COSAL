@@ -1,0 +1,11 @@
+int lowerBound(int[] xs, int key) {
+    int low = -1, high = xs.length;
+    while (high - low > 1) {
+        int mid = (low + high) / 2;
+        if (xs[mid] >= key)
+            high = mid;
+        else
+            low = mid;
+    }
+    return low + 1;
+}

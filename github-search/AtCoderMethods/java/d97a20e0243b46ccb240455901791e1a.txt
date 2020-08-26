@@ -1,0 +1,43 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    
+    String[] ss0 = br.readLine().trim().split(" ", 0);
+    int H = Integer.parseInt(ss0[0]);
+    int W = Integer.parseInt(ss0[1]);
+    
+    
+    
+    
+    
+    
+    
+    String s = "";
+    int kabe = 1;
+    
+    char[][] c = new char[H + (kabe * 2)][W + (kabe * 2)];
+    for (int i = 0; i < H; i++) {
+        s = br.readLine();
+        for (int j = 0; j < W; j++) {
+            c[i + kabe][j + kabe] = s.charAt(j);
+        }
+    }
+    for (int i = 0; i < H + 2; i++) {
+        for (int j = 0; j < W + 2; j++) {
+            if (i == 0) {
+                c[i][j] = '#';
+            }
+            if (j == 0) {
+                c[i][j] = '#';
+            }
+            if (i == H + 1) {
+                c[i][j] = '#';
+            }
+            if (j == W + 1) {
+                c[i][j] = '#';
+            }
+        }
+    }
+    
+    checkInput(c);
+    return;
+}

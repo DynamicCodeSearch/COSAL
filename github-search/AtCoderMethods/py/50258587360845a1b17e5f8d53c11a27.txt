@@ -1,0 +1,8 @@
+def compute(s):
+    board = [c == "W" for c in s]
+    n = len(board)
+    ans = 0
+    for i in range(1, n):
+        if board[i] != board[i - 1]:
+            ans += 1
+    return ans

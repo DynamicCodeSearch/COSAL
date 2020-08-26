@@ -1,0 +1,17 @@
+public static BigInteger pow(BigInteger base, BigInteger exp) {
+    if (exp.equals(new BigInteger(String.valueOf(0)))) {
+        return new BigInteger(String.valueOf(1));
+    }
+    if (exp.equals(new BigInteger(String.valueOf(1))))
+        return base;
+    BigInteger temp = exp.divide(new BigInteger(String.valueOf(2)));
+    BigInteger val = pow(base, temp);
+    BigInteger result = val.multiply(val);
+    result = result.remainder(new BigInteger(String.valueOf(MOD)));
+    BigInteger AND = exp.and(new BigInteger(String.valueOf(1)));
+    if (AND.equals(new BigInteger(String.valueOf(1)))) {
+        result = result.multiply(base);
+        result = result.remainder(new BigInteger(String.valueOf(MOD)));
+    }
+    return result;
+}

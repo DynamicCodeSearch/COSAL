@@ -1,0 +1,17 @@
+
+void solve() {
+    int n = io.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = io.nextInt();
+    }
+    long mincost = Long.MAX_VALUE;
+    for (int val = -100; val <= 100; val++) {
+        long cost = 0;
+        for (int i = 0; i < n; i++) {
+            cost += (a[i] - val) * (a[i] - val);
+        }
+        mincost = Math.min(cost, mincost);
+    }
+    io.println(mincost);
+}

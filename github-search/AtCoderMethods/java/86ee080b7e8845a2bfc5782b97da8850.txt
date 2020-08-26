@@ -1,0 +1,28 @@
+int[] suffixArray(String s) {
+    int n = s.length();
+    Integer[] sa = new Integer[n + 1];
+    int[] rank = new int[n + 1];
+    int[] tmp = new int[n + 1];
+    for (int i = 0; i <= n; i++) {
+        sa[i] = i;
+        rank[i] = (i < n ? s.charAt(i) : -1);
+    }
+    for (int k = 1; k <= n; k *= 2) {
+        int d = k;
+        Arrays.sort(sa, new Comparator<Integer>() {
+
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return compare_sa(o1, o2, rank, d, n);
+            }
+        });
+        tmp[sa[0]] = 0;
+        for (int i = 1; i <= n; i++) {
+            tmp[sa[i]] = tmp[sa[i - 1]] + (compare_sa(sa[i - 1], sa[i], rank, k, n) == -1 ? 1 : 0);
+        }
+        for (int i = 0; i <= n; i++) {
+            rank[i] = tmp[i];
+        }
+    }
+    return rank;
+}

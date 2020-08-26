@@ -1,0 +1,17 @@
+long solve2(long H, long W) {
+    long ans = INF;
+    if (H >= 3) {
+        long s = W * (H % 3 > 0 ? 1 : 0);
+        ans = min(ans, s);
+    }
+    for (int h = 1; h <= H / 2; h++) {
+        long h1 = h;
+        long h2 = H - h;
+        long a1 = W * h1;
+        long a2 = h2 * (W / 2);
+        long a3 = h2 * (W / 2 + W % 2);
+        long s = max(max(a1, a2), a3) - min(min(a1, a2), a3);
+        ans = min(ans, s);
+    }
+    return ans;
+}

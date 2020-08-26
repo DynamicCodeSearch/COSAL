@@ -1,0 +1,64 @@
+
+
+
+
+
+
+
+
+
+
+
+static void solve() {
+    gen = new Random(100000);
+    int n = ni();
+    int[] a = na(n);
+    int z = 100005;
+    Node[] stack = new Node[z];
+    int sp = 0;
+    long[] vals = new long[z];
+    for (int i = 0; i < n; i++) {
+        
+        if (a[i] > 0) {
+            stack[sp++] = new Node(a[i]);
+            vals[sp - 1] = 0;
+        } else if (a[i] == 0) {
+            long nv = vals[sp - 2] + vals[sp - 1];
+            if (count(stack[sp - 2]) < count(stack[sp - 1])) {
+                nv += countLess(stack[sp - 2], stack[sp - 1]);
+            } else {
+                nv += countMore(stack[sp - 1], stack[sp - 2]);
+            }
+            Node un = mergeX(stack[sp - 2], stack[sp - 1]);
+            sp--;
+            sp--;
+            stack[sp++] = un;
+            vals[sp - 1] = nv % mod;
+        
+        } else if (a[i] < 0) {
+            long num = (long) (-a[i]) * (-a[i] - 1) / 2 % mod;
+            
+            vals[sp - 1] = (vals[sp - 1] * (-a[i]) + (stack[sp - 1].val * stack[sp - 1].val - stack[sp - 1].val2) % mod * i2 % mod * num) % mod;
+            if (vals[sp - 1] < 0)
+                vals[sp - 1] += mod;
+            
+            mul(stack[sp - 1], -a[i]);
+        
+        }
+    }
+    while (sp > 1) {
+        long nv = vals[sp - 2] + vals[sp - 1];
+        if (count(stack[sp - 2]) < count(stack[sp - 1])) {
+            nv += countLess(stack[sp - 2], stack[sp - 1]);
+        } else {
+            nv += countMore(stack[sp - 1], stack[sp - 2]);
+        }
+        
+        Node un = mergeX(stack[sp - 2], stack[sp - 1]);
+        sp--;
+        sp--;
+        stack[sp++] = un;
+        vals[sp - 1] = nv % mod;
+    }
+    out.println(vals[0]);
+}

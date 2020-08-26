@@ -1,0 +1,34 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String in = sc.nextLine();
+    String[] inArray = in.split(" ");
+    int allBlock = Integer.parseInt(inArray[0]);
+    int blueBlock = Integer.parseInt(inArray[1]);
+    String[] blockArray = new String[allBlock];
+    for (int i = 0; i < allBlock; i++) {
+        if (i == (blueBlock - 1)) {
+            blockArray[i] = "b";
+        } else {
+            blockArray[i] = "r";
+        }
+    }
+    int count = 0;
+    int index = blueBlock - 1;
+    if (blueBlock > (allBlock / 2)) {
+        while (index < (allBlock - 1)) {
+            blockArray[index] = "r";
+            blockArray[index + 1] = "b";
+            index++;
+            count++;
+        }
+    } else {
+        while (index > 0) {
+            blockArray[index] = "r";
+            blockArray[index - 1] = "b";
+            index--;
+            count++;
+        }
+    }
+    System.out.println(count);
+    sc.close();
+}

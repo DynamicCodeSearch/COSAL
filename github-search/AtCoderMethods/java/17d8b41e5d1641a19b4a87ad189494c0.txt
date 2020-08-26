@@ -1,0 +1,22 @@
+static void solve() {
+    int[] x = new int[3];
+    int[] y = new int[3];
+    x[0] = sc.nextInt();
+    y[0] = sc.nextInt();
+    int r = sc.nextInt();
+    x[1] = sc.nextInt();
+    y[1] = sc.nextInt();
+    x[2] = sc.nextInt();
+    y[2] = sc.nextInt();
+    if ((x[1] <= x[0] - r && x[0] + r <= x[2]) && (y[1] <= y[0] - r && y[0] + r <= y[2])) {
+        out.println("NO");
+    } else {
+        out.println("YES");
+    }
+    if (dist(x[0] - x[1], y[0] - y[1]) < r * r && dist(x[0] - x[2], y[0] - y[1]) < r * r && dist(x[0] - x[1], y[0] - y[2]) < r * r && dist(x[0] - x[2], y[0] - y[2]) < r * r) {
+        out.println("NO");
+    } else {
+        out.println("YES");
+    }
+    out.flush();
+}

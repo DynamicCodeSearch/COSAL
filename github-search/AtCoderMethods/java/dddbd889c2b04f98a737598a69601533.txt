@@ -1,0 +1,45 @@
+
+
+
+
+
+public static void main(String[] args) throws Exception, IOException {
+    Reader sc = new Reader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    
+    int n = sc.nextInt();
+    int[] c = new int[3 * n];
+    long[] right = new long[3 * n];
+    long[] left = new long[3 * n];
+    int tn = 3 * n;
+    PriorityQueue<Integer> que = new PriorityQueue<Integer>();
+    for (int i = 0; i < n * 3; i++) {
+        c[i] = sc.nextInt();
+    }
+    for (int i = 0; i < 2 * n; i++) {
+        que.add(c[i]);
+        left[i] = c[i];
+        if (i > 0)
+            left[i] += left[i - 1];
+        if (i >= n) {
+            left[i] -= que.poll();
+        }
+    }
+    que.clear();
+    for (int i = 0; i < 2 * n; i++) {
+        int t = 3 * n - i - 1;
+        que.add(-c[t]);
+        right[t] = c[t];
+        if (i > 0)
+            right[t] += right[t + 1];
+        if (i >= n) {
+            right[t] += que.poll();
+        }
+    }
+    long ans = left[n - 1] - right[n];
+    for (int i = n; i < 2 * n; i++) {
+        ans = max(ans, left[i] - right[i + 1]);
+    }
+    out.println(ans);
+    out.flush();
+}

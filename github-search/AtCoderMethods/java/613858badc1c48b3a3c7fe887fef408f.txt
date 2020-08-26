@@ -1,0 +1,19 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] params = br.readLine().split(" ");
+    Integer A = Integer.valueOf(params[0]);
+    Integer B = Integer.valueOf(params[1]);
+    Integer C = Integer.valueOf(params[2]);
+    Integer K = Integer.valueOf(params[3]);
+    String[] params2 = br.readLine().split(" ");
+    Integer S = Integer.valueOf(params2[0]);
+    Integer T = Integer.valueOf(params2[1]);
+    Integer childSum = A * S;
+    Integer adultSum = B * T;
+    Integer amount = childSum + adultSum;
+    Integer all = S + T;
+    if (all >= K) {
+        amount = amount - (all * C);
+    }
+    System.out.println(amount);
+}

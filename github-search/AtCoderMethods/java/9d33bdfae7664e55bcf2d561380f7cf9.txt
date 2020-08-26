@@ -1,0 +1,19 @@
+public static void main(String[] args) throws Exception {
+    int w = sc.nextInt();
+    int h = sc.nextInt();
+    for (int i = 2; i < 3000; i++) {
+        if (w % i == 0 && h % i == 0) {
+            w /= i;
+            h /= i;
+            i--;
+        }
+    }
+    if (w == 16) {
+        out.println("16:9");
+    } else {
+        out.println("4:3");
+    }
+    out.flush();
+    sc.close();
+    out.close();
+}

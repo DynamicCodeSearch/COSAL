@@ -1,0 +1,7 @@
+public boolean get(int at) {
+    int big = at >>> 6;
+    if (big >= bits.length) {
+        return false;
+    }
+    return ((bits[big] >>> (at & 63)) & 1) == 1;
+}

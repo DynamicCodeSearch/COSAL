@@ -1,0 +1,32 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    String str = input.readLine();
+    int n = Integer.parseInt(str);
+    String[][] list = new String[n][];
+    long[] t = new long[n];
+    long[] a = new long[n];
+    for (int i = 0; i < n; i++) {
+        str = input.readLine();
+        list[i] = str.split(" ");
+        t[i] = Long.parseLong(list[i][0]);
+        a[i] = Long.parseLong(list[i][1]);
+    }
+    long tans = t[0];
+    long aans = a[0];
+    for (int i = 1; i < n; i++) {
+        for (long j = 1; j < (long) Math.pow(10, 18); ) {
+            if (tans <= t[i] * j && aans <= a[i] * j) {
+                tans = t[i] * j;
+                aans = a[i] * j;
+                break;
+            } else if (tans < t[i] * j && aans > a[i] * j) {
+                j = (long) Math.max(j + 1, (aans / a[i]));
+            } else if (tans > t[i] * j && aans < a[i] * j) {
+                j = (long) Math.max(j + 1, (tans / t[i]));
+            } else {
+                j = (long) Math.max(j + 1, Math.max((tans / t[i]), (aans / a[i])));
+            }
+        }
+    }
+    System.out.println(tans + aans);
+}

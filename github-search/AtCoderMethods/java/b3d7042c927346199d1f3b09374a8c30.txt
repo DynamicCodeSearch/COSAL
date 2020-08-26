@@ -1,0 +1,41 @@
+public static void main(String[] args) {
+    BufferedReader in = null;
+    String line = "";
+    String result = "";
+    try {
+        in = new BufferedReader(new InputStreamReader(System.in));
+        line = in.readLine();
+        String x = line.split(" ")[0];
+        String y = line.split(" ")[1];
+        HashMap<String, String> group = new HashMap<String, String>();
+        group.put("1", "A");
+        group.put("3", "A");
+        group.put("5", "A");
+        group.put("7", "A");
+        group.put("8", "A");
+        group.put("10", "A");
+        group.put("12", "A");
+        group.put("4", "B");
+        group.put("6", "B");
+        group.put("9", "B");
+        group.put("11", "B");
+        group.put("2", "C");
+        String xGroup = group.get(x);
+        String yGroup = group.get(y);
+        if (xGroup.equals(yGroup)) {
+            result = "Yes";
+        } else {
+            result = "No";
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+        result = "Error!";
+    } finally {
+        try {
+            in.close();
+        } catch (Exception e) {
+            result = "Error!";
+        }
+        System.out.println(result);
+    }
+}

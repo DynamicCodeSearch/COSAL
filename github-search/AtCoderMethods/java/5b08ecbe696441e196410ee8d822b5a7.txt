@@ -1,0 +1,30 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    
+    String[] ss0 = br.readLine().trim().split(" ", 0);
+    int W = Integer.parseInt(ss0[0]);
+    int a = Integer.parseInt(ss0[1]);
+    int b = Integer.parseInt(ss0[2]);
+    if ((a <= b) && (b <= a + W)) {
+        System.out.println(0);
+        return;
+    }
+    if ((a <= b + W) && (b + W <= a + W)) {
+        System.out.println(0);
+        return;
+    }
+    if ((b <= a) && (a <= b + W)) {
+        System.out.println(0);
+        return;
+    }
+    if ((b <= a + W) && (a + W <= b + W)) {
+        System.out.println(0);
+        return;
+    }
+    int x = Math.abs(b - (a + W));
+    int y = Math.abs(a - (b + W));
+    
+    x = (x < y) ? x : y;
+    System.out.println(x);
+    return;
+}

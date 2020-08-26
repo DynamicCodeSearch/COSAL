@@ -1,0 +1,24 @@
+public static void main(String[] args) throws Exception {
+    Scanner s = new Scanner(System.in);
+    String line = s.next();
+    Map<Character, Integer> map = new HashMap<>();
+    for (char c : line.toCharArray()) {
+        map.put(c, map.getOrDefault(c, 0) + 1);
+    }
+    int c1 = 0, c2 = 0;
+    for (int v : map.values()) {
+        c1 += v % 2;
+        c2 += v / 2;
+    }
+    int x = 0;
+    if (c1 < 2) {
+        x = c2 * 2 + c1;
+    } else if (c2 % c1 == 0) {
+        x = 1 + (c2 / c1) * 2;
+    } else if (c2 < c1) {
+        x = 1;
+    } else {
+        x = c2 / c1 * 2 + 1;
+    }
+    System.out.println(x);
+}

@@ -1,0 +1,7 @@
+void update(int k, long value) {
+    seg[k += N - 1] = value;
+    while (k > 0) {
+        k = (k - 1) / 2;
+        seg[k] = Math.max(seg[k * 2 + 1], seg[k * 2 + 2]);
+    }
+}

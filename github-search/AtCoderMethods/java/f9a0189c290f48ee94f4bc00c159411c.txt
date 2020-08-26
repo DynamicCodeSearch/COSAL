@@ -1,0 +1,24 @@
+public static void main(String[] args) throws java.lang.Exception {
+    Scanner in = new Scanner(System.in);
+    int n = in.nextInt();
+    int[] nums = new int[n];
+    int sum = 0;
+    for (int i = 0; i < n; i++) {
+        nums[i] = in.nextInt();
+        sum += nums[i];
+    }
+    if (sum % n != 0) {
+        System.out.println(-1);
+    } else {
+        int avg = sum / n;
+        int answer = 0;
+        int sumsofar = 0;
+        for (int i = 0; i < n; i++) {
+            if (sumsofar != i * avg) {
+                answer++;
+            }
+            sumsofar += nums[i];
+        }
+        System.out.println(answer);
+    }
+}

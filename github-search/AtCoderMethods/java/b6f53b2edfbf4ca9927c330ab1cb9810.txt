@@ -1,0 +1,75 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] color = new int[N];
+    int[] dist = new int[N];
+    color[0] = 1;
+    color[N - 1] = -1;
+    ArrayList[] edge = new ArrayList[N];
+    for (int i = 0; i < N; i++) {
+        edge[i] = new ArrayList<Integer>();
+    }
+    for (int i = 0; i < N - 1; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        edge[a].add(b);
+        edge[b].add(a);
+    }
+    LinkedList<Integer> bque = new LinkedList<Integer>();
+    LinkedList<Integer> wque = new LinkedList<Integer>();
+    bque.add(0);
+    wque.add(N - 1);
+    int count = 0;
+    while ((bque.size() > 0) || (wque.size() > 0)) {
+        if (bque.size() > 0) {
+            boolean flg = true;
+            while (flg && (bque.size() > 0)) {
+                int v = bque.peek();
+                if (dist[v] == count) {
+                    bque.poll();
+                    ArrayList<Integer> e = edge[v];
+                    for (int i = 0; i < e.size(); i++) {
+                        int u = e.get(i);
+                        if (color[u] == 0) {
+                            color[u] = 1;
+                            bque.add(u);
+                            dist[u] = count + 1;
+                        }
+                    }
+                } else {
+                    flg = false;
+                }
+            }
+        }
+        if (wque.size() > 0) {
+            boolean flg = true;
+            while (flg && (wque.size() > 0)) {
+                int v = wque.peek();
+                if (dist[v] == count) {
+                    wque.poll();
+                    ArrayList<Integer> e = edge[v];
+                    for (int i = 0; i < e.size(); i++) {
+                        int u = e.get(i);
+                        if (color[u] == 0) {
+                            color[u] = -1;
+                            wque.add(u);
+                            dist[u] = count + 1;
+                        }
+                    }
+                } else {
+                    flg = false;
+                }
+            }
+        }
+        count++;
+    }
+    int x = 0;
+    for (int i = 0; i < N; i++) {
+        if (color[i] == 1)
+            x++;
+    }
+    String ans = "Snuke";
+    if (x > N - x)
+        ans = "Fennec";
+    System.out.println(ans);
+}

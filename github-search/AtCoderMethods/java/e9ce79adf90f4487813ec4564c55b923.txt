@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    int[] a = in.nextInts(n);
+    int[] x = new int[100001];
+    for (int i = 0; i < a.length; i++) {
+        x[a[i]]++;
+    }
+    int kind = 0;
+    int parity = 0;
+    for (int i = 1; i < x.length; i++) {
+        if (x[i] >= 1) {
+            kind++;
+            if (x[i] % 2 == 0) {
+                parity ^= 1;
+            }
+        }
+    }
+    out.println(kind - parity);
+    out.flush();
+}

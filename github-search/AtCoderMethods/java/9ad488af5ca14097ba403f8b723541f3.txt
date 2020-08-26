@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int n = scan.nextInt();
+    int q = scan.nextInt();
+    int[][] intArray = new int[q][3];
+    int[] showArray = new int[n];
+    for (int i = 0; i < q; i++) {
+        for (int j = 0; j < 3; j++) {
+            int c = scan.nextInt();
+            intArray[i][j] = c;
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        showArray[i] = 0;
+    }
+    for (int i = 0; i < q; i++) {
+        for (int j = intArray[i][0] - 1; j < intArray[i][1]; j++) {
+            showArray[j] = intArray[i][2];
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        System.out.println(showArray[i]);
+    }
+    scan.close();
+}

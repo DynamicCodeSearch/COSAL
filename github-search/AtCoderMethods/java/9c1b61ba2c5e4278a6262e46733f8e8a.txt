@@ -1,0 +1,12 @@
+static void dfs(int now, int num, boolean[] reach) {
+    if (num == N - 1) {
+        count++;
+        return;
+    }
+    for (Integer v : al.get(now)) {
+        reach[now] = true;
+        if (!reach[v])
+            dfs(v, num + 1, reach);
+        reach[now] = false;
+    }
+}

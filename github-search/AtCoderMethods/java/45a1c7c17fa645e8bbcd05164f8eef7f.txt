@@ -1,0 +1,22 @@
+public static void main(String[] args) throws Exception {
+    java.util.Scanner sc = new java.util.Scanner(System.in);
+    int N = sc.nextInt();
+    int L = sc.nextInt();
+    sc.nextLine();
+    String[] rows = new String[L];
+    for (int i = 0; i < L; i++) {
+        rows[i] = sc.nextLine();
+        debug(rows[i]);
+    }
+    String last = sc.nextLine();
+    int index = last.indexOf('o');
+    for (int i = L - 1; i >= 0; i--) {
+        debug(index);
+        if (index > 0 && rows[i].charAt(index - 1) == '-') {
+            index -= 2;
+        } else if (index < rows[i].length() - 1 && rows[i].charAt(index + 1) == '-') {
+            index += 2;
+        }
+    }
+    System.out.println(index / 2 + 1);
+}

@@ -1,0 +1,9 @@
+public int find(int x) {
+    if (data[x] == x)
+        return x;
+    int t = find(data[x]);
+    data[x] = t;
+    cnt[x] = Math.max(cnt[x], cnt[t]);
+    cnt[t] = Math.max(cnt[x], cnt[t]);
+    return data[x];
+}

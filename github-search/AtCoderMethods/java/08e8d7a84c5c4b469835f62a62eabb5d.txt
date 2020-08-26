@@ -1,0 +1,8 @@
+long g(long x, long g, long M) {
+    if (x == 0)
+        return 0;
+    if (x % 2 == 1)
+        return (mod_pow(10, g, M) * g(x - 1, g, M) + 1) % M;
+    else
+        return g(x / 2, g, M) * (1 + mod_pow(10, g * x / 2, M)) % M;
+}

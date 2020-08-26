@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int T = sc.nextInt();
+    int time = 0;
+    int start_time = -1;
+    int stop_time = -1;
+    for (int i = 0; i < N; ++i) {
+        int t = sc.nextInt();
+        if (t > stop_time) {
+            time += stop_time - start_time;
+            start_time = t;
+            stop_time = t + T;
+        } else {
+            stop_time = t + T;
+        }
+    }
+    time += stop_time - start_time;
+    System.out.println(time);
+}

@@ -1,0 +1,11 @@
+static void dfs(int v, int t, int p, int[] parent) {
+    parent[v] = p;
+    if (v == t) {
+        return;
+    }
+    for (int w : graph.get(v)) {
+        if (w != p) {
+            dfs(w, t, v, parent);
+        }
+    }
+}

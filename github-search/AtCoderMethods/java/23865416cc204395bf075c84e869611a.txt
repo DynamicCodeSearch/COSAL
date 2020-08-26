@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int N = scanner.nextInt();
+    List<Integer>[] followers = new List[N + 1];
+    for (int i = 1; i < N + 1; i++) {
+        followers[i] = new ArrayList();
+    }
+    for (int i = 2; i < N + 1; i++) {
+        int B = scanner.nextInt();
+        followers[B].add(i);
+    }
+    int[] salaries = new int[N + 1];
+    for (int i = N; i > 0; i--) {
+        int salary = 1;
+        if (followers[i].size() > 0) {
+            int max = 0;
+            int min = Integer.MAX_VALUE;
+            for (int follower : followers[i]) {
+                max = Math.max(max, salaries[follower]);
+                min = Math.min(min, salaries[follower]);
+            }
+            salary += max + min;
+        }
+        salaries[i] = salary;
+    }
+    System.out.println(salaries[1]);
+}

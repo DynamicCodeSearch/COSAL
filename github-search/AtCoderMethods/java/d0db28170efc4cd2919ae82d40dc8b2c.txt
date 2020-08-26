@@ -1,0 +1,9 @@
+public int power(int a, int b) {
+    int ret = 1;
+    for (int bitMask = 1; bitMask <= b; bitMask <<= 1) {
+        if ((b & bitMask) != 0)
+            ret = multiple(ret, a);
+        a = multiple(a, a);
+    }
+    return ret;
+}

@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    InputReader r = new InputReader(System.in);
+    char[] arr = r.next().toCharArray();
+    for (int len = 2; len <= Math.min(arr.length, 50); len++) {
+        for (int i = 0; i < arr.length; i++) {
+            int[] cnt = new int[26];
+            boolean can = true;
+            for (int j = i; j < i + len; j++) {
+                if (j >= arr.length) {
+                    can = false;
+                    break;
+                }
+                cnt[arr[j] - 'a']++;
+            }
+            if (can) {
+                int max = -1;
+                for (int x = 0; x < 26; x++) max = Math.max(cnt[x], max);
+                if (max > len / 2) {
+                    System.out.println((i + 1) + " " + (i + len));
+                    return;
+                }
+            }
+        }
+    }
+    System.out.println("-1 -1");
+}

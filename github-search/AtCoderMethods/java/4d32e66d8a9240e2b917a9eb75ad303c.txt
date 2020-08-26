@@ -1,0 +1,16 @@
+void solve() throws IOException {
+    int n = ni();
+    G = new ArrayList<>();
+    for (int i = 0; i < n; i++) {
+        G.add(new ArrayList<>());
+    }
+    for (int i = 0; i < n - 1; i++) {
+        int a = ni() - 1;
+        int b = ni() - 1;
+        G.get(a).add(b);
+        G.get(b).add(a);
+    }
+    dp = new long[n][2];
+    used = new boolean[n];
+    out.println(rec(0)[0]);
+}

@@ -1,0 +1,14 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    String str = input.readLine();
+    int n = Integer.parseInt(str);
+    String[] abc = { "a", "b", "c" };
+    String print = "";
+    for (int i = 0; i < Math.pow(3, n); i++) {
+        for (int j = 0; j < n; j++) {
+            print = abc[(i / (int) Math.pow(3, j)) % 3] + print;
+        }
+        System.out.println(print);
+        print = "";
+    }
+}

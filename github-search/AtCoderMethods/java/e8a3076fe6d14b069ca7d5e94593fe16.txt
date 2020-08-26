@@ -1,0 +1,23 @@
+public static void canReachGoalRec(int time, int x, int r, int c, char[][] visited) {
+    if (time > t) {
+        return;
+    }
+    if (r == goalr && c == goalc) {
+        canReachGoal = true;
+        return;
+    }
+    
+    if (canReachGoal) {
+        return;
+    }
+    for (int i = 0; i < 4; i++) {
+        int newr = r + dx[i];
+        int newc = c + dy[i];
+        if (0 <= newr && newr < h && 0 <= newc && newc < w && visited[newr][newc] == '\0') {
+            int addt = map[newr][newc] == '#' ? x : 1;
+            visited[newr][newc] = '1';
+            canReachGoalRec(time + addt, x, newr, newc, visited);
+            visited[newr][newc] = '\0';
+        }
+    }
+}

@@ -1,0 +1,14 @@
+def solve(N, s):
+    n_sum = sum(s)
+    s_sorted = sorted(s)
+    if n_sum % 10 != 0:
+        ans = n_sum
+    else:
+        for n in s_sorted:
+            if (n_sum - n) % 10 != 0:
+                ans = n_sum - n
+                break
+        else:
+            ans = 0
+
+    return ans

@@ -1,0 +1,12 @@
+def isWell(t):
+	xr = x[0] + t / c[0]
+ xl = x[0] - t / c[0]
+ yr = y[0] + t / c[0]
+ yl = y[0] - t / c[0]
+ for i in range(1, n):
+		xr = min(xr, x[i] + t / c[i])
+  xl = max(xl, x[i] - t / c[i])
+  yr = min(yr, y[i] + t / c[i])
+  yl = max(yl, y[i] - t / c[i])
+ tmp = (xr > xl and yr > yl)
+ return tmp

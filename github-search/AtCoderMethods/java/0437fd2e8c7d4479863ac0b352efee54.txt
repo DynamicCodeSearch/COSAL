@@ -1,0 +1,32 @@
+private static int bt(boolean[][] e, Deque<Integer> st, int pos, int cnt) {
+    
+    if (st.size() == e[0].length - 1) {
+        return cnt + 1;
+    }
+    int bef = st.peek();
+    Deque<Integer> lst = new ArrayDeque<Integer>();
+    for (int i = 1; i < e[bef].length; i++) {
+        if (e[bef][i] && !st.contains(i)) {
+            lst.push(i);
+        
+        
+        }
+    }
+    
+    for (int j = 0; j < lst.size(); ) {
+        int next = lst.pop();
+        st.push(next);
+        cnt = bt(e, st, next, cnt);
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        st.pop();
+    }
+    return cnt;
+}

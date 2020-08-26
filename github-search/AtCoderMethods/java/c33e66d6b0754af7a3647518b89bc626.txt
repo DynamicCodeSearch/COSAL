@@ -1,0 +1,12 @@
+public void solve(int testNumber, Scanner in, PrintWriter out) {
+    int n = in.nextInt();
+    int[] a = new int[3 * n];
+    for (int i = 0; i < 3 * n; ++i) a[i] = in.nextInt();
+    long[] front = getFront(a, n);
+    long[] back = getBack(a, n);
+    long res = Long.MIN_VALUE;
+    for (int i = n - 1; i < 2 * n; ++i) {
+        res = Math.max(res, front[i] - back[i + 1]);
+    }
+    out.println(res);
+}

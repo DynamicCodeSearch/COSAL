@@ -1,0 +1,14 @@
+def solve():
+    N, K = map(int, input().split())
+    A = [int(i) for i in input().split()]
+    ans, tmp = 0, 0
+
+    for i in range(N - K + 1):
+        if i == 0:
+            tmp = sum(A[:K])
+            ans += tmp
+        else:
+            tmp += A[i + K - 1] - A[i - 1]
+            ans += tmp
+
+    print(ans)

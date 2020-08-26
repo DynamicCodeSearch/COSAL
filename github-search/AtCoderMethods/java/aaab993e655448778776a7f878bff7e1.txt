@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    double p = sc.nextDouble();
+    double l = 0;
+    double r = 150;
+    while (r - l >= 1e-9) {
+        double x1 = (l * 2 + r) / 3;
+        double x2 = (l + r * 2) / 3;
+        
+        if (f(p, x1) < f(p, x2)) {
+            r = x2;
+        } else {
+            l = x1;
+        }
+    }
+    System.out.println(String.format("%.9f", f(p, (l + r) / 2)));
+}

@@ -1,0 +1,36 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String s = sc.next();
+    int t = sc.nextInt();
+    int L = 0;
+    int R = 0;
+    int U = 0;
+    int D = 0;
+    int Q = 0;
+    for (int i = 0; i < s.length(); i++) {
+        char com = s.charAt(i);
+        if (com == 'L')
+            L++;
+        if (com == 'R')
+            R++;
+        if (com == 'U')
+            U++;
+        if (com == 'D')
+            D++;
+        if (com == '?')
+            Q++;
+    }
+    if (t == 1) {
+        int max = Math.max(L, R) - Math.min(L, R) + Math.max(U, D) - Math.min(U, D) + Q;
+        System.out.println(max);
+    } else if (t == 2) {
+        int min = Math.max(L, R) - Math.min(L, R) + Math.max(U, D) - Math.min(U, D) - Q;
+        if (min >= 0) {
+            System.out.println(min);
+        } else if (min % 2 == -1) {
+            System.out.println(1);
+        } else {
+            System.out.println(0);
+        }
+    }
+}

@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    long n = sc.nextLong(), T = sc.nextLong(), pret = -T, t;
+    long ans = 0;
+    for (int i = 0; i < n; i++) {
+        t = sc.nextLong();
+        ans += T;
+        if (t - pret < T) {
+            ans -= T - (t - pret);
+        }
+        pret = t;
+    }
+    System.out.println(ans);
+}

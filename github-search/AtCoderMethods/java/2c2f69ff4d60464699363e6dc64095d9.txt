@@ -1,0 +1,11 @@
+long c2(int num, int size) {
+    if (ncr2[num][size] != -1)
+        return ncr2[num][size];
+    long ans = 1;
+    int nn = num;
+    while (nn > 0) {
+        ans = mod(ans * ncr(nn, size));
+        nn -= size;
+    }
+    return ncr2[num][size] = div(ans, fact[num / size]);
+}

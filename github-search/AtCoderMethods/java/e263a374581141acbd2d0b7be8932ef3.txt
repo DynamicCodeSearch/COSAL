@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    long[] x = new long[n];
+    long[] y = new long[m];
+    for (int i = 0; i < n; i++) {
+        x[i] = sc.nextLong();
+    }
+    for (int j = 0; j < m; j++) {
+        y[j] = sc.nextLong();
+    }
+    long widthSum = 0, heightSum = 0;
+    for (int i = 0; i < n; i++) {
+        
+        widthSum += i * x[i] - (n - 1 - i) * x[i];
+        widthSum %= (1000000000 + 7);
+    }
+    for (int j = 0; j < m; j++) {
+        heightSum += j * y[j] - (m - 1 - j) * y[j];
+        heightSum %= (1000000000 + 7);
+    }
+    long res = (widthSum * heightSum) % (1000000000 + 7);
+    System.out.println(res);
+}

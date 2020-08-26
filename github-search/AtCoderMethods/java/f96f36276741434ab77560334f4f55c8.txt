@@ -1,0 +1,14 @@
+public static void main(String[] args) throws IOException {
+    Scanner scanner = new Scanner(System.in);
+    String string = scanner.next();
+    int k = scanner.nextInt();
+    HashSet<String> hSet = new HashSet<>();
+    for (int i = 0; i < string.length() - k + 1; i++) {
+        hSet.add(string.substring(i, k + i));
+    }
+    if (hSet.size() == 0) {
+        System.out.println(0);
+    } else {
+        System.out.println(hSet.size());
+    }
+}

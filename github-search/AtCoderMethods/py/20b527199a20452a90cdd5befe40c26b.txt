@@ -1,0 +1,14 @@
+def main():
+
+    n=int(input())
+    array=list(map(int,input().split()))
+
+    answer=INF
+
+    for a in range(-100,101):
+        temp=0
+        for b in array:
+            temp+=(a-b)**2
+        if temp<answer:
+            answer=temp
+    print(answer)

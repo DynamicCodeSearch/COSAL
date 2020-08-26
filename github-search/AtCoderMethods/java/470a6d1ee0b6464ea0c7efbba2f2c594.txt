@@ -1,0 +1,16 @@
+int dinic_dfs(int u, int f) {
+    if (u == tank)
+        return f;
+    for (; ptr[u] < g[u].size(); ptr[u]++) {
+        Edge e = g[u].get(ptr[u]);
+        if (dist[e.to] == dist[u] + 1 && e.flow < e.cap) {
+            int df = dinic_dfs(e.to, Math.min(f, e.cap - e.flow));
+            if (df > 0) {
+                e.flow += df;
+                e.rev.flow -= df;
+                return df;
+            }
+        }
+    }
+    return 0;
+}

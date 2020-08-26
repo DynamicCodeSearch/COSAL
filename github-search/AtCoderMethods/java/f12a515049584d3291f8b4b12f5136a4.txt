@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    int S = Math.abs(a - b);
+    int Count = 0;
+    while (S != 0) {
+        while (S >= 10) {
+            S = S - 10;
+            Count++;
+        }
+        if (S >= 5 && S < 8) {
+            Count = Count + S - 4;
+            S = 0;
+        } else if (S > 7) {
+            Count = Count + 11 - S;
+            S = 0;
+        } else if (S < 3) {
+            Count = Count + S;
+            S = 0;
+        } else if (S < 5 && S > 2) {
+            Count = Count + 6 - S;
+            S = 0;
+        }
+    }
+    System.out.println(Count);
+}

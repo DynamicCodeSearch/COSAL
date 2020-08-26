@@ -1,0 +1,15 @@
+def kruskal():
+    sorted_edges = sorted(Edges, key=lambda edges: edges.cost)
+    init(V)
+    res = 0
+
+
+
+    for i in range(0, E):
+        tmp_edge = sorted_edges[i]
+        if not same(tmp_edge.u, tmp_edge.v):
+            unite(tmp_edge.u, tmp_edge.v)
+
+            res += tmp_edge.cost
+
+    return res

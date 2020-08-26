@@ -1,0 +1,11 @@
+public void dfs(int water, int suger) {
+    if (water * 100 + suger > F)
+        return;
+    if (memo[water][suger])
+        return;
+    memo[water][suger] = true;
+    dfs(water + A, suger);
+    dfs(water + B, suger);
+    dfs(water, suger + C);
+    dfs(water, suger + D);
+}

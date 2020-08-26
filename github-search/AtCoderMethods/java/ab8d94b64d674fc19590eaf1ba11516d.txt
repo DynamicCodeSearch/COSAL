@@ -1,0 +1,38 @@
+private void solve(Scanner sc, PrintWriter out) {
+    N = sc.nextInt();
+    M = sc.nextInt();
+    List<Triple<Integer>> roadList = new ArrayList<>();
+    for (int i = 0; i < M; ++i) {
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        int y = sc.nextInt();
+        roadList.add(new Triple<Integer>(y, a, b));
+    }
+    Q = sc.nextInt();
+    List<Triple<Integer>> personList = new ArrayList<>();
+    for (int i = 0; i < Q; ++i) {
+        int v = sc.nextInt();
+        int w = sc.nextInt();
+        personList.add(new Triple<Integer>(w, i, v));
+    }
+    Collections.sort(roadList);
+    Collections.reverse(roadList);
+    Collections.sort(personList);
+    Collections.reverse(personList);
+    UnionFind uf = new UnionFind(N);
+    int[] count = new int[Q];
+    int roadIdx = 0;
+    for (int i = 0; i < Q; ++i) {
+        int year = personList.get(i).a;
+        int p = personList.get(i).b;
+        int city = personList.get(i).c;
+        while (roadIdx < M && roadList.get(roadIdx).a > year) {
+            uf.union(roadList.get(roadIdx).b, roadList.get(roadIdx).c);
+            ++roadIdx;
+        }
+        count[p] = uf.groupSize(city);
+    }
+    for (int cnt : count) {
+        out.println(cnt);
+    }
+}

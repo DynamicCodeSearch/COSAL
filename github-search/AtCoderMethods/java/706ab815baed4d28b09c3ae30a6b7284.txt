@@ -1,0 +1,38 @@
+public static Node[] dijkstra(int n, int start, double[][] matrix) {
+    boolean[] defnode = new boolean[n];
+    Node[] cost = new Node[n];
+    for (int i = 0; i < n; i++) {
+        defnode[i] = false;
+        cost[i] = new Node();
+    }
+    cost[start].cost = 0;
+    int node = start;
+    int counter = 0;
+    while (true) {
+        counter++;
+        if (counter == n || node == Integer.MAX_VALUE)
+            return cost;
+        defnode[node] = true;
+        for (int i = 0; i < n; i++) {
+            if (defnode[i])
+                continue;
+            if (matrix[node][i] == Double.MAX_VALUE)
+                continue;
+            if ((cost[node].cost + matrix[node][i]) < cost[i].cost) {
+                cost[i].cost = cost[node].cost + matrix[node][i];
+                cost[i].before = node;
+            }
+        }
+        int minnode = Integer.MAX_VALUE;
+        Double mincost = Double.MAX_VALUE;
+        for (int i = 0; i < n; i++) {
+            if (defnode[i])
+                continue;
+            if (cost[i].cost < mincost) {
+                minnode = i;
+                mincost = cost[i].cost;
+            }
+        }
+        node = minnode;
+    }
+}

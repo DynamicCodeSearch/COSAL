@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] n = new int[N];
+    int ans = 0;
+    for (int i = 0; i < N; i++) {
+        n[i] = sc.nextInt();
+    }
+    for (int i = 0; i < N - 1; i++) {
+        if (n[i] == i + 1) {
+            int a = n[i];
+            n[i] = n[i + 1];
+            n[i + 1] = a;
+            ans++;
+        }
+    }
+    if (n[N - 1] == N) {
+        ans++;
+    }
+    System.out.println(ans);
+}

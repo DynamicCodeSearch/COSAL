@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    
+    int n = sc.nextInt();
+    int ret = 1000000;
+    int tmp = 0;
+    int other = 0;
+    for (int i = 1; i * i <= n; i++) {
+        other = (int) Math.floor(n / i);
+        tmp = Math.abs(other - i) + (n - other * i);
+        if (tmp < ret)
+            ret = tmp;
+    }
+    
+    System.out.println(ret);
+}

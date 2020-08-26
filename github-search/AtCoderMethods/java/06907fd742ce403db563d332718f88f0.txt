@@ -1,0 +1,40 @@
+public static void main(String[] args) {
+    int inf = 100000 * 1000;
+    Scanner sc = new Scanner(System.in);
+    int[][] dist = new int[200][200];
+    int[][] dp = new int[1 << 8][8];
+    int[] r = new int[8];
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    int R = sc.nextInt();
+    for (int i = 0; i < R; i++) {
+        r[i] = sc.nextInt();
+        r[i]--;
+    }
+    for (int i = 0; i < n; i++) for (int j = 0; j < n; j++) dist[i][j] = inf;
+    for (int i = 0; i < n; i++) dist[i][i] = 0;
+    for (int i = 0; i < m; i++) {
+        int a, b, c;
+        a = sc.nextInt();
+        b = sc.nextInt();
+        c = sc.nextInt();
+        a--;
+        b--;
+        dist[a][b] = dist[b][a] = c;
+    }
+    for (int k = 0; k < n; k++) for (int i = 0; i < n; i++) for (int j = 0; j < n; j++) {
+        dist[i][j] = Math.min(dist[i][j], dist[i][k] + dist[k][j]);
+    }
+    for (int i = 0; i < (1 << R); i++) for (int j = 0; j < R; j++) dp[i][j] = inf;
+    for (int i = 0; i < R; i++) dp[1 << i][i] = 0;
+    for (int i = 0; i < (1 << R); i++) for (int k = 0; k < R; k++) if ((i & (1 << k)) != 0) {
+        for (int j = 0; j < R; j++) if ((i & (1 << j)) == 0) {
+            dp[i | 1 << j][j] = Math.min(dp[i | 1 << j][j], dp[i][k] + dist[r[k]][r[j]]);
+        }
+    }
+    int ans = inf;
+    for (int j = 0; j < R; j++) {
+        ans = Math.min(ans, dp[(1 << R) - 1][j]);
+    }
+    System.out.println(ans);
+}

@@ -1,0 +1,26 @@
+public void exec() throws IOException {
+    InputUtil in = new InputUtil();
+    PrintWriter out = new PrintWriter(System.out);
+    String str = in.br.readLine();
+    long K = Long.parseLong(str);
+    int N = 50;
+    long[] a = new long[N];
+    Arrays.fill(a, 49);
+    long sho = K / N;
+    int amari = (int) (K % N);
+    for (int i = 0; i < N; i++) {
+        if (i < amari) {
+            a[i] = 100 - amari + sho;
+        } else {
+            a[i] = 49 - amari + sho;
+        }
+    }
+    out.println(N);
+    for (int i = 0; i < N; i++) {
+        if (i > 0)
+            out.print(" ");
+        out.print(a[i]);
+    }
+    out.println("");
+    out.flush();
+}

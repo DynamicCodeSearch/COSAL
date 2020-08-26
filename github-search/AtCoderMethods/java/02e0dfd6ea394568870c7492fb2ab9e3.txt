@@ -1,0 +1,28 @@
+static public void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    n = sc.nextInt();
+    m = sc.nextInt();
+    distances = new long[n][n];
+    connected = new boolean[n][n];
+    used = new boolean[n][n];
+    for (int i = 0; i < m; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        long c = sc.nextLong();
+        distances[a][b] = c;
+        distances[b][a] = c;
+        connected[a][b] = true;
+        connected[b][a] = true;
+    }
+    for (int i = 0; i < n; i++) {
+        start(i);
+    }
+    int count = 0;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < i; j++) {
+            if (connected[i][j] && !used[i][j])
+                count++;
+        }
+    }
+    System.out.println(count);
+}

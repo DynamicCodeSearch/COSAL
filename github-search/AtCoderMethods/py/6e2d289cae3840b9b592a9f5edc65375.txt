@@ -1,0 +1,18 @@
+def bits2ranges(bits):
+    start = None
+    end   = None
+    in_range = False
+
+    for i, bit in enumerate(bits):
+        if bit:
+            if not in_range:
+                start    = 5*i
+                in_range = True
+        else:
+            if in_range:
+                end      = 5*i
+                yield (start, end)
+                in_range = False
+
+    if in_range:
+        yield (start, 24*60)

@@ -1,0 +1,29 @@
+
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    dp = new long[n];
+    edge = new ArrayList[n];
+    cost = new ArrayList[n];
+    for (int i = 0; i < n; i++) {
+        edge[i] = new ArrayList<Integer>();
+        cost[i] = new ArrayList<Long>();
+    }
+    for (int i = 0; i < n - 1; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        long c = sc.nextLong();
+        cost[a].add(c);
+        cost[b].add(c);
+        edge[a].add(b);
+        edge[b].add(a);
+    }
+    int Q = sc.nextInt();
+    int K = sc.nextInt() - 1;
+    dfs(K, -1);
+    for (int i = 0; i < Q; i++) {
+        int x = sc.nextInt() - 1;
+        int y = sc.nextInt() - 1;
+        System.out.println(dp[x] + dp[y]);
+    }
+}

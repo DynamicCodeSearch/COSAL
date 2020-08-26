@@ -1,0 +1,28 @@
+public static void dfs(char[][] maze, int nowX, int nowY) {
+    if (maze[nowY][nowX] == 'G') {
+        System.out.println(count);
+        matched = true;
+        return;
+    } else if (maze[nowY][nowX] == '%') {
+        return;
+    } else {
+        maze[nowY][nowX] = '%';
+        if (checkWall(maze, nowX + 1, nowY)) {
+            countQueue.offer(nowX + 1);
+            countQueue.offer(nowY);
+        }
+        if (checkWall(maze, nowX, nowY + 1)) {
+            countQueue.offer(nowX);
+            countQueue.offer(nowY + 1);
+        }
+        if (checkWall(maze, nowX - 1, nowY)) {
+            countQueue.offer(nowX - 1);
+            countQueue.offer(nowY);
+        }
+        if (checkWall(maze, nowX, nowY - 1)) {
+            countQueue.offer(nowX);
+            countQueue.offer(nowY - 1);
+        }
+        return;
+    }
+}

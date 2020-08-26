@@ -1,0 +1,35 @@
+public static void main(String[] args) {
+    int h = sc.nextInt();
+    int w = sc.nextInt();
+    int n = sc.nextInt();
+    int[] a = sc.nextIntList(n);
+    int[][] table = new int[h + 2][w + 2];
+    int nowY = 1;
+    int nowX = 0;
+    for (int i = 1; i <= n; i++) {
+        int v = a[i - 1];
+        for (int j = 0; j < v; j++) {
+            if (nowY % 2 == 1) {
+                nowX++;
+            } else {
+                nowX--;
+            }
+            if (nowX == 0) {
+                nowX++;
+                nowY++;
+            } else if (nowX == w + 1) {
+                nowX--;
+                nowY++;
+            }
+            table[nowY][nowX] = i;
+        }
+    }
+    for (int i = 1; i <= h; i++) {
+        StringBuilder sb = new StringBuilder();
+        for (int j = 1; j <= w; j++) {
+            sb.append(table[i][j]);
+            sb.append(" ");
+        }
+        System.out.println(sb.substring(0, sb.length() - 1));
+    }
+}

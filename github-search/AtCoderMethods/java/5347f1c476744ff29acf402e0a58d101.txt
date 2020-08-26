@@ -1,0 +1,14 @@
+public static long nPickK(long n, long k) {
+    if (n < k) {
+        return 0;
+    }
+    BigInteger bi = new BigInteger("1");
+    for (int i = 0; i < k; i++) {
+        BigInteger m = new BigInteger(String.valueOf(n - i));
+    }
+    for (int i = 2; i <= k; i++) {
+        bi.divide(new BigInteger(String.valueOf(i)));
+    }
+    bi.mod(new BigInteger(String.valueOf(1000000007)));
+    return Long.parseLong(bi.toString());
+}

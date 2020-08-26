@@ -1,0 +1,20 @@
+
+public List<Integer> getPrimeFactor(int n) {
+    if (!isListed(n + 1)) {
+        addPrime(n + 1);
+    }
+    int a = n;
+    List<Integer> list = new ArrayList<>();
+    for (int i = 0; i < this.list.size(); i++) {
+        int b = this.list.get(i);
+        if (a % b == 0) {
+            list.add(b);
+            i--;
+            a /= b;
+        }
+        if (a < b) {
+            break;
+        }
+    }
+    return list;
+}

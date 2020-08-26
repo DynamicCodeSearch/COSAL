@@ -1,0 +1,45 @@
+public static void main(String[] args) {
+    try {
+        
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+        String s = br.readLine();
+        String t = br.readLine();
+        boolean res = true;
+        for (int i = 0; i < s.length(); i++) {
+            String sTmp = s.substring(i, i + 1);
+            String tTmp = t.substring(i, i + 1);
+            if (sTmp.equals(tTmp)) {
+                continue;
+            } else if ("@".equals(sTmp)) {
+                if (isCheck1(tTmp)) {
+                    continue;
+                } else if ("@".equals(tTmp)) {
+                    continue;
+                } else {
+                    res = false;
+                    break;
+                }
+            } else if ("@".equals(tTmp)) {
+                if (isCheck1(sTmp)) {
+                    continue;
+                } else if ("@".equals(sTmp)) {
+                    continue;
+                } else {
+                    res = false;
+                    break;
+                }
+            } else {
+                res = false;
+                break;
+            }
+        }
+        if (res) {
+            System.out.println("You can win");
+        } else {
+            System.out.println("You will lose");
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

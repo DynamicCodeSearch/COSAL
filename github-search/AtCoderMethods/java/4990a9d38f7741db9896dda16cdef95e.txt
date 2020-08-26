@@ -1,0 +1,11 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    int N = in.readInt();
+    ArrayList<Pair<Integer, Integer>> list = new ArrayList<>();
+    for (int i = 0; i < N; i++) {
+        list.add(Pair.makePair(-in.readInt(), i + 1));
+    }
+    Collections.sort(list);
+    for (int i = 0; i < N; i++) {
+        out.printLine(list.get(i).second);
+    }
+}

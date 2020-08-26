@@ -1,0 +1,53 @@
+@Override
+public void readInput() throws IOException {
+    int N = scanner.nextInt();
+    int Ma = scanner.nextInt();
+    int Mb = scanner.nextInt();
+    int[] countA = new int[N];
+    int[] countB = new int[N];
+    int[] prices = new int[N];
+    for (int i = 0; i < N; i++) {
+        
+        countA[i] = scanner.nextInt();
+        
+        countB[i] = scanner.nextInt();
+        
+        prices[i] = scanner.nextInt();
+    }
+    
+    int INT_MAX = Integer.MAX_VALUE / 4;
+    int MAX = 10 * N + 1;
+    int[][] A = new int[MAX][MAX];
+    for (int i = 0; i < A.length; i++) {
+        Arrays.fill(A[i], INT_MAX);
+    }
+    A[0][0] = 0;
+    for (int i = 0; i < N; i++) {
+        int[][] A2 = A.clone();
+        for (int j = MAX - 1; j >= 0; j--) {
+            for (int j2 = MAX - 1; j2 >= 0; j2--) {
+                if (A[j][j2] < INT_MAX) {
+                    int jNew = j + countA[i];
+                    int j2New = j2 + countB[i];
+                    A2[jNew][j2New] = Math.min(A2[jNew][j2New], A[j][j2] + prices[i]);
+                }
+            }
+        }
+        A = A2;
+    }
+    int bestPrice = INT_MAX;
+    for (int i = 1; i < MAX; i++) {
+        for (int j = 1; j < MAX; j++) {
+            if (A[i][j] >= INT_MAX)
+                continue;
+            if (i * Mb == Ma * j) {
+                bestPrice = Math.min(bestPrice, A[i][j]);
+            }
+        }
+    }
+    if (bestPrice == INT_MAX) {
+        res = "-1";
+        return;
+    }
+    res = "" + bestPrice;
+}

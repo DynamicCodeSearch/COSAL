@@ -1,0 +1,48 @@
+public void run() {
+    try {
+        Scanner s = new Scanner();
+        String string = s.nextString();
+        String[] kenban = string.split("");
+        int index = 0;
+        int index2 = 1;
+        if (!kenban[index].equals(kenban[index2])) {
+            int count = 0;
+            while (true) {
+                index += 2;
+                index2 += 2;
+                if (kenban[index].equals("W") && kenban[index2].equals("B")) {
+                    count++;
+                } else {
+                    break;
+                }
+            }
+            if (count == 0) {
+                
+                if (kenban[index + 6].equals("B")) {
+                    System.out.println("Re");
+                } else {
+                    System.out.println("La");
+                }
+            } else if (count == 1) {
+                
+                if (kenban[index + 6].equals("B")) {
+                    System.out.println("Do");
+                } else {
+                    System.out.println("So");
+                }
+            } else {
+                System.out.println("Fa");
+            }
+        } else {
+            
+            if (kenban[6].equals("W")) {
+                System.out.println("Si");
+            } else {
+                System.out.println("Mi");
+            }
+        }
+    
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}

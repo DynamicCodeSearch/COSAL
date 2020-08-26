@@ -1,0 +1,55 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int y = scanner.nextInt() - 1, x = scanner.nextInt() - 1;
+    String w = scanner.next();
+    int[][] table = new int[9][9];
+    for (int i = 0; i < 9; i++) {
+        String s = scanner.next();
+        for (int j = 0; j < 9; j++) {
+            table[i][j] = Character.digit(s.charAt(j), 10);
+        }
+    }
+    int dx = 0, dy = 0;
+    switch(w) {
+        case "R":
+            dy = 1;
+            break;
+        case "L":
+            dy = -1;
+            break;
+        case "U":
+            dx = -1;
+            break;
+        case "D":
+            dx = 1;
+            break;
+        case "RU":
+            dy = 1;
+            dx = -1;
+            break;
+        case "RD":
+            dy = 1;
+            dx = 1;
+            break;
+        case "LU":
+            dy = -1;
+            dx = -1;
+            break;
+        case "LD":
+            dy = -1;
+            dx = 1;
+    }
+    String result = "";
+    for (int i = 0; i < 4; i++) {
+        result += String.valueOf(table[x][y]);
+        if (x + dx < 0 || 9 <= x + dx) {
+            dx *= -1;
+        }
+        if (y + dy < 0 || 9 <= y + dy) {
+            dy *= -1;
+        }
+        x += dx;
+        y += dy;
+    }
+    System.out.println(result);
+}

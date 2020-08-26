@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] c = new int[N];
+    for (int i = 0; i < N; i++) {
+        c[i] = sc.nextInt();
+    }
+    int[] d = new int[N];
+    for (int i = 0; i < N; i++) {
+        int count = 0;
+        for (int j = 0; j < N; j++) {
+            if ((j != i) && (c[i] % c[j] == 0))
+                count++;
+        }
+        d[i] = count;
+    }
+    double expect = 0;
+    for (int i = 0; i < N; i++) {
+        if (d[i] % 2 == 1) {
+            expect += 0.5;
+        } else {
+            expect += (double) (d[i] + 2) / (double) (2 * (d[i] + 1));
+        }
+    }
+    System.out.println(expect);
+}

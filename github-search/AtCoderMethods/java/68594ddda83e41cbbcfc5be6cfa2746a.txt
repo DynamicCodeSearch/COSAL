@@ -1,0 +1,37 @@
+private static void solve() {
+    int n = sc.nextInt();
+    int ww = sc.nextInt();
+    int[] w = new int[n];
+    int[] v = new int[n];
+    for (int i = 0; i < n; i++) {
+        w[i] = sc.nextInt();
+        v[i] = sc.nextInt();
+    }
+    NavigableMap<Long, Long> tm = new TreeMap<>();
+    tm.put(0L, 0L);
+    for (int i = 0; i < n; i++) {
+        NavigableMap<Long, Long> tmp = new TreeMap<>(tm);
+        for (Entry<Long, Long> e : tm.entrySet()) {
+            long nw = e.getKey() + w[i];
+            long nv = e.getValue() + v[i];
+            if (nw > ww) {
+                break;
+            }
+            Long tmpv = tmp.get(nw);
+            if (tmpv != null) {
+                if (tmpv < nv) {
+                    tmp.put(nw, nv);
+                }
+            } else {
+                tmp.put(nw, nv);
+            }
+        }
+        tm = tmp;
+    }
+    long ret = 0;
+    for (long e : tm.values()) {
+        ret = Math.max(ret, e);
+    }
+    pr.println(ret);
+
+}

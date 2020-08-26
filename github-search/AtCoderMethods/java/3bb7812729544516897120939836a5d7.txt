@@ -1,0 +1,13 @@
+String next() throws IOException {
+    int c;
+    str.setLength(0);
+    while ((c = nextChar()) <= 32 && c != -1) ;
+    if (c == -1) {
+        return null;
+    }
+    while (c > 32) {
+        str.append((char) c);
+        c = nextChar();
+    }
+    return str.toString();
+}

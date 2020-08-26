@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int n = scanner.nextInt();
+    HashMap<Integer, Integer> list = new HashMap<Integer, Integer>();
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = scanner.nextInt();
+    }
+    int[] b = a.clone();
+    Arrays.sort(b);
+    int rank = 0;
+    for (int i = 0; i < n; i++) {
+        if (!(list.containsKey(b[i]))) {
+            list.put(b[i], rank);
+            rank++;
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        System.out.println(list.get(a[i]));
+    }
+}

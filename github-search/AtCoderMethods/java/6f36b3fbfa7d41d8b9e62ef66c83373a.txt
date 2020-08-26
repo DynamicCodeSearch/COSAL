@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    StdIn in = new StdIn();
+    int n = in.nextInt();
+    int[] a = in.readIntArray(n);
+    int cnt1 = 0, cnt2 = 0, cnt4 = 0;
+    for (int i = 0; i < n; ++i) if (a[i] % 4 == 0)
+        ++cnt4;
+    else if (a[i] % 2 == 0)
+        ++cnt2;
+    else
+        ++cnt1;
+    if (cnt2 == 0)
+        System.out.println(cnt1 <= cnt4 + 1 ? "Yes" : "No");
+    else
+        System.out.println(cnt1 <= cnt4 ? "Yes" : "No");
+}

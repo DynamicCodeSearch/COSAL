@@ -1,0 +1,8 @@
+def naive_solve(self):
+    sums = [0]
+    for num in self.s:
+        sums.extend([s + num for s in sums])
+    for r in sorted(sums, reverse=True):
+        if r % 10:
+            return r
+    return 0

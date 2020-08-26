@@ -1,0 +1,13 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    long A = in.nextLong();
+    long B = in.nextLong();
+    long M = in.nextLong();
+    long g = gcd(A, B);
+    long left = solve(A, g, M);
+    long right = solve(B, 1, M);
+    long ans = (left * right) % M;
+    out.println(ans);
+    out.flush();
+}

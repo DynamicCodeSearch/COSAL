@@ -1,0 +1,111 @@
+public static void main(String[] args) throws Exception {
+    Long h = new Long(0);
+    Long w = new Long(0);
+    try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
+        String line;
+        while ((line = br.readLine()) != null) {
+            String[] tokens = line.split(" ");
+            h = Long.valueOf(tokens[0]);
+            w = Long.valueOf(tokens[1]);
+        }
+    }
+    Long min = Long.MAX_VALUE;
+    if (h % 3 == 0 || w % 3 == 0) {
+        System.out.println(0);
+        return;
+    }
+    if (w > h) {
+        min = h;
+    } else {
+        min = w;
+    }
+    long hStart = (h / 2) - 1;
+    if (hStart < 0) {
+        hStart = 1;
+    }
+    long hLast = (h / 2) + 2;
+    if (hLast > h) {
+        hLast = h;
+    }
+    long wStart = (w / 2) - 1;
+    if (wStart < 0) {
+        wStart = 1;
+    }
+    long wLast = (w / 2) + 2;
+    if (wLast > w) {
+        wLast = w;
+    }
+    for (long i = hStart; i < hLast; i++) {
+        for (long j = 2 * w / 3; j <= w; j++) {
+            long maxArea = 0;
+            long minArea = 0;
+            long area1 = i * j;
+            long area2 = (h - i) * j;
+            long area3 = (w - j) * h;
+            if (area1 > area2) {
+                if (area3 > area1) {
+                    maxArea = area3;
+                } else {
+                    maxArea = area1;
+                }
+                if (area2 > area3) {
+                    minArea = area3;
+                } else {
+                    minArea = area2;
+                }
+            } else {
+                if (area2 > area3) {
+                    maxArea = area2;
+                } else {
+                    maxArea = area3;
+                }
+                if (area1 > area3) {
+                    minArea = area3;
+                } else {
+                    minArea = area1;
+                }
+            }
+            long diff = maxArea - minArea;
+            if (min > diff) {
+                min = diff;
+            }
+        }
+    }
+    for (long i = 2 * h / 3; i <= h; i++) {
+        for (long j = wStart; j < wLast; j++) {
+            long maxArea = 0;
+            long minArea = 0;
+            long area1 = i * j;
+            long area2 = (h - i) * w;
+            long area3 = (w - j) * i;
+            if (area1 > area2) {
+                if (area3 > area1) {
+                    maxArea = area3;
+                } else {
+                    maxArea = area1;
+                }
+                if (area2 > area3) {
+                    minArea = area3;
+                } else {
+                    minArea = area2;
+                }
+            } else {
+                if (area2 > area3) {
+                    maxArea = area2;
+                } else {
+                    maxArea = area3;
+                }
+                if (area1 > area3) {
+                    minArea = area3;
+                } else {
+                    minArea = area1;
+                }
+            }
+            long diff = maxArea - minArea;
+            if (min > diff) {
+                min = diff;
+            }
+        }
+    }
+    System.out.println(min);
+}

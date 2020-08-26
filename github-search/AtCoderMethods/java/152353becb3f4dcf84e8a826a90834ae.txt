@@ -1,0 +1,12 @@
+private static boolean match(char[] c, int tail, String str) {
+    int l = str.length();
+    if (tail - (l - 1) < 0) {
+        return false;
+    }
+    for (int i = 0; i < l; i++) {
+        if (c[tail - i] != str.charAt(l - i - 1)) {
+            return false;
+        }
+    }
+    return true;
+}

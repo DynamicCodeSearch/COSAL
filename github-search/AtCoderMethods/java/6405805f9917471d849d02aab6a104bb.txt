@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[] a = new int[n];
+    int[] cos = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = sc.nextInt();
+    }
+    cos[1] = Math.abs(a[1] - a[0]);
+    for (int c = 2; c < n; c++) {
+        if (cos[c - 1] + Math.abs(a[c] - a[c - 1]) < cos[c - 2] + Math.abs(a[c] - a[c - 2])) {
+            cos[c] = cos[c - 1] + Math.abs(a[c] - a[c - 1]);
+        } else {
+            cos[c] = cos[c - 2] + Math.abs(a[c] - a[c - 2]);
+        }
+    }
+    System.out.println(cos[n - 1]);
+}

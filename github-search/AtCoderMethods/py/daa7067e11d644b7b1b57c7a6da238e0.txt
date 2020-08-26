@@ -1,0 +1,11 @@
+def main():
+    N, M = map(int, input().split())
+
+    R = [[0]*N for x in range(N)]
+    for n in range(M):
+        a, b = map(lambda x:int(x)-1, input().split())
+        R[a][b] += 1
+        R[b][a] += 1
+
+    for n in range(N):
+        print(sum(R[n]))

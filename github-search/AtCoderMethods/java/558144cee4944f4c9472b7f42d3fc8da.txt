@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    H = sc.nextInt();
+    W = sc.nextInt();
+    char[][] start = new char[H][W];
+    for (int i = 0; i < H; i++) {
+        String S = sc.next();
+        for (int j = 0; j < W; j++) {
+            start[i][j] = S.charAt(j);
+        }
+    }
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            if (start[i][j] == '.') {
+                start[i][j] = check(start, i, j);
+            }
+        }
+    }
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            System.out.print(start[i][j]);
+        }
+        System.out.println();
+    }
+}

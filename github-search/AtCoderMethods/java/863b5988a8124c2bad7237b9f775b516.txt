@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    try (Scanner sc = new Scanner(System.in)) {
+        n = sc.nextInt();
+        m = sc.nextLong();
+        r = sc.nextInt();
+        for (int i = 0; i < r; i++) {
+            route.add(sc.nextInt() - 1);
+        }
+        map = new int[n][n];
+        for (int i = 0; i < m; i++) {
+            int a = sc.nextInt() - 1;
+            int b = sc.nextInt() - 1;
+            map[a][b] = map[b][a] = sc.nextInt();
+        }
+        
+        dis = new int[n][n];
+        for (int i = 0; i < r; i++) {
+            dijkstra(route.get(i), dis[route.get(i)]);
+        }
+        System.out.println(calc(new ArrayList<Integer>(), (ArrayList<Integer>) route.clone(), Long.MAX_VALUE));
+    }
+}

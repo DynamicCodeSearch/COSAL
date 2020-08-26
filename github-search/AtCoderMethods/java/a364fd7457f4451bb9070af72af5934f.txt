@@ -1,0 +1,31 @@
+
+
+
+
+
+
+
+public static void main(String[] args) throws Exception, IOException {
+    Reader sc = new Reader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    
+    long k = sc.nextLong();
+    long r = 50 - k % 50, q = k / 50, d[] = new long[50];
+    for (int i = 0; i < 50; i++) {
+        d[i] = i + 1;
+    }
+    
+    for (int i = 0; i < r; i++) {
+        d[i]--;
+    }
+    out.println(50);
+    if (k == 0)
+        fill(d, 0);
+    for (int i = 0; i < 50; i++) {
+        out.print(d[i] + q);
+        if (i < 49)
+            out.print(" ");
+    }
+    out.println();
+    out.flush();
+}

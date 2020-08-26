@@ -1,0 +1,9 @@
+void dfs(int id, int current, int prev) {
+    if (prev != -1)
+        dist[id][current] = dist[id][prev] + 1;
+    for (int i = 0; i < node[current].size(); i++) {
+        int next = node[current].get(i);
+        if (next != prev)
+            dfs(id, next, current);
+    }
+}

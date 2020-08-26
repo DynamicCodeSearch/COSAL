@@ -1,0 +1,16 @@
+public static void main(String[] args) throws IOException {
+    FastScanner in = new FastScanner(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int k = in.nextInt();
+    int s = in.nextInt();
+    int res = 0;
+    for (int i = 0; i <= k; i++) {
+        for (int j = 0; j <= k; j++) {
+            int z = s - i - j;
+            if (z >= 0 && z <= k) {
+                res++;
+            }
+        }
+    }
+    System.out.println(res);
+}

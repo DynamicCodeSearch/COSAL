@@ -1,0 +1,24 @@
+public void solve(int testNumber, FastScanner in, PrintWriter out) {
+    N = in.nextInt();
+    A = in.nextInt();
+    B = in.nextInt();
+    h = new int[N + 1];
+    for (int i = 1; i <= N; i++) {
+        h[i] = in.nextInt();
+    }
+    long lo = 0;
+    long hi = (int) 1e9;
+    while (hi - lo > 1) {
+        long md = lo + (hi - lo) / 2;
+        if (checkExplosives(md))
+            hi = md;
+        else
+            lo = md;
+    }
+    for (long i = lo; i <= hi; i++) {
+        if (checkExplosives(i)) {
+            out.println(i);
+            return;
+        }
+    }
+}

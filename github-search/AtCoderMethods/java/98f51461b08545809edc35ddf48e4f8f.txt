@@ -1,0 +1,28 @@
+public static void main(String[] args) throws IOException {
+    try (Scanner sc = new Scanner(System.in)) {
+        final int N = sc.nextInt();
+        LinkedList<Integer> deque = new LinkedList<>();
+        for (int i = 0; i < N; i++) {
+            if (i % 2 == 0) {
+                deque.addLast(sc.nextInt());
+            } else {
+                deque.addFirst(sc.nextInt());
+            }
+        }
+        boolean first = true;
+        if (N % 2 == 1) {
+            for (ListIterator<Integer> iter = deque.listIterator(N); iter.hasPrevious(); ) {
+                final int value = iter.previous();
+                System.out.print((first ? "" : " ") + value);
+                first = false;
+            }
+        } else {
+            for (ListIterator<Integer> iter = deque.listIterator(); iter.hasNext(); ) {
+                final int value = iter.next();
+                System.out.print((first ? "" : " ") + value);
+                first = false;
+            }
+        }
+        System.out.println();
+    }
+}

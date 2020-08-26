@@ -1,0 +1,11 @@
+public long bellman_ford() {
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < M; j++) {
+            Edge e = edges[j];
+            if (costs[e.to] > costs[e.from] + e.cost) {
+                costs[e.to] = costs[e.from] + e.cost;
+            }
+        }
+    }
+    return costs[N - 1];
+}

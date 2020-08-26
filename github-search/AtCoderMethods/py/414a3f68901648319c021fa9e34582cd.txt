@@ -1,0 +1,15 @@
+def word_sort(w1, w2):
+    min_len = min(len(w1), len(w2))
+    for i in range(min_len):
+        idx = -i - 1
+        if w1[idx] == w2[idx] and (i + 1 == min_len):
+            if len(w1) < len(w2):
+                return 1
+            else:
+                return 2
+        if w1[idx] == w2[idx]:
+            continue
+        if w1[idx] < w2[idx]:
+            return 1
+        else:
+            return 2

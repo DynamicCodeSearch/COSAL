@@ -1,0 +1,9 @@
+def conv(img, dst, color):
+    for y in range(H):
+        for x in range(W):
+            if img[y][x] == color:
+                for dy in range(-1,2):
+                    for dx in range(-1,2):
+                        y1, x1 = y + dy, x + dx
+                        if not(0 <= y1 < H and 0 <= x1 < W): continue
+                        dst[y + dy][x + dx] = color

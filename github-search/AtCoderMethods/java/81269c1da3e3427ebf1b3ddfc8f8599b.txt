@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    long ans = scan.nextLong();
+    DecimalFormat df = new DecimalFormat("00");
+    if (ans < 100) {
+        System.out.println(df.format(0));
+    } else if ((ans >= 100) && (ans <= 5000)) {
+        double a = ans;
+        a = a / 1000 * 10;
+        System.out.println(df.format(a));
+    } else if ((ans >= 6000) && (ans <= 30000)) {
+        double a = ans;
+        a = a / 1000 + 50;
+        System.out.println(df.format(a));
+    } else if ((ans >= 35000) && (ans <= 70000)) {
+        double a = ans;
+        a = (a / 1000 - 30) / 5 + 80;
+        System.out.println(df.format(a));
+    } else if (ans >= 70000) {
+        System.out.println(df.format(89));
+    }
+}

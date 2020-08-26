@@ -1,0 +1,17 @@
+static void solve() {
+    int n = nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = nextInt();
+    }
+    long sum = 0;
+    long min = 0;
+    for (int i = 0; i < n; i++) {
+        if (i == n - 1 || a[i] >= a[i + 1]) {
+            long m = i - min + 1;
+            sum += m * (m + 1) >> 1;
+            min = i + 1;
+        }
+    }
+    System.out.println(sum);
+}

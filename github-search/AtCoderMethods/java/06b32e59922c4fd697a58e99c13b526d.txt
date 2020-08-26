@@ -1,0 +1,47 @@
+public static void main(String[] args) throws Exception {
+    PrintWriter out = new PrintWriter(System.out);
+    Scanner in = new Scanner(System.in);
+    
+    int n;
+    n = in.nextInt();
+    
+    int cnt = 0;
+    boolean flag = true;
+    HashSet<Integer> s = new HashSet<Integer>();
+    int[] kk = new int[n];
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = in.nextInt();
+        kk[a[i]]++;
+    }
+    
+    if (n % 2 == 0)
+        for (int i = 0; i < n; i++) {
+            if (kk[i] != 2 && kk[i] != 0)
+                flag = false;
+        }
+    else
+        for (int i = 1; i < n; i++) {
+            if (kk[i] != 2 && kk[i] != 0)
+                flag = false;
+        }
+    if (n % 2 != 0)
+        if (kk[0] != 1)
+            flag = false;
+    cnt = 1;
+    int i = 0;
+    while (i < n / 2) {
+        cnt = cnt * 2 % (1000000000 + 7);
+        i++;
+    }
+    if (flag)
+        out.println(cnt);
+    else
+        out.println(0);
+    
+    
+    
+    
+    
+    out.close();
+}

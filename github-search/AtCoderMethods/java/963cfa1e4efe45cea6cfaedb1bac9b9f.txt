@@ -1,0 +1,45 @@
+private static void solve() {
+    int n = nei();
+    long[] as = new long[n];
+    int[] ss = new int[n];
+    int[] num = new int[3];
+    for (int i = 0; i < n; i++) {
+        as[i] = nel();
+        if (as[i] % 2 == 0) {
+            if (as[i] % 4 == 0)
+                num[2]++;
+            else
+                num[1]++;
+        } else
+            num[0]++;
+        ss[i] = as[i] % 4 == 0 ? 2 : 1;
+    }
+    if (num[0] > 0) {
+        int[] aa = num.clone();
+        aa[0]--;
+        int last = 0;
+        if (po(n, aa, last)) {
+            out("Yes");
+            return;
+        }
+    }
+    if (num[1] > 0) {
+        int[] aa = num.clone();
+        aa[1]--;
+        int last = 1;
+        if (po(n, aa, last)) {
+            out("Yes");
+            return;
+        }
+    }
+    if (num[2] > 0) {
+        int[] aa = num.clone();
+        aa[2]--;
+        int last = 2;
+        if (po(n, aa, last)) {
+            out("Yes");
+            return;
+        }
+    }
+    out("No");
+}

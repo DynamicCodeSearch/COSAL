@@ -1,0 +1,29 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    int c = sc.nextInt();
+    int count = 0;
+    if (n == a || n == b || n == c) {
+        count += 101;
+    }
+    while (n > 0) {
+        if (n >= 3 && n - 3 != a && n - 3 != b && n - 3 != c) {
+            n -= 3;
+        } else if (n >= 2 && n - 2 != a && n - 2 != b && n - 2 != c) {
+            n -= 2;
+        } else if (n >= 1 && n - 1 != a && n - 1 != b && n - 1 != c) {
+            n -= 1;
+        } else {
+            count += 101;
+            break;
+        }
+        count++;
+    }
+    if (count <= 100) {
+        System.out.println("YES");
+    } else {
+        System.out.println("NO");
+    }
+}

@@ -1,0 +1,25 @@
+
+
+
+
+public static void main(String[] args) throws Exception, IOException {
+    Reader sc = new Reader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    
+    int n = sc.nextInt();
+    int[][] d = new int[n][10001];
+    int s[] = new int[n], ans = 0;
+    for (int i = 0; i < n; i++) s[i] = sc.nextInt();
+    d[0][s[0]]++;
+    for (int i = 1; i < n; i++) {
+        for (int t = 0; t + s[i] < 10001; t++) {
+            if (t == 0 || d[i - 1][t] > 0)
+                d[i][t + s[i]]++;
+        }
+        for (int t = 0; t < 10001; t++) d[i][t] += d[i - 1][t];
+    }
+    for (int t = 0; t < 10001; t++) if (t % 10 > 0 && d[n - 1][t] > 0)
+        ans = max(ans, t);
+    out.println(ans);
+    out.flush();
+}

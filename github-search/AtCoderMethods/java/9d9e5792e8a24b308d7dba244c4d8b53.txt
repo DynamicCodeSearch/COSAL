@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] x = new int[100];
+    int[] y = new int[100];
+    double[] dist = new double[5000];
+    int d = 0, k = 1;
+    double max_dist = 0;
+    for (int i = 0; i < N; i++) {
+        x[i] = sc.nextInt();
+        y[i] = sc.nextInt();
+    }
+    for (int i = 0; i < N - 1; i++) {
+        for (int j = k; j < N; j++) {
+            dist[d] = Math.sqrt(Math.pow(x[i] - x[j], 2) + Math.pow(y[i] - y[j], 2));
+            d++;
+        }
+        k++;
+    }
+    for (int i = 0; i < dist.length; i++) {
+        max_dist = Math.max(max_dist, dist[i]);
+    }
+    System.out.println(max_dist);
+}

@@ -1,0 +1,18 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt(), t = sc.nextInt();
+    int[] tt = new int[n];
+    for (int i = 0; i < n; i++) tt[i] = sc.nextInt();
+    int res = 0, tmp = tt[0];
+    for (int i = 1; i < n; i++) {
+        if (tmp + t > tt[i]) {
+            res += tt[i] - tmp;
+            tmp = tt[i];
+        } else {
+            res += t;
+            tmp = tt[i];
+        }
+    }
+    res += t;
+    System.out.println(res);
+}

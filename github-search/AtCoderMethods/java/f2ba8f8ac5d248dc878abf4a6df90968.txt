@@ -1,0 +1,18 @@
+
+
+String solve(int n, int[] p, int[] x) {
+    ArrayList<Integer>[] g = new ArrayList[n];
+    for (int i = 0; i < n; ++i) g[i] = new ArrayList<>();
+    for (int i = 1; i < n; ++i) {
+        g[i].add(p[i]);
+        g[p[i]].add(i);
+    }
+    f = new long[n];
+    Arrays.fill(f, INF);
+    dfs(0, -1, g, x);
+    if (f[0] < INF) {
+        return "POSSIBLE";
+    } else {
+        return "IMPOSSIBLE";
+    }
+}

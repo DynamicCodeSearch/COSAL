@@ -1,0 +1,11 @@
+static void solve() {
+    int n = ni();
+    long x = 1, y = 1;
+    for (int i = 0; i < n; i++) {
+        long t = ni(), a = ni();
+        long g = Math.max((y + a - 1) / a, (x + t - 1) / t);
+        x = g * t;
+        y = g * a;
+    }
+    out.println(x + y);
+}

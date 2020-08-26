@@ -1,0 +1,29 @@
+public static void output() throws IOException {
+    int n = ri();
+    HashMap<Integer, Integer> ctr = new HashMap<Integer, Integer>();
+    for (int i = 0; i < n; i++) {
+        int x = ri();
+        if (ctr.containsKey(x)) {
+            ctr.put(x, ctr.get(x) + 1);
+        } else {
+            ctr.put(x, 1);
+        }
+    }
+    int side1 = 0;
+    for (int i : ctr.keySet()) {
+        if (ctr.get(i) >= 2 && i > side1) {
+            side1 = i;
+        }
+    }
+    if (side1 != 0) {
+        ctr.put(side1, ctr.get(side1) - 2);
+    }
+    int side2 = 0;
+    for (int i : ctr.keySet()) {
+        if (ctr.get(i) >= 2 && i > side2) {
+            ctr.put(i, ctr.get(i) - 2);
+            side2 = i;
+        }
+    }
+    println((long) side1 * (long) side2);
+}

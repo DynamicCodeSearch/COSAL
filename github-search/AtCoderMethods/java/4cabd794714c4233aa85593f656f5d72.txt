@@ -1,0 +1,26 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    String str = input.readLine();
+    int n = Integer.parseInt(str);
+    HashMap<String, Integer> map = new HashMap<String, Integer>();
+    String temp;
+    for (int i = 0; i < n; i++) {
+        temp = input.readLine();
+        if (map.containsKey(temp)) {
+            map.put(temp, map.get(temp) + 1);
+        } else {
+            map.put(temp, 1);
+        }
+    }
+    List<Entry<String, Integer>> list_entries = new ArrayList<Entry<String, Integer>>(map.entrySet());
+    Collections.sort(list_entries, new Comparator<Entry<String, Integer>>() {
+
+        public int compare(Entry<String, Integer> obj1, Entry<String, Integer> obj2) {
+            return obj2.getValue().compareTo(obj1.getValue());
+        }
+    });
+    for (Entry<String, Integer> entry : list_entries) {
+        System.out.println(entry.getKey());
+        break;
+    }
+}

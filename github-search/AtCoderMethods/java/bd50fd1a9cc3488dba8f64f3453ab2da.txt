@@ -1,0 +1,19 @@
+public static boolean isCorrect(int i, int j) {
+    int left = j - 1;
+    if (left < 0)
+        left += N;
+    int right = j + 1;
+    if (right >= N)
+        right -= N;
+    boolean match = yosou[i][left] == yosou[i][right];
+    if (yosou[i][j] == 1) {
+        if (input_array[j] == 0) {
+            return match;
+        }
+        return !match;
+    }
+    if (input_array[j] == 0) {
+        return !match;
+    }
+    return match;
+}

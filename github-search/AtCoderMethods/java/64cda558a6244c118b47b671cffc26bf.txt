@@ -1,0 +1,30 @@
+private static void solve() {
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    int r = sc.nextInt();
+    int[] rr = new int[r];
+    for (int i = 0; i < r; i++) {
+        rr[i] = sc.nextInt() - 1;
+    }
+    FloydWarshall fw = new FloydWarshall(n);
+    for (int i = 0; i < m; i++) {
+        int s = sc.nextInt() - 1;
+        int t = sc.nextInt() - 1;
+        int d = sc.nextInt();
+        fw.addEdge(s, t, d);
+        fw.addEdge(t, s, d);
+    }
+    Permutation np = new Permutation(r);
+    long min = Long.MAX_VALUE;
+    for (List<Integer> perm : np) {
+        if (perm == null) {
+            break;
+        }
+        long dist = 0;
+        for (int i = 0, size = perm.size(); i < size - 1; i++) {
+            dist += fw.getShortestPath(rr[perm.get(i)], rr[perm.get(i + 1)]);
+        }
+        min = Math.min(min, dist);
+    }
+    pr.println(min);
+}

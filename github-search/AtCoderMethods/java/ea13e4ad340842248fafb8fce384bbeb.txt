@@ -1,0 +1,22 @@
+public void solve() {
+    int n = in.nextInt();
+    String s = in.next();
+    String TEMPLATE = "SW";
+    for (int first = 0; first < 2; first++) for (int second = 0; second < 2; second++) {
+        StringBuilder res = new StringBuilder();
+        char a = TEMPLATE.charAt(first);
+        char b = TEMPLATE.charAt(second);
+        res.append(a + "" + b);
+        for (int i = 1; i < n - 1; i++) {
+            char c = next(a, b, s, i);
+            a = b;
+            b = c;
+            res.append(c);
+        }
+        if (next(a, b, s, n - 1) == TEMPLATE.charAt(first) && next(b, TEMPLATE.charAt(first), s, 0) == TEMPLATE.charAt(second)) {
+            System.out.println(res.toString());
+            return;
+        }
+    }
+    System.out.println(-1);
+}

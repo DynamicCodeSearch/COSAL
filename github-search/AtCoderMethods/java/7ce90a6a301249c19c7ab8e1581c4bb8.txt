@@ -1,0 +1,27 @@
+private void doit() {
+    Scanner sc = new Scanner(System.in);
+    while (sc.hasNext()) {
+        int n = sc.nextInt();
+        int[] data = new int[n];
+        for (int i = 0; i < n; i++) {
+            data[i] = sc.nextInt();
+        }
+        int[] count = new int[3];
+        for (int i = 0; i < n; i++) {
+            if (data[i] % 4 == 0) {
+                count[0]++;
+            } else if (data[i] % 2 == 0) {
+                count[1]++;
+            } else {
+                count[2]++;
+            }
+        }
+        if (count[2] <= count[0]) {
+            System.out.println("Yes");
+        } else if ((count[2] - 1) == count[0] && count[1] == 0) {
+            System.out.println("Yes");
+        } else {
+            System.out.println("No");
+        }
+    }
+}

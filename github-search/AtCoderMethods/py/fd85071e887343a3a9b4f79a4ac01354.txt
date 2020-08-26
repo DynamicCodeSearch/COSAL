@@ -1,0 +1,5 @@
+def register_path(self, answer, answer_value):
+    branch = []
+    for i, ii in itertools.combinations(range(len(answer)), 2):
+        branch.append([answer[i], answer[ii], answer_value[ii] - answer_value[i]])
+    self.store_minimum_path(branch)

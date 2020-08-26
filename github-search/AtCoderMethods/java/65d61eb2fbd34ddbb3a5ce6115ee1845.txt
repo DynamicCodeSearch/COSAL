@@ -1,0 +1,8 @@
+private void dfs(int v) {
+    used[v] = true;
+    roadComponent.put(v, componentId);
+    for (int to : road[v]) {
+        if (!used[to])
+            dfs(to);
+    }
+}

@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    double n = scan.nextInt();
+    double m = scan.nextInt();
+    if (n >= 12) {
+        n = n - 12;
+    }
+    n = n * 30;
+    n = n + (m * 0.5);
+    m = m * 6;
+    double ans;
+    if (Math.abs(n - m) > 180) {
+        ans = 360 - Math.abs(n - m);
+    } else {
+        ans = Math.abs(n - m);
+    }
+    System.out.println(ans);
+}

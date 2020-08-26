@@ -1,0 +1,15 @@
+void run() {
+    long a = sc.nextLong();
+    long k = sc.nextLong();
+    long TRG = 2_000_000_000_000L;
+    if (k == 0) {
+        System.out.println(TRG - a);
+    } else {
+        long cnt = 0;
+        while (a < TRG) {
+            a += 1L + k * a;
+            ++cnt;
+        }
+        System.out.println(cnt);
+    }
+}

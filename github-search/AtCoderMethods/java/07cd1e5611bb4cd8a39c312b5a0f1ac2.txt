@@ -1,0 +1,18 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String N_moji = br.readLine();
+    int N = Integer.parseInt(N_moji);
+    String S = br.readLine();
+    int x_max = 0, i, x = 0;
+    for (i = 0; i < N; i++) {
+        if (S.charAt(i) == 'D') {
+            x--;
+        } else {
+            x++;
+            if (x_max <= x) {
+                x_max = x;
+            }
+        }
+    }
+    System.out.println(x_max);
+}

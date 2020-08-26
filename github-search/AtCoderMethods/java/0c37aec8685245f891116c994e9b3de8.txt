@@ -1,0 +1,24 @@
+private static void solve() {
+    int n = ni();
+    int m = ni();
+    int R = ni();
+    int[] r = na(R);
+    for (int i = 0; i < R; i++) {
+        r[i]--;
+    }
+    int[][] d = new int[n][n];
+    for (int[] v : d) Arrays.fill(v, Integer.MAX_VALUE / 3);
+    for (int i = 0; i < m; i++) {
+        int a = ni() - 1;
+        int b = ni() - 1;
+        int c = ni();
+        d[a][b] = c;
+        d[b][a] = c;
+    }
+    int[][] len = wf(d);
+    long min = Long.MAX_VALUE;
+    for (int i = 0; i < R; i++) {
+        min = Math.min(min, dfs(r[i], 0, len, r, new boolean[n], 0));
+    }
+    System.out.println(min);
+}

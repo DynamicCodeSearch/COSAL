@@ -1,0 +1,20 @@
+private static int[] getInput() {
+    int[] ret = new int[2];
+    try {
+        BufferedReader br = new BufferedReader(new InputStreamReader(new DataInputStream(System.in)));
+        String[] strs = br.readLine().split("\\s+", 0);
+        if (strs.length >= 2) {
+            ret[0] = Integer.parseInt(strs[0]);
+            ret[1] = Integer.parseInt(strs[1]);
+        } else {
+            ret[0] = 0;
+            ret[1] = 0;
+        }
+        br.close();
+    } catch (IOException e) {
+        ;
+    } catch (RuntimeException e) {
+        ;
+    }
+    return ret;
+}

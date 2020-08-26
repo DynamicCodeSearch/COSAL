@@ -1,0 +1,23 @@
+private static long solve(int n, long a, long b, long[] hs) {
+    
+    long abdif = a - b;
+    long l = 0;
+    long r = (long) 1e9;
+    while (l + 1 != r) {
+        long m = (l + r) / 2;
+        boolean ok = false;
+        long yoha = b * m;
+        long tgt = 0;
+        for (long h : hs) {
+            if (h - yoha <= 0)
+                continue;
+            tgt += (h - yoha + abdif - 1) / abdif;
+        }
+        ok = tgt <= m;
+        if (ok)
+            r = m;
+        else
+            l = m;
+    }
+    return r;
+}

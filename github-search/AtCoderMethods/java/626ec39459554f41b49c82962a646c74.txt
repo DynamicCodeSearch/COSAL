@@ -1,0 +1,13 @@
+public static long calcCombo(int x, int y, int r) {
+    int rr = rank[y][x];
+    if (rr < r) {
+        long temp = combo[y][x];
+        if (temp == 0) {
+            long sum = 1 + calcCombo(x, y + 1, rr) + calcCombo(x, y - 1, rr) + calcCombo(x + 1, y, rr) + calcCombo(x - 1, y, rr);
+            temp = sum % MOD;
+            combo[y][x] = temp;
+        }
+        return temp;
+    }
+    return 0;
+}

@@ -1,0 +1,12 @@
+static void dijkstra(int startingNode, int currentNode, int previousNode) {
+    Vector<Integer> toDo = new Vector<Integer>();
+    for (int i = 0; i <= n; i++) {
+        if (g[currentNode][i] != Integer.MAX_VALUE && i != previousNode) {
+            if (d[startingNode][currentNode] + g[currentNode][i] < d[startingNode][i]) {
+                d[startingNode][i] = d[startingNode][currentNode] + g[currentNode][i];
+                toDo.add(i);
+            }
+        }
+    }
+    for (int i = 0; i < toDo.size(); i++) dijkstra(startingNode, toDo.get(i), currentNode);
+}

@@ -1,0 +1,17 @@
+public void solve(int testNumber, Scanner in, PrintWriter out) {
+    String s = in.next();
+    String ss = in.next();
+    String ans = "";
+    int i = 0, j = 0, cnt = 1;
+    while (cnt != s.length() + ss.length() + 1) {
+        if (cnt % 2 != 0) {
+            ans += s.charAt(i);
+            i++;
+        } else {
+            ans += ss.charAt(j);
+            j++;
+        }
+        cnt++;
+    }
+    out.println(ans);
+}

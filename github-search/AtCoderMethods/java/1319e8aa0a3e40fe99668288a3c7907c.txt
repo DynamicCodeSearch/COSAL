@@ -1,0 +1,50 @@
+private static void solve() {
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    int[] p = new int[m];
+    int[] q = new int[m];
+    int[] c = new int[m];
+    for (int i = 0; i < m; i++) {
+        p[i] = sc.nextInt() - 1;
+        q[i] = sc.nextInt() - 1;
+        c[i] = sc.nextInt();
+        put(p[i], c[i]);
+        put(q[i], c[i]);
+    }
+    for (int i = 0; i < n; i++) {
+        put(i, DUMMY);
+    }
+    List<Set<Integer>> edges = new ArrayList<>(n);
+    for (int i = 0; i < n; i++) {
+        edges.add(new HashSet<>());
+    }
+    Dijkstra di = new Dijkstra(index);
+    for (int i = 0; i < m; i++) {
+        int sp = get(p[i], DUMMY);
+        int cp = get(p[i], c[i]);
+        int sq = get(q[i], DUMMY);
+        int cq = get(q[i], c[i]);
+        if (!edges.get(p[i]).contains(c[i])) {
+            di.addEdge(sp, cp, 1);
+            di.addEdge(cp, sp, 0);
+            edges.get(p[i]).add(c[i]);
+        }
+        if (!edges.get(q[i]).contains(c[i])) {
+            di.addEdge(sq, cq, 1);
+            di.addEdge(cq, sq, 0);
+            edges.get(q[i]).add(c[i]);
+        }
+        di.addEdge(cp, cq, 0);
+        di.addEdge(cq, cp, 0);
+    }
+    int s = get(0, DUMMY);
+    int e = get(n - 1, DUMMY);
+    hm.clear();
+    edges.clear();
+    long ret = di.getShortestPath(s, e);
+    if (ret == di.INF) {
+        pr.println(-1);
+    } else {
+        pr.println(ret);
+    }
+}

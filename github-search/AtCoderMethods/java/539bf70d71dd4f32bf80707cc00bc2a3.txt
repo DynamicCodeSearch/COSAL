@@ -1,0 +1,30 @@
+void run() {
+    int N = in.nextInt(), M = in.nextInt();
+    g = new ArrayList[N];
+    for (int i = 0; i < N; i++) {
+        g[i] = new ArrayList<>();
+    }
+    for (int i = 0; i < M; i++) {
+        int a = in.nextInt() - 1;
+        int b = in.nextInt() - 1;
+        Edge e1 = new Edge(b, i);
+        Edge e2 = new Edge(a, i);
+        e1.rev = e2;
+        e2.rev = e1;
+        g[a].add(e1);
+        g[b].add(e2);
+    }
+    vis = new boolean[N];
+    imos = new int[N];
+    dfs(0, -1);
+    
+    Arrays.fill(vis, false);
+    dfs2(0);
+    
+    int res = 0;
+    for (int i = 0; i < N; i++) {
+        if (imos[i] == 0)
+            res++;
+    }
+    System.out.println(res - 1);
+}

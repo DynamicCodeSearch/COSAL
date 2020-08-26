@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    int N = NI();
+    int[] a = new int[N];
+    for (int i = 0; i < N; i++) {
+        a[i] = NI();
+    }
+    long ans = 0;
+    if (a[0] == 0) {
+        a[0] = 1;
+        ans = solve(a);
+        a[0] = -1;
+        ans = Math.min(ans, solve(a));
+        ans++;
+    } else {
+        ans = solve(a);
+        if (a[0] > 0) {
+            int tmp = a[0];
+            a[0] = -1;
+            ans = Math.min(ans, solve(a) + tmp + 1);
+        } else {
+            int tmp = a[0];
+            a[0] = 1;
+            ans = Math.min(ans, solve(a) + -tmp + 1);
+        }
+    }
+    System.out.println(ans);
+}

@@ -1,0 +1,26 @@
+public void exec() throws IOException {
+    InputUtil input = new InputUtil();
+    int n = input.nextInt();
+    int[] a = input.nextInt(new int[n + 1]);
+    int[] search = new int[n + 1];
+    int l = 0, r = 0;
+    for (int i = 0; i < a.length; i++) {
+        if (search[a[i] - 1] != 0) {
+            l = search[a[i] - 1];
+            r = i + 1;
+            break;
+        } else
+            search[a[i] - 1] = i + 1;
+    }
+    PrintWriter out = new PrintWriter(System.out);
+    for (int k = 1; k <= n + 1; k++) {
+        int full = modUtil.getC(n + 1, k);
+        int duplicate = 0;
+        if (l - 1 + n + 1 - r >= k - 1) {
+            duplicate = modUtil.getC(l - 1 + n + 1 - r, k - 1);
+        }
+        out.println(modUtil.sub(full, duplicate));
+    }
+    out.flush();
+    input.close();
+}

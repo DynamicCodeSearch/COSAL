@@ -1,0 +1,23 @@
+public static void main(String[] args) throws java.lang.Exception {
+    Scanner in = new Scanner(System.in);
+    int n = in.nextInt();
+    int[] nums = new int[n];
+    int[] sortArray = new int[n];
+    for (int i = 0; i < n; i++) {
+        nums[i] = in.nextInt();
+        sortArray[i] = nums[i];
+    }
+    Arrays.sort(sortArray);
+    HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+    int count = 0;
+    map.put(sortArray[0], count);
+    for (int i = 1; i < n; i++) {
+        if (sortArray[i - 1] < sortArray[i]) {
+            count++;
+            map.put(sortArray[i], count);
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        System.out.println(map.get(nums[i]));
+    }
+}

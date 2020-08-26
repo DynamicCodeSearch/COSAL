@@ -1,0 +1,10 @@
+def _link(self, x, y):
+    if x == y:
+        return
+    self.num -= 1
+    if self.rank[x] > self.rank[y]:
+        self.parent[y] = x
+    else:
+        self.parent[x] = y
+        if self.rank[x] == self.rank[y]:
+            self.rank[y] += 1

@@ -1,0 +1,11 @@
+long f(long s) {
+    if (s == 0)
+        return 1;
+    if (s == 1)
+        return 2;
+    if (memo.containsKey(s))
+        return memo.get(s);
+    long ret = (f(s / 2) + f((s - 1) / 2) + f((s - 2) / 2)) % MOD;
+    memo.put(s, ret);
+    return ret;
+}

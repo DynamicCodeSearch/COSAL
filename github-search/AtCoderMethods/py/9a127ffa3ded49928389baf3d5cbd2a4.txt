@@ -1,0 +1,12 @@
+def calc_r_score(N, a):
+    scores = [None] * (N + 1)
+    queue = []
+    for i in range(1, N + 1):
+        heapq.heappush(queue, -a[-i])
+    scores[-1] = - sum(queue)
+    for i in range(1, N + 1):
+        na = a[-N - i]
+        heapq.heappush(queue, -na)
+        m = - heapq.heappop(queue)
+        scores[-i - 1] = scores[-i] + na - m
+    return scores

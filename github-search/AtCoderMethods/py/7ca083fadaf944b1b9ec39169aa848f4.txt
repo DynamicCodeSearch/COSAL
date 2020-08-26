@@ -1,0 +1,9 @@
+def main():
+    _ = int(input())
+
+    d = defaultdict(lambda: 0)
+    for a in [int(i) for i in input().split()]:
+        d[a-1] += 1
+        d[a] += 1
+        d[a+1] += 1
+    print(sorted(d.items(), key=lambda x: x[1], reverse=True)[0][1])

@@ -1,0 +1,37 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int vCnt = sc.nextInt();
+    int sCnt = sc.nextInt();
+    Map<Integer, Set<Integer>> sides = new HashMap<>();
+    for (int i = 0; i < sCnt; i++) {
+        int from = Integer.parseInt(sc.next());
+        int to = Integer.parseInt(sc.next());
+        if (!sides.containsKey(from))
+            sides.put(from, new HashSet<Integer>());
+        sides.get(from).add(to);
+        if (!sides.containsKey(to))
+            sides.put(to, new HashSet<Integer>());
+        sides.get(to).add(from);
+    }
+    Deque<List<Integer>> stack = new ArrayDeque<>();
+    stack.push(new ArrayList<>(Arrays.asList(1)));
+    int result = 0;
+    while (!stack.isEmpty()) {
+        List<Integer> cur = stack.pop();
+        if (cur.size() == vCnt) {
+            result++;
+            continue;
+        }
+        int last = cur.get(cur.size() - 1);
+        if (sides.containsKey(last)) {
+            for (int b : sides.get(last)) {
+                if (cur.contains(b))
+                    continue;
+                List<Integer> n = new ArrayList<>(cur);
+                n.add(b);
+                stack.push(n);
+            }
+        }
+    }
+    System.out.println(result);
+}

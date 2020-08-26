@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    P = sc.nextDouble();
+    x0 = 0;
+    
+    
+    x3 = P;
+    while (true) {
+        x1 = (x3 - x0) / 3 + x0;
+        x2 = (x3 - x0) / 3 * 2 + x0;
+        right = x3 + (P) / Math.pow(2, x3 / 1.5);
+        right1 = x2 + (P) / Math.pow(2, x2 / 1.5);
+        left1 = x1 + (P) / Math.pow(2, x1 / 1.5);
+        left = x0 + (P) / Math.pow(2, x0 / 1.5);
+        
+        if (ABS(right1 - left1) < e) {
+            break;
+        }
+        if (right1 > left1) {
+            x3 = x2;
+        } else {
+            x0 = x1;
+        }
+    }
+    
+    System.out.println((right1 + left1) / 2);
+}

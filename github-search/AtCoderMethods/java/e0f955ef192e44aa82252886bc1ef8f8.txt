@@ -1,0 +1,28 @@
+public void solve(InputReader in, PrintWriter out) {
+    int sx = in.nextInt(), sy = in.nextInt();
+    int tx = in.nextInt(), ty = in.nextInt();
+    StringBuilder sb = new StringBuilder();
+    String sud = "UD";
+    String srl = "RL";
+    for (int j = 0; j < 2; ++j) {
+        char ch1 = sud.charAt(j), ch2 = srl.charAt(j);
+        for (int i = sy; i < ty; ++i) {
+            sb.append(ch1);
+        }
+        for (int i = sx; i < tx; ++i) {
+            sb.append(ch2);
+        }
+    }
+    for (int j = 0; j < 2; ++j) {
+        char ch1 = sud.charAt(j), ch2 = srl.charAt(j);
+        sb.append(srl.charAt(j ^ 1));
+        for (int i = sy; i <= ty; ++i) {
+            sb.append(ch1);
+        }
+        for (int i = sx; i <= tx; ++i) {
+            sb.append(ch2);
+        }
+        sb.append(sud.charAt(j ^ 1));
+    }
+    out.println(sb.toString());
+}

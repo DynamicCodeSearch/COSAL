@@ -1,0 +1,17 @@
+def main():
+    H, W = map(int, input().split())
+    l = [list(input()) for _ in range(H)]
+    for y in range(H):
+        for x in range(W):
+            l[y][x] = 1 if l[y][x] == "#" else 0
+
+    ans = uncompress(l)
+    r = compress(ans)
+    if l != r:
+        print("impossible")
+    else:
+        print("possible")
+        for y in range(H):
+            for x in range(W):
+                ans[y][x] = "#" if ans[y][x] == 1 else "."
+        print(*["".join(line) for line in ans], sep="\n")

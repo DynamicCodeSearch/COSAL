@@ -1,0 +1,45 @@
+void solve() {
+    int N = sc.nextInt();
+    long W = sc.nextInt();
+    List<Long>[] v = new ArrayList[4];
+    Long[][] m = new Long[4][N + 1];
+    for (int i = 0; i < 4; i++) v[i] = new ArrayList<>();
+    long W0 = sc.nextLong();
+    v[0].add(sc.nextLong());
+    for (int i = 1; i < N; i++) {
+        long w = sc.nextLong();
+        int idx = (int) (w - W0);
+        v[idx].add(sc.nextLong());
+    }
+    for (int i = 0; i < 4; i++) {
+        Collections.sort(v[i], new Comparator<Long>() {
+
+            @Override
+            public int compare(Long o1, Long o2) {
+                return Long.compare(o2, o1);
+            }
+        });
+        m[i][0] = 0L;
+        for (int j = 1; j <= v[i].size(); j++) {
+            m[i][j] = v[i].get(j - 1) + m[i][j - 1];
+        }
+    }
+    if (W0 > W) {
+        System.out.println(0);
+        return;
+    }
+    long W1 = W0 + 1, W2 = W0 + 2, W3 = W0 + 3;
+    long ans = 0;
+    for (int i = 0; i <= v[0].size(); i++) {
+        for (int j = 0; j <= v[1].size(); j++) {
+            for (int k = 0; k <= v[2].size(); k++) {
+                long CW = W0 * i + W1 * j + W2 * k;
+                if (CW > W)
+                    continue;
+                int l = (int) Math.min(v[3].size(), Math.max(0, (W - CW) / W3));
+                ans = Math.max(m[0][i] + m[1][j] + m[2][k] + m[3][l], ans);
+            }
+        }
+    }
+    System.out.println(ans);
+}

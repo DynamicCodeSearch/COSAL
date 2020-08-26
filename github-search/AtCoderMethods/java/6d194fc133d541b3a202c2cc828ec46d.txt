@@ -1,0 +1,21 @@
+public static int[] bfs(int u) {
+    int[] ans = new int[n + 1];
+    Deque<Integer> q = new ArrayDeque<Integer>();
+    q.offer(u);
+    Arrays.fill(ans, max);
+    ans[u] = 0;
+    Iterator<Integer> it = null;
+    while (!q.isEmpty()) {
+        
+        int v = q.poll();
+        it = dp.get(v).iterator();
+        while (it.hasNext()) {
+            int temp = it.next();
+            if (ans[temp] == max) {
+                ans[temp] = ans[v] + 1;
+                q.offer(temp);
+            }
+        }
+    }
+    return ans;
+}

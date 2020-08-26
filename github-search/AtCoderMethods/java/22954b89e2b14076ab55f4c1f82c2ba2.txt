@@ -1,0 +1,17 @@
+long solve(int[] a) {
+    int N = a.length;
+    if (N % 2 == 1) {
+        for (int i = 0; i < N; i++) {
+            if (i == 0 && a[i] != 0)
+                return 0;
+            if (i > 0 && (i + 1) / 2 * 2 != a[i])
+                return 0;
+        }
+        return modPow(2, (N - 1) / 2);
+    }
+    for (int i = 0; i < N; i++) {
+        if (i / 2 * 2 + 1 != a[i])
+            return 0;
+    }
+    return modPow(2, N / 2);
+}

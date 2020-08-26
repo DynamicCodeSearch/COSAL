@@ -1,0 +1,17 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    
+    String s = br.readLine();
+    String r = "B+";
+    Pattern p = Pattern.compile(r);
+    Matcher m = p.matcher(s);
+    s = m.replaceAll("B");
+    r = "W+";
+    p = Pattern.compile(r);
+    m = p.matcher(s);
+    s = m.replaceAll("W");
+    
+    int i = s.length() - 1;
+    i = i > 0 ? i : 0;
+    System.out.println(i);
+}

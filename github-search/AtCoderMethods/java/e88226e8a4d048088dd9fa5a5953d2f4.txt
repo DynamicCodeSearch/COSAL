@@ -1,0 +1,35 @@
+private static void solve() throws IOException {
+    int res = 0;
+    for (int i = 1; i <= N; ++i) {
+        h[1] = h[1] + 1;
+        for (int j = 2; j <= M + 1; ++j) {
+            if (ok(i, j)) {
+                h[j] += 1;
+            } else {
+                h[j] = 1;
+            }
+        }
+        top = 0;
+        for (int j = 1; j <= M + 1; ++j) {
+            while (top > 0 && h[stack[top]] >= h[j]) --top;
+            if (top == 0)
+                lef[j] = 1;
+            else
+                lef[j] = stack[top];
+            stack[++top] = j;
+        }
+        top = 0;
+        for (int j = M + 1; j >= 1; --j) {
+            while (top > 0 && h[stack[top]] >= h[j]) --top;
+            if (top == 0)
+                rig[j] = M + 1;
+            else
+                rig[j] = stack[top];
+            stack[++top] = j;
+        }
+        for (int j = 1; j <= M + 1; ++j) {
+            res = Math.max(res, h[j] * (rig[j] - lef[j]));
+        }
+    }
+    output.println(res);
+}

@@ -1,0 +1,31 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    long N = sc.nextLong();
+    String ans = "";
+    long end = N;
+    long start = 0;
+    int winner = 1;
+    while (true) {
+        if (winner == 0) {
+            if ((start <= 1) && (1 <= end)) {
+                ans = "Takahashi";
+                break;
+            } else {
+                end = start - 1;
+                start = (end + 2) / 2;
+                winner = 1;
+            }
+        } else {
+            start = (end + 2) / 2;
+            if ((start <= 1) && (1 <= end)) {
+                ans = "Aoki";
+                break;
+            } else {
+                end = start - 1;
+                start /= 2;
+                winner = 0;
+            }
+        }
+    }
+    System.out.println(ans);
+}

@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    byte pro = Byte.parseByte(sc.nextLine());
+    String s = sc.nextLine();
+    byte[] counter = new byte[4];
+    for (byte i = 0; i < pro; i++) switch(s.charAt(i)) {
+        case '1':
+            counter[0]++;
+            break;
+        case '2':
+            counter[1]++;
+            break;
+        case '3':
+            counter[2]++;
+            break;
+        case '4':
+            counter[3]++;
+            break;
+    }
+    byte min = counter[0], max = counter[0];
+    for (byte i = 1; i < 4; i++) {
+        if (counter[i] < min)
+            min = counter[i];
+        if (counter[i] > max)
+            max = counter[i];
+    }
+    System.out.println(max + " " + min);
+}

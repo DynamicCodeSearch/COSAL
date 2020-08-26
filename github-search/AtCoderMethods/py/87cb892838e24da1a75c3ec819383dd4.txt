@@ -1,0 +1,22 @@
+def main():
+    R, G, B = map(int, input().split())
+    ans = INF
+    for left in range(400, 1600):
+        right = left + G - 1
+
+
+        cost = calc(1000, left, right)
+
+
+        r = min(900 + R // 2, left - 1)
+        l = r - R + 1
+        cost += calc(900, l, r)
+
+
+        l = max(1100 - B // 2, right + 1)
+        r = l + B - 1
+        cost += calc(1100, l, r)
+
+        ans = min(ans, cost)
+
+    print(ans)

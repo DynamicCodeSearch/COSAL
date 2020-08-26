@@ -1,0 +1,44 @@
+public void solve() {
+    N = nextInt();
+    M = nextInt();
+    init();
+    query = new ArrayList<F>();
+    for (int i = 0; i < M; i++) {
+        int a = nextInt() - 1;
+        int b = nextInt() - 1;
+        int y = nextInt();
+        query.add(new F(1, y, a, b));
+    }
+    Q = nextInt();
+    for (int i = 0; i < Q; i++) {
+        int v = nextInt() - 1;
+        int w = nextInt();
+        query.add(new F(2, w, v, i));
+    }
+    Collections.sort(query, new Comparator<F>() {
+
+        public int compare(F f1, F f2) {
+            if (f1.a == f2.a) {
+                return f2.type - f1.type;
+            }
+            return f2.a - f1.a;
+        }
+    });
+    ArrayList<P> ans = new ArrayList<P>();
+    for (F f : query) {
+        if (f.type == 1) {
+            unite(f.b, f.c);
+        } else {
+            ans.add(new P(f.c, rank[find(f.b)]));
+        }
+    }
+    Collections.sort(ans, new Comparator<P>() {
+
+        public int compare(P p1, P p2) {
+            return p1.f - p2.f;
+        }
+    });
+    for (int i = 0; i < ans.size(); i++) {
+        out.println(ans.get(i).s);
+    }
+}

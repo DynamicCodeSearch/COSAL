@@ -1,0 +1,15 @@
+def main():
+    N = int(input())
+    T = []
+
+    for i in range(N):
+        T.append(int(input()))
+
+    while len(T) > 1:
+        T_tmp = []
+        for i in range(1, len(T)):
+            tmp = lcm(T[i-1], T[i])
+            T_tmp.append(tmp)
+        T = T_tmp
+
+    print(T[0])

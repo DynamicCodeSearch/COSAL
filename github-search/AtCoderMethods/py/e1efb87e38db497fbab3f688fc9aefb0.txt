@@ -1,0 +1,12 @@
+def is_shiritori(s):
+    before_mozi = None
+    for mozi in s.split():
+        if before_mozi is None:
+            before_mozi = mozi
+            continue
+        else:
+            if mozi[0] is not before_mozi[-1]:
+                print("NO")
+                return False
+            before_mozi = mozi
+    print("YES")

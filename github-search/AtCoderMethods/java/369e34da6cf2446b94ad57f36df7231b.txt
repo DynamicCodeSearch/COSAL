@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    long n = in.nextLong();
+    if (n == 1)
+        System.out.println(1);
+    else if (isPrime(n))
+        System.out.println(digitLength(n));
+    else {
+        if (n / 10 == 0)
+            System.out.println(2);
+        else {
+            int mul1 = largestMultiplier(n);
+            int mul2 = (int) (n / mul1);
+            System.out.println(Math.max(digitLength(mul1), digitLength(mul2)));
+        }
+    }
+}

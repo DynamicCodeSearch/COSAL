@@ -1,0 +1,8 @@
+def dfs(choice, v, s, mask):
+    if choice == 3:
+        s.add(v)
+        return
+
+    for i in range(len(a)):
+        if not(mask & (1 << i)):
+            dfs(choice + 1, v + a[i], s, mask ^ (1 << i))

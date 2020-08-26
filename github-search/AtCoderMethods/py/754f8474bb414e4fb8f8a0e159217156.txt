@@ -1,0 +1,8 @@
+def count(ar, s):
+  if len(ar) == 1:
+    return 1 if mat[s][ar[0]] else 0
+  num = 0
+  for s_next in ar:
+    if mat[s][s_next]:
+      num += count([x for x in ar if x != s_next], s_next)
+  return num

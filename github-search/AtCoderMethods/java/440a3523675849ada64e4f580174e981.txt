@@ -1,0 +1,113 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    String s = sc.next();
+    int[] check = new int[N + 2];
+    int j = N + 1;
+    
+    check[0] = 1;
+    check[1] = 1;
+    for (int i = 2; i < N + 1; i++) {
+        if (s.charAt(i - 1) == 'o') {
+            check[i] = check[i - 2] * check[i - 1];
+        } else {
+            check[i] = -check[i - 2] * check[i - 1];
+        }
+    }
+    if (s.charAt(0) == 'o') {
+        check[j] = check[j - 2] * check[j - 1];
+    } else {
+        check[j] = -check[j - 2] * check[j - 1];
+    }
+    if (check[N] == check[0] && check[N + 1] == check[1]) {
+        char[] str = new char[N];
+        for (int i = 0; i < N; i++) {
+            if (check[i] == 1) {
+                str[i] = 'S';
+            } else {
+                str[i] = 'W';
+            }
+        }
+        System.out.println(new String(str));
+        return;
+    }
+    check[0] = 1;
+    check[1] = -1;
+    for (int i = 2; i < N + 1; i++) {
+        if (s.charAt(i - 1) == 'o') {
+            check[i] = check[i - 2] * check[i - 1];
+        } else {
+            check[i] = -check[i - 2] * check[i - 1];
+        }
+    }
+    if (s.charAt(0) == 'o') {
+        check[j] = check[j - 2] * check[j - 1];
+    } else {
+        check[j] = -check[j - 2] * check[j - 1];
+    }
+    if (check[N] == check[0] && check[N + 1] == check[1]) {
+        char[] str = new char[N];
+        for (int i = 0; i < N; i++) {
+            if (check[i] == 1) {
+                str[i] = 'S';
+            } else {
+                str[i] = 'W';
+            }
+        }
+        System.out.println(new String(str));
+        return;
+    }
+    check[0] = -1;
+    check[1] = 1;
+    for (int i = 2; i < N + 1; i++) {
+        if (s.charAt(i - 1) == 'o') {
+            check[i] = check[i - 2] * check[i - 1];
+        } else {
+            check[i] = -check[i - 2] * check[i - 1];
+        }
+    }
+    if (s.charAt(0) == 'o') {
+        check[j] = check[j - 2] * check[j - 1];
+    } else {
+        check[j] = -check[j - 2] * check[j - 1];
+    }
+    if (check[N] == check[0] && check[N + 1] == check[1]) {
+        char[] str = new char[N];
+        for (int i = 0; i < N; i++) {
+            if (check[i] == 1) {
+                str[i] = 'S';
+            } else {
+                str[i] = 'W';
+            }
+        }
+        System.out.println(new String(str));
+        return;
+    }
+    check[0] = -1;
+    check[1] = -1;
+    for (int i = 2; i < N + 1; i++) {
+        if (s.charAt(i - 1) == 'o') {
+            check[i] = check[i - 2] * check[i - 1];
+        } else {
+            check[i] = -check[i - 2] * check[i - 1];
+        }
+    }
+    if (s.charAt(0) == 'o') {
+        check[j] = check[j - 2] * check[j - 1];
+    } else {
+        check[j] = -check[j - 2] * check[j - 1];
+    }
+    if (check[N] == check[0] && check[N + 1] == check[1]) {
+        char[] str = new char[N];
+        for (int i = 0; i < N; i++) {
+            if (check[i] == 1) {
+                str[i] = 'S';
+            } else {
+                str[i] = 'W';
+            }
+        }
+        System.out.println(new String(str));
+        return;
+    }
+    System.out.println(-1);
+}

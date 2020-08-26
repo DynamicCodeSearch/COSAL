@@ -1,0 +1,28 @@
+def solve():
+    n = int(input())
+    a = [int(i) for i in input().split()]
+
+    ps = [sum(a[:n])]
+    minhp = a[:n]
+    heapify(minhp)
+
+    for i in range(n):
+        heappush(minhp, a[n + i])
+        x = heappop(minhp)
+        ps.append(ps[-1] + a[n + i] - x)
+
+    ss = [sum(a[2*n:])]
+    maxhp = [-ai for ai in a[2*n:]]
+    heapify(maxhp)
+
+    for i in range(n):
+        heappush(maxhp, -a[2*n - 1 - i])
+        x = -heappop(maxhp)
+        ss.append(ss[-1] + a[2*n - 1 - i] - x)
+
+    ans = -inf
+
+    for i in range(n + 1):
+        ans = max(ans, ps[i] - ss[n - i])
+
+    print(ans)

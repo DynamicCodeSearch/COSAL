@@ -1,0 +1,18 @@
+void run() {
+    int n = ni();
+    ArrayList<Node> list = new ArrayList<>();
+    for (int i = 0; i < n + 1; ++i) {
+        list.add(new Node(i));
+    }
+    for (int i = 0; i < n - 1; ++i) {
+        int u = ni();
+        int v = ni();
+        list.get(u).adj.add(list.get(v));
+        list.get(v).adj.add(list.get(u));
+    }
+    make(list.get(1), n);
+    memoF = new long[n + 1];
+    memoG = new long[n + 1];
+    long ans = f(list.get(1));
+    System.out.println(ans);
+}

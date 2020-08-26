@@ -1,0 +1,8 @@
+static void solve(int n) {
+    int[] ar = new int[6];
+    Arrays.setAll(ar, i -> i + 1);
+    for (int i = 0; i < n; i++) {
+        swap(ar, i % 5, (i % 5) + 1);
+    }
+    System.out.println(Arrays.toString(ar).replaceAll("[^0-9]", ""));
+}

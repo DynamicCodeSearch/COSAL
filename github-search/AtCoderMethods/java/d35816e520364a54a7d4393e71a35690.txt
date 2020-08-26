@@ -1,0 +1,14 @@
+long rot(int[] cs) {
+    int cnt = 0;
+    long originHash = hash(cs);
+    for (int i = 0; i < cs.length; ++i) {
+        long hash = 0;
+        for (int j = 0; j < cs.length; ++j) {
+            hash = hash * 1000 + cs[(i + j) % cs.length];
+        }
+        if (hash == originHash) {
+            ++cnt;
+        }
+    }
+    return cnt;
+}

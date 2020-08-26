@@ -1,0 +1,30 @@
+
+private static long dfs(int a, int l) {
+    long ret = memo[a][l];
+    if (ret >= 0) {
+        return ret;
+    }
+    if (l == 0) {
+        ret = 1;
+    } else {
+        ret = 0;
+        if (a > B) {
+            memo[a][l] = 0;
+            return 0;
+        }
+        ret += dfs(a + 1, l);
+        ret %= mod;
+        long v = 1;
+        int ll = l;
+        for (int i = 1; i <= D && a <= ll; i++) {
+            v = v * c(ll, a) % mod;
+            ll -= a;
+            if (C <= i && i <= D) {
+                ret += v * dfs(a + 1, ll) % mod * fif[1][i] % mod;
+                ret %= mod;
+            }
+        }
+    }
+    memo[a][l] = ret;
+    return ret;
+}

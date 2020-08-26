@@ -1,0 +1,17 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    Map<Integer, Long> name = sc.next().chars().boxed().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+    Map<Integer, Long> kit = sc.next().chars().boxed().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+    double max = 0;
+    for (Map.Entry<Integer, Long> e : name.entrySet()) {
+        Long count = kit.get(e.getKey());
+        if (count == null) {
+            System.out.println(-1);
+            return;
+        }
+        max = Math.max(max, (double) e.getValue() / count);
+    }
+    System.out.println((long) Math.ceil(max));
+}

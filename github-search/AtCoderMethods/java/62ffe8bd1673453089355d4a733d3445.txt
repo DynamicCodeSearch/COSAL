@@ -1,0 +1,34 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    int[][] image = new int[N][N];
+    int[][] template = new int[M][M];
+    for (int y = 0; y < N; y++) {
+        String line = sc.next();
+        for (int x = 0; x < N; x++) image[x][y] = line.charAt(x);
+    }
+    for (int y = 0; y < M; y++) {
+        String line = sc.next();
+        for (int x = 0; x < M; x++) template[x][y] = line.charAt(x);
+    }
+    sc.close();
+    boolean match = false;
+    for (int iy = 0; iy < N - M + 1 && !match; iy++) {
+        for (int ix = 0; ix < N - M + 1 && !match; ix++) {
+            match = true;
+            for (int ty = 0; ty < M; ty++) {
+                for (int tx = 0; tx < M; tx++) {
+                    if (image[ix + tx][iy + ty] != template[tx][ty]) {
+                        match = false;
+                        break;
+                    }
+                }
+                if (!match)
+                    break;
+            }
+        }
+    }
+    String ans = match ? "Yes" : "No";
+    System.out.println(ans);
+}

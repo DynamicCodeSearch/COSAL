@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    final int N = sc.nextInt();
+    final int T = sc.nextInt();
+    int[] a = new int[N];
+    for (int i = 0; i < N; i++) {
+        a[i] = sc.nextInt();
+    }
+    sc.close();
+    int[] open = new int[a[N - 1] + T + 1];
+    for (int i = 0; i < N; i++) {
+        open[a[i]]++;
+        open[a[i] + T]--;
+    }
+    int ans = 0;
+    int current = 0;
+    for (int i = 0; i < a[N - 1] + T + 1; i++) {
+        current += open[i];
+        if (current > 0)
+            ans++;
+    }
+    System.out.println(ans);
+}

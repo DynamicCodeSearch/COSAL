@@ -1,0 +1,11 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    n = sc.nextLong();
+    int min = INF;
+    for (long a = 1; a * a <= n; a++) {
+        if (n % a == 0) {
+            min = Math.min(min, f(a, n / a));
+        }
+    }
+    System.out.println(min);
+}

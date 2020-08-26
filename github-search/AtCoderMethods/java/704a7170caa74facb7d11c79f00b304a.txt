@@ -1,0 +1,13 @@
+public long sum(int a, int b, int k, int l, int r) {
+    if (b <= l || r <= a) {
+        return (0);
+    } else if (a <= l && r <= b) {
+        return (all[k] * (r - l) + part[k]);
+    } else {
+        long res;
+        res = (Math.min(b, r) - Math.max(a, l)) * all[k];
+        res += sum(a, b, k * 2 + 1, l, (l + r) / 2);
+        res += sum(a, b, k * 2 + 2, (l + r) / 2, r);
+        return (res);
+    }
+}

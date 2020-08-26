@@ -1,0 +1,14 @@
+public static void main(String[] args) throws java.lang.Exception {
+    InputReader in = new InputReader(System.in);
+    PrintWriter w = new PrintWriter(System.out);
+    StringBuilder b = new StringBuilder(in.next());
+    b.deleteCharAt(b.length() - 1);
+    while (b.length() > 0) {
+        if (b.substring(0, b.length() / 2).equals(b.substring(b.length() / 2, b.length()))) {
+            w.println(b.length());
+            break;
+        }
+        b.deleteCharAt(b.length() - 1);
+    }
+    w.close();
+}

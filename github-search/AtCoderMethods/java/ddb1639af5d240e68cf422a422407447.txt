@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int n = scanner.nextInt();
+    scanner.nextLine();
+    String s = scanner.nextLine();
+    StringBuilder sb = new StringBuilder();
+    int cstr = 0;
+    for (int i = 0; i < n; i++) {
+        char c = s.charAt(i);
+        if (c == ')') {
+            if (cstr > 0) {
+                cstr--;
+                sb.append(c);
+            } else {
+                sb.insert(0, '(');
+                sb.append(c);
+            }
+        } else {
+            cstr++;
+            sb.append(c);
+        }
+    }
+    for (int i = 0; i < cstr; i++) {
+        sb.append(')');
+    }
+    System.out.println(sb.toString());
+}

@@ -1,0 +1,7 @@
+private static String solve(String s) {
+    int[] w = new int['z' - 'a' + 1];
+    for (char c : s.toCharArray()) w[c - 'a'] += 1;
+    for (char c = 'a'; c <= 'z'; c++) if (w[c - 'a'] == 0)
+        return String.valueOf(c);
+    return "None";
+}

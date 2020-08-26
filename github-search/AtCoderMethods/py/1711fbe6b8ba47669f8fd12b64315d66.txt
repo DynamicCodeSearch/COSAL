@@ -1,0 +1,17 @@
+def dijk(g, s):
+    n = len(g)
+    import heapq
+    h = []
+    heapq.heappush(h, (0,s))
+    d = [999999999999999] * n
+    d[s] = 0
+    while len(h) > 0:
+        cur = heapq.heappop(h)
+        if d[cur[1]] != cur[0]: continue
+        ld = cur[0]
+        for e in g[cur[1]]:
+            nd = ld + e[1]
+            if nd < d[e[0]]:
+                d[e[0]] = nd
+                heapq.heappush(h, (nd, e[0]))
+    return d

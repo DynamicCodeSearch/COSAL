@@ -1,0 +1,23 @@
+def main():
+	N = int(input())
+ cards = list(map(int, input().split()))
+
+ x = cards[0]
+ y = sum(cards[1:])
+ i = 1
+ val = abs(x - y)
+
+ while i < len(cards) - 1:
+		x += cards[i]
+  y += -cards[i]
+  temp = abs(x - y)
+
+  if temp == 0:
+			val = 0
+   break
+  if temp < val:
+			val = temp
+
+  i += 1
+
+ print(val)

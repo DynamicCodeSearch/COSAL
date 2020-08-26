@@ -1,0 +1,22 @@
+void solve() throws IOException {
+    int n = in.nextInt();
+    int a = in.nextInt();
+    int n50 = n * 50;
+    long[][] dp = new long[n + 1][n50 + 1];
+    dp[0][0] = 1;
+    for (int i = 0; i < n; i++) {
+        int x = in.nextInt();
+        for (int j = n - 1; j >= 0; j--) {
+            for (int k = 0; k <= n50; k++) {
+                if (dp[j][k] == 0)
+                    continue;
+                dp[j + 1][k + x] += dp[j][k];
+            }
+        }
+    }
+    long ans = 0;
+    for (int i = 1; i <= n; i++) {
+        ans += dp[i][i * a];
+    }
+    System.out.println(ans);
+}

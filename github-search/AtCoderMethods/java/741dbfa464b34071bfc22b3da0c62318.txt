@@ -1,0 +1,6 @@
+static boolean isOK(int i, int j, int k) {
+    int max = Math.max(i, Math.max(j, k));
+    for (Criteria c : list.get(max)) if (!isOK(c, i, j, k))
+        return false;
+    return true;
+}

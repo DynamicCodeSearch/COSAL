@@ -1,0 +1,11 @@
+def main():
+    N = int(input())
+    r_list = list(sorted([int(input()) for _ in range(N)], reverse=True))
+    ans = 0
+    for i, r in enumerate(r_list):
+        area = r * r * pi
+        if i % 2 == 0:
+            ans += area
+        else:
+            ans -= area
+    print("{0:0.7f}".format(ans))

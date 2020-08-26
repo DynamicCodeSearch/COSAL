@@ -1,0 +1,12 @@
+static Node query(int node, int s, int e, int l, int r) {
+    if (s > e || l > e || r < s) {
+        return new Node(-1, 0);
+    }
+    if (l <= s && r >= e) {
+        return tree[node];
+    } else {
+        int mid = (s + e) >> 1;
+        Node n1 = query(node << 1, s, mid, l, r), n2 = query(node << 1 | 1, mid + 1, e, l, r);
+        return merge(n1, n2);
+    }
+}

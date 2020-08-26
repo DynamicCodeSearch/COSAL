@@ -1,0 +1,21 @@
+long f(int[] a, int index, boolean plus, long sum) {
+    if (index >= a.length) {
+        return 0;
+    }
+    long now = a[index] + sum;
+    if (plus) {
+        if (now > 0) {
+            return f(a, index + 1, false, now);
+        } else {
+            long v = -now + 1;
+            return v + f(a, index + 1, false, 1);
+        }
+    } else {
+        if (now < 0) {
+            return f(a, index + 1, true, now);
+        } else {
+            long v = now + 1;
+            return v + f(a, index + 1, true, -1);
+        }
+    }
+}

@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    try {
+        
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+        int n = Integer.parseInt(br.readLine());
+        int[] arr = new int[1000001];
+        arr[0] = 0;
+        arr[1] = 0;
+        arr[2] = 0;
+        arr[3] = 1;
+        for (int i = 4; i < 1000001; i++) {
+            arr[i] = (arr[i - 1] + arr[i - 2] + arr[i - 3]) % 10007;
+        }
+        System.out.println(arr[n]);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

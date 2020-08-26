@@ -1,0 +1,12 @@
+def num_diff(fixed,all):
+    count = {chr(c):0 for c in range(ord('a'),ord('z')+1)}
+
+    for s in all:
+        count[s] +=1
+    for s in fixed:
+        count[s] -=1
+    for s in all[len(fixed):]:
+        count[s] -=1
+
+    ret = sum(map(abs,count.values()))//2
+    return ret

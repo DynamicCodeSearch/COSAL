@@ -1,0 +1,17 @@
+static void solve() {
+    int n = in.nextInt();
+    int[] a = new int[n];
+    HashSet<Integer> set = new HashSet<>();
+    ArrayList<Integer> list = new ArrayList<>();
+    for (int i = 0; i < n; i++) {
+        a[i] = in.nextInt();
+        if (!set.contains(a[i])) {
+            set.add(a[i]);
+            list.add(a[i]);
+        }
+    }
+    Collections.sort(list);
+    for (int i = 0; i < n; i++) {
+        out.println(lowerBound(list, a[i]));
+    }
+}

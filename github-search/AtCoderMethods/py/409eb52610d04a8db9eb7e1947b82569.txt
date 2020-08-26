@@ -1,0 +1,13 @@
+def solve2(i):
+
+    lower = 10**(i - 1)
+    upper = 10**i - 1
+    while (upper - lower > 1):
+        mid = (lower + upper)//2
+        print("? {}0".format(mid))
+        ans = input()
+        if ans == "Y":
+            upper = mid
+        else:
+            lower = mid
+    print("! {}".format(upper))

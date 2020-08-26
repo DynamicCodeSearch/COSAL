@@ -1,0 +1,63 @@
+@SuppressWarnings("unchecked")
+public void solve() {
+    N = nextInt();
+    M = nextInt();
+    G = new ArrayList[N];
+    for (int i = 0; i < N; i++) {
+        G[i] = new ArrayList<Integer>();
+    }
+    usedEdge = new boolean[N][N];
+    cost = new int[N][N];
+    for (int i = 0; i < M; i++) {
+        int a = nextInt() - 1;
+        int b = nextInt() - 1;
+        int c = nextInt();
+        G[a].add(b);
+        G[b].add(a);
+        cost[a][b] = c;
+        cost[b][a] = c;
+    }
+    for (int i = 0; i < N; i++) {
+        int[] d = new int[N];
+        int[] prev = new int[N];
+        boolean[] used = new boolean[N];
+        Arrays.fill(prev, -1);
+        Arrays.fill(d, INF);
+        d[i] = 0;
+        while (true) {
+            int v = -1;
+            for (int u = 0; u < N; u++) {
+                if (!used[u] && (v == -1 || d[u] < d[v]))
+                    v = u;
+            }
+            if (v == -1)
+                break;
+            used[v] = true;
+            for (int u : G[v]) {
+                if (d[u] > d[v] + cost[v][u]) {
+                    d[u] = d[v] + cost[v][u];
+                    prev[u] = v;
+                }
+            }
+        }
+        for (int j = 0; j < N; j++) {
+            if (i == j)
+                continue;
+            usedEdge[j][prev[j]] = true;
+            usedEdge[prev[j]][j] = true;
+        }
+    }
+    int ans = 0;
+    boolean[][] used = new boolean[N][N];
+    for (int i = 0; i < N; i++) {
+        for (int j : G[i]) {
+            if (used[i][j] || used[j][i])
+                continue;
+            if (!usedEdge[i][j] && !usedEdge[j][i]) {
+                used[i][j] = used[j][i] = true;
+                ans++;
+            }
+        }
+    }
+    out.println(ans);
+}

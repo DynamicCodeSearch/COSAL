@@ -1,0 +1,42 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int R = sc.nextInt();
+    int C = sc.nextInt();
+    int sy = sc.nextInt() - 1;
+    int sx = sc.nextInt() - 1;
+    int gy = sc.nextInt() - 1;
+    int gx = sc.nextInt() - 1;
+    int[] start = { sy, sx };
+    int[] goal = { gy, gx };
+    char[][] maze = new char[R][C];
+    for (int i = 0; i < R; i++) {
+        String s = sc.next();
+        for (int j = 0; j < C; j++) {
+            maze[i][j] = s.charAt(j);
+        }
+    }
+    LinkedList<int[]> que = new LinkedList<int[]>();
+    int[][] minStep = new int[R][C];
+    for (int i = 0; i < R; i++) {
+        for (int j = 0; j < C; j++) {
+            minStep[i][j] = Integer.MAX_VALUE;
+        }
+    }
+    minStep[sy][sx] = 0;
+    que.add(start);
+    while (que.size() > 0) {
+        int[] mass = que.poll();
+        int[] movey = { -1, 0, 1, 0 };
+        int[] movex = { 0, 1, 0, -1 };
+        for (int i = 0; i < 4; i++) {
+            int y = mass[0] + movey[i];
+            int x = mass[1] + movex[i];
+            if (y >= 0 && y < R && x >= 0 && x < C && maze[y][x] == '.' && minStep[y][x] == Integer.MAX_VALUE) {
+                minStep[y][x] = minStep[mass[0]][mass[1]] + 1;
+                int[] move = { y, x };
+                que.add(move);
+            }
+        }
+    }
+    System.out.println(minStep[gy][gx]);
+}

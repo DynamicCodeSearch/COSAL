@@ -1,0 +1,37 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int H = sc.nextInt();
+    int W = sc.nextInt();
+    int[][] a = new int[H][W];
+    ArrayList<Data> q = new ArrayList<Data>();
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            a[i][j] = sc.nextInt();
+            q.add(new Data(i, j, a[i][j]));
+        }
+    }
+    Collections.sort(q);
+    int[][] dp = new int[H][W];
+    for (int i = 0; i < H; i++) {
+        Arrays.fill(dp[i], 1);
+    }
+    int[] vx = { 1, 0, -1, 0 };
+    int[] vy = { 0, 1, 0, -1 };
+    for (int i = 0; i < q.size(); i++) {
+        Data tmp = q.get(i);
+        for (int j = 0; j < 4; j++) {
+            int tx = tmp.w + vx[j];
+            int ty = tmp.h + vy[j];
+            if (ty < 0 || tx < 0 || ty >= H || tx >= W || a[ty][tx] >= a[tmp.h][tmp.w])
+                continue;
+            dp[tmp.h][tmp.w] = (dp[tmp.h][tmp.w] + dp[ty][tx]) % 1000000007;
+        }
+    }
+    int sum = 0;
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            sum = (sum + dp[i][j]) % 1000000007;
+        }
+    }
+    System.out.println(sum);
+}

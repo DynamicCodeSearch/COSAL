@@ -1,0 +1,16 @@
+public static void main(String[] args) throws IOException {
+    
+    
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    
+    long ans = (factorial(N) * factorial(M)) % C;
+    if (N == M) {
+        System.out.println((2 * ans) % C);
+    } else if (M == N + 1 || N == M + 1) {
+        System.out.println(ans);
+    } else {
+        System.out.println(0);
+    }
+}

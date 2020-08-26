@@ -1,0 +1,12 @@
+static void solve() {
+    int mod = 1000000007;
+    int[][] fif = enumFIF(250000, mod);
+    int n = ni(), m = ni();
+    if (Math.abs(n - m) >= 2) {
+        out.println(0);
+    } else if (Math.abs(n - m) == 1) {
+        out.println((long) fif[0][n] * fif[0][m] % mod);
+    } else {
+        out.println(2L * (long) fif[0][n] * fif[0][m] % mod);
+    }
+}

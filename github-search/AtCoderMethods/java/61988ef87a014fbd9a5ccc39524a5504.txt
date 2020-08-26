@@ -1,0 +1,14 @@
+static int dfs(int n, int w, int r) {
+    if (dp[n][w][r] != -1) {
+        return dp[n][w][r];
+    }
+    int res;
+    if (n == N || r == 0) {
+        res = 0;
+    } else if (w < a[n]) {
+        res = dfs(n + 1, w, r);
+    } else {
+        res = Math.max(dfs(n + 1, w, r), dfs(n + 1, w - a[n], r - 1) + b[n]);
+    }
+    return dp[n][w][r] = res;
+}

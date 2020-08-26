@@ -1,0 +1,17 @@
+def dfs(v, p, a):
+    global ans
+
+
+
+    if pre[v] != -1:
+        low[a] = min(low[a], low[v])
+        return low[a]
+    pre[v] = p
+    low[v] = p
+    for u in links[v]:
+        if u == a:
+            continue
+        low[v] = min(low[v], dfs(u, p + 1, v))
+    if pre[v] == low[v]:
+        ans += 1
+    return low[v]

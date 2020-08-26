@@ -1,0 +1,27 @@
+def main():
+    S = input()
+    T = int(input())
+
+    x = 0
+    y = 0
+    q = 0
+    x -= S.count('L')
+    x += S.count('R')
+    y += S.count('U')
+    y -= S.count('D')
+    q += S.count('?')
+    manha = abs(x) + abs(y)
+
+    if T == 1:
+        ans = manha + q
+    else:
+        if manha >= q:
+            ans = manha - q
+        else:
+            q -= manha
+            if q & 1:
+                ans = 1
+            else:
+                ans = 0
+
+    print(ans)

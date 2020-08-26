@@ -1,0 +1,14 @@
+double dfs(int n, int k, int f) {
+    if (k > K)
+        return 0;
+    if (n == N)
+        return f;
+    if (dp[n][k][f] >= 0)
+        return dp[n][k][f];
+    double ans = 0;
+    ans += dfs(n + 1, k, f) * n / (n + 1);
+    double x = dfs(n + 1, k + 1, 1) / (n + 1);
+    double y = dfs(n + 1, k, 0) / (n + 1);
+    ans += Math.max(x, y);
+    return dp[n][k][f] = ans;
+}

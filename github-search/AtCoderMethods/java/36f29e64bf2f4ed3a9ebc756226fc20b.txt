@@ -1,0 +1,24 @@
+public long dfs(int color, int now) {
+    if (dp[color][now] != -1) {
+        return dp[color][now];
+    }
+    long ret = 1;
+    for (int i : connect[now]) {
+        if (used[i])
+            continue;
+        int res = 0;
+        if (color != 0) {
+            used[i] = true;
+            res += dfs(0, i) % INF;
+            used[i] = false;
+            res %= INF;
+        }
+        used[i] = true;
+        res += dfs(1, i) % INF;
+        used[i] = false;
+        res %= INF;
+        ret = (ret * res) % INF;
+        ret %= INF;
+    }
+    return dp[color][now] = ret % INF;
+}

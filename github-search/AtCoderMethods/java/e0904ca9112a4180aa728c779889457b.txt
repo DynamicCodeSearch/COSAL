@@ -1,0 +1,31 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int h = in.nextInt();
+    int w = in.nextInt();
+    int n = in.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = in.nextInt();
+    }
+    int[][] t = new int[h][w];
+    int curPos = 0;
+    int curCol = 0;
+    while (curPos != h * w) {
+        int row = curPos / w;
+        int col = 0;
+        if (row % 2 == 0)
+            col = curPos % w;
+        else
+            col = w - curPos % w - 1;
+        if (a[curCol] == 0)
+            curCol++;
+        a[curCol]--;
+        t[row][col] = curCol + 1;
+        curPos++;
+    }
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            out.print(t[i][j] + " ");
+        }
+        out.println();
+    }
+}

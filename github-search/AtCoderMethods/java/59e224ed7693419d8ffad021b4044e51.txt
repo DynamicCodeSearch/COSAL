@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    long N = Long.parseLong(scan.next());
+    long x = Long.parseLong(scan.next());
+    long count = 0;
+    long a0;
+    long a1 = Long.parseLong(scan.next());
+    for (int i = 1; i < N; i++) {
+        a0 = a1;
+        a1 = Long.parseLong(scan.next());
+        long sum = a0 + a1;
+        long diff = sum - x;
+        if (diff > 0) {
+            if (diff <= a1) {
+                count = count + diff;
+                a1 = a1 - diff;
+                sum = sum - diff;
+            } else {
+                count = count + a1;
+                a1 = 0;
+                sum = a0;
+            }
+        }
+        diff = sum - x;
+        if (diff > 0) {
+            count = count + diff;
+        }
+    }
+    System.out.println(count);
+    scan.close();
+}

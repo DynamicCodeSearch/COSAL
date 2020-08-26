@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String w = sc.next();
+    char[] ch = w.toCharArray();
+    boolean result = true;
+    char al = 'a';
+    for (int i = 0; i < 26; i++) {
+        int cnt = 0;
+        for (int j = 0; j < ch.length; j++) {
+            if (al == ch[j]) {
+                cnt++;
+            }
+        }
+        if (cnt % 2 != 0) {
+            result = false;
+            break;
+        }
+        al++;
+    }
+    if (result) {
+        System.out.println("Yes");
+    } else {
+        System.out.println("No");
+    }
+}

@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    try (Scanner sc = new Scanner(System.in)) {
+        int N = sc.nextInt();
+        int sum = 0;
+        int[] A = new int[N];
+        for (int i = 0; i < N; i++) {
+            A[i] = sc.nextInt();
+            sum += A[i];
+        }
+        int M = sc.nextInt();
+        int max = 0;
+        for (int i = 0; i < M; i++) {
+            int P = sc.nextInt() - 1, X = sc.nextInt();
+            System.out.println(sum - A[P] + X);
+        }
+    }
+}

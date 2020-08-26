@@ -1,0 +1,21 @@
+void solveD() throws IOException {
+    int n = nextInt();
+    int[] arr = nextIntArr(n);
+    int res = 0;
+    int start = 0;
+    while (start < n) {
+        if (arr[start] == start + 1) {
+            if (start == n - 1) {
+                res++;
+                break;
+            } else {
+                exchange(arr, start, start + 1);
+                res++;
+                start++;
+            }
+        } else {
+            start++;
+        }
+    }
+    outln(res);
+}

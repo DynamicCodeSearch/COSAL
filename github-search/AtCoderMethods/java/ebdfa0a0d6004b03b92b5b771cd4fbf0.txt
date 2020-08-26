@@ -1,0 +1,16 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    String o = reader.readLine();
+    String e = reader.readLine();
+    char[] oc = o.toCharArray();
+    char[] ec = e.toCharArray();
+    boolean isO = oc.length > ec.length;
+    PrintWriter writer = new PrintWriter(new OutputStreamWriter(System.out));
+    for (int i = 0; i < ec.length; i++) {
+        writer.print(oc[i]);
+        writer.print(ec[i]);
+    }
+    if (isO)
+        writer.print(oc[oc.length - 1]);
+    writer.close();
+}

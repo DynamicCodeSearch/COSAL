@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    final int mod = 1000000007;
+    int w = s.nextInt() - 1, h = s.nextInt() - 1;
+    if (w < h) {
+        int buf = h;
+        h = w;
+        w = buf;
+    }
+    long res = 1;
+    for (int i = 1; i <= h; i++) {
+        res *= w + i;
+        res %= mod;
+    }
+    for (int i = h; i > 1; i--) {
+        res *= modPow(i, mod - 2, mod);
+        res %= mod;
+    }
+    System.out.println(res);
+}

@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    Integer[] array = new Integer[n];
+    for (int i = 0; i < n; i++) {
+        array[i] = sc.nextInt();
+    }
+    LinkedList<Integer> list = new LinkedList<>();
+    for (int i = 0; i < n; i++) {
+        if (i % 2 == 0) {
+            list.addFirst(array[i]);
+        } else {
+            list.addLast(array[i]);
+        }
+    }
+    if (n % 2 == 1) {
+        Iterator iter = list.iterator();
+        while (iter.hasNext()) {
+            System.out.print(iter.next() + " ");
+        }
+    } else {
+        ListIterator iter = list.listIterator(list.size());
+        while (iter.hasPrevious()) {
+            System.out.print(iter.previous() + " ");
+        }
+    }
+}

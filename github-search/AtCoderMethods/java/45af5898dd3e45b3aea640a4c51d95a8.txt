@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] a = new int[N];
+    for (int i = 0; i < N; i++) a[i] = sc.nextInt();
+    Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+    for (int i = 0; i < N; i++) {
+        map.put(a[i], 0);
+    }
+    List<Integer> list = new ArrayList<Integer>(map.keySet());
+    Collections.sort(list);
+    for (int i = 0; i < list.size(); i++) {
+        map.put(list.get(i), i);
+    }
+    for (int i = 0; i < N; i++) {
+        System.out.println(map.get(a[i]));
+    }
+}

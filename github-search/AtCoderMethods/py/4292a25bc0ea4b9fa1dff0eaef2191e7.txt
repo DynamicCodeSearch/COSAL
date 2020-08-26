@@ -1,0 +1,13 @@
+def main():
+    S = input()
+    T = input()
+    replacable_chars = ['a','t','c','o','d','e','r']
+
+    for i in range(len(S)):
+        if S[i] == T[i]: continue
+        if (S[i] == '@' and T[i] in replacable_chars) or (T[i] == '@' and S[i] in replacable_chars):
+            continue
+        else:
+            print('You will lose')
+            return
+    print('You can win')

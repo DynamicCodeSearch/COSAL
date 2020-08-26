@@ -1,0 +1,63 @@
+public static void main(String[] args) {
+    FastScanner fs = new FastScanner();
+    int h = fs.nextInt2();
+    int w = fs.nextInt2();
+    int[][] a = new int[h][w];
+    for (int i = 0; i < h; i++) {
+        String s = fs.next();
+        for (int j = 0; j < w; j++) {
+            if (s.charAt(j) == '.') {
+                a[i][j] = 0;
+            } else {
+                a[i][j] = 1;
+            }
+        }
+    }
+    int[][] b = new int[h][w];
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) if (a[i][j] == 0) {
+            for (int dx = -1; dx <= 1; dx++) {
+                for (int dy = -1; dy <= 1; dy++) {
+                    int x = i + dx;
+                    int y = j + dy;
+                    if (x >= 0 && x < h && y >= 0 && y < w) {
+                        b[x][y] = 1;
+                    }
+                }
+            }
+        }
+    }
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            if (a[i][j] == 1) {
+                boolean flag = false;
+                for (int dx = -1; dx <= 1; dx++) {
+                    for (int dy = -1; dy <= 1; dy++) {
+                        int x = i + dx;
+                        int y = j + dy;
+                        if (x >= 0 && x < h && y >= 0 && y < w) {
+                            if (b[x][y] == 0) {
+                                flag = true;
+                            }
+                        }
+                    }
+                }
+                if (!flag) {
+                    System.out.println("impossible");
+                    return;
+                }
+            }
+        }
+    }
+    StringBuilder sb = new StringBuilder();
+    sb.append("possible\n");
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            sb.append(b[i][j] == 0 ? '#' : '.');
+            if (j == w - 1) {
+                sb.append("\n");
+            }
+        }
+    }
+    System.out.println(sb.toString());
+}

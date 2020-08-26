@@ -1,0 +1,24 @@
+def vote(votes, contents):
+    i = 0
+    roster = []
+    personVotes = []
+    while(i < votes):
+        j = 0
+        while(j <= len(roster)):
+            if(len(roster) == 0 or j == len(roster)):
+                roster.append(contents[i])
+                personVotes.append(0)
+                j = len(roster) + 1
+            elif(roster[j] == contents[i]):
+                personVotes[j] += 1
+                j = len(roster) + 1
+            else:
+                j += 1
+        i += 1
+    k = 0
+    max = 0
+    while(k < len(roster)):
+        if(personVotes[k] > personVotes[max]):
+            max = k
+        k += 1
+    print(roster[max])

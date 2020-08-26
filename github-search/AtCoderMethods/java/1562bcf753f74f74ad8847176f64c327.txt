@@ -1,0 +1,9 @@
+public static boolean isFullyConnected(boolean[][] graph, List<Integer> nodeList) {
+    for (int i = 0; i < nodeList.size(); ++i) {
+        for (int j = i + 1; j < nodeList.size(); ++j) {
+            if (!graph[nodeList.get(i)][nodeList.get(j)])
+                return false;
+        }
+    }
+    return true;
+}

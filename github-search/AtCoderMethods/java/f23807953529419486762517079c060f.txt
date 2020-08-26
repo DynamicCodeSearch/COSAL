@@ -1,0 +1,34 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    String Sa = scanner.nextLine().toUpperCase();
+    String Sb = scanner.nextLine().toUpperCase();
+    String Sc = scanner.nextLine().toUpperCase();
+    Turn turn = Turn.A;
+    loop: while (true) {
+        String nextTurn;
+        switch(turn) {
+            case A:
+                if (Sa.length() == 0)
+                    break loop;
+                nextTurn = Sa.substring(0, 1);
+                Sa = Sa.substring(1);
+                break;
+            case B:
+                if (Sb.length() == 0)
+                    break loop;
+                nextTurn = Sb.substring(0, 1);
+                Sb = Sb.substring(1);
+                break;
+            case C:
+                if (Sc.length() == 0)
+                    break loop;
+                nextTurn = Sc.substring(0, 1);
+                Sc = Sc.substring(1);
+                break;
+            default:
+                throw new RuntimeException();
+        }
+        turn = Turn.valueOf(nextTurn);
+    }
+    System.out.println(turn.toString());
+}

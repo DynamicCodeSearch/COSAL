@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    int T = sc.nextInt();
+    int[] A = sc.nextIntList(N);
+    SegmentTreeRMQ rmq = new SegmentTreeRMQ(A);
+    int count = 0;
+    int max = 0;
+    for (int i = 1; i < N; i++) {
+        int min = rmq.min(0, i);
+        int d = A[i] - min;
+        if (d > max) {
+            max = d;
+            count = 1;
+        } else if (d == max) {
+            count++;
+        }
+    }
+    System.out.println(count);
+}

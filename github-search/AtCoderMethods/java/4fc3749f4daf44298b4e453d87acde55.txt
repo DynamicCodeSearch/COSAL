@@ -1,0 +1,33 @@
+public static void main(String[] args) throws IOException {
+    
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String str = br.readLine();
+    int N = Integer.parseInt(str.substring(0, str.indexOf(" ")));
+    int M = Integer.parseInt(str.substring(str.indexOf(" ") + 1));
+    int[][] Students = new int[N][2];
+    int[][] CheckPoints = new int[M][2];
+    int[][] Lan = new int[N][2];
+    for (int i = 0; i < N; i++) {
+        str = br.readLine();
+        Students[i][X] = Integer.parseInt(str.substring(0, str.indexOf(" ")));
+        Students[i][Y] = Integer.parseInt(str.substring(str.indexOf(" ") + 1));
+        Lan[i][0] = 1000000000;
+        Lan[i][1] = 0;
+    }
+    for (int i = 0; i < M; i++) {
+        str = br.readLine();
+        CheckPoints[i][X] = Integer.parseInt(str.substring(0, str.indexOf(" ")));
+        CheckPoints[i][Y] = Integer.parseInt(str.substring(str.indexOf(" ") + 1));
+    }
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < M; j++) {
+            if (Lan[i][0] > Math.abs(Students[i][X] - CheckPoints[j][X]) + Math.abs(Students[i][Y] - CheckPoints[j][Y])) {
+                Lan[i][0] = Math.abs(Students[i][X] - CheckPoints[j][X]) + Math.abs(Students[i][Y] - CheckPoints[j][Y]);
+                Lan[i][1] = j + 1;
+            }
+        }
+    }
+    for (int i = 0; i < N; i++) {
+        System.out.println(Lan[i][1]);
+    }
+}

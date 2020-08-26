@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    try (Scanner sc = new Scanner(System.in)) {
+        long N = Long.parseLong(sc.next());
+        long A = Long.parseLong(sc.next());
+        long B = Long.parseLong(sc.next());
+        long nowX = Long.parseLong(sc.next());
+        ;
+        long nextX;
+        long degree = 0;
+        for (int i = 1; i < N; i++) {
+            nextX = Long.parseLong(sc.next());
+            degree += ((nextX - nowX) * A > B) ? B : ((nextX - nowX) * A);
+            nowX = nextX;
+        }
+        System.out.println(degree);
+    }
+}

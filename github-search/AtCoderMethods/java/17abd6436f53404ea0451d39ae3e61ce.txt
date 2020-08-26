@@ -1,0 +1,38 @@
+private static void solve() {
+    int r = sc.nextInt();
+    int c = sc.nextInt();
+    int n = sc.nextInt();
+    int[] x1 = new int[n];
+    int[] y1 = new int[n];
+    int[] x2 = new int[n];
+    int[] y2 = new int[n];
+    List<Pair> xy = new ArrayList<>();
+    for (int i = 0; i < n; i++) {
+        x1[i] = sc.nextInt();
+        y1[i] = sc.nextInt();
+        x2[i] = sc.nextInt();
+        y2[i] = sc.nextInt();
+        if ((x1[i] == 0 || x1[i] == r || y1[i] == 0 || y1[i] == c) && (x2[i] == 0 || x2[i] == r || y2[i] == 0 || y2[i] == c)) {
+            int tmp1 = conv(x1[i], y1[i], r, c);
+            int tmp2 = conv(x2[i], y2[i], r, c);
+            if (tmp1 < tmp2) {
+                xy.add(new Pair(tmp1, tmp2));
+            } else {
+                xy.add(new Pair(tmp2, tmp1));
+            }
+        }
+    }
+    Collections.sort(xy);
+    Deque<Pair> st = new ArrayDeque<>();
+    for (Pair e : xy) {
+        while (!st.isEmpty() && st.peek().b < e.a) {
+            st.pop();
+        }
+        if (!st.isEmpty() && st.peek().b < e.b) {
+            pr.println("NO");
+            return;
+        }
+        st.push(e);
+    }
+    pr.println("YES");
+}

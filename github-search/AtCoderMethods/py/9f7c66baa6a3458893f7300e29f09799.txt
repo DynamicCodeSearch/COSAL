@@ -1,0 +1,12 @@
+def dis_to_w(dis):
+
+    w = -1
+    ws_list = [0.0, 0.3, 1.6, 3.4, 5.5, 8.0, 10.8,
+               13.9, 17.2, 20.8, 24.5, 28.5, 32.7]
+    r_dif = int(dis / 60 * 10 + 0.5) / 10
+    for n in ws_list:
+        if r_dif >= n:
+            w += 1
+        else:
+            break
+    return w

@@ -1,0 +1,37 @@
+public static void main(String[] args) {
+    int n, m;
+    int x, y;
+    int[] a, b;
+    Scanner sc = new Scanner(System.in);
+    n = sc.nextInt();
+    m = sc.nextInt();
+    x = sc.nextInt();
+    y = sc.nextInt();
+    a = new int[n];
+    b = new int[m];
+    for (int i = 0; i < n; i++) a[i] = sc.nextInt();
+    for (int i = 0; i < m; i++) b[i] = sc.nextInt();
+    int now = 0;
+    int[] is = a;
+    int counter = 0;
+    int tmp;
+    while (now <= is[is.length - 1]) {
+        int i;
+        tmp = is[0];
+        for (i = 0; i < is.length; i++) {
+            tmp = is[i];
+            if (now <= tmp)
+                break;
+        }
+        now += tmp - now;
+        if (is.equals(a)) {
+            now += x;
+            is = b;
+        } else {
+            now += y;
+            is = a;
+            counter++;
+        }
+    }
+    System.out.println(counter);
+}

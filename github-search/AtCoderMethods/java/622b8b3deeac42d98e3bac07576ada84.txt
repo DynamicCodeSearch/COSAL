@@ -1,0 +1,13 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int[][] p = new int[3][2];
+    for (int i = 0; i < 3; i++) {
+        p[i][0] = scan.nextInt();
+        p[i][1] = scan.nextInt();
+    }
+    int area2 = 0;
+    for (int i = 0; i < 3; i++) {
+        area2 += p[i][0] * p[(i + 1) % 3][1] - p[i][1] * p[(i + 1) % 3][0];
+    }
+    System.out.println(Math.abs((double) area2 / 2.0));
+}

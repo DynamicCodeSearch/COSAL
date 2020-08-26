@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    HashMap<Character, Integer> map = new HashMap<>();
+    String s = scan.next();
+    String str = "ABCDEF";
+    for (int i = 0; i < s.length(); i++) {
+        if (!map.containsKey(s.charAt(i))) {
+            map.put(s.charAt(i), 1);
+        } else {
+            int temp = map.get(s.charAt(i)) + 1;
+            map.put(s.charAt(i), temp);
+        }
+    }
+    for (int i = 0; i < str.length(); i++) {
+        if (!map.containsKey(str.charAt(i))) {
+            System.out.print(0);
+        } else {
+            System.out.print(map.get(str.charAt(i)));
+        }
+        if (i != str.length() - 1) {
+            System.out.print(" ");
+        }
+    }
+    System.out.println("");
+}

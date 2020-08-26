@@ -1,0 +1,21 @@
+
+public void run() throws IOException {
+    
+    int TEST_CASE = 1;
+    while (TEST_CASE-- != 0) {
+        char[] cs = io.next();
+        for (int i = 0; i + 1 < cs.length; i++) {
+            if (cs[i] == cs[i + 1]) {
+                io.out.println((i + 1) + " " + (i + 2));
+                return;
+            }
+        }
+        for (int i = 2; i < cs.length; i++) {
+            if (cs[i] == cs[i - 2]) {
+                io.out.println((i - 1) + " " + (i + 1));
+                return;
+            }
+        }
+        io.out.println("-1 -1");
+    }
+}

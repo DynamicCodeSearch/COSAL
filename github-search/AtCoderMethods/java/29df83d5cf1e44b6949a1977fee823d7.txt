@@ -1,0 +1,9 @@
+public LST unset(int pos) {
+    if (pos >= 0 && pos < n) {
+        
+        for (int i = 0; i < set.length && (i == 0 || set[i - 1][pos] == 0L); i++, pos >>>= 6) {
+            set[i][pos >>> 6] &= ~(1L << pos);
+        }
+    }
+    return this;
+}

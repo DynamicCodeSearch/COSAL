@@ -1,0 +1,32 @@
+def solve(K, N, A, D):
+    A_max = max(A)
+    D_max = max(D)
+
+    low = 1
+    hig = A_max + D_max * K
+
+
+    while True:
+        mid = (low + hig) // 2
+        count = count_build(mid, N, A, D)
+
+        if count >= K:
+            hig = mid
+        elif count < K:
+            low = mid
+
+        if hig - low <= 1:
+            break
+
+    last_val = low
+    last_val_count = count_build(last_val, N, A, D)
+
+    ans = 0
+    for i in range(N):
+        if last_val >= A[i]:
+            add_count = (last_val - A[i]) // D[i]
+            ans += (A[i] * 2 + add_count * D[i]) * (add_count + 1) // 2
+
+    ans += (low + 1) * (K - last_val_count)
+
+    return ans

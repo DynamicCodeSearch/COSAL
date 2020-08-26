@@ -1,0 +1,20 @@
+private long solve1(int d, int w) {
+    Pair<Integer> key = new Pair<>(d, w);
+    Long v = memo1.get(key);
+    if (v != null) {
+        return v;
+    }
+    if (d >= N) {
+        return 0;
+    }
+    Pair<Integer> p = list.get(d);
+    long a1 = solve1(d + 1, w);
+    if (p.b > w) {
+        memo1.put(key, a1);
+        return a1;
+    }
+    long a2 = solve1(d + 1, w - p.b) + p.a;
+    long a = Math.max(a1, a2);
+    memo1.put(key, a);
+    return a;
+}

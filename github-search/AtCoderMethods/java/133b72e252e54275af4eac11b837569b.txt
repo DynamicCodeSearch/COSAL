@@ -1,0 +1,51 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    StringBuilder sb = new StringBuilder();
+    String[] str = br.readLine().split(" ");
+    int w = Integer.parseInt(str[0]);
+    int h = Integer.parseInt(str[1]);
+    int n = Integer.parseInt(str[2]);
+    int[] x = new int[n];
+    int[] y = new int[n];
+    boolean[][] map = new boolean[w][h];
+    for (int i = 0; i < n; i++) {
+        String[] str1 = br.readLine().split(" ");
+        x[i] = Integer.parseInt(str1[0]);
+        y[i] = Integer.parseInt(str1[1]);
+        int a = Integer.parseInt(str1[2]);
+        if (a == 1) {
+            for (int j = 0; j < x[i]; j++) {
+                for (int k = 0; k < h; k++) {
+                    map[j][k] = true;
+                }
+            }
+        } else if (a == 2) {
+            for (int j = x[i]; j < w; j++) {
+                for (int k = 0; k < h; k++) {
+                    map[j][k] = true;
+                }
+            }
+        } else if (a == 3) {
+            for (int j = 0; j < w; j++) {
+                for (int k = 0; k < y[i]; k++) {
+                    map[j][k] = true;
+                }
+            }
+        } else if (a == 4) {
+            for (int j = 0; j < w; j++) {
+                for (int k = y[i]; k < h; k++) {
+                    map[j][k] = true;
+                }
+            }
+        }
+    }
+    int cnt = w * h;
+    for (int i = 0; i < w; i++) {
+        for (int j = 0; j < h; j++) {
+            if (map[i][j])
+                cnt--;
+        }
+    }
+    sb.append(cnt);
+    System.out.println(sb);
+}

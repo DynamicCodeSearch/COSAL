@@ -1,0 +1,22 @@
+private static long solve(long a, long g, long m) {
+    long base = pow(10, g - 1, m);
+    long cur = (a / g) - 1;
+    long a10 = base * 10 % m;
+    long keta = 1;
+    long ret = 0;
+    while (cur > 0) {
+        if (cur % 2 != 0) {
+            ret = (ret + base * keta) % m;
+            keta *= a10;
+            keta %= m;
+        }
+        base = (base * a10 + base) % m;
+        a10 *= a10;
+        a10 %= m;
+        cur /= 2;
+    }
+    ret *= 10;
+    ret += 1;
+    ret %= m;
+    return ret;
+}

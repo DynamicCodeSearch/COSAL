@@ -1,0 +1,19 @@
+public void solve(int testNumber, InputReader sc, PrintWriter w) {
+    int n = sc.nextInt();
+    char[] c = sc.next().toCharArray();
+    int point = 0;
+    int count = 0;
+    for (char ch : c) {
+        if (ch == ')')
+            point--;
+        else
+            point++;
+        if (point < 0) {
+            count++;
+            point++;
+        }
+    }
+    for (int i = 0; i < count; i++) w.print("(");
+    w.print(new String(c));
+    for (int i = 0; i < point; i++) w.print(")");
+}

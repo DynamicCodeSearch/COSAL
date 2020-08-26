@@ -1,0 +1,21 @@
+def solve(self):
+
+    n, m = map(int, input().split())
+    students = []
+    for i in range(n):
+        a, b = map(int, input().split())
+        students.append((a, b))
+    checkpoints = []
+    for j in range(m):
+        c, d = map(int, input().split())
+        checkpoints.append((c, d))
+    for a, b in students:
+        ans = -1
+        minimum = float('inf')
+        for index, (c, d) in enumerate(checkpoints):
+            if minimum > abs(a - c) + abs(b - d):
+                minimum = abs(a - c) + abs(b - d)
+                ans = index + 1
+        print(ans)
+
+    return None

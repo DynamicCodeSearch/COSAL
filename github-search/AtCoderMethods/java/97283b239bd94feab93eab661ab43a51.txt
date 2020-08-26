@@ -1,0 +1,24 @@
+void solve() throws IOException {
+    int n = ni();
+    int m = ni();
+    ArrayList<Pair> list = new ArrayList<>();
+    for (int i = 0; i < n; i++) {
+        int l = ni(), r = ni();
+        list.add(new Pair(l, r));
+    }
+    Collections.sort(list);
+    BIT bit = new BIT(m);
+    int idx = 0;
+    for (int i = 1; i <= m; i++) {
+        while (idx < n && list.get(idx).y - list.get(idx).x < i) {
+            bit.add(list.get(idx).x, 1);
+            bit.add(list.get(idx).y + 1, -1);
+            idx++;
+        }
+        int ans = n - idx;
+        for (int j = i; j <= m; j += i) {
+            ans += bit.sum(j);
+        }
+        out.println(ans);
+    }
+}

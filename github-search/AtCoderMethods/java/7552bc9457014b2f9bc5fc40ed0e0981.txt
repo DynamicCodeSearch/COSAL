@@ -1,0 +1,18 @@
+
+void unite(int x, int y) {
+    x = find(x);
+    y = find(y);
+    if (x == y) {
+        return;
+    }
+    cnt--;
+    
+    if (parent[x] > parent[y]) {
+        parent[y] += parent[x];
+        parent[x] = y;
+    } else {
+        parent[x] += parent[y];
+        parent[y] = x;
+    }
+    return;
+}

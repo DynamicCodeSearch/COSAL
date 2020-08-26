@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    @SuppressWarnings("resource")
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    String[] S = new String[N];
+    int[] P = new int[N];
+    for (int i = 0; i < N; i++) {
+        S[i] = sc.next();
+        P[i] = sc.nextInt();
+    }
+    int sum = 0;
+    int majority = 0;
+    for (int i = 0; i < N; i++) {
+        sum = sum + P[i];
+        majority = sum / 2;
+    }
+    for (int i = 0; i < N; i++) {
+        if (P[i] > majority)
+            System.out.println(S[i]);
+    }
+    int count = 0;
+    for (int i = 0; i < N; i++) {
+        if (P[i] <= majority)
+            count = count + 1;
+    }
+    if (count == N)
+        System.out.println("atcoder");
+}

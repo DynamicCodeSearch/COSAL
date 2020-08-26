@@ -1,0 +1,14 @@
+static boolean calc(boolean[] animal) {
+    for (int i = 0; i < animal.length - 2; i++) {
+        animal[i + 2] = !(animal[i + 1] ^ !(animal[i] ^ arr[i + 1]));
+    }
+    boolean result = animal[animal.length - 1] == animal[0];
+    boolean last = !(animal[0] ^ !(animal[1] ^ arr[0]));
+    result &= last == animal[animal.length - 2];
+    if (result) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < animal.length - 1; i++) sb.append((animal[i]) ? 'S' : 'W');
+        System.out.println(sb.toString());
+    }
+    return result;
+}

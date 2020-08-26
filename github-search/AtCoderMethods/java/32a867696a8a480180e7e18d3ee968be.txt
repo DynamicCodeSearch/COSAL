@@ -1,0 +1,44 @@
+public static void main(String[] args) {
+    int i = 0;
+    boolean TRUE;
+    TRUE = false;
+    sc = new Scanner(System.in);
+    String S, T;
+    S = sc.next();
+    T = sc.next();
+    if (S.equals(T)) {
+        TRUE = true;
+    } else {
+        for (i = 0; i < S.length(); i++) {
+            if (S.charAt(i) == '@') {
+                if (T.charAt(i) == 'a' || T.charAt(i) == 't' || T.charAt(i) == 'c' || T.charAt(i) == 'o' || T.charAt(i) == 'd' || T.charAt(i) == 'e' || T.charAt(i) == 'r' || T.charAt(i) == '@') {
+                    TRUE = true;
+                } else {
+                    TRUE = false;
+                    break;
+                }
+            } else {
+                if (S.charAt(i) == 'a' || S.charAt(i) == 't' || S.charAt(i) == 'c' || S.charAt(i) == 'o' || S.charAt(i) == 'd' || S.charAt(i) == 'e' || S.charAt(i) == 'r') {
+                    if (T.charAt(i) == '@' || S.charAt(i) == T.charAt(i)) {
+                        TRUE = true;
+                    } else {
+                        TRUE = false;
+                        break;
+                    }
+                } else {
+                    if (S.charAt(i) == T.charAt(i)) {
+                        TRUE = true;
+                    } else {
+                        TRUE = false;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    if (TRUE) {
+        System.out.println("You can win");
+    } else {
+        System.out.println("You will lose");
+    }
+}

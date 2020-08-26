@@ -1,0 +1,19 @@
+public void unite(int a, int b) {
+    a = find(a);
+    b = find(b);
+    if (a == b) {
+        return;
+    }
+    if (rank[a] < rank[b]) {
+        parent[a] = b;
+        cnt[b] += cnt[a];
+        cnt[a] = cnt[b];
+    } else {
+        parent[b] = a;
+        cnt[a] += cnt[b];
+        cnt[b] = cnt[a];
+        if (rank[a] == rank[b]) {
+            rank[a]++;
+        }
+    }
+}

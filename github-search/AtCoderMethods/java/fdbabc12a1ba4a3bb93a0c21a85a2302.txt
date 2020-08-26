@@ -1,0 +1,41 @@
+void run() {
+    long H = sc.nextLong();
+    long W = sc.nextLong();
+    int N = sc.nextInt();
+    long all = (H - 2) * (W - 2);
+    Map<String, Integer> map = new HashMap<>();
+    while (N-- > 0) {
+        int h = sc.nextInt() - 1;
+        int w = sc.nextInt() - 1;
+        for (int i = -2; i <= 0; i++) {
+            for (int j = -2; j <= 0; j++) {
+                boolean f = true;
+                int ph = h + j;
+                int pw = w + i;
+                L: for (int k = 0; k < 3; k++) {
+                    for (int l = 0; l < 3; l++) {
+                        if (!inner(ph + k, pw + l, H, W)) {
+                            f = false;
+                            break L;
+                        }
+                    }
+                }
+                if (f) {
+                    StringBuilder k = new StringBuilder();
+                    k.append(ph);
+                    k.append("_");
+                    k.append(pw);
+                    map.put(k.toString(), map.containsKey(k.toString()) ? map.get(k.toString()) + 1 : 1);
+                }
+            }
+        }
+    }
+    long[] a = new long[10];
+    int cnt = 0;
+    for (String key : map.keySet()) {
+        a[map.get(key)]++;
+        cnt++;
+    }
+    a[0] = all - cnt;
+    for (long res : a) System.out.println(res);
+}

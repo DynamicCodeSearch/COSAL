@@ -1,0 +1,16 @@
+long dfs(int depth, String str) {
+    if (depth == str.length() - 1) {
+        debug(str);
+        String[] sp = str.split("\\+");
+        long sum = 0;
+        for (int i = 0; i < sp.length; ++i) {
+            sum += Long.parseLong(sp[i]);
+        }
+        return sum;
+    }
+    long sum = 0;
+    sum += dfs(depth + 1, str);
+    str = str.substring(0, depth + 1) + "+" + str.substring(depth + 1);
+    sum += dfs(depth + 2, str);
+    return sum;
+}

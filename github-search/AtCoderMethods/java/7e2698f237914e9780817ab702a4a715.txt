@@ -1,0 +1,34 @@
+private void solve(FastScanner in, PrintWriter out) {
+    int N = in.nextInt();
+    int A = in.nextInt();
+    int B = in.nextInt();
+    int C = in.nextInt();
+    int D = in.nextInt();
+    Combination combination = new Combination(N);
+    long[][] dp = new long[N + 2][N + 2];
+    dp[0][A] = 1;
+    
+    for (int i = 0; i <= N; i++) {
+        for (int member = A; member <= B; member++) {
+            if (dp[i][member] <= 0)
+                continue;
+            dp[i][member + 1] += dp[i][member];
+            dp[i][member + 1] %= MOD;
+            long d = dp[i][member];
+            for (int num = 1; num <= D; num++) {
+                if (i + num * member > N)
+                    break;
+                int remain = N - (i + (num - 1) * member);
+                d *= combination.get(remain, member);
+                d %= MOD;
+                if (num < C)
+                    continue;
+                long e = d * combination.invFact[num];
+                e %= MOD;
+                dp[i + num * member][member + 1] += e;
+                dp[i + num * member][member + 1] %= MOD;
+            }
+        }
+    }
+    out.println(dp[N][B + 1]);
+}

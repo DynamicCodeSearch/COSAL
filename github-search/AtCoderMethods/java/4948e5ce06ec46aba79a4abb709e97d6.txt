@@ -1,0 +1,22 @@
+private void solve() {
+    try {
+        int K = scanner.nextInt();
+        int S = scanner.nextInt();
+        int count = 0;
+        for (int i = 0; i <= K; i++) {
+            int X = i;
+            for (int j = 0; j <= K; j++) {
+                int Y = j;
+                if (X + Y > S) {
+                    break;
+                }
+                if (S - X - Y <= K) {
+                    count++;
+                }
+            }
+        }
+        System.out.println(count);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}

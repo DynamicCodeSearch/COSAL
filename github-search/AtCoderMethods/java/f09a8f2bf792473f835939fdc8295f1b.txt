@@ -1,0 +1,28 @@
+public void solve(int testNumber, FastScanner in, PrintWriter out) {
+    int N = in.nextInt();
+    long[] a = new long[N + 1];
+    for (int i = 1; i <= N; i++) {
+        a[i] = in.nextLong();
+    }
+    long ans = 0;
+    while (true) {
+        boolean cont = false;
+        for (int i = 1; i <= N; i++) {
+            if (a[i] >= N) {
+                long u = a[i] / N;
+                a[i] = a[i] % N;
+                if (u > 0) {
+                    cont = true;
+                    for (int j = 1; j <= N; j++) {
+                        if (i != j)
+                            a[j] += u;
+                    }
+                    ans += u;
+                }
+            }
+        }
+        if (!cont)
+            break;
+    }
+    out.println(ans);
+}

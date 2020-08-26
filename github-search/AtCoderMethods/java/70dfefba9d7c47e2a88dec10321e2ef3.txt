@@ -1,0 +1,32 @@
+public static void main(String[] args) throws Exception {
+    in = INPUT.isEmpty() ? new Scanner(System.in) : new Scanner(INPUT);
+    out = new PrintWriter(System.out);
+    int n = ni();
+    String[] S = new String[n];
+    S[0] = in.next();
+    String minText = S[0];
+    int i, min = minText.length();
+    for (i = 1; i < n; i++) {
+        S[i] = in.next();
+        if (S[i].length() < min) {
+            min = S[i].length();
+            minText = S[i];
+        }
+    }
+    String result = "";
+    char[] minCharArray = minText.toCharArray();
+    Arrays.sort(minCharArray);
+    for (char mc : minCharArray) {
+        String mcs = String.valueOf(mc);
+        for (i = 0; i < n; i++) {
+            if (!S[i].contains(mcs))
+                break;
+        }
+        if (i == n) {
+            result += mcs;
+            for (i = 0; i < n; i++) S[i] = S[i].replaceFirst(mcs, "");
+        }
+    }
+    out.println(result);
+    out.flush();
+}

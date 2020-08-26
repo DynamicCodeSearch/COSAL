@@ -1,0 +1,14 @@
+private static String constructPassWord(String O, String E) {
+    StringBuilder res = new StringBuilder();
+    int len = Math.min(O.length(), E.length());
+    for (int i = 0; i < len; i++) {
+        res.append(O.charAt(i));
+        res.append(E.charAt(i));
+    }
+    if (O.length() > len) {
+        res.append(O.charAt(len));
+    } else if (E.length() > len) {
+        res.append(E.charAt(len));
+    }
+    return res.toString();
+}

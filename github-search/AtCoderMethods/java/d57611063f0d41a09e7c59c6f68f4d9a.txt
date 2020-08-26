@@ -1,0 +1,27 @@
+public static void main(String[] args) throws Exception {
+    Scanner scan = new Scanner(System.in);
+    int N = scan.nextInt();
+    int[] color = new int[9];
+    for (int i = 0; i < N; i++) {
+        int rate = scan.nextInt();
+        if (rate >= 3600)
+            rate = 3200;
+        color[rate / 400]++;
+    }
+    int min = 0, max = 0;
+    for (int i = 0; i < 9; i++) {
+        if (i != 8) {
+            if (color[i] != 0) {
+                min++;
+                max++;
+            }
+        } else {
+            if (color[i] != 0) {
+                max += color[i];
+            }
+        }
+    }
+    if (min == 0)
+        min = 1;
+    System.out.println(min + " " + max);
+}

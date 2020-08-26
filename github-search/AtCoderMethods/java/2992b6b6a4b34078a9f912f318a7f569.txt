@@ -1,0 +1,33 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    StringTokenizer st = new StringTokenizer(br.readLine());
+    int w = Integer.parseInt(st.nextToken());
+    int h = Integer.parseInt(st.nextToken());
+    int n = Integer.parseInt(st.nextToken());
+    int xmax = 0;
+    int xmin = w;
+    int ymax = 0;
+    int ymin = h;
+    for (int i = 1; i <= n; i++) {
+        st = new StringTokenizer(br.readLine());
+        int x = Integer.parseInt(st.nextToken());
+        int y = Integer.parseInt(st.nextToken());
+        int a = Integer.parseInt(st.nextToken());
+        if (a == 1) {
+            xmax = Math.max(xmax, x);
+        }
+        if (a == 2) {
+            xmin = Math.min(xmin, x);
+        }
+        if (a == 3) {
+            ymax = Math.max(ymax, y);
+        }
+        if (a == 4) {
+            ymin = Math.min(ymin, y);
+        }
+    }
+    if (xmin <= xmax || ymin <= ymax)
+        System.out.print("0");
+    else
+        System.out.println((xmin - xmax) * (ymin - ymax));
+}

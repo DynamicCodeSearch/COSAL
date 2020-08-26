@@ -1,0 +1,24 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int cntN = 0;
+    int cnt2 = 0;
+    int cnt4 = 0;
+    for (int i = 0; i < n; i++) {
+        int a = in.nextInt();
+        if (a % 4 == 0)
+            cnt4++;
+        else if (a % 2 == 0)
+            cnt2++;
+        else
+            cntN++;
+    }
+    if (cntN > cnt4 + 1) {
+        out.println("No");
+        return;
+    }
+    if (cntN == cnt4 + 1) {
+        out.println(cnt2 == 0 ? "Yes" : "No");
+        return;
+    }
+    out.println("Yes");
+}

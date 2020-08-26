@@ -1,0 +1,33 @@
+void solve() {
+    int N = sc.nextInt();
+    int K = sc.nextInt();
+    int L = sc.nextInt();
+    UnionFind A = new UnionFind(N);
+    UnionFind B = new UnionFind(N);
+    for (int i = 0; i < K; i++) {
+        int x = sc.nextInt() - 1;
+        int y = sc.nextInt() - 1;
+        A.link(x, y);
+    }
+    for (int i = 0; i < L; i++) {
+        int x = sc.nextInt() - 1;
+        int y = sc.nextInt() - 1;
+        B.link(x, y);
+    }
+    Map<Long, Integer> count = new HashMap<Long, Integer>();
+    for (int i = 0; i < N; i++) {
+        int p1 = A.root(i);
+        int p2 = B.root(i);
+        long key = ((long) p1 << 20) + p2;
+        count.put(key, 1 + count.getOrDefault(key, 0));
+    }
+    for (int i = 0; i < N; i++) {
+        int p1 = A.root(i);
+        int p2 = B.root(i);
+        long key = ((long) p1 << 20) + p2;
+        if (i > 0)
+            out.print(" ");
+        out.print(count.get(key));
+    }
+    out.println();
+}

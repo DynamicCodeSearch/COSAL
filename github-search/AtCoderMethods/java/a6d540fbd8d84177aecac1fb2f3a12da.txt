@@ -1,0 +1,18 @@
+private void solve() {
+    ys = new int[n];
+    boolean flg = false;
+    while (!queue.isEmpty()) {
+        Node n = queue.poll();
+        int min = dp(n.id);
+        if (min == INF) {
+            flg = true;
+            break;
+        }
+        ys[n.id] = min;
+    }
+    if (flg) {
+        System.out.println("IMPOSSIBLE");
+    } else {
+        System.out.println("POSSIBLE");
+    }
+}

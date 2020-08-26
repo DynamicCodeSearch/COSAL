@@ -1,0 +1,32 @@
+def main():
+    N = int(input())
+    NG = tuple(int(input()) for _ in range(3))
+
+    for i in NG:
+        if i == N:
+            print('NO')
+            return
+
+    ng = tuple(sorted(NG))
+    if ng[0] <= ng[1] <= ng[2] < N and ng[1] - ng[0] == 1 and ng[2] - ng[1] == 1:
+        print('NO')
+        return
+
+    ans = 'YES'
+    if N == 300:
+        for i in ng:
+            if not i % 3:
+                ans = 'NO'
+    elif N == 299:
+        if not ng[0] % 3:
+            if ng[1] % 3 == 2 or ng[2] % 3 == 2:
+                ans = 'NO'
+        elif not ng[1] % 3:
+            if ng[2] % 3 == 2:
+                ans = 'NO'
+    elif N == 298:
+        if not ng[0] % 3:
+            if ng[1] % 3 == 2 and ng[2] % 3 == 1:
+                ans = 'NO'
+
+    print(ans)

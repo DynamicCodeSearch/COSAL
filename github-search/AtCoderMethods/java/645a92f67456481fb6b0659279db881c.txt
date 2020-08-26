@@ -1,0 +1,12 @@
+private int[][] partialSums(char[] s) {
+    int[][] sums = new int[2][s.length + 1];
+    for (int i = 0; i < s.length; i++) {
+        for (int j = 0; j < 2; j++) {
+            sums[j][i + 1] = sums[j][i];
+            if (s[i] == (char) (j + 'A')) {
+                ++sums[j][i + 1];
+            }
+        }
+    }
+    return sums;
+}

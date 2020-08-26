@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int W = sc.nextInt();
+    int H = sc.nextInt();
+    int w = 0;
+    int h = 0;
+    for (int i = H; i > 0; i--) {
+        if ((W % i == 0) && (H % i == 0)) {
+            w = W / i;
+            h = H / i;
+            break;
+        }
+    }
+    String ans = "4:3";
+    if (w == 16)
+        ans = "16:9";
+    System.out.println(ans);
+}

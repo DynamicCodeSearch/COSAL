@@ -1,0 +1,37 @@
+void solve() {
+    max = in.nextInt();
+    int k = in.nextInt();
+    int[] r = new int[k + 1];
+    for (int i = 0; i < k; i++) {
+        r[i] = in.nextInt();
+    }
+    r[k] = (int) 1e9;
+    int q = in.nextInt();
+    int[] t = new int[q], a = new int[q];
+    for (int i = 0; i < q; i++) {
+        t[i] = in.nextInt();
+        a[i] = in.nextInt();
+    }
+    Data cur = new Data(0, max, 0, max);
+    int ptr = 0;
+    for (int i = 0; i < r.length; i++) {
+        int prevTime = i == 0 ? 0 : r[i - 1];
+        while (ptr < q && t[ptr] <= r[i]) {
+            int diff = t[ptr] - prevTime;
+            Data ans = null;
+            if (i % 2 == 1) {
+                ans = cur.up(diff);
+            } else {
+                ans = cur.down(diff);
+            }
+            out.println(ans.get(a[ptr++]));
+        }
+        int diff = r[i] - prevTime;
+        prevTime = r[i];
+        if (i % 2 == 1) {
+            cur = cur.up(diff);
+        } else {
+            cur = cur.down(diff);
+        }
+    }
+}

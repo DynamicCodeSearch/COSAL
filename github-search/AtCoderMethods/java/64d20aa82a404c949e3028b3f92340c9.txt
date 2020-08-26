@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int NG1 = sc.nextInt();
+    int NG2 = sc.nextInt();
+    int NG3 = sc.nextInt();
+    String ans = "YES";
+    if ((N == NG1) || (N == NG2) || (N == NG3)) {
+        ans = "NO";
+    } else {
+        int num = N;
+        for (int i = 0; i < 100; i++) {
+            if ((num - 3 != NG1) && (num - 3 != NG2) && (num - 3 != NG3)) {
+                num -= 3;
+            } else if ((num - 2 != NG1) && (num - 2 != NG2) && (num - 2 != NG3)) {
+                num -= 2;
+            } else if ((num - 1 != NG1) && (num - 1 != NG2) && (num - 1 != NG3)) {
+                num -= 1;
+            } else {
+                break;
+            }
+        }
+        if (num > 0)
+            ans = "NO";
+    }
+    System.out.println(ans);
+}

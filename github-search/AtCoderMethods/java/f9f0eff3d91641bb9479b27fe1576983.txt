@@ -1,0 +1,38 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    
+    int N = sc.nextInt();
+    String str = sc.next();
+    int[] C = new int[N];
+    for (int i = 0; i < N; i++) {
+        C[i] = Integer.parseInt("" + str.charAt(i));
+    }
+    int[] ans_c = { 0, 0, 0, 0 };
+    for (int i = 0; i < C.length; i++) {
+        switch(C[i]) {
+            case 1:
+                ans_c[0] += 1;
+                break;
+            case 2:
+                ans_c[1] += 1;
+                break;
+            case 3:
+                ans_c[2] += 1;
+                break;
+            case 4:
+                ans_c[3] += 1;
+                break;
+        }
+    }
+    int max = ans_c[0];
+    int min = ans_c[0];
+    for (int i = 0; i < ans_c.length; i++) {
+        if (max < ans_c[i]) {
+            max = ans_c[i];
+        }
+        if (min > ans_c[i]) {
+            min = ans_c[i];
+        }
+    }
+    System.out.println(max + " " + min);
+}

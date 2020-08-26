@@ -1,0 +1,11 @@
+public static long powMod(long x, long k, long mod) {
+    int n = 63 - Long.numberOfLeadingZeros(k);
+    long answer = 1;
+    for (int i = n; i >= 0; i--) {
+        answer = (answer * answer) % mod;
+        if (((k >> i) & 1L) == 1L) {
+            answer = (answer * x) % mod;
+        }
+    }
+    return answer;
+}

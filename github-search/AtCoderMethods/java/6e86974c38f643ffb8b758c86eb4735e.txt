@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    boolean[] isRain = new boolean[289];
+    for (int index = 0; index < isRain.length; index++) {
+        isRain[index] = false;
+    }
+    for (int i = 0; i < n; i++) {
+        String rainTime = sc.next();
+        int start = Integer.parseInt(rainTime.split("-")[0]);
+        int end = Integer.parseInt(rainTime.split("-")[1]);
+        int startMinutes = (start / 100) * 60 + (start % 100);
+        int endMinutes = (end / 100) * 60 + (end % 100);
+        int startIndex = startMinutes / 5;
+        int endIndex = (endMinutes == 0) ? 0 : (endMinutes + 4) / 5 - 1;
+        for (int index = startIndex; index <= endIndex; index++) {
+            isRain[index] = true;
+        }
+    }
+    for (int index = 0, current = 0; index < isRain.length; index++) {
+        if (current == 0 && isRain[index]) {
+            System.out.printf("%02d%02d-", index / 12, 5 * (index % 12));
+            current = 1;
+        }
+        if (current == 1 && (!isRain[index] || index == isRain.length - 1)) {
+            System.out.printf("%02d%02d%n", index / 12, 5 * (index % 12));
+            current = 0;
+        }
+    }
+}

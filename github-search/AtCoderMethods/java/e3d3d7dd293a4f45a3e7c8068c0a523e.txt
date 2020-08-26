@@ -1,0 +1,20 @@
+double dp(int n, int k, int f) {
+    if (k > K)
+        return 0.0;
+    if (n == N) {
+        return f == 1 ? 1.0 : 0.0;
+    }
+    if (vis[n][k][f])
+        return dp[n][k][f];
+    vis[n][k][f] = true;
+    double res = 0;
+    double p = 1.0 / (n + 1);
+    if (f == 0) {
+        res += (1 - p) * dp(n + 1, k, 0);
+        res += p * max(dp(n + 1, k, 0), dp(n + 1, k + 1, 1));
+    } else {
+        res += (1 - p) * dp(n + 1, k, 1);
+        res += p * max(dp(n + 1, k, 0), dp(n + 1, k + 1, 1));
+    }
+    return dp[n][k][f] = res;
+}

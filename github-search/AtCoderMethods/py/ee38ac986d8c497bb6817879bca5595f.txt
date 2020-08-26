@@ -1,0 +1,15 @@
+def main():
+    N = int(input())
+
+    primes = sieve(N+1)
+    res = 1
+    for p in primes:
+        f = 0
+        i = 1
+        while p ** i <= N:
+            f += (N//(p**i))
+            i += 1
+        res *= f + 1
+        res = res % (10**9 + 7)
+
+    print(res)

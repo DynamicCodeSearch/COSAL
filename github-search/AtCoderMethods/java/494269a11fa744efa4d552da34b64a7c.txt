@@ -1,0 +1,8 @@
+private static void doMergeSort(int[] arr, int lowerIndex, int higherIndex) {
+    if (lowerIndex < higherIndex) {
+        int middle = lowerIndex + (higherIndex - lowerIndex) / 2;
+        doMergeSort(arr, lowerIndex, middle);
+        doMergeSort(arr, middle + 1, higherIndex);
+        mergeParts(arr, lowerIndex, middle, higherIndex);
+    }
+}

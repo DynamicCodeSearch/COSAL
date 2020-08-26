@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    int K = sc.nextInt();
+    boolean[] D = new boolean[10];
+    for (int i = 0; i < K; i++) {
+        D[sc.nextInt()] = true;
+    }
+    for (int i = N; ; i++) {
+        if (check(D, i)) {
+            System.out.println(i);
+            break;
+        }
+    }
+}

@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    @SuppressWarnings("resource")
+    Scanner scan = new Scanner(System.in);
+    int A = scan.nextInt();
+    int[] B = new int[A];
+    int ans = 0;
+    for (int i = 1; i < A; i++) {
+        B[i - 1] = i;
+    }
+    B[A - 1] = A;
+    if (Arrays.binarySearch(B, 64) >= 0) {
+        ans = 64;
+    } else if (Arrays.binarySearch(B, 32) >= 0) {
+        ans = 32;
+    } else if (Arrays.binarySearch(B, 16) >= 0) {
+        ans = 16;
+    } else if (Arrays.binarySearch(B, 8) >= 0) {
+        ans = 8;
+    } else if (Arrays.binarySearch(B, 4) >= 0) {
+        ans = 4;
+    } else if (Arrays.binarySearch(B, 2) >= 0) {
+        ans = 2;
+    } else if (Arrays.binarySearch(B, 1) >= 0) {
+        ans = 1;
+        ;
+    }
+    System.out.println(ans);
+
+}

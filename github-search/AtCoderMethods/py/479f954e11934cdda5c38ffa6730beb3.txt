@@ -1,0 +1,27 @@
+def main():
+    N = int(input())
+    A = list(map(int, input().split()))
+
+    ans = 1
+    d = defaultdict(int)
+    l, r = 0, 0
+    while r < len(A):
+        while r < len(A):
+            d[A[r]] += 1
+            if d[A[r]] == 2:
+                r += 1
+                break
+            else:
+                ans = max(ans, r - l + 1)
+            r += 1
+
+        if r == len(A) - 1:
+            break
+
+        while l < r:
+            d[A[l]] -= 1
+            l += 1
+            if d[A[l - 1]] == 1:
+                break
+
+    print(ans)

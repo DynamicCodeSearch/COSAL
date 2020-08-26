@@ -1,0 +1,13 @@
+static void backTrack(int i, int v, boolean[] visited) {
+    if (i == n - 1) {
+        ++count;
+        return;
+    }
+    visited[v] = true;
+    for (int w : graph.get(v)) {
+        if (!visited[w]) {
+            backTrack(i + 1, w, visited);
+        }
+    }
+    visited[v] = false;
+}

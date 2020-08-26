@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int a = scanner.nextInt() * 100, b = scanner.nextInt() * 100, c = scanner.nextInt();
+    int d = scanner.nextInt(), e = scanner.nextInt(), f = scanner.nextInt();
+    int water = 0, sugar = 0;
+    for (int i = 0; i <= f / a; i++) {
+        for (int j = 0; j <= f / b; j++) {
+            for (int k = 0; k <= f / c; k++) {
+                for (int l = 0; l <= f / d; l++) {
+                    int w = a * i + b * j;
+                    int s = c * k + d * l;
+                    if (s * 100 <= w * e && s + w <= f && s * water >= w * sugar) {
+                        water = w;
+                        sugar = s;
+                    }
+                }
+            }
+        }
+    }
+    System.out.println(water + sugar + " " + sugar);
+}

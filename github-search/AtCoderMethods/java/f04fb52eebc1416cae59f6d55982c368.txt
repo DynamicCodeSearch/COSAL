@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int N = scan.nextInt();
+    int T = scan.nextInt();
+    int[] A = new int[N + 1];
+    A[0] = -1;
+    for (int i = 1; i < N + 1; i++) {
+        A[i] = scan.nextInt();
+    }
+    
+    int count = 0;
+    int min = Integer.MAX_VALUE;
+    int max = 0;
+    for (int i = 1; i < N + 1; i++) {
+        if (A[i] < min) {
+            min = A[i];
+        } else {
+            int diff = A[i] - min;
+            if (max == diff) {
+                count++;
+            } else if (max < diff) {
+                max = diff;
+                count = 1;
+            }
+        }
+    }
+    System.out.println(count);
+}

@@ -1,0 +1,29 @@
+def pilage(char):
+    dic = {}
+    for l in char:
+        if  l in dic:
+            dic[l] += 1
+        else:
+            dic[l] = 1
+
+
+    odd = {} 
+    even = {} 
+    odd_tot = 0
+    odd_sum = 0 
+    even_sum = 0
+    able_dist = 0
+    for key in dic:
+        if dic[key] % 2 == 0:
+            even[key] = dic[key]
+            even_sum = even_sum + dic[key]
+        else:
+            odd[key] = dic[key]
+            odd_sum = odd_sum + 1
+            odd_tot = odd_tot + dic[key]
+
+    if odd == {}:
+        print(len(char))
+        exit()
+    able_dist = even_sum + odd_tot - odd_sum
+    return(int((able_dist / 2) / odd_sum) * 2 + 1)

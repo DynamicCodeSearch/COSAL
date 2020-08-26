@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String S = sc.next();
+    int len = S.length();
+    long sum = 0;
+    for (int i = len - 1; i >= 0; i--) {
+        String s = String.valueOf(S.charAt(i));
+        long digit = Long.parseLong(s);
+        for (int k = 0; k < len - i; k++) {
+            if (k < len - i - 1) {
+                sum += digit * (long) Math.pow(10, k) * (long) Math.pow(2, len - 2 - k);
+            } else {
+                sum += digit * (long) Math.pow(10, k) * (long) Math.pow(2, i);
+            }
+        }
+    }
+    System.out.println(sum);
+}

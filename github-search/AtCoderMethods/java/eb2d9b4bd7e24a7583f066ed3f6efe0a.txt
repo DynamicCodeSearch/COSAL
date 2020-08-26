@@ -1,0 +1,63 @@
+void run() {
+    Scanner sc = new Scanner(System.in);
+    char[] c = sc.next().toCharArray();
+    int n = c.length;
+    int size = 0;
+    int length = 0;
+    int s = 0;
+    int t = 0;
+    Map<Character, Integer> map = new HashMap<>();
+    boolean f = false;
+    boolean flag = true;
+    
+    while (s <= t) {
+        while (t < n) {
+            char key = c[t];
+            length = t - s + 1;
+            size = length / 2;
+            if (map.containsKey(key)) {
+                int v = map.get(key);
+                map.put(key, v + 1);
+            } else {
+                map.put(key, 1);
+            }
+            int v = map.get(key);
+            if (v > size && size >= 1) {
+                f = true;
+                break;
+            }
+            if (length == 3) {
+                break;
+            }
+            t++;
+        }
+        if (f) {
+            break;
+        }
+        char key = c[s];
+        int v = map.get(key);
+        map.put(key, v - 1);
+        s++;
+        length = t - s + 1;
+        size = length / 2;
+        if (s == n) {
+            flag = false;
+            break;
+        }
+        key = c[s];
+        v = map.get(key);
+        if (v > size) {
+            break;
+        }
+        t++;
+    }
+    if (flag) {
+        if (t == n) {
+            System.out.println((s + 1) + " " + t);
+        } else {
+            System.out.println((s + 1) + " " + (t + 1));
+        }
+    } else {
+        System.out.println(-1 + " " + -1);
+    }
+}

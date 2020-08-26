@@ -1,0 +1,16 @@
+void solve(BufferedReader in) throws Exception {
+    int[] xx = toInts(in.readLine());
+    int min = Math.min(xx[0], xx[1]);
+    int max = Math.max(xx[0], xx[1]);
+    long res;
+    if (min == max) {
+        long f = f(min);
+        res = (2 * f * f) % MOD;
+    } else if (min + 1 == max) {
+        long f = f(min);
+        res = (f * ((f * max) % MOD)) % MOD;
+    } else {
+        res = 0;
+    }
+    System.out.println(res);
+}

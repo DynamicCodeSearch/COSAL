@@ -1,0 +1,48 @@
+public static void main(String[] args) {
+    IO io = new IO();
+    int h = io.nextInt();
+    int w = io.nextInt();
+    int n = io.nextInt();
+    HashSet<Long> black = new HashSet<>();
+    HashSet<Long> neighbor = new HashSet<>();
+    for (int i = 0; i < n; i++) {
+        int a = io.nextInt() - 1;
+        int b = io.nextInt() - 1;
+        black.add(a * BIG + b);
+        for (int oi = -1; oi <= 1; oi++) {
+            for (int oj = -1; oj <= 1; oj++) {
+                int ci = a + oi;
+                int cj = b + oj;
+                if (ci < 0 || ci >= h || cj < 0 || cj >= w) {
+                    continue;
+                }
+                neighbor.add(ci * BIG + cj);
+            }
+        }
+    }
+    long[] count = new long[10];
+    for (long c : neighbor) {
+        int ci = (int) (c / BIG);
+        int cj = (int) (c % BIG);
+        int sum = 0;
+        if (ci < 1 || ci >= h - 1 || cj < 1 || cj >= w - 1)
+            continue;
+        for (int oi = -1; oi <= 1; oi++) {
+            for (int oj = -1; oj <= 1; oj++) {
+                int ni = ci + oi;
+                int nj = cj + oj;
+                if (black.contains(ni * BIG + nj)) {
+                    sum++;
+                }
+            }
+        }
+        count[sum]++;
+    }
+    count[0] = (long) (h - 2) * (w - 2);
+    for (int i = 1; i <= 9; i++) {
+        count[0] -= count[i];
+    }
+    for (int i = 0; i < 10; i++) {
+        System.out.println(count[i]);
+    }
+}

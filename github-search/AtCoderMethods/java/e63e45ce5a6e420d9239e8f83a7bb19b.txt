@@ -1,0 +1,13 @@
+private int get(int root, int l, int r, int L, int R, int parity) {
+    if (l > r || l > R || L > r || L > R) {
+        return infinity;
+    }
+    if (l == L && r == R) {
+        return min[parity][root];
+    }
+    int M = (L + R) / 2;
+    int res = infinity;
+    res = Math.min(res, get(2 * root + 1, l, Math.min(r, M), L, M, parity));
+    res = Math.min(res, get(2 * root + 2, Math.max(l, M + 1), r, M + 1, R, parity));
+    return res;
+}

@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    try (Scanner sc = new Scanner(System.in)) {
+        int a = sc.nextInt();
+        if (a == 1) {
+            System.out.println(1);
+            return;
+        }
+        int result = 0;
+        int max = 0;
+        for (int i = 1; i <= a; i++) {
+            int tmp = i;
+            for (int j = 1; j < 8; j++) {
+                if (tmp % 2 == 0) {
+                    tmp /= 2;
+                } else {
+                    if (max < j - 1) {
+                        result = i;
+                        max = j - 1;
+                    }
+                    break;
+                }
+            }
+        }
+        System.out.println(result);
+    }
+}

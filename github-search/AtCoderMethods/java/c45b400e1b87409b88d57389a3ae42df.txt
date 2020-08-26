@@ -1,0 +1,19 @@
+int countRoutes(int h, int w) {
+    if (dp[h][w] > 0)
+        return dp[h][w];
+    int count = 0;
+    for (int i = 0; i < 4; i++) {
+        int nh = h + vy[i];
+        int nw = w + vx[i];
+        if (invalid(nh, nw))
+            continue;
+        int center = map[h][w];
+        int next = map[nh][nw];
+        if (center >= next)
+            continue;
+        count += countRoutes(nh, nw);
+        count %= MOD;
+    }
+    count++;
+    return dp[h][w] = count;
+}

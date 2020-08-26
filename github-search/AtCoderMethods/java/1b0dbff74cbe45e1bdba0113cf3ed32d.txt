@@ -1,0 +1,19 @@
+public static void main(String[] args) throws IOException {
+    InputStreamReader isr = new InputStreamReader(System.in);
+    BufferedReader reader = new BufferedReader(isr);
+    String[] str;
+    str = reader.readLine().split(" ");
+    int h1 = Integer.valueOf(str[0]);
+    int w1 = Integer.valueOf(str[1]);
+    str = reader.readLine().split(" ");
+    int h2 = Integer.valueOf(str[0]);
+    int w2 = Integer.valueOf(str[1]);
+    if (h1 == h2 || h1 == w2) {
+        System.out.println("YES");
+    } else if (w1 == w2 || w1 == h2) {
+        System.out.println("YES");
+    } else {
+        System.out.println("NO");
+    }
+    reader.close();
+}

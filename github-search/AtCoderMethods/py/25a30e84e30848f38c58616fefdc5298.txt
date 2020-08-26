@@ -1,0 +1,12 @@
+def main():
+    s = input()
+
+    length = None
+    for i in range(1, len(s)-1):
+        tmp = s[:len(s)-i]
+        if len(tmp)%2 != 0:
+            continue
+        elif tmp[:len(tmp)//2] == tmp[len(tmp)//2:]:
+            length = len(tmp)
+            break
+    print(length)

@@ -1,0 +1,20 @@
+void solve() {
+    char[] s = sc.next().toCharArray();
+    int n = s.length;
+    int[] g = new int[n + 1];
+    List<Integer> ms = new ArrayList<>();
+    for (int i = n - 1; i >= 0; i--) {
+        g[i] = g[i + 1];
+        if (s[i] == '+')
+            g[i]++;
+        if (s[i] == '-')
+            g[i]--;
+        if (s[i] == 'M')
+            ms.add(g[i]);
+    }
+    Collections.sort(ms);
+    int ans = 0;
+    for (int i = 0; i < ms.size() / 2; i++) ans -= ms.get(i);
+    for (int i = ms.size() / 2; i < ms.size(); i++) ans += ms.get(i);
+    out.println(ans);
+}

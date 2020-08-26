@@ -1,0 +1,18 @@
+static long rec(int y, int x) {
+    if (dp[y][x] > 0) {
+        return dp[y][x];
+    }
+    long res = 1;
+    for (int i = 0; i < 4; i++) {
+        int n_y = pos_y[i] + y;
+        int n_x = pos_x[i] + x;
+        if (0 <= n_x && n_x < W && 0 <= n_y && n_y < H) {
+            if (field[y][x] < field[n_y][n_x]) {
+                res += rec(n_y, n_x);
+                res %= MOD;
+            }
+        }
+    }
+    dp[y][x] = res;
+    return res;
+}

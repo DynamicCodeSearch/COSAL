@@ -1,0 +1,389 @@
+### Py Tokens: case, max, sum, float, testcase, append, test, total, best 
+
+### Py functions
+
+def func_7d6486130a134c4898cf3fbc3250b1aa(N, t, testCase):
+    total = sum(t)
+    c = [0]
+    for x in t:
+        c.append(c[-1] + x)
+    a = b = 0
+    best = 0
+    while b <= N:
+        if a == b or c[b] - c[a] <= total / 3:
+            b += 1
+            if b > N:
+                break
+        else:
+            a += 1
+        best = max(best, total - max((c[a], c[b] - c[a], total - c[b])))(
+            'Case #%d: %.10f' % (testCase, float(best) / float(total)))
+    return testCase
+
+def func_30a3c948c2734466a718c208349cdf54(N, t, testCase):
+    total = sum(t)
+    c = [0]
+    for x in t:
+        c.append(c[-1] + x)
+    a = b = 0
+    best = 0
+    while b <= N:
+        if a == b or c[b] - c[a] <= total / 3:
+            b += 1
+            if b > N:
+                break
+        else:
+            a += 1
+        best = max(best, total - max((c[a], c[b] - c[a], total - c[b])))(
+            'Case #%d: %.10f' % (testCase, float(best) / float(total)))
+    return total
+
+def func_6a7c5dd6d9404d60bbd56a75cd9ee665(N, t, testCase):
+    total = sum(t)
+    c = [0]
+    for x in t:
+        c.append(c[-1] + x)
+    a = b = 0
+    best = 0
+    while b <= N:
+        if a == b or c[b] - c[a] <= total / 3:
+            b += 1
+            if b > N:
+                break
+        else:
+            a += 1
+        best = max(best, total - max((c[a], c[b] - c[a], total - c[b])))(
+            'Case #%d: %.10f' % (testCase, float(best) / float(total)))
+    return best
+
+*********************************
+
+#### Score: 9.00017
+
+
+#### Java Tokens: println, min, test, max, index, sum, main, math, case 
+
+public static long func_f3176e2ca8e24c69969d89457a93153d(int test, int n, int[] a, long[] sum) { 
+ for (int i = 0; i < n; i++) sum[i + 1] = sum[i] + a[i];
+long x = sum[n];
+int index = 0;
+for (int i = 0; i < n; i++) {
+    while (index < n && sum[n] - sum[index + 1] > sum[index + 1] - sum[i]) index++;
+    x = Math.min(x, Math.max(sum[i], Math.max(sum[index] - sum[i], sum[n] - sum[index])));
+    x = Math.min(x, Math.max(sum[i], Math.max(sum[index + 1] - sum[i], sum[n] - sum[index + 1])));
+// sout(i + " " + index);
+}
+Main.out.println("Case #" + test + ": " + (1.0 * (sum[n] - x) / sum[n]));
+return x;
+}
+
+
+public static long func_7bd3fd10c2ce43518465f1b9d52c87de(int test, int n, long[] sum) { 
+ long x = sum[n];
+int index = 0;
+for (int i = 0; i < n; i++) {
+    while (index < n && sum[n] - sum[index + 1] > sum[index + 1] - sum[i]) index++;
+    x = Math.min(x, Math.max(sum[i], Math.max(sum[index] - sum[i], sum[n] - sum[index])));
+    x = Math.min(x, Math.max(sum[i], Math.max(sum[index + 1] - sum[i], sum[n] - sum[index + 1])));
+// sout(i + " " + index);
+}
+Main.out.println("Case #" + test + ": " + (1.0 * (sum[n] - x) / sum[n]));
+return x;
+}
+
+
+public static int func_b9ca142c51d4420fb81e954380b16e1c(int test, int n, int[] a, long[] sum) { 
+ sum[0] = 0;
+for (int i = 0; i < n; i++) sum[i + 1] = sum[i] + a[i];
+long x = sum[n];
+int index = 0;
+for (int i = 0; i < n; i++) {
+    while (index < n && sum[n] - sum[index + 1] > sum[index + 1] - sum[i]) index++;
+    x = Math.min(x, Math.max(sum[i], Math.max(sum[index] - sum[i], sum[n] - sum[index])));
+    x = Math.min(x, Math.max(sum[i], Math.max(sum[index + 1] - sum[i], sum[n] - sum[index + 1])));
+// sout(i + " " + index);
+}
+Main.out.println("Case #" + test + ": " + (1.0 * (sum[n] - x) / sum[n]));
+return index;
+}
+
+
+*********************************
+
+#### Score: 8.22421
+
+
+#### Java Tokens: res, number, %.10f, testnumber, smax, test, max, sum, math, case, printf 
+
+public static PrintWriter func_fe908ac6983f4917bdd1272825525479(int n, int testNumber, long[] sum, double res, PrintWriter out) { 
+ for (int a = 0, b = 0; a < n; a++) {
+    while (sum[b + 1] - sum[a] < sum[n] - sum[b + 1] && b < n) {
+        b++;
+    }
+    for (int i = 0; i < 2; i++) {
+        if (b - i < a)
+            break;
+        long s1 = sum[b - i + 1] - sum[a];
+        long s2 = sum[a];
+        long s3 = sum[n] - sum[b - i + 1];
+        long smax = Math.max(s1, Math.max(s2, s3));
+        res = Math.max(res, 1 - (double) smax / sum[n]);
+    }
+}
+out.printf("Case #" + testNumber + ": %.10f\n", res);
+return out;
+}
+
+
+public static double func_fbb9b3626dd7462986e97f6de7904ff6(int n, int testNumber, long[] sum, double res, PrintWriter out) { 
+ for (int a = 0, b = 0; a < n; a++) {
+    while (sum[b + 1] - sum[a] < sum[n] - sum[b + 1] && b < n) {
+        b++;
+    }
+    for (int i = 0; i < 2; i++) {
+        if (b - i < a)
+            break;
+        long s1 = sum[b - i + 1] - sum[a];
+        long s2 = sum[a];
+        long s3 = sum[n] - sum[b - i + 1];
+        long smax = Math.max(s1, Math.max(s2, s3));
+        res = Math.max(res, 1 - (double) smax / sum[n]);
+    }
+}
+out.printf("Case #" + testNumber + ": %.10f\n", res);
+return res;
+}
+
+
+public static double func_60f76c51e50c4022ab0084f64439054c(int n, int testNumber, long[] sum, PrintWriter out) { 
+ double res = 0;
+for (int a = 0, b = 0; a < n; a++) {
+    while (sum[b + 1] - sum[a] < sum[n] - sum[b + 1] && b < n) {
+        b++;
+    }
+    for (int i = 0; i < 2; i++) {
+        if (b - i < a)
+            break;
+        long s1 = sum[b - i + 1] - sum[a];
+        long s2 = sum[a];
+        long s3 = sum[n] - sum[b - i + 1];
+        long smax = Math.max(s1, Math.max(s2, s3));
+        res = Math.max(res, 1 - (double) smax / sum[n]);
+    }
+}
+out.printf("Case #" + testNumber + ": %.10f\n", res);
+return res;
+}
+
+
+*********************************
+
+#### Score: 7.48903
+
+
+#### Java Tokens: println, test, main, case 
+
+public static double func_7f62d660f6d1458286abfc9de86d8e40(int test) { 
+ double s = 0;
+Main.out.println("Case #" + test + ": ");
+return s;
+}
+
+
+*********************************
+
+#### Score: 7.25405
+
+
+#### Java Tokens: min, max, sum, best, math 
+
+public static long func_2ce763c92ed940a597a196483683cf96(long x, long best, long sum, Long down) { 
+ long now = Math.max(down, Math.max(x - down, sum - x));
+best = Math.min(best, now);
+return best;
+}
+
+
+public static long func_20b219fd65fb4abab993706fdfb74c0a(long x, long best, long sum, Long down) { 
+ long now = Math.max(down, Math.max(x - down, sum - x));
+best = Math.min(best, now);
+return now;
+}
+
+
+public static long func_43d26346f2ae4f848c0c47dff88b36f4(long x, long best, long sum, Long up) { 
+ long now = Math.max(up, Math.max(x - up, sum - x));
+best = Math.min(best, now);
+return now;
+}
+
+
+*********************************
+
+#### Score: 7.05024
+
+
+#### Java Tokens: println, test, main, ind, case 
+
+public static int func_5bb20d3574d842d4972a461505f2c43c(int n, int ind, int test, int[] x, double[] yy) { 
+ double ss = 0;
+for (int i = 0; i < n - 1; i++) {
+    ss += (x[i + 1] - x[i]) * (yy[i] + yy[i + 1]) / 2;
+}
+ind = 0;
+double s = 0;
+Main.out.println("Case #" + test + ": ");
+return ind;
+}
+
+
+public static double func_d2b3a5f0228b4e9783cd94f110d88f5f(int n, int ind, int test, int[] x, double[] yy) { 
+ double ss = 0;
+for (int i = 0; i < n - 1; i++) {
+    ss += (x[i + 1] - x[i]) * (yy[i] + yy[i + 1]) / 2;
+}
+ind = 0;
+double s = 0;
+Main.out.println("Case #" + test + ": ");
+return ss;
+}
+
+
+public static int func_5743f36ab08b4c4fa8d15f1403688066(int ind, int test) { 
+ ind = 0;
+double s = 0;
+Main.out.println("Case #" + test + ": ");
+return ind;
+}
+
+
+*********************************
+
+#### Score: 6.85472
+
+
+#### Java Tokens: add, min, max, sum, best, math 
+
+public static long func_1c70a478aeb5427987ce86dfdf10e433(long x, long best, long sum, Long down, TreeSet<Long> all) { 
+ if (down != null) {
+    long now = Math.max(down, Math.max(x - down, sum - x));
+    best = Math.min(best, now);
+}
+all.add(x);
+return best;
+}
+
+
+*********************************
+
+#### Score: 6.85276
+
+
+#### Java Tokens: total, best, partials 
+
+public static double func_c893be9ac8e8493aa18d668330a5279f(int n, long best, long[] partials) { 
+ long total = partials[n];
+return 1 - (double) (best) / total;
+
+}
+
+
+*********************************
+
+#### Score: 6.66285
+
+
+#### Java Tokens: next, println, test, nextint, case, int 
+
+public static PrintWriter func_c8c26e20c8264cafb4030a5259e90a7a(int test, PrintWriter pw, Scanner sc) { 
+ pw.println("Case #" + test + ": ");
+int w = sc.nextInt();
+int l = sc.nextInt();
+int u = sc.nextInt();
+int g = sc.nextInt();
+double sl = 0;
+double su = 0;
+return pw;
+}
+
+
+public static PrintWriter func_a9e112db93b3410f9a8ef0d6f76e8385(int test, PrintWriter pw, Scanner sc) { 
+ pw.println("Case #" + test + ": ");
+int w = sc.nextInt();
+return pw;
+}
+
+
+public static double func_571532e9809f41ef811e496f09f58193(int test, PrintWriter pw, Scanner sc) { 
+ pw.println("Case #" + test + ": ");
+int w = sc.nextInt();
+int l = sc.nextInt();
+int u = sc.nextInt();
+int g = sc.nextInt();
+double sl = 0;
+double su = 0;
+return sl;
+}
+
+
+*********************************
+
+#### Score: 6.66285
+
+
+#### Java Tokens: println, test, baia, bai, calc, case 
+
+public static PrintWriter func_fcefc37770574668b6663d589ccf0990(int test, PrintWriter pw) { 
+ double S = -(BaiA.calc(BaiA.W, BaiA.L, BaiA.xl, BaiA.yl) - BaiA.calc(BaiA.W, BaiA.U, BaiA.xu, BaiA.yu)) / BaiA.G;
+// System.out.println(S);
+pw.println("Case #" + test + ":");
+return pw;
+}
+
+
+public static double func_ed9efc7c18ff486fa2eda0f91dcc13e9(int test, PrintWriter pw) { 
+ double S = -(BaiA.calc(BaiA.W, BaiA.L, BaiA.xl, BaiA.yl) - BaiA.calc(BaiA.W, BaiA.U, BaiA.xu, BaiA.yu)) / BaiA.G;
+// System.out.println(S);
+pw.println("Case #" + test + ":");
+return S;
+}
+
+
+*********************************
+
+#### Score: 6.49957
+
+
+#### Java Tokens: ceiling, min, max, sum, best, math, long 
+
+public static long func_658d7c60c31143fda1ef42aec14a67da(int i, long x, long best, long sum, long[] a, TreeSet<Long> all) { 
+ x += a[i];
+Long up = all.ceiling(x / 2 + 1);
+if (up != null) {
+    long now = Math.max(up, Math.max(x - up, sum - x));
+    best = Math.min(best, now);
+}
+return x;
+}
+
+
+public static Long func_df5d4a3663b54adcbd2a8dac3ce4d44f(int i, long x, long best, long sum, long[] a, TreeSet<Long> all) { 
+ x += a[i];
+Long up = all.ceiling(x / 2 + 1);
+if (up != null) {
+    long now = Math.max(up, Math.max(x - up, sum - x));
+    best = Math.min(best, now);
+}
+return up;
+}
+
+
+public static Long func_02865e74f4fc46489ac6d5a9d2579baa(long x, long best, long sum, TreeSet<Long> all) { 
+ Long up = all.ceiling(x / 2 + 1);
+if (up != null) {
+    long now = Math.max(up, Math.max(x - up, sum - x));
+    best = Math.min(best, now);
+}
+return up;
+}
+

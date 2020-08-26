@@ -1,0 +1,264 @@
+### Py Tokens: used, string, sep, characters, word, argument, capitalized, second, capwords, words, using, removed, capitalize, absent, runs, join, whitespace, space, trailing, single, optional, split, none, leading, replaced, otherwise 
+
+### Py functions
+
+def capwords(s, sep=None):
+
+  return (sep or ' ').join(x.capitalize() for x in s.split(sep))
+*********************************
+
+#### Score: 12.05691
+
+
+#### Java Tokens: codepoint, capitalizes, changing, points, strlen, character, apache, len, utils, lang3, text, per, case, algorithm, based, pre, wordutils, offset, charcount, already, count, capitalize, remaining, str, input, longer, returns, word, changed, since, code, string, link, codepointat, title, newcodepoints, point, commons, newcodepoint, characters, see, param, array, cat, copy, lang, totitlecase, may, org, length, firstcodepoint, 'cat', stringutils, uncapitalize, capitalized, inoffset, cannot, ones, first, outoffset 
+
+
+public static String capitalize(final String str) {
+    int strLen = length(str);
+    if (strLen == 0) {
+        return str;
+    }
+    final int firstCodepoint = str.codePointAt(0);
+    final int newCodePoint = Character.toTitleCase(firstCodepoint);
+    if (firstCodepoint == newCodePoint) {
+        
+        return str;
+    }
+    
+    final int[] newCodePoints = new int[strLen];
+    int outOffset = 0;
+    
+    newCodePoints[outOffset++] = newCodePoint;
+    for (int inOffset = Character.charCount(firstCodepoint); inOffset < strLen; ) {
+        final int codepoint = str.codePointAt(inOffset);
+        
+        newCodePoints[outOffset++] = codepoint;
+        inOffset += Character.charCount(codepoint);
+    }
+    return new String(newCodePoints, 0, outOffset);
+}
+*********************************
+
+#### Score: 12.05691
+
+
+#### Java Tokens: codepoint, uncapitalizes, changing, points, strlen, character, apache, len, utils, lang3, text, per, case, algorithm, based, pre, wordutils, offset, charcount, already, lower, count, capitalize, remaining, str, input, longer, returns, word, changed, since, code, string, link, codepointat, newcodepoints, point, commons, newcodepoint, characters, see, param, array, cat, tolowercase, copy, lang, may, org, length, firstcodepoint, stringutils, uncapitalize, capitalized, inoffset, cannot, ones, uncapitalized, first, outoffset 
+
+
+public static String uncapitalize(final String str) {
+    int strLen = length(str);
+    if (strLen == 0) {
+        return str;
+    }
+    final int firstCodepoint = str.codePointAt(0);
+    final int newCodePoint = Character.toLowerCase(firstCodepoint);
+    if (firstCodepoint == newCodePoint) {
+        
+        return str;
+    }
+    
+    final int[] newCodePoints = new int[strLen];
+    int outOffset = 0;
+    
+    newCodePoints[outOffset++] = newCodePoint;
+    for (int inOffset = Character.charCount(firstCodepoint); inOffset < strLen; ) {
+        final int codepoint = str.codePointAt(inOffset);
+        
+        newCodePoints[outOffset++] = codepoint;
+        inOffset += Character.charCount(codepoint);
+    }
+    return new String(newCodePoints, 0, outOffset);
+}
+*********************************
+
+#### Score: 11.08111
+
+
+#### Java Tokens: splits, code, string, def, separatorchars, use, provided, used, specified, ab:cd:ef, characters, split, strings, splitworker, array, param, utils, delimiters, text, worker, included, strtokenizer, treated, using, pre, abc, may, one, alternative, stringtokenizer, adjacent, control, parse, separator, tokenizer, str, stringutils, input, returns, parsed, returned, whitespace, separators, chars 
+
+
+public static String[] split(final String str, final String separatorChars) {
+    return splitWorker(str, separatorChars, -1, false);
+}
+*********************************
+
+#### Score: 10.75628
+
+
+#### Java Tokens: argument, allowed, startwhitespaces, source, isempty, space, empty, reference, improved, rec, character, java, trim, tab, utils, www, xml, normalize, function, modified, href, https, actual, similar, using, manually, http://www.w3.org/tr/xpath/#function-normalize-space, count, replacing, x0b, str, feed, input, regex, size, x20, http, difference, returns, iswhitespace, whitespaces, since, whitespacescount, code, string, normalized, link, pattern, vertical, sequences, characters, xpath, see, param, actualchar, ends, normalizespace, lang, charat, may, org, length, start, instead, lang-1020, stringutils, single, http://www.w3.org/tr/rec-xml/#nt-s, performance, form, normalizing, newchars, additionally, char, whitespace, significantly, chars 
+
+
+public static String normalizeSpace(final String str) {
+    
+    if (isEmpty(str)) {
+        return str;
+    }
+    final int size = str.length();
+    final char[] newChars = new char[size];
+    int count = 0;
+    int whitespacesCount = 0;
+    boolean startWhitespaces = true;
+    for (int i = 0; i < size; i++) {
+        final char actualChar = str.charAt(i);
+        final boolean isWhitespace = Character.isWhitespace(actualChar);
+        if (isWhitespace) {
+            if (whitespacesCount == 0 && !startWhitespaces) {
+                newChars[count++] = SPACE.charAt(0);
+            }
+            whitespacesCount++;
+        } else {
+            startWhitespaces = false;
+            newChars[count++] = (actualChar == 160 ? 32 : actualChar);
+            whitespacesCount = 0;
+        }
+    }
+    if (startWhitespaces) {
+        return EMPTY;
+    }
+    return new String(newChars, 0, count - (whitespacesCount > 0 ? 1 : 0)).trim();
+}
+*********************************
+
+#### Score: 9.89326
+
+
+#### Java Tokens: splits, def, use, used, empty, split, utils, text, worker, strtokenizer, treated, using, pre, including, created, stringtokenizer, preserve, separator, str, input, returns, parsed, preserving, ab::cd:ef, since, code, string, separatorchars, provided, specified, ab:cd:ef, ab:cd:ef:, characters, strings, splitworker, array, param, delimiters, ab:cd:ef::, ::cd:ef, tokens, included, abc, may, alternative, adjacent, control, parse, splitpreservealltokens, :cd:ef:, tokenizer, stringutils, :cd:ef, returned, whitespace, separators, chars 
+
+
+public static String[] splitPreserveAllTokens(final String str, final String separatorChars) {
+    return splitWorker(str, separatorChars, -1, true);
+}
+*********************************
+
+#### Score: 8.85090
+
+
+#### Java Tokens: splits, use, used, empty, character, split, utils, delimiter, text, worker, strtokenizer, treated, using, pre, including, created, a.b.c, stringtokenizer, preserve, separator, str, input, returns, parsed, preserving, since, a:b:c, code, string, provided, specified, strings, splitworker, array, param, tokens, included, may, alternative, separatorchar, adjacent, control, parse, splitpreservealltokens, tokenizer, stringutils, a..b.c, char, returned, whitespace, separators 
+
+
+public static String[] splitPreserveAllTokens(final String str, final char separatorChar) {
+    return splitWorker(str, separatorChar, true);
+}
+*********************************
+
+#### Score: 8.64336
+
+
+#### Java Tokens: standard, performs, separate, use, arrayutils, space, empty_string_array, empty, zero, number, character, split, sizeplus, len, utils, limit, worker, add, treated, last, isspace, index, stringtokenizer, preserve, list, separator, plus, str, input, size, null, parsed, iswhitespace, code, string, separatorchars, methods, direct, optimise, substring, jdk1, lastmatch, negative, strings, splitworker, array, param, preservealltokens, tokens, value, charat, sep, include, means, may, max, one, quicker, length, start, match, adjacent, also, arraylist, parse, splitpreservealltokens, token, tokenizer, stringutils, jdk, performance, tuned, toarray, elements, maximum, uses, logic, whitespace, implies, indexof, separators, chars, sizeplus1 
+
+
+private static String[] splitWorker(final String str, final String separatorChars, final int max, final boolean preserveAllTokens) {
+    if (str == null) {
+        return null;
+    }
+    final int len = str.length();
+    if (len == 0) {
+        return ArrayUtils.EMPTY_STRING_ARRAY;
+    }
+    final List<String> list = new ArrayList<>();
+    int sizePlus1 = 1;
+    int i = 0, start = 0;
+    boolean match = false;
+    boolean lastMatch = false;
+    if (separatorChars == null) {
+        
+        while (i < len) {
+            if (Character.isWhitespace(str.charAt(i))) {
+                if (match || preserveAllTokens) {
+                    lastMatch = true;
+                    if (sizePlus1++ == max) {
+                        i = len;
+                        lastMatch = false;
+                    }
+                    list.add(str.substring(start, i));
+                    match = false;
+                }
+                start = ++i;
+                continue;
+            }
+            lastMatch = false;
+            match = true;
+            i++;
+        }
+    } else if (separatorChars.length() == 1) {
+        
+        final char sep = separatorChars.charAt(0);
+        while (i < len) {
+            if (str.charAt(i) == sep) {
+                if (match || preserveAllTokens) {
+                    lastMatch = true;
+                    if (sizePlus1++ == max) {
+                        i = len;
+                        lastMatch = false;
+                    }
+                    list.add(str.substring(start, i));
+                    match = false;
+                }
+                start = ++i;
+                continue;
+            }
+            lastMatch = false;
+            match = true;
+            i++;
+        }
+    } else {
+        
+        while (i < len) {
+            if (separatorChars.indexOf(str.charAt(i)) >= 0) {
+                if (match || preserveAllTokens) {
+                    lastMatch = true;
+                    if (sizePlus1++ == max) {
+                        i = len;
+                        lastMatch = false;
+                    }
+                    list.add(str.substring(start, i));
+                    match = false;
+                }
+                start = ++i;
+                continue;
+            }
+            lastMatch = false;
+            match = true;
+            i++;
+        }
+    }
+    if (match || preserveAllTokens && lastMatch) {
+        list.add(str.substring(start, i));
+    }
+    return list.toArray(new String[list.size()]);
+}
+*********************************
+
+#### Score: 8.08981
+
+
+#### Java Tokens: exception, small, argument, used, ab.., good, number, utils, else, max-abbrevmarker, specifically, greater, defined, given, using, pre, abcd., abbrevmarker, less, check, illegal, str, input, marker, must, abbrev, replacement, since, maxwidth, illegalargumentexception, code, string, another, least, turn, abbreviates, substring, result, characters, param, men, for..., a.., abbreviate, may, max, length, ..., abcd, stringutils, equal, width, maximum, time, abcdefg, abbreviated 
+
+
+public static String abbreviate(final String str, final String abbrevMarker, final int maxWidth) {
+    return abbreviate(str, abbrevMarker, 0, maxWidth);
+}
+*********************************
+
+#### Score: 7.86735
+
+
+#### Java Tokens: splits, used, substrings, zero, number, split, utils, limit, text, worker, treated, pre, including, last, includes, separator, str, input, returns, parsed, code, string, separatorchars, provided, specified, ab:cd:ef, characters, negative, found, strings, splitworker, array, param, delimiters, included, value, include, may, max, one, length, delimited, adjacent, parse, stringutils, elements, maximum, cd:ef, returned, whitespace, implies, separators, chars, first 
+
+
+public static String[] split(final String str, final String separatorChars, final int max) {
+    return splitWorker(str, separatorChars, max, false);
+}
+*********************************
+
+#### Score: 7.77010
+
+
+#### Java Tokens: splits, code, string, def, use, provided, link, character, split, strings, array, param, utils, text, included, strtokenizer, defined, treated, using, pre, abc, may, one, adjacent, control, parse, separator, tokenizer, str, stringutils, input, returns, parsed, whitespace, returned, iswhitespace, separators 
+
+
+
+
+public static String[] split(final String str) {
+    return split(str, null, -1);
+}

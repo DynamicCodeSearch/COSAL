@@ -1,0 +1,14 @@
+def union(self, p, q):
+    root_p = self.find(p)
+    root_q = self.find(q)
+    if root_p == root_q:
+        return
+
+    if self._rank[root_p] < self._rank[root_q]:
+        self._parent[root_p] = root_q
+    elif self._rank[root_p] > self._rank[root_q]:
+        self._parent[root_q] = root_p
+    else:
+        self._parent[root_q] = root_p
+        self._rank[root_p] += 1
+    self._count -= 1

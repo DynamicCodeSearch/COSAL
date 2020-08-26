@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    N = sc.nextInt();
+    W = sc.nextInt();
+    w0 = sc.nextInt();
+    v[0].add(sc.nextInt());
+    for (int i = 1; i < N; ++i) {
+        int w = sc.nextInt();
+        v[w - w0].add(sc.nextInt());
+    }
+    for (int i = 0; i < v.length; ++i) {
+        v[i].sort(Comparator.reverseOrder());
+    }
+    System.out.println(solve(0, N, 0));
+}

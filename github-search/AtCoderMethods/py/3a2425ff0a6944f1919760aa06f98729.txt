@@ -1,0 +1,14 @@
+def main():
+    h, w = map(int, input().split())
+    mat1 = [[c for c in input()] for _ in range(h)]
+    mat2 = [[None for _ in range(w)] for _ in range(h)]
+
+    for i in range(h):
+        for j in range(w):
+            if mat1[i][j] == '.':
+                cnt = get_cnt(mat1, i, j, h, w)
+                mat2[i][j] = cnt
+            else:
+                mat2[i][j] = '#'
+
+    print('\n'.join([''.join([str(c) for c in  mat2[i]]) for i in range(h)]))

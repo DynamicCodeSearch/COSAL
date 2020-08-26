@@ -1,0 +1,23 @@
+public void solve() {
+    int n = io.ri();
+    Pile[] all = new Pile[n];
+    for (int i = 0; i < n; i++) {
+        int s = io.ri();
+        all[i] = new Pile(i, s);
+    }
+    Arrays.sort(all, (p1, p2) -> p2.size - p1.size);
+    long[] res = new long[n];
+    long curS = 0;
+    int curI = n - 1;
+    long add = 0;
+    for (int i = 0; i < n; i++) {
+        Pile p = all[i];
+        long d = curS - p.size;
+        res[curI] += d * i;
+        curS = p.size;
+        if (p.id < curI)
+            curI = p.id;
+    }
+    res[curI] += curS * n;
+    io.writeIntArray(res, n, System.lineSeparator());
+}

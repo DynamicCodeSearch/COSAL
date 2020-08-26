@@ -1,0 +1,15 @@
+def main():
+    _ = input()
+    xs = Stdin.read_line(converter=int)
+    xs.sort()
+    ys = dict()
+    while xs:
+        key = xs[-1]
+        cnt = count_and_drop(xs)
+        ys[key] = cnt
+    m = 0
+    for x in ys.keys():
+        temp = ys.get(x-1, 0) + ys.get(x, 0) + ys.get(x+1, 0)
+        if m < temp:
+            m = temp
+    print(m)

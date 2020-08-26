@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    try {
+        
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+        int n = Integer.parseInt(br.readLine());
+        String[] strArr = br.readLine().split(" ");
+        double sum = 0;
+        double count = 0;
+        for (int i = 0; i < n; i++) {
+            double a = Double.parseDouble(strArr[i]);
+            if (a > 0) {
+                sum += a;
+                count++;
+            }
+        }
+        double ave = sum / count;
+        System.out.println(Math.ceil(ave));
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

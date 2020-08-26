@@ -1,0 +1,19 @@
+long[] pow(long[][] a, long[] x, long p, long m) {
+    int n = a.length;
+    long[][] tmp = new long[n][n];
+    for (int i = 0; i < n; i++) {
+        tmp[i] = Arrays.copyOf(a[i], n);
+    }
+    long[] ret = Arrays.copyOf(x, n);
+    for (int i = 0; i < n; i++) {
+        ret[i] %= m;
+    }
+    while (p > 0) {
+        if ((p & 1) == 1) {
+            ret = mul(tmp, ret, m);
+        }
+        tmp = p2(tmp, m);
+        p >>= 1;
+    }
+    return ret;
+}

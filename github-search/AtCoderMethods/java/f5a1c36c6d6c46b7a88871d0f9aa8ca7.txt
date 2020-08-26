@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    try {
+        
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+        int n = Integer.parseInt(br.readLine());
+        int k = Integer.parseInt(br.readLine());
+        int x = Integer.parseInt(br.readLine());
+        int y = Integer.parseInt(br.readLine());
+        int ans = 0;
+        for (int i = 0; i < n; i++) {
+            if (i + 1 > k) {
+                ans += y;
+            } else {
+                ans += x;
+            }
+        }
+        System.out.println(ans);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

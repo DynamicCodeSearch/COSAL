@@ -1,0 +1,69 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int h = sc.nextInt(), w = sc.nextInt();
+    boolean[][] s = new boolean[h][w];
+    
+    int[][] flag = new int[h][w];
+    for (int i = 0; i < h; i++) {
+        String str = sc.next();
+        char[] c = str.toCharArray();
+        for (int j = 0; j < w; j++) {
+            if (c[j] == '.') {
+                s[i][j] = false;
+            } else {
+                s[i][j] = true;
+            }
+        }
+    }
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            if (!s[i][j]) {
+                flag[i][j] = 1;
+            } else {
+                boolean b = true;
+                for (int l = -1; l <= 1; l++) {
+                    if ((i == 0 && l == -1) || (i == h - 1 && l == 1)) {
+                        continue;
+                    }
+                    for (int k = -1; k <= 1; k++) {
+                        if ((j == 0 && k == -1) || (j == w - 1 && k == 1) || (l == 0 && k == 0)) {
+                            continue;
+                        }
+                        b &= s[i + l][j + k];
+                    }
+                }
+                if (b) {
+                    flag[i][j] = 2;
+                    for (int l = -1; l <= 1; l++) {
+                        if ((i == 0 && l == -1) || (i == h - 1 && l == 1)) {
+                            continue;
+                        }
+                        for (int k = -1; k <= 1; k++) {
+                            if ((j == 0 && k == -1) || (j == w - 1 && k == 1) || (l == 0 && k == 0)) {
+                                continue;
+                            }
+                            if (flag[i + l][j + k] != 2)
+                                flag[i + l][j + k] = 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    String ans = "";
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            if (flag[i][j] == 1) {
+                ans += ".";
+            } else if (flag[i][j] == 2) {
+                ans += "#";
+            } else {
+                System.out.println("impossible");
+                return;
+            }
+        }
+        ans += "\n";
+    }
+    System.out.println("possible");
+    System.out.println(ans);
+}

@@ -1,0 +1,20 @@
+void solve(BufferedReader br) throws Exception {
+    String line = br.readLine();
+    for (int i = 0; i < line.length(); i++) {
+        char ch = line.charAt(i);
+        switch(ch) {
+            case '0':
+                sb.append(ch);
+                break;
+            case '1':
+                sb.append(ch);
+                break;
+            case 'B':
+                if (sb.length() > 0) {
+                    sb.deleteCharAt(sb.length() - 1);
+                }
+                break;
+        }
+    }
+    pln(sb.toString());
+}

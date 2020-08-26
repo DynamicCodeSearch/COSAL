@@ -1,0 +1,52 @@
+public static void main(String[] args) {
+    Scanner cin = new Scanner(System.in);
+    String S = cin.next();
+    int T = Integer.parseInt(cin.next());
+    int X = 0, Y = 0;
+    int rest = 0;
+    for (char c : S.toCharArray()) {
+        switch(c) {
+            case 'L':
+                {
+                    X--;
+                    break;
+                }
+            case 'R':
+                {
+                    X++;
+                    break;
+                }
+            case 'U':
+                {
+                    Y++;
+                    break;
+                }
+            case 'D':
+                {
+                    Y--;
+                    break;
+                }
+            case '?':
+                {
+                    rest++;
+                    break;
+                }
+            default:
+                {
+                    break;
+                }
+        }
+    }
+    int ans = 0;
+    if (T == 1) {
+        ans = Math.abs(X) + Math.abs(Y) + rest;
+    } else if (T == 2) {
+        int tmp = Math.abs(X) + Math.abs(Y);
+        if (tmp >= rest)
+            ans = tmp - rest;
+        else {
+            ans = (rest - tmp) % 2;
+        }
+    }
+    System.out.println(ans);
+}

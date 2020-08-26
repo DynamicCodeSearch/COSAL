@@ -1,0 +1,23 @@
+def check(a, b, c, d):
+    sa = SA[b-1]
+    sb = SB[b-1]
+    if a >= 2:
+        sa -= SA[a - 2]
+        sb -= SB[a - 2]
+    ta = TA[d-1]
+    tb = TB[d-1]
+    if c >= 2:
+        ta -= TA[c-2]
+        tb -= TB[c-2]
+    """
+    print(sa, sb)
+    print(ta, tb)
+    """
+
+    sb += 2 * sa
+    sb %= 3
+
+    tb += 2 * ta
+    tb %= 3
+
+    return sb == tb

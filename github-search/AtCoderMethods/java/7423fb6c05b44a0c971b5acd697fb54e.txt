@@ -1,0 +1,18 @@
+public String run(String[] args, InputStream in) {
+    String result = null;
+    try {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+        String[] val = reader.readLine().replaceAll("\\s+", " ").split(" ");
+        int R = Integer.parseInt(val[0]);
+        int G = Integer.parseInt(val[1]);
+        int B = Integer.parseInt(val[2]);
+        if (((R * 100 + G * 10 + B) % 4) == 0) {
+            result = "YES";
+        } else {
+            result = "NO";
+        }
+    } catch (IOException ex) {
+        Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return result;
+}

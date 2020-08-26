@@ -1,0 +1,44 @@
+public static void main(String[] args) {
+    
+    input();
+    for (int i = 0; i < N; i++) hashMap.put(i, new ArrayList<>());
+    Collections.sort(temp);
+    if (a % p == 0) {
+        if (map[0][1] >= x)
+            System.out.println(0);
+        else
+            System.out.println(2 * (N - 1));
+    } else {
+        
+        int ans = 0;
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < M; j++) {
+                int col = temp.indexOf(map[i][j]) / M;
+                ans += Math.abs(i - col);
+                ArrayList<Integer> arrayList = hashMap.get(col);
+                arrayList.add(j);
+                hashMap.put(col, arrayList);
+            }
+        }
+        
+        for (int i = 0; i < N; i++) {
+            ArrayList<Integer> arrayList = hashMap.get(i);
+            int[] count = new int[M];
+            for (int j = 0; j < M; j++) {
+                count[arrayList.get(j)]++;
+            }
+            for (int j = 0; j < M; j++) {
+                if (count[j] == 0) {
+                    int k = 0;
+                    while (count[k++] < 2) {
+                    }
+                    ans += Math.abs(k - 1 - j);
+                    count[j]++;
+                    count[k - 1]--;
+                }
+            }
+        }
+        
+        System.out.println(ans);
+    }
+}

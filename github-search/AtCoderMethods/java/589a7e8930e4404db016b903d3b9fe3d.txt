@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    long L = sc.nextLong();
+    long X = sc.nextLong();
+    long Y = sc.nextLong();
+    long S = sc.nextLong();
+    long D = sc.nextLong();
+    double ans = 0;
+    double length1, length2;
+    if (S > D) {
+        length1 = D + L - S;
+        length2 = S - D;
+    } else if (S < D) {
+        length1 = D - S;
+        length2 = L - D + S;
+    } else {
+        length1 = 0;
+        length2 = 0;
+    }
+    if (X < Y)
+        ans = Math.min(length1 / (double) (Y + X), length2 / (double) Math.abs((Y - X)));
+    else
+        ans = length1 / (double) (Y + X);
+    System.out.println(ans);
+    sc.close();
+}

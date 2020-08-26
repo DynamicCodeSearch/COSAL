@@ -1,0 +1,43 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String s = sc.next();
+    char[] ch = s.toCharArray();
+    int count = 1;
+    String ans = "";
+    char l = ch[s.length() - 1];
+    boolean end = false;
+    boolean same = true;
+    for (int i = 0; i < s.length() - 1; i++) {
+        if (ch[i] == ch[i + 1]) {
+            count++;
+            if (i == s.length() - 1) {
+                ans = ans + ch[i] + "" + count;
+                end = true;
+            }
+        } else {
+            same = false;
+            if (i == s.length() - 1) {
+                if (ch[i] == l) {
+                    count++;
+                }
+            }
+            ans = ans + ch[i] + "" + count;
+            count = 1;
+        }
+    }
+    if (same == true) {
+        ans = l + "" + s.length();
+        System.out.println(ans);
+        return;
+    }
+    int count2 = 0;
+    for (int i = s.length() - 1; i >= 0; i--) {
+        if (ch[i] == l) {
+            count2++;
+        } else {
+            break;
+        }
+    }
+    ans = ans + l + count2;
+    System.out.println(ans);
+}

@@ -1,0 +1,12 @@
+	def unite(self, x, y):
+		x = self.root(x)
+  y = self.root(y)
+  if x==y:
+			return
+  if self.rank[x]<self.rank[y]:
+			self.par[x] = y
+  else:
+			self.par[y] = x
+   if self.rank[x]==self.rank[y]:
+				self.rank[x] = self.rank[x]+1
+  return

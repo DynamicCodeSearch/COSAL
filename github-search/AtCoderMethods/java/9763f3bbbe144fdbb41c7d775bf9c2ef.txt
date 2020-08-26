@@ -1,0 +1,9 @@
+void dfs(int cur) {
+    ArrayList<Integer> lis = new ArrayList<>();
+    for (int dst : g[cur]) {
+        if (f[dst] == -1)
+            dfs(dst);
+        lis.add(f[dst]);
+    }
+    f[cur] = fgrundy(lis);
+}

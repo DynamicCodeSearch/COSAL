@@ -1,0 +1,6 @@
+
+long coef(long id, long n) {
+    final long min = Math.min(id, n - id + 1);
+    final long max = Math.max(id, n - id + 1);
+    return sum(min) + sum(n - max + 1) + (max - min - 1) * min % mod;
+}

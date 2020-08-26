@@ -1,0 +1,40 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int A = sc.nextInt();
+    int B = sc.nextInt();
+    int C = sc.nextInt();
+    int D = sc.nextInt();
+    int E = sc.nextInt();
+    int F = sc.nextInt();
+    Set<Integer> water = new TreeSet<Integer>();
+    Set<Integer> suger = new TreeSet<Integer>();
+    int ans1 = 100 * A;
+    int ans2 = 0;
+    for (int i = 0; i <= F; i++) {
+        for (int j = 0; j <= F; j++) {
+            if (100 * A * i + 100 * B * j <= F) {
+                water.add(100 * A * i + 100 * B * j);
+            }
+        }
+    }
+    for (int i = 0; i <= F; i++) {
+        for (int j = 0; j <= F; j++) {
+            if (C * i + D * j <= F) {
+                suger.add(C * i + D * j);
+            }
+        }
+    }
+    for (int w : water) {
+        for (int s : suger) {
+            if (100 * s <= w * E) {
+                if (s + w <= F) {
+                    if (ans2 * (s + w) < s * ans1) {
+                        ans1 = s + w;
+                        ans2 = s;
+                    }
+                }
+            }
+        }
+    }
+    System.out.println(ans1 + " " + ans2);
+}

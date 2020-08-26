@@ -1,0 +1,43 @@
+void solve() throws NumberFormatException, IOException {
+    final ContestScanner in = new ContestScanner();
+    Writer out = new Writer();
+    int n = in.nextInt();
+    int q = in.nextInt();
+    int[] x = new int[n];
+    int[] r = new int[n];
+    int[] h = new int[n];
+    for (int i = 0; i < n; i++) {
+        x[i] = in.nextInt();
+        r[i] = in.nextInt();
+        h[i] = in.nextInt();
+    }
+    for (int i = 0; i < q; i++) {
+        int a = in.nextInt();
+        int b = in.nextInt();
+        if (a == b) {
+            System.out.println(0);
+            continue;
+        }
+        double sum = 0;
+        for (int j = 0; j < n; j++) {
+            final int top = x[j] + h[j];
+            if (top <= a || b <= x[j])
+                continue;
+            double baseR = r[j];
+            double baseH = h[j];
+            if (x[j] < a) {
+                baseR = (double) r[j] * (top - a) / h[j];
+                baseH = top - a;
+            }
+            double minR = 0;
+            double minH = 0;
+            if (b < top) {
+                minR = (double) r[j] * (top - b) / h[j];
+                minH = top - b;
+            }
+            double v = (baseR * baseR * Math.PI * baseH / 3) - (minR * minR * Math.PI * minH / 3);
+            sum += v;
+        }
+        System.out.println(sum);
+    }
+}

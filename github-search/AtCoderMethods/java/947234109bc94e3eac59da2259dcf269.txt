@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    long nn = n;
+    long[] dp = new long[n + 10];
+    dp[1] = nn;
+    dp[2] = (nn * nn) % MOD;
+    long[] partial = new long[n + 10];
+    partial[1] = dp[1];
+    partial[2] = (dp[1] + dp[2]) % MOD;
+    for (int i = 3; i <= n; i++) {
+        dp[i] = dp[i - 1];
+        int minReqK = i - 1;
+        long one = n - minReqK + 1;
+        dp[i] += partial[i - 2 - 1];
+        dp[i] %= MOD;
+        dp[i] += one;
+        dp[i] %= MOD;
+        dp[i] += (nn - 1) * (nn - 1) % MOD;
+        dp[i] %= MOD;
+        partial[i] = (partial[i - 1] + dp[i]) % MOD;
+    }
+    out.println(dp[n]);
+    out.flush();
+}

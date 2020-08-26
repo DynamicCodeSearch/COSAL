@@ -1,0 +1,17 @@
+long dp(int id, int parent) {
+    if (id != 0 && islands.get(id).size() == 1) {
+        white[id] = 1;
+        black[id] = 1;
+        return white[id] + black[id];
+    }
+    white[id] = 1;
+    black[id] = 1;
+    for (int i : islands.get(id)) {
+        if (i == parent)
+            continue;
+        dp(i, id);
+        white[id] = (white[id] * (white[i] + black[i])) % modulo;
+        black[id] = (black[id] * white[i]) % modulo;
+    }
+    return white[id] + black[id];
+}

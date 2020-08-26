@@ -1,0 +1,36 @@
+private void solve() throws IOException {
+    int N = nextInt();
+    long a = 0;
+    long b = 0;
+    long s = 0;
+    long s2 = 0;
+    long[] cur = new long[N];
+    for (int i = 0; i < N; ++i) {
+        cur[i] = nextInt();
+        s += cur[i];
+        s2 += cur[i];
+        if ((i + 1) % 2 != 0) {
+            
+            if (s <= 0) {
+                a += Math.abs(s) + 1;
+                s += Math.abs(s) + 1;
+            }
+            if (s2 >= 0) {
+                b += Math.abs(s2) + 1;
+                s2 -= Math.abs(s2) + 1;
+            }
+        } else {
+            if (s >= 0) {
+                a += Math.abs(s) + 1;
+                s -= Math.abs(s) + 1;
+            }
+            if (s2 <= 0) {
+                b += Math.abs(s2) + 1;
+                s2 += Math.abs(s2) + 1;
+            }
+        }
+    
+    }
+    
+    writer.println(Math.min(a, b));
+}

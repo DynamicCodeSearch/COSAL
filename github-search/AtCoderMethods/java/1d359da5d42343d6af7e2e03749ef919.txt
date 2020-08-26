@@ -1,0 +1,19 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int[] a = new int[3];
+    for (int i = 0; i < n; ++i) {
+        int x = in.nextInt();
+        if (x % 4 == 0) {
+            ++a[2];
+        } else if (x % 2 == 0) {
+            ++a[1];
+        } else {
+            ++a[0];
+        }
+    }
+    if (a[1] > 0) {
+        out.println(a[2] >= a[0] ? "Yes" : "No");
+    } else {
+        out.println(a[0] - a[2] > 1 ? "No" : "Yes");
+    }
+}

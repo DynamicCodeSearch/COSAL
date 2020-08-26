@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String a = sc.nextLine();
+    String c = sc.nextLine();
+    List<Integer> stick = new ArrayList<Integer>();
+    for (String item : c.split(" ")) {
+        stick.add(Integer.parseInt(item));
+    }
+    Collections.sort(stick, Comparator.reverseOrder());
+    int result = 0;
+    int cnt = Integer.parseInt(a.split(" ")[1]);
+    for (int i = 0; i < cnt; i++) {
+        result += stick.get(i);
+    }
+    System.out.println(result);
+}

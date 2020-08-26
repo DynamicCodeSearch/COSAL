@@ -1,0 +1,7 @@
+def calc(m, l, r):
+    if l <= m <= r:
+        return total(0, m - l + 1) + total(0, r - m + 1)
+    elif r < m:
+        return total(m - r, r - l + 1)
+    elif m < l:
+        return total(l - m, r - l + 1)

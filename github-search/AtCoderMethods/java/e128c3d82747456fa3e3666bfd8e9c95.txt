@@ -1,0 +1,17 @@
+public static void arc057a() throws IOException {
+    Scanner scan = new Scanner(System.in);
+    long a = scan.nextLong();
+    long k = scan.nextLong();
+    long money = a;
+    long ans = 0;
+    long nityou = 2000000000000L;
+    if (k == 0) {
+        ans = nityou - a;
+    } else {
+        while (money < nityou) {
+            money = money + 1 + k * money;
+            ans++;
+        }
+    }
+    System.out.println(ans);
+}

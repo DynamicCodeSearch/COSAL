@@ -1,0 +1,20 @@
+public void solve() {
+    Scanner scanner = new Scanner(System.in);
+    long A = scanner.nextLong();
+    long K = scanner.nextLong();
+    long dayCount = 0;
+    long goal = 2;
+    for (int i = 0; i < 12; i++) {
+        goal *= 10;
+    }
+    if (K > 0) {
+        while (goal > A) {
+            A *= K + 1;
+            A++;
+            dayCount++;
+        }
+    } else {
+        dayCount = goal - A;
+    }
+    System.out.println(dayCount);
+}

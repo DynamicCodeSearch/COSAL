@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int r = 0;
+    double m = sc.nextDouble();
+    if (m < 100) {
+        r = 0;
+    } else if (m >= 100 && m <= 5000) {
+        r = (int) (m / 1000 * 10);
+    } else if (m >= 6000 && m <= 30000) {
+        r = (int) (m / 1000 + 50);
+    } else if (m >= 35000 && m <= 70000) {
+        r = (int) ((m / 1000 - 30) / 5 + 80);
+    } else if (m > 70000) {
+        r = 89;
+    }
+    if (r < 10) {
+        System.out.print(0);
+    }
+    System.out.println(r);
+}

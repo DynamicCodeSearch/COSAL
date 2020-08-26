@@ -1,0 +1,12 @@
+def DFS(v, graph, isVisited):
+    res = 0
+    if all(isVisited):
+        return 1
+
+    for vv in range(len(isVisited)):
+        if graph[v][vv] == True and isVisited[vv] == False:
+            isVisited[vv] = True
+            res += DFS(vv, graph, isVisited)
+            isVisited[vv] = False
+
+    return res

@@ -1,0 +1,770 @@
+### Py Tokens: slope, upper, oldarea, float, lowi, nextpos, uppi, height, lowslope, info, lower, cut, cutfrac, area, totalarea, solnstr, start, str, uppslope, remaining 
+
+### Py functions
+
+def func_1b55f216284847878c5b027c62ee3cb1(i, info, lower, upper):
+    start = upper[0][1] - lower[0][1]
+    lowi = 1
+    uppi = 1
+    lowslope = float(lower[1][1] - lower[0][1]) / lower[1][0]
+    uppslope = float(upper[1][1] - upper[0][1]) / upper[1][0]
+    area = 0
+    height = float(start)
+    i = 0
+    while i < info[0]:
+        slope = uppslope - lowslope
+        area += height + slope / 2
+        height += slope
+        if i < info[0] - 1:
+            if i == lower[lowi][0] - 1:
+                lowi += 1
+                lowslope = float(lower[lowi][1] - lower[lowi - 1][1]) / (lower
+                    [lowi][0] - lower[lowi - 1][0])
+            if i == upper[uppi][0] - 1:
+                uppi += 1
+                uppslope = float(upper[uppi][1] - upper[uppi - 1][1]) / (upper
+                    [uppi][0] - upper[uppi - 1][0])
+        i += 1
+    i = 0
+    height = float(start)
+    lowi = 1
+    uppi = 1
+    lowslope = float(lower[1][1] - lower[0][1]) / lower[1][0]
+    uppslope = float(upper[1][1] - upper[0][1]) / upper[1][0]
+    totalarea = area
+    solnstr = ''
+    cut = 1
+    nextpos = totalarea * (float(cut) / info[3])
+    area = 0
+    while i < info[0]:
+        slope = uppslope - lowslope
+        oldarea = area
+        area += height + slope / 2
+        while area > nextpos:
+            cutfrac = 0
+            remaining = nextpos - oldarea
+            if slope == 0:
+                cutfrac = remaining / height
+            else:
+                cutfrac = (-height + (height * height + 2 * slope *
+                    remaining) ** 0.5) / slope
+            solnstr += '\n' + str(i + cutfrac)
+            cut += 1
+            nextpos = totalarea * (float(cut) / info[3])
+        height += slope
+        if i < info[0] - 1:
+            if i == lower[lowi][0] - 1:
+                lowi += 1
+                lowslope = float(lower[lowi][1] - lower[lowi - 1][1]) / (lower
+                    [lowi][0] - lower[lowi - 1][0])
+            if i == upper[uppi][0] - 1:
+                uppi += 1
+                uppslope = float(upper[uppi][1] - upper[uppi - 1][1]) / (upper
+                    [uppi][0] - upper[uppi - 1][0])
+        i += 1
+    return slope
+
+def func_169c71ac5cab4025b970262fb06f2ce7(i, info, lower, upper):
+    start = upper[0][1] - lower[0][1]
+    lowi = 1
+    uppi = 1
+    lowslope = float(lower[1][1] - lower[0][1]) / lower[1][0]
+    uppslope = float(upper[1][1] - upper[0][1]) / upper[1][0]
+    area = 0
+    height = float(start)
+    i = 0
+    while i < info[0]:
+        slope = uppslope - lowslope
+        area += height + slope / 2
+        height += slope
+        if i < info[0] - 1:
+            if i == lower[lowi][0] - 1:
+                lowi += 1
+                lowslope = float(lower[lowi][1] - lower[lowi - 1][1]) / (lower
+                    [lowi][0] - lower[lowi - 1][0])
+            if i == upper[uppi][0] - 1:
+                uppi += 1
+                uppslope = float(upper[uppi][1] - upper[uppi - 1][1]) / (upper
+                    [uppi][0] - upper[uppi - 1][0])
+        i += 1
+    i = 0
+    height = float(start)
+    lowi = 1
+    uppi = 1
+    lowslope = float(lower[1][1] - lower[0][1]) / lower[1][0]
+    uppslope = float(upper[1][1] - upper[0][1]) / upper[1][0]
+    totalarea = area
+    solnstr = ''
+    cut = 1
+    nextpos = totalarea * (float(cut) / info[3])
+    area = 0
+    while i < info[0]:
+        slope = uppslope - lowslope
+        oldarea = area
+        area += height + slope / 2
+        while area > nextpos:
+            cutfrac = 0
+            remaining = nextpos - oldarea
+            if slope == 0:
+                cutfrac = remaining / height
+            else:
+                cutfrac = (-height + (height * height + 2 * slope *
+                    remaining) ** 0.5) / slope
+            solnstr += '\n' + str(i + cutfrac)
+            cut += 1
+            nextpos = totalarea * (float(cut) / info[3])
+        height += slope
+        if i < info[0] - 1:
+            if i == lower[lowi][0] - 1:
+                lowi += 1
+                lowslope = float(lower[lowi][1] - lower[lowi - 1][1]) / (lower
+                    [lowi][0] - lower[lowi - 1][0])
+            if i == upper[uppi][0] - 1:
+                uppi += 1
+                uppslope = float(upper[uppi][1] - upper[uppi - 1][1]) / (upper
+                    [uppi][0] - upper[uppi - 1][0])
+        i += 1
+    return area
+
+def func_6c01caa3a37d4278abbf27374f40f252(i, info, lower, upper):
+    start = upper[0][1] - lower[0][1]
+    lowi = 1
+    uppi = 1
+    lowslope = float(lower[1][1] - lower[0][1]) / lower[1][0]
+    uppslope = float(upper[1][1] - upper[0][1]) / upper[1][0]
+    area = 0
+    height = float(start)
+    i = 0
+    while i < info[0]:
+        slope = uppslope - lowslope
+        area += height + slope / 2
+        height += slope
+        if i < info[0] - 1:
+            if i == lower[lowi][0] - 1:
+                lowi += 1
+                lowslope = float(lower[lowi][1] - lower[lowi - 1][1]) / (lower
+                    [lowi][0] - lower[lowi - 1][0])
+            if i == upper[uppi][0] - 1:
+                uppi += 1
+                uppslope = float(upper[uppi][1] - upper[uppi - 1][1]) / (upper
+                    [uppi][0] - upper[uppi - 1][0])
+        i += 1
+    i = 0
+    height = float(start)
+    lowi = 1
+    uppi = 1
+    lowslope = float(lower[1][1] - lower[0][1]) / lower[1][0]
+    uppslope = float(upper[1][1] - upper[0][1]) / upper[1][0]
+    totalarea = area
+    solnstr = ''
+    cut = 1
+    nextpos = totalarea * (float(cut) / info[3])
+    area = 0
+    while i < info[0]:
+        slope = uppslope - lowslope
+        oldarea = area
+        area += height + slope / 2
+        while area > nextpos:
+            cutfrac = 0
+            remaining = nextpos - oldarea
+            if slope == 0:
+                cutfrac = remaining / height
+            else:
+                cutfrac = (-height + (height * height + 2 * slope *
+                    remaining) ** 0.5) / slope
+            solnstr += '\n' + str(i + cutfrac)
+            cut += 1
+            nextpos = totalarea * (float(cut) / info[3])
+        height += slope
+        if i < info[0] - 1:
+            if i == lower[lowi][0] - 1:
+                lowi += 1
+                lowslope = float(lower[lowi][1] - lower[lowi - 1][1]) / (lower
+                    [lowi][0] - lower[lowi - 1][0])
+            if i == upper[uppi][0] - 1:
+                uppi += 1
+                uppslope = float(upper[uppi][1] - upper[uppi - 1][1]) / (upper
+                    [uppi][0] - upper[uppi - 1][0])
+        i += 1
+    return uppslope
+
+def func_75585c789aa6467a88878da2fd3082d9(i, info, lower, start, upper):
+    lowi = 1
+    uppi = 1
+    lowslope = float(lower[1][1] - lower[0][1]) / lower[1][0]
+    uppslope = float(upper[1][1] - upper[0][1]) / upper[1][0]
+    area = 0
+    height = float(start)
+    i = 0
+    while i < info[0]:
+        slope = uppslope - lowslope
+        area += height + slope / 2
+        height += slope
+        if i < info[0] - 1:
+            if i == lower[lowi][0] - 1:
+                lowi += 1
+                lowslope = float(lower[lowi][1] - lower[lowi - 1][1]) / (lower
+                    [lowi][0] - lower[lowi - 1][0])
+            if i == upper[uppi][0] - 1:
+                uppi += 1
+                uppslope = float(upper[uppi][1] - upper[uppi - 1][1]) / (upper
+                    [uppi][0] - upper[uppi - 1][0])
+        i += 1
+    i = 0
+    height = float(start)
+    lowi = 1
+    uppi = 1
+    lowslope = float(lower[1][1] - lower[0][1]) / lower[1][0]
+    uppslope = float(upper[1][1] - upper[0][1]) / upper[1][0]
+    totalarea = area
+    solnstr = ''
+    cut = 1
+    nextpos = totalarea * (float(cut) / info[3])
+    area = 0
+    while i < info[0]:
+        slope = uppslope - lowslope
+        oldarea = area
+        area += height + slope / 2
+        while area > nextpos:
+            cutfrac = 0
+            remaining = nextpos - oldarea
+            if slope == 0:
+                cutfrac = remaining / height
+            else:
+                cutfrac = (-height + (height * height + 2 * slope *
+                    remaining) ** 0.5) / slope
+            solnstr += '\n' + str(i + cutfrac)
+            cut += 1
+            nextpos = totalarea * (float(cut) / info[3])
+        height += slope
+        if i < info[0] - 1:
+            if i == lower[lowi][0] - 1:
+                lowi += 1
+                lowslope = float(lower[lowi][1] - lower[lowi - 1][1]) / (lower
+                    [lowi][0] - lower[lowi - 1][0])
+            if i == upper[uppi][0] - 1:
+                uppi += 1
+                uppslope = float(upper[uppi][1] - upper[uppi - 1][1]) / (upper
+                    [uppi][0] - upper[uppi - 1][0])
+        i += 1
+    return slope
+
+def func_a2dd1f227bc547c18cb579e7eab35226(i, info, lower, start, upper):
+    lowi = 1
+    uppi = 1
+    lowslope = float(lower[1][1] - lower[0][1]) / lower[1][0]
+    uppslope = float(upper[1][1] - upper[0][1]) / upper[1][0]
+    area = 0
+    height = float(start)
+    i = 0
+    while i < info[0]:
+        slope = uppslope - lowslope
+        area += height + slope / 2
+        height += slope
+        if i < info[0] - 1:
+            if i == lower[lowi][0] - 1:
+                lowi += 1
+                lowslope = float(lower[lowi][1] - lower[lowi - 1][1]) / (lower
+                    [lowi][0] - lower[lowi - 1][0])
+            if i == upper[uppi][0] - 1:
+                uppi += 1
+                uppslope = float(upper[uppi][1] - upper[uppi - 1][1]) / (upper
+                    [uppi][0] - upper[uppi - 1][0])
+        i += 1
+    i = 0
+    height = float(start)
+    lowi = 1
+    uppi = 1
+    lowslope = float(lower[1][1] - lower[0][1]) / lower[1][0]
+    uppslope = float(upper[1][1] - upper[0][1]) / upper[1][0]
+    totalarea = area
+    solnstr = ''
+    cut = 1
+    nextpos = totalarea * (float(cut) / info[3])
+    area = 0
+    while i < info[0]:
+        slope = uppslope - lowslope
+        oldarea = area
+        area += height + slope / 2
+        while area > nextpos:
+            cutfrac = 0
+            remaining = nextpos - oldarea
+            if slope == 0:
+                cutfrac = remaining / height
+            else:
+                cutfrac = (-height + (height * height + 2 * slope *
+                    remaining) ** 0.5) / slope
+            solnstr += '\n' + str(i + cutfrac)
+            cut += 1
+            nextpos = totalarea * (float(cut) / info[3])
+        height += slope
+        if i < info[0] - 1:
+            if i == lower[lowi][0] - 1:
+                lowi += 1
+                lowslope = float(lower[lowi][1] - lower[lowi - 1][1]) / (lower
+                    [lowi][0] - lower[lowi - 1][0])
+            if i == upper[uppi][0] - 1:
+                uppi += 1
+                uppslope = float(upper[uppi][1] - upper[uppi - 1][1]) / (upper
+                    [uppi][0] - upper[uppi - 1][0])
+        i += 1
+    return lowi
+
+*********************************
+
+#### Score: 11.10119
+
+
+#### Java Tokens: area, cur, total, curl, last, upper, lower, curheight, curu, totalarea, lastx, height 
+
+public static double func_1dd563f992634ab9877d155fc922a965(Point[] upper, Point[] lower) { 
+ double totalArea = 0.0;
+int curL = 1;
+int curU = 1;
+int lastX = 0;
+double curHeight = 1.0 * upper[0].y - lower[0].y;
+return totalArea;
+}
+
+
+public static int func_a7d464825165439088df7c0b77e845d7(Point[] upper, Point[] lower) { 
+ double totalArea = 0.0;
+int curL = 1;
+int curU = 1;
+int lastX = 0;
+double curHeight = 1.0 * upper[0].y - lower[0].y;
+return curL;
+}
+
+
+public static int func_7732ef7e3ca047ba8e1559171c43499e(Point[] upper, Point[] lower) { 
+ double totalArea = 0.0;
+int curL = 1;
+int curU = 1;
+int lastX = 0;
+double curHeight = 1.0 * upper[0].y - lower[0].y;
+return lastX;
+}
+
+
+*********************************
+
+#### Score: 10.25049
+
+
+#### Java Tokens: area, cur, curl, last, upper, lower, totalarea, total, size, get, curheight, curu, lastx, height 
+
+public static int func_e3e70a58ce7d44b4bbbebf18cbfe1638(ArrayList<Point> lower, ArrayList<Point> upper) { 
+ double curHeight = 1.0 * upper.get(0).y - lower.get(0).y;
+int curU = 1;
+int curL = 1;
+int u = upper.size();
+int l = lower.size();
+double lastX = 0;
+double totalArea = 0.0;
+return curU;
+}
+
+
+public static int func_1159e87b8394469dbe07e868e6ab86db(ArrayList<Point> lower, ArrayList<Point> upper) { 
+ double curHeight = 1.0 * upper.get(0).y - lower.get(0).y;
+int curU = 1;
+int curL = 1;
+int u = upper.size();
+int l = lower.size();
+double lastX = 0;
+double totalArea = 0.0;
+return curL;
+}
+
+
+public static double func_c499649c1d754c51988f784b1c3fbd18(ArrayList<Point> lower, ArrayList<Point> upper) { 
+ double curHeight = 1.0 * upper.get(0).y - lower.get(0).y;
+int curU = 1;
+int curL = 1;
+int u = upper.size();
+int l = lower.size();
+double lastX = 0;
+double totalArea = 0.0;
+return curHeight;
+}
+
+
+*********************************
+
+#### Score: 9.92335
+
+
+#### Java Tokens: area, total, size, last, upper, lower, totalarea, lastx 
+
+public static double func_16d0490419ba4510a52110bd40c01f1e(ArrayList<Point> lower, ArrayList<Point> upper) { 
+ int u = upper.size();
+int l = lower.size();
+double lastX = 0;
+double totalArea = 0.0;
+return lastX;
+}
+
+
+public static ArrayList<Point> func_c846638aeeba42209bb1a006bc6af783(ArrayList<Point> lower, ArrayList<Point> upper) { 
+ int u = upper.size();
+int l = lower.size();
+double lastX = 0;
+double totalArea = 0.0;
+return upper;
+}
+
+
+public static ArrayList<Point> func_53617d74c93043f1be9885559938f98e(ArrayList<Point> lower, ArrayList<Point> upper) { 
+ int u = upper.size();
+int l = lower.size();
+double lastX = 0;
+double totalArea = 0.0;
+return lower;
+}
+
+
+*********************************
+
+#### Score: 9.65837
+
+
+#### Java Tokens: lowerpoint, area, upper, lower, part, point, remaining, upperpoint, remainingarea, segment, partarea, uppersegment, lowersegment 
+
+public static double func_8db9a2efbeca4ec0add84bd29560c67a(double partArea, Point[] lowerPoint, Point[] upperPoint) { 
+ Segment upperSegment = new Segment(upperPoint[0], upperPoint[1]);
+Segment lowerSegment = new Segment(lowerPoint[0], lowerPoint[1]);
+double remainingArea = partArea;
+return remainingArea;
+}
+
+
+*********************************
+
+#### Score: 9.52546
+
+
+#### Java Tokens: next, area, cur, curl, nextint, last, lower, upper, totalarea, int, point, total, curheight, curu, lastx, height 
+
+public static int func_b363d81b7db24d88aa47ff9337aeccbc(Scanner in) { 
+ // lower points
+int l = in.nextInt();
+// upper points
+int u = in.nextInt();
+int // guests
+g = in.nextInt();
+Point[] lower = new Point[l];
+for (int i = 0; i < l; ++i) {
+    lower[i] = new Point(in.nextInt(), in.nextInt());
+}
+Point[] upper = new Point[u];
+for (int i = 0; i < u; ++i) {
+    upper[i] = new Point(in.nextInt(), in.nextInt());
+}
+double totalArea = 0.0;
+int curL = 1;
+int curU = 1;
+int lastX = 0;
+double curHeight = 1.0 * upper[0].y - lower[0].y;
+return curU;
+}
+
+
+public static int func_395729f336cd48f58b71b0fb1151759b(Scanner in) { 
+ // lower points
+int l = in.nextInt();
+// upper points
+int u = in.nextInt();
+int // guests
+g = in.nextInt();
+Point[] lower = new Point[l];
+for (int i = 0; i < l; ++i) {
+    lower[i] = new Point(in.nextInt(), in.nextInt());
+}
+Point[] upper = new Point[u];
+for (int i = 0; i < u; ++i) {
+    upper[i] = new Point(in.nextInt(), in.nextInt());
+}
+double totalArea = 0.0;
+int curL = 1;
+int curU = 1;
+int lastX = 0;
+double curHeight = 1.0 * upper[0].y - lower[0].y;
+return u;
+}
+
+
+public static int func_8f57eaec01fb4c858842b9b53a4f79db(Scanner in) { 
+ int // width
+w = in.nextInt();
+// lower points
+int l = in.nextInt();
+// upper points
+int u = in.nextInt();
+int // guests
+g = in.nextInt();
+Point[] lower = new Point[l];
+for (int i = 0; i < l; ++i) {
+    lower[i] = new Point(in.nextInt(), in.nextInt());
+}
+Point[] upper = new Point[u];
+for (int i = 0; i < u; ++i) {
+    upper[i] = new Point(in.nextInt(), in.nextInt());
+}
+double totalArea = 0.0;
+int curL = 1;
+int curU = 1;
+int lastX = 0;
+double curHeight = 1.0 * upper[0].y - lower[0].y;
+return curU;
+}
+
+
+*********************************
+
+#### Score: 9.52546
+
+
+#### Java Tokens: next, area, cur, curl, nextint, last, upper, lower, totalarea, point, int, total, curheight, curu, lastx, height 
+
+public static int func_5f7e414acc2e4b8cbc9367d4cf1f9010(int u, Point[] lower, Scanner in) { 
+ Point[] upper = new Point[u];
+for (int i = 0; i < u; ++i) {
+    upper[i] = new Point(in.nextInt(), in.nextInt());
+}
+double totalArea = 0.0;
+int curL = 1;
+int curU = 1;
+int lastX = 0;
+double curHeight = 1.0 * upper[0].y - lower[0].y;
+return curU;
+}
+
+
+public static double func_2171ff1d6e734ee59f7644f0289582e4(int u, Point[] lower, Scanner in) { 
+ Point[] upper = new Point[u];
+for (int i = 0; i < u; ++i) {
+    upper[i] = new Point(in.nextInt(), in.nextInt());
+}
+double totalArea = 0.0;
+int curL = 1;
+int curU = 1;
+int lastX = 0;
+double curHeight = 1.0 * upper[0].y - lower[0].y;
+return curHeight;
+}
+
+
+public static double func_2a55898f55f643f293fc1b22261d6642(int u, Point[] lower, Scanner in) { 
+ Point[] upper = new Point[u];
+for (int i = 0; i < u; ++i) {
+    upper[i] = new Point(in.nextInt(), in.nextInt());
+}
+double totalArea = 0.0;
+int curL = 1;
+int curU = 1;
+int lastX = 0;
+double curHeight = 1.0 * upper[0].y - lower[0].y;
+return totalArea;
+}
+
+
+*********************************
+
+#### Score: 9.52546
+
+
+#### Java Tokens: next, area, cur, curl, nextint, last, lower, upper, totalarea, point, int, total, curheight, curu, lastx, height 
+
+public static double func_f96bd0f98c6646eb91da19afa211462d(int u, int l, Scanner in) { 
+ Point[] lower = new Point[l];
+for (int i = 0; i < l; ++i) {
+    lower[i] = new Point(in.nextInt(), in.nextInt());
+}
+Point[] upper = new Point[u];
+for (int i = 0; i < u; ++i) {
+    upper[i] = new Point(in.nextInt(), in.nextInt());
+}
+double totalArea = 0.0;
+int curL = 1;
+int curU = 1;
+int lastX = 0;
+double curHeight = 1.0 * upper[0].y - lower[0].y;
+return totalArea;
+}
+
+
+public static int func_22adb38ef91945a8b0b19f4f6359ddd4(int u, int l, Point[] lower, Scanner in) { 
+ for (int i = 0; i < l; ++i) {
+    lower[i] = new Point(in.nextInt(), in.nextInt());
+}
+Point[] upper = new Point[u];
+for (int i = 0; i < u; ++i) {
+    upper[i] = new Point(in.nextInt(), in.nextInt());
+}
+double totalArea = 0.0;
+int curL = 1;
+int curU = 1;
+int lastX = 0;
+double curHeight = 1.0 * upper[0].y - lower[0].y;
+return curU;
+}
+
+
+public static double func_545e0ca19e33434193806027626f8f43(int u, int l, Scanner in) { 
+ Point[] lower = new Point[l];
+for (int i = 0; i < l; ++i) {
+    lower[i] = new Point(in.nextInt(), in.nextInt());
+}
+Point[] upper = new Point[u];
+for (int i = 0; i < u; ++i) {
+    upper[i] = new Point(in.nextInt(), in.nextInt());
+}
+double totalArea = 0.0;
+int curL = 1;
+int curU = 1;
+int lastX = 0;
+double curHeight = 1.0 * upper[0].y - lower[0].y;
+return curHeight;
+}
+
+
+*********************************
+
+#### Score: 9.45074
+
+
+#### Java Tokens: next, area, total, nextint, lower, upper, totalarea, int, point 
+
+public static int func_a86ea935ccb04587b63a355333ef6a76(Scanner in) { 
+ // lower points
+int l = in.nextInt();
+// upper points
+int u = in.nextInt();
+int // guests
+g = in.nextInt();
+Point[] lower = new Point[l];
+for (int i = 0; i < l; ++i) {
+    lower[i] = new Point(in.nextInt(), in.nextInt());
+}
+Point[] upper = new Point[u];
+for (int i = 0; i < u; ++i) {
+    upper[i] = new Point(in.nextInt(), in.nextInt());
+}
+double totalArea = 0.0;
+return g;
+}
+
+
+public static Point[] func_2d8096e689e841c88861147576eadc45(Scanner in) { 
+ // lower points
+int l = in.nextInt();
+// upper points
+int u = in.nextInt();
+int // guests
+g = in.nextInt();
+Point[] lower = new Point[l];
+for (int i = 0; i < l; ++i) {
+    lower[i] = new Point(in.nextInt(), in.nextInt());
+}
+Point[] upper = new Point[u];
+for (int i = 0; i < u; ++i) {
+    upper[i] = new Point(in.nextInt(), in.nextInt());
+}
+double totalArea = 0.0;
+return lower;
+}
+
+
+public static int func_81f77f79797c4ed28e4ecf933e359c06(Scanner in) { 
+ int // width
+w = in.nextInt();
+// lower points
+int l = in.nextInt();
+// upper points
+int u = in.nextInt();
+int // guests
+g = in.nextInt();
+Point[] lower = new Point[l];
+for (int i = 0; i < l; ++i) {
+    lower[i] = new Point(in.nextInt(), in.nextInt());
+}
+Point[] upper = new Point[u];
+for (int i = 0; i < u; ++i) {
+    upper[i] = new Point(in.nextInt(), in.nextInt());
+}
+double totalArea = 0.0;
+return l;
+}
+
+
+*********************************
+
+#### Score: 9.45074
+
+
+#### Java Tokens: next, area, total, nextint, lower, upper, totalarea, point, int 
+
+public static double func_20bd94dbc3b54db7a9378ec9921e2a36(int u, int l, Scanner in) { 
+ Point[] lower = new Point[l];
+for (int i = 0; i < l; ++i) {
+    lower[i] = new Point(in.nextInt(), in.nextInt());
+}
+Point[] upper = new Point[u];
+for (int i = 0; i < u; ++i) {
+    upper[i] = new Point(in.nextInt(), in.nextInt());
+}
+double totalArea = 0.0;
+return totalArea;
+}
+
+
+public static double func_5487c17b23f34d22a19e1c65ef83b375(int u, int l, Point[] lower, Scanner in) { 
+ for (int i = 0; i < l; ++i) {
+    lower[i] = new Point(in.nextInt(), in.nextInt());
+}
+Point[] upper = new Point[u];
+for (int i = 0; i < u; ++i) {
+    upper[i] = new Point(in.nextInt(), in.nextInt());
+}
+double totalArea = 0.0;
+return totalArea;
+}
+
+
+*********************************
+
+#### Score: 9.24567
+
+
+#### Java Tokens: area, cur, thisheight, total, curheight, totalarea, height 
+
+public static double func_b957b488707b4459aa30c1213127f664(int curX, double curHeight, double totalArea, double lastX, double thisHeight) { 
+ totalArea += (1.0 * curHeight + thisHeight) / 2 * (curX - lastX);
+// //System.out.println("dist: " + (curX-lastX));
+// //System.out.println("newHeight: " + thisHeight);
+// //System.out.println("oldHeight: " + curHeight);
+curHeight = thisHeight;
+return curHeight;
+}
+
+
+public static double func_2a9ec32a68c645dd86ea9c05fef13140(int curX, double curHeight, double totalArea, double lastX, double thisHeight) { 
+ totalArea += (1.0 * curHeight + thisHeight) / 2 * (curX - lastX);
+// //System.out.println("dist: " + (curX-lastX));
+// //System.out.println("newHeight: " + thisHeight);
+// //System.out.println("oldHeight: " + curHeight);
+curHeight = thisHeight;
+return totalArea;
+}
+
+
+public static double func_db1fd0fb7ff54fb5b94be1f44611aa8e(int lastX, int curX, double thisHeight, double totalArea, double curHeight) { 
+ totalArea += (1.0 * curHeight + thisHeight) / 2 * (curX - lastX);
+// System.out.println("dist: " + (curX-lastX));
+// System.out.println("newHeight: " + thisHeight);
+// System.out.println("oldHeight: " + curHeight);
+curHeight = thisHeight;
+return totalArea;
+}
+

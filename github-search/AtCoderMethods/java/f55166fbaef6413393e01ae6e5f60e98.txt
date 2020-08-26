@@ -1,0 +1,16 @@
+private static long count(int s, boolean[][] link) {
+    if (result[s] > 0)
+        return result[s];
+    if (s == 0)
+        return 1;
+    long result = 0;
+    String str = convert(s);
+    for (int i = 0; i < link[0].length; i++) {
+        if (str.charAt(str.length() - 1 - i) == '1' && !hasLink(i, s, link)) {
+            StringBuilder s2 = new StringBuilder(str);
+            s2.setCharAt(str.length() - 1 - i, '0');
+            result += count(Integer.parseInt(s2.toString(), 2), link);
+        }
+    }
+    return result;
+}

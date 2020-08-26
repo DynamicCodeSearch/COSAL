@@ -1,0 +1,21 @@
+def solve():
+    n = int(input())
+    alps = [inf] * 26
+
+    for i in range(n):
+        s = input()
+
+        tmp = [0] * 26
+
+        for ch in s:
+            tmp[ord(ch) - ord('a')] += 1
+
+        for i in range(26):
+            alps[i] = min(alps[i], tmp[i])
+
+    ans = ''
+
+    for i in range(26):
+        ans += chr(i + ord('a')) * alps[i]
+
+    print(ans)

@@ -1,0 +1,15 @@
+void dfs(ArrayList<Integer> rest, StringBuilder now) {
+    if (rest.size() == 0) {
+        hash.add(now.toString());
+        return;
+    }
+    int num = rest.size();
+    for (int i = 0; i < num; i++) {
+        int next = rest.get(i);
+        rest.remove(i);
+        now.append(next);
+        dfs(rest, now);
+        now.deleteCharAt(now.length() - 1);
+        rest.add(i, next);
+    }
+}

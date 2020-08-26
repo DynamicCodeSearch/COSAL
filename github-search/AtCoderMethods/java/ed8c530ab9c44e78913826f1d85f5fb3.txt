@@ -1,0 +1,42 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    long N = sc.nextLong();
+    sc.close();
+    long temp = N;
+    long depth = 0;
+    for (; temp > 0; temp /= 2) depth++;
+    boolean flag = true;
+    long test = 1;
+    if (depth % 2 == 0) {
+        while (test <= N) {
+            if (flag) {
+                test = test * 2;
+                flag = false;
+            } else {
+                test = test * 2 + 1;
+                flag = true;
+            }
+        }
+        if (flag) {
+            System.out.println("Takahashi");
+        } else {
+            System.out.println("Aoki");
+        }
+    } else {
+        while (test <= N) {
+            if (flag) {
+                test = test * 2 + 1;
+                flag = false;
+            } else {
+                test = test * 2;
+                flag = true;
+            }
+        }
+        if (flag) {
+            System.out.println("Takahashi");
+        } else {
+            System.out.println("Aoki");
+        }
+    }
+}

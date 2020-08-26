@@ -1,0 +1,36 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String A = sc.next();
+    String B = sc.next();
+    String[] A1 = A.split("");
+    String[] B1 = B.split("");
+    int[] A2 = new int[A1.length];
+    int[] B2 = new int[B1.length];
+    for (int i = 0; i < A1.length; i++) {
+        A2[i] = Integer.parseInt(A1[i]);
+    }
+    for (int i = 0; i < B1.length; i++) {
+        B2[i] = Integer.parseInt(B1[i]);
+    }
+    int cnt = 0;
+    if (A1.length > B1.length) {
+        System.out.print("GREATER");
+    } else if (B1.length > A1.length) {
+        System.out.print("LESS");
+    } else {
+        for (int i = 0; i < A2.length; i++) {
+            if (A2[i] > B2[i]) {
+                System.out.print("GREATER");
+                break;
+            } else if (B2[i] > A2[i]) {
+                System.out.print("LESS");
+                break;
+            } else {
+                cnt++;
+            }
+        }
+    }
+    if (cnt == A2.length) {
+        System.out.print("EQUAL");
+    }
+}

@@ -1,0 +1,18 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    long K = sc.nextLong();
+    Pair[] pair = new Pair[N];
+    for (int i = 0; i < pair.length; i++) {
+        pair[i] = new Pair(sc.nextInt(), sc.nextInt());
+    }
+    Arrays.sort(pair, Comparator.comparingInt(Pair::getKey));
+    long index = 0;
+    for (int i = 0; i < N; i++) {
+        index += pair[i].getValue();
+        if (index >= K) {
+            System.out.println(pair[i].getKey());
+            return;
+        }
+    }
+}

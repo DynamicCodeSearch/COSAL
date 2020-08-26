@@ -1,0 +1,49 @@
+private void solve(FastScanner sc) {
+    int n = sc.nextInt();
+    long[] keys = new long[n];
+    Map<Long, int[][]> rotates = new HashMap<>();
+    keyDups = new HashMap<>();
+    for (int i = 0; i < n; i++) {
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        int c = sc.nextInt();
+        int d = sc.nextInt();
+        long key = toKey(a, b, c, d);
+        keys[i] = key;
+        rotates.putIfAbsent(key, toRotates(a, b, c, d));
+        keyDups.computeIfAbsent(key, l -> 0);
+        keyDups.compute(key, (l, old) -> old + 1);
+    }
+    long count = 0;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (i == j)
+                continue;
+            int[] foot = rotates.get(keys[i])[0];
+            for (int[] head : rotates.get(keys[j])) {
+                long ka = toKey(head[1], head[0], foot[1], foot[0]);
+                long kb = toKey(head[2], head[1], foot[0], foot[3]);
+                long kc = toKey(head[3], head[2], foot[3], foot[2]);
+                long kd = toKey(head[0], head[3], foot[2], foot[1]);
+                long kh = toKey(head[0], head[1], head[2], head[3]);
+                long kf = toKey(foot[0], foot[1], foot[2], foot[3]);
+                keyDups.compute(kh, (l, old) -> old - 1);
+                keyDups.compute(kf, (l, old) -> old - 1);
+                long a = match(head[1], head[0], foot[1], foot[0]);
+                keyDups.computeIfPresent(ka, (l, old) -> old - 1);
+                long b = match(head[2], head[1], foot[0], foot[3]);
+                keyDups.computeIfPresent(kb, (l, old) -> old - 1);
+                long c = match(head[3], head[2], foot[3], foot[2]);
+                keyDups.computeIfPresent(kc, (l, old) -> old - 1);
+                long d = match(head[0], head[3], foot[2], foot[1]);
+                keyDups.compute(kh, (l, old) -> old + 1);
+                keyDups.compute(kf, (l, old) -> old + 1);
+                keyDups.computeIfPresent(ka, (l, old) -> old + 1);
+                keyDups.computeIfPresent(kb, (l, old) -> old + 1);
+                keyDups.computeIfPresent(kc, (l, old) -> old + 1);
+                count += a * b * c * d;
+            }
+        }
+    }
+    System.out.println(count / 6);
+}

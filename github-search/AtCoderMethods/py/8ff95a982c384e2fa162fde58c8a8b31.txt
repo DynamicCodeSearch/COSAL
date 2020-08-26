@@ -1,0 +1,22 @@
+def calc(leftnum, sum, tempsum , is_insert):
+
+    hitoketa = leftnum % 10
+    leftnum = int(leftnum / 10)
+
+    if tempsum == 0:
+        tempsum = hitoketa
+    else:
+        tempsum = int(str(hitoketa) + str(tempsum))
+
+    if is_insert:
+        sum += tempsum
+        tempsum = 0
+
+    if leftnum == 0:
+        if is_insert:
+            global answer
+            answer += sum
+        return
+
+    calc(leftnum, sum, tempsum, True)
+    calc(leftnum, sum, tempsum, False)

@@ -1,0 +1,11 @@
+
+
+public static long[] convoluteSimply(long[] a, long[] b, int P, int g) {
+    int m = Math.max(2, Integer.highestOneBit(Math.max(a.length, b.length) - 1) << 2);
+    long[] fa = nttmb(a, m, false, P, g);
+    long[] fb = a == b ? fa : nttmb(b, m, false, P, g);
+    for (int i = 0; i < m; i++) {
+        fa[i] = fa[i] * fb[i] % P;
+    }
+    return nttmb(fa, m, true, P, g);
+}

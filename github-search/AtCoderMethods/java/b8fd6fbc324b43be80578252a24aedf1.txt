@@ -1,0 +1,20 @@
+public static String lineHash(long x1, long y1, long x2, long y2) {
+    long a = x1 - x2, b = y1 - y2, c = x1 * (y2 - y1) - y1 * (x2 - x1);
+    long x = a, y = b, z = c;
+    while (y != 0) {
+        long d = x;
+        x = y;
+        y = d % y;
+    }
+    while (z != 0) {
+        long d = x;
+        x = z;
+        z = d % z;
+    }
+    if (a / x < 0)
+        x = -x;
+    a /= x;
+    b /= x;
+    c /= x;
+    return a + "," + b + "," + c;
+}

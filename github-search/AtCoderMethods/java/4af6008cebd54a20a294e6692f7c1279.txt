@@ -1,0 +1,14 @@
+static int fun(int index) {
+    if (index == n - 1)
+        return 0;
+    if (dp[index] != 0)
+        return dp[index];
+    int ret;
+    if (index == n - 2) {
+        ret = fun(index + 1) + Math.abs(a[index] - a[index + 1]);
+    } else {
+        ret = (int) Math.min(fun(index + 1) + Math.abs(a[index] - a[index + 1]), fun(index + 2) + Math.abs(a[index] - a[index + 2]));
+    }
+    dp[index] = ret;
+    return dp[index];
+}

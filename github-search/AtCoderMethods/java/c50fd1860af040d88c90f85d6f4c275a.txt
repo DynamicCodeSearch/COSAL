@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    int N;
+    int[] x = new int[100];
+    int[] y = new int[100];
+    double max;
+    int i, j;
+    Scanner sc = new Scanner(System.in);
+    N = sc.nextInt();
+    for (i = 0; i < N; ++i) {
+        x[i] = sc.nextInt();
+        y[i] = sc.nextInt();
+    }
+    max = length(x[0], y[0], x[1], y[1]);
+    for (i = 0; i < N - 1; ++i) {
+        for (j = i + 1; j < N; ++j) {
+            
+            if (length(x[i], y[i], x[j], y[j]) > max) {
+                max = length(x[i], y[i], x[j], y[j]);
+            }
+        }
+    }
+    System.out.println(max);
+}

@@ -1,0 +1,31 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    for (int i = 0; i < n - 1; ++i) {
+        int x = in.nextInt();
+        int y = in.nextInt();
+        if (g[x] == null)
+            g[x] = new ArrayList<>();
+        if (g[y] == null)
+            g[y] = new ArrayList<>();
+        g[x].add(y);
+        g[y].add(x);
+    }
+    dist1[1] = distN[n] = 0;
+    dfs(1, 0, dist1);
+    dfs(n, 100001, distN);
+    Arrays.fill(mark, 0xff);
+    mark[1] = 0;
+    mark[0] = 0;
+    mark[n] = 1;
+    mark[100001] = 1;
+    for (int i = 1; i <= n; ++i) {
+        if (dist1[i] <= distN[i])
+            f++;
+        else
+            snuke++;
+    }
+    if (f > snuke)
+        out.println("Fennec");
+    else
+        out.println("Snuke");
+}

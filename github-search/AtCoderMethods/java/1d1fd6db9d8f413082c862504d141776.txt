@@ -1,0 +1,23 @@
+private void solve() {
+    try {
+        int N = scanner.nextInt();
+        long[] x = new long[N];
+        long A = scanner.nextLong();
+        long B = scanner.nextLong();
+        for (int i = 0; i < N; i++) {
+            x[i] = scanner.nextLong();
+        }
+        long tired = 0l, now = x[0];
+        for (int i = 1; i < N; i++) {
+            if ((x[i] - now) * A < B) {
+                tired += A * (x[i] - now);
+            } else {
+                tired += B;
+            }
+            now = x[i];
+        }
+        System.out.println(tired);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}

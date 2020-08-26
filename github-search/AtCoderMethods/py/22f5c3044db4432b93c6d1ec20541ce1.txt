@@ -1,0 +1,29 @@
+def main():
+    N,X = LI()
+    W = sorted([I() for _ in range(N)], reverse=True)
+    d = collections.defaultdict(int)
+    d[0] = 1
+    for c in W[N//2:]:
+        t = collections.defaultdict(int)
+        for k,v in d.items():
+            if k+c > X:
+                continue
+            t[k+c] += v
+        for k,v in t.items():
+            d[k] += v
+    d2 = collections.defaultdict(int)
+    d2[0] = 1
+    for c in W[:N//2]:
+        t = collections.defaultdict(int)
+        for k,v in d2.items():
+            if k+c > X:
+                continue
+            t[k+c] += v
+        for k,v in t.items():
+            d2[k] += v
+    r = 0
+    for k,v in d.items():
+        r += v * d2[X-k]
+
+
+    return r

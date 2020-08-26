@@ -1,0 +1,19 @@
+def main():
+    N = int(input())
+    A = tuple(map(int, input().split()))
+
+    color = set()
+    etc = 0
+    for a in A:
+        idx = a // 400
+        if idx >= 8:
+            etc += 1
+        else:
+            color.add(idx)
+
+    min_ = len(color)
+    if min_ == 0:
+        min_ = 1
+    max_ = len(color) + etc
+
+    print(min_, max_)

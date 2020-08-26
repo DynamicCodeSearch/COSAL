@@ -1,0 +1,18 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int[] a = in.nextIntArray(n);
+    TreeSet<Integer> set = new TreeSet<>();
+    set.add(1);
+    int now = 1;
+    for (int i = 0; i < n; i++) {
+        now = a[now - 1];
+        if (now == 2) {
+            out.println(set.size());
+            return;
+        } else if (set.contains(now)) {
+            out.println(-1);
+            return;
+        }
+        set.add(now);
+    }
+}

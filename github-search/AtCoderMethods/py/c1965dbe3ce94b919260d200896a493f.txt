@@ -1,0 +1,19 @@
+def dfs(v, used):
+    if used == All_used:
+        return 1
+
+    key = (v, used)
+    if key in memo:
+        return memo[key]
+
+    ans = 0
+    for u in g[v]:
+        if (used >> u) & 1 == 1:
+            continue
+
+        used ^= (1 << u)
+        ans += dfs(u, used)
+        used ^= (1 << u)
+
+    memo[key] = ans
+    return ans

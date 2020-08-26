@@ -1,0 +1,19 @@
+Node kth(int k) {
+    Node node = root;
+    int sum = 0;
+    while (node != null) {
+        if (sum + node.sz < k) {
+            return null;
+        }
+        if (sum + sz(node.left) + 1 == k) {
+            return node;
+        }
+        if (sum + sz(node.left) + 1 < k) {
+            sum = sum + 1 + sz(node.left);
+            node = node.right;
+        } else {
+            node = node.left;
+        }
+    }
+    return null;
+}

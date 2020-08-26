@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner cin = new Scanner(System.in);
+    int A = cin.nextInt();
+    int[] list = new int[A];
+    int tmp;
+    for (int i = 0; i < A; i++) {
+        list[i] = cin.nextInt();
+    }
+    Arrays.sort(list);
+    tmp = list[0];
+    int sum = 0;
+    for (int j = 0; j < A; j++) {
+        if (tmp == list[j]) {
+        } else {
+            sum += list[j] - tmp;
+            tmp = list[j];
+        }
+    }
+    System.out.println(sum);
+}

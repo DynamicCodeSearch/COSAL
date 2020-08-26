@@ -1,0 +1,20 @@
+void run() {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[] a = new int[n];
+    float sum = 0;
+    for (int i = 0; i < n; i++) {
+        a[i] = sc.nextInt();
+        sum += (float) a[i];
+    }
+    BigDecimal bd = new BigDecimal((float) sum / n);
+    int ave = bd.ROUND_HALF_UP;
+    System.out.println(sum);
+    System.out.println(ave);
+    int ans = 0;
+    for (int i = 0; i < n; i++) {
+        int tmp = ave - a[i];
+        ans += tmp * tmp;
+    }
+    System.out.println(ans);
+}

@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    final int INF = 1000000000;
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    int[][] d = new int[N][N];
+    for (int i = 0; i < N; i++) {
+        Arrays.fill(d[i], INF);
+        d[i][i] = 0;
+    }
+    int[] a = new int[M];
+    int[] b = new int[M];
+    int[] c = new int[M];
+    for (int i = 0; i < M; i++) {
+        a[i] = sc.nextInt() - 1;
+        b[i] = sc.nextInt() - 1;
+        c[i] = sc.nextInt();
+        d[a[i]][b[i]] = d[b[i]][a[i]] = c[i];
+    }
+    for (int k = 0; k < N; k++) for (int i = 0; i < N; i++) for (int j = 0; j < N; j++) d[i][j] = Math.min(d[i][j], d[i][k] + d[k][j]);
+    int ans = 0;
+    for (int i = 0; i < M; i++) if (d[a[i]][b[i]] < c[i])
+        ans++;
+    System.out.println(ans);
+    sc.close();
+}

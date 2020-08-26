@@ -1,0 +1,13 @@
+boolean dfs(int v, int[] pair, boolean[] vis, boolean[][] g) {
+    vis[v] = true;
+    for (int u = 0; u < g[v].length; u++) {
+        if (!g[v][u]) {
+            continue;
+        }
+        if (pair[u] == -1 || (!vis[pair[u]] && dfs(pair[u], pair, vis, g))) {
+            pair[u] = v;
+            return true;
+        }
+    }
+    return false;
+}

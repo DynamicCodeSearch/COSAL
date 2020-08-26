@@ -1,0 +1,23 @@
+void solve() throws IOException {
+    int n = ni();
+    int[] t = new int[n];
+    for (int i = 0; i < n; i++) {
+        t[i] = ni();
+    }
+    int m = ni();
+    int[] p = new int[m];
+    int[] x = new int[m];
+    for (int i = 0; i < m; i++) {
+        p[i] = ni();
+        x[i] = ni();
+    }
+    int z = 0;
+    for (int i = 0; i < n; i++) {
+        z += t[i];
+    }
+    int[] ans = new int[m];
+    for (int i = 0; i < m; i++) {
+        ans[i] = z - (t[p[i] - 1] - x[i]);
+        out.println(ans[i]);
+    }
+}

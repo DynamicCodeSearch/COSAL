@@ -1,0 +1,16 @@
+public static void main(String[] __) {
+    final int n = s.nextInt(), m = s.nextInt(), x = s.nextInt(), y = s.nextInt();
+    TreeSet<Integer> a = REPS(n).mapToObj(i -> s.nextInt()).collect(Collectors.toCollection(TreeSet<Integer>::new)), b = REPS(m).mapToObj(i -> s.nextInt()).collect(Collectors.toCollection(TreeSet<Integer>::new));
+    
+    
+    Integer v = 0;
+    int count = 0;
+    while ((v = a.ceiling(v)) != null) {
+        v += count % 2 == 0 ? x : y;
+        count++;
+        TreeSet<Integer> buf = a;
+        a = b;
+        b = buf;
+    }
+    System.out.println(count / 2);
+}

@@ -1,0 +1,13 @@
+static void build(int node, int s, int e) {
+    if (s > e) {
+        return;
+    }
+    if (s == e) {
+        tree[node] = new Node(s, 0);
+    } else {
+        int mid = (s + e) >> 1;
+        build(node << 1, s, mid);
+        build(node << 1 | 1, mid + 1, e);
+        tree[node] = merge(tree[node << 1], tree[node << 1 | 1]);
+    }
+}

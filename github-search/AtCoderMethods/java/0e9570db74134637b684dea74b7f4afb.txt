@@ -1,0 +1,21 @@
+private static int[] createPostorder(Graph graph) {
+    DFS<int[]> dfs = new DFS<int[]>(graph) {
+
+        int ptr = 0;
+
+        int[] result = new int[n];
+
+        protected void exit(Edge e) {
+            result[ptr++] = e.to();
+        }
+
+        protected int[] result() {
+            return result;
+        }
+
+        protected boolean enter(Edge e) {
+            return !visited[e.to()];
+        }
+    };
+    return dfs.run();
+}

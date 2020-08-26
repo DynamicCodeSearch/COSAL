@@ -1,0 +1,17 @@
+private static int getMaxCount(final int sx, final int sy, final int ex, final int ey) {
+    if (sx < 1 || sy < 1 || ey < sy || ex < sx) {
+        return 0;
+    }
+    String key = String.format("%d.%d.%d.%d", sx, sy, ex, ey);
+    if (!dp.containsKey(key)) {
+        int maxCount = 0;
+        final int count = (ex - sx) + (ey - sy) + 1;
+        for (Pos pos : posList) {
+            if (sx <= pos.x && pos.x <= ex && sy <= pos.y && pos.y <= ey) {
+                maxCount = Math.max(maxCount, count + getMaxCount(sx, sy, pos.x - 1, pos.y - 1) + getMaxCount(pos.x + 1, sy, ex, pos.y - 1) + getMaxCount(sx, pos.y + 1, pos.x - 1, ey) + getMaxCount(pos.x + 1, pos.y + 1, ex, ey));
+            }
+        }
+        dp.put(key, maxCount);
+    }
+    return dp.get(key);
+}

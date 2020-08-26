@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N;
+    N = Integer.parseInt(sc.next());
+    String[] s = new String[N];
+    String[] ans = new String[N];
+    for (int i = 0; i < N; i++) {
+        ans[i] = "";
+    }
+    for (int i = 0; i < N; i++) {
+        s[i] = sc.next();
+    }
+    for (int i = 0; i < N; i++) {
+        for (int j = N - 1; j >= 0; j--) {
+            ans[i] += s[j].charAt(i);
+        }
+    }
+    for (int i = 0; i < N; i++) {
+        System.out.println(ans[i]);
+    }
+}

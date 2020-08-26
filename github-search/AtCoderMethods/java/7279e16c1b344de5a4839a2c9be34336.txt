@@ -1,0 +1,25 @@
+private void resizeAndAdd(long x) {
+    int nscale = scale << 1;
+    int nrscale = rscale << 1;
+    int nmask = nscale - 1;
+    boolean[] nallocated = new boolean[nscale];
+    long[] nkeys = new long[nscale];
+    for (int i = next(0); i < scale; i = next(i + 1)) {
+        long y = keys[i];
+        int pos = h(y) & nmask;
+        while (nallocated[pos]) pos = pos + 1 & nmask;
+        nkeys[pos] = y;
+        nallocated[pos] = true;
+    }
+    {
+        int pos = h(x) & nmask;
+        while (nallocated[pos]) pos = pos + 1 & nmask;
+        nkeys[pos] = x;
+        nallocated[pos] = true;
+    }
+    allocated = nallocated;
+    keys = nkeys;
+    scale = nscale;
+    rscale = nrscale;
+    mask = nmask;
+}

@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    int c = sc.nextInt();
+    int cnt = c;
+    int stock = 0;
+    int tmp;
+    while ((c + stock) >= a) {
+        tmp = (c + stock) / a * b;
+        stock = (c + stock) % a;
+        c = tmp;
+        cnt += c;
+    }
+    System.out.println(cnt);
+}

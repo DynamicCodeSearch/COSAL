@@ -1,0 +1,16 @@
+def solve(pairs, xys):
+    if len(xys) == 2:
+        return "YES"
+    if not is_valid(xys):
+        return "NO"    
+    idxs = [i for a, i in pairs]
+    stack = []
+    for idx in idxs:
+        if stack and stack[-1] == idx:
+            stack.pop()
+            continue
+        stack.append(idx)
+    if stack:
+        return "NO"
+    else:
+        return "YES"

@@ -1,0 +1,28 @@
+static double[] dijkstra(double[][][] g, int source) {
+    int n = g.length;
+    final double[] d = new double[n];
+    Arrays.fill(d, 1L << 60);
+    d[source] = 0;
+    TreeSet<Integer> pQ = new TreeSet<Integer>(new Comparator<Integer>() {
+
+        public int compare(Integer a, Integer b) {
+            if (d[a] != d[b])
+                return Double.compare(d[a], d[b]);
+            return a - b;
+        }
+    });
+    pQ.add(source);
+    while (!pQ.isEmpty()) {
+        int cur = pQ.pollFirst();
+        for (int i = 0; i < g[cur].length; i++) {
+            int next = (int) g[cur][i][0];
+            double dist = d[cur] + g[cur][i][1];
+            if (dist < d[next]) {
+                pQ.remove(next);
+                d[next] = dist;
+                pQ.add(next);
+            }
+        }
+    }
+    return d;
+}

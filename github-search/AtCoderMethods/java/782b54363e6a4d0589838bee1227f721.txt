@@ -1,0 +1,9 @@
+int get(int i) {
+    i += n - 1;
+    int ret = seg[i];
+    while (i != 0) {
+        i = (i - 1) / 2;
+        ret += seg[i];
+    }
+    return ret;
+}

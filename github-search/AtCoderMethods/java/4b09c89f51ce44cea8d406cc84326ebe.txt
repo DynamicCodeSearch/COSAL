@@ -1,0 +1,18 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    String[] firstLine = input.readLine().split(" ");
+    int N = Integer.parseInt(firstLine[0]);
+    int H = Integer.parseInt(firstLine[1]);
+    String[] secondLine = input.readLine().split(" ");
+    long A = Long.parseLong(secondLine[0]);
+    long B = Long.parseLong(secondLine[1]);
+    long C = Long.parseLong(secondLine[2]);
+    long D = Long.parseLong(secondLine[3]);
+    long E = Long.parseLong(secondLine[4]);
+    long expense = Long.MAX_VALUE;
+    for (int x = 0; x <= N; x++) {
+        long y = Math.max(0, y = ((N - x) * E - H - B * x + D + E) / (D + E));
+        expense = Math.min(x * A + y * C, expense);
+    }
+    System.out.println(expense);
+}

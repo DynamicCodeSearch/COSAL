@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    int[] sa = { -10, -5, -1, 1, 5, 10 };
+    queue.add(a);
+    map.put(a, 0);
+    while (true) {
+        if (map.containsKey(b)) {
+            break;
+        }
+        a = queue.poll();
+        for (int i = 0; i < sa.length; i++) {
+            if (map.containsKey(a + sa[i])) {
+            } else {
+                queue.add(a + sa[i]);
+                map.put(a + sa[i], map.get(a) + 1);
+            }
+        }
+    }
+    System.out.println(map.get(b));
+}

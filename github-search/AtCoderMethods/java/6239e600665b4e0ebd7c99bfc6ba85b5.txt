@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    String s = sc.next();
+    int[] t = new int[300];
+    for (char c : s.toCharArray()) {
+        t[c]++;
+    }
+    int count = 0;
+    for (int x : t) {
+        if (x % 2 == 1) {
+            count++;
+        }
+    }
+    if (count == 0) {
+        System.out.println(s.length());
+    } else {
+        System.out.println((s.length() - count) / count / 2 * 2 + 1);
+    }
+}

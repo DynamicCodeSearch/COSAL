@@ -1,0 +1,34 @@
+void solve() throws IOException {
+    int r = in.nextInt();
+    int c = in.nextInt();
+    int n = in.nextInt();
+    h = c;
+    w = r;
+    for (int i = 0; i < n; i++) {
+        int x1 = in.nextInt();
+        int y1 = in.nextInt();
+        int x2 = in.nextInt();
+        int y2 = in.nextInt();
+        if (!onEdge(x1, y1) || !onEdge(x2, y2))
+            continue;
+        int p1 = id(x1, y1);
+        int p2 = id(x2, y2);
+        list.add(new Pair(i, p1));
+        list.add(new Pair(i, p2));
+    }
+    Collections.sort(list);
+    int[] st = new int[list.size()];
+    int sp = 0;
+    for (Pair p : list) {
+        if (sp == 0 || st[sp - 1] != p.id) {
+            st[sp++] = p.id;
+        } else {
+            sp--;
+        }
+    }
+    if (sp == 0) {
+        System.out.println("YES");
+    } else {
+        System.out.println("NO");
+    }
+}

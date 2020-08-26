@@ -1,0 +1,20 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    N = sc.nextInt();
+    K = sc.nextInt();
+    a = new int[N + 1];
+    s = new long[N + 1];
+    for (int i = 1; i <= N; i++) {
+        a[i] = sc.nextInt();
+    }
+    s[0] = 0;
+    s[1] = a[1];
+    long ans = 0;
+    for (int i = 2; i <= N; i++) {
+        s[i] = s[i - 1] + a[i];
+    }
+    for (int i = 0; i <= N - K; i++) {
+        ans += s[i + K] - s[i];
+    }
+    System.out.println(ans);
+}

@@ -1,0 +1,21 @@
+public void solve(int testNumber, MyInput in, PrintWriter out) {
+    int n = in.nextInt();
+    g = new List[n];
+    for (int i = 0; i < n; i++) g[i] = new ArrayList<>();
+    for (int i = 0; i < n - 1; i++) {
+        int a = in.nextInt() - 1;
+        int b = in.nextInt() - 1;
+        int c = in.nextInt();
+        g[a].add(new Edge(b, c));
+        g[b].add(new Edge(a, c));
+    }
+    dist = new long[n];
+    int q = in.nextInt();
+    int K = in.nextInt() - 1;
+    dfs(K, -1, 0);
+    while (q-- > 0) {
+        int a = in.nextInt() - 1;
+        int b = in.nextInt() - 1;
+        out.println(dist[a] + dist[b]);
+    }
+}

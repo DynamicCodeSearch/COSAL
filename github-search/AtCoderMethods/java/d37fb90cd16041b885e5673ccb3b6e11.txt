@@ -1,0 +1,15 @@
+public static void main(String[] __) {
+    int n = s.nextInt(), W = s.nextInt();
+    HashMap<Integer, Integer> dp = new HashMap<>(65535);
+    dp.put(0, 0);
+    for (int i = 0; i < n; i++) {
+        HashMap<Integer, Integer> ndp = new HashMap<>(dp);
+        int w = s.nextInt(), v = s.nextInt();
+        for (Entry<Integer, Integer> e : dp.entrySet()) {
+            if (e.getKey() + w <= W)
+                ndp.merge(e.getKey() + w, e.getValue() + v, Math::max);
+        }
+        dp = ndp;
+    }
+    System.out.println(dp.values().parallelStream().max(Comparator.naturalOrder()).orElse(0));
+}

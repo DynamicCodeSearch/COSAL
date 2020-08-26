@@ -1,0 +1,25 @@
+public static int rmq(int[][] st, int[] a, int l, int r) {
+    if (l >= r)
+        return 0;
+    if (l + (1 << S) - 1 >>> S >= r >>> S) {
+        int ret = Integer.MAX_VALUE;
+        for (int i = l; i < r; i++) {
+            if (a[i] < ret)
+                ret = a[i];
+        }
+        return ret;
+    }
+    int t = 31 - Integer.numberOfLeadingZeros((r >>> S) - (l + (1 << S) - 1 >>> S));
+    int ret = Math.min(st[t][l + (1 << S) - 1 >>> S], st[t][(r >>> S) - (1 << t)]);
+    while (l << ~S != 0) {
+        if (a[l] < ret)
+            ret = a[l];
+        l++;
+    }
+    while (r << ~S != 0) {
+        r--;
+        if (a[r] < ret)
+            ret = a[r];
+    }
+    return ret;
+}

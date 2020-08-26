@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    Long[] A = new Long[N];
+    for (int i = 0; i < N; i++) {
+        A[i] = sc.nextLong();
+    }
+    Arrays.sort(A, Comparator.reverseOrder());
+    ArrayList<Long> sides = new ArrayList<>();
+    boolean flag = false;
+    long result = 0;
+    for (int i = 0; i < A.length - 1; i++) {
+        long bar1 = A[i];
+        long bar2 = A[i + 1];
+        if (bar1 == bar2 && !flag) {
+            sides.add(bar1);
+            flag = true;
+        } else {
+            flag = false;
+        }
+        if (sides.size() == 2) {
+            result = sides.get(0) * sides.get(1);
+            break;
+        }
+    }
+    System.out.println(result);
+}

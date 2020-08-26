@@ -1,0 +1,9 @@
+long POW(long a, long x) {
+    long res = 1;
+    for (; x > 0; x >>= 1) {
+        if (x % 2 == 1)
+            res = MULT(res, a);
+        a = MULT(a, a);
+    }
+    return res;
+}

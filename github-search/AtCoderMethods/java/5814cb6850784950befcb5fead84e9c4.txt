@@ -1,0 +1,21 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    int N = Integer.parseInt(input.readLine());
+    N = N % 30;
+    int[] cardSequence = makeSequence();
+    int i = 0;
+    while (i < N) {
+        int left = (i % 5) + 1 - 1;
+        int right = (i % 5) + 2 - 1;
+        int tmp = cardSequence[left];
+        cardSequence[left] = cardSequence[right];
+        cardSequence[right] = tmp;
+        i += 1;
+    }
+    StringBuilder builder = new StringBuilder();
+    int numOfCards = 6;
+    for (int j = 0; j < numOfCards; j++) {
+        builder.append(cardSequence[j]);
+    }
+    System.out.println(builder.toString());
+}

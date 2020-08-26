@@ -1,0 +1,12 @@
+void run() {
+    int[] cnt = new int[256];
+    char[] str = sc.next().toCharArray();
+    for (char c : str) {
+        ++cnt[(int) c];
+    }
+    boolean flag = true;
+    for (int i = 'a'; i <= 'z'; ++i) {
+        flag &= cnt[i] % 2 == 0;
+    }
+    System.out.println(flag ? "Yes" : "No");
+}

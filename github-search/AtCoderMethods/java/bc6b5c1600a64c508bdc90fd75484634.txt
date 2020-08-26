@@ -1,0 +1,14 @@
+void exec() {
+    dijkstra(normalAdj, normalMinTimes);
+    dijkstra(reverseAdj, reverseMinTimes);
+    long maxScore = 0;
+    for (int i = 0; i < N; i++) {
+        if (normalMinTimes[i] == INF || reverseMinTimes[i] == INF)
+            continue;
+        long time = T - normalMinTimes[i] - reverseMinTimes[i];
+        if (0 < time) {
+            maxScore = Math.max(maxScore, time * treasures[i]);
+        }
+    }
+    System.out.println(maxScore);
+}

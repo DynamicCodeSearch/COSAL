@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    String s = scanner.next();
+    int n = scanner.nextInt();
+    for (int i = 0; i < n; i++) {
+        int l = scanner.nextInt(), r = scanner.nextInt();
+        String s1 = s.substring(0, l - 1);
+        String dummy = s.substring(l - 1, r);
+        char[] c = dummy.toCharArray();
+        String s2 = "";
+        String s3 = s.substring(r, s.length());
+        for (int j = dummy.length() - 1; j >= 0; j--) {
+            s2 += c[j];
+        }
+        s = s1 + s2 + s3;
+    
+    }
+    System.out.println(s);
+}

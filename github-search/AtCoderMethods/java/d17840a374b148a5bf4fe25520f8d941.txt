@@ -1,0 +1,26 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    
+    String[] ss0 = br.readLine().trim().split(" ", 0);
+    long N = Long.parseLong(ss0[0]);
+    long M = Long.parseLong(ss0[1]);
+    if (N - M >= 2) {
+        System.out.println(0);
+        return;
+    }
+    if (M - N >= 2) {
+        System.out.println(0);
+        return;
+    }
+    dp("N=[" + N + "], M=[" + M + "]");
+    long mod = 1000000007;
+    long ans = 0;
+    
+    dp("mod=[" + mod + "], ans=[" + ans + "]");
+    ans = ((fact(M) % mod) * (fact(N) % mod)) % mod;
+    if (N == M) {
+        ans = (ans * 2) % mod;
+    }
+    System.out.println(ans);
+    return;
+}

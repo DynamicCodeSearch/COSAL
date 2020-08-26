@@ -1,0 +1,52 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int k = sc.nextInt();
+    int[] a = new int[n];
+    int[] b = new int[n];
+    a[0] = sc.nextInt();
+    b[0] = a[0];
+    for (int i = 1; i < n; i++) {
+        a[i] = sc.nextInt();
+        b[i] = b[i - 1] + a[i];
+    }
+    sc.close();
+    if (k == 0) {
+        System.out.println(0);
+        return;
+    }
+    if (b[n - 1] == k) {
+        System.out.println(1);
+        return;
+    }
+    int[][] dp = new int[n][n + 1];
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 2; j < n + 1; j++) {
+            dp[i][j] = Integer.MAX_VALUE / 2;
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        dp[i][0] = 0;
+    }
+    dp[0][1] = 1;
+    for (int i = 1; i < n; i++) {
+        for (int j = 1; j < i + 2; j++) {
+            int w = (int) Math.floor((((double) dp[i - 1][j - 1] / b[i - 1]) * a[i])) + 1;
+            if (w <= a[i]) {
+                dp[i][j] = Math.min(dp[i - 1][j], dp[i - 1][j - 1] + w);
+            } else {
+                dp[i][j] = dp[i - 1][j];
+            }
+            if (dp[i][j] > k)
+                dp[i][j] = Integer.MAX_VALUE / 2;
+        }
+    }
+    System.out.println();
+    for (int j = 0; j < n + 1; j++) {
+        if (dp[n - 1][j] == Integer.MAX_VALUE / 2) {
+            System.out.println(j - 1);
+            return;
+        }
+    }
+    System.out.println(n);
+}

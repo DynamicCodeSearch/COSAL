@@ -1,0 +1,26 @@
+private static void solve() {
+    int n = sc.nextInt();
+    int[] cnt = new int[100_000];
+    for (int i = 0; i < n; i++) {
+        int a = sc.nextInt() - 1;
+        cnt[a]++;
+    }
+    int ret = 0;
+    int ret2 = 0;
+    for (int i = 0; i < 100_000; i++) {
+        if (cnt[i] == 0) {
+            continue;
+        } else if (cnt[i] % 2 == 0) {
+            cnt[i] = 2;
+            ret2++;
+        } else {
+            cnt[i] = 1;
+            ret++;
+        }
+    }
+    if (ret2 % 2 == 0) {
+        pr.println(ret + ret2);
+    } else {
+        pr.println(ret + ret2 - 1);
+    }
+}

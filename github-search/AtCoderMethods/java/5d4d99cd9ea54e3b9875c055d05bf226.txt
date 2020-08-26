@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    try {
+        
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+        int n = Integer.parseInt(br.readLine());
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++) {
+            a[i] = Integer.parseInt(br.readLine());
+        }
+        Arrays.sort(a);
+        int high = a[n - 1];
+        for (int i = n - 2; i >= 0; i--) {
+            if (a[i] != high) {
+                System.out.println(a[i]);
+                break;
+            }
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

@@ -1,0 +1,37 @@
+
+public static void execute() {
+    int n = nextInt();
+    Map<Integer, Integer> axMap = new HashMap<>();
+    for (int i = 0; i < n; i++) {
+        int ax = nextInt();
+        if (axMap.containsKey(ax)) {
+            axMap.put(ax, axMap.get(ax) + 1);
+        } else {
+            axMap.put(ax, 1);
+        }
+    }
+    
+    Integer[] mapkey = axMap.keySet().toArray(new Integer[axMap.size()]);
+    Arrays.sort(mapkey, Comparator.reverseOrder());
+    int max = 0;
+    int second = 0;
+    for (Integer key : mapkey) {
+        Integer value = axMap.get(key);
+        if (value <= 1) {
+            continue;
+        }
+        if (key > max) {
+            max = key;
+            if (value >= 4) {
+                second = key;
+                break;
+            }
+        } else if (key > second) {
+            second = key;
+        }
+        if (max > 0 && second > 0) {
+            break;
+        }
+    }
+    out((long) max * second);
+}

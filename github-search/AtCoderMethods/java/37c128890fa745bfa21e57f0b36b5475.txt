@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    try {
+        
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+        String[] str = br.readLine().split(" ");
+        int n = Integer.parseInt(str[0]);
+        int k = Integer.parseInt(str[1]);
+        str = br.readLine().split(" ");
+        int[] lArr = new int[n];
+        for (int i = 0; i < str.length; i++) {
+            lArr[i] = Integer.parseInt(str[i]);
+        }
+        Arrays.sort(lArr);
+        int sum = 0;
+        for (int i = 0; i < n; i++) {
+            sum += lArr[n - 1 - i];
+            if (i == k - 1) {
+                break;
+            }
+        }
+        System.out.println(sum);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

@@ -1,0 +1,40 @@
+private static void solve() {
+    int n = sc.nextInt();
+    List<List<Edge>> edges = new ArrayList<>(n);
+    for (int i = 0; i < n; i++) {
+        edges.add(new ArrayList<>());
+    }
+    for (int i = 0; i < n - 1; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        int c = sc.nextInt();
+        edges.get(a).add(new Edge(a, b, c));
+        edges.get(b).add(new Edge(b, a, c));
+    }
+    int q = sc.nextInt();
+    int k = sc.nextInt() - 1;
+    int[] x = new int[q];
+    int[] y = new int[q];
+    for (int i = 0; i < q; i++) {
+        x[i] = sc.nextInt() - 1;
+        y[i] = sc.nextInt() - 1;
+    }
+    long[] d = new long[n];
+    boolean[] used = new boolean[n];
+    Deque<Integer> st = new ArrayDeque<>();
+    st.push(k);
+    while (!st.isEmpty()) {
+        int e = st.pop();
+        used[e] = true;
+        for (Edge next : edges.get(e)) {
+            if (used[next.v]) {
+                continue;
+            }
+            d[next.v] = d[e] + next.w;
+            st.push(next.v);
+        }
+    }
+    for (int i = 0; i < q; i++) {
+        pr.println(d[x[i]] + d[y[i]]);
+    }
+}

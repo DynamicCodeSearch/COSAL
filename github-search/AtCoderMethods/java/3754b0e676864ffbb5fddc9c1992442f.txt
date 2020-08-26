@@ -1,0 +1,18 @@
+public static void main(String[] args) throws IOException {
+    Scanner scan = new Scanner(System.in);
+    int n = scan.nextInt();
+    int x = scan.nextInt();
+    String x2 = Integer.toBinaryString(x);
+    while (x2.length() < n) {
+        x2 = "0" + x2;
+    }
+    int sum = 0;
+    int temp;
+    for (int i = 1; i <= n; i++) {
+        temp = scan.nextInt();
+        if (x2.charAt(n - i) == '1') {
+            sum += temp;
+        }
+    }
+    System.out.println(sum);
+}

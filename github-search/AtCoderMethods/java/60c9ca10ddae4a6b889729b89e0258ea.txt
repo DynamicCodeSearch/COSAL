@@ -1,0 +1,20 @@
+public static void main(String[] $) {
+    ArrayDeque<Integer> b = new ArrayDeque<>();
+    boolean reverse = false;
+    int n = getInt(), ar[] = INS(n).toArray();
+    for (int i : ar) {
+        if (reverse)
+            b.addLast(i);
+        else
+            b.addFirst(i);
+        reverse ^= true;
+    }
+    ;
+    StringJoiner sj = new StringJoiner(" ");
+    if (reverse) {
+        while (!b.isEmpty()) sj.add(String.valueOf(b.pollFirst()));
+    } else {
+        while (!b.isEmpty()) sj.add(String.valueOf(b.pollLast()));
+    }
+    System.out.println(sj);
+}

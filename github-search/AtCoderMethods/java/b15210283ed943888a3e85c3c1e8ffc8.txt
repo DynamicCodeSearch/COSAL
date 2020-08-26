@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String in = sc.nextLine();
+    String[] inArray = in.split(" ");
+    BigInteger a = new BigInteger(inArray[0]);
+    BigInteger b = new BigInteger(inArray[1]);
+    BigInteger c = new BigInteger(inArray[2]);
+    BigInteger taiseki = BigInteger.ZERO;
+    taiseki = a.multiply(b);
+    taiseki = taiseki.multiply(c);
+    BigInteger dv = new BigInteger("1000000000");
+    dv = dv.add(new BigInteger("7"));
+    BigInteger[] answer = taiseki.divideAndRemainder(dv);
+    System.out.println(answer[1].toString());
+    sc.close();
+}

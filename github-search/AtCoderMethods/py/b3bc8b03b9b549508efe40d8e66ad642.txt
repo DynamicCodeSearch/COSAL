@@ -1,0 +1,40 @@
+def main():
+    n = I()
+    e = collections.defaultdict(list)
+    for _ in range(n-1):
+        a,b,c = LI()
+        e[a].append((b,c))
+        e[b].append((a,c))
+
+
+    def search(s):
+        d = collections.defaultdict(lambda: inf)
+        d[s] = 0
+        q = []
+        heapq.heappush(q, (0, s))
+        v = collections.defaultdict(bool)
+        while len(q):
+            k, u = heapq.heappop(q)
+            if v[u]:
+                continue
+            v[u] = True
+
+            for uv, ud in e[u]:
+                if v[uv]:
+                    continue
+                vd = k + ud
+                if d[uv] > vd:
+                    d[uv] = vd
+                    heapq.heappush(q, (vd, uv))
+
+        return d
+
+    q,k = LI()
+
+    d = search(k)
+    r = []
+    for _ in range(q):
+        x,y = LI()
+        r.append(d[x]+d[y])
+
+    return '\n'.join(map(str,r))

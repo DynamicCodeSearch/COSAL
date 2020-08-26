@@ -1,0 +1,31 @@
+public static boolean matchList(List<String> LA, List<String> LB, int indexA) {
+    boolean trig = false;
+    int indexB = 0;
+    int length = 0;
+    int length1 = 0;
+    for (String A : LA) {
+        A = A.substring(indexA);
+        String B = LB.get(indexB);
+        if ((length = recal(A, B, length, trig)) != -1) {
+            if (!trig) {
+                length1 = length;
+            }
+            trig = true;
+            indexB++;
+            if (length1 != length) {
+                trig = false;
+                indexB = 0;
+                length = 0;
+            }
+        } else {
+            trig = false;
+            indexB = 0;
+            indexA = 0;
+            length = 0;
+        }
+        if (trig && indexB == LB.get(0).length()) {
+            return true;
+        }
+    }
+    return false;
+}

@@ -1,0 +1,27 @@
+def solve(): 
+    N = int(input())
+    a = list(map(int, input().split(" ")))
+    cnt_odd = 0
+    cnt_2 = 0
+    cnt_4 = 0
+    flag_2 = False
+
+    for i in a:
+        if judge_type(i) == 1:
+            cnt_odd += 1
+        elif judge_type(i) == 2:
+            cnt_2 += 1
+            flag_2 = True
+        elif judge_type(i) == 4:
+            cnt_4 += 1
+
+    if flag_2:
+        if cnt_odd <= cnt_4:
+            print("Yes")
+        else:
+            print("No")
+    else:
+        if cnt_odd <= cnt_4 + 1:
+            print("Yes")
+        else:
+            print("No")

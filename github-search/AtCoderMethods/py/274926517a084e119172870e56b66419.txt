@@ -1,0 +1,10 @@
+def hml_less(n, a, b, nums, hml):
+    highest = []
+    for idx in range(a):
+        highest.append(nums[idx])
+    mean = sum(highest) / len(highest)
+    in_cnt = dict(collections.Counter(highest))
+    full_cnt = dict(collections.Counter(nums))
+    ways = num_combs(full_cnt[highest[-1]], in_cnt[highest[-1]])
+    print(mean)
+    print(ways)

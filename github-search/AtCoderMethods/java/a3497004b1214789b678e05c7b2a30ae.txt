@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    try {
+        
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+        
+        int n = Integer.parseInt(br.readLine());
+        String str = br.readLine();
+        int sum = 0;
+        for (int i = 0; i < n; i++) {
+            String tmp = str.substring(i, i + 1);
+            if ("A".equals(tmp)) {
+                sum = sum + 4;
+            } else if ("B".equals(tmp)) {
+                sum = sum + 3;
+            } else if ("C".equals(tmp)) {
+                sum = sum + 2;
+            } else if ("D".equals(tmp)) {
+                sum = sum + 1;
+            }
+        }
+        double ave = (double) sum / (double) n;
+        System.out.println(ave);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

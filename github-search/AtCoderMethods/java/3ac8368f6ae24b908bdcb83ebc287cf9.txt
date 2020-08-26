@@ -1,0 +1,19 @@
+public void solve(int testNumber, FastReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int[] a = in.nextIntArray(n);
+    int[] ct = new int[100001];
+    for (int i = 0; i < n; ++i) {
+        ct[a[i]]++;
+    }
+    n = ct.length;
+    int max = 0;
+    for (int i = 0; i < n; ++i) {
+        int value = ct[i];
+        if (i - 1 >= 0)
+            value += ct[i - 1];
+        if (i + 1 < n)
+            value += ct[i + 1];
+        max = Math.max(max, value);
+    }
+    out.println(max);
+}

@@ -1,0 +1,63 @@
+Integer[] solver(int N, String S) {
+    int[] sa = suffixArray(S);
+    long[] mod = { 1000000009, 1000000007, 999999937 };
+    long[][] hash = new long[3][N];
+    long B = 29;
+    long[][] powB = new long[3][N + 1];
+    for (int i = 0; i < 3; i++) powB[i][0] = 1;
+    for (int i = N - 1; i >= 0; i--) {
+        for (int j = 0; j < 3; j++) {
+            hash[j][i] = ((i == N - 1 ? 0 : hash[j][i + 1] * B) + (S.charAt(i) - 'a')) % mod[j];
+        }
+    }
+    for (int i = 1; i <= N; i++) {
+        for (int j = 0; j < 3; j++) {
+            powB[j][i] = powB[j][i - 1] * B % mod[j];
+        }
+    }
+    Integer[] ord = new Integer[N];
+    for (int i = 0; i < N; i++) {
+        ord[i] = i;
+    }
+    Arrays.sort(ord, new Comparator<Integer>() {
+
+        @Override
+        public int compare(Integer o1, Integer o2) {
+            if (o1.equals(o2))
+                return 0;
+            
+            int same = 0;
+            int unsame = Math.min(N - o1, N - o2) + 1;
+            while (unsame - same > 1) {
+                int mid = (same + unsame) / 2;
+                boolean flag = true;
+                for (int i = 0; i < 3; i++) {
+                    if (!((hash[i][o1] - (mid == N - o1 ? 0 : hash[i][o1 + mid]) * powB[i][mid] % mod[i] + mod[i]) % mod[i] == (hash[i][o2] - (mid == N - o2 ? 0 : hash[i][o2 + mid]) * powB[i][mid] % mod[i] + mod[i]) % mod[i])) {
+                        flag = false;
+                        break;
+                    }
+                }
+                if (flag) {
+                    same = mid;
+                } else {
+                    unsame = mid;
+                }
+            }
+            if (o1 + same == N) {
+                if (same >= N - o2 - same) {
+                    return Integer.compare(sa[o1], sa[o2 + same]);
+                } else {
+                    return compare(o1, o2 + same);
+                }
+            } else if (o2 + same == N) {
+                if (same >= N - o1 - same) {
+                    return Integer.compare(sa[o1 + same], sa[o2]);
+                } else {
+                    return compare(o1 + same, o2);
+                }
+            } else
+                return Integer.compare(S.charAt(o1 + same) - 'a', S.charAt(o2 + same) - 'a');
+        }
+    });
+    return ord;
+}

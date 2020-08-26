@@ -1,0 +1,20 @@
+public static void main(String[] args) throws IOException {
+    Scanner scan = new Scanner(System.in);
+    int x = Integer.parseInt(scan.nextLine());
+    int sum = 0;
+    int time;
+    ArrayList<Integer> jump = new ArrayList<Integer>();
+    if (x > 0) {
+        for (time = 1; sum < x; time++) {
+            sum += time;
+            jump.add(time);
+        }
+    } else {
+        for (time = 1; sum > x; time++) {
+            sum -= time;
+            jump.add(time);
+        }
+    }
+    time--;
+    System.out.println(time);
+}

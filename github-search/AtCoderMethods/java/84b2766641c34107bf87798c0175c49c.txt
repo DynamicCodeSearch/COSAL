@@ -1,0 +1,35 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    dist = new long[n + 1];
+    seen = new boolean[n + 1];
+    for (int i = 0; i <= n; i++) {
+        tree.add(new ArrayList<>());
+    }
+    for (int i = 0; i < n - 1; i++) {
+        int a = in.nextInt();
+        int b = in.nextInt();
+        int c = in.nextInt();
+        tree.get(a).add(new Edge() {
+
+            {
+                to = b;
+                length = c;
+            }
+        });
+        tree.get(b).add(new Edge() {
+
+            {
+                to = a;
+                length = c;
+            }
+        });
+    }
+    int q = in.nextInt();
+    int k = in.nextInt();
+    dfs(k, 0);
+    for (int i = 0; i < q; i++) {
+        int x = in.nextInt();
+        int y = in.nextInt();
+        out.println(dist[x] + dist[y]);
+    }
+}

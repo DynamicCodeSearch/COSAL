@@ -1,0 +1,10 @@
+long GCD(long a, long b) {
+    if (b > a) {
+        long d = a;
+        a = b;
+        b = d;
+    }
+    if (b == 0)
+        return a;
+    return GCD(b, a % b);
+}

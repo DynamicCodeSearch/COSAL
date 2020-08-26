@@ -1,0 +1,20 @@
+int[] stronglyConnectedComponents(ArrayList<Integer>[] g, boolean[] NG) {
+    int n = g.length;
+    dfsnum = new int[n];
+    low = new int[n];
+    used = new boolean[n];
+    ret = new int[n];
+    S.clear();
+    T.clear();
+    N = 0;
+    NOW = 0;
+    Arrays.fill(ret, -1);
+    for (int i = 0; i < n; i++) {
+        if (NG[i] || used[i])
+            continue;
+        if (dfsnum[i] == 0) {
+            dfs(g, i, NG);
+        }
+    }
+    return ret;
+}

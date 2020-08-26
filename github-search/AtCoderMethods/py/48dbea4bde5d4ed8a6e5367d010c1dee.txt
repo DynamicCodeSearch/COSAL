@@ -1,0 +1,15 @@
+def main():
+    R,C,D = LI()
+    a = [LI() for _ in range(R)]
+    r = 0
+    for i in range(R):
+        for j in range(C):
+            ij = i+j
+            if ij > D:
+                break
+            if (ij + D) % 2 != 0:
+                continue
+            if r < a[i][j]:
+                r = a[i][j]
+
+    return r

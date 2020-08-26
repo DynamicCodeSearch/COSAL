@@ -1,0 +1,15 @@
+def solve():
+    INF = R*C+1
+    mem = [[INF for j in range(C)] for i in range(R)]
+    mem[sy][sx] = 0
+    q = deque()
+    q.append((sy,sx))
+    while len(q):
+        y,x = q.popleft()
+        for y2,x2 in [(y,x-1),(y-1,x),(y,x+1),(y+1,x)]:
+            if src[y2][x2] == '#' or mem[y2][x2] < INF: continue
+            mem[y2][x2] = mem[y][x] + 1
+            if y2 == gy and x2 == gx:
+                return mem[y2][x2]
+                break
+            q.append((y2,x2))

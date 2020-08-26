@@ -1,0 +1,17 @@
+static void updateCell(Cell c, int y, int x) {
+    if (x < 0 || x >= W || y < 0 || y >= H)
+        return;
+    Cell target = f[y][x];
+    if (target.fix)
+        return;
+    int tmpB = target.black ? c.b + 1 : c.b;
+    int tmpW = target.black ? c.w : c.w + 1;
+    if (tmpB + tmpW > T)
+        return;
+    double tmpTime = tmpB == 0 ? T + H * W - tmpW : (double) (T - tmpW) / (double) tmpB;
+    if (target.maxBlackTime < tmpTime) {
+        target.b = tmpB;
+        target.w = tmpW;
+        target.maxBlackTime = tmpTime;
+    }
+}

@@ -1,0 +1,30 @@
+private static void solve() {
+    long xs = sc.nextInt();
+    long ys = sc.nextInt();
+    long xe = sc.nextInt();
+    long ye = sc.nextInt();
+    int n = sc.nextInt();
+    long[] x = new long[n];
+    long[] y = new long[n];
+    long[] r = new long[n];
+    for (int i = 0; i < n; i++) {
+        x[i] = sc.nextInt();
+        y[i] = sc.nextInt();
+        r[i] = sc.nextInt();
+    }
+    Dijkstra di = new Dijkstra(n + 2);
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {
+            double d = Math.max(0, Math.sqrt((x[i] - x[j]) * (x[i] - x[j]) + (y[i] - y[j]) * (y[i] - y[j])) - r[i] - r[j]);
+            di.addEdge(i, j, d);
+            di.addEdge(j, i, d);
+        }
+        double ds = Math.max(0, Math.sqrt((x[i] - xs) * (x[i] - xs) + (y[i] - ys) * (y[i] - ys)) - r[i]);
+        double de = Math.max(0, Math.sqrt((x[i] - xe) * (x[i] - xe) + (y[i] - ye) * (y[i] - ye)) - r[i]);
+        di.addEdge(n, i, ds);
+        di.addEdge(i, n + 1, de);
+    }
+    double ret = di.getShortestPath(n, n + 1);
+    double dse = Math.sqrt((xe - xs) * (xe - xs) + (ye - ys) * (ye - ys));
+    pr.printf("%.10f\n", Math.min(ret, dse));
+}

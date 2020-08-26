@@ -1,0 +1,46 @@
+void solve(int testNumber, InputReader in, PrintWriter out) {
+    n = in.nextInt();
+    a = new int[n];
+    b = new int[n];
+    for (int i = 0; i < n - 1; ++i) {
+        a[i] = in.nextInt();
+        b[i] = in.nextInt();
+    }
+    k = in.nextInt();
+    v = new int[k];
+    p = new int[k];
+    for (int i = 0; i < k; ++i) {
+        v[i] = in.nextInt();
+        p[i] = in.nextInt();
+    }
+    graph = (ArrayList<Integer>[]) new ArrayList[n + 1];
+    for (int i = 0; i <= n; ++i) graph[i] = new ArrayList<>();
+    for (int i = 0; i < n; ++i) {
+        graph[a[i]].add(b[i]);
+        graph[b[i]].add(a[i]);
+    }
+    assigned = new int[n + 1];
+    Arrays.fill(assigned, -1);
+    queue = new PriorityQueue<>();
+    for (int i = 0; i < k; ++i) {
+        assigned[v[i]] = p[i];
+        queue.add(new PairII(p[i], v[i]));
+    }
+    while (!queue.isEmpty()) {
+        PairII x = queue.poll();
+        int uu = x.b;
+        int uv = x.a;
+        for (int vv : graph[uu]) {
+            if (assigned[vv] != -1 && Math.abs(assigned[vv] - assigned[uu]) != 1) {
+                out.println("No");
+                return;
+            }
+            if (assigned[vv] == -1) {
+                assigned[vv] = assigned[uu] + 1;
+                queue.add(new PairII(assigned[vv], vv));
+            }
+        }
+    }
+    out.println("Yes");
+    for (int i = 1; i <= n; ++i) out.println(assigned[i]);
+}

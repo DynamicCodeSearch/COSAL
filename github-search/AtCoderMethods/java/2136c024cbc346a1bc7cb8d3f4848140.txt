@@ -1,0 +1,39 @@
+private static int[] make(int a, int b, char[] s) {
+    int n = s.length;
+    ;
+    int[] ret = new int[n];
+    ret[0] = a;
+    ret[1] = b;
+    for (int i = 2; i < n; i++) {
+        if (ret[i - 1] == 1) {
+            
+            ret[i] = s[i - 1] == 'o' ? ret[i - 2] : -ret[i - 2];
+        } else {
+            
+            ret[i] = s[i - 1] == 'o' ? -ret[i - 2] : ret[i - 2];
+        }
+    }
+    if (ret[n - 1] == 1) {
+        
+        if (s[n - 1] == 'o' && ret[n - 2] != ret[0] || s[n - 1] == 'x' && ret[n - 2] == ret[0]) {
+            return null;
+        }
+    } else {
+        
+        if (s[n - 1] == 'o' && ret[n - 2] == ret[0] || s[n - 1] == 'x' && ret[n - 2] != ret[0]) {
+            return null;
+        }
+    }
+    if (ret[0] == 1) {
+        
+        if (s[0] == 'o' && ret[n - 1] != ret[1] || s[0] == 'x' && ret[n - 1] == ret[1]) {
+            return null;
+        }
+    } else {
+        
+        if (s[0] == 'o' && ret[n - 1] == ret[1] || s[0] == 'x' && ret[n - 1] != ret[1]) {
+            return null;
+        }
+    }
+    return ret;
+}

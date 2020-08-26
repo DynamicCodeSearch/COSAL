@@ -1,0 +1,15 @@
+def dfs(N, Adj, v, p, f, g):
+    g[v] = 1
+    kuro = 1
+
+    for u in Adj[v]:
+        if u == p:
+            continue
+
+        fc, gc = dfs(N, Adj, u, v, f, g)
+        g[v] = (g[v] * fc) % mod
+        kuro = (kuro * gc) % mod
+
+    f[v] = (kuro + g[v]) % mod
+
+    return f[v], g[v]

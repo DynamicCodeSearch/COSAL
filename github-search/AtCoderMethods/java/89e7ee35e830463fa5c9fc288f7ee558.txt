@@ -1,0 +1,11 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    sieve();
+    cnt = new long[MAX];
+    for (int i = 2; i <= n; i++) f(i);
+    long ans = 1;
+    for (int i = 2; i <= n; i++) if (cnt[i] != 0)
+        ans = (ans * (cnt[i] + 1)) % MOD;
+    System.out.println(ans);
+}

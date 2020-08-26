@@ -1,0 +1,29 @@
+public static void solve(int water, int sugar) {
+    if (water + sugar > F || water > F || sugar > F * E / 100) {
+        return;
+    }
+    if (dp[water][sugar] == 1) {
+        return;
+    }
+    boolean isSugarDissolved = isSugarDissolved(water, sugar);
+    if (isSugarDissolved) {
+        double conc = calculateConcentration(water, sugar);
+        if (conc > concentration) {
+            concentration = conc;
+            answerW = water;
+            answerS = sugar;
+        }
+    }
+    dp[water][sugar] = 1;
+    
+    solve(water + 100 * A, sugar);
+    
+    solve(water + 100 * B, sugar);
+    
+    if (isSugarDissolved) {
+        
+        solve(water, sugar + C);
+        
+        solve(water, sugar + D);
+    }
+}

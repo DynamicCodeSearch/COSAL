@@ -1,0 +1,16 @@
+def main():
+    H, W, A, B = map(int, input().split())
+    MOD = 10 ** 9 + 7
+    c = Combination(mod=MOD)
+
+    ans = 0
+    for i in range(W - B):
+        h, w = H - A - 1, B + i
+        a = c.nCr(h + w, h) % MOD
+
+        h, w = A - 1, W - B - i - 1
+        b = c.nCr(h + w, h) % MOD
+
+        ans = (ans + a * b) % MOD
+
+    print(ans % MOD)

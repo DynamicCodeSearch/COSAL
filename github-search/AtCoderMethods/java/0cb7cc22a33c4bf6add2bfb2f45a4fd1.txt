@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] cnt = new int[26];
+    Arrays.fill(cnt, 100);
+    for (int i = 0; i < N; i++) {
+        int[] temp = new int[26];
+        char[] s = sc.next().toCharArray();
+        for (char c : s) {
+            temp[c - 'a']++;
+        }
+        for (int j = 0; j < 26; j++) cnt[j] = Math.min(cnt[j], temp[j]);
+    }
+    String ans = "";
+    for (int i = 0; i < 26; i++) for (int j = 0; j < cnt[i]; j++) ans += String.valueOf((char) ('a' + i));
+    System.out.println(ans);
+    sc.close();
+}

@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    dp = new long[1 << N];
+    Arrays.fill(dp, -1);
+    Graph g = new Graph(N);
+    for (int i = 0; i < M; i++) {
+        int x = sc.nextInt() - 1;
+        int y = sc.nextInt() - 1;
+        g.add(x, y);
+    }
+    long ret = dfs(N, 0, g);
+    System.out.println(ret);
+}

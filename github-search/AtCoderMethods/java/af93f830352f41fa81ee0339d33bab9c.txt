@@ -1,0 +1,26 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String str = br.readLine();
+    boolean flag = false;
+    int pos = -1;
+    for (int i = 1; i < str.length(); i++) {
+        if (str.charAt(i) == str.charAt(i - 1)) {
+            flag = true;
+            pos = i + 1;
+        }
+    }
+    if (flag) {
+        System.out.println((pos - 1) + " " + pos);
+        return;
+    }
+    for (int i = 2; i < str.length(); i++) {
+        if (str.charAt(i) == str.charAt(i - 1) || str.charAt(i - 1) == str.charAt(i - 2) || str.charAt(i - 2) == str.charAt(i)) {
+            flag = true;
+            pos = i + 1;
+        }
+    }
+    if (flag)
+        System.out.print((pos - 2) + " " + pos);
+    else
+        System.out.println("-1 -1");
+}

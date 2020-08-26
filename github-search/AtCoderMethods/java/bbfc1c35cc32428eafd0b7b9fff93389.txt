@@ -1,0 +1,28 @@
+ArrayList<Integer> divisors(int N) {
+    TreeMap<Integer, Integer> map = new TreeMap<>();
+    for (long i = 2; i * i <= N; i++) {
+        if (N % i != 0)
+            continue;
+        int count = 0;
+        while (N % i == 0) {
+            N /= i;
+            count++;
+        }
+        map.put((int) i, count);
+    }
+    if (N != 1)
+        map.put(N, 1);
+    int[] num = new int[map.size()];
+    int[] cnt = new int[map.size()];
+    int i = 0;
+    for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+        num[i] = entry.getKey();
+        cnt[i] = entry.getValue();
+        i++;
+    }
+    TreeSet<Integer> ret = new TreeSet<>();
+    dfs(1, 0, num, cnt, ret);
+    ArrayList<Integer> list = new ArrayList<>();
+    for (int r : ret) list.add(r);
+    return list;
+}

@@ -1,0 +1,10 @@
+def solve():
+    k = read_int()
+    n = 50
+    q, r = divmod(k, n)
+    a = [n - 1 + q] * n
+    for i in range(r):
+        a[i] += n - r + 1
+    for i in range(r, n):
+        a[i] += -r
+    return n, a

@@ -1,0 +1,15 @@
+static void Method(ArrayList<Integer> num, ArrayList<String> param) {
+    int big = 0;
+    int total = 0;
+    String name = "";
+    for (int i = 1; i < num.get(0) + 1; i++) {
+        total += num.get(i);
+        if (num.get(i) > big) {
+            big = num.get(i);
+            name = param.get(i - 1);
+        }
+    }
+    if (total / 2 >= big)
+        name = "atcoder";
+    System.out.println(name);
+}

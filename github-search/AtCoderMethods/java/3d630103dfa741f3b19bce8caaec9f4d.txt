@@ -1,0 +1,14 @@
+public static void core(final Scanner in) {
+    String[] ken = { "Do", "Re", "Mi", "Fa", "So", "La", "Si" };
+    String str = in.next();
+    int fa_wb = str.indexOf("WBWBWB");
+    int white = 0;
+    for (int i = 0; i < fa_wb; i++) {
+        if (str.charAt(i) == 'W') {
+            white++;
+        }
+    }
+    int on = 3 - white;
+    int p = (7 * 10 + on) % 7;
+    System.out.println(ken[p]);
+}

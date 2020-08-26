@@ -1,0 +1,12 @@
+def primefactor(n):
+    r = []
+    a, b = 0, 2
+    while b * b <= n:
+        if n % b == 0:
+            n //= b
+            r += [b]
+        else:
+            b += 1 + a
+            a = 1
+    if n > 1 : r += [n]
+    return r

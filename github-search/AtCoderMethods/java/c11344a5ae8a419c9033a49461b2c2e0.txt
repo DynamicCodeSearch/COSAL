@@ -1,0 +1,23 @@
+long[] rec(int x) {
+    if (used[x])
+        return dp[x];
+    used[x] = true;
+    HashSet<Integer> set = new HashSet<>();
+    for (int y : G.get(x)) {
+        if (!used[y])
+            set.add(y);
+    }
+    long tmp2 = 1;
+    for (int y : set) {
+        tmp2 = mltMod(tmp2, rec(y)[0]);
+    }
+    long tmp = 1;
+    for (int y : set) {
+        tmp = mltMod(tmp, rec(y)[1]);
+    }
+    tmp = addMod(tmp, tmp2);
+    long[] ans = new long[2];
+    dp[x][0] = ans[0] = tmp;
+    dp[x][1] = ans[1] = tmp2;
+    return ans;
+}

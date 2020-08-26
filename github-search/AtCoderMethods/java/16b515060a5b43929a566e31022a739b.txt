@@ -1,0 +1,21 @@
+long dp(int bit, int k) {
+    if (bit == 0) {
+        return dp[bit] = 1;
+    }
+    if (0 <= dp[bit]) {
+        return dp[bit];
+    }
+    long ret = 0;
+    L: for (int i = 0; i < n; i++) {
+        if ((bit & (1 << i)) == 0) {
+            continue L;
+        }
+        for (Integer nei : e[i]) {
+            if (0 < (bit & (1 << nei))) {
+                continue L;
+            }
+        }
+        ret += dp(bit ^ (1 << i), k + 1);
+    }
+    return dp[bit] = ret;
+}

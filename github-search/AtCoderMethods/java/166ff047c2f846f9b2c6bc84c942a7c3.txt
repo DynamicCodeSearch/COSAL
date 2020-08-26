@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    long[] a = new long[100000];
+    long[] memo = new long[100000];
+    long ans = 0;
+    int N = sc.nextInt();
+    int K = sc.nextInt();
+    for (int i = 0; i < N; i++) {
+        a[i] = sc.nextLong();
+    }
+    for (int i = 0; i < N - K + 1; i++) {
+        if (i == 0) {
+            for (int j = i; j < i + K; j++) {
+                memo[i] += a[j];
+            }
+        } else {
+            memo[i] = memo[i - 1] - a[i - 1] + a[i + K - 1];
+        }
+    }
+    for (int i = 0; i < N - K + 1; i++) {
+        ans += memo[i];
+    }
+    System.out.println(ans);
+}

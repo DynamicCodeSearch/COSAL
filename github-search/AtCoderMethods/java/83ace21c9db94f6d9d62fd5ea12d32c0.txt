@@ -1,0 +1,18 @@
+private void solve(Scanner sc) {
+    int n = sc.nextInt();
+    int max = -1;
+    int maxNum = -1;
+    for (int i = 1; i <= n; ++i) {
+        int ct = 0;
+        int j = i;
+        while (j % 2 == 0) {
+            ++ct;
+            j /= 2;
+        }
+        if (ct > max) {
+            max = ct;
+            maxNum = i;
+        }
+    }
+    _out.println(maxNum);
+}

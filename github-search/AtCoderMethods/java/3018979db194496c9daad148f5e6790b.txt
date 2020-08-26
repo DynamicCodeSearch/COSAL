@@ -1,0 +1,38 @@
+void solve() throws IOException {
+    h = in.nextInt();
+    w = in.nextInt();
+    int n = in.nextInt();
+    TreeSet<Long> lu = new TreeSet<>();
+    TreeSet<Long> p = new TreeSet<>();
+    for (int i = 0; i < n; i++) {
+        final long y = in.nextInt() - 1;
+        final long x = in.nextInt() - 1;
+        p.add(y << 32 | x);
+        for (long r = y - 2; r <= y; r++) {
+            for (long c = x - 2; c <= x; c++) {
+                if (out(r, c))
+                    continue;
+                lu.add(r << 32 | c);
+            }
+        }
+    }
+    final long mask = (1L << 32) - 1;
+    long[] ans = new long[10];
+    for (long pos : lu) {
+        final long y = pos >> 32;
+        final long x = pos & mask;
+        int cnt = 0;
+        for (long r = y; r <= y + 2; r++) {
+            for (long c = x; c <= x + 2; c++) {
+                if (p.contains(r << 32 | c))
+                    cnt++;
+            }
+        }
+        ans[cnt]++;
+    }
+    long all = (long) (h - 2) * (w - 2);
+    ans[0] += all - lu.size();
+    for (int i = 0; i < ans.length; i++) {
+        System.out.println(ans[i]);
+    }
+}

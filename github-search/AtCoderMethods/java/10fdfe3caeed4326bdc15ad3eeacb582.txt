@@ -1,0 +1,7 @@
+static void precompute() {
+    fact = new long[100001];
+    fact[0] = 1;
+    for (long i = 1; i <= 100000; i++) {
+        fact[(int) i] = (fact[(int) (i - 1)] * i) % mod;
+    }
+}

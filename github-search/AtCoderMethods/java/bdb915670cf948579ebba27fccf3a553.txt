@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    int m = in.nextInt();
+    boolean[][] e = new boolean[n + 1][n + 1];
+    for (int i = 0; i < m; i++) {
+        int a = in.nextInt();
+        int b = in.nextInt();
+        e[a][b] = true;
+        e[b][a] = true;
+    }
+    Deque<Integer> st = new ArrayDeque<Integer>();
+    st.push(1);
+    out.println(bt(e, st, 1, 0));
+    out.flush();
+}

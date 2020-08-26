@@ -1,0 +1,35 @@
+public static void main(String[] args) throws IOException {
+    FastScanner in = new FastScanner(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    int[] a = new int[n];
+    HashMap<Integer, Integer> c = new HashMap<>();
+    for (int i = 0; i < a.length; i++) {
+        a[i] = in.nextInt();
+        if (c.containsKey(a[i])) {
+            c.put(a[i], c.get(a[i]) + 1);
+        } else {
+            c.put(a[i], 1);
+        }
+    }
+    Arrays.sort(a);
+    TreeSet<Integer> r = new TreeSet<>();
+    int have = 0;
+    int i = a.length - 1;
+    for (i = a.length - 1; i >= 0; ) {
+        int numof = c.get(a[i]);
+        if (numof >= 4 && have == 0) {
+            System.out.println((long) a[i] * a[i]);
+            return;
+        } else if (numof >= 2) {
+            r.add(a[i]);
+            have += Math.min(numof, 2);
+        }
+        i -= numof;
+    
+    }
+    long res = 0;
+    if (r.size() >= 2)
+        res = (long) r.pollLast() * r.pollLast();
+    System.out.println(res);
+}

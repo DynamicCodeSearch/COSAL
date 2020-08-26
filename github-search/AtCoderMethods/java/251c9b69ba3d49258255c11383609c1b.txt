@@ -1,0 +1,12 @@
+private static boolean isValid(int[] value, List<Integer>[] graph, int[] p, List<Integer> cy) {
+    int chead = cy.get(0);
+    int head = chead;
+    while (true) {
+        head = p[head];
+        if (head == chead) {
+            break;
+        }
+        value[head] = take(value, graph, head);
+    }
+    return take(value, graph, chead) == value[chead];
+}

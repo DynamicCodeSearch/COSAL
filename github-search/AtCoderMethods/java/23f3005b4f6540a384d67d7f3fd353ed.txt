@@ -1,0 +1,38 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    prec(5000);
+    int n = in.nextInt();
+    int m = in.nextInt();
+    int k = in.nextInt();
+    int[][] graph = buildGraph(in, n, m);
+    SCC3 scc = new SCC3(graph);
+    scc.build();
+    long ans = 1;
+    for (List<int[]> edges : scc.edgeComponents) {
+        int cnt = edges.size();
+        if (cnt == 1) {
+            ans *= k;
+            ans %= MOD;
+        } else {
+            Set<Integer> vertice = new HashSet<>();
+            for (int[] e : edges) {
+                vertice.add(e[0]);
+                vertice.add(e[1]);
+            }
+            if (vertice.size() == cnt) {
+                long ptn = 0;
+                for (int l = 1; l <= cnt; l++) {
+                    ptn += pow(k, gcd(cnt, l));
+                }
+                ans *= ptn % MOD * inv(cnt) % MOD;
+                ans %= MOD;
+            } else {
+                ans *= comb(cnt + k - 1, k - 1);
+                ans %= MOD;
+            }
+        }
+    }
+    out.println(ans);
+    out.flush();
+}

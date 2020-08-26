@@ -1,0 +1,18 @@
+void main() {
+    HashMap<String, Integer> hash = new HashMap<String, Integer>();
+    hash.put("TAKAHASHIKUN", 0);
+    hash.put("Takahashikun", 0);
+    hash.put("takahashikun", 0);
+    for (String w : words) {
+        if (hash.containsKey(w)) {
+            hash.put(w, hash.get(w) + 1);
+        } else {
+            hash.put(w, 1);
+        }
+    }
+    int count = 0;
+    count += hash.get("TAKAHASHIKUN");
+    count += hash.get("Takahashikun");
+    count += hash.get("takahashikun");
+    System.out.println(count);
+}

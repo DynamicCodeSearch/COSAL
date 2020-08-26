@@ -1,0 +1,11 @@
+def range_sum(l, r):
+    if l <= 0 and r <= 0:
+        l *= -1
+        r *= -1
+        t = l
+        l = r
+        r = t
+    elif not (l >= 0 and r >= 0):
+        return range_sum(0, abs(l)) + range_sum(0, abs(r))
+
+    return (r*(r+1)//2) - (l*(l-1)//2)

@@ -1,0 +1,39 @@
+public static void main(String[] args) {
+    
+    Scanner scan = new Scanner(System.in);
+    int n = scan.nextInt();
+    int k = scan.nextInt();
+    long INF = 1000000007;
+    long ans = 1;
+    for (int i = k + 1; i < n + k; i++) {
+        ans *= i;
+        ans %= INF;
+    }
+    long[] div = new long[31];
+    div[0] = 1;
+    for (int i = 1; i < n; i++) {
+        div[0] *= i;
+        div[0] %= INF;
+    }
+    
+    int[] two = new int[31];
+    two[0] = 1;
+    for (int i = 1; i < 31; i++) {
+        two[i] = two[i - 1] * 2;
+        div[i] = div[i - 1] * div[i - 1];
+        div[i] %= INF;
+    }
+    
+    
+    long mom = 1;
+    for (int i = 0; i < 31; i++) {
+        
+        if ((two[i] & (INF - 2)) > 0) {
+            mom *= div[i];
+            mom %= INF;
+        }
+    }
+    ans *= mom;
+    ans %= INF;
+    System.out.println(ans);
+}

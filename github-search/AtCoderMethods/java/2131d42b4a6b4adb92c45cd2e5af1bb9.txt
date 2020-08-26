@@ -1,0 +1,25 @@
+static int toposort(List<Integer>[] graph, Set<Integer> ignore) {
+    int n = graph.length;
+    int[] in = new int[n];
+    for (int i = 0; i < n; i++) {
+        for (int t : graph[i]) {
+            in[t]++;
+        }
+    }
+    int[] res = new int[n];
+    int idx = 0;
+    for (int i = 0; i < n; i++) {
+        if (in[i] == 0) {
+            res[idx++] = i;
+        }
+    }
+    for (int i = 0; i < idx; i++) {
+        for (int t : graph[res[i]]) {
+            in[t]--;
+            if (in[t] == 0 && !ignore.contains(t)) {
+                res[idx++] = t;
+            }
+        }
+    }
+    return idx;
+}

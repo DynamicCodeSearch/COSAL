@@ -1,0 +1,35 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    n = sc.nextInt();
+    m = sc.nextInt();
+    a = new int[n];
+    b = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = sc.nextInt();
+        b[i] = sc.nextInt();
+    }
+    c = new int[m];
+    d = new int[m];
+    for (int i = 0; i < m; i++) {
+        c[i] = sc.nextInt();
+        d[i] = sc.nextInt();
+    }
+    int[] p = new int[n];
+    for (int i = 0; i < n; i++) {
+        int min = INF, minI = -1;
+        for (int j = 0; j < m; j++) {
+            int dist = Math.abs(a[i] - c[j]) + Math.abs(b[i] - d[j]);
+            if (dist < min) {
+                min = dist;
+                minI = j;
+            }
+        }
+        p[i] = minI;
+    }
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < n; i++) {
+        sb.append(p[i] + 1);
+        sb.append(System.lineSeparator());
+    }
+    System.out.print(sb);
+}

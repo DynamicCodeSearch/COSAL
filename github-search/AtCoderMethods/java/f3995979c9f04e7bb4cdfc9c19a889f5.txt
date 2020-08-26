@@ -1,0 +1,11 @@
+public final void answer() {
+    long ans = 0;
+    int l = 0;
+    for (int r = 1; r <= N; r++) {
+        if (a[r - 1] >= a[r]) {
+            ans += n[r - l];
+            l = r;
+        }
+    }
+    System.out.println(ans);
+}

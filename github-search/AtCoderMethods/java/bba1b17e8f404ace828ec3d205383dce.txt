@@ -1,0 +1,9 @@
+public static void main(String[] args) {
+    int n = in.nextInt();
+    int min = Integer.MAX_VALUE;
+    for (int i = 1; i <= Math.sqrt(n) + 1; i++) {
+        int size = Math.abs((n / i) - i) + n % i;
+        min = Math.min(min, size);
+    }
+    System.out.println(min);
+}

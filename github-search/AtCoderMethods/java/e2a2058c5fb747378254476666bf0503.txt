@@ -1,0 +1,15 @@
+void solve(BufferedReader br) throws Exception {
+    String line = br.readLine();
+    int n = Integer.parseInt(line);
+    line = br.readLine();
+    String[] flds = line.split(" ");
+    for (int i = 0; i < n; i++) {
+        int a = Integer.parseInt(flds[i]);
+        Person p = new Person(i + 1, a);
+        list.add(p);
+    }
+    Collections.sort(list, new PersonComp());
+    for (Person p : list) {
+        pln(p.no);
+    }
+}

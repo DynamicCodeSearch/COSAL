@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int m = scanner.nextInt();
+    int n = scanner.nextInt();
+    int N = scanner.nextInt();
+    int usedPencil = N;
+    int result = usedPencil;
+    while (usedPencil >= m) {
+        int numRecycle = usedPencil / m;
+        usedPencil -= numRecycle * m;
+        usedPencil += numRecycle * n;
+        result += numRecycle * n;
+    }
+    System.out.println(result);
+}

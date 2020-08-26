@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    Scanner io = new Scanner(System.in);
+    N = io.nextInt();
+    A = io.nextLong();
+    B = io.nextLong();
+    h = new Long[N];
+    for (int i = 0; i < N; i++) {
+        h[i] = io.nextLong();
+    }
+    Arrays.sort(h, Collections.reverseOrder());
+    Long ansMin = h[0] / A + ((h[0] % A == 0) ? 0 : 1) - 1;
+    Long ansMax = h[0] / B + ((h[0] % B == 0) ? 0 : 1);
+    System.out.println(ans(ansMin, ansMax));
+}

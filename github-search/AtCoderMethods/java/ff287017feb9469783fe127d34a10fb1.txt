@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    PrintWriter pw = new PrintWriter(System.out);
+    int N = sc.nextInt();
+    int[] ra = new int[N];
+    int L = 0;
+    Arrays.fill(ra, -1);
+    for (int i = 0; i < N + 1; i++) {
+        int a = sc.nextInt() - 1;
+        if (ra[a] < 0)
+            ra[a] = i;
+        else
+            L = ra[a] + (N + 1 - i - 1);
+    }
+    Comb comb1 = new Comb(N + 1);
+    Comb comb2 = new Comb(L);
+    for (int i = 0; i < N + 1; i++) {
+        if (i == 0)
+            pw.println((comb1.get(i + 1) - comb2.get(i) + MOD) % MOD);
+        else
+            pw.println((comb1.getNext() - comb2.getNext() + MOD) % MOD);
+    }
+    sc.close();
+    pw.close();
+}

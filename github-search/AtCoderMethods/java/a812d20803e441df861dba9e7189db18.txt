@@ -1,0 +1,14 @@
+public void run() throws IOException {
+    long n = nl();
+    if (isPrime(n)) {
+        out.println(Long.toString(n).length());
+    } else {
+        long min = Long.toString(n).length();
+        for (long i = 2; i * i <= n; i++) {
+            if (n % i == 0) {
+                min = Math.min(min, Math.max(countDigits(n / i), countDigits(i)));
+            }
+        }
+        out.println(min);
+    }
+}

@@ -1,0 +1,21 @@
+void run() {
+    int[] cnt = new int[256];
+    for (char c : sc.next().toCharArray()) {
+        ++cnt[c];
+    }
+    int one = 0;
+    int guu = 0;
+    for (int i = 'a'; i <= 'z'; ++i) {
+        if (cnt[i] % 2 == 1) {
+            ++one;
+            --cnt[i];
+        }
+        guu += cnt[i];
+    }
+    if (one == 0) {
+        System.out.println(guu);
+    } else {
+        int want = (guu / one) / 2;
+        System.out.println(1 + want * 2);
+    }
+}

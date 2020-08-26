@@ -1,0 +1,39 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    PrintWriter out = new PrintWriter(System.out);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    Edge[] edge = new Edge[M];
+    for (int i = 0; i < M; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        int y = sc.nextInt();
+        edge[i] = new Edge(a, b, y);
+    }
+    int Q = sc.nextInt();
+    Query[] query = new Query[Q];
+    for (int i = 0; i < Q; i++) {
+        int v = sc.nextInt() - 1;
+        int w = sc.nextInt();
+        query[i] = new Query(v, w);
+    }
+    Arrays.sort(edge);
+    Arrays.sort(query);
+    UnionFind uf = new UnionFind(N);
+    int i = 0;
+    int j = 0;
+    int[] ans = new int[query.length];
+    while (i != Q) {
+        if (j == edge.length || (i < query.length && edge[j].year <= query[i].w)) {
+            ans[query[i].id] = uf.size(query[i].v);
+            i++;
+        } else {
+            uf.unionSet(edge[j].v1, edge[j].v2);
+            j++;
+        }
+    }
+    for (int ix = 0; ix < Q; ix++) {
+        out.println(ans[ix]);
+    }
+    out.flush();
+}

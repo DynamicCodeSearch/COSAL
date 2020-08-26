@@ -1,0 +1,31 @@
+void run() {
+    int n = sc.nextInt();
+    char[] c = sc.next().toCharArray();
+    String[] f = { "SS", "SW", "WS", "WW" };
+    StringBuilder s = new StringBuilder();
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < n; j++) {
+            if (j == 0 || j == 1) {
+                s.append(f[i].charAt(j));
+            } else {
+                if (s.charAt(j - 1) == 'S') {
+                    if (c[j - 1] == 'o')
+                        s.append(s.charAt(j - 2));
+                    else
+                        s.append(s.charAt(j - 2) == 'S' ? 'W' : 'S');
+                } else {
+                    if (c[j - 1] == 'o')
+                        s.append(s.charAt(j - 2) == 'S' ? 'W' : 'S');
+                    else
+                        s.append(s.charAt(j - 2));
+                }
+            }
+        }
+        if (ok(n, c, s)) {
+            System.out.println(s);
+            return;
+        }
+        s.setLength(0);
+    }
+    System.out.println(-1);
+}

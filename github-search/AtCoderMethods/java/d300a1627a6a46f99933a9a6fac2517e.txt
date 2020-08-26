@@ -1,0 +1,24 @@
+static int count(int[][] ad, boolean[] jun, int root) {
+    jun[root] = true;
+    int[] child = ad[root];
+    int ko = 0;
+    for (int ch : child) {
+        if (jun[ch])
+            continue;
+        ko += count(ad, jun, ch);
+    }
+    if (ko == 0) {
+        boolean f = true;
+        for (int i = 1; i < jun.length; i++) {
+            if (!jun[i])
+                f = false;
+        }
+        jun[root] = false;
+        if (f)
+            return 1;
+        else
+            return 0;
+    }
+    jun[root] = false;
+    return ko;
+}

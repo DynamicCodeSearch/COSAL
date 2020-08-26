@@ -1,0 +1,20 @@
+private static void solve() {
+    int n = sc.nextInt(), m = sc.nextInt();
+    boolean[] fBoat = new boolean[n + 1];
+    boolean[] sBoat = new boolean[n + 1];
+    for (int i = 0; i < m; i++) {
+        int x = sc.nextInt();
+        int y = sc.nextInt();
+        if (x == 1)
+            fBoat[y] = true;
+        if (y == n)
+            sBoat[x] = true;
+    }
+    for (int i = 2; i < n; i++) {
+        if (fBoat[i] && sBoat[i]) {
+            pw.print("POSSIBLE");
+            return;
+        }
+    }
+    pw.print("IMPOSSIBLE");
+}

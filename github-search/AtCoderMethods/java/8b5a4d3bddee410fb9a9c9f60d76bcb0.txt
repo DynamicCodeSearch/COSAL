@@ -1,0 +1,12 @@
+static long powmod(long n, long r, int m) {
+    long res = 1;
+    for (; r != 0; r >>>= 1, n = n * n % m) {
+        if ((r & 1) == 1) {
+            res = res * n;
+            if (res >= m) {
+                res %= m;
+            }
+        }
+    }
+    return res;
+}

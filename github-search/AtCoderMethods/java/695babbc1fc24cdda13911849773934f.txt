@@ -1,0 +1,36 @@
+public static void main(String[] args) {
+    sc = new InputReader(System.in);
+    out = new PrintWriter(System.out);
+    int n = sc.nextInt();
+    ArrayList<Pair> l = new ArrayList<Pair>();
+    for (int i = 0; i < n; i++) {
+        int u = sc.nextInt();
+        int v = sc.nextInt();
+        l.add(new Pair(i, u, v));
+    }
+    Collections.sort(l, Pair.ValX);
+    PriorityQueue<Edge> q = new PriorityQueue<Edge>(new Comparator<Edge>() {
+
+        public int compare(Edge e1, Edge e2) {
+            return e1.dis - e2.dis;
+        }
+    });
+    for (int i = 0; i < l.size() - 1; i++) {
+        q.add(new Edge(l.get(i).index, l.get(i + 1).index, Math.min(Math.abs(l.get(i).x - l.get(i + 1).x), Math.abs(l.get(i).y - l.get(i + 1).y))));
+    }
+    Collections.sort(l, Pair.ValY);
+    for (int i = 0; i < l.size() - 1; i++) {
+        q.add(new Edge(l.get(i).index, l.get(i + 1).index, Math.min(Math.abs(l.get(i).x - l.get(i + 1).x), Math.abs(l.get(i).y - l.get(i + 1).y))));
+    }
+    DisjointSet dis = new DisjointSet(n);
+    int ans = 0;
+    while (!q.isEmpty()) {
+        Edge e = q.poll();
+        if (dis.parent(e.u) != dis.parent(e.v)) {
+            dis.union(e.u, e.v);
+            ans += e.dis;
+        }
+    }
+    out.println(ans);
+    out.close();
+}

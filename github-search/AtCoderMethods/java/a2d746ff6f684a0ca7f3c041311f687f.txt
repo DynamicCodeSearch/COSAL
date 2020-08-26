@@ -1,0 +1,20 @@
+public void solve(FastScanner sc, PrintWriter out) throws IOException {
+    boolean result = true;
+    String input = "";
+    input = sc.nextLine();
+    for (int i = 0; i < input.length(); ++i) {
+        for (int j = 0; j < input.length(); ++j) {
+            if ((i != j) && (input.charAt(i) == input.charAt(j))) {
+                result = !result;
+                break;
+            }
+        }
+        if (!result)
+            break;
+    }
+    if (result) {
+        out.println("yes");
+    } else {
+        out.println("no");
+    }
+}

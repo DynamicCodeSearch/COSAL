@@ -1,0 +1,40 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int n = in.nextInt();
+    double sum = 0;
+    int diff = 0;
+    double[] el = new double[n];
+    for (int i = 0; i < el.length; i++) {
+        el[i] = in.nextInt();
+    }
+    Arrays.sort(el);
+    if (el.length % 2 == 0) {
+        for (int i = 0; i < el.length; i++) {
+            if (i % 2 == 0) {
+                sum -= Math.pow(el[i], 2) * Math.PI;
+            } else {
+                sum += Math.pow(el[i], 2) * Math.PI;
+            }
+        }
+    } else {
+        for (int i = 0; i < el.length; i++) {
+            if (i % 2 == 0) {
+                sum += Math.pow(el[i], 2) * Math.PI;
+            } else {
+                sum -= Math.pow(el[i], 2) * Math.PI;
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    System.out.println(sum);
+}

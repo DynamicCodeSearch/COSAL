@@ -1,0 +1,25 @@
+public void solve(ArrayList<String> inLines) {
+    String[] strArr = inLines.get(0).split(" ");
+    N = Integer.parseInt(strArr[0]);
+    M = Integer.parseInt(strArr[1]);
+    ArrayList<Path> pathList = new ArrayList<Path>();
+    for (int i = 0; i < M; i++) {
+        String[] strPath = inLines.get(i + 1).split(" ");
+        int a = Integer.parseInt(strPath[0]);
+        int b = Integer.parseInt(strPath[1]);
+        pathList.add(new Path(a, b));
+    }
+    
+    
+    
+    
+    VertexMap = new HashMap<Integer, Vertex>();
+    for (int i = 1; i <= N; i++) VertexMap.put(i, new Vertex(i));
+    for (Path p : pathList) {
+        VertexMap.get(p.a).addLink(p);
+        VertexMap.get(p.b).addLink(p);
+    }
+    CNT = 0;
+    VertexMap.get(1).cnt(1);
+    System.out.println(CNT);
+}

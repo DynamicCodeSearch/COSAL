@@ -1,0 +1,5 @@
+public void set(int id, int x) {
+    int i = id | size;
+    tree[i] = x;
+    for (i >>= 1; i > 0; i >>= 1) tree[i] = Math.max(tree[i << 1], tree[(i << 1) + 1]);
+}

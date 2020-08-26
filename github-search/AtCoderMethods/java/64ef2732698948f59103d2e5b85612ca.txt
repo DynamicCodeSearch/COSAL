@@ -1,0 +1,13 @@
+public boolean satisfy() {
+    scc.scc();
+    for (int i = 0; i < n; i++) {
+        
+        if (scc.cmp[i] == scc.cmp[i + n]) {
+            return false;
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        ans[i] = scc.cmp[i] > scc.cmp[i + n];
+    }
+    return true;
+}

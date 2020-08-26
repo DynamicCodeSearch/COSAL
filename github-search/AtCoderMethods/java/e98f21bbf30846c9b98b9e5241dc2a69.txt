@@ -1,0 +1,22 @@
+public void solve() {
+    N = nextInt();
+    S = next().toCharArray();
+    StringBuilder start = new StringBuilder();
+    StringBuilder end = new StringBuilder();
+    int count = 0;
+    for (int i = 0; i < N; i++) {
+        if (S[i] == '(') {
+            count++;
+        } else {
+            count--;
+            if (count < 0) {
+                start.append("(");
+                count++;
+            }
+        }
+    }
+    for (int i = 0; i < count; i++) {
+        end.append(")");
+    }
+    out.println(start.toString() + String.valueOf(S) + end.toString());
+}

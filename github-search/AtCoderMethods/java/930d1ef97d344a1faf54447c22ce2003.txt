@@ -1,0 +1,15 @@
+int[] dfs2(int v) {
+    if (val[v] != -INF)
+        range[v] = new int[] { val[v], val[v] };
+    else
+        range[v] = new int[] { -INF, INF };
+    for (int e = g.head[v]; e != -1; e = g.next[e]) {
+        int t = g.to[e];
+        if (t == prev[v])
+            continue;
+        int[] rr = dfs2(t);
+        range[v][0] = Math.max(range[v][0], rr[0] - 1);
+        range[v][1] = Math.min(range[v][1], rr[1] + 1);
+    }
+    return range[v];
+}

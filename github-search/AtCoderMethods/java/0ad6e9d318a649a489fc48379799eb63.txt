@@ -1,0 +1,25 @@
+public void calc() {
+    sb = new StringBuilder();
+    BufferedInputStream bs = new BufferedInputStream(System.in);
+    Scanner sc = new Scanner(bs);
+    int l = sc.nextInt();
+    int x = sc.nextInt();
+    int y = sc.nextInt();
+    int s = sc.nextInt();
+    int d = sc.nextInt();
+    double ans = 0;
+    int ll = d - s;
+    if (ll < 0) {
+        ll += l;
+    }
+    ans = (double) ll / (x + y);
+    int rl = (s - d);
+    if (rl < 0) {
+        rl += l;
+    }
+    ans = Math.min(ans, (double) rl / Math.max(y - x, 0));
+    if (Double.isNaN(ans)) {
+        ans = 0;
+    }
+    System.out.println(ans);
+}

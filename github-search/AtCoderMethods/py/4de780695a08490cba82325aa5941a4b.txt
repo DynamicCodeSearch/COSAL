@@ -1,0 +1,16 @@
+def main():
+    N = int(input())
+    s_list = [int(input()) for _ in range(N)]
+
+    dp = [False] * (100 * 100 + 1)
+    dp[0] = True
+    for s in s_list:
+        for i in range(len(dp) - 1, -1, -1):
+            if dp[i]:
+                dp[i + s] = True
+
+    for i in range(len(dp) - 1, -1, -1):
+        if dp[i] and i % 10 != 0:
+            print(i)
+            return
+    print(0)

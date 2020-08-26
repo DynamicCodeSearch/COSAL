@@ -1,0 +1,40 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    N = sc.nextInt();
+    M = sc.nextInt();
+    Road[] route = new Road[M];
+    y = new int[M];
+    a = new int[M];
+    b = new int[M];
+    for (int i = 0; i < M; i++) {
+        a[i] = sc.nextInt();
+        b[i] = sc.nextInt();
+        y[i] = sc.nextInt();
+        route[i] = new Road(a[i], b[i], y[i]);
+    }
+    Arrays.sort(route);
+    Q = sc.nextInt();
+    People[] p = new People[Q];
+    v = new int[Q + 1];
+    w = new int[Q + 1];
+    for (int i = 0; i < Q; i++) {
+        v[i] = sc.nextInt();
+        w[i] = sc.nextInt();
+        p[i] = new People(v[i], w[i], i);
+    }
+    Arrays.sort(p);
+    UnionFind unionfind = new UnionFind(N);
+    count = new int[Q];
+    int j = 0;
+    for (int i = 0; i < Q; i++) {
+        while (route[j].year > p[i].year) {
+            unionfind.unite(route[j].a, route[j].b);
+            if (j < M - 1)
+                j++;
+            if (j == M - 1)
+                break;
+        }
+        count[p[i].id] = unionfind.s[unionfind.root(p[i].town)];
+    }
+    for (int i = 0; i < Q; i++) System.out.println(count[i]);
+}

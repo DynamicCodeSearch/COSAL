@@ -1,0 +1,32 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int N = in.nextInt();
+    int M = in.nextInt();
+    int[] a = new int[M];
+    int[] b = new int[M];
+    int[] c = new int[2 * M];
+    int k = 0;
+    for (int i = 0; i < M; i++) {
+        a[i] = in.nextInt();
+        b[i] = in.nextInt();
+        if (a[i] == 1) {
+            c[k] = b[i];
+            k++;
+        }
+        if (b[i] == N) {
+            c[k] = a[i];
+            k++;
+        }
+    }
+    Arrays.sort(c);
+    for (int i = 1; i < 2 * M; i++) {
+        if (c[i] == 0) {
+            continue;
+        } else {
+            if (c[i] == c[i - 1]) {
+                out.println("POSSIBLE");
+                return;
+            }
+        }
+    }
+    out.println("IMPOSSIBLE");
+}

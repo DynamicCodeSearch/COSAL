@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    while (sc.hasNext()) {
+        String str = sc.next();
+        String res = "";
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == 'B') {
+                if (res.length() != 0)
+                    res = res.substring(0, res.length() - 1);
+            } else
+                res += Character.toString(str.charAt(i));
+        }
+        System.out.println(res);
+    }
+}

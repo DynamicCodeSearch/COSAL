@@ -1,0 +1,49 @@
+public static void main(String[] args) {
+    
+    
+    String n;
+    
+    final int k;
+    
+    final int[] d;
+    try (Scanner scan = new Scanner(System.in)) {
+        n = scan.next();
+        k = scan.nextInt();
+        d = new int[k];
+        for (int i = 0; i < k; i++) {
+            d[i] = scan.nextInt();
+        }
+    }
+    
+    final int[] like = IntStream.range(0, 10).filter(i -> !Arrays.stream(d).anyMatch(dd -> dd == i)).toArray();
+    
+    
+    final int[] value = new int[n.length()];
+    for (int i = 0; i < value.length; i++) {
+        value[i] = Integer.parseInt(n.substring(i, i + 1));
+    }
+    int[] result = new int[n.length() + 1];
+    
+    boolean big = false;
+    result[0] = 0;
+    for (int j = 0; j < n.length(); j++) {
+        final int i = j;
+        if (big) {
+            result[i + 1] = like[0];
+        } else {
+            OptionalInt temp = Arrays.stream(like).filter(likevalue -> likevalue >= value[i]).min();
+            if (temp.isPresent()) {
+                result[i + 1] = temp.getAsInt();
+                big = value[i] < result[i + 1];
+            } else {
+                
+                moveUp(result, like, i);
+                big = true;
+            }
+        }
+    }
+    
+    
+    out.println(Arrays.stream(result).reduce((start, element) -> start * 10 + element).getAsInt());
+    out.flush();
+}

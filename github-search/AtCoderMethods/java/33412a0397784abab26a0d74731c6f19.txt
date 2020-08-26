@@ -1,0 +1,31 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    try {
+        String inputL1 = br.readLine();
+        String[] inputNum = inputL1.split(" ");
+        int n = Integer.parseInt(inputNum[0]);
+        int m = Integer.parseInt(inputNum[1]);
+        String inputL2 = br.readLine();
+        String[] strArray = inputL2.split(" ", 0);
+        int[] num = new int[n];
+        for (int i = 0; i < n; i++) {
+            num[i] = Integer.parseInt(strArray[i]);
+        }
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n - (i + 1); j++) {
+                if (num[j] < num[j + 1]) {
+                    int tmp = num[j];
+                    num[j] = num[j + 1];
+                    num[j + 1] = tmp;
+                }
+            }
+        }
+        int ans = 0;
+        for (int i = 0; i < m; i++) {
+            ans += num[i];
+        }
+        System.out.println(ans);
+    } catch (Exception e) {
+        System.err.println("hoge");
+    }
+}

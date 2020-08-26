@@ -1,0 +1,40 @@
+public static void main(String[] args) {
+    BufferedReader io = new BufferedReader(new InputStreamReader(System.in));
+    try {
+        int N = Integer.parseInt(io.readLine());
+        PriorityQueue<Point> que = new PriorityQueue<>(10, new Comparator<Point>() {
+
+            public int compare(Point p1, Point p2) {
+                int com = Integer.compare(p2.x, p1.x);
+                return (com != 0) ? com : Integer.compare(p1.y, p2.y);
+            }
+        });
+        String[] wh = new String[2];
+        for (int i = 0; i < N; i++) {
+            wh = io.readLine().split("\\s");
+            que.add(new Point(Integer.parseInt(wh[0]), Integer.parseInt(wh[1])));
+        }
+        int[] box = new int[N + 1];
+        box[0] = Integer.MAX_VALUE;
+        int rank = Integer.MAX_VALUE;
+        int ans = 0;
+        for (int i = 0; i < N; i++) {
+            Point p = que.poll();
+            int l = 0;
+            int r = N;
+            while (r - l > 1) {
+                int c = (l + r) / 2;
+                if (p.y < box[c])
+                    l = c;
+                else
+                    r = c;
+            }
+            if (box[r] == 0)
+                ans++;
+            box[r] = p.y;
+        }
+        System.out.println(ans);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

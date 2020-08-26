@@ -1,0 +1,49 @@
+public static long solve(int[] nums, long sum, int index) {
+    if (index == nums.length) {
+        return 0;
+    }
+    if (sum < 0 && sum + nums[index] < 0) {
+        return 1 + Math.abs(sum + nums[index]) + solve(nums, 1, index + 1);
+    } else if (sum > 0 && sum + nums[index] > 0) {
+        return 1 + sum + nums[index] + solve(nums, -1, index + 1);
+    } else if (sum + nums[index] == 0) {
+        if (sum > 0) {
+            return 1 + solve(nums, -1, index + 1);
+        } else {
+            return 1 + solve(nums, 1, index + 1);
+        }
+    } else {
+        return solve(nums, sum + nums[index], index + 1);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

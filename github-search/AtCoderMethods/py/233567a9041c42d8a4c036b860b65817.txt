@@ -1,0 +1,13 @@
+def main():
+
+    pq = PriorityQueue()
+    N, L = map(int, sys.stdin.readline().split(' '))
+
+    for l in range(N):
+        pq.put(sys.stdin.readline()[:-1])
+
+    while True:
+        sys.stdout.write(pq.get())
+        if pq.empty():
+            break
+    sys.stdout.write('\n')

@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    String s = sc.next();
+    BigInteger x = new BigInteger(s);
+    BigInteger QQ = BigInteger.valueOf(99);
+    BigInteger OH = BigInteger.valueOf(100);
+    BigInteger left = x.multiply(x);
+    BigInteger right = x.add(ONE).multiply(x.add(ONE)).subtract(ONE);
+    while (left.add(QQ).divide(OH).compareTo(right.divide(OH)) <= 0) {
+        left = left.add(QQ).divide(OH);
+        right = right.divide(OH);
+    }
+    System.out.println(left);
+}

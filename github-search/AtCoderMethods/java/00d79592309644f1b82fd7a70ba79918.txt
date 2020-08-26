@@ -1,0 +1,15 @@
+boolean setUnion(int x, int y) {
+    x = root(x);
+    y = root(y);
+    if (x != y) {
+        if (x < y) {
+            int d = x;
+            x = y;
+            y = d;
+        }
+        
+        d[y] += d[x];
+        d[x] = y;
+    }
+    return x != y;
+}

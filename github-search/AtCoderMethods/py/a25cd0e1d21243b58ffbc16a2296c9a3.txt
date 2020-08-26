@@ -1,0 +1,14 @@
+def dfs(v, c, f):
+    if dp[v][c] != -1:
+        return dp[v][c]
+    res = 1
+    for t in g[v]:
+        if t == f:
+            continue
+        if c == 0:
+            res *= dfs(t, 0, v) + dfs(t, 1, v)
+        else:
+            res *= dfs(t, 0, v)
+        res %= MOD
+    dp[v][c] = res
+    return res

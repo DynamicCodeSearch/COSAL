@@ -1,0 +1,13 @@
+private static void solve() {
+    int n = ni();
+    int[] p = na(n - 1);
+    int[] x = na(n);
+    int[] par = new int[n];
+    par[0] = -1;
+    for (int i = 0; i < n - 1; i++) {
+        par[i + 1] = p[i] - 1;
+    }
+    int[][] g = parentToG(par);
+    int[] ret = dfs(0, -1, g, x);
+    System.out.println(ret[0] >= 0 ? "POSSIBLE" : "IMPOSSIBLE");
+}

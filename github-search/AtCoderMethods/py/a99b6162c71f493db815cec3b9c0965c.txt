@@ -1,0 +1,19 @@
+def main():
+
+    N, M = map(int, input().split())
+    edges = [set(map(int, input().split())) for i in range(M)]
+    print(edges, file=sys.stderr)
+
+
+    ps = permutations(range(2,N+1), N-1)
+
+    C = 0
+    for p in ps:
+        q = [1] + list(p)
+        xs = [set((q[i],q[i+1])) in edges for i in range(N-1)]
+        if all(xs):
+            print(q, file=sys.stderr)
+            C += 1
+
+
+    print(C)

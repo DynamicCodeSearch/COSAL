@@ -1,0 +1,23 @@
+private static long helper(int n, long[] a, boolean positive) {
+    long sum = 0L;
+    long ans = 0L;
+    for (int i = 0; i < n; ++i) {
+        if (positive) {
+            if (sum + a[i] <= 0) {
+                ans += (1L - sum - a[i]);
+                sum = 1L;
+            } else {
+                sum += a[i];
+            }
+        } else {
+            if (sum + a[i] >= 0) {
+                ans += (sum + a[i] + 1L);
+                sum = -1L;
+            } else {
+                sum += a[i];
+            }
+        }
+        positive = !positive;
+    }
+    return ans;
+}

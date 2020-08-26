@@ -1,0 +1,21 @@
+void solve() throws NumberFormatException, IOException {
+    ContestScanner in = new ContestScanner();
+    Writer out = new Writer();
+    int n = in.nextInt();
+    int q = in.nextInt();
+    int[] ot = new int[n + 1];
+    for (int i = 0; i < q; i++) {
+        int l = in.nextInt() - 1;
+        int r = in.nextInt() - 1;
+        ot[l]++;
+        ot[r + 1]--;
+    }
+    for (int i = 0; i < n; i++) {
+        ot[i + 1] += ot[i];
+    }
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < n; i++) {
+        sb.append(ot[i] % 2);
+    }
+    System.out.println(sb.toString());
+}

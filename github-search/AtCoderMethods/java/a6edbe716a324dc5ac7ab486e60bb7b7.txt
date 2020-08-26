@@ -1,0 +1,50 @@
+public static int[] decomposeToSCCNoRec(int[][] g, int[][] ig) {
+    int n = g.length;
+    boolean[] visited = new boolean[n];
+    int[] po = new int[n];
+    int pop = 0;
+    int[] stack = new int[n];
+    int[] sinds = new int[n];
+    int sp = 0;
+    for (int i = 0; i < n; i++) {
+        if (!visited[i]) {
+            sinds[sp] = 0;
+            stack[sp++] = i;
+            while (sp > 0) {
+                int cur = stack[sp - 1];
+                visited[cur] = true;
+                while (sinds[sp - 1] < g[cur].length && visited[g[cur][sinds[sp - 1]]]) sinds[sp - 1]++;
+                if (sinds[sp - 1] == g[cur].length) {
+                    po[pop++] = cur;
+                    sp--;
+                } else {
+                    stack[sp] = g[cur][sinds[sp - 1]];
+                    sinds[sp] = 0;
+                    sp++;
+                }
+            }
+        }
+    }
+    int[] ret = new int[n];
+    Arrays.fill(visited, false);
+    int clus = 0;
+    Queue<Integer> q = new ArrayDeque<Integer>();
+    for (int i = n - 1; i >= 0; i--) {
+        if (!visited[po[i]]) {
+            q.add(po[i]);
+            visited[po[i]] = true;
+            while (!q.isEmpty()) {
+                int cur = q.poll();
+                ret[cur] = clus;
+                for (int k : ig[cur]) {
+                    if (!visited[k]) {
+                        q.add(k);
+                        visited[k] = true;
+                    }
+                }
+            }
+            clus++;
+        }
+    }
+    return ret;
+}

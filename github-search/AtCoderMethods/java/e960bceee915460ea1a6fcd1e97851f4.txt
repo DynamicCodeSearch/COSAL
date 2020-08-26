@@ -1,0 +1,13 @@
+private static int getRoundEnd(int val) {
+    int result = 0;
+    if (val % 5 == 0) {
+        result = val;
+    } else {
+        result = val + (5 - (val % 5));
+        if (result % 100 == 60) {
+            result -= 60;
+            result += 100;
+        }
+    }
+    return result;
+}

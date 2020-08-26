@@ -1,0 +1,22 @@
+private void solveD() {
+    Scanner sc = new Scanner(System.in);
+    BigInteger MOD = BigInteger.valueOf(1000000007);
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    
+    BigInteger sum_x = BigInteger.ZERO;
+    
+    for (int i = 0; i < n; i++) {
+        sum_x = sum_x.add(BigInteger.valueOf(sc.nextInt()).multiply(BigInteger.valueOf(2 * i - n + 1)));
+    }
+    
+    BigInteger sum_y = BigInteger.ZERO;
+    
+    for (int i = 0; i < m; i++) {
+        sum_y = sum_y.add(BigInteger.valueOf(sc.nextInt()).multiply(BigInteger.valueOf(2 * i - m + 1)));
+    }
+    sum_x = sum_x.remainder(MOD);
+    sum_y = sum_y.remainder(MOD);
+    BigInteger ans = sum_x.multiply(sum_y).remainder(MOD);
+    System.out.println(ans);
+}

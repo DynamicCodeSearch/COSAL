@@ -1,0 +1,16 @@
+def main():
+    N = int(input())
+    c = Counter(list(map(int, input().split())))
+
+    if N % 2 == 0 and c[0] != 0:
+        print(0)
+        return
+    if N % 2 != 0 and c[0] != 1:
+        print(0)
+        return
+    for i in range(N - 1, 0, -2):
+        if c[i] != 2:
+            print(0)
+            return
+
+    print(pow(2, (N // 2), MOD))

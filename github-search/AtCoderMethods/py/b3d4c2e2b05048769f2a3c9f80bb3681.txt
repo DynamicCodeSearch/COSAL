@@ -1,0 +1,15 @@
+def solve():
+    N = int(stdin.readline())
+    Adj = [[] for i in range(N)]
+
+    for i in range(N - 1):
+        a, b = map(int, stdin.readline().split())
+        a, b = a - 1, b - 1
+        Adj[a].append(b)
+        Adj[b].append(a)
+
+    uni, siro = dfs(N, Adj, 0, 0)
+
+    ans = uni
+
+    print(ans)

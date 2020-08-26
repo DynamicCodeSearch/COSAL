@@ -1,0 +1,8 @@
+def canSellTakoyaki(t,n,a,m,b):
+    for tmp_b in b:
+        filtered_a = [tmp_a for tmp_a in a if tmp_a <= tmp_b and tmp_b <= tmp_a + t]
+        if len(filtered_a) > 0:
+            a.remove(filtered_a[0])
+        else:
+            return False
+    return True

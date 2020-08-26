@@ -1,0 +1,36 @@
+static List<Integer> genPerm2(int s, int e) {
+    int modS = s % 2, modE = e % 2;
+    int i1, i2;
+    if (modS == 0) {
+        i1 = 2 * rmq[0].minPos(s / 2, e / 2);
+        i2 = 2 * rmq[1].minPos(i1 / 2, e / 2) + 1;
+    } else {
+        i1 = 2 * rmq[1].minPos(s / 2, e / 2 - 1) + 1;
+        i2 = 2 * rmq[0].minPos(i1 / 2 + 1, e / 2);
+    }
+    List<Integer> list = new ArrayList<Integer>();
+    list.add(p[i1]);
+    list.add(p[i2]);
+    List<Integer>[] subLists = new List[3];
+    for (int i = 0; i < 3; ++i) subLists[i] = new ArrayList<Integer>();
+    if (i1 + 1 < i2)
+        subLists[0] = genPerm2(i1 + 1, i2 - 1);
+    if (i1 != s)
+        subLists[1] = genPerm2(s, i1 - 1);
+    if (i2 != e)
+        subLists[2] = genPerm2(i2 + 1, e);
+    int[] is = new int[3];
+    while (true) {
+        int minI = -1;
+        for (int i = 0; i < 3; ++i) {
+            if (is[i] < subLists[i].size() && (minI == -1 || subLists[minI].get(is[minI]) > subLists[i].get(is[i]))) {
+                minI = i;
+            }
+        }
+        if (minI == -1)
+            break;
+        list.add(subLists[minI].get(is[minI]++));
+        list.add(subLists[minI].get(is[minI]++));
+    }
+    return list;
+}

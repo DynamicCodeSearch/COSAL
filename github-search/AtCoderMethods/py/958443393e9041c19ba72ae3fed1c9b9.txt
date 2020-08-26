@@ -1,0 +1,22 @@
+def search(s):
+    d = collections.defaultdict(lambda: -inf)
+    d[s] = 0
+    q = []
+    heapq.heappush(q, (0, s, -1))
+    v = [{} for _ in range(n)]
+    while len(q):
+        k, u, mu = heapq.heappop(q)
+        if mu in v[u] and v[u][mu] >= -k:
+            continue
+        if mu in v[u]:
+            v[u][mu] = inf
+        else:
+            v[u][mu] = -k
+
+        for uv, ud in e[u]:
+            vd = -k + ud
+            if u in v[uv] and v[uv][u] >= vd:
+                continue
+            heapq.heappush(q, (-vd, uv, u))
+
+    return v

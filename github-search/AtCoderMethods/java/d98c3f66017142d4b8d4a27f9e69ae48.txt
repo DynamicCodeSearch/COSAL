@@ -1,0 +1,33 @@
+public static void main(String[] args) throws java.lang.Exception {
+    InputReader in = new InputReader(System.in);
+    PrintWriter w = new PrintWriter(System.out);
+    int n = in.nextInt(), m = in.nextInt();
+    int[] a = new int[m];
+    int[] b = new int[m];
+    int[] c = new int[m];
+    int[][] graph = new int[n][n];
+    for (int i = 0; i < n; i++) for (int j = 0; j < n; j++) {
+        if (i == j)
+            graph[i][j] = 0;
+        else
+            graph[i][j] = (int) 1e9;
+    }
+    for (int i = 0; i < m; i++) {
+        a[i] = in.nextInt() - 1;
+        b[i] = in.nextInt() - 1;
+        c[i] = in.nextInt();
+        graph[a[i]][b[i]] = graph[b[i]][a[i]] = c[i];
+    }
+    for (int k = 0; k < n; k++) for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            graph[i][j] = Math.min(graph[i][k] + graph[k][j], graph[i][j]);
+        }
+    }
+    int ans = 0;
+    for (int i = 0; i < m; i++) {
+        if (graph[a[i]][b[i]] < c[i])
+            ans++;
+    }
+    w.println(ans);
+    w.close();
+}

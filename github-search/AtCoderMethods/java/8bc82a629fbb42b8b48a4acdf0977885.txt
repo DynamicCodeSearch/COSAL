@@ -1,0 +1,36 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    long K = sc.nextLong();
+    if (K == 0) {
+        System.out.println(2);
+        System.out.println(0 + " " + 0);
+    } else if (K == 1) {
+        System.out.println(2);
+        System.out.println(0 + " " + 2);
+    } else if (K == 2) {
+        System.out.println(2);
+        System.out.println(2 + " " + 2);
+    } else {
+        long r = K % (long) 50;
+        long s = (K - r) / (long) 50;
+        System.out.println(50);
+        if (r == 0) {
+            for (int i = 0; i < 50; i++) {
+                System.out.print(s + i);
+                if (i < 49)
+                    System.out.print(" ");
+            }
+        } else {
+            for (int i = 0; i < 50; i++) {
+                if (i < 50 - r) {
+                    System.out.print(s + i);
+                } else {
+                    System.out.print(s + i + 1);
+                }
+                if (i < 49)
+                    System.out.print(" ");
+            }
+        }
+        System.out.println();
+    }
+}

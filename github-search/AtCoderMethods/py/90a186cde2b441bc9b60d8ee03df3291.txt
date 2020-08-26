@@ -1,0 +1,34 @@
+def main():
+    line = sys.stdin.readline()
+    lst = line.split()
+    a = int(lst[0])
+    b = int(lst[1])
+    c = int(lst[2])
+
+    if a == 1:
+        print("YES")
+        return 0
+
+    mod = a % b
+    sys.stderr.write(str(mod) + "\n")
+    mod_lst = [mod]
+    tmp_num = a + a
+
+    while True:
+        mod = tmp_num % b
+        if mod in mod_lst:
+
+
+
+            break
+        else:
+
+            mod_lst.append(mod)
+            tmp_num += a
+
+    if c in mod_lst:
+        print("YES")
+    else:
+        print("NO")
+
+    return 0

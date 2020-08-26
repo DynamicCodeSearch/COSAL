@@ -1,0 +1,22 @@
+def prohibited(x): 
+    if len(x) == 1:
+        xi = int(x)
+        if xi < 4:
+            return 0
+        elif xi < 9:
+            return 1
+        else:
+            return 2
+
+    dam = cheat[len(x)-1]
+    top = int(x[0])
+    ret = 0
+    if top <= 3:
+        ret += dam*top
+    elif top == 4:
+        return dam*4 + int(x[1:]) + 1
+    elif top <= 8:
+        ret += dam*(top-1) + 10**(len(x)-1)
+    else:
+        return dam*8 + 10**(len(x)-1) + int(x[1:]) + 1
+    return ret + prohibited(str(int(x[1:])))

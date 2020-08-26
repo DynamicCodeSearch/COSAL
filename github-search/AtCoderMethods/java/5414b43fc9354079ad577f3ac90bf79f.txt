@@ -1,0 +1,11 @@
+private int getMin(int start, int end) {
+    if (start >= end)
+        return -1;
+    Tuple ret;
+    if (start % 2 == 0) {
+        ret = evenTree.query(start, end);
+    } else {
+        ret = oddTree.query(start, end);
+    }
+    return ret.y;
+}

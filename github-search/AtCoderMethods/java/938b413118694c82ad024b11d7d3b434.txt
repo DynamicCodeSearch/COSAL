@@ -1,0 +1,13 @@
+public int lowerBound(int begin, int end, IntPredicate check) {
+    int l = begin - 1;
+    int r = end;
+    while (r - l > 1) {
+        int m = (r + l) / 2;
+        if (check.test(m)) {
+            r = m;
+        } else {
+            l = m;
+        }
+    }
+    return r;
+}

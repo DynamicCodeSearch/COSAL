@@ -1,0 +1,12 @@
+T getAt(final int i) {
+    if (i >= size) {
+        throw new IndexOutOfBoundsException();
+    }
+    if (i < left.size) {
+        return left.getAt(i);
+    } else if (i == left.size) {
+        return value;
+    } else {
+        return right.getAt(i - left.size - 1);
+    }
+}

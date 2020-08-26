@@ -1,0 +1,22 @@
+int bfs(List<Integer>[] graph, int s, int t) {
+    final int n = graph.length;
+    int[] qu = new int[n];
+    int[] dist = new int[n];
+    int l = 0, r = 0;
+    final int inf = Integer.MAX_VALUE / 2;
+    Arrays.fill(dist, inf);
+    qu[r++] = s;
+    dist[s] = 0;
+    out: while (r - l > 0) {
+        int p = qu[l++];
+        for (int v : graph[p]) {
+            if (dist[v] <= dist[p] + 1)
+                continue;
+            dist[v] = dist[p] + 1;
+            if (v == t)
+                break out;
+            qu[r++] = v;
+        }
+    }
+    return dist[t] == inf ? -1 : dist[t] / 2;
+}

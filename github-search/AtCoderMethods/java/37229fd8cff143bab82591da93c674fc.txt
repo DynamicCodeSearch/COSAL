@@ -1,0 +1,54 @@
+
+public void run() throws IOException {
+    
+    int TEST_CASE = 1;
+    while (TEST_CASE-- != 0) {
+        int h = io.nextInt();
+        int w = io.nextInt();
+        TreeSet<Long> set = new TreeSet<>();
+        int n = io.nextInt();
+        for (int i = 0; i < n; i++) {
+            long y = io.nextInt() - 1;
+            long x = io.nextInt() - 1;
+            set.add(y << 32 | x);
+        }
+        long[] cnts = new long[10];
+        TreeSet<Long> done = new TreeSet<>();
+        for (long p : set) {
+            long y = p >>> 32;
+            long x = p & 0xFFFFFFFFL;
+            
+            for (int y0 = -2; y0 <= 0; y0++) {
+                for (int x0 = -2; x0 <= 0; x0++) {
+                    long xx = x + x0;
+                    long yy = y + y0;
+                    if (xx < 0 || xx + 2 >= w)
+                        continue;
+                    if (yy < 0 || yy + 2 >= h)
+                        continue;
+                    if (done.contains(yy << 32 | xx))
+                        continue;
+                    int cnt = 0;
+                    for (int dy = 0; dy < 3; dy++) {
+                        for (int dx = 0; dx < 3; dx++) {
+                            if (set.contains((yy + dy) << 32 | (xx + dx))) {
+                                cnt++;
+                            }
+                        }
+                    }
+                    done.add(yy << 32 | xx);
+                    
+                    cnts[cnt]++;
+                }
+            }
+        }
+        long sum = 0;
+        for (int i = 1; i < cnts.length; i++) {
+            sum += cnts[i];
+        }
+        io.out.println((w - 2L) * (h - 2L) - sum);
+        for (int i = 1; i < cnts.length; i++) {
+            io.out.println(cnts[i]);
+        }
+    }
+}

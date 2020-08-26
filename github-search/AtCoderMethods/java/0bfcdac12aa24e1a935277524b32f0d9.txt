@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String S = sc.next();
+    int count = 1;
+    char ch2 = S.charAt(0);
+    for (int i = 1; i < S.length(); i++) {
+        char ch1 = S.charAt(i);
+        if (ch1 == ch2) {
+            count++;
+        } else {
+            System.out.print(ch2);
+            System.out.print(count);
+            ch2 = ch1;
+            count = 1;
+        }
+        if (i == S.length() - 1) {
+            System.out.print(ch2);
+            System.out.print(count);
+        }
+    }
+    System.out.println();
+}

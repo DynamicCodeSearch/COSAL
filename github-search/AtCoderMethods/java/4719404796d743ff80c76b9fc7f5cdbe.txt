@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    char[][] S = new char[3][];
+    S[0] = sc.next().toCharArray();
+    S[1] = sc.next().toCharArray();
+    S[2] = sc.next().toCharArray();
+    int[] id = { 0, 0, 0 };
+    int now = 0;
+    while (true) {
+        if (id[now] == S[now].length) {
+            System.out.println((char) ('A' + now));
+            return;
+        } else {
+            if (S[now][id[now]] == 'a') {
+                id[now]++;
+                now = 0;
+            } else if (S[now][id[now]] == 'b') {
+                id[now]++;
+                now = 1;
+            } else {
+                id[now]++;
+                now = 2;
+            }
+        }
+    }
+}

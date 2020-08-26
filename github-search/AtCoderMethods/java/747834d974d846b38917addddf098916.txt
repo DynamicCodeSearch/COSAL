@@ -1,0 +1,10 @@
+public static void main(String[] args) {
+    Scanner io = new Scanner(System.in);
+    int n = io.nextInt();
+    int ans = Integer.MAX_VALUE;
+    for (int i = 1; n >= i * i; i++) {
+        int m = n - i * i;
+        ans = Math.min(ans, (m / i) + (m % i));
+    }
+    System.out.println(ans);
+}

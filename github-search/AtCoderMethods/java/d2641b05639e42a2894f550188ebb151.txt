@@ -1,0 +1,9 @@
+static void solve() throws IOException {
+    int K = readInt();
+    long[] a = new long[41];
+    a[0] = a[1] = 1;
+    for (int i = 2; i <= 40; i++) {
+        a[i] = a[i - 1] + a[i - 2];
+    }
+    System.out.println(a[K - 1] + " " + a[K]);
+}

@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    double m = sc.nextDouble();
+    double km = m / 1000;
+    double vv = 0;
+    if (m < 100) {
+        vv = 0;
+    } else if (m >= 100 && m <= 5000) {
+        vv = km * 10;
+    } else if (m >= 6000 && m <= 30000) {
+        vv = km + 50;
+    } else if (m >= 35000 && m <= 70000) {
+        vv = ((km - 30) / 5) + 80;
+    } else if (m > 70000) {
+        vv = 89;
+    }
+    String strVV = String.format("%02d", (int) vv);
+    System.out.println(strVV);
+    sc.close();
+}

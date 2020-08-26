@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String str = sc.next();
+    int num = sc.nextInt();
+    int[][] operations = new int[num][2];
+    for (int i = 0; i < num; ++i) {
+        for (int k = 0; k < 2; ++k) {
+            
+            operations[i][k] = sc.nextInt() - 1;
+        }
+    }
+    String[] str_chars = str.split("");
+    String tmp;
+    for (int i = 0; i < num; ++i) {
+        int op_left = operations[i][0];
+        int op_right = operations[i][1];
+        while (op_left < op_right) {
+            tmp = str_chars[op_left];
+            str_chars[op_left] = str_chars[op_right];
+            str_chars[op_right] = tmp;
+            ++op_left;
+            --op_right;
+        }
+    }
+    for (int i = 0; i < str_chars.length; ++i) {
+        System.out.print(str_chars[i]);
+    }
+    System.out.println();
+}

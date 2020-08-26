@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    Scanner s = new Scanner(System.in);
+    String str = s.next();
+    char[] cha = new char[str.length()];
+    int count = 0;
+    loop: for (int i = str.length() - 1; i >= 0; i--) {
+        if (str.charAt(i) != 'B') {
+            cha[count] = str.charAt(i);
+            count++;
+        } else {
+            int bcount = 0;
+            while (str.charAt(i) == 'B') {
+                if (i > 0) {
+                    bcount++;
+                    i--;
+                } else {
+                    break loop;
+                }
+            }
+            i -= bcount - 1;
+        }
+    }
+    char[] cha2 = new char[count];
+    for (int i = 0; i < count; i++) {
+        cha2[i] = cha[count - i - 1];
+    }
+    System.out.println(String.valueOf(cha2));
+}

@@ -1,0 +1,11 @@
+public static long modpow(long a, long n, long mod) {
+    long ret = 1;
+    long mul = a;
+    for (; n > 0; n >>>= 1) {
+        if ((n & 1) == 1) {
+            ret = (ret * mul) % mod;
+        }
+        mul = (mul * mul) % mod;
+    }
+    return ret;
+}

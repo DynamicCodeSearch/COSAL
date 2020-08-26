@@ -1,0 +1,18 @@
+void run() {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    long[][] p = new long[N][2];
+    for (int i = 0; i < N; ++i) {
+        p[i][0] = sc.nextLong();
+        p[i][1] = sc.nextLong();
+        Arrays.sort(p[i]);
+    }
+    Arrays.sort(p, new Comparator<long[]>() {
+
+        @Override
+        public int compare(long[] o1, long[] o2) {
+            return Long.compare(o1[0], o2[0]);
+        }
+    });
+    solve(N, p);
+}

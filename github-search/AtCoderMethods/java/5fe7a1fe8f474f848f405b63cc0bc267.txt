@@ -1,0 +1,15 @@
+static long gcd(long a, long b) {
+    long tmp;
+    if (a < b) {
+        tmp = b;
+        b = a;
+        a = tmp;
+    }
+    tmp = a % b;
+    while (tmp != 0) {
+        a = b;
+        b = tmp;
+        tmp = a % b;
+    }
+    return b;
+}

@@ -1,0 +1,15 @@
+public void solve(int testNumber, FastReader fs, PrintWriter pw) {
+    n = fs.nextInt();
+    A = fs.nextLong();
+    B = fs.nextLong();
+    x = new long[n];
+    for (int i = 0; i < n; i++) x[i] = fs.nextLong();
+    long ans = 0;
+    for (int i = 1; i < n; i++) {
+        if ((x[i] - x[i - 1]) * A > B)
+            ans += B;
+        else
+            ans += (x[i] - x[i - 1]) * A;
+    }
+    pw.println(ans);
+}

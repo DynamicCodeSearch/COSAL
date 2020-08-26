@@ -1,0 +1,23 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    String str = input.readLine();
+    String[] split = str.split(" ");
+    int n = Integer.parseInt(split[0]);
+    int q = Integer.parseInt(split[1]);
+    String[][] list = new String[q][];
+    for (int i = 0; i < q; i++) {
+        str = input.readLine();
+        split = str.split(" ");
+        list[i] = split;
+    }
+    int[] answer = new int[n];
+    Arrays.fill(answer, 0);
+    for (int i = 0; i < q; i++) {
+        for (int j = Integer.parseInt(list[i][0]) - 1; j < Integer.parseInt(list[i][1]); j++) {
+            answer[j] = Integer.parseInt(list[i][2]);
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        System.out.println(answer[i]);
+    }
+}

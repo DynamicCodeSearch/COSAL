@@ -1,0 +1,49 @@
+int stronglyConnectedComponent(ArrayList<Integer>[] g, int[] col) {
+    int n = g.length;
+    int order = 0;
+    int cols = 0;
+    int[] ord = new int[n];
+    int[] low = new int[n];
+    Arrays.fill(col, -1);
+    Arrays.fill(ord, -1);
+    Arrays.fill(low, -1);
+    ArrayDeque<State> stk = new ArrayDeque<>();
+    ArrayDeque<Integer> pnd = new ArrayDeque<>();
+    for (int ii = 0; ii < n; ++ii) {
+        if (ord[ii] != -1) {
+            continue;
+        }
+        stk.add(new State(ii, 0, -1));
+        while (!stk.isEmpty()) {
+            State s = stk.pollFirst();
+            if (ord[s.i] == -1) {
+                low[s.i] = (ord[s.i] = order++);
+                pnd.addFirst(s.i);
+            }
+            if (s.j - 1 >= 0 && g[s.i].get(s.j - 1) != s.parent && col[g[s.i].get(s.j - 1)] == -1) {
+                low[s.i] = Math.min(low[s.i], low[g[s.i].get(s.j - 1)]);
+            }
+            if (s.j == g[s.i].size() && low[s.i] == ord[s.i]) {
+                while (true) {
+                    int v = pnd.pollFirst();
+                    col[v] = cols;
+                    if (v == s.i)
+                        break;
+                }
+                ++cols;
+                continue;
+            }
+            if (s.j == g[s.i].size()) {
+                continue;
+            }
+            stk.addFirst(new State(s.i, s.j + 1, s.parent));
+            int dst = g[s.i].get(s.j);
+            if (ord[dst] == -1) {
+                stk.addFirst(new State(dst, 0, s.i));
+            } else if (col[dst] == -1) {
+                low[s.i] = Math.min(low[s.i], low[dst]);
+            }
+        }
+    }
+    return cols;
+}

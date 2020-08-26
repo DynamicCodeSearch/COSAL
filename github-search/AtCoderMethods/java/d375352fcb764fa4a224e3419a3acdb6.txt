@@ -1,0 +1,17 @@
+private static void solve(Scanner in) {
+    int N = in.nextInt();
+    int[] T = new int[N];
+    int sum = 0;
+    for (int i = 0; i < N; i++) {
+        T[i] = in.nextInt();
+        sum += T[i];
+    }
+    int M = in.nextInt();
+    int[] P = new int[M];
+    int[] X = new int[M];
+    for (int i = 0; i < M; i++) {
+        P[i] = in.nextInt();
+        X[i] = in.nextInt();
+        System.out.println(sum - T[P[i] - 1] + X[i]);
+    }
+}

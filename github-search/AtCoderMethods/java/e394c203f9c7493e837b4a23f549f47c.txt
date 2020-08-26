@@ -1,0 +1,20 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    long[] a = new long[n];
+    long sum = 0;
+    for (int i = 0; i < n; i++) {
+        a[i] = sc.nextLong();
+        sum += a[i];
+    }
+    long snuke = 0;
+    long arai = sum;
+    long min = Integer.MAX_VALUE;
+    for (int i = 0; i < n - 1; i++) {
+        snuke += a[i];
+        arai -= a[i];
+        if (Math.abs(snuke - arai) < min)
+            min = Math.abs(snuke - arai);
+    }
+    System.out.println(min);
+}

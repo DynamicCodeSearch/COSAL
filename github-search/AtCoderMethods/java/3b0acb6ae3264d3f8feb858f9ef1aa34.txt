@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    n = sc.nextInt();
+    t = sc.nextInt();
+    a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = sc.nextInt();
+    }
+    int min = a[0], diff = 0;
+    for (int i = 1; i < n; i++) {
+        min = Math.min(min, a[i]);
+        diff = Math.max(diff, a[i] - min);
+    }
+    int count = 0;
+    min = a[0];
+    for (int i = 0; i < n; i++) {
+        min = Math.min(min, a[i]);
+        if (a[i] - min == diff) {
+            ++count;
+        }
+    }
+    System.out.println(count);
+}

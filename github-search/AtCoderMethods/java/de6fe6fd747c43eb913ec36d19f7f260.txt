@@ -1,0 +1,9 @@
+int lca(int a, int b) {
+    if (upper(a, b))
+        return a;
+    if (upper(b, a))
+        return b;
+    for (int i = l; i >= 0; --i) if (!upper(up[a][i], b))
+        a = up[a][i];
+    return up[a][0];
+}

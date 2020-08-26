@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    
+    input();
+    long ans = 0;
+    for (int i = 0; i < N; i++) {
+        
+        int[] dist = dijkstra(node, i);
+        for (int j = 1; j < N; j++) {
+            
+            final int d = (int) ((dist[j] * r + t) / t);
+            
+            final int idx = binarySearch(dist, d);
+            if (idx < 0)
+                break;
+            
+            ans += N - idx - (r < t ? 1 : 0);
+        }
+    }
+    System.out.println(ans);
+}

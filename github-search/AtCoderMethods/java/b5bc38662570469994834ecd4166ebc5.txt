@@ -1,0 +1,14 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] s = br.readLine().split(" ");
+    int l = Integer.parseInt(s[0]), h = Integer.parseInt(s[1]);
+    int n = Integer.parseInt(br.readLine());
+    for (int i = 0; i < n; i++) {
+        int a = Integer.parseInt(br.readLine());
+        if (a > h) {
+            System.out.println(-1);
+        } else {
+            System.out.println(Math.max(l - a, 0));
+        }
+    }
+}

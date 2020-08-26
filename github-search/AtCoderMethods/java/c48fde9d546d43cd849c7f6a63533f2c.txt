@@ -1,0 +1,15 @@
+public static void solver(int N, int K, long[] A) {
+    BigInteger ans = new BigInteger("0");
+    int width = 1;
+    for (int i = 0; i < N; i++) {
+        long add = A[i] * width;
+        BigInteger addInteger = new BigInteger("" + add);
+        ans = ans.add(addInteger);
+        if (i < N - K)
+            width += 1;
+        if (K - 1 <= i)
+            width -= 1;
+    }
+    System.out.println(ans);
+    return;
+}

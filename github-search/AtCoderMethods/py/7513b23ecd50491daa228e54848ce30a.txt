@@ -1,0 +1,17 @@
+def main():
+    S = list(str(input()))
+
+    total = 0
+    mask = 0
+    n = len(S)
+    while mask < (1<<(n-1)):
+        i = 0
+        s = S[:]
+        while i < n-1:
+            if mask & (1<<i):
+                s[i] = s[i] + '+'
+            i += 1
+        total += eval(''.join(s))
+        mask += 1
+
+    print(total)

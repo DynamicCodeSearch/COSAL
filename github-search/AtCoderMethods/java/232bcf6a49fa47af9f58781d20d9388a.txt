@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int txa = sc.nextInt();
+    int tya = sc.nextInt();
+    int txb = sc.nextInt();
+    int tyb = sc.nextInt();
+    int T = sc.nextInt();
+    int V = sc.nextInt();
+    int n = sc.nextInt();
+    double min = Integer.MAX_VALUE;
+    for (int i = 0; i < n; i++) {
+        int x = sc.nextInt();
+        int y = sc.nextInt();
+        double z = Math.sqrt((txa - x) * (txa - x) + (tya - y) * (tya - y)) + Math.sqrt((txb - x) * (txb - x) + (tyb - y) * (tyb - y));
+        min = Math.min(min, z);
+    }
+    String ans = "NO";
+    if (min <= T * V)
+        ans = "YES";
+    System.out.println(ans);
+}

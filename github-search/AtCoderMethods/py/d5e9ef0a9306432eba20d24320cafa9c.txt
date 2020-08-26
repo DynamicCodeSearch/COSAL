@@ -1,0 +1,19 @@
+def dijkstra(n, lp, start=0, lim=float('inf')):
+    p = defaultdict(list)
+    for e in lp:
+        p[e[0]].append(e[1])
+    d = [float('inf')] * n
+    d[start] = 0
+    hq = []
+    heappush(hq, (0, start))
+    while len(hq) > 0:
+        q = heappop(hq)
+        if d[q[1]] < q[0] or q[0] > lim:
+            continue
+        if not q[1] in p:
+            continue
+        for e in p[q[1]]:
+            if d[e[0]] > d[q[1]] + e[1]:
+                d[e[0]] = d[q[1]] + e[1]
+                heappush(hq, (d[e[0]], e[0]))
+    return d

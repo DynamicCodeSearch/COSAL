@@ -1,0 +1,25 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String line = br.readLine();
+    int n = Integer.parseInt(line);
+    int[] a = new int[n];
+    int k = 0;
+    int count = 1;
+    boolean fin = false;
+    for (int i = 0; i < n; i++) {
+        a[i] = Integer.parseInt(br.readLine());
+    }
+    for (int i = 0; i < n; i++) {
+        if (a[k] != 2 && !fin) {
+            count++;
+            k = a[k] - 1;
+        } else {
+            fin = true;
+        }
+    }
+    if (fin) {
+        System.out.println(count);
+    } else {
+        System.out.println("-1");
+    }
+}

@@ -1,0 +1,12 @@
+def solve():
+    for s in name:
+        if s not in kit: return -1
+    ret = 0
+    for i in range(26):
+        c = chr(i + ord('A'))
+        nc = name.count(c)
+        if nc == 0: continue
+        kc = kit.count(c)
+        n = (nc-1)//kc + 1
+        ret = max(ret, n)
+    return ret

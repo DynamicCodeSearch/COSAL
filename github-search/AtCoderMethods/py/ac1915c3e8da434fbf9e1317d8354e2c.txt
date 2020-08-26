@@ -1,0 +1,40 @@
+def judge(X):
+    for i in range(1, N - 1):
+        left = X[i - 1]
+
+        if X[i] == 0:
+            if s[i] == 'o':
+                right = left
+            else:
+                right = 1 - left
+        else:
+            if s[i] == 'o':
+                right = 1 - left
+            else:
+                right = left
+        X.append(right)
+
+
+    is_consistent = True
+    for i in range(N):
+        left = X[i-1]
+        if i+1 <= N-1:
+            right = X[i + 1]
+        else:
+            right = X[i + 1 - N]
+
+        if X[i] == 0:
+            if s[i] == 'o':
+                if left != right:
+                    is_consistent = False
+            else:
+                if left == right:
+                    is_consistent = False
+        else:
+            if s[i] == 'o':
+                if left == right:
+                    is_consistent = False
+            else:
+                if left != right:
+                    is_consistent = False
+    return is_consistent, X

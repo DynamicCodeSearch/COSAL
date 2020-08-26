@@ -1,0 +1,27 @@
+private static long min(int h, int w) {
+    long min = Long.MAX_VALUE;
+    long h1 = h / 3;
+    long h2 = (h - h1) / 2;
+    long h3 = h - h1 - h2;
+    long s1 = h1 * w;
+    long s2 = h2 * w;
+    long s3 = h3 * w;
+    min = Math.min(min, getS(s1, s2, s3));
+    h1 = h / 3;
+    h2 = h - h1;
+    long w1 = w / 2;
+    long w2 = w - w1;
+    s1 = h1 * w;
+    s2 = h2 * w1;
+    s3 = h2 * w2;
+    min = Math.min(min, getS(s1, s2, s3));
+    h1 = h / 3 + 1;
+    h2 = h - h1;
+    w1 = w / 2;
+    w2 = w - w1;
+    s1 = h1 * w;
+    s2 = h2 * w1;
+    s3 = h2 * w2;
+    min = Math.min(min, getS(s1, s2, s3));
+    return min;
+}

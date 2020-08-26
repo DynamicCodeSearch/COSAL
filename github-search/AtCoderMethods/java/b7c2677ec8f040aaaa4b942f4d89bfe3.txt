@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    int n = sc.nextInt();
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    long[] x = new long[n];
+    for (int i = 0; i < x.length; i++) {
+        x[i] = sc.nextLong();
+    }
+    long res = 0;
+    for (int i = 0; i < x.length - 1; i++) {
+        res += Math.min(a * (x[i + 1] - x[i]), b);
+    }
+    System.out.println(res);
+}

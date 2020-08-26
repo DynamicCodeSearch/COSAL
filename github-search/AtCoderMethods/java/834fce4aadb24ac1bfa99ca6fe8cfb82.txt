@@ -1,0 +1,10 @@
+static boolean ok(int[] a, long h, long A, long B) {
+    long numb = 0;
+    for (int v : a) {
+        long w = v - B * h;
+        if (w > 0) {
+            numb += (w + A - B - 1) / (A - B);
+        }
+    }
+    return numb <= h;
+}

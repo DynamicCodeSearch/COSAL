@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    int n = Fs.nextInt();
+    long t = Fs.nextLong();
+    long[] a = Fs.nextLongArray(n);
+    long min = Long.MAX_VALUE;
+    long sa = 0;
+    for (int i = 0; i < n; i++) {
+        long te = a[i] - min;
+        sa = sa > te ? sa : te;
+        min = min > a[i] ? a[i] : min;
+    }
+    
+    HashSet<Long> set = new HashSet<Long>();
+    int res = 0;
+    for (int i = n - 1; i >= 0; i--) {
+        
+        if (set.contains(a[i] + sa)) {
+            res++;
+            a[i] += 1;
+        }
+        set.add(a[i]);
+    }
+    Fs.pl(res);
+    Fs.flush();
+}

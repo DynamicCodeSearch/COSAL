@@ -1,0 +1,28 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[][] input = new String[4][4];
+    for (int i = 0; i < 4; i++) {
+        input[i] = br.readLine().split(" ");
+    }
+    String[][] input2 = new String[4][4];
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            input2[i][4 - j - 1] = input[i][j];
+        }
+    }
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            input[i][j] = input2[4 - i - 1][j];
+        }
+    }
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            System.out.print(input[i][j]);
+            if (j != 3) {
+                System.out.print(" ");
+            }
+        }
+        System.out.print("\n");
+    }
+
+}

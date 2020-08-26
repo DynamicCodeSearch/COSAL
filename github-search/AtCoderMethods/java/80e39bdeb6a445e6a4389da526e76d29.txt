@@ -1,0 +1,31 @@
+private static boolean canBuild(int range) {
+    sat.clear();
+    for (int i = 0; i < pair.length; i++) {
+        sat.xor(pair[i][0].id, pair[i][1].id);
+    }
+    for (int p = 1; p < 2 * M - 2; p++) {
+        sat.then(p, (p - 1) / 2);
+    }
+    int pn = pt.size();
+    int L = 0;
+    int R = 0;
+    for (int i = 0; i < pn; i++) {
+        Point c = pt.get(i);
+        int p = c.pos;
+        while (L < i && pt.get(L).pos + range <= p) {
+            L++;
+        }
+        while (R < pn && pt.get(R).pos < p + range) {
+            R++;
+        }
+        findSegments(L, i);
+        for (int j = 0; j < fn; j++) {
+            sat.or(sat.not(foundIds[j]), sat.not(c.id));
+        }
+        findSegments(i + 1, R);
+        for (int j = 0; j < fn; j++) {
+            sat.or(sat.not(foundIds[j]), sat.not(c.id));
+        }
+    }
+    return sat.hasValidAssign();
+}

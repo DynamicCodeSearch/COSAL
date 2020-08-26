@@ -1,0 +1,65 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    long x = 123456789;
+    long y = 362436069;
+    long z = 521288629;
+    long w = in.nextInt();
+    int n = 5000;
+    table = new long[n][200];
+    table2 = new double[n];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < 200; j++) {
+            long t = x ^ (x << 11) & ((1L << 32) - 1);
+            x = y;
+            y = z;
+            z = w;
+            w = (w ^ (w >>> 19)) ^ (t ^ (t >>> 8));
+            long v = w % 100000 - 50000;
+            if (v >= 0) {
+                v++;
+            }
+            table[i][j] = v;
+        }
+        long d2 = 0;
+        for (int j = 0; j < 200; j++) {
+            d2 += table[i][j] * table[i][j];
+        }
+        table2[i] = Math.sqrt(d2);
+    }
+    long[][] bs = new long[n][4];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < 200; j++) {
+            if (table[i][j] > 0) {
+                int bucket = j / 50;
+                int th = j % 50;
+                bs[i][bucket] |= 1L << th;
+            }
+        }
+    }
+    UnionFind uf = new UnionFind(n);
+    List<Edge> edges = new ArrayList<>();
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {
+            long diff = 0;
+            for (int k = 0; k < 4; k++) {
+                diff += Long.bitCount(bs[i][k] ^ bs[j][k]);
+            }
+            if (diff <= 85) {
+                edges.add(new Edge(i, j));
+            }
+        }
+    }
+    Collections.sort(edges);
+    
+    for (Edge e : edges) {
+        if (uf.issame(e.a, e.b)) {
+            continue;
+        }
+        uf.unite(e.a, e.b);
+        
+        out.println(String.format("%d %d", e.a + 1, e.b + 1));
+    }
+    
+    out.flush();
+}

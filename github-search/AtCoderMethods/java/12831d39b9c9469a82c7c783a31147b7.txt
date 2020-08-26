@@ -1,0 +1,13 @@
+int getMaxFlow(int s, int t) {
+    int flow = 0;
+    while (true) {
+        bfs(s);
+        if (level[t] < 0)
+            return flow;
+        Arrays.fill(iter, 0);
+        int f;
+        while ((f = dfs(s, t, INF)) > 0) {
+            flow += f;
+        }
+    }
+}

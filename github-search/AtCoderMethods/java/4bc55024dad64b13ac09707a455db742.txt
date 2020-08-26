@@ -1,0 +1,35 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    StringBuilder sb = new StringBuilder();
+    int n = Integer.parseInt(br.readLine());
+    String s = br.readLine();
+    int nRight = 0;
+    int nLeft = 0;
+    Stack<Boolean> stk = new Stack<Boolean>();
+    for (int i = 0; i < n; i++) {
+        boolean next = s.charAt(i) == ')';
+        if (stk.isEmpty()) {
+            stk.push(next);
+        } else if (next && stk.peek() == false) {
+            stk.pop();
+        } else {
+            stk.push(next);
+        }
+    }
+    while (!stk.isEmpty()) {
+        boolean b = stk.pop();
+        if (b) {
+            nRight++;
+        } else {
+            nLeft++;
+        }
+    }
+    for (int i = 0; i < nRight; i++) {
+        sb.append('(');
+    }
+    sb.append(s);
+    for (int i = 0; i < nLeft; i++) {
+        sb.append(')');
+    }
+    System.out.println(sb);
+}

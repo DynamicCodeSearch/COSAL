@@ -1,0 +1,25 @@
+def solve():
+    n = int(input())
+    s = []
+    for i in range(n):
+        y = int(input())
+        s.append(y)
+
+
+    c = 0
+    for x in s:
+        if x % 10 == 0:
+            c += 1
+    if c == n:
+        return 0
+
+    r = 0
+    if sum(s) != 0 and sum(s) % 10 != 0:
+        return sum(s)
+    else:
+        m = 10 ** 20
+        for x in s:
+            if x % 10 != 0:
+                if x < m:
+                    m = x
+        return sum(s) - m

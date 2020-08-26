@@ -1,0 +1,26 @@
+public void solve() {
+    c = next().toCharArray();
+    N = c.length;
+    int p = 0;
+    int g = 0;
+    int win = 0;
+    int lose = 0;
+    for (int i = 0; i < N; i++) {
+        if (c[i] == 'p') {
+            if (p < g) {
+                p++;
+            } else {
+                lose++;
+                g++;
+            }
+        } else {
+            if (p < g) {
+                win++;
+                p++;
+            } else {
+                g++;
+            }
+        }
+    }
+    out.println(win - lose);
+}

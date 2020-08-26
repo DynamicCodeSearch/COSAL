@@ -1,0 +1,8 @@
+def main():
+    nums = list(input())
+    length = len(nums)
+    total = 0
+    for i in range(length):
+        for t in itertools.combinations(range(1, length), i):
+            total += split(nums, t)
+    print(total)

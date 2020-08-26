@@ -1,0 +1,27 @@
+void solve() {
+    UnionFind uf = new UnionFind(n);
+    int sScore = 0, fScore = 0;
+    ArrayList<Integer> path = getPath();
+    int mid = (path.size() - 1) / 2;
+    int midFrom = path.get(mid);
+    int midTo = path.get(mid + 1);
+    for (int i = 0; i < n; i++) {
+        ArrayList<Edge> ess = es.get(i);
+        for (int j = 0; j < ess.size(); j++) {
+            int next = ess.get(j).to;
+            if ((i == midFrom && next == midTo) || (i == midTo && next == midFrom))
+                continue;
+            uf.unite(i, next);
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        if (uf.hasSamePar(0, i))
+            fScore++;
+        else
+            sScore++;
+    }
+    if (fScore > sScore)
+        System.out.println("Fennec");
+    else
+        System.out.println("Snuke");
+}

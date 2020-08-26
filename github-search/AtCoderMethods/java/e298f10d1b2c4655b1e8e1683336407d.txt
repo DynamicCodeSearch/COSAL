@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    try {
+        
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+        int n = Integer.parseInt(br.readLine());
+        String[] strArr = br.readLine().split(" ");
+        int count = 0;
+        for (int i = 0; i < n; i++) {
+            String tmp = strArr[i];
+            if (i == n - 1) {
+                tmp = tmp.substring(0, tmp.length() - 1);
+            }
+            if ("TAKAHASHIKUN".equals(tmp) || "Takahashikun".equals(tmp) || "takahashikun".equals(tmp)) {
+                count++;
+            }
+        }
+        System.out.println(count);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

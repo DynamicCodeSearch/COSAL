@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int num = sc.nextInt();
+    sc.nextLine();
+    Boolean odd = (num % 2) == 1 ? true : false;
+    int recordCount = (num + 1) / 2;
+    int[] records = new int[recordCount];
+    Arrays.fill(records, 0);
+    for (int i = 0; i < num; i++) {
+        int n = Integer.parseInt(sc.next()) / 2;
+        records[n]++;
+        if (records[n] > 2 || (odd && records[0] > 1)) {
+            System.out.println(0);
+            return;
+        }
+    }
+    if (odd)
+        num--;
+    num = num / 2;
+    BigInteger result = new BigInteger("2");
+    result = result.pow(num);
+    BigInteger mod = new BigInteger("1000000007");
+    result = result.remainder(mod);
+    System.out.println(result);
+}

@@ -1,0 +1,22 @@
+public void solve(InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    long a = (long) (in.nextInt()), b = (long) (in.nextInt());
+    
+    for (int i = 1; i < n; ++i) {
+        int c = in.nextInt(), d = in.nextInt();
+        long na = -1, nb = -1;
+        if (c < a || d < b) {
+            long per = Math.max((a + c - 1) / c, (b + d - 1) / d);
+            na = per * c;
+            nb = per * d;
+        } else {
+            na = c;
+            nb = d;
+        }
+        a = na;
+        b = nb;
+    
+    }
+    long ans = a + b;
+    out.println(ans);
+}

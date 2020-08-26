@@ -1,0 +1,33 @@
+public void exec() throws IOException {
+    InputUtil in = new InputUtil();
+    PrintWriter out = new PrintWriter(System.out);
+    int X = in.nextInt();
+    int K = in.nextInt();
+    int[] R = in.nextInt(new int[K]);
+    int Q = in.nextInt();
+    int[] T = new int[Q];
+    int[] A = new int[Q];
+    for (int i = 0; i < Q; i++) {
+        T[i] = in.nextInt();
+        A[i] = in.nextInt();
+    }
+    int q = 0;
+    initParam(X);
+    for (; q < Q && T[q] <= R[0]; q++) {
+        out.println(calcSand(T[q], A[q]));
+        out.flush();
+    }
+    initNextParam(R[0]);
+    for (int i = 1; i < K; i++) {
+        for (; q < Q && T[q] <= R[i]; q++) {
+            out.println(calcSand(T[q] - R[i - 1], A[q]));
+            out.flush();
+        }
+        initNextParam(R[i] - R[i - 1]);
+    }
+    for (; q < Q; q++) {
+        out.println(calcSand(T[q] - R[K - 1], A[q]));
+        out.flush();
+    }
+    out.flush();
+}

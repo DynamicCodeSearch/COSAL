@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    try {
+        
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+        String[] strArr = br.readLine().split("/");
+        int year = Integer.parseInt(strArr[0]);
+        int month = Integer.parseInt(strArr[1]);
+        int day = Integer.parseInt(strArr[2]);
+        while (true) {
+            if (isCheck(year, month, day)) {
+                System.out.println(printDate(year, month, day));
+                break;
+            }
+            DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+            Date date = df.parse(printDate(year, month, day));
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(date);
+            cal.add(Calendar.DATE, 1);
+            year = cal.get(Calendar.YEAR);
+            month = cal.get(Calendar.MONTH) + 1;
+            day = cal.get(Calendar.DATE);
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    } catch (ParseException e) {
+        e.printStackTrace();
+    }
+}

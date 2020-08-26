@@ -1,0 +1,13 @@
+static int[][][] directedGraph(int n, int[] s, int[] t, int[] cost) {
+    int[] cnt = new int[n];
+    for (int i : s) cnt[i]++;
+    int[][][] g = new int[n][][];
+    for (int i = 0; i < n; i++) g[i] = new int[cnt[i]][2];
+    for (int i = 0; i < s.length; i++) {
+        int from = s[i];
+        int to = t[i];
+        g[from][--cnt[from]][0] = to;
+        g[from][cnt[from]][1] = cost[i];
+    }
+    return g;
+}

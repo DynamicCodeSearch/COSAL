@@ -1,0 +1,19 @@
+def main():
+    N, T = [int(x) for x in input().split()]
+    price = [int(x) for x in input().split()]
+
+    minprice = 1000000000;
+    maxbenefit = 0
+    dict = {}
+    res = 0
+
+    for i in range(len(price)):
+        if (price[i] < minprice): minprice = price[i]
+        if (maxbenefit < (price[i] - minprice)): maxbenefit = (price[i] - minprice)
+        dict[price[i]] = i
+
+    for i in range(len(price)):
+        if price[i] + maxbenefit in dict:
+            if (dict[price[i] + maxbenefit] > i): res += 1
+
+    print(res)

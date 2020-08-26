@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int a = scan.nextInt();
+    int b = scan.nextInt();
+    int c = scan.nextInt();
+    int d = scan.nextInt();
+    int[] alice = new int[101];
+    int[] bob = new int[101];
+    for (int i = a + 1; i <= b; i++) {
+        alice[i] = 1;
+    }
+    for (int i = c + 1; i <= d; i++) {
+        bob[i] = 1;
+    }
+    int ans = 0;
+    for (int i = 0; i <= 100; i++) {
+        if (alice[i] == 1 && bob[i] == 1) {
+            ans++;
+        }
+    }
+    System.out.println(ans);
+}

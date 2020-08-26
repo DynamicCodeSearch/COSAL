@@ -1,0 +1,32 @@
+def c(ints):
+
+    sig = -1
+    sig_ = +1
+    total = 0
+    total_ = 0
+    mov = 0
+    mov_ = 0
+
+    for i_ in ints:
+        tmp = total + i_
+        tmp_ = total_ + i_
+        if tmp == 0:
+            mov +=1
+            tmp = -sig
+        elif sig * tmp > 0:
+            mov += abs(tmp) + 1
+            tmp = -sig
+
+        if tmp_ == 0:
+            mov_ +=1
+            tmp_ = -sig_
+        elif sig_ * tmp_ > 0:
+            mov_ += abs(tmp_) + 1
+            tmp_ = -sig_
+
+        sig *= -1
+        total = tmp
+        sig_ *= -1
+        total_ = tmp_
+
+    return min(mov, mov_)

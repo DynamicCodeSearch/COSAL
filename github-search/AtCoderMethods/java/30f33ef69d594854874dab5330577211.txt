@@ -1,0 +1,19 @@
+public static void main(String[] args) throws FileNotFoundException {
+    
+    Scanner in = new Scanner(System.in);
+    s = in.next();
+    char[] sa = s.toCharArray();
+    for (char c : sa) {
+        if (!h.containsKey(c))
+            h.put(c, 1);
+        else
+            h.put(c, h.get(c) + 1);
+    }
+    for (char c : h.keySet()) {
+        if (h.get(c) % 2 == 1) {
+            ans = "No";
+            break;
+        }
+    }
+    System.out.println(ans);
+}

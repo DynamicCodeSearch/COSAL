@@ -1,0 +1,16 @@
+private static boolean dfs(int before, int now, int parity) {
+    if (low[now] == high[now] && low[now] % 2 != parity) {
+        return false;
+    }
+    for (int p : g[now]) {
+        if (p != before) {
+            if (!dfs(now, p, (parity + 1) % 2))
+                return false;
+            low[now] = Math.max(low[now], low[p] - 1);
+            high[now] = Math.min(high[now], high[p] + 1);
+            if (low[now] > high[now])
+                return false;
+        }
+    }
+    return true;
+}

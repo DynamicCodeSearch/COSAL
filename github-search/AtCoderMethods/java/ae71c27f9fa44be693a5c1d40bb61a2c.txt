@@ -1,0 +1,13 @@
+boolean hasNext() {
+    if (st != null && st.hasMoreElements())
+        return true;
+    try {
+        while (st == null || !st.hasMoreElements()) {
+            last = br.readLine();
+            st = new StringTokenizer(last);
+        }
+    } catch (Exception e) {
+        return false;
+    }
+    return true;
+}

@@ -1,0 +1,12 @@
+private long solve(long[] a) {
+    Arrays.sort(a);
+    int N = a.length;
+    if (a[N - 1] < N)
+        return 0;
+    long d = a[N - 1] / N;
+    a[N - 1] -= N * d;
+    for (int i = 0; i < N - 1; i++) {
+        a[i] += d;
+    }
+    return solve(a) + d;
+}

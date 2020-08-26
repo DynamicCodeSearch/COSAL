@@ -1,0 +1,22 @@
+private void dfs(int u) {
+    if (u == target) {
+        flowFound = true;
+        for (int i = 0; i < pathLen - 1; i++) {
+            int from = path[i];
+            int to = path[i + 1];
+            F[from][to]++;
+            F[to][from]--;
+        }
+    } else {
+        for (int i = 0; i < N && !flowFound; i++) {
+            if (!visited[i] && A[u][i] > F[u][i]) {
+                visited[i] = true;
+                path[pathLen] = i;
+                pathLen++;
+                dfs(i);
+                visited[i] = false;
+                pathLen--;
+            }
+        }
+    }
+}

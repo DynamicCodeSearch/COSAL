@@ -1,0 +1,16 @@
+static int[] dfs(int id, int prev) {
+    Node now = nodes[id];
+    long w = 1;
+    long b = 1;
+    for (int i = 0; i < now.next.size(); i++) {
+        int next = now.next.get(i);
+        if (next == prev)
+            continue;
+        int[] ret = dfs(next, id);
+        w = w * (ret[0] + ret[1]) % E;
+        w %= E;
+        b = b * (ret[0]) % E;
+        b %= E;
+    }
+    return new int[] { (int) w, (int) b };
+}

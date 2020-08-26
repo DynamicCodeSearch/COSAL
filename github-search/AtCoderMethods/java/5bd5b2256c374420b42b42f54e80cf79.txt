@@ -1,0 +1,14 @@
+void solve() {
+    long A = sc.nextLong();
+    long K = sc.nextLong();
+    if (K == 0) {
+        out.println(B - A);
+        return;
+    }
+    int ans = 0;
+    while (A < B) {
+        A += 1 + K * A;
+        ans++;
+    }
+    out.println(ans);
+}

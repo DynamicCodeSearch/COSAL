@@ -1,0 +1,43 @@
+public static void main(String[] args) {
+    String S;
+    Scanner sc = new Scanner(System.in);
+    S = sc.next();
+    s = S.toCharArray();
+    c = new char[4][];
+    for (int i = 0; i < 4; i++) {
+        c[i] = C[i].toCharArray();
+    }
+    ptr = S.length() - 1;
+    while (0 <= ptr) {
+        switch(s[ptr]) {
+            case 'm':
+                
+                if (match(0))
+                    ptr = ptr - 5;
+                break;
+            case 'e':
+                
+                if (match(2))
+                    ptr = ptr - 5;
+                break;
+            case 'r':
+                if (match(1)) {
+                    
+                    ptr = ptr - 7;
+                    break;
+                }
+                if (match(3)) {
+                    
+                    ptr = ptr - 6;
+                    break;
+                }
+            default:
+                ptr = -999;
+        }
+    }
+    if (ptr == -1) {
+        System.out.println("YES");
+    } else {
+        System.out.println("NO");
+    }
+}

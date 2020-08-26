@@ -1,0 +1,16 @@
+def minus(a, b):
+	l = max(len(a), len(b))
+ a_ = a.rjust(l, '0')
+ b_ = b.rjust(l, '0')
+
+ s = ''; bollow = 0
+ for i in range(l)[::-1]:
+		temp = int(a_[i]) - int(b_[i]) - bollow
+
+  bollow = 0
+  if temp >= 0:
+			s = str(temp) + s
+  else:
+			bollow = 1
+   s = str(temp + 10) + s
+ return s

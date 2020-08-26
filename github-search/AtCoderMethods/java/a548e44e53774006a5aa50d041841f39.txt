@@ -1,0 +1,9 @@
+boolean check(int T, long[] h, long A, long B) {
+    long d = 0;
+    for (long hh : h) {
+        if (hh > B * T) {
+            d += (hh - B * T + A - B - 1) / (A - B);
+        }
+    }
+    return d <= T;
+}

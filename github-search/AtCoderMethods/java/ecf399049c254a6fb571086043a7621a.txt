@@ -1,0 +1,20 @@
+
+public static void execute() {
+    int n = nextInt();
+    Map<Integer, Integer> highMap = new HashMap<>(n);
+    Map<Integer, Integer> lowMap = new HashMap<>(n);
+    Map<Integer, Integer> origMap = new HashMap<>(n);
+    for (int i = 0; i < n; i++) {
+        int a = nextInt();
+        int high = a + 1;
+        int low = a - 1;
+        putCountMap(highMap, high);
+        putCountMap(lowMap, low);
+        putCountMap(origMap, a);
+    }
+    Map<Integer, Integer> mergeMap = Stream.of(highMap, lowMap, origMap).flatMap(m -> m.entrySet().stream()).collect(Collectors.toMap(Entry::getKey, Entry::getValue, Integer::sum));
+    
+    List<Entry<Integer, Integer>> mergeEntry = new ArrayList<Entry<Integer, Integer>>(mergeMap.entrySet());
+    valueReverseSort(mergeEntry);
+    out(mergeEntry.get(0).getValue());
+}

@@ -1,0 +1,74 @@
+public void solveD() {
+    int H = in.nextInt();
+    int W = in.nextInt();
+    char[][] pict = new char[H][W];
+    char[][] res = new char[H][W];
+    char[][] check = new char[H][W];
+    for (int h = 0; h < H; h++) {
+        pict[h] = in.next().toCharArray();
+    }
+    for (int h = 0; h < H; h++) {
+        for (int w = 0; w < W; w++) {
+            if (pict[h][w] == '#') {
+                boolean isWhite = false;
+                for (int i = 0; i < 8; i++) {
+                    int ww = w + dx8[i];
+                    int hh = h + dy8[i];
+                    if (0 <= ww && ww < W && 0 <= hh && hh < H) {
+                        if (pict[hh][ww] == '.') {
+                            isWhite = true;
+                            break;
+                        }
+                    }
+                }
+                if (isWhite)
+                    res[h][w] = '.';
+                else
+                    res[h][w] = '#';
+            } else {
+                res[h][w] = '.';
+            }
+        }
+    }
+    for (int h = 0; h < H; h++) {
+        for (int w = 0; w < W; w++) {
+            if (res[h][w] == '.') {
+                boolean isBlack = false;
+                for (int i = 0; i < 8; i++) {
+                    int ww = w + dx8[i];
+                    int hh = h + dy8[i];
+                    if (0 <= ww && ww < W && 0 <= hh && hh < H) {
+                        if (res[hh][ww] == '#') {
+                            isBlack = true;
+                            break;
+                        }
+                    }
+                }
+                if (isBlack)
+                    check[h][w] = '#';
+                else
+                    check[h][w] = '.';
+            } else {
+                check[h][w] = '#';
+            }
+        }
+    }
+    boolean possible = true;
+    for (int w = 0; w < W; w++) for (int h = 0; h < H; h++) {
+        if (pict[h][w] != check[h][w]) {
+            possible = false;
+            break;
+        }
+    }
+    if (possible) {
+        System.out.println("possible");
+        for (int h = 0; h < H; h++) {
+            StringBuilder sb = new StringBuilder();
+            for (int w = 0; w < W; w++) {
+                sb.append(res[h][w]);
+            }
+            System.out.println(sb.toString());
+        }
+    } else
+        System.out.println("impossible");
+}

@@ -1,0 +1,52 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int K = sc.nextInt();
+    int[] a = new int[N];
+    for (int i = 0; i < N; i++) {
+        a[i] = sc.nextInt();
+    }
+    Arrays.sort(a);
+    int ans = -1;
+    int left = 0;
+    int right = N;
+    while (left < right) {
+        int med = (left + right) / 2;
+        if (a[med] < K) {
+            
+            boolean[][] dp = new boolean[N][K];
+            dp[0][0] = true;
+            if (med != 0)
+                dp[0][a[0]] = true;
+            for (int i = 1; i < N; i++) {
+                dp[i][0] = true;
+                for (int j = 1; j < K; j++) {
+                    if (med != i) {
+                        if (a[i] <= j) {
+                            dp[i][j] = dp[i - 1][j] || dp[i - 1][j - a[i]];
+                        } else {
+                            dp[i][j] = dp[i - 1][j];
+                        }
+                    } else {
+                        dp[i][j] = dp[i - 1][j];
+                    }
+                }
+            }
+            boolean flg = false;
+            for (int j = K - a[med]; j < K; j++) {
+                if (dp[N - 1][j])
+                    flg = true;
+            }
+            if (flg) {
+                right = med;
+            } else {
+                ans = med;
+                left = med + 1;
+            }
+        } else {
+            right = med;
+        }
+    }
+    ans++;
+    System.out.println(ans);
+}

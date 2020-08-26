@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    int N = in.nextInt(), M = in.nextInt();
+    r = new boolean[N][N];
+    for (int i = 0; i < N; i++) {
+        Arrays.fill(r[i], false);
+    }
+    for (int i = 0; i < M; i++) {
+        int a = in.nextInt() - 1, b = in.nextInt() - 1;
+        r[a][b] = true;
+        r[b][a] = true;
+    }
+    boolean[] v = new boolean[N];
+    Arrays.fill(v, false);
+    System.out.println(route(0, v));
+}

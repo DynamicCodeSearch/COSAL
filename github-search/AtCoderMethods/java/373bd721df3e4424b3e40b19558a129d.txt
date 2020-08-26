@@ -1,0 +1,46 @@
+public void solve(int testNumber, MyInput in, PrintWriter out) {
+    int n = in.nextInt();
+    p = in.nextIntArray(n);
+    rmq0.build(n);
+    rmq1.build(n);
+    for (int i = 0; i < n; i++) {
+        if (i % 2 == 0)
+            rmq0.Update(p[i], i);
+        else
+            rmq1.Update(p[i], i);
+    }
+    next(0, n);
+    List<Long> ans = new ArrayList<>();
+    for (; !mp.isEmpty(); ) {
+        int[] interval = mp.pollFirstEntry().getValue();
+        int l = interval[0], r = interval[1];
+        if (r - l == 0)
+            continue;
+        
+        if ((r - l) % 2 != 0)
+            throw new RuntimeException();
+        int idx, idx2;
+        if (l % 2 == 0) {
+            idx = rmq0.QueryIndex(l, r - 1);
+            idx2 = rmq1.QueryIndex(idx, r);
+            rmq0.Update(1 << 29, idx);
+            rmq1.Update(1 << 29, idx2);
+        } else {
+            idx = rmq1.QueryIndex(l, r - 1);
+            idx2 = rmq0.QueryIndex(idx, r);
+            rmq0.Update(1 << 29, idx2);
+            rmq1.Update(1 << 29, idx);
+        }
+        
+        ans.add((long) p[idx] << 32 | p[idx2]);
+        next(l, idx);
+        next(idx + 1, idx2);
+        next(idx2 + 1, r);
+    }
+    for (int i = 0; i < ans.size(); i++) {
+        out.print(ans.get(i) >>> 32);
+        out.print(' ');
+        out.print(ans.get(i) & 0x7FFFFFFF);
+        out.print(i == ans.size() - 1 ? '\n' : ' ');
+    }
+}

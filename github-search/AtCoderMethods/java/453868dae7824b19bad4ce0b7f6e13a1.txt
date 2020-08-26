@@ -1,0 +1,40 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    
+    String[] ss0 = br.readLine().trim().split(" ", 0);
+    int N = Integer.parseInt(ss0[0]);
+    int T = Integer.parseInt(ss0[1]);
+    
+    ss0 = br.readLine().trim().split(" ", 0);
+    Integer[] ii0 = new Integer[N];
+    for (int i = 0; i < N; i++) {
+        ii0[i] = Integer.parseInt(ss0[i]);
+    }
+    int iCount = 0;
+    int iSa = 0;
+    int iN = 0;
+    boolean b = true;
+    for (int i = 1; i < N; i++) {
+        
+        if ((ii0[i] - ii0[iN]) > iSa) {
+            iSa = ii0[i] - ii0[iN];
+            iCount = 1;
+            continue;
+        }
+        
+        if ((ii0[i] - ii0[iN]) == iSa) {
+            if (b) {
+                iCount = iCount + 1;
+                b = false;
+            }
+            continue;
+        }
+        
+        if (ii0[iN] > ii0[i]) {
+            iN = i;
+            b = true;
+            continue;
+        }
+    }
+    System.out.println(iCount);
+}

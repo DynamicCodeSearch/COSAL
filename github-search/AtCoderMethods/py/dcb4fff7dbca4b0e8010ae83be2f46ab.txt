@@ -1,0 +1,10 @@
+def gyakushuku(H, W, S, T):
+    dx = [1, 0, -1, 0, 1, 1, -1, -1, 0]
+    dy = [0, 1, 0, -1, 1, -1, 1, -1, 0]
+
+    for y in range(H):
+        for x in range(W):
+            if S[y][x] == 0:
+                for i in range(len(dx)):
+                    if 0 <= x + dx[i] < W and 0 <= y + dy[i] < H:
+                        T[y + dy[i]][x + dx[i]] = 0

@@ -1,0 +1,31 @@
+public static void main(String[] args) {
+    Scanner cin = new Scanner(System.in);
+    int N = cin.nextInt();
+    String[] strings = new String[N];
+    for (int i = 0; i < N; i++) {
+        strings[i] = cin.next();
+    }
+    int[][] map = new int[N][26];
+    for (int i = 0; i < N; i++) {
+        for (char c : strings[i].toCharArray()) {
+            map[i][c - 'a']++;
+        }
+    }
+    int[] minMap = new int[26];
+    for (int j = 0; j < 26; j++) {
+        minMap[j] = Integer.MAX_VALUE;
+        for (int i = 0; i < N; i++) {
+            if (map[i][j] == 0) {
+                minMap[j] = 0;
+                break;
+            } else {
+                minMap[j] = Math.min(minMap[j], map[i][j]);
+            }
+        }
+    }
+    for (int i = 0; i < 26; i++) {
+        for (int j = 0; j < minMap[i]; j++) {
+            System.out.print((char) ('a' + i));
+        }
+    }
+}

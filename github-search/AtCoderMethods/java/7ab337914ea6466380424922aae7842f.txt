@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    PrintWriter pw = new PrintWriter(System.out);
+    int N = sc.nextInt();
+    Person[] p = new Person[N];
+    for (int i = 0; i < N; i++) p[i] = new Person(i, sc.nextInt());
+    Arrays.sort(p, new Comparator<Person>() {
+
+        public int compare(Person p1, Person p2) {
+            return p1.press - p2.press;
+        }
+    });
+    for (int i = 1; i < N; i++) p[i].comp = p[i - 1].comp + (p[i].press > p[i - 1].press ? 1 : 0);
+    Arrays.sort(p, new Comparator<Person>() {
+
+        public int compare(Person p1, Person p2) {
+            return p1.idx - p2.idx;
+        }
+    });
+    for (int i = 0; i < N; i++) pw.println(p[i].comp);
+    pw.close();
+    sc.close();
+}

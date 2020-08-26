@@ -1,0 +1,878 @@
+### Py functions
+
+def update(*args, **kwds):
+    """Like dict.update() but add counts instead of replacing them.
+
+    Source can be an iterable, a dictionary, or another Counter instance.
+
+    >>> c = Counter('which')
+    >>> c.update('witch')           # add elements from another iterable
+    >>> d = Counter('watch')
+    >>> c.update(d)                 # add elements from another counter
+    >>> c['h']                      # four 'h' in which, witch, and watch
+    4
+
+    """
+    if not args:
+        raise TypeError(
+            "descriptor 'update' of 'Counter' object needs an argument")
+    self = args[0]
+    args = args[1:]
+    if len(args) > 1:
+        raise TypeError('expected at most 1 arguments, got %d' % len(args))
+    iterable = args[0] if args else None
+    if iterable is not None:
+        if isinstance(iterable, Mapping):
+            if self:
+                self_get = self.get
+                for elem, count in iterable.iteritems():
+                    self[elem] = self_get(elem, 0) + count
+            else:
+                super(Counter, self).update(iterable)
+        else:
+            self_get = self.get
+            for elem in iterable:
+                self[elem] = self_get(elem, 0) + 1
+    if kwds:
+        self.update(kwds)
+
+*********************************
+
+#### Score: 79.11935
+
+
+/**
+ * <p>
+ * Replace all occurrences of Strings within another String.
+ * This is a private recursive helper method for {@link #replaceEachRepeatedly(String, String[], String[])} and
+ * {@link #replaceEach(String, String[], String[])}
+ * </p>
+ *
+ * <p>
+ * A {@code null} reference passed to this method is a no-op, or if
+ * any "mos.search string" or "string to replace" is null, that replace will be
+ * ignored.
+ * </p>
+ *
+ * <pre>
+ *  StringUtils.replaceEach(null, *, *, *, *) = null
+ *  StringUtils.replaceEach("", *, *, *, *) = ""
+ *  StringUtils.replaceEach("aba", null, null, *, *) = "aba"
+ *  StringUtils.replaceEach("aba", new String[0], null, *, *) = "aba"
+ *  StringUtils.replaceEach("aba", null, new String[0], *, *) = "aba"
+ *  StringUtils.replaceEach("aba", new String[]{"a"}, null, *, *) = "aba"
+ *  StringUtils.replaceEach("aba", new String[]{"a"}, new String[]{""}, *, >=0) = "b"
+ *  StringUtils.replaceEach("aba", new String[]{null}, new String[]{"a"}, *, >=0) = "aba"
+ *  StringUtils.replaceEach("abcde", new String[]{"ab", "d"}, new String[]{"w", "t"}, *, >=0) = "wcte"
+ *  (example of how it repeats)
+ *  StringUtils.replaceEach("abcde", new String[]{"ab", "d"}, new String[]{"d", "t"}, false, >=0) = "dcte"
+ *  StringUtils.replaceEach("abcde", new String[]{"ab", "d"}, new String[]{"d", "t"}, true, >=2) = "tcte"
+ *  StringUtils.replaceEach("abcde", new String[]{"ab", "d"}, new String[]{"d", "ab"}, *, *) = IllegalStateException
+ * </pre>
+ *
+ * @param text
+ *            text to mos.search and replace in, no-op if null
+ * @param searchList
+ *            the Strings to mos.search for, no-op if null
+ * @param replacementList
+ *            the Strings to replace them with, no-op if null
+ * @param repeat if true, then replace repeatedly
+ *       until there are no more possible replacements or timeToLive < 0
+ * @param timeToLive
+ *            if less than 0 then there is a circular reference and endless
+ *            loop
+ * @return the text with any replacements processed, {@code null} if
+ *         null String input
+ * @throws IllegalStateException
+ *             if the mos.search is repeating and there is an endless loop due
+ *             to outputs of one being inputs to another
+ * @throws IllegalArgumentException
+ *             if the lengths of the arrays are not the same (null is ok,
+ *             and/or size 0)
+ * @since 2.4
+ */
+private static String replaceEach(final String text, final String[] searchList, final String[] replacementList, final boolean repeat, final int timeToLive) {
+    if (isEmpty(text) || ArrayUtils.isEmpty(searchList) || ArrayUtils.isEmpty(replacementList)) {
+        return text;
+    }
+    // if recursing, this shouldn't be less than 0
+    if (timeToLive < 0) {
+        throw new IllegalStateException("Aborting to protect against StackOverflowError - " + "output of one loop is the input of another");
+    }
+    final int searchLength = searchList.length;
+    final int replacementLength = replacementList.length;
+    // make sure lengths are ok, these need to be equal
+    if (searchLength != replacementLength) {
+        throw new IllegalArgumentException("Search and Replace array lengths don't match: " + searchLength + " vs " + replacementLength);
+    }
+    // keep track of which still have matches
+    final boolean[] noMoreMatchesForReplIndex = new boolean[searchLength];
+    // index on index that the match was found
+    int textIndex = -1;
+    int replaceIndex = -1;
+    int tempIndex = -1;
+    // NOTE: logic duplicated below START
+    for (int i = 0; i < searchLength; i++) {
+        if (noMoreMatchesForReplIndex[i] || searchList[i] == null || searchList[i].isEmpty() || replacementList[i] == null) {
+            continue;
+        }
+        tempIndex = text.indexOf(searchList[i]);
+        // see if we need to keep searching for this
+        if (tempIndex == -1) {
+            noMoreMatchesForReplIndex[i] = true;
+        } else {
+            if (textIndex == -1 || tempIndex < textIndex) {
+                textIndex = tempIndex;
+                replaceIndex = i;
+            }
+        }
+    }
+    // no mos.search strings found, we are done
+    if (textIndex == -1) {
+        return text;
+    }
+    int start = 0;
+    // get a good guess on the size of the result buffer so it doesn't have to double if it goes over a bit
+    int increase = 0;
+    // count the replacement text elements that are larger than their corresponding text being replaced
+    for (int i = 0; i < searchList.length; i++) {
+        if (searchList[i] == null || replacementList[i] == null) {
+            continue;
+        }
+        final int greater = replacementList[i].length() - searchList[i].length();
+        if (greater > 0) {
+            // assume 3 matches
+            increase += 3 * greater;
+        }
+    }
+    // have upper-bound at 20% increase, then let Java take over
+    increase = Math.min(increase, text.length() / 5);
+    final StringBuilder buf = new StringBuilder(text.length() + increase);
+    while (textIndex != -1) {
+        for (int i = start; i < textIndex; i++) {
+            buf.append(text.charAt(i));
+        }
+        buf.append(replacementList[replaceIndex]);
+        start = textIndex + searchList[replaceIndex].length();
+        textIndex = -1;
+        replaceIndex = -1;
+        tempIndex = -1;
+        // NOTE: logic mostly duplicated above START
+        for (int i = 0; i < searchLength; i++) {
+            if (noMoreMatchesForReplIndex[i] || searchList[i] == null || searchList[i].isEmpty() || replacementList[i] == null) {
+                continue;
+            }
+            tempIndex = text.indexOf(searchList[i], start);
+            // see if we need to keep searching for this
+            if (tempIndex == -1) {
+                noMoreMatchesForReplIndex[i] = true;
+            } else {
+                if (textIndex == -1 || tempIndex < textIndex) {
+                    textIndex = tempIndex;
+                    replaceIndex = i;
+                }
+            }
+        }
+    // NOTE: logic duplicated above END
+    }
+    final int textLength = text.length();
+    for (int i = start; i < textLength; i++) {
+        buf.append(text.charAt(i));
+    }
+    final String result = buf.toString();
+    if (!repeat) {
+        return result;
+    }
+    return replaceEach(result, searchList, replacementList, repeat, timeToLive - 1);
+}
+*********************************
+
+#### Score: 77.48772
+
+
+/**
+ * Returns the given {@code template} string with each occurrence of {@code "%s"} replaced with
+ * the corresponding argument value from {@code args}; or, if the placeholder and argument counts
+ * do not match, returns a best-effort form of that string. Will not throw an exception under
+ * normal conditions.
+ *
+ * <p><b>Note:</b> For most string-formatting needs, use {@link String#format String.format},
+ * {@link java.io.PrintWriter#format PrintWriter.format}, and related methods. These support the
+ * full range of <a
+ * href="https://docs.oracle.com/javase/9/docs/api/java/util/Formatter.html#syntax">format
+ * specifiers</a>, and alert you to usage errors by throwing {@link
+ * java.util.IllegalFormatException}.
+ *
+ * <p>In certain cases, such as outputting debugging information or constructing a message to be
+ * used for another unchecked exception, an exception during string formatting would serve little
+ * purpose except to supplant the real information you were trying to provide. These are the cases
+ * this method is made for; it instead generates a best-effort string with all supplied argument
+ * values present. This method is also useful in environments such as GWT where {@code
+ * String.format} is not available. As an example, method implementations of the {@link
+ * Preconditions} class use this formatter, for both of the reasons just discussed.
+ *
+ * <p><b>Warning:</b> Only the exact two-character placeholder sequence {@code "%s"} is
+ * recognized.
+ *
+ * @param template a string containing zero or more {@code "%s"} placeholder sequences. {@code
+ *     null} is treated as the four-character string {@code "null"}.
+ * @param args the arguments to be substituted into the message template. The first argument
+ *     specified is substituted for the first occurrence of {@code "%s"} in the template, and so
+ *     forth. A {@code null} argument is converted to the four-character string {@code "null"};
+ *     non-null values are converted to strings using {@link Object#toString()}.
+ * @since 25.1
+ */
+// TODO(diamondm) consider using Arrays.toString() for array parameters
+public static String lenientFormat(@Nullable String template, @Nullable Object@Nullable ... args) {
+    // null -> "null"
+    template = String.valueOf(template);
+    if (args == null) {
+        args = new Object[] { "(Object[])null" };
+    } else {
+        for (int i = 0; i < args.length; i++) {
+            args[i] = lenientToString(args[i]);
+        }
+    }
+    // start substituting the arguments into the '%s' placeholders
+    StringBuilder builder = new StringBuilder(template.length() + 16 * args.length);
+    int templateStart   = 0;
+    int i = 0;
+    while (i < args.length) {
+        int placeholderStart = template.indexOf("%s", templateStart);
+        if (placeholderStart == -1) {
+            break;
+        }
+        builder.append(template, templateStart, placeholderStart);
+        builder.append(args[i++]);
+        templateStart = placeholderStart + 2;
+    }
+    builder.append(template, templateStart, template.length());
+    // if we run out of placeholders, append the extra args in square braces
+    if (i < args.length) {
+        builder.append(" [");
+        builder.append(args[i++]);
+        while (i < args.length) {
+            builder.append(", ");
+            builder.append(args[i++]);
+        }
+        builder.append(']');
+    }
+    return builder.toString();
+}
+*********************************
+
+#### Score: 71.45814
+
+
+/**
+ * <p>Compares all Strings in an array and returns the initial sequence of
+ * characters that is common to all of them.</p>
+ *
+ * <p>For example,
+ * <code>getCommonPrefix(new String[] {"i am a machine", "i am a robot"}) -&gt; "i am a "</code></p>
+ *
+ * <pre>
+ * StringUtils.getCommonPrefix(null) = ""
+ * StringUtils.getCommonPrefix(new String[] {}) = ""
+ * StringUtils.getCommonPrefix(new String[] {"abc"}) = "abc"
+ * StringUtils.getCommonPrefix(new String[] {null, null}) = ""
+ * StringUtils.getCommonPrefix(new String[] {"", ""}) = ""
+ * StringUtils.getCommonPrefix(new String[] {"", null}) = ""
+ * StringUtils.getCommonPrefix(new String[] {"abc", null, null}) = ""
+ * StringUtils.getCommonPrefix(new String[] {null, null, "abc"}) = ""
+ * StringUtils.getCommonPrefix(new String[] {"", "abc"}) = ""
+ * StringUtils.getCommonPrefix(new String[] {"abc", ""}) = ""
+ * StringUtils.getCommonPrefix(new String[] {"abc", "abc"}) = "abc"
+ * StringUtils.getCommonPrefix(new String[] {"abc", "a"}) = "a"
+ * StringUtils.getCommonPrefix(new String[] {"ab", "abxyz"}) = "ab"
+ * StringUtils.getCommonPrefix(new String[] {"abcde", "abxyz"}) = "ab"
+ * StringUtils.getCommonPrefix(new String[] {"abcde", "xyz"}) = ""
+ * StringUtils.getCommonPrefix(new String[] {"xyz", "abcde"}) = ""
+ * StringUtils.getCommonPrefix(new String[] {"i am a machine", "i am a robot"}) = "i am a "
+ * </pre>
+ *
+ * @param strs  array of String objects, entries may be null
+ * @return the initial sequence of characters that are common to all Strings
+ * in the array; empty String if the array is null, the elements are all null
+ * or if there is no common prefix.
+ * @since 2.4
+ */
+public static String getCommonPrefix(final String... strs) {
+    if (ArrayUtils.isEmpty(strs)) {
+        return EMPTY;
+    }
+    final int smallestIndexOfDiff = indexOfDifference(strs);
+    if (smallestIndexOfDiff == INDEX_NOT_FOUND) {
+        // all strings were identical
+        if (strs[0] == null) {
+            return EMPTY;
+        }
+        return strs[0];
+    } else if (smallestIndexOfDiff == 0) {
+        // there were no common initial characters
+        return EMPTY;
+    } else {
+        // we found a common initial character sequence
+        return strs[0].substring(0, smallestIndexOfDiff);
+    }
+}
+*********************************
+
+#### Score: 70.74747
+
+
+/**
+ * <p>Find the Levenshtein distance between two Strings if it's less than or equal to a given
+ * threshold.</p>
+ *
+ * <p>This is the number of changes needed to change one String into
+ * another, where each change is a single character modification (deletion,
+ * insertion or substitution).</p>
+ *
+ * <p>This implementation follows from Algorithms on Strings, Trees and Sequences by Dan Gusfield
+ * and Chas Emerick's implementation of the Levenshtein distance algorithm from
+ * <a href="http://www.merriampark.com/ld.htm">http://www.merriampark.com/ld.htm</a></p>
+ *
+ * <pre>
+ * StringUtils.getLevenshteinDistance(null, *, *)             = IllegalArgumentException
+ * StringUtils.getLevenshteinDistance(*, null, *)             = IllegalArgumentException
+ * StringUtils.getLevenshteinDistance(*, *, -1)               = IllegalArgumentException
+ * StringUtils.getLevenshteinDistance("", "", 0)              = 0
+ * StringUtils.getLevenshteinDistance("aaapppp", "", 8)       = 7
+ * StringUtils.getLevenshteinDistance("aaapppp", "", 7)       = 7
+ * StringUtils.getLevenshteinDistance("aaapppp", "", 6))      = -1
+ * StringUtils.getLevenshteinDistance("elephant", "hippo", 7) = 7
+ * StringUtils.getLevenshteinDistance("elephant", "hippo", 6) = -1
+ * StringUtils.getLevenshteinDistance("hippo", "elephant", 7) = 7
+ * StringUtils.getLevenshteinDistance("hippo", "elephant", 6) = -1
+ * </pre>
+ *
+ * @param s  the first String, must not be null
+ * @param t  the second String, must not be null
+ * @param threshold the target threshold, must not be negative
+ * @return result distance, or {@code -1} if the distance would be greater than the threshold
+ * @throws IllegalArgumentException if either String input {@code null} or negative threshold
+ * @deprecated as of 3.6, use commons-text
+ * <a href="https://commons.apache.org/proper/commons-text/javadocs/api-release/org/apache/commons/text/similarity/LevenshteinDistance.html">
+ * LevenshteinDistance</a> instead
+ */
+@Deprecated
+public static int getLevenshteinDistance(CharSequence s, CharSequence t, final int threshold) {
+    if (s == null || t == null) {
+        throw new IllegalArgumentException("Strings must not be null");
+    }
+    if (threshold < 0) {
+        throw new IllegalArgumentException("Threshold must not be negative");
+    }
+    /*
+        This implementation only computes the distance if it's less than or equal to the
+        threshold value, returning -1 if it's greater.  The advantage is performance: unbounded
+        distance is O(nm), but a bound of k allows us to reduce it to O(km) time by only
+        computing a diagonal stripe of width 2k + 1 of the cost table.
+        It is also possible to use this to compute the unbounded Levenshtein distance by starting
+        the threshold at 1 and doubling each time until the distance is found; this is O(dm), where
+        d is the distance.
+
+        One subtlety comes from needing to ignore entries on the border of our stripe
+        eg.
+        p[] = |#|#|#|*
+        d[] =  *|#|#|#|
+        We must ignore the entry to the left of the leftmost member
+        We must ignore the entry above the rightmost member
+
+        Another subtlety comes from our stripe running off the matrix if the strings aren't
+        of the same size.  Since string s is always swapped to be the shorter of the two,
+        the stripe will always run off to the upper right instead of the lower left of the matrix.
+
+        As a concrete example, suppose s is of length 5, t is of length 7, and our threshold is 1.
+        In this case we're going to walk a stripe of length 3.  The matrix would look like so:
+
+           1 2 3 4 5
+        1 |#|#| | | |
+        2 |#|#|#| | |
+        3 | |#|#|#| |
+        4 | | |#|#|#|
+        5 | | | |#|#|
+        6 | | | | |#|
+        7 | | | | | |
+
+        Note how the stripe leads off the table as there is no possible way to turn a string of length 5
+        into one of length 7 in edit distance of 1.
+
+        Additionally, this implementation decreases memory usage by using two
+        single-dimensional arrays and swapping them back and forth instead of allocating
+        an entire n by m matrix.  This requires a few minor changes, such as immediately returning
+        when it's detected that the stripe has run off the matrix and initially filling the arrays with
+        large values so that entries we don't compute are ignored.
+
+        See Algorithms on Strings, Trees and Sequences by Dan Gusfield for some discussion.
+         */
+    // length of s
+    int n = s.length();
+    // length of t
+    int m = t.length();
+    // if one string is empty, the edit distance is necessarily the length of the other
+    if (n == 0) {
+        return m <= threshold ? m : -1;
+    } else if (m == 0) {
+        return n <= threshold ? n : -1;
+    } else if (Math.abs(n - m) > threshold) {
+        // no need to calculate the distance if the length difference is greater than the threshold
+        return -1;
+    }
+    if (n > m) {
+        // swap the two strings to consume less memory
+        final CharSequence tmp = s;
+        s = t;
+        t = tmp;
+        n = m;
+        m = t.length();
+    }
+    // 'previous' cost array, horizontally
+    int[] p = new int[n + 1];
+    // cost array, horizontally
+    int[] d = new int[n + 1];
+    // placeholder to assist in swapping p and d
+    int[] _d;
+    // fill in starting table values
+    final int boundary = Math.min(n, threshold) + 1;
+    for (int i = 0; i < boundary; i++) {
+        p[i] = i;
+    }
+    // these fills ensure that the value above the rightmost entry of our
+    // stripe will be ignored in following loop iterations
+    Arrays.fill(p, boundary, p.length, Integer.MAX_VALUE);
+    Arrays.fill(d, Integer.MAX_VALUE);
+    // iterates through t
+    for (int j = 1; j <= m; j++) {
+        // jth character of t
+        final char t_j = t.charAt(j - 1);
+        d[0] = j;
+        // compute stripe indices, constrain to array size
+        final int min = Math.max(1, j - threshold);
+        final int max = j > Integer.MAX_VALUE - threshold ? n : Math.min(n, j + threshold);
+        // the stripe may lead off of the table if s and t are of different sizes
+        if (min > max) {
+            return -1;
+        }
+        // ignore entry left of leftmost
+        if (min > 1) {
+            d[min - 1] = Integer.MAX_VALUE;
+        }
+        // iterates through [min, max] in s
+        for (int i = min; i <= max; i++) {
+            if (s.charAt(i - 1) == t_j) {
+                // diagonally left and up
+                d[i] = p[i - 1];
+            } else {
+                // 1 + minimum of cell to the left, to the top, diagonally left and up
+                d[i] = 1 + Math.min(Math.min(d[i - 1], p[i]), p[i - 1]);
+            }
+        }
+        // copy current distance counts to 'previous row' distance counts
+        _d = p;
+        p = d;
+        d = _d;
+    }
+    // distance
+    if (p[n] <= threshold) {
+        return p[n];
+    }
+    return -1;
+}
+*********************************
+
+#### Score: 70.10410
+
+
+/**
+ * <p>Abbreviates a String using a given replacement marker. This will turn
+ * "Now is the time for all good men" into "...is the time for..." if "..." was defined
+ * as the replacement marker.</p>
+ *
+ * <p>Works like {@code abbreviate(String, String, int)}, but allows you to specify
+ * a "left edge" offset.  Note that this left edge is not necessarily going to
+ * be the leftmost character in the result, or the first character following the
+ * replacement marker, but it will appear somewhere in the result.
+ *
+ * <p>In no case will it return a String of length greater than {@code maxWidth}.</p>
+ *
+ * <pre>
+ * StringUtils.abbreviate(null, null, *, *)                 = null
+ * StringUtils.abbreviate("abcdefghijklmno", null, *, *)    = "abcdefghijklmno"
+ * StringUtils.abbreviate("", "...", 0, 4)                  = ""
+ * StringUtils.abbreviate("abcdefghijklmno", "---", -1, 10) = "abcdefg---"
+ * StringUtils.abbreviate("abcdefghijklmno", ",", 0, 10)    = "abcdefghi,"
+ * StringUtils.abbreviate("abcdefghijklmno", ",", 1, 10)    = "abcdefghi,"
+ * StringUtils.abbreviate("abcdefghijklmno", ",", 2, 10)    = "abcdefghi,"
+ * StringUtils.abbreviate("abcdefghijklmno", "::", 4, 10)   = "::efghij::"
+ * StringUtils.abbreviate("abcdefghijklmno", "...", 6, 10)  = "...ghij..."
+ * StringUtils.abbreviate("abcdefghijklmno", "*", 9, 10)    = "*ghijklmno"
+ * StringUtils.abbreviate("abcdefghijklmno", "'", 10, 10)   = "'ghijklmno"
+ * StringUtils.abbreviate("abcdefghijklmno", "!", 12, 10)   = "!ghijklmno"
+ * StringUtils.abbreviate("abcdefghij", "abra", 0, 4)       = IllegalArgumentException
+ * StringUtils.abbreviate("abcdefghij", "...", 5, 6)        = IllegalArgumentException
+ * </pre>
+ *
+ * @param str  the String to check, may be null
+ * @param abbrevMarker  the String used as replacement marker
+ * @param offset  left edge of source String
+ * @param maxWidth  maximum length of result String, must be at least 4
+ * @return abbreviated String, {@code null} if null String input
+ * @throws IllegalArgumentException if the width is too small
+ * @since 3.6
+ */
+public static String abbreviate(final String str, final String abbrevMarker, int offset, final int maxWidth) {
+    if (isEmpty(str) && isEmpty(abbrevMarker)) {
+        return str;
+    } else if (isNotEmpty(str) && EMPTY.equals(abbrevMarker) && maxWidth > 0) {
+        return str.substring(0, maxWidth);
+    } else if (isEmpty(str) || isEmpty(abbrevMarker)) {
+        return str;
+    }
+    final int abbrevMarkerLength = abbrevMarker.length();
+    final int minAbbrevWidth = abbrevMarkerLength + 1;
+    final int minAbbrevWidthOffset = abbrevMarkerLength + abbrevMarkerLength + 1;
+    if (maxWidth < minAbbrevWidth) {
+        throw new IllegalArgumentException(String.format("Minimum abbreviation width is %d", minAbbrevWidth));
+    }
+    if (str.length() <= maxWidth) {
+        return str;
+    }
+    if (offset > str.length()) {
+        offset = str.length();
+    }
+    if (str.length() - offset < maxWidth - abbrevMarkerLength) {
+        offset = str.length() - (maxWidth - abbrevMarkerLength);
+    }
+    if (offset <= abbrevMarkerLength + 1) {
+        return str.substring(0, maxWidth - abbrevMarkerLength) + abbrevMarker;
+    }
+    if (maxWidth < minAbbrevWidthOffset) {
+        throw new IllegalArgumentException(String.format("Minimum abbreviation width with offset is %d", minAbbrevWidthOffset));
+    }
+    if (offset + maxWidth - abbrevMarkerLength < str.length()) {
+        return abbrevMarker + abbreviate(str.substring(offset), abbrevMarker, maxWidth - abbrevMarkerLength);
+    }
+    return abbrevMarker + str.substring(str.length() - (maxWidth - abbrevMarkerLength));
+}
+*********************************
+
+#### Score: 69.84943
+
+
+/**
+ * <p>Compares all CharSequences in an array and returns the index at which the
+ * CharSequences begin to differ.</p>
+ *
+ * <p>For example,
+ * {@code indexOfDifference(new String[] {"i am a machine", "i am a robot"}) -> 7}</p>
+ *
+ * <pre>
+ * StringUtils.indexOfDifference(null) = -1
+ * StringUtils.indexOfDifference(new String[] {}) = -1
+ * StringUtils.indexOfDifference(new String[] {"abc"}) = -1
+ * StringUtils.indexOfDifference(new String[] {null, null}) = -1
+ * StringUtils.indexOfDifference(new String[] {"", ""}) = -1
+ * StringUtils.indexOfDifference(new String[] {"", null}) = 0
+ * StringUtils.indexOfDifference(new String[] {"abc", null, null}) = 0
+ * StringUtils.indexOfDifference(new String[] {null, null, "abc"}) = 0
+ * StringUtils.indexOfDifference(new String[] {"", "abc"}) = 0
+ * StringUtils.indexOfDifference(new String[] {"abc", ""}) = 0
+ * StringUtils.indexOfDifference(new String[] {"abc", "abc"}) = -1
+ * StringUtils.indexOfDifference(new String[] {"abc", "a"}) = 1
+ * StringUtils.indexOfDifference(new String[] {"ab", "abxyz"}) = 2
+ * StringUtils.indexOfDifference(new String[] {"abcde", "abxyz"}) = 2
+ * StringUtils.indexOfDifference(new String[] {"abcde", "xyz"}) = 0
+ * StringUtils.indexOfDifference(new String[] {"xyz", "abcde"}) = 0
+ * StringUtils.indexOfDifference(new String[] {"i am a machine", "i am a robot"}) = 7
+ * </pre>
+ *
+ * @param css  array of CharSequences, entries may be null
+ * @return the index where the strings begin to differ; -1 if they are all equal
+ * @since 2.4
+ * @since 3.0 Changed signature from indexOfDifference(String...) to indexOfDifference(CharSequence...)
+ */
+public static int indexOfDifference(final CharSequence... css) {
+    if (ArrayUtils.getLength(css) <= 1) {
+        return INDEX_NOT_FOUND;
+    }
+    boolean anyStringNull = false;
+    boolean allStringsNull = true;
+    final int arrayLen = css.length;
+    int shortestStrLen = Integer.MAX_VALUE;
+    int longestStrLen = 0;
+    // the bottom loop.
+    for (final CharSequence cs : css) {
+        if (cs == null) {
+            anyStringNull = true;
+            shortestStrLen = 0;
+        } else {
+            allStringsNull = false;
+            shortestStrLen = Math.min(cs.length(), shortestStrLen);
+            longestStrLen = Math.max(cs.length(), longestStrLen);
+        }
+    }
+    // handle lists containing all nulls or all empty strings
+    if (allStringsNull || longestStrLen == 0 && !anyStringNull) {
+        return INDEX_NOT_FOUND;
+    }
+    // handle lists containing some nulls or some empty strings
+    if (shortestStrLen == 0) {
+        return 0;
+    }
+    // find the position with the first difference across all strings
+    int firstDiff = -1;
+    for (int stringPos = 0; stringPos < shortestStrLen; stringPos++) {
+        final char comparisonChar = css[0].charAt(stringPos);
+        for (int arrayPos = 1; arrayPos < arrayLen; arrayPos++) {
+            if (css[arrayPos].charAt(stringPos) != comparisonChar) {
+                firstDiff = stringPos;
+                break;
+            }
+        }
+        if (firstDiff != -1) {
+            break;
+        }
+    }
+    if (firstDiff == -1 && shortestStrLen != longestStrLen) {
+        // vary, so return the length of the shortest string.
+        return shortestStrLen;
+    }
+    return firstDiff;
+}
+*********************************
+
+#### Score: 69.82761
+
+
+// IndexOfAnyBut chars
+// -----------------------------------------------------------------------
+/**
+ * <p>Searches a CharSequence to find the first index of any
+ * character not in the given set of characters.</p>
+ *
+ * <p>A {@code null} CharSequence will return {@code -1}.
+ * A {@code null} or zero length mos.search array will return {@code -1}.</p>
+ *
+ * <pre>
+ * StringUtils.indexOfAnyBut(null, *)                              = -1
+ * StringUtils.indexOfAnyBut("", *)                                = -1
+ * StringUtils.indexOfAnyBut(*, null)                              = -1
+ * StringUtils.indexOfAnyBut(*, [])                                = -1
+ * StringUtils.indexOfAnyBut("zzabyycdxx", new char[] {'z', 'a'} ) = 3
+ * StringUtils.indexOfAnyBut("aba", new char[] {'z'} )             = 0
+ * StringUtils.indexOfAnyBut("aba", new char[] {'a', 'b'} )        = -1
+ *
+ * </pre>
+ *
+ * @param cs  the CharSequence to check, may be null
+ * @param searchChars  the chars to mos.search for, may be null
+ * @return the index of any of the chars, -1 if no match or null input
+ * @since 2.0
+ * @since 3.0 Changed signature from indexOfAnyBut(String, char[]) to indexOfAnyBut(CharSequence, char...)
+ */
+public static int indexOfAnyBut(final CharSequence cs, final char... searchChars) {
+    if (isEmpty(cs) || ArrayUtils.isEmpty(searchChars)) {
+        return INDEX_NOT_FOUND;
+    }
+    final int csLen = cs.length();
+    final int csLast = csLen - 1;
+    final int searchLen = searchChars.length;
+    final int searchLast = searchLen - 1;
+    outer: for (int i = 0; i < csLen; i++) {
+        final char ch = cs.charAt(i);
+        for (int j = 0; j < searchLen; j++) {
+            if (searchChars[j] == ch) {
+                if (i < csLast && j < searchLast && Character.isHighSurrogate(ch)) {
+                    if (searchChars[j + 1] == cs.charAt(i + 1)) {
+                        continue outer;
+                    }
+                } else {
+                    continue outer;
+                }
+            }
+        }
+        return i;
+    }
+    return INDEX_NOT_FOUND;
+}
+*********************************
+
+#### Score: 69.74526
+
+
+/**
+ * <p>Search a CharSequence to find the first index of any
+ * character not in the given set of characters.</p>
+ *
+ * <p>A {@code null} CharSequence will return {@code -1}.
+ * A {@code null} or empty mos.search string will return {@code -1}.</p>
+ *
+ * <pre>
+ * StringUtils.indexOfAnyBut(null, *)            = -1
+ * StringUtils.indexOfAnyBut("", *)              = -1
+ * StringUtils.indexOfAnyBut(*, null)            = -1
+ * StringUtils.indexOfAnyBut(*, "")              = -1
+ * StringUtils.indexOfAnyBut("zzabyycdxx", "za") = 3
+ * StringUtils.indexOfAnyBut("zzabyycdxx", "")   = -1
+ * StringUtils.indexOfAnyBut("aba", "ab")        = -1
+ * </pre>
+ *
+ * @param seq  the CharSequence to check, may be null
+ * @param searchChars  the chars to mos.search for, may be null
+ * @return the index of any of the chars, -1 if no match or null input
+ * @since 2.0
+ * @since 3.0 Changed signature from indexOfAnyBut(String, String) to indexOfAnyBut(CharSequence, CharSequence)
+ */
+public static int indexOfAnyBut(final CharSequence seq, final CharSequence searchChars) {
+    if (isEmpty(seq) || isEmpty(searchChars)) {
+        return INDEX_NOT_FOUND;
+    }
+    final int strLen = seq.length();
+    for (int i = 0; i < strLen; i++) {
+        final char ch = seq.charAt(i);
+        final boolean chFound = CharSequenceUtils.indexOf(searchChars, ch, 0) >= 0;
+        if (i + 1 < strLen && Character.isHighSurrogate(ch)) {
+            final char ch2 = seq.charAt(i + 1);
+            if (chFound && CharSequenceUtils.indexOf(searchChars, ch2, 0) < 0) {
+                return i;
+            }
+        } else {
+            if (!chFound) {
+                return i;
+            }
+        }
+    }
+    return INDEX_NOT_FOUND;
+}
+*********************************
+
+#### Score: 69.66028
+
+
+// IndexOfAny chars
+// -----------------------------------------------------------------------
+/**
+ * <p>Search a CharSequence to find the first index of any
+ * character in the given set of characters.</p>
+ *
+ * <p>A {@code null} String will return {@code -1}.
+ * A {@code null} or zero length mos.search array will return {@code -1}.</p>
+ *
+ * <pre>
+ * StringUtils.indexOfAny(null, *)                  = -1
+ * StringUtils.indexOfAny("", *)                    = -1
+ * StringUtils.indexOfAny(*, null)                  = -1
+ * StringUtils.indexOfAny(*, [])                    = -1
+ * StringUtils.indexOfAny("zzabyycdxx", ['z', 'a']) = 0
+ * StringUtils.indexOfAny("zzabyycdxx", ['b', 'y']) = 3
+ * StringUtils.indexOfAny("aba", ['z'])             = -1
+ * </pre>
+ *
+ * @param cs  the CharSequence to check, may be null
+ * @param searchChars  the chars to mos.search for, may be null
+ * @return the index of any of the chars, -1 if no match or null input
+ * @since 2.0
+ * @since 3.0 Changed signature from indexOfAny(String, char[]) to indexOfAny(CharSequence, char...)
+ */
+public static int indexOfAny(final CharSequence cs, final char... searchChars) {
+    if (isEmpty(cs) || ArrayUtils.isEmpty(searchChars)) {
+        return INDEX_NOT_FOUND;
+    }
+    final int csLen = cs.length();
+    final int csLast = csLen - 1;
+    final int searchLen = searchChars.length;
+    final int searchLast = searchLen - 1;
+    for (int i = 0; i < csLen; i++) {
+        final char ch = cs.charAt(i);
+        for (int j = 0; j < searchLen; j++) {
+            if (searchChars[j] == ch) {
+                if (i < csLast && j < searchLast && Character.isHighSurrogate(ch)) {
+                    // ch is a supplementary character
+                    if (searchChars[j + 1] == cs.charAt(i + 1)) {
+                        return i;
+                    }
+                } else {
+                    return i;
+                }
+            }
+        }
+    }
+    return INDEX_NOT_FOUND;
+}
+*********************************
+
+#### Score: 69.39612
+
+
+/**
+ * <p>Find the Fuzzy Distance which indicates the similarity score between two Strings.</p>
+ *
+ * <p>This string matching algorithm is similar to the algorithms of editors such as Sublime Text,
+ * TextMate, Atom and others. One point is given for every matched character. Subsequent
+ * matches yield two bonus points. A higher score indicates a higher similarity.</p>
+ *
+ * <pre>
+ * StringUtils.getFuzzyDistance(null, null, null)                                    = IllegalArgumentException
+ * StringUtils.getFuzzyDistance("", "", Locale.ENGLISH)                              = 0
+ * StringUtils.getFuzzyDistance("Workshop", "b", Locale.ENGLISH)                     = 0
+ * StringUtils.getFuzzyDistance("Room", "o", Locale.ENGLISH)                         = 1
+ * StringUtils.getFuzzyDistance("Workshop", "w", Locale.ENGLISH)                     = 1
+ * StringUtils.getFuzzyDistance("Workshop", "ws", Locale.ENGLISH)                    = 2
+ * StringUtils.getFuzzyDistance("Workshop", "wo", Locale.ENGLISH)                    = 4
+ * StringUtils.getFuzzyDistance("Apache Software Foundation", "asf", Locale.ENGLISH) = 3
+ * </pre>
+ *
+ * @param term a full term that should be matched against, must not be null
+ * @param query the query that will be matched against a term, must not be null
+ * @param locale This string matching logic is case insensitive. A locale is necessary to normalize
+ *  both Strings to lower case.
+ * @return result score
+ * @throws IllegalArgumentException if either String input {@code null} or Locale input {@code null}
+ * @since 3.4
+ * @deprecated as of 3.6, use commons-text
+ * <a href="https://commons.apache.org/proper/commons-text/javadocs/api-release/org/apache/commons/text/similarity/FuzzyScore.html">
+ * FuzzyScore</a> instead
+ */
+@Deprecated
+public static int getFuzzyDistance(final CharSequence term, final CharSequence query, final Locale locale) {
+    if (term == null || query == null) {
+        throw new IllegalArgumentException("Strings must not be null");
+    } else if (locale == null) {
+        throw new IllegalArgumentException("Locale must not be null");
+    }
+    // fuzzy logic is case insensitive. We normalize the Strings to lower
+    // case right from the start. Turning characters to lower case
+    // via Character.toLowerCase(char) is unfortunately insufficient
+    // as it does not accept a locale.
+    final String termLowerCase = term.toString().toLowerCase(locale);
+    final String queryLowerCase = query.toString().toLowerCase(locale);
+    // the resulting score
+    int score = 0;
+    // the position in the term which will be scanned next for potential
+    // query character matches
+    int termIndex = 0;
+    // index of the previously matched character in the term
+    int previousMatchingCharacterIndex = Integer.MIN_VALUE;
+    for (int queryIndex = 0; queryIndex < queryLowerCase.length(); queryIndex++) {
+        final char queryChar = queryLowerCase.charAt(queryIndex);
+        boolean termCharacterMatchFound = false;
+        for (; termIndex < termLowerCase.length() && !termCharacterMatchFound; termIndex++) {
+            final char termChar = termLowerCase.charAt(termIndex);
+            if (queryChar == termChar) {
+                // simple character matches result in one point
+                score++;
+                // the score.
+                if (previousMatchingCharacterIndex + 1 == termIndex) {
+                    score += 2;
+                }
+                previousMatchingCharacterIndex = termIndex;
+                // we can leave the nested loop. Every character in the
+                // query can match at most one character in the term.
+                termCharacterMatchFound = true;
+            }
+        }
+    }
+    return score;
+}

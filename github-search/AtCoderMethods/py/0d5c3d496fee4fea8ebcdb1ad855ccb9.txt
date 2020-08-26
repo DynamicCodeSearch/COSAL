@@ -1,0 +1,17 @@
+def main():
+    n, m, t = map(int, input().split())
+    th =[int(i) for i in input().split()]
+    graph = [[] for _ in range(n)]
+    reverse_graph = [[] for _ in range(n)]
+
+    for i in range(m):
+        a, b, c = map(int, input().split())
+        a -= 1
+        b -= 1
+        graph[a].append((b, c))
+        reverse_graph[b].append((a, c))
+
+    graph = tuple(tuple(edge) for edge in graph)
+    reverse_graph = tuple(tuple(edge) for edge in reverse_graph)
+
+    print(treasure_hant(n, m, t, th, graph, reverse_graph))

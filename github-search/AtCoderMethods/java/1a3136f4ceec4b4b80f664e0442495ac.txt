@@ -1,0 +1,10 @@
+public static void main(String[] __) {
+    int n = s.nextInt(), m = s.nextInt();
+    Point[] students = new Point[n];
+    for (int i = 0; i < n; i++) students[i] = new Point(s.nextInt(), s.nextInt());
+    CheckPoint[] checkPoints = new CheckPoint[m];
+    for (int i = 0; i < m; i++) checkPoints[i] = new CheckPoint(i + 1, s.nextInt(), s.nextInt());
+    for (Point st : students) {
+        System.out.println(Arrays.stream(checkPoints).min(((a, b) -> Math.abs(st.x - a.p.x) + Math.abs(st.y - a.p.y) - (Math.abs(st.x - b.p.x) + Math.abs(st.y - b.p.y)))).get().id);
+    }
+}

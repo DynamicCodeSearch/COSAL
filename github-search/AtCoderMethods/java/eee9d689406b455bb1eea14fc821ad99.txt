@@ -1,0 +1,57 @@
+void solve() {
+    Scanner scan = new Scanner(System.in);
+    N = scan.nextInt();
+    M = scan.nextInt();
+    T = scan.nextInt();
+    A = new int[N];
+    Node[] goNode = new Node[N];
+    Node[] comeNode = new Node[N];
+    for (int i = 0; i < N; i++) {
+        A[i] = scan.nextInt();
+        goNode[i] = new Node(i, Integer.MAX_VALUE);
+        comeNode[i] = new Node(i, Integer.MAX_VALUE);
+    }
+    for (int i = 0; i < M; i++) {
+        int a = scan.nextInt() - 1;
+        int b = scan.nextInt() - 1;
+        int c = scan.nextInt();
+        goNode[a].add(b, c);
+        comeNode[b].add(a, c);
+    }
+    PriorityQueue<Node> nodeGoQueue = new PriorityQueue<Node>();
+    nodeGoQueue.add(goNode[0]);
+    while (!nodeGoQueue.isEmpty()) {
+        Node src = nodeGoQueue.poll();
+        src.fixed = true;
+        for (int i = 0; i < src.next.size(); i++) {
+            Node to = goNode[src.next.get(i)];
+            if (to.fixed)
+                continue;
+            if (to.cost > src.cost + src.costs.get(i)) {
+                to.cost = src.cost + src.costs.get(i);
+                nodeGoQueue.add(to);
+            }
+        }
+    }
+    PriorityQueue<Node> nodeComeQueue = new PriorityQueue<Node>();
+    nodeComeQueue.add(comeNode[0]);
+    while (!nodeComeQueue.isEmpty()) {
+        Node src = nodeComeQueue.poll();
+        src.fixed = true;
+        for (int i = 0; i < src.next.size(); i++) {
+            Node to = comeNode[src.next.get(i)];
+            if (to.fixed)
+                continue;
+            if (to.cost > src.cost + src.costs.get(i)) {
+                to.cost = src.cost + src.costs.get(i);
+                nodeComeQueue.add(to);
+            }
+        }
+    }
+    long reward = 0;
+    for (int i = 0; i < N; i++) {
+        long time = T - goNode[i].cost - comeNode[i].cost;
+        reward = Math.max(reward, A[i] * time);
+    }
+    System.out.println(reward);
+}

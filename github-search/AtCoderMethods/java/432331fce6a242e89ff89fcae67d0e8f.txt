@@ -1,0 +1,6 @@
+private static void dfs(int from, int to, long l) {
+    dist[to] = l;
+    TreeMap<Integer, Long> m = edges.get(to);
+    m.remove(from);
+    m.forEach((k, v) -> dfs(to, k, l + v));
+}

@@ -1,0 +1,25 @@
+public void run() {
+    
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int Q = sc.nextInt();
+    boolean[] osero = new boolean[N + 1];
+    for (int i = 0; i < Q; i++) {
+        int tmp1 = sc.nextInt();
+        int tmp2 = sc.nextInt();
+        osero[tmp1 - 1] = !osero[tmp1 - 1];
+        osero[tmp2] = !osero[tmp2];
+    }
+    StringBuilder sb = new StringBuilder();
+    boolean rev = false;
+    for (int i = 0; i < N; i++) {
+        if (osero[i])
+            rev = !rev;
+        if (rev)
+            sb.append(1);
+        else
+            sb.append(0);
+    }
+    System.out.println(sb.toString());
+    sc.close();
+}

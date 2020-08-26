@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String box;
+    String[] input = new String[16];
+    int i = 0;
+    while (i <= 15) {
+        box = sc.next();
+        if (box.equals(".") || box.equals("o") || box.equals("x")) {
+            input[i] = box;
+            ++i;
+        }
+    }
+    for (int k = 15; k >= 0; --k) {
+        System.out.print(input[k]);
+        if (k % 4 == 0) {
+            System.out.println();
+        } else {
+            System.out.print(" ");
+        }
+    }
+}

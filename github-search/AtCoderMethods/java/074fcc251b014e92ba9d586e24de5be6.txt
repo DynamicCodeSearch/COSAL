@@ -1,0 +1,14 @@
+private static void solve() {
+    int n = nei();
+    long k = nel();
+    long[] as = new long[n];
+    for (int i = 0; i < n; i++) {
+        as[i] = nel() - k;
+    }
+    long[] sum = new long[n + 1];
+    sum[0] = 0;
+    for (int i = 1; i < n + 1; i++) {
+        sum[i] = sum[i - 1] + as[i - 1];
+    }
+    out((long) n * (n + 1) / 2 - invNum(sum, 0, n));
+}

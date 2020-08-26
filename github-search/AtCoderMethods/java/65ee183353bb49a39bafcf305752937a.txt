@@ -1,0 +1,29 @@
+
+boolean DFS(int v) {
+    if (v == N) {
+        
+        return true;
+    }
+    
+    passed[v] = true;
+    for (int i = 0; i < Ge[v].size(); i++) {
+        Edge e = Ge[v].get(i);
+        Edge e_ = Ge[v].get(i);
+        for (int j = 0; j < Ge[e.to].size(); j++) {
+            if (Ge[e.to].get(j).to == v) {
+                e_ = Ge[e.to].get(j);
+            }
+        }
+        if (!passed[e.to]) {
+            
+            if (e.used - e_.used < 1) {
+                
+                if (DFS(e.to)) {
+                    e.used = 1;
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}

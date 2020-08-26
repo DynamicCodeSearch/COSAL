@@ -1,0 +1,18 @@
+public void solve() {
+    N = nextInt();
+    M = nextInt();
+    comp = new int[N][N];
+    for (int i = 0; i < M; i++) {
+        int x = nextInt() - 1;
+        int y = nextInt() - 1;
+        comp[x][y] = -1;
+        comp[y][x] = 1;
+    }
+    int mask = 1;
+    for (int i = 1; i < N; i++) {
+        mask = (mask << 1) + 1;
+    }
+    memo = new long[mask + 1];
+    Arrays.fill(memo, -1);
+    out.println(recur(mask));
+}

@@ -1,0 +1,26 @@
+public long getShortestPath(int i, int j) {
+    if (i != s) {
+        s = i;
+        Arrays.fill(d, INF);
+        d[i] = 0;
+        pq = new PriorityQueue<Vertex>();
+        pq.add(new Vertex(i, d[i]));
+        while (!pq.isEmpty()) {
+            Vertex u = pq.poll();
+            if (d[u.me] < u.cost) {
+                
+                continue;
+            }
+            for (int ii = 0; ii < edges[u.me].size(); ii++) {
+                Edge e = edges[u.me].get(ii);
+                if (d[e.from] != INF && e.cost + d[e.from] < d[e.to]) {
+                    d[e.to] = e.cost + d[e.from];
+                    pq.add(new Vertex(e.to, d[e.to]));
+                } else {
+                }
+            }
+        }
+        s = i;
+    }
+    return d[j];
+}

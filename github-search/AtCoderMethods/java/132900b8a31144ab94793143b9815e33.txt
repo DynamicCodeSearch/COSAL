@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    final int H = sc.nextInt();
+    final int W = sc.nextInt();
+    int[][] f = new int[H + 2][W + 2];
+    for (int y = 1; y <= H; y++) {
+        String s = sc.next();
+        for (int x = 1; x <= W; x++) {
+            f[y][x] = s.charAt(x - 1) == '.' ? 0 : 1;
+        }
+    }
+    sc.close();
+    for (int y = 1; y <= H; y++) {
+        for (int x = 1; x <= W; x++) {
+            if (f[y][x] == 1) {
+                System.out.print('#');
+            } else {
+                int ans = 0;
+                ans += f[y - 1][x - 1];
+                ans += f[y - 1][x];
+                ans += f[y - 1][x + 1];
+                ans += f[y][x - 1];
+                ans += f[y][x + 1];
+                ans += f[y + 1][x - 1];
+                ans += f[y + 1][x];
+                ans += f[y + 1][x + 1];
+                System.out.print(ans);
+            }
+        }
+        System.out.println();
+    }
+}

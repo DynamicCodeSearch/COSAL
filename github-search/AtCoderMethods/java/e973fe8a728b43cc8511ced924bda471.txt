@@ -1,0 +1,47 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    double xs = sc.nextDouble();
+    double ys = sc.nextDouble();
+    double xt = sc.nextDouble();
+    double yt = sc.nextDouble();
+    int N = sc.nextInt();
+    double[] x = new double[N];
+    double[] y = new double[N];
+    double[] r = new double[N];
+    for (int i = 0; i < N; ++i) {
+        x[i] = sc.nextDouble();
+        y[i] = sc.nextDouble();
+        r[i] = sc.nextDouble();
+    }
+    double[][] d = new double[N + 2][N + 2];
+    d[N][N + 1] = d[N + 1][N] = pointToPointDistance(xs, ys, xt, yt);
+    for (int i = 0; i < N; ++i) {
+        for (int j = 0; j < N; ++j) {
+            if (i == j)
+                continue;
+            d[i][j] = circleToCircleDistance(x[i], y[i], r[i], x[j], y[j], r[j]);
+        }
+    }
+    for (int i = 0; i < N; ++i) {
+        d[N][i] = d[i][N] = circleToPointDistance(x[i], y[i], r[i], xs, ys);
+        d[N + 1][i] = d[i][N + 1] = circleToPointDistance(x[i], y[i], r[i], xt, yt);
+    }
+    double[] distFromS = new double[N + 2];
+    Arrays.fill(distFromS, Double.MAX_VALUE);
+    distFromS[N] = 0;
+    PriorityQueue<State> que = new PriorityQueue<>();
+    que.add(new State(0, N));
+    while (!que.isEmpty()) {
+        State s = que.poll();
+        if (s.d > distFromS[s.id])
+            continue;
+        for (int i = 0; i < N + 2; ++i) {
+            double nd = s.d + d[s.id][i];
+            if (distFromS[i] > nd) {
+                distFromS[i] = nd;
+                que.add(new State(nd, i));
+            }
+        }
+    }
+    System.out.println(distFromS[N + 1]);
+}

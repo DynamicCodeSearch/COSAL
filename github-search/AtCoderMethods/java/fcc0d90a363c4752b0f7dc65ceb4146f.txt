@@ -1,0 +1,11 @@
+private static void solve(FastScanner cin, PrintWriter cout) {
+    assert solve(4, 6, new int[][] { { 2, 1 }, { 3, 4 }, { 4, 10 }, { 3, 4 } }) == 11;
+    assert solve(4, 10, new int[][] { { 1, 100 }, { 1, 100 }, { 1, 100 }, { 1, 100 } }) == 400;
+    assert solve(4, 1, new int[][] { { 10, 100 }, { 10, 100 }, { 10, 100 }, { 10, 100 } }) == 0;
+    int N = cin.nextInt();
+    int W = cin.nextInt();
+    int[][] wv = new int[N][];
+    for (int i = 0; i < N; i++) wv[i] = new int[] { cin.nextInt(), cin.nextInt() };
+    long ans = solve(N, W, wv);
+    cout.println(ans);
+}

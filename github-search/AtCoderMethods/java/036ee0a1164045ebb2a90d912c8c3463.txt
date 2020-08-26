@@ -1,0 +1,28 @@
+private static boolean isOK(char[] c) {
+    int n = c.length;
+    int tail = n - 1;
+    while (tail >= 0) {
+        if (c[tail] == 'm') {
+            if (!match(c, tail, "dream")) {
+                return false;
+            }
+            tail -= 5;
+        } else if (c[tail] == 'e') {
+            if (!match(c, tail, "erase")) {
+                return false;
+            }
+            tail -= 5;
+        } else if (c[tail] == 'r') {
+            if (match(c, tail, "dreamer")) {
+                tail -= 7;
+            } else if (match(c, tail, "eraser")) {
+                tail -= 6;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    return tail == -1;
+}

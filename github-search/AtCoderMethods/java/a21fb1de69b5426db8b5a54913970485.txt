@@ -1,0 +1,19 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    int n = in.nextInt();
+    int[] a = new int[n];
+    long sum = 0;
+    for (int i = 0; i < n; i++) {
+        a[i] = in.nextInt();
+        sum += a[i];
+    }
+    Arrays.sort(a);
+    int i = 0;
+    while (sum % 10 == 0 && i < n) {
+        if (a[i] % 10 != 0)
+            sum -= a[i];
+        i++;
+    }
+    if (sum % 10 == 0)
+        sum = -1;
+    out.printLine(sum < 0 ? 0 : sum);
+}

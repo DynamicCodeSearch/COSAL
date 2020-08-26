@@ -1,0 +1,38 @@
+public static void main(String[] args) {
+    final int n;
+    final int m;
+    final long t;
+    
+    Town[] towns;
+    try (Scanner scan = new Scanner(System.in)) {
+        n = scan.nextInt();
+        m = scan.nextInt();
+        t = scan.nextLong();
+        towns = new Town[n];
+        for (int i = 0; i < n; i++) {
+            towns[i] = new Town(i, scan.nextInt());
+        }
+        for (int i = 0; i < m; i++) {
+            
+            int a = scan.nextInt() - 1;
+            int b = scan.nextInt() - 1;
+            int c = scan.nextInt();
+            towns[a].setWay(b, c);
+            towns[b].setWayReverse(a, c);
+        }
+    }
+    
+    
+    long[] times = search(0, towns, Town::getWays);
+    long[] timesReverse = search(0, towns, Town::getWaysReverse);
+    
+    long result = t * towns[0].money;
+    for (int i = 1; i < n; i++) {
+        
+        if (times[i] != Long.MAX_VALUE && timesReverse[i] != Long.MAX_VALUE) {
+            
+            result = Math.max(result, (t - times[i] - timesReverse[i]) * towns[i].money);
+        }
+    }
+    System.out.println(result);
+}

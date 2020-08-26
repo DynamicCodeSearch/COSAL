@@ -1,0 +1,18 @@
+public String find(String string) {
+    Stack<Character> stack = new Stack<>();
+    char[] chars = string.toCharArray();
+    for (char c : chars) {
+        if (c == BACKSPACE) {
+            if (!stack.isEmpty()) {
+                stack.pop();
+            }
+        } else {
+            stack.push(c);
+        }
+    }
+    StringBuilder builder = new StringBuilder();
+    while (!stack.isEmpty()) {
+        builder.append(stack.pop());
+    }
+    return builder.reverse().toString();
+}

@@ -1,0 +1,50 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    int N, K, L;
+    N = sc.nextInt();
+    K = sc.nextInt();
+    L = sc.nextInt();
+    UnionFind rail = new UnionFind(N);
+    UnionFind road = new UnionFind(N);
+    for (int i = 0; i < K; i++) {
+        int x = sc.nextInt();
+        int y = sc.nextInt();
+        rail.union(x - 1, y - 1);
+    }
+    for (int i = 0; i < L; i++) {
+        int x = sc.nextInt();
+        int y = sc.nextInt();
+        road.union(x - 1, y - 1);
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    TreeMap<Long, Integer> map = new TreeMap<>();
+    for (int i = 0; i < N; i++) {
+        long key = (long) road.find(i) * N + rail.find(i);
+        Integer cnt = map.get(key);
+        if (cnt != null) {
+            map.put(key, cnt + 1);
+        } else {
+            map.put(key, 1);
+        }
+    }
+    for (int i = 0; i < N; i++) {
+        long key = (long) road.find(i) * N + rail.find(i);
+        if (i != N - 1)
+            System.out.print(map.get(key) + " ");
+        else
+            System.out.println(map.get(key));
+    }
+    sc.close();
+}

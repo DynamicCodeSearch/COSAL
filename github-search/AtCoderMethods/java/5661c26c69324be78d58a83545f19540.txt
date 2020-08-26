@@ -1,0 +1,6 @@
+static void update(int pos, int val, int[] bit) {
+    while (pos < bit.length) {
+        bit[pos] += val;
+        pos += (pos & -pos);
+    }
+}

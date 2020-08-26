@@ -1,0 +1,17 @@
+void changeSize(int sz_) {
+    LinkedList<Pair>[] tmp = new LinkedList[sz];
+    for (int i = 0; i < tmp.length; ++i) {
+        tmp[i] = new LinkedList<>();
+        tmp[i].addAll(list[i]);
+    }
+    sz = sz_;
+    list = new LinkedList[sz];
+    for (int i = 0; i < list.length; ++i) {
+        list[i] = new LinkedList<>();
+    }
+    for (int i = 0; i < tmp.length; ++i) {
+        for (Pair p : tmp[i]) {
+            put(p.key, p.value);
+        }
+    }
+}

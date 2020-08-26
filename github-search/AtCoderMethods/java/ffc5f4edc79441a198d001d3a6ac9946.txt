@@ -1,0 +1,28 @@
+public void solve(int testNumber, FastReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int m = in.nextInt();
+    int r = in.nextInt();
+    int[] rr = in.nextIntArray(r);
+    MiscUtils.decreaseByOne(rr);
+    TaskD.FloydWarshall fw = new TaskD.FloydWarshall(n);
+    for (int i = 0; i < m; i++) {
+        int s = in.nextInt() - 1;
+        int t = in.nextInt() - 1;
+        int d = in.nextInt();
+        fw.addEdge(s, t, d);
+        fw.addEdge(t, s, d);
+    }
+    Permutation np = new Permutation(r);
+    long min = Long.MAX_VALUE;
+    for (List<Integer> perm : np) {
+        if (perm == null) {
+            break;
+        }
+        long dist = 0;
+        for (int i = 0, size = perm.size(); i < size - 1; i++) {
+            dist += fw.getShortestPath(rr[perm.get(i)], rr[perm.get(i + 1)]);
+        }
+        min = Math.min(min, dist);
+    }
+    out.println(min);
+}

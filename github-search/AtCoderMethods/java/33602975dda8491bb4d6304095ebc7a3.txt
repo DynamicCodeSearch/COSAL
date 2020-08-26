@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int questionCount = sc.nextInt();
+    sc.nextLine();
+    int[] questions = new int[questionCount];
+    for (int i = 0; i < questionCount; i++) {
+        questions[i] = sc.nextInt();
+    }
+    sc.nextLine();
+    int drinkCount = sc.nextInt();
+    for (int i = 0; i < drinkCount; i++) {
+        int n = sc.nextInt() - 1;
+        int s = sc.nextInt();
+        int[] qs = questions.clone();
+        qs[n] = s;
+        int total = 0;
+        for (int sec : qs) {
+            total += sec;
+        }
+        System.out.println(total);
+        sc.nextLine();
+    }
+}

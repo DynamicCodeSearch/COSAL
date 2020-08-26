@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner io = new Scanner(System.in);
+    int N = io.nextInt();
+    int[] ar = new int[N];
+    for (int i = 0; i < N; i++) {
+        ar[i] = io.nextInt();
+    }
+    int[] cost = new int[N];
+    cost[0] = 0;
+    cost[1] = Math.abs(ar[1] - ar[0]);
+    for (int i = 2; i < N; i++) {
+        cost[i] = Math.min(cost[i - 1] + Math.abs(ar[i] - ar[i - 1]), cost[i - 2] + Math.abs(ar[i] - ar[i - 2]));
+    }
+    System.out.println(cost[N - 1]);
+}

@@ -1,0 +1,37 @@
+public void solve(int testNumber, FastReader fs, PrintWriter pw) {
+    int sx = fs.nextInt(), sy = fs.nextInt(), tx = fs.nextInt(), ty = fs.nextInt();
+    StringBuilder ans = new StringBuilder();
+    int px = sx, py = sy;
+    while (py++ < ty) {
+        ans.append("U");
+    }
+    while (px++ < tx) {
+        ans.append("R");
+    }
+    while (py-- > sy + 1) {
+        ans.append("D");
+    }
+    while (px-- > sx + 1) {
+        ans.append("L");
+    }
+    px--;
+    ans.append("L");
+    while (py++ < ty + 1) {
+        ans.append("U");
+    }
+    while (px++ < tx) {
+        ans.append("R");
+    }
+    py--;
+    ans.append("D");
+    px++;
+    ans.append("R");
+    while (py-- > sy) {
+        ans.append("D");
+    }
+    while (px-- > sx + 1) {
+        ans.append("L");
+    }
+    ans.append("U");
+    pw.println(ans.toString().trim());
+}

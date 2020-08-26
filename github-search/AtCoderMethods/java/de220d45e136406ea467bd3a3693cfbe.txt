@@ -1,0 +1,76 @@
+static void solve() {
+    int n = ni();
+    int[] a = na(n);
+    int[] b = na(n);
+    for (int i = 0; i < n; i++) a[i]--;
+    for (int i = 0; i < n; i++) b[i]--;
+    LS[] pre = new LS[n];
+    
+    LS[] cur = new LS[n];
+    {
+        pre[0] = new LS();
+        pre[0].add(new State(new int[] { 0 }, 1L));
+    }
+    int mod = 1000000007;
+    
+    long[] temp = new long[10];
+    for (int i = 0; i < 2 * n - 2; i++) {
+        Arrays.fill(cur, null);
+        for (int j = 0; j < n; j++) {
+            
+            if (pre[j] == null)
+                continue;
+            for (State s : pre[j]) {
+                int p = 0;
+                for (int r : s.set) {
+                    int c = i - r;
+                    if (r < n - 1)
+                        temp[p++] = (long) b[c] << 32 | r + 1;
+                    if (c < n - 1)
+                        temp[p++] = (long) a[r] << 32 | r;
+                }
+                Arrays.sort(temp, 0, p);
+                for (int k = 0; k < p; ) {
+                    int l = k;
+                    while (l < p && temp[k] >>> 32 == temp[l] >>> 32) l++;
+                    int[] lset = new int[l - k];
+                    
+                    int q = 0;
+                    for (int u = k; u < l; u++) {
+                        if (u > k && temp[u] == temp[u - 1])
+                            continue;
+                        lset[q++] = (int) temp[u];
+                    }
+                    lset = Arrays.copyOf(lset, q);
+                    int nj = (int) (temp[k] >>> 32);
+                    if (cur[nj] == null)
+                        cur[nj] = new LS();
+                    boolean found = false;
+                    for (State ts : cur[nj]) {
+                        if (Arrays.equals(ts.set, lset)) {
+                            ts.v += s.v;
+                            if (ts.v >= mod)
+                                ts.v -= mod;
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found) {
+                        cur[nj].add(new State(lset, s.v));
+                    }
+                    k = l;
+                }
+            }
+        }
+        LS[] dum = pre;
+        pre = cur;
+        cur = dum;
+    }
+    long ret = 0;
+    for (LS ls : pre) {
+        if (ls != null) {
+            for (State s : ls) ret += s.v;
+        }
+    }
+    out.println(ret % mod);
+}

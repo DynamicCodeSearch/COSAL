@@ -1,0 +1,30 @@
+def main() :
+    n, m ,r = input_list()
+    road = input_list()
+    road = [x-1 for x in road]
+    d = [[float('inf')] * n for i in range(n)]
+    for i in range(n) :
+        d[i][i] = 0
+    for i in range(m) :
+        a, b, c = input_list()
+        a -= 1
+        b -= 1
+        d[a][b] = c
+        d[b][a] = c
+
+    for k in range(n) :
+        for i in range(n) :
+            for j in range(n) :
+                dist = d[i][k]+d[k][j]
+                if d[i][j] > dist :
+                    d[i][j] = dist
+
+    ans = float('inf')
+    for p in permutations(road) :
+        dist = 0
+        for i in range(r-1) :
+            dist += d[p[i]][p[i+1]]
+        if ans > dist :
+            ans = dist
+
+    print(ans)

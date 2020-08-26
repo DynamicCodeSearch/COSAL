@@ -1,0 +1,54 @@
+public static void Search(String[][] board, int depth) {
+    boolean flag = true;
+    int[][] dp = new int[8][8];
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+            dp[i][j] = 0;
+        }
+    }
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+            if (board[i][j].equals("Q")) {
+                for (int k = 0; k < 8; k++) {
+                    String check = "";
+                    dp[i][k] = 1;
+                    if (k != j)
+                        check += board[i][k];
+                    dp[k][j] = 1;
+                    if (k != i)
+                        check += board[k][j];
+                    if (i + j - k < 8 && i + j - k >= 0) {
+                        dp[k][i + j - k] = 1;
+                        if (k != i)
+                            check += board[k][i + j - k];
+                    }
+                    if (i - j + k < 8 && i - j + k >= 0) {
+                        dp[i - j + k][k] = 1;
+                        if (k != j)
+                            check += board[i - j + k][k];
+                    }
+                    if (check.contains("Q"))
+                        flag = false;
+                }
+            }
+        }
+    }
+    if (depth == 6) {
+        for (String[] states : board) {
+            for (String state : states) System.out.print(state);
+            System.out.println();
+        }
+        found = true;
+    }
+    if (flag && depth < 6) {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (dp[i][j] == 0 && !found) {
+                    board[i][j] = "Q";
+                    Search(board, depth + 1);
+                    board[i][j] = ".";
+                }
+            }
+        }
+    }
+}

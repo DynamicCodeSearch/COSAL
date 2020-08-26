@@ -1,0 +1,18 @@
+public static int queue(int A, int B) {
+    Queue<Integer> q = new LinkedList<Integer>();
+    HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+    q.add(A);
+    map.put(A, 0);
+    int[] v = { -10, -5, -1, 1, 5, 10 };
+    while (!q.isEmpty() && !map.containsKey(B)) {
+        int now = q.poll();
+        for (int i = 0; i < v.length; ++i) {
+            int degree = now + v[i];
+            if (!map.containsKey(degree)) {
+                q.add(degree);
+                map.put(degree, map.get(now) + 1);
+            }
+        }
+    }
+    return map.get(B);
+}

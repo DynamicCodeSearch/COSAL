@@ -1,0 +1,14 @@
+public void solve() {
+    String S = next();
+    boolean[] abcd = new boolean[S.length() + 2];
+    for (int i = 0; i < 4; i++) {
+        abcd[nextInt()] = true;
+    }
+    for (int i = 0; i < S.length() + 1; i++) {
+        if (abcd[i])
+            out.print("\"");
+        if (i < S.length())
+            out.print(S.charAt(i));
+    }
+    out.println();
+}

@@ -1,0 +1,45 @@
+
+private static void LMSsort(BaseArray T, int[] SA, BaseArray C, BaseArray B, int n, int k) {
+    int b, i, j;
+    int c0, c1;
+    
+    if (C == B) {
+        getCounts(T, C, n, k);
+    }
+    getBuckets(C, B, k, false);
+    
+    j = n - 1;
+    b = B.get(c1 = T.get(j));
+    --j;
+    SA[b++] = (T.get(j) < c1) ? ~j : j;
+    for (i = 0; i < n; ++i) {
+        if (0 < (j = SA[i])) {
+            if ((c0 = T.get(j)) != c1) {
+                B.set(c1, b);
+                b = B.get(c1 = c0);
+            }
+            --j;
+            SA[b++] = (T.get(j) < c1) ? ~j : j;
+            SA[i] = 0;
+        } else if (j < 0) {
+            SA[i] = ~j;
+        }
+    }
+    
+    if (C == B) {
+        getCounts(T, C, n, k);
+    }
+    getBuckets(C, B, k, true);
+    
+    for (i = n - 1, b = B.get(c1 = 0); 0 <= i; --i) {
+        if (0 < (j = SA[i])) {
+            if ((c0 = T.get(j)) != c1) {
+                B.set(c1, b);
+                b = B.get(c1 = c0);
+            }
+            --j;
+            SA[--b] = (T.get(j) > c1) ? ~(j + 1) : j;
+            SA[i] = 0;
+        }
+    }
+}

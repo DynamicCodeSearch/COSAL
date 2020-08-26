@@ -1,0 +1,13 @@
+void dfs(int now, int prev) {
+    dp[now][0] = 1;
+    dp[now][1] = 1;
+    for (int e : l[now]) {
+        if (e == prev)
+            continue;
+        dfs(e, now);
+        dp[now][0] *= (dp[e][0] + dp[e][1]);
+        dp[now][1] *= dp[e][0];
+        dp[now][0] %= MOD;
+        dp[now][1] %= MOD;
+    }
+}

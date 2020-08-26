@@ -1,0 +1,18 @@
+static void Method(ArrayList<Integer> num, ArrayList<String> param) {
+    int turn = 0;
+    char target = 'a';
+    while (true) {
+        if (param.get(turn).length() == 0)
+            break;
+        target = param.get(turn).charAt(0);
+        param.set(turn, param.get(turn).substring(1));
+        if (target == 'a') {
+            turn = 0;
+        } else if (target == 'b') {
+            turn = 1;
+        } else if (target == 'c') {
+            turn = 2;
+        }
+    }
+    System.out.println(Character.toUpperCase(target));
+}

@@ -1,0 +1,22 @@
+public void solve() {
+    int N = in.nextInt(), M = in.nextInt();
+    String[] s = new String[N];
+    for (int i = 0; i < N; i++) {
+        s[i] = in.next();
+    }
+    String[] t = new String[M];
+    for (int i = 0; i < M; i++) {
+        t[i] = in.next();
+    }
+    for (int i = 0; i <= N - M; i++) for (int j = 0; j <= N - M; j++) {
+        boolean ok = true;
+        for (int y = 0; y < M; y++) for (int x = 0; x < M; x++) {
+            ok &= t[y].charAt(x) == s[i + y].charAt(j + x);
+        }
+        if (ok) {
+            System.out.println("Yes");
+            return;
+        }
+    }
+    System.out.println("No");
+}

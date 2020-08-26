@@ -1,0 +1,13 @@
+public static int[][] sparseNext(int[] f) {
+    int n = f.length;
+    
+    final int m = 18;
+    int[][] sf = new int[m][n];
+    sf[0] = Arrays.copyOf(f, n);
+    for (int i = 1; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            sf[i][j] = sf[i - 1][j] == -1 ? -1 : sf[i - 1][sf[i - 1][j]];
+        }
+    }
+    return sf;
+}

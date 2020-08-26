@@ -1,0 +1,13 @@
+def pattern(li, el, space, acc, xs):
+  if len(li) != 1:
+    acc.append(el)
+    acc.append(space)
+    al = li.pop(0)
+    pattern(list(li), al, '+', list(acc), xs)
+    pattern(list(li), al, '', list(acc), xs)
+  else:
+    acc.append(el)
+    acc.append(space)
+    al = li.pop(0)
+    acc.append(al)
+    xs.append(ast.literal_eval(''.join(acc)))

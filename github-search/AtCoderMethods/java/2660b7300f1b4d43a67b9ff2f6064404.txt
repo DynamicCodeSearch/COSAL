@@ -1,0 +1,22 @@
+private void solve(Scanner sc, PrintWriter out) {
+    StringBuilder sA = new StringBuilder(sc.nextLine());
+    StringBuilder sB = new StringBuilder(sc.nextLine());
+    StringBuilder sC = new StringBuilder(sc.nextLine());
+    Map<Character, StringBuilder> map = new HashMap<>();
+    map.put('a', sA);
+    map.put('b', sB);
+    map.put('c', sC);
+    char ch = 'a';
+    while (true) {
+        StringBuilder sb = map.get(ch);
+        if (sb == null) {
+            throw new RuntimeException(ch + ": Invalid input");
+        }
+        if (sb.length() == 0) {
+            break;
+        }
+        ch = sb.charAt(0);
+        sb.deleteCharAt(0);
+    }
+    out.println(Character.toUpperCase(ch));
+}

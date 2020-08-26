@@ -1,0 +1,18 @@
+public int firstle(int l, int v) {
+    int cur = H + l;
+    while (true) {
+        if (st[cur] <= v) {
+            if (cur < H) {
+                cur = 2 * cur;
+            } else {
+                return cur - H;
+            }
+        } else {
+            cur++;
+            if ((cur & cur - 1) == 0)
+                return -1;
+            if ((cur & 1) == 0)
+                cur >>>= 1;
+        }
+    }
+}

@@ -1,0 +1,12 @@
+def solve(nexts):
+    pushed = {0}
+    now_on = 0
+    count = 0
+    while True:
+        now_on = nexts[now_on]
+        count += 1
+        if now_on in pushed:
+            return -1
+        if now_on == 1:
+            return count
+        pushed.add(now_on)

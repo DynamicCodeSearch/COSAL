@@ -1,0 +1,40 @@
+public static void main(String[] args) throws java.lang.Exception {
+    Scanner in = new Scanner(System.in);
+    int n = in.nextInt();
+    int m = in.nextInt();
+    int x = in.nextInt();
+    int y = in.nextInt();
+    int[] a = new int[n];
+    int[] b = new int[m];
+    for (int i = 0; i < n; i++) {
+        a[i] = in.nextInt();
+    }
+    for (int i = 0; i < m; i++) {
+        b[i] = in.nextInt();
+    }
+    int aIndex = 0;
+    int bIndex = 0;
+    int t = 0;
+    int answer = 0;
+    while (aIndex < n) {
+        
+        while (aIndex < n && a[aIndex] < t) {
+            aIndex++;
+        }
+        if (aIndex == n) {
+            break;
+        }
+        
+        t = a[aIndex] + x;
+        while (bIndex < m && b[bIndex] < t) {
+            bIndex++;
+        }
+        if (bIndex == m) {
+            break;
+        }
+        
+        t = b[bIndex] + y;
+        answer++;
+    }
+    System.out.println(answer);
+}

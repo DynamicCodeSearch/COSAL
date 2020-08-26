@@ -1,0 +1,25 @@
+private int dfs(int pos, int deep) {
+    if (pos == n - 1) {
+        dis = deep - 1;
+        for (int i = 0; i < n; i++) {
+            if (ind[i] == (deep / 2) + 1) {
+                end = i;
+                break;
+            }
+        }
+        return 0;
+    }
+    ArrayList<Integer> now = data.get(pos);
+    int res = 0;
+    for (int i = 0; i < now.size(); i++) {
+        int next = now.get(i);
+        if (used[next])
+            continue;
+        used[next] = true;
+        ind[next] = deep + 1;
+        res += dfs(next, deep + 1);
+        ind[next] = -1;
+        used[next] = false;
+    }
+    return res + 1;
+}

@@ -1,0 +1,19 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    StringBuilder sb = new StringBuilder();
+    String[] str = br.readLine().split(" ");
+    int l = Integer.parseInt(str[0]);
+    int x = Integer.parseInt(str[1]);
+    int y = Integer.parseInt(str[2]);
+    int s = Integer.parseInt(str[3]);
+    int d = Integer.parseInt(str[4]);
+    int dist = s < d ? d - s : l - s + d;
+    double calc1 = 1.0 * dist / (x + y);
+    double calc2 = y - x > 0 ? 1.0 * (l - dist) / (y - x) : Integer.MAX_VALUE;
+    if (calc1 < calc2) {
+        sb.append(calc1);
+    } else {
+        sb.append(calc2);
+    }
+    System.out.println(sb);
+}

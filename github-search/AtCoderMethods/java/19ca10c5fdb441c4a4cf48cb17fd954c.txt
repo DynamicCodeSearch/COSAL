@@ -1,0 +1,26 @@
+public void solve() {
+    A = nextInt();
+    B = nextLong();
+    K = nextInt();
+    L = nextInt();
+    long low = -1;
+    long high = (long) 1e18;
+    
+    while (high - low > 1) {
+        long mid = (high + low) / 2;
+        long a = 0, b = 0;
+        if ((double) 1 / A < (double) L / B) {
+            b = mid / B;
+            a = (mid - B * b) / A;
+        } else {
+            a = mid / A;
+            b = (mid - A * a) / B;
+        }
+        if (a + b * L >= K) {
+            high = mid;
+        } else {
+            low = mid;
+        }
+    }
+    out.println(high);
+}

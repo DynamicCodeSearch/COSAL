@@ -1,0 +1,22 @@
+public void solve(int testNumber, FastScanner in, PrintWriter out) {
+    int n = in.nextInt();
+    long u = in.nextInt();
+    long v = in.nextInt();
+    for (int i = 1; i < n; i++) {
+        int a = in.nextInt();
+        int b = in.nextInt();
+        BigInteger A = BigInteger.valueOf(a);
+        BigInteger B = BigInteger.valueOf(b);
+        BigInteger U = BigInteger.valueOf(u);
+        BigInteger V = BigInteger.valueOf(v);
+        long x = Math.max(0, A.multiply(V).add(B).subtract(BigInteger.ONE).divide(B).subtract(U).longValue());
+        
+        while ((u + x) % a != 0) {
+            ++x;
+        }
+        long y = b * ((u + x) / a) - v;
+        u += x;
+        v += y;
+    }
+    out.println(u + v);
+}

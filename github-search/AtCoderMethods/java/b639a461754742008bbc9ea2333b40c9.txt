@@ -1,0 +1,12 @@
+static long gcdExtended(long a, long b, long[] x) {
+    if (a == 0) {
+        x[0] = 0;
+        x[1] = 1;
+        return b;
+    }
+    long[] y = new long[2];
+    long gcd = gcdExtended(b % a, a, y);
+    x[0] = y[1] - (b / a) * y[0];
+    x[1] = y[0];
+    return gcd;
+}

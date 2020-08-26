@@ -1,0 +1,11 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int max = 0, res = 1;
+    for (int i = 1; i <= n; ++i) {
+        if (f(i) > max) {
+            res = i;
+            max = Math.max(max, f(i));
+        }
+    }
+    out.println(res);
+}

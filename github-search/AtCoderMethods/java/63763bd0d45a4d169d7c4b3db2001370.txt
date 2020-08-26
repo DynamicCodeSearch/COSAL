@@ -1,0 +1,10 @@
+public void solve() {
+    int n = in.nextInt();
+    long A = in.nextInt(), B = in.nextInt();
+    int[] x = in.nextIntArray(n);
+    long res = 0;
+    for (int i = 0; i < n - 1; i++) {
+        res += Math.min((x[i + 1] - x[i]) * A, B);
+    }
+    System.out.println(res);
+}

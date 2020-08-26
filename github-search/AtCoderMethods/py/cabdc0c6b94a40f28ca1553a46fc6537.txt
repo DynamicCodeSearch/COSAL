@@ -1,0 +1,13 @@
+def main():
+    S = input()
+    while True:
+        change = False
+        for x in "dreamer", "eraser", "dream", "erase":
+            if x == S[-len(x):]:
+                S = S[:-len(x)]
+                change = True
+                break
+        if not change:
+            break
+
+    print("YES" if S == "" else "NO")

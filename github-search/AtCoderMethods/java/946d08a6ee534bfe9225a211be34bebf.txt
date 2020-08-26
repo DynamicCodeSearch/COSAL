@@ -1,0 +1,21 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int m = in.nextInt();
+    List<Set<Integer>> graph = new ArrayList<>();
+    for (int i = 0; i < n; i++) {
+        graph.add(new TreeSet<>());
+    }
+    for (int i = 0; i < m; i++) {
+        int a = in.nextInt() - 1;
+        int b = in.nextInt() - 1;
+        graph.get(a).add(b);
+        graph.get(b).add(a);
+    }
+    for (int i = 1; i < n - 1; i++) {
+        if (graph.get(i).contains(0) && graph.get(i).contains(n - 1)) {
+            out.println("POSSIBLE");
+            return;
+        }
+    }
+    out.println("IMPOSSIBLE");
+}

@@ -1,0 +1,19 @@
+static void solve() {
+    int n = ni(), A = ni();
+    int[] x = na(n);
+    for (int i = 0; i < n; i++) {
+        x[i] -= A;
+    }
+    int O = 3000;
+    long[][] dp = new long[n + 1][6000];
+    dp[0][O] = 1;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < 6000; j++) {
+            dp[i + 1][j] += dp[i][j];
+            int nj = j + x[i];
+            if (nj >= 0 && nj < 6000)
+                dp[i + 1][nj] += dp[i][j];
+        }
+    }
+    out.println(dp[n][O] - 1);
+}

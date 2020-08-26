@@ -1,0 +1,12 @@
+public static void setNexttoQueue(Queue<MySet> pq, Map<Integer, Set<Integer>> _map, boolean isTate) {
+    int _pre = -1;
+    for (Map.Entry<Integer, Set<Integer>> e : _map.entrySet()) {
+        int key = e.getKey();
+        if (_pre == -1) {
+            _pre = key;
+        } else {
+            pq.add(new MySet(isTate, key, key - _pre));
+            _pre = key;
+        }
+    }
+}

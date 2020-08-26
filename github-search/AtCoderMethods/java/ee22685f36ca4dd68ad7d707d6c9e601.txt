@@ -1,0 +1,37 @@
+static void Method(ArrayList<Integer> num, ArrayList<String> param) {
+    param.set(0, param.get(0).substring(0, param.get(0).length() - 1));
+    int count = 0;
+    int maxi = 0;
+    int memo = 0;
+    int memoJ = 99999999;
+    boolean memoF = false;
+    for (int i = 0; i < param.get(0).length(); i++) {
+        for (int j = i + 1; j < param.get(0).length(); j++) {
+            
+            if (param.get(0).charAt(i) == param.get(0).charAt(j) && i < memoJ) {
+                if (!memoF) {
+                    memo = i;
+                    memoJ = j;
+                    memoF = true;
+                }
+                i++;
+                count++;
+            } else {
+                if (maxi < count && j - count == i)
+                    maxi = count;
+                count = 0;
+                if (memoF) {
+                    i = memo;
+                    j = memoJ;
+                }
+                memoF = false;
+            }
+            if (i == param.get(0).length() - 1 && memoF) {
+                i = memo;
+                j = memoJ;
+                memoF = false;
+            }
+        }
+    }
+    System.out.println(maxi * 2);
+}

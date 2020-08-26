@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    InputReader r = new InputReader(System.in);
+    int n = r.nextInt();
+    int k = r.nextInt();
+    boolean[] can = new boolean[10];
+    for (int i = 0; i < k; i++) {
+        can[r.nextInt()] = true;
+    }
+    for (int res = n; ; res++) {
+        int x = res;
+        boolean win = true;
+        while (x > 0) {
+            int dig = x % 10;
+            x /= 10;
+            if (can[dig]) {
+                win = false;
+            }
+        }
+        if (win) {
+            System.out.println(res);
+            return;
+        }
+    }
+}

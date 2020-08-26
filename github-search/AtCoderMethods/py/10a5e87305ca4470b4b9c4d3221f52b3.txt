@@ -1,0 +1,10 @@
+def search(i, score):
+    if i >= n:
+        return score
+
+    if dp[i][score] != None:
+        return dp[i][score]
+
+    d = max(search(i + 1, score), search(i + 1, score + l[i]))
+    dp[i][score] = d
+    return d

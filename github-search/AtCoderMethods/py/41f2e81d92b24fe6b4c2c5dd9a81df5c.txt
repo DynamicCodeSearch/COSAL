@@ -1,0 +1,15 @@
+def main():
+    A,B,C = map(int, input().split())
+
+    if C == 0:
+        print("YES")
+        return
+
+    D = set()
+    for b in range(1, B):
+        D.add((A*b)%B)
+
+    if C in D:
+        print("YES")
+    else:
+        print("NO")

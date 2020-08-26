@@ -1,0 +1,23 @@
+def cal(list):
+    l = len(list)
+    n = l-1
+    res = 0
+    for k in range(l):
+        if list[k] == 4 or list[k] == 9:
+            for j in range(k+1,l):
+                res += list[j] * (10**(l-1-j))
+                list[j] = 0
+                if j == l-1:
+                    res += 1
+    for i in range(l):
+        count = 0
+        if i == l-1 and list[i] == 4:
+            count = 1
+        elif 4 < list[i]:
+            count = 1
+        res += (list[i]-count)*a[n]+(10**n)*count
+
+        n -= 1
+    if list[-1] == 9:
+        res += 1
+    return res

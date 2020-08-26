@@ -1,0 +1,35 @@
+private static void solve(Scanner in) {
+    int sx = in.nextInt(), sy = in.nextInt(), tx = in.nextInt(), ty = in.nextInt();
+    int dy = ty - sy, dx = tx - sx;
+    char[] ans = new char[dy + dx + dy + dx + 1 + dy + 1 + dx + 1 + 2 + dy + 1 + dx + 1 + 1];
+    int j = 0;
+    for (int i = 0; i < dy; i++) {
+        ans[j++] = U;
+    }
+    for (int i = 0; i < dx; i++) {
+        ans[j++] = R;
+    }
+    for (int i = 0; i < dy; i++) {
+        ans[j++] = D;
+    }
+    for (int i = 0; i < dx; i++) {
+        ans[j++] = L;
+    }
+    ans[j++] = L;
+    for (int i = 0; i < dy + 1; i++) {
+        ans[j++] = U;
+    }
+    for (int i = 0; i < dx + 1; i++) {
+        ans[j++] = R;
+    }
+    ans[j++] = D;
+    ans[j++] = R;
+    for (int i = 0; i < dy + 1; i++) {
+        ans[j++] = D;
+    }
+    for (int i = 0; i < dx + 1; i++) {
+        ans[j++] = L;
+    }
+    ans[j++] = U;
+    System.out.println(new String(ans));
+}

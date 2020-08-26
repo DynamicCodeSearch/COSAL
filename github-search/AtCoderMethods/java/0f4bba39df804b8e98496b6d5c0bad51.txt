@@ -1,0 +1,11 @@
+private List<Integer>[] toGraph(IO io, int n) {
+    List<Integer>[] g = new ArrayList[n + 1];
+    for (int i = 1; i <= n; i++) g[i] = new ArrayList<>();
+    for (int i = 1; i <= n - 1; i++) {
+        int a = io.nextInt();
+        int b = io.nextInt();
+        g[a].add(b);
+        g[b].add(a);
+    }
+    return g;
+}

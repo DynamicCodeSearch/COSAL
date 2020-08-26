@@ -1,0 +1,39 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] f = new int[9];
+    for (int i = 0; i < N; i++) {
+        int temp = sc.nextInt();
+        if (temp < 400) {
+            f[0]++;
+        } else if (temp < 800) {
+            f[1]++;
+        } else if (temp < 1200) {
+            f[2]++;
+        } else if (temp < 1600) {
+            f[3]++;
+        } else if (temp < 2000) {
+            f[4]++;
+        } else if (temp < 2400) {
+            f[5]++;
+        } else if (temp < 2800) {
+            f[6]++;
+        } else if (temp < 3200) {
+            f[7]++;
+        } else {
+            f[8]++;
+        }
+    }
+    sc.close();
+    int mincolor = 0;
+    for (int i = 0; i < 8; i++) {
+        if (f[i] != 0)
+            mincolor++;
+    }
+    if (mincolor != 0) {
+        System.out.println(mincolor + " " + (mincolor + f[8]));
+    } else {
+        System.out.println((mincolor + 1) + " " + (mincolor + f[8]));
+    }
+}

@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    while (sc.hasNext()) {
+        long r = sc.nextLong();
+        long b = sc.nextLong();
+        long x = sc.nextLong();
+        long y = sc.nextLong();
+        long min = 0;
+        long max = (long) 10E19;
+        while (max - min > 1) {
+            long mid = (min + max) / 2;
+            if (r - mid < 0 || b - mid < 0)
+                max = mid;
+            else if (mid > (r - mid) / (x - 1) + (b - mid) / (y - 1))
+                max = mid;
+            else
+                min = mid;
+        }
+        System.out.println(min);
+    }
+}

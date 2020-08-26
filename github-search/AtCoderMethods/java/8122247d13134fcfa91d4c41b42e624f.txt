@@ -1,0 +1,27 @@
+public void solve(int testNumber, FastReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int m = in.nextInt();
+    List<Integer>[] g = new ArrayList[n + 1];
+    for (int i = 0; i <= n; i++) g[i] = new ArrayList<>();
+    for (int i = 0; i < m; i++) {
+        int from = in.nextInt();
+        int to = in.nextInt();
+        g[from].add(to);
+        g[to].add(from);
+    }
+    int[] dist = new int[n + 1];
+    ArrayDeque<Integer> q = new ArrayDeque<>();
+    Arrays.fill(dist, INF);
+    dist[1] = 0;
+    q.add(1);
+    while (!q.isEmpty()) {
+        int cur = q.poll();
+        for (int child : g[cur]) {
+            if (dist[child] > dist[cur] + 1) {
+                dist[child] = dist[cur] + 1;
+                q.add(child);
+            }
+        }
+    }
+    out.println(dist[n] > 2 ? "IMPOSSIBLE" : "POSSIBLE");
+}

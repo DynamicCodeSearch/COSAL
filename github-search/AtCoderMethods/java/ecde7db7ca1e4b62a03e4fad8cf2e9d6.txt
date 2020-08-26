@@ -1,0 +1,54 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    ArrayList<Pair> p = new ArrayList<>();
+    ArrayList<Pair> n = new ArrayList<>();
+    for (int i = 0; i < N; i++) {
+        long a = sc.nextLong();
+        long b = sc.nextLong();
+        if (a - b < 0) {
+            n.add(new Pair(a, b));
+        } else {
+            p.add(new Pair(a, b));
+        }
+    }
+    Pair[] nn = n.toArray(new Pair[n.size()]);
+    Pair[] pp = p.toArray(new Pair[p.size()]);
+    Arrays.sort(nn, new Comparator<Pair>() {
+
+        public int compare(Pair o1, Pair o2) {
+            if (o1.a - o2.a != 0) {
+                return (int) (o1.a - o2.a);
+            } else if (o1.b - o2.b != 0) {
+                return (int) (o1.a - o2.a);
+            } else if ((o1.a - o1.b) - (o2.a - o2.b) != 0) {
+                return (int) ((o1.a - o1.b) - (o2.a - o2.b));
+            }
+            return 0;
+        }
+    });
+    long max = 0;
+    long cur = 0;
+    for (Pair o : nn) {
+        max = Math.max(max, cur + o.a);
+        cur += o.a - o.b;
+    }
+    Arrays.sort(pp, new Comparator<Pair>() {
+
+        public int compare(Pair o1, Pair o2) {
+            if (o1.b - o2.b != 0) {
+                return -(int) (o1.b - o2.b);
+            } else if (o1.a - o2.a != 0) {
+                return -(int) (o1.a - o2.a);
+            } else if ((o1.a - o1.b) - (o2.a - o2.b) != 0) {
+                return (int) ((o1.a - o1.b) - (o2.a - o2.b));
+            }
+            return 0;
+        }
+    });
+    for (Pair o : pp) {
+        max = Math.max(max, cur + o.a);
+        cur += o.a - o.b;
+    }
+    System.out.println(max);
+}

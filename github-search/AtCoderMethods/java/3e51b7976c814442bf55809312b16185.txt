@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String str1 = sc.next();
+    String str2 = sc.next();
+    String[] compare1 = str1.split("");
+    String[] compare2 = str2.split("");
+    for (int i = 0; i < compare1.length; ++i) {
+        if (compare1[i].equals(compare2[i])) {
+            continue;
+        } else if (compare1[i].equals("@")) {
+            if (compare2[i].equals("a") || compare2[i].equals("t") || compare2[i].equals("c") || compare2[i].equals("o") || compare2[i].equals("d") || compare2[i].equals("e") || compare2[i].equals("r")) {
+                continue;
+            }
+        } else if (compare2[i].equals("@")) {
+            if (compare1[i].equals("a") || compare1[i].equals("t") || compare1[i].equals("c") || compare1[i].equals("o") || compare1[i].equals("d") || compare1[i].equals("e") || compare1[i].equals("r")) {
+                continue;
+            }
+        }
+        System.out.println("You will lose");
+        return;
+    }
+    System.out.println("You can win");
+}

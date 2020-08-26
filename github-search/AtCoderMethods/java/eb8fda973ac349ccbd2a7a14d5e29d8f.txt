@@ -1,0 +1,16 @@
+
+static void dfs(int to, int n) {
+    if (memo[to][n] != 0) {
+        return;
+    } else {
+        memo[to][n] = 1;
+    }
+    if (n == N) {
+        if (to % 10 == 0)
+            return;
+        max = Math.max(max, to);
+        return;
+    }
+    dfs(to + map[n], n + 1);
+    dfs(to, n + 1);
+}

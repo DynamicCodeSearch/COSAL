@@ -1,0 +1,9 @@
+long pow_mod(long a, long n) {
+    long r = 1;
+    for (; n > 0; n >>= 1) {
+        if (n % 2 == 1)
+            r = r * a % mod;
+        a = a * a % mod;
+    }
+    return r;
+}

@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    int Sum = 0, stock = 0, use;
+    Scanner sc = new Scanner(System.in);
+    int m = sc.nextInt();
+    int n = sc.nextInt();
+    int N = sc.nextInt();
+    Sum = N;
+    while (true) {
+        if (m > N)
+            break;
+        stock = N % m;
+        use = (N - stock) * n / m;
+        Sum += use;
+        N = use + stock;
+    }
+    System.out.println(Sum);
+}

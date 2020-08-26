@@ -1,0 +1,30 @@
+static void Method(ArrayList<Integer> num, ArrayList<String> param) {
+    int point = 0;
+    for (int i = 3; i < num.get(0) + 3; i++) {
+        if (param.get(i - 3).equals("West")) {
+            if (num.get(i) < num.get(1)) {
+                point += num.get(1);
+            } else if (num.get(i) > num.get(2)) {
+                point += num.get(2);
+            } else {
+                point += num.get(i);
+            }
+        }
+        if (param.get(i - 3).equals("East")) {
+            if (num.get(i) < num.get(1)) {
+                point -= num.get(1);
+            } else if (num.get(i) > num.get(2)) {
+                point -= num.get(2);
+            } else {
+                point -= num.get(i);
+            }
+        }
+    }
+    if (point > 0) {
+        System.out.println("West" + " " + point);
+    } else if (point < 0) {
+        System.out.println("East" + " " + -point);
+    } else {
+        System.out.println(0);
+    }
+}

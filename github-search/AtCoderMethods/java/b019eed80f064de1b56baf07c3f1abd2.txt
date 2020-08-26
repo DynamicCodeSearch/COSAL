@@ -1,0 +1,10 @@
+public String next() {
+    while (tokenizer == null || !tokenizer.hasMoreTokens()) {
+        try {
+            tokenizer = new StringTokenizer(reader.readLine());
+        } catch (IOException exp) {
+            throw new RuntimeException(exp);
+        }
+    }
+    return tokenizer.nextToken();
+}

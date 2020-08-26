@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    while (sc.hasNext()) {
+        int w = sc.nextInt();
+        int h = sc.nextInt();
+        int g = gcd(Math.max(w, h), Math.min(w, h));
+        w /= g;
+        h /= g;
+        if (w == 4 && h == 3)
+            System.out.println("4:3");
+        else
+            System.out.println("16:9");
+    }
+}

@@ -1,0 +1,29 @@
+public static void main(String[] args) throws IOException {
+    
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    int[] g = new int[12];
+    for (int i = 0; i < n; i++) {
+        g[i] |= (1 << i);
+    }
+    for (int i = 0; i < m; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        g[a] |= (1 << b);
+        g[b] |= (1 << a);
+    }
+    int ans = 0;
+    for (int group = 1; group < (1 << n); group++) {
+        boolean isPerfect = true;
+        for (int i = 0; i < n; i++) {
+            if ((group & (1 << i)) != 0 && (g[i] & group) != group) {
+                isPerfect = false;
+            }
+        }
+        if (isPerfect) {
+            ans = Math.max(ans, Integer.bitCount(group));
+        }
+    }
+    System.out.println(ans);
+}

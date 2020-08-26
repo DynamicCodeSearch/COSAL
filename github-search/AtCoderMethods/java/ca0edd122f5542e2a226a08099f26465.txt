@@ -1,0 +1,20 @@
+public static void main(String[] args) throws Exception {
+    int l = sc.nextInt();
+    int x = sc.nextInt();
+    int y = sc.nextInt();
+    int s = sc.nextInt();
+    int d = sc.nextInt();
+    
+    double len1 = (d - s + l) % l;
+    
+    double time1 = len1 / (x + y);
+    
+    if (x < y) {
+        double len2 = (s - d + l) % l;
+        
+        double time2 = len2 / (y - x);
+        time1 = Math.min(time1, time2);
+    
+    }
+    System.out.println(time1);
+}

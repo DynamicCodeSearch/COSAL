@@ -1,0 +1,46 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int N = scanner.nextInt();
+    String s = scanner.next();
+    char[][] ans = new char[4][N];
+    ans[0][0] = 'S';
+    ans[0][1] = 'S';
+    ans[1][0] = 'W';
+    ans[1][1] = 'W';
+    ans[2][0] = 'S';
+    ans[2][1] = 'W';
+    ans[3][0] = 'W';
+    ans[3][1] = 'S';
+    int flag = -1;
+    for (int i = 0; i < 4; i++) {
+        for (int j = 2; j < N; j++) {
+            if (s.charAt(j - 1) == 'o') {
+                if (ans[i][j - 1] == 'S') {
+                    ans[i][j] = ans[i][j - 2];
+                } else {
+                    ans[i][j] = rev(ans[i][j - 2]);
+                }
+            } else {
+                if (ans[i][j - 1] == 'W') {
+                    ans[i][j] = ans[i][j - 2];
+                } else {
+                    ans[i][j] = rev(ans[i][j - 2]);
+                }
+            }
+        }
+        Boolean a = check(s.charAt(N - 1), ans[i][N - 1], ans[i][N - 2], ans[i][0]);
+        Boolean b = check(s.charAt(0), ans[i][0], ans[i][N - 1], ans[i][1]);
+        if (a && b) {
+            flag = i;
+            break;
+        }
+    }
+    if (flag == -1) {
+        System.out.println(-1);
+    } else {
+        for (int i = 0; i < N; i++) {
+            System.out.print(ans[flag][i]);
+        }
+        System.out.println();
+    }
+}

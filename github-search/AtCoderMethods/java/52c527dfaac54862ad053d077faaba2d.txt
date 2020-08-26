@@ -1,0 +1,38 @@
+void solve() throws IOException {
+    int n = in.nextInt();
+    int n3 = n * 3;
+    long[] a = new long[n3];
+    for (int i = 0; i < n3; i++) {
+        a[i] = in.nextInt();
+    }
+    Queue<Long> pq = new PriorityQueue<>();
+    long[] maxN = new long[n3];
+    long[] minN = new long[n3];
+    long sum = 0;
+    for (int i = 0; i < n3; i++) {
+        pq.add(a[i]);
+        sum += a[i];
+        if (pq.size() > n) {
+            sum -= pq.poll();
+        }
+        maxN[i] = sum;
+    }
+    Arrays.fill(minN, Long.MAX_VALUE);
+    pq.clear();
+    sum = 0;
+    for (int i = n3 - 1; i >= 0; i--) {
+        pq.add(-a[i]);
+        sum += a[i];
+        if (pq.size() > n) {
+            sum += pq.poll();
+        }
+        if (pq.size() >= n) {
+            minN[i] = sum;
+        }
+    }
+    long max = Long.MIN_VALUE;
+    for (int i = n - 1; i < n * 2; i++) {
+        max = Math.max(max, maxN[i] - minN[i + 1]);
+    }
+    System.out.println(max);
+}

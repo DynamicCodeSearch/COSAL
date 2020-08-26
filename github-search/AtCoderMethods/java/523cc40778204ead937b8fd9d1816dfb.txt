@@ -1,0 +1,9 @@
+public final int query(int i) {
+    int max = 0;
+    for (int x = i; x > 0; x -= x & -x) {
+        int tmp = get(x);
+        if (tmp > max)
+            max = tmp;
+    }
+    return max;
+}

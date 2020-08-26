@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    
+    int L = sc.nextInt();
+    
+    int X = sc.nextInt();
+    
+    int Y = sc.nextInt();
+    
+    int S = sc.nextInt();
+    
+    int D = sc.nextInt();
+    int distA = getDistA(L, S, D);
+    int distB = getDistA(L, D, S);
+    double ans = (double) distA / (double) (X + Y);
+    if (Y > X)
+        ans = Math.min(ans, (double) distB / (double) (Y - X));
+    if (S == D) {
+        System.out.println(0);
+    } else {
+        System.out.println(ans);
+    }
+}

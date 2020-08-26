@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    int N = sc.nextInt();
+    long K = sc.nextLong();
+    long[] num = new long[100001];
+    for (int i = 0; i < N; i++) {
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        num[a] += b;
+    }
+    for (int i = 1; i < 100001; i++) {
+        K -= num[i];
+        if (K <= 0) {
+            System.out.println(i);
+            return;
+        }
+    }
+    return;
+}

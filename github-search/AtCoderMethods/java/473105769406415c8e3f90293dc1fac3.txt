@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    int[][] a = new int[N][2];
+    for (int i = 0; i < N; i++) {
+        a[i][0] = sc.nextInt();
+        a[i][1] = i + 1;
+    }
+    Arrays.sort(a, new Comparator<int[]>() {
+
+        @Override
+        public int compare(int[] o1, int[] o2) {
+            return o2[0] - o1[0];
+        }
+    });
+    StringBuilder sb = new StringBuilder();
+    for (int[] x : a) {
+        sb.append(x[1]);
+        sb.append("\n");
+    }
+    System.out.println(sb.toString());
+}

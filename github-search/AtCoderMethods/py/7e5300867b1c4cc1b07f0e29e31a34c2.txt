@@ -1,0 +1,21 @@
+def main():
+    n = int(input())
+
+    prime = get_prime_list(n)
+    d = dict()
+    for i in prime:
+        cnt = 0
+        for j in range(2, n+1):
+            while j>1:
+                if j%i == 0:
+                    cnt += 1
+                    j //= i
+                else:
+                    j = 0
+        d[i] = cnt
+
+    ans = 1
+    for key, value in d.items():
+        if value != 0:
+            ans = ans * (value+1) % (10**9+7)
+    print(ans)

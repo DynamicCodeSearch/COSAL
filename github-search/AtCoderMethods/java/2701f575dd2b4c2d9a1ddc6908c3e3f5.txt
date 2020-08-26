@@ -1,0 +1,18 @@
+double[] doit(int from) {
+    double[] dp = new double[n];
+    Arrays.fill(dp, INF);
+    Queue<State> q = new PriorityQueue<>();
+    q.add(new State(from, 0));
+    dp[from] = 0;
+    while (q.size() >= 1) {
+        State st = q.poll();
+        for (int to = 0; to < n; to++) {
+            double time = st.time + graph[st.now][to];
+            if (dp[to] > time) {
+                dp[to] = time;
+                q.add(new State(to, time));
+            }
+        }
+    }
+    return dp;
+}

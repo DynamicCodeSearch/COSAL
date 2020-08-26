@@ -1,0 +1,13 @@
+private int permute(int prev, int sz) {
+    if (sz == 0)
+        return 0;
+    int ans = Integer.MAX_VALUE;
+    for (int i = 0; i < r; ++i) {
+        if (marked[i])
+            continue;
+        marked[i] = true;
+        ans = Math.min(ans, permute(i, sz - 1) + (sz == r ? 0 : cost[R[prev]][R[i]]));
+        marked[i] = false;
+    }
+    return ans;
+}

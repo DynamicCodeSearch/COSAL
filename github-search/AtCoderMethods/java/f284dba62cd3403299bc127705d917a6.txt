@@ -1,0 +1,69 @@
+private static void solve() {
+    int n = sc.nextInt();
+    int start = sc.nextInt();
+    int goal = sc.nextInt();
+    Deque<Pair> str = new ArrayDeque<>();
+    Deque<Pair> stl = new ArrayDeque<>();
+    Pair cur = null;
+    double ret = 0;
+    for (int i = 0; i <= n; i++) {
+        int l = sc.nextInt();
+        int r = sc.nextInt();
+        if (i == 0) {
+            cur = new Pair(i, start);
+            continue;
+        } else if (i == n) {
+            l = goal;
+            r = goal;
+        }
+        Pair rr = new Pair(i, r);
+        Pair ll = new Pair(i, l);
+        while (stl.size() > 0) {
+            Pair pl = stl.pop();
+            Pair ppl;
+            if (stl.size() > 0) {
+                ppl = stl.peek();
+            } else {
+                ppl = cur;
+            }
+            if (cross(pl.b - ppl.b, pl.a - ppl.a, ll.b - pl.b, ll.a - pl.a) > 0) {
+                stl.push(pl);
+                break;
+            }
+        }
+        stl.push(ll);
+        while (str.size() > 0) {
+            Pair pr = str.pop();
+            Pair ppr;
+            if (str.size() > 0) {
+                ppr = str.peek();
+            } else {
+                ppr = cur;
+            }
+            if (cross(pr.b - ppr.b, pr.a - ppr.a, rr.b - pr.b, rr.a - pr.a) < 0) {
+                str.push(pr);
+                break;
+            }
+        }
+        str.push(rr);
+        while (str.size() > 0 && stl.size() > 0) {
+            rr = str.peekLast();
+            ll = stl.peekLast();
+            if (cross(rr.b - cur.b, rr.a - cur.a, ll.b - cur.b, ll.a - cur.a) > 0) {
+                break;
+            }
+            if (rr.a < ll.a) {
+                ret += Math.hypot(rr.b - cur.b, rr.a - cur.a);
+                cur = str.removeLast();
+            } else {
+                ret += Math.hypot(ll.b - cur.b, ll.a - cur.a);
+                cur = stl.removeLast();
+            }
+        }
+    
+    
+    
+    
+    }
+    pr.printf("%.10f\n", ret);
+}

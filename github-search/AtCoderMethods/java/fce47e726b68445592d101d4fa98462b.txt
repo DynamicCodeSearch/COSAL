@@ -1,0 +1,14 @@
+void solve(ContestScanner in, Writer out) throws NumberFormatException, IOException {
+    int n = in.nextInt();
+    Magic[] m = new Magic[n];
+    for (int i = 0; i < n; i++) m[i] = new Magic(in.nextInt(), in.nextInt());
+    Arrays.sort(m);
+    long max = 0;
+    long now = 0;
+    for (int i = 0; i < n; i++) {
+        now += m[i].a;
+        max = Math.max(max, now);
+        now -= m[i].b;
+    }
+    System.out.println(max);
+}

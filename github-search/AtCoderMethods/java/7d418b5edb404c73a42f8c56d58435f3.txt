@@ -1,0 +1,11 @@
+public static long modPow(long a, long b, long mod) {
+    long c = 1;
+    while (b > 0) {
+        if (b % 2 == 1) {
+            c = (c * a) % mod;
+        }
+        a = (a * a) % mod;
+        b /= 2;
+    }
+    return c;
+}

@@ -1,0 +1,13 @@
+def check4(H1, H2, W1, W2):
+    S_min = 2 ** 50
+    S_max = 0
+    res1 = W2 * (H1 + H2)
+    res2 = W1 * H1
+    res3 = W1 * H2
+    S_min = min(S_min, res1)
+    S_min = min(S_min, res2)
+    S_min = min(S_min, res3)
+    S_max = max(S_max, res1)
+    S_max = max(S_max, res2)
+    S_max = max(S_max, res3)
+    return S_max - S_min

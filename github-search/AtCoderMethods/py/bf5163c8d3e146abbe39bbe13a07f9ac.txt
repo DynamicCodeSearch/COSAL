@@ -1,0 +1,20 @@
+def main():
+    k = int(input())
+
+    if k == 0:
+        print(4)
+        print(3, 3, 3, 3)
+        return
+    if k == 1:
+        print(3)
+        print(1, 0, 3)
+        return
+    if k <= 50:
+        print(k)
+        print(' '.join([str(k)]*k))
+        return
+    print(50)
+    res = [50+k//50-k%50-1]*50
+    for i in range(k%50):
+        res[i] += 51
+    print(' '.join([str(i) for i in res]))

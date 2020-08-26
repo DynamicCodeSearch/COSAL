@@ -1,0 +1,10 @@
+
+
+int C2(long n, int r) {
+    long ret = ifact[r];
+    for (int i = 1; i <= r; i++) {
+        long tmp = (n - r + i) % MOD;
+        ret = (ret * tmp) % MOD;
+    }
+    return (int) ret;
+}

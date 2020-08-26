@@ -1,0 +1,17 @@
+void run() {
+    int N = sc.nextInt();
+    Pair[] p = new Pair().input(N);
+    Arrays.sort(p);
+    int cnt = 0;
+    int[] b = new int[N];
+    b[p[0].b] = 0;
+    for (int i = 1; i < N; i++) {
+        if (p[i].a == p[i - 1].a)
+            b[p[i].b] = cnt;
+        else
+            b[p[i].b] = ++cnt;
+    }
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < N; i++) sb.append(b[i] + "\n");
+    System.out.print(sb);
+}

@@ -1,0 +1,61 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    String[] firstLine = input.readLine().split(" ");
+    int n = Integer.parseInt(firstLine[0]);
+    int m = Integer.parseInt(firstLine[1]);
+    class FloydWarshall {
+
+        int n;
+
+        int[][] dist;
+
+        int INF = Integer.MAX_VALUE / 2;
+
+        public FloydWarshall(int n) {
+            this.n = n;
+            this.dist = new int[n][n];
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    if (i == j) {
+                        dist[i][j] = 0;
+                    } else {
+                        dist[i][j] = INF;
+                    }
+                }
+            }
+        }
+
+        public void addEdge(int i, int j, int weight) {
+            this.dist[i][j] = this.dist[j][i] = weight;
+        }
+
+        public void removeEdge(int i, int j) {
+            this.dist[i][j] = this.dist[j][i] = INF;
+        }
+
+        public int[][] solve() {
+            for (int k = 0; k < this.n; k++) {
+                for (int i = 0; i < this.n; i++) {
+                    for (int j = 0; j < this.n; j++) {
+                        this.dist[i][j] = Math.min(this.dist[i][j], this.dist[i][k] + this.dist[k][j]);
+                    }
+                }
+            }
+            return dist;
+        }
+    }
+    FloydWarshall floydWarshall = new FloydWarshall(n);
+    for (int i = 0; i < m; i++) {
+        String[] in = input.readLine().split(" ");
+        int from = Integer.parseInt(in[0]);
+        int to = Integer.parseInt(in[1]);
+        int weight = Integer.parseInt(in[2]);
+        floydWarshall.addEdge(from - 1, to - 1, weight);
+    }
+    int[][] minimumDistances = floydWarshall.solve();
+    int answer = Integer.MAX_VALUE;
+    for (int i = 0; i < n; i++) {
+        answer = Math.min(answer, IntStream.of(minimumDistances[i]).max().getAsInt());
+    }
+    System.out.println(answer);
+}

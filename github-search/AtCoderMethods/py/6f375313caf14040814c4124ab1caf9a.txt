@@ -1,0 +1,19 @@
+def solve(pos0_is_sheep, pos1_is_sheep):
+    pre_is_sheep = pos1_is_sheep
+    prepre_is_sheep = pos0_is_sheep
+    ans = [pos0_is_sheep]
+    for is_same_neighbors in s[1:]:
+        ans.append(pre_is_sheep)
+        if pre_is_sheep:
+            pre_is_sheep = is_same_neighbors == prepre_is_sheep
+            prepre_is_sheep = True
+        else:
+            pre_is_sheep = is_same_neighbors != prepre_is_sheep
+            prepre_is_sheep = False
+    if pos0_is_sheep != pre_is_sheep:
+        return False
+    if pos0_is_sheep and s[0] != (prepre_is_sheep == pos1_is_sheep):
+        return False
+    if not pos0_is_sheep and s[0] == (prepre_is_sheep == pos1_is_sheep):
+        return False
+    return ans

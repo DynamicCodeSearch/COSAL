@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int N = scan.nextInt();
+    int[] array = new int[N];
+    int cost = 0;
+    int lowCost = 1000000;
+    for (int i = 0; i < N; i++) {
+        array[i] = scan.nextInt();
+    }
+    Arrays.sort(array);
+    for (int i = -100; i <= 100; i++) {
+        for (int j = 0; j < array.length; j++) {
+            cost += Math.pow((array[j] - i), 2);
+        }
+        if (lowCost > cost) {
+            lowCost = cost;
+        }
+        cost = 0;
+    }
+    System.out.println(lowCost);
+}

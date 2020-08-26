@@ -1,0 +1,12 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    char[] s = in.next().toCharArray();
+    char[] t = in.next().toCharArray();
+    int[] ps = ssum(s), pt = ssum(t);
+    int q = in.nextInt();
+    while (q-- > 0) {
+        int a = in.nextInt() - 1, b = in.nextInt(), c = in.nextInt() - 1, d = in.nextInt();
+        int diff1 = (ps[b] - ps[a] + 3) % 3;
+        int diff2 = (pt[d] - pt[c] + 3) % 3;
+        out.println(diff1 == diff2 ? "YES" : "NO");
+    }
+}

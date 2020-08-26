@@ -1,0 +1,21 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String line = br.readLine();
+    
+    String[] lst = line.split(" ");
+    int five_cnt = 0;
+    int seven_cnt = 0;
+    for (int i = 0; i < lst.length; i++) {
+        int cnt = Integer.parseInt(lst[i]);
+        if (cnt == 5) {
+            five_cnt += 1;
+        } else if (cnt == 7) {
+            seven_cnt += 1;
+        }
+    }
+    if (five_cnt == 2 && seven_cnt == 1) {
+        System.out.println("YES");
+    } else {
+        System.out.println("NO");
+    }
+}

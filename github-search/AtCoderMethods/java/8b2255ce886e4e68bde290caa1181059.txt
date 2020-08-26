@@ -1,0 +1,20 @@
+public static void main(String[] args) throws java.lang.Exception {
+    InputReader in = new InputReader(System.in);
+    PrintWriter w = new PrintWriter(System.out);
+    int n = in.nextInt();
+    long x = in.nextLong();
+    long[] a = in.nextLongArray(n);
+    long ans = 0;
+    for (int i = 0; i < n; i++) {
+        long dif = Math.max(x, a[i]) - x;
+        ans += dif;
+        a[i] -= dif;
+    }
+    for (int i = 1; i < n; i++) {
+        long dif = Math.max(x, a[i] + a[i - 1]) - x;
+        a[i] -= dif;
+        ans += dif;
+    }
+    w.println(ans);
+    w.close();
+}

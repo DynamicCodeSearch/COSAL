@@ -1,0 +1,18 @@
+static void push(Box[] heap, Box x) {
+    int i = sz++;
+    while (i > 0) {
+        int p = (i - 1) / 2;
+        if (heap[p].w < x.w) {
+            break;
+        } else if (heap[p].w == x.w) {
+            if (heap[p].h >= x.h)
+                break;
+            heap[i] = heap[p];
+            i = p;
+        } else {
+            heap[i] = heap[p];
+            i = p;
+        }
+    }
+    heap[i] = x;
+}

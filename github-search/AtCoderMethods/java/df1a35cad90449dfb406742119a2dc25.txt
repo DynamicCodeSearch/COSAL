@@ -1,0 +1,15 @@
+public String next() throws IOException {
+    
+    byte[] buf = new byte[10000];
+    int cnt = 0, c;
+    Boolean white;
+    while ((c = read()) != -1) {
+        white = Character.isWhitespace(c);
+        if (white && cnt > 0)
+            break;
+        if (!white) {
+            buf[cnt++] = (byte) c;
+        }
+    }
+    return new String(buf, 0, cnt);
+}

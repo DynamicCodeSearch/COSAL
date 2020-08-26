@@ -1,0 +1,18 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int f, o, e;
+    f = o = e = 0;
+    for (int i = 0; i < n; i++) {
+        int a = in.nextInt();
+        if (a % 2 == 1)
+            ++o;
+        else if (a % 4 == 0)
+            ++f;
+        else
+            ++e;
+    }
+    if (o <= f || (e == 0 && o == f + 1))
+        out.println("Yes");
+    else
+        out.println("No");
+}

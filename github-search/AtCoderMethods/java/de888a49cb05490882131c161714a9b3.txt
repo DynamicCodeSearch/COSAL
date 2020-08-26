@@ -1,0 +1,19 @@
+public void solve() {
+    N = nextInt();
+    a = new int[N];
+    for (int i = 0; i < N; i++) {
+        a[i] = nextInt();
+    }
+    int ans = 0;
+    for (int i = 0; i < N; i++) {
+        if (a[i] == i + 1) {
+            if (i == N - 1) {
+                swap(a, i, i - 1);
+            } else {
+                swap(a, i + 1, i);
+            }
+            ans++;
+        }
+    }
+    out.println(ans);
+}

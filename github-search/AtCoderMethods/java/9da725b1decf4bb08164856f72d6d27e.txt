@@ -1,0 +1,33 @@
+public static void main(String[] args) {
+    Scanner cin = new Scanner(System.in);
+    int N = cin.nextInt();
+    long K = cin.nextLong();
+    long sum = 0L;
+    int result = 0;
+    Map<Integer, Long> mapv = new HashMap<>();
+    for (int i = 0; i < N; i++) {
+        int tmp1 = cin.nextInt();
+        long tmp2 = cin.nextLong();
+        if (mapv.containsKey(tmp1)) {
+            mapv.put(tmp1, mapv.get(tmp1) + tmp2);
+        } else {
+            mapv.put(tmp1, tmp2);
+        }
+    }
+    cin.close();
+    int[] value = new int[mapv.size()];
+    int count = 0;
+    for (Integer n : mapv.keySet()) {
+        value[count] = n;
+        count++;
+    }
+    Arrays.sort(value);
+    for (int j = 0; j < value.length; j++) {
+        sum += mapv.get(value[j]);
+        if (K <= sum) {
+            result = value[j];
+            break;
+        }
+    }
+    System.out.println(result);
+}

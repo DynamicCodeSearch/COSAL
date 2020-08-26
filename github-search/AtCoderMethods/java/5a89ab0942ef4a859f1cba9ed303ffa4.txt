@@ -1,0 +1,35 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    N = sc.nextInt();
+    M = sc.nextInt();
+    a = new int[M];
+    b = new int[M];
+    int[][] dp = new int[N][1 << N];
+    dp[0][1] = 1;
+    g = new ArrayList[N];
+    for (int i = 0; i < N; ++i) g[i] = new ArrayList<Integer>();
+    for (int i = 0; i < M; ++i) {
+        a[i] = sc.nextInt() - 1;
+        b[i] = sc.nextInt() - 1;
+        g[a[i]].add(b[i]);
+        g[b[i]].add(a[i]);
+    }
+    for (int s = 0; s < 1 << N; ++s) {
+        for (int cur = 0; cur < N; ++cur) {
+            if (((1 << cur) & s) == 0 || dp[cur][s] == 0)
+                continue;
+            for (int dst : g[cur]) {
+                if (((1 << dst) & s) > 0) {
+                    continue;
+                } else {
+                    dp[dst][s | 1 << dst] += dp[cur][s];
+                }
+            }
+        }
+    }
+    long ans = 0;
+    for (int i = 0; i < N; ++i) {
+        ans += dp[i][(1 << N) - 1];
+    }
+    System.out.println(ans);
+}

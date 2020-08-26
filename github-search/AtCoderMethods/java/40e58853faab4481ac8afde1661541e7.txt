@@ -1,0 +1,29 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    String a = input.readLine();
+    String b = input.readLine();
+    int a1;
+    int b1;
+    if (a.length() > b.length()) {
+        System.out.println("GREATER");
+    } else if (b.length() > a.length()) {
+        System.out.println("LESS");
+    } else {
+        while (a.length() > 0 && b.length() > 0) {
+            a1 = Integer.parseInt(a.substring(0, 1));
+            b1 = Integer.parseInt(b.substring(0, 1));
+            if (a1 > b1) {
+                System.out.println("GREATER");
+                break;
+            } else if (b1 > a1) {
+                System.out.println("LESS");
+                break;
+            }
+            a = a.substring(1);
+            b = b.substring(1);
+        }
+        if (a.length() == 0) {
+            System.out.println("EQUAL");
+        }
+    }
+}

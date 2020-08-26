@@ -1,0 +1,14 @@
+def main():
+    A, B, C, D, E, F = map(int, input().split())
+
+    W = [100*A*x + 100*B*y for x in range(0, 31) for y in range(0, 31) if 0 < (100*A*x + 100*B*y) <= F]
+    S = [C*x + D*y for x in range(0, 3001) for y in range(0, 3001) if 0 < (C*x + D*y) <= F]
+
+    dense, sugar, mass = 0, 0, 100*A
+    for w in W:
+        for s in S:
+            if ((w+s) <= F and s <= (w*E/100) and dense*(s+w) < s):
+                dense = s/(s+w)
+                sugar = s
+                mass = s+w
+    print(mass, sugar)

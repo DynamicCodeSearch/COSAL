@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    FastScannerA sc = new FastScannerA(System.in);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    ArrayList<Integer>[] ver = new ArrayList[N];
+    for (int i = 0; i < N; i++) ver[i] = new ArrayList<>();
+    for (int i = 0; i < M; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        ver[a].add(b);
+        ver[b].add(a);
+    }
+    
+    Queue<Integer> q = new LinkedList<>();
+    for (int i : ver[0]) {
+        q.add(i);
+    }
+    
+    HashSet<Integer> ans = new HashSet<>();
+    while (!q.isEmpty()) {
+        int current = q.remove();
+        for (int i : ver[current]) {
+            ans.add(i);
+        }
+    }
+    if (ans.contains(N - 1))
+        System.out.println("POSSIBLE");
+    else
+        System.out.println("IMPOSSIBLE");
+}

@@ -1,0 +1,31 @@
+public static void main(String[] $) {
+    int n = getInt(), m = getInt(), R = getInt();
+    int[] r = INS(R).sorted().toArray();
+    int[][] f = new int[n][n];
+    for (int i = 0; i < n; ++i) {
+        Arrays.fill(f[i], 114514191);
+        f[i][i] = 0;
+    }
+    for (int i = 0; i < m; ++i) {
+        int a = getInt() - 1, b = getInt() - 1, c = getInt();
+        f[a][b] = c;
+        f[b][a] = c;
+    }
+    for (int d = 0; d < n; ++d) {
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < n; ++j) {
+                f[i][j] = Math.min(f[i][j], f[i][d] + f[d][j]);
+            }
+        }
+    }
+    
+    int res = Integer.MAX_VALUE;
+    do {
+        int buf = 0;
+        for (int i = 1; i < R; ++i) {
+            buf += f[r[i] - 1][r[i - 1] - 1];
+        }
+        res = Math.min(res, buf);
+    } while ((r = nextPermutation(r)) != null);
+    System.out.println(res);
+}

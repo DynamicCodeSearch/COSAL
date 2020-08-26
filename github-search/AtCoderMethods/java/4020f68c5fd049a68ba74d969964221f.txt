@@ -1,0 +1,29 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    String str = input.readLine();
+    int n = Integer.parseInt(str);
+    String s = input.readLine();
+    int answer = 0;
+    String acce = "b";
+    if (n % 2 == 0) {
+        answer = -1;
+    } else {
+        int i = 1;
+        while (acce.length() < n) {
+            if (i % 3 == 1) {
+                acce = "a" + acce + "c";
+            } else if (i % 3 == 2) {
+                acce = "c" + acce + "a";
+            } else if (i % 3 == 0) {
+                acce = "b" + acce + "b";
+            }
+            i++;
+        }
+        if (acce.equals(s)) {
+            answer = i - 1;
+        } else {
+            answer = -1;
+        }
+    }
+    System.out.println(answer);
+}

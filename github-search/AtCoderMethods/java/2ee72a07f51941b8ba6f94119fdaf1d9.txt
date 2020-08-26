@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    R = sc.nextLong();
+    B = sc.nextLong();
+    x = sc.nextLong();
+    y = sc.nextLong();
+    long t = Long.MAX_VALUE / 2;
+    long tUp = Long.MAX_VALUE;
+    long tDown = 0;
+    while (tUp - tDown >= 2) {
+        
+        if (canCreate(t)) {
+            tDown = t;
+        } else {
+            tUp = t;
+        }
+        t = tDown + (tUp - tDown) / 2;
+    }
+    System.out.println(tDown);
+}

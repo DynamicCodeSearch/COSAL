@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    String S = scan.nextLine();
+    int Slen = S.length();
+    for (int i = Slen - 2; i > 0; i -= 2) {
+        String Ssub = S.substring(0, i);
+        String Ssub_1 = Ssub.substring(0, i / 2);
+        String Ssub_2 = Ssub.substring(i / 2, i);
+        if (Ssub_1.equals(Ssub_2)) {
+            System.out.println(i);
+            break;
+        }
+    }
+}

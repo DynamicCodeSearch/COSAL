@@ -1,0 +1,61 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int H = sc.nextInt();
+    int W = sc.nextInt();
+    char[][] map = new char[H][W];
+    for (int i = 0; i < H; i++) {
+        String line = sc.next();
+        for (int j = 0; j < W; j++) {
+            map[i][j] = line.charAt(j);
+        }
+    }
+    char[][] premap = new char[H][W];
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            premap[i][j] = map[i][j];
+        }
+    }
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            if (map[i][j] == '.') {
+                for (int a = i - 1; a <= i + 1; a++) {
+                    for (int b = j - 1; b <= j + 1; b++) {
+                        if (a >= 0 && b >= 0 && a < H && b < W) {
+                            premap[a][b] = '.';
+                        }
+                    }
+                }
+            }
+        }
+    }
+    char[][] pre = new char[H][W];
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            pre[i][j] = premap[i][j];
+        }
+    }
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            if (pre[i][j] == '#') {
+                for (int a = i - 1; a <= i + 1; a++) {
+                    for (int b = j - 1; b <= j + 1; b++) {
+                        if (a >= 0 && b >= 0 && a < H && b < W) {
+                            premap[a][b] = '#';
+                        }
+                    }
+                }
+            }
+        }
+    }
+    if (Arrays.deepEquals(map, premap)) {
+        System.out.println("possible");
+        for (int i = 0; i < H; i++) {
+            for (int j = 0; j < W; j++) {
+                System.out.print(pre[i][j]);
+            }
+            System.out.println("");
+        }
+    } else {
+        System.out.println("impossible");
+    }
+}

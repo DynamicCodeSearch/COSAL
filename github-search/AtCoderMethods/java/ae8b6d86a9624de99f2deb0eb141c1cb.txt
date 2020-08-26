@@ -1,0 +1,17 @@
+public int dfs(int v, int t, int f) {
+    if (v == t)
+        return f;
+    for (int i = itr[v]; i < graph[v].size(); i++) {
+        itr[v] = i;
+        int[] e = graph[v].get(i);
+        if (e[1] > 0 && level[v] < level[e[0]]) {
+            int d = dfs(e[0], t, Math.min(f, e[1]));
+            if (d > 0) {
+                e[1] -= d;
+                graph[e[0]].get(e[2])[1] += d;
+                return d;
+            }
+        }
+    }
+    return 0;
+}

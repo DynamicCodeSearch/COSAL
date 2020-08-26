@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    Scanner cin = new Scanner(System.in);
+    
+    H = cin.nextInt();
+    W = cin.nextInt();
+    A = cin.nextInt();
+    B = cin.nextInt();
+    
+    
+    long[] f = new long[W + H + 1];
+    f[0] = 1;
+    for (int i = 1; i < f.length; i++) {
+        f[i] = i * f[i - 1];
+        f[i] %= MOD;
+    }
+    
+    long res = 0;
+    for (int j = B; j < W; j++) {
+        res += (comb((H - A - 1) + j, j, f) * comb((A - 1) + (W - j - 1), A - 1, f)) % MOD;
+        res %= MOD;
+    }
+    res += MOD;
+    res %= MOD;
+    
+    System.out.println(res);
+}

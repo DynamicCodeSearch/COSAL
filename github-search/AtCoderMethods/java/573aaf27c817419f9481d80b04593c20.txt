@@ -1,0 +1,8 @@
+public void edge(int from, int to, int cap) {
+    int fdeg = deg[from];
+    int tdeg = deg[to];
+    graph[from].add(new int[] { to, cap, tdeg });
+    graph[to].add(new int[] { from, 0, fdeg });
+    deg[from]++;
+    deg[to]++;
+}

@@ -1,0 +1,37 @@
+public static void main(String[] args) {
+    Reader in = new Reader();
+    Writer out = new Writer();
+    int n = in.nextInt();
+    int[] a = new int[n + 5];
+    for (int i = 1; i <= n; i++) {
+        a[i] = in.nextInt();
+    }
+    long ans = (long) 1e16;
+    for (int cs = 0; cs <= 1; cs++) {
+        int pos = cs;
+        long sum = 0;
+        long res = 0;
+        for (int i = 1; i <= n; i++) {
+            if (pos == 1) {
+                long can = -sum + 1;
+                if (a[i] >= can)
+                    sum += a[i];
+                else {
+                    res += Math.abs(can - a[i]);
+                    sum += can;
+                }
+            } else {
+                long can = -sum - 1;
+                if (a[i] <= can)
+                    sum += a[i];
+                else {
+                    res += Math.abs(can - a[i]);
+                    sum += can;
+                }
+            }
+            pos ^= 1;
+        }
+        ans = Math.min(ans, res);
+    }
+    System.out.println(ans);
+}

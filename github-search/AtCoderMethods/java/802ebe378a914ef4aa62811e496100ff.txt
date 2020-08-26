@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    int N, Q;
+    int[] L = new int[100];
+    int[] R = new int[100];
+    long[] T = new long[100];
+    Scanner input = new Scanner(System.in);
+    long[] hairetu = new long[100];
+    N = input.nextInt();
+    Q = input.nextInt();
+    for (int i = 0; i < Q; i++) {
+        L[i] = input.nextInt() - 1;
+        R[i] = input.nextInt();
+        T[i] = input.nextLong();
+        for (int j = L[i]; j < R[i]; j++) {
+            hairetu[j] = T[i];
+        }
+    }
+    for (int i = 0; i < N; i++) {
+        System.out.println(hairetu[i]);
+    }
+}

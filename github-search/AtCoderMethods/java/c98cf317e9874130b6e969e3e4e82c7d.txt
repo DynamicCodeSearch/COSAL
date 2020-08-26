@@ -1,0 +1,13 @@
+long pow(int k, long MOD) {
+    if (k == 0) {
+        return 1;
+    }
+    long t = pow(k / 2, MOD);
+    t *= t;
+    t %= MOD;
+    if (k % 2 != 0) {
+        t *= 2;
+        t %= MOD;
+    }
+    return t;
+}

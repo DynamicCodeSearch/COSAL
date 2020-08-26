@@ -1,0 +1,89 @@
+static void solve() {
+    int n = ni(), K = ni();
+    String[] ss = new String[n];
+    for (int i = 0; i < n; i++) {
+        ss[i] = ns();
+    }
+    boolean[][] back = new boolean[n + 1][K + 1];
+    back[n][K] = true;
+    for (int i = n - 1; i >= 0; i--) {
+        for (int j = 0; j <= K; j++) {
+            back[i][j] |= back[i + 1][j];
+            if (j + ss[i].length() <= K)
+                back[i][j] |= back[i + 1][j + ss[i].length()];
+        }
+    }
+    
+    boolean[][] dp = new boolean[n + 1][K + 1];
+    dp[0][0] = true;
+    char[][] css = new char[n + 1][];
+    css[0] = new char[0];
+    for (int i = 0; i < n; i++) {
+        char[] cst = new char[css[i].length + ss[i].length()];
+        int p = 0;
+        for (int j = 0; j < ss[i].length(); j++) cst[p++] = ss[i].charAt(j);
+        for (int j = 0; j < css[i].length; j++) cst[p++] = css[i][j];
+        int[] z = Z(cst);
+        int t = 0;
+        boolean sadd = false;
+        for (int j = 0; j <= K; j++) {
+            if (!dp[i][j])
+                continue;
+            if (j + ss[i].length() <= K && back[i + 1][j + ss[i].length()]) {
+                
+                
+                int comp = comp(j, true, t, sadd, z, ss[i].length(), cst);
+                if (comp < 0) {
+                    t = j;
+                    sadd = true;
+                } else if (comp == 0) {
+                    if (j + ss[i].length() > t + (sadd ? ss[i].length() : 0)) {
+                        t = j;
+                        sadd = true;
+                    }
+                }
+            }
+            if (back[i + 1][j]) {
+                
+                
+                int comp = comp(j, false, t, sadd, z, ss[i].length(), cst);
+                if (comp < 0) {
+                    t = j;
+                    sadd = false;
+                } else if (comp == 0) {
+                    if (j > t + (sadd ? ss[i].length() : 0)) {
+                        t = j;
+                        sadd = false;
+                    }
+                }
+            }
+        }
+        for (int j = 0; j <= K; j++) {
+            if (!dp[i][j])
+                continue;
+            if (j + ss[i].length() <= K && back[i + 1][j + ss[i].length()]) {
+                
+                
+                int comp = comp(j, true, t, sadd, z, ss[i].length(), cst);
+                if (comp <= 0)
+                    dp[i + 1][j + ss[i].length()] = true;
+            }
+            if (back[i + 1][j]) {
+                
+                
+                int comp = comp(j, false, t, sadd, z, ss[i].length(), cst);
+                if (comp <= 0)
+                    dp[i + 1][j] = true;
+            }
+        }
+        css[i + 1] = new char[t + (sadd ? ss[i].length() : 0)];
+        for (int j = 0; j < t; j++) css[i + 1][j] = css[i][j];
+        if (sadd) {
+            for (int j = 0; j < ss[i].length(); j++) css[i + 1][j + t] = ss[i].charAt(j);
+        }
+    
+    
+    
+    }
+    out.println(new String(css[n]));
+}

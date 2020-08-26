@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    int[] s = sc.nextIntList(N);
+    boolean[][] dp = new boolean[2][10001];
+    for (int i = 0; i < N; i++) {
+        int now = i % 2;
+        int pre = (i + 1) % 2;
+        dp[now][s[i]] = true;
+        for (int j = 1; j <= 10000 - s[i]; j++) {
+            dp[now][j + s[i]] = dp[pre][j] || dp[pre][j + s[i]];
+        }
+    }
+    int max = 0;
+    for (int i = 0; i <= 10000; i++) {
+        if (i % 10 != 0 && dp[(N + 1) % 2][i]) {
+            max = Math.max(max, i);
+        }
+    }
+    System.out.println(max);
+}

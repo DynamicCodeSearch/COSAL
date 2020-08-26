@@ -1,0 +1,16 @@
+def MakeRectangle(N, A):
+    A = sorted(A, reverse=True)
+    length_list = list()
+    length_buff = 0
+    for length in A:
+        if len(length_list) == 2:
+            break
+        if length_buff == length and length != 0:
+            length_list.append(length)
+            length_buff = 0
+        else:
+            length_buff = length
+    if len(length_list) < 2:
+        return 0
+    else:
+        return length_list[0] * length_list[1]

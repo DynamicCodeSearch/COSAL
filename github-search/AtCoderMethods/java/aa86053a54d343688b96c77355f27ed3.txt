@@ -1,0 +1,38 @@
+void solve() {
+    int[] ia = readNums();
+    int n = ia[0];
+    int t = ia[1];
+    ia = readNums();
+    int buy = _intMax;
+    int sel = -1;
+    int maxdif = 0;
+    int cnt = 0;
+    for (int i = 0; i < n; i++) {
+        
+        if (buy > ia[i]) {
+            buy = ia[i];
+            continue;
+        }
+        sel = ia[i];
+        int dif = sel - buy;
+        if (maxdif < dif) {
+            cnt = 1;
+            
+            
+            maxdif = dif;
+        } else if (maxdif == dif) {
+            cnt++;
+        
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    int ans = Math.min(cnt, t / 2);
+    pln(cnt);
+}

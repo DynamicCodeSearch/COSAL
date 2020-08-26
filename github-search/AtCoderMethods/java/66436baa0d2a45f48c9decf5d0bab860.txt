@@ -1,0 +1,14 @@
+public void solve(int testNumber, FastReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int[] arr = new int[n + 1];
+    for (int i = 1; i <= n; i++) arr[i] = in.nextInt();
+    ArrayList<Integer> res = new ArrayList<>();
+    if (n % 2 == 0) {
+        for (int i = n; i >= 2; i -= 2) res.add(arr[i]);
+        for (int i = 1; i <= n - 1; i += 2) res.add(arr[i]);
+    } else {
+        for (int i = n; i >= 1; i -= 2) res.add(arr[i]);
+        for (int i = 2; i <= n - 1; i += 2) res.add(arr[i]);
+    }
+    out.println(StringUtils.join(res));
+}

@@ -1,0 +1,40 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[] array = new int[n];
+    int[] ans = new int[n];
+    for (int i = 0; i < n; i++) {
+        array[i] = sc.nextInt();
+    }
+    boolean b = n % 2 == 0;
+    if (b) {
+        int next = 0;
+        for (int i = 0; i < n; i++) {
+            if (i < n / 2) {
+                ans[i] = array[n - 1 - i * 2];
+            } else {
+                ans[i] = array[next];
+                next += 2;
+            }
+        }
+    } else {
+        int next = 1;
+        for (int i = 0; i < n; i++) {
+            if (i < n / 2) {
+                ans[i] = array[n - 1 - i * 2];
+            } else if (i == n / 2) {
+                ans[i] = array[0];
+            } else {
+                ans[i] = array[next];
+                next += 2;
+            }
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        if (i == n - 1) {
+            System.out.println(ans[i]);
+        } else {
+            System.out.print(ans[i] + " ");
+        }
+    }
+}

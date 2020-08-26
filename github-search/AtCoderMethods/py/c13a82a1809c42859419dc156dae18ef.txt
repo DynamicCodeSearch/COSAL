@@ -1,0 +1,31 @@
+def main():
+    N = int(input())
+    memo_strs = [input().split('-') for i in range(N)]
+    imos_base = [0 for i in range(12 * 24 + 1)]
+
+    for memo in memo_strs:
+        start_index = time_to_imos_index(memo[0], False)
+        end_index = time_to_imos_index(memo[1], True)
+        imos_base[start_index] += 1
+        imos_base[end_index] -= 1
+
+    for i in range(len(imos_base)):
+        if i ==0:
+            cummulate = [imos_base[0]]
+            continue
+        cummulate.append(cummulate[-1] + imos_base[i])
+
+    start = False
+    times = []
+    for i in range(len(cummulate)):
+        if not start:
+            if(cummulate[i] > 0):
+                start = True
+                times.append(imos_index_to_time(i))
+        else:
+            if(cummulate[i] <= 0):
+                start = False
+                times.append(imos_index_to_time(i))
+
+    for i in range(int(len(times) / 2)):
+        print(times[i * 2] + '-' + times[i * 2 + 1])

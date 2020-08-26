@@ -1,0 +1,17 @@
+def function() :
+    n = int(input())
+    s = [int(i) for i in input().split()]
+    sum, ave, ans, sima = 0,0,0,0
+
+    for i in range(n) :
+      sum = sum + s[i]
+    ave = sum / n
+
+    if sum % n != 0 :
+      return -1
+
+    for i in range(n-1) :
+      sima += s[i]
+      if sima != ave*(i+1) :
+        ans = ans + 1
+    return ans

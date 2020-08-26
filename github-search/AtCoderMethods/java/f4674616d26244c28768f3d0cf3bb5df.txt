@@ -1,0 +1,27 @@
+private void solveE() {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    long K = sc.nextLong();
+    long[] sumArr = new long[N + 1];
+    sumArr[0] = 0L;
+    List<Long> sumList = new ArrayList<Long>();
+    sumList.add(sumArr[0]);
+    for (int i = 1; i <= N; i++) {
+        sumArr[i] = sumArr[i - 1] + sc.nextLong() - K;
+        sumList.add(sumArr[i]);
+    }
+    Collections.sort(sumList);
+    int current = 0;
+    Map<Long, Integer> map = new HashMap<>();
+    for (long value : sumList) {
+        map.put(value, current++);
+    }
+    long ans = 0L;
+    BinaryIndexedTree bit = new BinaryIndexedTree(N + 1);
+    for (int i = 0; i <= N; i++) {
+        int pos = map.get(sumArr[i]);
+        ans += bit.getSum(pos);
+        bit.addNum(1, pos);
+    }
+    System.out.println(ans);
+}

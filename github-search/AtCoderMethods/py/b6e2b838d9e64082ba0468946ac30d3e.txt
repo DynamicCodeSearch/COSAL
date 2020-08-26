@@ -1,0 +1,10 @@
+def main():
+    n = int(input())
+
+    i = 1
+    minv = 100000000000
+    while i <= int(math.sqrt(n)):
+        if n%i == 0 and f(i, n//i) < minv:
+            minv = f(i, n//i)
+        i += 1
+    print(minv)

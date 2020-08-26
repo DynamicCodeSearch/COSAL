@@ -1,0 +1,29 @@
+void run() {
+    Scanner sc = new Scanner(System.in);
+    char[] a = sc.next().toCharArray();
+    char[] b = sc.next().toCharArray();
+    char[] c = sc.next().toCharArray();
+    int turn = 0;
+    int aid = 0, bid = 0, cid = 0;
+    while (true) {
+        if (turn == 0) {
+            if (a.length <= aid) {
+                System.out.println("A");
+                return;
+            }
+            turn = a[aid++] - 'a';
+        } else if (turn == 1) {
+            if (b.length <= bid) {
+                System.out.println("B");
+                return;
+            }
+            turn = b[bid++] - 'a';
+        } else {
+            if (c.length <= cid) {
+                System.out.println("C");
+                return;
+            }
+            turn = c[cid++] - 'a';
+        }
+    }
+}

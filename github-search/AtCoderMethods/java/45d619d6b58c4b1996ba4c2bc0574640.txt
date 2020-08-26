@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String inStr1 = sc.nextLine();
+    String[] in1 = inStr1.split(" ");
+    int inH1 = Integer.parseInt(in1[0]);
+    int inW1 = Integer.parseInt(in1[1]);
+    String inStr2 = sc.nextLine();
+    String[] in2 = inStr2.split(" ");
+    int inH2 = Integer.parseInt(in2[0]);
+    int inW2 = Integer.parseInt(in2[1]);
+    boolean canDisplay = false;
+    if ((inH1 == inH2) || (inH1 == inW2) || (inW1 == inH2) || (inW1 == inW2)) {
+        canDisplay = true;
+    }
+    if (canDisplay) {
+        System.out.println("YES");
+    } else {
+        System.out.println("NO");
+    }
+    sc.close();
+}

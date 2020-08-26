@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    try (Scanner sc = new Scanner(System.in)) {
+        long price = sc.nextLong();
+        long setPrice = sc.nextLong();
+        long totalQty = sc.nextLong();
+        long setQty = sc.nextLong();
+        long tmpTotalPrice = 0;
+        long currentQty = 0;
+        
+        for (long i = currentQty; i + setQty < totalQty; i = i + setQty) {
+            tmpTotalPrice += setPrice;
+            currentQty = i + setQty;
+        }
+        long setTotalPrice = tmpTotalPrice;
+        
+        for (long i = currentQty; i < totalQty; i = i + 1) {
+            tmpTotalPrice += price;
+            currentQty = i;
+        }
+        
+        long totalPrice = Math.min(setTotalPrice + setPrice, tmpTotalPrice);
+        System.out.println(totalPrice);
+    }
+}

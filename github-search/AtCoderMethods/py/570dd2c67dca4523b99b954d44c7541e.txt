@@ -1,0 +1,14 @@
+def main():
+    N = int(input())
+    a = list(map(int, input().split()))
+    s, e, pre = 0, 0, 0
+    ans = 0
+    while e < N:
+        if pre < a[e]:
+            ans += e - s + 1
+            pre = a[e]
+            e += 1
+        else:
+            s = e
+            pre = 0
+    print(ans)

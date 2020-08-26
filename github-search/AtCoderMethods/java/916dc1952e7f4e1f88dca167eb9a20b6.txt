@@ -1,0 +1,37 @@
+public static void main(String[] args) {
+    int n = Fs.nextInt();
+    long a = Fs.nextLong();
+    long b = Fs.nextLong();
+    long[] arr = Fs.nextLongArray(n);
+    long mod = 1000000007;
+    Arrays.sort(arr);
+    if (a == 1) {
+        for (long l : arr) Fs.pl(l);
+        Fs.flush();
+        return;
+    }
+    int sc = 0;
+    while (!check(arr, a)) {
+        arr[0] *= a;
+        sc++;
+        if (sc >= b) {
+            Arrays.sort(arr);
+            for (long l : arr) Fs.pl(l);
+            Fs.flush();
+            return;
+        }
+    }
+    b -= sc;
+    long[] res = new long[n];
+    for (int i = 0; i < n; i++) {
+        long sisu = b / n;
+        if (b % n > i)
+            sisu++;
+        arr[i] %= mod;
+        arr[i] = (arr[i] * Fs.modPow(a, sisu, mod)) % mod;
+        int index = (int) (i - b % n + n) % n;
+        res[index] = arr[i];
+    }
+    for (long l : res) Fs.pl(l);
+    Fs.flush();
+}

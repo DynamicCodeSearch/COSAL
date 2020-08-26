@@ -1,0 +1,24 @@
+void run() {
+    N = sc.nextInt();
+    M = sc.nextInt();
+    init(N);
+    Bridge[] B = new Bridge[M];
+    for (int i = 0; i < M; i++) B[i] = new Bridge(sc.nextInt() - 1, sc.nextInt() - 1, sc.nextInt());
+    Arrays.sort(B);
+    int Q = sc.nextInt();
+    Info[] I = new Info[Q];
+    for (int i = 0; i < Q; i++) I[i] = new Info(i, sc.nextInt() - 1, sc.nextInt());
+    Arrays.sort(I);
+    int[] ans = new int[Q];
+    int bCnt = 0;
+    for (int i = 0; i < Q; i++) {
+        while (bCnt < M && B[bCnt].y > I[i].year) {
+            union(B[bCnt].a, B[bCnt].b);
+            bCnt++;
+        }
+        ans[I[i].id] = getGroupSize(I[i].v);
+    }
+    StringBuilder s = new StringBuilder();
+    for (int i = 0; i < Q; i++) s.append(ans[i] + "\n");
+    System.out.print(s);
+}

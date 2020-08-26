@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int o = 0, p = 0, q = 0;
+    long a = 0, b = 0, c = 0;
+    char ch;
+    String str;
+    
+    int s = Integer.parseInt(sc.next());
+    String aaa = "";
+    String[][] map = new String[s + 1][s + 1];
+    StringBuilder buf = new StringBuilder(aaa);
+    for (int i = 0; i < s; i++) {
+        aaa = sc.next();
+        
+        
+        String[] arrays = aaa.split("");
+        for (int k = 0; k < s; k++) {
+            map[i][k] = arrays[k];
+        }
+    }
+    for (int i = 0; i < s; i++) {
+        for (int k = s - 1; k > -1; k--) {
+            System.out.print(map[k][i]);
+        }
+        System.out.println();
+    }
+    
+    System.out.println();
+}

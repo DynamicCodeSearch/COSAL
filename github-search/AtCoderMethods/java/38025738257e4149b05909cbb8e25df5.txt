@@ -1,0 +1,17 @@
+public static void main(String[] args) throws IOException {
+    final Scanner sc = new Scanner(System.in);
+    final double P = sc.nextDouble();
+    double lower_wait = 0, upper_wait = 100;
+    for (int count = 0; count <= 1000; count++) {
+        final double llr = (lower_wait * 2 + upper_wait) / 3;
+        final double lrr = (lower_wait + upper_wait * 2) / 3;
+        final double llr_time = calc(llr, P);
+        final double lrr_time = calc(lrr, P);
+        if (llr_time < lrr_time) {
+            upper_wait = lrr;
+        } else {
+            lower_wait = llr;
+        }
+    }
+    System.out.printf("%.10f\n", calc(lower_wait, P));
+}

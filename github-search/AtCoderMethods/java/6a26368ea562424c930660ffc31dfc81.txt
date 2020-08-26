@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int data = sc.nextInt();
+    Box[] heap = new Box[data];
+    for (int i = 0; i < data; i++) {
+        Box box = new Box(sc.nextInt(), sc.nextInt());
+        push(heap, box);
+    }
+    Box[] b = new Box[data];
+    for (int i = 0; i < data; i++) {
+        b[i] = pop(heap);
+    }
+    int[] max = new int[data + 1];
+    Arrays.fill(max, 1000000);
+    max[0] = 0;
+    for (int i = 0; i < data; i++) {
+        int index = Arrays.binarySearch(max, b[i].h);
+        if (index < 0) {
+            index = -index - 1;
+            max[index] = Math.min(max[index], b[i].h);
+        }
+    }
+    for (int i = data; i >= 0; i--) {
+        if (max[i] < 1000000) {
+            System.out.println(i);
+            break;
+        }
+    }
+}

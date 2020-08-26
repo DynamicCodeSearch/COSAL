@@ -1,0 +1,37 @@
+private static void solve() {
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    List<List<Integer>> edges = new ArrayList<>(n);
+    for (int i = 0; i < n; i++) {
+        edges.add(new ArrayList<>());
+    }
+    for (int i = 0; i < m; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        edges.get(a).add(b);
+        edges.get(b).add(a);
+    }
+    int[] d = new int[n];
+    Queue<Integer> q = new ArrayDeque<>();
+    q.add(0);
+    while (!q.isEmpty()) {
+        int e = q.remove();
+        if (d[e] == 2) {
+            continue;
+        }
+        for (int next : edges.get(e)) {
+            if (next != 0 && d[next] == 0) {
+                d[next] = d[e] + 1;
+                q.add(next);
+            }
+            if (next == n - 1 && d[e] == 1) {
+                d[next] = d[e] + 1;
+            }
+        }
+    }
+    if (d[n - 1] == 2) {
+        pr.println("POSSIBLE");
+    } else {
+        pr.println("IMPOSSIBLE");
+    }
+}

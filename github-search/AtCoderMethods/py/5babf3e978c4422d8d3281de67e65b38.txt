@@ -1,0 +1,11 @@
+def rec(cur):
+    ret = 0
+    fp.add(cur)
+    if len(fp) == n:
+        fp.remove(cur)
+        return 1
+    for nex in e[cur]:
+        if nex not in fp:
+            ret += rec(nex)
+    fp.remove(cur)
+    return ret

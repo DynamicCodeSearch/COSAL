@@ -1,0 +1,6 @@
+def can_make(m, k, items):
+    n = []
+    for item in items:
+        w, p = item
+        n.append(w * (p - m))
+    return sum(sorted(n, reverse=True)[:k]) >= 0

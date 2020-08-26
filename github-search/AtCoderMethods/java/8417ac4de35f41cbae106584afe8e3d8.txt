@@ -1,0 +1,31 @@
+public static void main(String[] args) throws Exception {
+    Scanner in = new Scanner(System.in);
+    int n = in.nextInt();
+    int k = in.nextInt();
+    long[] a = new long[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = in.nextLong();
+    }
+    in.close();
+    long result = 0;
+    int l = 0;
+    int r = n - 1;
+    int count = 1;
+    if (k > n / 2) {
+        k = n + 1 - k;
+    }
+    while (l < r) {
+        result += a[l] * count + a[r] * count;
+        if (count < k) {
+            count++;
+        }
+        l++;
+        r--;
+    }
+    if (l == r) {
+        result += a[l] * count;
+    }
+    StringBuilder sb = new StringBuilder();
+    sb.append(result);
+    System.out.println(sb.toString());
+}

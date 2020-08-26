@@ -1,0 +1,28 @@
+public void solve() {
+    int N = in.nextInt();
+    int M = in.nextInt();
+    int[] l = new int[N];
+    int[] r = new int[N];
+    State[] s = new State[N];
+    for (int i = 0; i < N; i++) {
+        l[i] = in.nextInt();
+        r[i] = in.nextInt();
+        s[i] = new State(r[i] - l[i] + 1, l[i], r[i]);
+    }
+    Arrays.sort(s);
+    BIT bit = new BIT(M + 10);
+    for (int d = 1, i = 0; d <= M; d++) {
+        while (i < N && s[i].range < d) {
+            bit.update(s[i].l, 1);
+            bit.update(s[i].r + 1, -1);
+            i++;
+        }
+        int res = N - i;
+        for (int j = 0; j <= M; j += d) {
+            res += bit.calc(j);
+        }
+        System.out.println(res);
+    }
+    
+    out.close();
+}

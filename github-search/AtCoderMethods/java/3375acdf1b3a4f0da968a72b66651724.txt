@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int A, B;
+    Queue<Integer> q = new LinkedList<Integer>();
+    Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+    int[] v = { 1, -1, 5, -5, 10, -10 };
+    A = sc.nextInt();
+    B = sc.nextInt();
+    q.add(A);
+    map.put(A, 0);
+    int count = 0;
+    while (!q.isEmpty()) {
+        int n = q.poll();
+        count = map.get(n);
+        if (n == B) {
+            System.out.println(count);
+            break;
+        }
+        for (int i = 0; i < v.length; i++) {
+            if (!map.containsKey(n + v[i])) {
+                q.add(n + v[i]);
+                map.put(n + v[i], count + 1);
+            }
+        }
+    }
+    sc.close();
+}

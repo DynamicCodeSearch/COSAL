@@ -1,0 +1,49 @@
+public void solve() {
+    N = nextInt();
+    M = nextInt();
+    ch = next().toCharArray();
+    l = new int[M];
+    r = new int[M];
+    for (int i = 0; i < M; i++) {
+        l[i] = nextInt() - 1;
+        r[i] = nextInt() - 1;
+    }
+    newR = new int[N];
+    for (int i = 0; i < N; i++) {
+        newR[i] = i;
+    }
+    for (int i = 0; i < M; i++) {
+        newR[l[i]] = Math.max(newR[l[i]], r[i]);
+    }
+    for (int i = 1; i < N; i++) {
+        newR[i] = Math.max(newR[i], newR[i - 1]);
+    }
+    sum = new int[N];
+    for (int i = 0; i < N; i++) {
+        sum[i] = ch[i] - '0';
+    }
+    for (int i = 0; i < N - 1; i++) {
+        sum[i + 1] += sum[i];
+    }
+    dp = new long[N + 1][N + 1];
+    dp[0][0] = 1L;
+    
+    for (int i = 0; i < N; i++) {
+        
+        for (int j = 0; j <= i; j++) {
+            if (dp[i][j] == 0)
+                continue;
+            
+            if (j <= sum[newR[i]] && sum[newR[i]] - j <= newR[i] - i) {
+                dp[i + 1][j] += dp[i][j] % MOD;
+                dp[i + 1][j] %= MOD;
+            }
+            
+            if (j + 1 <= sum[newR[i]] && sum[newR[i]] - j - 1 <= newR[i] - i) {
+                dp[i + 1][j + 1] += dp[i][j] % MOD;
+                dp[i + 1][j + 1] %= MOD;
+            }
+        }
+    }
+    out.println(dp[N][sum[N - 1]]);
+}

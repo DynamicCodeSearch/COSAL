@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String S = sc.next();
+    int T = sc.nextInt(), x = 0, y = 0, cnt = 0;
+    for (int i = 0; i < S.length(); i++) {
+        String temp = S.substring(i, i + 1);
+        if (temp.equals("L"))
+            x--;
+        else if (temp.equals("R"))
+            x++;
+        else if (temp.equals("U"))
+            y++;
+        else if (temp.equals("D"))
+            y--;
+        else
+            cnt++;
+    }
+    int ans = 0, tmp = Math.abs(x) + Math.abs(y);
+    if (T == 1)
+        ans = tmp + cnt;
+    else
+        ans = tmp >= cnt ? tmp - cnt : (cnt - tmp) % 2;
+    System.out.println(ans);
+}

@@ -1,0 +1,11 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    int n = Integer.parseInt(input.readLine());
+    int minValue = Integer.MAX_VALUE;
+    for (int w = 1; w * w <= n; w++) {
+        int h = n / w;
+        int remaining = n - (h * w);
+        minValue = Math.min(minValue, Math.abs(w - h) + remaining);
+    }
+    System.out.println(minValue);
+}

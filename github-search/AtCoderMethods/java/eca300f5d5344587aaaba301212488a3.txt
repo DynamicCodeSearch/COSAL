@@ -1,0 +1,22 @@
+public static void input() {
+    Scanner scan = new Scanner(System.in);
+    N = scan.nextInt();
+    M = scan.nextInt();
+    x = scan.nextInt();
+    a = scan.nextInt();
+    p = scan.nextInt();
+    map = new int[N][M];
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < M; j++) {
+            if (i == 0 && j == 0)
+                map[i][j] = x;
+            else {
+                if (j == 0)
+                    map[i][j] = (map[i - 1][M - 1] + a) % p;
+                else
+                    map[i][j] = (map[i][j - 1] + a) % p;
+            }
+            temp.add(map[i][j]);
+        }
+    }
+}

@@ -1,0 +1,33 @@
+def solve():
+    N, W = map(int, input().split())
+    v = [[] for i in range(4)]
+
+    for i in range(N):
+        wi, vi = map(int, input().split())
+
+        if i == 0:
+            base = wi
+            v[0].append(vi)
+        else:
+            v[wi - base].append(vi)
+
+    for i in range(4):
+        v[i].sort(reverse=True)
+
+    ans = 0
+
+    for i in range(len(v[0]) + 1):
+        for j in range(len(v[1]) + 1):
+            for k in range(len(v[2]) + 1):
+                w = base*i + (base + 1)*j + (base + 2)*k
+
+                if w > W:
+                    continue
+
+                l = (W - w) // (base + 3)
+
+                kakaku = sum(v[0][:i]) + sum(v[1][:j]) + sum(v[2][:k]) + sum(v[3][:l])
+
+                ans = max(ans, kakaku)
+
+    print(ans)

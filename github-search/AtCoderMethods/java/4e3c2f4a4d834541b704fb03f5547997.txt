@@ -1,0 +1,30 @@
+public void solve() throws IOException {
+    long a = nextInt();
+    long b = nextInt();
+    long c = nextInt();
+    long d = nextInt();
+    long e = nextInt();
+    long f = nextInt();
+    long max = -1;
+    long sum = 0;
+    long sug = 0;
+    long lastsum = 1;
+    for (long water1 = 0; water1 <= f; water1 += 100 * a) {
+        for (long water2 = 0; water2 <= f; water2 += 100 * b) {
+            for (long sugar1 = 0; sugar1 <= f; sugar1 += c) {
+                for (long sugar2 = 0; sugar2 <= f; sugar2 += d) {
+                    if (water1 + water2 + sugar1 + sugar2 <= f && (sugar1 + sugar2) * (100 + e) <= e * (water1 + water2 + sugar1 + sugar2) && (sugar1 + sugar2) * 100 * lastsum >= max * (water1 + water2 + sugar1 + sugar2)) {
+                        max = (sugar1 + sugar2) * 100;
+                        lastsum = water1 + water2 + sugar1 + sugar2;
+                        sum = water1 + water2 + sugar1 + sugar2;
+                        sug = sugar1 + sugar2;
+                    }
+                }
+            }
+        }
+    }
+    if (sum == 0) {
+        sum = a * 100;
+    }
+    out.println(sum + " " + sug);
+}

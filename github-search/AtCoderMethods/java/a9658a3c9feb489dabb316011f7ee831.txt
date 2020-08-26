@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String A = sc.next();
+    String B = sc.next();
+    String ans = "GREATER";
+    if (A.length() < B.length()) {
+        ans = "LESS";
+    } else if (A.length() == B.length()) {
+        if (A.compareTo(B) < 0) {
+            ans = "LESS";
+        } else if (A.compareTo(B) == 0) {
+            ans = "EQUAL";
+        }
+    }
+    System.out.println(ans);
+}

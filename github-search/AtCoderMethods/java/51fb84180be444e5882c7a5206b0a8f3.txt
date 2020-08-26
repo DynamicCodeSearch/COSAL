@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner s = new Scanner(System.in);
+    final int N = s.nextInt();
+    final int M = s.nextInt();
+    s.close();
+    if (2 * N > M || 4 * N < M) {
+        System.out.println("-1 -1 -1");
+        return;
+    }
+    int[] result = new int[] { N, 0, 0 };
+    int nokori = M - 2 * N;
+    while (nokori > 0) {
+        if (result[1] == 0) {
+            result[0]--;
+            result[1]++;
+        } else {
+            result[1]--;
+            result[2]++;
+        }
+        nokori--;
+    }
+    System.out.println(result[0] + " " + result[1] + " " + result[2]);
+}

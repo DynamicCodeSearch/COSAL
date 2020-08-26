@@ -1,0 +1,42 @@
+public static void main(String[] args) {
+    try (Scanner in = new Scanner(System.in)) {
+        String firstLine = in.nextLine();
+        int H = Integer.parseInt(firstLine.split(" ")[0]);
+        int W = Integer.parseInt(firstLine.split(" ")[1]);
+        String[] S = new String[H];
+        for (int i = 0; i < S.length; i++) {
+            S[i] = in.nextLine();
+        }
+        int[][] counts = new int[H][W];
+        for (int r = 0; r < H; r++) {
+            for (int c = 0; c < W; c++) {
+                if (S[r].charAt(c) == '#') {
+                    continue;
+                }
+                int count = 0;
+                for (int d = 0; d < dr.length; d++) {
+                    int nr = r + dr[d];
+                    int nc = c + dc[d];
+                    if (nr < 0 || nr >= H) {
+                        continue;
+                    }
+                    if (nc < 0 || nc >= W) {
+                        continue;
+                    }
+                    if (S[nr].charAt(nc) == '#') {
+                        count++;
+                    }
+                }
+                counts[r][c] = count;
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        for (int r = 0; r < H; r++) {
+            for (int c = 0; c < W; c++) {
+                sb.append(S[r].charAt(c) == '#' ? "#" : counts[r][c]);
+            }
+            sb.append("\n");
+        }
+        System.out.println(sb.toString());
+    }
+}

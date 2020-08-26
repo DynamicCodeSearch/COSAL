@@ -1,0 +1,13 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    long A = sc.nextLong();
+    long B = sc.nextLong();
+    long M = sc.nextLong();
+    long D = gcd(A, B);
+    long[] rec1 = { 10, 1 };
+    long[] rec2 = { powMod(10, D, M), 1 };
+    long[] init = { 0 };
+    long a = rec(init, rec1, A, M);
+    long b = rec(init, rec2, B / D, M);
+    System.out.println(a * b % M);
+}

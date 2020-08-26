@@ -1,0 +1,27 @@
+public void exec() throws IOException {
+    InputUtil input = new InputUtil();
+    PrintWriter out = new PrintWriter(System.out);
+    int N = input.nextInt();
+    nodeUtil = new NodeUtil<>(N);
+    State[] v = new State[N];
+    v[0] = State.BLACK_FENNEC;
+    Arrays.fill(v, 1, N - 1, State.NON);
+    v[N - 1] = State.WHITE_SNUKE;
+    nodeUtil.initNodeValue(v);
+    int[] a = new int[N - 1];
+    int[] b = new int[N - 1];
+    for (int i = 0; i < N - 1; i++) {
+        a[i] = input.nextInt() - 1;
+        b[i] = input.nextInt() - 1;
+    }
+    nodeUtil.initPath(a, b);
+    fennecNodes.add(nodeUtil.nodeList.get(0));
+    snukeNodes.add(nodeUtil.nodeList.get(N - 1));
+    while (fennecNodes.count + snukeNodes.count < N) {
+        fillNode(fennecNodes, State.BLACK_FENNEC);
+        fillNode(snukeNodes, State.WHITE_SNUKE);
+    }
+    out.println((fennecNodes.count <= snukeNodes.count) ? "Snuke" : "Fennec");
+    out.flush();
+    input.close();
+}

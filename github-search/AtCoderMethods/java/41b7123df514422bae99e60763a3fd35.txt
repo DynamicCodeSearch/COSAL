@@ -1,0 +1,13 @@
+int getMax(int a, int b, int i, int l, int r) {
+    if (r == -1)
+        r = n;
+    if (a <= l && r <= b)
+        return d[i];
+    int res = 0;
+    int c = (l + r) >> 1;
+    if (a < c)
+        res = Math.max(res, getMax(a, b, i << 1, l, c));
+    if (c < b)
+        res = Math.max(res, getMax(a, b, (i << 1) | 1, c, r));
+    return res;
+}

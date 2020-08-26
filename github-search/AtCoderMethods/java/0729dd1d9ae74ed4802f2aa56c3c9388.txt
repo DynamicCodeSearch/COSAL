@@ -1,0 +1,45 @@
+public static void main(String[] args) throws Exception {
+    Scanner scan = new Scanner(System.in);
+    int N = scan.nextInt();
+    String SE;
+    int[][] time = new int[2][N];
+    int sHour, sMinute, eHour, eMinute;
+    boolean[] isAnswerTime = new boolean[24 * 12 + 1];
+    for (int i = 0; i < N; i++) {
+        SE = scan.next();
+        sHour = Integer.parseInt(SE.substring(0, 2));
+        sMinute = Integer.parseInt(SE.substring(2, 4));
+        if (sMinute % 5 != 0)
+            sMinute = sMinute - sMinute % 5;
+        eHour = Integer.parseInt(SE.substring(5, 7));
+        eMinute = Integer.parseInt(SE.substring(7, 9));
+        if (eMinute % 5 != 0)
+            eMinute = eMinute - eMinute % 5 + 5;
+        for (int j = sHour * 12 + sMinute / 5; j < eHour * 12 + eMinute / 5; j++) {
+            isAnswerTime[j] = true;
+        }
+    }
+    int startTime = 0, endTime = 0;
+    for (int i = 0; i < 24 * 12; i++) {
+        if (i == 0) {
+            if (isAnswerTime[i]) {
+                startTime = 0;
+            }
+        } else {
+            if (isAnswerTime[i]) {
+                if (!isAnswerTime[i - 1]) {
+                    startTime = i / 12 * 100 + i % 12 * 5;
+                }
+                if (i == 24 * 12 - 1) {
+                    endTime = 2400;
+                    System.out.println(String.format("%04d", startTime) + "-" + String.format("%04d", endTime));
+                }
+            } else {
+                if (isAnswerTime[i - 1]) {
+                    endTime = i / 12 * 100 + i % 12 * 5;
+                    System.out.println(String.format("%04d", startTime) + "-" + String.format("%04d", endTime));
+                }
+            }
+        }
+    }
+}

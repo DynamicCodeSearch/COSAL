@@ -1,0 +1,24 @@
+static long[] dijkstra(int N, int M, int[] a, int[] b, int[] c) {
+    long[] dist = new long[N];
+    for (int i = 0; i < N; i++) dist[i] = INF;
+    dist[0] = 0;
+    ArrayList<ArrayList<pairii>> G = new ArrayList<ArrayList<pairii>>();
+    for (int i = 0; i < N; i++) G.add(new ArrayList<pairii>());
+    for (int i = 0; i < M; i++) {
+        G.get(a[i]).add(new pairii(b[i], c[i]));
+    }
+    PriorityQueue<pairli> que = new PriorityQueue<pairli>();
+    que.add(new pairli(0, 0));
+    while (que.size() != 0) {
+        pairli p = que.poll();
+        if (dist[p.second] < p.first)
+            continue;
+        for (pairii e : G.get(p.second)) {
+            if (dist[e.first] <= p.first + e.second)
+                continue;
+            dist[e.first] = p.first + e.second;
+            que.add(new pairli(dist[e.first], e.first));
+        }
+    }
+    return dist;
+}

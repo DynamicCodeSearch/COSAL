@@ -1,0 +1,23 @@
+public static long[] extgcd(long a, long b) {
+    long u = 1;
+    long v = 0;
+    long x = 0;
+    long y = 1;
+    while (a > 0) {
+        long q = b / a;
+        x -= q * u;
+        y -= q * v;
+        b -= q * a;
+        long tmp;
+        tmp = x;
+        x = u;
+        u = tmp;
+        tmp = y;
+        y = v;
+        v = tmp;
+        tmp = b;
+        b = a;
+        a = tmp;
+    }
+    return new long[] { b, x, y };
+}

@@ -1,0 +1,31 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    int now = a;
+    int count = 0;
+    while (true) {
+        if (now == b) {
+            break;
+        } else if (now < b - 7) {
+            now = now + 10;
+            count++;
+        } else if (now > b + 7) {
+            now = now - 10;
+            count++;
+        } else if (now < b - 2) {
+            now = now + 5;
+            count++;
+        } else if (now > b + 2) {
+            now = now - 5;
+            count++;
+        } else if (now < b) {
+            now = now + 1;
+            count++;
+        } else if (now > b) {
+            now = now - 1;
+            count++;
+        }
+    }
+    System.out.println(count);
+}

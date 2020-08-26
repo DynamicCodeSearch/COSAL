@@ -1,0 +1,43 @@
+long func(long n, long s) {
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    long ans = Long.MAX_VALUE;
+    long sqrt = (long) Math.sqrt(n);
+    for (long i = 2, cur = n + 1; cur > 2 && cur > sqrt - 100; i++) {
+        
+        long next = (n + i) / i;
+        long len = cur - next;
+        long a = f(cur - 1, n);
+        
+        if ((s - a) % (i - 1) == 0) {
+            if (s >= a && s <= a + (len - 1) * (i - 1)) {
+                ans = Math.min(ans, cur - ((s - a) / (i - 1) + 1));
+            
+            }
+        }
+        cur = next;
+    }
+    for (long i = 2; (i - 1) * (i - 1) <= n + 100 && i < ans; i++) {
+        if (f(i, n) == s) {
+            return i;
+        }
+    }
+    if (ans == Long.MAX_VALUE) {
+        if (n == s) {
+            return n + 1;
+        }
+        ans = -1;
+    }
+    return ans;
+}

@@ -1,0 +1,24 @@
+public static void main(String[] args) throws java.lang.Exception {
+    InputReader in = new InputReader(System.in);
+    PrintWriter w = new PrintWriter(System.out);
+    int n = in.nextInt();
+    graph = new ArrayList[n];
+    for (int i = 0; i < n; i++) graph[i] = new ArrayList<>();
+    for (int i = 0; i < n - 1; i++) {
+        int u = in.nextInt() - 1;
+        int v = in.nextInt() - 1;
+        graph[u].add(v);
+        graph[v].add(u);
+    }
+    int[] d_0 = Bfs(0);
+    int[] d_n = Bfs(n - 1);
+    int x = 0, y = 0;
+    for (int i = 0; i < n; i++) {
+        if (d_0[i] <= d_n[i])
+            x++;
+        else
+            y++;
+    }
+    w.println((x > y) ? "Fennec" : "Snuke");
+    w.close();
+}

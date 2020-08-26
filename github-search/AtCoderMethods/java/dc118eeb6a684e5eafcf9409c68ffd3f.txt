@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    double count = 0;
+    double sum = 0;
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = sc.nextInt();
+        sum += a[i];
+        if (a[i] != 0) {
+            count++;
+        }
+    }
+    double avedouble = sum / count;
+    int ave = (int) (sum / count);
+    if (avedouble != ave) {
+        ave += 1;
+    }
+    if (count == 0) {
+        ave -= 1;
+    }
+    System.out.println(ave);
+}

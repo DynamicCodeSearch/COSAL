@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner reader = new Scanner(System.in);
+    int a = reader.nextInt();
+    int b = reader.nextInt();
+    int c = reader.nextInt();
+    int[] list = new int[] { a, b, c };
+    int result = 1000000;
+    for (int i = 0; i < list.length; i++) {
+        for (int j = 0; j < list.length; j++) {
+            if (i == j) {
+                continue;
+            }
+            if (result > list[i] + list[j]) {
+                result = list[i] + list[j];
+            }
+        }
+    }
+    System.out.println(result);
+    reader.close();
+}

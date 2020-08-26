@@ -1,0 +1,11 @@
+private String nextToken() {
+    if (currentToken == null && !stk.hasMoreTokens()) {
+        if (!ensureNextToken()) {
+            throw new NoSuchElementException();
+        }
+    }
+    String s = stk.nextToken();
+    currentTokens.append(s);
+    currentToken = s;
+    return currentToken;
+}

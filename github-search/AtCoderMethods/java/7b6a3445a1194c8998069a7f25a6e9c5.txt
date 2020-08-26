@@ -1,0 +1,19 @@
+void solve() throws NumberFormatException, IOException {
+    int[][] cards = new int[3][];
+    for (int i = 0; i < 3; i++) {
+        char[] s = in.nextToken().toCharArray();
+        cards[i] = new int[s.length];
+        for (int j = 0; j < s.length; j++) {
+            cards[i][j] = s[j] - 'a';
+        }
+    }
+    int p = 0;
+    int[] idx = new int[3];
+    while (true) {
+        if (idx[p] == cards[p].length) {
+            System.out.println((char) (p + 'A'));
+            break;
+        }
+        p = cards[p][idx[p]++];
+    }
+}

@@ -1,0 +1,30 @@
+static void solve() {
+    int n = ni(), m = ni();
+    char[][] map = nm(n, m);
+    List<Edge> es = new ArrayList<>();
+    int o = n * m;
+    int src = -1, sink = -1;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            if (map[i][j] != '.') {
+                es.add(new Edge(i * m + j, i * m + j + o, 1));
+                es.add(new Edge(i * m + j + o, 2 * o + i, 999999));
+                es.add(new Edge(i * m + j + o, 2 * o + n + j, 999999));
+                es.add(new Edge(2 * o + i, i * m + j, 999999));
+                es.add(new Edge(2 * o + n + j, i * m + j, 999999));
+                if (map[i][j] == 'S') {
+                    src = i * m + j + o;
+                }
+                if (map[i][j] == 'T') {
+                    sink = i * m + j;
+                }
+            }
+        }
+    }
+    long F = maximumFlowDinicNoRec(compileWD(2 * o + n + m, es), src, sink);
+    if (F > 100000) {
+        out.println(-1);
+    } else {
+        out.println(F);
+    }
+}

@@ -1,0 +1,8 @@
+void dfs(ArrayList<Integer>[] g, int cur, int par, int[] parent) {
+    parent[cur] = par;
+    for (int dst : g[cur]) {
+        if (dst == par)
+            continue;
+        dfs(g, dst, cur, parent);
+    }
+}

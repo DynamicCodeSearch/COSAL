@@ -1,0 +1,28 @@
+public static void main(String[] args) throws IOException {
+    Scanner scan = new Scanner(System.in);
+    int n = Integer.parseInt(scan.nextLine());
+    String[] str = new String[n];
+    String az = "abcdefghijklmnopqrstuvwxyz";
+    String ans = "";
+    boolean judge = true;
+    for (int i = 0; i < str.length; i++) {
+        str[i] = scan.nextLine();
+    }
+    for (int i = 0; i < az.length(); ) {
+        judge = true;
+        for (int j = 0; j < n; j++) {
+            if (!str[j].matches(".*" + az.substring(i, i + 1) + ".*")) {
+                judge = false;
+                break;
+            } else {
+                str[j] = str[j].replaceFirst(az.substring(i, i + 1), "");
+            }
+        }
+        if (judge == true) {
+            ans += az.substring(i, i + 1);
+        } else {
+            i++;
+        }
+    }
+    System.out.println(ans);
+}

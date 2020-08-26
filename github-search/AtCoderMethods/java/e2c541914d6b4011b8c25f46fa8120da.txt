@@ -1,0 +1,18 @@
+public void run() {
+    try {
+        Scanner s = new Scanner();
+        long a = s.nextLong();
+        long b = s.nextLong();
+        long k = s.nextLong();
+        long l = s.nextLong();
+        long amari = k % l;
+        long n = (k - amari) / l;
+        long value = amari * a + n * b;
+        k = k - amari + l;
+        if (value > (k / l * b))
+            value = k / l * b;
+        System.out.println(value);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}

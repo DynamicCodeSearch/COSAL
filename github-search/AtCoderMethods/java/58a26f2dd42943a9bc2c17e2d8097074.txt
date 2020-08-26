@@ -1,0 +1,58 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    int H = in.readInt();
+    int W = in.readInt();
+    char[][] m = new char[H][W];
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            m[i][j] = in.readCharacter();
+        }
+    }
+    char[][] ans = new char[H][W];
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            ans[i][j] = '#';
+        }
+    }
+    int[] dx = new int[] { 0, 1, -1, 0, 0, 1, -1, 1, -1 };
+    int[] dy = new int[] { 0, 0, 0, 1, -1, 1, -1, -1, 1 };
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            if (m[i][j] == '#')
+                continue;
+            for (int k = 0; k < 9; k++) {
+                int x = j + dx[k];
+                int y = i + dy[k];
+                if (x < 0 || W <= x)
+                    continue;
+                if (y < 0 || H <= y)
+                    continue;
+                ans[y][x] = '.';
+            }
+        }
+    }
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            boolean isWhite = true;
+            for (int k = 0; k < 9; k++) {
+                int x = j + dx[k];
+                int y = i + dy[k];
+                if (x < 0 || W <= x)
+                    continue;
+                if (y < 0 || H <= y)
+                    continue;
+                if (ans[y][x] == '#') {
+                    isWhite = false;
+                    break;
+                }
+            }
+            if ((m[i][j] == '.') != isWhite) {
+                out.printLine("impossible");
+                return;
+            }
+        }
+    }
+    out.printLine("possible");
+    for (int i = 0; i < H; i++) {
+        out.printLine(String.valueOf(ans[i]));
+    }
+}

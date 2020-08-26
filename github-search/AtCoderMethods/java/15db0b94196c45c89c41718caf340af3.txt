@@ -1,0 +1,20 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    N = sc.nextInt();
+    Q = sc.nextInt();
+    L = new int[Q];
+    R = new int[Q];
+    T = new int[Q];
+    ans = new int[N];
+    for (int i = 0; i < Q; i++) {
+        L[i] = sc.nextInt();
+        R[i] = sc.nextInt();
+        T[i] = sc.nextInt();
+    }
+    for (int i = 0; i < Q; i++) {
+        for (int j = L[i] - 1; j < R[i]; j++) {
+            ans[j] = T[i];
+        }
+    }
+    for (int i = 0; i < N; i++) System.out.println(ans[i]);
+}

@@ -1,0 +1,16 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    char[] s = in.next().toCharArray();
+    int[] count = new int[26];
+    for (char c : s) {
+        count[c - 'a']++;
+    }
+    char i = 0;
+    while (i < 26 && count[i] != 0) {
+        i++;
+    }
+    if (i == 26) {
+        out.println("None");
+    } else {
+        out.println("" + (char) (i + 'a'));
+    }
+}

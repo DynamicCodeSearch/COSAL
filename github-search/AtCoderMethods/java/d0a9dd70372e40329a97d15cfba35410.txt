@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    try {
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        String str = in.readLine();
+        StringTokenizer st = new StringTokenizer(str, " ");
+        int m = Integer.parseInt(st.nextToken());
+        int n = Integer.parseInt(st.nextToken());
+        int ln = Integer.parseInt(st.nextToken());
+        int count = ln;
+        int amari = 0;
+        while (true) {
+            if (amari != 0) {
+                ln += amari;
+                amari = 0;
+            }
+            if (ln < m)
+                break;
+            amari = ln - ((ln / m) * m);
+            ln = (ln / m) * n;
+            count += ln;
+        }
+        System.out.println(count);
+    } catch (IOException e) {
+    }
+}

@@ -1,0 +1,19 @@
+def main():
+    N = int(input())
+    L = sorted(map(int, input().split()))[::-1]
+    a = b = c = 0
+    while c < len(L):
+        t = L[c]
+        c += 1
+        if a == t:
+            break
+        else:
+            a = t
+    while c < len(L):
+        t = L[c]
+        c += 1
+        if b == t:
+            break
+        else:
+            b = t
+    print(a*b)

@@ -1,0 +1,49 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    long[] a = in.nextLongs(n);
+    boolean[] flg = new boolean[n];
+    long max = 0;
+    for (int i = 0; i < n; i++) {
+        if (max < a[i]) {
+            max = a[i];
+            flg[i] = true;
+        }
+    }
+    long[] ans = new long[n];
+    Queue<Pair> q = new PriorityQueue<>((u, v) -> Long.compare(v.value, u.value));
+    int lastI = -1;
+    for (int i = n - 1; i >= 0; i--) {
+        if (!flg[i]) {
+            q.add(new Pair(a[i], 1));
+        } else {
+            long newValue = a[i];
+            long newCnt = 1;
+            if (lastI != -1) {
+                long done = 0;
+                while (q.size() >= 1) {
+                    long head = q.peek().value;
+                    if (newValue <= head) {
+                        Pair pa = q.poll();
+                        done += (pa.value - newValue) * pa.cnt;
+                        newCnt += pa.cnt;
+                    } else {
+                        break;
+                    }
+                }
+                ans[lastI] = done;
+            }
+            q.add(new Pair(newValue, newCnt));
+            lastI = i;
+        }
+    }
+    while (q.size() >= 1) {
+        Pair pa = q.poll();
+        ans[0] += pa.value * pa.cnt;
+    }
+    for (int i = 0; i < n; i++) {
+        out.println(ans[i]);
+    }
+    out.flush();
+}

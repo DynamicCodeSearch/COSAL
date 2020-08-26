@@ -1,0 +1,9 @@
+private static void solve(FastScanner cin, PrintWriter cout) {
+    int n = cin.nextInt();
+    int m = cin.nextInt();
+    int[][] abs = new int[m][];
+    for (int i = 0; i < m; i++) abs[i] = new int[] { cin.nextInt(), cin.nextInt() };
+    int[] ans = solve(m, n, abs);
+    String ansstr = Arrays.stream(ans).mapToObj(Integer::toString).collect(Collectors.joining(System.lineSeparator()));
+    cout.println(ansstr);
+}

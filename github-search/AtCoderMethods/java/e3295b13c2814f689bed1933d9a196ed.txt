@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    
+    String s = sc.nextLine();
+    sc.close();
+    StringBuilder sb = new StringBuilder();
+    char prev = s.charAt(0);
+    int count = 1;
+    for (int i = 1; i < s.length(); i++) {
+        char now = s.charAt(i);
+        if (prev == now) {
+            count++;
+        } else {
+            sb.append(prev);
+            sb.append(count);
+            prev = now;
+            count = 1;
+        }
+    }
+    sb.append(prev);
+    sb.append(count);
+    System.out.println(sb.toString());
+}

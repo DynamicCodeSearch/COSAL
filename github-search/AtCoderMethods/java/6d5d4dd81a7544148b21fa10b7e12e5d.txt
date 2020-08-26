@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int S = sc.nextInt();
+    int T = sc.nextInt();
+    int W = sc.nextInt();
+    int cnt = 0;
+    if (S <= W && W <= T)
+        cnt++;
+    for (int i = 2; i <= N; i++) {
+        W += sc.nextInt();
+        if (S <= W && W <= T)
+            cnt++;
+    }
+    System.out.println(cnt);
+    sc.close();
+}

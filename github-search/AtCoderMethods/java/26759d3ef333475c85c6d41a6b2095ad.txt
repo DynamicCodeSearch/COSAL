@@ -1,0 +1,13 @@
+public static void main(String[] args) throws IOException {
+    
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    StringBuilder sb = new StringBuilder();
+    int n = Integer.parseInt(br.readLine());
+    int[] anArray = new int[n];
+    String[] s = br.readLine().split(" ");
+    for (int i = 0; i < n; i++) {
+        anArray[i] = Integer.parseInt(s[i]);
+    }
+    Arrays.sort(anArray);
+    System.out.println(anArray[n - 1] - anArray[0]);
+}

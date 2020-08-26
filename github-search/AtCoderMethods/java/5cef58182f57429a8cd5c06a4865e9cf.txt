@@ -1,0 +1,25 @@
+public void solve() {
+    N = nextInt();
+    T = new int[N];
+    for (int i = 0; i < N; i++) {
+        T[i] = nextInt();
+    }
+    M = nextInt();
+    P = new int[M];
+    X = new int[M];
+    for (int i = 0; i < M; i++) {
+        P[i] = nextInt();
+        X[i] = nextInt();
+    }
+    for (int i = 0; i < M; i++) {
+        long sum = 0;
+        for (int j = 0; j < N; j++) {
+            if (j == P[i] - 1) {
+                sum += X[i];
+            } else {
+                sum += T[j];
+            }
+        }
+        out.println(sum);
+    }
+}

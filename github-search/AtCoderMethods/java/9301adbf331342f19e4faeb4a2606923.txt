@@ -1,0 +1,12 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String S = sc.next();
+    LinkedList<Integer> a = new LinkedList<>();
+    S.chars().forEach(c -> {
+        a.add(c);
+    });
+    do {
+        a.pollLast();
+    } while (false == isEvenString(a));
+    System.out.print(a.size());
+}

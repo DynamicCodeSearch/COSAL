@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    int T = in.nextInt();
+    int[] t = in.nextInts(n);
+    long fromWater = 0;
+    long toWater = 0;
+    long total = 0;
+    for (int i = 0; i < n; i++) {
+        if (fromWater < t[i] && t[i] <= toWater) {
+            total += t[i] - fromWater;
+        } else if (toWater <= t[i]) {
+            total += toWater - fromWater;
+        }
+        fromWater = t[i];
+        toWater = t[i] + T;
+    }
+    total += T;
+    out.println(total);
+    out.flush();
+}

@@ -1,0 +1,18 @@
+public int inc(long x, int v) {
+    int pos = h(x) & mask;
+    while (allocated[pos] != 0) {
+        if (x == keys[pos]) {
+            allocated[pos] += v;
+            return allocated[pos];
+        }
+        pos = pos + 1 & mask;
+    }
+    if (size == rscale) {
+        resizeAndPut(x, v);
+    } else {
+        keys[pos] = x;
+        allocated[pos] = v;
+    }
+    size++;
+    return v;
+}

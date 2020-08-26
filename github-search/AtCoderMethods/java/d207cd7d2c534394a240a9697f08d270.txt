@@ -1,0 +1,27 @@
+static long invNum(long[] as, int min, int max) {
+    long res = 0;
+    if (min < max) {
+        int mid = (min + max + 1) / 2;
+        res += invNum(as, min, mid - 1) + invNum(as, mid, max);
+        long[] ls = Arrays.copyOfRange(as, min, mid);
+        long[] rs = Arrays.copyOfRange(as, mid, max + 1);
+        int l = 0, r = 0, i = min;
+        while (l < ls.length && r < rs.length) {
+            if (ls[l] <= rs[r]) {
+                as[i] = ls[l];
+                l++;
+                i++;
+            } else {
+                as[i] = rs[r];
+                r++;
+                i++;
+                res += ls.length - l;
+            }
+        }
+        System.arraycopy(ls, l, as, i, ls.length - l);
+        i += ls.length - l;
+        System.arraycopy(rs, r, as, i, rs.length - r);
+        i += rs.length - r;
+    }
+    return res;
+}

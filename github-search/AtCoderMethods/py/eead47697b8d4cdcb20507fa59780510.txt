@@ -1,0 +1,22 @@
+def main():
+    N, D = map(int, input().split())
+    X, Y = map(int, input().split())
+    X, Y = abs(X), abs(Y)
+
+    if X % D != 0 or Y % D != 0:
+        print(0)
+        return
+
+    table = nCr(1001)
+
+    x, y = X // D, Y // D
+
+    ans = 0
+    for h in range(N + 1):
+        v = N - h
+        if h < x or v < y or (h - x) % 2 != 0 or (v - y) % 2 != 0:
+            continue
+
+        ans += table[h][x + (h - x) // 2] * table[v][y + (v - y) // 2] * table[N][h]
+
+    print(ans / 4 ** N)

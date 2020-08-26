@@ -1,0 +1,48 @@
+public void solve() {
+    TreeMap<Long, Integer> items = new TreeMap<Long, Integer>(new Comparator<Long>() {
+
+        public int compare(Long m, Long n) {
+            return ((Long) m).compareTo(n) * -1;
+        }
+    });
+    for (int i = 0; i < N; i++) {
+        
+        if (items.containsKey(Val[i]))
+            items.put(Val[i], items.get(Val[i]) + 1);
+        else
+            items.put(Val[i], 1);
+    }
+    TreeMap<Long, Integer> select = new TreeMap<Long, Integer>();
+    int a = 0;
+    for (long key : items.keySet()) {
+        
+        if (A - a <= items.get(key)) {
+            int s = A - a;
+            select.put(key, s);
+            break;
+        } else {
+            select.put(key, items.get(key));
+            a += items.get(key);
+        }
+    }
+    long sum = 0;
+    for (long key : select.keySet()) {
+        
+        sum += (key * select.get(key));
+    }
+    System.out.printf("%.6f\n", (double) sum / (double) A);
+    long numPat = 0;
+    if (select.size() == 1) {
+        long key = select.firstKey();
+        for (int i = A; i <= B && i <= items.get(key); i++) {
+            
+            numPat += combination(items.get(key), i);
+        }
+    } else {
+        for (long key : select.keySet()) {
+            numPat = combination(items.get(key), select.get(key));
+            break;
+        }
+    }
+    System.out.println(numPat);
+}

@@ -1,0 +1,24 @@
+def solve2(n, m, weights):
+    score = [-inf] * n
+    score[0] = 0
+    pred = [-1] * n
+
+    for step in range(n):
+        for edge, c in weights.items():
+            a, b = edge
+            if score[b] < score[a] + c:
+                score[b] = score[a] + c
+                pred[b] = a
+
+    res = score[n-1]
+
+    for step in range(n):
+        for edge, c in weights.items():
+            a, b = edge
+            if score[b] < score[a] + c:
+                score[b] = score[a] + c
+                pred[b] = a
+
+    if res < score[n-1]:
+        return 'inf'
+    return res

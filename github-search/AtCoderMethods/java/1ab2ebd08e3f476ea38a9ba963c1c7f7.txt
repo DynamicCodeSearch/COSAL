@@ -1,0 +1,14 @@
+public int query(int pos) {
+    if (pos < start || end < pos) {
+        return 0;
+    }
+    if (start == end) {
+        return cost;
+    }
+    propagate();
+    int ans = 0;
+    for (Node node : nodes) {
+        ans = Math.max(ans, node.query(pos));
+    }
+    return ans;
+}

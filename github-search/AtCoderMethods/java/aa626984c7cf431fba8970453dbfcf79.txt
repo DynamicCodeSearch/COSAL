@@ -1,0 +1,53 @@
+static void abc012_4(Scanner scan) {
+    
+    final int N = scan.nextInt();
+    
+    final int M = scan.nextInt();
+    
+    
+    int[][] distance = new int[N + 1][N + 1];
+    for (int i = 1; i < N + 1; i++) {
+        for (int j = 1; j < N + 1; j++) {
+            
+            
+            distance[i][j] = Integer.MAX_VALUE / 2;
+        }
+        
+        distance[i][i] = 0;
+    }
+    for (int i = 1; i < N + 1; i++) {
+    }
+    
+    for (int i = 0; i < M; i++) {
+        
+        int a_i = scan.nextInt();
+        
+        int b_i = scan.nextInt();
+        
+        int d_i = scan.nextInt();
+        distance[a_i][b_i] = distance[b_i][a_i] = d_i;
+    }
+    
+    for (int k = 1; k < N + 1; k++) {
+        for (int i = 1; i < N + 1; i++) {
+            for (int j = 1; j < N + 1; j++) {
+                distance[i][j] = Math.min(distance[i][j], distance[i][k] + distance[k][j]);
+            }
+        }
+    }
+    int shortestTime = Integer.MAX_VALUE;
+    for (int i = 1; i < N + 1; i++) {
+        
+        int longestTime = 0;
+        for (int j = 1; j < N + 1; j++) {
+            if (distance[i][j] > longestTime) {
+                longestTime = distance[i][j];
+            }
+        }
+        
+        if (longestTime < shortestTime) {
+            shortestTime = longestTime;
+        }
+    }
+    System.out.print(shortestTime);
+}

@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner input = new Scanner(System.in);
+    int[] countChar = new int[26];
+    while (input.hasNext()) {
+        String w = input.next();
+        Arrays.fill(countChar, 0);
+        for (int i = 0; i < w.length(); ++i) {
+            ++countChar[w.charAt(i) - 'a'];
+        }
+        boolean isBeautiful = true;
+        for (int i = 0; i < countChar.length; ++i) {
+            if (countChar[i] % 2 == 1) {
+                isBeautiful = false;
+            }
+        }
+        if (isBeautiful) {
+            System.out.println("Yes");
+        } else {
+            System.out.println("No");
+        }
+    }
+}

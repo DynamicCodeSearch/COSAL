@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    String s = sc.nextLine();
+    char[] rp = s.toCharArray();
+    int paper = 0;
+    int rock = 0;
+    int win = 0;
+    int lose = 0;
+    int turn = 0;
+    while (turn < rp.length) {
+        if (rp[turn] == 'g') {
+            if (paper < rock) {
+                paper++;
+                win++;
+            } else {
+                rock++;
+            }
+        } else if (rp[turn] == 'p') {
+            if (paper < rock) {
+                paper++;
+            } else {
+                rock++;
+                lose++;
+            }
+        }
+        turn++;
+    }
+    System.out.println(win - lose);
+}

@@ -1,0 +1,16 @@
+public static void main(String[] args) throws Exception {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.ii();
+    int[] P = in.iia(n);
+    int cnt = 0;
+    for (int i = 1; i <= n; i++) {
+        if (P[i] == i) {
+            cnt++;
+            if (i + 1 <= n && P[i + 1] == i + 1)
+                i++;
+        }
+    }
+    out.println(cnt);
+    out.close();
+}

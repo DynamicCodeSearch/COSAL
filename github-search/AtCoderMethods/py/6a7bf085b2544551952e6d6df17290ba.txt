@@ -1,0 +1,10 @@
+def Union(parent, rank, i, j):
+	i_root = Find(parent, i)
+ j_root = Find(parent, j)
+ if rank[i_root] > rank[j_root]:
+		parent[j_root] = i_root
+ elif rank[i_root] < rank[j_root]:
+		parent[i_root] = j_root
+ elif i_root != j_root:
+		parent[j_root] = i_root
+  rank[i_root] += 1

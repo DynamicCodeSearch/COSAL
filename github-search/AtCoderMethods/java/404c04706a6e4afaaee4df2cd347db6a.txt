@@ -1,0 +1,13 @@
+public static void main(String[] args) {
+    Scanner kbs = new Scanner(System.in);
+    int n = kbs.nextInt();
+    int chinchin = 0, oppai = 0, oshiri = 100000000;
+    for (chinchin = 1; chinchin * oppai <= n; chinchin++, oppai = 1) {
+        for (; chinchin * oppai <= n; oppai++) {
+            if (Math.abs(chinchin - oppai) + (n - chinchin * oppai) < oshiri) {
+                oshiri = Math.abs(chinchin - oppai) + (n - chinchin * oppai);
+            }
+        }
+    }
+    System.out.println(oshiri);
+}

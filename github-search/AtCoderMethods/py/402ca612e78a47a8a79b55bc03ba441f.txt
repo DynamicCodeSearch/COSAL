@@ -1,0 +1,17 @@
+def bs(i):
+    ma = k
+    mi = 0
+    mm = 0
+    while ma > mi and (ma+mi) // 2 != mm:
+        mm = (ma+mi) // 2
+        if a[mm][5] < i:
+            mi = mm
+        else:
+            ma = mm - 1
+    if a[mm][5] > i:
+        return mm-1
+    if mm == k:
+        return k
+    if a[mm+1][5] <= i:
+        return mm+1
+    return mm

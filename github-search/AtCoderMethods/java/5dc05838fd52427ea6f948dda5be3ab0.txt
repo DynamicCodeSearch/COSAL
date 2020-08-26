@@ -1,0 +1,21 @@
+static void solve() {
+    int n = ni();
+    int a = ni(), b = ni(), c = ni(), d = ni();
+    int mod = 1000000007;
+    long[] dp = new long[n + 1];
+    int[][] fif = enumFIF(3000, mod);
+    dp[0] = 1;
+    for (int i = a; i <= b; i++) {
+        long[] ndp = Arrays.copyOf(dp, n + 1);
+        long pw = pow(fif[1][i], c - 1, mod);
+        for (int j = c; j <= d; j++) {
+            pw = pw * fif[1][i] % mod;
+            for (int k = 0; k + j * i <= n; k++) {
+                ndp[k + j * i] += dp[k] * pw % mod * fif[1][j];
+                ndp[k + j * i] %= mod;
+            }
+        }
+        dp = ndp;
+    }
+    out.println(dp[n] * fif[0][n] % mod);
+}

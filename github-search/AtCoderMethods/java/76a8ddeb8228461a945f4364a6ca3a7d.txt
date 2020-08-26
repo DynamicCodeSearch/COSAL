@@ -1,0 +1,51 @@
+public void calc() {
+    int H = in.nextInt(), W = in.nextInt(), N = in.nextInt();
+    int[] a = new int[N];
+    for (int i = 0; i < N; i++) {
+        a[i] = in.nextInt();
+    }
+    int[][] ans = new int[H][W];
+    
+    int dirH = 1;
+    int dirW = 0;
+    
+    int height = -1;
+    int width = 0;
+    
+    for (int color = 0; color < N; color++) {
+        
+        for (int i = 0; i < a[color]; i++) {
+            
+            
+            height += dirH;
+            width += dirW;
+            
+            if (height < 0 || height >= H || width < 0 || width >= W || ans[height][width] != 0) {
+                
+                height -= dirH;
+                width -= dirW;
+                
+                if (dirH == 0) {
+                    dirH = -dirW;
+                    dirW = 0;
+                } else {
+                    dirW = dirH;
+                    dirH = 0;
+                }
+                
+                i--;
+            } else 
+            {
+                
+                ans[height][width] = color + 1;
+            }
+        }
+    }
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            out.print(ans[i][j] + " ");
+        }
+        out.println();
+    }
+    out.close();
+}

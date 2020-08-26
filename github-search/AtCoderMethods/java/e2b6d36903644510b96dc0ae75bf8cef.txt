@@ -1,0 +1,23 @@
+static void solve(Scanner in) {
+    int N = in.nextInt();
+    long[] T = new long[N];
+    long[] A = new long[N];
+    for (int i = 0; i < N; i++) {
+        T[i] = in.nextInt();
+        A[i] = in.nextInt();
+    }
+    long t = T[0];
+    long a = A[0];
+    for (int i = 1; i < N; i++) {
+        long Ti = T[i];
+        long Ai = A[i];
+        long Tm = (t - 1) / Ti;
+        long Am = (a - 1) / Ai;
+        long m = Tm > Am ? Tm : Am;
+        Ti += Ti * m;
+        Ai += Ai * m;
+        t = (Ti + Ai) / (T[i] + A[i]) * T[i];
+        a = (Ti + Ai) / (T[i] + A[i]) * A[i];
+    }
+    System.out.println(t + a);
+}

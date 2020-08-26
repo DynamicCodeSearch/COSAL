@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int sx = sc.nextInt();
+    int sy = sc.nextInt();
+    int tx = sc.nextInt();
+    int ty = sc.nextInt();
+    StringBuilder sb = new StringBuilder();
+    append(sb, ty - sy, 'U');
+    append(sb, tx - sx, 'R');
+    append(sb, ty - sy, 'D');
+    append(sb, tx - sx, 'L');
+    append(sb, 1, 'L');
+    append(sb, ty - sy + 1, 'U');
+    append(sb, tx - sx + 1, 'R');
+    append(sb, 1, 'D');
+    append(sb, 1, 'R');
+    append(sb, ty - sy + 1, 'D');
+    append(sb, tx - sx + 1, 'L');
+    append(sb, 1, 'U');
+    System.out.println(sb.toString());
+    sc.close();
+}

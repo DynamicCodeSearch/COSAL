@@ -1,0 +1,14 @@
+public void solve(int testNumber, FastReader fs, PrintWriter pw) {
+    int n = fs.nextInt();
+    long[] factors = new long[n + 1];
+    for (int i = 2; i <= n; i++) {
+        factorize(i, factors);
+    }
+    long ans = 1L;
+    for (int i = 2; i < factors.length; i++) {
+        if (factors[i] != 0) {
+            ans = ans * (factors[i] + 1) % mod;
+        }
+    }
+    pw.println(ans);
+}

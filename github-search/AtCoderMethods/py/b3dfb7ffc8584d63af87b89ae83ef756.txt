@@ -1,0 +1,14 @@
+def search(A):
+  B = list(set(A))
+  B.sort(reverse=True)
+  if len(A)-len(B) == 0: return 0 
+
+  a1 = 0
+  An = np.array(A)
+  for n,(i, j) in enumerate(zip(An[0:-1], An[1:])):
+    if i == j:
+      a1 = i
+      break
+  del(A[:n+2])
+
+  return a1

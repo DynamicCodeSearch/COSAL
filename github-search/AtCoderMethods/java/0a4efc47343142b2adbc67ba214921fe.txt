@@ -1,0 +1,15 @@
+private void fillNode(DualList<Node<State>> list, State state) {
+    while (list.hasNext()) {
+        Node<State> node = list.next();
+        for (Node<State> rinsetuNode : node.edges) {
+            if (rinsetuNode.value == State.NON) {
+                rinsetuNode.value = state;
+                tempNodes.add(rinsetuNode);
+            }
+        }
+    }
+    if (!tempNodes.isEmpty()) {
+        list.add(tempNodes);
+        tempNodes.clear();
+    }
+}

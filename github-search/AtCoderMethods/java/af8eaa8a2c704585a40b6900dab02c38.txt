@@ -1,0 +1,15 @@
+static long solve(long a, long b) {
+    if (a % 3 == 0) {
+        return 0;
+    } else {
+        ArrayList<Long> div = div2(a - a / 3, b);
+        div.add(a / 3 * b);
+        Collections.sort(div);
+        long ans = div.get(2) - div.get(0);
+        div = div2(a - a / 3 - 1, b);
+        div.add((a / 3 + 1) * b);
+        Collections.sort(div);
+        ans = Math.min(ans, div.get(2) - div.get(0));
+        return ans;
+    }
+}

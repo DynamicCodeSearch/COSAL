@@ -1,0 +1,17 @@
+def main():
+    N, M = map(int, input().split())
+    g = defaultdict(list)
+    k = []
+    for _ in range(M):
+        a, b = map(int, input().split())
+        g[a].append(b)
+        g[b].append(a)
+        k.append((a, b))
+
+    ans = 0
+    for a, b in k:
+        used = set()
+        dfs(1, used, g, (a, b))
+        if len(used) != N:
+            ans += 1
+    print(ans)

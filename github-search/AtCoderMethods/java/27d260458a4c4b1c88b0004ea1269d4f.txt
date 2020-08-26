@@ -1,0 +1,30 @@
+static void solve() {
+    int n = ni(), m = ni();
+    int S = ni() - 1;
+    int[][] es = new int[m][];
+    for (int i = 0; i < m; i++) {
+        es[i] = new int[] { ni() - 1, ni() - 1 };
+    }
+    Arrays.sort(es, new Comparator<int[]>() {
+
+        public int compare(int[] a, int[] b) {
+            return Math.min(a[0], a[1]) - Math.min(b[0], b[1]);
+        }
+    });
+    int p = m;
+    DJSet ds = new DJSet(n);
+    int[] ret = new int[n];
+    int q = 0;
+    for (int i = n - 1; i >= 0; i--) {
+        while (p > 0 && Math.min(es[p - 1][0], es[p - 1][1]) >= i) {
+            ds.union(es[p - 1][0], es[p - 1][1]);
+            p--;
+        }
+        if (ds.equiv(i, S)) {
+            ret[q++] = i + 1;
+        }
+    }
+    while (q > 0) {
+        out.println(ret[--q]);
+    }
+}

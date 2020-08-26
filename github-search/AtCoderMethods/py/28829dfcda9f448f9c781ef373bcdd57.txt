@@ -1,0 +1,16 @@
+def main(args):
+    N = int(input())
+    scores = [int(x) for x in input().split()]
+
+    colors = defaultdict(int)
+    for s in scores:
+        res = get_color(s)
+        colors[res] += 1
+
+    normal_color = 0
+    for k, v in colors.items():
+        if k != 'any':
+            normal_color += 1
+    any_color = colors['any']
+
+    print(max(1, normal_color), normal_color + any_color)

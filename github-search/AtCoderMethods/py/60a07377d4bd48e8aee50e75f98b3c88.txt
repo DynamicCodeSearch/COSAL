@@ -1,0 +1,9 @@
+def main():
+    n, a, b = read_int_list()
+    x = read_int_list()
+    res = 0
+    for i in range(1, n):
+        d = x[i] - x[i - 1]
+        effort = min(a * d, b)
+        res += effort
+    print(res)

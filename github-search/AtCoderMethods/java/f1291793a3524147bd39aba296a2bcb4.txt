@@ -1,0 +1,51 @@
+
+public static void main(String[] args) {
+    class Drug {
+
+        final int excess;
+
+        final int cost;
+
+        Drug(int a, int b, int c, int ma, int mb) {
+            this.excess = a * mb - b * ma;
+            this.cost = c;
+        }
+    }
+    final int n, ma, mb;
+    final List<Drug> drugs = new ArrayList<>();
+    try (Scanner scan = new Scanner(System.in)) {
+        n = scan.nextInt();
+        ma = scan.nextInt();
+        mb = scan.nextInt();
+        for (int i = 0; i < n; i++) {
+            drugs.add(new Drug(scan.nextInt(), scan.nextInt(), scan.nextInt(), ma, mb));
+        }
+    }
+    int minimumCost = 4001;
+    List<Set<Integer>> memo;
+    List<Set<Integer>> nextMemo = IntStream.range(0, minimumCost).mapToObj(i -> new HashSet<Integer>()).collect(Collectors.toList());
+    Set<Integer> zero = new HashSet<Integer>();
+    zero.add(0);
+    nextMemo.set(0, zero);
+    for (int i = 0; i < n; i++) {
+        memo = nextMemo;
+        nextMemo = new ArrayList<>();
+        nextMemo.add(memo.get(0));
+        for (int cost = 1; cost < memo.size(); cost++) {
+            Set<Integer> next;
+            if (cost - drugs.get(i).cost < 0) {
+                next = memo.get(cost);
+            } else {
+                final int j = i;
+                next = memo.get(cost - drugs.get(i).cost).stream().map(it -> it + drugs.get(j).excess).collect(Collectors.toSet());
+                next.addAll(memo.get(cost));
+            }
+            nextMemo.add(next);
+            if (nextMemo.get(cost).contains(Integer.valueOf(0))) {
+                minimumCost = cost;
+                break;
+            }
+        }
+    }
+    System.out.println(minimumCost == 4001 ? -1 : minimumCost);
+}

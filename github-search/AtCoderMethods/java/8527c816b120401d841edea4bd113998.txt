@@ -1,0 +1,65 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    long INF = Integer.MAX_VALUE * 5L;
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    int t = sc.nextInt();
+    int[] A = new int[n];
+    for (int i = 0; i < n; i++) {
+        A[i] = sc.nextInt();
+    }
+    Node[] nodeA = new Node[n];
+    Node[] nodeB = new Node[n];
+    for (int i = 0; i < n; i++) {
+        nodeA[i] = new Node();
+        nodeB[i] = new Node();
+    }
+    for (int i = 0; i < m; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        int c = sc.nextInt();
+        nodeA[a].add(b, c);
+        nodeB[b].add(a, c);
+    }
+    long[] timeA = new long[n];
+    long[] timeB = new long[n];
+    for (int j = 0; j < n; j++) {
+        timeA[j] = INF;
+        timeB[j] = INF;
+    }
+    PriorityQueue<Data> q = new PriorityQueue<Data>();
+    q.add(new Data(0, 0));
+    while (!q.isEmpty()) {
+        Data tmp = q.poll();
+        if (tmp.time >= timeA[tmp.loc])
+            continue;
+        timeA[tmp.loc] = tmp.time;
+        for (int j = 0; j < nodeA[tmp.loc].next.size(); j++) {
+            int next = nodeA[tmp.loc].next.get(j);
+            long cos = nodeA[tmp.loc].cost.get(j) + tmp.time;
+            if (timeA[next] < cos)
+                continue;
+            q.add(new Data(next, cos));
+        }
+    }
+    q = new PriorityQueue<Data>();
+    q.add(new Data(0, 0));
+    while (!q.isEmpty()) {
+        Data tmp = q.poll();
+        if (tmp.time >= timeB[tmp.loc])
+            continue;
+        timeB[tmp.loc] = tmp.time;
+        for (int j = 0; j < nodeB[tmp.loc].next.size(); j++) {
+            int next = nodeB[tmp.loc].next.get(j);
+            long cos = nodeB[tmp.loc].cost.get(j) + tmp.time;
+            if (timeB[next] < cos)
+                continue;
+            q.add(new Data(next, cos));
+        }
+    }
+    long MAX = 0;
+    for (int i = 0; i < n; i++) {
+        MAX = Math.max(MAX, A[i] * (t - timeA[i] - timeB[i]));
+    }
+    System.out.println(MAX);
+}

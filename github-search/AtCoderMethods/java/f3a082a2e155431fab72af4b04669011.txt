@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int H = sc.nextInt();
+    int W = sc.nextInt();
+    sc.nextLine();
+    String[] img = new String[H];
+    char sp = '#';
+    for (int h = 0; h < H; h++) {
+        img[h] = sc.nextLine();
+    }
+    sc.close();
+    StringBuilder sb = new StringBuilder();
+    for (int w = 0; w < W + 2; w++) {
+        sb.append(sp);
+    }
+    String sharpLine = sb.toString();
+    System.out.println(sharpLine);
+    for (int h = 0; h < H; h++) {
+        System.out.print(sp);
+        System.out.print(img[h]);
+        System.out.println(sp);
+    }
+    System.out.println(sharpLine);
+}

@@ -1,0 +1,13 @@
+public void add(Node other) {
+    Node root1 = getRoot();
+    Node root2 = other.getRoot();
+    if (root1.equals(root2)) {
+        return;
+    } else if (root1.chainCityNum > root2.chainCityNum) {
+        root2.parent = root1;
+        root1.chainCityNum += root2.chainCityNum;
+    } else {
+        root1.parent = root2;
+        root2.chainCityNum += root1.chainCityNum;
+    }
+}

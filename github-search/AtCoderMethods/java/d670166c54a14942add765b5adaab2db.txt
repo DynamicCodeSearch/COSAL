@@ -1,0 +1,22 @@
+void solve() throws IOException {
+    int n = nextInt();
+    int t = nextInt();
+    int[] a = new int[n];
+    int minPref = Integer.MAX_VALUE;
+    int maxProfit = 0;
+    int[] profitHere = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = nextInt();
+        profitHere[i] = a[i] - minPref;
+        minPref = Math.min(minPref, a[i]);
+        maxProfit = Math.max(maxProfit, profitHere[i]);
+    }
+    
+    int ans = 0;
+    for (int i = 0; i < n; i++) {
+        if (profitHere[i] == maxProfit) {
+            ans++;
+        }
+    }
+    out.println(ans);
+}

@@ -1,0 +1,21 @@
+public static void main(String[] args) throws IOException {
+    final Scanner sc = new Scanner(System.in);
+    final char[] input = sc.next().toCharArray();
+    int[] alphas = new int[26];
+    for (final char c : input) {
+        alphas[c - 'a']++;
+    }
+    int one_count = 0, two_count = 0;
+    for (final int a : alphas) {
+        if (a == 0) {
+            continue;
+        }
+        one_count += a % 2;
+        two_count += a / 2;
+    }
+    if (one_count == 0) {
+        System.out.println(two_count * 2);
+    } else {
+        System.out.println((two_count / one_count * 2) + 1);
+    }
+}

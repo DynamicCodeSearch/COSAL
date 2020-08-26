@@ -1,0 +1,53 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    int k = in.nextInt();
+    ncr = new int[2010][2010];
+    for (int i = 0; i < ncr.length; i++) {
+        ncr[i][0] = ncr[i][i] = 1;
+        for (int j = 1; j < i; j++) {
+            ncr[i][j] = (ncr[i - 1][j] + ncr[i - 1][j - 1]);
+            ncr[i][j] %= MOD;
+        }
+    }
+    long ans = 0;
+    
+    int[][][] dp = new int[2][2][n + 1];
+    dp[n % 2][0][0] = 1;
+    for (int i = n; i >= 1; i--) {
+        int fr = i % 2;
+        int to = fr ^ 1;
+        for (int flg = 0; flg <= 1; flg++) {
+            Arrays.fill(dp[to][flg], 0);
+        }
+        int haveProcessedNumbers = n - i;
+        for (int flg = 0; flg <= 1; flg++) {
+            for (int j = n; j >= 0; j--) {
+                if (dp[fr][flg][j] == 0) {
+                    continue;
+                }
+                int base = dp[fr][flg][j];
+                int currentlyInSequence = haveProcessedNumbers - j;
+                if (currentlyInSequence == k - 1) {
+                    ans = addMOD(ans, dp[fr][flg][j]);
+                    continue;
+                }
+                if (flg == 1 && j >= 1) {
+                    dp[fr][flg][j - 1] = addMOD(dp[fr][flg][j - 1], base);
+                }
+                if (i == 1) {
+                    continue;
+                }
+                dp[to][1][j] = addMOD(dp[to][1][j], base);
+                dp[to][0][j + 1] = addMOD(dp[to][0][j + 1], base);
+            }
+        }
+    }
+    for (int i = 0; i < n - k - 1; i++) {
+        ans *= 2;
+        ans %= MOD;
+    }
+    out.println(ans);
+    out.flush();
+}

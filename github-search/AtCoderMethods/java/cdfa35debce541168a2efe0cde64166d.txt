@@ -1,0 +1,19 @@
+public static void solve(PrintWriter out, FastScanner in) {
+    String S = in.next();
+    int[] a = new int[S.length()];
+    int length = a.length;
+    for (int i = 0; i < S.length(); i++) {
+        a[i] = Integer.parseInt(String.valueOf(S.charAt(i)));
+    
+    }
+    for (int i = 0; i < S.length(); i++) {
+        plus(S, i, "");
+    }
+    long res = 0;
+    for (String s : list) {
+        for (String num : s.split(" ")) {
+            res += Long.parseLong(num);
+        }
+    }
+    System.out.println(res);
+}

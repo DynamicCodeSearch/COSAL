@@ -1,0 +1,19 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    int N = Integer.parseInt(input.readLine());
+    String S = input.readLine();
+    int[] values = new int[N + 1];
+    int currentValue = 0;
+    values[0] = currentValue;
+    for (int i = 0; i < N; i++) {
+        currentValue += incrementOrDecrement(S.charAt(i));
+        values[i + 1] = currentValue;
+    }
+    int answer = values[0];
+    for (int i = 0; i < N + 1; i++) {
+        if (answer < values[i]) {
+            answer = values[i];
+        }
+    }
+    System.out.println(answer);
+}

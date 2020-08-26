@@ -1,0 +1,15 @@
+void addEdge(int x, int y) {
+    if (last == dst.length) {
+        int newSize = dst.length * 3 / 2 + 1;
+        int[] newDst = new int[newSize];
+        System.arraycopy(dst, 0, newDst, 0, dst.length);
+        dst = newDst;
+        int[] newNx = new int[newSize];
+        System.arraycopy(nx, 0, newNx, 0, nx.length);
+        nx = newNx;
+    }
+    nx[last] = head[x];
+    dst[last] = y;
+    head[x] = last;
+    last++;
+}

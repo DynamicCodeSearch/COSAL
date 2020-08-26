@@ -1,0 +1,12 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int i, j, n, m;
+    n = scan.nextInt();
+    m = scan.nextInt();
+    for (i = 0; i < m; i++) {
+        int from = scan.nextInt(), to = scan.nextInt();
+        graph[from][to] = graph[to][from] = true;
+    }
+    dfs(1, n, 0);
+    System.out.println(ans);
+}

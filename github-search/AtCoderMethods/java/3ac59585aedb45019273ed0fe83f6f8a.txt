@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    Printer pr = new Printer(System.out);
+    int n = sc.nextInt();
+    Pair[] hw = new Pair[n];
+    int maxh = 0;
+    for (int i = 0; i < n; i++) {
+        int w = sc.nextInt();
+        int h = sc.nextInt();
+        hw[i] = new Pair(w, h);
+        maxh = Math.max(maxh, h);
+    }
+    Arrays.sort(hw);
+    BIT dp = new BIT(maxh);
+    for (int i = 0; i < n; i++) {
+        int h = hw[i].b;
+        dp.update(h, dp.query(h - 1) + 1);
+    }
+    pr.println(dp.query(maxh));
+    pr.close();
+    sc.close();
+}

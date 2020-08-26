@@ -1,0 +1,41 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int A = sc.nextInt();
+    int B = sc.nextInt();
+    int C = sc.nextInt();
+    int D = sc.nextInt();
+    int E = sc.nextInt();
+    int F = sc.nextInt();
+    int capacity = 100 * F;
+    int ans1 = A * 100;
+    int ans2 = 0;
+    
+    for (int w = 1; w <= F; w++) {
+        
+        boolean waterOk = false;
+        for (int i = 0; i <= w / A; i++) {
+            if ((w - A * i) % B == 0) {
+                waterOk = true;
+                break;
+            }
+        }
+        if (!waterOk)
+            continue;
+        int bestSugar = Math.min(w * E, F - w * 100);
+        if (bestSugar < 0)
+            continue;
+        for (int s = bestSugar; s > 0; s--) {
+            for (int i = 0; i <= s / C; i++) {
+                if ((s - C * i) % D == 0) {
+                    
+                    if (1.0 * ans2 / ans1 <= 1.0 * s / (w * 100 + s)) {
+                        ans1 = w * 100 + s;
+                        ans2 = s;
+                        continue;
+                    }
+                }
+            }
+        }
+    }
+    System.out.println(ans1 + " " + ans2);
+}

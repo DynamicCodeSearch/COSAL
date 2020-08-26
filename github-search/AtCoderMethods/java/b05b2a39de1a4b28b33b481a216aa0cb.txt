@@ -1,0 +1,17 @@
+private int pread() {
+    if (pnumChars == -1) {
+        throw new InputMismatchException();
+    }
+    if (curChar >= pnumChars) {
+        curChar = 0;
+        try {
+            pnumChars = stream.read(buf);
+        } catch (IOException e) {
+            throw new InputMismatchException();
+        }
+        if (pnumChars <= 0) {
+            return -1;
+        }
+    }
+    return buf[curChar++];
+}

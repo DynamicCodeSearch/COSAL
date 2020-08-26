@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    H = scan.nextInt();
+    W = scan.nextInt();
+    a = new int[H][W];
+    dp = new int[H][W];
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            a[i][j] = scan.nextInt();
+        }
+    }
+    long sum = 0L;
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            sum = (sum + solve(j, i)) % INF;
+        }
+    }
+    System.out.println(sum);
+}

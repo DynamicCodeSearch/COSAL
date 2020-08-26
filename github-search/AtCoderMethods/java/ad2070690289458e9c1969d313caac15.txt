@@ -1,0 +1,11 @@
+int get(int i, int j, int k, int l, int r) {
+    if (r <= i || j <= l)
+        return Integer.MIN_VALUE;
+    if (i <= l && r <= j)
+        return dat[k];
+    else {
+        int vl = get(i, j, (k << 1) + 1, l, (l + r) / 2);
+        int vr = get(i, j, (k << 1) + 2, (l + r) / 2, r);
+        return Math.max(vl, vr);
+    }
+}

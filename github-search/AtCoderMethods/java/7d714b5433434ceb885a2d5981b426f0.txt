@@ -1,0 +1,41 @@
+public static void main(String[] args) {
+    try (BufferedReader in = new BufferedReader(new InputStreamReader(System.in))) {
+        Integer N = Integer.parseInt(in.readLine());
+        String s = in.readLine();
+        int left = 0, right = 0, com = 0;
+        for (int i = 0; i < N; i++) {
+            if (s.charAt(i) == '(') {
+                com = Math.max(com, 0);
+                com++;
+            } else {
+                com--;
+            }
+            if (com < 0) {
+                left++;
+            }
+        }
+        com = 0;
+        for (int i = N - 1; i >= 0; i--) {
+            if (s.charAt(i) == '(') {
+                com++;
+            } else {
+                com = Math.min(com, 0);
+                com--;
+            }
+            if (com > 0) {
+                right++;
+            }
+        }
+        com = 0;
+        StringBuffer sb = new StringBuffer(s);
+        for (int i = 0; i < left; i++) {
+            sb.insert(0, "(");
+        }
+        for (int i = 0; i < right; i++) {
+            sb.append(")");
+        }
+        System.out.println(sb.toString());
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

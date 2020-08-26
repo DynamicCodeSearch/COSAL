@@ -1,0 +1,29 @@
+public void solve() {
+    String S = next();
+    for (int i = 0; i < S.length(); i++) {
+        alpha[S.charAt(i) - 'a']++;
+    }
+    PriorityQueue<Integer> q = new PriorityQueue<Integer>();
+    ArrayList<Integer> list = new ArrayList<Integer>();
+    Arrays.sort(alpha);
+    for (int i = 0; i < alpha.length; i++) {
+        if (alpha[i] % 2 == 1) {
+            q.add(1);
+        }
+        for (int j = 0; j < alpha[i] / 2; j++) {
+            list.add(2);
+        }
+    }
+    if (q.size() == 0) {
+        out.println(S.length());
+        return;
+    }
+    Collections.sort(list);
+    Collections.reverse(list);
+    for (int v : list) {
+        int p = q.poll();
+        q.add(p + v);
+    }
+    int ans = q.poll();
+    out.println(ans);
+}

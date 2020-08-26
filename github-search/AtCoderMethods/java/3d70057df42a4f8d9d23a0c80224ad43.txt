@@ -1,0 +1,22 @@
+public void solve() {
+    int x1 = in.nextInt(), y1 = in.nextInt(), r = in.nextInt();
+    int x2 = in.nextInt(), y2 = in.nextInt(), x3 = in.nextInt(), y3 = in.nextInt();
+    int MAX = 201;
+    int CENTER = MAX / 2;
+    boolean blue = false, red = false;
+    for (int i = -CENTER; i < CENTER; i++) {
+        for (int j = -CENTER; j < CENTER; j++) {
+            int a = 0;
+            if (dist(j, i, x1, y1) <= r * r)
+                a |= 1;
+            if (x2 <= j && j <= x3 && y2 <= i && i <= y3)
+                a |= 2;
+            if (a == 1)
+                red = true;
+            else if (a == 2)
+                blue = true;
+        }
+    }
+    System.out.println(red ? "YES" : "NO");
+    System.out.println(blue ? "YES" : "NO");
+}

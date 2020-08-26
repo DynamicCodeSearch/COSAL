@@ -1,0 +1,41 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String s = sc.next();
+    int T = Integer.parseInt(sc.next());
+    int dx = 0;
+    int dy = 0;
+    int count = 0;
+    for (int i = 0; i < s.length(); i++) {
+        switch(s.charAt(i)) {
+            case 'U':
+                dy--;
+                break;
+            case 'L':
+                dx--;
+                break;
+            case 'R':
+                dx++;
+                break;
+            case 'D':
+                dy++;
+                break;
+            case '?':
+                count++;
+                break;
+            default:
+                break;
+        }
+    }
+    if (T == 2)
+        count *= -1;
+    int kyori = Math.abs(dx) + Math.abs(dy);
+    if (kyori + count < 0) {
+        if (s.length() % 2 == 1)
+            kyori = 1;
+        else
+            kyori = 0;
+    } else {
+        kyori += count;
+    }
+    System.out.println(kyori);
+}

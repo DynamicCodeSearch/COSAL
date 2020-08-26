@@ -1,0 +1,37 @@
+def main():
+    n = I()
+    a = LI()
+    r = 0
+    c = 0
+    for i in range(n):
+        t = a[i]
+        if i%2 == 0:
+            if c+t > 0:
+                c += t
+            else:
+                r += 1 - (c+t)
+                c = 1
+        else:
+            if c+t < 0:
+                c += t
+            else:
+                r -= -1 - (c+t)
+                c = -1
+    r2 = 0
+    c = 0
+    for i in range(n):
+        t = a[i]
+        if i%2 == 1:
+            if c+t > 0:
+                c += t
+            else:
+                r2 += 1 - (c+t)
+                c = 1
+        else:
+            if c+t < 0:
+                c += t
+            else:
+                r2 -= -1 - (c+t)
+                c = -1
+
+    return min(r,r2)

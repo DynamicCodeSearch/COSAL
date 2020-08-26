@@ -1,0 +1,7 @@
+public String nextToken() throws IOException {
+    if (line == null || index >= line.length) {
+        line = reader.readLine().trim().split(" ");
+        index = 0;
+    }
+    return line[index++];
+}

@@ -1,0 +1,13 @@
+def main():
+    N = int(input())
+    A = list(map(int, input().split()))
+
+    ans = 0
+    counter = Counter(A)
+    for a, cnt in counter.most_common():
+        tmp = counter[a-1] + cnt + counter[a+1]
+        if ans < tmp:
+            ans = tmp
+
+
+    print(ans)

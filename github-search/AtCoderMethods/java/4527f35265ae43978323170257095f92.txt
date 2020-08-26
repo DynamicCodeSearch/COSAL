@@ -1,0 +1,28 @@
+private static void solve() {
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    boolean[][] edges = new boolean[n][n];
+    for (int i = 0; i < m; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        edges[a][b] = true;
+        edges[b][a] = true;
+    }
+    Permutation np = new Permutation(n);
+    int cnt = 0;
+    out: for (List<Integer> perm : np) {
+        if (perm == null) {
+            break;
+        }
+        if (perm.get(0) != 0) {
+            continue;
+        }
+        for (int i = 1; i < n; i++) {
+            if (!edges[perm.get(i - 1)][perm.get(i)]) {
+                continue out;
+            }
+        }
+        cnt++;
+    }
+    pr.println(cnt);
+}

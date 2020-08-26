@@ -1,0 +1,17 @@
+static long dfs(int L, int R, int c) {
+    if (L == n)
+        return 1;
+    if (dp[L][c] != -1)
+        return dp[L][c];
+    long ret = 0;
+    int add = 0;
+    if (R < newR[L + 1])
+        add = sum[newR[L + 1]] - sum[R];
+    if (c > 0)
+        ret += dfs(L + 1, newR[L + 1], c - 1 + add) % MOD;
+    if (c < R - L + 1) {
+        ret += dfs(L + 1, newR[L + 1], c + add) % MOD;
+    }
+    ret %= MOD;
+    return dp[L][c] = ret;
+}

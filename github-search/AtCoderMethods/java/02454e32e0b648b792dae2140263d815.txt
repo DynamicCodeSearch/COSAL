@@ -1,0 +1,27 @@
+private static String winner(int player) {
+    if (cards[player].length() == 0) {
+        switch(player) {
+            case 0:
+                return "A";
+            case 1:
+                return "B";
+            default:
+                return "C";
+        }
+    } else {
+        int nextPlayer;
+        switch(cards[player].charAt(0)) {
+            case 'a':
+                nextPlayer = 0;
+                break;
+            case 'b':
+                nextPlayer = 1;
+                break;
+            default:
+                nextPlayer = 2;
+                break;
+        }
+        cards[player] = cards[player].substring(1, cards[player].length());
+        return winner(nextPlayer);
+    }
+}

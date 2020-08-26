@@ -1,0 +1,18 @@
+public int nextInt() {
+    int c = next();
+    while (isSpaceChar(c)) c = next();
+    int sgn = 1;
+    if (c == '-') {
+        sgn = -1;
+        c = next();
+    }
+    int res = 0;
+    do {
+        if (c < '0' || c > '9')
+            throw new InputMismatchException();
+        res *= 10;
+        res += c - '0';
+        c = next();
+    } while (!isSpaceChar(c));
+    return res * sgn;
+}

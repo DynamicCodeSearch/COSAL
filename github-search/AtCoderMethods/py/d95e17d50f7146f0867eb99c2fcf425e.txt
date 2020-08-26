@@ -1,0 +1,20 @@
+def main():
+    n = int(sys.stdin.readline().strip())
+    a = []
+    for _ in range(n):
+        a.append(int(sys.stdin.readline().strip()))
+
+    visited = set()
+
+    i = 0
+    counter = 0
+    while True:
+        if i in visited:
+            print(-1)
+            break
+        visited.add(i)
+        i = a[i] - 1
+        counter += 1
+        if i == 1:
+            print(counter)
+            break

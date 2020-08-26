@@ -1,0 +1,40 @@
+public static void main(String[] args) {
+    try {
+        
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+        String[] strArr = br.readLine().split(" ");
+        int a = Integer.parseInt(strArr[0]);
+        int b = Integer.parseInt(strArr[1]);
+        int count = 0;
+        while (true) {
+            if (a > b) {
+                if (Math.abs(b - (a - 10)) > Math.abs(b - (a - 5))) {
+                    if (Math.abs(b - (a - 5)) > Math.abs(b - (a - 1))) {
+                        a -= 1;
+                    } else {
+                        a -= 5;
+                    }
+                } else {
+                    a -= 10;
+                }
+            } else if (a < b) {
+                if (Math.abs(b - (a + 10)) > Math.abs(b - (a + 5))) {
+                    if (Math.abs(b - (a + 5)) > Math.abs(b - (a + 1))) {
+                        a += 1;
+                    } else {
+                        a += 5;
+                    }
+                } else {
+                    a += 10;
+                }
+            } else {
+                break;
+            }
+            count++;
+        }
+        System.out.println(count);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

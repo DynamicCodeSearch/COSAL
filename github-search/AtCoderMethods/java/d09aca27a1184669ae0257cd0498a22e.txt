@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Main m = new Main();
+    try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
+        String[] strs = br.readLine().split(" ");
+        m.N = Integer.parseInt(strs[0]);
+        m.A = Integer.parseInt(strs[1]);
+        strs = br.readLine().split(" ");
+        m.xs = new int[m.N];
+        for (int i = 0; i < m.N; i++) {
+            m.xs[i] = Integer.parseInt(strs[i]) - m.A;
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    m.nx = m.N * 50;
+    m.na = m.A * m.N;
+    m.dp = new long[m.N + 1][2 * m.nx + 1];
+    m.dp[0][m.na] = 1;
+    m.update();
+    System.out.println(m.result());
+
+}

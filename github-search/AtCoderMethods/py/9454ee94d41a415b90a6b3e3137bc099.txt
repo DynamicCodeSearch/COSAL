@@ -1,0 +1,16 @@
+def get_wind_direction(deg):
+    direction = [
+        'N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE',
+        'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'
+    ]
+
+    degree = deg * 10
+
+    for i in range(1, len(direction)):
+        lower_limit = 1125 + 2250 * (i - 1)
+        upper_limit = 1125 + 2250 * i
+        if lower_limit <= degree < upper_limit:
+            return direction[i]
+
+
+    return direction[0]

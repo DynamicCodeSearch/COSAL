@@ -1,0 +1,10 @@
+public static boolean check(long x) {
+    if (x % 4 == 0 || x % 7 == 0 || x % 11 == 0)
+        return true;
+    if (x < 4 || x < 7 || x < 11)
+        return false;
+    if (x % 2 == 0) {
+        return check(x / 2);
+    } else
+        return check(x / 2) && check((x + 1) / 2);
+}

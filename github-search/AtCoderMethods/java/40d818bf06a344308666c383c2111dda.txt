@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    long a = sc.nextLong();
+    long b = sc.nextLong();
+    long c = sc.nextLong();
+    long mod = (long) Math.pow(10, 9) + 7;
+    long max = Math.max(a, b);
+    long answer;
+    max = Math.max(max, c);
+    if (max == a) {
+        answer = a * Math.max(c, b) % mod;
+        answer = answer * Math.min(c, b) % mod;
+    } else if (max == b) {
+        answer = b * Math.max(c, a) % mod;
+        answer = answer * Math.min(c, a) % mod;
+    } else {
+        answer = c * Math.max(a, b) % mod;
+        answer = answer * Math.min(a, b) % mod;
+    }
+    System.out.println(answer);
+}

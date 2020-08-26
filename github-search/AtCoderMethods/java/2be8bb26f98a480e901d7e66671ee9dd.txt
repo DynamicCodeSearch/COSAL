@@ -1,0 +1,23 @@
+public void solve(int testNumber, MyReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int m = in.nextInt();
+    if (Math.abs(n - m) > 1) {
+        out.println("0");
+        return;
+    }
+    long MOD = 1000_000_007;
+    long tot = 1;
+    for (int i = 1; i <= n; i++) {
+        tot *= i;
+        tot %= MOD;
+    }
+    for (int j = 1; j <= m; j++) {
+        tot *= j;
+        tot %= MOD;
+    }
+    if (n - m == 0) {
+        tot *= 2;
+        tot %= MOD;
+    }
+    out.println(tot);
+}

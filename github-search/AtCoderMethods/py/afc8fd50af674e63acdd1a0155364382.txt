@@ -1,0 +1,7 @@
+def getmin(h, w):
+    area=9999999999999
+    for i in range(h//3-3, h//3+2):
+        for j in range(w//2 -3, w//2 +3):
+            areas=[ i * w, j * (h-i), (w-j)*(h-i)]
+            area = max(areas)-min(areas) if area > max(areas)-min(areas) else area
+    return area

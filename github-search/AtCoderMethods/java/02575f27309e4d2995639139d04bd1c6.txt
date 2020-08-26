@@ -1,0 +1,29 @@
+private static void solve() {
+    int n = ni();
+    int[][] p = ntable(n, 2);
+    int mod = 998244353;
+    long ret = modpow(2, n, mod);
+    Map<Long, Set<Integer>> map = new HashMap<>();
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {
+            long a = p[i][1] - p[j][1];
+            long b = p[i][0] - p[j][0];
+            long c = p[i][0] * (p[j][1] - p[i][1]) - p[i][1] * (p[j][0] - p[i][0]);
+            long gcd = gcd(a, gcd(b, c));
+            long hash = (a * 100000L * 100000L + b * 100000L + c) / gcd;
+            if (hash < 0)
+                hash = -hash;
+            if (!map.containsKey(hash))
+                map.put(hash, new HashSet<>());
+            map.get(hash).add(i);
+            map.get(hash).add(j);
+        }
+    }
+    for (Set<Integer> v : map.values()) {
+        ret += mod - modpow(2, v.size(), mod) + v.size() + 1;
+        ret %= mod;
+    }
+    ret += mod - n - 1;
+    ret %= mod;
+    out.println(ret);
+}

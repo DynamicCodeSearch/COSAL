@@ -1,0 +1,23 @@
+public int[] dijkstra(int s) {
+    PriorityQueue<Node> q = new PriorityQueue<Node>(n.length, new NodeComparator());
+    Node start_node = new Node(s);
+    start_node.dist = 0;
+    q.add(start_node);
+    int[] dist = new int[n.length];
+    for (int i = 0; i < dist.length; i++) dist[i] = -1;
+    dist[s] = 0;
+    while (q.size() > 0) {
+        Node currNode = q.poll();
+        if (dist[currNode.index] < currNode.dist)
+            continue;
+        for (Edge e : n[currNode.index]) {
+            Node nextNode = new Node(e.to);
+            nextNode.dist = currNode.dist + e.cost;
+            if (dist[e.to] == -1 || dist[e.to] > nextNode.dist) {
+                dist[e.to] = nextNode.dist;
+                q.add(nextNode);
+            }
+        }
+    }
+    return dist;
+}

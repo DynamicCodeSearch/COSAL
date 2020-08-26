@@ -1,0 +1,15 @@
+def dfs(s):
+    color[s-1]=1
+    for i in node[s-1]:
+        if color[i-1]==0:
+            dfs(i)
+    f1=1
+    g1=1
+    color[s-1]=2
+    for i in node[s-1]:
+        if color[i-1]==2:
+            f1*=f[i-1]
+            g1*=g[i-1]
+    g[s-1]=f1
+    f[s-1]=g[s-1]+g1
+    return f[s-1]

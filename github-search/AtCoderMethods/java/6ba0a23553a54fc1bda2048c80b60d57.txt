@@ -1,0 +1,14 @@
+static int rec(MyPoint p) {
+    
+    if (checked[p.y][p.x])
+        return res[p.y][p.x];
+    checked[p.y][p.x] = true;
+    res[p.y][p.x] = 1;
+    for (int d = 0; d < 4; d++) {
+        if (ranged(p.y + dy[d], p.x + dx[d]) && f[p.y][p.x] > f[p.y + dy[d]][p.x + dx[d]]) {
+            res[p.y][p.x] += rec(new MyPoint(p.y + dy[d], p.x + dx[d]));
+            res[p.y][p.x] %= mod;
+        }
+    }
+    return res[p.y][p.x];
+}

@@ -1,0 +1,25 @@
+public void readHead(String str) {
+    String[] strArr = str.split(" ");
+    int W = Integer.parseInt(strArr[0]);
+    int a = Integer.parseInt(strArr[1]);
+    int b = Integer.parseInt(strArr[2]);
+    int al = a;
+    int ar = a + W;
+    int bl = b;
+    int br = b + W;
+    if (al <= bl && bl <= ar) {
+        System.out.println(0);
+        return;
+    }
+    if (al <= br && br <= ar) {
+        System.out.println(0);
+        return;
+    }
+    if (ar < bl) {
+        System.out.println((bl - ar));
+        return;
+    }
+    System.out.println((al - br));
+
+
+}

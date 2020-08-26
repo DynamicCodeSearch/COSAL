@@ -1,0 +1,22 @@
+def main():
+    n,m = LI()
+    aa = sorted([LI() for _ in range(m)], key=lambda x: -x[2])
+    q = II()
+    qa = sorted([LI() + [_] for _ in range(q)], key=lambda x: -x[1])
+    uf = UnionFind(n+1)
+    r = [1] * q
+    ay = aa[0][2]
+    ai = 0
+    for t0,y,t1 in qa:
+        while ay > y:
+            uf.union(aa[ai][0],aa[ai][1])
+            if ai < m-1:
+                ai += 1
+                ay = aa[ai][2]
+            else:
+                ai = -1
+                ay = -inf
+
+        r[t1] = -uf.table[uf.find(t0)]
+
+    return '\n'.join(map(str, r))

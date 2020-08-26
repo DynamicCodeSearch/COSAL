@@ -1,0 +1,17 @@
+private int f(int len) {
+    if (len < 1) {
+        return 0;
+    }
+    if (len == 1) {
+        return 3;
+    }
+    if (len % 2 == 0) {
+        return 2;
+    }
+    for (int d = 3; d * d <= len; d += 2) {
+        if (len % d == 0) {
+            return 3;
+        }
+    }
+    return 1;
+}

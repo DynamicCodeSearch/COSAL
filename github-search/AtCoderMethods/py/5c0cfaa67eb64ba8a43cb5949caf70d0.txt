@@ -1,0 +1,12 @@
+def solve(H, W, Ss):
+    original = [['#'] * W for h in range(H)]
+    for h, row in enumerate(Ss):
+        for w, cell in enumerate(row):
+            if cell == '.':
+                erase_surrounding_cells(h, w, original, H, W)
+    for h, row in enumerate(Ss):
+        for w, cell in enumerate(row):
+            if cell == '#':
+                if not has_black(h, w, original, H, W):
+                    return []
+    return original

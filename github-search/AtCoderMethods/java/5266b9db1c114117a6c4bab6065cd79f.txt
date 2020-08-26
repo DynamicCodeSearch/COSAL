@@ -1,0 +1,31 @@
+void calc(int h, int w) {
+    for (int i = 1; i < h; i++) {
+        int h1 = i;
+        int h2 = h - i;
+        long S1 = 1L * h1 * w;
+        
+        {
+            int h21 = h2 / 2;
+            int h22 = h2 - h21;
+            if (h21 != 0 && h22 != 0) {
+                long S2 = 1L * h21 * w;
+                long S3 = 1L * h22 * w;
+                long diff = Math.max(S1, Math.max(S2, S3));
+                diff -= Math.min(S1, Math.min(S2, S3));
+                mi = Math.min(mi, diff);
+            }
+        }
+        
+        {
+            int w1 = w / 2;
+            int w2 = w - w1;
+            if (w1 != 0 && w2 != 0) {
+                long S2 = 1L * h2 * w1;
+                long S3 = 1L * h2 * w2;
+                long diff = Math.max(S1, Math.max(S2, S3));
+                diff -= Math.min(S1, Math.min(S2, S3));
+                mi = Math.min(mi, diff);
+            }
+        }
+    }
+}

@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    double s = sc.nextDouble();
+    double c = sc.nextDouble() / 2;
+    long ans;
+    if (s >= c)
+        ans = (long) c;
+    else {
+        double x = (c - s) / 2;
+        if ((long) (x + 0.5) > x)
+            ans = (long) (c - x);
+        else
+            ans = (long) (s + x);
+    }
+    System.out.println((long) ans);
+}

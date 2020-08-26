@@ -1,0 +1,51 @@
+def C_Together():
+
+    try:
+        LOCAL_FLAG
+        N = 3
+        a = [6, 2, 6]
+
+
+        N = 6
+        a = [12, 22, 16, 22, 13, 12]
+
+    except NameError:
+        N = int(input())
+        a = list(map(int, input().split()))
+
+    counter = {}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    for i in range(N):
+        counter[a[i]] = counter.get(a[i], 0) + 1
+
+
+
+    results = 0
+    key = -1
+
+    for k, v in counter.items():
+        temp = v + counter.get(k-1, 0) + counter.get(k+1, 0)
+        if(temp > results):
+            results = temp
+            key = k
+
+    print(results)

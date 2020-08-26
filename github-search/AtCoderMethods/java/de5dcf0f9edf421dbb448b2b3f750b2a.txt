@@ -1,0 +1,39 @@
+void solve() throws IOException {
+    int n = in.nextInt();
+    char[] s = in.nextToken().toCharArray();
+    int[] t = new int[n];
+    for (int i = 0; i < n; i++) {
+        if (s[i] == 'x')
+            t[i] = 1;
+    }
+    for (int a = 0; a < 2; a++) {
+        for (int b = 0; b < 2; b++) {
+            int pre = a;
+            int mid = b;
+            for (int i = 1; i < n; i++) {
+                int nxt = pre ^ mid ^ t[i];
+                pre = mid;
+                mid = nxt;
+            }
+            if (mid != a || (pre ^ b ^ t[0]) != a)
+                continue;
+            int[] ans = new int[n];
+            ans[0] = a;
+            pre = a;
+            mid = b;
+            for (int i = 1; i < n; i++) {
+                ans[i] = mid;
+                int nxt = pre ^ mid ^ t[i];
+                pre = mid;
+                mid = nxt;
+            }
+            char[] res = new char[n];
+            for (int i = 0; i < n; i++) {
+                res[i] = ans[i] == 1 ? 'W' : 'S';
+            }
+            out.println(String.valueOf(res));
+            return;
+        }
+    }
+    System.out.println(-1);
+}

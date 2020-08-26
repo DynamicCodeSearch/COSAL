@@ -1,0 +1,16 @@
+def main():
+    N = int(input())
+    cards = list(map(int, input().split()))
+
+    counter = Counter(cards)
+
+
+    A = list(map(lambda x: x%2, counter.values()))
+
+    pure= sum(1 for x in A if x == 1)
+    needpairs = sum(1 for x in A if x == 0)
+
+
+
+    answer = pure + needpairs - (1 if needpairs%2==1 else 0)
+    print(answer)

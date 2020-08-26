@@ -1,0 +1,13 @@
+void addEdge(int l, int r, int curL, int curR, int k, int i) {
+    if (l >= curR || r <= curL)
+        return;
+    if (l <= curL && curR <= r) {
+        
+        
+        sat.Implication(i, sat.Not(k));
+        return;
+    }
+    final int curM = (curL + curR) / 2;
+    addEdge(l, r, curL, curM, 2 * k + 1, i);
+    addEdge(l, r, curM, curR, 2 * k + 2, i);
+}

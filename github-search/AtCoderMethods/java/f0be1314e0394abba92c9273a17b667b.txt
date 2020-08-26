@@ -1,0 +1,41 @@
+public static void main(String[] args) {
+    try {
+        
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+        String a = br.readLine();
+        int aCount = 0;
+        String b = br.readLine();
+        int bCount = 0;
+        String c = br.readLine();
+        int cCount = 0;
+        ;
+        String now = "a";
+        while (true) {
+            if ("a".equals(now)) {
+                if (aCount >= a.length()) {
+                    System.out.println("A");
+                    break;
+                }
+                now = a.substring(aCount, aCount + 1);
+                aCount++;
+            } else if ("b".equals(now)) {
+                if (bCount >= b.length()) {
+                    System.out.println("B");
+                    break;
+                }
+                now = b.substring(bCount, bCount + 1);
+                bCount++;
+            } else if ("c".equals(now)) {
+                if (cCount >= c.length()) {
+                    System.out.println("C");
+                    break;
+                }
+                now = c.substring(cCount, cCount + 1);
+                cCount++;
+            }
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

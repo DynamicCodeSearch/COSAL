@@ -1,0 +1,77 @@
+public static void main(String[] args) {
+    String Dir;
+    int W = 0;
+    Scanner sc = new Scanner(System.in);
+    int Deg = sc.nextInt();
+    int Dis = sc.nextInt();
+    if (112 < Deg && Deg <= 337) {
+        Dir = "NNE";
+    } else if (337 < Deg && Deg <= 562) {
+        Dir = "NE";
+    } else if (562 < Deg && Deg <= 787) {
+        Dir = "ENE";
+    } else if (787 < Deg && Deg <= 1012) {
+        Dir = "E";
+    } else if (1012 < Deg && Deg <= 1237) {
+        Dir = "ESE";
+    } else if (1237 < Deg && Deg <= 1462) {
+        Dir = "SE";
+    } else if (1462 < Deg && Deg <= 1687) {
+        Dir = "SSE";
+    } else if (1687 < Deg && Deg <= 1912) {
+        Dir = "S";
+    } else if (1912 < Deg && Deg <= 2137) {
+        Dir = "SSW";
+    } else if (2137 < Deg && Deg <= 2362) {
+        Dir = "SW";
+    } else if (2362 < Deg && Deg <= 2587) {
+        Dir = "WSW";
+    } else if (2587 < Deg && Deg <= 2812) {
+        Dir = "W";
+    } else if (2812 < Deg && Deg <= 3037) {
+        Dir = "WNW";
+    } else if (3037 < Deg && Deg <= 3262) {
+        Dir = "NW";
+    } else if (3262 < Deg && Deg <= 3487) {
+        Dir = "NNW";
+    } else {
+        Dir = "N";
+    }
+    if (3 <= Dis % 6) {
+        Dis = Dis / 6 + 1;
+    } else {
+        Dis = Dis / 6;
+    }
+    if (Dis <= 2) {
+        W = 0;
+    } else if (3 <= Dis && Dis <= 15) {
+        W = 1;
+    } else if (16 <= Dis && Dis <= 33) {
+        W = 2;
+    } else if (34 <= Dis && Dis <= 54) {
+        W = 3;
+    } else if (55 <= Dis && Dis <= 79) {
+        W = 4;
+    } else if (80 <= Dis && Dis <= 107) {
+        W = 5;
+    } else if (108 <= Dis && Dis <= 138) {
+        W = 6;
+    } else if (139 <= Dis && Dis <= 171) {
+        W = 7;
+    } else if (172 <= Dis && Dis <= 207) {
+        W = 8;
+    } else if (208 <= Dis && Dis <= 244) {
+        W = 9;
+    } else if (245 <= Dis && Dis <= 284) {
+        W = 10;
+    } else if (285 <= Dis && Dis <= 326) {
+        W = 11;
+    } else {
+        W = 12;
+    }
+    if (W == 0) {
+        System.out.println("C" + " " + W);
+    } else {
+        System.out.println(Dir + " " + W);
+    }
+}

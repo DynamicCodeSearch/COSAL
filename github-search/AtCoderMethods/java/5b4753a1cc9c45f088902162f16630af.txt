@@ -1,0 +1,10 @@
+private static void sieve() {
+    for (int i = 2; i < max; i++) {
+        if (prime[i] == 0) {
+            prime[i] = i;
+            for (int j = 2 * i; j < max; j += i) {
+                prime[j] = i;
+            }
+        }
+    }
+}

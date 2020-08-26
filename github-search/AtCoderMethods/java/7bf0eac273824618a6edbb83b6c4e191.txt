@@ -1,0 +1,34 @@
+public void calc() {
+    int N = in.nextInt();
+    int[] A = new int[N];
+    for (int i = 0; i < N; i++) {
+        A[i] = in.nextInt();
+    }
+    Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+    for (int i = 0; i < N; i++) {
+        map.put(A[i], map.getOrDefault(A[i], 0) + 1);
+    }
+    Object[] mapkey = map.keySet().toArray();
+    Arrays.sort(mapkey);
+    int w = 0;
+    int h = 0;
+    for (int i = mapkey.length - 1; i >= 0; i--) {
+        int key = (int) mapkey[i];
+        int num = map.get(key);
+        if (num >= 4 && w == 0) {
+            w = key;
+            h = key;
+            break;
+        } else if (num >= 2 && w == 0) {
+            w = key;
+        } else if (num >= 2 && w != 0) {
+            h = key;
+            break;
+        }
+    }
+    BigDecimal width = new BigDecimal(String.valueOf(w));
+    BigDecimal height = new BigDecimal(String.valueOf(h));
+    BigDecimal ans = width.multiply(height).stripTrailingZeros();
+    out.println(ans.toPlainString());
+    out.close();
+}

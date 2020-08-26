@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    int n = ni(), m = ni();
+    char[][] a = new char[n][n];
+    char[][] b = new char[m][m];
+    for (int i = 0; i < n; i++) {
+        String line = next();
+        for (int j = 0; j < n; j++) {
+            a[i][j] = line.charAt(j);
+        }
+    }
+    for (int i = 0; i < m; i++) {
+        String line = next();
+        for (int j = 0; j < m; j++) {
+            b[i][j] = line.charAt(j);
+        }
+    }
+    boolean check = false;
+    for (int s = 0; s <= n - m; s++) {
+        for (int t = 0; t <= n - m; t++) {
+            if (ch(a, b, s, t)) {
+                check = true;
+                break;
+            }
+        }
+    }
+    pl(check ? "Yes" : "No");
+    flush();
+}

@@ -1,0 +1,41 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int Ascore = 4;
+    int Bscore = 3;
+    int Cscore = 2;
+    int Dscore = 1;
+    int Fscore = 0;
+    int N = sc.nextInt();
+    String S = sc.next();
+    int total = 0;
+    int acount = 0;
+    int bcount = 0;
+    int ccount = 0;
+    int dcount = 0;
+    int fcount = 0;
+    for (int i = 0; i < S.length(); i++) {
+        switch(S.charAt(i)) {
+            case 'A':
+                acount++;
+                break;
+            case 'B':
+                bcount++;
+                break;
+            case 'C':
+                ccount++;
+                break;
+            case 'D':
+                dcount++;
+                break;
+            case 'F':
+                fcount++;
+                break;
+        }
+    }
+    if (fcount == N) {
+        System.out.println(0);
+        return;
+    }
+    total = acount * Ascore + bcount * Bscore + ccount * Cscore + dcount * Dscore + fcount * Fscore;
+    System.out.println((double) total / N);
+}

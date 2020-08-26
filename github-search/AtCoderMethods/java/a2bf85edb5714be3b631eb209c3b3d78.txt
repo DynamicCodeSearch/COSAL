@@ -1,0 +1,33 @@
+void run() {
+    int N = sc.nextInt();
+    char[][] s = new char[N][];
+    for (int i = 0; i < N; i++) {
+        s[i] = sc.next().toCharArray();
+        Arrays.sort(s[i]);
+    }
+    if (N == 1) {
+        System.out.println(String.valueOf(s[0]));
+        return;
+    }
+    int[] index = new int[N];
+    String res = "";
+    for (int i = 0; i < s[0].length; i++) {
+        char t = s[0][i];
+        boolean f = true;
+        for (int j = 1; j < N; j++) {
+            boolean get = false;
+            for (int k = index[j]; k < s[j].length; k++) {
+                if (s[j][k] == t) {
+                    get = true;
+                    index[j] = k + 1;
+                    break;
+                }
+            }
+            if (!get)
+                f = false;
+        }
+        if (f)
+            res += t;
+    }
+    System.out.println(res);
+}

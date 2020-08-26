@@ -1,0 +1,33 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] a = new int[N];
+    int sum = 0;
+    for (int i = 0; i < N; i++) {
+        a[i] = sc.nextInt();
+        sum += a[i];
+    }
+    int ans = -1;
+    if (sum % N == 0) {
+        int pop = sum / N;
+        int pos = 0;
+        int count = 0;
+        while (pos < N) {
+            if (a[pos] == pop) {
+                pos++;
+            } else {
+                int s = 0;
+                for (int i = pos; i < N; i++) {
+                    s += a[i];
+                    if (s == pop * (i - pos + 1)) {
+                        count += (i - pos);
+                        pos = i + 1;
+                        break;
+                    }
+                }
+            }
+        }
+        ans = count;
+    }
+    System.out.println(ans);
+}

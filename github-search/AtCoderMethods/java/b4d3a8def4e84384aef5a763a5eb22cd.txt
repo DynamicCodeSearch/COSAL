@@ -1,0 +1,39 @@
+private void solve(Scanner sc, PrintWriter out) {
+    long H = sc.nextInt();
+    long W = sc.nextInt();
+    int N = sc.nextInt();
+    
+    int M = 10;
+    long[] count = new long[M];
+    count[0] = (H - 2) * (W - 2);
+    Map<Point, Square3x3> map = new TreeMap<>();
+    for (int i = 0; i < N; ++i) {
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        Point p = new Point(a, b);
+        for (int x = p.a - 1; x <= p.a + 1; ++x) {
+            if (x < 2 || x > H - 1) {
+                continue;
+            }
+            for (int y = p.b - 1; y <= p.b + 1; ++y) {
+                if (y < 2 || y > W - 1) {
+                    continue;
+                }
+                Point q = new Point(x, y);
+                Square3x3 sq = map.get(q);
+                if (sq == null) {
+                    sq = new Square3x3(x, y);
+                    map.put(q, sq);
+                }
+                ++sq.cnt;
+            }
+        }
+    }
+    for (Square3x3 sq : map.values()) {
+        --count[0];
+        ++count[sq.cnt];
+    }
+    for (int i = 0; i < M; ++i) {
+        out.println(count[i]);
+    }
+}

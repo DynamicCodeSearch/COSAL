@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner scn = new Scanner(System.in);
+    int N = Integer.parseInt(scn.nextLine());
+    String[] s = scn.nextLine().split(" ");
+    scn.close();
+    int b;
+    int sum = 0;
+    float avr;
+    for (String a : s) {
+        b = Integer.parseInt(a);
+        if (b == 0)
+            N--;
+        sum += b;
+    }
+    avr = (float) sum / N;
+    System.out.println((int) Math.ceil(avr));
+}

@@ -1,0 +1,12 @@
+def main():
+    num = [0,1,2,3,4,5,6,7,8,9]
+    n, k = map(int, input().split())
+    d = list(map(int, input().split()))
+    usable_num = list(set(num) - set(d))
+
+    while True:
+        if len(set(map(int, str(n))) - set(usable_num)) == 0:
+            break
+        else:
+            n += 1
+    print(n)

@@ -1,0 +1,23 @@
+def bellman_ford(edges, start_node, node_size):
+    INF = float("inf")
+    cost_table = [INF] * node_size
+    cost_table[start_node] = 0
+    for i in range(node_size):
+        for f, t, c in edges:
+            if cost_table[f] != INF and cost_table[f] + c < cost_table[t]:
+                cost_table[t] = cost_table[f] + c
+
+    negative = [False] * node_size
+    for i in range(node_size):
+        for f, t, c in edges:
+            if cost_table[f] != INF and cost_table[f] + c < cost_table[t]:
+                cost_table[t] = cost_table[f] + c
+                negative[t] = True
+
+            if negative[f]:
+                negative[t] = True
+
+    if negative[-1]:
+        return "inf"
+    else:
+        return -cost_table[-1]

@@ -1,0 +1,12 @@
+static void dfs(int cur, int prev) {
+    long tmp0 = 1, tmp1 = 1;
+    for (int to : g[cur]) {
+        if (to == prev)
+            continue;
+        dfs(to, cur);
+        tmp0 = (dp[to][1] * tmp0) % MOD;
+        tmp1 = ((dp[to][0] + dp[to][1]) % MOD * tmp1) % MOD;
+    }
+    dp[cur][0] = tmp0;
+    dp[cur][1] = tmp1;
+}

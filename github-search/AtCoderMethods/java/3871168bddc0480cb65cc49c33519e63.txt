@@ -1,0 +1,39 @@
+public static void main(String[] args) {
+    int a = in.nextInt();
+    int b = in.nextInt();
+    int c = in.nextInt();
+    int d = in.nextInt();
+    int e = in.nextInt();
+    int f = in.nextInt();
+    ArrayList<Integer> water = new ArrayList<>();
+    ArrayList<Integer> sugar = new ArrayList<>();
+    for (int i = 0; 100 * a * i <= f; i++) {
+        for (int j = 0; 100 * b * j <= f; j++) {
+            water.add(100 * a * i + 100 * b * j);
+        }
+    }
+    for (int i = 0; i * c <= f; i++) {
+        for (int j = 0; j * d <= f; j++) {
+            sugar.add(c * i + d * j);
+        }
+    }
+    double maxdensity = 0;
+    int sugarmax = 0;
+    int watermax = 0;
+    for (int i : water) {
+        for (int j : sugar) {
+            double waterrequired = (double) (j * 100) / ((double) e);
+            if (waterrequired > i || (i + j) > f)
+                continue;
+            double tempdensity = (double) (100 * j * 1.0) / (double) (i + j);
+            
+            if (tempdensity >= maxdensity) {
+                maxdensity = tempdensity;
+                sugarmax = j;
+                watermax = i;
+            }
+        }
+    }
+    out.println((sugarmax + watermax) + " " + sugarmax);
+    out.close();
+}

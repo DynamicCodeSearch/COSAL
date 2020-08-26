@@ -1,0 +1,31 @@
+private static int search(int oy, int ox, int pt, int depth) {
+    if (oy < 0 || oy >= h) {
+        return 0;
+    }
+    if (ox < 0 || ox >= w) {
+        return 0;
+    }
+    if (depth > 0 && maze[oy][ox] <= pt) {
+        return 0;
+    }
+    if (table[oy][ox] > 0) {
+        return table[oy][ox];
+    }
+    pt = maze[oy][ox];
+    int result = 0;
+    result++;
+    
+    result += search(oy - 1, ox, pt, depth + 1);
+    result %= 1000000007;
+    
+    result += search(oy, ox + 1, pt, depth + 1);
+    result %= 1000000007;
+    
+    result += search(oy + 1, ox, pt, depth + 1);
+    result %= 1000000007;
+    
+    result += search(oy, ox - 1, pt, depth + 1);
+    result %= 1000000007;
+    table[oy][ox] = result;
+    return result;
+}

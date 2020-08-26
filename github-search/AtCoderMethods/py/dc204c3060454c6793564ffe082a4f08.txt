@@ -1,0 +1,11 @@
+def main():
+    n,k = LI()
+    a = [I() for _ in range(n)]
+    c = a[0] + a[1]
+    for i in range(2,n):
+        c += a[i]
+        if c < k:
+            return i+1
+        c -= a[i-2]
+
+    return -1

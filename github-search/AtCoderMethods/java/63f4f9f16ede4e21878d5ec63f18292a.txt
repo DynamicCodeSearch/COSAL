@@ -1,0 +1,31 @@
+public static void main(String[] args) {
+    int n = s.nextInt();
+    String in = s.next();
+    if (in.equals("b")) {
+        System.out.println(0);
+        return;
+    }
+    ArrayDeque<Character> deque = new ArrayDeque<>();
+    deque.add('b');
+    for (int i = 1; deque.size() < in.length(); i++) {
+        switch(i % 3) {
+            case 0:
+                deque.addFirst('b');
+                deque.addLast('b');
+                break;
+            case 1:
+                deque.addFirst('a');
+                deque.addLast('c');
+                break;
+            case 2:
+                deque.addFirst('c');
+                deque.addLast('a');
+                break;
+        }
+        if (deque.size() == in.length() && deque.toString().replaceAll("[^abc]", "").equals(in)) {
+            System.out.println(i);
+            return;
+        }
+    }
+    System.out.println(-1);
+}

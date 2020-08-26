@@ -1,0 +1,8 @@
+def maximum(self, index):
+
+    ret = 0
+    x = index - 1
+    while x >= 0:
+        ret = max(ret, self.tree[x])
+        x = (x & (x + 1)) - 1
+    return ret

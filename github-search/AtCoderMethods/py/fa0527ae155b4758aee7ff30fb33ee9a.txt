@@ -1,0 +1,18 @@
+def main(argv):
+    N = int(sys.stdin.readline())
+    while N:
+        A = map(lambda x: int(x), raw_input().split(" ", N))
+        snuke = A[0]
+        raccon = sum(A[1:])
+        difference = abs(snuke - raccon)
+        for i in xrange(1, len(A) - 1):
+            snuke += A[i]
+            raccon -= A[i]
+            d = abs(snuke - raccon)
+            if d < difference:
+                difference = d
+        print(difference)
+
+        N = sys.stdin.readline()
+        if N:
+            N = int(N)

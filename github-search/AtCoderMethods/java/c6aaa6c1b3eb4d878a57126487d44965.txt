@@ -1,0 +1,27 @@
+public int minx(int l, int r) {
+    minval = Integer.MAX_VALUE;
+    minpos = -1;
+    if (l >= r)
+        return minval;
+    while (l != 0) {
+        int f = l & -l;
+        if (l + f > r)
+            break;
+        int v = st[(H + l) / f];
+        if (v < minval) {
+            minval = v;
+            minpos = pos[(H + l) / f];
+        }
+        l += f;
+    }
+    while (l < r) {
+        int f = r & -r;
+        int v = st[(H + r) / f - 1];
+        if (v < minval) {
+            minval = v;
+            minpos = pos[(H + r) / f - 1];
+        }
+        r -= f;
+    }
+    return minval;
+}

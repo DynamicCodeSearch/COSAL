@@ -1,0 +1,33 @@
+public static void main(String[] args) {
+    InputReader sc = new InputReader(System.in);
+    String moves = sc.nextStr();
+    int t = sc.nextInt();
+    int x = 0;
+    int y = 0;
+    int hatena = 0;
+    for (int i = 0; i < moves.length(); i++) {
+        char ch = moves.charAt(i);
+        if (ch == 'L') {
+            x--;
+        } else if (ch == 'R') {
+            x++;
+        } else if (ch == 'U') {
+            y++;
+        } else if (ch == 'D') {
+            y--;
+        } else {
+            hatena++;
+        }
+    }
+    int deltax = Math.abs(x);
+    int deltay = Math.abs(y);
+    if (t == 1) {
+        System.out.println(deltax + deltay + hatena);
+    } else {
+        if (deltax + deltay >= hatena) {
+            System.out.println(deltax + deltay - hatena);
+        } else {
+            System.out.println((hatena - deltax - deltay) % 2);
+        }
+    }
+}

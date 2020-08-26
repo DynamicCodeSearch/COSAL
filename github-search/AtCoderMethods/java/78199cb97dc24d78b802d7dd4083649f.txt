@@ -1,0 +1,11 @@
+public static long gcd(long a, long b) {
+    if ((a | b) < 0)
+        return -1;
+    long m;
+    while (a != 0) {
+        m = Math.min(a, b);
+        a = Math.max(a, b) % m;
+        b = m;
+    }
+    return b;
+}

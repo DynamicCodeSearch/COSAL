@@ -1,0 +1,16 @@
+public long dfs(int n, String s) {
+    if (n == N) {
+        String ss = s.replace("+", " ");
+        String[] nums = ss.split(" ");
+        long sum = 0;
+        for (int i = 0; i < nums.length; i++) {
+            sum += Long.parseLong(nums[i]);
+        }
+        return sum;
+    }
+    long ret = 0;
+    ret += dfs(n + 1, s + c[n]);
+    if (n != 0)
+        ret += dfs(n + 1, s + "+" + c[n]);
+    return ret;
+}

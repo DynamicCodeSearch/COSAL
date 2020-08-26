@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String s = sc.next();
+    int n = Integer.parseInt(sc.next());
+    String[] d1 = s.split("");
+    String[] d2 = new String[25];
+    int k = 1, l = 0;
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            d2[k * l++] = d1[i] + d1[j];
+        }
+    }
+    System.out.println(d2[n - 1]);
+}

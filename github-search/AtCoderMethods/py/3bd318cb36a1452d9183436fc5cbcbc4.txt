@@ -1,0 +1,36 @@
+def solve():
+    N, Ma, Mb = map(int, input().split())
+    a, b, c = [], [], []
+
+    for i in range(N):
+        ai, bi, ci = map(int, input().split())
+        a.append(ai)
+        b.append(bi)
+        c.append(ci)
+
+    nvals = 99 * N * 2 + 1
+    inf = 40 * 100 + 1
+    dp = [inf] * nvals
+
+    for i in range(N):
+        v = Mb * a[i] - Ma * b[i]
+
+        if i == 0:
+            dp[v] = c[i]
+            continue
+
+        if v > 0:
+            for j in range(99 * N, -99 * N + v - 1, -1):
+                dp[j] = min(dp[j], dp[j - v] + c[i])
+        else:
+            for j in range(-99 * N, 99 * N + v + 1):
+                dp[j] = min(dp[j], dp[j - v] + c[i])
+
+        dp[v] = min(dp[v], c[i])
+
+    ans = dp[0]
+
+    if ans < inf:
+        print(ans)
+    else:
+        print(-1)

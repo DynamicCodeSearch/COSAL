@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int n = scanner.nextInt();
+    Map<Integer, Integer> m = new HashMap<>();
+    for (int i = 0; i < n; i++) {
+        int a = scanner.nextInt();
+        if (m.containsKey(a)) {
+            m.put(a, m.get(a) + 1);
+        } else {
+            m.put(a, 1);
+        }
+    }
+    int ans = 0;
+    for (int it : m.values()) {
+        if (it % 2 == 1)
+            ans++;
+    }
+    System.out.println(ans);
+}

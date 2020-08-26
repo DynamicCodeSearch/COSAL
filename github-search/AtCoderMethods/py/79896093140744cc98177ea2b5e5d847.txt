@@ -1,0 +1,16 @@
+def dfs(now,vis,G):
+    visit_all = True
+    for tf in vis:
+        if not tf:
+            visit_all = False
+    if visit_all:
+        return 1
+
+    ret = 0
+    for nx in G[now]:
+        if vis[nx] == 0:
+            nvis = vis[:]
+            nvis[nx] = 1
+            ret += dfs(nx,nvis,G)
+
+    return ret

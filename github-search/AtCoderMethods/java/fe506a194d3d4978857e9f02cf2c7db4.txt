@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    int[] min = new int[26];
+    for (int i = 0; i < 26; i++) {
+        min[i] = Integer.MAX_VALUE;
+    }
+    int N = Integer.parseInt(scan.next());
+    for (int i = 0; i < N; i++) {
+        String s = scan.next();
+        int[] count = new int[26];
+        for (int j = 0; j < s.length(); j++) {
+            count[s.charAt(j) - 'a']++;
+        }
+        for (int j = 0; j < 26; j++) {
+            if (count[j] < min[j])
+                min[j] = count[j];
+        }
+    }
+    StringBuilder str = new StringBuilder();
+    for (int i = 0; i < 26; i++) {
+        for (int j = 0; j < min[i]; j++) {
+            str.append((char) (i + 'a'));
+        }
+    }
+    System.out.println(str.toString());
+    scan.close();
+}

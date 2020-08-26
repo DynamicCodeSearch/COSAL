@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[] a = new int[100000];
+    for (int i = 0; i < n; i++) {
+        a[Integer.parseInt(sc.next()) - 1]++;
+    }
+    int pair = 0;
+    int solo = 0;
+    for (int i = 0; i < 100000; i++) {
+        if (a[i] == 0)
+            continue;
+        else if (a[i] == 1)
+            solo++;
+        else if (a[i] % 2 == 1)
+            solo++;
+        else
+            pair++;
+    }
+    int add = pair / 4;
+    add = add * 4;
+    if (pair % 4 >= 2)
+        add += 2;
+    System.out.println(solo + add);
+}

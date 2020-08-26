@@ -1,0 +1,8 @@
+void sumUpdate(int k, double a) {
+    k += N - 1;
+    sumDat[k] = a;
+    while (k > 0) {
+        k = (k - 1) / 2;
+        sumDat[k] = sumDat[k * 2 + 1] + sumDat[k * 2 + 2];
+    }
+}

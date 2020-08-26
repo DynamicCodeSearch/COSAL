@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    sc.close();
+    int abs = Math.abs(a - b);
+    int ans = 0;
+    while (abs >= 8) {
+        abs = Math.abs(abs - 10);
+        ans++;
+    }
+    while (abs >= 3) {
+        abs = Math.abs(abs - 5);
+        ans++;
+    }
+    while (abs > 0) {
+        abs--;
+        ans++;
+    }
+    System.out.println(ans);
+}

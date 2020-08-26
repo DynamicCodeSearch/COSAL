@@ -1,0 +1,11 @@
+	def othello(self, n, q, qs):
+		reversal = [0 for i in range(n+1)]
+  for query in qs:
+			reversal[query[0]-1] += 1; reversal[query[1]] -= 1
+  for i in range(1,n):
+			reversal[i] += reversal[i-1]
+  import sys
+  for i in range(n):
+			if not reversal[i]%2: sys.stdout.write("0")
+   else:  sys.stdout.write("1")
+  sys.stdout.write("\n")

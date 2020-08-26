@@ -1,0 +1,13 @@
+long power(long x, long y, int mod) {
+    long ans = 1;
+    while (y > 0) {
+        if (y % 2 == 0) {
+            x = (x * x) % mod;
+            y /= 2;
+        } else {
+            ans = (x * ans) % mod;
+            y--;
+        }
+    }
+    return ans;
+}

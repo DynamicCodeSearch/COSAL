@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    InputStream inputStream = System.in;
+    OutputStream outputStream = System.out;
+    InputReader in = new InputReader(inputStream);
+    PrintWriter out = new PrintWriter(outputStream);
+    int a = in.nextInt();
+    int b = in.nextInt();
+    int c = in.nextInt();
+    int d = in.nextInt();
+    if (c > b) {
+        System.out.println(0);
+    } else if (a > d) {
+        System.out.println(0);
+    } else if (a < c) {
+        System.out.println(Math.min(b, d) - c);
+    } else {
+        List<Integer> l = new ArrayList<>();
+        l.add(a);
+        l.add(b);
+        l.add(c);
+        l.add(d);
+        Collections.sort(l);
+        System.out.println(l.get(2) - l.get(1));
+    }
+}

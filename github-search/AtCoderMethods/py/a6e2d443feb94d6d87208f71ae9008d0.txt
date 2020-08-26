@@ -1,0 +1,15 @@
+def resolve_hypothesis(firstIsSheep, lastIsSheep, responseArray):
+    res_str = "S" if firstIsSheep else "W"
+
+    isCurrentSheep = firstIsSheep
+    isPreviousSheep = lastIsSheep
+
+    for i in range(len(responseArray) - 1):
+        isNextSheep = is_next_sheep(isCurrentSheep, responseArray[i], isPreviousSheep)
+        res_str += "S" if isNextSheep else "W"
+        isCurrentSheep, isPreviousSheep = isNextSheep, isCurrentSheep
+
+    if isCurrentSheep != lastIsSheep or is_next_sheep(isCurrentSheep, responseArray[-1], isPreviousSheep) != firstIsSheep:
+        return -1
+
+    return res_str

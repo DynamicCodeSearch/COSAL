@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int n = scanner.nextInt();
+    int[] t = new int[n];
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        t[i] = scanner.nextInt();
+        a[i] = scanner.nextInt();
+    }
+    long answer;
+    if (n > 1) {
+        long takahashi = t[0];
+        long aoki = a[0];
+        for (int i = 1; i < n; i++) {
+            if (t[i] < takahashi || a[i] < aoki) {
+                long rate = Math.max((takahashi - 1) / t[i] + 1, (aoki - 1) / a[i] + 1);
+                takahashi = t[i] * rate;
+                aoki = a[i] * rate;
+            } else {
+                takahashi = t[i];
+                aoki = a[i];
+            }
+        }
+        System.out.println(takahashi + aoki);
+    } else {
+        System.out.println(t[0] + a[0]);
+    }
+}

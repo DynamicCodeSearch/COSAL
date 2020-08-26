@@ -1,0 +1,11 @@
+public int scc() {
+    for (int i = 0; i < V; i++) used[i] = false;
+    vs.clear();
+    for (int i = 0; i < V; i++) if (!used[i])
+        dfs(i);
+    for (int i = 0; i < V; i++) used[i] = false;
+    int k = 0;
+    for (int i = vs.size() - 1; i >= 0; i--) if (!used[vs.get(i)])
+        rdfs(vs.get(i), k++);
+    return k;
+}

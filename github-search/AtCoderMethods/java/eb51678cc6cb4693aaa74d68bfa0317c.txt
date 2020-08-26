@@ -1,0 +1,6 @@
+static String next() throws IOException {
+    while (!tokenizer.hasMoreTokens()) {
+        tokenizer = new StringTokenizer(reader.readLine());
+    }
+    return tokenizer.nextToken();
+}

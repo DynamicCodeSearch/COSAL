@@ -1,0 +1,16 @@
+def main():
+    N = int(input())
+    A = list(map(int, input().split()))
+
+    S = sum(A)
+
+    MIN = float('inf')
+    P = 0
+    Q = S
+    for a in range(len(A)-1):
+        P += A[a]
+        Q -= A[a]
+        dif = abs(P-Q)
+        MIN = min(MIN, dif)
+
+    print(MIN)

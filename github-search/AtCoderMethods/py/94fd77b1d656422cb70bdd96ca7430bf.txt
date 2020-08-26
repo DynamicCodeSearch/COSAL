@@ -1,0 +1,12 @@
+def arrlcm(a):
+    alen = len(a)
+    if alen == 3:
+        return lcm(a[0], lcm(a[1], a[2]))
+    elif alen == 2:
+        return lcm(a[0], a[1])
+    elif alen == 1:
+        return a[0] 
+    elif alen == 0:
+        return 0
+    else:
+        return lcm(arrlcm(a[:alen//2]), arrlcm(a[alen//2:]))

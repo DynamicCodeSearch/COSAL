@@ -1,0 +1,33 @@
+public static void main(String[] args) throws Exception {
+    Scanner in = new Scanner(System.in);
+    int T, N;
+    T = in.nextInt();
+    N = in.nextInt();
+    int[] A = new int[N];
+    for (int i = 0; i < N; i++) {
+        A[i] = in.nextInt();
+    }
+    int M = in.nextInt();
+    int[] B = new int[M];
+    for (int i = 0; i < M; i++) {
+        B[i] = in.nextInt();
+    }
+    int a = 0, b = 0;
+    boolean clear = false;
+    while (b <= B.length) {
+        if (a >= A.length || b >= B.length || A.length < B.length)
+            break;
+        if (A[a] > B[b])
+            break;
+        if (A[a] <= B[b] && B[b] <= A[a] + T) {
+            a++;
+            b++;
+        } else {
+            a++;
+        }
+        if (b == B.length) {
+            clear = true;
+        }
+    }
+    System.out.println(clear ? "yes" : "no");
+}

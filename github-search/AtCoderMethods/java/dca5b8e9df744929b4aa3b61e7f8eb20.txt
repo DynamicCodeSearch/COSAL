@@ -1,0 +1,44 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader r = new BufferedReader(new InputStreamReader(System.in), 1);
+    int N, M, T;
+    {
+        String[] line = r.readLine().split(" ");
+        N = Integer.parseInt(line[0]);
+        M = Integer.parseInt(line[1]);
+        T = Integer.parseInt(line[2]);
+    }
+    int[] A = new int[N];
+    {
+        String[] line = r.readLine().split(" ");
+        for (int i = 0; i < N; i++) A[i] = Integer.parseInt(line[i]);
+    }
+    ArrayList<List<Edge>> graph = new ArrayList<List<Edge>>(), revgraph = new ArrayList<List<Edge>>();
+    for (int i = 0; i < N; i++) {
+        graph.add(new ArrayList<Edge>());
+        revgraph.add(new ArrayList<Edge>());
+    }
+    for (int i = 0; i < M; i++) {
+        int a, b, c;
+        String[] line = r.readLine().split(" ");
+        a = Integer.parseInt(line[0]);
+        b = Integer.parseInt(line[1]);
+        c = Integer.parseInt(line[2]);
+        a--;
+        b--;
+        graph.get(a).add(new Edge(b, (long) c));
+        revgraph.get(b).add(new Edge(a, (long) c));
+    }
+    long[] weights = new long[N], rweights = new long[N];
+    Arrays.fill(weights, 1L << 30);
+    Arrays.fill(rweights, 1L << 30);
+    Dijkstra(graph, weights, 0);
+    Dijkstra(revgraph, rweights, 0);
+    long ans = 0;
+    for (int i = 0; i < N; i++) {
+        long tmp = T - weights[i] - rweights[i];
+        if (tmp > 0) {
+            ans = Math.max(ans, tmp * A[i]);
+        }
+    }
+    System.out.println(ans);
+}

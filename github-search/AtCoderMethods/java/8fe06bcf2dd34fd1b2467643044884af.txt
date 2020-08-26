@@ -1,0 +1,16 @@
+void solve(ContestScanner in, Writer out) throws NumberFormatException, IOException {
+    int n = in.nextInt();
+    RangeMaximumSegTree st = new RangeMaximumSegTree(100001);
+    Box[] box = new Box[n];
+    for (int i = 0; i < n; i++) {
+        int h = in.nextInt();
+        int w = in.nextInt();
+        box[i] = new Box(h, w);
+    }
+    Arrays.sort(box);
+    for (int i = 0; i < n; i++) {
+        int rank = st.max(0, box[i].s - 1);
+        st.set(box[i].s, rank + 1);
+    }
+    System.out.println(st.max(0, 100000));
+}

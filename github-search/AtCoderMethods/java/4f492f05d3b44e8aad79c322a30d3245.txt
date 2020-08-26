@@ -1,0 +1,18 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    
+    String[] ss0 = br.readLine().trim().split(" ", 0);
+    long X = Long.parseLong(ss0[0]);
+    long A = Long.parseLong(ss0[1]);
+    long B = Long.parseLong(ss0[2]);
+    if (A - B >= 0) {
+        System.out.println("delicious");
+        return;
+    }
+    if (B - A > X) {
+        System.out.println("dangerous");
+        return;
+    }
+    System.out.println("safe");
+    return;
+}

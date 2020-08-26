@@ -1,0 +1,34 @@
+static int[] dfs(int node) {
+    List<int[]> childrenX = new ArrayList<int[]>();
+    for (int child : graph[node]) {
+        int[] childX = dfs(child);
+        if (childX[0] > childX[1]) {
+            childX[0] ^= childX[1];
+            childX[1] ^= childX[0];
+            childX[0] ^= childX[1];
+        }
+        childrenX.add(childX);
+    }
+    int minSum = 0, othSum = 0;
+    for (int[] childX : childrenX) {
+        minSum += childX[0];
+        othSum += childX[1];
+    }
+    if (minSum > x[node]) {
+        System.out.println("IMPOSSIBLE");
+        System.exit(0);
+    }
+    int rem = x[node] - minSum;
+    
+    boolean[] dp = new boolean[rem + 1];
+    dp[0] = true;
+    for (int[] childX : childrenX) for (int i = rem - (childX[1] - childX[0]); i >= 0; --i) dp[i + (childX[1] - childX[0])] |= dp[i];
+    int maxSum = 0;
+    for (int i = rem; i > 0; --i) {
+        if (dp[i]) {
+            maxSum = i;
+            break;
+        }
+    }
+    return new int[] { x[node], othSum - maxSum };
+}

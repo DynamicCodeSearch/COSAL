@@ -1,0 +1,17 @@
+public void solve() {
+    N = nextInt();
+    a = new int[N];
+    dp = new int[N];
+    Arrays.fill(dp, INF);
+    for (int i = 0; i < N; i++) {
+        a[i] = nextInt();
+    }
+    dp[0] = 0;
+    for (int i = 0; i < N; i++) {
+        if (i + 1 < N)
+            dp[i + 1] = Math.min(dp[i + 1], dp[i] + Math.abs(a[i + 1] - a[i]));
+        if (i + 2 < N)
+            dp[i + 2] = Math.min(dp[i + 2], dp[i] + Math.abs(a[i + 2] - a[i]));
+    }
+    out.println(dp[N - 1]);
+}

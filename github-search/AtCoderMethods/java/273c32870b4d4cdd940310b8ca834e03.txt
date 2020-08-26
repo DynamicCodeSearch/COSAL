@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int h = 0;
+    int m = 0;
+    int s = 0;
+    if (N >= 3600) {
+        h = N / 3600;
+        N = N - 3600 * h;
+    }
+    if (N >= 60) {
+        m = N / 60;
+        N = N - 60 * m;
+    }
+    s = N;
+    System.out.println(((String.valueOf(h).length() == 1) ? "0" : "") + String.valueOf(h) + ":" + ((String.valueOf(m).length() == 1) ? "0" : "") + String.valueOf(m) + ":" + ((String.valueOf(s).length() == 1) ? "0" : "") + String.valueOf(s));
+}

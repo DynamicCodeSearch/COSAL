@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    int[][] range = sc.nextIntTable(N, 2);
+    StarrySkyTree sst = new StarrySkyTree(300001);
+    Arrays.sort(range, (a, b) -> (a[1] - a[0]) - (b[1] - b[0]));
+    int idx = 0;
+    for (int m = 1; m <= M; m++) {
+        int count = 0;
+        for (; idx < N && range[idx][1] - range[idx][0] + 1 < m; idx++) {
+            sst.add(range[idx][0], range[idx][1] + 1, 1);
+        }
+        count += N - idx;
+        for (int k = 0; k <= M; k += m) {
+            count += sst.min(k, k + 1);
+        }
+        System.out.println(count);
+    }
+}

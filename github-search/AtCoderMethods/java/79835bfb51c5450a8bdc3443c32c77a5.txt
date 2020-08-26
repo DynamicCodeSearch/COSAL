@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int m = sc.nextInt();
+    int n = sc.nextInt();
+    int N = sc.nextInt();
+    int left = 0, sum = N, pro = 0;
+    while (N >= m) {
+        pro = (int) (N / m) * n;
+        left = N % m;
+        sum += pro;
+        N = pro + left;
+    }
+    System.out.println(sum);
+}

@@ -1,0 +1,24 @@
+public void readHead(String str) {
+    String[] strArr = str.split(" ");
+    
+    
+    int n = Integer.parseInt(strArr[0]);
+    int m = Integer.parseInt(strArr[1]);
+    int a = n;
+    int b = m;
+    if (n < m) {
+        a = m;
+        b = n;
+    }
+    if (a - b > 1) {
+        System.out.println(0);
+        return;
+    }
+    long ans = 1;
+    if (a == b)
+        ans = 2;
+    final long MOD = 1000000007;
+    for (long i = 1; i <= a; i++) ans = (ans * i) % MOD;
+    for (long i = 1; i <= b; i++) ans = (ans * i) % MOD;
+    System.out.println(ans);
+}

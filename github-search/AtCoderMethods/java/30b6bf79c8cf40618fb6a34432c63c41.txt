@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    try {
+        
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+        String[] strArr = br.readLine().split(" ");
+        long n = Long.parseLong(strArr[0]);
+        long m = Long.parseLong(strArr[1]);
+        if (Math.abs(n - m) >= 2) {
+            System.out.println(0);
+        } else if (n != m) {
+            System.out.println((getFactorial(n) * getFactorial(m)) % 1000000007);
+        } else {
+            System.out.println((getFactorial(n) * getFactorial(m) * 2) % 1000000007);
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

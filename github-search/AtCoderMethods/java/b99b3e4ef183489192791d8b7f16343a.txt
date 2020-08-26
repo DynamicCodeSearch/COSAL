@@ -1,0 +1,36 @@
+private void dfs(int now, int par) {
+    if (ord[now] != -1) {
+        return;
+    }
+    ord[now] = oi;
+    low[now] = oi++;
+    for (int i = 0; i < graph[now].length; i++) {
+        int to = graph[now][i];
+        if (to == par) {
+            continue;
+        }
+        if (ord[to] < ord[now]) {
+            tmpEdges.add(new int[] { now, to });
+        }
+        if (ord[to] == -1) {
+            dfs(to, now);
+            low[now] = Math.min(low[now], low[to]);
+            if (low[to] >= ord[now]) {
+                List<int[]> edges = new ArrayList<>();
+                while (tmpEdges.size() >= 1) {
+                    int[] head = tmpEdges.pop();
+                    edges.add(head);
+                    if (Math.min(head[0], head[1]) == Math.min(now, to)) {
+                        if (Math.max(head[0], head[1]) == Math.max(now, to)) {
+                            break;
+                        }
+                    }
+                }
+                edgeComponents.add(edges);
+            }
+        } else {
+            
+            low[now] = Math.min(low[now], ord[to]);
+        }
+    }
+}

@@ -1,0 +1,12 @@
+def split(s, split_positions):
+    assert len(s) - 1 == len(split_positions)
+
+    ans = []
+    pre = 0
+    for i, is_split in enumerate(split_positions, start=1):
+        if is_split:
+            ans.append(s[pre:i])
+            pre = i
+
+    ans.append(s[pre:])
+    return ans

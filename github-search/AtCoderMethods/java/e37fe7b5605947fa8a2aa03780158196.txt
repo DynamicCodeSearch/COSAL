@@ -1,0 +1,12 @@
+private static int calculationStandard(List<Integer> list) {
+    int SUM = 0;
+    for (int number : list) {
+        SUM += number;
+    }
+    int quotient = SUM / list.size();
+    int surplus = SUM % list.size();
+    if (surplus >= list.size() / 2.0) {
+        quotient++;
+    }
+    return quotient;
+}

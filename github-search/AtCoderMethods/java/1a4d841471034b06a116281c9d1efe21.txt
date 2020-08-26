@@ -1,0 +1,15 @@
+public static void dfs(int v, int parent) {
+    ArrayList<Integer> e = edge[v];
+    ArrayList<Long> c = cost[v];
+    if ((parent >= 0) && (e.size() == 1)) {
+    } else {
+        for (int i = 0; i < e.size(); i++) {
+            int u = e.get(i);
+            if (u != parent) {
+                long ct = c.get(i);
+                dp[u] = dp[v] + ct;
+                dfs(u, v);
+            }
+        }
+    }
+}

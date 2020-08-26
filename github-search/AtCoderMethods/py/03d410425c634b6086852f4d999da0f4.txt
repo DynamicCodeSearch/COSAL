@@ -1,0 +1,12 @@
+def main():
+   N,M = map(int,input().split())
+   Set = set()
+   for i in range(M):
+      a,b = map(int,input().split())
+      Set.add((a,b))
+      Set.add((b,a))                        
+   for j in range(2,N):
+      if (1,j) in Set and (j,N) in Set:
+         print("POSSIBLE")
+         return
+   print("IMPOSSIBLE")

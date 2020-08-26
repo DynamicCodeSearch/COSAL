@@ -1,0 +1,27 @@
+def ty(h,w):
+    lenh=h/2
+    if h%2==0:
+
+        tatew = math.ceil(w/3)
+        maxb = max(h*tatew, (w-tatew)*lenh)
+        minb = min(h*tatew, (w-tatew)*lenh)
+        res0 = maxb-minb
+
+        if w>3:
+            tatew = math.floor(w/3)
+            maxb = max(h*tatew, (w-tatew)*lenh)
+            minb = min(h*tatew, (w-tatew)*lenh)
+        res1 = maxb-minb
+    else:
+
+        tatew = math.ceil(w/3)
+        maxb = max(h*tatew, (w-tatew)*math.ceil(lenh))
+        minb = min(h*tatew, (w-tatew)*math.floor(lenh))
+        res0 = maxb-minb
+
+        if h>3:
+            tatew = math.floor(w/3)
+            maxb = max(h*tatew, (w-tatew)*math.ceil(lenh))
+            minb = min(h*tatew, (w-tatew)*math.floor(lenh))
+        res1 = maxb-minb
+    return math.floor(min(res0,res1))

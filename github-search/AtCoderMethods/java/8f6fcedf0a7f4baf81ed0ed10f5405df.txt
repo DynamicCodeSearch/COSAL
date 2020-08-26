@@ -1,0 +1,23 @@
+static void solve() throws IOException {
+    int x1 = readInt();
+    int y1 = readInt();
+    int r = readInt();
+    int x2 = readInt();
+    int y2 = readInt();
+    int x3 = readInt();
+    int y3 = readInt();
+    boolean flg = false;
+    if (x1 - r < x2 || x1 + r > x3 || y1 - r < y2 || y1 + r > y3)
+        flg = true;
+    System.out.println(flg ? "YES" : "NO");
+    flg = false;
+    if ((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2) > r * r)
+        flg = true;
+    if ((x1 - x2) * (x1 - x2) + (y1 - y3) * (y1 - y3) > r * r)
+        flg = true;
+    if ((x1 - x3) * (x1 - x3) + (y1 - y2) * (y1 - y2) > r * r)
+        flg = true;
+    if ((x1 - x3) * (x1 - x3) + (y1 - y3) * (y1 - y3) > r * r)
+        flg = true;
+    System.out.println(flg ? "YES" : "NO");
+}

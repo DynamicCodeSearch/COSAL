@@ -1,0 +1,31 @@
+public void execute() {
+    try {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        Integer numStr = Integer.valueOf(br.readLine());
+        List<Integer> points = new ArrayList<Integer>();
+        Integer maxPoint = 0;
+        Integer answer = 0;
+        for (int i = 1; i <= numStr; i++) {
+            Integer point = Integer.parseInt(br.readLine());
+            points.add(point);
+            maxPoint += point;
+        }
+        if (!isPer10(maxPoint)) {
+            answer = maxPoint;
+        } else {
+            Collections.sort(points);
+            Iterator<Integer> it = points.iterator();
+            while (it.hasNext()) {
+                Integer point = it.next();
+                if (!isPer10(point)) {
+                    answer = maxPoint - point;
+                    break;
+                }
+            }
+        }
+        System.out.println(answer);
+    } catch (Exception ex) {
+        ex.printStackTrace();
+        System.err.println(ex.getMessage());
+    }
+}

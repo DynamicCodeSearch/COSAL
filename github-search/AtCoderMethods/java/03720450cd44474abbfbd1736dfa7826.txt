@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String w = sc.nextLine();
+    int len = w.length();
+    char[] c = new char[len];
+    for (int i = 0; i < len; i++) {
+        c[i] = w.charAt(i);
+    }
+    int jud = 0, flg = 0;
+    for (int i = 0; i < len; i++) {
+        for (int j = 0; j < len; j++) {
+            if (c[i] == c[j])
+                jud++;
+        }
+        if (jud % 2 == 1)
+            flg = 1;
+    }
+    if (flg == 0)
+        System.out.println("Yes");
+    else
+        System.out.println("No");
+}

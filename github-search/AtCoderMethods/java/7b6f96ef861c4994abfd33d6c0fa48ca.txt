@@ -1,0 +1,48 @@
+static void solve() {
+    int n = ni(), L = ni();
+    int[] ts = new int[n];
+    int[] vs = new int[n];
+    for (int i = 0; i < n; i++) {
+        ts[i] = ni();
+        vs[i] = ni();
+    }
+    Deque<double[]> q = new ArrayDeque<>();
+    double V = 0;
+    double S = 0;
+    for (int i = 0; i < n; i++) {
+        V += vs[i];
+        S += (double) ts[i] * vs[i];
+        while (V > L && q.size() > 0) {
+            double[] cur = q.pollFirst();
+            if (V - cur[1] <= L) {
+                S -= cur[0] * (double) (V - L);
+                cur[1] = L - (V - cur[1]);
+                q.addFirst(cur);
+                V = L;
+            } else {
+                V -= cur[1];
+                S -= (double) cur[0] * cur[1];
+            }
+        }
+        out.printf("%.14f\n", S / L);
+        q.addLast(new double[] { ts[i], vs[i] });
+        outer: while (true) {
+            if (q.size() >= 2) {
+                double[] last = q.pollLast();
+                double[] last2 = q.pollLast();
+                if (last2[0] < last[0]) {
+                    q.addLast(last2);
+                    q.addLast(last);
+                    break outer;
+                } else {
+                    last[0] = (last[0] * last[1] + last2[0] * last2[1]) / (last[1] + last2[1]);
+                    last[1] += last2[1];
+                    q.addLast(last);
+                }
+            } else {
+                break outer;
+            }
+        }
+    
+    }
+}

@@ -1,0 +1,9 @@
+def memoize(f):
+    cache = {}
+
+    def func(*args):
+        if args not in cache:
+            cache[args] = f(*args)
+        return cache[args]
+
+    return func

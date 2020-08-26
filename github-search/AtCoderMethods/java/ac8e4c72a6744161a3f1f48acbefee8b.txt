@@ -1,0 +1,19 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    String[] s = new String[N];
+    for (int i = 0; i < N; i++) {
+        s[i] = sc.next();
+    }
+    Arrays.stream(s).sorted((o1, o2) -> {
+        int min = Math.min(o1.length(), o2.length());
+        for (int i = 1; i <= min; i++) {
+            char c1 = o1.charAt(o1.length() - i);
+            char c2 = o2.charAt(o2.length() - i);
+            if (c1 != c2) {
+                return c1 - c2;
+            }
+        }
+        return o1.length() - o2.length();
+    }).forEach(System.out::println);
+}

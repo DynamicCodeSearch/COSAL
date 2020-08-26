@@ -1,0 +1,12 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    int[] card = new int[] { 1, 2, 3, 4, 5, 6 };
+    int n = sc.nextInt();
+    n = n % 30;
+    for (int i = 0; i < n; i++) {
+        int temp = card[i % 5];
+        card[i % 5] = card[i % 5 + 1];
+        card[i % 5 + 1] = temp;
+    }
+    for (int i = 0; i < 6; i++) System.out.print(card[i]);
+}

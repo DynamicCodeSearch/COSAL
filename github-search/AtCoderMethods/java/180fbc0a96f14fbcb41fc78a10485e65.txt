@@ -1,0 +1,17 @@
+void solve(ContestScanner in, Writer out) throws NumberFormatException, IOException {
+    double p = in.nextDouble();
+    double left = 0;
+    double right = 100;
+    for (int i = 0; i < 100; i++) {
+        double m1 = (left * 2 + right) / 3;
+        double m2 = (left + right * 2) / 3;
+        double a1 = m1 + p / Math.pow(2, m1 / 1.5);
+        double a2 = m2 + p / Math.pow(2, m2 / 1.5);
+        if (a1 < a2) {
+            right = m2;
+        } else {
+            left = m1;
+        }
+    }
+    System.out.println(left + p / Math.pow(2, left / 1.5));
+}

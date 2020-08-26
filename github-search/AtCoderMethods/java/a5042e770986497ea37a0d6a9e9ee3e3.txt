@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner in = new java.util.Scanner(System.in);
+    int N = in.nextInt();
+    int count2 = 0;
+    int count4 = 0;
+    for (int i = 0; i < N; i++) {
+        int tmp = in.nextInt();
+        if (tmp % 2 == 0 && tmp % 4 != 0) {
+            count2++;
+        } else if (tmp % 4 == 0) {
+            count4++;
+        }
+    }
+    if ((N - count2 - count4) > 1 + count4) {
+        System.out.println("No");
+    } else if ((N - count2 - count4) == count4 + 1 && count2 != 0) {
+        System.out.println("No");
+    } else {
+        System.out.println("Yes");
+    }
+}

@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    String[] w = new String[N];
+    final String[] chk_string = { "TAKAHASHIKUN", "Takahashikun", "takahashikun" };
+    for (int i = 0; i < N; i++) {
+        w[i] = sc.next();
+    }
+    
+    String tmp = "";
+    for (int i = 0; i < (w[(w.length - 1)].length() - 1); i++) {
+        tmp += w[(w.length - 1)].charAt(i);
+    }
+    w[(w.length - 1)] = tmp;
+    int count = 0;
+    for (int i = 0; i < w.length; i++) {
+        for (int j = 0; j < chk_string.length; j++) {
+            if (chk_string[j].equals(w[i])) {
+                count++;
+            }
+        }
+    }
+    System.out.println(count);
+}

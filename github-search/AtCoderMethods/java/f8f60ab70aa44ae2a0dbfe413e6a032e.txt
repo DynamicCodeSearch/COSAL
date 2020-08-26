@@ -1,0 +1,23 @@
+public void solve() {
+    int N = nextInt();
+    int[] a = new int[N];
+    map = new HashMap<Integer, Integer>();
+    set = new TreeSet<Integer>();
+    for (int i = 0; i < N; i++) {
+        a[i] = nextInt();
+    }
+    for (int i = 0; i < N; i++) {
+        set.add(a[i]);
+    }
+    int rank = 0;
+    for (int v : set) {
+        map.put(v, rank++);
+    }
+    int[] ans = new int[N];
+    for (int i = 0; i < N; i++) {
+        ans[i] = map.get(a[i]);
+    }
+    for (int i = 0; i < N; i++) {
+        out.println(ans[i]);
+    }
+}

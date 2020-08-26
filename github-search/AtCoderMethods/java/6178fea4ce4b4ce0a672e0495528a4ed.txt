@@ -1,0 +1,13 @@
+static int dfs(int[][] matrix, int[] visited, int[] finished, int v, int time) {
+    
+    time++;
+    visited[v] = time;
+    int tmpTime = time;
+    for (int i = 1; i <= matrix[v].length - 1; i++) {
+        if (matrix[v][i] == 1 && visited[i] <= 0) {
+            tmpTime = dfs(matrix, visited, finished, i, tmpTime);
+        }
+    }
+    finished[v] = tmpTime + 1;
+    return tmpTime + 1;
+}

@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] report = new int[N];
+    for (int i = 0; i < N; i++) report[i] = sc.nextInt();
+    Arrays.sort(report);
+    int[] correct = new int[N];
+    for (int i = 0; i < N; i++) correct[i] = Math.abs(i - (N - i - 1));
+    Arrays.sort(correct);
+    if (Arrays.equals(report, correct)) {
+        
+        final int mod = 1000000007;
+        int answer = 1;
+        for (int i = 0; i < N / 2; i++) {
+            answer = answer * 2;
+            answer = answer % mod;
+        }
+        System.out.println(answer);
+    } else {
+        System.out.println(0);
+    }
+}

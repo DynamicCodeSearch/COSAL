@@ -1,0 +1,75 @@
+static void solve() {
+    int X = ni();
+    int K = ni();
+    int[] r = new int[K + 1];
+    for (int i = 0; i < K; i++) {
+        r[i + 1] = ni();
+    }
+    int[] infs = new int[K + 1];
+    int[] sups = new int[K + 1];
+    int[] bases = new int[K + 1];
+    infs[0] = 0;
+    sups[0] = X;
+    bases[0] = 0;
+    for (int i = 1; i < K + 1; i++) {
+        int t = r[i] - r[i - 1];
+        
+        int dir = i & 1;
+        if (dir == 1) {
+            int nb = bases[i - 1] - t;
+            if (nb >= 0) {
+                infs[i] = infs[i - 1];
+                sups[i] = sups[i - 1];
+                bases[i] = nb;
+            } else {
+                infs[i] = infs[i - 1] - nb;
+                sups[i] = sups[i - 1];
+                if (infs[i] >= sups[i]) {
+                    sups[i] = infs[i];
+                }
+                bases[i] = 0;
+            }
+        } else {
+            int nb = bases[i - 1] + t;
+            if ((long) nb + sups[i - 1] - infs[i - 1] <= X) {
+                infs[i] = infs[i - 1];
+                sups[i] = sups[i - 1];
+                bases[i] = nb;
+            } else {
+                infs[i] = infs[i - 1];
+                sups[i] = sups[i - 1] - ((sups[i - 1] - infs[i - 1] + nb) - X);
+                if (infs[i] >= sups[i]) {
+                    sups[i] = infs[i];
+                }
+                bases[i] = X - (sups[i] - infs[i]);
+            }
+        }
+    }
+    StringBuilder sb = new StringBuilder();
+    for (int Q = ni(); Q > 0; Q--) {
+        int t = ni(), a = ni();
+        int ind = Arrays.binarySearch(r, t);
+        if (ind < 0)
+            ind = -ind - 2;
+        int w = 0;
+        if (a <= infs[ind]) {
+            w = bases[ind];
+        } else if (a >= sups[ind]) {
+            w = bases[ind] + (sups[ind] - infs[ind]);
+        } else {
+            w = bases[ind] + (a - infs[ind]);
+        }
+        if ((ind & 1) == 0) {
+            
+            w -= t - r[ind];
+            if (w < 0)
+                w = 0;
+        } else {
+            w += t - r[ind];
+            if (w > X)
+                w = X;
+        }
+        sb.append(w).append("\n");
+    }
+    out.print(sb);
+}

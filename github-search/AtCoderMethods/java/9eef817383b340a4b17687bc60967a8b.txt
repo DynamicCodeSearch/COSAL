@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    Scanner as = new Scanner(System.in);
+    int n = as.nextInt();
+    int[] a;
+    int t = 0;
+    int k = 10000;
+    int s = 0;
+    a = new int[100001];
+    for (int i = 0; i < n; i++) {
+        t = Integer.parseInt(as.next());
+        a[t]++;
+        k = Math.min(k, t);
+        s = Math.max(s, t);
+    }
+    int q = 0;
+    int l = 0;
+    for (int i = k; i <= s; i++) {
+        if (a[i] == 0) {
+            continue;
+        } else if (a[i] % 2 == 1) {
+            l++;
+        } else {
+            q++;
+        }
+    }
+    if (q % 2 == 1) {
+        l += q - 1;
+    } else {
+        l += q;
+    }
+    System.out.println(l);
+}

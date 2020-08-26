@@ -1,0 +1,33 @@
+private void solve() {
+    Scanner io = new Scanner(System.in);
+    R = io.nextInt();
+    C = io.nextInt();
+    N = io.nextInt();
+    edge = new ArrayList<Point>();
+    for (int i = 0; i < N; i++) {
+        int x1 = io.nextInt();
+        int y1 = io.nextInt();
+        int x2 = io.nextInt();
+        int y2 = io.nextInt();
+        int p1 = trans(x1, y1);
+        int p2 = trans(x2, y2);
+        if (p1 == -1 || p2 == -1)
+            continue;
+        edge.add(new Point(p1, i));
+        edge.add(new Point(p2, i));
+    }
+    Collections.sort(edge);
+    LinkedList<Point> stack = new LinkedList<Point>();
+    for (int i = 0; i < edge.size(); i++) {
+        if (stack.isEmpty()) {
+            stack.push(edge.get(i));
+        } else {
+            if (stack.peek().id == edge.get(i).id) {
+                stack.pop();
+            } else {
+                stack.push(edge.get(i));
+            }
+        }
+    }
+    System.out.println((stack.isEmpty()) ? "YES" : "NO");
+}

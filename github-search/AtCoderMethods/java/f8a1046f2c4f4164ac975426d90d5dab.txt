@@ -1,0 +1,11 @@
+public static final long modPow(long n, long p, long mod) {
+    if (p == 0)
+        return 1;
+    if (p == 1)
+        return n % mod;
+    if (p % 2 == 0) {
+        long buf = modPow(n, p / 2, mod);
+        return buf * buf % mod;
+    }
+    return n * modPow(n, p - 1, mod) % mod;
+}

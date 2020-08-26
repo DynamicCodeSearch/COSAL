@@ -1,0 +1,33 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int c1 = sc.nextInt();
+    int c2 = sc.nextInt();
+    int[][] N;
+    N = new int[c1][2];
+    int[][] M;
+    M = new int[c2][2];
+    for (int i = 0; i < c1; i++) {
+        N[i][0] = sc.nextInt();
+        N[i][1] = sc.nextInt();
+    
+    }
+    for (int i = 0; i < c2; i++) {
+        M[i][0] = sc.nextInt();
+        M[i][1] = sc.nextInt();
+    }
+    int md = 0;
+    int cp = 0;
+    for (int i = 0; i < c1; i++) {
+        md = 2147483647;
+        cp = 0;
+        for (int j = 0; j < c2; j++) {
+            int d = Math.abs(N[i][0] - M[j][0]) + Math.abs(N[i][1] - M[j][1]);
+            if (d < md) {
+                md = d;
+                cp = j + 1;
+            }
+        }
+        System.out.println(cp);
+    }
+    sc.close();
+}

@@ -1,0 +1,52 @@
+
+public void run() throws IOException {
+    
+    int TEST_CASE = 1;
+    while (TEST_CASE-- != 0) {
+        h = io.nextInt();
+        w = io.nextInt();
+        int n = io.nextInt();
+        TreeMap<Integer, Integer> pos = new TreeMap<>();
+        for (int i = 0; i < n; i++) {
+            int y1 = io.nextInt();
+            int x1 = io.nextInt();
+            int y2 = io.nextInt();
+            int x2 = io.nextInt();
+            if ((x1 % w == 0 || y1 % h == 0) && (x2 % w == 0 || y2 % h == 0)) {
+                
+                
+                pos.put(f(x1, y1), i);
+                pos.put(f(x2, y2), i);
+            }
+        }
+        
+        for (int cur = -1; !pos.isEmpty(); ) {
+            Integer next = pos.higherKey(cur);
+            if (next == null) {
+                break;
+            }
+            Integer v1 = pos.get(cur);
+            int v2 = pos.get(next);
+            if (v1 == null || v1 != v2) {
+                cur = next;
+                continue;
+            }
+            pos.remove(cur);
+            pos.remove(next);
+            Integer k = pos.lowerKey(cur);
+            cur = k == null ? -1 : k;
+        }
+        if (!pos.isEmpty()) {
+            io.out.println("NO");
+            return;
+        }
+        
+        
+        
+        
+        
+        
+        
+        io.out.println("YES");
+    }
+}

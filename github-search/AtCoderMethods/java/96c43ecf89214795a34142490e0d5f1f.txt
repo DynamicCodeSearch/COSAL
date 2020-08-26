@@ -1,0 +1,25 @@
+void rand() {
+    while (true) {
+        int n = (1 + (int) (Math.random() * 500000));
+        if (n % 8 == 0)
+            n = 1;
+        int d = (1 + (int) (Math.random() * (500000 / n)));
+        char[] c = new char[n * d];
+        for (int i = 0; i < n; i++) {
+            c[i] = (char) ('a' + (int) (Math.random() * 100) % 26);
+            for (int j = 1; j < d; j++) {
+                c[i + n * j] = c[i];
+            }
+        }
+        if (n % 7 == 0) {
+            Arrays.fill(c, (char) ('a' + (int) (Math.random() * 100) % 26));
+        }
+        int[] ret1 = solver(c);
+        int[] ret2 = correct(c);
+        if (ret1[0] != ret2[0] || ret1[1] != ret2[1]) {
+            tr(ret1);
+            tr(ret2);
+            tr(c);
+        }
+    }
+}

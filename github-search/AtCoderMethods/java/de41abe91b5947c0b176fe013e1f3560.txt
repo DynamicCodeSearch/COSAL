@@ -1,0 +1,15 @@
+public static void main(String[] __) {
+    int h = s.nextInt(), w = s.nextInt(), in[][] = new int[h][w];
+    REP(h, i -> {
+        REP(w, j -> {
+            in[i][j] = s.nextInt();
+        });
+    });
+    Set<Integer> set = REPS(w).mapToObj(i -> in[0][i]).collect(Collectors.toSet());
+    for (int i = 1; i < h; i++) {
+        Set<Integer> ns = new HashSet<>();
+        for (int j : in[i]) for (int v : set) ns.add(j ^ v);
+        set = ns;
+    }
+    System.out.println(set.contains(0) ? "Found" : "Nothing");
+}

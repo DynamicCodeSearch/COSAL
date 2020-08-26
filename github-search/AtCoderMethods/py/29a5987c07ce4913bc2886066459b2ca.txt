@@ -1,0 +1,11 @@
+def bfs(tree, s, distance):
+    queue = collections.deque([s])
+    distance[s] = 0
+
+    while queue:
+        v = queue.popleft()
+        v_c = distance[v]
+        for node, cost in tree[v]:
+            if distance[node] == -1:
+                distance[node] = v_c + cost
+                queue.append(node)

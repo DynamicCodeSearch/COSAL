@@ -1,0 +1,61 @@
+private static void solve() {
+    int n = sc.nextInt();
+    List<Tri> x = new ArrayList<>(n);
+    List<Tri> y = new ArrayList<>(n);
+    for (int i = 0; i < n; i++) {
+        int xx = sc.nextInt();
+        int yy = sc.nextInt();
+        x.add(new Tri(xx, yy, i));
+        y.add(new Tri(xx, yy, i));
+    }
+    Collections.sort(x);
+    Collections.sort(y, new Comparator<Tri>() {
+
+        @Override
+        public int compare(Tri o1, Tri o2) {
+            if (o1.b == o2.b) {
+                return Integer.compare(o1.a, o2.a);
+            }
+            return Integer.compare(o1.b, o2.b);
+        }
+    });
+    UnionFind uf = new UnionFind(n);
+    Map<Integer, List<Pair>> hm = new TreeMap<>();
+    for (int i = 0; i < n - 1; i++) {
+        Tri x1 = x.get(i);
+        Tri x2 = x.get(i + 1);
+        int d = x2.a - x1.a;
+        if (d == 0) {
+            uf.unite(x1.i, x2.i);
+        } else {
+            if (!hm.containsKey(d)) {
+                hm.put(d, new ArrayList<>());
+            }
+            hm.get(d).add(new Pair(x1.i, x2.i));
+        }
+    }
+    for (int i = 0; i < n - 1; i++) {
+        Tri y1 = y.get(i);
+        Tri y2 = y.get(i + 1);
+        int d = y2.b - y1.b;
+        if (d == 0) {
+            uf.unite(y1.i, y2.i);
+        } else {
+            if (!hm.containsKey(d)) {
+                hm.put(d, new ArrayList<>());
+            }
+            hm.get(d).add(new Pair(y1.i, y2.i));
+        }
+    }
+    long ans = 0;
+    for (Entry<Integer, List<Pair>> e : hm.entrySet()) {
+        int d = e.getKey();
+        for (Pair ee : e.getValue()) {
+            if (!uf.same(ee.a, ee.b)) {
+                ans += d;
+                uf.unite(ee.a, ee.b);
+            }
+        }
+    }
+    pr.println(ans);
+}

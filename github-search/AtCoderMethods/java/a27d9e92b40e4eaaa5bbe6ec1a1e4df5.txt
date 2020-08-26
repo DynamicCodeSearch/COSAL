@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int a = Integer.parseInt(sc.next());
+    int b = Integer.parseInt(sc.next());
+    String result = new String();
+    if (a == b) {
+        result = "Draw";
+    } else if (a == 1 && b <= 13) {
+        result = "Alice";
+    } else if (a != 1 && b != 1 && b < a) {
+        result = "Alice";
+    } else if (b == 1 && a <= 13) {
+        result = "Bob";
+    } else if (b != 1 && a != 1 && b > a) {
+        result = "Bob";
+    }
+    System.out.println(result);
+}

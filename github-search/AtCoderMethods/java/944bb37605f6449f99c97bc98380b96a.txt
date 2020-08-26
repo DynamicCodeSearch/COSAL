@@ -1,0 +1,12 @@
+private void initializePreflow(PushRelabelBaseMaxFlow.Vertex S) {
+    for (PushRelabelBaseMaxFlow.Vertex v : vertices) {
+        v.clear();
+    }
+    S.height = V;
+    for (PushRelabelBaseMaxFlow.Edge e : S.edges) {
+        e.v.excessFlow += e.capacity;
+        e.u.excessFlow -= e.capacity;
+        e.rev.capacity += e.capacity;
+        e.capacity = 0;
+    }
+}

@@ -1,0 +1,53 @@
+long dfs(int p) {
+    if (!vis.add(p))
+        return 0;
+    long ans = 0;
+    {
+        for (int s = -1; s <= 1; s += 2) {
+            TreeMap<Integer, Integer> t = xy.get(x[p] + s * d);
+            if (t == null)
+                continue;
+            List<Integer> li = xys.get(x[p] + s * d);
+            int l = Collections.binarySearch(li, y[p] - d);
+            int r = Collections.binarySearch(li, y[p] + d + 1);
+            if (l < 0)
+                l = -l - 1;
+            if (r < 0)
+                r = -r - 1;
+            
+            ans += r - l;
+            for (int cur = y[p] - d; cur <= y[p] + d; cur++) {
+                Entry<Integer, Integer> e = t.ceilingEntry(cur);
+                if (e == null || e.getKey() > y[p] + d)
+                    break;
+                t.remove(e.getKey());
+                cur = e.getKey();
+                
+                ans += dfs(e.getValue());
+            }
+        }
+        for (int s = -1; s <= 1; s += 2) {
+            TreeMap<Integer, Integer> t = yx.get(y[p] + s * d);
+            if (t == null)
+                continue;
+            List<Integer> li = yxs.get(y[p] + s * d);
+            int l = Collections.binarySearch(li, x[p] - d + 1);
+            int r = Collections.binarySearch(li, x[p] + d);
+            if (l < 0)
+                l = -l - 1;
+            if (r < 0)
+                r = -r - 1;
+            ans += r - l;
+            for (int cur = x[p] - d; cur <= x[p] + d; cur++) {
+                Entry<Integer, Integer> e = t.ceilingEntry(cur);
+                if (e == null || e.getKey() > x[p] + d)
+                    break;
+                t.remove(e.getKey());
+                cur = e.getKey();
+                
+                ans += dfs(e.getValue());
+            }
+        }
+    }
+    return ans;
+}

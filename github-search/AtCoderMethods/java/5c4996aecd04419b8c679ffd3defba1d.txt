@@ -1,0 +1,17 @@
+private int _nextInt() throws IOException {
+    int sign = 1;
+    int res = 0;
+    char c;
+    while (!isNum(c = buf[ptr]) && !isMinus(c)) next();
+    if (isMinus(buf[ptr])) {
+        sign = -1;
+        next();
+    }
+    while (isNum(c = buf[ptr])) {
+        res *= 10;
+        res += c - '0';
+        next();
+    }
+    next();
+    return sign * res;
+}

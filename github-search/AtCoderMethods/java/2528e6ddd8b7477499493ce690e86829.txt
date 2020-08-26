@@ -1,0 +1,17 @@
+static int[] dijkstra(List<Edge>[] node, int s) {
+    Queue<Pos> queue = new PriorityQueue<>();
+    queue.add(new Pos(s, 0));
+    int[] dist = new int[node.length];
+    Arrays.fill(dist, Integer.MAX_VALUE);
+    while (!queue.isEmpty()) {
+        Pos p = queue.poll();
+        if (dist[p.id] < Integer.MAX_VALUE)
+            continue;
+        dist[p.id] = p.dist;
+        for (Edge e : node[p.id]) {
+            queue.add(new Pos(e.to, e.dist + p.dist));
+        }
+    }
+    Arrays.sort(dist);
+    return dist;
+}

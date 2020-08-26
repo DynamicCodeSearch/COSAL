@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    FastScanner fs = new FastScanner();
+    int n = fs.nextInt2();
+    int ans = Integer.MAX_VALUE;
+    for (int i = (int) Math.sqrt(n); i > 0; i--) {
+        int l = n / i;
+        if (l - i > ans)
+            break;
+        if (l - i + n - l * i < ans)
+            ans = l - i + n - l * i;
+    }
+    StringBuilder sb = new StringBuilder();
+    sb.append(ans);
+    System.out.println(sb.toString());
+}

@@ -1,0 +1,61 @@
+void solve(FastScanner in, PrintWriter out) {
+    init();
+    long H = in.nextInt();
+    long W = in.nextInt();
+    int N = in.nextInt();
+    if (H < 3 || W < 3) {
+        for (int i = 0; i < 10; i++) out.println(0);
+        return;
+    }
+    long[] ans = new long[10];
+    TreeMap<Integer, TreeSet<Integer>> black = new TreeMap<>();
+    TreeSet<Long> used = new TreeSet<>();
+    ArrayList<int[]> blackList = new ArrayList<>();
+    for (int i = 0; i < N; i++) {
+        int a = in.nextInt(), b = in.nextInt();
+        blackList.add(new int[] { a, b });
+        TreeSet<Integer> set = black.get(a);
+        if (set == null)
+            black.put(a, set = new TreeSet<>());
+        set.add(b);
+    }
+    for (int[] ab : blackList) {
+        int a = ab[0];
+        int b = ab[1];
+        int mask = 0;
+        for (int i = 0; i < 5; i++) {
+            if (!black.containsKey(a + i - 2))
+                continue;
+            TreeSet<Integer> set = black.get(a + i - 2);
+            for (int j = 0; j < 5; j++) {
+                if (!set.contains(b + j - 2))
+                    continue;
+                mask |= (1 << (5 * i + j));
+            }
+        }
+        for (int i = 0; i < 3; i++) {
+            long ta = a + i;
+            for (int j = 0; j < 3; j++) {
+                long tb = b + j;
+                if (ta < 3 || tb < 3)
+                    continue;
+                if (ta > H || tb > W)
+                    continue;
+                if (used.contains(ta * MOD + tb))
+                    continue;
+                int n = Integer.bitCount(mask & bit[i][j]);
+                if (n > 0)
+                    ans[n]++;
+                used.add(ta * MOD + tb);
+            }
+        }
+    }
+    long all = (H - 2) * (W - 2);
+    for (long a : ans) {
+        all -= a;
+    }
+    ans[0] = all;
+    for (int i = 0; i < 10; i++) {
+        out.println(ans[i]);
+    }
+}

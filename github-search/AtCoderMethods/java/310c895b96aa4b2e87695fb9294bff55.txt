@@ -1,0 +1,9 @@
+private char[] ns(int n) throws IOException {
+    char[] buf = new char[n];
+    int c = next(), r = 0;
+    while (r < n && !(isChar(c))) {
+        buf[r++] = (char) c;
+        c = next();
+    }
+    return n == r ? buf : Arrays.copyOf(buf, r);
+}

@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int[] rhythm = new int[3];
+    int count5 = 2;
+    int count7 = 1;
+    for (int i = 0; i < 3; i++) {
+        rhythm[i] = Integer.parseInt(sc.next());
+    }
+    for (int i = 0; i < 3; i++) {
+        switch(rhythm[i]) {
+            case 5:
+                count5--;
+                break;
+            case 7:
+                count7--;
+                break;
+            default:
+                break;
+        }
+    }
+    if (count5 == 0 && count7 == 0) {
+        System.out.println("YES");
+    } else {
+        System.out.println("NO");
+    }
+}

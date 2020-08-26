@@ -1,0 +1,18 @@
+private static void solve() {
+    int n = sc.nextInt();
+    long k = sc.nextLong();
+    long[] cnt = new long[100_000 + 1];
+    for (int i = 0; i < n; i++) {
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        cnt[a] += b;
+    }
+    long tmp = 0;
+    for (int i = 1; i <= 100_000; i++) {
+        tmp += cnt[i];
+        if (tmp >= k) {
+            pr.println(i);
+            break;
+        }
+    }
+}

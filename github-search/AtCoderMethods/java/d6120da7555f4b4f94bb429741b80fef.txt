@@ -1,0 +1,33 @@
+void run() {
+    String s = sc.next();
+    int n = s.length();
+    boolean[] f = new boolean[n + 1];
+    String[] g = { "dream", "dreamer", "erase", "eraser" };
+    f[0] = true;
+    for (int i = 0; i < n; i++) {
+        if (f[i]) {
+            if (i + 5 <= n) {
+                String cut = s.substring(i, i + 5);
+                for (int j = 0; j < 4; j++) {
+                    if (cut.equals(g[j]))
+                        f[i + 5] = true;
+                }
+            }
+            if (i + 6 <= n) {
+                String cut = s.substring(i, i + 6);
+                for (int j = 0; j < 4; j++) {
+                    if (cut.equals(g[j]))
+                        f[i + 6] = true;
+                }
+            }
+            if (i + 7 <= n) {
+                String cut = s.substring(i, i + 7);
+                for (int j = 0; j < 4; j++) {
+                    if (cut.equals(g[j]))
+                        f[i + 7] = true;
+                }
+            }
+        }
+    }
+    System.out.println(f[n] ? "YES" : "NO");
+}

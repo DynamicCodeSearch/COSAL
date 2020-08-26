@@ -1,0 +1,16 @@
+static long getRet(long d1, long d2) {
+    long ret = 0;
+    if (d1 >= 0 && d2 >= 0) {
+        ret += d1 - d2 + 1;
+    }
+    if (d1 >= 0 && d2 < 0) {
+        ret += d1 + d2 + 2;
+    }
+    if (d1 < 0 && d2 >= 0) {
+        ret += -(d1 + 1) - d2;
+    }
+    if (d1 < 0 && d2 < 0) {
+        ret += -(d1 + 1) + d2 + 1;
+    }
+    return ret;
+}

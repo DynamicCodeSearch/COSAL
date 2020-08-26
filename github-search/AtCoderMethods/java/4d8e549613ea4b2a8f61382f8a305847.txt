@@ -1,0 +1,31 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(new BufferedInputStream(System.in));
+    int H = sc.nextInt();
+    int W = sc.nextInt();
+    int N = sc.nextInt();
+    int[] A = new int[N];
+    int[] Row = new int[W];
+    for (int i = 0; i < N; i++) {
+        A[i] = sc.nextInt();
+    }
+    int p = 0;
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            Row[j] = p + 1;
+            A[p]--;
+            if (A[p] == 0) {
+                p++;
+            }
+        }
+        for (int j = 0; j < W; j++) {
+            if (i % 2 == 0)
+                System.out.print(Row[j]);
+            else
+                System.out.print(Row[W - j - 1]);
+            if (j < W - 1)
+                System.out.print(" ");
+            else
+                System.out.println();
+        }
+    }
+}

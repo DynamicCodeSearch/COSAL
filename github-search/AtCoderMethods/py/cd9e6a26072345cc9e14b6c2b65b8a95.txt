@@ -1,0 +1,17 @@
+def avg(L, atLeast, atMost):
+	if (L.count(max(L)) >= atLeast):
+		print(max(L))
+  ways = 0
+  for i in range(atLeast, min(atMost, L.count(max(L))) + 1):
+			localWays = math.factorial(L.count(max(L))) // math.factorial(i) // math.factorial(L.count(max(L)) - i)
+   ways += localWays
+  print(ways)
+  return
+ L.sort(reverse=True)
+ last = L[atLeast - 1]
+ print(sum(L[:atLeast]) / atLeast)
+ firstIndex = L.index(last)
+
+ n = L.count(last)
+ i = atLeast - firstIndex
+ print(math.factorial(n) // math.factorial(i) // math.factorial(n - i))

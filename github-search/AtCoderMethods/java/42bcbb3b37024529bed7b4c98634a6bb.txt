@@ -1,0 +1,25 @@
+private static long dijkstra(int s, int t) {
+    
+    int[] d = new int[idMap.size()];
+    Arrays.fill(d, INF);
+    d[s] = 0;
+    Deque<Integer> q = new ArrayDeque<>();
+    q.add(s);
+    while (!q.isEmpty()) {
+        int from = q.pollFirst();
+        if (from == t)
+            return d[t];
+        for (long e : g.getNext(from)) {
+            int to = getFst(e);
+            int w = getSnd(e);
+            if (d[to] > d[from] + w) {
+                d[to] = d[from] + w;
+                if (w == 0)
+                    q.addFirst(to);
+                else
+                    q.addLast(to);
+            }
+        }
+    }
+    return -1;
+}

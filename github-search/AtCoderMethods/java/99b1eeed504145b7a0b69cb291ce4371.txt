@@ -1,0 +1,26 @@
+public long getRouteCount(int i, int j) {
+    long cache = routes[i - 1][j - 1];
+    if (cache != INITIAL_VALUE)
+        return cache;
+    
+    long temp = 1L;
+    int aValue = a[i - 1][j - 1];
+    
+    if (i > 1 && a[(i - 1) - 1][j - 1] > aValue) {
+        temp += getRouteCount(i - 1, j);
+    }
+    
+    if (i < h && a[(i + 1) - 1][j - 1] > aValue) {
+        temp += getRouteCount(i + 1, j);
+    }
+    
+    if (j > 1 && a[i - 1][(j - 1) - 1] > aValue) {
+        temp += getRouteCount(i, j - 1);
+    }
+    
+    if (j < w && a[i - 1][(j + 1) - 1] > aValue) {
+        temp += getRouteCount(i, j + 1);
+    }
+    routes[i - 1][j - 1] = temp % UNIT;
+    return temp;
+}

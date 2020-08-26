@@ -1,0 +1,14 @@
+int rec(int i, int j, int k) {
+    if (i == 0) {
+        return 0;
+    }
+    if (dp[i][j][k] != 0) {
+        return dp[i][j][k];
+    }
+    if (j - A[i - 1] >= 0 && k - 1 >= 0) {
+        res = Math.max(rec(i - 1, j, k), rec(i - 1, j - A[i - 1], k - 1) + B[i - 1]);
+    } else {
+        res = rec(i - 1, j, k);
+    }
+    return dp[i][j][k] = res;
+}

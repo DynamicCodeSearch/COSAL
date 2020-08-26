@@ -1,0 +1,21 @@
+static int dfs(int ptn) {
+    if (memo[ptn] != -1) {
+        return memo[ptn];
+    }
+    int max = K + rel[ptn];
+    if (Integer.bitCount(ptn) >= 2) {
+        
+        
+        
+        
+        
+        
+        
+        int set = ptn;
+        for (int sub = (set - 1) & set; sub > 0; sub = (sub - 1) & set) {
+            max = Math.max(max, dfs(sub) + dfs(ptn - sub));
+        }
+        memo[ptn] = max;
+    }
+    return max;
+}

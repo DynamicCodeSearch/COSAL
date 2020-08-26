@@ -1,0 +1,17 @@
+def solve(field, H, W):
+    dy = [-1, 1, 0, 0, -1, -1,  1, 1]
+    dx = [0, 0, -1, 1, -1,  1, -1, 1]
+
+    for y in range(H):
+        for x in range(W):
+            if field[y][x] == '#':
+                continue
+            mine = 0
+            for i in range(8):
+                nx = x + dx[i]
+                ny = y + dy[i]
+                if (not 0 <= nx < W) or (not 0 <= ny < H):
+                    continue
+                if field[ny][nx] == '#':
+                    mine += 1
+            field[y][x] = str(mine)

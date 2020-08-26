@@ -1,0 +1,12 @@
+static boolean dfs(int u, int par, int[] h) {
+    boolean exist = (h[u] == 1);
+    for (int v : g[u]) {
+        if (v == par)
+            continue;
+        boolean child = dfs(v, u, h);
+        if (child)
+            res += 2;
+        exist |= child;
+    }
+    return exist;
+}

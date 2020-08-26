@@ -1,0 +1,18 @@
+double dfs(int i, int j, int b) {
+    if (j > k) {
+        return 0;
+    }
+    if (i == n) {
+        return b;
+    }
+    if (done[i][j][b]) {
+        return memo[i][j][b];
+    }
+    double p = 0;
+    
+    p += ((double) i / (i + 1)) * dfs(i + 1, j, b);
+    p += ((double) 1 / (i + 1)) * Math.max(dfs(i + 1, j, 0), dfs(i + 1, j + 1, 1));
+    memo[i][j][b] = p;
+    done[i][j][b] = true;
+    return memo[i][j][b];
+}

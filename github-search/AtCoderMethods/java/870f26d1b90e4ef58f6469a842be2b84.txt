@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int[][] f = new int[N][N];
+    for (int y = 0; y < N; y++) for (int x = 0; x < N; x++) f[y][x] = sc.nextInt();
+    sc.close();
+    int[] dp = new int[DP_NUM];
+    dp[0] = 1;
+    for (int m = 0; m < DP_NUM - 1; m++) {
+        if (dp[m] == 0)
+            continue;
+        int n = Integer.bitCount(m) + 1;
+        for (int i = 0; i < N * N; i++) {
+            if ((m & 0x1 << i) > 0)
+                continue;
+            int y = i / N;
+            int x = i % N;
+            if (f[y][x] != 0 && f[y][x] != n)
+                continue;
+            if (check(y, x, m)) {
+                int nm = m | 0x1 << i;
+                dp[nm] = (dp[nm] + dp[m]) % MOD;
+            }
+        }
+    }
+    System.out.println(dp[DP_NUM - 1]);
+}

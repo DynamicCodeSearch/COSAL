@@ -1,0 +1,19 @@
+public Iterable<Integer> nexts(int v) {
+    final int firstE = head[v];
+    return () -> new Iterator<Integer>() {
+
+        int cursor = firstE;
+
+        @Override
+        public boolean hasNext() {
+            return cursor != -1;
+        }
+
+        @Override
+        public Integer next() {
+            int ret = to[cursor];
+            cursor = next[cursor];
+            return ret;
+        }
+    };
+}

@@ -1,0 +1,14 @@
+public OrderedMultiSet<T> merge(OrderedMultiSet<T> set) {
+    OrderedMultiSet<T> s, l;
+    if (this.size() < set.size()) {
+        s = this;
+        l = set;
+    } else {
+        s = set;
+        l = this;
+    }
+    while (!s.isEmpty()) {
+        l.add(s.firstEntry().getKey(), s.pollFirstEntry().getValue());
+    }
+    return l;
+}

@@ -1,0 +1,10 @@
+static void dfs(int v) {
+    visited[v] = true;
+    for (int v2 = 0; v2 < N; v2++) {
+        if (!graph[v][v2])
+            continue;
+        if (visited[v2])
+            continue;
+        dfs(v2);
+    }
+}

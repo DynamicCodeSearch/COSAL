@@ -1,0 +1,17 @@
+def compute(n, m_a, m_b, a, b, c):
+    max_a, max_b, max_c = max(a), max(b), max(c)
+    inf = n * max_c * 2
+    dp = [[[inf for _ in range(n * max_b + 1)]
+          for _ in range(n * max_a + 1)] for _ in range(n + 1)]
+    dp[0][0][0] = 0
+    g = itertools.product(range(n), range(n * max_a + 1), range(n * max_b + 1))
+    for i, wa, wb in g:
+        if dp[i][wa][wb] == inf:
+            continue
+        dp[i + 1][wa][wb] = min(dp[i + 1][wa][wb], dp[i][wa][wb])
+        dp[i + 1][wa + a[i]][wb + b[i]] = min(dp[i + 1][wa + a[i]][wb + b[i]],
+                                              dp[i][wa][wb] + c[i])
+    h = itertools.product(range(1, n * max_a + 1), range(1, n * max_b + 1))
+    ans = min((dp[n][wa][wb] for wa, wb in h if wa * m_b == wb * m_a),
+              default=inf)
+    return ans if ans != inf else -1

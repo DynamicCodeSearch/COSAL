@@ -1,0 +1,29 @@
+public static void main(String[] args) throws Exception {
+    Scanner scan = new Scanner(System.in);
+    int N = scan.nextInt();
+    scan.nextLine();
+    LinkedList<int[]> rainy = new LinkedList<>();
+    scan.useDelimiter("[-\n]");
+    int length = 24 * 12 + 1;
+    boolean[] retTime = new boolean[length];
+    for (int i : IntStream.range(0, N).toArray()) {
+        int start = getIndexStart(scan.nextInt());
+        int finish = getIndexFinish(scan.nextInt());
+        for (int j = start; j <= finish; j++) {
+            retTime[j] = true;
+        }
+    }
+    for (int i = 0; i < length; i++) {
+        if (!retTime[i]) {
+            continue;
+        }
+        System.out.print(String.format("%04d", getTimeStamp(i)) + "-");
+        i++;
+        for (; i < length - 1; i++) {
+            if (!retTime[i]) {
+                break;
+            }
+        }
+        System.out.println(String.format("%04d", getTimeStamp(i)));
+    }
+}

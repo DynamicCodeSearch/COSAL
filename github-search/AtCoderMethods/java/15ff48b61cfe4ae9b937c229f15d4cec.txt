@@ -1,0 +1,35 @@
+public void dfs(int v) {
+    
+    if (children[v].size() == 0) {
+        sum[v] = 0;
+        return;
+    }
+    
+    for (int u : children[v]) {
+        dfs(u);
+    }
+    int K = children[v].size();
+    
+    int[][] dp = new int[K + 1][X[v] + 1];
+    for (int i = 0; i < K + 1; i++) {
+        Arrays.fill(dp[i], INF);
+    }
+    dp[0][0] = 0;
+    for (int i = 0; i < K; i++) {
+        
+        int u = children[v].get(i);
+        for (int w = X[v]; w >= 0; w--) {
+            if (w + X[u] <= X[v]) {
+                dp[i + 1][w + X[u]] = Math.min(dp[i + 1][w + X[u]], dp[i][w] + sum[u]);
+            }
+            if (w + sum[u] <= X[v]) {
+                dp[i + 1][w + sum[u]] = Math.min(dp[i + 1][w + sum[u]], dp[i][w] + X[u]);
+            }
+        }
+    }
+    int min = INF;
+    for (int i = 0; i <= X[v]; i++) {
+        min = Math.min(min, dp[K][i]);
+    }
+    sum[v] = min;
+}

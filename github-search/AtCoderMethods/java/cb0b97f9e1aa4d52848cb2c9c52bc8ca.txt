@@ -1,0 +1,40 @@
+private static void solve() {
+    int h = sc.nextInt();
+    int w = sc.nextInt();
+    int n = sc.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = sc.nextInt();
+    }
+    int[][] ans = new int[h][w];
+    int x = 0;
+    int dx = 1;
+    int y = 0;
+    int j = 0;
+    for (int i = 0; i < h * w; i++) {
+        if (a[j] == 0) {
+            j++;
+        }
+        ans[y][x] = j + 1;
+        a[j]--;
+        x += dx;
+        if (x >= w) {
+            x = w - 1;
+            dx = -1;
+            y++;
+        } else if (x < 0) {
+            x = 0;
+            dx = 1;
+            y++;
+        }
+    }
+    for (int i = 0; i < h; i++) {
+        for (int k = 0; k < w; k++) {
+            if (k > 0) {
+                pr.print(' ');
+            }
+            pr.print(ans[i][k]);
+        }
+        pr.println();
+    }
+}

@@ -1,0 +1,10 @@
+private long rangeMinQuery(Node u, int x, int y, int l, int r) {
+    if (x > r || y < l) {
+        return INF;
+    } else if (x <= l && r <= y) {
+        return u.val;
+    } else {
+        int m = (l + r) / 2;
+        return Math.min(rangeMinQuery(u.l, x, y, l, m), rangeMinQuery(u.r, x, y, m + 1, r));
+    }
+}

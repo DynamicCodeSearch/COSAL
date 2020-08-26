@@ -1,0 +1,16 @@
+public static boolean compare(char[][] o, char[][] m, int h, int w) {
+    for (int i = 0; i < h + 2; i++) {
+        if (i == 0 || i == h + 1) {
+            continue;
+        }
+        for (int j = 0; j < w + 2; j++) {
+            if (j == 0 || j == w + 1) {
+                continue;
+            }
+            if (o[i][j] != m[i][j]) {
+                return false;
+            }
+        }
+    }
+    return true;
+}

@@ -1,0 +1,17 @@
+public void solve() {
+    int N = io.ri();
+    long[] all = new long[N];
+    long sum = 0;
+    for (int i = 0; i < N; i++) {
+        all[i] = io.ri();
+        sum += all[i];
+    }
+    long res = Long.MAX_VALUE;
+    long t = 0;
+    for (int i = 0; i < N - 1; i++) {
+        t += all[i];
+        long s = sum - t;
+        res = Math.min(res, Math.abs(s - t));
+    }
+    io.writeLine(res + "");
+}

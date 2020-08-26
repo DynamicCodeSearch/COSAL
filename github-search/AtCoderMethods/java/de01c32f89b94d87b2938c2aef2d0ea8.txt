@@ -1,0 +1,12 @@
+
+public void insert(int i, Key key) {
+    if (i < 0 || i >= maxN)
+        throw new IndexOutOfBoundsException();
+    if (contains(i))
+        throw new IllegalArgumentException("index is already in the priority queue");
+    N++;
+    qp[i] = N;
+    pq[N] = i;
+    keys[i] = key;
+    swim(N);
+}

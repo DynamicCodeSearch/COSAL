@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    int c = sc.nextInt();
+    int d = sc.nextInt();
+    int count = 0;
+    ArrayList<Integer> array = new ArrayList<Integer>();
+    for (int i = 0; i < a - 1; i++) {
+        array.add(sc.nextInt());
+    }
+    if (d >= b && d <= c) {
+        count++;
+    }
+    for (int i = 0; i < a - 1; i++) {
+        d += array.get(i);
+        if (d >= b && d <= c) {
+            count++;
+        }
+    }
+    System.out.println(count);
+}

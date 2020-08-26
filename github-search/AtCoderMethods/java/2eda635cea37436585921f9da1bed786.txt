@@ -1,0 +1,22 @@
+public static void main(String[] args) throws IOException {
+    FastScanner in = new FastScanner(System.in);
+    int n = in.nextInt();
+    int m = in.nextInt();
+    if (Math.abs(n - m) > 1) {
+        System.out.println(0);
+        return;
+    }
+    if (n == m) {
+        BigInteger res = go(n);
+        res = res.multiply(go(m));
+        res = res.mod(new BigInteger("" + mod));
+        res = res.multiply(new BigInteger("2"));
+        res = res.mod(new BigInteger("" + mod));
+        System.out.println(res.toString());
+        return;
+    }
+    BigInteger res = go(n);
+    res = res.multiply(go(m));
+    res = res.mod(new BigInteger("" + mod));
+    System.out.println(res.toString());
+}

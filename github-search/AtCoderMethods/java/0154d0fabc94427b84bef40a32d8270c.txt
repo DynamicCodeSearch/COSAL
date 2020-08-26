@@ -1,0 +1,17 @@
+private void solve() {
+    int[] cnt = new int[100002];
+    Arrays.fill(cnt, 0);
+    int n = in.nextInt();
+    for (int i = 0; i < n; i++) {
+        cnt[in.nextInt()]++;
+    }
+    int ans = n;
+    for (int i = 0; i < 100001; i++) {
+        if (cnt[i] > 1) {
+            ans -= (cnt[i] - 1);
+        }
+    }
+    if (ans % 2 == 0)
+        ans--;
+    out.print(ans);
+}

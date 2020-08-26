@@ -1,0 +1,37 @@
+public static void main(String[] args) {
+    int left = 0;
+    int right = Integer.parseInt(scan.next());
+    int top = Integer.parseInt(scan.next());
+    int bottom = 0;
+    int N = Integer.parseInt(scan.next());
+    for (int i = 0; i < N; i++) {
+        int x = Integer.parseInt(scan.next());
+        int y = Integer.parseInt(scan.next());
+        int a = Integer.parseInt(scan.next());
+        switch(a) {
+            case 1:
+                if (x > left)
+                    left = x;
+                break;
+            case 2:
+                if (x < right)
+                    right = x;
+                break;
+            case 3:
+                if (y > bottom)
+                    bottom = y;
+                break;
+            case 4:
+                if (y < top)
+                    top = y;
+                break;
+        }
+    }
+    int width = right - left;
+    int height = top - bottom;
+    int ans = 0;
+    if (width > 0 && height > 0)
+        ans = width * height;
+    System.out.println(ans);
+    scan.close();
+}

@@ -1,0 +1,11 @@
+def search(stones,s,v,count = 0):
+    nx = s[0]+v[0]
+    ny = s[1]+v[1]
+    if 0<=nx<=18 and 0<=ny<=18:
+        if [nx,ny] in stones:
+            count += 1
+            return search(stones,[nx,ny],v,count)
+        else:
+            return count
+    else:
+        return count

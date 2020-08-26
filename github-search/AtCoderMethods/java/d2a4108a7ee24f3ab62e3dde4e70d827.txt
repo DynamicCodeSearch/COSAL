@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int N = scan.nextInt();
+    List<Long> a = new ArrayList<>();
+    IntStream.range(0, N).forEach(b -> a.add(scan.nextLong()));
+    long sum = a.stream().mapToLong(Long::valueOf).sum();
+    long snuke = a.get(0);
+    long min = Math.abs(sum - 2 * snuke);
+    for (int i = 1; i < N - 1; i++) {
+        long tmp = a.get(i);
+        long tmpScore = Math.abs(sum - 2 * snuke - 2 * tmp);
+        if (min > tmpScore) {
+            min = tmpScore;
+        }
+        snuke += tmp;
+    }
+    System.out.println(min);
+}

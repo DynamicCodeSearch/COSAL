@@ -1,0 +1,41 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    H = sc.nextInt();
+    W = sc.nextInt();
+    T = sc.nextInt();
+    f = new Cell[H][W];
+    Cell start = null;
+    Cell goal = null;
+    for (int y = 0; y < H; y++) {
+        String h = sc.next();
+        for (int x = 0; x < W; x++) {
+            char c = h.charAt(x);
+            f[y][x] = new Cell(x, y, c == '#');
+            if (c == 'S')
+                start = f[y][x];
+            if (c == 'G')
+                goal = f[y][x];
+        }
+    }
+    sc.close();
+    Cell c = start;
+    c.maxBlackTime = T + H * W;
+    while (c != goal) {
+        c.fix = true;
+        updateCell(c, c.y - 1, c.x);
+        updateCell(c, c.y + 1, c.x);
+        updateCell(c, c.y, c.x - 1);
+        updateCell(c, c.y, c.x + 1);
+        double maxTime = 0;
+        c = null;
+        for (int y = 0; y < H; y++) {
+            for (int x = 0; x < W; x++) {
+                if (!f[y][x].fix && maxTime < f[y][x].maxBlackTime) {
+                    maxTime = f[y][x].maxBlackTime;
+                    c = f[y][x];
+                }
+            }
+        }
+    }
+    System.out.println((long) goal.maxBlackTime);
+}

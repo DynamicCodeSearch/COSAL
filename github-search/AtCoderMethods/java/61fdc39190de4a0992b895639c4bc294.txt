@@ -1,0 +1,33 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    int X = sc.nextInt();
+    int Y = sc.nextInt();
+    int[] a = new int[N];
+    int[] b = new int[M];
+    for (int i = 0; i < N; i++) a[i] = sc.nextInt();
+    for (int i = 0; i < M; i++) b[i] = sc.nextInt();
+    char now = 'A';
+    int i = 0;
+    int j = 0;
+    long cnt = 0;
+    long sum = 0;
+    while (!(now == 'A' && i == N) && !(now == 'B' && j == M)) {
+        if (now == 'A') {
+            if (sum <= a[i]) {
+                sum = a[i] + X;
+                now = 'B';
+            }
+            i++;
+        } else {
+            if (sum <= b[j]) {
+                sum = b[j] + Y;
+                now = 'A';
+                cnt++;
+            }
+            j++;
+        }
+    }
+    System.out.println(cnt);
+}

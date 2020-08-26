@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int i, j, n;
+    long a, b, ans = 0;
+    n = scan.nextInt();
+    a = scan.nextInt();
+    b = scan.nextInt();
+    for (i = 1; i <= n; i++) input[i] = scan.nextInt();
+    for (i = 1; i <= n - 1; i++) {
+        long diff = input[i + 1] - input[i];
+        long cost1 = b, cost2 = a * diff;
+        ans += Math.min(cost1, cost2);
+    }
+    System.out.println(ans);
+}

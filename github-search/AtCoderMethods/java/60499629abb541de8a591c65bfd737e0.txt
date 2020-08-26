@@ -1,0 +1,29 @@
+public void solve() {
+    N = nextInt();
+    A = nextInt();
+    x = new int[N];
+    for (int i = 0; i < N; i++) {
+        x[i] = nextInt();
+    }
+    dp = new long[N + 1][2500 + 1][50 + 1];
+    dp[0][0][0] = 1;
+    for (int i = 0; i < N; i++) {
+        for (int j = 2500; j >= 0; j--) {
+            for (int k = 0; k < N; k++) {
+                if (j + x[i] <= 2500) {
+                    dp[i + 1][j + x[i]][k + 1] += dp[i][j][k];
+                }
+                dp[i + 1][j][k] += dp[i][j][k];
+            }
+        }
+    }
+    long ans = 0;
+    for (int j = 0; j <= 2500; j++) {
+        for (int k = 1; k <= N; k++) {
+            if (j % k == 0 && j / k == A) {
+                ans += dp[N][j][k];
+            }
+        }
+    }
+    out.println(ans);
+}

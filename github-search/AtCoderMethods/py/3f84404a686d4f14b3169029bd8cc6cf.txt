@@ -1,0 +1,26 @@
+def maximize_point(against):
+
+    cash = 0
+    point = 0
+    for hand in against:
+        if hand == "g":
+            if cash > 0:
+                point += 1
+                cash += -1
+
+            else:
+                point += 0
+                cash += 1
+
+
+        if hand == "p":
+            if cash > 0:
+                point += 0
+                cash += -1
+
+            else:
+                point += -1
+                cash += 1
+
+
+    return point

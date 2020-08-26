@@ -1,0 +1,41 @@
+public static void main(String[] args) {
+    Scanner cin = new Scanner(System.in);
+    N = cin.nextInt();
+    M = cin.nextInt();
+    T = cin.nextInt();
+    A = new int[N];
+    edge = new ArrayList<>(N);
+    redge = new ArrayList<>(N);
+    long[] go = new long[N];
+    long[] ret = new long[N];
+    for (int i = 0; i < N; i++) {
+        A[i] = cin.nextInt();
+        go[i] = INF;
+        ret[i] = INF;
+        edge.add(i, new ArrayList<Edge>());
+        redge.add(i, new ArrayList<Edge>());
+    }
+    for (int i = 0; i < M; i++) {
+        int a, b, c;
+        a = cin.nextInt() - 1;
+        b = cin.nextInt() - 1;
+        c = cin.nextInt();
+        buf = edge.get(a);
+        buf.add(new Edge(b, c));
+        edge.set(a, buf);
+        buf = redge.get(b);
+        buf.add(new Edge(a, c));
+        redge.set(b, buf);
+    }
+    dijkstra(edge, go);
+    dijkstra(redge, ret);
+    long ans = 0;
+    for (int i = 0; i < N; i++) {
+        long sum = (T - (go[i] + ret[i])) * A[i];
+        if (sum >= 0)
+            ans = Math.max(ans, sum);
+    
+    }
+    System.out.println(ans);
+    cin.close();
+}

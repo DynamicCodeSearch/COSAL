@@ -1,0 +1,14 @@
+private static void solve() {
+    int n = sc.nextInt();
+    int[] l = new int[n];
+    int min = Integer.MAX_VALUE;
+    for (int i = 0; i < n; i++) {
+        l[i] = sc.nextInt();
+        min = Math.min(min, l[i]);
+    }
+    int gcd = 0;
+    for (int i = 0; i < n; i++) {
+        gcd = gcd(gcd, l[i] - min);
+    }
+    pr.println(pow(2, min + (gcd + 1) / 2));
+}

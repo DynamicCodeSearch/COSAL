@@ -1,0 +1,18 @@
+public static String same(String s1, String s2) {
+    String ans = "";
+    for (int i = 0; i < 26; i++) {
+        int c1 = 0, c2 = 0;
+        for (char c : s1.toCharArray()) {
+            if (c == 'a' + i)
+                c1++;
+        }
+        for (char c : s2.toCharArray()) {
+            if (c == 'a' + i)
+                c2++;
+        }
+        for (int j = 0; j < Math.min(c1, c2); j++) {
+            ans += (char) ('a' + i);
+        }
+    }
+    return ans;
+}

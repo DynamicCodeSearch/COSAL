@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    long k = sc.nextLong();
+    int n = 50;
+    long[] result = new long[n];
+    for (int i = 0; i < n; i++) {
+        result[i] = k / n + i;
+    }
+    int currentCandidateIdx = 0;
+    for (int i = 0; i < (k % n); i++) {
+        for (int idx = 0; idx < n; idx++) {
+            if (idx == currentCandidateIdx) {
+                result[idx] = result[idx] + n;
+            } else {
+                result[idx] = result[idx] - 1;
+            }
+        }
+        currentCandidateIdx = (currentCandidateIdx + 1) % n;
+    }
+    System.out.println(n);
+    StringBuffer sb = new StringBuffer();
+    for (int i = 0; i < n; i++) {
+        sb.append(result[i]).append(" ");
+    }
+    System.out.println(sb.toString());
+}

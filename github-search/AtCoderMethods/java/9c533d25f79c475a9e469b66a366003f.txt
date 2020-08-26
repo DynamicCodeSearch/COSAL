@@ -1,0 +1,15 @@
+private void solve(Scanner sc) {
+    String O = sc.nextLine();
+    String E = sc.nextLine();
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0, oi = 0, ei = 0; i < O.length() + E.length(); ++i) {
+        if (i % 2 == 1) {
+            sb.append(E.charAt(ei));
+            ++ei;
+        } else {
+            sb.append(O.charAt(oi));
+            ++oi;
+        }
+    }
+    _out.println(sb);
+}

@@ -1,0 +1,18 @@
+def solve():  
+    N = int(input())
+    joisino_list = {}
+    cnt = 0
+
+    for _ in range(N):
+        a = int(input())
+
+        if a in joisino_list:
+            joisino_list[a] += 1
+        else:
+            joisino_list[a] = 1
+
+    for i in joisino_list.values():
+        if i % 2:
+            cnt += 1
+
+    print(cnt)

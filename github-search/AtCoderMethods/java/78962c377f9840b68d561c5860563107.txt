@@ -1,0 +1,66 @@
+void run() {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    DJSet ds = new DJSet(n);
+    int[][][] lis = new int[2][n][];
+    for (int i = 0; i < n; ++i) {
+        int x = sc.nextInt();
+        int y = sc.nextInt();
+        lis[0][i] = new int[] { x, i };
+        lis[1][i] = new int[] { y, i };
+    }
+    int[][] ref = new int[2][n];
+    Arrays.sort(lis[0], new Comparator<int[]>() {
+
+        @Override
+        public int compare(int[] o1, int[] o2) {
+            return Integer.compare(o1[0], o2[0]);
+        }
+    });
+    Arrays.sort(lis[1], new Comparator<int[]>() {
+
+        @Override
+        public int compare(int[] o1, int[] o2) {
+            return Integer.compare(o1[0], o2[0]);
+        }
+    });
+    for (int t = 0; t < 2; ++t) {
+        for (int i = 0; i < n; ++i) {
+            ref[t][lis[t][i][1]] = i;
+        }
+    }
+    PriorityQueue<Edge> pq = new PriorityQueue<>();
+    for (int t = 0; t < 2; ++t) {
+        for (int i = 0; i + 1 < n; ++i) {
+            pq.add(new Edge(lis[t][i][1], lis[t][i + 1][1], lis[t][i + 1][0] - lis[t][i][0]));
+        }
+    }
+    List[] l = new List[2];
+    for (int i = 0; i < 2; ++i) {
+        l[i] = new List(n);
+    }
+    long ans = 0;
+    while (!pq.isEmpty()) {
+        Edge e = pq.poll();
+        if (e.id[0] == NIL || e.id[1] == NIL || ds.equiv(e.id[0], e.id[1])) {
+            continue;
+        }
+        ans += e.cost;
+        ds.setUnion(e.id[0], e.id[1]);
+        for (int i = 0; i < 2; ++i) {
+            for (int j = 0; j < 2; ++j) {
+                l[i].del(e.id[j]);
+            }
+        }
+        for (int t = 0; t < 2; ++t) {
+            for (int id : e.id) {
+                int src = l[t].pre[lis[t][id][1]];
+                int dst = l[t].ne[lis[t][id][1]];
+                if (src == NIL || dst == NIL || ds.equiv(lis[t][src][1], lis[t][dst][1]))
+                    continue;
+                pq.add(new Edge(lis[t][src][1], lis[t][dst][1], lis[t][dst][0] - lis[t][src][0]));
+            }
+        }
+    }
+    System.out.println(ans);
+}

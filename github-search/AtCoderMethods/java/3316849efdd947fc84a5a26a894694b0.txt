@@ -1,0 +1,75 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int X = in.nextInt();
+    int n = in.nextInt();
+    long[] k = new long[n + 1];
+    for (int i = 0; i < n; i++) {
+        k[i] = in.nextInt();
+    }
+    k[n] = 1000000000 + 100;
+    int q = in.nextInt();
+    int[][] query = new int[q][3];
+    for (int i = 0; i < q; i++) {
+        for (int j = 0; j < 2; j++) {
+            query[i][j] = in.nextInt();
+        }
+        query[i][2] = i;
+    }
+    Arrays.sort(query, Comparator.comparingInt(u -> u[0]));
+    long[] answer = new long[q];
+    long[] min = new long[] { 0, 0 };
+    long[] max = new long[] { X, X };
+    int fr = 0;
+    boolean dec = true;
+    for (int i = 0; i <= n; i++) {
+        while (fr < q && query[fr][0] <= k[i]) {
+            long since = query[fr][0] - (i == 0 ? 0 : k[i - 1]);
+            long last = 0;
+            if (min[1] <= query[fr][1] && query[fr][1] <= max[1]) {
+                last = min[0] + query[fr][1] - min[1];
+            } else if (query[fr][1] < min[1]) {
+                last = min[0];
+            } else if (max[1] < query[fr][1]) {
+                last = max[0];
+            }
+            answer[query[fr][2]] = Math.max(0, Math.min(X, last + since * (dec ? -1 : 1)));
+            fr++;
+        }
+        
+        long time = k[i] - (i == 0 ? 0 : k[i - 1]);
+        long toMin = min[0] + time * (dec ? -1 : 1);
+        long toMax = max[0] + time * (dec ? -1 : 1);
+        if (dec) {
+            if (0 <= toMin && toMax <= X) {
+                min[0] = toMin;
+                max[0] = toMax;
+            } else if (toMax >= 0) {
+                min[0] = 0;
+                max[0] = toMax;
+                min[1] += Math.abs(toMin);
+            } else {
+                min[0] = max[0] = 0;
+            }
+        } else {
+            if (0 <= toMin && toMax <= X) {
+                min[0] = toMin;
+                max[0] = toMax;
+            } else if (toMin <= X) {
+                min[0] = toMin;
+                max[0] = X;
+                max[1] -= Math.abs(toMax - X);
+            } else {
+                min[0] = max[0] = X;
+            }
+        }
+        if (min[0] == max[0]) {
+            min[1] = max[1] = -1;
+        }
+        dec = !dec;
+    }
+    for (int i = 0; i < q; i++) {
+        out.println(answer[i]);
+    }
+    out.flush();
+}

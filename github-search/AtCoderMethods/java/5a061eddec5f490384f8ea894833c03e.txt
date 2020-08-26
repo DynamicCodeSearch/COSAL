@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    try (Scanner sc = new Scanner(System.in)) {
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        int c = sc.nextInt();
+        int large = Math.max(a, b);
+        int small = Math.min(a, b);
+        int r_small = c % small;
+        int r_large = r_small % large;
+        int answer = (c - r_small) / small + (r_small - r_large) / large;
+        System.out.println(answer);
+    } finally {
+    }
+}

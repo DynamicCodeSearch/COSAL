@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner stdIn = new Scanner(System.in);
+    int number = stdIn.nextInt();
+    int[][] points = new int[number][2];
+    double tmpDistance, maxDistance = 0.0;
+    for (int i = 0; i < number; i++) {
+        
+        points[i][0] = stdIn.nextInt();
+        
+        points[i][1] = stdIn.nextInt();
+    }
+    for (int i = 0; i < number; i++) {
+        for (int j = i + 1; j < number; j++) {
+            tmpDistance = Math.sqrt((points[i][0] - points[j][0]) * (points[i][0] - points[j][0]) + (points[i][1] - points[j][1]) * (points[i][1] - points[j][1]));
+            if (tmpDistance > maxDistance) {
+                maxDistance = tmpDistance;
+            }
+        }
+    }
+    System.out.println(maxDistance);
+}

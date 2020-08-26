@@ -1,0 +1,29 @@
+static void solve() {
+    int n = ni(), K = ni();
+    int[][] w = new int[n][];
+    for (int i = 0; i < n; i++) {
+        w[i] = na(n);
+    }
+    long[] ss = new long[1 << n];
+    for (int i = 1; i < 1 << n; i++) {
+        int j = Integer.numberOfTrailingZeros(i);
+        long s = ss[i ^ 1 << j];
+        for (int k = 0; k < n; k++) {
+            if (i << ~k < 0 && k != j) {
+                s += w[j][k];
+            }
+        }
+        ss[i] = s;
+    }
+    long[] dp = new long[1 << n];
+    for (int i = 1; i < 1 << n; i++) {
+        int mask = i & i - 1;
+        for (int j = mask; j >= 0; j--) {
+            j &= mask;
+            dp[i] = Math.max(dp[i], dp[j] + dp[i ^ j]);
+        }
+        
+        dp[i] = Math.max(dp[i], ss[i] + K);
+    }
+    out.println(dp[(1 << n) - 1] - ss[(1 << n) - 1]);
+}

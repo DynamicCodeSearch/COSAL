@@ -1,0 +1,119 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    int n = Integer.parseInt(reader.readLine());
+    Map<Integer, HashSet<Integer>> tate = new TreeMap<>();
+    Map<Integer, HashSet<Integer>> yoko = new TreeMap<>();
+    for (int i = 0; i < n; i++) {
+        String[] _input = reader.readLine().split(" ");
+        int _x = Integer.parseInt(_input[0]);
+        int _y = Integer.parseInt(_input[1]);
+        if (!tate.containsKey(_x)) {
+            HashSet<Integer> _hs = new HashSet<>();
+            _hs.add(i);
+            tate.put(_x, _hs);
+        } else {
+            tate.get(_x).add(i);
+        }
+        if (!yoko.containsKey(_y)) {
+            HashSet<Integer> _hs = new HashSet<>();
+            _hs.add(i);
+            yoko.put(_y, _hs);
+        } else {
+            yoko.get(_y).add(i);
+        }
+    }
+    
+    PriorityQueue<MySet> pq = new PriorityQueue<>();
+    int[] checked = new int[n];
+    for (int i = 0; i < n; i++) checked[i] = i;
+    int _pre = -1;
+    for (Map.Entry<Integer, HashSet<Integer>> e : tate.entrySet()) {
+        int key = e.getKey();
+        if (_pre == -1) {
+            _pre = key;
+        } else {
+            pq.add(new MySet(true, key, key - _pre));
+            _pre = key;
+        }
+        int max_num = -1;
+        HashSet<Integer> hs = e.getValue();
+        for (int town : hs) {
+            max_num = Math.max(max_num, town);
+            break;
+        }
+        for (int town : hs) {
+            set(checked, town, max_num);
+        }
+    }
+    _pre = -1;
+    for (Map.Entry<Integer, HashSet<Integer>> e : yoko.entrySet()) {
+        int key = e.getKey();
+        if (_pre == -1) {
+            _pre = key;
+        } else {
+            pq.add(new MySet(false, key, key - _pre));
+            _pre = key;
+        }
+        int max_num = -1;
+        HashSet<Integer> hs = e.getValue();
+        for (int town : hs) {
+            max_num = Math.max(max_num, town);
+            break;
+        }
+        for (int town : hs) {
+            set(checked, town, max_num);
+        }
+    }
+    
+    long result = 0;
+    while (!pq.isEmpty()) {
+        
+        MySet ms = pq.poll();
+        Map<Integer, HashSet<Integer>> map = null;
+        if (ms.isTate) {
+            map = tate;
+        } else {
+            map = yoko;
+        }
+        
+        HashSet<Integer> hs = map.get(ms.index);
+        int checked_town1 = -1;
+        int checked_town2 = -1;
+        int group_num = -1;
+        int town1 = -1;
+        int town2 = -1;
+        for (int town : hs) {
+            group_num = getGroup(checked, town);
+            checked_town1 = Math.max(group_num, checked_town1);
+            town1 = town;
+            break;
+        }
+        for (int town : hs) {
+            set(checked, town, checked_town1);
+        }
+        hs = map.get(ms.index - ms.value);
+        for (int town : hs) {
+            group_num = getGroup(checked, town);
+            checked_town2 = Math.max(group_num, checked_town2);
+            town2 = town;
+            break;
+        }
+        for (int town : hs) {
+            set(checked, town, checked_town2);
+        }
+        if (getGroup(checked, town1) != getGroup(checked, town2)) {
+            result += ms.value;
+            
+            hs = map.get(ms.index);
+            int new_group = getGroup(checked, town1);
+            for (int town : hs) {
+                set(checked, town, new_group);
+            }
+            hs = map.get(ms.index - ms.value);
+            for (int town : hs) {
+                set(checked, town, new_group);
+            }
+        }
+    }
+    System.out.println(result);
+}

@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    InputStream inputStream = System.in;
+    OutputStream outputStream = System.out;
+    InputReader in = new InputReader(inputStream);
+    PrintWriter out = new PrintWriter(outputStream);
+    long votes1 = 1L;
+    long votes2 = 1L;
+    int n = in.nextInt();
+    for (int i = 0; i < n; ++i) {
+        int t = in.nextInt();
+        int a = in.nextInt();
+        long k1 = (votes1 + t - 1) / t;
+        long k2 = (votes2 + a - 1) / a;
+        long k = Math.max(k1, k2);
+        votes1 = t * k;
+        votes2 = a * k;
+    }
+    out.println(votes1 + votes2);
+    out.close();
+}

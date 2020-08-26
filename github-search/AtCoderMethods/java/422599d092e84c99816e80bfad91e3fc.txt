@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    IO io = new IO();
+    int n = io.nextInt();
+    Pair[] p = new Pair[n];
+    for (int i = 0; i < n; i++) {
+        p[i] = new Pair(io.nextInt(), io.nextInt());
+    }
+    Arrays.sort(p, (p1, p2) -> Integer.compare(p1.w, p2.w));
+    RangeMaximumQuery rmq = new RangeMaximumQuery(100001);
+    ArrayList<Query> al = new ArrayList<>();
+    for (int i = 0; i < n; i++) {
+        al.add(new Query(p[i].h, rmq.max(0, p[i].h) + 1));
+        if (i == n - 1 || p[i + 1].w > p[i].w) {
+            for (Query q : al) {
+                if (rmq.get(q.i) < q.a) {
+                    rmq.set(q.i, q.a);
+                }
+            }
+            al.clear();
+        }
+    }
+    System.out.println(rmq.max(0, 100002));
+}

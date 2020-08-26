@@ -1,0 +1,55 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int h = in.nextInt();
+    int w = in.nextInt();
+    int n = in.nextInt();
+    int[][] black = new int[n][2];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < 2; j++) {
+            black[i][j] = in.nextInt() - 1;
+        }
+    }
+    TreeSet<Long> have = new TreeSet<>();
+    for (int i = 0; i < n; i++) {
+        long y = black[i][0];
+        long x = black[i][1];
+        have.add((y << 30L) + x);
+    }
+    long[] ans = new long[10];
+    TreeSet<Long> done = new TreeSet<>();
+    for (int i = 0; i < n; i++) {
+        int y = black[i][0];
+        int x = black[i][1];
+        for (int dy = 0; dy <= 2; dy++) {
+            for (int dx = 0; dx <= 2; dx++) {
+                long by = y - dy;
+                long bx = x - dx;
+                if (by < 0 || bx < 0 || by + 3 > h || bx + 3 > w) {
+                    continue;
+                }
+                long id = (by << 30L) + bx;
+                if (done.contains(id)) {
+                    continue;
+                }
+                done.add(id);
+                int cnt = 0;
+                for (int j = 0; j < 3; j++) {
+                    for (int k = 0; k < 3; k++) {
+                        long tid = ((by + j) << 30L) + bx + k;
+                        if (have.contains(tid)) {
+                            cnt++;
+                        }
+                    }
+                }
+                ans[cnt]++;
+            }
+        }
+    }
+    long all = (h - 2L) * (w - 2L);
+    ans[0] = all - done.size();
+    for (int i = 0; i < 10; i++) {
+        out.println(ans[i]);
+    }
+    out.flush();
+}

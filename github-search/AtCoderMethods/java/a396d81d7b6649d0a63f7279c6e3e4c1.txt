@@ -1,0 +1,11 @@
+public static long combination(int n, int r) {
+    r = Math.min(r, n - r);
+    if (r == 1) {
+        return n;
+    }
+    long sum = 1;
+    for (int i = 1; i <= r; i++) {
+        sum = sum * (n - i + 1) / i;
+    }
+    return sum;
+}

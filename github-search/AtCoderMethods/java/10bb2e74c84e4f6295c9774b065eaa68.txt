@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int m = sc.nextInt();
+    int n = sc.nextInt();
+    int sell = sc.nextInt();
+    int sold = sell;
+    int stock = 0;
+    while (sell != 0) {
+        stock += (sell % m);
+        sell = (sell / m) * n;
+        if (stock >= m) {
+            stock -= m;
+            sell += n;
+        }
+        sold += sell;
+    }
+    System.out.println(sold);
+}

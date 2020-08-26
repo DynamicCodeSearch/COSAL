@@ -1,0 +1,36 @@
+private void solve() throws IOException {
+    String[] all = new String[] { "dream", "dreamer", "erase", "eraser" };
+    String s = reader.readLine();
+    boolean[] dp = new boolean[s.length() + 2];
+    dp[0] = true;
+    for (int i = 1; i <= s.length(); ++i) {
+        for (int j = 0; j < all.length; ++j) {
+            if (i >= all[j].length()) {
+                if (i == all[j].length()) {
+                    boolean can = true;
+                    for (int z = 0; z < i; ++z) {
+                        can &= (all[j].charAt(z) == s.charAt(z));
+                    }
+                    if (can) {
+                        dp[i] = true;
+                    }
+                } else {
+                    if (dp[i - all[j].length()]) {
+                        boolean can = true;
+                        int id = 0;
+                        for (int z = 0; z < all[j].length(); ++z) {
+                            can &= (all[j].charAt(z) == s.charAt(i - all[j].length() + id));
+                            ++id;
+                        }
+                        if (can)
+                            dp[i] = true;
+                    }
+                }
+            }
+        }
+    }
+    if (dp[s.length()])
+        writer.println("YES");
+    else
+        writer.println("NO");
+}

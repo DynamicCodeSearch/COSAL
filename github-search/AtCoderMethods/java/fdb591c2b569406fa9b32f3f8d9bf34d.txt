@@ -1,0 +1,14 @@
+private byte nextByte() throws IOException {
+    if (bytePos < 0 || bytePos >= byteRead) {
+        byteRead = is == null ? -1 : is.read(byteBufInput);
+        bytePos = 0;
+        if (byteRead < 0) {
+            
+            byteBufInput[bytePos] = -1;
+            if (eofMet)
+                throw new EofException();
+            eofMet = true;
+        }
+    }
+    return byteBufInput[bytePos++];
+}

@@ -1,0 +1,22 @@
+void solve() throws IOException {
+    String s = ns();
+    int idx = s.length();
+    while (idx > 0) {
+        if (idx - 7 >= 0 && s.substring(idx - 7, idx).equals("dreamer")) {
+            idx -= 7;
+        } else if (idx - 5 >= 0 && s.substring(idx - 5, idx).equals("dream")) {
+            idx -= 5;
+        } else if (idx - 5 >= 0 && s.substring(idx - 5, idx).equals("erase")) {
+            idx -= 5;
+        } else if (idx - 6 >= 0 && s.substring(idx - 6, idx).equals("eraser")) {
+            idx -= 6;
+        } else {
+            break;
+        }
+    }
+    if (idx == 0) {
+        out.println("YES");
+    } else {
+        out.println("NO");
+    }
+}

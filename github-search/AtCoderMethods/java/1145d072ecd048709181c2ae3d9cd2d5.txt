@@ -1,0 +1,48 @@
+public static void main(String[] args) {
+    int n = in.nextInt();
+    long[][] distance = new long[n + 1][n + 1];
+    long[][] distance2 = new long[n + 1][n + 1];
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= n; j++) {
+            distance[i][j] = in.nextLong();
+            distance2[i][j] = distance[i][j];
+        }
+    }
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= n; j++) {
+            for (int k = 1; k <= n; k++) {
+                distance2[i][j] = min(distance2[i][j], distance2[i][k] + distance2[k][j]);
+            }
+        }
+    }
+    boolean ispossible = true;
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= n; j++) {
+            if (distance[i][j] != distance2[i][j]) {
+                ispossible = false;
+                break;
+            }
+        }
+    }
+    if (!ispossible) {
+        out.println("-1");
+        out.flush();
+        return;
+    }
+    long answer = 0;
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= n; j++) {
+            answer += distance[i][j];
+            for (int k = 1; k <= n; k++) {
+                if (k == i || k == j)
+                    continue;
+                if (distance[i][k] + distance[k][j] == distance[i][j]) {
+                    answer -= distance[i][j];
+                    break;
+                }
+            }
+        }
+    }
+    out.println(answer / 2);
+    out.close();
+}

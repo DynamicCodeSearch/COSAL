@@ -1,0 +1,11 @@
+void init() {
+    for (int i = 0; i < board.length; i++) {
+        int c = 0;
+        for (int j = 0; j < board[i].length; j++) {
+            c |= (board[i][j] << j);
+        }
+        int a = i % 3;
+        int b = i / 3;
+        bit[a][b] = c;
+    }
+}

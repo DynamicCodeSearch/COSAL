@@ -1,0 +1,11 @@
+
+public static int[] pow(int[][] A, int[] v, long e, int mod) {
+    int[][] MUL = A;
+    for (int i = 0; i < v.length; i++) v[i] %= mod;
+    for (; e > 0; e >>>= 1) {
+        if ((e & 1) == 1)
+            v = mul(MUL, v, mod);
+        MUL = p2(MUL, mod);
+    }
+    return v;
+}

@@ -1,0 +1,30 @@
+private static List<Integer> doit(List<Integer> next) {
+    int n = next.size();
+    for (int i = 0; i <= n; i++) {
+        int[] ord = new int[] { x, y, z };
+        int idx = 0;
+        boolean isOK = true;
+        List<Integer> newOrd = new ArrayList<>();
+        for (int j = i; j < n; j++) {
+            int o = next.get(j);
+            newOrd.add(o);
+            if (ord[idx] >= o && idx <= 2) {
+                ord[idx] -= o;
+                if (ord[idx] == 0) {
+                    idx++;
+                }
+            } else {
+                isOK = false;
+                break;
+            }
+        }
+        if (isOK) {
+            if (ord[2] == 0) {
+                return null;
+            } else {
+                return newOrd;
+            }
+        }
+    }
+    return new ArrayList<>();
+}

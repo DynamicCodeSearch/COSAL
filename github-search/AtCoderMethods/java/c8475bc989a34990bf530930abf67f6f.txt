@@ -1,0 +1,23 @@
+static int[] dijkstra(int s, LinkedList<edge>[] g) {
+    int[] d = new int[n];
+    Arrays.fill(d, inf);
+    d[s] = 0;
+    Queue<point> q = new PriorityQueue<point>();
+    q.add(new point(s, 0));
+    boolean[] used = new boolean[n];
+    Arrays.fill(used, false);
+    while (!q.isEmpty()) {
+        point now = q.poll();
+        if (used[now.id])
+            continue;
+        used[now.id] = true;
+        for (Iterator<edge> it = g[now.id].iterator(); it.hasNext(); ) {
+            edge next = it.next();
+            if (d[next.to] > d[now.id] + next.cost) {
+                d[next.to] = d[now.id] + next.cost;
+                q.add(new point(next.to, d[next.to]));
+            }
+        }
+    }
+    return d;
+}

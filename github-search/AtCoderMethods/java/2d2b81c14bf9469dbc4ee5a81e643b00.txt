@@ -1,0 +1,31 @@
+private static void solve() {
+    int n = ni();
+    long[] a = nal(n);
+    Map<Long, Integer> map = new HashMap<>();
+    for (long v : a) {
+        if (!map.containsKey(v))
+            map.put(v, 0);
+        map.put(v, map.get(v) + 1);
+    }
+    List<Long> two = new ArrayList<>();
+    List<Long> four = new ArrayList<>();
+    for (Map.Entry<Long, Integer> entry : map.entrySet()) {
+        long v = entry.getKey();
+        int x = entry.getValue();
+        if (x >= 2) {
+            two.add(v);
+        }
+        if (x >= 4) {
+            four.add(v);
+        }
+    }
+    two.add(0L);
+    two.add(0L);
+    four.add(0L);
+    Collections.sort(two);
+    Collections.sort(four);
+    Collections.reverse(two);
+    Collections.reverse(four);
+    long max = Math.max(two.get(0) * two.get(1), four.get(0) * four.get(0));
+    out.println(max);
+}

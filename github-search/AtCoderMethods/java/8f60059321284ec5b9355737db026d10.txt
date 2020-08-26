@@ -1,0 +1,19 @@
+public static void main(String[] args) throws IOException {
+    Scanner sc = new Scanner(new InputStreamReader(System.in));
+    int sec = sc.nextInt();
+    int min;
+    int hour;
+    if (sec > 59) {
+        min = sec / 60;
+        sec = sec % 60;
+        if (min > 59) {
+            hour = min / 60;
+            min = min % 60;
+            System.out.println(String.format("%02d", hour) + ":" + String.format("%02d", min) + ":" + String.format("%02d", sec));
+        } else {
+            System.out.println("00:" + String.format("%02d", min) + ":" + String.format("%02d", sec));
+        }
+    } else {
+        System.out.println("00:00:" + String.format("%02d", sec));
+    }
+}

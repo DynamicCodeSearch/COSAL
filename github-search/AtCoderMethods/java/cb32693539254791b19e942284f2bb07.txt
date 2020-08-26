@@ -1,0 +1,11 @@
+public static long pow(long a, long n, long mod) {
+    long res = 1;
+    while (n > 0) {
+        if ((n & 1) > 0) {
+            res = (res * a) % mod;
+        }
+        a = (a * a) % mod;
+        n /= 2;
+    }
+    return res;
+}

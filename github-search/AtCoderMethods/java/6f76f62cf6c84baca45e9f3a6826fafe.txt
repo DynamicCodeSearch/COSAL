@@ -1,0 +1,15 @@
+public void connect(Node other) {
+    Node rootA = this.getRoot();
+    Node rootB = other.getRoot();
+    if (rootA == rootB) {
+        
+        return;
+    } else if (rootA.visitableTownCount > rootB.visitableTownCount) {
+        rootA.visitableTownCount += rootB.visitableTownCount;
+        rootB.parent = rootA;
+    } else {
+        rootB.visitableTownCount += rootA.visitableTownCount;
+        rootA.parent = rootB;
+    }
+
+}

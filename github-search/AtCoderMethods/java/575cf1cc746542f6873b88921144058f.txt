@@ -1,0 +1,81 @@
+public static long maximumFlowDinicNoRec(Edge[][] g, int source, int sink) {
+    int n = g.length;
+    
+    int[] d = new int[n];
+    
+    int[] q = new int[n];
+    long ret = 0;
+    int[] stack = new int[n];
+    
+    long[] lefts = new long[n];
+    long[] parflow = new long[n];
+    
+    int[] probe = new int[n];
+    while (true) {
+        
+        Arrays.fill(d, -1);
+        q[0] = source;
+        int r = 1;
+        d[source] = 0;
+        for (int v = 0; v < r; v++) {
+            int cur = q[v];
+            for (Edge ne : g[cur]) {
+                if (d[ne.to] == -1 && ne.capacity - ne.flow > 0) {
+                    q[r++] = ne.to;
+                    d[ne.to] = d[cur] + 1;
+                }
+            }
+        }
+        if (d[sink] == -1)
+            break;
+        
+        for (int i = 0; i < n; i++) probe[i] = g[i].length - 1;
+        int sp = 0;
+        stack[sp] = source;
+        lefts[sp] = Long.MAX_VALUE / 10;
+        parflow[sp] = 0;
+        sp++;
+        long delta = 0;
+        boolean down = true;
+        while (sp > 0) {
+            int cur = stack[sp - 1];
+            long left = lefts[sp - 1];
+            if (cur == sink) {
+                delta += left;
+                parflow[sp - 1] = left;
+                sp--;
+                down = false;
+                continue;
+            }
+            if (!down) {
+                if (parflow[sp] > 0) {
+                    lefts[sp - 1] -= parflow[sp];
+                    left = lefts[sp - 1];
+                    Edge ne = g[cur][probe[cur]];
+                    ne.flow += parflow[sp];
+                    ne.complement.flow -= parflow[sp];
+                    parflow[sp - 1] += parflow[sp];
+                }
+                if (left > 0)
+                    probe[cur]--;
+            }
+            if (left > 0 && probe[cur] >= 0) {
+                down = true;
+                Edge ne = g[cur][probe[cur]];
+                if (d[ne.to] == d[cur] + 1 && ne.capacity - ne.flow > 0) {
+                    lefts[sp] = Math.min(left, ne.capacity - ne.flow);
+                    stack[sp] = ne.to;
+                    parflow[sp] = 0;
+                    sp++;
+                } else {
+                    probe[cur]--;
+                }
+            } else {
+                down = false;
+                sp--;
+            }
+        }
+        ret += delta;
+    }
+    return ret;
+}

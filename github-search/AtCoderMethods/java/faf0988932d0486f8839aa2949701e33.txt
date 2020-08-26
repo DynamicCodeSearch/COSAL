@@ -1,0 +1,10 @@
+private static BigInteger C(long n, long r) {
+    BigInteger res = BigInteger.ONE;
+    for (long i = n; i > n - r; --i) {
+        res = res.multiply(BigInteger.valueOf(i));
+    }
+    for (long i = r; i > 1; --i) {
+        res = res.divide(BigInteger.valueOf(i));
+    }
+    return res;
+}

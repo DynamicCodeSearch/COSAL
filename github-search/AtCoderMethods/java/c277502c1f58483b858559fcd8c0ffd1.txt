@@ -1,0 +1,13 @@
+public static int count(int n, int r) throws IllegalArgumentException {
+    if (n < 1 || r < 1 || n < r) {
+        throw new IllegalArgumentException();
+    }
+    int res = 1;
+    for (int i = n; i > r; i--) {
+        res *= i;
+    }
+    for (int i = n - r; i > 1; i--) {
+        res /= i;
+    }
+    return res;
+}

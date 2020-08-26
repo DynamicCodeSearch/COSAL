@@ -1,0 +1,13 @@
+public final void answer() {
+    BinaryIndexedTree bit = new BinaryIndexedTree(100001);
+    for (int i = 0; i < N; i++) {
+        dp[i] = bit.query(boxes[i].w - 1) + 1;
+        bit.update(boxes[i].w, dp[i]);
+    }
+    int ans = 0;
+    for (int i = 0; i < N; i++) {
+        if (dp[i] > ans)
+            ans = dp[i];
+    }
+    System.out.println(ans);
+}

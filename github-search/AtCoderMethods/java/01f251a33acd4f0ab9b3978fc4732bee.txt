@@ -1,0 +1,22 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String line = br.readLine();
+    int N = Integer.parseInt(line);
+    
+    String[][] strary = new String[N][N];
+    
+    for (int i = 0; i < N; i++) {
+        String readLine = br.readLine();
+        
+        for (int j = 0; j < N; j++) {
+            strary[i][j] = String.valueOf(readLine.charAt(j));
+        }
+    }
+    
+    for (int j = 0; j < N; j++) {
+        for (int i = N - 1; i >= 0; i--) {
+            System.out.print(strary[i][j]);
+        }
+        System.out.println("");
+    }
+}

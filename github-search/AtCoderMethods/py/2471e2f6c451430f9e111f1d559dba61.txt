@@ -1,0 +1,21 @@
+def main():
+    n,m = LI()
+    aa = [LF() for _ in range(m)]
+    keys = set(list(map(lambda x: x[0], aa)))
+    keyl = list(keys)
+    keyl.sort()
+    keyd = {}
+    for i in range(len(keyl)):
+        keyd[keyl[i]] = i
+
+    seg = Seg(2**17, (1,0))
+
+    mi = ma = seg.total(1)
+    for p,a,b in aa:
+        seg.update(keyd[p], (a, b))
+        t = seg.total(1)
+        if mi > t:
+            mi = t
+        elif ma < t:
+            ma = t
+    return '\n'.join(list(map(str, [mi,ma])))

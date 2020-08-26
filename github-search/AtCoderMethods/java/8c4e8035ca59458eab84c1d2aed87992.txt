@@ -1,0 +1,59 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int h = sc.nextInt();
+    int w = sc.nextInt();
+    String[] s = new String[h + 2];
+    s[0] = s[h + 1] = "";
+    for (int i = 0; i < w + 2; i++) {
+        s[0] += "#";
+        s[h + 1] += "#";
+    }
+    for (int i = 1; i < h + 1; i++) {
+        s[i] = "#" + sc.next() + "#";
+    }
+    sc.close();
+    boolean[][] ans = new boolean[w + 2][h + 2];
+    for (int i = 1; i < w + 1; i++) {
+        x: for (int j = 1; j < h + 1; j++) {
+            for (int k = -1; k <= 1; k++) {
+                for (int l = -1; l <= 1; l++) {
+                    if (s[j + l].charAt(i + k) != '#') {
+                        continue x;
+                    }
+                }
+            }
+            ans[i][j] = true;
+        }
+    }
+    for (int i = 1; i < w + 1; i++) {
+        for (int j = 1; j < h + 1; j++) {
+            boolean isBlack = false;
+            y: for (int k = -1; k <= 1; k++) {
+                for (int l = -1; l <= 1; l++) {
+                    if (ans[i + k][j + l]) {
+                        isBlack = true;
+                        break y;
+                    }
+                }
+            }
+            if (isBlack) {
+                if (s[j].charAt(i) != '#') {
+                    System.out.println("impossible");
+                    return;
+                }
+            } else {
+                if (s[j].charAt(i) != '.') {
+                    System.out.println("impossible");
+                    return;
+                }
+            }
+        }
+    }
+    System.out.println("possible");
+    for (int i = 1; i < h + 1; i++) {
+        for (int j = 1; j < w + 1; j++) {
+            System.out.print(ans[j][i] ? "#" : ".");
+        }
+        System.out.println();
+    }
+}

@@ -1,0 +1,13 @@
+static int dp(int i, int ma, int mb) {
+    if (memo[i][ma][mb] != Big)
+        return memo[i][ma][mb];
+    if (ma == 0 && mb == 0)
+        return memo[i][ma][mb] = 0;
+    if (i <= 0)
+        return Big;
+    if (ma - a[i - 1] >= 0 && mb - b[i - 1] >= 0) {
+        return memo[i][ma][mb] = min(dp(i - 1, ma - a[i - 1], mb - b[i - 1]) + c[i - 1], dp(i - 1, ma, mb));
+    } else {
+        return memo[i][ma][mb] = dp(i - 1, ma, mb);
+    }
+}

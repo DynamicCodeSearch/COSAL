@@ -1,0 +1,10 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    double n = sc.nextDouble();
+    double m = sc.nextDouble();
+    double minute = 360 * (m / 60);
+    double hour = 30 * (m / 60) + 30 * n;
+    double diff = Math.abs(minute - hour) % 360;
+    double ans = Math.min(diff, 360 - diff);
+    System.out.println(ans);
+}

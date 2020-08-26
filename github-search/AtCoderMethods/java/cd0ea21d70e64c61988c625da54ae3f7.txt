@@ -1,0 +1,54 @@
+public static void main(String[] args) throws IOException {
+    InputStreamReader is = new InputStreamReader(System.in);
+    BufferedReader br = new BufferedReader(is);
+    
+    String str = br.readLine();
+    
+    String[] gazou = str.split(" ", 0);
+    int n = Integer.parseInt(gazou[0]);
+    int m = Integer.parseInt(gazou[1]);
+    
+    String[][] a = new String[n][n];
+    String[][] b = new String[m][m];
+    
+    for (int i = 0; i < n; i++) {
+        String str1 = br.readLine();
+        String[] bunkai = str1.split("", 0);
+        for (int j = 0; j < n; j++) {
+            a[i][j] = bunkai[j];
+        }
+    }
+    
+    for (int i = 0; i < m; i++) {
+        String str2 = br.readLine();
+        String[] bunkai = str2.split("", 0);
+        for (int j = 0; j < m; j++) {
+            b[i][j] = bunkai[j];
+        }
+    }
+    
+    for (int i = 0; i < n - m + 1; i++) {
+        for (int j = 0; j < n - m + 1; j++) {
+            
+            if (b[0][0].equals(a[i][j])) {
+                
+                boolean t = true;
+                for (int l = 0; l < m; l++) {
+                    for (int k = 0; k < m; k++) {
+                        
+                        if (!(b[l][k].equals(a[l + i][k + j]))) {
+                            t = false;
+                        }
+                    }
+                }
+                
+                if (t == true) {
+                    System.out.println("Yes");
+                    System.exit(0);
+                }
+            }
+        }
+    }
+    
+    System.out.println("No");
+}

@@ -1,0 +1,10 @@
+public static boolean enough(long a, long b, long[] enemyTairyoku, long t) {
+    long count = 0;
+    for (int i = 0; i < enemyTairyoku.length; i++) {
+        if (enemyTairyoku[i] > b * t) {
+            count += (int) Math.ceil((enemyTairyoku[i] - b * t) / ((double) a - b));
+        }
+    }
+    
+    return count <= t;
+}

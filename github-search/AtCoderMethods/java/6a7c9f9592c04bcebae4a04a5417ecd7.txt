@@ -1,0 +1,23 @@
+public static StringBuilder changeOthello(StringBuilder board, Integer first) {
+    Character buf = null;
+    Character buf2 = null;
+    StringBuilder buf3 = new StringBuilder();
+    int i, j;
+    for (i = first; i < len; i++) {
+        if (i == first)
+            buf = board.charAt(i);
+        else if (board.charAt(i) != buf) {
+            ct++;
+            buf2 = board.charAt(i);
+            for (j = first; j < i; j++) {
+                buf3.append(buf2);
+            }
+            board.replace(first, i, buf3.toString());
+            break;
+        }
+    }
+    if (i < len) {
+        changeOthello(board, i);
+    }
+    return board;
+}

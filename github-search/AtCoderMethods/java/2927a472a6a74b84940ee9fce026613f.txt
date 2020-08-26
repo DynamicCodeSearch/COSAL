@@ -1,0 +1,11 @@
+static void createEdge(ArrayList<Edge>[] es, Node[] ns, int n) {
+    for (int i = 1; i < n; i++) {
+        long dist1 = dist(i, i - 1, ns);
+        int prevID = ns[i - 1].id;
+        int ID = ns[i].id;
+        Edge e1 = new Edge(prevID, ID, dist1);
+        Edge e2 = new Edge(ID, prevID, dist1);
+        es[prevID].add(e1);
+        es[ID].add(e2);
+    }
+}

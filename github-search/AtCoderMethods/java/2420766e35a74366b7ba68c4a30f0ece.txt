@@ -1,0 +1,6 @@
+public void addEdge(int s, int t, int cap) {
+    PushRelabelBaseMaxFlow.Edge e1 = new PushRelabelBaseMaxFlow.Edge(vertices[s], vertices[t], cap);
+    PushRelabelBaseMaxFlow.Edge e2 = new PushRelabelBaseMaxFlow.Edge(vertices[t], vertices[s], 0);
+    e1.rev = e2;
+    e2.rev = e1;
+}

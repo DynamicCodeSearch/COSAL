@@ -1,0 +1,34 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    int m = in.nextInt();
+    int rr = in.nextInt();
+    int[] r = new int[rr];
+    for (int i = 0; i < r.length; i++) {
+        r[i] = in.nextInt() - 1;
+    }
+    adj = new long[n][n];
+    for (int i = 0; i < adj.length; i++) {
+        Arrays.fill(adj[i], 1000000000);
+        adj[i][i] = 0;
+    }
+    for (int i = 0; i < m; i++) {
+        int a = in.nextInt() - 1;
+        int b = in.nextInt() - 1;
+        int c = in.nextInt();
+        adj[a][b] = c;
+        adj[b][a] = c;
+    }
+    adj = fl(adj);
+    
+    
+    
+    
+    
+    
+    int[] perm = new int[rr];
+    boolean[] used = new boolean[rr];
+    RecPerm(perm, r, used, 0);
+    System.out.println(res);
+}

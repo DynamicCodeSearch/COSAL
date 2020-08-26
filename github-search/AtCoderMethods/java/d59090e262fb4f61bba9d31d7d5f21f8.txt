@@ -1,0 +1,24 @@
+public final void answer() {
+    int[] number = new int[H * W];
+    int index = 0;
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < a[i]; j++) {
+            number[index] = i + 1;
+            index++;
+        }
+    }
+    StringBuilder str = new StringBuilder();
+    for (int h = 0; h < H; h++) {
+        for (int w = 0; w < W; w++) {
+            if (h % 2 == 0) {
+                str.append(number[h * W + w]);
+            } else {
+                str.append(number[(h + 1) * W - 1 - w]);
+            }
+            if (w < W - 1)
+                str.append(' ');
+        }
+        str.append('\n');
+    }
+    System.out.println(str.toString());
+}

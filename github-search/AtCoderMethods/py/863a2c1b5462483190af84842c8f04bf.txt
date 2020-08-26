@@ -1,0 +1,24 @@
+def main():
+    N = int(input())
+    memo = [0] * (24 * 60 + 5)
+    for _ in range(N):
+        S, E = input().split("-")
+        sh, sm = int(S[:2]), int(S[2:])
+        eh, em = int(E[:2]), int(E[2:])
+
+        s = pre(sh, sm)
+        e = nex(eh, em)
+        memo[s] += 1
+        memo[e] -= 1
+
+    for i in range(len(memo) - 1):
+        memo[i + 1] += memo[i]
+
+    rain = False
+    for i in range(len(memo)):
+        if not rain and memo[i]:
+            rain = True
+            print("{0:02d}{1:02d}".format(i // 60, i % 60), end="-")
+        elif rain and not memo[i]:
+            rain = False
+            print("{0:02d}{1:02d}".format(i // 60, i % 60))

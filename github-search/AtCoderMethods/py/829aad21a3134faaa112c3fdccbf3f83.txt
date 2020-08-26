@@ -1,0 +1,18 @@
+@functools.lru_cache(maxsize = 10000)
+
+def Main():
+  x = int(input())
+  lb = -1
+  ub = 123456789
+
+  while ub - lb > 1:
+    mid  = (ub + lb)//2
+    s = mid*(mid + 1)//2
+
+    if s >= x:
+      ub = mid
+
+    else:
+      lb = mid
+
+  print(ub)

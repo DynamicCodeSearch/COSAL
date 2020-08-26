@@ -1,0 +1,12 @@
+int compareNodeIJ(int i, int j, int k) {
+    for (int ki = 17; ki >= 0; ki--) {
+        if ((k & (1 << ki)) >= 1) {
+            if (rankk[ki][i] != rankk[ki][j]) {
+                return rankk[ki][i] - rankk[ki][j];
+            }
+            i += 1 << ki;
+            j += 1 << ki;
+        }
+    }
+    return 0;
+}

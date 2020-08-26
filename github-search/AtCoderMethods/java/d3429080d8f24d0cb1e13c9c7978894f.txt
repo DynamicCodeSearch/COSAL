@@ -1,0 +1,36 @@
+public void solve() {
+    int N = in.nextInt();
+    g = new ArrayList[N];
+    for (int i = 0; i < N; i++) g[i] = new ArrayList<Integer>();
+    for (int i = 0; i < N - 1; i++) {
+        int a = in.nextInt() - 1, b = in.nextInt() - 1;
+        g[a].add(b);
+        g[b].add(a);
+    }
+    int K = in.nextInt();
+    V = new int[N];
+    Arrays.fill(V, UNDEFINED);
+    PriorityQueue<State> pq = new PriorityQueue<>();
+    for (int i = 0; i < K; i++) {
+        int v = in.nextInt() - 1, p = in.nextInt();
+        V[v] = p;
+        pq.add(new State(v, p));
+    }
+    while (!pq.isEmpty()) {
+        State st = pq.poll();
+        for (int v : g[st.id]) {
+            if (V[v] == UNDEFINED) {
+                V[v] = V[st.id] + 1;
+                pq.add(new State(v, V[v]));
+            } else if (Math.abs(V[v] - V[st.id]) != 1) {
+                System.out.println("No");
+                return;
+            }
+        }
+    }
+    out.println("Yes");
+    for (int i = 0; i < N; i++) {
+        out.println(V[i]);
+    }
+    out.close();
+}

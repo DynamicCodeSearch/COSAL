@@ -1,0 +1,18 @@
+static void dfs(boolean[] dp, int index) {
+    int c = 0;
+    while (c < dp.length && dp[c]) {
+        c++;
+    }
+    if (c == dp.length) {
+        count++;
+        return;
+    }
+    boolean[] table = Arrays.copyOf(dp, dp.length);
+    for (int next : a[index]) {
+        if (!table[next]) {
+            table[next] = true;
+            dfs(table, next);
+            table[next] = false;
+        }
+    }
+}

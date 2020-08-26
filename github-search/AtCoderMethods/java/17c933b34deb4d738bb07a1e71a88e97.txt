@@ -1,0 +1,16 @@
+private static boolean isOKy(int jx, int jy, int mask) {
+    int uy = jy - 1;
+    int dy = jy + 1;
+    if (uy < 0 || dy >= 5) {
+        return true;
+    }
+    int utmp = 0x1 << (jx + uy * 5);
+    int dtmp = 0x1 << (jx + dy * 5);
+    if ((mask & utmp) == 0 && (mask & dtmp) == 0) {
+        return true;
+    }
+    if ((mask & utmp) != 0 && (mask & dtmp) != 0) {
+        return true;
+    }
+    return false;
+}

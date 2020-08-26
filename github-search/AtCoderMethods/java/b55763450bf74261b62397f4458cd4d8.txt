@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int n = scan.nextInt();
+    int ans = 0;
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = scan.nextInt();
+    }
+    for (int i = 0; i < n; i++) {
+        if ((a[i] % 3 == 2) || (a[i] % 2 == 0)) {
+            ans++;
+            a[i] = a[i] - 1;
+            i--;
+            continue;
+        }
+    }
+    System.out.println(ans);
+}

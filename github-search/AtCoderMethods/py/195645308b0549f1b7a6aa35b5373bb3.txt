@@ -1,0 +1,11 @@
+def dfs(self, n, f):
+
+    if n == self.N:
+        return [n]
+    for nn in self.paths[n]:
+        if nn != f:
+            path = self.dfs(nn, n)
+            if path is not None:
+                path.append(n)
+                return path
+    return None

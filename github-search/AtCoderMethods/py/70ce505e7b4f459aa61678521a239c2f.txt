@@ -1,0 +1,13 @@
+def d2():
+    n = int(input())
+    s = input()
+    l = [ 1 if x=='(' else -1 for x in s[:] ]
+    mt = np.cumsum(l) 
+    mi = min(0, np.amin(mt))
+    left = ''; right = ''
+    if mi < 0:
+        left = '('*(mi*-1)
+    if mt[-1]-mi > 0:
+        right = ')'*(mt[-1]-mi)
+
+    print(left + s + right)

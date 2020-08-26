@@ -1,0 +1,28 @@
+private static long solve(long N, long W, int[][] wv) {
+    
+    
+    HashMap<Integer, Long> valueByWeight = new HashMap<>();
+    valueByWeight.put(0, 0L);
+    HashMap<Integer, Long> temp = new HashMap<>();
+    for (int[] z : wv) {
+        int w = z[0];
+        int v = z[1];
+        temp.clear();
+        temp.putAll(valueByWeight);
+        for (Map.Entry<Integer, Long> entry : valueByWeight.entrySet()) {
+            int nw = entry.getKey() + w;
+            long nv = entry.getValue() + v;
+            if (nw > W)
+                continue;
+            if (temp.containsKey(nw) && temp.get(nw) > nv)
+                continue;
+            temp.put(nw, nv);
+        }
+        HashMap<Integer, Long> sw = temp;
+        temp = valueByWeight;
+        valueByWeight = sw;
+    
+    }
+    long ans = valueByWeight.values().stream().mapToLong(x -> x).max().getAsLong();
+    return ans;
+}

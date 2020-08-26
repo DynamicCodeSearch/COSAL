@@ -1,0 +1,42 @@
+
+private static void induceSA(BaseArray T, int[] SA, BaseArray C, BaseArray B, int n, int k) {
+    int b, i, j;
+    int c0, c1;
+    
+    if (C == B) {
+        getCounts(T, C, n, k);
+    }
+    getBuckets(C, B, k, false);
+    
+    j = n - 1;
+    b = B.get(c1 = T.get(j));
+    SA[b++] = ((0 < j) && (T.get(j - 1) < c1)) ? ~j : j;
+    for (i = 0; i < n; ++i) {
+        j = SA[i];
+        SA[i] = ~j;
+        if (0 < j) {
+            if ((c0 = T.get(--j)) != c1) {
+                B.set(c1, b);
+                b = B.get(c1 = c0);
+            }
+            SA[b++] = ((0 < j) && (T.get(j - 1) < c1)) ? ~j : j;
+        }
+    }
+    
+    if (C == B) {
+        getCounts(T, C, n, k);
+    }
+    getBuckets(C, B, k, true);
+    
+    for (i = n - 1, b = B.get(c1 = 0); 0 <= i; --i) {
+        if (0 < (j = SA[i])) {
+            if ((c0 = T.get(--j)) != c1) {
+                B.set(c1, b);
+                b = B.get(c1 = c0);
+            }
+            SA[--b] = ((j == 0) || (T.get(j - 1) > c1)) ? ~j : j;
+        } else {
+            SA[i] = ~j;
+        }
+    }
+}

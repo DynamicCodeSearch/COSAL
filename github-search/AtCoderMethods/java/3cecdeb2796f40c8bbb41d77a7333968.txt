@@ -1,0 +1,17 @@
+public void solve(int testNumber, FastScanner in, PrintWriter out) {
+    int N = in.nextInt();
+    int M = in.nextInt();
+    BFS bfs = new BFS(N);
+    for (int i = 1; i <= M; i++) {
+        int x = in.nextInt();
+        int y = in.nextInt();
+        bfs.addEdge(x, y, false);
+    }
+    bfs.runProcess(1, N);
+    int[] dist = bfs.getDistanceArray();
+    if (dist[N] == 2) {
+        out.print("POSSIBLE");
+        return;
+    }
+    out.print("IMPOSSIBLE");
+}

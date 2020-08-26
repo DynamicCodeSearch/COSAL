@@ -1,0 +1,16 @@
+static void solve() {
+    int[] f = new int[26];
+    char[] s = ns().toCharArray();
+    for (char c : s) f[c - 'a']++;
+    int core = 0;
+    for (int i = 0; i < 26; i++) {
+        if (f[i] % 2 == 1)
+            core++;
+    }
+    if (core == 0) {
+        out.println(s.length);
+    } else {
+        int ar = (s.length - core) / 2;
+        out.println(ar / core * 2 + 1);
+    }
+}

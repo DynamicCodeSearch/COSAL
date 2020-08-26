@@ -1,0 +1,55 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    long[] x = sc.nextLongList(N);
+    long L = sc.nextLong();
+    int[][] r = new int[36][N];
+    for (int i = 0; i < N; i++) {
+        int left = i + 1;
+        int right = N - 1;
+        while (left <= right) {
+            int j = (left + right) / 2;
+            if (x[j] <= x[i] + L) {
+                left = j + 1;
+            } else {
+                right = j - 1;
+            }
+        }
+        r[0][i] = right;
+    }
+    for (int k = 0; k < 35; k++) {
+        for (int i = 0; i < N; i++) {
+            r[k + 1][i] = r[k][r[k][i]];
+        }
+    }
+    StringBuilder sb = new StringBuilder();
+    int Q = sc.nextInt();
+    for (int i = 0; i < Q; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        if (a > b) {
+            int tmp = a;
+            a = b;
+            b = tmp;
+        }
+        long left = 0;
+        long right = 1000000000;
+        while (left <= right) {
+            long y = (left + right) / 2;
+            int now = a;
+            for (int k = 34; k >= 0; k--) {
+                if (((y >> k) & 1) == 1) {
+                    now = r[k][now];
+                }
+            }
+            if (now >= b) {
+                right = y - 1;
+            } else {
+                left = y + 1;
+            }
+        }
+        sb.append(left);
+        sb.append("\n");
+    }
+    System.out.println(sb);
+}

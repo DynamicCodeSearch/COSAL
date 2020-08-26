@@ -1,0 +1,17 @@
+public static void main(String[] args) throws IOException {
+    int N = new Integer(br.readLine());
+    String[][] strs = new String[N][N];
+    for (int i = 0; i < N; i++) {
+        String thisRow = br.readLine();
+        for (int j = 0; j < N; j++) {
+            String thisMas = thisRow.substring(j, j + 1);
+            strs[j][N - i - 1] = thisMas;
+        }
+    }
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            System.out.print(strs[i][j]);
+        }
+        System.out.println();
+    }
+}

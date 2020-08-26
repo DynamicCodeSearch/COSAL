@@ -1,0 +1,21 @@
+def main():
+    sys.stdin.readline()
+    xs = sys.stdin.readline().strip().split(" ")
+    n = 0
+    m = 0
+    l = 0
+
+    for i in xs:
+        if (int(i) % 2 == 1):
+            m = m + 1
+        elif (int(i) % 4 == 0):
+            n = n + 1
+        elif (int(i) % 4 == 2):
+            l = l + 1
+
+    if (l > 0 and n >= m):
+        print("Yes")
+    elif (l == 0 and n >= m - 1):
+        print("Yes")
+    else:
+        print("No")

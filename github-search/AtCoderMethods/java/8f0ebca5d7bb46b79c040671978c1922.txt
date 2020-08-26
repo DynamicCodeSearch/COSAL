@@ -1,0 +1,19 @@
+void doIt() {
+    long max = 2;
+    for (int i = 0; i < 3; i++) max = max * 10000;
+    long A = sc.nextLong();
+    long K = sc.nextLong();
+    if (K == 0)
+        System.out.println(max - A);
+    else {
+        int cnt = 1;
+        while (true) {
+            A = 1 + A * (K + 1);
+            
+            if (A >= max)
+                break;
+            cnt++;
+        }
+        System.out.println(cnt);
+    }
+}

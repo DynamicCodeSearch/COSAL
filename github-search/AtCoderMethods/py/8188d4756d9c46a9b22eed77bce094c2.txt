@@ -1,0 +1,11 @@
+def calc(h, w, n, nums):
+	out_raw = []
+ for i, num in enumerate(nums):
+		out_raw.extend([str(i + 1) for _ in range(num)])
+
+ for i in range(h):
+		tmp = out_raw[i * w:(i + 1) * w]
+  if i % 2 == 0:
+			print(" ".join(tmp))
+  else:
+			print(" ".join(tmp[::-1]))

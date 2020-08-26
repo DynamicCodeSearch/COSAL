@@ -1,0 +1,19 @@
+private static long dfs(int index, boolean[] used, int[] r, long[][] distances, int from) {
+    if (index >= r.length) {
+        return 0;
+    }
+    long min = (int) 1e9;
+    for (int i = 0; i < r.length; i++) {
+        if (used[i]) {
+            continue;
+        }
+        used[i] = true;
+        int to = r[i];
+        long distance = (from == -1 ? 0 : distances[from][to]) + dfs(index + 1, used, r, distances, to);
+        if (distance < min) {
+            min = distance;
+        }
+        used[i] = false;
+    }
+    return min;
+}

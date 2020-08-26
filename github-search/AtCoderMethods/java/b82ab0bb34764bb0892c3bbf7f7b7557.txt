@@ -1,0 +1,24 @@
+private static void solve() {
+    int n = ni();
+    int m = ni();
+    long[][] d = new long[n][n];
+    long INF = Integer.MAX_VALUE;
+    for (long[] v : d) Arrays.fill(v, INF);
+    for (int i = 0; i < n; i++) {
+        d[i][i] = 0;
+    }
+    for (int i = 0; i < m; i++) {
+        int a = ni() - 1;
+        int b = ni() - 1;
+        d[a][b] = d[b][a] = ni();
+    }
+    wf(d);
+    int k = ni();
+    for (int i = 0; i < k; i++) {
+        int x = ni() - 1;
+        int y = ni() - 1;
+        int w = ni();
+        pwf(d, x, y, w);
+        System.out.println(sum(d));
+    }
+}

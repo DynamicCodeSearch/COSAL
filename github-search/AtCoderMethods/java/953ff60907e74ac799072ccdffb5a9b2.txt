@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String line = sc.nextLine();
+    String[] split = line.split(" ");
+    int n = Integer.parseInt(split[0]);
+    int m = Integer.parseInt(split[1]);
+    if (n == m) {
+        System.out.println(factorial(n) * factorial(m) * 2 % 1000000007);
+    } else if (n + 1 == m || n - 1 == m) {
+        System.out.println(factorial(n) * factorial(m) % 1000000007);
+    } else {
+        System.out.println(0);
+    }
+}

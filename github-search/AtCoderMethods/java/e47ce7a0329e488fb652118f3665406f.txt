@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    StronglyConnectedComponent o = new StronglyConnectedComponent();
+    o.init(10);
+    for (int i = 0; i < o.V; i++) {
+        for (int j = 0; j < o.V; j++) {
+            if (i == j) {
+                continue;
+            }
+            if (Math.random() < 0.25) {
+                o.add(i, j);
+            }
+        }
+        debug("o.G[" + i + "]", o.G[i]);
+    }
+    debug("o.scc()", o.scc());
+    debug("o.cmp", o.cmp);
+}

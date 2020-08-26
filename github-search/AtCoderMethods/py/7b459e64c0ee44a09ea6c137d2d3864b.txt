@@ -1,0 +1,16 @@
+def solve(N, M, Es, Cs):
+    dist = [float('inf')] * N
+    dist[0] = 0
+    for i in range(N + 1):
+        for v in range(N):
+            Cv = Cs[v]
+            for e in Es[v]:
+                c = Cv[e]
+                if dist[v] != float('inf') and dist[e] > dist[v] + c:
+                    dist[e] = dist[v] + c
+                    if (i == N - 1):
+                        d = dist[N - 1]
+                    if (i == N):
+                        if d != dist[N - 1]:
+                            return 'inf'
+    return -dist[N - 1]

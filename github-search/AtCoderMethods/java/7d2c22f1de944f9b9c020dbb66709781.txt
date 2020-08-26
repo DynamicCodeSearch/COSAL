@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int T = sc.nextInt();
+    int min = (int) Math.pow(10, 9);
+    ArrayList<Integer> profit = new ArrayList<Integer>();
+    for (int i = 0; i < N; i++) {
+        int a = sc.nextInt();
+        min = Math.min(min, a);
+        profit.add(a - min);
+    }
+    Collections.sort(profit);
+    Collections.reverse(profit);
+    int ans = 1;
+    int max = profit.get(0);
+    for (int i = 1; i < profit.size(); i++) {
+        int p = profit.get(i);
+        if (max == p) {
+            ans++;
+        } else {
+            break;
+        }
+    }
+    System.out.println(ans);
+}

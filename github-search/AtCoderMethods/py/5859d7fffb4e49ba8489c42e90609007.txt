@@ -1,0 +1,29 @@
+def main():
+    N, M = map(int, input().split())
+
+    MAP = [[]*N for x in range(N)]
+    E = []
+    for m in range(M):
+        a,b,c = map(int, input().split())
+        MAP[a-1].append((b-1, c))
+        E.append((a-1,b-1,c))
+
+    dp = [-float('inf')]*N
+    dp[0] = 0
+    updated = set([0])
+    for count in range(1, 2*N+1):  
+        preupdated = list(updated)
+        updated = set([])
+        for a in preupdated:
+            for b,c in MAP[a]:
+                if max(dp[b], dp[b]) < dp[a] + c:
+                    updated.add(b)
+                    dp[b] = dp[a] + c
+        if count == N-1:
+            tmp = dp[N-1]
+
+
+    if dp[N-1] == tmp:
+        print(tmp)
+    else:
+        print('inf')

@@ -1,0 +1,17 @@
+public void solve() {
+    N = nextInt();
+    X = nextInt();
+    Y = nextInt();
+    Z = nextInt();
+    sum = new int[] { -1, X - 1, X + Y - 1, X + Y + Z - 1 };
+    dp = new int[N][1 << 18];
+    for (int i = 0; i < N; i++) {
+        Arrays.fill(dp[i], -1);
+    }
+    pow10 = new int[N + 1];
+    pow10[0] = 1;
+    for (int i = 1; i < pow10.length; i++) {
+        pow10[i] = (int) ((long) pow10[i - 1] * 10 % mod);
+    }
+    out.println(dfs(0, 0));
+}

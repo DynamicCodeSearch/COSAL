@@ -1,0 +1,10 @@
+long g(int[] h, int[] w) {
+    long smin = Long.MAX_VALUE;
+    long smax = Long.MIN_VALUE;
+    for (int i = 0; i < 3; ++i) {
+        long s = f(h[i], w[i]);
+        smin = Math.min(smin, s);
+        smax = Math.max(smax, s);
+    }
+    return smax - smin;
+}

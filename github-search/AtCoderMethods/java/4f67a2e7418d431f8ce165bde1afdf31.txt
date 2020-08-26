@@ -1,0 +1,50 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    int H = sc.nextInt();
+    int W = sc.nextInt();
+    char[][] S = new char[H][W];
+    for (int i = 0; i < H; i++) {
+        String temp = sc.next();
+        for (int j = 0; j < W; j++) {
+            S[i][j] = temp.charAt(j);
+        }
+    }
+    char[][] ans = new char[H][W];
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            if (S[i][j] == '#') {
+                ans[i][j] = '#';
+            } else {
+                boolean li = i - 1 >= 0;
+                boolean ui = i + 1 < H;
+                boolean lj = j - 1 >= 0;
+                boolean uj = j + 1 < W;
+                int count = 0;
+                if (li && lj && S[i - 1][j - 1] == '#')
+                    count++;
+                if (li && S[i - 1][j] == '#')
+                    count++;
+                if (li && uj && S[i - 1][j + 1] == '#')
+                    count++;
+                if (lj && S[i][j - 1] == '#')
+                    count++;
+                if (uj && S[i][j + 1] == '#')
+                    count++;
+                if (ui && lj && S[i + 1][j - 1] == '#')
+                    count++;
+                if (ui && S[i + 1][j] == '#')
+                    count++;
+                if (ui && uj && S[i + 1][j + 1] == '#')
+                    count++;
+                ans[i][j] = (char) (count + '0');
+            }
+        }
+    }
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            System.out.print(ans[i][j]);
+        }
+        System.out.println();
+    }
+}

@@ -1,0 +1,26 @@
+def min_square(h, w):
+    w3 = w // 3
+    w2 = w // 2
+    h3 = h // 3
+    h2 = h // 2
+    w_3 = [w3, w3 + 1, w3 + 2]
+    w_2 = [w2, w2 + 1, w2 + 2]
+    h_3 = [h3, h3 + 1, h3 + 2]
+    h_2 = [h2, h2 + 1, h2 + 2]
+    min_list = []
+    for k in w_3:
+        for l in h_2:
+            if 0 < k < w and 0 < l < h:
+                min_list.append(max_diff([h * k, l * (w - k), (h - l) * (w - k)]))
+    for k in w_2:
+        for l in h_3:
+            if 0 < k < w and 0 < l < h:
+                min_list.append(max_diff([w * l, k * (h - l), (w - k) * (h - l)]))
+    for k in w_3:
+        if 0 < k < w:
+            min_list.append(max_diff([k * h, k * h, (w - 2 * k) * h]))
+    for k in h_3:
+        if 0 < k < h:
+            min_list.append(max_diff([k * w, k * w, (h - 2 * k) * w]))
+
+    return min(min_list)

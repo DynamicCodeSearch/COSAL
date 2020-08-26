@@ -1,0 +1,12 @@
+private static int count(int h, int w, int H, int W, String[] S) {
+    int count = 0;
+    for (int i = h - 1; i <= h + 1; i++) {
+        for (int j = w - 1; j <= w + 1; j++) {
+            if (i < 0 || j < 0 || i >= H || j >= W)
+                continue;
+            if (S[i].charAt(j) == '#')
+                count++;
+        }
+    }
+    return count;
+}

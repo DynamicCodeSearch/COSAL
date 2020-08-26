@@ -1,0 +1,17 @@
+private void run() {
+    N = sc.nextInt();
+    M = sc.nextInt();
+    visited = new boolean[N];
+    for (int i = 0; i < N; i++) {
+        adjList.add(new ArrayList<Integer>());
+    }
+    for (int i = 0; i < M; i++) {
+        int from = sc.nextInt() - 1;
+        int to = sc.nextInt() - 1;
+        adjList.get(from).add(to);
+        adjList.get(to).add(from);
+    }
+    int ans = 0;
+    ans = dfs(0, 0);
+    System.out.println(ans);
+}

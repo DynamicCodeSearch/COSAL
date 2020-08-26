@@ -1,0 +1,13 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    P = in.readDouble();
+    double ok = 0;
+    double ng = 1000.0;
+    for (int i = 0; i < 90; i++) {
+        if (f((ok * 2 + ng) / 3) < f((ok + ng * 2) / 3)) {
+            ng = (ok + ng * 2) / 3;
+        } else
+            ok = (ok * 2 + ng) / 3;
+    }
+    
+    out.printLine(f(ok));
+}

@@ -1,0 +1,200 @@
+### Py Tokens: predecessor, map, ordered, links, dictdelitem, update, pop, existing, link, delitem, key, ordereddict, removed, find, updating, successor, gets, linkprev, next, item, linknext, dict, uses, nodes, prev, deleting 
+
+### Py functions
+
+def __delitem__(self, key, dict_delitem=dict.__delitem__):
+
+
+
+  dict_delitem(self, key)
+  link_prev, link_next, _ = self.__map.pop(key)
+  link_prev[1] = link_next                        
+  link_next[0] = link_prev
+*********************************
+
+#### Score: 7.42883
+
+
+#### Java Tokens: code, string, signature, link, searchseq, charsequence, mos, search, param, utils, find, seq, charsequenceutils, pre, abc, method, may, index, possible, check, stringutils, sequence, input, contains, checks, char, handling, uses, indexof, since, changed 
+
+
+public static boolean contains(final CharSequence seq, final CharSequence searchSeq) {
+    if (seq == null || searchSeq == null) {
+        return false;
+    }
+    return CharSequenceUtils.indexOf(seq, searchSeq, 0) >= 0;
+}
+*********************************
+
+#### Score: 7.42162
+
+
+#### Java Tokens: note, code, string, use, deprecated, foo, link, endswith, remove, substring, without, bar, foobar, trailing, feature, param, utils, ends, end, baz, perl, substringbeforelast, behavior, lang, pre, closely, method, previous, last, may, chomp, instead, separator, version, matches, str, stringutils, input, removed, foooo, removeend, uses, removes, changed 
+
+
+@Deprecated
+public static String chomp(final String str, final String separator) {
+    return removeEnd(str, separator);
+}
+*********************************
+
+#### Score: 7.18276
+
+
+#### Java Tokens: code, string, signature, link, isempty, charsequence, empty, mos, search, character, searchchar, param, utils, find, seq, charsequenceutils, pre, abc, method, may, index, possible, check, stringutils, sequence, input, contains, checks, char, handling, uses, indexof, since, changed 
+
+
+
+
+public static boolean contains(final CharSequence seq, final int searchChar) {
+    if (isEmpty(seq)) {
+        return false;
+    }
+    return CharSequenceUtils.indexOf(seq, searchChar, 0) >= 0;
+}
+*********************************
+
+#### Score: 7.02795
+
+
+#### Java Tokens: code, string, signature, link, searchseq, charsequence, mos, search, found, finds, param, utils, find, seq, charsequenceutils, pre, method, may, within, index_not_found, match, index, possible, check, aabaabaa, stringutils, sequence, input, char, handling, uses, except, indexof, first, since, changed 
+
+
+public static int indexOf(final CharSequence seq, final CharSequence searchSeq) {
+    if (seq == null || searchSeq == null) {
+        return INDEX_NOT_FOUND;
+    }
+    return CharSequenceUtils.indexOf(seq, searchSeq, 0);
+}
+*********************************
+
+#### Score: 7.02795
+
+
+#### Java Tokens: code, string, signature, link, searchseq, charsequence, mos, search, found, finds, param, utils, find, seq, charsequenceutils, pre, last, method, may, within, index_not_found, length, match, index, possible, check, aabaabaa, stringutils, sequence, input, char, lastindexof, handling, uses, since, changed 
+
+
+public static int lastIndexOf(final CharSequence seq, final CharSequence searchSeq) {
+    if (seq == null || searchSeq == null) {
+        return INDEX_NOT_FOUND;
+    }
+    return CharSequenceUtils.lastIndexOf(seq, searchSeq, seq.length());
+}
+*********************************
+
+#### Score: 6.73831
+
+
+#### Java Tokens: n-th, note, code, string, signature, link, lastordinalindexof, charsequence, substring, mos, search, found, finds, param, utils, find, implemented, ordinalindexof, pre, last, method, may, within, index_not_found, match, index, check, aabaabaa, str, stringutils, sequence, input, searchstr, char, handling, uses, lastindexof, ordinal, since, changed 
+
+
+public static int lastOrdinalIndexOf(final CharSequence str, final CharSequence searchStr, final int ordinal) {
+    return ordinalIndexOf(str, searchStr, ordinal, true);
+}
+*********************************
+
+#### Score: 6.22792
+
+
+#### Java Tokens: empty, zero, mos, finds, utils, find, greater, always, treated, pre, method, index_not_found, index, check, matches, aabaabaa, sequence, input, except, position, since, changed, code, string, signature, link, searchseq, charsequence, startpos, search, negative, found, pos, param, seq, charsequenceutils, abc, may, within, start, length, match, possible, stringutils, char, handling, uses, indexof, first 
+
+
+public static int indexOf(final CharSequence seq, final CharSequence searchSeq, final int startPos) {
+    if (seq == null || searchSeq == null) {
+        return INDEX_NOT_FOUND;
+    }
+    return CharSequenceUtils.indexOf(seq, searchSeq, startPos);
+}
+*********************************
+
+#### Score: 6.22792
+
+
+#### Java Tokens: zzabyycdxx, code, string, signature, link, substrings, sequences, charsequence, mos, zero, search, found, strs, array, param, tmp, utils, find, potential, latest, ret, charsequenceutils, ignored, pre, set, last, method, may, index_not_found, containing, length, match, index, possible, check, charsequences, str, stringutils, lastindexofany, sequence, entry, char, lastindexof, uses, indexof, searchstrs, since, changed 
+
+
+public static int lastIndexOfAny(final CharSequence str, final CharSequence... searchStrs) {
+    if (str == null || searchStrs == null) {
+        return INDEX_NOT_FOUND;
+    }
+    int ret = INDEX_NOT_FOUND;
+    int tmp = 0;
+    for (final CharSequence search : searchStrs) {
+        if (search == null) {
+            continue;
+        }
+        tmp = CharSequenceUtils.lastIndexOf(str, search, str.length());
+        if (tmp > ret) {
+            ret = tmp;
+        }
+    }
+    return ret;
+}
+*********************************
+
+#### Score: 5.94947
+
+
+#### Java Tokens: use, used, empty, zero, character, utils, exclusive, avoiding, starts, greater, counting, based, pre, negatives, specify, count, positions, handle, check, exceptions, str, input, left, zero-based, position, relative, next, code, string, beginning, back, substring, specified, remember, characters, negative, param, ends, get, end, means, abc, may, start, length, many, gets, strictly, stringutils, offsets, returned 
+
+
+public static String substring(final String str, int start, int end) {
+    if (str == null) {
+        return null;
+    }
+    
+    if (end < 0) {
+        
+        end = str.length() + end;
+    }
+    if (start < 0) {
+        
+        start = str.length() + start;
+    }
+    
+    if (end > str.length()) {
+        end = str.length();
+    }
+    
+    if (start > end) {
+        return EMPTY;
+    }
+    if (start < 0) {
+        start = 0;
+    }
+    if (end < 0) {
+        end = 0;
+    }
+    return str.substring(start, end);
+}
+*********************************
+
+#### Score: 5.79252
+
+
+#### Java Tokens: zzabyycdxx, integer, substrings, zero, mos, tmp, utils, find, eth, zab, potential, ret, ignored, pre, method, index_not_found, containing, index, check, str, sequence, entry, searchstrs, since, changed, indexofany, code, valu, string, signature, link, sequences, charsequence, search, found, strs, array, param, value, charsequenceutils, set, may, max, length, match, possible, valueth, charsequences, max_valueth, stringutils, char, aby, uses, indexof, first, max_value 
+
+
+
+
+public static int indexOfAny(final CharSequence str, final CharSequence... searchStrs) {
+    if (str == null || searchStrs == null) {
+        return INDEX_NOT_FOUND;
+    }
+    
+    int ret = Integer.MAX_VALUE;
+    int tmp = 0;
+    for (final CharSequence search : searchStrs) {
+        if (search == null) {
+            continue;
+        }
+        tmp = CharSequenceUtils.indexOf(str, search, 0);
+        if (tmp == INDEX_NOT_FOUND) {
+            continue;
+        }
+        if (tmp < ret) {
+            ret = tmp;
+        }
+    }
+    return ret == Integer.MAX_VALUE ? INDEX_NOT_FOUND : ret;
+}

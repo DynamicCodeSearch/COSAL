@@ -1,0 +1,14 @@
+def simulate(a,L,R,N):
+    T = []
+    for i in range(N):
+        if min(L,R) <= i <= max(L,R):
+            T.append(a[i])
+    takahashi = 0
+    aoki = 0
+    M = len(T)
+    for i in range(M):
+        if i % 2 == 0:
+            takahashi += T[i]
+        else:
+            aoki += T[i]
+    return (takahashi,aoki)

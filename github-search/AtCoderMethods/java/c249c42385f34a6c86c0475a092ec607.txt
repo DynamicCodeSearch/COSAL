@@ -1,0 +1,9 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    double p = scan.nextDouble();
+    double x = Math.log(3.0 / (2.0 * p * Math.log(2.0))) / Math.log(Math.pow(2.0, -2.0 / 3.0));
+    
+    if (x < 0.0)
+        x = 0.0;
+    System.out.printf("%.10f\n", Math.min(p, x + p / Math.pow(2.0, (x / 1.5))));
+}

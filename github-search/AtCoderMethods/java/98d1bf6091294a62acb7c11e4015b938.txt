@@ -1,0 +1,29 @@
+void solve() throws IOException {
+    int n = in.nextInt();
+    int m = in.nextInt();
+    for (int i = 0; i < n; i++) g[i] = new ArrayList<>();
+    for (int i = 0; i < m; i++) {
+        int x = in.nextInt() - 1;
+        int y = in.nextInt() - 1;
+        if (x == n - 1 && y == 0 || x == 0 && y == n - 1)
+            continue;
+        g[x].add(y);
+        g[y].add(x);
+    }
+    Queue<Integer> q = new LinkedList<>();
+    q.add(0);
+    int[] d = new int[n];
+    Arrays.fill(d, inf);
+    d[0] = 0;
+    while (!q.isEmpty()) {
+        int v = q.poll();
+        for (int u : g[v]) if (d[v] + 1 < d[u]) {
+            d[u] = d[v] + 1;
+            q.add(u);
+        }
+    }
+    if (d[n - 1] == 2)
+        out.println("POSSIBLE");
+    else
+        out.println("IMPOSSIBLE");
+}

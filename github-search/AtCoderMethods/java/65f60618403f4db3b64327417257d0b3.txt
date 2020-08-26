@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int days = sc.nextInt();
+    int basic = sc.nextInt();
+    int basic_pay = sc.nextInt();
+    int un_basic_pay = sc.nextInt();
+    int payment = 0;
+    int minus = 0;
+    if (basic < days) {
+        minus = (days - basic) * (un_basic_pay - basic_pay);
+    }
+    payment = days * basic_pay + minus;
+    System.out.println(payment);
+}

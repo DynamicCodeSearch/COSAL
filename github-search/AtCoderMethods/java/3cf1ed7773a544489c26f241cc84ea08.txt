@@ -1,0 +1,15 @@
+void solve() throws IOException {
+    int n = ni();
+    long a = ni();
+    long b = ni();
+    long[] x = nla(n);
+    long ans = 0;
+    for (int i = 0; i < n - 1; i++) {
+        if ((x[i + 1] - x[i]) * a < b) {
+            ans += (x[i + 1] - x[i]) * a;
+        } else {
+            ans += b;
+        }
+    }
+    out.println(ans);
+}

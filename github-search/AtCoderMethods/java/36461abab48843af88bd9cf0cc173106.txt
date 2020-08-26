@@ -1,0 +1,40 @@
+public void solve() {
+    N = nextInt();
+    List<P> front = new ArrayList<P>();
+    List<P> back = new ArrayList<P>();
+    for (int i = 0; i < N; i++) {
+        int a = nextInt();
+        int b = nextInt();
+        if (a - b < 0) {
+            front.add(new P(a, b));
+        } else {
+            back.add(new P(a, b));
+        }
+    }
+    Collections.sort(front, new Comparator<P>() {
+
+        public int compare(P p1, P p2) {
+            return p1.a - p2.a;
+        }
+    });
+    Collections.sort(back, new Comparator<P>() {
+
+        public int compare(P p1, P p2) {
+            return p1.b - p2.b;
+        }
+    });
+    Collections.reverse(back);
+    long ans = Long.MIN_VALUE;
+    long now = 0;
+    for (P p : front) {
+        now += p.a;
+        ans = Math.max(ans, now);
+        now -= p.b;
+    }
+    for (P p : back) {
+        now += p.a;
+        ans = Math.max(ans, now);
+        now -= p.b;
+    }
+    out.println(ans);
+}

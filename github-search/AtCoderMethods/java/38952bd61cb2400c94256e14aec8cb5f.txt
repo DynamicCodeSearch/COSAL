@@ -1,0 +1,22 @@
+public void solve() {
+    N = nextInt();
+    M = nextInt();
+    x = new long[N];
+    y = new long[M];
+    for (int i = 0; i < N; i++) {
+        x[i] = nextInt();
+    }
+    for (int i = 0; i < M; i++) {
+        y[i] = nextInt();
+    }
+    long xsum = 0L, ysum = 0L;
+    for (int i = 0; i < N; i++) {
+        xsum += (x[i] * i) - (x[i] * (N - i - 1));
+        xsum %= MOD;
+    }
+    for (int i = 0; i < M; i++) {
+        ysum += (y[i] * i) - (y[i] * (M - i - 1));
+        ysum %= MOD;
+    }
+    out.println(xsum * ysum % MOD);
+}

@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int a = sc.nextInt();
+    char[][] b = new char[a][a];
+    String str = "";
+    for (int i = 0; i < a; i++) {
+        str += sc.next();
+    }
+    int count = 0;
+    for (int i = 0; i < a; i++) {
+        for (int j = 0; j < a; j++) {
+            b[i][j] = str.charAt(count);
+            count++;
+        }
+    }
+    for (int i = 0; i < a; i++) {
+        for (int j = a - 1; j >= 0; j--) {
+            System.out.print(b[j][i]);
+        }
+        System.out.println();
+    }
+}

@@ -1,0 +1,9 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] xy = br.readLine().split(" ");
+    BigDecimal a = new BigDecimal(xy[2]).subtract(new BigDecimal(xy[0]));
+    BigDecimal b = new BigDecimal(xy[3]).subtract(new BigDecimal(xy[1]));
+    BigDecimal c = new BigDecimal(xy[4]).subtract(new BigDecimal(xy[0]));
+    BigDecimal d = new BigDecimal(xy[5]).subtract(new BigDecimal(xy[1]));
+    System.out.println(a.multiply(d).subtract(b.multiply(c)).abs().divide(new BigDecimal("2")));
+}

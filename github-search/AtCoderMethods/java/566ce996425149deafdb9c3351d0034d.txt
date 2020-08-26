@@ -1,0 +1,25 @@
+
+public void run() throws IOException {
+    
+    int TEST_CASE = 1;
+    while (TEST_CASE-- != 0) {
+        int xs = io.nextInt();
+        int ys = io.nextInt();
+        int xt = io.nextInt();
+        int yt = io.nextInt();
+        int n = io.nextInt();
+        int[][] c = io.nextIntArray2D(n, 3);
+        int S = n, T = n + 1;
+        WeightedAdjListGraph g = new WeightedAdjListGraph(n + 2, (n + 2) * (n + 2));
+        g.addEdge(S, T, dist(xt - xs, yt - ys, 0));
+        for (int i = 0; i < n; i++) {
+            g.addEdge(S, i, dist(c[i][0] - xs, c[i][1] - ys, c[i][2]));
+            g.addEdge(i, T, dist(c[i][0] - xt, c[i][1] - yt, c[i][2]));
+            for (int j = 0; j < i; j++) {
+                g.addEdge(i, j, dist(c[i][0] - c[j][0], c[i][1] - c[j][1], c[i][2] + c[j][2]));
+                g.addEdge(j, i, dist(c[i][0] - c[j][0], c[i][1] - c[j][1], c[i][2] + c[j][2]));
+            }
+        }
+        io.out.printf("%.10f\n", g.dijkstra(S)[T]);
+    }
+}

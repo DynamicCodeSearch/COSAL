@@ -1,0 +1,13 @@
+private static int binarySearch(int[] list, int num) {
+    int max = list.length;
+    int min = 0;
+    while (min + 1 < max) {
+        int now = (max + min) / 2;
+        if (list[now] > num) {
+            max = now;
+        } else {
+            min = now;
+        }
+    }
+    return min;
+}

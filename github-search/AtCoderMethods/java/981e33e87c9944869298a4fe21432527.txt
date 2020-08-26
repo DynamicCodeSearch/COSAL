@@ -1,0 +1,65 @@
+public static void main(String[] args) throws IOException {
+    
+    Scanner sc = new Scanner(System.in);
+    int H = sc.nextInt();
+    int W = sc.nextInt();
+    boolean ok = true;
+    face[][] ar = new face[H][W];
+    for (int i = 0; i < H; i++) {
+        String sr = sc.next();
+        for (int j = 0; j < W; j++) {
+            face fff = new face(sr.charAt(j));
+            ar[i][j] = fff;
+        }
+    }
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            if (ar[i][j].c == '#') {
+                int n = 0, m = 0;
+                for (int k = -1; k <= 1; k++) {
+                    for (int l = -1; l <= 1; l++) {
+                        if (0 <= i + k && i + k < H && 0 <= j + l && j + l < W) {
+                            n++;
+                            if (ar[i + k][j + l].c == '#')
+                                m++;
+                        }
+                    }
+                
+                }
+                if (n == m) {
+                    for (int k = -1; k <= 1; k++) {
+                        for (int l = -1; l <= 1; l++) {
+                            if (0 <= i + k && i + k < H && 0 <= j + l && j + l < W) {
+                                ar[i + k][j + l].isSafe = true;
+                            }
+                        }
+                    }
+                    ar[i][j].ischecked = true;
+                }
+            }
+        }
+    }
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            if (ar[i][j].c == '#')
+                if (ar[i][j].isSafe != true) {
+                    ok = false;
+                    break;
+                }
+        }
+    }
+    if (ok) {
+        System.out.println("possible");
+        for (int i = 0; i < H; i++) {
+            for (int j = 0; j < W; j++) {
+                if (ar[i][j].ischecked)
+                    System.out.print("#");
+                else
+                    System.out.print(".");
+            }
+            System.out.println("");
+        }
+    } else {
+        System.out.println("impossible");
+    }
+}

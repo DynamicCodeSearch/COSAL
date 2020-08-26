@@ -1,0 +1,49 @@
+public static void main(String[] args) {
+    String orders;
+    int t;
+    try (Scanner scan = new Scanner(System.in)) {
+        orders = scan.next();
+        t = scan.nextInt();
+    }
+    int x = 0;
+    int y = 0;
+    int unknown = 0;
+    for (int i = 0; i < orders.length(); i++) {
+        switch(orders.charAt(i)) {
+            case 'L':
+                x--;
+                break;
+            case 'R':
+                x++;
+                break;
+            case 'U':
+                y++;
+                break;
+            case 'D':
+                y--;
+                break;
+            case '?':
+                unknown++;
+                break;
+        }
+    }
+    
+    x = abs(x);
+    y = abs(y);
+    int result = 0;
+    if (t == 1) {
+        
+        
+        result = x + y + unknown;
+    } else {
+        
+        if (x + y >= unknown) {
+            result = x + y - unknown;
+        } else {
+            
+            int temp = unknown - x - y;
+            result = temp % 2;
+        }
+    }
+    System.out.println(result);
+}

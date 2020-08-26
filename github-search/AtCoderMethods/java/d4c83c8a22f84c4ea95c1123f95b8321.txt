@@ -1,0 +1,20 @@
+static long GCD(long a, long b) {
+    if (b > a) {
+        long tmpInt = b;
+        b = a;
+        a = tmpInt;
+    }
+    long GCD = 1;
+    long j = b;
+    while (j > 1) {
+        if (a % j == 0 && b % j == 0) {
+            GCD *= j;
+            a /= j;
+            b /= j;
+            j = b;
+        } else {
+            j--;
+        }
+    }
+    return GCD;
+}

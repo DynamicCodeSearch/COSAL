@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    String S = sc.next();
+    if (N % 2 == 1) {
+        int step = (N - 1) / 2;
+        StringBuilder sb = new StringBuilder("b");
+        for (int i = 1; i <= step; i++) {
+            if (i % 3 == 1) {
+                sb.insert(0, 'a').append('c');
+            } else if (i % 3 == 2) {
+                sb.insert(0, 'c').append('a');
+            } else {
+                sb.insert(0, 'b').append('b');
+            }
+        }
+        System.out.println(sb.toString().equals(S) ? step : -1);
+    } else {
+        System.out.println("-1");
+    }
+    sc.close();
+}

@@ -1,0 +1,11 @@
+private final boolean checked(double rate) {
+    for (int i = 0; i < N; i++) {
+        merits[i].merit = w[i] * (p[i] - rate);
+    }
+    Arrays.sort(merits);
+    double tmp = 0;
+    for (int i = 0; i < K; i++) {
+        tmp += merits[i].merit;
+    }
+    return tmp >= 0;
+}

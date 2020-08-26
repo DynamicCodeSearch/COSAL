@@ -1,0 +1,16 @@
+public static int[] maximalRectangles(boolean[][] grid) {
+    if (grid.length == 0)
+        return new int[0];
+    int[] res = new int[grid[0].length + 1];
+    int[] histogram = new int[grid[0].length];
+    for (int i = 0; i < grid.length; i++) {
+        for (int j = 0; j < grid[i].length; j++) {
+            histogram[j] = grid[i][j] ? histogram[j] + 1 : 0;
+        }
+        int[] cur = maximalRectangles(histogram);
+        for (int j = 0; j < res.length; j++) {
+            res[j] = Math.max(res[j], cur[j]);
+        }
+    }
+    return res;
+}

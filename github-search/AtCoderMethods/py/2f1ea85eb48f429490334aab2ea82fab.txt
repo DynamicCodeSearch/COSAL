@@ -1,0 +1,21 @@
+def main():
+    N, M = map(int, input().split())
+    X, Y = map(int, input().split())
+    A = tuple(map(int, input().split()))
+    B = tuple(map(int, input().split()))
+
+    a = deque(A)
+    b = deque(B)
+    x = X
+    y = Y
+    arrive = 0
+    oneway = 0
+    while len(a) > 0:
+        hour = a.popleft()
+        if hour >= arrive:
+            arrive = hour + x
+            a, b = b, a
+            x, y = y, x
+            oneway += 1
+
+    print(oneway // 2)

@@ -1,0 +1,115 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    int m = in.nextInt();
+    char[] s = in.nextToken().toCharArray();
+    int[][] op = new int[m][2];
+    for (int i = 0; i < m; i++) {
+        op[i][0] = in.nextInt() - 1;
+        op[i][1] = in.nextInt() - 1;
+    }
+    int[] lmax = new int[n];
+    Arrays.fill(lmax, -1);
+    for (int i = 0; i < m; i++) {
+        lmax[op[i][0]] = Math.max(lmax[op[i][0]], op[i][1]);
+    }
+    List<int[]> q = new ArrayList<>();
+    int maxR = -1;
+    for (int i = 0; i < n; i++) {
+        if (lmax[i] <= maxR) {
+            continue;
+        }
+        q.add(new int[] { i, lmax[i] });
+        maxR = lmax[i];
+    }
+    int[] imos = new int[n + 1];
+    for (int i = 0; i < n; i++) {
+        imos[i + 1] = imos[i] + (s[i] == '0' ? 1 : 0);
+    }
+    for (int[] qqq : q) {
+    
+    }
+    int tail = -1;
+    int qi = 0;
+    int qn = q.size();
+    long[][] dp = new long[2][n + 1];
+    dp[0][0] = 1;
+    int dec = 0;
+    int freeOne = 0;
+    int filledZero = 0;
+    for (int i = 0; i < n; i++) {
+        int fr = i % 2;
+        int to = 1 - fr;
+        if (qi < qn) {
+            int[] pa = q.get(qi);
+            if (pa[0] == i) {
+                int from = Math.max(tail + 1, pa[0]);
+                int ttail = pa[1];
+                
+                int zcnt = imos[ttail + 1] - imos[from];
+                freeOne += ttail + 1 - from - zcnt;
+                filledZero += zcnt;
+                
+                tail = ttail;
+                
+                Arrays.fill(dp[to], 0);
+                for (int f = 0; f + zcnt <= n; f++) {
+                    dp[to][f + zcnt] = dp[fr][f];
+                }
+                for (int j = 0; j < n; j++) {
+                    dp[fr][j] = dp[to][j];
+                }
+                qi++;
+            }
+        }
+        
+        
+        Arrays.fill(dp[to], 0);
+        for (int f = 0; f <= n; f++) {
+            if (dp[fr][f] == 0) {
+                continue;
+            }
+            long base = dp[fr][f];
+            int usedZero = filledZero - f;
+            int usedOne = dec - usedZero;
+            int leftOne = freeOne - usedOne;
+            if (i <= tail) {
+                if (f >= 1) {
+                    dp[to][f - 1] += base;
+                    dp[to][f - 1] %= MOD;
+                }
+                if (leftOne >= 1) {
+                    dp[to][f] += base;
+                    dp[to][f] %= MOD;
+                }
+            } else {
+                dp[to][f] += base;
+                dp[to][f] %= MOD;
+            }
+        }
+        if (i <= tail) {
+            dec++;
+        }
+        if (i == tail) {
+            boolean wash = false;
+            if (qi + 1 < qn) {
+                int[] pa = q.get(qi + 1);
+                if (tail < pa[0]) {
+                    wash = true;
+                }
+            } else {
+                wash = true;
+            }
+            if (wash) {
+                for (int j = 1; j <= n; j++) {
+                    dp[to][j] = 0;
+                }
+            }
+        }
+    
+    }
+    
+    out.println(dp[n % 2][0] % MOD);
+    out.flush();
+}

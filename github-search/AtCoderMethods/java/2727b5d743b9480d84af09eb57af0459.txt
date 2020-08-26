@@ -1,0 +1,33 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    Map<Integer, List<Integer>> m = new TreeMap<Integer, List<Integer>>();
+    for (int i = 0; i < n; i++) {
+        int w = sc.nextInt();
+        int h = sc.nextInt();
+        if (!m.containsKey(w)) {
+            List<Integer> l = new ArrayList<Integer>();
+            l.add(h);
+            m.put(w, l);
+        } else {
+            m.get(w).add(h);
+        }
+    }
+    
+    
+    NavigableSet<Integer> s = new TreeSet<Integer>();
+    for (int width : m.keySet()) {
+        List<Integer> heightList = m.get(width);
+        Collections.sort(heightList);
+        Collections.reverse(heightList);
+        for (int height : heightList) {
+            if (s.ceiling(height) != null) {
+                s.remove(s.ceiling(height));
+            }
+            s.add(height);
+        
+        }
+    }
+    System.out.println(s.size());
+}

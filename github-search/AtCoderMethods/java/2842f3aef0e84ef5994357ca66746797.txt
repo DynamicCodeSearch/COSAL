@@ -1,0 +1,10 @@
+Data down(int value) {
+    if (rightConst - value <= 0) {
+        return new Data(0, 0, 0, 0);
+    } else if (leftConst - value <= 0) {
+        int diff = value - leftConst;
+        return new Data(leftX + diff, rightX, 0, rightConst - value);
+    } else {
+        return new Data(leftX, rightX, leftConst - value, rightConst - value);
+    }
+}

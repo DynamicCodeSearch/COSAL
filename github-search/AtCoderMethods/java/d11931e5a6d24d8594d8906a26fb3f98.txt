@@ -1,0 +1,5 @@
+static long nck(int n, int k) {
+    if (n < k)
+        return 0;
+    return fact[n] * modPow(fact[k], m - 2, m) % m * modPow(fact[n - k], m - 2, m) % m;
+}

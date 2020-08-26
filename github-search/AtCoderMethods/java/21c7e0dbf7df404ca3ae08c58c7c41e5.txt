@@ -1,0 +1,8 @@
+public static void main(String[] args) {
+    int n = s.nextInt(), in[] = new int[n];
+    for (int i = 0; i < n; i++) in[i] = s.nextInt();
+    IntSummaryStatistics iss = Arrays.stream(in).parallel().summaryStatistics();
+    long max = iss.getMax(), sum = iss.getSum();
+    System.out.println(sum);
+    System.out.println(Math.max(0, max - (sum - max)));
+}

@@ -1,0 +1,15 @@
+def toru(a,b,c,d,nw):
+    global kk
+    if kk[a+(kos[0]+1)*(b+((kos[1]+1)*(c+(kos[2]+1)*d)))]!=-1:
+        return kk[a+(kos[0]+1)*(b+((kos[1]+1)*(c+(kos[2]+1)*d)))]
+    max=0
+    if a<kos[0] and W>=nw+w0 and max<toru(a+1,b,c,d,nw+w0)+v[0][a]:
+        max=toru(a+1,b,c,d,nw+w0)+v[0][a]
+    if b<kos[1] and W>=nw+w0+1 and max<toru(a,b+1,c,d,nw+w0+1)+v[1][b]:
+        max=toru(a,b+1,c,d,nw+w0+1)+v[1][b]
+    if c<kos[2] and W>=nw+w0+2 and max<toru(a,b,c+1,d,nw+w0+2)+v[2][c]:
+        max=toru(a,b,c+1,d,nw+w0+2)+v[2][c]
+    if d<kos[3] and W>=nw+w0+3 and max<toru(a,b,c,d+1,nw+w0+3)+v[3][d]:
+        max=toru(a,b,c,d+1,nw+w0+3)+v[3][d]
+    kk[a+(kos[0]+1)*(b+((kos[1]+1)*(c+(kos[2]+1)*d)))]=max
+    return max

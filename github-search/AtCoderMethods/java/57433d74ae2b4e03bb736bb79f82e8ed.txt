@@ -1,0 +1,13 @@
+private void add(int root, int l, int r, int L, int R, int val) {
+    if (l > r || l > R || L > r || L > R) {
+        return;
+    }
+    if (l == L && r == R) {
+        add[root] += val;
+        return;
+    }
+    push(root);
+    int M = (L + R) / 2;
+    add(2 * root + 1, l, Math.min(M, r), L, M, val);
+    add(2 * root + 2, Math.max(M + 1, l), r, M + 1, R, val);
+}

@@ -1,0 +1,18 @@
+static int cnt(int min, int max, int center) {
+    min -= center;
+    max -= center;
+    if (min <= 0 && max >= 0) {
+        min = -min;
+        return min * (min + 1) + max * (max + 1) >> 1;
+    }
+    if (min < 0)
+        min = -min;
+    if (max < 0)
+        max = -max;
+    if (min > max) {
+        min ^= max;
+        max ^= min;
+        min ^= max;
+    }
+    return max * (max + 1) - min * (min - 1) >> 1;
+}

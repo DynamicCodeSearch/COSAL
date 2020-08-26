@@ -1,0 +1,18 @@
+def main():
+
+    n, m = [int(x) for x in input().split()]
+    students = []
+    cpoints = []
+    for _ in range(n):
+        students.append([int(x) for x in input().split()])
+    for _ in range(m):
+        cpoints.append([int(x) for x in input().split()])
+    for student in students:
+        res = 1
+        closest_dis = man_dis(student[0], cpoints[0][0], student[1], cpoints[0][1])
+        for c_idx in range(1, m):
+            this_dis = man_dis(student[0], cpoints[c_idx][0], student[1], cpoints[c_idx][1])
+            if this_dis < closest_dis:
+                closest_dis = this_dis
+                res = c_idx + 1
+        print(res)

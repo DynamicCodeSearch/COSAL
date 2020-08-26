@@ -1,0 +1,17 @@
+private void add(int l, int r, double v, int cl, int cr, int cur) {
+    if (cur >= H) {
+        st[cur] += v;
+    } else if (l <= cl && cr <= r) {
+        plus[cur] += v;
+        propagate(cur);
+    } else {
+        int mid = cl + cr >>> 1;
+        if (cl < r && l < mid) {
+            add(l, r, v, cl, mid, 2 * cur);
+        }
+        if (mid < r && l < cr) {
+            add(l, r, v, mid, cr, 2 * cur + 1);
+        }
+        propagate(cur);
+    }
+}

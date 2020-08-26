@@ -1,0 +1,14 @@
+void solve() {
+    double P = in.nextDouble();
+    double lo = 0, hi = P + 1;
+    for (int times = 0; times < 1000; times++) {
+        double d = (hi - lo) / 3;
+        double mid1 = lo + d;
+        double mid2 = hi - d;
+        if (calc(P, mid1) > calc(P, mid2))
+            lo = mid1;
+        else
+            hi = mid2;
+    }
+    System.out.println(calc(P, lo));
+}

@@ -1,0 +1,35 @@
+private static void solve() {
+    int n = sc.nextInt();
+    int[][] a = new int[n][n];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            a[i][j] = sc.nextInt();
+        }
+    }
+    for (int kk = 0; kk < n; kk++) {
+        for (int ii = 0; ii < n; ii++) {
+            for (int jj = ii + 1; jj < n; jj++) {
+                
+                if (a[ii][jj] > a[ii][kk] + a[kk][jj]) {
+                    pr.println(-1);
+                    return;
+                }
+            }
+        }
+    }
+    long ans = 0;
+    for (int ii = 0; ii < n; ii++) {
+        out: for (int jj = ii + 1; jj < n; jj++) {
+            for (int kk = 0; kk < n; kk++) {
+                if (kk == ii || kk == jj) {
+                    continue;
+                }
+                if (a[ii][jj] == a[ii][kk] + a[kk][jj]) {
+                    continue out;
+                }
+            }
+            ans += a[ii][jj];
+        }
+    }
+    pr.println(ans);
+}

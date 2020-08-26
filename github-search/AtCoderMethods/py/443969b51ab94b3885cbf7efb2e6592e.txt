@@ -1,0 +1,16 @@
+def main():
+    N = int(input())
+    NG1, NG2, NG3 = int(input()), int(input()), int(input())
+    dp = [INF] * (N + 1)
+    if N in [NG1, NG2, NG3]:
+        print("NO")
+        return
+
+    dp[N] = 0
+    for i in range(N, -1, -1):
+        for x in [1, 2, 3]:
+            d = i - x
+            if dp[i] != INF and d >= 0 and d not in [NG1, NG2, NG3]:
+                dp[d] = min(dp[d], dp[i] + 1)
+
+    print("YES" if dp[0] <= 100 else "NO")

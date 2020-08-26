@@ -1,0 +1,19 @@
+static void solver() {
+    int h = ni();
+    int w = ni();
+    int a = ni();
+    int b = ni();
+    fact = new long[2 * 1_000_001];
+    fact[0] = 1;
+    fact[1] = 1;
+    for (int i = 2; i < fact.length; i++) {
+        fact[i] = fact[i - 1] * i % MOD;
+    }
+    long m = nCk(h + w - 2, h - 1);
+    long ans = m;
+    for (int i = 0; i < b; i++) {
+        ans -= nCk((h - a - 1) + i, i) % MOD * nCk(a - 1 + (w - 1 - i), a - 1) % MOD;
+        while (ans < 0) ans += MOD;
+    }
+    out.println(ans % MOD);
+}

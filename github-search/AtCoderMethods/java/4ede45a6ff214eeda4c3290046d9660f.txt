@@ -1,0 +1,36 @@
+private static void solve() {
+    int n = sc.nextInt();
+    Map<Integer, Integer> tmc = new TreeMap<>();
+    Map<Integer, Integer> tml = new TreeMap<>();
+    for (int i = 0; i < n; i++) {
+        int a = sc.nextInt();
+        if (!tmc.containsKey(a)) {
+            tmc.put(a, 0);
+            tml.put(a, i);
+        }
+        tmc.put(a, tmc.get(a) + 1);
+        if (i < tml.get(a)) {
+            tml.put(a, i);
+        }
+    }
+    tmc.put(0, 0);
+    tml.put(0, 0);
+    List<Integer> as = new ArrayList<>(tmc.keySet());
+    long[] ans = new long[n];
+    for (int i = as.size() - 1; i > 0; i--) {
+        int key = as.get(i);
+        int keyc = tmc.get(key);
+        int keyl = tml.get(key);
+        int nkey = as.get(i - 1);
+        int nkeyc = tmc.get(nkey);
+        int nkeyl = tml.get(nkey);
+        ans[keyl] += (long) (key - nkey) * keyc;
+        tmc.put(nkey, nkeyc + keyc);
+        if (keyl < nkeyl) {
+            tml.put(nkey, keyl);
+        }
+    }
+    for (long e : ans) {
+        pr.println(e);
+    }
+}

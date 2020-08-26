@@ -1,0 +1,22 @@
+public IntIterator intIterator() {
+    return new IntIterator() {
+
+        private int at;
+
+        public int value() throws NoSuchElementException {
+            return elements[at];
+        }
+
+        public boolean advance() throws NoSuchElementException {
+            return ++at < size;
+        }
+
+        public boolean isValid() {
+            return at < size;
+        }
+
+        public void remove() throws NoSuchElementException {
+            throw new UnsupportedOperationException();
+        }
+    };
+}

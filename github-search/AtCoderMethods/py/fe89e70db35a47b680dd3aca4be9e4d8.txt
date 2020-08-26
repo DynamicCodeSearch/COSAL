@@ -1,0 +1,15 @@
+def calc(S, bi):
+    ret = 0
+    k = 0
+
+    for i in range(len(S)):
+        if i == 0:
+            continue
+        else:
+            if bi[i-1] == '1':
+                ret += int(S[k:i])
+                k = i
+
+    ret += int(S[k:])
+
+    return ret

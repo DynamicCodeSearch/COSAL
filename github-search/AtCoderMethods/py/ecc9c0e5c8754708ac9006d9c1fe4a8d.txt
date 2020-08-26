@@ -1,0 +1,12 @@
+def B():
+    from numpy import zeros
+    s = input()
+    r = zeros((26,), dtype='int32')
+    ord_a = ord('a')
+    for c in s:
+        r[ord(c)-ord_a] += 1
+    for i in r:
+        if i > 1:
+            print('no')
+            exit()
+    print('yes')

@@ -1,0 +1,21 @@
+public static int[] z(char[] str) {
+    int[] A = new int[str.length];
+    A[0] = str.length;
+    int i = 1, j = 0;
+    while (i < str.length) {
+        while (i + j < str.length && str[j] == str[i + j]) ++j;
+        A[i] = j;
+        if (j == 0) {
+            ++i;
+            continue;
+        }
+        int k = 1;
+        while (i + k < str.length && k + A[k] < j) {
+            A[i + k] = A[k];
+            ++k;
+        }
+        i += k;
+        j -= k;
+    }
+    return A;
+}

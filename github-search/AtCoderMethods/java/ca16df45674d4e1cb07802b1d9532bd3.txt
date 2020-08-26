@@ -1,0 +1,19 @@
+static void solve() {
+    int n = ni(), m = ni(), K = ni();
+    
+    
+    int mod = 1000000007;
+    int[][] fif = enumFIF(1000000, mod);
+    long[] ib = new long[m + 1];
+    for (int i = 0; i <= m; i++) ib[i] = fif[1][i];
+    long[] ic = new long[K + 1];
+    for (int i = 0; i <= K; i++) ic[i] = fif[1][i];
+    long[] is = convolute(ib, ic, 3, mod);
+    long ret = 0;
+    for (int t = n; t <= n + m + K; t++) {
+        ret = ret * 3 + (long) fif[0][t - 1] * is[t - n];
+        ret %= mod;
+    }
+    ret = ret * fif[1][n - 1] % mod;
+    out.println(ret);
+}

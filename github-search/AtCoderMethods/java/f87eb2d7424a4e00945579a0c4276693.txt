@@ -1,0 +1,49 @@
+public void readBody(String str) {
+    
+    String[] strArr = str.split(" ");
+    HashSet<Integer> cols = new HashSet<Integer>();
+    int master = 0;
+    for (int i = 0; i < N; i++) {
+        int a = Integer.parseInt(strArr[i]);
+        int c = -1;
+        
+        if (a >= 1 && a <= 399)
+            c = 1;
+        
+        if (a >= 400 && a <= 799)
+            c = 2;
+        
+        if (a >= 800 && a <= 1199)
+            c = 3;
+        
+        if (a >= 1200 && a <= 1599)
+            c = 4;
+        
+        if (a >= 1600 && a <= 1999)
+            c = 5;
+        
+        if (a >= 2000 && a <= 2399)
+            c = 6;
+        
+        if (a >= 2400 && a <= 2799)
+            c = 7;
+        
+        if (a >= 2800 && a <= 3199)
+            c = 8;
+        if (a >= 3200)
+            master++;
+        if (c >= 1 && c <= 8)
+            cols.add(c);
+    }
+    int min = cols.size();
+    int max = cols.size();
+    if (master > 0) {
+        if (min == 0)
+            min = 1;
+        max += master;
+    
+    
+    }
+    System.out.println(min + " " + max);
+    cnt++;
+}

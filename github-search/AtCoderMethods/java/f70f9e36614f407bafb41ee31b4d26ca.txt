@@ -1,0 +1,33 @@
+private void search(boolean[][] b, int r) {
+    if (r >= b.length) {
+        if (check(b)) {
+            found = true;
+        }
+        return;
+    }
+    if (found) {
+        return;
+    }
+    boolean flg = false;
+    for (int i = 0; i < b[r].length; ++i) {
+        if (b[r][i]) {
+            flg = true;
+            search(b, r + 1);
+            if (found) {
+                return;
+            }
+            break;
+        }
+    }
+    if (!flg) {
+        for (int i = 0; i < b[r].length; ++i) {
+            b[r][i] = true;
+            search(b, r + 1);
+            if (found) {
+                return;
+            } else {
+                b[r][i] = false;
+            }
+        }
+    }
+}

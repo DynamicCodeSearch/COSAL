@@ -1,0 +1,19 @@
+public static boolean equal(int m, String a) {
+    if (a.length() % 2 != 0) {
+        return false;
+    } else {
+        String[] arr = a.split("");
+        int i = 0, j = m;
+        boolean r = true;
+        while (i < m && j < arr.length) {
+            if (arr[i].equals(arr[j])) {
+                i++;
+                j++;
+            } else {
+                r = false;
+                break;
+            }
+        }
+        return r;
+    }
+}

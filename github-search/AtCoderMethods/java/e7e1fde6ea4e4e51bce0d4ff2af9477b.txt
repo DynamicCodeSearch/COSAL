@@ -1,0 +1,36 @@
+
+
+
+
+
+public static void main(String[] args) {
+    long left = 10000000000L;
+    long right = 100000000000L;
+    while (right - left > 1) {
+        long k = left + right >> 1;
+        if (q(k)) {
+            right = k;
+        } else {
+            left = k;
+        }
+    }
+    if (right / 10 >= 9000000000L) {
+        String ten = "10000000000";
+        for (int i = 10; i >= 2; i--) {
+            if (q(Long.parseLong(ten.substring(0, i)))) {
+                System.out.println("! " + (right + "").substring(0, i));
+                return;
+            }
+        }
+        System.out.println("! " + Long.toString(right).substring(0, 1));
+    } else {
+        String nine = "999999999";
+        for (int i = 9; i >= 1; i--) {
+            if (!q(Long.parseLong(nine.substring(0, i)))) {
+                System.out.println("! " + (right + "").substring(0, i + 1));
+                return;
+            }
+        }
+        System.out.println("! " + Long.toString(right).substring(0, 1));
+    }
+}

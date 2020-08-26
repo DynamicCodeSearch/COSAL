@@ -1,0 +1,20 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    int N = Integer.parseInt(input.readLine());
+    long sumOfSeconds = 0;
+    long[] timeToSolveProblem = new long[N];
+    String[] ts = input.readLine().split(" ");
+    for (int i = 0; i < N; i++) {
+        long t = Long.parseLong(ts[i]);
+        sumOfSeconds += t;
+        timeToSolveProblem[i] = t;
+    }
+    int M = Integer.parseInt(input.readLine());
+    for (int i = 0; i < M; i++) {
+        String[] line = input.readLine().split(" ");
+        int problemNumber = Integer.parseInt(line[0]);
+        int x = Integer.parseInt(line[1]);
+        long sum = sumOfSeconds + x - timeToSolveProblem[problemNumber - 1];
+        System.out.println(sum);
+    }
+}

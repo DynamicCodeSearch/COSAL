@@ -1,0 +1,12 @@
+public static void main(String[] args) throws java.lang.Exception {
+    new Thread(null, new Runnable() {
+
+        public void run() {
+            try {
+                new Main().run();
+                out.close();
+            } catch (IOException e) {
+            }
+        }
+    }, "1", 1 << 26).start();
+}

@@ -1,0 +1,17 @@
+public void solve() {
+    int max = 0;
+    for (int s : HP) {
+        if (s > max)
+            max = s;
+    }
+    int min = 0;
+    max = max / B + 1;
+    for (; max - min > 1; ) {
+        int t = (max - min) / 2 + min;
+        if (enough(t))
+            max = t;
+        else
+            min = t;
+    }
+    System.out.println(max);
+}

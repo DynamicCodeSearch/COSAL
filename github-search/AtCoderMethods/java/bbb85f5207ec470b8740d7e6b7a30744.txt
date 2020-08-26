@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    int N = ni();
+    int A = ni();
+    int[] x = na(N);
+    long[][][] dp = new long[N + 1][N + 1][2600];
+    dp[0][0][0] = 1;
+    for (int i = 1; i <= N; i++) {
+        for (int j = 0; j <= N; j++) {
+            for (int k = 0; k < 2600; k++) {
+                
+                dp[i][j][k] += dp[i - 1][j][k];
+                
+                if (k + x[i - 1] < 2600 && j < N)
+                    dp[i][j + 1][k + x[i - 1]] += dp[i - 1][j][k];
+            }
+        }
+    }
+    long ans = 0;
+    for (int i = 1; i <= N; i++) {
+        ans += dp[N][i][i * A];
+    }
+    System.out.println(ans);
+}

@@ -1,0 +1,12 @@
+static long ncr(long n, long r) {
+    long res = 1;
+    if (n == 0 || r == 0 || n == r)
+        return res;
+    res *= fact[(int) n];
+    res %= mod;
+    res *= rev[(int) r];
+    res %= mod;
+    res *= rev[(int) (n - r)];
+    res %= mod;
+    return res;
+}

@@ -1,0 +1,10 @@
+def c():
+    import numpy as np
+
+    N = int(input() )
+    A = np.array([int(a) for a in input().split()])
+
+    A_cum = np.cumsum(A)
+    A_rev = A_cum[-1] - A_cum
+    res = np.abs(A_rev - A_cum)[:-1]
+    print(int(np.min(res)))

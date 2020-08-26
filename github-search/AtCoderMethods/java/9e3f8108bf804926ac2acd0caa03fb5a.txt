@@ -1,0 +1,34 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    long K = sc.nextLong();
+    long[] a = sc.nextLongList(N);
+    long sum = a[0];
+    
+    long[][] dp = new long[N + 1][N + 1];
+    for (long[] v : dp) Arrays.fill(v, Integer.MAX_VALUE);
+    dp[1][0] = 0;
+    dp[1][1] = 1;
+    for (int i = 1; i < N; i++) {
+        for (int j = 0; j <= i; j++) {
+            if (dp[i][j] < Integer.MAX_VALUE) {
+                dp[i + 1][j] = Math.min(dp[i + 1][j], dp[i][j]);
+                long y = dp[i][j] * a[i] / sum + 1;
+                if (y <= a[i]) {
+                    dp[i + 1][j + 1] = Math.min(dp[i + 1][j + 1], dp[i][j] + y);
+                }
+            }
+        }
+        sum += a[i];
+    }
+    if (sum == K) {
+        System.out.println(1);
+        return;
+    }
+    for (int k = N; k >= 0; k--) {
+        if (dp[N][k] <= K) {
+            System.out.println(k);
+            return;
+        }
+    }
+}

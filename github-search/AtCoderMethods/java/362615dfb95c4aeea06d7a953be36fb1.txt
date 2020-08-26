@@ -1,0 +1,26 @@
+public static void main(String[] args) throws IOException {
+    final Scanner sc = new Scanner(System.in);
+    final int N = sc.nextInt();
+    final int A = sc.nextInt();
+    int[] arr = new int[N];
+    for (int i = 0; i < N; i++) {
+        arr[i] = sc.nextInt();
+    }
+    final int MAX = N * A;
+    long[][] DP = new long[N + 1][MAX + 1];
+    DP[0][0] = 1;
+    for (int index = 0; index < N; index++) {
+        final int value = arr[index];
+        for (int prev_index = index; prev_index >= 0; prev_index--) {
+            for (int curr_value = MAX - value; curr_value >= 0; curr_value--) {
+                DP[prev_index + 1][curr_value + value] += DP[prev_index][curr_value];
+            }
+        }
+    }
+    long answer = 0;
+    for (int i = 1; i <= N; i++) {
+        answer += DP[i][i * A];
+    }
+    
+    System.out.println(answer);
+}

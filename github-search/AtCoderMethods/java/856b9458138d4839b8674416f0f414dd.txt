@@ -1,0 +1,13 @@
+private static int[] solve(int n, int[] a) {
+    int[] b = new int[n];
+    int[] ord = IntStream.range(0, n).map(x -> x % 2 == 0 ? x / 2 : (-x - 1) / 2).toArray();
+    for (int i = 0; i < n; i++) b[n / 2 + ord[i]] = a[i];
+    if (n % 2 == 1)
+        
+        for (int i = 0; i < n / 2; i++) {
+            int t = b[i];
+            b[i] = b[n - 1 - i];
+            b[n - 1 - i] = t;
+        }
+    return b;
+}

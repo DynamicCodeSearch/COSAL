@@ -1,0 +1,17 @@
+def main():
+    N, M = map(int, input().split())
+    dp = [0] * (M + 1)
+    total = 0
+    for _ in range(N):
+        l, r, s = map(int, input().split())
+        total += s
+        dp[l - 1] += s
+        dp[r] -= s
+
+    for i in range(len(dp) - 1):
+        dp[i + 1] += dp[i]
+
+    ans = 0
+    for i in range(len(dp) - 1):
+        ans = max(ans, total - dp[i])
+    print(ans)

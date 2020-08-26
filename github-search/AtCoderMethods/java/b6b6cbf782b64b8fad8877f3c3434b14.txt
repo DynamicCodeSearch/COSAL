@@ -1,0 +1,9 @@
+public static boolean check(int idx, boolean red) {
+    Arrays.fill(color, 0);
+    Arrays.fill(used, false);
+    if (dfs(idx, red))
+        return true;
+    for (int i = 0; i < M; i++) if (!used[i])
+        return false;
+    return true;
+}

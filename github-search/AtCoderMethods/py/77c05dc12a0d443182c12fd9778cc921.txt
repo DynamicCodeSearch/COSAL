@@ -1,0 +1,14 @@
+def lcm(a, b):
+    ax = a
+    bx = b
+    if a<b:
+        ax, bx = (bx, ax)
+    while True:
+        if ax%bx == 0:
+            gcd = bx
+            break
+        else:
+            c = bx
+            bx = ax%bx
+            ax = c
+    return a*b // gcd

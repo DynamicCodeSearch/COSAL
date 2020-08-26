@@ -1,0 +1,23 @@
+void solve() throws NumberFormatException, IOException {
+    int n = in.nextInt();
+    int t = in.nextInt();
+    int[] max = new int[n];
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = in.nextInt();
+    }
+    max[n - 1] = a[n - 1];
+    for (int i = n - 2; i >= 0; i--) {
+        max[i] = Math.max(max[i + 1], a[i]);
+    }
+    int maxDiff = 0;
+    for (int i = 0; i < n - 1; i++) {
+        maxDiff = Math.max(maxDiff, max[i + 1] - a[i]);
+    }
+    int cnt = 0;
+    for (int i = 0; i < n - 1; i++) {
+        if (max[i + 1] - a[i] == maxDiff)
+            cnt++;
+    }
+    System.out.println(cnt);
+}

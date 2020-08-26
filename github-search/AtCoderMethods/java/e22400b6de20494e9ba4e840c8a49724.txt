@@ -1,0 +1,23 @@
+void solve() throws IOException {
+    int n = in.nextInt();
+    a = in.nextLong();
+    b = in.nextLong();
+    diff = a - b;
+    h = new long[n];
+    for (int i = 0; i < n; i++) {
+        h[i] = in.nextLong();
+    }
+    long left = 0;
+    long right = 1000000000;
+    long ans = right;
+    while (left <= right) {
+        long mid = (left + right) / 2;
+        if (check(mid)) {
+            right = mid - 1;
+            ans = mid;
+        } else {
+            left = mid + 1;
+        }
+    }
+    System.out.println(ans);
+}

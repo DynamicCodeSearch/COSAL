@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    InputReader scanner = new InputReader(System.in);
+    int N = scanner.nextInt();
+    int[] T = new int[N + 1];
+    for (int i = 1; i <= N; i++) {
+        T[i] = scanner.nextInt();
+    }
+    int M = scanner.nextInt();
+    int[] P = new int[M + 1];
+    int[] A = new int[M + 1];
+    for (int i = 1; i <= M; i++) {
+        P[i] = scanner.nextInt();
+        A[i] = scanner.nextInt();
+    }
+    for (int i = 1; i <= M; i++) {
+        int temp = T[P[i]];
+        T[P[i]] = A[i];
+        int res = 0;
+        for (int j = 1; j <= N; j++) {
+            res += T[j];
+        }
+        System.out.println(res);
+        T[P[i]] = temp;
+    }
+}

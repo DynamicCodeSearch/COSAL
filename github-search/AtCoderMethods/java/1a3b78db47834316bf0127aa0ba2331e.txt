@@ -1,0 +1,24 @@
+public void solve(int testNumber, Scanner in, PrintWriter out) {
+    int h = in.nextInt();
+    int w = in.nextInt();
+    String[][] arr = new String[h][w];
+    for (int i = 0; i < h; i++) {
+        String str = in.next();
+        for (int j = 0; j < w; j++) {
+            arr[i][j] = String.valueOf(str.charAt(j));
+        }
+    }
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            if (arr[i][j].equals(".")) {
+                check(i, j, h, w, arr);
+            }
+        }
+    }
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            out.print(arr[i][j]);
+        }
+        out.println();
+    }
+}

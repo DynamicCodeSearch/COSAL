@@ -1,0 +1,47 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    String a = scanner.next(), b = scanner.next(), c = scanner.next();
+    int cta = 0, ctb = 0, ctc = 0;
+    cta++;
+    String pos = String.valueOf(a.charAt(0));
+    boolean check = true;
+    while (check) {
+        switch(pos) {
+            case "a":
+                if (cta == a.length()) {
+                    check = false;
+                } else {
+                    pos = String.valueOf(a.charAt(cta));
+                    cta++;
+                }
+                break;
+            case "b":
+                if (ctb == b.length()) {
+                    check = false;
+                } else {
+                    pos = String.valueOf(b.charAt(ctb));
+                    ctb++;
+                }
+                break;
+            case "c":
+                if (ctc == c.length()) {
+                    check = false;
+                } else {
+                    pos = String.valueOf(c.charAt(ctc));
+                    ctc++;
+                }
+                break;
+        }
+    }
+    switch(pos) {
+        case "a":
+            System.out.println("A");
+            break;
+        case "b":
+            System.out.println("B");
+            break;
+        case "c":
+            System.out.println("C");
+            break;
+    }
+}

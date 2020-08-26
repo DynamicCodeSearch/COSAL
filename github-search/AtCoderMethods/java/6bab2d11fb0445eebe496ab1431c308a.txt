@@ -1,0 +1,13 @@
+static void preProcessing() {
+    parent = new int[n];
+    level = new int[n];
+    cost = new long[n];
+    parent[0] = -1;
+    dfs(0, 0);
+    int log = (int) Math.ceil(Math.log(n) / Math.log(2));
+    ansector = new int[n][log];
+    for (int[] x : ansector) Arrays.fill(x, -1);
+    for (int i = 0; i < n; i++) ansector[i][0] = parent[i];
+    for (int j = 1; (1 << j) < n; j++) for (int i = 0; i < n; i++) if (ansector[i][j - 1] != -1)
+        ansector[i][j] = ansector[ansector[i][j - 1]][j - 1];
+}

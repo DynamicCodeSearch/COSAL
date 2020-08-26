@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int n = scanner.nextInt();
+    String[] answers = scanner.next().split("");
+    int max = Integer.MIN_VALUE;
+    int min = Integer.MAX_VALUE;
+    for (int i = 1; i <= 4; i++) {
+        int correct = 0;
+        for (String a : answers) {
+            if (a.equals(String.valueOf(i)))
+                correct++;
+        }
+        max = Math.max(max, correct);
+        min = Math.min(min, correct);
+    }
+    System.out.println(max + " " + min);
+}

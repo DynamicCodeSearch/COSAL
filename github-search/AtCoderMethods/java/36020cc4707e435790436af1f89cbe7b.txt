@@ -1,0 +1,22 @@
+public void exec() throws IOException {
+    InputUtil in = new InputUtil();
+    PrintWriter out = new PrintWriter(System.out);
+    int N = in.nextInt();
+    int M = in.nextInt();
+    int[] aToB = in.nextInt(new int[M * 2]);
+    HashSet<Integer> direct = new HashSet<Integer>();
+    HashSet<Integer> reverse = new HashSet<Integer>();
+    for (int i = 0; i < M; i++) {
+        if (aToB[i * 2 + 0] == 1)
+            direct.add(aToB[i * 2 + 1]);
+        if (aToB[i * 2 + 1] == N)
+            reverse.add(aToB[i * 2 + 0]);
+    }
+    boolean judge = false;
+    for (int d : direct) {
+        if (reverse.contains(d))
+            judge = true;
+    }
+    out.println(judge ? "POSSIBLE" : "IMPOSSIBLE");
+    out.flush();
+}

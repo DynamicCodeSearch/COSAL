@@ -1,0 +1,24 @@
+private static int fourth(int h, int w) {
+    int h1, h2, w1, w2;
+    h1 = h / 2;
+    h2 = h / 2;
+    w1 = w / 2;
+    w2 = w / 2;
+    if (h % 2 == 1) {
+        h1 += 1;
+    }
+    if (w % 2 == 1) {
+        w1 += 1;
+    }
+    int result_min = Integer.MAX_VALUE;
+    while (h2 > 0) {
+        long max_area = max_of_area((long) h1 * w1, (long) h1 * w2, (long) h2 * (w1 + w2));
+        long min_area = min_of_area((long) h1 * w1, (long) h1 * w2, (long) h2 * (w1 + w2));
+        if (result_min > max_area - min_area) {
+            result_min = (int) (max_area - min_area);
+        }
+        h1 += 1;
+        h2 -= 1;
+    }
+    return result_min;
+}

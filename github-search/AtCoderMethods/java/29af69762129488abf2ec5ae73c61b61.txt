@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int i = sc.nextInt();
+    sc.close();
+    int result = 0;
+    int bigCount = 0;
+    for (; i > 1; i--) {
+        int count = 0;
+        int tempI = i;
+        while (tempI % 2 == 0) {
+            count++;
+            tempI = tempI / 2;
+        }
+        if (count > bigCount) {
+            bigCount = count;
+            result = i;
+        }
+    }
+    if (result == 0) {
+        result = i;
+    }
+    System.out.println(result);
+}

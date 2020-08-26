@@ -1,0 +1,9 @@
+private final void upward(int index) {
+    if (index == 0)
+        return;
+    int parent = (index - 1) / 2;
+    if (nodes[index].value < nodes[parent].value) {
+        replace(index, parent);
+        upward(parent);
+    }
+}

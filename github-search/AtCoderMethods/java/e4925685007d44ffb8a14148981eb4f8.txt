@@ -1,0 +1,23 @@
+public static void main(String[] args) throws java.lang.Exception {
+    Scanner in = new Scanner(System.in);
+    int n = in.nextInt();
+    HashMap<String, Integer> map = new HashMap<String, Integer>();
+    int max = 0;
+    String answer = "";
+    for (int i = 0; i < n; i++) {
+        String s = in.next();
+        int x = 0;
+        if (map.containsKey(s)) {
+            x = map.get(s) + 1;
+            map.put(s, x);
+        } else {
+            x = 1;
+            map.put(s, 1);
+        }
+        if (x > max) {
+            answer = s;
+            max = x;
+        }
+    }
+    System.out.println(answer);
+}

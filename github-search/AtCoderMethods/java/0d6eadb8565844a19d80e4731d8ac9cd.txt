@@ -1,0 +1,39 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    
+    int L = sc.nextInt();
+    
+    int X = sc.nextInt();
+    
+    int Y = sc.nextInt();
+    
+    int S = sc.nextInt();
+    
+    int D = sc.nextInt();
+    sc.close();
+    
+    if (S == D) {
+        System.out.println("0");
+        return;
+    }
+    double time_a = Double.MAX_VALUE;
+    double time_b = Double.MAX_VALUE;
+    if (S < D) {
+        time_a = (double) (D - S) / (double) (X + Y);
+        if (Y - X > 0) {
+            time_b = (double) (L - D + S) / (double) (Y - X);
+        }
+    } else {
+        time_a = (double) (L - S + D) / (double) (X + Y);
+        if (Y - X > 0) {
+            time_b = (double) (S - D) / (double) (Y - X);
+        }
+    }
+    if (time_a < time_b) {
+        
+        System.out.println(time_a);
+    } else {
+        
+        System.out.println(time_b);
+    }
+}

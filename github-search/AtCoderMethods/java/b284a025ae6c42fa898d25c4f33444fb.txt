@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    Queue<Integer> q = new LinkedList<Integer>();
+    Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    int[] dif = new int[] { 1, 5, 10, -1, -5, -10 };
+    int now;
+    q.add(a);
+    map.put(a, 0);
+    while (!q.isEmpty()) {
+        now = q.poll();
+        if (now == b) {
+            System.out.println(map.get(now));
+            break;
+        }
+        for (int i = 0; i < dif.length; i++) {
+            if (!map.containsKey(now + dif[i])) {
+                map.put(now + dif[i], map.get(now) + 1);
+                q.add(now + dif[i]);
+            }
+        }
+    }
+}

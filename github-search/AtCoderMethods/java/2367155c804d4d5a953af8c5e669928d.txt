@@ -1,0 +1,21 @@
+Treap<T> insert(final T k) {
+    if (isEmpty()) {
+        value = k;
+        left = new Treap<>();
+        right = new Treap<>();
+    } else if (value.compareTo(k) >= 0) {
+        left = left.insert(k);
+        if (left.priority > priority) {
+            update();
+            return rotateRight();
+        }
+    } else {
+        right = right.insert(k);
+        if (right.priority > priority) {
+            update();
+            return rotateLeft();
+        }
+    }
+    update();
+    return this;
+}

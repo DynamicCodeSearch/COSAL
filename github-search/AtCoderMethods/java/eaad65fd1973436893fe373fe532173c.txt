@@ -1,0 +1,90 @@
+public void solve(int testNumber, FastScanner in, PrintWriter out) {
+    int n = in.nextInt();
+    int numQueries = in.nextInt();
+    int a = in.nextInt() - 1;
+    int b = in.nextInt() - 1;
+    int[] xs = new int[numQueries];
+    for (int i = 0; i < xs.length; i++) {
+        xs[i] = in.nextInt() - 1;
+    }
+    long[] da = new long[n];
+    long[] db = new long[n];
+    Arrays.fill(da, infinity);
+    Arrays.fill(db, infinity);
+    da[a] = Math.abs(b - xs[0]);
+    db[b] = Math.abs(a - xs[0]);
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    Tree ta1 = new Tree(n);
+    Tree ta2 = new Tree(n);
+    Tree tb1 = new Tree(n);
+    Tree tb2 = new Tree(n);
+    for (int i = 0; i < n; i++) {
+        ta1.set(i, da[i] + i);
+        ta2.set(i, da[i] - i);
+        tb1.set(i, db[i] + i);
+        tb2.set(i, db[i] - i);
+    }
+    long sdx = 0;
+    for (int it = 1; it < xs.length; it++) {
+        int x = xs[it];
+        int p = xs[it - 1];
+        long dx = Math.abs(x - p);
+        ta1.add(0, n - 1, dx);
+        ta2.add(0, n - 1, dx);
+        tb1.add(0, n - 1, dx);
+        tb2.add(0, n - 1, dx);
+        long dap = infinity;
+        dap = Math.min(dap, tb2.getMin(0, x) + x - dx);
+        dap = Math.min(dap, tb1.getMin(x, n - 1) - x - dx);
+        long dbp = infinity;
+        dbp = Math.min(dbp, ta2.getMin(0, x) + x - dx);
+        dbp = Math.min(dbp, ta1.getMin(x, n - 1) - x - dx);
+        dap = Math.min(dap, ta1.get(p) - p);
+        dbp = Math.min(dbp, tb1.get(p) - p);
+        ta1.set(p, dap + p);
+        ta2.set(p, dap - p);
+        tb1.set(p, dbp + p);
+        tb2.set(p, dbp - p);
+        sdx += dx;
+    }
+    long ans = infinity;
+    for (int i = 0; i < n; i++) {
+        ans = Math.min(ans, ta1.get(i) - i);
+        ans = Math.min(ans, tb1.get(i) - i);
+    }
+    out.println(ans);
+}

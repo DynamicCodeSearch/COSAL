@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    sc = new Scanner(System.in);
+    int i;
+    int n;
+    n = sc.nextInt();
+    long[] a = new long[n + 3];
+    a[1] = 0;
+    a[2] = 0;
+    a[3] = 1;
+    for (i = 4; i <= n; i++) {
+        a[i] = a[i - 1] + a[i - 2] + a[i - 3];
+        a[i] = a[i] % 10007;
+    }
+    System.out.println(a[n]);
+}

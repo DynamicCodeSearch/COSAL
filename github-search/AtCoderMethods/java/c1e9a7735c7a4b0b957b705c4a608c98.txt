@@ -1,0 +1,23 @@
+void run() {
+    long R = sc.nextLong();
+    long B = sc.nextLong();
+    long x = sc.nextLong();
+    long y = sc.nextLong();
+    long x0 = 0;
+    long x3 = Math.min(R / x, B);
+    long ans = 0;
+    while (x3 - x0 > 100) {
+        long x1 = x0 + (x3 - x0) / 3;
+        long x2 = x0 + ((x3 - x0) / 3) * 2;
+        long c1 = getCnt(R, B, x1, x, y);
+        long c2 = getCnt(R, B, x2, x, y);
+        if (c1 < c2)
+            x0 = x1;
+        else
+            x3 = x2;
+    }
+    for (long i = x0; i <= x3; i++) {
+        ans = Math.max(ans, getCnt(R, B, i, x, y));
+    }
+    System.out.println(ans);
+}

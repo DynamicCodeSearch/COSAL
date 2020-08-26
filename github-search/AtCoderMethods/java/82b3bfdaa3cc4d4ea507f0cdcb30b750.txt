@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N, L;
+    N = Integer.parseInt(sc.next());
+    L = Integer.parseInt(sc.next());
+    String[] S = new String[N];
+    String answer = "";
+    for (int i = 0; i < N; i++) {
+        S[i] = sc.next();
+    }
+    for (int i = 0; i < N - 1; i++) {
+        for (int j = i + 1; j < N; j++) {
+            if (S[i].compareTo(S[j]) >= 0) {
+                String temp = S[i];
+                S[i] = S[j];
+                S[j] = temp;
+            }
+        }
+    }
+    for (int i = 0; i < N; i++) {
+        answer += S[i];
+    }
+    System.out.println(answer);
+}

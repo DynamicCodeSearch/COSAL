@@ -1,0 +1,10 @@
+def checkH(H, W, a):
+    if H % 3 == 0:
+        return 0
+    x = int(W / 2)
+    y = int(H / 3) + a
+    if x == 0 or y == 0 or (H-y) == 0:
+        return 10000000000
+    S = [W*y, x*(H-y), (W-x)*(H-y)]
+
+    return max(S) - min(S)

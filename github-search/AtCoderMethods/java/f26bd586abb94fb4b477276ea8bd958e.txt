@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    FastScanner scan = new FastScanner();
+    H = Integer.parseInt(scan.next());
+    W = Integer.parseInt(scan.next());
+    a = new int[H][W];
+    dp = new int[H][W];
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            a[i][j] = Integer.parseInt(scan.next());
+            ;
+        }
+    }
+    long sum = 0L;
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            sum = (sum + solve(j, i)) % INF;
+        }
+    }
+    System.out.println(sum);
+}

@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int n = in.nextInt();
+    int m = in.nextInt();
+    visited = new boolean[n + 1];
+    
+    visited[0] = true;
+    adjMatrix = new boolean[n + 1][n + 1];
+    for (int i = 0; i < m; ++i) {
+        int a = in.nextInt();
+        int b = in.nextInt();
+        adjMatrix[a][b] = true;
+        adjMatrix[b][a] = true;
+    }
+    dfsSolve(1);
+    System.out.println(res);
+}

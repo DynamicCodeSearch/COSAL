@@ -1,0 +1,25 @@
+private void solve() {
+    int[] cntFact = new int[1001];
+    boolean[] hash = new boolean[1001];
+    int n = in.nextInt();
+    Arrays.fill(hash, false);
+    Arrays.fill(cntFact, 0);
+    for (int i = 2; i <= n; i++) {
+        if (!hash[i]) {
+            for (int j = i; j <= n; j += i) {
+                int k = j;
+                while (k % i == 0) {
+                    cntFact[i]++;
+                    k /= i;
+                }
+                hash[j] = true;
+            }
+        }
+    }
+    long ans = 1;
+    long mod = (long) 1e9 + 7;
+    for (int i = 0; i <= n; i++) {
+        ans = (ans * (cntFact[i] + 1)) % mod;
+    }
+    out.print(ans);
+}

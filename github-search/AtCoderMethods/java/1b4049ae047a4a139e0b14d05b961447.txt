@@ -1,0 +1,40 @@
+public static void main(String[] args) throws InterruptedException {
+    Scanner in = new Scanner(System.in);
+    int N = in.nextInt();
+    int M = in.nextInt();
+    int[][] map = new int[N][N];
+    MyPair[] edges = new MyPair[M];
+    for (int i = 0; i < M; i++) {
+        int a = in.nextInt() - 1;
+        int b = in.nextInt() - 1;
+        map[a][b] = 1;
+        map[b][a] = 1;
+        edges[i] = new MyPair(a, b);
+    }
+    int answer = 0;
+    for (int i = 0; i < M; i++) {
+        MyPair p = edges[i];
+        map[p.a][p.b] = 0;
+        map[p.b][p.a] = 0;
+        int numVisited = 0;
+        int[] visited = new int[N];
+        ArrayList<Integer> q = new ArrayList<Integer>();
+        q.add(0);
+        while (q.size() > 0) {
+            int node = q.remove(0);
+            visited[node] = 1;
+            numVisited++;
+            for (int j = 0; j < N; j++) {
+                if (map[node][j] == 1 && visited[j] == 0 && !q.contains(j)) {
+                    q.add(j);
+                }
+            }
+        }
+        if (numVisited < N) {
+            answer++;
+        }
+        map[p.a][p.b] = 1;
+        map[p.b][p.a] = 1;
+    }
+    System.out.println(answer);
+}

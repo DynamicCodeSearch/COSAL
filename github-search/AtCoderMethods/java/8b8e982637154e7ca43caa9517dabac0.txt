@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int ans;
+    int h = 1;
+    int w = n;
+    ans = n - h * w;
+    ans = w - h;
+    h++;
+    w = n / h;
+    while (h <= w) {
+        int dif = 0;
+        dif = n - h * w;
+        dif += w - h;
+        if (dif < ans) {
+            ans = dif;
+        }
+        h++;
+        w = n / h;
+    }
+    System.out.println(ans);
+}

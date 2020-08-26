@@ -1,0 +1,25 @@
+private void resizeAndPut(long x, int v) {
+    int nscale = scale << 1;
+    int nrscale = rscale << 1;
+    int nmask = nscale - 1;
+    int[] nallocated = new int[nscale];
+    long[] nkeys = new long[nscale];
+    for (int i = next(0); i < scale; i = next(i + 1)) {
+        long y = keys[i];
+        int pos = h(y) & nmask;
+        while (nallocated[pos] != 0) pos = pos + 1 & nmask;
+        nkeys[pos] = y;
+        nallocated[pos] = allocated[i];
+    }
+    {
+        int pos = h(x) & nmask;
+        while (nallocated[pos] != 0) pos = pos + 1 & nmask;
+        nkeys[pos] = x;
+        nallocated[pos] = v;
+    }
+    allocated = nallocated;
+    keys = nkeys;
+    scale = nscale;
+    rscale = nrscale;
+    mask = nmask;
+}

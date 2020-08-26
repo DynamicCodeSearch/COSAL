@@ -1,0 +1,15 @@
+public static void solver(int x1, int y1, int r, int x2, int y2, int x3, int y3) {
+    if (x2 <= x1 - r && x1 + r <= x3 && y2 <= y1 - r && y1 + r <= y3) {
+        System.out.println("NO");
+        System.out.println("YES");
+        return;
+    }
+    if (Math.pow((x1 - x2), 2) + Math.pow(y1 - y2, 2) <= Math.pow(r, 2) && Math.pow((x1 - x3), 2) + Math.pow(y1 - y2, 2) <= Math.pow(r, 2) && Math.pow((x1 - x2), 2) + Math.pow(y1 - y3, 2) <= Math.pow(r, 2) && Math.pow((x1 - x3), 2) + Math.pow(y1 - y3, 2) <= Math.pow(r, 2)) {
+        System.out.println("YES");
+        System.out.println("NO");
+        return;
+    }
+    System.out.println("YES");
+    System.out.println("YES");
+    return;
+}

@@ -1,0 +1,25 @@
+public void run() {
+    try {
+        Scanner s = new Scanner();
+        long h1 = s.nextLong();
+        long w1 = s.nextLong();
+        s.reset();
+        long h2 = s.nextLong();
+        long w2 = s.nextLong();
+        boolean flag = false;
+        flag = h1 == h2;
+        if (!flag)
+            flag = w1 == w2;
+        if (!flag)
+            flag = h1 == w2;
+        if (!flag)
+            flag = h2 == w1;
+        if (flag) {
+            System.out.println("YES");
+            return;
+        }
+        System.out.println("NO");
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}

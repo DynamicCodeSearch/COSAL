@@ -1,0 +1,17 @@
+public final void answer() {
+    Arrays.sort(A);
+    int h = 0;
+    int w = 0;
+    for (int i = N - 1; i > 0; i--) {
+        if (A[i] == A[i - 1]) {
+            if (h == 0) {
+                h = A[i];
+                i--;
+            } else if (w == 0) {
+                w = A[i];
+                break;
+            }
+        }
+    }
+    System.out.println((long) h * w);
+}

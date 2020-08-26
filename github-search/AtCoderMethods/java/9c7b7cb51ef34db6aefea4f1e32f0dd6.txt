@@ -1,0 +1,10 @@
+
+private long combination(long n, long m) {
+    if (n / 2 < m) {
+        return combination(n, n - m);
+    }
+    if (m <= 0) {
+        return 1;
+    }
+    return (combination(n, m - 1) * (n - m + 1) / m) % MOD;
+}

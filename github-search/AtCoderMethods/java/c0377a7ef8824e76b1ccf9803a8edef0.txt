@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    
+    
+    String line = "";
+    String[] s_array = { "" };
+    try {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        line = br.readLine();
+        N = Integer.parseInt(line);
+        Student = new long[N];
+        line = br.readLine();
+        br.close();
+    } catch (IOException e) {
+        System.out.println("Error in FileReader.\n");
+    }
+    s_array = line.split(" ");
+    for (int i = 0; i < N; i++) {
+        Student[i] = Long.parseLong(s_array[i]) * 100000 + i;
+    }
+    Arrays.sort(Student);
+    PrintWriter out = new PrintWriter(System.out);
+    for (int i = N - 1; 0 <= i; i--) {
+        out.println((Student[i] % 100000) + 1);
+    }
+    out.flush();
+
+}

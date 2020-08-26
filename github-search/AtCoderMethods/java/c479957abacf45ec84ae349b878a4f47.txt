@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    in = new InputReader(System.in);
+    out = new PrintWriter(System.out);
+    int result = 12;
+    long N = in.nextLong();
+    for (int i = 1; i < 123456; i++) {
+        if (N % i != 0) {
+            continue;
+        }
+        long A = i;
+        long B = N / A;
+        result = Math.min(result, Math.max(Long.toString(A).length(), Long.toString(B).length()));
+    }
+    out.println(result);
+    out.close();
+}

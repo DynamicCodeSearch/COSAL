@@ -1,0 +1,25 @@
+boolean check(int[] a) {
+    int n = a.length;
+    if (a.length % 2 == 0) {
+        int k = 1;
+        for (int i = 0; i < n; i++) {
+            if (a[i] != k) {
+                return false;
+            }
+            if (i % 2 != 0) {
+                k += 2;
+            }
+        }
+    } else {
+        int k = 0;
+        for (int i = 0; i < n; i++) {
+            if (a[i] != k) {
+                return false;
+            }
+            if (i % 2 == 0) {
+                k += 2;
+            }
+        }
+    }
+    return true;
+}

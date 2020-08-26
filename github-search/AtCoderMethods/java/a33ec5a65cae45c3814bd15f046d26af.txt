@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    int[] pr = generatePrimes(2000);
+    int[] cnt = new int[pr.length];
+    for (int x = 2; x <= n; x++) {
+        int xx = x;
+        for (int i = 0; i < pr.length; i++) {
+            if (xx % pr[i] == 0) {
+                while (xx % pr[i] == 0) {
+                    cnt[i]++;
+                    xx /= pr[i];
+                }
+            }
+        }
+    }
+    long ret = 1;
+    long MOD = 1000000007;
+    for (int i = 0; i < pr.length; i++) {
+        ret *= (cnt[i] + 1);
+        ret %= MOD;
+    }
+    out.println(ret);
+    out.flush();
+}

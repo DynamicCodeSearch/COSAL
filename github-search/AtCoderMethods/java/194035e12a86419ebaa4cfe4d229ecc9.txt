@@ -1,0 +1,9 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    long K = sc.nextLong();
+    int N = 50;
+    System.out.println(N);
+    long base = N - 1 + K / N - K % N;
+    for (int i = 0; i < N; i++) System.out.print((base + (i < K % N ? N : 0)) + (i == N - 1 ? "\n" : " "));
+    sc.close();
+}

@@ -1,0 +1,70 @@
+public static void main(String[] args) {
+    int N, K;
+    
+    Scanner sc = new Scanner(System.in);
+    N = sc.nextInt();
+    K = sc.nextInt();
+    for (int i = 0; i < K; i++) {
+        
+        D[sc.nextInt()] = 1;
+    }
+    int[] NN = new int[5];
+    
+    int ND = 1;
+    int ANS;
+    ANS = N;
+    for (int i = 0; i < 5; i++) {
+        NN[i] = N % 10;
+        N = N / 10;
+        if (N > 0)
+            ND++;
+    }
+    int[] NNst = new int[5];
+    for (int i = 0; i < ND; i++) {
+        if (
+        D[NN[i]] == 0)
+            
+            NNst[i] = 0;
+        else
+            NNst[i] = -1;
+    }
+    int MIN_D = -1;
+    int MIN_D_nonzero = -1;
+    int MAX_D = -1;
+    for (int i = 0; i < 10; i++) {
+        if ((MIN_D == -1) && (D[i] == 0))
+            MIN_D = i;
+        if ((0 < i) && (MIN_D_nonzero == -1) && (D[i] == 0))
+            MIN_D_nonzero = i;
+        if (D[i] == 0)
+            MAX_D = i;
+    }
+    int Leftmost_D = -1;
+    for (int i = 0; i < ND; i++) {
+        if (NNst[i] == -1) {
+            Leftmost_D = i;
+            if (NN[i] >= MAX_D)
+                NNst[i + 1] = -1;
+        }
+    }
+    if (Leftmost_D == -1)
+        ANS = ANS;
+    if (Leftmost_D == (ND - 1)) {
+        
+        if (NN[Leftmost_D] < MAX_D)
+            ANS = getnext(NN[Leftmost_D]);
+        else
+            ANS = MIN_D_nonzero * 10 + MIN_D;
+        for (int j = 0; j < Leftmost_D; j++) {
+            ANS = ANS * 10 + MIN_D;
+        }
+    } else if (0 <= Leftmost_D) {
+        for (int j = ND - 1; 0 <= j; j--) {
+            if (j > Leftmost_D)
+                ANS = ANS * 10 + NN[j];
+            else
+                ANS = ANS * 10 + getnext(NN[j]);
+        }
+    }
+    System.out.println(ANS);
+}

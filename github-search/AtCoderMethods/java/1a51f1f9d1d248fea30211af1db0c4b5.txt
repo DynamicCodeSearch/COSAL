@@ -1,0 +1,12 @@
+private void solve() throws IOException {
+    int n = in.nextInt();
+    int x = in.nextInt();
+    long answer = 0;
+    int last = 0;
+    for (int i = 0; i < n; i++) {
+        int cur = in.nextInt();
+        answer += Math.max(0, cur + last - x);
+        last = Math.max(0, cur - Math.max(0, cur + last - x));
+    }
+    out.println(answer);
+}

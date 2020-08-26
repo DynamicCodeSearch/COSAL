@@ -1,0 +1,9 @@
+public String nextWord() throws IOException {
+    int b = moveDigitHead();
+    StringBuilder sb = new StringBuilder();
+    while (isDigit(b)) {
+        sb.append((char) b);
+        b = nextByte();
+    }
+    return sb.toString();
+}

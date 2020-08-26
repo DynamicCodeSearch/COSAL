@@ -1,0 +1,14 @@
+Pair<Treap<T>, Treap<T>> splitWith(final T v) {
+    
+    if (isEmpty()) {
+        return new Pair<>(new Treap<>(), new Treap<>());
+    } else if (v.compareTo(value) <= 0) {
+        final Pair<Treap<T>, Treap<T>> pair = left.splitWith(v);
+        left = pair.second;
+        return new Pair<>(pair.first, this.update());
+    } else {
+        final Pair<Treap<T>, Treap<T>> pair = right.splitWith(v);
+        right = pair.first;
+        return new Pair<>(this.update(), pair.second);
+    }
+}

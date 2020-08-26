@@ -1,0 +1,12 @@
+public void union(int node1, int node2) {
+    int root1 = find(node1);
+    int root2 = find(node2);
+    if (rank[root1] < rank[root2]) {
+        table[root1] = root2;
+    } else if (rank[root1] > rank[root2]) {
+        table[root2] = root1;
+    } else if (root1 != root2) {
+        table[root2] = root1;
+        rank[root1]++;
+    }
+}

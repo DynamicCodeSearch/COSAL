@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    
+    final int n, k, x, y;
+    try (Scanner scan = new Scanner(System.in)) {
+        
+        n = scan.nextInt();
+        k = scan.nextInt();
+        
+        x = scan.nextInt();
+        y = scan.nextInt();
+    }
+    int result = n <= k ? n * x : n * x + (n - k) * (y - x);
+    
+    try (PrintWriter out = new PrintWriter(System.out)) {
+        out.println(result);
+    }
+}

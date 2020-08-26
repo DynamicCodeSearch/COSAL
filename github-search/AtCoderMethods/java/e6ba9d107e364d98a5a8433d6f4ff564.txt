@@ -1,0 +1,12 @@
+public MatrixMod add(MatrixMod b) {
+    long[][] c = new long[n][m];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            c[i][j] = e[i][j] + b.e[i][j];
+            if (c[i][j] >= MOD) {
+                c[i][j] -= MOD;
+            }
+        }
+    }
+    return new MatrixMod(c);
+}

@@ -1,0 +1,15 @@
+public static int getTotal(int u, int p, int i, int g) {
+    if (i == 0) {
+        return total;
+    }
+    
+    total += i;
+    
+    g += i;
+    int take = g - (g % u);
+    
+    g %= u;
+    
+    i = take / u * p;
+    return getTotal(u, p, i, g);
+}

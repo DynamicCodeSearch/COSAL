@@ -1,0 +1,16 @@
+public void solve(int testNumber, FastReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int m = in.nextInt();
+    List<Integer>[] graph = new List[n];
+    for (int i = 0; i < n; i++) {
+        graph[i] = new ArrayList<>();
+    }
+    for (int i = 0; i < m; i++) {
+        int x = in.nextInt() - 1;
+        int y = in.nextInt() - 1;
+        graph[x].add(y);
+        graph[y].add(x);
+    }
+    biconnectedComponents(graph);
+    out.println(bridges.size());
+}

@@ -1,0 +1,9 @@
+def inv(a):
+  mul = a
+  ans = 1
+  for c in str(bin(MOD-2))[::-1]:
+    if c == 'b': break
+    if c == '1':
+      ans = (ans * mul) % MOD
+    mul = (mul * mul) % MOD
+  return ans

@@ -1,0 +1,18 @@
+long opt(int i, int j) {
+    
+    if (dp[i][j] != 0) {
+        return dp[i][j];
+    }
+    dp[i][j] = 1;
+    for (int k = 0; k < 4; k++) {
+        if (0 <= i + dy[k] && i + dy[k] < h && 0 <= j + dx[k] && j + dx[k] < w) {
+            if (map[i][j] > map[i + dy[k]][j + dx[k]]) {
+                long tmp = opt(i + dy[k], j + dx[k]);
+                tmp %= MOD;
+                long tmp1 = (dp[i][j] + tmp) % MOD;
+                dp[i][j] = tmp1;
+            }
+        }
+    }
+    return dp[i][j];
+}

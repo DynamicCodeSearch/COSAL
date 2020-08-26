@@ -1,0 +1,23 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    char[] S = sc.next().toCharArray();
+    int current = 0;
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < S.length; i++) {
+        if (S[i] == '(') {
+            current++;
+        } else {
+            current--;
+            if (current < 0) {
+                sb.insert(0, '(');
+                current = 0;
+            }
+        }
+        sb.append(S[i]);
+    }
+    for (int i = 0; i < current; i++) {
+        sb.append(')');
+    }
+    System.out.println(sb.toString());
+}

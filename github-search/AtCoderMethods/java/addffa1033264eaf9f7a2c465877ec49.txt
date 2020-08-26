@@ -1,0 +1,36 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    long[][] v = sc.nextLongTable(N, 2);
+    long max = 0;
+    long min = Integer.MAX_VALUE;
+    long max2 = 0;
+    long min2 = Integer.MAX_VALUE;
+    for (int i = 0; i < N; i++) {
+        if (v[i][0] > v[i][1]) {
+            long tmp = v[i][0];
+            v[i][0] = v[i][1];
+            v[i][1] = tmp;
+        }
+        max = Math.max(max, v[i][1]);
+        min = Math.min(min, v[i][0]);
+        max2 = Math.max(max2, v[i][0]);
+        min2 = Math.min(min2, v[i][1]);
+    }
+    long ans = (max - min2) * (max2 - min);
+    long[][] es = new long[N * 2][3];
+    for (int i = 0; i < N; i++) {
+        es[i * 2 + 0] = new long[] { v[i][0], i, 0 };
+        es[i * 2 + 1] = new long[] { v[i][1], i, 1 };
+    }
+    Arrays.sort(es, (a, b) -> a[0] == b[0] ? Long.compare(a[2], b[2]) : Long.compare(a[0], b[0]));
+    long h = max2;
+    for (long[] e : es) {
+        ans = Math.min(ans, (max - min) * (h - e[0]));
+        h = Math.max(h, v[(int) e[1]][1]);
+        if (e[2] == 1) {
+            break;
+        }
+    }
+    System.out.println(ans);
+}

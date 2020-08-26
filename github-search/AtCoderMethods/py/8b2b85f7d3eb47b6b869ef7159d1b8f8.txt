@@ -1,0 +1,17 @@
+def main():
+    N = int(input())
+    S = input()
+
+    cnt = collections.Counter({
+        "1" : 0,
+        "2" : 0,
+        "3" : 0,
+        "4" : 0,
+    })
+    cnt.update(S)
+    mc = cnt.most_common()
+
+    ans_max = mc[0][1]
+    ans_min = mc[-1][1]
+
+    print("{} {}".format(ans_max, ans_min))

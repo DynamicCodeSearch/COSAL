@@ -1,0 +1,23 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] p = br.readLine().split(" ");
+    String[] q = br.readLine().split(" ");
+    Integer n = Integer.valueOf(p[0]);
+    Integer k = Integer.valueOf(p[1]);
+    List<Double> dList = new ArrayList<Double>();
+    for (int i = 0; i < n; i++) {
+        Double r = Double.valueOf(Integer.valueOf(q[i]));
+        dList.add(r);
+    }
+    Collections.sort(dList, Comparator.reverseOrder());
+    List<Double> rList = new ArrayList<Double>();
+    for (int i = 0; i < k; i++) {
+        rList.add(dList.get(i));
+    }
+    Collections.sort(rList);
+    Double ans = 0.0;
+    for (Double b : rList) {
+        ans = (ans + b) / 2;
+    }
+    System.out.println(ans);
+}

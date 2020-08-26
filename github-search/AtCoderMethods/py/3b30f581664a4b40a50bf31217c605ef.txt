@@ -1,0 +1,16 @@
+def solve(H, W):
+    ans = float('inf')
+    for h in range(1, H):
+        sa = W * h
+        w = W // 2
+        sb = w * (H - h)
+        if W - w > 0:
+            sc = (W - w) * (H - h)
+            ans = min(ans, max(sa, sb, sc) - min(sa, sb, sc))
+
+        rh = (H - h) // 2
+        if (H - h - rh) > 0:
+            sb = W * rh
+            sc = W * (H - h - rh)
+            ans = min(ans, max(sa, sb, sc) - min(sa, sb, sc))
+    return ans

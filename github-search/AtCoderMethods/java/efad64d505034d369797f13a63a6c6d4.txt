@@ -1,0 +1,40 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    PrintWriter out = new PrintWriter(System.out);
+    long h = sc.nextInt();
+    long w = sc.nextInt();
+    int n = sc.nextInt();
+    HashSet<Long> hs1 = new HashSet<>();
+    HashSet<Long> hs2 = new HashSet<>();
+    for (int i = 0; i < n; i++) {
+        long a = sc.nextInt() - 1;
+        long b = sc.nextInt() - 1;
+        hs1.add(a * w + b);
+    }
+    long[] count = new long[10];
+    count[0] = (h - 2) * (w - 2);
+    for (long l : hs1) {
+        long a = l / w;
+        long b = l % w;
+        for (long i = a - 1; i <= a + 1; i++) {
+            for (long j = b - 1; j <= b + 1; j++) {
+                if (0 < i && i < h - 1 && 0 < j && j < w - 1 && !hs2.contains(i * w + j)) {
+                    int tmp = 0;
+                    for (long ii = i - 1; ii <= i + 1; ii++) {
+                        for (long jj = j - 1; jj <= j + 1; jj++) {
+                            if (hs1.contains(ii * w + jj))
+                                tmp++;
+                        }
+                    }
+                    count[tmp]++;
+                    count[0]--;
+                    hs2.add(i * w + j);
+                }
+            }
+        }
+    }
+    for (int i = 0; i < 10; i++) {
+        out.println(count[i]);
+    }
+    out.flush();
+}

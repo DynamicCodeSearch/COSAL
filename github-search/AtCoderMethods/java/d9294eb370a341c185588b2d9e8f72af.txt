@@ -1,0 +1,33 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    int[][] friend = new int[N][N];
+    for (int i = 0; i < M; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        friend[a][b] = 1;
+        friend[b][a] = 1;
+    }
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            if (i != j && friend[i][j] == 0)
+                friend[i][j] = 100;
+        }
+    }
+    for (int k = 1; k <= N; k++) {
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                friend[i][j] = Math.min(friend[i][j], friend[i][k - 1] + friend[k - 1][j]);
+            }
+        }
+    }
+    for (int i = 0; i < N; i++) {
+        int count = 0;
+        for (int j = 0; j < N; j++) {
+            if (friend[i][j] == 2)
+                count++;
+        }
+        System.out.println(count);
+    }
+}

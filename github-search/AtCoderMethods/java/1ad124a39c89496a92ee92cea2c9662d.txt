@@ -1,0 +1,88 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int sx = sc.nextInt();
+    int sy = sc.nextInt();
+    int tx = sc.nextInt();
+    int ty = sc.nextInt();
+    String ans = "";
+    int dx = tx - sx;
+    int dy = ty - sy;
+    for (int i = 0; i < Math.abs(dx); i++) {
+        if (dx > 0) {
+            ans += "R";
+        } else {
+            ans += "L";
+        }
+    }
+    for (int i = 0; i < Math.abs(dy); i++) {
+        if (dy > 0) {
+            ans += "U";
+        } else {
+            ans += "D";
+        }
+    }
+    for (int i = 0; i < Math.abs(dx); i++) {
+        if (dx > 0) {
+            ans += "L";
+        } else {
+            ans += "R";
+        }
+    }
+    for (int i = 0; i < Math.abs(dy); i++) {
+        if (dy > 0) {
+            ans += "D";
+        } else {
+            ans += "U";
+        }
+    }
+    if (dy > 0) {
+        ans += "D";
+    } else {
+        ans += "U";
+    }
+    for (int i = 0; i < Math.abs(dx) + 1; i++) {
+        if (dx > 0) {
+            ans += "R";
+        } else {
+            ans += "L";
+        }
+    }
+    for (int i = 0; i < Math.abs(dy) + 1; i++) {
+        if (dy > 0) {
+            ans += "U";
+        } else {
+            ans += "D";
+        }
+    }
+    if (dx > 0) {
+        ans += "L";
+    } else {
+        ans += "R";
+    }
+    if (dy > 0) {
+        ans += "U";
+    } else {
+        ans += "D";
+    }
+    for (int i = 0; i < Math.abs(dx) + 1; i++) {
+        if (dx > 0) {
+            ans += "L";
+        } else {
+            ans += "R";
+        }
+    }
+    for (int i = 0; i < Math.abs(dy) + 1; i++) {
+        if (dy > 0) {
+            ans += "D";
+        } else {
+            ans += "U";
+        }
+    }
+    if (dx > 0) {
+        ans += "R";
+    } else {
+        ans += "L";
+    }
+    System.out.println(ans);
+    return;
+}

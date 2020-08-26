@@ -1,0 +1,12 @@
+private void skipOneCrLf() throws IOException {
+    char c = buf[ptr];
+    if (isCrLf(c)) {
+        ptr++;
+        if (c == '\r') {
+            readBuf();
+            if (ptr < max && buf[ptr] == '\n') {
+                ptr++;
+            }
+        }
+    }
+}

@@ -1,0 +1,17 @@
+void run() {
+    int n = ni();
+    int m = ni();
+    ArrayList<LinkedList<Integer>> list = new ArrayList<>();
+    for (int i = 0; i <= n; ++i) {
+        list.add(new LinkedList<>());
+    }
+    for (int i = 0; i < m; ++i) {
+        int a = ni();
+        int b = ni();
+        list.get(a).add(b);
+        list.get(b).add(a);
+    }
+    for (int i = 1; i <= n; ++i) {
+        System.out.println(list.get(i).size());
+    }
+}

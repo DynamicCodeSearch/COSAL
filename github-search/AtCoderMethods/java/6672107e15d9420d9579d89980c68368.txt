@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    long R = sc.nextLong();
+    long B = sc.nextLong();
+    long x = sc.nextLong() - 1;
+    long y = sc.nextLong() - 1;
+    long left = 0;
+    long right = Long.MAX_VALUE / 2;
+    while (left <= right) {
+        long k = left + right >>> 1;
+        long r = R - k;
+        long b = B - k;
+        boolean ok = r >= 0 && b >= 0 && r / x + b / y >= k;
+        if (ok) {
+            left = k + 1;
+        } else {
+            right = k - 1;
+        }
+    }
+    System.out.println(right);
+}

@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    
+    Scanner scan = new Scanner(System.in);
+    N = scan.nextInt();
+    int M = scan.nextInt();
+    two = new int[N];
+    two[0] = 1;
+    for (int i = 1; i < N; i++) {
+        two[i] = two[i - 1] * 2;
+    }
+    
+    xy = new int[N][N];
+    for (int i = 0; i < M; i++) {
+        int x = scan.nextInt() - 1;
+        int y = scan.nextInt() - 1;
+        
+        xy[y][x] = -1;
+    }
+    dp = new long[two[N - 1] * 2];
+    dp[0] = 1;
+    System.out.println(res(two[N - 1] * 2 - 1));
+}

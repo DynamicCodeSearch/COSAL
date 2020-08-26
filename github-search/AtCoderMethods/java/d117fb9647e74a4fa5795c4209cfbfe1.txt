@@ -1,0 +1,42 @@
+public static void main(String[] args) throws java.lang.Exception {
+    InputReader in = new InputReader(System.in);
+    PrintWriter w = new PrintWriter(System.out);
+    long d = in.nextLong(), m = in.nextLong();
+    if (Math.abs(d - m) > 1) {
+        w.println(0);
+        w.close();
+        return;
+    }
+    boolean dog;
+    long ans;
+    if (Math.abs(d - m) == 1) {
+        if (d < m) {
+            dog = false;
+            ans = (m);
+            m--;
+        } else {
+            dog = true;
+            ans = (d);
+            d--;
+        }
+    } else {
+        dog = true;
+        ans = (d + m);
+        d--;
+    }
+    while (d > 0 && m > 0) {
+        if (dog) {
+            ans = (ans * m) % md;
+            m--;
+        } else {
+            ans = (ans * d) % md;
+            d--;
+        }
+        dog = !dog;
+    
+    }
+    if (ans < 0)
+        ans += md;
+    w.println(ans);
+    w.close();
+}

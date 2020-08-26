@@ -1,0 +1,44 @@
+private static void solve() {
+    int h = sc.nextInt();
+    int w = sc.nextInt();
+    char[][] c = new char[h][];
+    for (int i = 0; i < h; i++) {
+        c[i] = sc.next().toCharArray();
+    }
+    int cnt = 0;
+    int[][] abc = new int[h][w];
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            if (c[i][j] == 'o' && abc[i][j] == 0) {
+                bfs(i, j, c, abc, ++cnt);
+            }
+        }
+    }
+    int[] num = new int[cnt + 1];
+    int[] min = new int[cnt + 1];
+    Arrays.fill(min, Integer.MAX_VALUE);
+    int[] max = new int[cnt + 1];
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            num[abc[i][j]]++;
+            min[abc[i][j]] = Math.min(min[abc[i][j]], i);
+            max[abc[i][j]] = Math.max(max[abc[i][j]], i);
+        }
+    }
+    int[] ret = new int[3];
+    for (int i = 1; i <= cnt; i++) {
+        int scale = (max[i] - min[i] + 1) / 5;
+        
+        int tmp = num[i] / (scale * scale);
+        if (tmp == 12) {
+            ret[0]++;
+        } else if (tmp == 16) {
+            ret[1]++;
+        } else if (tmp == 11) {
+            ret[2]++;
+        } else {
+        
+        }
+    }
+    pr.printf("%d %d %d\n", ret[0], ret[1], ret[2]);
+}

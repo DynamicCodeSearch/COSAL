@@ -1,0 +1,5 @@
+private static long brute(final int i, final int n, final int[] y) {
+    if (i < 0)
+        return 0;
+    return (n + y[i] == 0 ? 1 : 0) + brute(i - 1, n, y) + brute(i - 1, n + y[i], y);
+}

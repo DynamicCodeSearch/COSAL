@@ -1,0 +1,11 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int stickCounts = sc.nextInt();
+    int stickJoinCounts = sc.nextInt();
+    int[] sticks = IntStream.range(0, stickCounts).map(v -> sc.nextInt()).boxed().sorted(Comparator.reverseOrder()).mapToInt(Integer::new).toArray();
+    int result = 0;
+    for (int i = 0; i < stickJoinCounts; i++) {
+        result += sticks[i];
+    }
+    System.out.printf(Integer.toString(result));
+}

@@ -1,0 +1,13 @@
+def main():
+    N = int(input())
+    A = tuple(tuple(map(int, input().split())) for _ in range(N))
+
+    paint = [0] * 1000002
+    for a, b in A:
+        paint[a] += 1
+        paint[b+1] -= 1
+
+    for i in range(1, 1000001):
+        paint[i] += paint[i-1]
+
+    print(max(paint))

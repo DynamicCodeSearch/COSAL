@@ -1,0 +1,16 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String x = br.readLine();
+    String y = br.readLine();
+    String z = br.readLine();
+    int a = Integer.parseInt(x);
+    int b = Integer.parseInt(y);
+    int c = Integer.parseInt(z);
+    for (int i = 1; i < b + c; i++) {
+        if ((a * i) % b == 0 && (a * i) >= c) {
+            c = a * i;
+            break;
+        }
+    }
+    System.out.println(c);
+}

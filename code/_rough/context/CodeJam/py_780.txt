@@ -1,0 +1,576 @@
+### Py Tokens: bisect, second, bisectleft, need, left, pos, first 
+
+### Py functions
+
+def func_7b50be6aa89a4d54beb6e59bd233d731(a, first, need):
+    pos = bisect.bisect_left(a, need)
+    second = a[pos] - first
+    return pos
+
+def func_e3182144306c4746965b382c8aa663dd(a, i):
+    first = a[i]
+    need = first + (a[-1] - first) / 2
+    pos = bisect.bisect_left(a, need)
+    second = a[pos] - first
+    return a
+
+def func_f48fc732145444bc8510bff3ef6fb950(a, i):
+    first = a[i]
+    need = first + (a[-1] - first) / 2
+    pos = bisect.bisect_left(a, need)
+    second = a[pos] - first
+    return i
+
+def func_14e2d17b3c2a480591c8c4985e188f96(a, first, need):
+    pos = bisect.bisect_left(a, need)
+    second = a[pos] - first
+    return need
+
+def func_421b3132360c4b119709666b771f2c48(a, first, need):
+    pos = bisect.bisect_left(a, need)
+    second = a[pos] - first
+    return first
+
+*********************************
+
+#### Score: 9.94084
+
+
+#### Java Tokens: sum1, sum2, last, left, mid, sum, right, first, second, second-- 
+
+public static long func_f2dbea602aa149e3b81b075be6c2c66e(int n, long right, long left, long[] a) { 
+ long mid = (left + right) / 2;
+int last = 0;
+boolean ok = false;
+long sum1 = 0;
+int first = 0;
+while (first != n && sum1 < mid) {
+    sum1 += a[first];
+    first++;
+}
+int second = n - 1;
+long sum2 = 0;
+while (second != -1 && sum2 < mid) {
+    sum2 += a[second];
+    second--;
+}
+return sum1;
+}
+
+
+public static int func_df5e24485337484e94260a0ec67a439e(int n, long right, long left, long[] a) { 
+ long mid = (left + right) / 2;
+int last = 0;
+boolean ok = false;
+long sum1 = 0;
+int first = 0;
+while (first != n && sum1 < mid) {
+    sum1 += a[first];
+    first++;
+}
+int second = n - 1;
+long sum2 = 0;
+while (second != -1 && sum2 < mid) {
+    sum2 += a[second];
+    second--;
+}
+return last;
+}
+
+
+public static boolean func_1f3643c778f3486688e0beb7d6c436ce(int n, long right, long left, long[] a) { 
+ long mid = (left + right) / 2;
+int last = 0;
+boolean ok = false;
+long sum1 = 0;
+int first = 0;
+while (first != n && sum1 < mid) {
+    sum1 += a[first];
+    first++;
+}
+int second = n - 1;
+long sum2 = 0;
+while (second != -1 && sum2 < mid) {
+    sum2 += a[second];
+    second--;
+}
+return ok;
+}
+
+
+*********************************
+
+#### Score: 9.75865
+
+
+#### Java Tokens: first, second 
+
+public static long func_05ae5d93a52d45ed8dde238d6245af06(int j, int i, long[] A) { 
+ long first = A[j + 2];
+long second = A[i + 1] - A[j + 2];
+return first;
+}
+
+
+public static long func_24855a22c9de45fdb5ea51748056936d(int j, int i, long[] A) { 
+ long first = A[j + 2];
+long second = A[i + 1] - A[j + 2];
+return second;
+}
+
+
+public static long func_ee5d4f9bc54c41e1afd1cd73fe7b9b9e(int j, int i, long[] A) { 
+ long first = A[j + 1];
+long second = A[i + 1] - A[j + 1];
+return second;
+}
+
+
+*********************************
+
+#### Score: 9.56778
+
+
+#### Java Tokens: sum1, sum2, total, last, left, mid, sum, right, first, second, second-- 
+
+public static boolean func_fa1043d97adc48faa10a830d131d66db(int n, long right, long left, long[] a, long[] sum) { 
+ long mid = (left + right) / 2;
+int last = 0;
+boolean ok = false;
+long sum1 = 0;
+int first = 0;
+while (first != n && sum1 < mid) {
+    sum1 += a[first];
+    first++;
+}
+int second = n - 1;
+long sum2 = 0;
+while (second != -1 && sum2 < mid) {
+    sum2 += a[second];
+    second--;
+}
+if (sum1 >= mid && sum2 >= mid) {
+    if (second >= first) {
+        ok = true;
+    } else {
+        long total = 0;
+        if (second != -1)
+            total += sum[second];
+        if (first != n)
+            total += sum[n - 1] - sum[first - 1];
+        if (total >= mid)
+            ok = true;
+    }
+}
+return ok;
+}
+
+
+public static int func_231c3c8249f942929ae5c9a69e0d6a72(int n, long right, long left, long[] a, long[] sum) { 
+ long mid = (left + right) / 2;
+int last = 0;
+boolean ok = false;
+long sum1 = 0;
+int first = 0;
+while (first != n && sum1 < mid) {
+    sum1 += a[first];
+    first++;
+}
+int second = n - 1;
+long sum2 = 0;
+while (second != -1 && sum2 < mid) {
+    sum2 += a[second];
+    second--;
+}
+if (sum1 >= mid && sum2 >= mid) {
+    if (second >= first) {
+        ok = true;
+    } else {
+        long total = 0;
+        if (second != -1)
+            total += sum[second];
+        if (first != n)
+            total += sum[n - 1] - sum[first - 1];
+        if (total >= mid)
+            ok = true;
+    }
+}
+return second;
+}
+
+
+public static int func_0d4090c96c2a431786186984b15c8096(int n, long right, long left, long[] a, long[] sum) { 
+ long mid = (left + right) / 2;
+int last = 0;
+boolean ok = false;
+long sum1 = 0;
+int first = 0;
+while (first != n && sum1 < mid) {
+    sum1 += a[first];
+    first++;
+}
+int second = n - 1;
+long sum2 = 0;
+while (second != -1 && sum2 < mid) {
+    sum2 += a[second];
+    second--;
+}
+if (sum1 >= mid && sum2 >= mid) {
+    if (second >= first) {
+        ok = true;
+    } else {
+        long total = 0;
+        if (second != -1)
+            total += sum[second];
+        if (first != n)
+            total += sum[n - 1] - sum[first - 1];
+        if (total >= mid)
+            ok = true;
+    }
+}
+return first;
+}
+
+
+*********************************
+
+#### Score: 9.43653
+
+
+#### Java Tokens: sum1, last, left, mid, sum, right, first, second 
+
+public static int func_f80e820de2814c65ab99a82d97a1920a(int n, long right, long left, long[] a) { 
+ long mid = (left + right) / 2;
+int last = 0;
+boolean ok = false;
+long sum1 = 0;
+int first = 0;
+while (first != n && sum1 < mid) {
+    sum1 += a[first];
+    first++;
+}
+int second = n - 1;
+return second;
+}
+
+
+public static long func_9e483109833f41be8520f97fd2cb36af(int n, long right, long left, long[] a) { 
+ long mid = (left + right) / 2;
+int last = 0;
+boolean ok = false;
+long sum1 = 0;
+int first = 0;
+while (first != n && sum1 < mid) {
+    sum1 += a[first];
+    first++;
+}
+int second = n - 1;
+return sum1;
+}
+
+
+public static boolean func_823329376d504486aaa12addfd4ef6ea(int n, long right, long left, long[] a) { 
+ long mid = (left + right) / 2;
+int last = 0;
+boolean ok = false;
+long sum1 = 0;
+int first = 0;
+while (first != n && sum1 < mid) {
+    sum1 += a[first];
+    first++;
+}
+int second = n - 1;
+return ok;
+}
+
+
+*********************************
+
+#### Score: 9.43653
+
+
+#### Java Tokens: res, min, max, left, sum, math, first, second 
+
+public static double func_4c746d2a2e674d1a9df41c902c6d83cb(int first, int N, int second, long sum, long[] dp) { 
+ double res = 0;
+for (int i = Math.max(0, first - 100); i < Math.min(N, first + 100); ++i) {
+    for (int j = Math.max(0, second - 100); j < Math.min(N, second + 100); ++j) {
+        if (j <= i) {
+            continue;
+        }
+        long a = dp[i + 1];
+        long b = dp[j] - dp[i + 1];
+        long c = dp[N] - dp[j];
+        long left = sum - Math.max(a, Math.max(b, c));
+        res = Math.max(res, 1.0 * left / sum);
+    }
+}
+return res;
+}
+
+
+*********************************
+
+#### Score: 9.22357
+
+
+#### Java Tokens: sum1, sum2, total, last, left, e15, mid, sum, right, first, second, second-- 
+
+public static long func_33c30a3ca876467a9ed5624ae612ec40(int n, long[] a, long[] sum) { 
+ long left = 0, right = (long) 1e15;
+while (right - left > 1) {
+    long mid = (left + right) / 2;
+    int last = 0;
+    boolean ok = false;
+    long sum1 = 0;
+    int first = 0;
+    while (first != n && sum1 < mid) {
+        sum1 += a[first];
+        first++;
+    }
+    int second = n - 1;
+    long sum2 = 0;
+    while (second != -1 && sum2 < mid) {
+        sum2 += a[second];
+        second--;
+    }
+    if (sum1 >= mid && sum2 >= mid) {
+        if (second >= first) {
+            ok = true;
+        } else {
+            long total = 0;
+            if (second != -1)
+                total += sum[second];
+            if (first != n)
+                total += sum[n - 1] - sum[first - 1];
+            if (total >= mid)
+                ok = true;
+        }
+    }
+    if (ok) {
+        left = mid;
+    } else {
+        right = mid;
+    }
+}
+return right;
+}
+
+
+public static long func_bea287f63da54dd1a37bdec5f6857323(int n, long[] a) { 
+ long[] sum = new long[n];
+for (int i = 0; i < n; i++) sum[i] = a[i] + (i == 0 ? 0 : sum[i - 1]);
+long left = 0, right = (long) 1e15;
+while (right - left > 1) {
+    long mid = (left + right) / 2;
+    int last = 0;
+    boolean ok = false;
+    long sum1 = 0;
+    int first = 0;
+    while (first != n && sum1 < mid) {
+        sum1 += a[first];
+        first++;
+    }
+    int second = n - 1;
+    long sum2 = 0;
+    while (second != -1 && sum2 < mid) {
+        sum2 += a[second];
+        second--;
+    }
+    if (sum1 >= mid && sum2 >= mid) {
+        if (second >= first) {
+            ok = true;
+        } else {
+            long total = 0;
+            if (second != -1)
+                total += sum[second];
+            if (first != n)
+                total += sum[n - 1] - sum[first - 1];
+            if (total >= mid)
+                ok = true;
+        }
+    }
+    if (ok) {
+        left = mid;
+    } else {
+        right = mid;
+    }
+}
+return left;
+}
+
+
+public static long[] func_71eca7d5b0e94352976b8e501b19918c(int n, int s, int q, int p, int r) { 
+ long[] a = new long[n];
+for (int i = 0; i < n; i++) {
+    a[i] = ((i * 1L * p + q) % r + s);
+}
+long[] sum = new long[n];
+for (int i = 0; i < n; i++) sum[i] = a[i] + (i == 0 ? 0 : sum[i - 1]);
+long left = 0, right = (long) 1e15;
+while (right - left > 1) {
+    long mid = (left + right) / 2;
+    int last = 0;
+    boolean ok = false;
+    long sum1 = 0;
+    int first = 0;
+    while (first != n && sum1 < mid) {
+        sum1 += a[first];
+        first++;
+    }
+    int second = n - 1;
+    long sum2 = 0;
+    while (second != -1 && sum2 < mid) {
+        sum2 += a[second];
+        second--;
+    }
+    if (sum1 >= mid && sum2 >= mid) {
+        if (second >= first) {
+            ok = true;
+        } else {
+            long total = 0;
+            if (second != -1)
+                total += sum[second];
+            if (first != n)
+                total += sum[n - 1] - sum[first - 1];
+            if (total >= mid)
+                ok = true;
+        }
+    }
+    if (ok) {
+        left = mid;
+    } else {
+        right = mid;
+    }
+}
+return sum;
+}
+
+
+*********************************
+
+#### Score: 9.09631
+
+
+#### Java Tokens: temp, first, second 
+
+public static int func_f330fb3d7c644144be5c8da4fef42e62(int N) { 
+ int first = 0;
+int second = N - 1;
+long temp = 0;
+return second;
+}
+
+
+public static long func_18a12dddca474bbab145591da291804e(int N) { 
+ int first = 0;
+int second = N - 1;
+long temp = 0;
+return temp;
+}
+
+
+public static int func_21690eefe2c7485eaa903eb3065d0ad6(int N) { 
+ int first = 0;
+int second = N - 1;
+long temp = 0;
+return first;
+}
+
+
+*********************************
+
+#### Score: 9.09631
+
+
+#### Java Tokens: first, partials, second 
+
+public static long func_39359dfd39f24f308965599d26c09b67(int a, int b, long[] partials) { 
+ long first = partials[a];
+long second = partials[b] - partials[a];
+return second;
+}
+
+
+public static long func_9721699d97f44c30bb918878a80e8f45(int a, int b, long[] partials) { 
+ long first = partials[a];
+long second = partials[b] - partials[a];
+return first;
+}
+
+
+*********************************
+
+#### Score: 9.02196
+
+
+#### Java Tokens: left, need, right 
+
+public static long func_17f71a3fbdf14d668a145dde1465d1df(int i, long eq, long left, long right) { 
+ long up = (left + right) / 2;
+long need = eq + i * up;
+return up;
+}
+
+
+public static long func_5937e82ecc73452fb8fb2543632ab580(int i, long eq, long left, long right) { 
+ long up = (left + right) / 2;
+long need = eq + i * up;
+return need;
+}
+
+
+*********************************
+
+#### Score: 8.98816
+
+
+#### Java Tokens: sum1, sum2, last, left, mid, sum, right, first, second 
+
+public static int func_b784ca83b812413f95d9794d893a3e1d(int n, long right, long left, long[] a) { 
+ long mid = (left + right) / 2;
+int last = 0;
+boolean ok = false;
+long sum1 = 0;
+int first = 0;
+while (first != n && sum1 < mid) {
+    sum1 += a[first];
+    first++;
+}
+int second = n - 1;
+long sum2 = 0;
+return last;
+}
+
+
+public static int func_0b42d54e7f424aae85b8947c459386a2(int n, long right, long left, long[] a) { 
+ long mid = (left + right) / 2;
+int last = 0;
+boolean ok = false;
+long sum1 = 0;
+int first = 0;
+while (first != n && sum1 < mid) {
+    sum1 += a[first];
+    first++;
+}
+int second = n - 1;
+long sum2 = 0;
+return first;
+}
+
+
+public static long func_934a741232854400a1ed3a5e46a9b568(int n, long right, long left, long[] a) { 
+ long mid = (left + right) / 2;
+int last = 0;
+boolean ok = false;
+long sum1 = 0;
+int first = 0;
+while (first != n && sum1 < mid) {
+    sum1 += a[first];
+    first++;
+}
+int second = n - 1;
+long sum2 = 0;
+return sum1;
+}
+

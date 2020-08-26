@@ -1,0 +1,17 @@
+public void solve() {
+    int N = in.nextInt();
+    int x = in.nextInt();
+    int[] a = in.nextIntArray(N);
+    long res = 0;
+    for (int i = 1; i < N; i++) {
+        int sum = a[i] + a[i - 1];
+        int diff = Math.max(0, sum - x);
+        for (int j = i; j >= i - 1; j--) {
+            int d = Math.min(a[j], diff);
+            a[j] -= d;
+            res += d;
+            diff -= d;
+        }
+    }
+    System.out.println(res);
+}

@@ -1,0 +1,8 @@
+public long pow(long a, long x) {
+    if (x == 0)
+        return 1;
+    long part = 1;
+    if ((x & 1) != 0)
+        part = a;
+    return (part * pow((a * a) % mod, x >> 1)) % mod;
+}

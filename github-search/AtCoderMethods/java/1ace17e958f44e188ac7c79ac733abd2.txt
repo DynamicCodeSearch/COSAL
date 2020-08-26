@@ -1,0 +1,9 @@
+void dfs(String str, int num, int length, long cnt) {
+    if (num == length) {
+        result = result + cnt;
+    } else {
+        for (int i = num; i < length; i++) {
+            dfs(str, i + 1, length, cnt + Long.parseLong(str.substring(num, i + 1)));
+        }
+    }
+}

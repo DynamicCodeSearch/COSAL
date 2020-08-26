@@ -1,0 +1,43 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] islands = new int[N];
+    int sumOfPeople = 0;
+    for (int i = 0; i < N; i++) {
+        int island = sc.nextInt();
+        islands[i] = island;
+        sumOfPeople += island;
+    }
+    if (isFeasible(N, sumOfPeople)) {
+        int requiredPeople = sumOfPeople / N;
+        int[] deficits = new int[N];
+        int[] supplies = new int[N];
+        for (int i = 0; i < N; i++) {
+            int deficit = islands[i] - requiredPeople;
+            if (deficit > 0) {
+                supplies[i] = deficit;
+                deficits[i] = 0;
+            } else {
+                supplies[i] = 0;
+                deficits[i] = Math.abs(deficit);
+            }
+        }
+        int accumulatedSuppliablePeople = 0;
+        int accumulatedDeficitPeople = 0;
+        int bridgeLength = 0;
+        for (int i = 0; i < N; i++) {
+            accumulatedDeficitPeople += deficits[i];
+            accumulatedSuppliablePeople += supplies[i];
+            if (accumulatedDeficitPeople == accumulatedSuppliablePeople) {
+                accumulatedDeficitPeople = 0;
+                accumulatedSuppliablePeople = 0;
+            } else {
+                bridgeLength += 1;
+            }
+        }
+        System.out.println(bridgeLength);
+    } else {
+        System.out.println(-1);
+    }
+}

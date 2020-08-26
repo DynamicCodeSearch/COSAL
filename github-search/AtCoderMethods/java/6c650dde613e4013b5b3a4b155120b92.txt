@@ -1,0 +1,9 @@
+private void tansa(ArrayList<Masu> masuList, int[] tansaList, int masu, int depth) {
+    ArrayList<Integer> closeMasuList = masuList.get(masu).closeMasuNumber;
+    for (Integer i : closeMasuList) {
+        if (tansaList[i] == 0) {
+            tansaList[i] = depth + 1;
+            tansa(masuList, tansaList, i, depth + 1);
+        }
+    }
+}

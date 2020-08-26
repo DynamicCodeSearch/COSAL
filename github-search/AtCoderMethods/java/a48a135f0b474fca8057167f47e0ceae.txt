@@ -1,0 +1,31 @@
+public void add(long slope, long intercept) {
+    for (int i = p - 1; i >= 0; i--) {
+        if (intercept + xs[i] * slope <= intercepts[i] + xs[i] * slopes[i]) {
+            
+            p--;
+            continue;
+        }
+        if (slope == slopes[i]) {
+            if (intercept >= intercepts[i]) {
+                return;
+            } else {
+                continue;
+            }
+        }
+        
+        
+        
+        long num = intercept - intercepts[i];
+        long den = slopes[i] - slope;
+        double nx = (double) num / den;
+        xs[p] = nx;
+        intercepts[p] = intercept;
+        slopes[p] = slope;
+        p++;
+        return;
+    }
+    xs[p] = INF;
+    intercepts[p] = intercept;
+    slopes[p] = slope;
+    p++;
+}

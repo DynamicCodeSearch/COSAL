@@ -1,0 +1,51 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    char[] A = in.nextToken().toCharArray();
+    n = A.length;
+    nextChar = new int[26][n + 2];
+    nextAny = new int[19][n + 2];
+    nextAny[0][n + 1] = n + 1;
+    int[] lastC = new int[26];
+    Arrays.fill(lastC, n + 1);
+    for (int i = n - 1; i >= -1; i--) {
+        for (int j = 0; j < 26; j++) {
+            nextChar[j][i + 1] = lastC[j];
+            nextAny[0][i + 1] = Math.max(nextAny[0][i + 1], lastC[j]);
+        }
+        if (i >= 0) {
+            lastC[A[i] - 'a'] = i + 1;
+        }
+    }
+    for (int f = 1; f < nextAny.length; f++) {
+        for (int i = 0; i <= n + 1; i++) {
+            nextAny[f][i] = nextAny[f - 1][nextAny[f - 1][i]];
+        }
+    }
+    int cnt = canTakeFrom(0) + 1;
+    StringBuilder ans = new StringBuilder();
+    int head = 0;
+    for (int i = 0; i < cnt; i++) {
+        int left = cnt - i - 1;
+        boolean found = false;
+        for (int cc = 0; cc < 26; cc++) {
+            int chead = nextChar[cc][head];
+            if (canTakeFrom(chead) < left) {
+                found = true;
+                head = chead;
+                ans.append((char) ('a' + cc));
+                break;
+            }
+        }
+        if (!found) {
+            debug("==");
+            while (i < cnt) {
+                ans.append('a');
+                i++;
+            }
+            break;
+        }
+    }
+    out.println(ans.toString());
+    out.flush();
+}

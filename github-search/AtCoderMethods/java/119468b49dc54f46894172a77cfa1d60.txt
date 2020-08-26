@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    InputReader r = new InputReader(System.in);
+    fact[0] = 1;
+    for (int i = 1; i < fact.length; i++) {
+        fact[i] = fact[i - 1] * i;
+        fact[i] %= mod;
+    }
+    long h = r.nextLong();
+    long w = r.nextLong();
+    long a = r.nextLong();
+    long b = r.nextLong();
+    long res = 0;
+    for (long i = 1; i <= h - a; i++) {
+        long way1 = C((int) (b - 1 + i - 1), (int) b - 1);
+        way1 *= C((int) (w - b - 1 + h - i), (int) (h - i));
+        way1 %= mod;
+        res += way1;
+        res %= mod;
+    }
+    System.out.println(res);
+}

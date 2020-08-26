@@ -1,0 +1,23 @@
+def main():
+    W, H, N = map(int, input().split())
+    P = [tuple(map(int, input().split())) for _ in range(N)]
+
+    x = [0, W]
+    y = [0, H]
+    for p in P:
+        if p[2] == 1 and x[0] < p[0]:
+            x[0] = p[0]
+        elif p[2] == 2 and x[1] > p[0]:
+            x[1] = p[0]
+        elif p[2] == 3 and y[0] < p[1]:
+            y[0] = p[1]
+        elif p[2] == 4 and y[1] > p[1]:
+            y[1] = p[1]
+
+    region = [x[1] - x[0], y[1] - y[0]]
+    if region[0] <= 0 or region[1] <= 0:
+        area = 0
+    else:
+        area = region[0] * region[1]
+
+    print(area)

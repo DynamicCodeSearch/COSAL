@@ -1,0 +1,17 @@
+static void go(int curr, int limit) {
+    if (curr > limit)
+        return;
+    if (curr == limit) {
+        String s = "";
+        for (int x : stack) {
+            s += x;
+        }
+        list.add(s);
+        return;
+    }
+    for (int i = 1; i <= limit; i++) {
+        stack.push(i);
+        go(curr + i, limit);
+        stack.pop();
+    }
+}

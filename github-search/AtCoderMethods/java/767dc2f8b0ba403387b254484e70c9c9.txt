@@ -1,0 +1,13 @@
+public static long[][] arrpow(long[][] a, long b) {
+    int n = a.length;
+    
+    long[][] ans = new long[n][n];
+    for (int i = 0; i < n; i++) ans[i][i] = 1L;
+    while (b > 0) {
+        if (b % 2 == 1)
+            ans = mul(a, ans);
+        a = mul(a, a);
+        b /= 2;
+    }
+    return ans;
+}

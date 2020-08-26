@@ -1,0 +1,24 @@
+def D(lst):
+    N, M = lst[0][0], lst[0][1]
+    edge = lst[1:][:]
+
+    from itertools import combinations as comb
+
+
+    adjacent = [[False] * N for i in range(N)]
+    for i in range(M):
+        x, y = edge[i][0] - 1, edge[i][1] - 1
+        adjacent[x][y] = True
+        adjacent[y][x] = True
+
+    ans = 1
+    for i in range(N, 0, -1):  
+        relation_combination = comb(range(0, N), i)  
+        for rel_comb in relation_combination:
+            cond = [adjacent[i][j]
+                    for (i, j) in comb(rel_comb, 2)]
+            if all(cond):  
+                ans = i
+        if ans != 1:
+            break  
+    return ans

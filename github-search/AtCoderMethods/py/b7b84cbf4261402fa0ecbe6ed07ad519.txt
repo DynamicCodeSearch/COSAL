@@ -1,0 +1,31 @@
+def main():
+    args = sys.stdin.readline().split()
+    H = int(args[0])
+    W = int(args[1])
+    args = sys.stdin.readline().split()
+    N = int(args[0])
+    A = list(map(int, input().split()))
+
+    color_matrix = [[0 for i in range(W)] for j in range(H)]
+
+    switch = True
+    num_of_cells = 0
+    color_num = 1
+    index = 0
+    for row in range(H):
+        for col in range(W):
+            if switch:
+                color_matrix[row][col] = color_num
+            else:
+                color_matrix[row][(W - 1) - col] = color_num
+            num_of_cells += 1
+            if num_of_cells == A[index]:
+                num_of_cells = 0
+                color_num += 1
+                index += 1
+
+        switch = not switch
+
+
+    for array in color_matrix:
+        print(' '.join(map(str, array)))

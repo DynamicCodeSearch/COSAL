@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    n = sc.nextInt();
+    k = sc.nextInt();
+    d = new int[k];
+    for (int i = 0; i < k; i++) {
+        d[i] = sc.nextInt();
+    }
+    int i = n;
+    for (; ; ) {
+        String str = Integer.toString(i);
+        boolean check = true;
+        for (int j = 0; j < str.length(); j++) {
+            for (int l = 0; l < k; l++) {
+                if (d[l] == str.charAt(j) - '0') {
+                    check = false;
+                    break;
+                }
+            }
+            if (!check) {
+                break;
+            }
+        }
+        if (check) {
+            break;
+        }
+        ++i;
+    }
+    System.out.println(i);
+}

@@ -1,0 +1,6 @@
+def solve(n):
+    score = n
+    for w in range(1, n + 1):
+        h, r = divmod(n, w)
+        score = min(score, abs(w - h) + r)
+    return score

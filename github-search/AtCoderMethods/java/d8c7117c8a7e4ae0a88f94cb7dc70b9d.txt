@@ -1,0 +1,16 @@
+
+public static int binary_search2(int[] b, int t) {
+    int l = 0;
+    int r = b.length;
+    int ans = -1;
+    while (r - l >= 1) {
+        int med = (l + r) / 2;
+        if (b[med] >= t) {
+            ans = med;
+            r = med;
+        } else {
+            l = med + 1;
+        }
+    }
+    return ans;
+}

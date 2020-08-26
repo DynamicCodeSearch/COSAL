@@ -1,0 +1,20 @@
+void dijkstra(List<ToNode>[] adj, int[] minTimes) {
+    PriorityQueue<Node> q = new PriorityQueue<Node>();
+    Node startNode = new Node(0, 0);
+    q.offer(startNode);
+    while (!q.isEmpty()) {
+        Node node = q.poll();
+        int cur = node.index;
+        int min = node.minTime;
+        if (minTimes[cur] != INF) {
+            continue;
+        }
+        minTimes[cur] = min;
+        for (ToNode toNode : adj[cur]) {
+            int to = toNode.index;
+            int cost = toNode.cost;
+            Node newNode = new Node(to, min + cost);
+            q.offer(newNode);
+        }
+    }
+}

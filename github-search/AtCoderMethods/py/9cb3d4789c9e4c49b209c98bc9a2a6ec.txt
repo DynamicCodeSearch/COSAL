@@ -1,0 +1,26 @@
+def func():
+    ans = 0
+    begin = 0
+    end = 0
+    mul = s[0]
+
+    if 0 in s:
+        return n
+
+    while begin < n:
+        if mul > k:
+            begin += 1
+            continue
+
+        while end < n - 1:
+            if mul * s[end + 1] <= k:
+                mul *= s[end + 1]
+                end += 1
+            else:
+                break
+        ans = max(ans, (end - begin + 1))
+
+        mul //= s[begin]
+        begin += 1
+
+    return ans

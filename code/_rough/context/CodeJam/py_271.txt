@@ -1,0 +1,650 @@
+### Py Tokens: mergesort, int, strip, close, readline, array, case, kind, join, res, argsort, range, split, test, ntest, infile 
+
+### Py functions
+
+def func_d50b7e2385234795bd41ee76630ec527(infile, ntest):
+    for test in range(ntest):
+        n = int(infile.readline())
+        l = np.array([int(i) for i in infile.readline().strip().split()])
+        p = np.array([int(i) for i in infile.readline().strip().split()])
+        res = [('%d' % i) for i in np.argsort(-p, kind='mergesort')]
+        print 'Case #%d: %s' % (test + 1, ' '.join(res))
+    infile.close()
+    return ntest
+
+*********************************
+
+#### Score: 11.79249
+
+
+#### Java Tokens: next, nextdouble, test, ntest, nextint, double, %.8f, mid, bai, int, printf, println, high, low, baia, calc, close, case 
+
+public static PrintWriter func_60a5bff363924d19baa64e53bac23bdf(int ntest, PrintWriter pw, Scanner sc) { 
+ for (int test = 1; test <= ntest; ++test) {
+    BaiA.W = sc.nextDouble();
+    BaiA.L = sc.nextInt();
+    BaiA.U = sc.nextInt();
+    BaiA.G = sc.nextInt();
+    BaiA.xl = new double[BaiA.L];
+    BaiA.yl = new double[BaiA.L];
+    BaiA.xu = new double[BaiA.U];
+    BaiA.yu = new double[BaiA.U];
+    for (int i = 0; i < BaiA.L; ++i) {
+        BaiA.xl[i] = sc.nextDouble();
+        BaiA.yl[i] = sc.nextDouble();
+    }
+    for (int i = 0; i < BaiA.U; ++i) {
+        BaiA.xu[i] = sc.nextDouble();
+        BaiA.yu[i] = sc.nextDouble();
+    }
+    double S = -(BaiA.calc(BaiA.W, BaiA.L, BaiA.xl, BaiA.yl) - BaiA.calc(BaiA.W, BaiA.U, BaiA.xu, BaiA.yu)) / BaiA.G;
+    // System.out.println(S);
+    pw.println("Case #" + test + ":");
+    for (int i = 0; i + 1 < BaiA.G; ++i) {
+        double low = 0, high = BaiA.W;
+        for (int kk = 0; kk < 77; ++kk) {
+            double mid = (low + high) / 2;
+            double SS = (BaiA.calc(mid, BaiA.U, BaiA.xu, BaiA.yu) - BaiA.calc(mid, BaiA.L, BaiA.xl, BaiA.yl));
+            if (SS < S * (i + 1))
+                low = mid;
+            else
+                high = mid;
+        }
+        pw.printf("%.8f\n", low);
+    }
+// pw.println();
+}
+sc.close();
+return pw;
+}
+
+
+public static PrintWriter func_add26e7778cf484cb47517487e7873f3(int ntest, PrintWriter pw, Scanner sc) { 
+ for (int test = 1; test <= ntest; ++test) {
+    BaiA.W = sc.nextDouble();
+    BaiA.L = sc.nextInt();
+    BaiA.U = sc.nextInt();
+    BaiA.G = sc.nextInt();
+    BaiA.xl = new double[BaiA.L];
+    BaiA.yl = new double[BaiA.L];
+    BaiA.xu = new double[BaiA.U];
+    BaiA.yu = new double[BaiA.U];
+    for (int i = 0; i < BaiA.L; ++i) {
+        BaiA.xl[i] = sc.nextDouble();
+        BaiA.yl[i] = sc.nextDouble();
+    }
+    for (int i = 0; i < BaiA.U; ++i) {
+        BaiA.xu[i] = sc.nextDouble();
+        BaiA.yu[i] = sc.nextDouble();
+    }
+    double S = -(BaiA.calc(BaiA.W, BaiA.L, BaiA.xl, BaiA.yl) - BaiA.calc(BaiA.W, BaiA.U, BaiA.xu, BaiA.yu)) / BaiA.G;
+    // System.out.println(S);
+    pw.println("Case #" + test + ":");
+    for (int i = 0; i + 1 < BaiA.G; ++i) {
+        double low = 0, high = BaiA.W;
+        for (int kk = 0; kk < 77; ++kk) {
+            double mid = (low + high) / 2;
+            double SS = (BaiA.calc(mid, BaiA.U, BaiA.xu, BaiA.yu) - BaiA.calc(mid, BaiA.L, BaiA.xl, BaiA.yl));
+            if (SS < S * (i + 1))
+                low = mid;
+            else
+                high = mid;
+        }
+        pw.printf("%.8f\n", low);
+    }
+// pw.println();
+}
+sc.close();
+pw.close();
+return pw;
+}
+
+
+*********************************
+
+#### Score: 11.79249
+
+
+#### Java Tokens: next, nextdouble, ntest, nextint, test, double, %.8f, mid, bai, int, printf, println, high, low, baia, calc, close, case 
+
+public static int func_725bcf65b7de46a79b6d9a1ed8821f79(PrintWriter pw, Scanner sc) { 
+ int ntest = sc.nextInt();
+for (int test = 1; test <= ntest; ++test) {
+    BaiA.W = sc.nextDouble();
+    BaiA.L = sc.nextInt();
+    BaiA.U = sc.nextInt();
+    BaiA.G = sc.nextInt();
+    BaiA.xl = new double[BaiA.L];
+    BaiA.yl = new double[BaiA.L];
+    BaiA.xu = new double[BaiA.U];
+    BaiA.yu = new double[BaiA.U];
+    for (int i = 0; i < BaiA.L; ++i) {
+        BaiA.xl[i] = sc.nextDouble();
+        BaiA.yl[i] = sc.nextDouble();
+    }
+    for (int i = 0; i < BaiA.U; ++i) {
+        BaiA.xu[i] = sc.nextDouble();
+        BaiA.yu[i] = sc.nextDouble();
+    }
+    double S = -(BaiA.calc(BaiA.W, BaiA.L, BaiA.xl, BaiA.yl) - BaiA.calc(BaiA.W, BaiA.U, BaiA.xu, BaiA.yu)) / BaiA.G;
+    // System.out.println(S);
+    pw.println("Case #" + test + ":");
+    for (int i = 0; i + 1 < BaiA.G; ++i) {
+        double low = 0, high = BaiA.W;
+        for (int kk = 0; kk < 77; ++kk) {
+            double mid = (low + high) / 2;
+            double SS = (BaiA.calc(mid, BaiA.U, BaiA.xu, BaiA.yu) - BaiA.calc(mid, BaiA.L, BaiA.xl, BaiA.yl));
+            if (SS < S * (i + 1))
+                low = mid;
+            else
+                high = mid;
+        }
+        pw.printf("%.8f\n", low);
+    }
+// pw.println();
+}
+sc.close();
+pw.close();
+return ntest;
+}
+
+
+public static PrintWriter func_b7285541f4e74908a8a142dd615877cd(PrintWriter pw, Scanner sc) { 
+ int ntest = sc.nextInt();
+for (int test = 1; test <= ntest; ++test) {
+    BaiA.W = sc.nextDouble();
+    BaiA.L = sc.nextInt();
+    BaiA.U = sc.nextInt();
+    BaiA.G = sc.nextInt();
+    BaiA.xl = new double[BaiA.L];
+    BaiA.yl = new double[BaiA.L];
+    BaiA.xu = new double[BaiA.U];
+    BaiA.yu = new double[BaiA.U];
+    for (int i = 0; i < BaiA.L; ++i) {
+        BaiA.xl[i] = sc.nextDouble();
+        BaiA.yl[i] = sc.nextDouble();
+    }
+    for (int i = 0; i < BaiA.U; ++i) {
+        BaiA.xu[i] = sc.nextDouble();
+        BaiA.yu[i] = sc.nextDouble();
+    }
+    double S = -(BaiA.calc(BaiA.W, BaiA.L, BaiA.xl, BaiA.yl) - BaiA.calc(BaiA.W, BaiA.U, BaiA.xu, BaiA.yu)) / BaiA.G;
+    // System.out.println(S);
+    pw.println("Case #" + test + ":");
+    for (int i = 0; i + 1 < BaiA.G; ++i) {
+        double low = 0, high = BaiA.W;
+        for (int kk = 0; kk < 77; ++kk) {
+            double mid = (low + high) / 2;
+            double SS = (BaiA.calc(mid, BaiA.U, BaiA.xu, BaiA.yu) - BaiA.calc(mid, BaiA.L, BaiA.xl, BaiA.yl));
+            if (SS < S * (i + 1))
+                low = mid;
+            else
+                high = mid;
+        }
+        pw.printf("%.8f\n", low);
+    }
+// pw.println();
+}
+sc.close();
+pw.close();
+return pw;
+}
+
+
+public static PrintWriter func_737ab083628d40a398f7ebb95d2d6c4e(PrintWriter pw, Scanner sc) { 
+ int ntest = sc.nextInt();
+for (int test = 1; test <= ntest; ++test) {
+    BaiA.W = sc.nextDouble();
+    BaiA.L = sc.nextInt();
+    BaiA.U = sc.nextInt();
+    BaiA.G = sc.nextInt();
+    BaiA.xl = new double[BaiA.L];
+    BaiA.yl = new double[BaiA.L];
+    BaiA.xu = new double[BaiA.U];
+    BaiA.yu = new double[BaiA.U];
+    for (int i = 0; i < BaiA.L; ++i) {
+        BaiA.xl[i] = sc.nextDouble();
+        BaiA.yl[i] = sc.nextDouble();
+    }
+    for (int i = 0; i < BaiA.U; ++i) {
+        BaiA.xu[i] = sc.nextDouble();
+        BaiA.yu[i] = sc.nextDouble();
+    }
+    double S = -(BaiA.calc(BaiA.W, BaiA.L, BaiA.xl, BaiA.yl) - BaiA.calc(BaiA.W, BaiA.U, BaiA.xu, BaiA.yu)) / BaiA.G;
+    // System.out.println(S);
+    pw.println("Case #" + test + ":");
+    for (int i = 0; i + 1 < BaiA.G; ++i) {
+        double low = 0, high = BaiA.W;
+        for (int kk = 0; kk < 77; ++kk) {
+            double mid = (low + high) / 2;
+            double SS = (BaiA.calc(mid, BaiA.U, BaiA.xu, BaiA.yu) - BaiA.calc(mid, BaiA.L, BaiA.xl, BaiA.yl));
+            if (SS < S * (i + 1))
+                low = mid;
+            else
+                high = mid;
+        }
+        pw.printf("%.8f\n", low);
+    }
+// pw.println();
+}
+sc.close();
+return pw;
+}
+
+
+*********************************
+
+#### Score: 9.59644
+
+
+#### Java Tokens: next, nextdouble, ntest, nextint, test, double, %.8f, mid, bai, int, printf, println, high, low, baia, calc, case 
+
+public static PrintWriter func_b2cf96dc4ecf41219a5d03d8fe2a8710(PrintWriter pw, Scanner sc) { 
+ int ntest = sc.nextInt();
+for (int test = 1; test <= ntest; ++test) {
+    BaiA.W = sc.nextDouble();
+    BaiA.L = sc.nextInt();
+    BaiA.U = sc.nextInt();
+    BaiA.G = sc.nextInt();
+    BaiA.xl = new double[BaiA.L];
+    BaiA.yl = new double[BaiA.L];
+    BaiA.xu = new double[BaiA.U];
+    BaiA.yu = new double[BaiA.U];
+    for (int i = 0; i < BaiA.L; ++i) {
+        BaiA.xl[i] = sc.nextDouble();
+        BaiA.yl[i] = sc.nextDouble();
+    }
+    for (int i = 0; i < BaiA.U; ++i) {
+        BaiA.xu[i] = sc.nextDouble();
+        BaiA.yu[i] = sc.nextDouble();
+    }
+    double S = -(BaiA.calc(BaiA.W, BaiA.L, BaiA.xl, BaiA.yl) - BaiA.calc(BaiA.W, BaiA.U, BaiA.xu, BaiA.yu)) / BaiA.G;
+    // System.out.println(S);
+    pw.println("Case #" + test + ":");
+    for (int i = 0; i + 1 < BaiA.G; ++i) {
+        double low = 0, high = BaiA.W;
+        for (int kk = 0; kk < 77; ++kk) {
+            double mid = (low + high) / 2;
+            double SS = (BaiA.calc(mid, BaiA.U, BaiA.xu, BaiA.yu) - BaiA.calc(mid, BaiA.L, BaiA.xl, BaiA.yl));
+            if (SS < S * (i + 1))
+                low = mid;
+            else
+                high = mid;
+        }
+        pw.printf("%.8f\n", low);
+    }
+// pw.println();
+}
+return pw;
+}
+
+
+public static int func_f2ebf14e68a5444a8e9c6bc64c15a81c(PrintWriter pw, Scanner sc) { 
+ int ntest = sc.nextInt();
+for (int test = 1; test <= ntest; ++test) {
+    BaiA.W = sc.nextDouble();
+    BaiA.L = sc.nextInt();
+    BaiA.U = sc.nextInt();
+    BaiA.G = sc.nextInt();
+    BaiA.xl = new double[BaiA.L];
+    BaiA.yl = new double[BaiA.L];
+    BaiA.xu = new double[BaiA.U];
+    BaiA.yu = new double[BaiA.U];
+    for (int i = 0; i < BaiA.L; ++i) {
+        BaiA.xl[i] = sc.nextDouble();
+        BaiA.yl[i] = sc.nextDouble();
+    }
+    for (int i = 0; i < BaiA.U; ++i) {
+        BaiA.xu[i] = sc.nextDouble();
+        BaiA.yu[i] = sc.nextDouble();
+    }
+    double S = -(BaiA.calc(BaiA.W, BaiA.L, BaiA.xl, BaiA.yl) - BaiA.calc(BaiA.W, BaiA.U, BaiA.xu, BaiA.yu)) / BaiA.G;
+    // System.out.println(S);
+    pw.println("Case #" + test + ":");
+    for (int i = 0; i + 1 < BaiA.G; ++i) {
+        double low = 0, high = BaiA.W;
+        for (int kk = 0; kk < 77; ++kk) {
+            double mid = (low + high) / 2;
+            double SS = (BaiA.calc(mid, BaiA.U, BaiA.xu, BaiA.yu) - BaiA.calc(mid, BaiA.L, BaiA.xl, BaiA.yl));
+            if (SS < S * (i + 1))
+                low = mid;
+            else
+                high = mid;
+        }
+        pw.printf("%.8f\n", low);
+    }
+// pw.println();
+}
+return ntest;
+}
+
+
+*********************************
+
+#### Score: 9.59644
+
+
+#### Java Tokens: next, nextdouble, test, ntest, nextint, double, %.8f, mid, bai, int, printf, println, high, low, baia, calc, case 
+
+public static PrintWriter func_0f87a0cd4ca54837b3cde21fccee3f25(int ntest, PrintWriter pw, Scanner sc) { 
+ for (int test = 1; test <= ntest; ++test) {
+    BaiA.W = sc.nextDouble();
+    BaiA.L = sc.nextInt();
+    BaiA.U = sc.nextInt();
+    BaiA.G = sc.nextInt();
+    BaiA.xl = new double[BaiA.L];
+    BaiA.yl = new double[BaiA.L];
+    BaiA.xu = new double[BaiA.U];
+    BaiA.yu = new double[BaiA.U];
+    for (int i = 0; i < BaiA.L; ++i) {
+        BaiA.xl[i] = sc.nextDouble();
+        BaiA.yl[i] = sc.nextDouble();
+    }
+    for (int i = 0; i < BaiA.U; ++i) {
+        BaiA.xu[i] = sc.nextDouble();
+        BaiA.yu[i] = sc.nextDouble();
+    }
+    double S = -(BaiA.calc(BaiA.W, BaiA.L, BaiA.xl, BaiA.yl) - BaiA.calc(BaiA.W, BaiA.U, BaiA.xu, BaiA.yu)) / BaiA.G;
+    // System.out.println(S);
+    pw.println("Case #" + test + ":");
+    for (int i = 0; i + 1 < BaiA.G; ++i) {
+        double low = 0, high = BaiA.W;
+        for (int kk = 0; kk < 77; ++kk) {
+            double mid = (low + high) / 2;
+            double SS = (BaiA.calc(mid, BaiA.U, BaiA.xu, BaiA.yu) - BaiA.calc(mid, BaiA.L, BaiA.xl, BaiA.yl));
+            if (SS < S * (i + 1))
+                low = mid;
+            else
+                high = mid;
+        }
+        pw.printf("%.8f\n", low);
+    }
+// pw.println();
+}
+return pw;
+}
+
+
+*********************************
+
+#### Score: 8.68460
+
+
+#### Java Tokens: next, println, test, nextint, case, int 
+
+public static PrintWriter func_c8c26e20c8264cafb4030a5259e90a7a(int test, PrintWriter pw, Scanner sc) { 
+ pw.println("Case #" + test + ": ");
+int w = sc.nextInt();
+int l = sc.nextInt();
+int u = sc.nextInt();
+int g = sc.nextInt();
+double sl = 0;
+double su = 0;
+return pw;
+}
+
+
+public static PrintWriter func_a9e112db93b3410f9a8ef0d6f76e8385(int test, PrintWriter pw, Scanner sc) { 
+ pw.println("Case #" + test + ": ");
+int w = sc.nextInt();
+return pw;
+}
+
+
+public static double func_571532e9809f41ef811e496f09f58193(int test, PrintWriter pw, Scanner sc) { 
+ pw.println("Case #" + test + ": ");
+int w = sc.nextInt();
+int l = sc.nextInt();
+int u = sc.nextInt();
+int g = sc.nextInt();
+double sl = 0;
+double su = 0;
+return sl;
+}
+
+
+*********************************
+
+#### Score: 8.05300
+
+
+#### Java Tokens: next, nextint, test, perfect, casenum, num, cnt, casecnt, int, println, print, system, flush, solve, processing, close, case 
+
+public static PrintWriter func_f12e35b80f5a45849f90b476496469d3(PrintWriter pw, Scanner sc) { 
+ int caseCnt = sc.nextInt();
+for (int caseNum = 0; caseNum < caseCnt; caseNum++) {
+    System.out.println("Processing test case " + (caseNum + 1));
+    pw.print("Case #" + (caseNum + 1) + ":");
+    new Perfect().solve(sc, pw);
+}
+pw.flush();
+pw.close();
+sc.close();
+return pw;
+}
+
+
+public static int func_88d590cfe4e9440abaf20e0993b429d7(PrintWriter pw, Scanner sc) { 
+ int caseCnt = sc.nextInt();
+for (int caseNum = 0; caseNum < caseCnt; caseNum++) {
+    System.out.println("Processing test case " + (caseNum + 1));
+    pw.print("Case #" + (caseNum + 1) + ":");
+    new Perfect().solve(sc, pw);
+}
+pw.flush();
+pw.close();
+sc.close();
+return caseCnt;
+}
+
+
+public static PrintWriter func_043e15777c2245f2ace3949d7ead4e4c(PrintWriter pw, Scanner sc) { 
+ int caseCnt = sc.nextInt();
+for (int caseNum = 0; caseNum < caseCnt; caseNum++) {
+    System.out.println("Processing test case " + (caseNum + 1));
+    pw.print("Case #" + (caseNum + 1) + ":");
+    new Perfect().solve(sc, pw);
+}
+pw.flush();
+pw.close();
+return pw;
+}
+
+
+*********************************
+
+#### Score: 8.05300
+
+
+#### Java Tokens: next, nextint, test, casenum, num, cnt, casecnt, int, cheaters, println, print, system, flush, solve, processing, close, case 
+
+public static PrintWriter func_09d59f7d2de54aa6ad5c03d1dd9a0206(PrintWriter pw, Scanner sc) { 
+ int caseCnt = sc.nextInt();
+for (int caseNum = 0; caseNum < caseCnt; caseNum++) {
+    System.out.println("Processing test case " + (caseNum + 1));
+    pw.print("Case #" + (caseNum + 1) + ": ");
+    new Cheaters().solve(sc, pw);
+}
+pw.flush();
+pw.close();
+return pw;
+}
+
+
+public static int func_c8d4c03dd31f4ebaa9d0dbb08bd7aa83(PrintWriter pw, Scanner sc) { 
+ int caseCnt = sc.nextInt();
+for (int caseNum = 0; caseNum < caseCnt; caseNum++) {
+    System.out.println("Processing test case " + (caseNum + 1));
+    pw.print("Case #" + (caseNum + 1) + ": ");
+    new Cheaters().solve(sc, pw);
+}
+pw.flush();
+pw.close();
+sc.close();
+return caseCnt;
+}
+
+
+public static PrintWriter func_8854336f103d4db6836dc952494d5b44(PrintWriter pw, Scanner sc) { 
+ int caseCnt = sc.nextInt();
+for (int caseNum = 0; caseNum < caseCnt; caseNum++) {
+    System.out.println("Processing test case " + (caseNum + 1));
+    pw.print("Case #" + (caseNum + 1) + ": ");
+    new Cheaters().solve(sc, pw);
+}
+pw.flush();
+pw.close();
+sc.close();
+return pw;
+}
+
+
+*********************************
+
+#### Score: 7.87352
+
+
+#### Java Tokens: res, array, double, arraylist, list 
+
+public static int func_873504fabd1c4926bf18a657af8bb774(int a) { 
+ // System.out.println("TEST");
+// System.out.println(area);
+ArrayList<Double> res = new ArrayList<Double>();
+// System.out.println(slice);
+a = 0;
+return a;
+}
+
+
+public static int func_98c4291180674054b74726faed4c5c6e(int a, int b) { 
+ // System.out.println("TEST");
+// System.out.println(area);
+ArrayList<Double> res = new ArrayList<Double>();
+// System.out.println(slice);
+a = 0;
+b = 0;
+return a;
+}
+
+
+public static int func_1ec4a494938548cca3fefb2e49c45bd4(int a, int b) { 
+ // System.out.println("TEST");
+// System.out.println(area);
+ArrayList<Double> res = new ArrayList<Double>();
+// System.out.println(slice);
+a = 0;
+b = 0;
+return b;
+}
+
+
+*********************************
+
+#### Score: 7.81430
+
+
+#### Java Tokens: res, number, %.10f, testnumber, smax, test, max, sum, math, case, printf 
+
+public static PrintWriter func_fe908ac6983f4917bdd1272825525479(int n, int testNumber, long[] sum, double res, PrintWriter out) { 
+ for (int a = 0, b = 0; a < n; a++) {
+    while (sum[b + 1] - sum[a] < sum[n] - sum[b + 1] && b < n) {
+        b++;
+    }
+    for (int i = 0; i < 2; i++) {
+        if (b - i < a)
+            break;
+        long s1 = sum[b - i + 1] - sum[a];
+        long s2 = sum[a];
+        long s3 = sum[n] - sum[b - i + 1];
+        long smax = Math.max(s1, Math.max(s2, s3));
+        res = Math.max(res, 1 - (double) smax / sum[n]);
+    }
+}
+out.printf("Case #" + testNumber + ": %.10f\n", res);
+return out;
+}
+
+
+public static double func_fbb9b3626dd7462986e97f6de7904ff6(int n, int testNumber, long[] sum, double res, PrintWriter out) { 
+ for (int a = 0, b = 0; a < n; a++) {
+    while (sum[b + 1] - sum[a] < sum[n] - sum[b + 1] && b < n) {
+        b++;
+    }
+    for (int i = 0; i < 2; i++) {
+        if (b - i < a)
+            break;
+        long s1 = sum[b - i + 1] - sum[a];
+        long s2 = sum[a];
+        long s3 = sum[n] - sum[b - i + 1];
+        long smax = Math.max(s1, Math.max(s2, s3));
+        res = Math.max(res, 1 - (double) smax / sum[n]);
+    }
+}
+out.printf("Case #" + testNumber + ": %.10f\n", res);
+return res;
+}
+
+
+public static double func_60f76c51e50c4022ab0084f64439054c(int n, int testNumber, long[] sum, PrintWriter out) { 
+ double res = 0;
+for (int a = 0, b = 0; a < n; a++) {
+    while (sum[b + 1] - sum[a] < sum[n] - sum[b + 1] && b < n) {
+        b++;
+    }
+    for (int i = 0; i < 2; i++) {
+        if (b - i < a)
+            break;
+        long s1 = sum[b - i + 1] - sum[a];
+        long s2 = sum[a];
+        long s3 = sum[n] - sum[b - i + 1];
+        long smax = Math.max(s1, Math.max(s2, s3));
+        res = Math.max(res, 1 - (double) smax / sum[n]);
+    }
+}
+out.printf("Case #" + testNumber + ": %.10f\n", res);
+return res;
+}
+
+
+*********************************
+
+#### Score: 7.78742
+
+
+#### Java Tokens: next, println, system, nextint, string, solve, close, int, case 
+
+public static PrintWriter func_5f57a2edef1041caa821806cabf7e9d2(PrintWriter out, Scanner in) { 
+ int T = in.nextInt();
+for (int i = 0; i < T; i++) {
+    String s = "Case #" + (i + 1) + ": " + new A().solve(in);
+    out.println(s);
+    System.out.println(s);
+}
+out.close();
+return out;
+}
+
+
+public static PrintWriter func_635e262b1c0747db8dc8487584a21618(PrintWriter out, Scanner in) { 
+ int T = in.nextInt();
+for (int i = 0; i < T; i++) {
+    String s = "Case #" + (i + 1) + ": " + new A().solve(in);
+    out.println(s);
+    System.out.println(s);
+}
+out.close();
+return out;
+}
+
+
+public static PrintWriter func_8a2c51d4894943cfb610a6c0d7c52954(PrintWriter out, Scanner in) { 
+ int T = in.nextInt();
+for (int i = 0; i < T; i++) {
+    String s = "Case #" + (i + 1) + ": " + new A().solve(in);
+    out.println(s);
+    System.out.println(s);
+}
+out.close();
+return out;
+}
+

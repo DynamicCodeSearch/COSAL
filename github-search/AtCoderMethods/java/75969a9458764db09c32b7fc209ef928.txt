@@ -1,0 +1,14 @@
+long go(int pos, int s, int t) {
+    if (pos < 0) {
+        if (t > 0 && s % t == 0 && s / t == a) {
+            return 1L;
+        }
+        return 0L;
+    }
+    if (state[pos][s][t] != -1L) {
+        return state[pos][s][t];
+    }
+    long ans = go(pos - 1, s + cards[pos], t + 1) + go(pos - 1, s, t);
+    state[pos][s][t] = ans;
+    return ans;
+}

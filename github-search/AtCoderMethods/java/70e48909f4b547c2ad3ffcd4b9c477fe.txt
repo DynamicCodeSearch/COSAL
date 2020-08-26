@@ -1,0 +1,30 @@
+void buildSA() {
+    sa = new Integer[n + 1];
+    rank = new int[n + 1];
+    tmp = new int[n + 1];
+    levelRank = new int[k][];
+    int ki = 0;
+    for (int i = 0; i <= n; i++) {
+        sa[i] = i;
+        rank[i] = (i < n) ? base[i] : -1;
+    }
+    levelRank[ki++] = rank.clone();
+    for (int _k = 1; _k <= n; _k *= 2) {
+        final int k = _k;
+        Arrays.sort(sa, new Comparator<Integer>() {
+
+            @Override
+            public int compare(Integer i, Integer j) {
+                return compareNode(i, j, k);
+            }
+        });
+        tmp[sa[0]] = 0;
+        for (int i = 1; i <= n; i++) {
+            tmp[sa[i]] = tmp[sa[i - 1]] + ((compareNode(sa[i - 1], sa[i], k) < 0) ? 1 : 0);
+        }
+        for (int i = 0; i <= n; i++) {
+            rank[i] = tmp[i];
+        }
+        levelRank[ki++] = rank.clone();
+    }
+}

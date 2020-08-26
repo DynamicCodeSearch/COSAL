@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter w = new PrintWriter(System.out);
+    int W = in.nextInt(), a = in.nextInt(), b = in.nextInt();
+    
+    if (Math.abs(b - a) <= W)
+        w.println(0);
+    else {
+        if (b < a)
+            w.println(a - (b + W));
+        else
+            w.println(b - (a + W));
+    }
+    w.close();
+}

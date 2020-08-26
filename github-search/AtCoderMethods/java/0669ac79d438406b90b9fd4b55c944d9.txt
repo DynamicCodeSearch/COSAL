@@ -1,0 +1,12 @@
+public void solve(int test_number, InputReader in, PrintWriter out) throws IOException {
+    int n = in.nextInt();
+    BigInteger[] a = new BigInteger[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = new BigInteger(in.next());
+    }
+    BigInteger res = new BigInteger("1");
+    for (int i = 0; i < n; i++) {
+        res = res.multiply(a[i]).divide(findGcd(res, a[i]));
+    }
+    out.println(res);
+}

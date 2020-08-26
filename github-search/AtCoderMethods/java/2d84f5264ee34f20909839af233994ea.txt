@@ -1,0 +1,14 @@
+public static void solve(int count, int index, int sum) {
+    if (count == 3) {
+        sums[sumCount] = sum;
+        sumCount++;
+        return;
+    }
+    if (count > 3 || index == nums.length) {
+        return;
+    }
+    
+    solve(count, index + 1, sum);
+    
+    solve(count + 1, index + 1, sum + nums[index]);
+}

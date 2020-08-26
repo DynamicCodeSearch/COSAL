@@ -1,0 +1,10 @@
+def union(self, x, y):
+  xr = self.find(x)
+  yr = self.find(y)
+  if self.rank[xr] > self.rank[yr]:
+    self.parent[yr] = xr
+  elif self.rank[xr] < self.rank[yr]:
+    self.parent[xr] = yr
+  elif xr != yr:
+    self.parent[yr] = xr
+    self.rank[xr] += 1

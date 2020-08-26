@@ -1,0 +1,27 @@
+def main():
+    n,a,b = LI()
+    v = sorted(LI(),reverse=True)
+    if v[0] == v[a-1]:
+        t = a-1
+        for i in range(a,n):
+            if v[0] != v[i]:
+                break
+            t = i
+        t += 1
+        r = 0
+        for i in range(a,min(b,t)+1):
+            r += nCb(t,i)
+        return "{}\n{}".format(v[0], r)
+
+    t = 0
+    tu = 0
+    va = v[a-1]
+    for i in range(n):
+        if v[i] > va:
+            tu += 1
+        elif v[i] == va:
+            t += 1
+        else:
+            break
+    r = nCb(t,a-tu)
+    return "{}\n{}".format(sum(v[:a]) * 1.0 / a, r)

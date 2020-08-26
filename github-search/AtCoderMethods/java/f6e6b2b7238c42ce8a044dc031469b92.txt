@@ -1,0 +1,15 @@
+public static void main(String[] args) throws java.lang.Exception {
+    Scanner in = new Scanner(System.in);
+    int n = in.nextInt();
+    int s = in.nextInt();
+    int t = in.nextInt();
+    int w = in.nextInt();
+    int count = s <= w && w <= t ? 1 : 0;
+    for (int i = 1; i < n; i++) {
+        w += in.nextInt();
+        if (s <= w && w <= t) {
+            count++;
+        }
+    }
+    System.out.println(count);
+}

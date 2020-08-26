@@ -1,0 +1,50 @@
+@SuppressWarnings("unchecked")
+public static void solveHalf(int n, long[] x, long[] y, long dx, long dy, int[] degree, UnionFind uf) {
+    long[] unzipx = new long[n];
+    HashMap<Long, Integer> zipx = new HashMap<>();
+    ArrayList<Pair> al = new ArrayList<>();
+    for (int i = 0; i < n; i++) {
+        al.add(new Pair(i, x[i], y[i]));
+    }
+    al.sort((p1, p2) -> {
+        if (p1.x != p2.x)
+            return Long.compare(p1.x, p2.x);
+        return Long.compare(p1.y, p2.y);
+    });
+    int nx = 0;
+    for (int i = 0; i < n; i++) {
+        Pair p = al.get(i);
+        if (nx == 0 || unzipx[nx - 1] != p.x) {
+            unzipx[nx] = p.x;
+            zipx.put(p.x, nx);
+            nx++;
+        }
+    }
+    ArrayList<Pair>[] points = new ArrayList[nx];
+    for (int i = 0; i < nx; i++) {
+        points[i] = new ArrayList<>();
+    }
+    for (int i = 0; i < n; i++) {
+        Pair p = al.get(i);
+        points[zipx.get(p.x)].add(p);
+    }
+    int[][] imos = new int[nx][];
+    for (int i = 0; i < nx; i++) {
+        imos[i] = new int[points[i].size() + 1];
+    }
+    for (Pair p : al) {
+        union(dy, uf, points, imos, p, degree, zipx.get(p.x - dx));
+        union(dy, uf, points, imos, p, degree, zipx.get(p.x + dx));
+    }
+    for (int i = 0; i < nx; i++) {
+        int m = points[i].size();
+        for (int j = 0; j < m; j++) {
+            if (j > 0) {
+                imos[i][j] += imos[i][j - 1];
+            }
+            if (imos[i][j] > 0) {
+                uf.union(points[i].get(j).i, points[i].get(j + 1).i);
+            }
+        }
+    }
+}

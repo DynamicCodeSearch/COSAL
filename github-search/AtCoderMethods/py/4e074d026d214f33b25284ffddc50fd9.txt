@@ -1,0 +1,13 @@
+def main():
+    n, m = map(int, input().split())
+    s_list = [list(map(int, input().split())) for _ in range(n)]
+    c_list = [list(map(int, input().split())) for _ in range(m)]
+
+    for s in s_list:
+        minv = 1000000000
+        for i, c in enumerate(c_list):
+            tmp = man_dis(s, c)
+            if tmp < minv:
+                minv = tmp
+                idx = i
+        print(idx+1)

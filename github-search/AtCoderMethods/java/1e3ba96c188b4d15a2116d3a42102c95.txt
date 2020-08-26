@@ -1,0 +1,20 @@
+public int nextInt() {
+    int c;
+    for (c = this.read(); isSpaceChar(c); c = this.read()) {
+    }
+    byte sgn = 1;
+    if (c == 45) {
+        sgn = -1;
+        c = this.read();
+    }
+    int res = 0;
+    while (c >= 48 && c <= 57) {
+        res *= 10;
+        res += c - 48;
+        c = this.read();
+        if (isSpaceChar(c)) {
+            return res * sgn;
+        }
+    }
+    throw new InputMismatchException();
+}

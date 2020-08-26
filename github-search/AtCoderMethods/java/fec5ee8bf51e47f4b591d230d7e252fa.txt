@@ -1,0 +1,24 @@
+public void solveD() {
+    int N = in.nextInt();
+    int M = in.nextInt();
+    List<Integer>[] graph = new ArrayList[N + 1];
+    int[] years = new int[M];
+    Arrays.fill(years, 1 << 30);
+    for (int i = 0; i <= N; i++) graph[i] = new ArrayList();
+    for (int i = 0; i < M; i++) {
+        int a = in.nextInt();
+        int b = in.nextInt();
+        int y = in.nextInt();
+        if (years[a] == 1 << 30) {
+            graph[a].add(b);
+            graph[b].add(a);
+        }
+        if ((years[a] == 1 << 30) || (years[a] != 1 << 30 && years[a] < y)) {
+            years[a] = y;
+            years[b] = y;
+        }
+    }
+    int Q = in.nextInt();
+    for (int i = 0; i < Q; i++) {
+    }
+}

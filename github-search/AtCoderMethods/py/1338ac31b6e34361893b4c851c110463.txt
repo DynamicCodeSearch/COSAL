@@ -1,0 +1,9 @@
+def comb(n,k):
+    if memo[n][k] > 0:
+        return memo[n][k]
+    elif k == 0 or k == n:
+        memo[n][k] = 1
+        return memo[n][k]
+    else:
+        memo[n][k] = comb(n-1,k) + comb(n-1,k-1)
+        return memo[n][k]

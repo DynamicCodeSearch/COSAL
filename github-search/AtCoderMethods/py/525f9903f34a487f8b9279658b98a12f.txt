@@ -1,0 +1,8 @@
+def can_put(i, j, board):
+    if np.sum(board, axis=0)[j]:
+        return False
+    if np.sum(board.diagonal(j - i)):
+        return False
+    if np.sum(np.rot90(board, 3).diagonal(7 - i - j)):
+        return False
+    return True

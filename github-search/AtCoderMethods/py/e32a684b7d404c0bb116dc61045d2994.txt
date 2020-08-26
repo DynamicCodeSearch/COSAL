@@ -1,0 +1,24 @@
+def main():
+    n = int(input())
+
+    n_odd = 0
+    n_even = 0
+    n_four = 0
+
+    for x in (int(a) for a in input().split()):
+        if x % 4 == 0:
+            n_four += 1
+        elif x % 2 == 1:
+            n_odd += 1
+        else:
+            n_even += 1
+
+    if n_even == 0:
+        extra = 1
+    else:
+        extra = 0
+
+    if n_odd <= n_four + extra:
+        print("Yes")
+    else:
+        print("No")

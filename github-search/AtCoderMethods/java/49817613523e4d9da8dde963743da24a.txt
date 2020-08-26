@@ -1,0 +1,18 @@
+static long countMore(Node y, int id) {
+    long ret = 0;
+    while (y != null) {
+        fall(y);
+        if (id > y.id) {
+            y = y.right;
+        } else if (id == y.id) {
+            ret += val(y.right);
+            break;
+        } else {
+            ret += val(y.right);
+            ret += y.myval;
+            ;
+            y = y.left;
+        }
+    }
+    return ret % mod;
+}

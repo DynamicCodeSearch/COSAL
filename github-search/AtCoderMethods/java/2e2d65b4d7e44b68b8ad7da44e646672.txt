@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    try {
+        
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+        int n = Integer.parseInt(br.readLine());
+        String str = br.readLine();
+        int[] count = { 0, 0, 0, 0 };
+        for (int i = 0; i < n; i++) {
+            int tmp = Integer.parseInt(str.substring(i, i + 1)) - 1;
+            count[tmp]++;
+        }
+        int max = count[0];
+        int min = count[0];
+        for (int i = 1; i < count.length; i++) {
+            if (max < count[i]) {
+                max = count[i];
+            }
+            if (min > count[i]) {
+                min = count[i];
+            }
+        }
+        System.out.println(max + " " + min);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

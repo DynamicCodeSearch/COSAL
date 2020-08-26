@@ -1,0 +1,36 @@
+
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String s1 = sc.nextLine();
+    String[] s1arr = s1.split(" ");
+    int n = Integer.parseInt(s1arr[0]);
+    int m = Integer.parseInt(s1arr[1]);
+    String[] a = new String[n];
+    String[] b = new String[m];
+    BitSet bs = new BitSet(n * n);
+    for (int i = 0; i < n; i++) {
+        String str = sc.nextLine();
+        a[i] = str;
+    }
+    for (int i = 0; i < m; i++) {
+        String str = sc.nextLine();
+        b[i] = str;
+    }
+    for (int i = 0; i <= n - m; i++) {
+        for (int j = 0; j <= n - m; j++) {
+            for (int k = 0; k < m; k++) {
+                for (int l = 0; l < m; l++) {
+                    if (b[k].charAt(l) == (a[i + k].charAt(j + l))) {
+                        bs.set(k + m * l);
+                    }
+                }
+            }
+            if (bs.cardinality() == m * m) {
+                System.out.println("Yes");
+                System.exit(0);
+            }
+            bs.clear();
+        }
+    }
+    System.out.println("No");
+}

@@ -1,0 +1,14 @@
+def main():
+    N, A, B = tuple(map(int, input().split(' ')))
+    v = list(map(int, input().split(' ')))
+
+    v.sort(reverse=True)
+
+    print(sum(v[:A])/A)
+
+    a, b = v.count(v[A-1]), v[:A].count(v[A-1])
+
+    if v[0] == v[A-1]:
+        print(sum([C(a, r) for r in range(A, min(B, a)+1)]))
+    else:
+        print(C(a, b))

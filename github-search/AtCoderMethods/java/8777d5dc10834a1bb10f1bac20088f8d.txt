@@ -1,0 +1,23 @@
+private static void solve(Scanner in) {
+    int N = in.nextInt();
+    int[] A = new int[N];
+    int max = 0;
+    for (int i = 0; i < N; i++) {
+        A[i] = in.nextInt();
+        max = max > A[i] ? max : A[i];
+    }
+    int[] hist = new int[max + 1];
+    for (int a : A) {
+        hist[a]++;
+    }
+    int count = 0;
+    int amari = 0;
+    for (int h : hist) {
+        if (h > 0) {
+            count++;
+            amari += h - 1;
+        }
+    }
+    int ans = count - (amari % 2);
+    System.out.println(ans);
+}

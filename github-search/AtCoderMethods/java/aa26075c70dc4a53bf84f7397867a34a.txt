@@ -1,0 +1,22 @@
+private void solve(Scanner sc) {
+    N = sc.nextInt();
+    K = sc.nextInt();
+    w = new int[N];
+    p = new int[N];
+    for (int i = 0; i < N; ++i) {
+        w[i] = sc.nextInt();
+        p[i] = sc.nextInt();
+    }
+    double ans = 0;
+    double left = 0d;
+    double right = 100d;
+    while (right > left + 1e-9 && (right - left) / right > 1e-9) {
+        double mid = (left + right) / 2;
+        if (check(mid)) {
+            left = mid;
+        } else {
+            right = mid;
+        }
+    }
+    _out.printf("%.9f%n", left);
+}

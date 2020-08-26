@@ -1,0 +1,16 @@
+def f(A):
+    counter = [0 for _ in range(8)]
+    n_free = 0
+    for a in A:
+        if a >= 3200:
+            n_free += 1
+        else:
+            idx = a // 400
+            counter[idx] += 1
+    if sum(counter) > 0:
+        n_min = sum(count > 0 for count in counter)
+        n_max = n_min + n_free
+    else:
+        n_min = 1
+        n_max = n_free
+    return n_min, n_max

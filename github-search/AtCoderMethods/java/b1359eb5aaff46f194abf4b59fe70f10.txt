@@ -1,0 +1,23 @@
+private static boolean eof() {
+    if (lenbuf == -1)
+        return true;
+    int lptr = ptrbuf;
+    while (lptr < lenbuf) if (!isSpaceChar(inbuf[lptr++]))
+        return false;
+    try {
+        is.mark(1000);
+        while (true) {
+            int b = is.read();
+            if (b == -1) {
+                is.reset();
+                ;
+                return true;
+            } else if (!isSpaceChar(b)) {
+                is.reset();
+                return false;
+            }
+        }
+    } catch (IOException e) {
+        return true;
+    }
+}

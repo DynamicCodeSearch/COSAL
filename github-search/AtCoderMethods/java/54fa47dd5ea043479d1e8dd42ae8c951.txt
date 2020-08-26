@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    int c = sc.nextInt();
+    int d = sc.nextInt();
+    sc.close();
+    int result = 0;
+    if (a < c && c < b && b < d) {
+        result = b - c;
+    } else if (c < a && a < d && d < b) {
+        result = d - a;
+    } else if (c <= b && d <= b && c >= a && d >= a) {
+        result = d - c;
+    } else if (a <= d && b <= d && a >= c && b >= c) {
+        result = b - a;
+    }
+    System.out.println(result);
+}

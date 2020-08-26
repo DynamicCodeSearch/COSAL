@@ -1,0 +1,21 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    StringTokenizer st = new StringTokenizer(br.readLine());
+    int n = Integer.parseInt(st.nextToken());
+    st = new StringTokenizer(br.readLine());
+    int[] array = new int[100000 + 100];
+    int cnt = 0;
+    for (int i = 1; i <= n; i++) {
+        int a = Integer.parseInt(st.nextToken());
+        array[a]++;
+    }
+    for (int i = 1; i < array.length; i++) {
+        if (array[i] == 0)
+            continue;
+        cnt += array[i] - 1;
+    }
+    int left = n - cnt;
+    if (cnt % 2 == 1)
+        --left;
+    System.out.println(left);
+}

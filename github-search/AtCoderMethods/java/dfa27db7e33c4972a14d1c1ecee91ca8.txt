@@ -1,0 +1,12 @@
+String next() {
+    try {
+        int ch = nextPrintable();
+        StringBuilder sb = new StringBuilder();
+        do {
+            sb.appendCodePoint(ch);
+        } while (isPrintable(ch = br.read()));
+        return sb.toString();
+    } catch (IOException e) {
+        throw new NoSuchElementException();
+    }
+}

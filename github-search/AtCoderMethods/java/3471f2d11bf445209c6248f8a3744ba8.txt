@@ -1,0 +1,14 @@
+private static int count(char[] c, char[] LR) {
+    int n = c.length;
+    int count = 0;
+    for (int i = 0; i < n; i++) {
+        if (i < n - 1) {
+            if (c[i] == LR[0] && c[i + 1] == LR[1])
+                i++;
+            else if (c[i] == LR[2] && c[i + 1] == LR[3])
+                i++;
+        }
+        count++;
+    }
+    return count;
+}

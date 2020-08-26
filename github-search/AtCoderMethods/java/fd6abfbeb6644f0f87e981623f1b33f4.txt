@@ -1,0 +1,19 @@
+static String ns() {
+    try {
+        int b = skip();
+        StringBuilder sb = new StringBuilder();
+        if (b == -1)
+            return "";
+        sb.append((char) b);
+        while (true) {
+            b = is.read();
+            if (b == -1)
+                return sb.toString();
+            if (b <= ' ')
+                return sb.toString();
+            sb.append((char) b);
+        }
+    } catch (IOException e) {
+    }
+    return "";
+}

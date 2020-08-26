@@ -1,0 +1,14 @@
+public boolean check(int cur, int[] arr) {
+    boolean ok = true;
+    while (cur != 0) {
+        int r = cur % 10;
+        for (int i = 0; i < arr.length; ++i) {
+            if (arr[i] == r)
+                ok = false;
+        }
+        cur /= 10;
+    }
+    if (ok)
+        return true;
+    return false;
+}

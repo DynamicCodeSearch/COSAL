@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    IO io = new IO();
+    int n = io.nextInt();
+    int m = io.nextInt();
+    Bridge[] road = new Bridge[m];
+    for (int i = 0; i < m; i++) {
+        road[i] = new Bridge(io.nextInt() - 1, io.nextInt() - 1, io.nextInt());
+    }
+    Arrays.sort(road);
+    int qq = io.nextInt();
+    Person[] query = new Person[qq];
+    for (int i = 0; i < qq; i++) {
+        query[i] = new Person(io.nextInt() - 1, io.nextInt(), i);
+    }
+    Arrays.sort(query);
+    UnionFind uf = new UnionFind(n);
+    int[] ans = new int[qq];
+    int ind = 0;
+    for (int i = 0; i < qq; i++) {
+        while (ind < m && road[ind].y > query[i].w) {
+            uf.unite(road[ind].a, road[ind].b);
+            ind++;
+        }
+        ans[query[i].index] = uf.getIslandNum(query[i].v);
+    }
+    for (int i = 0; i < qq; i++) {
+        io.println(ans[i]);
+    }
+    io.flush();
+}

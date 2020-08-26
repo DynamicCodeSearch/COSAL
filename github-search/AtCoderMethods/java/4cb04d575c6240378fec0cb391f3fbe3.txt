@@ -1,0 +1,44 @@
+void run() {
+    int N = sc.nextInt();
+    int W = sc.nextInt();
+    int[] v = new int[N];
+    int[] w = new int[N];
+    for (int i = 0; i < N; i++) {
+        w[i] = sc.nextInt();
+        v[i] = sc.nextInt();
+    }
+    long base = w[0] - 1;
+    for (int i = 0; i < N; i++) {
+        w[i] -= base;
+    }
+    int M = 1000;
+    long[][][] dp = new long[2][N + 1][M + 10];
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            for (int k = 0; k <= M; k++) {
+                if (k - w[i] >= 0) {
+                    if ((j) * base + k <= W && dp[i & 1][j + 1][k] < dp[i & 1][j][k - w[i]] + v[i]) {
+                        dp[(i + 1) & 1][j + 1][k] = dp[i & 1][j][k - w[i]] + v[i];
+                    } else {
+                        if (dp[(i + 1) & 1][j][k] < dp[i & 1][j][k])
+                            dp[(i + 1) & 1][j][k] = dp[i & 1][j][k];
+                    }
+                } else {
+                    if (dp[(i + 1) & 1][j][k] < dp[i & 1][j][k])
+                        dp[(i + 1) & 1][j][k] = dp[i & 1][j][k];
+                }
+            }
+        }
+    }
+    long ans = 0;
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j <= N; j++) {
+            for (int k = 0; k <= M; k++) {
+                if (dp[i][j][k] > ans && (long) j * base + k <= W) {
+                    ans = Math.max(ans, dp[i][j][k]);
+                }
+            }
+        }
+    }
+    System.out.println(ans);
+}

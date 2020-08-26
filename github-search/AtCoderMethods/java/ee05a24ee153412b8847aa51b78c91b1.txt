@@ -1,0 +1,7 @@
+public void set(int at, boolean s) {
+    if (s) {
+        bits[at >>> 6] |= 1L << (at & 63);
+    } else {
+        bits[at >>> 6] &= ~(1L << (at & 63));
+    }
+}

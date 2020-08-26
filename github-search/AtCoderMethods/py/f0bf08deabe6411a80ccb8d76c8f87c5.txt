@@ -1,0 +1,12 @@
+def binarySearch(l, r, now, L):
+	mid = (l + r) // 2
+ if r == l or r == l + 1:
+		if now <= L[l]:
+			return l
+  else:
+			return r
+ else:
+		if now <= L[mid]:
+			return binarySearch(l, mid, now, L)
+  else:
+			return binarySearch(mid, r, now, L)

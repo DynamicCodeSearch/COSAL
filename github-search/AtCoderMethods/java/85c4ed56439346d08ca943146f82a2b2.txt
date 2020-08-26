@@ -1,0 +1,35 @@
+public static void main(String[] args) {
+    
+    Scanner scan = new Scanner(System.in);
+    String str = scan.nextLine();
+    int n = new Integer(str);
+    int[] array = new int[n];
+    int right = 0;
+    int left = 0;
+    if (n % 2 == 0) {
+        right = n / 2;
+        left = right - 1;
+    } else {
+        right = n / 2 + 1;
+        left = right - 1;
+    }
+    str = scan.nextLine();
+    String[] str2 = str.split(" ");
+    for (int i = 0; i < n; i++) {
+        if (i % 2 == 0) {
+            array[left--] = new Integer(str2[i]);
+        } else {
+            array[right++] = new Integer(str2[i]);
+        }
+    }
+    if (array.length % 2 != 0) {
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i] + " ");
+        }
+    } else {
+        for (int i = array.length - 1; i >= 0; i--) {
+            System.out.print(array[i] + " ");
+        }
+    }
+    System.out.println();
+}

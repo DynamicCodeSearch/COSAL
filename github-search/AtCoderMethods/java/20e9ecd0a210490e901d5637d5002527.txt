@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int Q = sc.nextInt();
+    int[] b = new int[3 * Q];
+    for (int i = 0; i < 3 * Q; i++) {
+        b[i] = sc.nextInt();
+    }
+    int[] a = new int[N];
+    for (int i = 0; i < N; i++) {
+        a[i] = 0;
+    }
+    for (int k = 0; k < Q * 3; k += 3) {
+        int L = b[0 + k];
+        int R = b[1 + k];
+        int T = b[2 + k];
+        for (int j = L - 1; j < R; j++) {
+            a[j] = T;
+        }
+    }
+    for (int m = 0; m < N; m++) {
+        System.out.println(a[m]);
+    }
+}

@@ -1,0 +1,10 @@
+long calc(long h, long w, int x) {
+    long a = h * x;
+    long b1 = h * ((w - x) / 2);
+    long c1 = h * ((w - x) - (w - x) / 2);
+    long ans1 = Math.max(a, Math.max(b1, c1)) - Math.min(a, Math.min(b1, c1));
+    long b2 = h / 2 * (w - x);
+    long c2 = (h - h / 2) * (w - x);
+    long ans2 = Math.max(a, Math.max(b2, c2)) - Math.min(a, Math.min(b2, c2));
+    return Math.min(ans1, ans2);
+}

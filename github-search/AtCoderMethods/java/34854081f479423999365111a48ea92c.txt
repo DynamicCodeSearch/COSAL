@@ -1,0 +1,31 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int n = scan.nextInt();
+    int m = scan.nextInt();
+    boolean[] kirai = new boolean[10];
+    for (int i = 0; i < m; i++) kirai[scan.nextInt()] = true;
+    int[] suki = new int[10 - m];
+    int dummy__Count = 0;
+    for (int i = 0; i < 10; i++) {
+        if (!kirai[i]) {
+            suki[dummy__Count] = i;
+            dummy__Count++;
+        }
+    }
+    int count = 0;
+    int num = 0;
+    int keta = 1;
+    do {
+        num = 0;
+        for (int i = keta - 1; i >= 0; i--) {
+            num *= 10;
+            num += suki[(count / (int) Math.pow(suki.length, i)) % suki.length];
+        }
+        count++;
+        if (count >= (int) Math.pow(suki.length, keta)) {
+            keta++;
+            count = 0;
+        }
+    } while (num < n);
+    System.out.println(num);
+}

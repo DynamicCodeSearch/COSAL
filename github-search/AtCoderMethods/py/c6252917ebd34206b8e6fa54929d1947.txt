@@ -1,0 +1,26 @@
+def main():
+    N, H = map(int, input().split())
+    A, B, C, D, E = map(int, input().split())
+
+    cal = N * E - H
+    if cal < 0:
+        print(0)
+        return
+
+    normal = (A, B + E)
+    save = (C, D + E)
+    cost = []
+
+    i = cal // normal[1] + 1
+    j = 0
+    while j <= i:
+        an = j
+        calb = cal - an * normal[1]
+        if calb < 0:
+            bn = 0
+        else:
+            bn = calb // save[1] + 1
+        cost.append(an * normal[0] + bn * save[0])
+        j += 1
+
+    print(min(cost))

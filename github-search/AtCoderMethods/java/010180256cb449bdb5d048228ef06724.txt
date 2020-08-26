@@ -1,0 +1,33 @@
+public void calc() {
+    int N = in.nextInt();
+    int[] a = new int[N - 1];
+    int[] b = new int[N - 1];
+    long[] c = new long[N - 1];
+    for (int i = 0; i < N - 1; i++) {
+        a[i] = in.nextInt() - 1;
+        b[i] = in.nextInt() - 1;
+        c[i] = in.nextLong();
+    }
+    int Q = in.nextInt();
+    int K = in.nextInt() - 1;
+    int[] x = new int[Q];
+    int[] y = new int[Q];
+    for (int i = 0; i < Q; i++) {
+        x[i] = in.nextInt() - 1;
+        y[i] = in.nextInt() - 1;
+    }
+    for (int i = 0; i < N; i++) {
+        treeList.add(new TreeMap<Integer, Long>());
+    }
+    for (int i = 0; i < N - 1; i++) {
+        treeList.get(a[i]).put(b[i], c[i]);
+        treeList.get(b[i]).put(a[i], c[i]);
+    }
+    dist = new long[N];
+    
+    dfs(-1, K, 0);
+    for (int i = 0; i < Q; i++) {
+        out.println(dist[x[i]] + dist[y[i]]);
+    }
+    out.close();
+}

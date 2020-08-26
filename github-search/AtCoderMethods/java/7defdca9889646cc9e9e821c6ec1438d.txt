@@ -1,0 +1,29 @@
+public static void main(String[] args) throws IOException {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    double[] max = new double[N];
+    double[] min = new double[N];
+    for (int i = 0; i < N; i++) {
+        max[i] = Double.parseDouble(sc.next());
+        min[i] = Double.parseDouble(sc.next());
+    }
+    int[] result = new int[6];
+    for (int i = 0; i < N; i++) {
+        if (max[i] >= 35) {
+            result[0]++;
+        } else if (max[i] >= 30) {
+            result[1]++;
+        } else if (max[i] >= 25) {
+            result[2]++;
+        } else if (max[i] < 0) {
+            result[5]++;
+        }
+        if (min[i] >= 25) {
+            result[3]++;
+        }
+        if (min[i] < 0 && max[i] >= 0) {
+            result[4]++;
+        }
+    }
+    System.out.println(result[0] + " " + result[1] + " " + result[2] + " " + result[3] + " " + result[4] + " " + result[5]);
+}

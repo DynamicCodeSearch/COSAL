@@ -1,0 +1,12 @@
+
+public int getCountDisjointSets() {
+    int[] used = new int[parent.length];
+    for (int i = 0; i < parent.length; i++) {
+        used[find(i)] = 1;
+    }
+    int res = 0;
+    for (int i = 0; i < parent.length; i++) {
+        res += used[i];
+    }
+    return res;
+}

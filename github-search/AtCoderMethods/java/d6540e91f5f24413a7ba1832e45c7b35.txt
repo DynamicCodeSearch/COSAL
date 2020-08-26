@@ -1,0 +1,16 @@
+void solve() {
+    int n = in.nextInt();
+    long[] a = new long[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = in.nextLong();
+        if (i > 0) {
+            a[i] += a[i - 1];
+        }
+    }
+    long best = Long.MAX_VALUE;
+    for (int i = 0; i < n - 1; i++) {
+        long s1 = a[i], s2 = a[n - 1] - s1;
+        best = Math.min(best, Math.abs(s1 - s2));
+    }
+    out.println(best);
+}

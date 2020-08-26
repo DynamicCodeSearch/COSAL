@@ -1,0 +1,17 @@
+long nl() {
+    long n = 0L;
+    int b = readByte();
+    boolean minus = false;
+    while (b != -1 && !((b >= '0' && b <= '9') || b == '-')) {
+        b = readByte();
+    }
+    if (b == '-') {
+        minus = true;
+        b = readByte();
+    }
+    while (b >= '0' && b <= '9') {
+        n = n * 10 + (b - '0');
+        b = readByte();
+    }
+    return minus ? -n : n;
+}

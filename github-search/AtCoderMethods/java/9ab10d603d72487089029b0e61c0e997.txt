@@ -1,0 +1,10 @@
+String next() throws RuntimeException {
+    try {
+        if (it == null || !it.hasNext()) {
+            it = Arrays.asList(br.readLine().split(" ")).iterator();
+        }
+        return it.next();
+    } catch (IOException e) {
+        throw new IllegalStateException();
+    }
+}

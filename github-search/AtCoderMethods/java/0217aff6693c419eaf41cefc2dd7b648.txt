@@ -1,0 +1,23 @@
+public void solve(int testNumber, FastReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int[] arr = new int[n];
+    for (int i = 0; i < n; i++) {
+        arr[i] = in.nextInt() - 1;
+    }
+    boolean[] seen = new boolean[n];
+    int cur = 0;
+    int ans = 0;
+    while (true) {
+        if (seen[cur]) {
+            out.println(-1);
+            return;
+        }
+        if (cur == 1) {
+            out.println(ans);
+            return;
+        }
+        seen[cur] = true;
+        cur = arr[cur];
+        ans += 1;
+    }
+}

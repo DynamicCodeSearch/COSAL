@@ -1,0 +1,51 @@
+public static void solve(PrintWriter out, FastScanner in) {
+    int N = in.nextInt();
+    int K = in.nextInt();
+    int L = in.nextInt();
+    UnionFindTree tree1 = new UnionFindTree(N);
+    UnionFindTree tree2 = new UnionFindTree(N);
+    for (int i = 0; i < K; i++) {
+        int p = in.nextInt();
+        int q = in.nextInt();
+        tree1.unite(p - 1, q - 1);
+    }
+    for (int i = 0; i < L; i++) {
+        int r = in.nextInt();
+        int s = in.nextInt();
+        tree2.unite(r - 1, s - 1);
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    TreeMap<Long, Integer> count = new TreeMap<>();
+    for (int i = 0; i < N; i++) {
+        long key = (long) tree1.find(i) * N + tree2.find(i);
+        Integer cnt = count.get(key);
+        if (cnt == null)
+            count.put(key, 1);
+        else
+            count.put(key, cnt + 1);
+    }
+    for (int i = 0; i < N; i++) {
+        if (i > 0)
+            out.print(" ");
+        long key = (long) tree1.find(i) * N + tree2.find(i);
+        out.print(count.get(key));
+    }
+    out.println("");
+}

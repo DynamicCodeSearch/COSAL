@@ -1,0 +1,13 @@
+static int dfs(int id) {
+    if (rel.get(id).isEmpty()) {
+        return 1;
+    }
+    int max = 0;
+    int min = Integer.MAX_VALUE;
+    for (int i : rel.get(id)) {
+        int s = dfs(i);
+        max = Math.max(max, s);
+        min = Math.min(min, s);
+    }
+    return max + min + 1;
+}

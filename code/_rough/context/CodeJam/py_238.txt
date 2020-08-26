@@ -1,0 +1,404 @@
+### Py Tokens: nextpos, slope, cutfrac, oldarea, remaining, height 
+
+### Py functions
+
+def func_d555c94811be4bc5b4c1082048c2a271(height, nextpos, oldarea, slope):
+    cutfrac = 0
+    remaining = nextpos - oldarea
+    if slope == 0:
+        cutfrac = remaining / height
+    else:
+        cutfrac = (-height + (height * height + 2 * slope * remaining) ** 0.5
+            ) / slope
+    return nextpos
+
+def func_897e504b7d2943dfbebff052df353e11(cutfrac, height, nextpos, oldarea,
+    slope):
+    remaining = nextpos - oldarea
+    if slope == 0:
+        cutfrac = remaining / height
+    else:
+        cutfrac = (-height + (height * height + 2 * slope * remaining) ** 0.5
+            ) / slope
+    return nextpos
+
+def func_ae38ab7308c44fb589602fb5fffe7d1a(cutfrac, height, nextpos, oldarea,
+    slope):
+    remaining = nextpos - oldarea
+    if slope == 0:
+        cutfrac = remaining / height
+    else:
+        cutfrac = (-height + (height * height + 2 * slope * remaining) ** 0.5
+            ) / slope
+    return height
+
+def func_897f5b37d9b84882bc17f8dc34a5875b(cutfrac, height, nextpos, oldarea,
+    slope):
+    remaining = nextpos - oldarea
+    if slope == 0:
+        cutfrac = remaining / height
+    else:
+        cutfrac = (-height + (height * height + 2 * slope * remaining) ** 0.5
+            ) / slope
+    return cutfrac
+
+def func_7c5686e6fcba429398598ce809f7a3e4(cutfrac, height, nextpos, oldarea,
+    slope):
+    remaining = nextpos - oldarea
+    if slope == 0:
+        cutfrac = remaining / height
+    else:
+        cutfrac = (-height + (height * height + 2 * slope * remaining) ** 0.5
+            ) / slope
+    return slope
+
+*********************************
+
+#### Score: 5.20377
+
+
+#### Java Tokens: mos.search, suffixes, binarysearch, binary, count, arrays, partial, remaining, first
+
+public static int func_49cb6fa11c814b0291566417c29b376b(int count, long first, long[] partial, long[] suffixes) { 
+ long remaining = partial[count] - first;
+int at = Arrays.binarySearch(suffixes, remaining >> 1);
+return at;
+}
+
+
+public static long func_0f4843ea97c64b42b3d5435da62b42c0(int count, long first, long[] partial, long[] suffixes) { 
+ long remaining = partial[count] - first;
+int at = Arrays.binarySearch(suffixes, remaining >> 1);
+return remaining;
+}
+
+
+*********************************
+
+#### Score: 5.06137
+
+
+#### Java Tokens: width, exp, height 
+
+public static double func_894551d7df1740048adf5d1d0ac4acdd(int width, int j, long height) { 
+ double exp = 0;
+for (int k = 0; k < width - j; ++k) {
+    exp += 36.0 * (height - A.X[k]) / (width - j);
+}
+return exp;
+}
+
+
+*********************************
+
+#### Score: 4.97750
+
+
+#### Java Tokens: lowerpoint, area, remainingarea, segment, lower, part, partarea, lowersegment, point, remaining 
+
+public static double func_6f37fabca3e84df8a96a12ba15f629a9(double partArea, Point[] lowerPoint) { 
+ Segment lowerSegment = new Segment(lowerPoint[0], lowerPoint[1]);
+double remainingArea = partArea;
+return remainingArea;
+}
+
+
+*********************************
+
+#### Score: 4.41144
+
+
+#### Java Tokens: lowerpoint, area, upper, lower, part, point, remaining, upperpoint, remainingarea, segment, partarea, uppersegment, lowersegment 
+
+public static double func_8db9a2efbeca4ec0add84bd29560c67a(double partArea, Point[] lowerPoint, Point[] upperPoint) { 
+ Segment upperSegment = new Segment(upperPoint[0], upperPoint[1]);
+Segment lowerSegment = new Segment(lowerPoint[0], lowerPoint[1]);
+double remainingArea = partArea;
+return remainingArea;
+}
+
+
+*********************************
+
+#### Score: 4.25285
+
+
+#### Java Tokens: suffixes, max, count, remaining, mos.search, min, binarysearch, answer, binary, arrays, math, first, at2, at1
+
+public static long func_23e642bba7e14b24be3cea59aaf32b62(int count, long remaining, long first, long answer, long[] suffixes) { 
+ int at = Arrays.binarySearch(suffixes, remaining >> 1);
+if (at >= 0)
+    answer = Math.min(answer, Math.max(first, Math.max(suffixes[at], remaining - suffixes[at])));
+else {
+    int at1 = -at - 1;
+    int at2 = -at - 2;
+    if (at1 >= 0 && at1 <= count)
+        answer = Math.min(answer, Math.max(first, Math.max(suffixes[at1], remaining - suffixes[at1])));
+    if (at2 >= 0 && at2 <= count)
+        answer = Math.min(answer, Math.max(first, Math.max(suffixes[at2], remaining - suffixes[at2])));
+}
+return answer;
+}
+
+
+public static int func_a71aac85fbf040099633def0f8febf6f(int count, long remaining, long first, long answer, long[] suffixes) { 
+ int at = Arrays.binarySearch(suffixes, remaining >> 1);
+if (at >= 0)
+    answer = Math.min(answer, Math.max(first, Math.max(suffixes[at], remaining - suffixes[at])));
+else {
+    int at1 = -at - 1;
+    int at2 = -at - 2;
+    if (at1 >= 0 && at1 <= count)
+        answer = Math.min(answer, Math.max(first, Math.max(suffixes[at1], remaining - suffixes[at1])));
+    if (at2 >= 0 && at2 <= count)
+        answer = Math.min(answer, Math.max(first, Math.max(suffixes[at2], remaining - suffixes[at2])));
+}
+return at;
+}
+
+
+*********************************
+
+#### Score: 4.10643
+
+
+#### Java Tokens: suffixes, max, count, remaining, mos.search, min, answer, binarysearch, binary, arrays, math, partial, first, at2, at1
+
+public static long func_2facb4ddbb07490abe54ee9b055dfaca(int count, long answer, long[] partial, long[] suffixes) { 
+ for (int i = 0; i < count; i++) {
+    long first = partial[i] - partial[0];
+    if (first > answer)
+        continue;
+    long remaining = partial[count] - first;
+    int at = Arrays.binarySearch(suffixes, remaining >> 1);
+    if (at >= 0)
+        answer = Math.min(answer, Math.max(first, Math.max(suffixes[at], remaining - suffixes[at])));
+    else {
+        int at1 = -at - 1;
+        int at2 = -at - 2;
+        if (at1 >= 0 && at1 <= count)
+            answer = Math.min(answer, Math.max(first, Math.max(suffixes[at1], remaining - suffixes[at1])));
+        if (at2 >= 0 && at2 <= count)
+            answer = Math.min(answer, Math.max(first, Math.max(suffixes[at2], remaining - suffixes[at2])));
+    }
+}
+return answer;
+}
+
+
+public static long func_783bb4edb9a24865892ff26cd719410c(int count, long[] partial, long[] suffixes) { 
+ long answer = partial[count];
+for (int i = 0; i < count; i++) {
+    long first = partial[i] - partial[0];
+    if (first > answer)
+        continue;
+    long remaining = partial[count] - first;
+    int at = Arrays.binarySearch(suffixes, remaining >> 1);
+    if (at >= 0)
+        answer = Math.min(answer, Math.max(first, Math.max(suffixes[at], remaining - suffixes[at])));
+    else {
+        int at1 = -at - 1;
+        int at2 = -at - 2;
+        if (at1 >= 0 && at1 <= count)
+            answer = Math.min(answer, Math.max(first, Math.max(suffixes[at1], remaining - suffixes[at1])));
+        if (at2 >= 0 && at2 <= count)
+            answer = Math.min(answer, Math.max(first, Math.max(suffixes[at2], remaining - suffixes[at2])));
+    }
+}
+return answer;
+}
+
+
+public static long func_a886f67e0c9a4357bac0fc94c0128424(int count, long[] partial) { 
+ long[] suffixes = new long[count + 1];
+for (int i = 0; i <= count; i++) suffixes[i] = partial[count] - partial[count - i];
+long answer = partial[count];
+for (int i = 0; i < count; i++) {
+    long first = partial[i] - partial[0];
+    if (first > answer)
+        continue;
+    long remaining = partial[count] - first;
+    int at = Arrays.binarySearch(suffixes, remaining >> 1);
+    if (at >= 0)
+        answer = Math.min(answer, Math.max(first, Math.max(suffixes[at], remaining - suffixes[at])));
+    else {
+        int at1 = -at - 1;
+        int at2 = -at - 2;
+        if (at1 >= 0 && at1 <= count)
+            answer = Math.min(answer, Math.max(first, Math.max(suffixes[at1], remaining - suffixes[at1])));
+        if (at2 >= 0 && at2 <= count)
+            answer = Math.min(answer, Math.max(first, Math.max(suffixes[at2], remaining - suffixes[at2])));
+    }
+}
+return answer;
+}
+
+
+*********************************
+
+#### Score: 4.10643
+
+
+#### Java Tokens: suffixes, max, count, remaining, mos.search, min, binarysearch, answer, binary, arrays, math, partial, first, at2, at1
+
+public static int func_c329edeeeca14fa2b8fb1f82201e8c29(int count, long first, long answer, long[] partial, long[] suffixes) { 
+ long remaining = partial[count] - first;
+int at = Arrays.binarySearch(suffixes, remaining >> 1);
+if (at >= 0)
+    answer = Math.min(answer, Math.max(first, Math.max(suffixes[at], remaining - suffixes[at])));
+else {
+    int at1 = -at - 1;
+    int at2 = -at - 2;
+    if (at1 >= 0 && at1 <= count)
+        answer = Math.min(answer, Math.max(first, Math.max(suffixes[at1], remaining - suffixes[at1])));
+    if (at2 >= 0 && at2 <= count)
+        answer = Math.min(answer, Math.max(first, Math.max(suffixes[at2], remaining - suffixes[at2])));
+}
+return at;
+}
+
+
+public static long func_8bf31460a6eb450d9e773d2f7140f996(int count, long first, long answer, long[] partial, long[] suffixes) { 
+ long remaining = partial[count] - first;
+int at = Arrays.binarySearch(suffixes, remaining >> 1);
+if (at >= 0)
+    answer = Math.min(answer, Math.max(first, Math.max(suffixes[at], remaining - suffixes[at])));
+else {
+    int at1 = -at - 1;
+    int at2 = -at - 2;
+    if (at1 >= 0 && at1 <= count)
+        answer = Math.min(answer, Math.max(first, Math.max(suffixes[at1], remaining - suffixes[at1])));
+    if (at2 >= 0 && at2 <= count)
+        answer = Math.min(answer, Math.max(first, Math.max(suffixes[at2], remaining - suffixes[at2])));
+}
+return answer;
+}
+
+
+public static long func_e595ed43e0ae46fea80a29ad4f3a5c55(int count, long first, long answer, long[] partial, long[] suffixes) { 
+ long remaining = partial[count] - first;
+int at = Arrays.binarySearch(suffixes, remaining >> 1);
+if (at >= 0)
+    answer = Math.min(answer, Math.max(first, Math.max(suffixes[at], remaining - suffixes[at])));
+else {
+    int at1 = -at - 1;
+    int at2 = -at - 2;
+    if (at1 >= 0 && at1 <= count)
+        answer = Math.min(answer, Math.max(first, Math.max(suffixes[at1], remaining - suffixes[at1])));
+    if (at2 >= 0 && at2 <= count)
+        answer = Math.min(answer, Math.max(first, Math.max(suffixes[at2], remaining - suffixes[at2])));
+}
+return remaining;
+}
+
+
+*********************************
+
+#### Score: 4.03757
+
+
+#### Java Tokens: area, cur, thisheight, total, curheight, totalarea, height 
+
+public static double func_b957b488707b4459aa30c1213127f664(int curX, double curHeight, double totalArea, double lastX, double thisHeight) { 
+ totalArea += (1.0 * curHeight + thisHeight) / 2 * (curX - lastX);
+// //System.out.println("dist: " + (curX-lastX));
+// //System.out.println("newHeight: " + thisHeight);
+// //System.out.println("oldHeight: " + curHeight);
+curHeight = thisHeight;
+return curHeight;
+}
+
+
+public static double func_2a9ec32a68c645dd86ea9c05fef13140(int curX, double curHeight, double totalArea, double lastX, double thisHeight) { 
+ totalArea += (1.0 * curHeight + thisHeight) / 2 * (curX - lastX);
+// //System.out.println("dist: " + (curX-lastX));
+// //System.out.println("newHeight: " + thisHeight);
+// //System.out.println("oldHeight: " + curHeight);
+curHeight = thisHeight;
+return totalArea;
+}
+
+
+public static double func_db1fd0fb7ff54fb5b94be1f44611aa8e(int lastX, int curX, double thisHeight, double totalArea, double curHeight) { 
+ totalArea += (1.0 * curHeight + thisHeight) / 2 * (curX - lastX);
+// System.out.println("dist: " + (curX-lastX));
+// System.out.println("newHeight: " + thisHeight);
+// System.out.println("oldHeight: " + curHeight);
+curHeight = thisHeight;
+return totalArea;
+}
+
+
+*********************************
+
+#### Score: 4.03757
+
+
+#### Java Tokens: cur, thisheight, last, curx, curheight, lastx, height 
+
+public static double func_40fa724b74d944aca7742685f4d5fb42(int curX, double curHeight, double lastX, double thisHeight) { 
+ // //System.out.println("dist: " + (curX-lastX));
+// //System.out.println("newHeight: " + thisHeight);
+// //System.out.println("oldHeight: " + curHeight);
+curHeight = thisHeight;
+lastX = curX;
+return curHeight;
+}
+
+
+public static int func_56ff64496b0a4f9b96d2ab85f87c3fa8(int lastX, int curX, double thisHeight, double curHeight) { 
+ // System.out.println("dist: " + (curX-lastX));
+// System.out.println("newHeight: " + thisHeight);
+// System.out.println("oldHeight: " + curHeight);
+curHeight = thisHeight;
+lastX = curX;
+return lastX;
+}
+
+
+public static double func_4000055233564d61898bf881ad2b3df2(int curX, double curHeight, double lastX, double thisHeight) { 
+ // //System.out.println("dist: " + (curX-lastX));
+// //System.out.println("newHeight: " + thisHeight);
+// //System.out.println("oldHeight: " + curHeight);
+curHeight = thisHeight;
+lastX = curX;
+return lastX;
+}
+
+
+*********************************
+
+#### Score: 4.03757
+
+
+#### Java Tokens: cur, last, curx, curheight, upheight, lastx, height 
+
+public static double func_c3acd86788824e02a4510306678c38f7(int curX, double curHeight, double upHeight, double lastX) { 
+ // //System.out.println("dist: " + (curX-lastX));
+// //System.out.println("newHeight: " + upHeight);
+// //System.out.println("oldHeight: " + curHeight);
+curHeight = upHeight;
+lastX = curX;
+return curHeight;
+}
+
+
+public static double func_70a74420e78541aa8b5221c2539a5b20(int lastX, int curX, double curHeight, double upHeight) { 
+ // System.out.println("dist: " + (curX-lastX));
+// System.out.println("newHeight: " + upHeight);
+// System.out.println("oldHeight: " + curHeight);
+curHeight = upHeight;
+lastX = curX;
+return curHeight;
+}
+
+
+public static double func_9c65771df1d541dcba399e0dfb768db8(int curX, double curHeight, double upHeight, double lastX) { 
+ // //System.out.println("dist: " + (curX-lastX));
+// //System.out.println("newHeight: " + upHeight);
+// //System.out.println("oldHeight: " + curHeight);
+curHeight = upHeight;
+lastX = curX;
+return lastX;
+}
+

@@ -1,0 +1,16 @@
+private int count(int n, String s, char c) {
+    int cnt = 0;
+    int sum = 0;
+    for (int i = 0; i < n; i++) {
+        if (s.charAt(i) == c) {
+            if (sum > 0) {
+                sum--;
+            } else {
+                cnt++;
+            }
+        } else {
+            sum++;
+        }
+    }
+    return cnt;
+}

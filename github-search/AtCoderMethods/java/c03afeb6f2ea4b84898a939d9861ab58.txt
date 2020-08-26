@@ -1,0 +1,12 @@
+public String next() {
+    int c = read();
+    while (isWhitespace(c)) {
+        c = read();
+    }
+    _sb.setLength(0);
+    do {
+        _sb.appendCodePoint(c);
+        c = read();
+    } while (!isWhitespace(c));
+    return _sb.toString();
+}

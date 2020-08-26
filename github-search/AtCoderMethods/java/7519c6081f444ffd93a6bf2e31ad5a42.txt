@@ -1,0 +1,22 @@
+public void solve(String[] args) {
+    MyScanner scanner = new MyScanner();
+    int H = scanner.nextInt();
+    int W = scanner.nextInt();
+    List<String> list = new ArrayList<>();
+    for (int i = 0; i < H; i++) {
+        list.add(scanner.next());
+    }
+    for (int i = 0; i < H + 2; i++) {
+        if (i == 0 || i == H + 1) {
+            for (int j = 0; j < W + 2; j++) {
+                System.out.print("#");
+            }
+            System.out.println("");
+        } else {
+            System.out.print("#");
+            System.out.print(list.get(i - 1));
+            System.out.print("#");
+            System.out.println("");
+        }
+    }
+}

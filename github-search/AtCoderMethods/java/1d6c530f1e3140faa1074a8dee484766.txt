@@ -1,0 +1,15 @@
+private void addEdge(int a, int b) {
+    int e = numEdges++;
+    if (e >= edgeDst.length) {
+        int k = edgeDst.length;
+        int[] dst = new int[3 * k / 2 + 1];
+        System.arraycopy(edgeDst, 0, dst, 0, k);
+        edgeDst = dst;
+        int[] nxt = new int[3 * k / 2 + 1];
+        System.arraycopy(edgeNxt, 0, nxt, 0, k);
+        edgeNxt = nxt;
+    }
+    edgeDst[e] = b;
+    edgeNxt[e] = firstEdge[a];
+    firstEdge[a] = e;
+}

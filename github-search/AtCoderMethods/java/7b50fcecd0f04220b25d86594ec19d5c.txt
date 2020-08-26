@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    Printer pr = new Printer(System.out);
+    n = sc.nextInt();
+    edges = new ArrayList<>();
+    for (int i = 0; i < n; i++) {
+        edges.add(new ArrayList<Integer>());
+    }
+    for (int i = 0; i < n - 1; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        edges.get(a).add(b);
+        edges.get(b).add(a);
+    }
+    p = new int[2][n];
+    used = new boolean[n];
+    used[0] = true;
+    dfs(0);
+    pr.println((p[0][0] + p[1][0]) % MOD);
+    pr.close();
+    sc.close();
+}

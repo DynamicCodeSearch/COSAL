@@ -1,0 +1,19 @@
+public static void main(String[] args) throws Exception {
+    int n = sc.nextInt();
+    al = new ArrayList[n];
+    sum = new long[n];
+    for (int i = 0; i < n; i++) {
+        al[i] = new ArrayList<>();
+    }
+    for (int i = 1; i < n; i++) {
+        int u = sc.nextInt() - 1, v = sc.nextInt() - 1, cost = sc.nextInt();
+        al[u].add(new Node(v, cost));
+        al[v].add(new Node(u, cost));
+    }
+    int q = sc.nextInt(), k = sc.nextInt() - 1;
+    dfs(k, -1);
+    for (int i = 0; i < q; i++) {
+        out.println(sum[sc.nextInt() - 1] + sum[sc.nextInt() - 1]);
+    }
+    out.close();
+}

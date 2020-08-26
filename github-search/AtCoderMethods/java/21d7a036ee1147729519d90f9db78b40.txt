@@ -1,0 +1,28 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    n = Integer.parseInt(br.readLine());
+    adj = (ArrayList<edge>[]) new ArrayList[n];
+    vis = new boolean[n];
+    dist = new long[n];
+    for (int i = 0; i < n; ++i) {
+        adj[i] = new ArrayList<edge>();
+        vis[i] = false;
+    }
+    for (int i = 1; i < n; ++i) {
+        String[] s = br.readLine().split(" ");
+        int u = Integer.parseInt(s[0]) - 1;
+        int v = Integer.parseInt(s[1]) - 1;
+        long w = Long.parseLong(s[2]);
+        add(u, v, w);
+    }
+    String[] s = br.readLine().split(" ");
+    int q = Integer.parseInt(s[0]);
+    int k = Integer.parseInt(s[1]) - 1;
+    bfs(k);
+    for (int i = 0; i < q; ++i) {
+        s = br.readLine().split(" ");
+        int u = Integer.parseInt(s[0]) - 1;
+        int v = Integer.parseInt(s[1]) - 1;
+        System.out.println(dist[u] + dist[v]);
+    }
+}

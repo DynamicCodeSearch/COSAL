@@ -1,0 +1,24 @@
+public static long solve(BitSet bs, final int[] f, final int[] b, final int n, final int m) {
+    long sum = 0;
+    
+    String s = bs.toString();
+    if (map.containsKey(s))
+        return map.get(s);
+    BitSet available = new BitSet(n);
+    for (int i = 0; i < m; i++) {
+        if (bs.get(f[i]))
+            available.set(b[i]);
+    }
+    available.flip(0, n);
+    available.and(bs);
+    for (int i = available.nextSetBit(0); i >= 0; i = available.nextSetBit(i + 1)) {
+        BitSet tmp = (BitSet) bs.clone();
+        tmp.flip(i, i + 1);
+        sum += solve(tmp, f, b, n, m);
+    }
+    if (sum == 0)
+        sum++;
+    
+    map.put(bs.toString(), sum);
+    return sum;
+}

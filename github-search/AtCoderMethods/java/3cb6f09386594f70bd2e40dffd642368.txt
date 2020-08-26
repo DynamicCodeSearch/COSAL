@@ -1,0 +1,18 @@
+void union(int x, int y) {
+    x = find(x);
+    y = find(y);
+    if (x == y) {
+        return;
+    }
+    groupCnt--;
+    if (rank[x] < rank[y]) {
+        par[y] += par[x];
+        par[x] = y;
+    } else {
+        par[x] += par[y];
+        par[y] = x;
+        if (rank[x] == rank[y]) {
+            rank[x]++;
+        }
+    }
+}

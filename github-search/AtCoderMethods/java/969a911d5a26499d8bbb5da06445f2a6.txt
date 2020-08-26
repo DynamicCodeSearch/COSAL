@@ -1,0 +1,17 @@
+static final int nextInt() throws Exception {
+    int result = 0;
+    boolean negative = false;
+    int c = read();
+    while (isWhiteSpace(c)) {
+        c = read();
+    }
+    if (c == '-') {
+        negative = true;
+        c = read();
+    }
+    while (!isWhiteSpace(c)) {
+        result = result * 10 + (c - '0');
+        c = read();
+    }
+    return negative ? -result : result;
+}

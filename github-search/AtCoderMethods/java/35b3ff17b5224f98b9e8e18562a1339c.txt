@@ -1,0 +1,20 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    int xa = sc.nextInt();
+    int ya = sc.nextInt();
+    int xb = sc.nextInt();
+    int yb = sc.nextInt();
+    int t = sc.nextInt();
+    int v = sc.nextInt();
+    int l = t * v;
+    int n = sc.nextInt();
+    String s = "NO";
+    for (int i = 0; i < n; i++) {
+        int x = sc.nextInt();
+        int y = sc.nextInt();
+        if (Math.sqrt(Math.pow((x - xa), 2) + Math.pow((y - ya), 2)) + Math.sqrt(Math.pow((xb - x), 2) + Math.pow((yb - y), 2)) <= l) {
+            s = "YES";
+        }
+    }
+    System.out.println(s);
+}

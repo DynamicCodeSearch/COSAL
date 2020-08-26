@@ -1,0 +1,36 @@
+public static void main(String[] args) {
+    Scanner stdIn = new Scanner(System.in);
+    String S = stdIn.next();
+    int T = stdIn.nextInt();
+    int x = 0, y = 0;
+    int unknown = 0;
+    for (int i = 0; i < S.length(); i++) {
+        switch(S.charAt(i)) {
+            case 'U':
+                y++;
+                break;
+            case 'D':
+                y--;
+                break;
+            case 'R':
+                x++;
+                break;
+            case 'L':
+                x--;
+                break;
+            case '?':
+                unknown++;
+                break;
+        }
+    }
+    int dist = Math.abs(x) + Math.abs(y);
+    int answer;
+    if (T == 1) {
+        answer = dist + unknown;
+    } else if (dist > unknown) {
+        answer = dist - unknown;
+    } else {
+        answer = S.length() % 2;
+    }
+    System.out.println(answer);
+}

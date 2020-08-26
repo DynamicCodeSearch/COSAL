@@ -1,0 +1,11 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    List<Integer> list = new ArrayList();
+    int N = in.nextInt();
+    int K = in.nextInt();
+    for (int i = 0; i < N; i++) {
+        list.add(in.nextInt());
+    }
+    Collections.sort(list);
+    System.out.println(list.parallelStream().sorted(Comparator.comparing(x -> -x)).mapToInt(x -> x).limit(K).sum());
+}

@@ -1,0 +1,20 @@
+def solve(N, K, S):
+    if 0 in S:
+        return N
+
+    ans = 0
+    left, right = 0, 0  
+    now = 0
+    while right < N:
+        while right < N and now <= K:
+            ans = max(ans, right - left)
+            now = S[right] if now == 0 else now * S[right]
+            right += 1
+
+        while left < right and now > K:
+            now = 0 if left == right - 1 else now / S[left]
+            left += 1
+
+        ans = max(ans, right - left)
+
+    return ans

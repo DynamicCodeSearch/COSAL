@@ -1,0 +1,10 @@
+def C_Together(N, a):
+    lst = [0] * (max(a) + 1 + 2)  
+    for i in a:
+        lst[i] += 1
+
+    ans = 0
+    for i in range(1, len(lst) - 1):
+        tmp = lst[i - 1] + lst[i] + lst[i + 1]
+        ans = max(ans, tmp)
+    return ans

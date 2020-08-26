@@ -1,0 +1,16 @@
+static void Dijkstra(ArrayList<List<Edge>> graph, long[] weights, int src) {
+    PriorityQueue<Edge> qu = new PriorityQueue<Edge>();
+    qu.add(new Edge(src, 0));
+    while (!qu.isEmpty()) {
+        Edge e = qu.poll();
+        if (e.weight > weights[e.dst])
+            continue;
+        weights[e.dst] = e.weight;
+        List<Edge> nxt = graph.get(e.dst);
+        for (Edge next : nxt) {
+            if (weights[next.dst] > next.weight + e.weight) {
+                qu.add(new Edge(next.dst, next.weight + e.weight));
+            }
+        }
+    }
+}

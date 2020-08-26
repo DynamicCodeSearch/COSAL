@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    long[] s = new long[200000];
+    int n;
+    long k;
+    n = scan.nextInt();
+    k = scan.nextInt();
+    for (int i = 0; i < n; i++) {
+        s[i] = scan.nextInt();
+    }
+    for (int i = 0; i < n; i++) if (s[i] == 0) {
+        System.out.println(n);
+        return;
+    }
+    int ss = 0, tt = 0;
+    long a = 1;
+    int max = 0;
+    while (tt <= n) {
+        max = Math.max(tt - ss, max);
+        if (a * s[tt] <= k) {
+            a *= s[tt];
+            tt++;
+        } else if (ss == tt) {
+            ss++;
+            tt++;
+        } else {
+            a /= s[ss];
+            ss++;
+        }
+    }
+    System.out.println(max);
+}

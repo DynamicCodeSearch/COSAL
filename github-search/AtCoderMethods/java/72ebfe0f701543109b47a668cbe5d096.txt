@@ -1,0 +1,9 @@
+static void solve() {
+    int n = in.nextInt();
+    int ans = Integer.MAX_VALUE;
+    for (int i = 1; i * i <= n; i++) {
+        int t = n - i * i;
+        ans = Math.min(ans, t / i + t % i);
+    }
+    out.println(ans);
+}

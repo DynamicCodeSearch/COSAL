@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    int[] from = new int[M];
+    int[] to = new int[M];
+    for (int i = 0; i < M; i++) {
+        from[i] = sc.nextInt() - 1;
+        to[i] = sc.nextInt() - 1;
+    }
+    int[][] g = packU(N, from, to);
+    boolean[] visited = new boolean[N];
+    visited[0] = true;
+    dfs(0, 1, visited, g, N);
+    System.out.println(ret);
+}

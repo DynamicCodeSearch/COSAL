@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    int n = sc.nextInt();
+    int[] a = sc.nextIntList(n);
+    int count1 = 0;
+    int count2 = 0;
+    int count4 = 0;
+    for (int v : a) {
+        if (v % 4 == 0) {
+            count4++;
+        } else if (v % 2 == 0) {
+            count2++;
+        } else {
+            count1++;
+        }
+    }
+    if (count1 + count2 % 2 <= count4 + 1) {
+        System.out.println("Yes");
+    } else {
+        System.out.println("No");
+    }
+}

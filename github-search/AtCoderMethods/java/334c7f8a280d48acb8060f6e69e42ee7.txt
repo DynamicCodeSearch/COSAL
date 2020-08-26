@@ -1,0 +1,34 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String S = sc.nextLine();
+    String T = sc.nextLine();
+    int s = S.length();
+    int t = T.length();
+    char[] ary1 = S.toCharArray();
+    char[] ary2 = T.toCharArray();
+    String answer = "You can win";
+    for (int i = 0; i < s; i++) {
+        
+        if (S.charAt(i) == '@') {
+            
+            if (T.charAt(i) != 'a' && T.charAt(i) != 't' && T.charAt(i) != 'c' && T.charAt(i) != 'o' && T.charAt(i) != 'd' && T.charAt(i) != 'e' && T.charAt(i) != 'r' && T.charAt(i) != '@') {
+                answer = "You will lose";
+                break;
+            } else {
+                ary1[i] = ary2[i];
+            }
+        } else if (T.charAt(i) == '@') {
+            if (S.charAt(i) != 'a' && S.charAt(i) != 't' && S.charAt(i) != 'c' && S.charAt(i) != 'o' && S.charAt(i) != 'd' && S.charAt(i) != 'e' && S.charAt(i) != 'r' && S.charAt(i) != '@') {
+                answer = "You will lose";
+                break;
+            } else {
+                ary2[i] = ary1[i];
+            }
+        }
+        if (ary1[i] != ary2[i]) {
+            answer = "You will lose";
+            break;
+        }
+    }
+    System.out.println(answer);
+}

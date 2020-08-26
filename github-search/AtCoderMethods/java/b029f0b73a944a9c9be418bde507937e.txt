@@ -1,0 +1,54 @@
+private void solution() {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int K = sc.nextInt();
+    int L = sc.nextInt();
+    UnionFind road = new UnionFind();
+    road.init(N);
+    UnionFind rail = new UnionFind();
+    rail.init(N);
+    for (int i = 0; i < K; i++) {
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        road.union(a - 1, b - 1);
+    }
+    for (int i = 0; i < L; i++) {
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        rail.union(a - 1, b - 1);
+    }
+    TreeMap<Long, Integer> map = new TreeMap<>();
+    Long key = 0L;
+    for (int i = 0; i < N; i++) {
+        key = (long) road.find(i) * N + rail.find(i);
+        if (map.containsKey(key)) {
+            map.put(key, map.get(key) + 1);
+        } else {
+            map.put(key, 1);
+        }
+    }
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < N; i++) {
+        key = (long) road.find(i) * N + rail.find(i);
+        if (i != N - 1)
+            sb.append(map.get(key) + " ");
+        else
+            
+            sb.append(map.get(key));
+    
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    System.out.println(sb.toString());
+    sc.close();
+}

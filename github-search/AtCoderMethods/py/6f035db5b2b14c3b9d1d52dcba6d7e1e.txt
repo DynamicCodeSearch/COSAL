@@ -1,0 +1,9 @@
+def main():
+    N = int(input())
+    a_list = [int(input()) for _ in range(N)]
+
+    d = {}
+    for i, x in enumerate(sorted(list(set(a_list)))):
+        d[x] = i
+
+    print(*[d[a] for a in a_list], sep="\n")

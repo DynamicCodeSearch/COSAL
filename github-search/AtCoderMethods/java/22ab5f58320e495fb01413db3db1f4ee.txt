@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    int n = sc.nextInt();
+    int[][] c = new int[n][26];
+    for (int i = 0; i < n; i++) {
+        char[] s = sc.next().toCharArray();
+        for (int j = 0; j < s.length; j++) {
+            c[i][s[j] - 97]++;
+        }
+    }
+    int[] m = new int[26];
+    for (int i = 0; i < 26; i++) m[i] = 1010;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < 26; j++) {
+            m[j] = Math.min(m[j], c[i][j]);
+        }
+    }
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < 26; i++) {
+        int l = m[i];
+        for (int j = 0; j < l; j++) {
+            sb.append((char) (i + 97));
+        }
+    }
+    System.out.println(sb.toString());
+}

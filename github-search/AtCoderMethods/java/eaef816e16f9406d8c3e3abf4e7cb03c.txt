@@ -1,0 +1,25 @@
+boolean check(long[] a, long k) {
+    int n = a.length;
+    long ans = 0;
+    while (true) {
+        boolean changed = false;
+        for (int i = 0; i < n; i++) {
+            if (a[i] < n) {
+                continue;
+            }
+            changed = true;
+            long x = a[i] / n;
+            a[i] -= n * x;
+            ans += x;
+            for (int j = 0; j < n; j++) {
+                if (j != i) {
+                    a[j] += x;
+                }
+            }
+        }
+        if (!changed) {
+            break;
+        }
+    }
+    return ans == k;
+}

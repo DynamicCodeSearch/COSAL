@@ -1,0 +1,13 @@
+void solve() {
+    int n = sc.nextInt();
+    V[] vs = new V[n];
+    for (int i = 0; i < n; i++) vs[i] = new V(i);
+    for (int i = 0; i < n - 1; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        vs[a].add(vs[b]);
+        vs[b].add(vs[a]);
+    }
+    long ans = (dp(vs[0], null, 0) + dp(vs[0], null, 1)) % MOD;
+    out.println(ans);
+}

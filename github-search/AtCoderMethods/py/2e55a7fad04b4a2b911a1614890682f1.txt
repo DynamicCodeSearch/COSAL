@@ -1,0 +1,14 @@
+def solve(K):
+    N = 50
+    q = K // N
+    r = K %  N
+
+    A = [q+i for i in range(N)]
+    for i in range(r):
+        for j in range(N):
+            if j == i:
+                A[j] += N
+            else:
+                A[j] -= 1
+
+    return A

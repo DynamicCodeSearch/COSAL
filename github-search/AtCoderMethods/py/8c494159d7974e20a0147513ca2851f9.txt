@@ -1,0 +1,19 @@
+def d():
+    n, a, b = map(int, input().split())
+    l = [int(input()) for _ in range(n)]
+    d = a - b
+
+    left = 0
+    right = 10**9
+
+    def is_ok(t):
+        return sum(map(lambda x: max(0, x - b*t + d-1) // d, l)) <= t
+
+    while abs(left - right) > 1:
+        now = (left + right) // 2
+        if is_ok(now):
+            right = now
+        else:
+            left = now
+
+    print((right, left)[is_ok(left)])

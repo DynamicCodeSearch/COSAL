@@ -1,0 +1,57 @@
+private static void solve() {
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    int c = sc.nextInt();
+    int d = sc.nextInt();
+    int e = sc.nextInt();
+    int f = sc.nextInt();
+    boolean[] cans = new boolean[3001];
+    boolean[] canw = new boolean[3001];
+    cans[0] = true;
+    canw[0] = true;
+    for (int i = 0; i < 3000; i++) {
+        if (cans[i]) {
+            if (i + c <= 3000) {
+                cans[i + c] = true;
+            }
+            if (i + d <= 3000) {
+                cans[i + d] = true;
+            }
+        }
+    }
+    for (int i = 0; i < 30; i++) {
+        if (canw[i]) {
+            if (i + b <= 30) {
+                canw[i + a] = true;
+            }
+            if (i + d <= 30) {
+                canw[i + b] = true;
+            }
+        }
+    }
+    int[] max = new int[] { 0, a };
+    Comparator<int[]> rr = new Comparator<int[]>() {
+
+        @Override
+        public int compare(int[] o1, int[] o2) {
+            return Double.compare(100.0 * o1[0] / (o1[0] + 100 * o1[1]), 100.0 * o2[0] / (o2[0] + 100 * o2[1]));
+        }
+    };
+    for (int i = 0; i <= 3000; i++) {
+        for (int j = 1; j <= 30; j++) {
+            if (i + j * 100 > f)
+                continue;
+            if (j * e < i)
+                continue;
+            if (!cans[i])
+                continue;
+            if (!canw[j])
+                continue;
+            if (rr.compare(max, new int[] { i, j }) < 0) {
+                max = new int[] { i, j };
+            }
+            ;
+        }
+    }
+    out.println((max[1] * 100 + max[0]) + " " + max[0]);
+}

@@ -1,0 +1,13 @@
+public static void main(String[] args) {
+    Scanner io = new Scanner(System.in);
+    int n = io.nextInt();
+    int m = io.nextInt();
+    int[][] e = new int[n][n];
+    for (int i = 0; i < m; i++) {
+        int x = io.nextInt() - 1;
+        int y = io.nextInt() - 1;
+        e[x][y] = 1;
+        e[y][x] = 1;
+    }
+    System.out.println(goWay(e, new boolean[n], 0));
+}

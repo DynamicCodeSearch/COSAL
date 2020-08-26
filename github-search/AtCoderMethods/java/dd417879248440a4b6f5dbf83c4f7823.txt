@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int[] moves = { -10, -5, -1, 1, 5, 10 };
+    int A = sc.nextInt();
+    int B = sc.nextInt();
+    HashMap<Integer, Integer> tm = new HashMap<>();
+    tm.put(A, 0);
+    Queue<Integer> q = new LinkedList<>();
+    q.add(A);
+    while (!q.isEmpty() && !tm.containsKey(B)) {
+        int now = q.poll();
+        for (int i = 0; i < moves.length; i++) {
+            if (tm.containsKey(now + moves[i]))
+                continue;
+            q.add(now + moves[i]);
+            tm.put(now + moves[i], tm.get(now) + 1);
+        }
+    }
+    System.out.println(tm.get(B));
+}

@@ -1,0 +1,43 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    n = sc.nextInt();
+    s = new String[n];
+    StringBuffer[] sb = new StringBuffer[n];
+    for (int i = 0; i < n; i++) {
+        s[i] = sc.next();
+        sb[i] = new StringBuffer(s[i]);
+    }
+    StringBuilder ans = new StringBuilder();
+    
+    boolean check = true;
+    int[] num = new int[n];
+    LOOP: for (int i = 0; i < sb[0].length(); i++) {
+        char ch = sb[0].charAt(i);
+        for (int j = 1; j < n; j++) {
+            check = false;
+            for (int k = 0; k < sb[j].length(); k++) {
+                if (sb[j].charAt(k) == ch) {
+                    num[j] = k;
+                    check = true;
+                    break;
+                }
+            }
+            if (!check)
+                continue LOOP;
+        }
+        ans.append(ch);
+        for (int j = 1; j < n; j++) {
+            sb[j].deleteCharAt(num[j]);
+        }
+    }
+    for (int j = 0; j < ans.length() - 1; j++) {
+        for (int i = 0; i < ans.length() - 1 - j; i++) {
+            if (ans.charAt(i) > ans.charAt(i + 1)) {
+                String temp = ans.substring(i, i + 1);
+                ans.replace(i, i + 1, ans.substring(i + 1, i + 2));
+                ans.replace(i + 1, i + 2, temp);
+            }
+        }
+    }
+    System.out.println(ans);
+}

@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    IO io = new IO();
+    String s = io.next();
+    String t = io.next();
+    int[] a = map(s);
+    int[] b = map(t);
+    int q = io.nextInt();
+    for (int i = 0; i < q; i++) {
+        int i1 = io.nextInt() - 1;
+        int j1 = io.nextInt() - 1;
+        int i2 = io.nextInt() - 1;
+        int j2 = io.nextInt() - 1;
+        int h1 = (a[j1 + 1] - a[i1]) % 3;
+        int h2 = (b[j2 + 1] - b[i2]) % 3;
+        io.println(h1 == h2 ? "YES" : "NO");
+    }
+    io.flush();
+}

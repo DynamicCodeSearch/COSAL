@@ -1,0 +1,36 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    long[] val = new long[3 * N];
+    for (int i = 0; i < 3 * N; i++) {
+        val[i] = sc.nextLong();
+    }
+    PriorityQueue<Long> pq1 = new PriorityQueue<>();
+    long[] ans = new long[N + 1];
+    long sum = 0;
+    for (int i = 0; i < N; i++) {
+        pq1.offer(val[i]);
+        sum += val[i];
+    }
+    ans[0] = sum;
+    for (int i = N; i < 2 * N; i++) {
+        pq1.offer(val[i]);
+        sum += val[i] - pq1.poll();
+        ans[i - N + 1] = sum;
+    }
+    PriorityQueue<Long> pq2 = new PriorityQueue<>(Collections.reverseOrder());
+    sum = 0;
+    for (int i = 3 * N - 1; i >= 2 * N; i--) {
+        pq2.offer(val[i]);
+        sum += val[i];
+    }
+    ans[N] -= sum;
+    for (int i = 2 * N - 1; i >= N; i--) {
+        pq2.offer(val[i]);
+        sum += val[i] - pq2.poll();
+        ans[i - N] -= sum;
+    }
+    Arrays.sort(ans);
+    System.out.println(ans[N]);
+    return;
+}

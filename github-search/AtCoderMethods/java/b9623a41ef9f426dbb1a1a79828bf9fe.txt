@@ -1,0 +1,13 @@
+private static int encode(int R, int C, int y, int x) {
+    if (y == 0) {
+        return x;
+    } else if (x == C) {
+        return C + y;
+    } else if (y == R) {
+        return C + R + (C - x);
+    } else if (x == 0) {
+        return 2 * C + R + (R - y);
+    } else {
+        return -1;
+    }
+}

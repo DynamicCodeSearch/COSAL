@@ -1,0 +1,5 @@
+private int match(int a, int b, int c, int d) {
+    long key = toKey(a, b, c, d);
+    int m = a == c && b == d ? (a == b ? 4 : 2) : 1;
+    return keyDups.containsKey(key) ? keyDups.get(key) * m : 0;
+}

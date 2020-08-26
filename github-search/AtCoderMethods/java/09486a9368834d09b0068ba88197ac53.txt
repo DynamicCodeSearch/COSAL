@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    long n = Long.parseLong(scan.next());
+    long result = n;
+    long temp;
+    for (long i = 1; i <= n; i++) {
+        for (long j = i; j <= n; j++) {
+            if (i * j > n) {
+                break;
+            }
+            temp = n - i * j + j - i;
+            if (temp < result) {
+                result = temp;
+            }
+        }
+    }
+    System.out.print(result);
+}

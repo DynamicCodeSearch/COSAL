@@ -1,0 +1,29 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    long n = in.nextInt();
+    long ans = 0;
+    HashMap<Long, Long> hm = new HashMap<>();
+    for (int i = 0; i < n; i++) {
+        long x = in.nextInt();
+        if (hm.containsKey(x)) {
+            hm.put(x, hm.get(x) + 1);
+        } else {
+            hm.put(x, (long) 1);
+        }
+    }
+    List<Pair> pairs = new ArrayList<>();
+    for (Map.Entry<Long, Long> entry : hm.entrySet()) pairs.add(new Pair(entry.getKey(), entry.getValue()));
+    Collections.sort(pairs);
+    long first = 0;
+    boolean found = false;
+    for (Pair pair : pairs) {
+        if (pair.howMany >= 4)
+            ans = Math.max(ans, pair.number * pair.number);
+        if (pair.howMany >= 2 && found) {
+            ans = Math.max(ans, pair.number * first);
+        } else if (pair.howMany >= 2) {
+            found = true;
+            first = pair.number;
+        }
+    }
+    out.println(ans);
+}

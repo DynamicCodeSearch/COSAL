@@ -1,0 +1,39 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int max = 0;
+    List<Integer> list = new ArrayList<>();
+    Set<String> set = new HashSet<>();
+    for (int i = 0; i < n; i++) {
+        list.add(sc.nextInt());
+    }
+    for (int a : list) {
+        if (a < 400)
+            set.add("灰色");
+        else if (a < 800)
+            set.add("茶色");
+        else if (a < 1200)
+            set.add("緑色");
+        else if (a < 1600)
+            set.add("水色");
+        else if (a < 2000)
+            set.add("青色");
+        else if (a < 2400)
+            set.add("黄色");
+        else if (a < 2800)
+            set.add("橙色");
+        else if (a < 3200)
+            set.add("赤色");
+        else if (a >= 3200)
+            max++;
+    }
+    max += set.size();
+    if (set.size() == 0) {
+        System.out.print(1 + " ");
+        System.out.println(max);
+    } else {
+        System.out.print(set.size() + " ");
+        System.out.println(max);
+    }
+    sc.close();
+}

@@ -1,0 +1,10 @@
+def __main__():
+    n, a, b = list(map(int, input().split()))
+    x = list(map(int, input().split()))
+
+    cost = 0
+    for i in range(len(x) - 1):
+        cost_a = (x[i + 1] - x[i]) * a
+        cost += min(cost_a, b)
+
+    print(cost)

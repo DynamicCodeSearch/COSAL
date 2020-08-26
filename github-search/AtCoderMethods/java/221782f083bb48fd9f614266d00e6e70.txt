@@ -1,0 +1,8 @@
+private static boolean can(int[] hs, long A, long B, long times) {
+    long rest = times;
+    for (int h : hs) {
+        long x = Math.max(0, h - B * times);
+        rest -= (x + A - B - 1) / (A - B);
+    }
+    return rest >= 0;
+}

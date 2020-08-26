@@ -1,0 +1,29 @@
+public static void main(String[] args) throws Exception {
+    
+    Scanner sc = new Scanner(System.in);
+    String S = sc.next();
+    int length = S.length();
+    long sum = 0;
+    for (int i = 0; i < length; i++) {
+        for (int j = i + 1; j < length + 1; j++) {
+            int sum1 = 0;
+            int sum2 = 0;
+            if (j == length) {
+                sum1 = 1;
+            } else {
+                for (int k = 0; k < length - j; k++) {
+                    sum1 += Kumi(length - j - 1, k);
+                }
+            }
+            if (i == 0) {
+                sum2 = 1;
+            } else {
+                for (int k = 0; k < i; k++) {
+                    sum2 += Kumi(i - 1, k);
+                }
+            }
+            sum += Long.parseLong(S.substring(i, j)) * (sum1 * sum2);
+        }
+    }
+    System.out.println(sum);
+}

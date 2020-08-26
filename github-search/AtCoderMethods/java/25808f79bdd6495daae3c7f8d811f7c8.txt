@@ -1,0 +1,42 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String S = sc.next();
+    int serial1 = S.indexOf("WW");
+    int serial2 = S.indexOf("WW", serial1 + 1);
+    int cnt;
+    if (serial2 - serial1 == 7) {
+        cnt = 4;
+    } else {
+        cnt = 0;
+    }
+    for (int i = serial1 - 1; i >= 0; i--) {
+        if (S.charAt(i) == 'W') {
+            cnt++;
+        }
+    }
+    String res = "";
+    switch(cnt % 7) {
+        case 6:
+            res += "Do";
+            break;
+        case 5:
+            res += "Re";
+            break;
+        case 4:
+            res += "Mi";
+            break;
+        case 3:
+            res += "Fa";
+            break;
+        case 2:
+            res += "So";
+            break;
+        case 1:
+            res += "La";
+            break;
+        case 0:
+            res += "Si";
+            break;
+    }
+    System.out.println(res);
+}

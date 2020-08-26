@@ -1,0 +1,36 @@
+void run() {
+    int n = ni();
+    int[] x = new int[n];
+    int[] y = new int[n];
+    int[] c = new int[n];
+    for (int i = 0; i < n; ++i) {
+        x[i] = ni();
+        y[i] = ni();
+        c[i] = ni();
+    }
+    double left = 0;
+    double right = 1e9 + 1;
+    while (right - left > 1e-7) {
+        double mid = (left + right) / 2;
+        double maxx = -1e5 - 1;
+        double minx = 1e5 + 1;
+        for (int i = 0; i < n; ++i) {
+            double t = mid / c[i];
+            maxx = Math.max(maxx, x[i] - t);
+            minx = Math.min(minx, x[i] + t);
+        }
+        double maxy = -1e5 - 1;
+        double miny = 1e5 + 1;
+        for (int i = 0; i < n; ++i) {
+            double t = mid / c[i];
+            maxy = Math.max(maxy, y[i] - t);
+            miny = Math.min(miny, y[i] + t);
+        }
+        if (maxx <= minx && maxy <= miny) {
+            right = mid;
+        } else {
+            left = mid;
+        }
+    }
+    System.out.printf("%f\n", right);
+}

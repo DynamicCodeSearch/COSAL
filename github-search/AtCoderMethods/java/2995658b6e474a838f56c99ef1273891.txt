@@ -1,0 +1,20 @@
+public long poll() {
+    if (pos == 1)
+        return INF;
+    pos--;
+    long ret = a[1];
+    a[1] = a[pos];
+    a[pos] = INF;
+    for (int c = 1; 2 * c < pos; ) {
+        int smaller = a[2 * c] < a[2 * c + 1] ? 2 * c : 2 * c + 1;
+        if (a[smaller] < a[c]) {
+            long d = a[c];
+            a[c] = a[smaller];
+            a[smaller] = d;
+            c = smaller;
+        } else {
+            break;
+        }
+    }
+    return ret;
+}

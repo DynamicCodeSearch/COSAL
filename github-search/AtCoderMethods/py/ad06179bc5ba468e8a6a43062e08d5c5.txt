@@ -1,0 +1,13 @@
+def main():
+    args = sys.stdin.readline().split()
+    N = int(args[0])
+
+    X = 0
+    while True:
+        X += 1
+        temp = math.pow(2, X)
+        if temp > N:
+            temp = math.pow(2, X-1)
+            break
+
+    print(int(temp))

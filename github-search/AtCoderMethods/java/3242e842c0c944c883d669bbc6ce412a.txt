@@ -1,0 +1,21 @@
+private static void solve() {
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    List<List<Integer>> edges = new ArrayList<>(n);
+    for (int i = 0; i < n; i++) {
+        edges.add(new ArrayList<>());
+    }
+    for (int i = 0; i < m; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        edges.get(a).add(b);
+        edges.get(b).add(a);
+    }
+    for (int e : edges.get(0)) {
+        if (edges.get(e).contains(n - 1)) {
+            pr.println("POSSIBLE");
+            return;
+        }
+    }
+    pr.println("IMPOSSIBLE");
+}

@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    int n, m, cN, ans = 0, rmd = 0;
+    Scanner sc = new Scanner(System.in);
+    try {
+        m = sc.nextInt();
+        n = sc.nextInt();
+        cN = sc.nextInt();
+        ans += cN;
+        while (true) {
+            if (cN >= m) {
+                rmd += cN % m;
+                cN = (cN / m) * n;
+                ans += cN;
+            } else {
+                cN += rmd;
+                rmd = 0;
+                if (cN + rmd < m) {
+                    break;
+                }
+            }
+        }
+        System.out.println(ans);
+    } catch (InputMismatchException ime) {
+        System.out.println("Format Error : " + ime);
+    }
+}

@@ -1,0 +1,37 @@
+private void solveD() {
+    Scanner sc = new Scanner(System.in);
+    int H = sc.nextInt();
+    int W = sc.nextInt();
+    int N = sc.nextInt();
+    int[][] map = new int[H][];
+    for (int h = 0; h < H; h++) {
+        map[h] = new int[W];
+    }
+    int vx = 1;
+    int ch = 0;
+    int cw = 0;
+    for (int c = 1; c <= N; c++) {
+        int a = sc.nextInt();
+        for (int j = 0; j < a; j++) {
+            map[ch][cw] = c;
+            cw += vx;
+            if (cw == W) {
+                ch++;
+                cw = W - 1;
+                vx = -1;
+            }
+            if (cw == -1) {
+                ch++;
+                cw = 0;
+                vx = 1;
+            }
+        }
+    }
+    for (int h = 0; h < H; h++) {
+        System.out.print(map[h][0]);
+        for (int w = 1; w < W; w++) {
+            System.out.print(" " + map[h][w]);
+        }
+        System.out.println();
+    }
+}

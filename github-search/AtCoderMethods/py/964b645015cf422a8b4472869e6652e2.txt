@@ -1,0 +1,11 @@
+def dfs(u,v):
+    S=[]
+    c[u][v]=cc.pop()
+    S.append([u,v])
+    while len(S):
+        v=S.pop()
+        for i in [[0,1],[1,0],[-1,0],[0,-1]]:
+            if 0<=v[0]+i[0]<h and 0<=v[1]+i[1]<w and c[v[0]+i[0]][v[1]+i[1]]==0:
+                c[v[0]+i[0]][v[1]+i[1]]=cc.pop()
+                S.append([v[0]+i[0],v[1]+i[1]])
+                break

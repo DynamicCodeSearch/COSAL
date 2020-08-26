@@ -1,0 +1,10 @@
+
+int countMod(int l, int r, int[] an) {
+    int a = an[r - 1];
+    if (l > 0)
+        a -= an[l - 1];
+    int b = (r - l) - a;
+    a %= 3;
+    b %= 3;
+    return (a + 3 - b) % 3;
+}

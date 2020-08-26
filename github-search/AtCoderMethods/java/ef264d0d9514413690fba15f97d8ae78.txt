@@ -1,0 +1,16 @@
+public void uniite(int p, int q) {
+    if (p < 0 || q < 0)
+        return;
+    int i = root(p);
+    int j = root(q);
+    if (i == j)
+        return;
+    if (size[i] > size[j]) {
+        
+        
+        
+        i ^= j ^= i ^= j;
+    }
+    size[j] += size[i];
+    path[i] = j;
+}

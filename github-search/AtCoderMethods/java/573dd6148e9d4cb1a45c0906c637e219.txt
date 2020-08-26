@@ -1,0 +1,12 @@
+long rec(int ope, int len) {
+    if (ope == 0)
+        return len == S ? 1 : 0;
+    if (done[ope][len]) {
+        return mp[ope][len];
+    }
+    done[ope][len] = true;
+    long ans = 0;
+    ans += 2L * rec(ope - 1, len + 1);
+    ans += rec(ope - 1, Math.max(0, len - 1));
+    return mp[ope][len] = (int) (ans % mod);
+}

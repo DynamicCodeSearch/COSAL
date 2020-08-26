@@ -1,0 +1,13 @@
+def main():
+    Ax, Ay, Bx, By = map(int, input().split())
+    N = int(input())
+
+    l = []
+    for _ in range(N):
+        X, Y = map(int, input().split())
+        l.append((X, Y))
+
+    num = 0
+    for (bx1, by1), (bx2, by2) in zip(l, l[1:] + [l[0]]):
+        num += is_intersected(Ax, Ay, Bx, By, bx1, by1, bx2, by2)
+    print(num // 2 + 1)

@@ -1,0 +1,14 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    String[] inputs = input.readLine().split(" ");
+    long a = Long.parseLong(inputs[0]);
+    long b = Long.parseLong(inputs[1]);
+    long x = Long.parseLong(inputs[2]);
+    long count = 0;
+    count += b / x;
+    count -= a / x;
+    if (a % x == 0) {
+        count += 1;
+    }
+    System.out.println(count);
+}

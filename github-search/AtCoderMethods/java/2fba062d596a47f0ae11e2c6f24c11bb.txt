@@ -1,0 +1,23 @@
+public static void main(String[] args) throws java.io.IOException {
+    int N = 1;
+    String input;
+    String[] inputArray = new String[100];
+    BufferedReader r = new BufferedReader(new InputStreamReader(System.in), 1);
+    input = r.readLine();
+    inputArray = input.split(" ");
+    N = Integer.parseInt(inputArray[0]);
+    String[][] symbol = new String[N][N];
+    for (int i = 0; i < N; i++) {
+        input = r.readLine();
+        inputArray = input.split("");
+        for (int j = 0; j < N; j++) {
+            symbol[i][j] = inputArray[j + 1];
+        }
+    }
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            System.out.print(symbol[N - 1 - j][i]);
+        }
+        System.out.println();
+    }
+}

@@ -1,0 +1,35 @@
+void solve() throws IOException {
+    int n = in.nextInt();
+    int m = in.nextInt();
+    int r = in.nextInt();
+    int[] t = new int[r];
+    for (int i = 0; i < r; i++) {
+        t[i] = in.nextInt() - 1;
+    }
+    int[][] dist = new int[n][n];
+    int inf = Integer.MAX_VALUE / 2;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (i == j)
+                continue;
+            dist[i][j] = inf;
+        }
+    }
+    for (int i = 0; i < m; i++) {
+        int a = in.nextInt() - 1;
+        int b = in.nextInt() - 1;
+        int c = in.nextInt();
+        dist[a][b] = dist[b][a] = Math.min(dist[a][b], c);
+    }
+    for (int k = 0; k < n; k++) for (int i = 0; i < n; i++) for (int j = 0; j < n; j++) dist[i][j] = Math.min(dist[i][j], dist[i][k] + dist[k][j]);
+    Permutation p = new Permutation(r, r);
+    int min = inf;
+    while (p.next()) {
+        int res = 0;
+        for (int i = 1; i < r; i++) {
+            res += dist[t[p.p[i - 1]]][t[p.p[i]]];
+        }
+        min = Math.min(min, res);
+    }
+    System.out.println(min);
+}

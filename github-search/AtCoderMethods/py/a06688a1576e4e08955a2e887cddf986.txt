@@ -1,0 +1,13 @@
+def possible(T, S, t, K):
+  for i in range(len(T)):
+    if T[i] != S[i]:
+      K -= 1
+  s = S[len(T):]
+  tt = t[:]
+  for c in s:
+    if c in tt:
+      p = tt.index(c)
+      tt[p] = '!'
+    else:
+      K -= 1
+  return K >= 0

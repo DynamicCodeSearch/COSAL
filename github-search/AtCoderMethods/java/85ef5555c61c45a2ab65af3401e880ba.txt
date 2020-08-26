@@ -1,0 +1,16 @@
+public int compareTo(Point s) {
+    int t1 = type(), t2 = s.type();
+    if (t1 != t2) {
+        return t1 - t2;
+    } else {
+        if (t1 == 0) {
+            return y - s.y;
+        } else if (t1 == 1) {
+            return x - s.x;
+        } else if (t1 == 2) {
+            return s.y - y;
+        } else {
+            return s.x - x;
+        }
+    }
+}

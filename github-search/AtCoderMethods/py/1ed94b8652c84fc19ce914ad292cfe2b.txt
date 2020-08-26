@@ -1,0 +1,20 @@
+def solve(h, w, board):
+    rows = []
+    for i in range(h):
+        row = []
+        for k in range(w):
+            row.append(0)
+        rows.append(row)
+
+    for i in range(h):
+        for k in range(w):
+            if board[i][k] == 1:
+                rows[i][k] =  -1
+                for dx in [-1, 0, 1]:
+                    for dy in [-1,0,1]:
+                        if  (not (dx == 0 and dy ==0)) and 0 <= i + dy and i + dy < h and 0 <= k + dx and k + dx < w:
+                            if board[i + dy][k + dx] != 1:
+                                rows[i + dy][k + dx] += 1
+
+
+    return rows

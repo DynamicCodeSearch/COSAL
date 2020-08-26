@@ -1,0 +1,19 @@
+def main():
+    N, M = map(int, input().split())
+
+    if N * 2 > M or N * 4 < M:
+        print('-1 -1 -1')
+        return
+
+    for s in (0, 1):
+        n = N - s
+        m = M - s * 3
+        b, mod = divmod((m - n * 2), 2)
+        if mod == 0:
+            a = N - s - b
+            ans = (a, s, b)
+            break
+    else:
+        ans = (-1, -1, -1)
+
+    print(*ans, sep=' ')

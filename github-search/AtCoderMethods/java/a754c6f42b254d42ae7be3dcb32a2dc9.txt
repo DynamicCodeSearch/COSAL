@@ -1,0 +1,24 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String line = br.readLine();
+    String[] param = line.split("");
+    if (param.length >= 2 & param.length <= 26) {
+        for (i = 0; i < param.length - 1; i++) {
+            for (int k = i + 1; k < param.length; k++) {
+                if (param[i].equals(param[k])) {
+                    System.out.println("no");
+                    count++;
+                    break;
+                }
+            }
+            if (count == 1) {
+                break;
+            }
+        }
+    } else {
+        System.out.println("miss");
+    }
+    if (count == 0) {
+        System.out.println("yes");
+    }
+}

@@ -1,0 +1,31 @@
+def main():
+
+    n,m=list(map(int,input().split()))
+    a=[0 for _ in range(m)]
+    b=[0 for _ in range(m)]
+    c=[0 for _ in range(m)]
+    d=[[INF for i in range(n)] for i in range(n)]
+    for i in range(m):
+        a[i],b[i],c[i]=list(map(int,input().split()))
+        a[i]-=1
+        b[i]-=1
+        d[a[i]][b[i]]=c[i]
+        d[b[i]][a[i]]=c[i]
+
+    for i in range(n):
+        d[i][i]=0
+
+    for k in range(n):
+        for i in range(n):
+            for j in range(n):
+                d[i][j]=min(d[i][j],d[i][k]+d[k][j])
+                d[j][i]=d[i][j]
+    ans=0
+    for j in range(m):
+        temp=1
+        for i in range(n):
+            if d[i][b[j]]==d[i][a[j]]+c[j]:
+                temp=0
+                break
+        ans+=temp
+    print(ans)

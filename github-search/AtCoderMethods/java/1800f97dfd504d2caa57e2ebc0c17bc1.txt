@@ -1,0 +1,10 @@
+private static long pow(long a, long b, long m) {
+    if (b == 0)
+        return 1;
+    if (b == 1)
+        return a;
+    long pp = pow(a, b / 2, m);
+    pp *= pp;
+    pp %= m;
+    return (pp * (b % 2 == 0 ? 1 : a)) % m;
+}

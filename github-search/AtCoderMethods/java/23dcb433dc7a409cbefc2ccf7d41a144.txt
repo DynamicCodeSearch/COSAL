@@ -1,0 +1,11 @@
+private void add(List<Pair> all, int c1, int r1, int i) {
+    if (r1 == 0 && c1 < C) {
+        all.add(new Pair(i, c1));
+    } else if (c1 == C && r1 < R) {
+        all.add(new Pair(i, r1 + C));
+    } else if (r1 == R && c1 > 0) {
+        all.add(new Pair(i, C - c1 + C + R));
+    } else if (c1 == 0 && r1 > 0) {
+        all.add(new Pair(i, R - r1 + C + R + C));
+    }
+}

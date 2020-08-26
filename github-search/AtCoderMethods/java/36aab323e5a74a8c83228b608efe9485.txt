@@ -1,0 +1,17 @@
+public static void main(String... args) throws IOException {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    String[] vals = reader.readLine().split(" ");
+    final int N = Integer.parseInt(vals[0]);
+    final int M = Integer.parseInt(vals[1]);
+    if (Math.abs(N - M) > 1) {
+        System.out.print(0);
+        return;
+    }
+    BigDecimal result;
+    if (N == M) {
+        result = BigDecimal.valueOf(2).multiply(getPermutation(N)).multiply(getPermutation(N));
+    } else {
+        result = getPermutation(N).multiply(getPermutation(M));
+    }
+    System.out.print(result.remainder(B_MOD));
+}

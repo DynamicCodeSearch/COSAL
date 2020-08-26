@@ -1,0 +1,39 @@
+public static void main(String[] args) {
+    in = new InputReader(System.in);
+    out = new PrintWriter(System.out);
+    int N = in.nextInt();
+    int A = in.nextInt(), B = in.nextInt();
+    Long[] v = new Long[N];
+    for (int i = 0; i < N; i++) {
+        v[i] = in.nextLong();
+    }
+    Arrays.sort(v, Collections.reverseOrder());
+    long[] sum = new long[N + 1];
+    for (int i = 1; i <= N; i++) {
+        sum[i] += sum[i - 1] + v[i - 1];
+    }
+    int maxMeanIdx = A;
+    double maxValue = sum[A] / (1.0 * A);
+    HashSet<Integer> sizes = new HashSet<Integer>();
+    for (int i = A; i <= B; i++) {
+        if (sum[i] * maxMeanIdx == sum[maxMeanIdx] * i) {
+            sizes.add(i);
+        }
+    }
+    choose(N, N);
+    long result = 0;
+    for (Integer ii : sizes) {
+        long val = v[ii - 1];
+        int n = 0, r = 0;
+        for (int i = 0; i < ii; i++) {
+            r += v[i] == val ? 1 : 0;
+        }
+        for (int i = 0; i < N; i++) {
+            n += v[i] == val ? 1 : 0;
+        }
+        result += nCr[n][r];
+    }
+    out.printf("%f\n", maxValue);
+    out.println(result);
+    out.close();
+}

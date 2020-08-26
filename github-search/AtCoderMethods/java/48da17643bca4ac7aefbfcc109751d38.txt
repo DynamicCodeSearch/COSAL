@@ -1,0 +1,10 @@
+static void Method(ArrayList<Integer> num, ArrayList<String> param) {
+    int time = num.get(0) * 60 + num.get(1);
+    double timeOne = time * 0.5 % 360;
+    double timeTwo = time * 6 % 360;
+    if (Math.abs(timeOne - timeTwo) < 180) {
+        System.out.println(Math.abs(timeOne - timeTwo));
+    } else {
+        System.out.println(360 - Math.abs(timeOne - timeTwo));
+    }
+}

@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    sc = new Scanner(System.in);
+    n = sc.nextInt();
+    m = sc.nextInt();
+    init();
+    for (int i = 0; i < n; i++) {
+        dijkstra(i);
+    }
+    int count = 0;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < gragh[i].size(); j++) {
+            Ed edge = (Ed) gragh[i].get(j);
+            if (!edge.used)
+                count++;
+        }
+    }
+    System.out.println(count / 2);
+}

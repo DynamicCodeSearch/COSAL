@@ -1,0 +1,10 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    long n = in.nextLong();
+    int ans = Integer.MAX_VALUE;
+    for (long i = 1; i * i <= n; i++) {
+        if (n % i == 0) {
+            ans = String.valueOf(n / i).length();
+        }
+    }
+    out.println(ans);
+}

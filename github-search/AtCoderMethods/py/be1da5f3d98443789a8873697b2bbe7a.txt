@@ -1,0 +1,12 @@
+def f(i,j):
+    if not a[i][j]:
+        return True
+    k = (i,j)
+    if k in m:
+        return m[k]
+
+    if f(i+1,j) and f(i,j+1) and f(i+1,j+1):
+        m[k] = False
+    else:
+        m[k] = True
+    return m[k]

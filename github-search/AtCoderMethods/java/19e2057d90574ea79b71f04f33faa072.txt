@@ -1,0 +1,27 @@
+
+static long[][] floydWarshall2(int V, long[][] graph) {
+    long[][] dist = new long[V + 1][V + 1];
+    c = new boolean[V + 1][V + 1];
+    int i, j, k;
+    for (i = 0; i <= V; i++) {
+        for (j = 0; j <= V; j++) {
+            dist[i][j] = graph[i][j];
+        }
+    }
+    for (k = 1; k <= V; k++) {
+        
+        for (i = 1; i <= V; i++) {
+            
+            for (j = 1; j <= V; j++) {
+                
+                if (dist[i][k] + dist[k][j] <= dist[i][j]) {
+                    if (i != j && j != k && k != i)
+                        c[i][j] = true;
+                    dist[i][j] = dist[i][k] + dist[k][j];
+                }
+            }
+        }
+    }
+    
+    return dist;
+}

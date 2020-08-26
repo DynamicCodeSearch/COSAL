@@ -1,0 +1,11 @@
+public final Node pop() {
+    if (count == 0)
+        return null;
+    int nodeIndex = nodes[0].index;
+    map.remove(nodeIndex);
+    Node ret = nodes[0];
+    nodes[0] = nodes[count - 1];
+    count--;
+    downward(0);
+    return ret;
+}

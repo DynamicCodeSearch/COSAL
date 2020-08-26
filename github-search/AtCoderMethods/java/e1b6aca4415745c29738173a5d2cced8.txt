@@ -1,0 +1,26 @@
+
+
+double[] dijkstra(int r, int[][] edges) {
+    double[] ret = new double[edges.length];
+    
+    Arrays.fill(ret, Double.POSITIVE_INFINITY);
+    boolean[] used = new boolean[edges.length];
+    ret[r] = 0;
+    while (true) {
+        int nv = -1;
+        for (int i = 0; i < edges.length; i++) {
+            if (!used[i] && (nv == -1 || ret[i] < ret[nv])) {
+                nv = i;
+            }
+        }
+        if (nv == -1)
+            break;
+        used[nv] = true;
+        
+        for (int i = 0; i < edges.length; i++) {
+            double len = Math.max(0.0, Math.hypot(edges[nv][0] - edges[i][0], edges[nv][1] - edges[i][1]) - edges[nv][2] - edges[i][2]);
+            ret[i] = Math.min(ret[i], ret[nv] + len);
+        }
+    }
+    return ret;
+}

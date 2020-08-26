@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    String[] a = new String[n];
+    for (int i = 0; i < n; i++) a[i] = sc.next();
+    String[] b = new String[m];
+    for (int i = 0; i < m; i++) b[i] = sc.next();
+    boolean found = false;
+    for (int i = 0; i < n - m + 1 && !found; i++) {
+        for (int j = 0; j < n - m + 1 && !found; j++) {
+            boolean match = true;
+            for (int k = 0; k < m && match; k++) {
+                for (int l = 0; l < m && match; l++) {
+                    if (a[i + k].charAt(j + l) != b[k].charAt(l))
+                        match = false;
+                }
+            }
+            if (match)
+                found = true;
+        }
+    }
+    System.out.println(found ? "Yes" : "No");
+}

@@ -1,0 +1,16 @@
+public String next() {
+    while (tokenizer == null || !tokenizer.hasMoreTokens()) {
+        try {
+            String line = null;
+            if (test_string != null) {
+                line = test_string;
+                test_string = null;
+            } else
+                line = reader.readLine();
+            tokenizer = new StringTokenizer(line);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    return tokenizer.nextToken();
+}

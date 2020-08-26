@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    final int N = sc.nextInt();
+    final int M = sc.nextInt();
+    Map<Integer, Set<Integer>> f = new HashMap<>();
+    for (int i = 1; i <= N; i++) f.put(i, new HashSet<>());
+    for (int i = 0; i < M; i++) {
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        f.get(a).add(b);
+        f.get(b).add(a);
+    }
+    sc.close();
+    int[] ans = new int[N];
+    for (int i = 1; i <= N; i++) {
+        Set<Integer> ff = new HashSet<>();
+        for (int j : f.get(i)) {
+            for (int k : f.get(j)) {
+                if (k != i)
+                    ff.add(k);
+            }
+        }
+        for (int j : f.get(i)) ff.remove(j);
+        ans[i - 1] = ff.size();
+    }
+    for (int a : ans) System.out.println(a);
+}

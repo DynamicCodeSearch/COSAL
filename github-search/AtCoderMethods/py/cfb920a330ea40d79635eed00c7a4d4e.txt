@@ -1,0 +1,15 @@
+def main():
+    n = read_int()
+    t = read_int_list()
+    m = read_int()
+    p = [0] * m
+    x = [0] * m
+    for i in range(m):
+        p[i], x[i] = read_int_list()
+        p[i] -= 1
+
+    s = sum(t)
+    for i in range(m):
+        j = p[i]
+        res = s - t[j] + x[i]
+        print(res)

@@ -1,0 +1,23 @@
+public void solve(int testNumber, MyInput in, PrintWriter out) {
+    TreeMap<Integer, Integer> mp = new TreeMap<>();
+    int n = in.nextInt();
+    for (int i = 0; i < n; i++) {
+        int v = in.nextInt();
+        mp.put(v, mp.getOrDefault(v, 0) + 1);
+    }
+    long cur = -1;
+    while (!mp.isEmpty()) {
+        int c = mp.lastEntry().getValue();
+        if (c > 1) {
+            if (cur != -1) {
+                out.println(cur * mp.lastKey());
+                return;
+            }
+            cur = mp.lastKey();
+        }
+        Map.Entry<Integer, Integer> e = mp.pollLastEntry();
+        if (c > 2)
+            mp.put(e.getKey(), e.getValue() - 2);
+    }
+    out.println(0);
+}

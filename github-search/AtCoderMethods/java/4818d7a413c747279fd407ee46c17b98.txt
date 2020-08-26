@@ -1,0 +1,57 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int H = sc.nextInt();
+    int W = sc.nextInt();
+    int sub1;
+    int sub2;
+    int ans;
+    int A;
+    int B;
+    int C;
+    int H_mod3 = H % 3;
+    int W_mod3 = W % 3;
+    if (H_mod3 == 0) {
+        sub1 = 0;
+    } else if (H_mod3 == 1) {
+        A = H / 3 * W;
+        B = (H - H / 3) * (W / 2);
+        C = H * W - A - B;
+        sub1 = C - A;
+        if (W < sub1) {
+            sub1 = W;
+        }
+    } else {
+        A = (H / 3 + 1) * W;
+        B = (H - H / 3 - 1) * (W / 2);
+        C = H * W - A - B;
+        sub1 = A - B;
+        if (W < sub1) {
+            sub1 = W;
+        }
+    }
+    if (W_mod3 == 0) {
+        sub2 = 0;
+    } else if (W_mod3 == 1) {
+        A = W / 3 * H;
+        B = (W - W / 3) * (H / 2);
+        C = H * W - A - B;
+        sub2 = C - A;
+        if (H < sub2) {
+            sub2 = H;
+        }
+    } else {
+        A = (W / 3 + 1) * H;
+        B = (W - W / 3 - 1) * (H / 2);
+        C = H * W - A - B;
+        sub2 = A - B;
+        if (H < sub2) {
+            sub2 = H;
+        }
+    }
+    if (sub1 < sub2) {
+        ans = sub1;
+    } else {
+        ans = sub2;
+    }
+    System.out.print(ans);
+}

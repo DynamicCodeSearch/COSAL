@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    char[][] maze = new char[row][col];
+    for (int j = 0; j < row; j++) {
+        String line = sc.next();
+        for (int i = 0; i < col; i++) {
+            maze[j][i] = line.charAt(i);
+        }
+    }
+    maze[goalY][goalX] = 'G';
+    queue.offer(startX);
+    queue.offer(startY);
+    while (!matched) {
+        while (!queue.isEmpty()) {
+            int x = queue.poll();
+            int y = queue.poll();
+            dfs(maze, x, y);
+            if (matched) {
+                break;
+            }
+        }
+        queue.addAll(countQueue);
+        countQueue.clear();
+        count++;
+    }
+}

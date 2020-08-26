@@ -1,0 +1,17 @@
+def main():
+
+    N = int(input())
+    p = map(int, input().split())
+    n_swap = 0
+
+    p_same = [i == _p for i, _p in enumerate(p, 1)]
+
+    for i in range(N - 1):
+        same = p_same[i]
+        if same:
+            n_swap += 1
+            p_same[i] = p_same[i + 1] = False
+
+    if p_same[-1]:
+        n_swap += 1
+    print(n_swap)

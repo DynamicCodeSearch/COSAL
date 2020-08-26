@@ -1,0 +1,27 @@
+public void solve(int testNumber, Scanner in, PrintWriter out) {
+    int n = in.nextInt();
+    a = in.nextInt();
+    b = in.nextInt();
+    health = new long[n];
+    long hmax = Long.MIN_VALUE;
+    for (int i = 0; i < n; ++i) {
+        health[i] = in.nextInt();
+        hmax = Math.max(hmax, health[i]);
+    }
+    long lo = 0;
+    long hi = (long) Math.ceil((double) hmax / b);
+    long mid;
+    while (lo + 1 < hi) {
+        mid = lo + (hi - lo) / 2;
+        if (enough(mid)) {
+            hi = mid;
+        } else {
+            lo = mid;
+        }
+    }
+    if (lo == hi) {
+        out.println(lo + 1);
+    } else {
+        out.println(hi);
+    }
+}

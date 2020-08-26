@@ -1,0 +1,14 @@
+public static long[] euqlidNormal(long a, long b) {
+    long[] ret = new long[2];
+    long q = a / b;
+    long r = a % b;
+    if (r == 1) {
+        ret[0] = 1;
+        ret[1] = -q;
+    } else {
+        long[] rec = euqlidNormal(b, r);
+        ret[0] = rec[1];
+        ret[1] = rec[0] - q * rec[1];
+    }
+    return ret;
+}

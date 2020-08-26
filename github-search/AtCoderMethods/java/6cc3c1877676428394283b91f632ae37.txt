@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    StdIn in = new StdIn();
+    int n = in.nextInt();
+    int[][] a = new int[n][n];
+    for (int i = 0; i < n; ++i) for (int j = 0; j < n; ++j) a[i][j] = in.nextInt();
+    long t = 0;
+    for (int i = 0; i < n; ++i) {
+        for (int j = i + 1; j < n; ++j) {
+            int minDoubleConnect = Integer.MAX_VALUE;
+            for (int k = 0; k < n; ++k) if (k != i && k != j)
+                minDoubleConnect = Math.min(a[i][k] + a[j][k], minDoubleConnect);
+            if (minDoubleConnect < a[i][j]) {
+                System.out.println(-1);
+                return;
+            }
+            if (minDoubleConnect > a[i][j])
+                t += a[i][j];
+        }
+    }
+    System.out.println(t);
+}

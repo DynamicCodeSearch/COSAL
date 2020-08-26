@@ -1,0 +1,40 @@
+public void calc() {
+    N = in.nextInt();
+    M = in.nextInt();
+    R = in.nextInt();
+    r = new int[R];
+    A = new int[M];
+    B = new int[M];
+    C = new int[M];
+    for (int i = 0; i < R; i++) {
+        r[i] = in.nextInt() - 1;
+    }
+    for (int i = 0; i < M; i++) {
+        A[i] = in.nextInt() - 1;
+        B[i] = in.nextInt() - 1;
+        C[i] = in.nextInt();
+    }
+    dist = new int[N][N];
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            dist[i][j] = 99999999;
+        }
+        dist[i][i] = 0;
+    }
+    for (int i = 0; i < M; i++) {
+        dist[A[i]][B[i]] = Math.min(C[i], dist[A[i]][B[i]]);
+        dist[B[i]][A[i]] = dist[A[i]][B[i]];
+    }
+    for (int k = 0; k < N; k++) {
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                dist[i][j] = Math.min(dist[i][j], dist[i][k] + dist[k][j]);
+            }
+        }
+    }
+    done = new boolean[R];
+    ans = Integer.MAX_VALUE;
+    dfs(0, -1, 0);
+    out.println(ans);
+    out.close();
+}

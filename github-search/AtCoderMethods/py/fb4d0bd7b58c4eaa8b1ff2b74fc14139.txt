@@ -1,0 +1,30 @@
+def main():
+    N = int(input())
+    S1 = list(input())
+    S2 = list(input())
+    d = 10**9 + 7
+
+
+    skip = False
+    Map = {("p","v"):3, ("p","h"):6, ("v","h"):2, ("h","v"):1, ("h","h"):3, ("v","v"):2}
+    pre = "p"
+
+    possibles = 1
+    for n in range(N):
+        if skip:
+            skip = False
+            continue
+        pass
+        if S1[n] == S2[n]:  
+
+            now = "v"
+        else:  
+
+            now = "h"
+            skip = True
+        possibles *= Map[(pre,now)]
+        possibles %= d
+
+        pre = now
+
+    print(possibles)

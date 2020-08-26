@@ -1,0 +1,14 @@
+public static void solve(PrintWriter out, FastScanner in) {
+    int N = in.nextInt();
+    int[] T = in.nextIntArray(N);
+    int M = in.nextInt();
+    long sum = 0;
+    for (int i = 0; i < N; i++) {
+        sum += T[i];
+    }
+    for (int i = 0; i < M; i++) {
+        int p = in.nextInt();
+        int x = in.nextInt();
+        out.println((sum - (T[p - 1] - x)));
+    }
+}

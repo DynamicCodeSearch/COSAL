@@ -1,0 +1,19 @@
+private static void solve() {
+    Scanner sc = new Scanner(System.in);
+    PrintWriter pr = new PrintWriter(System.out);
+    int N = sc.nextInt();
+    int K = sc.nextInt();
+    int[] l = new int[N];
+    for (int k = 0; k < N; k++) {
+        l[k] = sc.nextInt();
+    }
+    long sum = 0;
+    for (int k = 0; k < N - K + 1; k++) {
+        for (int s = k; s < k + K; s++) {
+            sum += l[s];
+        }
+    }
+    pr.println(sum);
+    pr.flush();
+    sc.close();
+}

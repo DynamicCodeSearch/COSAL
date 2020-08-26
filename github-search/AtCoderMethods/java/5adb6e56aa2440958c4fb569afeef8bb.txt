@@ -1,0 +1,38 @@
+void solve() throws IOException {
+    int n = in.readInt();
+    long[] price = new long[n];
+    int[] sells_to = new int[n];
+    boolean[] is_good = new boolean[n];
+    long T = in.readLong();
+    price[0] = in.readLong();
+    int min = 0;
+    long max_diff = 0;
+    sells_to[0] = -1;
+    for (int i = 1; i < n; ++i) {
+        price[i] = in.readLong();
+        sells_to[i] = -1;
+        if (price[min] < price[i]) {
+            if (sells_to[min] == -1) {
+                sells_to[min] = i;
+                max_diff = Math.max(max_diff, price[i] - price[min]);
+            } else {
+                if (price[sells_to[min]] < price[i]) {
+                    sells_to[min] = i;
+                    max_diff = Math.max(max_diff, price[i] - price[min]);
+                }
+            }
+        } else {
+            min = i;
+        }
+    }
+    long ans = 0;
+    for (int i = 0; i < n; ++i) {
+        if (sells_to[i] != -1) {
+            if (price[sells_to[i]] - price[i] == max_diff) {
+                is_good[i] = true;
+                ans++;
+            }
+        }
+    }
+    out.printLine(ans);
+}

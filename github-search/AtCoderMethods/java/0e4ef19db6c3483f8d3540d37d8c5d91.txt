@@ -1,0 +1,34 @@
+public void solve() {
+    int N = in.nextInt(), K = in.nextInt(), L = in.nextInt();
+    UnionFindTree road = new UnionFindTree(N);
+    UnionFindTree rail = new UnionFindTree(N);
+    for (int i = 0; i < K; i++) {
+        int p = in.nextInt() - 1, q = in.nextInt() - 1;
+        road.unite(p, q);
+    }
+    for (int i = 0; i < L; i++) {
+        int r = in.nextInt() - 1, s = in.nextInt() - 1;
+        rail.unite(r, s);
+    }
+    for (int i = 0; i < N; i++) {
+        road.find(i);
+        rail.find(i);
+    }
+    HashMap<String, Integer> map = new HashMap<>();
+    for (int i = 0; i < N; i++) {
+        int idx1 = road.parent[i];
+        int idx2 = rail.parent[i];
+        String key = toKey(idx1, idx2);
+        if (map.containsKey(key))
+            map.put(key, map.get(key) + 1);
+        else
+            map.put(key, 1);
+    }
+    for (int i = 0; i < N; i++) {
+        int idx1 = road.parent[i];
+        int idx2 = rail.parent[i];
+        out.print(map.get(toKey(idx1, idx2)) + " ");
+    }
+    out.println();
+    out.close();
+}

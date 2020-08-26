@@ -1,0 +1,16 @@
+public boolean hasInput() {
+    try {
+        if (tokenizer != null && tokenizer.hasMoreTokens()) {
+            return true;
+        }
+        reader.mark(1);
+        int ch = reader.read();
+        if (ch != -1) {
+            reader.reset();
+            return true;
+        }
+        return false;
+    } catch (IOException e) {
+        throw new RuntimeException(e);
+    }
+}

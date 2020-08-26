@@ -1,0 +1,26 @@
+def main(argv):
+    for line in sys.stdin:
+        a, b, c = map(lambda x: int(x), line.split(" ", 3))
+        p = a % b
+        q = c % b
+
+        if p == q:
+            print("YES")
+        elif p == 0:
+            print("NO")
+        else:
+            candidates = []
+            i = 1
+            candidate = (i * a) % b
+            while not candidate in candidates:
+                if candidate == q:
+                    break
+                candidates.append(candidate)
+
+                i += 1
+                candidate = (i * a) % b
+
+            if candidate == q:
+                print("YES")
+            else:
+                print("NO")

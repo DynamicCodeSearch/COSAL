@@ -1,0 +1,31 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    
+    HashMap<Integer, ArrayList<Integer>> sub = new HashMap<Integer, ArrayList<Integer>>();
+    for (int i = 0; i < N; i++) {
+        sub.put(i, new ArrayList<Integer>());
+    }
+    for (int i = 1; i < N; i++) {
+        int boss = sc.nextInt() - 1;
+        ArrayList<Integer> list = sub.get(boss);
+        list.add(i);
+        sub.put(boss, list);
+    }
+    int[] salary = new int[N];
+    for (int i = N - 1; i >= 0; i--) {
+        ArrayList<Integer> list = sub.get(i);
+        if (list.size() == 0) {
+            salary[i] = 1;
+        } else {
+            int max = 0;
+            int min = Integer.MAX_VALUE;
+            for (int j : list) {
+                max = Math.max(max, salary[j]);
+                min = Math.min(min, salary[j]);
+            }
+            salary[i] = max + min + 1;
+        }
+    }
+    System.out.println(salary[0]);
+}

@@ -1,0 +1,10 @@
+void process3(int N) {
+    int i, j;
+    
+    for (i = 0; i < N; i++) for (j = 0; 1 << j < N; j++) P[start[i]][j] = -1;
+    
+    for (i = 0; i < N; i++) P[start[i]][0] = T[i];
+    
+    for (j = 1; 1 << j < N; j++) for (i = 0; i < N; i++) if (P[start[i]][j - 1] != -1)
+        P[start[i]][j] = P[P[start[i]][j - 1]][j - 1];
+}

@@ -1,0 +1,15 @@
+void solve() throws NumberFormatException, IOException {
+    final ContestScanner in = new ContestScanner();
+    Writer out = new Writer();
+    long a = in.nextLong();
+    long b = in.nextLong();
+    int m = in.nextInt();
+    long d = gcd(a, b);
+    long[][] f = { { 1, 1 } };
+    long[][] x = { { 1, 1 }, { 0, 10 } };
+    long xm = modfib(a, m, f, x);
+    x[1][1] = modpow(10, d, m);
+    f[0][1] = 1;
+    long ym = modfib(b / d, m, f, x);
+    System.out.println(xm * ym % m);
+}

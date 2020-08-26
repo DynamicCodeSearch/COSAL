@@ -1,0 +1,41 @@
+public static void main(String[] args) {
+    int n;
+    int q;
+    int[] l;
+    int[] r;
+    PrintWriter out = new PrintWriter(System.out);
+    
+    try (Scanner scan = new Scanner(System.in)) {
+        n = scan.nextInt();
+        q = scan.nextInt();
+        l = new int[q];
+        r = new int[q];
+        for (int i = 0; i < q; i++) {
+            
+            l[i] = scan.nextInt() - 1;
+            r[i] = scan.nextInt() - 1;
+        }
+    }
+    
+    Arrays.sort(l);
+    Arrays.sort(r);
+    
+    int li = 0;
+    int ri = 0;
+    int count = 0;
+    for (int i = 0; i < n; i++) {
+        while (li < q && l[li] <= i) {
+            li++;
+            count++;
+        }
+        while (ri < q && r[ri] < i) {
+            ri++;
+            
+            count++;
+        }
+        count %= 2;
+        out.print(count);
+    }
+    out.println();
+    out.flush();
+}

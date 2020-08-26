@@ -1,0 +1,15 @@
+def nibutan(x):
+    top = x
+    btm = 0
+
+    while top - btm > 1:
+        mid = (top + btm)//2
+
+        if mid**4 == x:
+            return mid
+        elif mid**4 < x:
+            btm = mid
+        else:
+            top = mid
+
+    return top

@@ -1,0 +1,19 @@
+public static long plusFirst(int n, long[] num) {
+    long sum = num[0];
+    long ret = 0;
+    if (sum <= 0) {
+        ret = 1 - sum;
+        sum = 1;
+    }
+    for (int i = 1; i < n; i++) {
+        sum += num[i];
+        if (i % 2 == 1 && sum >= 0) {
+            ret += sum + 1;
+            sum = -1;
+        } else if (i % 2 == 0 && sum <= 0) {
+            ret += 1 - sum;
+            sum = 1;
+        }
+    }
+    return ret;
+}

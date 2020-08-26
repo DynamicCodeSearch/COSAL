@@ -1,0 +1,23 @@
+public static void main(String[] args) throws Exception {
+    Scanner in = new Scanner(System.in);
+    int n = in.nextInt();
+    int q = in.nextInt();
+    int[] oth = new int[n + 1];
+    for (int i = 0; i < q; i++) {
+        int l = in.nextInt() - 1;
+        int r = in.nextInt() - 1;
+        oth[l]++;
+        oth[r + 1]--;
+    }
+    StringBuilder ret = new StringBuilder();
+    int sum = 0;
+    for (int i = 0; i < n; i++) {
+        sum += oth[i];
+        if (sum % 2 == 0) {
+            ret.append('0');
+        } else {
+            ret.append('1');
+        }
+    }
+    System.out.println(ret);
+}

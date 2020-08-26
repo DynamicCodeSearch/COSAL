@@ -1,0 +1,10 @@
+static boolean eof() {
+    try {
+        is.mark(1000);
+        int b = skip();
+        is.reset();
+        return b == -1;
+    } catch (IOException e) {
+        return true;
+    }
+}

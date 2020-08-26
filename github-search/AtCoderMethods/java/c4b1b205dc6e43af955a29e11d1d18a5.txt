@@ -1,0 +1,26 @@
+public void solve(int testNumber, FastScanner in, PrintWriter out) {
+    int n = in.nextInt();
+    int m = in.nextInt();
+    Segment[] s = new Segment[n];
+    for (int i = 0; i < n; i++) {
+        int l = in.nextInt();
+        int r = in.nextInt();
+        s[i] = new Segment(l, r);
+    }
+    Arrays.sort(s);
+    int p = 0;
+    Tree tree = new Tree(m + 1);
+    for (int d = 1; d <= m; d++) {
+        int ans = 0;
+        while (p < n && s[p].len < d) {
+            tree.add(s[p].l, s[p].r, 1);
+            ++p;
+        }
+        
+        ans += n - p;
+        for (int i = 0; i <= m; i += d) {
+            ans += tree.get(i);
+        }
+        out.println(ans);
+    }
+}

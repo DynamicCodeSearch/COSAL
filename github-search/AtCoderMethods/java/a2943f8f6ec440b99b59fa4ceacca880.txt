@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    try (Scanner in = new Scanner(System.in)) {
+        int N = in.nextInt();
+        long K = in.nextLong();
+        int[] a = new int[N];
+        int[] b = new int[N];
+        for (int i = 0; i < N; i++) {
+            a[i] = in.nextInt();
+            b[i] = in.nextInt();
+        }
+        ArrayList<Pair<Integer, Integer>> numberAndCountPairs = new ArrayList<>();
+        for (int i = 0; i < N; i++) {
+            numberAndCountPairs.add(new Pair<Integer, Integer>(a[i], b[i]));
+        }
+        Collections.sort(numberAndCountPairs);
+        long sum = 0;
+        for (int i = 0; i < numberAndCountPairs.size(); i++) {
+            sum += numberAndCountPairs.get(i).second;
+            if (sum >= K) {
+                System.out.println(numberAndCountPairs.get(i).first);
+                return;
+            }
+        }
+        throw new AssertionError();
+    }
+}

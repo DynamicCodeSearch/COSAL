@@ -1,0 +1,20 @@
+private void solve(Scanner sc, PrintWriter out) {
+    N = sc.nextInt();
+    T = new long[N];
+    Map<Integer, Long> map = new HashMap<>();
+    long total = 0;
+    for (int i = 0; i < N; ++i) {
+        T[i] = sc.nextLong();
+        total += T[i];
+        map.put(i + 1, T[i]);
+    }
+    M = sc.nextInt();
+    P = new int[M];
+    X = new long[M];
+    for (int i = 0; i < M; ++i) {
+        P[i] = sc.nextInt();
+        X[i] = sc.nextLong();
+        long newTotal = total - map.get(P[i]) + X[i];
+        out.println(newTotal);
+    }
+}

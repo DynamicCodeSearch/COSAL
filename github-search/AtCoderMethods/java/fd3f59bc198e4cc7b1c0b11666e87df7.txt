@@ -1,0 +1,24 @@
+public static void main(String[] args) throws Exception {
+    Scanner scan = new Scanner(System.in);
+    int n = scan.nextInt();
+    int[] num1 = new int[n];
+    int[] num2 = new int[n];
+    int middle = 0;
+    if (n % 2 != 0)
+        middle = n / 2 + 1;
+    for (int i = 0; i < n; i++) {
+        num1[i] = scan.nextInt();
+        if (i + 1 == middle)
+            num2[i] = num1[0];
+    }
+    for (int i = 0; i < n / 2; i++) {
+        num2[0 + i] = num1[n - i * 2 - 1];
+        num2[n - 1 - i] = num1[n - i * 2 - 2];
+    }
+    for (int i = 0; i < n; i++) {
+        if (i != n - 1)
+            System.out.print(num2[i] + " ");
+        else
+            System.out.println(num2[i]);
+    }
+}

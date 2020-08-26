@@ -1,0 +1,38 @@
+def Q4(x):
+    N = x[0][0]  
+    edge = x[1:N][:]  
+    Q = x[N][0]  
+    K = x[N][1]  
+    query = x[N + 1:][:]  
+
+
+    tree = list(range(N))  
+    for idx in range(N):
+        tree[idx] = []
+
+    for idx in range(len(edge)):
+
+
+        a = edge[idx][0] - 1
+        b = edge[idx][1] - 1
+        c = edge[idx][2]
+        tree[a].append([b, c])
+        tree[b].append([a, c])
+
+
+    dist = [0 for i in range(N)]  
+    isVisit = [False for i in range(N)]  
+    queue = [K - 1] 
+    isVisit[K - 1] = True
+
+    while queue:
+        u = queue.pop()
+        for p in tree[u]:
+            v, w = map(int, p)
+            if not isVisit[v]:
+                isVisit[v] = True
+                dist[v] = dist[u] + w
+                queue.append(v)
+
+    for q in query:
+        print(dist[q[0] - 1] + dist[q[1] - 1])

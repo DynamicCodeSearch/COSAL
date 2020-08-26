@@ -1,0 +1,44 @@
+static void solve() {
+    int n = ni();
+    long[] a = new long[n];
+    char[] op = new char[n - 1];
+    for (int i = 0; i < n; i++) {
+        a[i] = ni();
+        if (i < n - 1)
+            op[i] = nc();
+    }
+    long[][] dp = new long[10][n + 1];
+    for (int i = 0; i < 10; i++) {
+        Arrays.fill(dp[i], Long.MIN_VALUE / 2);
+    }
+    dp[0][0] = 0;
+    for (int i = 0; i < n; i++) {
+        char c = i == 0 ? '+' : op[i - 1];
+        for (int j = 0; j < 10; j++) {
+            if (c == '-') {
+                if (j % 2 == 0) {
+                    if (j >= 2) {
+                        dp[j][i + 1] = Math.max(dp[j][i + 1], dp[j][i] + a[i]);
+                    } else {
+                        dp[1][i + 1] = Math.max(dp[1][i + 1], dp[j][i] - a[i]);
+                    }
+                } else {
+                    if (j + 1 < 10)
+                        dp[j + 1][i + 1] = Math.max(dp[j + 1][i + 1], dp[j][i] + a[i]);
+                }
+            } else {
+                if (j % 2 == 0) {
+                    dp[j][i + 1] = Math.max(dp[j][i + 1], dp[j][i] + a[i]);
+                } else {
+                    dp[j - 1][i + 1] = Math.max(dp[j - 1][i + 1], dp[j][i] + a[i]);
+                    dp[j][i + 1] = Math.max(dp[j][i + 1], dp[j][i] - a[i]);
+                }
+            }
+        }
+    }
+    long max = Long.MIN_VALUE;
+    for (int j = 0; j < 10; j++) {
+        max = Math.max(max, dp[j][n]);
+    }
+    out.println(max);
+}

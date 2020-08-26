@@ -1,0 +1,22 @@
+void run() {
+    sc = new FastScanner();
+    Map<Character, Integer> dic = new HashMap<Character, Integer>();
+    String S = sc.next();
+    int size = S.length();
+    for (int i = 0; i < size; i++) {
+        char c = S.charAt(i);
+        if (dic.containsKey(c)) {
+            dic.put(c, dic.get(c) + 1);
+        } else {
+            dic.put(c, 1);
+        }
+    }
+    String ans = "Yes";
+    for (Entry<Character, Integer> e : dic.entrySet()) {
+        if (e.getValue() % 2 != 0) {
+            ans = "No";
+            break;
+        }
+    }
+    System.out.println(ans);
+}

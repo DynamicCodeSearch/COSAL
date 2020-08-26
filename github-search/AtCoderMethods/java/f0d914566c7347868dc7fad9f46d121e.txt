@@ -1,0 +1,24 @@
+static void execute(int K, int S) {
+    int check = 0;
+    int x = X;
+    int y = Y;
+    int z = Z;
+    for (; x >= Math.ceil((double) S / 3); x--) {
+        for (; y >= z; y--) {
+            if (x >= y) {
+                check = checkCombi(x, y, z);
+                if (check == 0) {
+                    answer += 6;
+                } else if (check == 2) {
+                    answer += 3;
+                } else if (check == 3) {
+                    answer += 1;
+                }
+            }
+            z++;
+        }
+        Y++;
+        y = Y;
+        z = Z;
+    }
+}

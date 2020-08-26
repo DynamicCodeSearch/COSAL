@@ -1,0 +1,27 @@
+public void solve() {
+    N = nextInt();
+    M = nextInt();
+    a = new int[N];
+    b = new int[N];
+    for (int i = 0; i < N; i++) {
+        a[i] = nextInt();
+        b[i] = nextInt();
+    }
+    c = new int[M];
+    d = new int[M];
+    for (int i = 0; i < M; i++) {
+        c[i] = nextInt();
+        d[i] = nextInt();
+    }
+    for (int i = 0; i < N; i++) {
+        int min = (int) 1e9 + 7;
+        int ans = -1;
+        for (int j = 0; j < M; j++) {
+            if (min > Math.abs(a[i] - c[j]) + Math.abs(b[i] - d[j])) {
+                min = Math.abs(a[i] - c[j]) + Math.abs(b[i] - d[j]);
+                ans = j;
+            }
+        }
+        out.println(ans + 1);
+    }
+}

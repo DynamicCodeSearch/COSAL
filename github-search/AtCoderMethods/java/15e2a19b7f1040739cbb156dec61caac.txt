@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int n = scan.nextInt();
+    int m = scan.nextInt();
+    int kakeru = 0;
+    if (Math.abs(n - m) == 2)
+        kakeru = 0;
+    if (Math.abs(n - m) == 1)
+        kakeru = 1;
+    if (Math.abs(n - m) == 0)
+        kakeru = 2;
+    long ans = 1;
+    for (int i = n; i > 0; i--) {
+        ans = (ans % waru * i % waru) % waru;
+    }
+    for (int i = m; i > 0; i--) {
+        ans = (ans % waru * i % waru) % waru;
+    }
+    System.out.println((ans * kakeru) % waru);
+}

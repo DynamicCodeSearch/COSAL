@@ -1,0 +1,20 @@
+def bf(es, n, start, ved):
+    I = 999999999999999999
+    d = [I] * n
+    d[start] = 0
+
+    for i in range(n-1):
+        updated = False
+        for e in es:
+            if not ved[e[0]]: continue
+            if not ved[e[1]]: continue
+            if d[e[0]] + e[2] < d[e[1]]:
+                d[e[1]] = d[e[0]] + e[2]
+                updated = True
+        if not updated: break
+    for e in es:
+        if not ved[e[0]]: continue
+        if not ved[e[1]]: continue
+        if d[e[0]] + e[2] < d[e[1]]:
+            return None
+    return d

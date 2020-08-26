@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int g = 0;
+    int p = 0;
+    int res = 0;
+    String str = sc.next();
+    for (int i = 0; i < str.length(); i++) {
+        if (str.charAt(i) == 'g') {
+            if (g > p) {
+                p++;
+                res++;
+            } else {
+                g++;
+            }
+        } else {
+            if (g > p) {
+                p++;
+            } else {
+                g++;
+                res--;
+            }
+        }
+    }
+    System.out.println(res);
+}

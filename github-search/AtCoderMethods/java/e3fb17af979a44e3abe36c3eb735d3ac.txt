@@ -1,0 +1,46 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    int[] a = new int[M];
+    int[] b = new int[M];
+    int[] c = new int[M];
+    int[][] dist = new int[N][N];
+    for (int i = 0; i < M; i++) {
+        a[i] = sc.nextInt() - 1;
+        b[i] = sc.nextInt() - 1;
+        c[i] = sc.nextInt();
+    }
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            if (i == j)
+                dist[i][j] = 0;
+            else
+                dist[i][j] = INF;
+        }
+    }
+    for (int i = 0; i < M; i++) {
+        dist[a[i]][b[i]] = Math.min(dist[a[i]][b[i]], c[i]);
+        dist[b[i]][a[i]] = Math.min(dist[b[i]][a[i]], c[i]);
+    }
+    for (int k = 0; k < N; k++) {
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                dist[i][j] = Math.min(dist[i][k] + dist[k][j], dist[i][j]);
+            }
+        }
+    }
+    int ans = M;
+    for (int i = 0; i < M; i++) {
+        boolean shortest = false;
+        for (int j = 0; j < N; j++) {
+            if (dist[j][a[i]] + c[i] == dist[j][b[i]]) {
+                shortest = true;
+            }
+        }
+        if (shortest == true) {
+            ans--;
+        }
+    }
+    System.out.println(ans);
+}

@@ -1,0 +1,17 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String str = br.readLine();
+    StringTokenizer st = new StringTokenizer(str);
+    int x = Integer.parseInt(st.nextToken());
+    int a = Integer.parseInt(st.nextToken());
+    int b = Integer.parseInt(st.nextToken());
+    if (a - b >= 0) {
+        System.out.println("delicious");
+    } else {
+        if (x + a - b >= 0) {
+            System.out.println("safe");
+        } else {
+            System.out.println("dangerous");
+        }
+    }
+}

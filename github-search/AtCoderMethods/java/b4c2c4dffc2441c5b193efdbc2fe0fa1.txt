@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    int L = sc.nextInt();
+    char[] s = sc.next().toCharArray();
+    int now = 1;
+    int count = 0;
+    for (char c : s) {
+        if (c == '+') {
+            now++;
+            if (now > L) {
+                now = 1;
+                count++;
+            }
+        } else {
+            now--;
+        }
+    }
+    System.out.println(count);
+}

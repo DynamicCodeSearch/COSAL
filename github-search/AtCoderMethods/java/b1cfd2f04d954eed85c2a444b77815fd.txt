@@ -1,0 +1,18 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    String s = "WBWBWWBWBWBW";
+    String[] note = { "Do", "Do", "Re", "Re", "Mi", "Fa", "Fa", "So", "So", "La", "Si", "Si" };
+    String in = sc.next();
+    int MOD = 12;
+    for (int i = 0; i < note.length; i++) {
+        for (int j = 0; j < 20; j++) {
+            if (in.charAt((j) % MOD) != s.charAt((i + j) % MOD)) {
+                break;
+            }
+            if (j == 19) {
+                System.out.println(note[i]);
+                return;
+            }
+        }
+    }
+}

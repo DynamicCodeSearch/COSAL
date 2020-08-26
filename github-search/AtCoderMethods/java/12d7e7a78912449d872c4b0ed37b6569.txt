@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] nums = new int[N + 1];
+    for (int i = 0; i < N; i++) {
+        nums[i] = sc.nextInt();
+    }
+    nums[N] = -1;
+    sc.close();
+    
+    long count = 0;
+    long tmpCount = 1;
+    for (int i = 0; i < N; i++) {
+        if (nums[i] < nums[i + 1]) {
+            tmpCount++;
+        } else {
+            count += tmpCount * (tmpCount + 1) / 2;
+            tmpCount = 1;
+        }
+    }
+    
+    System.out.println(count);
+}

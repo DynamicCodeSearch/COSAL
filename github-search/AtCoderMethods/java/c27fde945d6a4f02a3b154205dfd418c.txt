@@ -1,0 +1,60 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    long W = sc.nextLong();
+    long[] w = new long[N];
+    long[] v = new long[N];
+    ArrayList<Long> a = new ArrayList<Long>();
+    ArrayList<Long> b = new ArrayList<Long>();
+    ArrayList<Long> c = new ArrayList<Long>();
+    ArrayList<Long> d = new ArrayList<Long>();
+    for (int i = 0; i < N; i++) {
+        w[i] = sc.nextLong();
+        v[i] = sc.nextLong();
+        if (w[i] == w[0])
+            a.add(v[i]);
+        if (w[i] == w[0] + 1)
+            b.add(v[i]);
+        if (w[i] == w[0] + 2)
+            c.add(v[i]);
+        if (w[i] == w[0] + 3)
+            d.add(v[i]);
+    }
+    Collections.sort(a);
+    Collections.sort(b);
+    Collections.sort(c);
+    Collections.sort(d);
+    Collections.reverse(a);
+    Collections.reverse(b);
+    Collections.reverse(c);
+    Collections.reverse(d);
+    long ans = 0;
+    long[] asum = new long[a.size() + 1];
+    long[] bsum = new long[b.size() + 1];
+    long[] csum = new long[c.size() + 1];
+    long[] dsum = new long[d.size() + 1];
+    for (int i = 1; i < a.size() + 1; i++) {
+        asum[i] += (asum[i - 1] + a.get(i - 1));
+    }
+    for (int i = 1; i < b.size() + 1; i++) {
+        bsum[i] += (bsum[i - 1] + b.get(i - 1));
+    }
+    for (int i = 1; i < c.size() + 1; i++) {
+        csum[i] += (csum[i - 1] + c.get(i - 1));
+    }
+    for (int i = 1; i < d.size() + 1; i++) {
+        dsum[i] += (dsum[i - 1] + d.get(i - 1));
+    }
+    for (int x = 0; x <= a.size(); x++) {
+        for (int y = 0; y <= b.size(); y++) {
+            for (int z = 0; z <= c.size(); z++) {
+                for (int u = 0; u <= d.size(); u++) {
+                    if ((long) x * w[0] + (long) y * (w[0] + 1) + (long) z * (w[0] + 2) + (long) u * (w[0] + 3) <= W) {
+                        ans = Math.max(ans, asum[x] + bsum[y] + csum[z] + dsum[u]);
+                    }
+                }
+            }
+        }
+    }
+    System.out.println(ans);
+}

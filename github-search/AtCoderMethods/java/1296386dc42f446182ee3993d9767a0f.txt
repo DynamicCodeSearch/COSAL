@@ -1,0 +1,43 @@
+public static void main(String[] args) {
+    Scanner input = new Scanner(System.in);
+    int H = input.nextInt();
+    int W = input.nextInt();
+    int N = input.nextInt();
+    int[] arr = new int[N];
+    for (int i = 0; i < N; i++) {
+        arr[i] = input.nextInt();
+    }
+    int[][] mat = new int[H][W];
+    int dir = 0;
+    int ind = 0;
+    for (int r = 0; r < mat.length; r++) {
+        if (dir % 2 == 0) {
+            for (int c = 0; c < mat[0].length; c++) {
+                mat[r][c] = ind + 1;
+                if (arr[ind] > 0) {
+                    arr[ind]--;
+                    if (arr[ind] == 0) {
+                        ind++;
+                    }
+                }
+            }
+        } else {
+            for (int c = mat[0].length - 1; c >= 0; c--) {
+                mat[r][c] = ind + 1;
+                if (arr[ind] > 0) {
+                    arr[ind]--;
+                    if (arr[ind] == 0) {
+                        ind++;
+                    }
+                }
+            }
+        }
+        dir++;
+    }
+    for (int r = 0; r < mat.length; r++) {
+        for (int c = 0; c < mat[0].length; c++) {
+            System.out.print(mat[r][c] + " ");
+        }
+        System.out.println();
+    }
+}

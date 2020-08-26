@@ -1,0 +1,20 @@
+def main():
+    s = input()
+    t = input()
+
+    d = {"L": (-1, 0), "R": (1, 0), "U": (0, 1), "D": (0, -1), "?": (0, 0)}
+    x, y, q = 0, 0, 0
+    for c in s:
+        if c == "?":
+            q += 1
+        x += d[c][0]
+        y += d[c][1]
+
+    distance = abs(x) + abs(y)
+    if t == "1":
+        print(distance + q)
+    else:
+        if q > distance:
+            print((q - distance) % 2)
+        else:
+            print(distance - q)

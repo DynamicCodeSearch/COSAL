@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    Scanner stdIn = new Scanner(System.in);
+    String s = stdIn.next();
+    String t = stdIn.next();
+    int length = s.length();
+    Boolean check = true;
+    for (int i = 0; i < length; i++) {
+        char si = s.charAt(i);
+        char ti = t.charAt(i);
+        if (si == ti) {
+        } else if (si == '@' || ti == '@') {
+            if (si == '@' && (ti == 'a' || ti == 't' || ti == 'c' || ti == 'o' || ti == 'd' || ti == 'e' || ti == 'r')) {
+            } else if (si == 'a' || si == 't' || si == 'c' || si == 'o' || si == 'd' || si == 'e' || si == 'r') {
+            } else {
+                check = false;
+                break;
+            }
+        } else {
+            check = false;
+            break;
+        }
+    }
+    if (check) {
+        System.out.println("You can win");
+    } else {
+        System.out.println("You will lose");
+    }
+}

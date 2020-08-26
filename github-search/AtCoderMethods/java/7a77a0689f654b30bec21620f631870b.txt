@@ -1,0 +1,11 @@
+void insert(String str, int index, int charIndex) {
+    if (charIndex == str.length())
+        isTerminal = true;
+    else {
+        if (child[str.charAt(charIndex) - '0'] == null) {
+            child[str.charAt(charIndex) - '0'] = new Node();
+            chars[str.charAt(charIndex) - '0'] = true;
+        }
+        child[str.charAt(charIndex) - '0'].insert(str, index, charIndex + 1);
+    }
+}

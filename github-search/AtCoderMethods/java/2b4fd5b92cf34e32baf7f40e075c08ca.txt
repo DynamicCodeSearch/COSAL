@@ -1,0 +1,13 @@
+boolean delete(int delKey) {
+    if (root == null)
+        return false;
+    Node node = root;
+    while (node != null) {
+        if (delKey == node.key) {
+            delete(node);
+            return true;
+        }
+        node = delKey >= node.key ? node.right : node.left;
+    }
+    return false;
+}

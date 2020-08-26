@@ -1,0 +1,15 @@
+def dfs(Graph, Start, pl, parent, Visited=None):
+    if (Visited==None):  Visited = [] 
+    Visited.append(Start)  
+    pre[Start] = pl
+    low[Start] = pl
+    pl += 1
+    for Next in Graph[Start]:  
+        if Next == parent:
+            continue
+        if ( Next in Visited ):
+            low[Start] = min(low[Start], low[Next])
+            continue  
+        loww = dfs(Graph, Next, pl,Start, Visited)  
+        low[Start] = min(low[Start], loww)
+    return low[Start]

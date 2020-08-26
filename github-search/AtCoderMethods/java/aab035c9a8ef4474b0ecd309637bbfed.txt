@@ -1,0 +1,60 @@
+static void solve() {
+    int n = nextInt();
+    int m = nextInt();
+    int[][] road = new int[m][3];
+    for (int i = 0; i < m; i++) {
+        road[i][0] = nextInt();
+        road[i][1] = nextInt();
+        road[i][2] = nextInt();
+    }
+    int q = nextInt();
+    int[][] people = new int[q][4];
+    for (int i = 0; i < q; i++) {
+        people[i][0] = nextInt();
+        people[i][1] = nextInt();
+        people[i][2] = i;
+        
+        people[i][3] = -1;
+    }
+    Arrays.sort(road, new Comparator<int[]>() {
+
+        public int compare(int[] o1, int[] o2) {
+            return o2[2] - o1[2];
+        }
+    });
+    Arrays.sort(people, new Comparator<int[]>() {
+
+        public int compare(int[] o1, int[] o2) {
+            return o2[1] - o1[1];
+        }
+    });
+    UnionFind uf = new UnionFind(n + 1);
+    int ip = 0;
+    int yearp = people[0][1];
+    for (int i = 0; i < m; i++) {
+        int year = road[i][2];
+        if (year > yearp) {
+            uf.union(road[i][0], road[i][1]);
+        } else {
+            people[ip][3] = uf.size(people[ip][0]);
+            ip++;
+            if (ip == q)
+                break;
+            yearp = people[ip][1];
+            i--;
+        }
+    }
+    while (ip < q) {
+        people[ip][3] = uf.size(people[ip][0]);
+        ip++;
+    }
+    Arrays.sort(people, new Comparator<int[]>() {
+
+        public int compare(int[] o1, int[] o2) {
+            return o1[2] - o2[2];
+        }
+    });
+    for (int i = 0; i < q; i++) {
+        out(people[i][3]);
+    }
+}

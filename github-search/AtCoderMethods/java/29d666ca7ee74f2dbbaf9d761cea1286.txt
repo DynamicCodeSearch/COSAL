@@ -1,0 +1,5 @@
+public static Mint catalan(int n, int k) {
+    if (n < 0 || k < 0 || k > n)
+        return Mint.ZERO;
+    return comb(n + k, n).minus(comb(n + k, n + 1));
+}

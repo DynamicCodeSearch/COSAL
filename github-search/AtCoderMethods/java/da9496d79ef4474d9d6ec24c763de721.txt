@@ -1,0 +1,20 @@
+public void solve() {
+    N = nextInt();
+    A = nextInt();
+    B = nextInt();
+    X = new int[N];
+    for (int i = 0; i < N; i++) {
+        X[i] = nextInt();
+    }
+    long[] memo = new long[N];
+    Arrays.fill(memo, Long.MAX_VALUE);
+    memo[0] = 0;
+    for (int i = 1; i < N; i++) {
+        if ((X[i] - X[i - 1]) * A < B) {
+            memo[i] = Math.min(memo[i], (X[i] - X[i - 1]) * A + memo[i - 1]);
+        } else {
+            memo[i] = Math.min(memo[i], B + memo[i - 1]);
+        }
+    }
+    out.println(memo[N - 1]);
+}

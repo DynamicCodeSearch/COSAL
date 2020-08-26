@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    long ans = 0;
+    int last = -1;
+    int cnt = 0;
+    for (int i = 0; i <= N; i++) {
+        int a = 0;
+        if (i < N)
+            a = sc.nextInt();
+        if (last >= a || i == N) {
+            ans += (long) cnt * (cnt + 1) / 2;
+            cnt = 0;
+        }
+        cnt++;
+        last = a;
+    }
+    System.out.println(ans);
+    sc.close();
+}

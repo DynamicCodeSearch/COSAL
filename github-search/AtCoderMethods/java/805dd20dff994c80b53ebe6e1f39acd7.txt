@@ -1,0 +1,55 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    int[] p = new int[1000001];
+    for (int i = 0; i < n; i++) {
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        p[a]++;
+        if (b + 1 <= 1000000)
+            p[b + 1]--;
+    }
+    int max = p[0];
+    for (int i = 1; i < 1000001; i++) {
+        p[i] += p[i - 1];
+        if (p[i] > max) {
+            max = p[i];
+        }
+    }
+    System.out.println(max);
+}

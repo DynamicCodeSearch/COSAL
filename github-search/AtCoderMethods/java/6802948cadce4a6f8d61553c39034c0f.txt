@@ -1,0 +1,15 @@
+private static boolean isTree(int parent, int index, boolean[] visited, ArrayList<ArrayList<Integer>> edges) {
+    boolean isTree = true;
+    visited[index] = true;
+    for (int next : edges.get(index)) {
+        if (parent == next) {
+            continue;
+        }
+        if (visited[next]) {
+            isTree = false;
+            continue;
+        }
+        isTree &= isTree(index, next, visited, edges);
+    }
+    return isTree;
+}

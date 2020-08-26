@@ -1,0 +1,33 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int n = in.nextInt();
+    int[] height = new int[n];
+    int[] dif1 = new int[n - 1];
+    int[] dif2 = new int[n - 2];
+    for (int i = 0; i < n; i++) {
+        height[i] = in.nextInt();
+    }
+    for (int i = 0; i < n - 1; i++) {
+        dif1[i] = Math.abs(height[i + 1] - height[i]);
+    }
+    for (int i = 0; i < n - 2; i++) {
+        dif2[i] = Math.abs(height[i + 2] - height[i]);
+    }
+    int[] cost = new int[n];
+    for (int i = 0; i < n; i++) {
+        cost[i] = 999999999;
+    }
+    cost[0] = 0;
+    cost[1] = dif1[0];
+    for (int i = 2; i < n; i++) {
+        int one = cost[i - 1] + dif1[i - 1];
+        int two = cost[i - 2] + dif2[i - 2];
+        if (one < two) {
+            cost[i] = one;
+        } else {
+            cost[i] = two;
+        }
+    }
+    System.out.println(cost[n - 1]);
+    in.close();
+}

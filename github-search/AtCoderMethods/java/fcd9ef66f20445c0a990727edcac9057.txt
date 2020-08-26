@@ -1,0 +1,50 @@
+static void solve() throws IOException {
+    int h = ri();
+    int w = ri();
+    String[] S = rsa(h);
+    boolean[][] after = new boolean[h + 2][w + 2];
+    boolean[][] before = new boolean[h + 2][w + 2];
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            if (S[i].charAt(j) == '#') {
+                after[i + 1][j + 1] = true;
+            }
+        }
+    }
+    for (int i = 0; i <= h + 1; i++) {
+        after[i][0] = true;
+        after[i][w + 1] = true;
+    }
+    for (int i = 0; i <= w + 1; i++) {
+        after[0][i] = true;
+        after[h + 1][i] = true;
+    }
+    for (int i = 1; i <= h; i++) {
+        for (int j = 1; j <= w; j++) {
+            if (after[i - 1][j - 1] && after[i - 1][j] && after[i - 1][j + 1] && after[i][j - 1] && after[i][j] && after[i][j + 1] && after[i + 1][j - 1] && after[i + 1][j] && after[i + 1][j + 1]) {
+                before[i][j] = true;
+            }
+        }
+    }
+    boolean flg = true;
+    for (int i = 1; i <= h; i++) {
+        for (int j = 1; j <= w; j++) {
+            if (after[i][j]) {
+                if (!before[i - 1][j - 1] && !before[i - 1][j] && !before[i - 1][j + 1] && !before[i][j - 1] && !before[i][j] && !before[i][j + 1] && !before[i + 1][j - 1] && !before[i + 1][j] && !before[i + 1][j + 1]) {
+                    flg = false;
+                }
+            }
+        }
+    }
+    if (flg) {
+        out.println("possible");
+        for (int i = 1; i <= h; i++) {
+            for (int j = 1; j <= w; j++) {
+                out.print(before[i][j] ? '#' : '.');
+            }
+            out.println();
+        }
+    } else {
+        out.println("impossible");
+    }
+}

@@ -1,0 +1,12 @@
+def main():
+    r,b = LI()
+    x,y = LI()
+    at = min(r//x, b)
+    bt = min(r, b//y)
+    while at*x+bt > r or bt*y+at > b:
+        if at*x+bt - r > bt*y+at - b:
+            at = (at + (r - bt) // x) // 2
+        else:
+            bt = (bt + (b - at) // y) // 2
+
+    return at + bt

@@ -1,0 +1,81 @@
+public static void main(String[] args) {
+    
+    Scanner scan = new Scanner(System.in);
+    int Deg = scan.nextInt();
+    BigDecimal Dis = BigDecimal.valueOf(scan.nextInt());
+    
+    BigDecimal dev = BigDecimal.valueOf(6);
+    BigDecimal speed = Dis.divide(dev, 0, BigDecimal.ROUND_HALF_UP);
+    
+    
+    String Dir;
+    int W;
+    if (speed.doubleValue() <= 2) {
+        W = 0;
+    } else if (speed.doubleValue() <= 15) {
+        W = 1;
+    } else if (speed.doubleValue() <= 33) {
+        W = 2;
+    } else if (speed.doubleValue() <= 54) {
+        W = 3;
+    } else if (speed.doubleValue() <= 79) {
+        W = 4;
+    } else if (speed.doubleValue() <= 107) {
+        W = 5;
+    } else if (speed.doubleValue() <= 138) {
+        W = 6;
+    } else if (speed.doubleValue() <= 171) {
+        W = 7;
+    } else if (speed.doubleValue() <= 207) {
+        W = 8;
+    } else if (speed.doubleValue() <= 244) {
+        W = 9;
+    } else if (speed.doubleValue() <= 284) {
+        W = 10;
+    } else if (speed.doubleValue() <= 326) {
+        W = 11;
+    } else {
+        W = 12;
+    }
+    if (Deg < 337.5) {
+        if (Deg >= 112.5) {
+            Dir = "NNE";
+        } else {
+            Dir = "N";
+        }
+    } else if (Deg < 562.5) {
+        Dir = "NE";
+    } else if (Deg < 787.5) {
+        Dir = "ENE";
+    } else if (Deg < 1012.5) {
+        Dir = "E";
+    } else if (Deg < 1237.5) {
+        Dir = "ESE";
+    } else if (Deg < 1462.5) {
+        Dir = "SE";
+    } else if (Deg < 1687.5) {
+        Dir = "SSE";
+    } else if (Deg < 1912.5) {
+        Dir = "S";
+    } else if (Deg < 2137.5) {
+        Dir = "SSW";
+    } else if (Deg < 2362.5) {
+        Dir = "SW";
+    } else if (Deg < 2587.5) {
+        Dir = "WSW";
+    } else if (Deg < 2812.5) {
+        Dir = "W";
+    } else if (Deg < 3037.5) {
+        Dir = "WNW";
+    } else if (Deg < 3262.5) {
+        Dir = "NW";
+    } else if (Deg < 3487.5) {
+        Dir = "NNW";
+    } else {
+        Dir = "N";
+    }
+    if (W == 0) {
+        Dir = "C";
+    }
+    System.out.println(Dir + " " + W);
+}

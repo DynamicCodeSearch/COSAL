@@ -1,0 +1,14 @@
+def solve():
+  os = xs = 0
+  for row in src:
+    os += row.count('o')
+    xs += row.count('x')
+  if not 0 <= os-xs <= 1:
+    return False
+
+
+  if os > xs:
+    return is_ok('x',0) and is_ok('o',1)
+
+  else:
+    return is_ok('o',0) and is_ok('x',1)

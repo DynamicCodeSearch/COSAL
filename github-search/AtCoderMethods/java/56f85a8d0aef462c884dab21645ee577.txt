@@ -1,0 +1,14 @@
+public E find(E value) {
+    Node<E> x = root;
+    while (x != null) {
+        int cmp = comparator.compare(value, x.value);
+        if (cmp < 0) {
+            x = x.left;
+        } else if (cmp > 0) {
+            x = x.right;
+        } else {
+            return x.value;
+        }
+    }
+    return null;
+}

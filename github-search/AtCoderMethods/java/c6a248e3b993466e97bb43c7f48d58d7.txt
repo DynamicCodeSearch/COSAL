@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    try {
+        int price = sc.nextInt();
+        int size = sc.nextInt();
+        List<String> dislike = new ArrayList<String>();
+        for (int i = 0; i < size; i++) {
+            dislike.add(sc.next());
+        }
+        for (int i = price; ; i++) {
+            String pay = Integer.toString(i);
+            boolean contains = false;
+            for (String str : dislike) {
+                if (pay.indexOf(str) != -1) {
+                    contains = true;
+                    break;
+                }
+            }
+            if (!contains) {
+                System.out.println(i);
+                break;
+            }
+        }
+    } catch (Throwable t) {
+        t.printStackTrace();
+    } finally {
+        sc.close();
+    }
+}

@@ -1,0 +1,5 @@
+def powmod(x, y, mod):
+    if y == 0:
+        return 1
+
+    return (((powmod(x, y >> 1, mod) ** 2) % mod) * x**(y & 1)) % mod

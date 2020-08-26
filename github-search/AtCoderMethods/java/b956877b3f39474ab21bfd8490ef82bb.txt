@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int x = sc.nextInt();
+    int test = 1;
+    int currentHighestDivisible = 0;
+    int currentWinner = 1;
+    while (test <= x) {
+        int testDividedByTwo = test;
+        int testFactorsOfTwo = 0;
+        while (testDividedByTwo % 2 == 0) {
+            testFactorsOfTwo += 1;
+            testDividedByTwo = testDividedByTwo / 2;
+        }
+        if (testFactorsOfTwo > currentHighestDivisible) {
+            currentWinner = test;
+            currentHighestDivisible = testFactorsOfTwo;
+            test += 1;
+        } else {
+            test += 1;
+        }
+    }
+    System.out.println(currentWinner);
+}

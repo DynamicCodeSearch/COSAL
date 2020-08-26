@@ -1,0 +1,16 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    int n = in.readInt();
+    int[] s = in.readIntArray(n);
+    int sum = IntStream.of(s).sum();
+    if (!isDivisible(sum, 10)) {
+        out.printLine(sum);
+        return;
+    }
+    int min = Integer.MAX_VALUE;
+    for (int i = 0; i < n; i++) {
+        if (!isDivisible(s[i], 10))
+            min = Math.min(min, s[i]);
+    }
+    out.printLine(min == Integer.MAX_VALUE ? 0 : sum - min);
+
+}

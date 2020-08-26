@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] a = new int[N];
+    int b1 = 0, b2 = 0, b4 = 0;
+    for (int i = 0; i < N; i++) {
+        a[i] = sc.nextInt();
+        if (a[i] % 4 == 0) {
+            b4++;
+        } else if (a[i] % 2 == 0) {
+            b2++;
+        } else {
+            b1++;
+        }
+    }
+    if (b2 == 0) {
+        if (b1 <= b4 + 1) {
+            System.out.println("Yes");
+        } else {
+            System.out.println("No");
+        }
+    } else {
+        if (b1 <= b4) {
+            System.out.println("Yes");
+        } else {
+            System.out.println("No");
+        }
+    }
+}

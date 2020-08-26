@@ -1,0 +1,19 @@
+public void run() {
+    Scanner sc = new Scanner(System.in);
+    P = sc.nextDouble();
+    double max = P;
+    double min = 0;
+    double mid = (max + min) / 2;
+    double tilt = fprime(mid);
+    while (max - min > 0.000000000001) {
+        if (tilt < 0) {
+            min = mid;
+        } else {
+            max = mid;
+        }
+        mid = (max + min) / 2;
+        tilt = fprime(mid);
+    }
+    System.out.println(f(mid));
+    sc.close();
+}

@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[] a = new int[n];
+    long sunu = 0;
+    long arai = 0;
+    for (int i = 0; i < n; i++) {
+        a[i] = sc.nextInt();
+        arai += a[i];
+    }
+    long min = 20000000000l;
+    for (int i = 0; i < n - 1; i++) {
+        sunu += a[i];
+        arai -= a[i];
+        if (min > Math.abs(sunu - arai)) {
+            min = Math.abs(sunu - arai);
+        }
+    }
+    System.out.println(min);
+    sc.close();
+}

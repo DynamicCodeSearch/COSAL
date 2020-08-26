@@ -1,0 +1,56 @@
+private static void solve() {
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    int w = nei();
+    int h = nei();
+    int n = nei();
+    int[][] p = new int[n][2];
+    for (int i = 0; i < n; i++) {
+        p[i][0] = nei() - 1;
+        p[i][1] = nei() - 1;
+    }
+    HashMap<Long, Boolean> blk = new HashMap<Long, Boolean>();
+    for (int i = 0; i < n; i++) {
+        blk.put(p[i][0] + (long) p[i][1] * w, true);
+    }
+    int[] cnt = new int[10];
+    for (int i = 0; i < n; i++) {
+        int x = p[i][0];
+        int y = p[i][1];
+        for (int j = x - 1; j <= x + 1; j++) {
+            for (int k = y - 1; k <= y + 1; k++) {
+                int po = 0;
+                int xx = j;
+                int yy = k;
+                if (xx <= 0 || yy <= 0 || xx >= w - 1 || yy >= h - 1 || memo.containsKey(xx + (long) yy * w)) {
+                    continue;
+                }
+                for (int ii = xx - 1; ii <= xx + 1; ii++) {
+                    for (int jj = yy - 1; jj <= yy + 1; jj++) {
+                        if (blk.containsKey(ii + (long) jj * w))
+                            po++;
+                    }
+                }
+                memo.put(xx + (long) yy * w, true);
+                if (po > 0)
+                    cnt[po]++;
+            }
+        }
+    }
+    int total = 0;
+    for (int i = 1; i <= 9; i++) {
+        total += cnt[i];
+    }
+    BigInteger zero = BigInteger.valueOf(w - 2).multiply(BigInteger.valueOf(h - 2)).subtract(BigInteger.valueOf(total));
+    out(zero.toString());
+    for (int i = 1; i <= 9; i++) {
+        out(cnt[i]);
+    }
+}

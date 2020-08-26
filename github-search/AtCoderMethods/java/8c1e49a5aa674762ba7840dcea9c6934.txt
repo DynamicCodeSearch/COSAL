@@ -1,0 +1,22 @@
+public static long binary(int low, int high) {
+    
+    if (low >= high)
+        return low;
+    int center = low + (high - low) / 2;
+    
+    
+    
+    
+    
+    long need = 0;
+    
+    for (int n = 0; n < N; n++) {
+        need += Math.max(0, ((HP[n] - B * center) + A - B - 1) / (A - B));
+    }
+    if (need <= center) {
+        
+        return binary(low, center);
+    } else {
+        return binary(center + 1, high);
+    }
+}

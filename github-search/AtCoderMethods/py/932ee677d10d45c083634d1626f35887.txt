@@ -1,0 +1,23 @@
+def main():
+    N, D = map(int, input().split())
+    X, Y = map(int, input().split())
+    X, Y = abs(X), abs(Y)
+    if X % D != 0 or Y % D != 0:
+        print(0)
+        return
+    a, b = X // D, Y // D
+
+    if (N - (a + b)) % 2 != 0:
+        print(0)
+        return
+
+    comb = nCr(1001)
+
+    ans = 0
+    for i in range(N + 1):
+        h, v = i, N - i
+        if h < a or v < b or (h - a) % 2 == 1 or (v - b) % 2 == 1:
+            continue
+        ans += comb[h][h - (h - a) // 2] * comb[v][v - (v - b) // 2] * comb[N][i]
+
+    print("{0:.10f}".format(ans / 4 ** N))

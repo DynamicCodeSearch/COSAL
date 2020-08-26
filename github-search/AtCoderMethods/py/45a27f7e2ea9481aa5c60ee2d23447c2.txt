@@ -1,0 +1,22 @@
+def bfs(s,g):
+    ans = []
+    queue = [Path(s)]
+    memo = [0 for _ in range(n+2)]
+    if s == g:
+        print(0)
+        print(s)
+        print(g)
+        return 0
+    while queue:
+        cur = queue.pop(0)
+        for i,word in enumerate(words):
+            if memo[i] == 0 and not word == s:
+                if is_candidate(word,cur.word):
+                    if word == g:
+                        cur = Path(word,cur)
+                        print(max(cur.count_prev(),0))
+                        cur.print_path()
+                        return 0
+                    memo[i] += 1
+                    queue.append(Path(word,cur))
+    print(-1)

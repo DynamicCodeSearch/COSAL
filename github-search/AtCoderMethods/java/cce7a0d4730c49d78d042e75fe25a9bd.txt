@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner stdIn = new Scanner(System.in);
+    PrintWriter stdOut = new PrintWriter(System.out);
+    int N = stdIn.nextInt();
+    int[] inList = new int[N];
+    int[] sortList = new int[N];
+    for (int i = 0; i < N; i++) {
+        inList[i] = stdIn.nextInt();
+    }
+    System.arraycopy(inList, 0, sortList, 0, inList.length);
+    Arrays.sort(sortList);
+    HashMap<Integer, Integer> dict = new HashMap<Integer, Integer>();
+    int count = 0;
+    for (int i = 0; i < N; i++) {
+        if (!dict.containsKey(sortList[i])) {
+            dict.put(sortList[i], count);
+            count++;
+        }
+    }
+    for (int i = 0; i < N; i++) {
+        stdOut.println(dict.get(inList[i]));
+    }
+    stdOut.flush();
+}

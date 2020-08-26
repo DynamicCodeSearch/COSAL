@@ -1,0 +1,17 @@
+def DFS(table):
+    visited = [1]
+    que = [1]
+
+    while que != []:
+        now = que[0]
+        del que[0]
+
+        for index, e in enumerate(table[now]):
+            if (e == 1) & (index not in visited):
+                visited.append(index)
+                que.append(index)
+
+    if len(visited) == N:
+        return 0
+    else:
+        return 1

@@ -1,0 +1,25 @@
+public static void main(String[] args) throws Exception {
+    Scanner scan = new Scanner(System.in);
+    int N = scan.nextInt();
+    scan.nextLine();
+    List<Time> rainy = new ArrayList<>();
+    scan.useDelimiter("[-\n]");
+    for (int i : IntStream.range(0, N).toArray()) {
+        int start = getStart(scan.nextInt());
+        int finish = getFinish(scan.nextInt());
+        rainy.add(new Time(start, finish));
+    }
+    rainy.sort(Comparator.comparingInt(x -> x.start));
+    int start = rainy.get(0).start;
+    int finish = rainy.get(0).finish;
+    for (int i = 1; i < N; i++) {
+        if (rainy.get(i).start <= finish) {
+            finish = Math.max(finish, rainy.get(i).finish);
+            continue;
+        }
+        System.out.println(String.format("%04d-%04d", start, finish));
+        start = rainy.get(i).start;
+        finish = rainy.get(i).finish;
+    }
+    System.out.println(String.format("%04d-%04d", start, finish));
+}

@@ -1,0 +1,24 @@
+def dfs(water,suger,p,nums):
+    global m
+    global mem
+
+    if water+suger > nums[5]: pass
+    elif mem[water][suger] == -1: 
+        mem[water][suger] = cal(water,suger)
+    else:
+        return mem[water][suger]
+
+
+    if water != 0 and ((suger / water > nums[4] / 100 ) or (water + suger > nums[5])):
+        return p
+
+    if m[2] < cal(water,suger):
+        m = [water,suger,cal(water,suger)]
+
+    ans = max(
+            dfs(water + nums[0] * 100, suger, cal(water,suger), nums),
+            dfs(water + nums[1] * 100, suger, cal(water,suger), nums),
+            dfs(water, suger + nums[2], cal(water,suger),nums),
+            dfs(water, suger + nums[3], cal(water,suger),nums)
+            )
+    return ans

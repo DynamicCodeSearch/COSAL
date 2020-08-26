@@ -1,0 +1,9 @@
+private long ncr(int n, int r) {
+    if (n < r)
+        return 0;
+    if (r == 0)
+        return 1;
+    if (r == 1)
+        return n;
+    return fact[n] * bin_pow(fact[r] * fact[n - r], mod - 2) % mod;
+}

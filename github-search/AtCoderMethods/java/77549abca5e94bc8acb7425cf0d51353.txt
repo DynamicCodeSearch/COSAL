@@ -1,0 +1,44 @@
+
+public void run() throws IOException {
+    
+    int TEST_CASE = 1;
+    while (TEST_CASE-- != 0) {
+        int n = io.nextInt();
+        int a = io.nextInt() - 1;
+        int b = io.nextInt() - 1;
+        x = new int[n];
+        y = new int[n];
+        TreeSet<Integer> sx = new TreeSet<>();
+        TreeSet<Integer> sy = new TreeSet<>();
+        for (int i = 0; i < n; i++) {
+            x[i] = io.nextInt();
+            y[i] = io.nextInt();
+            
+            int yy = x[i];
+            int xx = y[i];
+            x[i] = xx - yy;
+            y[i] = xx + yy;
+            sx.add(x[i]);
+            sy.add(y[i]);
+        }
+        for (int xx : sx) {
+            xy.put(xx, new TreeMap<Integer, Integer>());
+            xys.put(xx, new ArrayList<Integer>());
+        }
+        for (int yy : sy) {
+            yx.put(yy, new TreeMap<Integer, Integer>());
+            yxs.put(yy, new ArrayList<Integer>());
+        }
+        for (int i = 0; i < n; i++) {
+            xy.get(x[i]).put(y[i], i);
+            yx.get(y[i]).put(x[i], i);
+            xys.get(x[i]).add(y[i]);
+            yxs.get(y[i]).add(x[i]);
+        }
+        for (List<Integer> l : xys.values()) Collections.sort(l);
+        for (List<Integer> l : yxs.values()) Collections.sort(l);
+        
+        d = Math.max(Math.abs(x[a] - x[b]), Math.abs(y[a] - y[b]));
+        io.out.println(dfs(a) / 2);
+    }
+}

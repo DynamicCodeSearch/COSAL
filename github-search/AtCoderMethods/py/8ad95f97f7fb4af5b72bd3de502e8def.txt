@@ -1,0 +1,13 @@
+def f(n, ik):
+    rr = {}
+    for i in range(-600, 601):
+        k = abs(i)
+        if i <= 0:
+            rr[i+ik] = (k+k+n-1) * n // 2
+            continue
+        nk = n-k
+        rk = min(n,k)
+        rr[i+ik] = (k+k-rk+1) * rk // 2
+        if nk > 0:
+            rr[i+ik] += (nk-1) * nk // 2
+    return rr

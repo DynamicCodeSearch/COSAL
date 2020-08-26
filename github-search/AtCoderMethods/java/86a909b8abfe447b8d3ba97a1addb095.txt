@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    int[][] data = sc.nextIntTable(N, 2);
+    Arrays.sort(data, new Comparator<int[]>() {
+
+        @Override
+        public int compare(int[] o1, int[] o2) {
+            return o1[0] == o2[0] ? o2[1] - o1[1] : o1[0] - o2[0];
+        }
+    });
+    int[] list = new int[N];
+    for (int i = 0; i < N; i++) {
+        list[i] = data[i][1];
+    }
+    int ret = LIS.lis2(list);
+    System.out.println(ret);
+}

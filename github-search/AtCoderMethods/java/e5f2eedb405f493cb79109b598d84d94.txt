@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    long[] a = new long[N + 1];
+    for (int i = 1; i <= N; i++) {
+        a[i] = a[i - 1] + sc.nextInt();
+    }
+    long max = Long.MAX_VALUE;
+    for (int i = 1; i < N; i++) {
+        long x = a[i];
+        long y = a[N] - a[i];
+        max = Math.min(max, Math.abs(x - y));
+    }
+    System.out.println(max);
+}

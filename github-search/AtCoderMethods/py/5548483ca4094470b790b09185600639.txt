@@ -1,0 +1,24 @@
+def check(N, relation_map, candidate):
+    flag = True
+    counter = 0
+    for i in range(N - 1):
+        if candidate[i] == 0:
+            pass
+        else:
+            for j in range(i + 1, N):
+                if candidate[j] == 0:
+                    pass
+                else:
+                    flag = True if relation_map[i][j] == 1 else False
+                if flag == False:
+                    break
+            if flag == False:
+                break
+
+    if flag == False:
+        return counter
+    else:
+        for i in range(N):
+            if candidate[i] == 1:
+                counter += 1
+        return counter

@@ -1,0 +1,19 @@
+def main():
+    N = int(input())
+    A = list(map(int, input().split()))
+
+    a = list(range(N))
+    if N % 2 == 1:
+        a2 = a[::2] * 2
+        a2.sort(reverse=True)
+        a2.pop()
+    else:
+        a2 = a[1::2] * 2
+        a2.sort(reverse=True)
+    A.sort(reverse=True)
+
+    if tuple(a2) == tuple(A):
+        comb = (2 ** (N // 2)) % 1000000007
+        print(str(comb))
+    else:
+        print('0')

@@ -1,0 +1,13 @@
+private static int solve(int N, int M, int[] a, int[] b) {
+    int count = 0;
+    int[][] g = new int[N][N];
+    for (int i = 0; i < M; i++) {
+        g[a[i] - 1][b[i] - 1] = 1;
+    }
+    for (int i = 0; i < M; i++) {
+        if (!isConnected(N, M, a, b, g, i)) {
+            count++;
+        }
+    }
+    return count++;
+}

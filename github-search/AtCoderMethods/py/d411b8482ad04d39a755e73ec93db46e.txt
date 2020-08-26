@@ -1,0 +1,18 @@
+def main(argv):
+    N = sys.stdin.readline()
+    while N:
+        A = [int(raw_input()) - 1 for i in xrange(0, int(N))]
+
+        counter = 0
+        visited = set()
+        index = 0
+        while index != 1 and index not in visited:
+            visited.add(index)
+            counter += 1
+            index = A[index]
+
+        if index != 1:
+            counter = -1
+        print("{0}".format(counter))
+
+        N = sys.stdin.readline()

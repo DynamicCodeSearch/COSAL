@@ -1,0 +1,14 @@
+long calc(String f) {
+    long res = 0;
+    long cur = 0;
+    for (int i = 0; i < f.length(); i++) {
+        if (f.charAt(i) == '+') {
+            res += cur;
+            cur = 0;
+        } else {
+            cur = cur * 10 + f.charAt(i) - '0';
+        }
+    }
+    res += cur;
+    return res;
+}

@@ -1,0 +1,20 @@
+void solve() throws IOException {
+    int n = in.nextInt();
+    int k = in.nextInt();
+    int l = in.nextInt();
+    UnionFind road = new UnionFind(n);
+    UnionFind rail = new UnionFind(n);
+    for (int i = 0; i < k; i++) {
+        int a = in.nextInt() - 1;
+        int b = in.nextInt() - 1;
+        road.unite(a, b);
+    }
+    for (int i = 0; i < n; i++) road.find(i);
+    for (int i = 0; i < l; i++) {
+        int a = in.nextInt() - 1;
+        int b = in.nextInt() - 1;
+        rail.unite(a, b);
+    }
+    for (int i = 0; i < n; i++) rail.find(i);
+    dump(makeGroup(road.par, rail.par));
+}

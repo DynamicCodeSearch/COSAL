@@ -1,0 +1,31 @@
+public static void main(String[] args) throws IOException {
+    final Scanner sc = new Scanner(System.in);
+    final int N = sc.nextInt();
+    final int M = sc.nextInt();
+    char[][] board = new char[N][];
+    char[][] template = new char[M][];
+    for (int i = 0; i < N; i++) {
+        board[i] = sc.next().toCharArray();
+    }
+    for (int i = 0; i < M; i++) {
+        template[i] = sc.next().toCharArray();
+    }
+    for (int oy = 0; oy <= (N - M); oy++) {
+        for (int ox = 0; ox <= (N - M); ox++) {
+            boolean ok = true;
+            LOOP: for (int dy = 0; dy < M; dy++) {
+                for (int dx = 0; dx < M; dx++) {
+                    if (board[oy + dy][ox + dx] != template[dy][dx]) {
+                        ok = false;
+                        break LOOP;
+                    }
+                }
+            }
+            if (ok) {
+                System.out.println("Yes");
+                return;
+            }
+        }
+    }
+    System.out.println("No");
+}

@@ -1,0 +1,13 @@
+def check(G, queue, used, y, x):
+    if y > 0:
+        if G[y - 1][x] != '#' and not [y - 1, x] in used and not [y - 1, x] in queue:
+            queue.append([y - 1, x])
+    if y < R - 1:
+        if G[y + 1][x] != '#' and not [y + 1, x] in used and not [y + 1, x] in queue:
+            queue.append([y + 1, x])
+    if x > 0:
+        if G[y][x - 1] != '#' and not [y, x - 1] in used and not [y, x - 1] in queue:
+            queue.append([y, x - 1])
+    if x < C - 1:
+        if G[y][x + 1] != '#' and not [y, x + 1] in used and not [y, x + 1] in queue:
+            queue.append([y, x + 1])

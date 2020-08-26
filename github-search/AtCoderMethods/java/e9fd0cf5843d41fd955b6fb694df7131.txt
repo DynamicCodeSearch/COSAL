@@ -1,0 +1,40 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    long H = sc.nextLong();
+    long W = sc.nextLong();
+    if (H % 3 == 0 || W % 3 == 0) {
+        System.out.println(0);
+        return;
+    }
+    
+    long h1 = H % 3;
+    long h3 = H % 3 + 1;
+    long min = calc(h1 * W, h1 * W, h3 * W);
+    long hh1 = H % 3;
+    long hh3 = H % 3 + 2;
+    min = Math.min(min, calc(hh1 * W, hh1 * W, hh3 * W));
+    
+    long w1 = W % 3;
+    long w3 = W % 3 + 1;
+    min = Math.min(min, calc(w1 * H, w1 * H, w3 * H));
+    long ww1 = W % 3;
+    long ww3 = W % 3 + 2;
+    min = Math.min(min, calc(ww1 * H, ww1 * H, ww3 * H));
+    
+    long w = W / 2;
+    for (int h = 1; h <= H - 1; h++) {
+        long S1 = w * h;
+        long S2 = (W - w) * h;
+        long S3 = (H - h) * W;
+        min = Math.min(min, calc(S1, S2, S3));
+    }
+    
+    long h = H / 2;
+    for (int ww = 1; ww <= W - 1; ww++) {
+        long S1 = ww * h;
+        long S2 = (H - h) * ww;
+        long S3 = H * (W - ww);
+        min = Math.min(min, calc(S1, S2, S3));
+    }
+    System.out.println(min);
+}

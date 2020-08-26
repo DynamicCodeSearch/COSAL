@@ -1,0 +1,23 @@
+private void solve(Scanner sc) {
+    N = sc.nextInt();
+    A = sc.nextInt();
+    B = sc.nextInt();
+    h = new int[N];
+    for (int i = 0; i < N; ++i) {
+        h[i] = sc.nextInt();
+    }
+    int max = Arrays.stream(h).max().getAsInt();
+    int left = 0;
+    int right = 1_000_000_000;
+    int ans = (int) Math.ceil(1d * max / B);
+    while (left < right) {
+        int c = (left + right) / 2;
+        if (enough(c)) {
+            right = c;
+            ans = c;
+        } else {
+            left = c + 1;
+        }
+    }
+    _out.println(ans);
+}

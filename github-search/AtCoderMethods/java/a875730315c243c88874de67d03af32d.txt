@@ -1,0 +1,12 @@
+static double search(double X) {
+    double left = -10000000;
+    double right = 10000000;
+    for (int loop = 0; loop < 100; ++loop) {
+        if (f(X, (left * 2 + right) / 3) < f(X, (left + right * 2) / 3)) {
+            right = (left + right * 2) / 3;
+        } else {
+            left = (left * 2 + right) / 3;
+        }
+    }
+    return (right + left) * 0.5;
+}

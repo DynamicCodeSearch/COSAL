@@ -1,0 +1,20 @@
+def main():
+    K = get_ln_int_inputs()[0]
+
+    N = 50
+    n = K // N
+    initNum = N + n - 1
+    remK = K % N
+
+    l = []
+
+    fn = initNum + 1 + (N - remK)
+    for _ in range(remK):
+        l.append(fn)
+
+    ln = initNum - remK
+    for _ in range(remK, N):
+        l.append(ln)
+
+    print(N)
+    print(" ".join(map(str, l)))

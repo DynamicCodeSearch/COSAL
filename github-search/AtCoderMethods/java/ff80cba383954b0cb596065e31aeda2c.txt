@@ -1,0 +1,11 @@
+public long hashRotate(int i, int j) {
+    assert (i >= j);
+    long h0 = hash(0, i, n) * pow[0][j] % primes[0] + table[0][j];
+    long h1 = hash(1, i, n) * pow[1][j] % primes[1] + table[1][j];
+    if (h0 >= primes[0])
+        h0 -= primes[0];
+    if (h1 >= primes[1])
+        h1 -= primes[1];
+    
+    return h0 << 32 | h1;
+}

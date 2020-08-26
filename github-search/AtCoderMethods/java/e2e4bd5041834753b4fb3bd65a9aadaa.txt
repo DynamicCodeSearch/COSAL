@@ -1,0 +1,26 @@
+void run() {
+    N = sc.nextInt();
+    g = new ArrayList[N];
+    v = new boolean[N];
+    bd = new int[N];
+    wd = new int[N];
+    for (int i = 0; i < N; i++) g[i] = new ArrayList<>();
+    for (int i = 0; i < N - 1; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        g[a].add(b);
+        g[b].add(a);
+    }
+    dfs(0, 0, bd);
+    Arrays.fill(v, false);
+    dfs(N - 1, 0, wd);
+    int bc = 0;
+    int wc = 0;
+    for (int i = 0; i < N; i++) {
+        if (bd[i] <= wd[i])
+            bc++;
+        else
+            wc++;
+    }
+    System.out.println(bc > wc ? "Fennec" : "Snuke");
+}

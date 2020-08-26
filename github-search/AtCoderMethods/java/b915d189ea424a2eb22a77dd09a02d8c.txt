@@ -1,0 +1,15 @@
+public static boolean like(int n, List<Integer> d_lst) {
+    while (n > 0) {
+        int mod = n % 10;
+        int q = n / 10;
+        if (d_lst.contains(mod)) {
+            return false;
+        }
+        if (q == 0) {
+            break;
+        } else {
+            n = q;
+        }
+    }
+    return true;
+}

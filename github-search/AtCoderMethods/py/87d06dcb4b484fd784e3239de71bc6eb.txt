@@ -1,0 +1,7 @@
+def hml_between(n, a, b, nums, hml):
+    print(float(nums[0])) 
+    cnt = dict(collections.Counter(nums))[nums[0]]
+    ways = 0
+    for i in range(hml, a - 1, -1):
+        ways += num_combs(cnt, i)
+    print(ways)

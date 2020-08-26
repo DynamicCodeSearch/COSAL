@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    
+    int N = Integer.parseInt(scan.next());
+    
+    int CNT = 1;
+    
+    int i = 1;
+    
+    int[] NextButton = new int[N + 1];
+    while (CNT <= N) {
+        NextButton[CNT] = Integer.parseInt(scan.next());
+        CNT++;
+    }
+    scan.close();
+    CNT = 1;
+    while (true) {
+        if (CNT > N) {
+            
+            System.out.println("-1");
+            break;
+        }
+        if (NextButton[i] == 2) {
+            
+            System.out.println(CNT);
+            break;
+        } else {
+            i = NextButton[i];
+        }
+        CNT++;
+    }
+}

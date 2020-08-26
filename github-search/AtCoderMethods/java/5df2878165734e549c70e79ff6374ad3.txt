@@ -1,0 +1,38 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    String[] s = new String[n];
+    for (int i = 0; i < n; i++) {
+        s[i] = sc.next();
+    }
+    char[] charArray = s[0].toCharArray();
+    Arrays.sort(charArray);
+    StringBuilder sb = new StringBuilder();
+    char c = 0;
+    for (int i = 0; i < charArray.length; i++) {
+        int matchChrCnt = 0;
+        if (c != charArray[i]) {
+            c = charArray[i];
+            for (int j = 0; j < n; j++) {
+                int cnt = 0;
+                String tmp = s[j];
+                for (int k = 0; k < tmp.length(); k++) {
+                    if (tmp.charAt(k) == c) {
+                        cnt++;
+                    }
+                }
+                if (j == 0) {
+                    matchChrCnt = cnt;
+                } else {
+                    matchChrCnt = Math.min(matchChrCnt, cnt);
+                }
+            }
+            if (matchChrCnt > 0) {
+                for (int l = 0; l < matchChrCnt; l++) {
+                    sb.append(c);
+                }
+            }
+        }
+    }
+    System.out.println(sb.toString());
+}

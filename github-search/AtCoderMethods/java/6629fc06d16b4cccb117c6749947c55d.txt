@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    long Money = scan.nextLong();
+    long add = scan.nextLong();
+    long count = 0;
+    do {
+        if (0 == add) {
+            count = 2000000000000L - Money;
+            break;
+        }
+        Money += (add * Money) + 1;
+        count++;
+    } while (Money < 2000000000000L);
+    System.out.print(count);
+}

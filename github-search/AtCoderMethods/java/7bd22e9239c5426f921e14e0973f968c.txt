@@ -1,0 +1,11 @@
+public static int calc(int A, int B) {
+    int idx = 0;
+    while (c[idx][A] < B) {
+        idx++;
+    }
+    if (idx == 0) {
+        return 1;
+    } else {
+        return (1 << (idx - 1)) + calc(c[idx - 1][A], B);
+    }
+}

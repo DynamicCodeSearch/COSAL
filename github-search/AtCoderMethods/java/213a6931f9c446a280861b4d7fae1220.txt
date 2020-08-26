@@ -1,0 +1,38 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    
+    int borderTime = sc.nextInt();
+    int maxTakoyaki = sc.nextInt();
+    int[] TakoyakiTimes = new int[maxTakoyaki];
+    for (int i = 0; i < maxTakoyaki; ++i) {
+        TakoyakiTimes[i] = sc.nextInt();
+    }
+    int maxCustomer = sc.nextInt();
+    int[] CustomerTimes = new int[maxCustomer];
+    for (int i = 0; i < maxCustomer; ++i) {
+        CustomerTimes[i] = sc.nextInt();
+    }
+    
+    if (maxTakoyaki < maxCustomer) {
+        System.out.println("no");
+        return;
+    }
+    int T_num = 0, C_num = 0;
+    while (C_num < maxCustomer) {
+        
+        if (maxTakoyaki - T_num < maxCustomer - C_num) {
+            System.out.println("no");
+            return;
+        }
+        if (TakoyakiTimes[T_num] + borderTime >= CustomerTimes[C_num] && TakoyakiTimes[T_num] <= CustomerTimes[C_num]) {
+            ++T_num;
+            ++C_num;
+        } else if (TakoyakiTimes[T_num] + borderTime < CustomerTimes[C_num]) {
+            ++T_num;
+        } else {
+            System.out.println("no");
+            return;
+        }
+    }
+    System.out.println("yes");
+}

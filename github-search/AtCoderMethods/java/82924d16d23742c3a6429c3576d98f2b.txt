@@ -1,0 +1,19 @@
+private void solve() {
+    int n = in.nextInt();
+    long a = in.nextLong();
+    long b = in.nextLong();
+    long[] s = new long[n + 1];
+    for (int i = 0; i < n; i++) {
+        s[i] = in.nextLong();
+    }
+    long st = s[0], cost = 0;
+    for (int i = 1; i < n; i++) {
+        if ((s[i] - st) * a <= b) {
+            cost += (s[i] - st) * a;
+        } else {
+            cost += b;
+        }
+        st = s[i];
+    }
+    out.print(cost);
+}

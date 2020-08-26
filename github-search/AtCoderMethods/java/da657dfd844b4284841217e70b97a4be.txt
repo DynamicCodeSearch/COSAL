@@ -1,0 +1,9 @@
+protected int calc() {
+    if (n < 0 || r < 0 || n < r)
+        throw new IllegalArgumentException("n=" + n + ",r=" + r);
+    if (n == 0 || n == 1)
+        return 1;
+    if (n - r < r)
+        r = n - r;
+    return modInt.divide(PUtil.getP(n, r, mod), FUtil.getF(r, mod));
+}

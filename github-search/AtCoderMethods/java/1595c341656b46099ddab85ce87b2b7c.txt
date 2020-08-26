@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int n = scan.nextInt();
+    int[] nums = new int[n];
+    int sum = 0;
+    int costs = 0;
+    for (int i = 0; i < n; i++) {
+        int temp = scan.nextInt();
+        nums[i] = temp;
+        sum += nums[i];
+    }
+    double avg = Math.round((double) sum / n);
+    for (int num : nums) {
+        costs += Math.pow(num - avg, 2);
+    }
+    System.out.println(costs);
+}

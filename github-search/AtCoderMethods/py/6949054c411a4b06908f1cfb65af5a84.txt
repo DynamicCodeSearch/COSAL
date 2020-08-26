@@ -1,0 +1,14 @@
+def tribo(n):
+    if n == 1 or n == 2:
+        return 0
+    if n == 3:
+        return 1
+    a = 0
+    b = 0
+    c = 1
+    for tmp in range(n-3):
+        d = (a+b+c)%10007
+        a = b
+        b = c
+        c = d
+    return d

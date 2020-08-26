@@ -1,0 +1,14 @@
+static void solve() {
+    int n = ni();
+    int[] a = na(n);
+    long[] cum = new long[n + 1];
+    for (int i = 0; i < n; i++) {
+        cum[i + 1] = cum[i] + a[i];
+    }
+    long min = Long.MAX_VALUE;
+    for (int i = 0; i < n - 1; i++) {
+        long v = Math.abs(cum[i + 1] - (cum[n] - cum[i + 1]));
+        min = Math.min(min, v);
+    }
+    out.println(min);
+}

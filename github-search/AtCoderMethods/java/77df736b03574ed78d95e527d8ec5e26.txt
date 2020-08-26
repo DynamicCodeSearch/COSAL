@@ -1,0 +1,45 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int H = in.nextInt();
+    int W = in.nextInt();
+    int[][] table = new int[H][W];
+    for (int i = 0; i < H; i++) {
+        char[] c = in.nextToken().toCharArray();
+        for (int j = 0; j < W; j++) {
+            table[i][j] = c[j] == '.' ? 0 : 1;
+        }
+    }
+    int[][] diff = new int[H][W - 1];
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j + 1 < W; j++) {
+            diff[i][j] = table[i][j] ^ table[i][j + 1];
+        }
+    }
+    W--;
+    int[] bottom = new int[W];
+    for (int j = 0; j < W; j++) {
+        int shouldSameTo = 0;
+        while (bottom[j] < H && diff[bottom[j]][j] == diff[shouldSameTo][j]) {
+            bottom[j]++;
+        }
+    }
+    int answer = Math.max(H, W + 1);
+    int[] height = new int[W];
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            height[j] = bottom[j] - i;
+        }
+        answer = Math.max(answer, solve(height));
+        for (int j = 0; j < W; j++) {
+            if (bottom[j] == i + 1) {
+                int shouldSameTo = bottom[j];
+                while (bottom[j] < H && diff[bottom[j]][j] == diff[shouldSameTo][j]) {
+                    bottom[j]++;
+                }
+            }
+        }
+    }
+    out.println(answer);
+    out.flush();
+}

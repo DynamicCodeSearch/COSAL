@@ -1,0 +1,28 @@
+public void solve(int testNumber, FastScanner in, PrintWriter out) {
+    int n = in.nextInt();
+    int[] cnt = new int[26];
+    boolean[] any = new boolean[26];
+    Arrays.fill(cnt, Integer.MAX_VALUE);
+    for (int i = 0; i < n; i++) {
+        char[] s = in.next().toCharArray();
+        int[] cur = new int[26];
+        for (char ch : s) {
+            int c = ch - 'a';
+            any[c] = true;
+            ++cur[c];
+        }
+        for (int j = 0; j < 26; j++) {
+            cnt[j] = Math.min(cnt[j], cur[j]);
+        }
+    }
+    StringBuilder ans = new StringBuilder();
+    for (int i = 0; i < 26; i++) {
+        if (!any[i]) {
+            continue;
+        }
+        for (int j = 0; j < cnt[i]; j++) {
+            ans.append((char) ('a' + i));
+        }
+    }
+    out.println(ans);
+}

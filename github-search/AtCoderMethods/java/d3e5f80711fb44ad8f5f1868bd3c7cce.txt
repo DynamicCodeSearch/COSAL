@@ -1,0 +1,19 @@
+private long calc(String S) {
+    
+    int maxPlus = S.length() - 1;
+    for (int i = 0; i <= maxPlus; i++) {
+        
+        if (i == 0) {
+            Sum += Long.parseLong(S);
+            continue;
+        }
+        if (i == maxPlus) {
+            for (char charactor : S.toCharArray()) {
+                Sum += (charactor - '0');
+            }
+            continue;
+        }
+        func(S, i, new ArrayList<String>());
+    }
+    return Sum;
+}

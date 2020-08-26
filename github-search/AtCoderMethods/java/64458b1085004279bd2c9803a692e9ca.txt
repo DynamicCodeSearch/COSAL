@@ -1,0 +1,13 @@
+void update(int k, int low, int high, int key, int value) {
+    if (key < low || high <= key) {
+        return;
+    }
+    if (low + 1 == high) {
+        this.tree[k] = value;
+        return;
+    }
+    int mid = (low + high) / 2;
+    update(2 * k, low, mid, key, value);
+    update(2 * k + 1, mid, high, key, value);
+    this.tree[k] = Math.max(this.tree[2 * k], this.tree[2 * k + 1]);
+}

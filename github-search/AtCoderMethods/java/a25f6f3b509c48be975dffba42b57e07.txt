@@ -1,0 +1,12 @@
+public void solve() {
+    long sum = 0;
+    String line = new Scanner(System.in).nextLine();
+    sequence = new int[line.length()];
+    for (int i = 0; i < line.length(); i++) {
+        sequence[i] = Character.getNumericValue(line.charAt(i));
+    }
+    for (int i = 0; i < (int) Math.pow(2.0, line.length() - 1); i++) {
+        sum += addition(i);
+    }
+    System.out.println(sum);
+}

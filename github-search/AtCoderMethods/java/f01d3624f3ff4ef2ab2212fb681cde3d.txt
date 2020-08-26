@@ -1,0 +1,51 @@
+void run() {
+    MyScanner sc = new MyScanner();
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    Bridge[] bridge = new Bridge[m];
+    for (int i = 0; i < m; i++) {
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        int y = sc.nextInt();
+        bridge[i] = new Bridge(a, b, y);
+    }
+    int q = sc.nextInt();
+    Human[] human = new Human[q];
+    for (int i = 0; i < q; i++) {
+        int v = sc.nextInt();
+        int w = sc.nextInt();
+        human[i] = new Human(i, v, w);
+    }
+    Arrays.sort(bridge);
+    Arrays.sort(human);
+    par = new int[n + 1];
+    Arrays.fill(par, -1);
+    int bid = 0, hid = 0;
+    while (true) {
+        while ((hid < q) && (m <= bid || human[hid].w >= bridge[bid].y)) {
+            human[hid].ans = -par[root(human[hid].v)];
+            hid++;
+        }
+        if (q <= hid) {
+            break;
+        }
+        int a = bridge[bid].a;
+        int b = bridge[bid].b;
+        if (!find(a, b)) {
+            union(a, b);
+        }
+        bid++;
+    }
+    Arrays.sort(human, new Comparator<Human>() {
+
+        @Override
+        public int compare(Human o1, Human o2) {
+            return o1.num - o2.num;
+        }
+    });
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < q; i++) {
+        sb.append(human[i].ans + "\n");
+    }
+    System.out.print(sb);
+}

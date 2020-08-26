@@ -1,0 +1,14 @@
+void solve() throws NumberFormatException, IOException {
+    int n = in.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) a[i] = in.nextInt();
+    int[] cost = new int[n];
+    Arrays.fill(cost, Integer.MAX_VALUE);
+    cost[0] = 0;
+    for (int i = 0; i < n - 1; i++) {
+        cost[i + 1] = Math.min(cost[i + 1], cost[i] + Math.abs(a[i] - a[i + 1]));
+        if (i < n - 2)
+            cost[i + 2] = Math.min(cost[i + 2], cost[i] + Math.abs(a[i] - a[i + 2]));
+    }
+    System.out.println(cost[n - 1]);
+}

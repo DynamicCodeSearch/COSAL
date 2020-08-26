@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter w = new PrintWriter(System.out);
+    n = in.nextInt();
+    lg = in.nextInt();
+    sm = in.nextInt();
+    a = in.nextIntArray(n);
+    long l = 0, h = (long) 1e9;
+    while (l < h) {
+        long mid = (l + h) / 2;
+        
+        if (ok(mid)) {
+            h = mid;
+        
+        } else {
+            l = mid + 1;
+        
+        }
+    }
+    while (!ok(h)) h++;
+    w.println(h);
+    w.close();
+}

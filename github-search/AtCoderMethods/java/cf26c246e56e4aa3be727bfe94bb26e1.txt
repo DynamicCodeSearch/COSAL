@@ -1,0 +1,8 @@
+long go(int l, int r, long sum) {
+    if (r >= s.length())
+        return sum;
+    long ans = go(r + 1, r + 1, sum + Long.parseLong(s.substring(l, r + 1)));
+    if (r + 1 < s.length())
+        ans += go(l, r + 1, sum);
+    return ans;
+}

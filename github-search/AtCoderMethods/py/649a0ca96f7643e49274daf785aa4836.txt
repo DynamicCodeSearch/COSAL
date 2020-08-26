@@ -1,0 +1,10 @@
+def main():
+    N = int(input())
+    l = []
+    for _ in range(N):
+        w, h = map(int, input().split())
+        l.append((w, h))
+
+    l.sort(key=lambda x: x[1], reverse=True)
+    l.sort(key=lambda x: x[0])
+    print(solve(l))

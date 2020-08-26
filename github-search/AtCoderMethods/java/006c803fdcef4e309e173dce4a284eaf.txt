@@ -1,0 +1,29 @@
+public static void main(String[] args) throws Throwable {
+    InputStream is = null;
+    if (false) {
+        String input = "1\n" + "99999";
+        is = new ByteArrayInputStream(input.getBytes());
+    } else {
+        is = System.in;
+    }
+    try (BufferedReader r = new BufferedReader(new InputStreamReader(is))) {
+        int N = readInt(r);
+        int[] as = readInts(r);
+        int[] counts = new int[(int) Math.pow(10, 5)];
+        for (int a : as) {
+            counts[a]++;
+        }
+        int max = -1;
+        int maxIndex = -1;
+        for (int i = 0; i < counts.length; i++) {
+            int before = i == 0 ? 0 : counts[i - 1];
+            int after = i == counts.length - 1 ? 0 : counts[i + 1];
+            int total = before + after + counts[i];
+            if (total > max) {
+                max = total;
+                maxIndex = i;
+            }
+        }
+        System.out.println(max);
+    }
+}

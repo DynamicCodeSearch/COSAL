@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    ArrayList<int[]> list = new ArrayList<int[]>();
+    for (int i = 0; i < N; i++) {
+        int[] a = { i, sc.nextInt() };
+        list.add(a);
+    }
+    Collections.sort(list, new Comparator<int[]>() {
+
+        public int compare(int[] a, int[] b) {
+            return b[1] - a[1];
+        }
+    });
+    for (int i = 0; i < list.size(); i++) {
+        System.out.println((list.get(i))[0] + 1);
+    }
+}

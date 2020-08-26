@@ -1,0 +1,12 @@
+def solution(N, K, A):
+
+    accum = [0] * (N + 1)
+    for i in range(N):
+        accum[i+1] = accum[i] + A[i]
+
+    ans = 0
+    for i in range(N):
+        if i + K > N:
+            break
+        ans += accum[i+K] - accum[i]
+    return ans

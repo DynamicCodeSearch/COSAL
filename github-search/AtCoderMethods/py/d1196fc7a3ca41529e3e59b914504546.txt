@@ -1,0 +1,12 @@
+def main():
+    N = int(input())
+    A = tuple(map(int, input().split()))
+
+    a = [0] * 100001
+    for i in A:
+        if i > 0:
+            a[i-1] += 1
+        a[i] += 1
+        a[i+1] += 1
+
+    print(max(a))

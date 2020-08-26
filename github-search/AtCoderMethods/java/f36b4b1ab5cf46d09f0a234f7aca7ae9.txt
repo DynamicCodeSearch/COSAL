@@ -1,0 +1,21 @@
+@Override
+public boolean equals(Object obj) {
+    if (this == obj)
+        return true;
+    if (obj == null)
+        return false;
+    if (getClass() != obj.getClass())
+        return false;
+    Line other = (Line) obj;
+    if (intercept == null) {
+        if (other.intercept != null)
+            return false;
+    } else if (!intercept.equals(other.intercept))
+        return false;
+    if (slope == null) {
+        if (other.slope != null)
+            return false;
+    } else if (!slope.equals(other.slope))
+        return false;
+    return true;
+}

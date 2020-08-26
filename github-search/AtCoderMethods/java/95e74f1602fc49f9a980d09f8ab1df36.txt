@@ -1,0 +1,10 @@
+public static int firstGEFenwick(long[] ft, long v) {
+    int i = 0, n = ft.length;
+    for (int b = Integer.highestOneBit(n); b != 0; b >>= 1) {
+        if ((i | b) < n && ft[i | b] < v) {
+            i |= b;
+            v -= ft[i];
+        }
+    }
+    return i;
+}

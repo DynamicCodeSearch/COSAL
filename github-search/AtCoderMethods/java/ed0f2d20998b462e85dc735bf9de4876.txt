@@ -1,0 +1,19 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    int l = Integer.parseInt(reader.readLine());
+    String[] ps = reader.readLine().split(" ");
+    int[] pv = new int[l];
+    for (int i = 0; i < l; i++) {
+        pv[i] = Integer.valueOf(ps[i]);
+    }
+    int[] h = new int[l];
+    h[0] = 0;
+    h[1] = Math.abs(pv[1] - pv[0]);
+    int i;
+    for (i = 2; i < l; i++) {
+        int f = h[i - 1] + Math.abs(pv[i - 1] - pv[i]);
+        int s = h[i - 2] + Math.abs(pv[i - 2] - pv[i]);
+        h[i] = s < f ? s : f;
+    }
+    System.out.println(h[--i]);
+}

@@ -1,0 +1,14 @@
+def solve():
+    l = list(map(int, input().split(" ")))
+    count_dict = {}
+
+    for element in l:
+        if element not in count_dict:
+            count_dict[element] = 1
+        else:
+            count_dict[element] += 1
+
+    for key, val in count_dict.items():
+        if val == 1:
+            print(key)
+            break

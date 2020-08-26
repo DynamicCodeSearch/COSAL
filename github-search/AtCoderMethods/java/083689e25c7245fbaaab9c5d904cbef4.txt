@@ -1,0 +1,31 @@
+static void solve() {
+    int n = ni();
+    int[] x = na(n);
+    int L = ni();
+    int Q = ni();
+    int[] next = new int[n];
+    for (int i = 0; i < n; i++) {
+        int ind = Arrays.binarySearch(x, x[i] + L);
+        if (ind < 0)
+            ind = -ind - 2;
+        next[i] = ind >= n ? -1 : ind;
+    }
+    int[][] sn = sparseNext(next);
+    for (int i = 0; i < Q; i++) {
+        int a = ni() - 1, b = ni() - 1;
+        if (a > b) {
+            int d = a;
+            a = b;
+            b = d;
+        }
+        int step = 0;
+        for (int d = 17; d >= 0; d--) {
+            int ne = sn[d][a];
+            if (ne != -1 && ne < b) {
+                a = ne;
+                step += 1 << d;
+            }
+        }
+        out.println(step + 1);
+    }
+}

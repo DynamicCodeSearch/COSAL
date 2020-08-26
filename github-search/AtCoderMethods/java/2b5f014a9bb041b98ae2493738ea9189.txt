@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int n = scan.nextInt();
+    String[][] s = new String[n][n];
+    String sa;
+    for (int i = 0; i < n; i++) {
+        sa = scan.next();
+        for (int j = 0; j < n; j++) s[i][j] = "" + sa.charAt(j);
+    }
+    for (int j = 0; j < n; j++) {
+        for (int i = n - 1; i >= 0; i--) System.out.print(s[i][j]);
+        System.out.println();
+    }
+}

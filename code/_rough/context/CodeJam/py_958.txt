@@ -1,0 +1,700 @@
+### Py Tokens: case, max, rtot, ltot, tot, mtot, dev, str, best 
+
+### Py functions
+
+def func_5a25b164d3ce4b70866f1943adc80c7a(dev, i, n, ti, tot):
+    j = n - 1
+    ltot = 0
+    mtot = tot
+    rtot = 0
+    best = 0
+    while ltot < mtot > rtot:
+        if ltot + dev[i] < rtot + dev[j]:
+            ltot += dev[i]
+            mtot -= dev[i]
+            i += 1
+            best = max(best, tot - max(ltot, mtot, rtot))
+        else:
+            rtot += dev[j]
+            mtot -= dev[j]
+            j -= 1
+            best = max(best, tot - max(ltot, mtot, rtot))('Case #' + str(ti
+                ) + ':')(best / tot)
+    return j
+
+def func_604ad391cdf047f081a94053315fdbdb(dev, i, n, ti, tot):
+    i = 0
+    j = n - 1
+    ltot = 0
+    mtot = tot
+    rtot = 0
+    best = 0
+    while ltot < mtot > rtot:
+        if ltot + dev[i] < rtot + dev[j]:
+            ltot += dev[i]
+            mtot -= dev[i]
+            i += 1
+            best = max(best, tot - max(ltot, mtot, rtot))
+        else:
+            rtot += dev[j]
+            mtot -= dev[j]
+            j -= 1
+            best = max(best, tot - max(ltot, mtot, rtot))('Case #' + str(ti
+                ) + ':')(best / tot)
+    return mtot
+
+def func_fe6697f222a94f649605af7e80ea3461(dev, i, j, ti, tot):
+    ltot = 0
+    mtot = tot
+    rtot = 0
+    best = 0
+    while ltot < mtot > rtot:
+        if ltot + dev[i] < rtot + dev[j]:
+            ltot += dev[i]
+            mtot -= dev[i]
+            i += 1
+            best = max(best, tot - max(ltot, mtot, rtot))
+        else:
+            rtot += dev[j]
+            mtot -= dev[j]
+            j -= 1
+            best = max(best, tot - max(ltot, mtot, rtot))('Case #' + str(ti
+                ) + ':')(best / tot)
+    return tot
+
+def func_7723fe247915432d8b8dd39aa7cbfac1(dev, i, n, ti, tot):
+    i = 0
+    j = n - 1
+    ltot = 0
+    mtot = tot
+    rtot = 0
+    best = 0
+    while ltot < mtot > rtot:
+        if ltot + dev[i] < rtot + dev[j]:
+            ltot += dev[i]
+            mtot -= dev[i]
+            i += 1
+            best = max(best, tot - max(ltot, mtot, rtot))
+        else:
+            rtot += dev[j]
+            mtot -= dev[j]
+            j -= 1
+            best = max(best, tot - max(ltot, mtot, rtot))('Case #' + str(ti
+                ) + ':')(best / tot)
+    return best
+
+def func_64b3a7026fcd4aa787ec9aa798d185f2(dev, i, j, ti, tot):
+    ltot = 0
+    mtot = tot
+    rtot = 0
+    best = 0
+    while ltot < mtot > rtot:
+        if ltot + dev[i] < rtot + dev[j]:
+            ltot += dev[i]
+            mtot -= dev[i]
+            i += 1
+            best = max(best, tot - max(ltot, mtot, rtot))
+        else:
+            rtot += dev[j]
+            mtot -= dev[j]
+            j -= 1
+            best = max(best, tot - max(ltot, mtot, rtot))('Case #' + str(ti
+                ) + ':')
+    return best
+
+*********************************
+
+#### Score: 6.72166
+
+
+#### Java Tokens: tot 
+
+public static long func_e4076e79fb314efdb52fb83e97c0bc23(long tot) { 
+ long L = 0;
+long R = tot + 1;
+return R;
+}
+
+
+public static long func_7c5acd2230664596b165cda6b2e4c23e(long tot) { 
+ long L = 0;
+long R = tot + 1;
+return L;
+}
+
+
+*********************************
+
+#### Score: 6.24090
+
+
+#### Java Tokens: ans, tot 
+
+public static int func_debbe6449fb243a5a706772959468e58(int i, long[] S) { 
+ int hi = i;
+int ans = -1;
+long tot = S[i + 1] - S[0];
+return hi;
+}
+
+
+public static int func_e4f689620e294f22a8a31c1121e3fdc4(int i, long[] S) { 
+ int ans = -1;
+long tot = S[i + 1] - S[0];
+return ans;
+}
+
+
+public static int func_68798ab08c364168be9fdccbc8c858da(int i, long[] S) { 
+ int hi = i;
+int ans = -1;
+long tot = S[i + 1] - S[0];
+return ans;
+}
+
+
+*********************************
+
+#### Score: 6.24090
+
+
+#### Java Tokens: tot, cum 
+
+public static long func_ad7458e49c41404faed36a25302fd505(long tot, long L, long[] cum) { 
+ long R = tot + 1;
+while (L + 1 < R) {
+    long M = (L + R) >> 1;
+    // out.println(L+" "+R+" "+M+" "+ok(M,cum));
+    if (A.ok(M, cum)) {
+        R = M;
+    } else {
+        L = M;
+    }
+}
+return L;
+}
+
+
+public static long[] func_b5ed109ba1674a9dbe58e8f6b10c95d1(int N) { 
+ long[] cum = new long[N];
+long tot = 0;
+return cum;
+}
+
+
+public static long func_dc02fe303d3a4c6fb54c44c3ec092235(long tot, long[] cum) { 
+ long L = 0;
+long R = tot + 1;
+while (L + 1 < R) {
+    long M = (L + R) >> 1;
+    // out.println(L+" "+R+" "+M+" "+ok(M,cum));
+    if (A.ok(M, cum)) {
+        R = M;
+    } else {
+        L = M;
+    }
+}
+return R;
+}
+
+
+*********************************
+
+#### Score: 5.83615
+
+
+#### Java Tokens: max, ans, center, mid, diff, right, take, println, abs, system, left, tot, math, diff1, case, diff2 
+
+public static long func_d4a70fdc150c4947bfb3be7cf150eb52(int _, int n, long[] S) { 
+ long max = 0;
+for (int i = 0; i < n; i++) {
+    int lo = 0;
+    int hi = i;
+    int ans = -1;
+    long tot = S[i + 1] - S[0];
+    while (lo <= hi) {
+        int mid = (lo + hi) / 2;
+        long center = S[i + 1] - S[mid];
+        long left = tot - center;
+        // System.out.println(mid + " " + left + " " + center);
+        if (left > center) {
+            hi = mid - 1;
+        } else {
+            ans = mid;
+            lo = mid + 1;
+        }
+    }
+    // System.out.println(i + " " + ans);
+    long diff1 = Math.abs(S[i + 1] - S[ans] - (S[ans] - S[0]));
+    long diff2 = Math.abs(S[i + 1] - S[ans + 1] - (S[ans + 1] - S[0]));
+    if (diff2 < diff1)
+        ans++;
+    // System.out.println(i + " " + ans + " " + diff1 + " " +
+    // diff2);
+    long center = S[i + 1] - S[ans];
+    long left = S[ans] - S[0];
+    long right = S[n] - left - center;
+    long take = S[n] - Math.max(center, Math.max(left, right));
+    max = Math.max(max, take);
+}
+System.out.println("Case #" + _ + ": " + (max * 1.0 / S[n]));
+return max;
+}
+
+
+public static long func_d68b9aa1269a4294be1812e5cf9160a3(int _, int n, long max, long[] S) { 
+ for (int i = 0; i < n; i++) {
+    int lo = 0;
+    int hi = i;
+    int ans = -1;
+    long tot = S[i + 1] - S[0];
+    while (lo <= hi) {
+        int mid = (lo + hi) / 2;
+        long center = S[i + 1] - S[mid];
+        long left = tot - center;
+        // System.out.println(mid + " " + left + " " + center);
+        if (left > center) {
+            hi = mid - 1;
+        } else {
+            ans = mid;
+            lo = mid + 1;
+        }
+    }
+    // System.out.println(i + " " + ans);
+    long diff1 = Math.abs(S[i + 1] - S[ans] - (S[ans] - S[0]));
+    long diff2 = Math.abs(S[i + 1] - S[ans + 1] - (S[ans + 1] - S[0]));
+    if (diff2 < diff1)
+        ans++;
+    // System.out.println(i + " " + ans + " " + diff1 + " " +
+    // diff2);
+    long center = S[i + 1] - S[ans];
+    long left = S[ans] - S[0];
+    long right = S[n] - left - center;
+    long take = S[n] - Math.max(center, Math.max(left, right));
+    max = Math.max(max, take);
+}
+System.out.println("Case #" + _ + ": " + (max * 1.0 / S[n]));
+return max;
+}
+
+
+*********************************
+
+#### Score: 5.82844
+
+
+#### Java Tokens: arr, tot, cum 
+
+public static long func_bc93e174c1e546319c3dc7a4a04ac99d(int N, long r, long p, long s, long q) { 
+ long[] arr = new long[N];
+long[] cum = new long[N];
+long tot = 0;
+for (int i = 0; i < N; i++) {
+    arr[i] = ((i * p + q) % r) + s;
+    if (i > 0)
+        cum[i] = cum[i - 1] + arr[i];
+    else
+        cum[i] = arr[i];
+    tot += arr[i];
+}
+long L = 0;
+long R = tot + 1;
+return tot;
+}
+
+
+public static long[] func_f9dd255ad50343189bd52bacffe91a3d(int N, long r, long p, long s, long q) { 
+ long[] arr = new long[N];
+long[] cum = new long[N];
+long tot = 0;
+for (int i = 0; i < N; i++) {
+    arr[i] = ((i * p + q) % r) + s;
+    if (i > 0)
+        cum[i] = cum[i - 1] + arr[i];
+    else
+        cum[i] = arr[i];
+    tot += arr[i];
+}
+long L = 0;
+long R = tot + 1;
+while (L + 1 < R) {
+    long M = (L + R) >> 1;
+    // out.println(L+" "+R+" "+M+" "+ok(M,cum));
+    if (A.ok(M, cum)) {
+        R = M;
+    } else {
+        L = M;
+    }
+}
+return arr;
+}
+
+
+public static long func_55e00c9ca7854244ad18d4313a294949(int N, long r, long p, long s, long q) { 
+ long[] arr = new long[N];
+long[] cum = new long[N];
+long tot = 0;
+for (int i = 0; i < N; i++) {
+    arr[i] = ((i * p + q) % r) + s;
+    if (i > 0)
+        cum[i] = cum[i - 1] + arr[i];
+    else
+        cum[i] = arr[i];
+    tot += arr[i];
+}
+long L = 0;
+long R = tot + 1;
+return L;
+}
+
+
+*********************************
+
+#### Score: 5.82844
+
+
+#### Java Tokens: ans, tot, cum 
+
+public static double func_566ffbeabd1c49aa935f1edccf17959f(long tot, long L, long R, long[] cum) { 
+ while (L + 1 < R) {
+    long M = (L + R) >> 1;
+    // out.println(L+" "+R+" "+M+" "+ok(M,cum));
+    if (A.ok(M, cum)) {
+        R = M;
+    } else {
+        L = M;
+    }
+}
+// out.println(R+" "+tot);
+double ans = (tot - R) * 1.0 / tot;
+return ans;
+}
+
+
+public static double func_039caa185ccb4afa8488b13df605a367(long tot, long[] cum) { 
+ long L = 0;
+long R = tot + 1;
+while (L + 1 < R) {
+    long M = (L + R) >> 1;
+    // out.println(L+" "+R+" "+M+" "+ok(M,cum));
+    if (A.ok(M, cum)) {
+        R = M;
+    } else {
+        L = M;
+    }
+}
+// out.println(R+" "+tot);
+double ans = (tot - R) * 1.0 / tot;
+return ans;
+}
+
+
+public static long func_f3fa3a5793ae4ff58775d407d9a81dd4(long tot, long L, long R, long[] cum) { 
+ while (L + 1 < R) {
+    long M = (L + R) >> 1;
+    // out.println(L+" "+R+" "+M+" "+ok(M,cum));
+    if (A.ok(M, cum)) {
+        R = M;
+    } else {
+        L = M;
+    }
+}
+// out.println(R+" "+tot);
+double ans = (tot - R) * 1.0 / tot;
+return R;
+}
+
+
+*********************************
+
+#### Score: 5.47069
+
+
+#### Java Tokens: arr, ans, tot, cum 
+
+public static long func_04ee2a053ede41ddb77cb58bf24c2b6b(int N, long r, long p, long s, long q) { 
+ long[] arr = new long[N];
+long[] cum = new long[N];
+long tot = 0;
+for (int i = 0; i < N; i++) {
+    arr[i] = ((i * p + q) % r) + s;
+    if (i > 0)
+        cum[i] = cum[i - 1] + arr[i];
+    else
+        cum[i] = arr[i];
+    tot += arr[i];
+}
+long L = 0;
+long R = tot + 1;
+while (L + 1 < R) {
+    long M = (L + R) >> 1;
+    // out.println(L+" "+R+" "+M+" "+ok(M,cum));
+    if (A.ok(M, cum)) {
+        R = M;
+    } else {
+        L = M;
+    }
+}
+// out.println(R+" "+tot);
+double ans = (tot - R) * 1.0 / tot;
+return R;
+}
+
+
+public static long func_efcea0cc06b44eb9bd91759734df338d(int N, long r, long p, long s, long q) { 
+ long[] arr = new long[N];
+long[] cum = new long[N];
+long tot = 0;
+for (int i = 0; i < N; i++) {
+    arr[i] = ((i * p + q) % r) + s;
+    if (i > 0)
+        cum[i] = cum[i - 1] + arr[i];
+    else
+        cum[i] = arr[i];
+    tot += arr[i];
+}
+long L = 0;
+long R = tot + 1;
+while (L + 1 < R) {
+    long M = (L + R) >> 1;
+    // out.println(L+" "+R+" "+M+" "+ok(M,cum));
+    if (A.ok(M, cum)) {
+        R = M;
+    } else {
+        L = M;
+    }
+}
+// out.println(R+" "+tot);
+double ans = (tot - R) * 1.0 / tot;
+return tot;
+}
+
+
+public static long[] func_0bb10a3aa03e43d893aca2c161207772(int N, long r, long p, long s, long q) { 
+ long[] arr = new long[N];
+long[] cum = new long[N];
+long tot = 0;
+for (int i = 0; i < N; i++) {
+    arr[i] = ((i * p + q) % r) + s;
+    if (i > 0)
+        cum[i] = cum[i - 1] + arr[i];
+    else
+        cum[i] = arr[i];
+    tot += arr[i];
+}
+long L = 0;
+long R = tot + 1;
+while (L + 1 < R) {
+    long M = (L + R) >> 1;
+    // out.println(L+" "+R+" "+M+" "+ok(M,cum));
+    if (A.ok(M, cum)) {
+        R = M;
+    } else {
+        L = M;
+    }
+}
+// out.println(R+" "+tot);
+double ans = (tot - R) * 1.0 / tot;
+return arr;
+}
+
+
+*********************************
+
+#### Score: 5.47069
+
+
+#### Java Tokens: left, center, tot, mid 
+
+public static long func_3392e0b8407c4bb7834d44833c43435c(int mid, int i, long tot, long[] S) { 
+ long center = S[i + 1] - S[mid];
+long left = tot - center;
+return center;
+}
+
+
+public static int func_f8b7af1e0a9d4c01a13b313102cacb17(int lo, int i, int hi, long tot, long[] S) { 
+ int mid = (lo + hi) / 2;
+long center = S[i + 1] - S[mid];
+long left = tot - center;
+return mid;
+}
+
+
+public static long func_57824482b0ba4fe79ab9db25ebc41810(int lo, int i, int hi, long tot, long[] S) { 
+ int mid = (lo + hi) / 2;
+long center = S[i + 1] - S[mid];
+long left = tot - center;
+return center;
+}
+
+
+*********************************
+
+#### Score: 5.43030
+
+
+#### Java Tokens: println, max, case 
+
+public static double func_f166491ea38f43ea8bd5e532d17d780c(int t, double max, PrintWriter pw) { 
+ max += 0.0000001;
+pw.println("Case #" + t + ": " + max);
+return max;
+}
+
+
+public static PrintWriter func_ae45a6c619b04998817dbf0dae8dfafa(int t, double max, PrintWriter pw) { 
+ max += 0.0000001;
+pw.println("Case #" + t + ": " + max);
+return pw;
+}
+
+
+*********************************
+
+#### Score: 5.29737
+
+
+#### Java Tokens: next, nextint, max, ans, center, mid, diff, right, int, take, println, abs, system, left, tot, math, diff1, case, diff2 
+
+public static int func_860ec169ec734f34b02f6b613d53973d(int _, Scanner in) { 
+ int n = in.nextInt();
+int p = in.nextInt();
+int q = in.nextInt();
+int r = in.nextInt();
+int s = in.nextInt();
+int[] A = new int[n];
+long[] S = new long[n + 1];
+for (int i = 0; i < n; i++) {
+    A[i] = (int) (((long) i * p + q) % r + s);
+    S[i + 1] = S[i] + A[i];
+}
+long max = 0;
+for (int i = 0; i < n; i++) {
+    int lo = 0;
+    int hi = i;
+    int ans = -1;
+    long tot = S[i + 1] - S[0];
+    while (lo <= hi) {
+        int mid = (lo + hi) / 2;
+        long center = S[i + 1] - S[mid];
+        long left = tot - center;
+        // System.out.println(mid + " " + left + " " + center);
+        if (left > center) {
+            hi = mid - 1;
+        } else {
+            ans = mid;
+            lo = mid + 1;
+        }
+    }
+    // System.out.println(i + " " + ans);
+    long diff1 = Math.abs(S[i + 1] - S[ans] - (S[ans] - S[0]));
+    long diff2 = Math.abs(S[i + 1] - S[ans + 1] - (S[ans + 1] - S[0]));
+    if (diff2 < diff1)
+        ans++;
+    // System.out.println(i + " " + ans + " " + diff1 + " " +
+    // diff2);
+    long center = S[i + 1] - S[ans];
+    long left = S[ans] - S[0];
+    long right = S[n] - left - center;
+    long take = S[n] - Math.max(center, Math.max(left, right));
+    max = Math.max(max, take);
+}
+System.out.println("Case #" + _ + ": " + (max * 1.0 / S[n]));
+return p;
+}
+
+
+public static int func_82928587c0824ef782b1d9f0940fe426(int _, int n, Scanner in) { 
+ int p = in.nextInt();
+int q = in.nextInt();
+int r = in.nextInt();
+int s = in.nextInt();
+int[] A = new int[n];
+long[] S = new long[n + 1];
+for (int i = 0; i < n; i++) {
+    A[i] = (int) (((long) i * p + q) % r + s);
+    S[i + 1] = S[i] + A[i];
+}
+long max = 0;
+for (int i = 0; i < n; i++) {
+    int lo = 0;
+    int hi = i;
+    int ans = -1;
+    long tot = S[i + 1] - S[0];
+    while (lo <= hi) {
+        int mid = (lo + hi) / 2;
+        long center = S[i + 1] - S[mid];
+        long left = tot - center;
+        // System.out.println(mid + " " + left + " " + center);
+        if (left > center) {
+            hi = mid - 1;
+        } else {
+            ans = mid;
+            lo = mid + 1;
+        }
+    }
+    // System.out.println(i + " " + ans);
+    long diff1 = Math.abs(S[i + 1] - S[ans] - (S[ans] - S[0]));
+    long diff2 = Math.abs(S[i + 1] - S[ans + 1] - (S[ans + 1] - S[0]));
+    if (diff2 < diff1)
+        ans++;
+    // System.out.println(i + " " + ans + " " + diff1 + " " +
+    // diff2);
+    long center = S[i + 1] - S[ans];
+    long left = S[ans] - S[0];
+    long right = S[n] - left - center;
+    long take = S[n] - Math.max(center, Math.max(left, right));
+    max = Math.max(max, take);
+}
+System.out.println("Case #" + _ + ": " + (max * 1.0 / S[n]));
+return p;
+}
+
+
+public static int func_1dd975494d8d4ddaa9fa9a45834859de(int _, int n, Scanner in) { 
+ int p = in.nextInt();
+int q = in.nextInt();
+int r = in.nextInt();
+int s = in.nextInt();
+int[] A = new int[n];
+long[] S = new long[n + 1];
+for (int i = 0; i < n; i++) {
+    A[i] = (int) (((long) i * p + q) % r + s);
+    S[i + 1] = S[i] + A[i];
+}
+long max = 0;
+for (int i = 0; i < n; i++) {
+    int lo = 0;
+    int hi = i;
+    int ans = -1;
+    long tot = S[i + 1] - S[0];
+    while (lo <= hi) {
+        int mid = (lo + hi) / 2;
+        long center = S[i + 1] - S[mid];
+        long left = tot - center;
+        // System.out.println(mid + " " + left + " " + center);
+        if (left > center) {
+            hi = mid - 1;
+        } else {
+            ans = mid;
+            lo = mid + 1;
+        }
+    }
+    // System.out.println(i + " " + ans);
+    long diff1 = Math.abs(S[i + 1] - S[ans] - (S[ans] - S[0]));
+    long diff2 = Math.abs(S[i + 1] - S[ans + 1] - (S[ans + 1] - S[0]));
+    if (diff2 < diff1)
+        ans++;
+    // System.out.println(i + " " + ans + " " + diff1 + " " +
+    // diff2);
+    long center = S[i + 1] - S[ans];
+    long left = S[ans] - S[0];
+    long right = S[n] - left - center;
+    long take = S[n] - Math.max(center, Math.max(left, right));
+    max = Math.max(max, take);
+}
+System.out.println("Case #" + _ + ": " + (max * 1.0 / S[n]));
+return q;
+}
+

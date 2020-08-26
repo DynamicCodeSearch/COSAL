@@ -1,0 +1,29 @@
+private void solve() throws IOException {
+    int N = nextInt();
+    UF uf = new UF(N);
+    Pair[] pA = new Pair[N];
+    Pair[] pB = new Pair[N];
+    ArrayList<Edge> p = new ArrayList<>();
+    for (int i = 0; i < N; ++i) {
+        int x = nextInt();
+        int y = nextInt();
+        pA[i] = new Pair(i, x);
+        pB[i] = new Pair(i, y);
+    }
+    Arrays.sort(pA);
+    Arrays.sort(pB);
+    for (int i = 0; i < N - 1; ++i) {
+        p.add(new Edge(pA[i].id, pA[i + 1].id, Math.abs(pA[i].value - pA[i + 1].value)));
+        p.add(new Edge(pB[i].id, pB[i + 1].id, Math.abs(pB[i].value - pB[i + 1].value)));
+    }
+    Collections.sort(p);
+    long ret = 0L;
+    for (int i = 0; i < p.size(); ++i) {
+        Edge e = p.get(i);
+        if (!uf.isSame(e.from, e.to)) {
+            uf.union(e.from, e.to);
+            ret += e.value;
+        }
+    }
+    writer.println(ret);
+}

@@ -1,0 +1,11 @@
+private static int solve(int t, int[] u) {
+    int ans = 0;
+    int endExcl = 0;
+    for (int start : u) {
+        if (start < endExcl)
+            ans = ans - endExcl + start;
+        ans += t;
+        endExcl = start + t;
+    }
+    return ans;
+}

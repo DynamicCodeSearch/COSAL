@@ -1,0 +1,59 @@
+public boolean solve() {
+    Arrays.fill(vis, -1);
+    Arrays.fill(onStack, false);
+    sp = 0;
+    globalTime = 0;
+    numComps = 0;
+    for (int i = 0; i < 2 * n; i++) {
+        if (vis[i] < 0) {
+            dfsTarjan(i);
+        }
+    }
+    int[] firstInComp = new int[numComps];
+    Arrays.fill(firstInComp, -1);
+    int[] nextSameComp = new int[2 * n];
+    for (int i = 0; i < 2 * n; i++) {
+        int c = comp[i];
+        nextSameComp[i] = firstInComp[c];
+        firstInComp[c] = i;
+    }
+    List<Integer>[] invertedCompEdges = new List[numComps];
+    for (int i = 0; i < numComps; i++) {
+        invertedCompEdges[i] = new ArrayList<>();
+    }
+    for (int i = 0; i < 2 * n; i++) {
+        for (int e = firstEdge[i]; e >= 0; e = edgeNxt[e]) {
+            int j = edgeDst[e];
+            invertedCompEdges[comp[j]].add(comp[i]);
+        }
+    }
+    boolean[] compIsTrue = new boolean[numComps];
+    Arrays.fill(compIsTrue, true);
+    for (int c = 0; c < numComps; c++) {
+        if (!compIsTrue[c]) {
+            continue;
+        }
+        for (int i = firstInComp[c]; i >= 0; i = nextSameComp[i]) {
+            int nc = comp[negate(i)];
+            if (c == nc) {
+                return false;
+            }
+        }
+        for (int i = firstInComp[c]; i >= 0; i = nextSameComp[i]) {
+            int nc = comp[negate(i)];
+            dfsReject(nc, invertedCompEdges, compIsTrue);
+        }
+    }
+    for (int i = 0; i < 2 * n; i++) {
+        isTrue[i] = compIsTrue[comp[i]];
+    }
+    for (int i = 0; i < n; i++) {
+        if (isTrue[i] && isTrue[negate(i)]) {
+            throw new AssertionError();
+        }
+        if (!isTrue[i] && !isTrue[negate(i)]) {
+            return false;
+        }
+    }
+    return true;
+}

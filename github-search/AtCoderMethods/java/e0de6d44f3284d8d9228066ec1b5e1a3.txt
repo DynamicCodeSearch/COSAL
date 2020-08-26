@@ -1,0 +1,15 @@
+public void execute() {
+    try {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String[] args = br.readLine().split(" ");
+        Integer keta100 = Integer.parseInt(args[0]);
+        Integer keta10 = Integer.parseInt(args[1]);
+        Integer keta1 = Integer.parseInt(args[2]);
+        Integer num = keta100 * 100 + keta10 * 10 + keta1;
+        String ret = (num % 4 == 0) ? "YES" : "NO";
+        System.out.println(ret);
+    } catch (Exception ex) {
+        ex.printStackTrace();
+        System.err.println(ex.getMessage());
+    }
+}

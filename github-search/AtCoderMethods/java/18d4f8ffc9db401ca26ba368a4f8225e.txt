@@ -1,0 +1,23 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    long k = in.nextLong();
+    TreeMap<Long, Long> map = new TreeMap<>();
+    for (int i = 0; i < n; i++) {
+        long a = in.nextInt();
+        long b = in.nextInt();
+        if (map.containsKey(a)) {
+            map.put(a, map.get(a) + b);
+        } else {
+            map.put(a, b);
+        }
+    }
+    Set<Long> set = map.keySet();
+    long sum = 0;
+    for (long x : set) {
+        sum += map.get(x);
+        if (sum >= k) {
+            out.println(x);
+            return;
+        }
+    }
+}

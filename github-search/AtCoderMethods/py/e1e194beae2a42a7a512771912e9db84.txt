@@ -1,0 +1,5 @@
+def solve(n, xs):
+    ctr = collections.Counter(xs)
+    freqs = [ctr[i] for i in range(0, M)]
+    res = max(sum(freqs[i: i + 3]) for i in range(M - 3))
+    return res

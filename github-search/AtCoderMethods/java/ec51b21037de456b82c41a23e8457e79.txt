@@ -1,0 +1,35 @@
+void solve(FastScanner in, PrintWriter out) throws Exception {
+    int N = in.nextInt();
+    int K = in.nextInt();
+    int L = in.nextInt();
+    UnionFind train = new UnionFind(N);
+    UnionFind road = new UnionFind(N);
+    int[][] edgeT = new int[K][2];
+    for (int i = 0; i < K; i++) {
+        edgeT[i][0] = in.nextInt() - 1;
+        edgeT[i][1] = in.nextInt() - 1;
+        train.unite(edgeT[i][0], edgeT[i][1]);
+    }
+    int[][] edgeR = new int[L][2];
+    for (int i = 0; i < L; i++) {
+        edgeR[i][0] = in.nextInt() - 1;
+        edgeR[i][1] = in.nextInt() - 1;
+        road.unite(edgeR[i][0], edgeR[i][1]);
+    }
+    TreeMap<Long, Integer> count = new TreeMap<>();
+    for (int i = 0; i < N; i++) {
+        long key = (long) road.find(i) * N + train.find(i);
+        Integer c = count.get(key);
+        if (c == null)
+            count.put(key, 1);
+        else
+            count.put(key, c + 1);
+    }
+    for (int i = 0; i < N; i++) {
+        if (i > 0)
+            out.print(" ");
+        long key = (long) road.find(i) * N + train.find(i);
+        out.print(count.get(key));
+    }
+    out.println();
+}

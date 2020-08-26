@@ -1,0 +1,29 @@
+public void exec() throws IOException {
+    InputUtil in = new InputUtil();
+    PrintWriter out = new PrintWriter(System.out);
+    int N = in.nextInt();
+    int M = in.nextInt();
+    int R = in.nextInt();
+    Integer[] r = new Integer[R];
+    for (int i = 0; i < R; i++) {
+        r[i] = in.nextInt() - 1;
+    }
+    long[][] dist = new long[N][N];
+    for (int i = 0; i < N; i++) Arrays.fill(dist[i], Integer.MAX_VALUE);
+    for (int i = 0; i < M; i++) {
+        Integer A = in.nextInt() - 1;
+        Integer B = in.nextInt() - 1;
+        Integer C = in.nextInt();
+        dist[A][B] = dist[B][A] = C;
+    }
+    for (int k = 0; k < N; k++) {
+        for (int i = 0; i < N; i++) {
+            dist[i][i] = 0;
+            for (int j = 0; j < N; j++) {
+                dist[i][j] = Math.min(dist[i][j], dist[i][k] + dist[k][j]);
+            }
+        }
+    }
+    out.println(calcDist(R, dist, r));
+    out.flush();
+}

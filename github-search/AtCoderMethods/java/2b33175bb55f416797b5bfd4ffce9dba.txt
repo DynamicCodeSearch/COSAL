@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < a.length; i++) {
+        a[i] = in.nextInt();
+    }
+    Arrays.sort(a);
+    int prev = a[0];
+    int res = 0;
+    int numof = 1;
+    for (int i = 1; i < a.length; i++) {
+        int cur = a[i];
+        if (cur == prev) {
+            numof++;
+        } else {
+            if (numof % 2 != 0)
+                res++;
+            numof = 1;
+        }
+        prev = cur;
+    }
+    
+    if (numof % 2 != 0)
+        res++;
+    System.out.println(res);
+}

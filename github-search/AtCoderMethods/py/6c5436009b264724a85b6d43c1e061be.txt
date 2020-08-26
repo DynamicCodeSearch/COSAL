@@ -1,0 +1,24 @@
+def main():
+    N, M = map(int, input().split())
+
+    ab = []
+    i = 0
+    while i < N:
+        ab += [tuple(map(int, input().split()))]
+        i += 1
+
+    cd = []
+    i = 0
+    while i < M:
+        cd += [tuple(map(int, input().split()))]
+        i += 1
+
+    i = 0
+    while i < N:
+        j = 0
+        l = []
+        while j < M:
+            l.append(abs(ab[i][0] - cd[j][0]) + abs(ab[i][1] - cd[j][1]))
+            j += 1
+        i += 1
+        print(l.index(min(l)) + 1)

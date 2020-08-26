@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String s = sc.nextLine();
+    int result = 0;
+    int start = 0;
+    boolean startFlag = true;
+    int end = 0;
+    for (int i = 0; i < s.length(); i++) {
+        if (s.charAt(i) == 'A' && startFlag) {
+            start = i;
+            startFlag = false;
+        } else if (s.charAt(i) == 'Z') {
+            end = i;
+        }
+    }
+    result = s.substring(start, end + 1).length();
+    System.out.println(result);
+    sc.close();
+}

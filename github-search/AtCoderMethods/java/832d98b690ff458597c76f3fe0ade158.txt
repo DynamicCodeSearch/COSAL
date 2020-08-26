@@ -1,0 +1,25 @@
+public static void main(String[] args) throws java.lang.Exception {
+    InputReader in = new InputReader(System.in);
+    PrintWriter w = new PrintWriter(System.out);
+    int n = in.nextInt();
+    int[] a = in.nextIntArray(n);
+    HashSet<Integer> hs = new HashSet<>();
+    hs.add(1);
+    int c = 1, st = 0;
+    while (true) {
+        st++;
+        c = a[c - 1];
+        if (c == 2) {
+            w.println(st);
+            w.close();
+            return;
+        }
+        if (hs.contains(c)) {
+            w.println(-1);
+            w.close();
+            return;
+        }
+        hs.add(c);
+    }
+
+}

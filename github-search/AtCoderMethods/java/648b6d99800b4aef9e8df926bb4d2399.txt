@@ -1,0 +1,21 @@
+public static void main(String[] args) throws Exception {
+    Scanner scan = new Scanner(System.in);
+    int N = scan.nextInt();
+    int M = scan.nextInt();
+    dp = new long[Math.max(N, M) + 1];
+    if (Math.abs(N - M) >= 2) {
+        System.out.println(0);
+        return;
+    }
+    dp[1] = 1;
+    for (int i = 2; i <= Math.max(N, M); i++) {
+        dp[i] = dp[i - 1] * (long) i % 1000000007L;
+    }
+    long dogCount = dp[N];
+    long monkeyCount = dp[M];
+    long d = 1;
+    if (N == M)
+        d *= 2;
+    long answer = dogCount * monkeyCount * d % 1000000007L;
+    System.out.println(answer);
+}

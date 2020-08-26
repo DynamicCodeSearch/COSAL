@@ -1,0 +1,23 @@
+private void bfs(int ind, int[][] color) {
+    ArrayDeque<int[]> q = new ArrayDeque<int[]>();
+    if (ind == 0) {
+        q.add(new int[] { 0, 0 });
+    } else {
+        q.add(new int[] { N - 1, 0 });
+    }
+    boolean[] used = new boolean[N];
+    while (q.size() > 0) {
+        int[] d = q.poll();
+        int now = d[0];
+        int time = d[1];
+        if (used[now])
+            continue;
+        used[now] = true;
+        color[now][ind] = time;
+        for (int next : graph[now]) {
+            if (used[next])
+                continue;
+            q.add(new int[] { next, time + 1 });
+        }
+    }
+}

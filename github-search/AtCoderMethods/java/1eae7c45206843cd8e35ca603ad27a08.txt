@@ -1,0 +1,13 @@
+private int calcPos(int r, int c, int x, int y) {
+    if (y == 0) {
+        return x;
+    } else if (x == r) {
+        return r + y;
+    } else if (y == c) {
+        return r + c + (r - x);
+    } else if (x == 0) {
+        return r + c + r + (c - y);
+    } else {
+        return -1;
+    }
+}

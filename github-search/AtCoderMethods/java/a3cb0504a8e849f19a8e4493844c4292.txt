@@ -1,0 +1,25 @@
+static void solve() {
+    char[] s = ns().toCharArray();
+    int n = s.length;
+    char[] rs = rev(Arrays.copyOf(s, n));
+    int[] z = Z(s);
+    int[] rz = Z(rs);
+    long ret = 0;
+    for (int i = 1; i < n; i++) {
+        int alen = z[i];
+        int clen = rz[n - i];
+        int right = n - i;
+        int left = i;
+        if (left > right) {
+            int inf = right - clen;
+            int sup = alen;
+            
+            inf = Math.max(1, inf);
+            sup = Math.min(right - 1, sup);
+            if (inf <= sup) {
+                ret += sup - inf + 1;
+            }
+        }
+    }
+    out.println(ret);
+}

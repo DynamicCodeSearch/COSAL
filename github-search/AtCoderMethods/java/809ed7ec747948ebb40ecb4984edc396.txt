@@ -1,0 +1,30 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int n = Integer.parseInt(br.readLine());
+    int count = 0;
+    String output = "";
+    while (n > 0) {
+        if (n - 8 >= 0) {
+            n -= 8;
+            count += 1;
+            output += "8";
+        } else if (n - 4 >= 0) {
+            n -= 4;
+            count += 1;
+            output += "4";
+        } else if (n - 2 >= 0) {
+            n -= 2;
+            count += 1;
+            output += "2";
+        } else if (n - 1 >= 0) {
+            n -= 1;
+            count += 1;
+            output += "1";
+        }
+    }
+    System.out.println(count);
+    String[] s = output.split("");
+    for (int i = 0; i < s.length; i++) {
+        System.out.println(s[i]);
+    }
+}

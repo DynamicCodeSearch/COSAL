@@ -1,0 +1,66 @@
+static long dfs(Point p, int d) {
+    long ret = 0;
+    List<Point> uSet = ySet.get(p.y + d);
+    if (uSet != null) {
+        int u1 = Collections.binarySearch(uSet, new Point(p.x + d, p.y + d), Comparator.comparing(Point::getX));
+        int u2 = Collections.binarySearch(uSet, new Point(p.x - d, p.y + d), Comparator.comparing(Point::getX));
+        ret += getRet(u1, u2);
+        TreeSet<Point> points = yTree.get(p.y + d);
+        while (true) {
+            Point target = points.ceiling(new Point(p.x - d, p.y + d));
+            if (target == null || target.x > p.x + d)
+                break;
+            points.remove(target);
+            xTree.get(target.getX()).remove(target);
+            ret += dfs(target, d);
+        }
+    }
+    List<Point> dSet = ySet.get(p.y - d);
+    if (dSet != null) {
+        int d1 = Collections.binarySearch(dSet, new Point(p.x + d, p.y - d), Comparator.comparing(Point::getX));
+        int d2 = Collections.binarySearch(dSet, new Point(p.x - d, p.y - d), Comparator.comparing(Point::getX));
+        ret += getRet(d1, d2);
+        TreeSet<Point> points = yTree.get(p.y - d);
+        while (true) {
+            Point target = points.ceiling(new Point(p.x - d, p.y - d));
+            if (target == null || target.x > p.x + d)
+                break;
+            points.remove(target);
+            xTree.get(target.getX()).remove(target);
+            ret += dfs(target, d);
+        }
+    }
+    List<Point> rSet = xSet.get(p.x + d);
+    if (rSet != null) {
+        int r1 = Collections.binarySearch(rSet, new Point(p.x + d, p.y + d - 1), Comparator.comparingInt(Point::getY));
+        int r2 = Collections.binarySearch(rSet, new Point(p.x + d, p.y - d + 1), Comparator.comparingInt(Point::getY));
+        ret += getRet(r1, r2);
+        TreeSet<Point> points = xTree.get(p.x + d);
+        while (true) {
+            Point target = points.ceiling(new Point(p.x + d, p.y - d));
+            if (target == null || target.y > p.y + d) {
+                break;
+            }
+            points.remove(target);
+            yTree.get(target.getY()).remove(target);
+            ret += dfs(target, d);
+        }
+    }
+    List<Point> lSet = xSet.get(p.x - d);
+    if (lSet != null) {
+        int l1 = Collections.binarySearch(lSet, new Point(p.x - d, p.y + d - 1), Comparator.comparingInt(Point::getY));
+        int l2 = Collections.binarySearch(lSet, new Point(p.x - d, p.y - d + 1), Comparator.comparingInt(Point::getY));
+        ret += getRet(l1, l2);
+        TreeSet<Point> points = xTree.get(p.x - d);
+        while (true) {
+            Point target = points.ceiling(new Point(p.x - d, p.y - d));
+            if (target == null || target.y > p.y + d) {
+                break;
+            }
+            points.remove(target);
+            yTree.get(target.getY()).remove(target);
+            ret += dfs(target, d);
+        }
+    }
+    return ret;
+}

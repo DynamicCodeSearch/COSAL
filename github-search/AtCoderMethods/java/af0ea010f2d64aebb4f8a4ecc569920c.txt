@@ -1,0 +1,48 @@
+public void calc() {
+    sb = new StringBuilder();
+    FastScanner sc = new FastScanner();
+    char[] cs = sc.next().toCharArray();
+    int ans = 0;
+    int in = -1;
+    for (int i = 1; i < cs.length; i++) {
+        if (in == -1) {
+            if (cs[i] == 'W' && cs[i - 1] == 'W') {
+                in = i;
+            }
+        } else {
+            if (cs[i] == 'W' && cs[i - 1] == 'W') {
+                if (i - in == 5) {
+                    ans = (12 + 5 - i) % 12;
+                } else {
+                    ans = (12 + 12 - i) % 12;
+                }
+                break;
+            }
+        }
+    }
+    String ansS = "";
+    switch(ans) {
+        case 0:
+            ansS = "Do";
+            break;
+        case 2:
+            ansS = "Re";
+            break;
+        case 4:
+            ansS = "Mi";
+            break;
+        case 5:
+            ansS = "Fa";
+            break;
+        case 7:
+            ansS = "So";
+            break;
+        case 9:
+            ansS = "La";
+            break;
+        case 11:
+            ansS = "Si";
+            break;
+    }
+    System.out.println(ansS);
+}

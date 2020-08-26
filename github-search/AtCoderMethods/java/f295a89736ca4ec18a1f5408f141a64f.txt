@@ -1,0 +1,24 @@
+public void solve(int testNumber, MyScanner in, MyPrintWriter out) {
+    int h = in.nextInt(), w = in.nextInt();
+    char[][] map = new char[h][w];
+    for (int i = 0; i < h; i++) {
+        map[i] = in.next().toCharArray();
+    }
+    int[][] grid = new int[h - 1][w];
+    for (int i = 0; i < h - 1; i++) {
+        for (int j = 0; j < w - 1; j++) {
+            grid[i][j] = (map[i][j] != map[i][j + 1]) == (map[i + 1][j] != map[i + 1][j + 1]) ? 1 : 0;
+        }
+    }
+    for (int i = 0; i < h - 1; i++) {
+        for (int j = 0; j < w - 1; j++) {
+            if (i > 0 && grid[i][j] == 1)
+                grid[i][j] += grid[i - 1][j];
+        }
+    }
+    int res = Math.max(h, w);
+    for (int i = 0; i < grid.length; i++) {
+        res = Math.max(res, getLargestRectangle(w - 1, grid[i]));
+    }
+    out.println(res);
+}

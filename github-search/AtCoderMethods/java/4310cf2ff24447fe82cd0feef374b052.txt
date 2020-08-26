@@ -1,0 +1,13 @@
+static int binarySearchSmallerMax(int[] a, int v, int l, int r) {
+    int s = -1;
+    while (l <= r) {
+        int m = (l + r) / 2;
+        if (a[m] > v)
+            r = m - 1;
+        else {
+            l = m + 1;
+            s = m;
+        }
+    }
+    return s;
+}

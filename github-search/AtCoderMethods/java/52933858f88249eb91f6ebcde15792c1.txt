@@ -1,0 +1,34 @@
+public static void main(String[] args) {
+    IO io = new IO();
+    int n = io.nextInt();
+    int m = io.nextInt();
+    BIT bit = new BIT(m + 2);
+    long[] lr = new long[n];
+    for (int i = 0; i < n; i++) {
+        long l = io.nextInt();
+        long r = io.nextInt();
+        long w = r - l;
+        lr[i] = w << 40L | l << 20L | r;
+    }
+    Arrays.sort(lr);
+    int idx = 0;
+    for (int d = 1; d <= m; d++) {
+        while (idx < n) {
+            long l = lr[idx] >> 20L & 0xFFFFF;
+            long r = lr[idx] & 0xFFFFF;
+            if (r - l >= d) {
+                break;
+            }
+            bit.accumulate((int) l, (int) r + 1, 1);
+            idx++;
+        }
+        int ans = n - idx;
+        if (idx > 0) {
+            for (int i = 0; i <= m; i += d) {
+                ans += bit.get(i);
+            }
+        }
+        io.println(ans);
+    }
+    io.flush();
+}

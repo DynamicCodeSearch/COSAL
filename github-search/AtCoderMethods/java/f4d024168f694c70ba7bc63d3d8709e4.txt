@@ -1,0 +1,10 @@
+static long gcd(long a, long b) {
+    if (a == 0)
+        return -1;
+    if (a < b) {
+        long x = a;
+        a = b;
+        b = x;
+    }
+    return (b == 0 || a % b == 0) ? b : gcd(b, a % b);
+}

@@ -1,0 +1,12 @@
+def main():
+    n = int(input())
+    dp = [0] * 1000002
+    for _ in range(n):
+        a, b = map(int, input().split())
+        dp[a] += 1
+        dp[b + 1] -= 1
+
+    for i in range(len(dp) - 1):
+        dp[i + 1] += dp[i]
+
+    print(max(dp))

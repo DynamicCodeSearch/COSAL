@@ -1,0 +1,33 @@
+
+static long[] search(int start, Town[] towns, Function<Town, List<int[]>> getWays) {
+    
+    long[] times = new long[towns.length];
+    
+    Arrays.fill(times, Long.MAX_VALUE);
+    
+    boolean[] confirmed = new boolean[towns.length];
+    
+    PriorityQueue<Town> nextTowns = new PriorityQueue<>((o1, o2) -> Long.compare(times[o1.id], times[o2.id]));
+    
+    nextTowns.add(towns[start]);
+    times[start] = 0L;
+    while (!nextTowns.isEmpty()) {
+        Town nearestTown = nextTowns.poll();
+        long cost = times[nearestTown.id];
+        
+        confirmed[nearestTown.id] = true;
+        
+        for (int[] way : getWays.apply(nearestTown)) {
+            if (confirmed[way[0]]) {
+                
+                continue;
+            } else if (cost + way[1] < times[way[0]]) {
+                
+                
+                times[way[0]] = cost + way[1];
+                nextTowns.add(towns[way[0]]);
+            }
+        }
+    }
+    return times;
+}

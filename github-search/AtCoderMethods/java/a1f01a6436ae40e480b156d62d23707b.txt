@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    long a = sc.nextInt();
+    long b = sc.nextInt();
+    long k = sc.nextInt();
+    long l = sc.nextInt();
+    sc.close();
+    long ans = Long.MAX_VALUE;
+    for (int i = 0; i <= k / l; i++) {
+        ans = Math.min(ans, a * (k - i * l) + b * i);
+    }
+    ans = Math.min(ans, b * ((k + l - 1) / l));
+    System.out.println(ans);
+}

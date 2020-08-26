@@ -1,0 +1,78 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int W = scan.nextInt();
+    int H = scan.nextInt();
+    int N = scan.nextInt();
+    int[] x = new int[N + 1];
+    int[] y = new int[N + 1];
+    int[] a = new int[N + 1];
+    int a_1, a_2, a_3, a_4;
+    a_1 = a_3 = 0;
+    a_2 = a_4 = 0;
+    x[0] = y[0] = a[0] = -1;
+    for (int i = 1; i < N + 1; i++) {
+        x[i] = scan.nextInt();
+        y[i] = scan.nextInt();
+        a[i] = scan.nextInt();
+        if (a[i] == 1) {
+            if (a_1 == 0) {
+                a_1 = i;
+            }
+            if (Math.max(x[a_1], x[i]) == x[i]) {
+                a_1 = i;
+            }
+        } else if (a[i] == 2) {
+            if (a_2 == 0) {
+                a_2 = i;
+            }
+            if (Math.min(x[a_2], x[i]) == x[i]) {
+                a_2 = i;
+            }
+        } else if (a[i] == 3) {
+            if (a_3 == 0) {
+                a_3 = i;
+                continue;
+            }
+            if (Math.max(y[a_3], y[i]) == y[i]) {
+                a_3 = i;
+            }
+        } else if (a[i] == 4) {
+            if (a_4 == 0) {
+                a_4 = i;
+                continue;
+            }
+            if (Math.min(y[a_4], y[i]) == y[i]) {
+                a_4 = i;
+            }
+        }
+    }
+    int x_l, x_r;
+    int y_t, y_b;
+    if (a_1 != 0) {
+        x_l = x[a_1];
+    } else {
+        x_l = 0;
+    }
+    if (a_2 != 0) {
+        x_r = x[a_2];
+    } else {
+        x_r = W;
+    }
+    if (a_3 != 0) {
+        y_b = y[a_3];
+    } else {
+        y_b = 0;
+    }
+    if (a_4 != 0) {
+        y_t = y[a_4];
+    } else {
+        y_t = H;
+    }
+    
+    if (x_l >= x_r || y_b >= y_t) {
+        System.out.println(0);
+        return;
+    } else {
+        System.out.println((x_r - x_l) * (y_t - y_b));
+    }
+}

@@ -1,0 +1,23 @@
+private void solve(Scanner sc) {
+    int n = sc.nextInt();
+    int[] a = new int[n + 1];
+    int idx1 = -1;
+    int idx2 = -1;
+    Map<Integer, Integer> map = new HashMap<>();
+    for (int i = 0; i < n + 1; ++i) {
+        a[i] = sc.nextInt();
+        if (map.containsKey(a[i])) {
+            idx1 = map.get(a[i]);
+            idx2 = i;
+        }
+        map.put(a[i], i);
+    }
+    Cmod cmod = new Cmod(n + 2, MOD);
+    for (int k = 1; k <= n + 1; ++k) {
+        if (k < n + idx1 - idx2 + 2) {
+            _out.println(((cmod.C(n + 1, k) - cmod.C(idx1 + n - idx2, k - 1)) + MOD) % MOD);
+        } else {
+            _out.println(cmod.C(n + 1, k));
+        }
+    }
+}

@@ -1,0 +1,18 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    try {
+        String st = br.readLine();
+        String[] s = st.split(" ", 0);
+        int a = (Integer.parseInt(s[0]) + 11) % 13;
+        int b = (Integer.parseInt(s[1]) + 11) % 13;
+        if (a > b) {
+            System.out.println("Alice");
+        } else if (a < b) {
+            System.out.println("Bob");
+        } else {
+            System.out.println("Draw");
+        }
+    } catch (Exception ex) {
+        System.exit(0);
+    }
+}

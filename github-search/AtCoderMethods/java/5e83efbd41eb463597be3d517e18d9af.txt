@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int min = Integer.MAX_VALUE;
+    for (int i = 1; i <= 1000; i++) {
+        for (int j = 1; j <= 1000; j++) {
+            if (i * j > n) {
+                break;
+            }
+            min = Math.min(min, Math.abs(i - j) + n - i * j);
+        }
+    }
+    System.out.println(min);
+    sc.close();
+}

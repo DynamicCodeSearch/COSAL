@@ -1,0 +1,32 @@
+private static long rec(int n, int m) {
+    if (n == 0) {
+        return 1;
+    }
+    if (m > b || n < 0) {
+        return 0;
+    }
+    int enc = n * 1024 + m;
+    if (hm.containsKey(enc)) {
+        return hm.get(enc);
+    }
+    
+    int min = Math.min(d, n / m + 1);
+    long[] tmp = new long[min];
+    tmp[0] = pc.C(n, m);
+    for (int j = 1; j < min; j++) {
+        tmp[j] = tmp[j - 1] * pc.C(n - m * j, m) % MOD;
+        tmp[j] *= pc.fact[j];
+        tmp[j] %= MOD;
+        tmp[j] *= pc.ifact[j + 1];
+        tmp[j] %= MOD;
+    }
+    
+    long ret = rec(n, m + 1);
+    for (int i = c; m * i <= n && i <= d; i++) {
+        
+        ret += tmp[i - 1] * rec(n - m * i, m + 1) % MOD;
+        ret %= MOD;
+    }
+    hm.put(enc, ret);
+    return ret;
+}

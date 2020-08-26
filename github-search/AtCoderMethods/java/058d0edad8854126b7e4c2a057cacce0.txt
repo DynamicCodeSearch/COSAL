@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    long x = in.nextInt();
+    long[] a = in.nextLongs(n);
+    long cost = 0;
+    for (int i = 1; i < n; i++) {
+        long sum = a[i - 1] + a[i];
+        long diff = sum - x;
+        if (diff >= 1) {
+            cost += diff;
+            long eat = Math.min(a[i], diff);
+            a[i] -= eat;
+            diff -= eat;
+            if (diff >= 1) {
+                a[i - 1] -= diff;
+            }
+        }
+    }
+    out.println(cost);
+    out.flush();
+}

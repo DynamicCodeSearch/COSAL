@@ -1,0 +1,31 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    String str = input.readLine();
+    int n = Integer.parseInt(str);
+    str = input.readLine();
+    String[] split = str.split(" ");
+    int a = Integer.parseInt(split[0]);
+    int b = Integer.parseInt(split[1]);
+    str = input.readLine();
+    int k = Integer.parseInt(str);
+    str = input.readLine();
+    split = str.split(" ");
+    int[] list = new int[k];
+    HashSet<String> hs = new HashSet<String>();
+    for (int i = 0; i < k; i++) {
+        list[i] = Integer.parseInt(split[i]);
+        hs.add(split[i]);
+    }
+    String answer = "YES";
+    if (hs.size() != k) {
+        answer = "NO";
+    } else {
+        for (int i = 0; i < k; i++) {
+            if (list[i] == a || list[i] == b) {
+                answer = "NO";
+                break;
+            }
+        }
+    }
+    System.out.println(answer);
+}

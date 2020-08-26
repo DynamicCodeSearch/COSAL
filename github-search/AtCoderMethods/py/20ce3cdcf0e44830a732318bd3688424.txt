@@ -1,0 +1,16 @@
+def bfs(_s):
+    q = queue.Queue()
+    global d
+    d = [float("inf") for i in range(N)]
+    used = [False for i in range(N)]
+    used[_s] = True
+    d[_s] = 0
+    q.put(_s)
+
+    while not q.empty():
+        p = q.get()
+        for i in range(0, len(G[p])):
+            if not used[G[p][i]]:
+                used[G[p][i]] = True
+                d[G[p][i]] = d[p] + 1
+                q.put(G[p][i])

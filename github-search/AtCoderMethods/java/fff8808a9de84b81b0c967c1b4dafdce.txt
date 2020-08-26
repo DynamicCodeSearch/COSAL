@@ -1,0 +1,56 @@
+public static void main(String[] args) {
+    
+    Scanner scan = new Scanner(System.in);
+    int N = scan.nextInt();
+    int A = scan.nextInt();
+    int B = scan.nextInt();
+    long[] v = new long[N];
+    for (int i = 0; i < N; i++) {
+        v[i] = scan.nextLong();
+    }
+    Arrays.sort(v);
+    long sumv = 0;
+    double average = 0;
+    for (int i = 0; i < A; i++) {
+        sumv += v[N - 1 - i];
+    }
+    average = (double) (sumv) / A;
+    System.out.println(BigDecimal.valueOf(average).toPlainString());
+    if (v[N - A] == v[N - 1]) {
+        
+        int cnt = 0;
+        for (int i = 0; i < N; i++) {
+            if (v[i] == v[N - 1]) {
+                cnt++;
+            }
+        }
+        
+        int A_ = 0;
+        for (int i = 0; i < N; i++) {
+            if (v[i] == v[N - A]) {
+                A_++;
+            }
+        }
+        B = Math.min(B, A_);
+        long com = 0;
+        for (int i = A; i <= B; i++) {
+            com += combination(cnt, i);
+        }
+        System.out.println(com);
+    } else {
+        int cnt = 0;
+        for (int i = 0; i < N; i++) {
+            if (v[i] == v[N - A]) {
+                cnt++;
+            }
+        }
+        int A_ = 0;
+        for (int i = N - A; i < N; i++) {
+            if (v[i] == v[N - A]) {
+                A_++;
+            }
+        }
+        
+        System.out.println(combination(cnt, A_));
+    }
+}

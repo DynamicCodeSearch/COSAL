@@ -1,0 +1,9 @@
+private boolean enough(int t) {
+    int total = 0;
+    for (int i = 0; i < N; ++i) {
+        if (h[i] > (long) B * t) {
+            total += Math.ceil(((double) h[i] - B * t) / (A - B));
+        }
+    }
+    return total <= t;
+}

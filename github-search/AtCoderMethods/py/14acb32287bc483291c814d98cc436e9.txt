@@ -1,0 +1,11 @@
+def main():
+    N = int(input())
+    a_list = list(map(int, input().split()))
+    dp = [10 ** 10] * N
+    dp[0] = 0
+    for i in range(len(a_list)):
+        if i + 1 < len(a_list):
+            dp[i + 1] = min(dp[i + 1], dp[i] + abs(a_list[i] - a_list[i + 1]))
+        if i + 2 < len(a_list):
+            dp[i + 2] = min(dp[i + 2], dp[i] + abs(a_list[i] - a_list[i + 2]))
+    print(dp[N - 1])

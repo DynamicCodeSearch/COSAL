@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner s = new Scanner(System.in);
+    long size = s.nextInt();
+    long returnInt = 0;
+    long[] cards = new long[(int) size];
+    long sum = 0;
+    for (int i = 0; i < cards.length; i++) {
+        cards[i] = s.nextInt();
+        sum += cards[i];
+    }
+    long min = Long.MAX_VALUE;
+    long tmpSum = 0;
+    if (size == 2) {
+        returnInt = (int) Math.abs(cards[0] - cards[1]);
+    } else {
+        for (int i = 0; i < cards.length - 1; i++) {
+            tmpSum += cards[i];
+            if (Math.abs(2 * tmpSum - sum) < min) {
+                min = Math.abs(2 * tmpSum - sum);
+            }
+        }
+        returnInt = (int) (min);
+    }
+    System.out.println(returnInt);
+}

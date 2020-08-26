@@ -1,0 +1,13 @@
+public static void main(String[] args) {
+    long n = nl();
+    int max = Integer.MAX_VALUE;
+    for (long a = 1; a * a <= n; a++) {
+        if (n % a != 0)
+            continue;
+        long b = n / a;
+        int d = f(a, b);
+        max = Math.min(max, d);
+    }
+    pl(max);
+    flush();
+}

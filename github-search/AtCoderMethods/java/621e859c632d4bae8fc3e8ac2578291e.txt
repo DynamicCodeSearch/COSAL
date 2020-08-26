@@ -1,0 +1,41 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    char[] s1 = in.nextLine().toCharArray();
+    char[] s2 = in.nextLine().toCharArray();
+    if (n == 1) {
+        out.println(3);
+        return;
+    } else if (n == 2) {
+        out.println(6);
+        return;
+    }
+    final long mod = 1000000007;
+    long ans;
+    int start = 0;
+    if (s1[0] == s1[1]) {
+        ans = 6;
+        start = 1;
+    } else
+        ans = 3;
+    for (int i = start; i < n - 1; ) {
+        int m;
+        if (s1[i] != s1[i + 1] && s2[i] != s2[i + 1] && s1[i] != s2[i] && s1[i + 1] != s2[i + 1]) {
+            m = 3;
+            i += 2;
+        } else if (s1[i] == s2[i] && s1[i + 1] == s2[i + 1] && s1[i] != s1[i + 1] && s2[i] != s2[i + 1]) {
+            m = 2;
+            i++;
+        } else if (s1[i] != s1[i + 1] && s2[i] != s2[i + 1] && s1[i + 1] == s2[i + 1]) {
+            m = 1;
+            i++;
+        } else {
+            m = 2;
+            if (s1[i] == s2[i] && s1[i] != s1[i + 1] && s2[i] != s2[i + 1] && s1[i + 1] != s2[i + 1])
+                i += 2;
+            else
+                i++;
+        }
+        ans = (ans * m) % mod;
+    }
+    out.println(ans);
+}

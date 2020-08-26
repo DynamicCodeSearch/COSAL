@@ -1,0 +1,16 @@
+void solve() {
+    long r = nl(), b = nl(), x = nl(), y = nl();
+    long left = 0, right = Math.min(r / x, b), res = calc(r, b, x, y, 0);
+    while (right - left > 100) {
+        long t = (right - left) / 3, n = left + t, m = right - t;
+        if (calc(r, b, x, y, n) < calc(r, b, x, y, m)) {
+            left = n;
+        } else {
+            right = m;
+        }
+    }
+    for (long i = left; i <= right; ++i) {
+        res = Math.max(res, calc(r, b, x, y, i));
+    }
+    out.println(res);
+}

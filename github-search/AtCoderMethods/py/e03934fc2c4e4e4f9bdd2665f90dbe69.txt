@@ -1,0 +1,13 @@
+def main():
+    N, T = map(int, input().split())
+    TS = list(map(int, input().split()))
+
+    X = 0
+    prev = TS[0]
+    for i in range(1, N):
+        now = TS[i]
+        X += min(now-prev, T)
+        prev = now
+    X += T
+
+    print(X)

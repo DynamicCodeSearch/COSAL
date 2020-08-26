@@ -1,0 +1,21 @@
+def main():
+    N = int(input())
+    S1 = input()
+    S2 = input()
+
+    pre_is_v = S1[0] == S2[0]
+    ans = 3 if pre_is_v else 6
+    i = 1 if pre_is_v else 2
+    while i < N:
+        is_v = S1[i] == S2[i]
+        if pre_is_v and not is_v:
+            ans = (ans * 2) % MOD
+        elif pre_is_v and is_v:
+            ans = (ans * 2) % MOD
+        elif not pre_is_v and not is_v:
+            ans = (ans * 3) % MOD
+
+        pre_is_v = is_v
+        i += 1 if is_v else 2
+
+    print(ans % MOD)

@@ -1,0 +1,9 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    for (int y = 0; y < N - 1; y++) for (int x = 0; x < N; x++) b[y][x] = sc.nextInt();
+    for (int y = 0; y < N; y++) for (int x = 0; x < N - 1; x++) c[y][x] = sc.nextInt();
+    sc.close();
+    int[][] board = dfs(new int[N][N], B);
+    System.out.println(getScore(board, B));
+    System.out.println(getScore(board, W));
+}

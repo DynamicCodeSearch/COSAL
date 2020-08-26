@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int n = scanner.nextInt();
+    
+    long a = scanner.nextInt();
+    
+    long b = scanner.nextInt();
+    long count = 0l;
+    
+    int tmp = scanner.nextInt();
+    for (int i = 1; i < n; i++) {
+        int pos = scanner.nextInt();
+        long aMove = (pos - tmp) * a;
+        if (aMove > b) {
+            count += b;
+        } else {
+            count += aMove;
+        }
+        tmp = pos;
+    }
+    System.out.println(count);
+}

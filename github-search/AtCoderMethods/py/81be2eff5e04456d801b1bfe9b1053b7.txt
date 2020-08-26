@@ -1,0 +1,18 @@
+def main():
+    N, M, R = read()
+    r = map(lambda x: x - 1, sorted(read()))
+    d = [[INF for i in range(N)] for j in range(N)]
+
+    for i in range(M):
+        a, b, c, = read()
+        a -= 1
+        b -= 1
+        d[a][b] = d[b][a] = c
+
+    d = wf(d)
+
+    min_dist = INF
+    for p in list(permutations(r)):
+        min_dist = min(min_dist, calc_dist(p, d))
+
+    print(min_dist)

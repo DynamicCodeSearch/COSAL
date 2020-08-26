@@ -1,0 +1,12 @@
+private static boolean solve(int n, int m, int[][] abs) {
+    int[] ships = new int[n + 1];
+    for (int[] ab : abs) {
+        if (ab[0] == 1)
+            ships[ab[1]] += 1;
+        if (ab[1] == n)
+            ships[ab[0]] += 1;
+        if (ships[ab[0]] == 2 || ships[ab[1]] == 2)
+            return true;
+    }
+    return false;
+}

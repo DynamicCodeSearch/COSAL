@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    n = in.nextInt();
+    int c = in.nextInt();
+    a = in.nextInts(n);
+    b = in.nextInts(n);
+    powTbl = new long[c + 1][402];
+    for (int ci = 0; ci <= c; ci++) {
+        for (int k = 0; k <= 400; k++) {
+            powTbl[ci][k + 1] = powTbl[ci][k] + pow(k, ci);
+            powTbl[ci][k + 1] %= MOD;
+        }
+    }
+    memo = new long[n + 1][c + 1];
+    for (int i = 0; i <= n; i++) {
+        Arrays.fill(memo[i], -1);
+    }
+    out.println(dfs(0, c));
+    out.flush();
+}

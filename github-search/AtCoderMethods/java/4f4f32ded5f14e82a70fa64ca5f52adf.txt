@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    final int N = sc.nextInt();
+    final int M = sc.nextInt();
+    int[] l = new int[N];
+    int[] r = new int[N];
+    int[] s = new int[N];
+    for (int i = 0; i < N; i++) {
+        l[i] = sc.nextInt();
+        r[i] = sc.nextInt();
+        s[i] = sc.nextInt();
+    }
+    sc.close();
+    int[] m = new int[M];
+    int max = 0;
+    for (int i = 0; i < N; i++) {
+        max += s[i];
+        m[l[i] - 1] += s[i];
+        if (r[i] < M)
+            m[r[i]] -= s[i];
+    }
+    int min = max;
+    int current = 0;
+    for (int i = 0; i < M; i++) {
+        current += m[i];
+        min = Math.min(current, min);
+    }
+    System.out.println(max - min);
+}

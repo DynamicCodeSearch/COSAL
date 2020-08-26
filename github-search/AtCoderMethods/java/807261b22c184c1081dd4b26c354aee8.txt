@@ -1,0 +1,7 @@
+double calc(double X, double R, double H, double A, double B) {
+    if (B <= X || X + H <= A)
+        return 0;
+    double v1 = calc2(X, R, H, A);
+    double v2 = calc2(X, R, H, B);
+    return v1 - v2;
+}

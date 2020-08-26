@@ -1,0 +1,13 @@
+def step(step_num, n, path, reachable):
+    reachable[n] = 1
+    step_num += 1
+
+    if step_num > 2:
+        return
+    if not n in path:
+        return
+
+    for b in path[n]:
+        if reachable[b]:
+            continue
+        step(step_num, b, path, reachable)

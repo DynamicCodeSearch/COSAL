@@ -1,0 +1,13 @@
+void optimize() {
+    length = 1;
+    l[0] = a[0];
+    for (int i = 1; i < n; i++) {
+        if (l[length - 1] < a[i]) {
+            l[length++] = a[i];
+        } else {
+            int j = lowerBound(a[i], -1, length);
+            l[j] = a[i];
+        }
+    }
+    bestValue = length;
+}

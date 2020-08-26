@@ -1,0 +1,11 @@
+public static void combTable() {
+    for (int i = 0; i <= 50; ++i) {
+        for (int j = 0; j <= i; ++j) {
+            if (j == 0 || j == i) {
+                comb[i][j] = 1;
+            } else {
+                comb[i][j] = comb[i - 1][j - 1] + comb[i - 1][j];
+            }
+        }
+    }
+}

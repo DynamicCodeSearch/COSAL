@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int divisible2 = 0;
+    int divisible4 = 0;
+    for (int i = 0; i < n; i++) {
+        int a = sc.nextInt();
+        if (a % 2 == 0)
+            divisible2++;
+        if (a % 4 == 0)
+            divisible4++;
+    }
+    int even_odd = n % 2;
+    if (even_odd == 0 && (n - divisible2) <= divisible4) {
+        System.out.println("Yes");
+    } else if (even_odd == 1 && (n - divisible2 - 1) <= divisible4) {
+        System.out.println("Yes");
+    } else {
+        System.out.println("No");
+    }
+}

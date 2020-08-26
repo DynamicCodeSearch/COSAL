@@ -1,0 +1,34 @@
+public static void main(String[] args) {
+    int N;
+    int[] a = new int[101];
+    int sum = 0;
+    int av;
+    int cost = 10000000;
+    int ncost = 0;
+    Scanner scan = new Scanner(System.in);
+    N = scan.nextInt();
+    for (int i = 0; i < N; i++) {
+        a[i] = scan.nextInt();
+        sum = sum + a[i];
+    }
+    av = sum / N;
+    for (int i = 0; i < N; i++) {
+        ncost = ncost + (a[i] - (av - 1)) * (a[i] - (av - 1));
+    }
+    if (cost > ncost)
+        cost = ncost;
+    ncost = 0;
+    for (int i = 0; i < N; i++) {
+        ncost = ncost + (a[i] - (av)) * (a[i] - (av));
+    }
+    if (cost > ncost)
+        cost = ncost;
+    ncost = 0;
+    for (int i = 0; i < N; i++) {
+        ncost = ncost + (a[i] - (av + 1)) * (a[i] - (av + 1));
+    }
+    if (cost > ncost)
+        cost = ncost;
+    ncost = 0;
+    System.out.println(cost);
+}

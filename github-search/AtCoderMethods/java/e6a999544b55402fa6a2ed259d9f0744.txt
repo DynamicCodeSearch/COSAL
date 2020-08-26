@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    r = scan.nextInt();
+    c = scan.nextInt();
+    sy = scan.nextInt();
+    sx = scan.nextInt();
+    gy = scan.nextInt();
+    gx = scan.nextInt();
+    m = new int[r + 2][c + 2];
+    for (int i = 1; i <= r; i++) {
+        String temp = scan.next();
+        for (int j = 1; j <= c; j++) {
+            if (temp.charAt(j - 1) == '.') {
+                m[i][j] = -1;
+            } else {
+                m[i][j] = -2;
+            }
+        }
+    }
+    m[sy][sx] = 0;
+    bfs(sy, sx);
+    int ans = Integer.MIN_VALUE;
+    ans = m[gy][gx];
+    System.out.println(ans);
+}

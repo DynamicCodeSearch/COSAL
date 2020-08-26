@@ -1,0 +1,15 @@
+def solve():
+    N = int(input())
+    s, b = 0, 0
+
+    for loop in range(N):
+        t, a = map(int, sys.stdin.readline().split())
+
+        if loop == 0:
+            s, b = t, a
+        else:
+            k = max((s + t - 1)//t, (b + a - 1)//a)
+            s, b = k*t, k*a
+
+    ans = s + b
+    print(ans)

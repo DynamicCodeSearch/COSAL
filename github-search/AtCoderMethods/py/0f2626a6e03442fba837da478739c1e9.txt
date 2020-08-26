@@ -1,0 +1,18 @@
+def getWindPower(speed):
+
+	speed_list = [0.3, 1.6, 3.4, 5.5, 8.0, 10.8, 13.9, 17.2, 20.8, 24.5, 28.5, 32.7]
+
+ if speed >= 32.7:
+		return "12"
+
+ for i in range(len(speed_list)):
+
+		if i == 0:
+			min_speed = 0.0
+
+  else:
+			min_speed = speed_list[i - 1]
+
+  max_speed = round(speed_list[i] - 0.1, 1)
+  if min_speed <= speed <= max_speed:
+			return str(i)

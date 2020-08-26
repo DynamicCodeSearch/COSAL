@@ -1,0 +1,18 @@
+def search_nearest_larger(num):
+    n_digits = to_digits(num)
+    n = len(n_digits)
+
+    for i in range(n):
+        d_in = n_digits[i]
+        inc, d_out = get_next_digit(d_in)
+        if inc == 0 and d_in == d_out:
+            continue
+        if inc > 0:
+            num += 10**(n-i)
+            n_digits = fill_last_kth_digits(to_digits(num), avail_min, n-i)
+            return search_nearest_larger(to_num(n_digits))
+        else:
+            n_digits[i] = d_out
+            return to_num(fill_last_kth_digits(n_digits, avail_min, n-i-1))
+
+    return to_num(n_digits)

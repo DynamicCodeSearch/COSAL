@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    long[] a = in.nextLongs(n);
+    long[] b = a.clone();
+    long p = a[0] >= 1 ? 0 : -a[0] + 1;
+    if (a[0] <= 0) {
+        a[0] = 1;
+    }
+    p += solve(a);
+    long q = b[0] <= -1 ? 0 : b[0] + 1;
+    if (b[0] >= 0) {
+        b[0] = -1;
+    }
+    q += solve(b);
+    out.println(Math.min(p, q));
+    out.flush();
+}

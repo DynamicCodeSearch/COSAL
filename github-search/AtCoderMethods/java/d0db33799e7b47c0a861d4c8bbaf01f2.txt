@@ -1,0 +1,9 @@
+public static long func(long a, long x) {
+    if (x == 0)
+        return 1;
+    long t = func(a, x / 2);
+    long ret = (t * t) % MOD;
+    if (x % 2 == 1)
+        ret = (ret * a) % MOD;
+    return ret;
+}

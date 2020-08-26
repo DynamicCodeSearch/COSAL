@@ -1,0 +1,29 @@
+public static void main(String[] args) throws IOException {
+    InputStreamReader is = new InputStreamReader(System.in);
+    BufferedReader br = new BufferedReader(is);
+    String line1 = br.readLine();
+    String[] lineArr1 = line1.split(" ");
+    int minMoney = Integer.parseInt(lineArr1[0]);
+    String line2 = br.readLine();
+    String[] hate = line2.split(" ");
+    String money = "";
+    String[] moneyArr = null;
+    String answer = null;
+    for (int i = minMoney; i < 100000; i++) {
+        money = i + "";
+        moneyArr = money.split("");
+        for (int j = 0; j < moneyArr.length; ++j) {
+            if (Arrays.asList(hate).contains(moneyArr[j])) {
+                break;
+            } else {
+                if (j == moneyArr.length - 1) {
+                    answer = money;
+                }
+            }
+        }
+        if (answer != null) {
+            break;
+        }
+    }
+    System.out.println(answer);
+}

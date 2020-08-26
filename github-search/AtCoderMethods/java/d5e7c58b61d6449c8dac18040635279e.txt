@@ -1,0 +1,22 @@
+
+String solve() {
+    String s = io.next();
+    for (int i = 1; i < s.length(); i++) {
+        if (s.charAt(i) == s.charAt(i - 1))
+            return i + " " + (i + 1);
+    }
+    int[] count = new int[1000];
+    int left = 0;
+    int right = 0;
+    while (right < s.length()) {
+        char c = s.charAt(right++);
+        count[c]++;
+        if (right - left > 3) {
+            char other = s.charAt(left++);
+            count[other]--;
+        }
+        if (count[c] >= 2)
+            return (left + 1) + " " + right;
+    }
+    return "-1 -1";
+}

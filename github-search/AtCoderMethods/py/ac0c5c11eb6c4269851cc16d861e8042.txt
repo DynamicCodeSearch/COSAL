@@ -1,0 +1,12 @@
+def main():
+    N, T = map(int, input().split())
+    t_list = list(map(int, input().split()))
+    ans = 0
+    n = 0
+    for t in t_list:
+        if t >= n:
+            ans += T
+        else:
+            ans += T - (n - t)
+        n = t + T
+    print(ans)

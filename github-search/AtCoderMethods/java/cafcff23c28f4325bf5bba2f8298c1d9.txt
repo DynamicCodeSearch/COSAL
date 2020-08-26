@@ -1,0 +1,44 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    int w = in.nextInt();
+    int[][] wv = in.nextIntTable(n, 2);
+    int[][][] dp = new int[n + 1][n + 1][301];
+    for (int i = 0; i <= n; i++) {
+        for (int j = 0; j <= n; j++) {
+            Arrays.fill(dp[i][j], -1);
+        }
+    }
+    dp[0][0][0] = 0;
+    int baseW = wv[0][0];
+    for (int i = 0; i < n; i++) {
+        int ti = i + 1;
+        for (int j = 0; j < n; j++) {
+            for (int k = 0; k <= 300; k++) {
+                int base = dp[i][j][k];
+                if (base == -1) {
+                    continue;
+                }
+                
+                dp[ti][j][k] = Math.max(dp[ti][j][k], base);
+                
+                int tj = j + 1;
+                int tk = k + wv[i][0] - baseW;
+                int tv = base + wv[i][1];
+                dp[ti][tj][tk] = Math.max(dp[ti][tj][tk], tv);
+            }
+        }
+    }
+    int best = 0;
+    for (int j = 0; j <= n; j++) {
+        for (int k = 0; k <= 300; k++) {
+            long toW = (long) j * baseW + k;
+            if (toW <= w) {
+                best = Math.max(best, dp[n][j][k]);
+            }
+        }
+    }
+    out.println(best);
+    out.flush();
+}

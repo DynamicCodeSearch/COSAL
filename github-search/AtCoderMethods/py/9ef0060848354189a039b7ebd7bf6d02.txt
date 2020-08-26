@@ -1,0 +1,10 @@
+def main():
+    N = int(input())
+    T = list(map(int, input().split()))
+    M = int(input())
+    P, X = [0] * M, [0] * M
+    for i in range(M):
+        P[i], X[i] = map(int, input().split())
+    s = sum(T)
+    for i in range(M):
+        print(s - T[P[i]-1] + X[i])

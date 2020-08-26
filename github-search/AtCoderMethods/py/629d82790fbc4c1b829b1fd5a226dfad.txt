@@ -1,0 +1,18 @@
+def Q3(lst):
+    import numpy as np
+    N = len(lst)
+    lst = np.array(lst)
+    num4 = len(lst[np.where(lst % 4 == 0)])  
+    num2 = len(lst[np.where((lst % 4 != 0) & (lst % 2 == 0))])  
+    numOther = len(lst[np.where((lst % 4 != 0) & (lst % 2 != 0))])
+
+    if num2 == 0:
+        if numOther <= num4 + 1:
+            return 'Yes'
+        else:
+            return 'No'
+    else:
+        if numOther <= num4:
+            return 'Yes'
+        else:
+            return 'No'

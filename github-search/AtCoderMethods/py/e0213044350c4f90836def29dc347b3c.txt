@@ -1,0 +1,8 @@
+def power_func(a,b,p):
+
+  if b==0: return 1
+  if b%2==0:
+    d=power_func(a,b//2,p)
+    return d*d %p
+  if b%2==1:
+    return (a*power_func(a,b-1,p ))%p

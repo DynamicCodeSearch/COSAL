@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    long a = sc.nextLong();
+    long b = sc.nextLong();
+    long[] es = new long[n];
+    for (int i = 0; i < n; i++) {
+        es[i] = sc.nextLong();
+    }
+    Arrays.sort(es);
+    long ans;
+    long l = 0, r = 1000000000L;
+    while (r - l > 1) {
+        ans = (r - l) / 2 + l;
+        if (check(es, ans, a, b)) {
+            r = ans;
+        } else {
+            l = ans;
+        }
+    }
+    System.out.println(r);
+}

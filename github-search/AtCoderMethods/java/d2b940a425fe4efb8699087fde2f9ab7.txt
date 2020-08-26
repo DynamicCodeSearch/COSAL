@@ -1,0 +1,9 @@
+public static long ans(long min, long max) {
+    if (max - min <= 1)
+        return max;
+    long cand = (min + max) / 2;
+    if (possible(cand, cand, 0))
+        return ans(min, cand);
+    else
+        return ans(cand, max);
+}

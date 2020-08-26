@@ -1,0 +1,8 @@
+def calculate_t(x, y):
+    min_d = 1e12
+    for i in range(x):
+        s1 = (y//2)*i
+        s2 = y*(x-i)
+        s3 = (y-y//2)*i
+        min_d = min(min_d, max(s1,s2,s3) - min(s1,s2,s3))
+    return min_d

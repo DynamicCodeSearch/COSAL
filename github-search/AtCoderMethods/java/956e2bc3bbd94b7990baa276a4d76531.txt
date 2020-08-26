@@ -1,0 +1,32 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    int[] a = new int[m];
+    int[] b = new int[m];
+    ArrayList<Integer>[] go = new ArrayList[n];
+    for (int i = 0; i < n; i++) {
+        go[i] = new ArrayList<Integer>();
+    }
+    for (int i = 0; i < m; i++) {
+        a[i] = sc.nextInt() - 1;
+        b[i] = sc.nextInt() - 1;
+        go[a[i]].add(b[i]);
+        go[b[i]].add(a[i]);
+    }
+    for (int i = 0; i < n; i++) {
+        boolean flag1 = false;
+        boolean flag2 = false;
+        for (int j = 0; j < go[i].size(); j++) {
+            if (go[i].get(j) == 0)
+                flag1 = true;
+            if (go[i].get(j) == n - 1)
+                flag2 = true;
+        }
+        if (flag1 && flag2) {
+            System.out.println("POSSIBLE");
+            return;
+        }
+    }
+    System.out.println("IMPOSSIBLE");
+}

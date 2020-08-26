@@ -1,0 +1,17 @@
+public void solve() {
+    R = nextLong();
+    B = nextLong();
+    x = nextLong();
+    y = nextLong();
+    out.println(upperBound(0, Math.max(R, B), v -> {
+        long r = R - v;
+        if (r < 0)
+            return false;
+        long b = B - v;
+        if (b < 0)
+            return false;
+        if ((r / (x - 1)) + (b / (y - 1)) - v < 0)
+            return false;
+        return true;
+    }));
+}

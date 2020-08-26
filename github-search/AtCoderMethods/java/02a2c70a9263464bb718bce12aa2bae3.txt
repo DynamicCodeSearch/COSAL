@@ -1,0 +1,10 @@
+private int dfs2(int v, int bad, int pr) {
+    int res = 1;
+    for (int u : adj[v]) {
+        if (u == pr || u == bad) {
+            continue;
+        }
+        res += dfs2(u, bad, v);
+    }
+    return res;
+}

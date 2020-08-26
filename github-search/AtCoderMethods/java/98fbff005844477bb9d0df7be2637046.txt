@@ -1,0 +1,22 @@
+static void solve() {
+    long K = nl();
+    int n = 50;
+    long[] a = new long[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = K / n + i;
+    }
+    for (int i = 0; i < K % n; i++) {
+        a[i] += n + 1;
+        for (int j = 0; j < n; j++) {
+            a[j]--;
+        }
+    }
+    out.println(n);
+    for (int i = 0; i < n; i++) {
+        out.print(a[i] + " ");
+    }
+    out.println();
+
+
+
+}

@@ -1,0 +1,10 @@
+private void makeTree(Node u, int l, int r) {
+    if (l != r) {
+        int m = (l + r) / 2;
+        u.l = new Node();
+        u.r = new Node();
+        makeTree(u.l, l, m);
+        makeTree(u.r, m + 1, r);
+        u.val = Math.min(u.l.val, u.r.val);
+    }
+}

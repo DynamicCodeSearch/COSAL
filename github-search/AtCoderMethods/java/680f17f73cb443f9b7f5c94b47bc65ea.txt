@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner stdIn = new Scanner(System.in);
+    String s = stdIn.next();
+    int timeg = 0, timep = 0;
+    for (int i = 0; i < s.length(); i++) {
+        if (s.charAt(i) == 'p')
+            timep++;
+        else if (s.charAt(i) == 'g')
+            timeg++;
+    }
+    if (s.length() % 2 == 0)
+        System.out.println((timeg - timep) / 2);
+    else
+        System.out.println((timeg - timep - 1) / 2);
+}

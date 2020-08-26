@@ -1,0 +1,17 @@
+public static void main(String[] args) throws IOException {
+    proconScan proScan = new proconScan();
+    proScan.scan();
+    ct = 0;
+    len = proScan.backLine().length();
+    Character flag = ' ';
+    for (Character buf : proScan.backLine().toCharArray()) {
+        if (flag == ' ')
+            flag = buf;
+        else if (flag != buf) {
+            ct++;
+            flag = buf;
+        }
+    }
+    System.out.println(ct);
+    proScan.proconEnd();
+}

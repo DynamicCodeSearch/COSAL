@@ -1,0 +1,13 @@
+def prime(n):
+    p = list(range(n+1))
+    p[1] = 0
+
+    for x in p:
+        if x == 0:
+            continue
+        if x > math.sqrt(n):
+            break
+        for y in range(2 * x, n+1, x):
+            p[y] = 0
+
+    return [x for x in p if x != 0]

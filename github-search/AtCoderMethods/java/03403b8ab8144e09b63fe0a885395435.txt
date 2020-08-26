@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    double[][] array = new double[N][2];
+    for (int i = 0; i < N; i++) {
+        array[i][0] = sc.nextDouble();
+        array[i][1] = sc.nextDouble();
+    }
+    double max = 0, tem = 0;
+    for (int i = 0; i < N - 1; i++) {
+        for (int j = i + 1; j < N; j++) {
+            tem = Math.sqrt(Math.abs(Math.pow(array[i][0] - array[j][0], 2) + Math.pow(array[i][1] - array[j][1], 2)));
+            if (max < tem)
+                max = tem;
+        }
+    }
+    System.out.println(max);
+}

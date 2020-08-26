@@ -1,0 +1,7 @@
+def addp(s, pfs):
+    if len(s) == 1:
+        return s
+    if pfs & 1:
+        return addp(s[:-1], pfs >> 1) + '+' + s[-1]
+    else:
+        return addp(s[:-1], pfs >> 1) + s[-1]

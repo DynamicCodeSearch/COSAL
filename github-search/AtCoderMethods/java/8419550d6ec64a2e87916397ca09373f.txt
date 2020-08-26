@@ -1,0 +1,21 @@
+public static int lastLowerOrEqualIndex(long[] array, long lo) {
+    if (array[array.length - 1] <= lo) {
+        return array.length - 1;
+    }
+    if (array[0] > lo) {
+        return -1;
+    }
+    int tmax = array.length - 1, tmin = 0;
+    int haba = tmax - tmin;
+    int tindex = tmin + haba / 2;
+    while (haba > 0) {
+        if (array[tindex] <= lo) {
+            tmin = tindex;
+        } else {
+            tmax = tindex - 1;
+        }
+        haba = tmax - tmin;
+        tindex = tmin + haba / 2 + (haba == 1 ? 1 : 0);
+    }
+    return tindex;
+}

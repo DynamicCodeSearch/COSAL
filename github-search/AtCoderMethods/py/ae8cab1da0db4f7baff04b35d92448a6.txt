@@ -1,0 +1,12 @@
+def main():
+    n, m = (int(x) for x in input().split())
+    sts = []
+    for i in range(n):
+        a, b = (int(x) for x in input().split())
+        sts.append(Point(a, b, i + 1))
+    ps = []
+    for j in range(m):
+        c, d = (int(x) for x in input().split())
+        ps.append(Point(c, d, j + 1))
+    for p in solve(sts, ps):
+        print(p.idx)

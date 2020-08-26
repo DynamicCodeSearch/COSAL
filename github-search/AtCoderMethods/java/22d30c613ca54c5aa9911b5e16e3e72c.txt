@@ -1,0 +1,13 @@
+public static int solve(int item, int W) {
+    if (item >= w.length)
+        return 0;
+    Pair p = new Pair(item, W);
+    if (memo.containsKey(p))
+        return memo.get(p);
+    int best = solve(item + 1, W);
+    if (W >= w[item]) {
+        best = Math.max(best, solve(item + 1, W - w[item]) + v[item]);
+    }
+    memo.put(p, best);
+    return best;
+}

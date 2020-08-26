@@ -1,0 +1,17 @@
+public static void main(String[] args) throws IOException {
+    Scanner scanner = new Scanner(System.in);
+    long n = scanner.nextLong();
+    long t = scanner.nextLong();
+    long start = scanner.nextLong();
+    long count = 0;
+    for (int i = 1; i < n; i++) {
+        long next = scanner.nextLong();
+        if ((next - start) >= t) {
+            count += t;
+        } else {
+            count += next - start;
+        }
+        start = next;
+    }
+    System.out.println(count + t);
+}

@@ -1,0 +1,23 @@
+private static long[] solveRec(long r, int depth) {
+    if (depth <= 1) {
+        long[] cnt = new long[26];
+        for (int i = 0; i < Math.min(r, S.length); i++) {
+            cnt[S[i] - 'a']++;
+        }
+        r -= S.length;
+        for (int i = 0; i < Math.min(r, S.length); i++) {
+            cnt[S[i] - 'a']++;
+        }
+        return cnt;
+    }
+    long left = wl[depth - 1];
+    if (r <= left) {
+        return solveRec(r, depth - 1);
+    } else {
+        long[] ri = solveRec(r - left, depth - 2);
+        for (int i = 0; i < 26; i++) {
+            ri[i] += wcnt[depth - 1][i];
+        }
+        return ri;
+    }
+}

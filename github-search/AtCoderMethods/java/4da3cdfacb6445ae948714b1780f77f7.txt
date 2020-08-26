@@ -1,0 +1,10 @@
+static long gcd(long a, long b) {
+    long ta = Math.max(a, b);
+    long tb = Math.min(a, b);
+    long tmp;
+    while ((tmp = ta % tb) != 0) {
+        ta = tb;
+        tb = tmp;
+    }
+    return tb;
+}

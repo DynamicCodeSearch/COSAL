@@ -1,0 +1,14 @@
+def main():
+    N = int(input())
+    A = tuple(map(int, input().split()))
+
+    sum_ = sum(A)
+    min_ = float('inf')
+    x = y = 0
+    for i in range(N - 1):
+        x += A[i]
+        y = sum_ - x
+        if abs(x - y) < min_:
+            min_ = abs(x - y)
+
+    print(min_)

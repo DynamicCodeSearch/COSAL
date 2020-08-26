@@ -1,0 +1,23 @@
+static void solve(FastScanner sc, PrintWriter out) {
+    int N = sc.ni();
+    int[] a = sc.nia(N);
+    long[][] p = new long[2][N + 1];
+    long[][] n = new long[2][N + 1];
+    for (int i = 1; i <= N; i++) {
+        if (p[1][i - 1] + a[i - 1] < 0) {
+            n[0][i] = p[0][i - 1];
+            n[1][i] = p[1][i - 1] + a[i - 1];
+        } else {
+            n[0][i] = p[0][i - 1] + 1 + p[1][i - 1] + a[i - 1];
+            n[1][i] = -1;
+        }
+        if (n[1][i - 1] + a[i - 1] > 0) {
+            p[0][i] = n[0][i - 1];
+            p[1][i] = n[1][i - 1] + a[i - 1];
+        } else {
+            p[0][i] = n[0][i - 1] + 1 - n[1][i - 1] - a[i - 1];
+            p[1][i] = 1;
+        }
+    }
+    out.println(Math.min(p[0][N], n[0][N]));
+}

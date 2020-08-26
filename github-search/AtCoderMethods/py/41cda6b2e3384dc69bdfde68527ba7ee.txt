@@ -1,0 +1,9 @@
+def dp(dic, dic_add):
+    for key in dic_add.keys():
+        if key in dic:
+            dic[key] = min(dic[key], dic_add[key])
+    dic_keys = list(dic.keys())
+    for key in dic_keys:
+        if not key in dic_add:
+            del dic[key]
+    return dic

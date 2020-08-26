@@ -1,0 +1,27 @@
+public static void solve(int[] h, int a, int b) {
+    int max = 0;
+    int index = 0;
+    boolean flag = true;
+    long count = 0;
+    while (flag) {
+        flag = false;
+        max = 0;
+        for (int i = 0; i < h.length; i++) {
+            if (max < h[i]) {
+                max = h[i];
+                index = i;
+            }
+        }
+        h[index] -= a;
+        for (int i = 0; i < h.length; i++) {
+            if (i != index) {
+                h[i] -= b;
+            }
+            if (h[i] >= 1) {
+                flag = true;
+            }
+        }
+        count += 1;
+    }
+    System.out.println(count);
+}

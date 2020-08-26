@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    long N = sc.nextLong();
+    ArrayList<Long> aoki = new ArrayList<Long>();
+    long pos = N;
+    int winner = 1;
+    while (pos > 0) {
+        if (winner == 0) {
+            pos = (pos - 1) / 2;
+            winner = 1;
+        } else {
+            aoki.add(pos);
+            aoki.add(pos / 2 + 1);
+            pos /= 2;
+            winner = 0;
+        }
+    }
+    Collections.sort(aoki);
+    String ans = "Takahashi";
+    if (aoki.get(0) == 1)
+        ans = "Aoki";
+    System.out.println(ans);
+}

@@ -1,0 +1,15 @@
+private static BigDecimal count(int c1, int c2) {
+    int c3 = c1 - c2;
+    c2 = Math.min(c2, c3);
+    if (cache[c1][c2] != null) {
+        return cache[c1][c2];
+    }
+    BigDecimal r = new BigDecimal(1);
+    for (int i = 0; i < c2; i++) {
+        r = r.multiply(new BigDecimal(c1 - i));
+    }
+    for (int i = 0; i < c2; i++) {
+        r = r.divide(new BigDecimal(c2 - i));
+    }
+    return r;
+}

@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    int A = sc.nextInt();
+    int[] x = sc.nextIntList(N);
+    long[][] dp = new long[N + 1][2601];
+    dp[0][0] = 1;
+    for (int i = 1; i <= N; i++) {
+        for (int j = 0; j <= 2500; j++) {
+            dp[i][j + A] += dp[i - 1][j];
+            dp[i][j + x[i - 1]] += dp[i - 1][j];
+        }
+    }
+    System.out.println(dp[N][A * N] - 1);
+}

@@ -1,0 +1,29 @@
+static void Method(ArrayList<Integer> num, ArrayList<String> param) {
+    char comand = 0;
+    int x = 0;
+    int y = 0;
+    int unknown = 0;
+    int result = 0;
+    for (int i = 0; i < param.get(0).length(); i++) {
+        comand = param.get(0).charAt(i);
+        if (comand == 'L') {
+            x--;
+        } else if (comand == 'R') {
+            x++;
+        } else if (comand == 'U') {
+            y++;
+        } else if (comand == 'D') {
+            y--;
+        } else if (comand == '?') {
+            unknown++;
+        }
+    }
+    if (num.get(0) == 1) {
+        System.out.println(Math.abs(x) + Math.abs(y) + unknown);
+    } else {
+        result = Math.abs(x) + Math.abs(y) - unknown;
+        if (result < 0)
+            result = result % 2;
+        System.out.println(Math.abs(result));
+    }
+}

@@ -1,0 +1,20 @@
+def solve(i, j, k, l):  
+    if i > j or k > l:
+        return 0
+    if (i, j, k, l) in memo:
+        return memo[(i, j, k, l)]
+
+    res = 0
+    for x, y in [m for m in M if i <= m[0] <= j and k <= m[1] <= l]:
+
+        tmp = ((j - i) + 1 + (l - k) + 1) - 1
+
+
+        tmp += solve(i, x - 1, k, y - 1)
+        tmp += solve(x + 1, j, k, y - 1)
+        tmp += solve(i, x - 1, y + 1, l)
+        tmp += solve(x + 1, j, y + 1, l)
+        res = max(tmp, res)
+
+    memo[(i, j, k, l)] = res
+    return res

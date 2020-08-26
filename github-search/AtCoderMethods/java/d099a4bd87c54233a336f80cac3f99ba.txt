@@ -1,0 +1,18 @@
+void dijkstra(int s, List<Edge>[] edge, int[] res) {
+    PriorityQueue<D> queue = new PriorityQueue<D>();
+    queue.offer(new D(s, 0));
+    while (!queue.isEmpty()) {
+        D d = queue.poll();
+        int cur = d.k;
+        int len = d.len;
+        if (res[cur] != INF) {
+            continue;
+        }
+        res[cur] = len;
+        for (Edge e : edge[cur]) {
+            int to = e.to;
+            int cost = e.cost;
+            queue.offer(new D(to, len + cost));
+        }
+    }
+}

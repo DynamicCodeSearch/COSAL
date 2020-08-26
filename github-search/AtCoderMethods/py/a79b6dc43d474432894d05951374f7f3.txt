@@ -1,0 +1,13 @@
+def main():
+    Y, M, D = map(int, input().split("/"))
+    criterion_date = date(Y,M,D)
+
+    if is_divisible(criterion_date):
+        return criterion_date.strftime("%Y/%m/%d")
+
+
+    end_date = date(int(Y)+1,1,1)
+
+    for target_date in date_generator(criterion_date, end_date, timedelta(days=1)):
+        if is_divisible(target_date):
+            return target_date.strftime("%Y/%m/%d")

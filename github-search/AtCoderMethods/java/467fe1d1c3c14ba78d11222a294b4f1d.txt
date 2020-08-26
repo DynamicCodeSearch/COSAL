@@ -1,0 +1,8 @@
+public static long f(long na, long naMax, long r, long b, long x, long y) {
+    if (na < 0 || na > naMax) {
+        return -1;
+    }
+    if (Math.min(r - x * na, (b - na) / y) < 0)
+        throw new RuntimeException();
+    return na + Math.min(r - x * na, (b - na) / y);
+}

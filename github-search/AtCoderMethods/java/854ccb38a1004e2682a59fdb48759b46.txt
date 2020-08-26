@@ -1,0 +1,31 @@
+public static void main(String[] args) {
+    try {
+        
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+        String[] s = br.readLine().split("");
+        int n = Integer.parseInt(br.readLine());
+        for (int i = 0; i < n; i++) {
+            String[] strArr = br.readLine().split(" ");
+            int l = Integer.parseInt(strArr[0]) - 1;
+            int r = Integer.parseInt(strArr[1]) - 1;
+            int roop = r - l;
+            for (int j = 0; j < roop; j++) {
+                if (l >= r) {
+                    break;
+                }
+                String tmp = s[l];
+                s[l] = s[r];
+                s[r] = tmp;
+                l++;
+                r--;
+            }
+        }
+        for (int i = 0; i < s.length; i++) {
+            System.out.print(s[i]);
+        }
+        System.out.println();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

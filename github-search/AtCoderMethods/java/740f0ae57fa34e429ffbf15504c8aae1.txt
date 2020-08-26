@@ -1,0 +1,44 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int a = scanner.nextInt();
+    int b = scanner.nextInt();
+    long[][] map = new long[a + b + 1][2];
+    int N = a + b;
+    int tempa = a;
+    int tempb = b;
+    map[0][0] = 0l;
+    map[0][1] = a;
+    int flag = 0;
+    long to = a;
+    a--;
+    for (int i = 1; i < N; i++) {
+        if (map[i - 1][0] == 0) {
+            map[i][0] = 1;
+            to = to * b % MOD;
+            b--;
+        } else {
+            map[i][0] = 0;
+            to = to * a % MOD;
+            a--;
+        }
+    }
+    a = tempa;
+    b = tempb;
+    map[0][0] = 1l;
+    map[0][1] = b;
+    flag = 0;
+    long to2 = b;
+    b--;
+    for (int i = 1; i < N; i++) {
+        if (map[i - 1][0] == 0) {
+            map[i][0] = 1;
+            to2 = to2 * b % MOD;
+            b--;
+        } else {
+            map[i][0] = 0;
+            to2 = to2 * a % MOD;
+            a--;
+        }
+    }
+    System.out.println((to + to2) % MOD);
+}

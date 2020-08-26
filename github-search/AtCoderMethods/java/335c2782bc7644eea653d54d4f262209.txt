@@ -1,0 +1,38 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int R = sc.nextInt();
+    int C = sc.nextInt();
+    char[][] a = new char[R][C];
+    int sy = sc.nextInt() - 1;
+    int sx = sc.nextInt() - 1;
+    int gy = sc.nextInt() - 1;
+    int gx = sc.nextInt() - 1;
+    for (int i = 0; i < R; i++) {
+        String str = sc.next();
+        for (int j = 0; j < C; j++) {
+            a[i][j] = str.charAt(j);
+        }
+    }
+    Deque<Pair> q = new ArrayDeque<>();
+    q.addLast(new Pair(sy, sx, 0));
+    int[][] d = new int[R][C];
+    for (int i = 0; i < R; i++) {
+        for (int j = 0; j < C; j++) {
+            d[i][j] = -1;
+        }
+    }
+    while (!q.isEmpty()) {
+        int[] dy = { -1, 0, 1, 0 };
+        int[] dx = { 0, -1, 0, 1 };
+        Pair p = q.pollFirst();
+        for (int i = 0; i < 4; i++) {
+            int nx = p.x + dx[i];
+            int ny = p.y + dy[i];
+            if (0 <= nx && nx < C && ny >= 0 && ny < R && d[ny][nx] == -1 && a[ny][nx] != '#') {
+                d[ny][nx] = p.d + 1;
+                q.addLast(new Pair(ny, nx, p.d + 1));
+            }
+        }
+    }
+    System.out.println(d[gy][gx]);
+}

@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    PrintWriter out = new PrintWriter(System.out);
+    int h = sc.nextInt();
+    int w = sc.nextInt();
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    calc();
+    long ans = 0;
+    for (int i = b; i < w; i++) {
+        ans = (ans + modCombi(i + (h - a - 1), i) * modCombi((w - i - 1) + (a - 1), w - i - 1) % mod) % mod;
+    }
+    out.println(ans);
+    out.flush();
+}

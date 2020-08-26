@@ -1,0 +1,11 @@
+public static void solver(int N, int Q, int[] L, int[] R, int[] T) {
+    int[] list = new int[N + 1];
+    for (int i = 0; i < N + 1; i++) list[i] = 0;
+    for (int i = 0; i < Q; i++) {
+        for (int j = L[i]; j <= R[i]; j++) {
+            list[j] = T[i];
+        }
+    }
+    for (int i = 1; i < N + 1; i++) System.out.println(list[i]);
+    return;
+}

@@ -1,0 +1,22 @@
+def main():
+    n = int(input())
+    s = int(input())
+
+    ans = INF
+
+    if n == s:
+        ans = min(ans, n + 1)
+
+
+    for p in range(1, int(sqrt(n)) + 1):
+        q = s - p
+        b = (n - q) // p
+        if 2 <= b and f(b, n) == s:
+            ans = min(ans, b)
+
+
+    for b in range(2, int(sqrt(n)) + 1):
+        if f(b, n) == s:
+            ans = min(ans, b)
+
+    print(-1 if ans == INF else ans)

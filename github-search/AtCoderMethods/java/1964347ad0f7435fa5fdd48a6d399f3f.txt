@@ -1,0 +1,60 @@
+boolean isOk(int n, char[] c, StringBuilder s) {
+    for (int i = 0; i < n; i++) {
+        if (i == 0) {
+            if (s.charAt(i) == 'S') {
+                if (c[i] == 'o') {
+                    if (!(s.charAt(i + 1) == s.charAt(n - 1)))
+                        return false;
+                } else {
+                    if (!(s.charAt(i + 1) != s.charAt(n - 1)))
+                        return false;
+                }
+            } else {
+                if (c[i] == 'o') {
+                    if (!(s.charAt(i + 1) != s.charAt(n - 1)))
+                        return false;
+                } else {
+                    if (!(s.charAt(i + 1) == s.charAt(n - 1)))
+                        return false;
+                }
+            }
+        } else if (i == n - 1) {
+            if (s.charAt(i) == 'S') {
+                if (c[i] == 'o') {
+                    if (!(s.charAt(i - 1) == s.charAt(0)))
+                        return false;
+                } else {
+                    if (!(s.charAt(i - 1) != s.charAt(0)))
+                        return false;
+                }
+            } else {
+                if (c[i] == 'o') {
+                    if (!(s.charAt(i - 1) != s.charAt(0)))
+                        return false;
+                } else {
+                    if (!(s.charAt(i - 1) == s.charAt(0)))
+                        return false;
+                }
+            }
+        } else {
+            if (s.charAt(i) == 'S') {
+                if (c[i] == 'o') {
+                    if (!(s.charAt(i - 1) == s.charAt(i + 1)))
+                        return false;
+                } else {
+                    if (!(s.charAt(i - 1) != s.charAt(i + 1)))
+                        return false;
+                }
+            } else {
+                if (c[i] == 'o') {
+                    if (!(s.charAt(i - 1) != s.charAt(i + 1)))
+                        return false;
+                } else {
+                    if (!(s.charAt(i - 1) == s.charAt(i + 1)))
+                        return false;
+                }
+            }
+        }
+    }
+    return true;
+}

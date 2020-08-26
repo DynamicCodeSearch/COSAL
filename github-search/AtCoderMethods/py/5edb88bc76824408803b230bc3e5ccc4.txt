@@ -1,0 +1,12 @@
+def solve(cs, next_p):
+    if len(cs[next_p]) == 0:
+        return ["A", "B", "C"][next_p]
+
+    c = cs[next_p][0]
+    cs[next_p].pop(0)
+    if c == "a":
+        return solve(cs, 0)
+    if c == "b":
+        return solve(cs, 1)
+    if c == "c":
+        return solve(cs, 2)

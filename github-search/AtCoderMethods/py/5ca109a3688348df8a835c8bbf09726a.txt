@@ -1,0 +1,23 @@
+def solve():
+    n = int(input())
+    s = input()
+
+    if n % 2 == 0:
+        print(-1)
+        return
+
+    t = (n - 1) // 2
+
+    if t % 3 == 0:
+        check = 'bca'
+    elif t % 3 == 1:
+        check = 'abc'
+    else:
+        check = 'cab'
+
+    for i, ch in enumerate(s):
+        if check[i % 3] != ch:
+            print(-1)
+            return
+
+    print(t)

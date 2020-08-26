@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    char[][] a = new char[N][N];
+    for (int i = 0; i < N; i++) {
+        String s = sc.next();
+        char[] b = s.toCharArray();
+        for (int j = 0; j < N; j++) {
+            a[i][j] = b[j];
+        }
+    }
+    char[][] c = new char[N][N];
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            c[j][N - 1 - i] = a[i][j];
+        }
+    }
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            System.out.print(c[i][j]);
+        }
+        System.out.println();
+    }
+}

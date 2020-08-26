@@ -1,0 +1,37 @@
+public static int[] sccNonRecursive(Graph graph) {
+    
+    int[] postorder = createPostorder(graph);
+    
+    
+    
+    
+    
+    Graph rGraph = GraphUtils.transposed(graph);
+    return new DFS<int[]>(rGraph) {
+
+        int group = -1;
+
+        int[] result = new int[n];
+
+        
+        protected void enterRoot(int root) {
+            group++;
+        }
+
+        
+        
+        
+        
+        
+        protected boolean enter(Edge e) {
+            if (visited[e.to()])
+                return false;
+            result[e.to()] = group;
+            return true;
+        }
+
+        protected int[] result() {
+            return result;
+        }
+    }.run(ArrayUtils.reversed(postorder));
+}

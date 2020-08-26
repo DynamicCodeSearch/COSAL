@@ -1,0 +1,37 @@
+static void solve() {
+    int n = ni();
+    int k = ni();
+    long[] x = new long[n];
+    long[] y = new long[n];
+    long[] nx = new long[n];
+    long[] ny = new long[n];
+    for (int i = 0; i < n; i++) {
+        nx[i] = nl();
+        ny[i] = nl();
+        x[i] = nx[i];
+        y[i] = ny[i];
+    }
+    Arrays.sort(x);
+    Arrays.sort(y);
+    long minarea = Long.MAX_VALUE;
+    for (int x1 = 0; x1 < n; x1++) {
+        for (int x2 = x1 + 1; x2 < n; x2++) {
+            for (int y1 = 0; y1 < n; y1++) {
+                for (int y2 = y1 + 1; y2 < n; y2++) {
+                    int res = 0;
+                    long area = 0;
+                    for (int i = 0; i < n; i++) {
+                        if (nx[i] >= x[x1] && nx[i] <= x[x2] && ny[i] >= y[y1] && ny[i] <= y[y2]) {
+                            res++;
+                        }
+                    }
+                    if (res >= k) {
+                        area = (x[x2] - x[x1]) * (y[y2] - y[y1]);
+                        minarea = Math.min(area, minarea);
+                    }
+                }
+            }
+        }
+    }
+    out.println(minarea);
+}

@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int n = scanner.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = scanner.nextInt();
+    }
+    Arrays.sort(a);
+    boolean arrangeable = true;
+    for (int i = 0; i < n; i++) {
+        if (a[i] != ((i + n % 2) / 2 * 2 + 1 - n % 2)) {
+            arrangeable = false;
+            break;
+        }
+    }
+    if (arrangeable) {
+        int answer = 1;
+        for (int i = 0; i < n / 2; i++) {
+            answer = (answer * 2) % 1_000_000_007;
+        }
+        System.out.println(answer);
+    } else {
+        System.out.println(0);
+    }
+}

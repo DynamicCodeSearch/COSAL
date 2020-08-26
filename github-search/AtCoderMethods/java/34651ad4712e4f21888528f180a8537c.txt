@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    char[] s = in.nextToken().toCharArray();
+    long[][] dp = new long[2][n + 2];
+    dp[0][0] = 1;
+    for (int i = 0; i < n; i++) {
+        int fr = i % 2;
+        int to = 1 - fr;
+        Arrays.fill(dp[to], 0);
+        for (int j = 0; j <= n; j++) {
+            dp[to][j + 1] += dp[fr][j] * 2;
+            dp[to][j + 1] %= MOD;
+            int tj = Math.max(0, j - 1);
+            dp[to][tj] += dp[fr][j];
+            dp[to][tj] %= MOD;
+        }
+    }
+    out.println(dp[n % 2][s.length] * pow(inv(2), s.length) % MOD);
+    out.flush();
+}

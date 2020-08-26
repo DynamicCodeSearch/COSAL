@@ -1,0 +1,15 @@
+def main():
+    s = input()
+    n = len(s)
+    sum = 0
+    for i in range((1<<(n-1))):
+        prev = 0
+        exp = ""
+        for j in range(n-1):
+            if (i>>j)&1:
+                exp += s[prev:j+1]
+                prev = j+1
+                exp += "+"
+        exp += s[prev:]
+        sum += eval(exp)
+    print(sum)

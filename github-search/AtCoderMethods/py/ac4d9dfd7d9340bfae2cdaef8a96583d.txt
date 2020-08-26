@@ -1,0 +1,15 @@
+def dfs(N, Adj, v, p):
+    siro = 1
+    kuro = 1
+
+    for u in Adj[v]:
+        if u == p:
+            continue
+
+        unic, siroc = dfs(N, Adj, u, v)
+        siro = (siro * unic) % mod
+        kuro = (kuro * siroc) % mod
+
+    uni = (kuro + siro) % mod
+
+    return uni, siro

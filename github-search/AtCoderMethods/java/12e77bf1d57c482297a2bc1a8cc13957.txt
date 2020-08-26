@@ -1,0 +1,35 @@
+
+public int rank() {
+    long[][] x = new long[n][];
+    for (int i = 0; i < n; i++) {
+        x[i] = Arrays.copyOf(e[i], m);
+    }
+    int rank = 0;
+    for (int j = 0; j < m; j++) {
+        int ind = -1;
+        for (int i = rank; i < n; i++) {
+            if (x[i][j] != 0) {
+                ind = i;
+                break;
+            }
+        }
+        if (ind == -1) {
+            continue;
+        }
+        long[] temp = x[ind];
+        x[ind] = x[rank];
+        x[rank] = temp;
+        long a = inverse(x[rank][j], MOD);
+        for (int k = j; k < m; k++) {
+            x[rank][k] = x[rank][k] * a % MOD;
+        }
+        for (int i = rank + 1; i < n; i++) {
+            long b = (MOD - x[i][j]) % MOD;
+            for (int k = j; k < m; k++) {
+                x[i][k] = (x[rank][k] * b + x[i][k]) % MOD;
+            }
+        }
+        rank++;
+    }
+    return rank;
+}

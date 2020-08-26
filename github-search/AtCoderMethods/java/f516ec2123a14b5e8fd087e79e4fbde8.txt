@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    long N = Long.parseLong(scan.next());
+    long M = Long.parseLong(scan.next());
+    long min;
+    long max;
+    if (N < M) {
+        min = N;
+        max = M;
+    } else {
+        min = M;
+        max = N;
+    }
+    long ans;
+    long dif = max - min;
+    if (dif == 0) {
+        long tmp = factorial(max);
+        ans = 2 * tmp * tmp % NUM;
+    } else if (dif == 1) {
+        ans = factorial(max) * factorial(min) % NUM;
+    } else {
+        ans = 0;
+    }
+    System.out.println(ans);
+    scan.close();
+}

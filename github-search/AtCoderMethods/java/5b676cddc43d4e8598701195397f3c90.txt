@@ -1,0 +1,11 @@
+public static int[][] buildY(int[] a) {
+    int n = a.length;
+    int[] ca = new int[(n >>> S) + 1];
+    Arrays.fill(ca, Integer.MAX_VALUE);
+    for (int i = 0; i < n; i++) {
+        if (a[i] < ca[i >>> S])
+            ca[i >>> S] = a[i];
+    }
+    int[][] st = build(ca);
+    return st;
+}

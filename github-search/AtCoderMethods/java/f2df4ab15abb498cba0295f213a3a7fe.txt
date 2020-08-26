@@ -1,0 +1,24 @@
+public static void main(String[] args) throws IOException {
+    Scanner sc = new Scanner(System.in);
+    String S = sc.next();
+    String reversed = new StringBuilder(S).reverse().toString();
+    String[] values = new String[] { "remaerd", "maerd", "resare", "esare" };
+    int position = 0;
+    while (position < S.length()) {
+        String current = reversed.substring(position, Math.min(position + 7, S.length()));
+        boolean matched = false;
+        for (String value : values) {
+            if (current.startsWith(value)) {
+                matched = true;
+                position += value.length();
+                break;
+            }
+        }
+        if (!matched) {
+            
+            System.out.println("NO");
+            return;
+        }
+    }
+    System.out.println("YES");
+}

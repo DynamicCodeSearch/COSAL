@@ -1,0 +1,49 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    long[] cost = new long[N + 1];
+    HashMap<Integer, ArrayList<Edge>> adjl = new HashMap<Integer, ArrayList<Edge>>();
+    for (int i = 0; i < N; i++) {
+        adjl.put(i + 1, new ArrayList<Edge>());
+    }
+    for (int i = 0; i < N - 1; i++) {
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        long c = sc.nextLong();
+        adjl.get(a).add(new Edge(b, c));
+        adjl.get(b).add(new Edge(a, c));
+    }
+    int Q = sc.nextInt();
+    int K = sc.nextInt();
+    boolean[] visited = new boolean[N + 1];
+    long[] d = new long[N + 1];
+    for (int i = 0; i < N + 1; i++) {
+        visited[i] = false;
+    }
+    ArrayDeque<Integer> dq = new ArrayDeque<Integer>();
+    dq.add(K);
+    while (!dq.isEmpty()) {
+        int cur = dq.poll();
+        visited[cur] = true;
+        for (Edge e : adjl.get(cur)) {
+            if (visited[e.next])
+                continue;
+            dq.add(e.next);
+            d[e.next] = d[cur] + e.weight;
+        }
+    }
+    long[] ans = new long[Q];
+    for (int i = 0; i < Q; i++) {
+        
+        int x = sc.nextInt();
+        
+        int y = sc.nextInt();
+        
+        ans[i] = d[x] + d[y];
+    
+    }
+    for (int i = 0; i < Q; i++) {
+        System.out.println(ans[i]);
+    }
+}

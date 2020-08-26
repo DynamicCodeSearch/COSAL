@@ -1,0 +1,8 @@
+def main():
+    nums = input()
+    length = len(nums)
+    total = 0
+    for i in range(length):
+        for ts in itertools.combinations(range(1, length), i):
+            total += spl(nums, ts)
+    print(total)

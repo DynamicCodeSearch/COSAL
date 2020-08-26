@@ -1,0 +1,25 @@
+public long recur(int bit) {
+    if (bit == 0) {
+        return 1;
+    }
+    if (memo[bit] != -1) {
+        return memo[bit];
+    }
+    long ans = 0;
+    for (int i = 0; i < N; i++) {
+        if (get(bit, i)) {
+            boolean flg = true;
+            for (int j = 0; j < N; j++) {
+                if (get(bit, j) && comp[i][j] > 0) {
+                    flg = false;
+                    break;
+                }
+            }
+            if (flg) {
+                ans += recur(unset(bit, i));
+            }
+        }
+    }
+    return memo[bit] = ans;
+
+}

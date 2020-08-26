@@ -1,0 +1,12 @@
+private void calcMex(int v) {
+    for (int u : adj[v]) {
+        used[mex[u]] = true;
+    }
+    mex[v] = 0;
+    while (used[mex[v]]) {
+        ++mex[v];
+    }
+    for (int u : adj[v]) {
+        used[mex[u]] = false;
+    }
+}

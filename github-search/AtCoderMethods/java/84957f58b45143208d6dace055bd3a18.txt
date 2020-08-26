@@ -1,0 +1,16 @@
+public static int[][] classify(int[] comp) {
+    int n = comp.length;
+    int numComp = max(comp) + 1;
+    int[] counts = new int[numComp];
+    for (int aComp : comp) counts[aComp]++;
+    int[][] res = new int[numComp][];
+    for (int i = 0; i < numComp; i++) {
+        res[i] = new int[counts[i]];
+        counts[i] = 0;
+    }
+    for (int i = 0; i < n; i++) {
+        int c = comp[i];
+        res[c][counts[c]++] = i;
+    }
+    return res;
+}

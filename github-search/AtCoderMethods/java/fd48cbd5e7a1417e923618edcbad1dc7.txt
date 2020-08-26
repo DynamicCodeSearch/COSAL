@@ -1,0 +1,47 @@
+public static void main(String[] args) {
+    BufferedReader br = null;
+    try {
+        br = new BufferedReader(new InputStreamReader(System.in));
+        String line = br.readLine();
+        String[] tmp = line.split(" ");
+        int n = Integer.parseInt(tmp[0]);
+        int m = Integer.parseInt(tmp[1]);
+        String[] imageN = new String[n];
+        for (int i = 0; i < n; i++) {
+            line = br.readLine();
+            imageN[i] = line;
+        }
+        String[] imageM = new String[m];
+        for (int i = 0; i < m; i++) {
+            line = br.readLine();
+            imageM[i] = line;
+        }
+        boolean found = false;
+        
+        for (int i = 0; i <= n - m; i++) {
+            for (int j = 0; j <= n - m; j++) {
+                boolean exist = true;
+                for (int c = 0; c < m; c++) {
+                    String s1 = imageN[i + c].substring(j);
+                    if (s1.indexOf(imageM[c]) != 0) {
+                        exist = false;
+                    }
+                }
+                if (exist) {
+                    found = true;
+                    break;
+                }
+            }
+            if (found) {
+                break;
+            }
+        }
+        if (found) {
+            System.out.println("Yes");
+        } else {
+            System.out.println("No");
+        }
+    } catch (Exception ex) {
+        System.out.println("wrong input");
+    }
+}

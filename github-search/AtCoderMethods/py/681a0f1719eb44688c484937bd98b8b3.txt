@@ -1,0 +1,8 @@
+def _p(*obj):
+    if "DEBUG" not in globals():
+        return
+    import inspect
+    l = inspect.stack()[1].lineno
+    print("[{}]: ".format(l), end='')
+    from pprint import pprint
+    pprint(*obj)

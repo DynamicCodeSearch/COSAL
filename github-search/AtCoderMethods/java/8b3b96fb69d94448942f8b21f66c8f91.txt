@@ -1,0 +1,17 @@
+private long search(int d, int k, int[] l) {
+    String key = d + ":" + k;
+    if (memo.containsKey(key)) {
+        return memo.get(key);
+    }
+    if (d == l.length) {
+        return 0;
+    }
+    long res1 = search(d + 1, k, l);
+    long res2 = 0;
+    if (k - 1 >= 0) {
+        res2 = search(d + 1, k - 1, l) + l[d];
+    }
+    long res = Math.max(res1, res2);
+    memo.put(key, res);
+    return res;
+}

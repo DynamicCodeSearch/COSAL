@@ -1,0 +1,23 @@
+public void solve() {
+    N = nextInt();
+    X = new int[N];
+    children = new ArrayList[N];
+    for (int i = 0; i < N; i++) {
+        children[i] = new ArrayList<>();
+    }
+    for (int i = 1; i < N; i++) {
+        int P = nextInt() - 1;
+        children[P].add(i);
+    }
+    for (int i = 0; i < N; i++) {
+        X[i] = nextInt();
+    }
+    sum = new int[N];
+    Arrays.fill(sum, INF);
+    dfs(0);
+    if (sum[0] != INF) {
+        out.println("POSSIBLE");
+    } else {
+        out.println("IMPOSSIBLE");
+    }
+}

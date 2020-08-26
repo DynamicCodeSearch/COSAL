@@ -1,0 +1,27 @@
+void run() {
+    Scanner sc = new Scanner(System.in);
+    int h = sc.nextInt();
+    int w = sc.nextInt();
+    int hh = sc.nextInt();
+    int ww = sc.nextInt();
+    pow = new long[h + w + 1];
+    rev = new long[h + w + 1];
+    pow[0] = 1;
+    rev[0] = 1;
+    for (int i = 1; i < h + w + 1; i++) {
+        pow[i] = pow[i - 1] * i;
+        pow[i] %= MOD;
+        rev[i] = pow(pow[i], (int) MOD - 2);
+    }
+    
+    
+    long ans = 0;
+    for (int i = 1; i <= w - ww; i++) {
+        long tmp1 = combi(ww - 1 + i + h - hh - 1, h - hh - 1);
+        long tmp2 = combi(w - ww - i + hh - 1, hh - 1);
+        
+        ans += tmp1 * tmp2;
+        ans %= MOD;
+    }
+    System.out.println(ans);
+}

@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int A = scan.nextInt();
+    int B = scan.nextInt();
+    int dif = Math.abs(A - B);
+    int count = 0;
+    while (dif != 0) {
+        if (dif == 9) {
+            dif = 0;
+            count += 2;
+        } else if (dif == 8) {
+            dif = 0;
+            count += 3;
+        } else if (dif == 4) {
+            dif = 0;
+            count += 2;
+        } else if (dif >= 10) {
+            dif -= 10;
+            count++;
+        } else if (dif >= 5) {
+            dif -= 5;
+            count++;
+        } else {
+            dif -= 1;
+            count++;
+        }
+    }
+    System.out.println(count);
+}

@@ -1,0 +1,9 @@
+private static long pow(long x, long y) {
+    if (y == 0)
+        return 1;
+    long x2 = pow(x, y / 2);
+    long ans = x2 * x2 % MOD;
+    if (y % 2 != 0)
+        ans = ans * x % MOD;
+    return ans;
+}

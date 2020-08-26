@@ -1,0 +1,18 @@
+void run() {
+    int N = sc.nextInt();
+    long K = sc.nextLong();
+    TreeMap<Integer, Long> map = new TreeMap<>();
+    for (int i = 0; i < N; i++) {
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        map.put(a, map.containsKey(a) ? map.get(a) + b : b);
+    }
+    long sum = 0;
+    for (int key : map.keySet()) {
+        sum += map.get(key);
+        if (sum >= K) {
+            System.out.println(key);
+            break;
+        }
+    }
+}

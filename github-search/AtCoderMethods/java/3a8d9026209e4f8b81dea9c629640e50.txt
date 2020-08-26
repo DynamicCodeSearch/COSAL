@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    PrintWriter out = new PrintWriter(System.out);
+    int n = sc.nextInt();
+    long[] ary = new long[n + 1];
+    for (int i = 1; i <= n; i++) {
+        ary[i] = ary[i - 1] + i;
+    }
+    int count = 0;
+    long ans = 0;
+    int[] a = new int[n];
+    a[0] = sc.nextInt();
+    for (int i = 1; i < n; i++) {
+        a[i] = sc.nextInt();
+        if (a[i] > a[i - 1]) {
+            count++;
+        } else {
+            ans += ary[count + 1];
+            count = 0;
+        }
+    }
+    ans += ary[count + 1];
+    out.println(ans);
+    out.flush();
+}

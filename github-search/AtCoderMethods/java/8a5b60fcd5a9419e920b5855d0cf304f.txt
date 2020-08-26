@@ -1,0 +1,3 @@
+public int root(int x) {
+    return upper[x] < 0 ? x : (upper[x] = root(upper[x]));
+}

@@ -1,0 +1,19 @@
+def main():
+    N = int(input())
+    A = tuple(map(int, input().split()))
+
+    four = 0
+    two = 0
+    etc = 0
+    for i in A:
+        if i % 4 == 0:
+            four += 1
+        elif i % 2 == 0:
+            two += 1
+        else:
+            etc += 1
+
+    if four >= N // 2 or        etc == 0 or        two >= 2 and four >= etc:
+        print('Yes')
+    else:
+        print('No')

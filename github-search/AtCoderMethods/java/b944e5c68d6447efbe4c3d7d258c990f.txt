@@ -1,0 +1,31 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String ans = "";
+    int sx = sc.nextInt();
+    int sy = sc.nextInt();
+    int tx = sc.nextInt();
+    int ty = sc.nextInt();
+    int c1 = ty - sy;
+    int c2 = tx - sx;
+    for (int i = 0; i < c1; i++) {
+        ans = ans + "U";
+    }
+    for (int i = 0; i < c2; i++) {
+        ans = ans + "R";
+    }
+    for (int i = 0; i < c1; i++) {
+        ans = ans + "D";
+    }
+    for (int i = 0; i < c2; i++) {
+        ans = ans + "L";
+    }
+    ans = ans + "L";
+    for (int i = 0; i < c1 + 1; i++) ans = ans + "U";
+    for (int i = 0; i < c2 + 1; i++) ans = ans + "R";
+    ans = ans + "D";
+    ans = ans + "R";
+    for (int i = 0; i < c1 + 1; i++) ans = ans + "D";
+    for (int i = 0; i < c2 + 1; i++) ans = ans + "L";
+    ans = ans + "U";
+    System.out.println(ans);
+}

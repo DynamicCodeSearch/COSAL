@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String S = sc.next();
+    char[] alphabet = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
+    char[] let = S.toCharArray();
+    int[] numbers = new int[26];
+    for (int i = 0; i < let.length; i++) {
+        numbers[(int) let[i] - 'a']++;
+    }
+    int countEven = 0, countOdd = 0;
+    for (int i = 0; i < numbers.length; i++) {
+        countEven += numbers[i] / 2;
+        if (numbers[i] % 2 == 1) {
+            countOdd++;
+        }
+    }
+    if (countOdd == 0) {
+        System.out.println(let.length);
+    } else if (countEven < countOdd) {
+        System.out.println(1);
+    } else if (countEven == countOdd) {
+        System.out.println(3);
+    } else {
+        int rem = countEven / countOdd;
+        System.out.println(rem * 2 + 1);
+    }
+}

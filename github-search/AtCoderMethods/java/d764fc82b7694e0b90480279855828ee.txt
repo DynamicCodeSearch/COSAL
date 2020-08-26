@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String word = sc.next();
+    List<String> alphabetList = new ArrayList<>();
+    for (int i = 97; i < 123; i++) {
+        alphabetList.add(String.valueOf((char) i));
+    }
+    for (int j = 97; j < 123; j++) {
+        char containsAlphabet = (char) j;
+        if (word.contains(String.valueOf(containsAlphabet))) {
+            alphabetList.remove(String.valueOf(containsAlphabet));
+        }
+    }
+    if (alphabetList.isEmpty()) {
+        System.out.println("None");
+    } else {
+        System.out.println(alphabetList.get(0));
+    }
+}

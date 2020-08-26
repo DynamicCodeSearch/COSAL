@@ -1,0 +1,8 @@
+public void update(int k, int a) {
+    k += n - 1;
+    element[k] = a;
+    while (k > 0) {
+        k = (k - 1) / 2;
+        element[k] = Math.min(element[2 * k + 1], element[2 * k + 2]);
+    }
+}

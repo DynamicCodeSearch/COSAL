@@ -1,0 +1,11 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    String[] inputs = input.readLine().split(" ");
+    int N = Integer.parseInt(inputs[0]);
+    int K = Integer.parseInt(inputs[1]);
+    long answer = K;
+    for (int i = 1; i < N; i++) {
+        answer = answer * (K - 1);
+    }
+    System.out.println(answer);
+}

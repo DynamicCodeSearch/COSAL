@@ -1,0 +1,10 @@
+private static boolean cross(int depth, int beforeValue) {
+    if (depth == questionNum) {
+        return beforeValue == 0;
+    }
+    for (int i = 0; i < optionNum; i++) {
+        if (cross(depth + 1, targetNum[depth][i] ^ beforeValue))
+            return true;
+    }
+    return false;
+}

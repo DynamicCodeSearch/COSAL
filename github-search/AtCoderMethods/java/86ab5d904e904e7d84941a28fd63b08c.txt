@@ -1,0 +1,17 @@
+static BigInteger power2(BigInteger x, BigInteger y, BigInteger m) {
+    BigInteger ans = new BigInteger("1");
+    BigInteger one = new BigInteger("1");
+    BigInteger two = new BigInteger("2");
+    BigInteger zero = new BigInteger("0");
+    while (y.compareTo(zero) > 0) {
+        
+        if (y.mod(two).equals(one)) {
+            ans = ans.multiply(x).mod(m);
+            y = y.subtract(one);
+        } else {
+            x = x.multiply(x).mod(m);
+            y = y.divide(two);
+        }
+    }
+    return ans;
+}

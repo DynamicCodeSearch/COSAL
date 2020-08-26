@@ -1,0 +1,43 @@
+static void solve() {
+    int n = ni();
+    int[] a = na(n);
+    int[] b = new int[2 * n];
+    int p = 0;
+    for (int i = 0; i < n; i++) {
+        b[p++] = a[i];
+        b[p++] = a[i] + 1;
+    }
+    int q = 0;
+    for (int i = 0; i < 2 * n; i++) {
+        if (i + 1 < 2 * n && b[i] == b[i + 1]) {
+            i++;
+            continue;
+        }
+        b[q++] = b[i];
+    }
+    b = Arrays.copyOf(b, q);
+    int pe = 0, po = 0;
+    int[] be = new int[q];
+    int[] bo = new int[q];
+    for (int v : b) {
+        if (v % 2 == 0) {
+            be[pe++] = v;
+        } else {
+            bo[po++] = v;
+        }
+    }
+    be = Arrays.copyOf(be, pe);
+    bo = Arrays.copyOf(bo, po);
+    long[] isp = isp(11000000);
+    boolean[][] g = new boolean[pe][po];
+    for (int i = 0; i < pe; i++) {
+        for (int j = 0; j < po; j++) {
+            int s = Math.abs(be[i] - bo[j]);
+            if (isp[s >>> 6] << ~s < 0) {
+                g[i][j] = true;
+            }
+        }
+    }
+    int F = doBipartiteMatchingHK(g);
+    out.println(F + (pe - F) / 2 * 2 + (po - F) / 2 * 2 + ((pe - F) % 2 == 1 ? 3 : 0));
+}

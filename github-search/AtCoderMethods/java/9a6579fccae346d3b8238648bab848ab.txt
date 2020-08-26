@@ -1,0 +1,27 @@
+void doIt() {
+    String str = sc.next();
+    int length = str.length();
+    for (int c = 0; c < 26; c++) {
+        array.add(new ArrayList<Integer>());
+    }
+    for (int i = 0; i < length; i++) {
+        array.get(str.charAt(i) - 'a').add(i);
+    }
+    int s = -1;
+    int g = -1;
+    for (int c = 0; c < 26; c++) {
+        ArrayList<Integer> array2 = new ArrayList<Integer>();
+        array2 = array.get(c);
+        
+        int length2 = array2.size();
+        if (length2 > 1) {
+            for (int i = 1; i < length2; i++) {
+                if (array2.get(i) - array2.get(i - 1) <= 2) {
+                    s = array2.get(i - 1) + 1;
+                    g = array2.get(i) + 1;
+                }
+            }
+        }
+    }
+    System.out.println(s + " " + g);
+}

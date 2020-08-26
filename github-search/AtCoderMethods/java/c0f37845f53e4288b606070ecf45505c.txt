@@ -1,0 +1,25 @@
+public static long[] convolute(long[] a, long[] b) {
+    int USE = 2;
+    int m = Math.max(2, Integer.highestOneBit(Math.max(a.length, b.length) - 1) << 2);
+    long[][] fs = new long[USE][];
+    for (int k = 0; k < USE; k++) {
+        int P = NTTPrimes[k], g = NTTPrimitiveRoots[k];
+        long[] fa = nttmb(a, m, false, P, g);
+        long[] fb = a == b ? fa : nttmb(b, m, false, P, g);
+        for (int i = 0; i < m; i++) {
+            fa[i] = fa[i] * fb[i] % P;
+        }
+        fs[k] = nttmb(fa, m, true, P, g);
+    }
+    int[] mods = Arrays.copyOf(NTTPrimes, USE);
+    long[] gammas = garnerPrepare(mods);
+    int[] buf = new int[USE];
+    for (int i = 0; i < fs[0].length; i++) {
+        for (int j = 0; j < USE; j++) buf[j] = (int) fs[j][i];
+        long[] res = garnerBatch(buf, mods, gammas);
+        long ret = 0;
+        for (int j = res.length - 1; j >= 0; j--) ret = ret * mods[j] + res[j];
+        fs[0][i] = ret;
+    }
+    return fs[0];
+}

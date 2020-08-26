@@ -1,0 +1,8 @@
+private static int solve(int N, int K, int[] x) {
+    int count = 0;
+    for (int i = 0; i < N; i++) {
+        int min = Math.min(x[i], Math.abs(K - x[i]));
+        count += min * 2;
+    }
+    return count;
+}

@@ -1,0 +1,15 @@
+def check(s):
+    que = deque()
+    que.append(s)
+    while len(que) != 0:
+        tmp_ele = que.pop()
+        flgs[tmp_ele] = True
+        for ele in tmp_G[tmp_ele]:
+            if not flgs[ele]:
+                que.append(ele)
+
+    for flag in flgs:
+        if not flag:
+            return False
+    else:
+        return True

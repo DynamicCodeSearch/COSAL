@@ -1,0 +1,18 @@
+def main():
+    N = int(input())
+    A = tuple(map(int, input().split()))
+
+    b = [None] * N
+    i = 0
+    j = N - 1
+    n = 1
+    for k in range(N-1, -1, -1):
+        if n & 1:
+            b[i] = A[k]
+            i += 1
+        else:
+            b[j] = A[k]
+            j -= 1
+        n += 1
+
+    print(*b, sep=' ')

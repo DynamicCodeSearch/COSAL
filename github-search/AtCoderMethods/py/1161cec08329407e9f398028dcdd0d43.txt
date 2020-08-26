@@ -1,0 +1,13 @@
+def nibun_float(func , min_ ,max_, seido):
+    left = min_
+    right= max_
+    for _ in range(seido):
+
+        mid = (left+right) / 2
+
+        tmp = func(mid)
+        if tmp:
+            right = mid
+        else:
+            left = mid
+    return left

@@ -1,0 +1,39 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    Map<Integer, Set<Integer>> graph = new HashMap<>(n);
+    for (int i = 1; i <= n; i++) {
+        graph.put(i, new HashSet<>());
+    }
+    for (int r = 0; r < n - 1; r++) {
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        graph.get(a).add(b);
+        graph.get(b).add(a);
+    }
+    boolean[] claimedCache = new boolean[n + 1];
+    LinkedList<List<Integer>> queue = new LinkedList<>();
+    queue.addLast(Arrays.asList(1, 1));
+    claimedCache[1] = true;
+    queue.addLast(Arrays.asList(n, -1));
+    claimedCache[n] = true;
+    int fennecCount = 1;
+    int snukeCount = 1;
+    while (!queue.isEmpty()) {
+        List<Integer> data = queue.removeFirst();
+        int nodeId = data.get(0);
+        int colorId = data.get(1);
+        for (Integer neighbor : graph.get(nodeId)) {
+            if (!claimedCache[neighbor]) {
+                claimedCache[neighbor] = true;
+                if (colorId == 1) {
+                    fennecCount++;
+                } else {
+                    snukeCount++;
+                }
+                queue.addLast(Arrays.asList(neighbor, colorId));
+            }
+        }
+    }
+    System.out.println((fennecCount > snukeCount) ? "Fennec" : "Snuke");
+}

@@ -1,0 +1,8 @@
+public int nextInt() throws IOException {
+    int num = 0;
+    int read = skip();
+    do {
+        num = num * 10 + (read - 0x30);
+    } while ((read = inputStream.read()) > 0x20);
+    return num;
+}

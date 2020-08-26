@@ -1,0 +1,21 @@
+static boolean check(double x) {
+    per a = new per(p[0].x - x / p[0].c, p[0].y - x / p[0].c, 0);
+    per b = new per(p[0].x + x / p[0].c, p[0].y + x / p[0].c, 0);
+    for (int i = 1; i < n; i++) {
+        per ta = new per(p[i].x - x / p[i].c, p[i].y - x / p[i].c, 0);
+        per tb = new per(p[i].x + x / p[i].c, p[i].y + x / p[i].c, 0);
+        if (b.x < ta.x || tb.x < a.x)
+            return false;
+        if (ta.x > a.x)
+            a.x = ta.x;
+        if (b.x > tb.x)
+            b.x = tb.x;
+        if (b.y < ta.y || tb.y < a.y)
+            return false;
+        if (ta.y > a.y)
+            a.y = ta.y;
+        if (b.y > tb.y)
+            b.y = tb.y;
+    }
+    return true;
+}

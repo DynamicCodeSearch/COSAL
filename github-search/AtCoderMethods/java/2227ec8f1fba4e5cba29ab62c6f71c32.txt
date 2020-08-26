@@ -1,0 +1,25 @@
+public static void main(String[] args) throws Exception {
+    int l = sc.nextInt();
+    int x = sc.nextInt();
+    int y = sc.nextInt();
+    int s = sc.nextInt();
+    int d = sc.nextInt();
+    double t = 0.0;
+    if (x > y) {
+        if (s > d) {
+            t = (double) (l - s + d) / (double) (x + y);
+        } else {
+            t = (double) (d - s) / (double) (x + y);
+        }
+    } else {
+        if (s > d) {
+            t = Math.min((double) (s - d) / (double) (y - x), (double) (l - s + d) / (double) (x + y));
+        } else {
+            t = Math.min((double) (d - s) / (double) (x + y), (double) (s + l - d) / (double) (y - x));
+        }
+    }
+    out.println(t);
+    out.flush();
+    sc.close();
+    out.close();
+}

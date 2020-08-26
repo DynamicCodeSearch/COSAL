@@ -1,0 +1,26 @@
+public void readBody(String str) {
+    
+    cnt++;
+    String[] strArr = str.split(" ");
+    ArrayList<Integer> nums = new ArrayList<Integer>();
+    for (int i = 0; i < N; i++) {
+        int l = Integer.parseInt(strArr[i]);
+        nums.add(l);
+    }
+    nums.sort(new Comparator<Integer>() {
+
+        public int compare(Integer v1, Integer v2) {
+            return v2 - v1;
+        }
+    });
+    int sum = 0;
+    int cnt = 0;
+    for (int i : nums) {
+        
+        sum += i;
+        cnt++;
+        if (cnt >= K)
+            break;
+    }
+    System.out.println(sum);
+}

@@ -1,0 +1,16 @@
+void addSeries(int l, int r, int k, long v, int curL, int curR) {
+    if (curR <= l || curL >= r)
+        return;
+    if (l <= curL && curR <= r) {
+        final int m = curR - curL;
+        add1[k] += v;
+        seg[k] += v * m * (m + 1) / 2;
+        return;
+    }
+    final int curM = (curL + curR) / 2;
+    propagate(curL, curR, k);
+    addSeries(l, r, 2 * k + 1, v, curL, curM);
+    addSeries(l, r, 2 * k + 2, v, curM, curR);
+    add(l, r, 2 * k + 2, v * Math.max(0, curM - Math.max(curL, l)), curM, curR);
+    seg[k] = seg[2 * k + 1] + seg[2 * k + 2];
+}

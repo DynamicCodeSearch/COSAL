@@ -1,0 +1,10 @@
+public void unite(int x, int y) {
+    int xx = find(x), yy = find(y);
+    if (xx == yy)
+        return;
+    parent[xx] = yy;
+    int c1 = cnt[xx];
+    int c2 = cnt[yy];
+    cnt[xx] += c2;
+    cnt[yy] += c1;
+}

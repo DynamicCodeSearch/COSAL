@@ -1,0 +1,16 @@
+
+public int delMin() {
+    if (N == 0)
+        throw new NoSuchElementException("Priority queue underflow");
+    int min = pq[1];
+    exch(1, N--);
+    sink(1);
+    assert min == pq[N + 1];
+    
+    qp[min] = -1;
+    
+    keys[min] = null;
+    
+    pq[N + 1] = -1;
+    return min;
+}

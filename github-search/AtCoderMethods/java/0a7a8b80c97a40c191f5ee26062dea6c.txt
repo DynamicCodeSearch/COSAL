@@ -1,0 +1,44 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    long k = sc.nextLong();
+    long[] a = new long[n];
+    long sum = 0;
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    long ans = 0;
+    long now = 0;
+    for (int i = 0; i < n; i++) a[i] = sc.nextLong();
+    for (int i = (int) k - 1; i < n; i++) {
+        if (i == k - 1) {
+            for (int j = 0; j < k; j++) {
+                now += a[j];
+            }
+            ans += now;
+        } else {
+            now -= a[i - (int) k];
+            now += a[i];
+            ans += now;
+        
+        }
+    }
+    System.out.println(ans);
+}

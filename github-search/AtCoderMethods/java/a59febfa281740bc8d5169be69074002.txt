@@ -1,0 +1,28 @@
+public void calc() {
+    sb = new StringBuilder();
+    IO sc = new IO();
+    int n = sc.nextInt();
+    int t = sc.nextInt();
+    int[] a = sc.nextIntArray(n);
+    int ans = 0;
+    int max = 0;
+    int[] maxs = new int[n];
+    for (int i = 0; i < n; i++) {
+        int ni = n - i - 1;
+        if (max < a[ni]) {
+            max = a[ni];
+        }
+        maxs[ni] = max;
+    }
+    max = 0;
+    for (int i = 0; i < n - 1; i++) {
+        int d = maxs[i] - a[i];
+        if (d > max) {
+            max = d;
+            ans = 1;
+        } else if (max == d) {
+            ans++;
+        }
+    }
+    System.out.println(ans);
+}

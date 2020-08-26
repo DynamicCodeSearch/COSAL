@@ -1,0 +1,17 @@
+def solve(es, degrees, N, M):
+    bridge = 0
+    Q = []
+
+    for i in range(1, N+1):
+        if degrees[i] == 1:
+            Q.append(i)
+
+    while Q:
+        u = Q.pop()
+        bridge += 1
+        for e in es[u]:
+            degrees[e] -= 1
+            if degrees[e] == 1:
+                Q.append(e)
+
+    return bridge

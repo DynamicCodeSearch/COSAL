@@ -1,0 +1,14 @@
+public void solve() {
+    int n = in.nextInt(), m = in.nextInt();
+    ArrayList<Edge>[] g = new ArrayList[n];
+    for (int i = 0; i < n; i++) g[i] = new ArrayList<Edge>();
+    for (int i = 0; i < m; i++) {
+        int p = in.nextInt() - 1, q = in.nextInt() - 1, c = in.nextInt();
+        g[p].add(new Edge(q, c));
+        g[q].add(new Edge(p, c));
+    }
+    int[] cost = dijkstra(g, 0);
+    int[] cost2 = dijkstra2(g, 0);
+    int res = Math.min(cost[n - 1], cost2[n - 1]);
+    System.out.println(res == INF ? -1 : res);
+}

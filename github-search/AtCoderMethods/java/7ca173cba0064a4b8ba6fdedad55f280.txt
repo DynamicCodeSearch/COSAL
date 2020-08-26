@@ -1,0 +1,16 @@
+static String judge(int y, int m, int d) {
+    Calendar calendar = Calendar.getInstance();
+    calendar.set(y, (m - 1), d);
+    String answer = "";
+    for (; ; ) {
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH) + 1;
+        int day = calendar.get(Calendar.DATE);
+        if ((year % (month * day)) == 0) {
+            answer = year + "/" + ((month >= 10) ? month : "0" + month) + "/" + ((day >= 10) ? day : "0" + day);
+            break;
+        }
+        calendar.add(Calendar.DAY_OF_MONTH, 1);
+    }
+    return answer;
+}

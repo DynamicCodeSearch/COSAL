@@ -1,0 +1,63 @@
+void solver() {
+    int N = ni();
+    int A = ni();
+    int[] x = new int[A];
+    int[] y = new int[A];
+    for (int i = 0; i < A; i++) {
+        x[i] = ni() - 1;
+        y[i] = ni() - 1;
+    }
+    int B = ni();
+    int[] u = new int[B];
+    int[] v = new int[B];
+    for (int i = 0; i < B; i++) {
+        u[i] = ni() - 1;
+        v[i] = ni() - 1;
+    }
+    int max = 0;
+    for (int mask = 0; mask < (1 << B); mask++) {
+        ArrayList<Integer>[] g = new ArrayList[N];
+        for (int i = 0; i < N; i++) {
+            g[i] = new ArrayList<>();
+        }
+        NG = new boolean[N];
+        for (int i = 0; i < A; i++) {
+            g[y[i]].add(x[i]);
+        }
+        for (int i = 0; i < B; i++) {
+            if (((mask >> i) & 1) == 1) {
+                NG[u[i]] = true;
+            } else {
+                g[u[i]].add(v[i]);
+            }
+        }
+        for (int i = 0; i < N; i++) {
+            if (NG[i])
+                dfs(i, -1, g);
+        }
+        int[] scc = stronglyConnectedComponents(g, NG);
+        ArrayList<Integer>[] comp = new ArrayList[N];
+        for (int i = 0; i < N; i++) comp[i] = new ArrayList<>();
+        for (int i = 0; i < N; i++) {
+            if (scc[i] == -1)
+                continue;
+            comp[scc[i]].add(i);
+        }
+        for (int i = 0; i < N; i++) {
+            if (comp[i].size() > 1) {
+                for (int element : comp[i]) {
+                    NG[element] = true;
+                }
+            }
+        }
+        for (int i = 0; i < N; i++) {
+            if (NG[i])
+                dfs(i, -1, g);
+        }
+        int ans = N;
+        for (int i = 0; i < N; i++) if (NG[i])
+            ans--;
+        max = Math.max(max, ans);
+    }
+    out.println(max);
+}

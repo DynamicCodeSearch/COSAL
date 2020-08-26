@@ -1,0 +1,6 @@
+public boolean add(E value) {
+    int priority = nextRnd();
+    int mc = modCount;
+    root = insert(root, value, priority);
+    return mc + 1 == modCount;
+}

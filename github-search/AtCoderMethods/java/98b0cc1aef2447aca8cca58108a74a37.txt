@@ -1,0 +1,76 @@
+public static void solve(PrintWriter out, FastScanner in) {
+    long H = in.nextInt();
+    long W = in.nextInt();
+    int N = in.nextInt();
+    BigInteger maxEmpty = BigInteger.valueOf(H - 2);
+    maxEmpty = maxEmpty.multiply(BigInteger.valueOf(W - 2));
+    
+    if (N == 0) {
+        out.println(maxEmpty);
+        for (int i = 0; i < 9; i++) {
+            out.println("0");
+        }
+        return;
+    }
+    Pair[] ps = new Pair[9 * N];
+    int a, b, idx = 0;
+    for (int i = 0; i < N; i++) {
+        a = in.nextInt();
+        b = in.nextInt();
+        for (int dx = 0; dx < 3; dx++) {
+            for (int dy = 0; dy < 3; dy++) {
+                int y = a - 1 + dy;
+                int x = b - 1 + dx;
+                if (x >= 2 && x <= W - 1 && y >= 2 && y <= H - 1) {
+                    ps[idx++] = new Pair(x, y);
+                }
+            }
+        }
+    }
+    
+    
+    
+    Arrays.sort(ps, 0, idx);
+    Pair p;
+    int pa = 0;
+    int pb = 0;
+    if (N != 0) {
+        p = ps[0];
+        pa = p.first;
+        pb = p.second;
+    }
+    
+    int count = 1;
+    BigInteger[] res = new BigInteger[10];
+    for (int i = 0; i < 10; i++) {
+        res[i] = new BigInteger("0");
+    }
+    res[0] = new BigInteger(String.valueOf(H - 2));
+    res[0] = res[0].multiply(new BigInteger(String.valueOf(W - 2)));
+    int sum = 0;
+    BigInteger one = new BigInteger("1");
+    for (int i = 1; i < idx; i++) {
+        p = ps[i];
+        if (p.first == pa && p.second == pb) {
+            
+            count++;
+        } else {
+            
+            res[count] = res[count].add(one);
+            sum++;
+            count = 1;
+        }
+        pa = p.first;
+        pb = p.second;
+    }
+    res[count] = res[count].add(one);
+    sum++;
+    
+    
+    
+    
+    out.println(res[0].subtract(new BigInteger(String.valueOf(sum))));
+    for (int i = 1; i < res.length; i++) {
+        out.println(res[i]);
+    }
+}

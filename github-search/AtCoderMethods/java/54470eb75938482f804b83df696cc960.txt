@@ -1,0 +1,9 @@
+private static void upHeap(long[] heap, int index) {
+    if (index == 0)
+        return;
+    int parent = (index - 1) / 2;
+    if (heap[index] > heap[parent]) {
+        swap(heap, index, parent);
+        upHeap(heap, parent);
+    }
+}

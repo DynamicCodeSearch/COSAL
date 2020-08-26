@@ -1,0 +1,35 @@
+public void solve() {
+    N = nextInt();
+    x = new int[N];
+    y = new int[N];
+    c = new int[N];
+    for (int i = 0; i < N; i++) {
+        x[i] = nextInt();
+        y[i] = nextInt();
+        c[i] = nextInt();
+    }
+    double low = 0.0;
+    double high = Integer.MAX_VALUE;
+    for (int i = 0; i < 100; i++) {
+        double t = (low + high) / 2;
+        boolean flag = true;
+        for (int j = 0; j < N; j++) {
+            for (int k = j + 1; k < N; k++) {
+                int ny = Math.abs(y[j] - y[k]);
+                int nx = Math.abs(x[j] - x[k]);
+                double d = (t / c[j] + t / c[k]);
+                if (ny <= d && nx <= d)
+                    continue;
+                flag = false;
+                break;
+            }
+            if (!flag)
+                break;
+        }
+        if (flag)
+            high = t;
+        else
+            low = t;
+    }
+    out.println(String.format("%.7f", (high + low) / 2));
+}

@@ -1,0 +1,20 @@
+def solve(sx,ex,sy,ey):
+    global max_gold
+
+    if (sx,ex,sy,ey) in max_gold:
+        return max_gold[(sx,ex,sy,ey)]
+    elif sx>ex or sy>ey:
+        return 0
+    else:
+        max_temp = 0
+        for (x,y) in XY:
+            sum = 0
+            if (sx<=x and x<=ex and sy<= y and y<= ey):
+                sum += (ex-sx+1) + (ey-sy+1) - 1
+                sum += solve(sx, x-1, sy, y-1)
+                sum += solve(sx, x-1, y+1, ey)
+                sum += solve(x+1, ex, sy, y-1)
+                sum += solve(x+1, ex, y+1, ey)
+            max_temp = max(max_temp,sum)
+        max_gold[(sx,ex,sy,ey)]=max_temp
+        return max_temp

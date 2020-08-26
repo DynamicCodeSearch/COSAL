@@ -1,0 +1,9 @@
+def solve(N, As):
+
+    a = 0
+    b = abs(As[0] - As[1])
+    for n in range(2, N):
+        c = min(b + abs(As[n - 1] - As[n]), a + abs(As[n - 2] - As[n]))
+        a = b
+        b = c
+    return b

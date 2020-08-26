@@ -1,0 +1,24 @@
+def dijkstra(c,s,t):
+    found = set([(s,0)])
+    dist ={s:0}
+    notfound=set(c[1:])
+    edgesinheap=[]
+    newvert = s
+    while notfound:
+        if newvert == t:
+            return dist[t]
+
+        for x in notfound:
+            heappush(edgesinheap, (dist[newvert]+finddist(newvert ,x), x, newvert))
+
+        nextvertexfound = False
+        while not nextvertexfound:
+            d,nextvert, priv = heappop(edgesinheap)
+            if nextvert not in found:
+                nextvertexfound = True
+                dist[nextvert] = d
+                found.add(nextvert)
+                notfound.remove(nextvert)
+                newvert = nextvert
+
+    return dist[t]

@@ -1,0 +1,28 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt(), m = in.nextInt();
+    int[] x = new int[n];
+    int[] y = new int[n];
+    int[] checkX = new int[m];
+    int[] checkY = new int[m];
+    for (int i = 0; i < n; ++i) {
+        x[i] = in.nextInt();
+        y[i] = in.nextInt();
+    }
+    for (int i = 0; i < m; ++i) {
+        checkX[i] = in.nextInt();
+        checkY[i] = in.nextInt();
+    }
+    for (int i = 0; i < n; ++i) {
+        long min = Integer.MAX_VALUE;
+        int cur = 50;
+        for (int k = 0; k < m; ++k) {
+            int dist = Math.abs(x[i] - checkX[k]) + Math.abs(y[i] - checkY[k]);
+            if (dist < min)
+                cur = k;
+            if (dist == min)
+                cur = Math.min(cur, k);
+            min = Math.min(min, dist);
+        }
+        out.println(cur + 1);
+    }
+}

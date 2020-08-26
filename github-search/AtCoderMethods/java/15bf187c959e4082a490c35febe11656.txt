@@ -1,0 +1,16 @@
+private void calc() throws Exception {
+    long A = sc.nextLong();
+    int K = sc.nextInt();
+    long shoji = A;
+    long nisuu = 0;
+    if (K == 0) {
+        System.out.println(2000000000000L - shoji);
+        return;
+    }
+    while (shoji < 2000000000000L) {
+        shoji += (1 + (K * shoji));
+        
+        nisuu++;
+    }
+    System.out.println(nisuu);
+}

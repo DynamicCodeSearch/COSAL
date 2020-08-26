@@ -1,0 +1,19 @@
+public static void move(int sx, int sy, int tx, int ty, StringBuilder sb, boolean first) {
+    final int x_sign = Integer.signum(tx - sx);
+    final int y_sign = Integer.signum(ty - sy);
+    int cur_x = sx, cur_y = sy;
+    if (!first) {
+        cur_x += (-x_sign);
+        sb.append(x_sign > 0 ? "L" : "R");
+        ty += (y_sign);
+    }
+    for (; cur_y != ty; cur_y += y_sign) {
+        sb.append(y_sign > 0 ? "U" : "D");
+    }
+    for (; cur_x != tx; cur_x += x_sign) {
+        sb.append(x_sign > 0 ? "R" : "L");
+    }
+    if (!first) {
+        sb.append(y_sign > 0 ? "D" : "U");
+    }
+}

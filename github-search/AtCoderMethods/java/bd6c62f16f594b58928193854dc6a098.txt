@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int n = scanner.nextInt(), m = scanner.nextInt();
+    scanner.close();
+    int x = 0, y = 0, z = 0;
+    if (m % 2 == 1) {
+        y++;
+        m -= 3;
+        n -= 1;
+    }
+    z = (m - (n * 2)) / 2;
+    x = n - z;
+    if (x < 0 || n < x) {
+        System.out.println("-1 -1 -1");
+    } else {
+        System.out.println(x + " " + y + " " + z);
+    }
+}

@@ -1,0 +1,15 @@
+void solve() throws IOException {
+    int n = in.nextInt();
+    int m = in.nextInt();
+    if (n < m) {
+        int tmp = n;
+        n = m;
+        m = tmp;
+    }
+    if (n - m > 1) {
+        System.out.println(0);
+        return;
+    }
+    long coef = n - m == 0 ? 2 : 1;
+    System.out.println(perm(n) * perm(m) % mod * coef % mod);
+}

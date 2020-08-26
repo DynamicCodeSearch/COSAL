@@ -1,0 +1,11 @@
+private void buildRec(int root, int L, int R, int[] leaves) {
+    if (L == R) {
+        min[L % 2][root] = leaves[L];
+        min[(L + 1) % 2][root] = infinity;
+        return;
+    }
+    int M = (L + R) / 2;
+    buildRec(2 * root + 1, L, M, leaves);
+    buildRec(2 * root + 2, M + 1, R, leaves);
+    pull(root);
+}

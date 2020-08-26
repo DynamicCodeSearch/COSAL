@@ -1,0 +1,23 @@
+
+
+static long calcTribonacci(long n) {
+    long an = 0;
+    long anm1 = 1;
+    long anm2 = 0;
+    long anm3 = 0;
+    if (n == 1) {
+        return 0;
+    } else if (n == 2) {
+        return 0;
+    } else if (n == 3) {
+        return 1;
+    } else {
+        for (long i = 3; i < n; i++) {
+            an = (anm1 + anm2 + anm3) % 10007;
+            anm3 = anm2;
+            anm2 = anm1;
+            anm1 = an;
+        }
+    }
+    return an;
+}

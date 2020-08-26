@@ -1,0 +1,20 @@
+private static boolean check(int current, int left, int right, char ch) {
+    if (current == WOLF) {
+        if (ch == 'x') {
+            if (left != right)
+                return false;
+        } else {
+            if (left == right)
+                return false;
+        }
+    } else {
+        if (ch == 'o') {
+            if (left != right)
+                return false;
+        } else {
+            if (left == right)
+                return false;
+        }
+    }
+    return true;
+}

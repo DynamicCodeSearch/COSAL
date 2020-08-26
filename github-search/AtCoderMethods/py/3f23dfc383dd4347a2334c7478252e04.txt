@@ -1,0 +1,17 @@
+def solve(road, num, ans, n):
+    pattern = 0
+    test = deepcopy(road)
+    for s in test:
+        if num in s:
+            s.remove(num)
+    if len(ans) is n:
+        return 1
+    if len(test[num - 1]) == int(0):
+        return 0
+    else:
+        for i in range(len(test[num - 1])):
+            tmp = test[num - 1][i]
+            if tmp is not 0:
+                word = ans + str(tmp)
+            pattern += solve(test, tmp, word, n)
+    return pattern

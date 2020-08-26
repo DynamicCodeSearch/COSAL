@@ -1,0 +1,11 @@
+def calc(s):
+    res = [0 for ch in s]
+    prev = 0
+    for i in range(0,len(s)):
+        if s[i] == 'A':
+            res[i] = (prev - 1) % 3
+        else:
+            if s[i] == 'B':
+                res[i] = (prev + 1) % 3
+        prev = res[i]
+    return res

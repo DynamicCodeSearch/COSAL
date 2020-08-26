@@ -1,0 +1,21 @@
+static void doIt() {
+    Scanner sc = new Scanner(System.in);
+    int m = sc.nextInt();
+    int n = sc.nextInt();
+    int N = sc.nextInt();
+    int p = N;
+    int rem = 0;
+    int count = 0;
+    while (true) {
+        count += p;
+        rem += p % m;
+        p = (p / m) * n;
+        while (m <= rem) {
+            rem %= m;
+            p += n;
+        }
+        if (p <= 0)
+            break;
+    }
+    System.out.println(count);
+}

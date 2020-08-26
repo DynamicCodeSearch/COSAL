@@ -1,0 +1,11 @@
+def main():
+    H, W = map(int, input().split())
+    l = [list(input()) for _ in range(H)]
+
+    ans = uncompress(l)
+    r = compress(ans)
+    if l != r:
+        print("impossible")
+    else:
+        print("possible")
+        print(*["".join(line) for line in ans], sep="\n")

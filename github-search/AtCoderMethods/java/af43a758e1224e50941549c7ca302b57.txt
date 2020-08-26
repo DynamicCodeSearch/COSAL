@@ -1,0 +1,35 @@
+void solve() {
+    int[] ia = readNums();
+    int w = ia[0];
+    int h = ia[1];
+    int n = ia[2];
+    int minx = 0;
+    int miny = 0;
+    int maxx = w;
+    int maxy = h;
+    for (int i = 0; i < n; i++) {
+        ia = readNums();
+        int x = ia[0];
+        int y = ia[1];
+        int a = ia[2];
+        switch(a) {
+            case 1:
+                minx = Math.max(minx, x);
+                break;
+            case 2:
+                maxx = Math.min(maxx, x);
+                break;
+            case 3:
+                miny = Math.max(miny, y);
+                break;
+            case 4:
+                maxy = Math.min(maxy, y);
+                break;
+        }
+    }
+    if (minx > maxx)
+        maxx = minx;
+    if (miny > maxy)
+        maxy = miny;
+    pln((maxx - minx) * (maxy - miny));
+}

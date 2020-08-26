@@ -1,0 +1,19 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] input = br.readLine().split(" ");
+    int n = Integer.parseInt(input[0]);
+    int s = Integer.parseInt(input[1]);
+    int t = Integer.parseInt(input[2]);
+    int w = Integer.parseInt(br.readLine());
+    int count = 0;
+    if (w >= s && w <= t) {
+        count += 1;
+    }
+    for (int i = 0; i < n - 1; i++) {
+        w += Integer.parseInt(br.readLine());
+        if (w >= s && w <= t) {
+            count += 1;
+        }
+    }
+    System.out.println(count);
+}

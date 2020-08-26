@@ -1,0 +1,36 @@
+private static void solve() {
+    int h = nei();
+    int w = nei();
+    String[] ss = nss(h);
+    boolean[][] b = new boolean[h][w];
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            b[i][j] = ss[i].charAt(j) == '#';
+        }
+    }
+    int[][] num = new int[h][w];
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            for (int k = i - 1; k <= i + 1; k++) {
+                if (k < 0 || k >= h)
+                    continue;
+                for (int l = j - 1; l <= j + 1; l++) {
+                    if (l < 0 || l >= w)
+                        continue;
+                    if (b[k][l])
+                        num[i][j]++;
+                }
+            }
+        }
+    }
+    for (int i = 0; i < h; i++) {
+        String s = "";
+        for (int j = 0; j < w; j++) {
+            if (b[i][j])
+                s += "#";
+            else
+                s += num[i][j];
+        }
+        out(s);
+    }
+}

@@ -1,0 +1,21 @@
+int[] getDists(int start) {
+    int[] log = new int[n];
+    Arrays.fill(log, Integer.MAX_VALUE);
+    PriorityQueue<Node> queue = new PriorityQueue<>((n1, n2) -> Integer.compare(n2.rank, n1.rank));
+    log[start] = 0;
+    for (Edge e : es.get(start)) {
+        queue.add(new Node(e.to, 1));
+    }
+    while (!queue.isEmpty()) {
+        Node n = queue.poll();
+        if (n.rank > log[n.id])
+            continue;
+        log[n.id] = n.rank;
+        for (Edge e : es.get(n.id)) {
+            if (log[e.to] > log[n.id] + 1) {
+                queue.add(new Node(e.to, log[n.id] + 1));
+            }
+        }
+    }
+    return log;
+}

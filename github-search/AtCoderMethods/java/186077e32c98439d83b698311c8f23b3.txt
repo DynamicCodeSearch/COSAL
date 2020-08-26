@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int n = in.nextInt(), m = in.nextInt();
+    Set<Integer> jedynki = new HashSet<>();
+    Set<Integer> enki = new HashSet<>();
+    for (int i = 0; i < m; ++i) {
+        int x = in.nextInt();
+        int y = in.nextInt();
+        if (x == 1)
+            jedynki.add(y);
+        if (y == n)
+            enki.add(x);
+    }
+    for (int x : jedynki) {
+        if (enki.contains(x)) {
+            System.out.println("POSSIBLE");
+            return;
+        }
+    }
+    System.out.println("IMPOSSIBLE");
+}

@@ -1,0 +1,22 @@
+public static void solve(int v) {
+    boolean allVisited = true;
+    for (int i = 0; i < n; i++) {
+        if (visited[i] == 0) {
+            allVisited = false;
+            break;
+        }
+    }
+    if (allVisited) {
+        answer++;
+        return;
+    }
+    for (int i = 0; i < n; i++) {
+        if (map[v][i] == 1 && visited[i] == 0) {
+            numVisited++;
+            visited[i] = 1;
+            solve(i);
+            visited[i] = 0;
+            numVisited--;
+        }
+    }
+}

@@ -1,0 +1,20 @@
+def rectangleFromOrigin(x, y):
+
+    if x < 0 or y < 0:
+        return 0
+    if square_memo[x][y] == -1:
+
+
+
+
+
+
+
+
+        s = 0
+        s += rectangleFromOrigin(x - 1, y)  
+        s += rectangleFromOrigin(x, y - 1)  
+        s -= rectangleFromOrigin(x - 1, y - 1)  
+        s += D[x][y]  
+        square_memo[x][y] = s
+    return square_memo[x][y]

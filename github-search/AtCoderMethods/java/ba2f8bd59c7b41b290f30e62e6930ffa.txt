@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    
+    long N = sc.nextLong();
+    int sqrtn = (int) Math.sqrt(N);
+    long a = 0;
+    for (long i = 1; i <= sqrtn; ) {
+        if (N % i == 0) {
+            a = N / i;
+        }
+        i++;
+    }
+    long b = N / a;
+    long ans = Math.max(a, b);
+    int len = String.valueOf(ans).length();
+    
+    System.out.println(len);
+}

@@ -1,0 +1,14 @@
+public final boolean connect(int a, int b) {
+    a = root(a);
+    b = root(b);
+    if (a == b)
+        return false;
+    if (u[a] > u[b]) {
+        int tmp = a;
+        a = b;
+        b = tmp;
+    }
+    u[a] += u[b];
+    u[b] = a;
+    return true;
+}

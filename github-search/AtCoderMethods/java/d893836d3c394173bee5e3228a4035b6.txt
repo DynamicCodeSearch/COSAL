@@ -1,0 +1,17 @@
+public static boolean isTidy(int n) {
+    if (n < 10) {
+        return true;
+    }
+    int pre = n % 10;
+    n /= 10;
+    int curr = n % 10;
+    while (n > 0) {
+        if (pre < curr) {
+            return false;
+        }
+        pre = curr;
+        n /= 10;
+        curr = n % 10;
+    }
+    return true;
+}

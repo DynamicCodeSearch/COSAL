@@ -1,0 +1,25 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    String str = input.readLine();
+    String s = str;
+    str = input.readLine();
+    int n = Integer.parseInt(str);
+    int r, l;
+    String[] rl;
+    String before, after, temp;
+    StringBuffer reverse;
+    for (int i = 0; i < n; i++) {
+        str = input.readLine();
+        rl = str.split(" ");
+        r = Integer.parseInt(rl[0]) - 1;
+        l = Integer.parseInt(rl[1]);
+        before = s.substring(0, r);
+        temp = s.substring(r, l);
+        after = s.substring(l, s.length());
+        reverse = new StringBuffer(temp);
+        reverse.reverse();
+        temp = reverse.toString();
+        s = before + temp + after;
+    }
+    System.out.println(s);
+}

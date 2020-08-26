@@ -1,0 +1,8 @@
+def build(x, d=0):
+    ss = [(x, 0)]
+    while ss:
+        x, d = ss.pop()
+        if x not in dists:
+            dists[x] = d
+            for c in edges.get(x, []):
+                ss.append((c, d + lens[(min(x,c), max(x,c))]))

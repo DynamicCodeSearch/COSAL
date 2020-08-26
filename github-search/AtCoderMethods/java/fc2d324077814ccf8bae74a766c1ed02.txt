@@ -1,0 +1,70 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    N = sc.nextInt();
+    s = sc.next();
+    sw = new String[N];
+    
+    sw[0] = "S";
+    first = "S";
+    sw[1] = "S";
+    second = "S";
+    for (int i = 1; i < N; i++) {
+        solve(i);
+    }
+    solve(0);
+    if (first == sw[0] && second == sw[1]) {
+        for (int i = 0; i < N; i++) {
+            System.out.print(sw[i]);
+        }
+        return;
+    }
+    Arrays.fill(sw, null);
+    
+    sw[0] = "S";
+    first = "S";
+    sw[1] = "W";
+    second = "W";
+    for (int i = 1; i < N; i++) {
+        solve(i);
+    }
+    solve(0);
+    if (first == sw[0] && second == sw[1]) {
+        for (int i = 0; i < N; i++) {
+            System.out.print(sw[i]);
+        }
+        return;
+    }
+    Arrays.fill(sw, null);
+    
+    sw[0] = "W";
+    first = "W";
+    sw[1] = "S";
+    second = "S";
+    for (int i = 1; i < N; i++) {
+        solve(i);
+    }
+    solve(0);
+    if (first == sw[0] && second == sw[1]) {
+        for (int i = 0; i < N; i++) {
+            System.out.print(sw[i]);
+        }
+        return;
+    }
+    Arrays.fill(sw, null);
+    
+    sw[0] = "W";
+    first = "W";
+    sw[1] = "W";
+    second = "W";
+    for (int i = 1; i < N; i++) {
+        solve(i);
+    }
+    solve(0);
+    if (first == sw[0] && second == sw[1]) {
+        for (int i = 0; i < N; i++) {
+            System.out.print(sw[i]);
+        }
+        return;
+    }
+    System.out.println(-1);
+}

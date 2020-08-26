@@ -1,0 +1,39 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    char[] a = sc.next().toCharArray();
+    char[] b = sc.next().toCharArray();
+    char[] c = sc.next().toCharArray();
+    char turn = 'a';
+    int an = 0;
+    int bn = 0;
+    int cn = 0;
+    roop: while (true) {
+        switch(turn) {
+            case 'a':
+                if (a.length == an) {
+                    System.out.println("A");
+                    break roop;
+                }
+                turn = a[an];
+                an += 1;
+                break;
+            case 'b':
+                if (b.length == bn) {
+                    System.out.println("B");
+                    break roop;
+                }
+                turn = b[bn];
+                bn += 1;
+                break;
+            case 'c':
+                if (c.length == cn) {
+                    System.out.println("C");
+                    break roop;
+                }
+                turn = c[cn];
+                cn += 1;
+                break;
+            default:
+        }
+    }
+}

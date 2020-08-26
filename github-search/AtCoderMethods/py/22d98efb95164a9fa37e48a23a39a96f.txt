@@ -1,0 +1,17 @@
+def main():
+    N = int(input())
+    a_s = map(int, input().split())
+
+    ds = [a - i - 1 for i, a in enumerate(a_s)]
+    pz = False
+    t = 0
+    for d in ds:
+        if d == 0:
+            if pz:
+                pz = False
+            else:
+                t += 1
+                pz = True
+        else:
+            pz = False
+    return t

@@ -1,0 +1,31 @@
+public int[][] groupGraph() {
+    int max = 0;
+    for (int nid : node_id) {
+        max = Math.max(max, nid + 1);
+    }
+    Set<Integer>[] eset = new Set[max];
+    List<Integer>[] ged = new List[max];
+    for (int i = 0; i < max; i++) {
+        eset[i] = new HashSet<>();
+        ged[i] = new ArrayList<>();
+    }
+    int[][] groupGraph = new int[max][];
+    for (int fr = 0; fr < graph.length; fr++) {
+        for (int to : graph[fr]) {
+            int g1 = node_id[fr];
+            int g2 = node_id[to];
+            if (g1 != g2 && !eset[g1].contains(g2)) {
+                eset[g1].add(g2);
+                ged[g1].add(g2);
+            }
+        }
+    }
+    for (int i = 0; i < max; i++) {
+        groupGraph[i] = new int[ged[i].size()];
+        int idx = 0;
+        for (int to : ged[i]) {
+            groupGraph[i][idx++] = to;
+        }
+    }
+    return groupGraph;
+}

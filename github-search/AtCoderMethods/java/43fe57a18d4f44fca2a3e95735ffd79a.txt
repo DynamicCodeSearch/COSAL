@@ -1,0 +1,11 @@
+public void solve() {
+    N = io.ri();
+    M = io.ri();
+    for (int i = 0; i < N; i++) gr.add(new ArrayList<>());
+    for (int i = 0; i < M; i++) {
+        int u = io.ri() - 1, v = io.ri() - 1;
+        gr.get(u).add(v);
+        gr.get(v).add(u);
+    }
+    io.writeLine("" + count(0, 1));
+}

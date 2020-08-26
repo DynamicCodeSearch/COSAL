@@ -1,0 +1,12 @@
+private void compute() throws IOException {
+    int n = pint();
+    long[] a = new long[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = plong();
+    }
+    long res = 1;
+    for (int i = 0; i < n; i++) {
+        res *= a[i] / gcd(res, a[i]);
+    }
+    out(res);
+}

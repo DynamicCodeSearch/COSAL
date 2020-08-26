@@ -1,0 +1,16 @@
+static long special_GCD(long a, long b) {
+    long t;
+    if (a < b) {
+        t = a;
+        a = b;
+        b = t;
+    }
+    if (b == 0)
+        return a;
+    if ((a % b) == 0)
+        return b;
+    t = a;
+    a = b;
+    b = (t % b);
+    return special_GCD(a, b);
+}

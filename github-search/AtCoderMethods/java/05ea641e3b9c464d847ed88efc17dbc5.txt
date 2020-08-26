@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String a = sc.next();
+    boolean started = false;
+    int len = 0;
+    int index1 = 0, index2;
+    for (int i = 0; i < a.length(); i++) {
+        if (!started && a.charAt(i) == 'A') {
+            started = true;
+            index1 = i;
+        }
+        if (started && a.charAt(i) == 'Z') {
+            started = true;
+            index2 = i;
+            len = index2 - index1 + 1;
+        }
+    }
+    System.out.println(len);
+}

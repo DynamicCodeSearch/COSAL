@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    String[] ans = { "Do", "Re", "Mi", "Fa", "So", "La", "Si" };
+    String a = "WBWBWWBWBWBWWBWBWWBWBWBWWBWBWWBWBWBWWBWBWWBWBWBWWBWBWWBWBWBWWBWBWWBWBWBW";
+    String s = sc.next();
+    int cnt = 0;
+    for (int i = 0; i < 20; i++) {
+        if (a.charAt(i) == 'B')
+            cnt++;
+        if (a.substring(i, i + 20).equals(s)) {
+            System.out.println(ans[i - cnt]);
+            break;
+        }
+    }
+}

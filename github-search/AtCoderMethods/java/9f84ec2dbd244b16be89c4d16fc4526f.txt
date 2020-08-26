@@ -1,0 +1,17 @@
+private static long solve3(int n, int a, int[] x) {
+    
+    int[] y = Arrays.stream(x).map(v -> v - a).toArray();
+    int X = Math.max(a, Arrays.stream(x).max().getAsInt());
+    long[][] dp = new long[n + 1][2 * n * X + 1];
+    dp[0][n * X] = 1;
+    for (int i = 1; i <= n; i++) {
+        for (int j = 0; j <= 2 * n * X; j++) {
+            if (0 <= j - y[i - 1] && j - y[i - 1] <= 2 * n * X) {
+                dp[i][j] = dp[i - 1][j] + dp[i - 1][j - y[i - 1]];
+            } else {
+                dp[i][j] = dp[i - 1][j];
+            }
+        }
+    }
+    return dp[n][n * X] - 1;
+}

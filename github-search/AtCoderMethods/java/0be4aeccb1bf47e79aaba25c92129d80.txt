@@ -1,0 +1,35 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[] s = new int[n];
+    int sum = 0;
+    int min = 101;
+    int min2 = 101;
+    int check = 0;
+    for (int i = 0; i < n; i++) {
+        s[i] = sc.nextInt();
+        if (min > s[i]) {
+            min = s[i];
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        sum += s[i];
+    }
+    if (sum % 10 != 0) {
+        System.out.println(sum);
+    } else if (min % 10 != 0) {
+        System.out.println(sum - min);
+    } else {
+        for (int i = 0; i < n; i++) {
+            if (min2 > s[i] && s[i] % 10 != 0) {
+                min2 = s[i];
+                check++;
+            }
+        }
+        if (check == 0) {
+            System.out.println(0);
+        } else {
+            System.out.println(sum - min2);
+        }
+    }
+}

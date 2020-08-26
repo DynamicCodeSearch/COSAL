@@ -1,0 +1,15 @@
+public String next() {
+    int c = read();
+    if (c == -1) {
+        throw new NoSuchElementException();
+    }
+    while (c < 33 || 126 < c) {
+        c = read();
+    }
+    StringBuilder sb = new StringBuilder();
+    while (33 <= c && c <= 126) {
+        sb.appendCodePoint(c);
+        c = read();
+    }
+    return sb.toString();
+}

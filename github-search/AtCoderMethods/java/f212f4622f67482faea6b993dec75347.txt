@@ -1,0 +1,11 @@
+public static boolean possible(long count, long maxA, int i) {
+    if (i >= N)
+        return true;
+    long num = h[i] - B * (count - maxA);
+    if (A * maxA < num)
+        return false;
+    if (B * maxA >= num)
+        return true;
+    long nextMaxA = (A * maxA - num) / (A - B);
+    return possible(count, nextMaxA, i + 1);
+}

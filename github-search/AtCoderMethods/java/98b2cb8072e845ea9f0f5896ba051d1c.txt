@@ -1,0 +1,23 @@
+private static long rec(int h, int w) {
+    if (dp[h][w] > 0)
+        return dp[h][w];
+    long ans = 1;
+    if (h - 1 > -1 && a[h - 1][w] > a[h][w]) {
+        ans += rec(h - 1, w) % BASE;
+        ans = ans % BASE;
+    }
+    if (w - 1 > -1 && a[h][w - 1] > a[h][w]) {
+        ans += rec(h, w - 1) % BASE;
+        ans = ans % BASE;
+    }
+    if (h + 1 < H && a[h + 1][w] > a[h][w]) {
+        ans += rec(h + 1, w) % BASE;
+        ans = ans % BASE;
+    }
+    if (w + 1 < W && a[h][w + 1] > a[h][w]) {
+        ans += rec(h, w + 1) % BASE;
+        ans = ans % BASE;
+    }
+    dp[h][w] = ans;
+    return ans;
+}

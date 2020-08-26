@@ -1,0 +1,29 @@
+def main() :
+    N, M, R = map(int, input().split())
+    r = [a-1 for a in list(map(int, input().split()))]
+    d = [[float('inf')]*N for _ in range(N)]
+
+    for _ in range(M):
+        a, b, c = map(int, input().split())
+        d[a-1][b-1] = c
+        d[b-1][a-1] = c
+
+    for i in range(N):
+        d[i][i] = 0
+
+    for k in range(N):
+        for i in range(N):
+            for j in range(N):
+                dd = d[i][k] + d[k][j]
+                if dd < d[i][j]:
+                    d[i][j] = dd
+
+    ans = float("inf")
+
+    for perm in itertools.permutations(r):
+        a = 0
+        for i in range(len(perm)-1):
+            a += d[perm[i]][perm[i+1]]
+        ans = min(a, ans)
+
+    print(ans)

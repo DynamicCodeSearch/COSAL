@@ -1,0 +1,19 @@
+def main():
+    n = int(input())
+    rods = [int(x) for x in input().split(' ')]
+
+    candidates = []
+    for r in Counter(rods).most_common():
+        if r[1] >= 4:
+            candidates.append(r[0])
+            candidates.append(r[0])
+        elif r[1] >= 2:
+            candidates.append(r[0])
+        else:
+            break
+
+    if len(candidates) >= 2:
+        candidates.sort(reverse=True)
+        print(candidates[0] * candidates[1])
+    else:
+        print('0')

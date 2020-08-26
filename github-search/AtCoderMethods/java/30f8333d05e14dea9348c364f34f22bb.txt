@@ -1,0 +1,95 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    H = sc.nextInt();
+    W = sc.nextInt();
+    if (H % 3 == 0 || W % 3 == 0)
+        System.out.println(0);
+    else {
+        int h1, h2, h3;
+        long min;
+        
+        if (H % 3 == 1) {
+            h1 = H / 3;
+            h2 = H / 3;
+            h3 = H - h1 - h2;
+        } else {
+            h1 = H / 3 + 1;
+            h2 = H / 3 + 1;
+            h3 = H - h1 - h2;
+        }
+        min = Math.abs(h3 * W - h1 * W);
+        
+        int w1, w2, w3;
+        if (W % 3 == 1) {
+            w1 = W / 3;
+            w2 = W / 3;
+            w3 = W - w1 - w2;
+        } else {
+            w1 = W / 3 + 1;
+            w2 = W / 3 + 1;
+            w3 = W - w1 - w2;
+        }
+        min = Math.min(min, Math.abs(w3 * H - w1 * H));
+        
+        int a1, b1, b2, a2, a3;
+        long S1, S2, S3;
+        a1 = W;
+        b1 = H / 2;
+        b2 = H - b1;
+        a2 = W / 2;
+        a3 = W - a2;
+        S1 = a1 * b1;
+        S2 = a2 * b2;
+        S3 = a3 * b2;
+        min = Math.min(min, calc(S1, S2, S3));
+        a1 = W;
+        b1 = H / 3;
+        b2 = H - b1;
+        a2 = W / 2;
+        a3 = W - a2;
+        S1 = a1 * b1;
+        S2 = a2 * b2;
+        S3 = a3 * b2;
+        min = Math.min(min, calc(S1, S2, S3));
+        a1 = W;
+        b1 = H / 3 + 1;
+        b2 = H - b1;
+        a2 = W / 2;
+        a3 = W - a2;
+        S1 = a1 * b1;
+        S2 = a2 * b2;
+        S3 = a3 * b2;
+        min = Math.min(min, calc(S1, S2, S3));
+        
+        int c1, d1, d2, c2, c3;
+        long T1, T2, T3;
+        c1 = H;
+        d1 = W / 2;
+        d2 = W - d1;
+        c2 = H / 2;
+        c3 = H - c2;
+        T1 = c1 * d1;
+        T2 = c2 * d2;
+        T3 = c3 * d2;
+        min = Math.min(min, calc(T1, T2, T3));
+        c1 = H;
+        d1 = W / 3;
+        d2 = W - d1;
+        c2 = H / 2;
+        c3 = H - c2;
+        T1 = c1 * d1;
+        T2 = c2 * d2;
+        T3 = c3 * d2;
+        min = Math.min(min, calc(T1, T2, T3));
+        c1 = H;
+        d1 = W / 3 + 1;
+        d2 = W - d1;
+        c2 = H / 2;
+        c3 = H - c2;
+        T1 = c1 * d1;
+        T2 = c2 * d2;
+        T3 = c3 * d2;
+        min = Math.min(min, calc(T1, T2, T3));
+        System.out.println(min);
+    }
+}

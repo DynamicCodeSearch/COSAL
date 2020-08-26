@@ -1,0 +1,16 @@
+long f(Node node) {
+    if (memoF[node.id] != 0) {
+        return memoF[node.id];
+    }
+    long white = g(node);
+    long black = 1;
+    for (Node c : node.list) {
+        black *= g(c);
+        black %= MOD;
+    }
+    long sum = white + black;
+    sum %= MOD;
+    memoF[node.id] = sum;
+    
+    return sum;
+}

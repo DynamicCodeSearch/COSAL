@@ -1,0 +1,16 @@
+private static void dfs(int current, int previous, List<Integer> route) {
+    if (route.contains(current)) {
+        int d = route.indexOf(current);
+        for (int i = d; i < route.size(); i++) g.add(route.get(i));
+        return;
+    }
+    v.add(current);
+    for (int n : points[current].neighbor) {
+        if (n == previous)
+            continue;
+        List<Integer> newRoute = new ArrayList<Integer>();
+        for (int r : route) newRoute.add(r);
+        newRoute.add(current);
+        dfs(n, current, newRoute);
+    }
+}

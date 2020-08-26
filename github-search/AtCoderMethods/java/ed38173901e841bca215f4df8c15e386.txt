@@ -1,0 +1,20 @@
+int dfs(int cur, int par, int dist) {
+    int plus = -1;
+    for (int v : node[cur]) {
+        if (v == par)
+            continue;
+        int d = dfs(v, cur, dist + 1);
+        if (d >= 0)
+            plus = d;
+    }
+    if (cur == n - 1) {
+        nd = dist;
+        plus = dist;
+    }
+    if (plus >= 0 && plus == nd / 2) {
+        s = cur;
+    } else if (plus >= 0 && plus == nd / 2 + 1) {
+        ns = cur;
+    }
+    return plus - 1;
+}

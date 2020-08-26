@@ -1,0 +1,41 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    String str = input.readLine();
+    String[] nab = str.split(" ");
+    int n = Integer.parseInt(nab[0]);
+    int a = Integer.parseInt(nab[1]);
+    int b = Integer.parseInt(nab[2]);
+    String[] slist = new String[n];
+    int[] dlist = new int[n];
+    String[] split = new String[2];
+    for (int i = 0; i < n; i++) {
+        str = input.readLine();
+        split = str.split(" ");
+        slist[i] = split[0];
+        dlist[i] = Integer.parseInt(split[1]);
+    }
+    int sum = 0;
+    int c = 0;
+    for (int i = 0; i < n; i++) {
+        if (dlist[i] < a) {
+            c = a;
+        } else if (dlist[i] > b) {
+            c = b;
+        } else {
+            c = dlist[i];
+        }
+        if (slist[i].equals("East")) {
+            sum = sum + c;
+        } else {
+            sum = sum - c;
+        }
+    }
+    if (sum == 0) {
+        System.out.println(0);
+    } else if (sum > 0) {
+        System.out.println("East " + sum);
+    } else {
+        sum = sum * (-1);
+        System.out.println("West " + sum);
+    }
+}

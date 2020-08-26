@@ -1,0 +1,35 @@
+public static boolean check() {
+    int i = n - 1;
+    for (int cnt = 0; cnt < 3; cnt++) {
+        i %= n;
+        int next = (i + 1) % n;
+        int back = (i + n - 1) % n;
+        if (assign[i] == 'o' && ans[i] == 'S') {
+            if (ans[back] == 'S' && ans[next] == 'W') {
+                return false;
+            } else if (ans[back] == 'W' && ans[next] == 'S') {
+                return false;
+            }
+        } else if (assign[i] == 'o' && ans[i] == 'W') {
+            if (ans[back] == 'S' && ans[next] == 'S') {
+                return false;
+            } else if (ans[back] == 'W' && ans[next] == 'W') {
+                return false;
+            }
+        } else if (assign[i] == 'x' && ans[i] == 'S') {
+            if (ans[back] == 'S' && ans[next] == 'S') {
+                return false;
+            } else if (ans[back] == 'W' && ans[next] == 'W') {
+                return false;
+            }
+        } else if (assign[i] == 'x' && ans[i] == 'W') {
+            if (ans[back] == 'S' && ans[next] == 'W') {
+                return false;
+            } else if (ans[back] == 'W' && ans[next] == 'S') {
+                return false;
+            }
+        }
+        i++;
+    }
+    return true;
+}

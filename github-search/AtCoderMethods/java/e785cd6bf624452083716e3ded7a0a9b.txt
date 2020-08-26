@@ -1,0 +1,47 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String a = sc.next();
+    sc.close();
+    final char[] chars = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+    int[] rchars = new int[chars.length];
+    Arrays.fill(rchars, 0);
+    char[] arr = a.toCharArray();
+    int[] rarr = new int[arr.length];
+    for (int i = arr.length; i > 0; i--) {
+        int rank = rchars[0];
+        for (int j = 1; j < rchars.length; j++) rank = Math.min(rank, rchars[j]);
+        int idx = i - 1;
+        char c = arr[idx];
+        rchars[c - 'a'] = rank + 1;
+        rarr[idx] = rank + 1;
+    }
+    int rank = rchars[0];
+    for (int j = 1; j < rchars.length; j++) rank = Math.min(rank, rchars[j]);
+    StringBuffer sb = new StringBuffer(rank + 1);
+    int idx = 0;
+    while (idx < arr.length) {
+        loop: for (int j = 0; j < chars.length; j++) {
+            char c = chars[j];
+            boolean flag = true;
+            for (int i = idx; i < arr.length; i++) {
+                if (arr[i] == c) {
+                    if (rarr[i] == rank) {
+                        sb.append(c);
+                        rank--;
+                        idx = i + 1;
+                        break loop;
+                    } else {
+                        flag = false;
+                        break;
+                    }
+                }
+            }
+            if (flag) {
+                sb.append(c);
+                idx = arr.length;
+                break loop;
+            }
+        }
+    }
+    System.out.println(sb.toString());
+}

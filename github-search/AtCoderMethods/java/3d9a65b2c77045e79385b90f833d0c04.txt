@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    List<Integer> bits = new ArrayList<>();
+    int k = 0;
+    while (N > 0) {
+        if (N % 2 == 0) {
+            bits.add(0);
+        } else {
+            bits.add(1);
+            k += 1;
+        }
+        N = N / 2;
+    }
+    System.out.println(k);
+    int j = 0;
+    for (int bit : bits) {
+        if (bit == 0) {
+        } else {
+            System.out.println((int) Math.pow(2, j));
+        }
+        j += 1;
+    }
+}

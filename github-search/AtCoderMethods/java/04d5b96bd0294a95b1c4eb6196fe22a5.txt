@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int A = sc.nextInt();
+    int B = sc.nextInt();
+    int currentPosition = 0;
+    sc.nextLine();
+    for (int i = 0; i < N; i++) {
+        String[] inputs = sc.nextLine().split(" ");
+        String direction = inputs[0];
+        int distance = Integer.parseInt(inputs[1]);
+        currentPosition = currentPosition + move(distance, A, B, direction);
+    }
+    showLastPosition(currentPosition);
+}

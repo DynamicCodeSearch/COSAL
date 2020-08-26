@@ -1,0 +1,62 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    
+    R = sc.nextLong();
+    B = sc.nextLong();
+    x = sc.nextInt();
+    y = sc.nextInt();
+    long max = 0;
+    long r = 0, b = 0;
+    long r_min, b_min;
+    long r_max, b_max;
+    r_max = MIN(DEV_CIEL(R, x), B);
+    b_max = MIN(DEV_CIEL(B, y), R);
+    r_min = MIN(MAX(0, (R - b_max) / x), B);
+    b_min = MIN(MAX(0, (B - r_max) / y), R);
+    if ((r_max - r_min) > (b_max - b_min)) {
+        long t;
+        int it;
+        
+        t = B;
+        
+        B = R;
+        
+        R = t;
+        
+        it = y;
+        
+        y = x;
+        
+        x = it;
+        
+        t = b_max;
+        
+        b_max = r_max;
+        
+        r_max = t;
+        
+        t = b_min;
+        
+        b_min = r_min;
+        
+        r_min = t;
+    }
+    long left, right, center;
+    left = r_min;
+    right = r_max + 1;
+    max = 0;
+    while (left < right) {
+        center = (left + right) / 2;
+        b = calc_b(center, b_min, b_max);
+        if (b < 0) {
+            right = center;
+        } else {
+            left = center + 1;
+        }
+        if ((center + b) > max) {
+            max = center + b;
+        }
+    }
+    System.out.println(max);
+}

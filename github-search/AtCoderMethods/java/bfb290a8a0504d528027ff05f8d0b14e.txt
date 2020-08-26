@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String num1St = sc.next();
+    String num2St = sc.next();
+    if (num1St.length() > num2St.length()) {
+        System.out.println("GREATER");
+    } else if (num1St.length() < num2St.length()) {
+        System.out.println("LESS");
+    } else {
+        char[] first = num1St.toCharArray();
+        char[] secand = num2St.toCharArray();
+        int flugGreater = 0;
+        for (int c = 0; c < num1St.length(); c++) {
+            int firstord = Character.getNumericValue(first[c]);
+            int secandord = Character.getNumericValue(secand[c]);
+            if (firstord > secandord) {
+                flugGreater = 1;
+                break;
+            } else if (firstord < secandord) {
+                flugGreater = -1;
+                break;
+            }
+        }
+        if (flugGreater == 1) {
+            System.out.println("GREATER");
+        } else if (flugGreater == -1) {
+            System.out.println("LESS");
+        } else if (flugGreater == 0) {
+            System.out.println("EQUAL");
+        }
+    }
+}

@@ -1,0 +1,16 @@
+def main():
+    n,m = LI()
+    b = [[int(c) for c in S()] for _ in range(n)]
+    a = [[0]*m for _ in range(n)]
+    for i in range(n):
+        bi = b[i]
+        for j in range(m):
+            bij = bi[j]
+            if bij < 1:
+                continue
+            b[i+2][j] -= bij
+            b[i+1][j-1] -= bij
+            b[i+1][j+1] -= bij
+            a[i+1][j] = bij
+
+    return '\n'.join(''.join(map(str, t)) for t in a)

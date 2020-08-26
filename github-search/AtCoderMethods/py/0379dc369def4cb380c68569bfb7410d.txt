@@ -1,0 +1,9 @@
+def binary_search(A, B, h_list, T_min, T_max):
+    if T_min == T_max:
+        return T_min
+    else:
+        T_mid = T_min + (T_max - T_min) // 2
+        if enough(A, B, h_list, T_mid):
+            return binary_search(A, B, h_list, T_min, T_mid)
+        else:
+            return binary_search(A, B, h_list, T_mid + 1, T_max)

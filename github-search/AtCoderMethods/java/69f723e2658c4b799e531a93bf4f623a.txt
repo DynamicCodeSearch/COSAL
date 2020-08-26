@@ -1,0 +1,14 @@
+void solve() throws NumberFormatException, IOException {
+    int n = in.nextInt();
+    int k = in.nextInt();
+    int d = 0;
+    for (int i = 0; i < k; i++) {
+        d |= 1 << in.nextInt();
+    }
+    for (int pay = n; pay < 100000; pay++) {
+        if (ok(pay, d)) {
+            System.out.println(pay);
+            break;
+        }
+    }
+}

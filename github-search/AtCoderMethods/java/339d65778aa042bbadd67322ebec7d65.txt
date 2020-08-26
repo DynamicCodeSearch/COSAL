@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    @SuppressWarnings("resource")
+    Scanner scan = new Scanner(System.in);
+    int N = scan.nextInt();
+    int[][] a = new int[N][2];
+    for (int i = 0; i < N; i++) {
+        a[i][0] = scan.nextInt();
+        a[i][1] = scan.nextInt();
+    }
+    int ans = 0;
+    for (int i = 0; i < N; i++) {
+        ans += a[i][1] - a[i][0];
+        ans++;
+    }
+    System.out.println(ans);
+}

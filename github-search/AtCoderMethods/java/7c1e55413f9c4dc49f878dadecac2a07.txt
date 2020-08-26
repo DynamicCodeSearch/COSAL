@@ -1,0 +1,16 @@
+private static long[] garnerBatch(int[] u, int[] m, long[] gamma) {
+    int n = u.length;
+    assert n == m.length;
+    long[] v = new long[n];
+    v[0] = u[0];
+    for (int k = 1; k < n; k++) {
+        long temp = v[k - 1];
+        for (int j = k - 2; j >= 0; j--) {
+            temp = (temp * m[j] + v[j]) % m[k];
+        }
+        v[k] = (u[k] - temp) * gamma[k] % m[k];
+        if (v[k] < 0)
+            v[k] += m[k];
+    }
+    return v;
+}

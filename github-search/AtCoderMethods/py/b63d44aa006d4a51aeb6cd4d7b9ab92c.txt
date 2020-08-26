@@ -1,0 +1,8 @@
+def iter1():
+  yield sum(a[K:-K]) * K
+  c = sum(a[:K])
+  for i,j in zip(range(0,K), range(-K,0)):
+    yield c
+    c -= a[i]
+    c += a[j]
+  yield c

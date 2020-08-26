@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    String str = scan.nextLine();
+    ArrayList<String> array = new ArrayList<String>();
+    char[] characters = str.toCharArray();
+    int remainlength = characters.length;
+    for (int i = 0; i < characters.length; i++) {
+        array.add(String.valueOf(characters[i]));
+    }
+    array.remove(array.size() - 1);
+    array.remove(array.size() - 1);
+    remainlength -= 2;
+    while (remainlength != 0) {
+        boolean unmatchflag = false;
+        for (int i = 0; i < array.size() / 2; i++) {
+            if (!array.get(i).equals(array.get(i + array.size() / 2))) {
+                unmatchflag = true;
+                break;
+            }
+        }
+        if (unmatchflag) {
+            array.remove(array.size() - 1);
+            array.remove(array.size() - 1);
+            remainlength -= 2;
+        } else {
+            break;
+        }
+    }
+    System.out.println(remainlength);
+}

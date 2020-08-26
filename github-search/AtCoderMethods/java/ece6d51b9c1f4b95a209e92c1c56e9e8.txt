@@ -1,0 +1,21 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    char[] s = sc.next().toCharArray();
+    StringBuilder builder = new StringBuilder();
+    for (char c : s) {
+        switch(c) {
+            case '0':
+                builder.append('0');
+                break;
+            case '1':
+                builder.append('1');
+                break;
+            case 'B':
+                if (builder.length() > 0) {
+                    builder.deleteCharAt(builder.length() - 1);
+                }
+                break;
+        }
+    }
+    System.out.println(builder.toString());
+}

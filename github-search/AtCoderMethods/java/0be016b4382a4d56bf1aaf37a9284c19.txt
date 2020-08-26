@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int n = scanner.nextInt();
+    int[] r = new int[9];
+    for (int i = 0; i < n; i++) {
+        int a = scanner.nextInt();
+        int b = a / 400;
+        if (a < 3200) {
+            r[b]++;
+        } else {
+            r[8]++;
+        }
+    }
+    int c = 0;
+    for (int i = 0; i <= 7; i++) {
+        if (r[i] > 0) {
+            c++;
+        }
+    }
+    if (c > 0) {
+        System.out.println("" + c + " " + (c + r[8]));
+    } else {
+        System.out.println("" + 1 + " " + (c + r[8]));
+    }
+}

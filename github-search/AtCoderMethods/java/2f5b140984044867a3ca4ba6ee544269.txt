@@ -1,0 +1,13 @@
+private static void solve(ConsoleScanner cin, PrintWriter cout) {
+    
+    int h = cin.nextInt();
+    int w = cin.nextInt();
+    int n = cin.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < a.length; i++) a[i] = cin.nextInt();
+    long start = now();
+    int[][] ans = solve(h, w, n, a);
+    String ansstr = Arrays.stream(ans).map(row -> Arrays.stream(row).mapToObj(Objects::toString).collect(Collectors.joining(" "))).collect(Collectors.joining(System.lineSeparator()));
+    cout.println(ansstr);
+    trace("elapsed", now() - start);
+}

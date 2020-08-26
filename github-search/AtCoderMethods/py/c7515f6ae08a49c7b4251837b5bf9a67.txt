@@ -1,0 +1,20 @@
+def main():
+    votes = int(input())
+    ratio = [[ int(i) for i in input().split() ] for j in range(votes)]
+
+    votesTemp = [0, 0]
+    for i in range(votes):
+        if i == 0:
+            votesTemp = ratio[i]
+            continue
+
+        ceil = [ math.ceil(Decimal(votesTemp[j]) / Decimal(ratio[i][j])) for j in range(2)]
+
+        votesTemp = [ max(ceil) * ratio[i][j] for j in range(2) ]
+
+        """
+        print("turn: " + str(i))
+        print("votes: " + str(ratio[i][0]) + ":" + str(ratio[i][1]) )
+        print("Temp: " +str(votesTemp[0])+":"+str(votesTemp[1]))
+        """
+    print(sum(votesTemp))

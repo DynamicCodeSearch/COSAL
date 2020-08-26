@@ -1,0 +1,14 @@
+static int optimize(int x, int y) {
+    int[] dx = { 0, -1, 0, 1 }, dy = { -1, 0, 1, 0 };
+    if (dp[y][x] > 0) {
+        return dp[y][x];
+    }
+    int ret = 1;
+    for (int i = 0; i < 4; i++) {
+        int nx = x + dx[i], ny = y + dy[i];
+        if (0 <= nx && nx < W && 0 <= ny && ny < H && table[y][x] > table[ny][nx]) {
+            ret = (ret + optimize(nx, ny)) % 1000000007;
+        }
+    }
+    return dp[y][x] = ret;
+}

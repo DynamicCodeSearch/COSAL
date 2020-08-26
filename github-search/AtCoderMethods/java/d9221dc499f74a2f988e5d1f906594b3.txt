@@ -1,0 +1,19 @@
+private long sum(long[] s, int l, int r) {
+    if (l > r) {
+        return 0;
+    }
+    if (r < 0) {
+        return (r - l + 1) % MOD;
+    }
+    long res;
+    if (l < 0) {
+        res = sum(s, 0, r) - l;
+    } else {
+        res = s[r] - (l == 0 ? 0 : s[l - 1]);
+    }
+    res %= MOD;
+    if (res < 0) {
+        res += MOD;
+    }
+    return res;
+}

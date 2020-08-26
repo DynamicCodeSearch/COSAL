@@ -1,0 +1,13 @@
+long f(int[][] p) {
+    TreeSet<Long> st = new TreeSet<>();
+    for (int i = 0; i < p.length; i++) {
+        st.add(((long) p[i][0] << 20) + i);
+    }
+    long res = d(st);
+    for (int i = 0; i < p.length; i++) {
+        st.remove(((long) p[i][0] << 20) + i);
+        st.add(((long) p[i][1] << 20) + i);
+        res = min(res, d(st));
+    }
+    return res;
+}

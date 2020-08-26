@@ -1,0 +1,25 @@
+def solve():
+    N, K = map(int, input().split())
+    s = [int(sys.stdin.readline().rstrip()) for i in range(N)]
+
+    if 0 in s:
+        print(N)
+        return
+
+    l, r = 0, 0
+    ans = 0
+    v = 1
+
+    while r < N:
+        if v * s[r] <= K:
+            v *= s[r]
+            r += 1
+            ans = max(ans, r - l)
+
+        elif r == l:
+            r, l = r + 1, l + 1
+        else:
+            v //= s[l]
+            l += 1
+
+    print(ans)

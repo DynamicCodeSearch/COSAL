@@ -1,0 +1,33 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    String odd = sc.next();
+    String even = sc.next();
+    int len = odd.length() + even.length();
+    int oc = 0;
+    int ec = 0;
+    String ans = "";
+    for (int i = 1; i <= len; i++) {
+        String c;
+        if (i % 2 == 0) {
+            
+            if (ec == len) {
+                c = even.substring(ec);
+            } else {
+                c = even.substring(ec, ec + 1);
+            }
+            ans = ans + c;
+            ec++;
+        } else {
+            
+            if (oc == len) {
+                c = odd.substring(oc);
+            } else {
+                c = odd.substring(oc, oc + 1);
+            }
+            ans = ans + c;
+            oc++;
+        }
+    }
+    System.out.println(ans);
+}

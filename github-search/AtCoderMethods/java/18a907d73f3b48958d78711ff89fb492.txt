@@ -1,0 +1,17 @@
+public void solve() {
+    N = nextInt();
+    A = nextInt();
+    X = new int[N];
+    for (int i = 0; i < N; i++) {
+        X[i] = nextInt();
+    }
+    dp = new long[51][51][50 * 50 + 5];
+    for (int i = 0; i < dp.length; i++) {
+        for (int j = 0; j < dp[i].length; j++) {
+            for (int k = 0; k < dp[i][j].length; k++) {
+                dp[i][j][k] = -1;
+            }
+        }
+    }
+    out.println(dfs(0, 0, 0));
+}

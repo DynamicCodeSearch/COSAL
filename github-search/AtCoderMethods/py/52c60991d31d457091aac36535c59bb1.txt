@@ -1,0 +1,12 @@
+def main():
+    N = int(input())
+    a_list = list(map(int, input().split())) + [0]
+    num = 1
+    ans = 1
+    for i in range(1, len(a_list)):
+        if a_list[i - 1] < a_list[i]:
+            num += 1
+        else:
+            ans += (1 + num) * num // 2
+            num = 1
+    print(ans - 1)

@@ -1,0 +1,18 @@
+public int remove(int ind) {
+    if (pos == 1)
+        return INF;
+    if (imap[ind] == -1)
+        return INF;
+    pos--;
+    int rem = imap[ind];
+    int ret = a[rem];
+    map[rem] = map[pos];
+    imap[map[pos]] = rem;
+    imap[ind] = -1;
+    a[rem] = a[pos];
+    a[pos] = INF;
+    map[pos] = -1;
+    up(rem);
+    down(rem);
+    return ret;
+}

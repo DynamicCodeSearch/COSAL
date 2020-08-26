@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner s = new Scanner(System.in);
+    int n = s.nextInt();
+    int[] kaburiZougen = new int[1_000_002];
+    int a, b;
+    for (int i = 0; i < n; i++) {
+        a = s.nextInt();
+        b = s.nextInt();
+        kaburiZougen[a]++;
+        kaburiZougen[b + 1]--;
+    }
+    s.close();
+    int maxKaburi = 0;
+    int nowKaburi = 0;
+    for (int zougenSu : kaburiZougen) {
+        nowKaburi += zougenSu;
+        maxKaburi = Math.max(maxKaburi, nowKaburi);
+    }
+    System.out.println(maxKaburi);
+}

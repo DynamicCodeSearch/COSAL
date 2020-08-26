@@ -1,0 +1,13 @@
+def main():
+    N = int(input())
+    A = tuple(int(input()) for _ in range(N))
+
+    num = dict()
+    for n in A:
+        num[n] = num.get(n, 0) + 1
+
+    ans = 0
+    for v in num.values():
+        ans += v % 2
+
+    print(ans)

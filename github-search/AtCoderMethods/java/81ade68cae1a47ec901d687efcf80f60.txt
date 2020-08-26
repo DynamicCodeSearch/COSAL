@@ -1,0 +1,13 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    double P = sc.nextDouble();
+    double x = -1.5 / Math.log(2.0) * Math.log(1.5 / P / Math.log(2.0));
+    double ans = 0.0;
+    if (x < 0) {
+        ans = P;
+    } else {
+        ans = P * Math.pow(2.0, -x / 1.5) + x;
+    }
+    DecimalFormat df = new DecimalFormat("0.000000000");
+    System.out.println(df.format(ans));
+}

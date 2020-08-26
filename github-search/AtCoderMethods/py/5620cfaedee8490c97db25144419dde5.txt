@@ -1,0 +1,18 @@
+def main():
+    N = int(input())
+    A = tuple(map(int, input().split()))
+
+    ans = []
+    for i in range(N):
+        aoki = -float('inf')
+        for j in range(N):
+            range_ = A[min(i, j):max(i, j) + 1]
+            if len(range_) > 1:
+                a = sum(range_[1::2])
+                t = sum(range_[0::2])
+                if a > aoki:
+                    aoki = a
+                    taka = t
+        ans.append(taka)
+
+    print(max(ans))

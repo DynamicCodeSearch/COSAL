@@ -1,0 +1,30 @@
+def min_max(stat, position):
+    global A
+    if position == 9:
+        return score()
+
+    if stat and stat in memo.keys():
+        return memo[stat]
+
+
+    if position % 2 == 0:  
+        res = -1e10
+        for i in range(3):
+            for j in range(3):
+                if not A[i][j]:
+                    A[i][j] = 1
+
+                    res = max(res, min_max(A_to_k(), position + 1))
+                    A[i][j] = 0
+
+    else:  
+        res = 1e10
+        for i in range(3):
+            for j in range(3):
+                if not A[i][j]:
+                    A[i][j] = 2
+                    res = min(res, min_max(A_to_k(), position + 1))
+                    A[i][j] = 0
+
+    memo[A_to_k()] = res
+    return res

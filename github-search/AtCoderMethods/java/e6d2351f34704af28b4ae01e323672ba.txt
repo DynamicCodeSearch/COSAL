@@ -1,0 +1,12 @@
+int getIdx(int l, int r, int k, int curL, int curR) {
+    if (curR - curL == 1) {
+        return k - n + 1;
+    }
+    propagate(curL, curR, k);
+    final int curM = (curL + curR) / 2;
+    if (get(l, r, 2 * k + 1, curL, curM) < get(l, r, 2 * k + 2, curM, curR)) {
+        return getIdx(l, r, 2 * k + 1, curL, curM);
+    } else {
+        return getIdx(l, r, 2 * k + 2, curM, curR);
+    }
+}

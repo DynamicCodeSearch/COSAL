@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int X = sc.nextInt();
+    int[] prices = new int[n];
+    for (int i = 0; i < n; i++) {
+        prices[i] = sc.nextInt();
+    }
+    int sum = 0;
+    String xBinary = Integer.toBinaryString(X);
+    for (int i = xBinary.length() - 1; -1 < i; i--) {
+        if (xBinary.charAt(i) == '1') {
+            sum += prices[xBinary.length() - (i + 1)];
+        }
+    }
+    System.out.println(sum);
+}

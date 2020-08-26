@@ -1,0 +1,46 @@
+public void solve(int testNumber, Scanner in, PrintWriter out) {
+    int n = in.nextInt();
+    int[] x = new int[n];
+    int[] y = new int[n];
+    for (int i = 0; i < n; i++) {
+        x[i] = in.nextInt();
+        y[i] = in.nextInt();
+    }
+    p2 = new long[n + 1];
+    p2[0] = 1;
+    for (int i = 0; i < n; i++) {
+        p2[i + 1] = (p2[i] * 2) % mod;
+    }
+    long ans = f(n);
+    Set<Line> lines = new HashSet<>();
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {
+            long a = y[i] - y[j];
+            long b = x[j] - x[i];
+            long c = a * x[i] + b * y[i];
+            long d = gcd(a, b);
+            d = gcd(d, c);
+            a /= d;
+            b /= d;
+            c /= d;
+            if (a < 0 || a == 0 && b < 0) {
+                a = -a;
+                b = -b;
+                c = -c;
+            }
+            Line l = new Line(a, b, c);
+            if (lines.contains(l)) {
+                continue;
+            }
+            lines.add(l);
+            int cnt = 0;
+            for (int k = 0; k < n; k++) {
+                if (a * x[k] + b * y[k] == c) {
+                    cnt++;
+                }
+            }
+            ans = ((ans - f(cnt)) % mod + mod) % mod;
+        }
+    }
+    out.println(ans);
+}

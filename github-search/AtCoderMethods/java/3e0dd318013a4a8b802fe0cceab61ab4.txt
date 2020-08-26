@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    for (int i = 0; i < n - 1; i++) {
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        if (!map.containsKey(a))
+            map.put(a, new HashSet<Integer>());
+        if (!map.containsKey(b))
+            map.put(b, new HashSet<Integer>());
+        map.get(a).add(b);
+        map.get(b).add(a);
+    }
+    System.out.println(count(1, -1) % eps);
+}

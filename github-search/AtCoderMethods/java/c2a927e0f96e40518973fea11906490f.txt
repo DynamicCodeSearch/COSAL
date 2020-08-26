@@ -1,0 +1,31 @@
+void pre(ArrayList<Point> list, Point p, long D, int[] cnt, int[] cum, DJSet ds, int dir) {
+    {
+        int r = lower(list, new Point(p.x + D + 1 - (dir), p.y + D, -1));
+        int l = lower(list, new Point(p.x - D + (dir), p.y + D, -1));
+        cnt[p.id] += r - l;
+        if (r > l) {
+            if (r - l > 1) {
+                if (2 * (l + 1) + 1 < cum.length)
+                    ++cum[2 * (l + 1) + 1];
+                if (2 * r < cum.length)
+                    --cum[2 * r];
+            }
+            ds.setUnion(p.id, list.get(r).id);
+        }
+    }
+    {
+        int r = lower(list, new Point(p.x + D + 1 - (dir), p.y - D, -1));
+        int l = lower(list, new Point(p.x - D + (dir), p.y - D, -1));
+        cnt[p.id] += r - l;
+        if (r > l) {
+            if (r - l > 1) {
+                if (2 * (l + 1) + 1 < cum.length)
+                    ++cum[2 * (l + 1) + 1];
+                if (2 * r < cum.length)
+                    --cum[2 * r];
+            }
+            ds.setUnion(p.id, list.get(r).id);
+        }
+    }
+    return;
+}

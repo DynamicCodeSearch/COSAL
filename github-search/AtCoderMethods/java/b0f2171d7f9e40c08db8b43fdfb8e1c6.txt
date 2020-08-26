@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter w = new PrintWriter(System.out);
+    int n = in.nextInt();
+    DJSet ds = new DJSet(n);
+    Point[] city = new Point[n];
+    for (int i = 0; i < n; i++) city[i] = new Point(i, in.nextInt(), in.nextInt());
+    PriorityQueue<Edge> q = new PriorityQueue<>();
+    Arrays.sort(city, Comparator.comparingInt(o -> o.x));
+    for (int i = 0; i < n - 1; i++) {
+        q.add(new Edge(city[i].id, city[i + 1].id, Math.min(Math.abs(city[i].x - city[i + 1].x), Math.abs(city[i].y - city[i + 1].y))));
+    }
+    Arrays.sort(city, Comparator.comparingInt(o -> o.y));
+    for (int i = 0; i < n - 1; i++) {
+        q.add(new Edge(city[i].id, city[i + 1].id, Math.min(Math.abs(city[i].x - city[i + 1].x), Math.abs(city[i].y - city[i + 1].y))));
+    }
+    int done = 0;
+    long ans = 0;
+    while (done < n && q.size() > 0) {
+        Edge dq = q.poll();
+        if (!ds.union(dq.u, dq.v)) {
+            ans += dq.cost;
+            done++;
+        }
+    }
+    w.println(ans);
+    w.close();
+}

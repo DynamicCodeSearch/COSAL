@@ -1,0 +1,12 @@
+def union(a, b):
+    rootA = find(a)
+    rootB = find(b)
+
+    if rootA == rootB:
+        return
+    if rank[rootA] < rank[rootB]:
+        parent[rootA] = rootB
+    else:
+        parent[rootB] = rootA
+        if rank[rootA] == rank[rootB]:
+            rank[rootA] += 1

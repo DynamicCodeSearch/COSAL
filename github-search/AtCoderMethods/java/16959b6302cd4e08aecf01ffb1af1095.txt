@@ -1,0 +1,21 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int[] origin = { 1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6 };
+    int n = Integer.parseInt(br.readLine()) % 30;
+    int shift_number = n / 5;
+    int nokori = n % 5;
+    int[] copy = new int[6];
+    int k = 0;
+    for (int i = shift_number; i < 6 + shift_number; i++) {
+        copy[k] = origin[i];
+        k++;
+    }
+    for (int j = 0; j < nokori; j++) {
+        int tmp = copy[j];
+        copy[j] = copy[j + 1];
+        copy[j + 1] = tmp;
+    }
+    for (int i = 0; i < copy.length; i++) {
+        System.out.print(copy[i]);
+    }
+}

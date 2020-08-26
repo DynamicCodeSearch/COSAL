@@ -1,0 +1,34 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    final int H = sc.nextInt();
+    final int W = sc.nextInt();
+    final int N = sc.nextInt();
+    List<Integer> a = new ArrayList<Integer>();
+    for (int i = 1; i <= N; i++) {
+        int num = sc.nextInt();
+        for (int j = 0; j < num; j++) a.add(i);
+    }
+    sc.close();
+    int[][] ans = new int[H][W];
+    for (int y = 0; y < H; y++) {
+        if (y % 2 == 0) {
+            for (int x = 0; x < W; x++) {
+                ans[y][x] = a.get(0);
+                a.remove(0);
+            }
+        } else {
+            for (int x = W - 1; x >= 0; x--) {
+                ans[y][x] = a.get(0);
+                a.remove(0);
+            }
+        }
+    }
+    for (int y = 0; y < H; y++) {
+        for (int x = 0; x < W; x++) {
+            System.out.print(ans[y][x]);
+            if (x != W - 1)
+                System.out.print(" ");
+        }
+        System.out.println();
+    }
+}

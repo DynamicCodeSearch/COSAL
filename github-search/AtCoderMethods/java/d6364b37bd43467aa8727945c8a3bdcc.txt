@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int n = scan.nextInt();
+    long ans = Long.MAX_VALUE, suml = 0, sumr = 0;
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = scan.nextInt();
+        sumr += a[i];
+    }
+    for (int i = 0; i < n - 1; i++) {
+        suml += a[i];
+        sumr -= a[i];
+        ans = Math.min(ans, Math.abs(suml - sumr));
+    }
+    System.out.println(ans);
+}

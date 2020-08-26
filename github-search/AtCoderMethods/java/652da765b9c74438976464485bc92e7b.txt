@@ -1,0 +1,35 @@
+public void run() {
+    int H = in.nextInt();
+    int W = in.nextInt();
+    boolean[][] bmap = new boolean[H][W];
+    String tmp;
+    for (int i = 0; i < H; i++) {
+        tmp = in.next();
+        for (int j = 0; j < W; j++) {
+            if (tmp.charAt(j) == '#')
+                bmap[i][j] = true;
+        }
+    }
+    int[][] cmap = new int[H][W];
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            for (int k = -1; k <= 1; k++) {
+                for (int l = -1; l <= 1; l++) {
+                    if (i + k < H && i + k >= 0 && j + l < W && j + l >= 0) {
+                        if (bmap[i + k][j + l])
+                            cmap[i][j]++;
+                    }
+                }
+            }
+        }
+    }
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            if (bmap[i][j])
+                out.print("#");
+            else
+                out.print(cmap[i][j]);
+        }
+        out.println();
+    }
+}

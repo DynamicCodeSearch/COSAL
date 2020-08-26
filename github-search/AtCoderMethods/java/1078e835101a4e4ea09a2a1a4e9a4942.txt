@@ -1,0 +1,23 @@
+public long nextLong() {
+    if (!hasNext())
+        throw new NoSuchElementException();
+    boolean minus = false;
+    long num = readByte();
+    if (num == '-') {
+        num = 0;
+        minus = true;
+    } else if (num < '0' || '9' < num) {
+        throw new NumberFormatException();
+    } else {
+        num -= '0';
+    }
+    while (true) {
+        int b = readByte();
+        if ('0' <= b && b <= '9')
+            num = num * 10 + (b - '0');
+        else if (b == -1 || !isPrintableChar(b))
+            return minus ? -num : num;
+        else
+            throw new NoSuchElementException();
+    }
+}

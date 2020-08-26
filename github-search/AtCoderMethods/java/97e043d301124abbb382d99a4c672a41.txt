@@ -1,0 +1,11 @@
+
+public static int getGroup(int[] townGroup, int _index) {
+    int group = townGroup[_index];
+    if (group == _index)
+        return group;
+    else {
+        int newGroup = getGroup(townGroup, group);
+        townGroup[_index] = newGroup;
+        return newGroup;
+    }
+}

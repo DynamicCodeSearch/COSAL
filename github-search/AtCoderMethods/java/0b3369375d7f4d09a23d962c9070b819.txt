@@ -1,0 +1,36 @@
+void run() {
+    sc = new FastScanner();
+    String A = sc.next();
+    String B = sc.next();
+    String C = sc.next();
+    String[] ws = { A, B, C };
+    boolean flg = false;
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            if (i == j) {
+                continue;
+            }
+            for (int j2 = 0; j2 < 3; j2++) {
+                if (i == j2 || j == j2) {
+                    continue;
+                }
+                String ans = ws[i] + ws[j] + ws[j2];
+                if ("575".equals(ans)) {
+                    flg = true;
+                    break;
+                }
+                if (flg) {
+                    break;
+                }
+            }
+            if (flg) {
+                break;
+            }
+        }
+    }
+    if (flg) {
+        System.out.println("YES");
+    } else {
+        System.out.println("NO");
+    }
+}

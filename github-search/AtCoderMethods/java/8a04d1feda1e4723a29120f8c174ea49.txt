@@ -1,0 +1,16 @@
+String nextToken() {
+    String line = "";
+    while (tok == null || !tok.hasMoreTokens()) {
+        try {
+            if ((line = in.readLine()) != null)
+                tok = new StringTokenizer(line);
+            else
+                return null;
+        } catch (IOException e) {
+            
+            e.printStackTrace();
+            return null;
+        }
+    }
+    return tok.nextToken();
+}

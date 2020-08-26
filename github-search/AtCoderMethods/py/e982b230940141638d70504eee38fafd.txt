@@ -1,0 +1,11 @@
+def get_mine_number(j, i):
+    mine_num = 0
+    for deltaj in [-1, 0, 1]:
+        for deltai in [-1, 0, 1]:
+            if not -1 < j + deltaj < H or not -1 < i + deltai < W:
+                continue
+            if deltaj == 0 and deltai == 0:
+                continue
+            if board[j+deltaj][i+deltai] == "#":
+                mine_num += 1
+    return str(mine_num)

@@ -1,0 +1,14 @@
+static void solve() {
+    int x1 = ni(), y1 = ni(), r = ni();
+    int x2 = ni(), y2 = ni(), x3 = ni(), y3 = ni();
+    if (x2 <= x1 - r && y2 <= y1 - r && x1 + r <= x3 && y1 + r <= y3) {
+        out.println("NO");
+    } else {
+        out.println("YES");
+    }
+    if (outer(x2, y2, x1, y1, r) || outer(x2, y3, x1, y1, r) || outer(x3, y2, x1, y1, r) || outer(x3, y3, x1, y1, r)) {
+        out.println("YES");
+    } else {
+        out.println("NO");
+    }
+}

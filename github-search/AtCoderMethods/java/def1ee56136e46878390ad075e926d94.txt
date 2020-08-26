@@ -1,0 +1,7 @@
+long getSalary() {
+    if (salary > 0)
+        return salary;
+    LongSummaryStatistics iss = buka.stream().mapToLong(E::getSalary).summaryStatistics();
+    salary = iss.getCount() == 0 ? 1 : iss.getMax() + iss.getMin() + 1;
+    return salary;
+}

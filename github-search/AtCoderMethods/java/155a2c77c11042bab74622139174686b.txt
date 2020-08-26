@@ -1,0 +1,18 @@
+long dfs(int num, int size) {
+    if (num == 0)
+        return 1;
+    if (size > B)
+        return 0;
+    if (dp[num][size] != -1)
+        return dp[num][size];
+    long ans = dfs(num, size + 1);
+    for (int i = C; i <= D; i++) {
+        if (size * i <= num) {
+            ans = mod(ans + mod(mod(dfs(num - size * i, size + 1) * ncr(num, size * i)) * c2(size * i, size)));
+            ;
+        } else {
+            break;
+        }
+    }
+    return dp[num][size] = ans;
+}

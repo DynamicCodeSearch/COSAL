@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = Integer.parseInt(sc.next());
+    int M = Integer.parseInt(sc.next());
+    for (int z = 0; z <= N; z++) {
+        int y = M - 2 * N - 2 * z;
+        int x = 3 * N - M + z;
+        if (0 <= x && 0 <= y) {
+            System.out.printf("%d %d %d\n", x, y, z);
+            return;
+        }
+    }
+    System.out.println("-1 -1 -1");
+}

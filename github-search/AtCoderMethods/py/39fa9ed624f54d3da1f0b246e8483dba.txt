@@ -1,0 +1,19 @@
+def dijkstra(s, n, graph):
+    INF = 10 ** 10
+    que = []    
+    heapq.heappush(que, (0, s))
+    dist = [INF] * n
+    dist[s] = 0
+    while len(que):
+        now_dist, node = heapq.heappop(que)
+
+        if dist[node] < now_dist:
+            continue
+
+        for to, cost in graph[node]:
+            new_cost = now_dist + cost
+            if dist[to] > new_cost:
+                dist[to] = new_cost
+                heapq.heappush(que, (new_cost, to))
+
+    return dist

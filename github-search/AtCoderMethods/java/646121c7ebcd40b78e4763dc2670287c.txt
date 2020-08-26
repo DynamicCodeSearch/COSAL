@@ -1,0 +1,23 @@
+
+static int[] generatePrimes(int upto) {
+    boolean[] isp = new boolean[upto];
+    Arrays.fill(isp, true);
+    isp[0] = isp[1] = false;
+    int pi = 0;
+    for (int i = 2; i < upto; i++) {
+        if (isp[i]) {
+            pi++;
+            for (int j = i * 2; j < upto; j += i) {
+                isp[j] = false;
+            }
+        }
+    }
+    int[] ret = new int[pi];
+    int ri = 0;
+    for (int i = 2; i < upto; i++) {
+        if (isp[i]) {
+            ret[ri++] = i;
+        }
+    }
+    return ret;
+}

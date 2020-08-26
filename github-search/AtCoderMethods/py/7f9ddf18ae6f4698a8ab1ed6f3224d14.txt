@@ -1,0 +1,11 @@
+def division(self, n):
+    d = collections.defaultdict(int)
+    for c in self.T:
+        while n % c == 0:
+            d[c] += 1
+            n //= c
+        if n < 2:
+            break
+    if n > 1:
+        d[n] += 1
+    return d.items()

@@ -1,0 +1,27 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    StringBuilder sb = new StringBuilder();
+    long MOD = 1_000_000_007;
+    String[] s = br.readLine().split(" ");
+    long n = Long.parseLong(s[0]);
+    long m = Long.parseLong(s[1]);
+    if (m > n + 1 || m < n - 1) {
+        System.out.println(0);
+        System.exit(0);
+    }
+    long fact1 = 1;
+    long fact2 = 1;
+    for (int i = 0; i < m; i++) {
+        fact1 *= (i + 1);
+        fact1 %= MOD;
+    }
+    for (int i = 0; i < n; i++) {
+        fact2 *= (i + 1);
+        fact2 %= MOD;
+    }
+    long ans = (fact1 * fact2) % MOD;
+    if (m == n)
+        ans *= 2;
+    ans %= MOD;
+    System.out.println(ans);
+}

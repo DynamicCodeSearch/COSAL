@@ -1,0 +1,6 @@
+void dfs(int current, int p, int d) {
+    parent[0][current] = p;
+    depth[current] = d;
+    for (int c : edge.get(current)) if (c != p)
+        dfs(c, current, d + 1);
+}

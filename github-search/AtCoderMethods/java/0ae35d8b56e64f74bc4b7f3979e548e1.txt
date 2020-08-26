@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String N_string = sc.next();
+    int N_int = Integer.parseInt(N_string);
+    BigDecimal N = new BigDecimal(N_string);
+    String K_string = sc.next();
+    int K_int = Integer.parseInt(K_string);
+    BigDecimal K = new BigDecimal(K_string);
+    int[] intR = new int[N_int];
+    BigDecimal ans = BigDecimal.ZERO;
+    for (int i = 0; i < N_int; i++) {
+        intR[i] = Integer.parseInt(sc.next());
+    }
+    Arrays.sort(intR);
+    for (int i = N_int - K_int; i < N_int; i++) {
+        ans = (ans.add(new BigDecimal(intR[i]))).divide(new BigDecimal(2), 6, RoundingMode.HALF_UP);
+    }
+    System.out.println(ans.toPlainString());
+}

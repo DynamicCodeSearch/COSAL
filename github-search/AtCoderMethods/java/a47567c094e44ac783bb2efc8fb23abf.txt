@@ -1,0 +1,25 @@
+public void solve(InputReader in, PrintWriter out) {
+    int n = in.nextInt(), m = in.nextInt();
+    boolean flag = false;
+    for (int i = 0; i < n; ++i) {
+        String s = in.next();
+        sa[i] = s.toCharArray();
+    }
+    for (int i = 0; i < m; ++i) {
+        String s = in.next();
+        sb[i] = s.toCharArray();
+    }
+    for (int i = 0; !flag && i + m <= n; ++i) {
+        for (int j = 0; !flag && j + m <= n; ++j) {
+            boolean f = true;
+            for (int ii = 0; f && ii < m; ++ii) {
+                for (int jj = 0; f && jj < m; ++jj) {
+                    if (sa[i + ii][j + jj] != sb[ii][jj])
+                        f = false;
+                }
+            }
+            flag |= f;
+        }
+    }
+    out.println(flag ? "Yes" : "No");
+}

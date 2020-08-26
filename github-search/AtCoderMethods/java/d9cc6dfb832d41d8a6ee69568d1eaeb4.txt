@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    HashMap<Integer, Boolean> hm = new HashMap<Integer, Boolean>();
+    int n = sc.nextInt();
+    for (int i = 0; i < n; i++) {
+        int buf = sc.nextInt();
+        if (hm.containsKey(buf)) {
+            hm.remove(buf);
+        } else {
+            hm.put(buf, true);
+        }
+    }
+    System.out.println(hm.size());
+}

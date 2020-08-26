@@ -1,0 +1,28 @@
+def main():
+    N,A,B=list(map(int,input().split()))
+    v=list(map(int,input().split()))
+    cnt=Counter(v)
+    ary=[]
+    first=True
+
+    for num,count in sorted(cnt.items(),reverse=True):
+        if count>A:
+            if first:
+                a2=0
+                print("{:.6f}".format(float(num)))
+                for k in range(A,min(B,count)+1):
+                    a2+=ncr(count,k)
+                print(a2)
+                return 0
+
+            ary+=[num]*A
+            print("{:.6f}".format(sum(ary)/len(ary)))
+            print(ncr(count,A))
+            return 0
+        elif A==0:
+            print("{:.6f}".format(sum(ary)/len(ary)))
+            print(1)
+        else:
+            ary+=[num]*count
+            A-=count
+        first=False

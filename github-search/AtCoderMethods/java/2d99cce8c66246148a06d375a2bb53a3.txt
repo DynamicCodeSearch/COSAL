@@ -1,0 +1,58 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] time = new int[12 * 24];
+    for (int i = 0; i < N; i++) {
+        String str = sc.next();
+        String[] s = str.split("-");
+        String time1 = s[0];
+        String time2 = s[1];
+        int hour1 = Integer.parseInt(time1.substring(0, 2));
+        int minute1 = Integer.parseInt(time1.substring(2, 4));
+        int hour2 = Integer.parseInt(time2.substring(0, 2));
+        int minute2 = Integer.parseInt(time2.substring(2, 4));
+        int minutesum1 = 60 * hour1 + minute1;
+        int minutesum2 = 60 * hour2 + minute2;
+        time[minutesum1 / 5]++;
+        if ((minutesum2 + 4) / 5 < 12 * 24)
+            time[(minutesum2 + 4) / 5]--;
+    }
+    for (int i = 1; i < 12 * 24; i++) {
+        time[i] += time[i - 1];
+    }
+    ArrayList<Integer> starttime = new ArrayList<Integer>();
+    ArrayList<Integer> endtime = new ArrayList<Integer>();
+    if (time[0] > 0)
+        starttime.add(0);
+    if (time[0] > 0 && time[1] == 0)
+        endtime.add(1);
+    for (int i = 1; i < 12 * 24; i++) {
+        if (time[i] > 0 && time[i - 1] == 0)
+            starttime.add(i);
+        if ((i + 1 < 12 * 24) && time[i] > 0 && time[i + 1] == 0)
+            endtime.add(i + 1);
+        if (i == 12 * 24 - 1 && time[i] > 0)
+            endtime.add(i + 1);
+    }
+    for (int i = 0; i < starttime.size(); i++) {
+        int startm = starttime.get(i) * 5;
+        int endm = endtime.get(i) * 5;
+        int starth = startm / 60;
+        startm -= 60 * starth;
+        int endh = endm / 60;
+        endm -= 60 * endh;
+        String starthstr = String.valueOf(starth);
+        String startmstr = String.valueOf(startm);
+        if (starth < 10)
+            starthstr = "0" + starthstr;
+        if (startm < 10)
+            startmstr = "0" + startmstr;
+        String endhstr = String.valueOf(endh);
+        String endmstr = String.valueOf(endm);
+        if (endh < 10)
+            endhstr = "0" + endhstr;
+        if (endm < 10)
+            endmstr = "0" + endmstr;
+        System.out.println(starthstr + startmstr + "-" + endhstr + endmstr);
+    }
+}

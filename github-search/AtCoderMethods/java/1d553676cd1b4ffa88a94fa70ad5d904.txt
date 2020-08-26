@@ -1,0 +1,22 @@
+private static long dfsDinic(int[] d, Edge[][] g, int[] sp, int cur, int sink, long min) {
+    if (cur == sink)
+        return min;
+    long left = min;
+    for (int i = sp[cur]; i >= 0; i--) {
+        Edge ne = g[cur][i];
+        if (d[ne.to] == d[cur] + 1 && ne.capacity - ne.flow > 0) {
+            long fl = dfsDinic(d, g, sp, ne.to, sink, Math.min(left, ne.capacity - ne.flow));
+            if (fl > 0) {
+                left -= fl;
+                ne.flow += fl;
+                ne.complement.flow -= fl;
+                if (left == 0) {
+                    sp[cur] = i;
+                    return min;
+                }
+            }
+        }
+    }
+    sp[cur] = -1;
+    return min - left;
+}

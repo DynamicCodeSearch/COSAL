@@ -1,0 +1,32 @@
+public void solve() {
+    H = nextInt();
+    W = nextInt();
+    a = new int[H][W];
+    used = new boolean[H][W];
+    cost = new long[H][W];
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            a[i][j] = nextInt();
+        }
+    }
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            cost[i][j] = -1;
+        }
+    }
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            used[i][j] = true;
+            dfs(i, j);
+            used[i][j] = false;
+        }
+    }
+    long ans = 0;
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            ans += cost[i][j];
+            ans %= INF;
+        }
+    }
+    out.println(ans);
+}

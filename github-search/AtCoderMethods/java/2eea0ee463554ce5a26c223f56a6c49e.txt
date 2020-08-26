@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    sc.nextLine();
+    String str = sc.nextLine();
+    StringBuilder sb = new StringBuilder();
+    int rp = 0;
+    for (int i = str.length() - 1; i >= 0; i--) {
+        if (str.charAt(i) == ')')
+            rp++;
+        else if (rp != 0)
+            rp--;
+    }
+    for (int i = 0; i < rp; i++) sb.append('(');
+    sb.append(str);
+    int lp = 0;
+    for (int i = 0; i < str.length(); i++) {
+        if (str.charAt(i) == '(')
+            lp++;
+        else if (lp != 0)
+            lp--;
+    }
+    for (int i = 0; i < lp; i++) sb.append(')');
+    System.out.println(sb.toString());
+}

@@ -1,0 +1,17 @@
+public static void dfs(ArrayList<Integer>[] g, int node) {
+    boolean done = true;
+    for (int i : g[node]) {
+        if (!visited[i]) {
+            visited[i] = true;
+            dfs(g, i);
+            visited[i] = false;
+            done = false;
+        }
+    }
+    if (done) {
+        boolean finish = true;
+        for (boolean b : visited) if (!b)
+            finish = false;
+        count += finish ? 1 : 0;
+    }
+}

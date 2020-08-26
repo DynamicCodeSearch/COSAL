@@ -1,0 +1,24 @@
+def main():
+    T = int(input())
+    N = int(input())
+    A = tuple(map(int, input().split()))
+    M = int(input())
+    B = tuple(map(int, input().split()))
+
+    a = list(A)
+    b = list(B)
+    ans = 'no'
+    if N < M:
+        pass
+    else:
+        for i in range(M):
+            for j in range(N):
+                t = b[i] - a[j]
+                if t <= T and t >= 0:
+                    a[j] = -999
+                    break
+
+        if a.count(-999) == M:
+            ans = 'yes'
+
+    print(ans)

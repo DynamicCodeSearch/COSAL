@@ -1,0 +1,22 @@
+int dfs(int nd, int par, int parCol) {
+    if (dp[nd][parCol] >= 0)
+        return dp[nd][parCol];
+    long sum = 1;
+    
+    for (int v : node[nd]) {
+        if (v == par)
+            continue;
+        sum = (sum * dfs(v, nd, 0)) % mod;
+    }
+    if (parCol == 0) {
+        
+        long sum2 = 1;
+        for (int v : node[nd]) {
+            if (v == par)
+                continue;
+            sum2 = (sum2 * dfs(v, nd, 1)) % mod;
+        }
+        sum = (sum + sum2) % mod;
+    }
+    return dp[nd][parCol] = (int) sum;
+}

@@ -1,0 +1,31 @@
+void solve(FastScanner in, PrintWriter out) {
+    int N = in.nextInt();
+    int C = in.nextInt();
+    int[] A = in.nextIntArray(N);
+    int[] B = in.nextIntArray(N);
+    long[][] sum = new long[401][C + 1];
+    for (int x = 0; x <= 400; x++) {
+        for (int k = 0; k <= C; k++) {
+            sum[x][k] = modPow(x, k);
+        }
+    }
+    for (int k = 0; k <= C; k++) {
+        for (int i = 0; i < 400; i++) {
+            sum[i + 1][k] += sum[i][k];
+            sum[i + 1][k] %= MOD;
+        }
+    }
+    long[][] dp = new long[N + 1][C + 1];
+    dp[0][0] = 1;
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j <= C; j++) {
+            long d = 0;
+            for (int k = 0; k <= j; k++) {
+                d += dp[i][j - k] * ((sum[B[i]][k] - sum[A[i] - 1][k] + MOD) % MOD);
+                d %= MOD;
+            }
+            dp[i + 1][j] = d;
+        }
+    }
+    out.println(dp[N][C]);
+}

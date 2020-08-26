@@ -1,0 +1,66 @@
+private static void solve() {
+    int n = sc.nextInt();
+    List<List<Integer>> edges = new ArrayList<>(n);
+    for (int i = 0; i < n; i++) {
+        edges.add(new ArrayList<>());
+    }
+    for (int i = 0; i < n - 1; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        edges.get(a).add(b);
+        edges.get(b).add(a);
+    }
+    int k = sc.nextInt();
+    int[] minv = new int[n];
+    int[] maxv = new int[n];
+    Arrays.fill(minv, -INF);
+    Arrays.fill(maxv, INF);
+    int v1 = 0;
+    for (int i = 0; i < k; i++) {
+        int v = sc.nextInt() - 1;
+        int p = sc.nextInt();
+        minv[v] = p;
+        maxv[v] = p;
+        if (i == 0) {
+            v1 = v;
+        }
+    }
+    for (int i = 0; i < 2; i++) {
+        Deque<Integer> q = new ArrayDeque<>();
+        boolean[] used = new boolean[n];
+        int[] pa = new int[n];
+        Arrays.fill(pa, -1);
+        q.add(v1);
+        pa[v1] = v1;
+        while (!q.isEmpty()) {
+            int e = q.peek();
+            if (used[e]) {
+                for (int next : edges.get(e)) {
+                    if (next != pa[e]) {
+                        if (!isOK(next, e, minv, maxv)) {
+                            pr.println("No");
+                            return;
+                        }
+                    }
+                }
+                q.pop();
+            } else {
+                for (int next : edges.get(e)) {
+                    if (next != pa[e]) {
+                        if (!isOK(e, next, minv, maxv)) {
+                            pr.println("No");
+                            return;
+                        }
+                        q.push(next);
+                        pa[next] = e;
+                    }
+                }
+                used[e] = true;
+            }
+        }
+    }
+    pr.println("Yes");
+    for (int i = 0; i < n; i++) {
+        pr.println(minv[i]);
+    }
+}

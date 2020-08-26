@@ -1,0 +1,22 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String line = br.readLine();
+    String[] number = line.split(" ");
+    int before = Integer.parseInt(number[0]);
+    int after = Integer.parseInt(number[1]);
+    int diff = Math.abs(after - before);
+    int adv = 0;
+    int ten = diff / 10;
+    int tenRem = diff % 10;
+    int five = diff % 10 / 5;
+    int one = diff % 5;
+    if (tenRem == 8) {
+        adv = 1;
+    } else if (tenRem == 4) {
+        adv = 2;
+    } else if (tenRem == 9) {
+        adv = 3;
+    }
+    int answer = ten + five + one - adv;
+    System.out.println(answer);
+}

@@ -1,0 +1,19 @@
+def main():
+    s = S()
+    l = len(s)
+    c = 0
+    t = -1
+    for i in range(l//2):
+        if s[i] != s[-(i+1)]:
+            c += 1
+            t = i
+    if c == 0:
+        return 25 * (l//2) * 2
+    if c == 1:
+        r = 25 * (l//2-1) * 2
+        if l % 2 == 1:
+            r += 25
+        r += 24 * 2
+        return r
+
+    return 25 * l

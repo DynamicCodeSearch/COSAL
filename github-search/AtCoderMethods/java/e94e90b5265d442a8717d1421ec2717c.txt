@@ -1,0 +1,12 @@
+void add(Q q) {
+    if (top.size() == 0) {
+        down.add(q);
+    } else {
+        if (top.first().value <= q.value) {
+            top.add(q);
+            sum += q.value;
+        } else {
+            down.add(q);
+        }
+    }
+}

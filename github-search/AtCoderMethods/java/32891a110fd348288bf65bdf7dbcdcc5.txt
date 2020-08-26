@@ -1,0 +1,17 @@
+private static String check(boolean p, boolean c) {
+    boolean[] state = new boolean[N + 1];
+    state[0] = p;
+    state[1] = c;
+    for (int i = 1; i < N; i++) {
+        state[i + 1] = next(state[i - 1], state[i], s.charAt(i));
+    }
+    String ans = "-1";
+    if (state[N] == state[0] && next(state[N - 1], state[0], s.charAt(0)) == state[1]) {
+        StringBuilder str = new StringBuilder(N);
+        for (int i = 0; i < N; i++) {
+            str.append(state[i] ? 'S' : 'W');
+        }
+        ans = str.toString();
+    }
+    return ans;
+}

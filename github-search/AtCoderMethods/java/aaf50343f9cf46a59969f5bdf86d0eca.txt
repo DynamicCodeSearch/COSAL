@@ -1,0 +1,35 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    R = sc.nextInt();
+    C = sc.nextInt();
+    int N = sc.nextInt();
+    List<long[]> list = new ArrayList<>();
+    for (int i = 0; i < N; i++) {
+        int[] p = sc.nextIntList(4);
+        long a = f(p[0], p[1]);
+        long b = f(p[2], p[3]);
+        if (a >= 0 && b >= 0) {
+            if (a > b) {
+                long tmp = a;
+                a = b;
+                b = tmp;
+            }
+            list.add(new long[] { 0, i, a });
+            list.add(new long[] { 1, i, b });
+        }
+    }
+    Collections.sort(list, (a, b) -> Long.compare(a[2], b[2]));
+    ArrayDeque<Long> queue = new ArrayDeque<>();
+    for (long[] v : list) {
+        if (v[0] == 0) {
+            queue.push(v[1]);
+        } else {
+            long now = queue.poll();
+            if (now != v[1]) {
+                System.out.println("NO");
+                return;
+            }
+        }
+    }
+    System.out.println("YES");
+}

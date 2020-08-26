@@ -1,0 +1,13 @@
+long flow(int from) {
+    long res = 0;
+    while (bfs(from)) {
+        Arrays.fill(cur, 0);
+        while (true) {
+            long add = dfs(from, Long.MAX_VALUE);
+            if (add == 0)
+                break;
+            res += add;
+        }
+    }
+    return res;
+}

@@ -1,0 +1,14 @@
+def f(i,t):
+    if i == 18:
+        if t > 18 or t%2 == 1:
+            return []
+        return [[t//2]]
+    if t > a[i] * 20:
+        return []
+    res = []
+    for j in range(10):
+        if a[i]*j > t:
+            break
+        res += [[j] + k for k in f(i+1, t-a[i]*j)]
+
+    return res

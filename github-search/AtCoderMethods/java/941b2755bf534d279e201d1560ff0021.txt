@@ -1,0 +1,29 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] input = br.readLine().split(" ");
+    n = Integer.parseInt(input[0]);
+    int m = Integer.parseInt(input[1]);
+    ArrayList<Integer> member = new ArrayList<Integer>();
+    for (int i = 0; i < n; i++) {
+        member.add(i);
+    }
+    boolean[][] R = new boolean[n][n];
+    for (int i = 0; i < m; i++) {
+        String[] s = br.readLine().split(" ");
+        int k = Integer.parseInt(s[0]) - 1;
+        int l = Integer.parseInt(s[1]) - 1;
+        R[k][l] = true;
+        R[l][k] = true;
+    }
+    ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>();
+    ArrayList<Integer> list = new ArrayList<Integer>();
+    list.add(0);
+    dfs(1, member, list, R, res);
+    list.remove(0);
+    dfs(1, member, list, R, res);
+    int max = 0;
+    for (int i = 0; i < res.size(); i++) {
+        max = Math.max(max, res.get(i).size());
+    }
+    System.out.println(max);
+}

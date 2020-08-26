@@ -1,0 +1,42 @@
+void solve() {
+    
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    boolean[][] connected = new boolean[N][N];
+    ArrayList<Integer>[] g = new ArrayList[N];
+    for (int i = 0; i < N; i++) g[i] = new ArrayList<>();
+    for (int i = 0; i < M; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        connected[a][b] = connected[b][a] = true;
+        g[a].add(b);
+        g[b].add(a);
+    }
+    int ans = 1;
+    for (int i = 0; i < N; i++) {
+        for (int v0 : g[i]) {
+            Stack<Integer> vStack = new Stack<>();
+            ArrayList<Integer> vClosedList = new ArrayList<>();
+            vStack.push(v0);
+            vClosedList.add(i);
+            vClosedList.add(v0);
+            while (!vStack.isEmpty()) {
+                LOOP: for (int v1 : g[vStack.pop()]) {
+                    if (vClosedList.contains(v1) || !g[i].contains(v1))
+                        continue;
+                    for (int closedV : vClosedList) {
+                        if (!connected[v1][closedV]) {
+                            continue LOOP;
+                        }
+                    }
+                    vStack.add(v1);
+                    vClosedList.add(v1);
+                }
+            }
+            if (vClosedList.size() > ans) {
+                ans = vClosedList.size();
+            }
+        }
+    }
+    System.out.println(ans);
+}

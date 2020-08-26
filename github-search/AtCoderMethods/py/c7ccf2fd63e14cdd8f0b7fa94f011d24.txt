@@ -1,0 +1,18 @@
+@classmethod
+def solve_r(cls, board, r):
+    if not board.is_acceptable():
+        return None
+
+    if r > 7:
+        return board
+
+    if board.count_row[r] > 0:
+        return cls.solve_r(board, r + 1)
+
+    for c in range(8):
+        if board.can_put_Q(r, c):
+            board.put_Q(r, c)
+            if cls.solve_r(board, r + 1):
+                return board
+            board.remove_Q(r, c)
+    return None

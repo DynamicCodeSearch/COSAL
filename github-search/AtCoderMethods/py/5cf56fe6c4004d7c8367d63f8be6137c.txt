@@ -1,0 +1,13 @@
+def solve():
+    N = int(input())
+    R = [int(input()) for i in range(N)]
+    R.sort(reverse=True)
+    ans = 0
+
+    for i in range(N):
+        if i & 1:
+            ans -= R[i]**2 * pi
+        else:
+            ans += R[i]**2 * pi
+
+    print(ans)

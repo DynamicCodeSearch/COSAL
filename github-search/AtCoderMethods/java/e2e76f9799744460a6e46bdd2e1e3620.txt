@@ -1,0 +1,9 @@
+public static BigInteger choose(long n, long k) {
+    if (k < 0 || k > n)
+        return BigInteger.ZERO;
+    if (k == 0 || k == n)
+        return BigInteger.ONE;
+    if (k > n - k)
+        k = n - k;
+    return choose(n - 1, k - 1).multiply(BigInteger.valueOf(n)).divide(BigInteger.valueOf(k));
+}

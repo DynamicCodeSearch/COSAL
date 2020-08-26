@@ -1,0 +1,16 @@
+static long f(int i, long sum, int inset) {
+    if (i >= 0 && A * inset == sum) {
+        System.err.println(inset + " " + sum);
+        return 1L;
+    }
+    if (i < 0)
+        return 0;
+    String key = i + " " + sum + " " + inset;
+    if (memo.containsKey(key))
+        return memo.get(key);
+    long ans = f(i - 1, sum, inset);
+    if (i >= 0)
+        ans += f(i - 1, sum - tab[i], inset - 1);
+    memo.put(key, ans);
+    return ans;
+}

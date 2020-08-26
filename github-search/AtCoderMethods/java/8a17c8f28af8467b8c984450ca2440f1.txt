@@ -1,0 +1,32 @@
+public static void main(String[] args) throws Exception {
+    long H = sc.nextLong();
+    long W = sc.nextLong();
+    long res = Long.MAX_VALUE;
+    long[] arr = new long[3];
+    arr[0] = H / 3;
+    arr[1] = (H - arr[0]) / 2;
+    arr[2] = H - arr[0] - arr[1];
+    res = Math.min(res, helper(arr) * W);
+    arr[0] = W / 3;
+    arr[1] = (W - arr[0]) / 2;
+    arr[2] = W - arr[0] - arr[1];
+    res = Math.min(res, helper(arr) * H);
+    long k = W / 2;
+    long l = W - W / 2;
+    boolean tag = true;
+    for (int i = 1; i < H; i++) {
+        arr[0] = i * W;
+        arr[1] = (H - i) * k;
+        arr[2] = (H - i) * l;
+        res = Math.min(res, helper(arr));
+    }
+    k = H / 2;
+    l = H - H / 2;
+    for (int i = 1; i < W; i++) {
+        arr[0] = i * H;
+        arr[1] = (W - i) * k;
+        arr[2] = (W - i) * l;
+        res = Math.min(res, helper(arr));
+    }
+    System.out.println(res);
+}

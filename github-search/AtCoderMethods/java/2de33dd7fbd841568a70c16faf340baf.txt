@@ -1,0 +1,16 @@
+int search(int y, int x) {
+    if (dp[y][x] != 0) {
+        return dp[y][x];
+    }
+    int total = 1;
+    int now = map[y][x];
+    for (int i = 0; i < 4; i++) {
+        int ny = y + dy[i];
+        int nx = x + dx[i];
+        if (map[ny][nx] <= now)
+            continue;
+        total += Math.max(search(ny, nx), 1) % div;
+    }
+    dp[y][x] = total;
+    return total;
+}

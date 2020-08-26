@@ -1,0 +1,19 @@
+void run() {
+    long mod = (long) Math.pow(10, 9) + 7;
+    FermatCombination com = new FermatCombination(H + W, mod);
+    long ans = 0;
+    
+    long n, k = 0;
+    for (int i = B; i < W; i++) {
+        
+        n = H - A - 1 + i;
+        k = i;
+        long tmp1 = com.combine(n, k);
+        n = A - 1 + W - i - 1;
+        k = A - 1;
+        long tmp2 = com.combine(n, k);
+        ans += tmp1 * tmp2;
+        ans %= mod;
+    }
+    System.out.println(ans);
+}

@@ -1,0 +1,20 @@
+def solve():
+    red, blue = map(int, input().split())
+    needR, needB = map(int, input().split())
+
+    if red == 1:
+        print(1 if blue >= needB else 0)
+        return
+    elif blue == 1:
+        print(1 if red >= needR else 0)
+        return
+
+    low, high = 0, 10 ** 20
+    while high - low > 1:
+        mid = (low + high) // 2
+        if (red >= mid) and           (blue >= mid) and           (red - mid) // (needR - 1) + (blue - mid) // (needB - 1) >= mid:
+           low = mid
+        else:
+           high = mid
+
+    print(low)

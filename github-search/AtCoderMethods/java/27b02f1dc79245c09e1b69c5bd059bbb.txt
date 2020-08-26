@@ -1,0 +1,13 @@
+public static void main(String[] args) {
+    IO io = new IO();
+    int n = io.nextInt();
+    Pair[] p = new Pair[n];
+    for (int i = 0; i < n; i++) {
+        p[i] = new Pair(i + 1, io.nextInt());
+    }
+    Arrays.sort(p, (p1, p2) -> -Integer.compare(p1.h, p2.h));
+    for (int i = 0; i < n; i++) {
+        io.println(p[i].id);
+    }
+    io.flush();
+}

@@ -1,0 +1,8 @@
+public void set(int i, long x) {
+    i += n - 1;
+    data[i] = x;
+    while (i > 0) {
+        i = (i - 1) / 2;
+        data[i] = Math.max(data[i * 2 + 1], data[i * 2 + 2]);
+    }
+}

@@ -1,0 +1,10 @@
+int dfs(int x) {
+    b[x] = true;
+    for (int i : amp[x]) {
+        if (!b[i]) {
+            parent[i] = x;
+            dist[x] += dfs(i);
+        }
+    }
+    return (++dist[x]);
+}

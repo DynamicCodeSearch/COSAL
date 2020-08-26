@@ -1,0 +1,11 @@
+def kruskal(V, E, es):
+    es.sort(key=lambda x: x.c)
+    uf = DisjointSet(V)
+    res = 0
+
+    for i in range(E):
+        e = es[i]
+        if not uf.same(e.u, e.v):
+            uf.unite(e.u, e.v)
+            res += e.c
+    return res

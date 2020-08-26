@@ -1,0 +1,6 @@
+def search_dist(g, dist, e):
+    for b, c in g.get(e):
+        if dist[b] is not None:
+            continue
+        dist[b] = dist[e] + c
+        search_dist(g, dist, b)

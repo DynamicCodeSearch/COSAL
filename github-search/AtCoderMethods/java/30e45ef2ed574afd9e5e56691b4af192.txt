@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    long a = sc.nextLong();
+    long b = sc.nextLong();
+    sc.close();
+    for (int s = 0; s < MAX_SIZE; s++) {
+        for (int d = 0; d < 10; d++) {
+            if (s == 0) {
+                dp[s][d] = d == 4 || d == 9 ? 1 : 0;
+            } else {
+                if (d == 4 || d == 9) {
+                    dp[s][d] = (long) Math.pow(10, s);
+                } else {
+                    for (int bd = 0; bd < 10; bd++) {
+                        dp[s][d] += dp[s - 1][bd];
+                    }
+                }
+            }
+        }
+    
+    }
+    System.out.println(getCount(b) - getCount(a - 1));
+}

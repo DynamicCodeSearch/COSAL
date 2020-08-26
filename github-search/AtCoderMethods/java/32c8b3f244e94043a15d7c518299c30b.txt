@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    long a = in.nextInt();
+    long b = in.nextInt();
+    long[] hp = new long[n];
+    for (int i = 0; i < n; i++) {
+        hp[i] = in.nextInt();
+    }
+    long min = 0;
+    long max = 1000000000;
+    while (max - min > 1) {
+        long med = (max + min) / 2;
+        if (possible(med, hp, a, b)) {
+            max = med;
+        } else {
+            min = med;
+        }
+    }
+    out.println(max);
+    out.flush();
+}

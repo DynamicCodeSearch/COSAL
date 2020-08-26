@@ -1,0 +1,31 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    int[][] students = new int[n][2];
+    for (int i = 0; i < n; i++) {
+        students[i][X] = sc.nextInt();
+        students[i][Y] = sc.nextInt();
+    }
+    int[][] checkpoints = new int[m][2];
+    for (int i = 0; i < m; i++) {
+        checkpoints[i][X] = sc.nextInt();
+        checkpoints[i][Y] = sc.nextInt();
+    }
+    int[] result = new int[n];
+    for (int i = 0; i < n; i++) {
+        int minDist = Integer.MAX_VALUE;
+        int minIndex = 0;
+        for (int j = 0; j < m; j++) {
+            int dist = Math.abs(students[i][X] - checkpoints[j][X]) + Math.abs(students[i][Y] - checkpoints[j][Y]);
+            if (dist < minDist) {
+                minDist = dist;
+                minIndex = j;
+            }
+        }
+        result[i] = minIndex + 1;
+    }
+    for (int i = 0; i < n; i++) {
+        System.out.println(result[i]);
+    }
+}

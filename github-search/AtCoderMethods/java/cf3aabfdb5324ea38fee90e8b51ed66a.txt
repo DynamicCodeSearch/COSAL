@@ -1,0 +1,14 @@
+public static void main(String[] args) throws Exception {
+    long curr = sc.nextLong();
+    if (curr <= 6) {
+        out.println(1);
+    } else if (curr <= 11) {
+        out.println(2);
+    } else {
+        long val1 = (curr / 11L);
+        curr -= (val1 * 11L);
+        long add = ((curr == 0 ? 0 : (curr <= 6 ? 1 : 2)));
+        out.println((val1 * 2) + add);
+    }
+    out.close();
+}

@@ -1,0 +1,28 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    n = in.nextInt();
+    m = in.nextInt();
+    char[][] v = new char[n][];
+    for (int i = 0; i < n; ++i) v[i] = in.next().toCharArray();
+    Dir[] w = { new Dir(0, 1), new Dir(-1, 0), new Dir(0, -1), new Dir(0, -1), new Dir(1, 0), new Dir(1, 0), new Dir(0, 1), new Dir(0, 1) };
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < m; ++j) {
+            if (v[i][j] == '#') {
+                out.print("#");
+                continue;
+            }
+            int s = 0;
+            int x = i;
+            int y = j;
+            for (int k = 0; k < 8; ++k) {
+                x += w[k].x;
+                y += w[k].y;
+                if (!r(x, y))
+                    continue;
+                if (v[x][y] == '#')
+                    ++s;
+            }
+            out.print(s);
+        }
+        out.println();
+    }
+}

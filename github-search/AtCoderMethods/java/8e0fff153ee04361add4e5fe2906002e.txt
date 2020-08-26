@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int m = sc.nextInt();
+    int n = sc.nextInt();
+    int N = sc.nextInt();
+    int sold = 0;
+    int used = 0;
+    while (true) {
+        if (N + used < m) {
+            sold += N;
+            break;
+        }
+        sold += N;
+        int temp = used;
+        used = (N + temp) % m;
+        N = (N + temp) / m * n;
+    }
+    System.out.println(sold);
+}

@@ -1,0 +1,8 @@
+protected int next(int bits) {
+    long t = (x ^ x << 11) & (1L << 32) - 1;
+    x = y;
+    y = z;
+    z = w;
+    w = (w ^ w >>> 19 ^ t ^ t >>> 8) & (1L << 32) - 1;
+    return (int) w >>> 32 - bits;
+}

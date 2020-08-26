@@ -1,0 +1,6 @@
+static int find(int a, int[] parent) {
+    if (a == parent[a])
+        return a;
+    parent[a] = find(parent[a], parent);
+    return parent[a];
+}

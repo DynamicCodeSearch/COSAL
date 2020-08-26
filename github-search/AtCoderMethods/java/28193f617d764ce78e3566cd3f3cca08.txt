@@ -1,0 +1,9 @@
+private static long dfs(long n) {
+    if (n < 2)
+        return n;
+    if (memo.containsKey(n))
+        return memo.get(n);
+    long ret = (2 * dfs(n / 2) + dfs(n / 2 + (n % 2 * 2 - 1))) % 1000000007;
+    memo.put(n, ret);
+    return ret;
+}

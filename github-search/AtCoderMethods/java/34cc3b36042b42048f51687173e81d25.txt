@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int string_count = sc.nextInt();
+    String[] strings = new String[string_count];
+    for (int i = 0; i < string_count; i++) {
+        strings[i] = sc.next();
+    }
+    int[] min_alphabet_count = new int[26];
+    for (int i = 0; i < 26; i++) {
+        min_alphabet_count[i] = Integer.MAX_VALUE;
+    }
+    for (int i = 0; i < strings.length; i++) {
+        String str = strings[i];
+        for (int j = 0; j < 26; j++) {
+            int c = count(str, (char) ('a' + j));
+            if (c < min_alphabet_count[j])
+                min_alphabet_count[j] = c;
+        }
+    }
+    for (int i = 0; i < min_alphabet_count.length; i++) {
+        int cnt = min_alphabet_count[i];
+        String str = String.valueOf((char) ('a' + i));
+        for (int j = 0; j < cnt; j++) {
+            System.out.print(str);
+        }
+    }
+    System.out.println();
+    sc.close();
+}

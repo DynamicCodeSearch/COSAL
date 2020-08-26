@@ -1,0 +1,29 @@
+public static long solve(int n) {
+    long[] f = new long[Math.max(n + 1, 10)];
+    f[0] = 1;
+    f[1] = n;
+    f[2] = f[1] + (long) (n - 1) * n;
+    long[] sum = new long[Math.max(n + 2, 10)];
+    for (int i = 0; i <= 2; i++) {
+        f[i] = f[i] % MOD;
+        sum[i + 1] = (sum[i] + f[i]) % MOD;
+    }
+    for (int k = 3; k <= n; k++) {
+        int m = Math.min(n, k - 2);
+        int l = k - 1 - m;
+        int r = k - 1 - 2;
+        long x = f[k - 1] + (long) (n - 1) * n - (m - 2 + 1);
+        if (l <= r) {
+            x += (sum[r + 1] - sum[l]);
+        }
+        x %= MOD;
+        if (x < 0)
+            x += MOD;
+        f[k] = x;
+        sum[k + 1] = sum[k] + f[k];
+        if (sum[k + 1] >= MOD)
+            sum[k + 1] -= MOD;
+    }
+    
+    return f[n];
+}

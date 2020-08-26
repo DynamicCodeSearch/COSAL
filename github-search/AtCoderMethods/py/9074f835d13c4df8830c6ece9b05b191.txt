@@ -1,0 +1,30 @@
+def c():
+    n = int(input())
+    a = list(map(int, input().split()))
+    x = []
+    def set_col(rate):
+        if rate <= 399:
+            return '灰色'
+        elif rate <= 799:
+            return '茶色'
+        elif rate <= 1199:
+            return '緑色'
+        elif rate <= 1599:
+            return '水色'
+        elif rate <= 1999:
+            return '青色'
+        elif rate <= 2399:
+            return '黄色'
+        elif rate <= 2799:
+            return '橙色'
+        elif rate <= 3199:
+            return '赤色'
+        else:
+            x.append(1)
+            return
+
+    res = set(map(set_col, a))
+    if None in res: res.remove(None)
+    mi = max(1, len(res))
+    ma = len(res) + len(x)
+    print(mi, ma)

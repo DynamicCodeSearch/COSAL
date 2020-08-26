@@ -1,0 +1,12 @@
+private boolean enough(int t) {
+    long cnt = 0;
+    for (int h : HP) {
+        if (h > B * t) {
+            long add = h - B * t;
+            cnt += add / (A - B);
+            if (add % (A - B) != 0)
+                cnt++;
+        }
+    }
+    return cnt <= t;
+}

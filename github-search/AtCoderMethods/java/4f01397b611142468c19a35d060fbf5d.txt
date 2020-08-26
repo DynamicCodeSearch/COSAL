@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String s = sc.next();
+    boolean[] boo = new boolean[26];
+    for (int i = 0; i < s.length(); i++) {
+        int tmp = s.charAt(i) - 'a';
+        boo[tmp] = true;
+    }
+    for (int i = 0; i < 26; i++) {
+        if (!boo[i]) {
+            System.out.println((char) (i + 'a'));
+            System.exit(0);
+        }
+    }
+    System.out.println("None");
+}

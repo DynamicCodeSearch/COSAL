@@ -1,0 +1,15 @@
+public static Node update(Node a) {
+    if (a == null)
+        return null;
+    a.count = 1;
+    if (a.left != null)
+        a.count += a.left.count;
+    if (a.right != null)
+        a.count += a.right.count;
+    a.sum = a.v + a.add * a.count;
+    if (a.left != null)
+        a.sum += a.left.sum;
+    if (a.right != null)
+        a.sum += a.right.sum;
+    return a;
+}

@@ -1,0 +1,38 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int N = in.nextInt();
+    int[] ary = new int[N * 3];
+    long[] f_sum = new long[N + 1];
+    long[] r_sum = new long[N + 1];
+    for (int i = 0; i < N * 3; i++) {
+        ary[i] = in.nextInt();
+    }
+    long ans = -1000000000000000000l;
+    PriorityQueue<Integer> f_queue = new PriorityQueue<>();
+    PriorityQueue<Integer> r_queue = new PriorityQueue<>();
+    for (int i = 0; i < N; i++) {
+        
+        f_queue.add(ary[i]);
+        f_sum[0] += ary[i];
+        
+        r_queue.add(-ary[3 * N - 1 - i]);
+        r_sum[N] += ary[3 * N - 1 - i];
+    }
+    for (int i = 0; i < N; i++) {
+        
+        f_queue.add(ary[N + i]);
+        f_sum[i + 1] += f_sum[i] + ary[N + i];
+        int top = f_queue.poll();
+        f_sum[i + 1] -= top;
+        
+        r_queue.add(-ary[2 * N - i - 1]);
+        r_sum[N - i - 1] += r_sum[N - i] + ary[2 * N - i - 1];
+        r_sum[N - i - 1] -= -r_queue.poll();
+    }
+    for (int i = 0; i < N + 1; i++) {
+        if (ans < f_sum[i] - r_sum[i]) {
+            ans = f_sum[i] - r_sum[i];
+        }
+    }
+    System.out.println(ans);
+}

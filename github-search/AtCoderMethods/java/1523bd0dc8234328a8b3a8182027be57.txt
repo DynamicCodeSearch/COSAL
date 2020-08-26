@@ -1,0 +1,53 @@
+private static void solve() {
+    int n = sc.nextInt();
+    int k = sc.nextInt();
+    int l = sc.nextInt();
+    UnionFindList road = new UnionFindList(n);
+    UnionFindList rail = new UnionFindList(n);
+    int[] p = new int[k];
+    int[] q = new int[k];
+    for (int i = 0; i < k; i++) {
+        p[i] = sc.nextInt() - 1;
+        q[i] = sc.nextInt() - 1;
+        road.unite(p[i], q[i]);
+    }
+    int[] r = new int[l];
+    int[] s = new int[l];
+    for (int i = 0; i < l; i++) {
+        r[i] = sc.nextInt() - 1;
+        s[i] = sc.nextInt() - 1;
+        rail.unite(r[i], s[i]);
+    }
+    int[] ret = new int[n];
+    List<Integer> ans = new ArrayList<>();
+    for (int i = 0; i < n; i++) {
+        if (ret[i] == 0) {
+            Set<Integer> roadtmp = road.getList(i);
+            Set<Integer> railtmp = rail.getList(i);
+            ans.clear();
+            if (roadtmp.size() < railtmp.size()) {
+                for (int e : roadtmp) {
+                    if (railtmp.contains(e)) {
+                        ans.add(e);
+                    }
+                }
+            } else {
+                for (int e : railtmp) {
+                    if (roadtmp.contains(e)) {
+                        ans.add(e);
+                    }
+                }
+            }
+            for (int e : ans) {
+                ret[e] = ans.size();
+            }
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        if (i > 0) {
+            pr.print(" ");
+        }
+        pr.print(ret[i]);
+    }
+    pr.println();
+}

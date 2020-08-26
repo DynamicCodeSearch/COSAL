@@ -1,0 +1,39 @@
+public static void output() throws IOException {
+    int h = ri();
+    int w = ri();
+    int n = ri();
+    int[][] grid = new int[h][w];
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = ri();
+    }
+    int ptr = 0;
+    int ctr = 0;
+    for (int j = 0; j < w; j++) {
+        if (j % 2 == 0) {
+            for (int i = 0; i < h; i++) {
+                if (ctr == a[ptr]) {
+                    ptr++;
+                    ctr = 0;
+                }
+                grid[i][j] = ptr + 1;
+                ctr++;
+            }
+        } else {
+            for (int i = h - 1; i >= 0; i--) {
+                if (ctr == a[ptr]) {
+                    ptr++;
+                    ctr = 0;
+                }
+                grid[i][j] = ptr + 1;
+                ctr++;
+            }
+        }
+    }
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            print(grid[i][j] + " ");
+        }
+        println();
+    }
+}

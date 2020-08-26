@@ -1,0 +1,28 @@
+public static void main(String[] args) throws Exception {
+    Scanner scan = new Scanner(System.in);
+    n = scan.nextInt();
+    x = scan.nextInt();
+    scan.close();
+    boolean[] f = new boolean[n];
+    int i = 0;
+    int side = 0;
+    for (; i < n; i++) {
+        if (i == x - 1) {
+            f[i] = true;
+            if (i < (n / 2)) {
+                side = -1;
+            } else {
+                side = 1;
+            }
+            break;
+        }
+    }
+    int cnt = 0;
+    while (!(f[0] || f[n - 1])) {
+        cnt++;
+        f[i] = !f[i];
+        i += side;
+        f[i] = !f[i];
+    }
+    System.out.println(cnt);
+}

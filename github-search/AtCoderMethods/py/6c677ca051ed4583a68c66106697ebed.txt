@@ -1,0 +1,13 @@
+def dfs(x, parent, children, f, g):
+
+    for child in children[x]:
+        if child == parent:
+            continue
+        dfs(child, x, children, f, g)
+
+    for child in children[x]:
+        g[x] = (g[x] * f[child]) % MOD
+
+    for child in children[x]:
+        f[x] = (f[x] * g[child]) % MOD
+    f[x] = (f[x] + g[x]) % MOD

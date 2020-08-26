@@ -1,0 +1,26 @@
+private static void solve() throws IOException {
+    int tmp = 1;
+    for (int i = 1; i <= H; ++i) {
+        if (i % 2 == 1) {
+            for (int j = 1; j <= W; ++j) {
+                if (a[tmp] == 0)
+                    ++tmp;
+                res[i][j] = tmp;
+                --a[tmp];
+            }
+        } else {
+            for (int j = W; j >= 1; --j) {
+                if (a[tmp] == 0)
+                    ++tmp;
+                res[i][j] = tmp;
+                --a[tmp];
+            }
+        }
+    }
+    for (int i = 1; i <= H; ++i) {
+        for (int j = 1; j <= W; ++j) {
+            output.print(res[i][j] + " ");
+        }
+        output.println();
+    }
+}

@@ -1,0 +1,11 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int n = Integer.parseInt(br.readLine());
+    int mini = INF;
+    for (int h = 1; h <= n; h++) {
+        for (int w = 1; w * h <= n; w++) {
+            mini = (int) Math.min(mini, Math.abs(h - w) + n - h * w);
+        }
+    }
+    System.out.println(mini);
+}

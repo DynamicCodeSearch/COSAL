@@ -1,0 +1,28 @@
+private void solve(Scanner sc) {
+    long N = sc.nextLong();
+    int cnt = 0;
+    long n = N;
+    while (n > 0) {
+        n /= 2;
+        ++cnt;
+    }
+    boolean flg = false;
+    long x = 1;
+    while (x <= N) {
+        if (cnt % 2 == 0) {
+            if (flg) {
+                x = 2 * x + 1;
+            } else {
+                x = 2 * x;
+            }
+        } else {
+            if (flg) {
+                x = 2 * x;
+            } else {
+                x = 2 * x + 1;
+            }
+        }
+        flg = !flg;
+    }
+    _out.println((!flg ? "Takahashi" : "Aoki"));
+}

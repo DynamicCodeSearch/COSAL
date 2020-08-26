@@ -1,0 +1,9 @@
+def can_exterminate(attack_count):
+    sum_b = b * attack_count
+    i = bisect.bisect(enemies, sum_b)
+
+    for enemy in enemies[i:]:
+        attack_count -= ceil((enemy - sum_b) / d)
+        if attack_count < 0:
+            return False
+    return True

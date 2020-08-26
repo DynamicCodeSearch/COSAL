@@ -1,0 +1,13 @@
+private boolean check(boolean[][] b) {
+    for (int i = 0; i < b.length; ++i) {
+        int cnt = 0;
+        for (int j = 0; j < b[i].length; ++j) {
+            if (b[i][j]) {
+                if (!check(b, i, j)) {
+                    return false;
+                }
+            }
+        }
+    }
+    return true;
+}

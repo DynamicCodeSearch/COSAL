@@ -1,0 +1,17 @@
+public static void main(String[] args) throws Exception {
+    long sum = 0;
+    int N = sc.nextInt();
+    int T = sc.nextInt();
+    int before = sc.nextInt();
+    for (int i = 0; i < N - 1; i++) {
+        int k = sc.nextInt();
+        int time = k - before;
+        if (time > T)
+            sum += T;
+        else
+            sum += time;
+        before = k;
+    }
+    sum += T;
+    System.out.println(sum);
+}

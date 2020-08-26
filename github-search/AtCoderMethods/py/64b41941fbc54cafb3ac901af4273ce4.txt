@@ -1,0 +1,13 @@
+def cal(s):
+    if len(s) == 0:
+        return(0, 1)
+    elif len(s) == 1:
+        return (int(s), 1)
+    else:
+        sum, times = 0, 0
+        for i in range(len(s)):
+            num = int(s[0:(i + 1)])
+            result = cal(s[(i + 1):len(s)])
+            sum += num * result[1] + result[0]
+            times += result[1]
+        return (sum, times)

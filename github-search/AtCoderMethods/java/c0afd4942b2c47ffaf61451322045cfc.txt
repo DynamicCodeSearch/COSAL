@@ -1,0 +1,33 @@
+private void compute(int n) {
+    if (n == this.r) {
+        List<T> combination = new ArrayList<T>();
+        if (overHalf) {
+            for (int i = 0; i < this.list.size(); i++) {
+                boolean skip = false;
+                for (int j = 0; j < this.index.length; j++) {
+                    if (i == this.index[j]) {
+                        skip = true;
+                    }
+                }
+                if (skip) {
+                    continue;
+                }
+                combination.add(list.get(i));
+            }
+        } else {
+            for (int i = 0; i < this.index.length; i++) {
+                combination.add(list.get(index[i]));
+            }
+        }
+        this.combinations.add(combination);
+    } else {
+        for (int i = 0; i < this.list.size(); i++) {
+            if (n == 0 || !this.visited[i] && index[n - 1] < i) {
+                this.visited[i] = true;
+                this.index[n] = i;
+                this.compute(n + 1);
+                this.visited[i] = false;
+            }
+        }
+    }
+}

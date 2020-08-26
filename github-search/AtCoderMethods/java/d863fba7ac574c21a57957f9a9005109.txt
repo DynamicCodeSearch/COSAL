@@ -1,0 +1,55 @@
+public static void main(String[] args) {
+    try {
+        
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+        String[] str = br.readLine().split(" ");
+        int n = Integer.parseInt(str[0]);
+        int m = Integer.parseInt(str[1]);
+        String[] a = new String[n];
+        for (int i = 0; i < n; i++) {
+            a[i] = br.readLine();
+        }
+        String[] b = new String[m];
+        for (int i = 0; i < m; i++) {
+            b[i] = br.readLine();
+        }
+        boolean yesFlag = false;
+        for (int i = 0; i < n; i++) {
+            if (yesFlag) {
+                break;
+            }
+            if (n - i < m) {
+                break;
+            }
+            for (int j = 0; j < n; j++) {
+                if (yesFlag) {
+                    break;
+                }
+                if (n - j < m) {
+                    break;
+                }
+                String tmp = a[i].substring(j, j + m);
+                boolean flag = true;
+                if (tmp.equals(b[0])) {
+                    for (int k = 1; k < m; k++) {
+                        String tmp2 = a[i + k].substring(j, j + m);
+                        if (!tmp2.equals(b[k])) {
+                            flag = false;
+                            break;
+                        }
+                    }
+                    if (flag) {
+                        System.out.println("Yes");
+                        yesFlag = true;
+                    }
+                }
+            }
+        }
+        if (!yesFlag) {
+            System.out.println("No");
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

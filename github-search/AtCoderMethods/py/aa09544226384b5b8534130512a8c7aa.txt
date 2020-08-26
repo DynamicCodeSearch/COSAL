@@ -1,0 +1,16 @@
+def main():
+    N, M, A, B = map(int, input().split())
+
+    CS = [int(input()) for _ in range(M)]
+
+    stock = N
+    for day in range(1, M+1):
+        if stock <= A:
+            stock += B
+        c = CS[day-1]
+        if stock < c:
+            print(day)
+            return
+        stock -= c
+
+    print("complete")

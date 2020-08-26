@@ -1,0 +1,6 @@
+def compute_sum(n, k, xs):
+    cs = numpy.insert(numpy.cumsum(xs), 0, 0)
+    answer = 0
+    for start_idx in range(n - k + 1):
+        answer += cs[start_idx + k] - cs[start_idx]
+    return answer

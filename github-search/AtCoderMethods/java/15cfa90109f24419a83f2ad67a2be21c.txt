@@ -1,0 +1,30 @@
+
+public static void main(String[] args) {
+    StringBuilder builder = new StringBuilder();
+    Scanner scanner = new Scanner(System.in);
+    String textString = scanner.nextLine();
+    List<Integer> nums = new ArrayList<>();
+    String[] numStrings = scanner.nextLine().split(" ");
+    for (String string : numStrings) {
+        nums.add(Integer.parseInt(string));
+    }
+    scanner.close();
+    Collections.sort(nums);
+    int num = nums.remove(0);
+    for (int i = 0; i < textString.length(); i++) {
+        if (num == i) {
+            builder.append("\"");
+            if (nums.size() > 0) {
+                num = nums.remove(0);
+            } else {
+                builder.append(textString.substring(i));
+                break;
+            }
+        }
+        builder.append(textString.charAt(i));
+    }
+    if (num == textString.length()) {
+        builder.append("\"");
+    }
+    System.out.println(builder.toString());
+}

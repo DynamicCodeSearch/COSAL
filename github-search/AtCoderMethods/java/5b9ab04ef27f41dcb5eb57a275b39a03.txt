@@ -1,0 +1,33 @@
+
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    int h = Integer.parseInt(sc.next());
+    int w = Integer.parseInt(sc.next());
+    int[][] map = new int[h][w];
+    int[][] num = new int[h][w];
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            map[i][j] = 0;
+            num[i][j] = -1;
+        }
+    }
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            map[i][j] = Integer.parseInt(sc.next());
+        }
+    }
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            search(h, w, i, j, map, num);
+        }
+    }
+    int sum = 0;
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            
+            sum = (sum + num[i][j]) % div;
+        }
+    }
+    System.out.println(sum);
+}

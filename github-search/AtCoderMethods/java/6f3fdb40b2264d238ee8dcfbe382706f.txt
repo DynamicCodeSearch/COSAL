@@ -1,0 +1,46 @@
+private void solve(FastScanner sc) {
+    int n = sc.nextInt();
+    int k = sc.nextInt();
+    int l = sc.nextInt();
+    UnionFind kuf = new UnionFind(n);
+    UnionFind luf = new UnionFind(n);
+    for (int i = 0; i < k; i++) {
+        int p = sc.nextInt() - 1;
+        int q = sc.nextInt() - 1;
+        kuf.unite(p, q);
+    }
+    for (int i = 0; i < l; i++) {
+        int s = sc.nextInt() - 1;
+        int t = sc.nextInt() - 1;
+        luf.unite(s, t);
+    }
+    Map<Integer, Set<Integer>> ks = new HashMap<>();
+    Map<Integer, Set<Integer>> ls = new HashMap<>();
+    for (int i = 0; i < n; i++) {
+        ks.putIfAbsent(kuf.find(i), new HashSet<>());
+        ks.get(kuf.find(i)).add(i);
+        ls.putIfAbsent(luf.find(i), new HashSet<>());
+        ls.get(luf.find(i)).add(i);
+    }
+    StringBuilder sb = new StringBuilder();
+    Map<Integer, Set<Integer>> memo = new HashMap<>();
+    for (int i = 0; i < n; i++) {
+        int kpar = kuf.find(i);
+        int lpar = luf.find(i);
+        int key = kpar * 20001 + lpar;
+        if (memo.containsKey(key)) {
+            sb.append(memo.get(key).size());
+        } else if (ks.get(kpar).size() == 1 || ls.get(lpar).size() == 1) {
+            sb.append(1);
+        } else {
+            Set<Integer> kss = new HashSet<>(ks.get(kpar));
+            Set<Integer> lss = ls.get(lpar);
+            kss.retainAll(lss);
+            memo.put(key, kss);
+            sb.append(kss.size());
+        }
+        if (i < n - 1)
+            sb.append(" ");
+    }
+    System.out.println(sb.toString());
+}

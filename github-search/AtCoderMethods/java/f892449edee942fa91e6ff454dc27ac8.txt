@@ -1,0 +1,27 @@
+static void solve() {
+    int x1 = in.nextInt() + 100;
+    int y1 = in.nextInt() + 100;
+    int r = in.nextInt();
+    int x2 = in.nextInt() + 100;
+    int y2 = in.nextInt() + 100;
+    int x3 = in.nextInt() + 100;
+    int y3 = in.nextInt() + 100;
+    if (x2 <= x1 - r && x1 + r <= x3 && y2 <= y1 - r && y1 + r <= y3) {
+        out.println("NO");
+    } else {
+        out.println("YES");
+    }
+    
+    int d1 = (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2);
+    
+    int d2 = (x1 - x2) * (x1 - x2) + (y1 - y3) * (y1 - y3);
+    
+    int d3 = (x1 - x3) * (x1 - x3) + (y1 - y2) * (y1 - y2);
+    
+    int d4 = (x1 - x3) * (x1 - x3) + (y1 - y3) * (y1 - y3);
+    if (r * r >= d1 && r * r >= d2 && r * r >= d3 && r * r >= d4) {
+        out.println("NO");
+    } else {
+        out.println("YES");
+    }
+}

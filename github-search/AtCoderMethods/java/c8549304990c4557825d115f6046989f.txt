@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    try {
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        int K = sc.nextInt();
+        int[] list = new int[N];
+        for (int i = 0; i < N; i++) {
+            list[i] = sc.nextInt();
+        }
+        Arrays.sort(list);
+        int result = 0;
+        for (int i = N - 1; i > N - K - 1; i--) {
+            result += list[i];
+        }
+        System.out.println(result);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}

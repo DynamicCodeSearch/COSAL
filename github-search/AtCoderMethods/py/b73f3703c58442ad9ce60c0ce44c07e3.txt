@@ -1,0 +1,8 @@
+def main():
+    N, M, relation_map = make_relation_map()
+    member = 0
+    for i in range(2 ** N):
+        candidate = make_candidate(N, i)
+        counter = check(N, relation_map, candidate)
+        member = member if member > counter else counter
+    print(member)

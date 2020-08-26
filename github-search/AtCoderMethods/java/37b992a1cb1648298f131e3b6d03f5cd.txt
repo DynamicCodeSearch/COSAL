@@ -1,0 +1,27 @@
+long ccc(Piece[] all, int W, int k) {
+    
+    long sum = 0;
+    long res = 0;
+    for (int i = 0; i < k; i++) {
+        sum += all[i].w;
+        res += all[i].c;
+    }
+    if (sum <= W) {
+        return res;
+    }
+    long[][] dp = new long[k + 1][(int) W + 1];
+    for (int q = 0; q < all.length; q++) {
+        Piece p = all[q];
+        for (int i = Math.min(q + 1, k); i > 0; i--) {
+            long[] wi = dp[i];
+            long[] wi1 = dp[i - 1];
+            for (int j = (int) W; j > 0; j--) {
+                wi[j] = Math.max(wi[j - 1], wi1[j]);
+                if (p.w <= j) {
+                    wi[j] = Math.max(wi[j], wi1[j - p.w] + p.c);
+                }
+            }
+        }
+    }
+    return dp[k][W];
+}

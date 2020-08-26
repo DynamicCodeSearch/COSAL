@@ -1,0 +1,14 @@
+public void solve() {
+    int n = in.nextInt();
+    String s = in.next();
+    String revS = new StringBuilder(s).reverse().toString();
+    int openCnt = ParentheseUtil.findIncorrectCloses(s, '(', ')').length;
+    int closeCnt = ParentheseUtil.findIncorrectCloses(revS, ')', '(').length;
+    for (int i = 0; i < openCnt; i++) {
+        s = "(" + s;
+    }
+    for (int i = 0; i < closeCnt; i++) {
+        s += ")";
+    }
+    System.out.println(s);
+}

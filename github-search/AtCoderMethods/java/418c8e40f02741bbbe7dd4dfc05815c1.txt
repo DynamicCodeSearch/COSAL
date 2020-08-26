@@ -1,0 +1,7 @@
+public static final long modInverse(long a, long modulo) {
+    long[] x = new long[1];
+    long[] y = new long[1];
+    long gcd = extgcd(a, modulo, x, y);
+    assert gcd == 1;
+    return (modulo + x[0] % modulo) % modulo;
+}

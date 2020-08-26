@@ -1,0 +1,35 @@
+public void solve(int testNumber, FastReader in, PrintWriter out) {
+    int n = in.nextInt();
+    tree = new ArrayList[n + 1];
+    dist = new long[n + 1];
+    for (int i = 0; i <= n; i++) tree[i] = new ArrayList<>();
+    for (int i = 0; i < n - 1; i++) {
+        int a = in.nextInt();
+        int b = in.nextInt();
+        int c = in.nextInt();
+        tree[a].add(new LongPair(b, c));
+        tree[b].add(new LongPair(a, c));
+    }
+    int q = in.nextInt();
+    int k = in.nextInt();
+    Arrays.fill(dist, INF);
+    dist[k] = 0;
+    ArrayDeque<LongPair> deque = new ArrayDeque<>();
+    deque.add(new LongPair(k, 0));
+    while (!deque.isEmpty()) {
+        LongPair cur = deque.poll();
+        for (LongPair neigh : tree[(int) cur.getFirst()]) {
+            long cost = neigh.getSecond();
+            int node = (int) neigh.getFirst();
+            if (dist[node] > dist[(int) cur.getFirst()] + cost) {
+                dist[node] = dist[(int) cur.getFirst()] + cost;
+                deque.add(new LongPair(node, dist[node]));
+            }
+        }
+    }
+    for (int i = 0; i < q; i++) {
+        int from = in.nextInt();
+        int to = in.nextInt();
+        out.println(dist[from] + dist[to]);
+    }
+}

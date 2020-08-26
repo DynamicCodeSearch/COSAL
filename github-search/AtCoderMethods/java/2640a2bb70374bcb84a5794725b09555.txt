@@ -1,0 +1,37 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String saa = sc.next();
+    String sbb = sc.next();
+    String scc = sc.next();
+    int na = saa.length();
+    int nb = sbb.length();
+    int nc = scc.length();
+    int a = 0;
+    int b = 0;
+    int c = 0;
+    int turn = 0;
+    while (true) {
+        if (turn == 0) {
+            if (a == na) {
+                System.out.println('A');
+                break;
+            }
+            turn = saa.charAt(a) - 'a';
+            a++;
+        } else if (turn == 1) {
+            if (b == nb) {
+                System.out.println('B');
+                break;
+            }
+            turn = sbb.charAt(b) - 'a';
+            b++;
+        } else {
+            if (c == nc) {
+                System.out.println('C');
+                break;
+            }
+            turn = scc.charAt(c) - 'a';
+            c++;
+        }
+    }
+}

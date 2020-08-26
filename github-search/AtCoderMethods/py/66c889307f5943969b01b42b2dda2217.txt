@@ -1,0 +1,16 @@
+def solve(N, digit):
+    if digit == -1:
+        return N
+    n = int((N // (10**digit)) % 10)
+    if n not in ds:
+        return solve(N, digit - 1)
+    else:
+        new_N = N // (10**(digit + 1))
+        new_N = new_N * (10**(digit + 1))
+        for i in range(n + 1, 10):
+            if i not in ds:
+                new_N = new_N + (10**digit) * i
+                return solve(new_N, digit-1)
+        else:
+            new_N = new_N + 10**(digit + 1)
+            return solve(new_N, len(str(new_N))-1)

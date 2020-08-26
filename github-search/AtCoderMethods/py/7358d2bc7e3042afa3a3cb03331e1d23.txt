@@ -1,0 +1,11 @@
+def reachable_vertices(neighbor, s):
+  V = set()
+  V.add(s)
+  stack=[s]
+  while stack:
+    v = stack.pop()
+    for u in neighbor[v]:
+      if u not in V:
+        V.add(u)
+        stack.append(u)
+  return V

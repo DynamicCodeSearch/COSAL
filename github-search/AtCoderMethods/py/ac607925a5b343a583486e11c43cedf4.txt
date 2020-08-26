@@ -1,0 +1,23 @@
+def read_data():
+    try:
+        LOCAL_FLAG
+        import codecs
+        import os
+
+        lines = []
+        file_path = os.path.join(os.path.dirname(__file__), 'data073.dat')
+        with codecs.open(file_path, 'r', 'utf-8') as f:
+            lines.append(f.readline().rstrip("\r\n"))
+            N, M, R = list(map(int, lines[0].split()))
+            for i in range(M+1):
+                lines.append(f.readline().rstrip("\r\n"))
+
+
+    except NameError:
+        lines = []
+        lines.append(input())
+        N, M, R = list(map(int, lines[0].split()))
+        for i in range(M+1):
+            lines.append(input())
+
+    return lines

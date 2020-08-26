@@ -1,0 +1,49 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    String str = input.readLine();
+    String[] list = str.split(" ");
+    int n = Integer.parseInt(list[0]);
+    int m = Integer.parseInt(list[1]);
+    str = input.readLine();
+    list = str.split(" ");
+    long x = Long.parseLong(list[0]);
+    long y = Long.parseLong(list[1]);
+    str = input.readLine();
+    list = str.split(" ");
+    long[] a = new long[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = Long.parseLong(list[i]);
+    }
+    str = input.readLine();
+    list = str.split(" ");
+    long[] b = new long[m];
+    for (int i = 0; i < m; i++) {
+        b[i] = Long.parseLong(list[i]);
+    }
+    long now = 0;
+    int i = 0;
+    int j = 0;
+    long count = 0;
+    while (now <= a[n - 1] || now <= b[m - 1]) {
+        if (count % 2 == 0 && i < n) {
+            if (a[i] >= now) {
+                now = a[i] + x;
+                i++;
+                count++;
+            } else {
+                i++;
+            }
+        } else if (count % 2 == 1 && j < m) {
+            if (b[j] >= now) {
+                now = b[j] + y;
+                j++;
+                count++;
+            } else {
+                j++;
+            }
+        } else {
+            break;
+        }
+    }
+    System.out.println(count / 2);
+}

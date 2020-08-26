@@ -1,0 +1,37 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int A = sc.nextInt();
+    int[] x = new int[N];
+    for (int i = 0; i < N; i++) {
+        x[i] = sc.nextInt();
+    }
+    
+    long[][][] dp = new long[N][2501][N + 1];
+    dp[0][0][0] = 1;
+    dp[0][x[0]][1] = 1;
+    for (int i = 1; i < N; i++) {
+        for (int j = 0; j < 2501; j++) {
+            for (int k = 0; k < N + 1; k++) {
+                if (k == 0) {
+                    if (j == 0) {
+                        dp[i][j][k] = 1;
+                    } else {
+                        dp[i][j][k] = 0;
+                    }
+                } else {
+                    if (j >= x[i]) {
+                        dp[i][j][k] = dp[i - 1][j - x[i]][k - 1] + dp[i - 1][j][k];
+                    } else {
+                        dp[i][j][k] = dp[i - 1][j][k];
+                    }
+                }
+            }
+        }
+    }
+    long ans = 0;
+    for (int k = 1; k <= N; k++) {
+        ans += dp[N - 1][A * k][k];
+    }
+    System.out.println(ans);
+}

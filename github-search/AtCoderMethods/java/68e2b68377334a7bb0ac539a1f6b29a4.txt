@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    String a = scan.next();
+    String b = scan.next();
+    String[] x = a.split("", 0);
+    String[] y = b.split("", 0);
+    if (x.length > y.length) {
+        System.out.println("GREATER");
+    } else if (y.length > x.length) {
+        System.out.println("LESS");
+    } else if (x.length == y.length) {
+        for (int i = 0; i < x.length; i++) {
+            int n = Integer.parseInt(x[i]);
+            int m = Integer.parseInt(y[i]);
+            if (n > m) {
+                System.out.println("GREATER");
+                break;
+            } else if (m > n) {
+                System.out.println("LESS");
+                break;
+            } else if (m == n) {
+                if (i == x.length - 1) {
+                    System.out.println("EQUAL");
+                }
+                continue;
+            }
+        }
+    }
+}

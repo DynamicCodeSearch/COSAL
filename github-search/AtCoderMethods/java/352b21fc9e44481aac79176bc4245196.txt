@@ -1,0 +1,22 @@
+public void readHead(String str) {
+    String[] strArr = str.split(" ");
+    long N = Long.parseLong(strArr[0]);
+    int ans = 0;
+    for (long i = N; i > 0; i /= 10) {
+        ans++;
+    }
+    for (long d = 1; d * d <= N; d++) {
+        if (N % d == 0) {
+            
+            if (N / d < d)
+                break;
+            int dig = 0;
+            for (long i = N / d; i > 0; i /= 10) {
+                dig++;
+            }
+            if (ans > dig)
+                ans = dig;
+        }
+    }
+    System.out.println(ans);
+}

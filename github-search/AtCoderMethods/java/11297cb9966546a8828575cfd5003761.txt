@@ -1,0 +1,21 @@
+void solve() {
+    int N = sc.nextInt();
+    int Q = sc.nextInt();
+    int[] X = new int[N];
+    int[] R = new int[N];
+    int[] H = new int[N];
+    for (int i = 0; i < N; i++) {
+        X[i] = sc.nextInt();
+        R[i] = sc.nextInt();
+        H[i] = sc.nextInt();
+    }
+    while (Q-- > 0) {
+        int A = sc.nextInt();
+        int B = sc.nextInt();
+        double ans = 0;
+        for (int i = 0; i < N; i++) {
+            ans += calc(X[i], R[i], H[i], A, B);
+        }
+        out.printf("%.8f%n", ans);
+    }
+}

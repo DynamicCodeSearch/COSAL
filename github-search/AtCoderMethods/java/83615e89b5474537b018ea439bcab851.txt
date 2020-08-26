@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String in1 = sc.nextLine();
+    int n = Integer.parseInt(in1);
+    String in2 = sc.nextLine();
+    int k = Integer.parseInt(in2);
+    String in3 = sc.nextLine();
+    int x = Integer.parseInt(in3);
+    String in4 = sc.nextLine();
+    int y = Integer.parseInt(in4);
+    int shukuhaku = 0;
+    int wk = 0;
+    if (n >= k) {
+        for (int i = 0; i < k; i++) {
+            shukuhaku += x;
+            wk = i;
+        }
+        for (int j = wk + 1; j < n; j++) {
+            shukuhaku += y;
+        }
+    } else {
+        for (int i = 0; i < n; i++) {
+            shukuhaku += x;
+            wk = i;
+        }
+    }
+    System.out.println(shukuhaku);
+}

@@ -1,0 +1,17 @@
+static void solve(FastScanner sc, PrintWriter out) {
+    int A = sc.ni();
+    int B = sc.ni();
+    int C = sc.ni();
+    int mod = A % B;
+    if (mod == C) {
+        out.println("YES");
+        return;
+    }
+    for (int i = 2; (A * i) % B != mod; i++) {
+        if ((A * i) % B == C) {
+            out.println("YES");
+            return;
+        }
+    }
+    out.println("NO");
+}

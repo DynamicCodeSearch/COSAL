@@ -1,0 +1,11 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    n = sc.nextInt();
+    b = new int[n];
+    sub = new ArrayList[n];
+    salary = new int[n];
+    for (int i = 0; i < n; i++) sub[i] = new ArrayList<Integer>();
+    for (int i = 0; i < n - 1; i++) b[i] = sc.nextInt() - 1;
+    for (int i = 0; i < n - 1; i++) sub[b[i]].add(i + 1);
+    System.out.println(calc(0));
+}

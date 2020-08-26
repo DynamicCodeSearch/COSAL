@@ -1,0 +1,10 @@
+def solve():
+    (n,m) = map(int,input().split())
+    if(abs(n-m)>1):
+        return 0
+    if(n==m):
+        return (math.factorial(n)**2 * 2) % mod
+    if(n > m):
+        return (math.factorial(m)**2 * n) % mod
+    else:
+        return (math.factorial(n)**2 * m) % mod

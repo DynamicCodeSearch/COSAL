@@ -1,0 +1,11 @@
+public String next() {
+    int c = this.read();
+    while (isSpace(c)) {
+        c = this.read();
+    }
+    StringBuilder res = new StringBuilder();
+    do {
+        res.appendCodePoint(c);
+    } while (!isSpace(c = this.read()));
+    return res.toString();
+}

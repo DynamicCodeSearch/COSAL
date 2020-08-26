@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
+    String str;
+    int checkn = (int) ' ';
+    String[] s = new String[2];
+    int[] a = new int[2];
+    try {
+        str = r.readLine();
+        s[0] = str.substring(0, str.indexOf(checkn));
+        s[1] = str.substring(str.indexOf(checkn) + 1, str.length());
+    } catch (IOException e) {
+        System.out.println(e);
+    }
+    for (int i = 0; i < 2; i++) {
+        a[i] = Integer.parseInt(s[i]);
+        if (a[i] == 1) {
+            a[i] = 14;
+        }
+    }
+    if (a[0] > a[1]) {
+        System.out.println("Alice");
+    } else if (a[0] == a[1]) {
+        System.out.println("Draw");
+    } else {
+        System.out.println("Bob");
+    }
+}

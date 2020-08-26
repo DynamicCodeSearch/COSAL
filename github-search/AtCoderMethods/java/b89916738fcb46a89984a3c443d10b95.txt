@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int n = scan.nextInt();
+    int q = scan.nextInt();
+    int[] a = new int[n + 1];
+    int ls, le;
+    for (int i = 0; i < q; i++) {
+        ls = scan.nextInt() - 1;
+        le = scan.nextInt() - 1;
+        a[ls]++;
+        a[le + 1]--;
+    }
+    StringBuilder s = new StringBuilder("");
+    
+    for (int i = 0; i < n; i++) {
+        if (i > 0)
+            a[i] += a[i - 1];
+        s.append(String.valueOf(a[i] % 2));
+    }
+    System.out.println(s.toString());
+}

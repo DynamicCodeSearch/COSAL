@@ -1,0 +1,6 @@
+def judge(n, m, fig_a, fig_b):
+    for dr, dc in itertools.product(range(n - m + 1), repeat=2):
+        g = itertools.product(range(m), repeat=2)
+        if all(fig_a[r0 + dr][c0 + dc] == fig_b[r0][c0] for r0, c0 in g):
+            return True
+    return False

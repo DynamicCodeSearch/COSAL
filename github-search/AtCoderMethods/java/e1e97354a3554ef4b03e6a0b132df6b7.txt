@@ -1,0 +1,11 @@
+public long add(int ind, long x) {
+    int ret = imap[ind];
+    if (imap[ind] < 0) {
+        a[pos] = x;
+        map[pos] = ind;
+        imap[ind] = pos;
+        pos++;
+        up(pos - 1);
+    }
+    return ret != -1 ? a[ret] : x;
+}

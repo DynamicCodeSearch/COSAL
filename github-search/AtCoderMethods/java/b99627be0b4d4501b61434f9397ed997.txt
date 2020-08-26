@@ -1,0 +1,33 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String line;
+    String[] words;
+    line = br.readLine();
+    int H, W;
+    H = parseInt(line.substring(0, line.indexOf(' ')));
+    W = parseInt(line.substring(line.indexOf(' ') + 1));
+    String[][] c = new String[H][W];
+    int N = parseInt(br.readLine());
+    StringTokenizer st = new StringTokenizer(br.readLine());
+    int y = 0, x = 0;
+    for (int i = 1; i <= N; i++) {
+        int a = parseInt(st.nextToken());
+        for (int j = a; j > 0; j--) {
+            c[y][x] = String.valueOf(i);
+            if (y % 2 == 0) {
+                if (x == W - 1)
+                    y++;
+                else
+                    x++;
+            } else {
+                if (x == 0)
+                    y++;
+                else
+                    x--;
+            }
+        }
+    }
+    for (int i = 0; i < H; i++) {
+        System.out.println(String.join(" ", c[i]));
+    }
+}

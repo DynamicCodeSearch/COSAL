@@ -1,0 +1,14 @@
+void solve() throws NumberFormatException, IOException {
+    s = in.nextToken().toCharArray();
+    t = in.nextToken().toCharArray();
+    as = makeSum(s);
+    at = makeSum(t);
+    int q = in.nextInt();
+    for (int i = 0; i < q; i++) {
+        int sl = in.nextInt() - 1;
+        int sr = in.nextInt();
+        int tl = in.nextInt() - 1;
+        int tr = in.nextInt();
+        out.println(countMod(sl, sr, as) == countMod(tl, tr, at) ? "YES" : "NO");
+    }
+}

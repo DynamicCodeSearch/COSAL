@@ -1,0 +1,15 @@
+public int[] solve(int n, int dif) {
+    Node node = ary[n];
+    long a = 1, b = 1;
+    for (int i = 0; i < node.child.size(); i++) {
+        int hoge = node.child.get(i);
+        if (hoge == dif)
+            continue;
+        int[] sol = solve(hoge, n);
+        a *= (sol[0] + sol[1]);
+        b *= sol[0];
+        a %= 1000000007;
+        b %= 1000000007;
+    }
+    return new int[] { (int) a, (int) b };
+}

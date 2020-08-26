@@ -1,0 +1,14 @@
+public void solve() {
+    int N = io.ri();
+    int T = io.ri();
+    long res = T;
+    long prev = 0;
+    for (int i = 0; i < N; i++) {
+        long cur = io.ri();
+        if (i > 0) {
+            res += Math.min(cur - prev, T);
+        }
+        prev = cur;
+    }
+    io.writeLine(res + "");
+}

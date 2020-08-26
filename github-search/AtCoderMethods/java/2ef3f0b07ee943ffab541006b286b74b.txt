@@ -1,0 +1,24 @@
+void solve() throws IOException {
+    int w = ni();
+    int h = ni();
+    int n = ni();
+    int maxX = w;
+    int minX = 0;
+    int maxY = h;
+    int minY = 0;
+    for (int i = 0; i < n; i++) {
+        int x = ni();
+        int y = ni();
+        int a = ni();
+        if (a == 1) {
+            minX = Math.max(minX, x);
+        } else if (a == 2) {
+            maxX = Math.min(maxX, x);
+        } else if (a == 3) {
+            minY = Math.max(minY, y);
+        } else if (a == 4) {
+            maxY = Math.min(maxY, y);
+        }
+    }
+    out.println((maxX <= minX || maxY <= minY) ? 0 : (maxX - minX) * (maxY - minY));
+}

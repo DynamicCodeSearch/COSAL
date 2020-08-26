@@ -1,0 +1,9 @@
+def calcanswer(l):
+    tmp = [0, abs(l[1] - l[0])]
+    for i in range(2, len(l)):
+        a1 = abs(l[i] - l[i-2])
+        a2 = abs(l[i] - l[i-1])
+        x = smaller(tmp[0]+a1, tmp[1]+a2)
+        tmp[0] = tmp[1]
+        tmp[1] = x
+    return tmp[1]

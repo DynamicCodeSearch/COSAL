@@ -1,0 +1,24 @@
+public void solve() {
+    H = nextLong();
+    W = nextLong();
+    long ans = Long.MAX_VALUE;
+    for (int i = 1; i * 2 <= H; i++) {
+        long h = H - i;
+        long h1 = h / 2;
+        long h2 = h - h1;
+        long w1 = W / 2;
+        long w2 = W - w1;
+        ans = Math.min(ans, max(i * W, h1 * W, h2 * W) - min(i * W, h1 * W, h2 * W));
+        ans = Math.min(ans, max(i * W, h * w1, h * w2) - min(i * W, h * w1, h * w2));
+    }
+    for (int i = 1; i * 2 <= W; i++) {
+        long h = W - i;
+        long h1 = h / 2;
+        long h2 = h - h1;
+        long w1 = H / 2;
+        long w2 = H - w1;
+        ans = Math.min(ans, max(i * H, h1 * H, h2 * H) - min(i * H, h1 * H, h2 * H));
+        ans = Math.min(ans, max(i * H, h * w1, h * w2) - min(i * H, h * w1, h * w2));
+    }
+    out.println(ans);
+}

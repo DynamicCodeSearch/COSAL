@@ -1,0 +1,14 @@
+void dfs(int u, int par) {
+    vis[u] = true;
+    for (Edge e : g[u]) {
+        if (vis[e.to]) {
+            if (e.used || e.to == par)
+                continue;
+            imos[e.to]--;
+            imos[u]++;
+            e.used = e.rev.used = true;
+        } else {
+            dfs(e.to, u);
+        }
+    }
+}

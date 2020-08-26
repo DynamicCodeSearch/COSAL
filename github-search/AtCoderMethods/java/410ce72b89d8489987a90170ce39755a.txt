@@ -1,0 +1,15 @@
+private static long dfs(int now, long l, int[][] len, int[] r, boolean[] visited, int cnt) {
+    if (cnt == r.length - 1) {
+        return l;
+    }
+    visited[now] = true;
+    long ret = Long.MAX_VALUE;
+    for (int next : r) {
+        if (!visited[next]) {
+            long x = dfs(next, l + len[now][next], len, r, visited, cnt + 1);
+            ret = Math.min(ret, x);
+        }
+    }
+    visited[now] = false;
+    return ret;
+}

@@ -1,0 +1,14 @@
+private static String toString(Object obj) {
+    List<String> values = new ArrayList<>();
+    for (Field f : obj.getClass().getDeclaredFields()) {
+        try {
+            f.setAccessible(true);
+            Object val = f.get(obj);
+            if (val != null) {
+                values.add(f.getName() + "=" + Objects.toString(val));
+            }
+        } catch (Exception e) {
+        }
+    }
+    return obj.getClass().getSimpleName() + " {" + String.join(", ", values) + "}";
+}

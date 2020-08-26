@@ -1,0 +1,9 @@
+private void rdfs(int i, int id) {
+    visited[i] = true;
+    nodeId[i] = id;
+    for (int next : revGraph.nexts(i)) {
+        if (!visited[next]) {
+            rdfs(next, id);
+        }
+    }
+}

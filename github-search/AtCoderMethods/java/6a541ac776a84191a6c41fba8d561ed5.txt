@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int n = scan.nextInt();
+    if (n <= 2) {
+        System.out.println("0");
+    } else if (n == 3) {
+        System.out.println(1 % 10007);
+    } else {
+        long[] memo = new long[n];
+        memo[0] = 0;
+        memo[1] = 0;
+        memo[2] = 1;
+        for (int i = 3; i <= n - 1; i++) {
+            memo[i] = (memo[i - 1] + memo[i - 2] + memo[i - 3]) % 10007;
+        }
+        System.out.println(memo[n - 1]);
+    }
+}

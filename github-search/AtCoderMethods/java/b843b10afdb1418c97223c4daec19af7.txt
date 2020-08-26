@@ -1,0 +1,33 @@
+public static void main(String[] args) throws Exception {
+    
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    int n = Integer.parseInt(reader.readLine());
+    
+    Map<Integer, Set<Integer>> tate = new TreeMap<>(), yoko = new TreeMap<>();
+    for (int i = 0; i < n; i++) {
+        String[] _input = reader.readLine().split(" ");
+        int _x = Integer.parseInt(_input[0]);
+        int _y = Integer.parseInt(_input[1]);
+        setInput(tate, _x, i);
+        setInput(yoko, _y, i);
+    }
+    
+    
+    Queue<MySet> pq = new PriorityQueue<>();
+    setNexttoQueue(pq, tate, true);
+    setNexttoQueue(pq, yoko, false);
+    
+    int[] townGroup = new int[n];
+    for (int i = 0; i < n; i++) townGroup[i] = i;
+    
+    Queue<Branch> branches = new PriorityQueue<>();
+    
+    
+    addNocostBranches(townGroup, tate);
+    addNocostBranches(townGroup, yoko);
+    
+    addNexttoRowBranches(branches, pq, tate, yoko);
+    
+    int result = calcMinAllareaTree(townGroup, branches);
+    System.out.println(result);
+}

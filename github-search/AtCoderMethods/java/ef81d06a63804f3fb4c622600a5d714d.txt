@@ -1,0 +1,19 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String param = br.readLine();
+    Integer N = Integer.valueOf(param);
+    int i = N % 2;
+    List<String> s = new ArrayList<String>();
+    if (i == 1) {
+        s.add("1");
+        N = N - 1;
+    }
+    while (N != 0) {
+        s.add("2");
+        N = N - 2;
+    }
+    System.out.println(s.size());
+    for (String ss : s) {
+        System.out.println(ss);
+    }
+}

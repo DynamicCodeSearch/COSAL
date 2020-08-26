@@ -1,0 +1,11 @@
+def main():
+    N, Q = map(int, input().split())
+    T = [tuple(map(int, input().split())) for _ in range(Q)]
+
+    a = [0] * N
+    for t in T:
+        for i in range(t[0]-1, t[1]):
+            a[i] = t[2]
+
+    for i in range(N):
+        print(a[i])

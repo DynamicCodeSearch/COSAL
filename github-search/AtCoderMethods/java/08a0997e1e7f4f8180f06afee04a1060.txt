@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    ArrayList<Integer> ans = new ArrayList<>();
+    int N = sc.nextInt();
+    int i = 1;
+    if (N == 1) {
+        System.out.println(1);
+        System.out.println(1);
+        return;
+    }
+    if (N % 2 == 1) {
+        N = N - i;
+        ans.add(1);
+    }
+    for (; ; ) {
+        if (N == 1)
+            break;
+        N = N / 2;
+        ans.add(2);
+    }
+    System.out.println(ans.size());
+    for (int j = 0; j < ans.size(); j++) {
+        System.out.println(ans.get(j));
+    }
+}

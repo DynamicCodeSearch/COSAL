@@ -1,0 +1,23 @@
+def main():
+    n = I()
+    a = [LI() for _ in range(n)]
+    d = collections.defaultdict(lambda: collections.defaultdict(int))
+    for r,h in a:
+        d[r][h-1] += 1
+    l = sorted(d.items())
+    c = 0
+    for r, rd in l:
+        rv = sum(rd.values())
+        rd[3] = rv
+        rd[4] = c
+        c += rv
+
+    rr = []
+    for r,h in a:
+        rd = d[r]
+        x = rd[4]+rd[h%3]
+        z = rd[h-1]-1
+        y = n - x - z - 1
+        rr.append('{} {} {}'.format(x,y,z))
+
+    return '\n'.join(rr)

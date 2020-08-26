@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int human = scan.nextInt();
+    int checkPoint = scan.nextInt();
+    int[] humanx = new int[human];
+    int[] humany = new int[human];
+    int[] checkPointX = new int[checkPoint];
+    int[] checkPointY = new int[checkPoint];
+    for (int i = 0; i < humanx.length; i++) {
+        humanx[i] = scan.nextInt();
+        humany[i] = scan.nextInt();
+    }
+    for (int i = 0; i < checkPointX.length; i++) {
+        checkPointX[i] = scan.nextInt();
+        checkPointY[i] = scan.nextInt();
+    }
+    for (int i = 0; i < humanx.length; i++) {
+        int p = 0;
+        int ans = 1000000000;
+        for (int j = 0; j < checkPointX.length; j++) {
+            int leng = Math.abs((humanx[i] - checkPointX[j])) + Math.abs((humany[i] - checkPointY[j]));
+            if (ans > leng) {
+                ans = leng;
+                p = j + 1;
+            }
+        }
+        System.out.println(p);
+    }
+    scan.close();
+}

@@ -1,0 +1,9 @@
+
+void set(int k, T v) {
+    k += n - 1;
+    dat.set(k, v);
+    while (k > 0) {
+        k = (k - 1) / 2;
+        dat.set(k, bif.apply(dat.get(k * 2 + 1), dat.get(k * 2 + 2)));
+    }
+}

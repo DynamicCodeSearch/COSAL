@@ -1,0 +1,17 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int n = Integer.parseInt(br.readLine());
+    String[] sr = br.readLine().split(" ");
+    ArrayList<Student> al = new ArrayList<>();
+    for (int i = 0; i < n; i++) {
+        al.add(new Student(i + 1, Integer.parseInt(sr[i])));
+    }
+    Collections.sort(al);
+    for (int i = 0; i < al.size(); i++) {
+        if (i != (al.size() - 1)) {
+            System.out.println(al.get(i).idx);
+        } else {
+            System.out.print(al.get(i).idx);
+        }
+    }
+}

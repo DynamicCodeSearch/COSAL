@@ -1,0 +1,17 @@
+def md(beg):
+  d = [1001001001] * N
+  done = [False] * N
+  d[beg] = 0
+  while True:
+    cur = 1001001001
+    pos = -1
+    for i in range(N):
+      if not done[i] and cur > d[i]:
+        cur = d[i]
+        pos = i
+    if pos == -1:
+      break
+    done[pos] = True
+    for i in range(N):
+      d[i] = min(d[i], d[pos] + g[pos][i])
+  return d

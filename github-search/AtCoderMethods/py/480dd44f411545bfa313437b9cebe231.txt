@@ -1,0 +1,18 @@
+def main():
+    N, M = map(int, input().split())
+
+    if abs(N - M) > 1:
+        print(0)
+        return
+
+    h = max(N, M)
+    l = min(N, M)
+    ans = 1
+    for i in range(l):
+        ans *= h - i
+        ans *= l - i
+        ans = ans % 1000000007
+
+    if h == l:
+        ans = ans * 2 % 1000000007
+    print(ans)

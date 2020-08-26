@@ -1,0 +1,4 @@
+def time_to_imos_index(timestr, isEndTime):
+    hour = int(timestr[0:2])
+    minute = int(timestr[2:4])
+    return int(12 * hour + minute // 5 + (1 if isEndTime and (minute % 5 != 0) else 0))

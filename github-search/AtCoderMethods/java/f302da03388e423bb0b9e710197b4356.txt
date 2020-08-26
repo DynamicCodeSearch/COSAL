@@ -1,0 +1,38 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    final int N = sc.nextInt();
+    final int M = sc.nextInt();
+    final int[][] dp = new int[N][N];
+    Map<Integer, Integer> firsts = new HashMap<Integer, Integer>();
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            dp[i][j] = i == j ? 0 : Integer.MAX_VALUE / 2;
+        }
+    }
+    for (int i = 0; i < M; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        if (a == 0) {
+            firsts.put(b, sc.nextInt());
+        } else {
+            dp[a][b] = dp[b][a] = sc.nextInt();
+        }
+    }
+    sc.close();
+    for (int k = 0; k < N; k++) {
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                dp[i][j] = Math.min(dp[i][j], dp[i][k] + dp[k][j]);
+            }
+        }
+    }
+    int ans = Integer.MAX_VALUE;
+    for (int f1 : firsts.keySet()) {
+        for (int f2 : firsts.keySet()) {
+            if (f1 < f2) {
+                ans = Math.min(ans, firsts.get(f1) + firsts.get(f2) + dp[f1][f2]);
+            }
+        }
+    }
+    System.out.println(ans >= Integer.MAX_VALUE / 2 ? -1 : ans);
+}

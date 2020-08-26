@@ -1,0 +1,9 @@
+void dfs(int u, int c) {
+    color[u] = c;
+    for (int t = 0; t < graph[u].size(); t++) {
+        int v = graph[u].get(t);
+        if (color[v] == -1) {
+            dfs(v, c);
+        }
+    }
+}

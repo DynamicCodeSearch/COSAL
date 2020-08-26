@@ -1,0 +1,24 @@
+private void compute() throws IOException {
+    int[] a = intarr();
+    int n = a[0];
+    int m = a[1];
+    boolean[] from1ToMid = new boolean[n];
+    boolean[] fromMidToN = new boolean[n];
+    for (int i = 0; i < m; i++) {
+        a = intarr();
+        if (a[0] == 1) {
+            from1ToMid[a[1] - 1] = true;
+        }
+        if (a[1] == n) {
+            fromMidToN[a[0] - 1] = true;
+        }
+    }
+    boolean pos = false;
+    for (int i = 0; i < n; i++) {
+        if (from1ToMid[i] && fromMidToN[i]) {
+            pos = true;
+            break;
+        }
+    }
+    out(pos ? "POSSIBLE" : "IMPOSSIBLE");
+}

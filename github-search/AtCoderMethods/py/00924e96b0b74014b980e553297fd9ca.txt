@@ -1,0 +1,14 @@
+def main():
+    A, B, K, L = map(int, input().split())
+
+
+    A_set = K % L
+    B_set = K // L
+    result1 = A * A_set + B * B_set
+    result2 = B * (B_set + 1)
+    if result1 > result2:
+        result = result2
+    else:
+        result = result1
+
+    print(int(result))

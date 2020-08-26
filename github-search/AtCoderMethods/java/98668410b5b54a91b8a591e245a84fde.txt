@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+    String nStr = null;
+    try {
+        nStr = new String(in.readLine());
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    int nInt = Integer.parseInt(nStr);
+    if (nInt < 1) {
+        System.out.println("8");
+        return;
+    } else if (nInt == 1) {
+        System.out.println("17");
+        return;
+    } else {
+        StringBuilder sb = new StringBuilder();
+        sb.append("1");
+        for (int i = 0; i < (nInt - 1); i++) {
+            sb.append("0");
+        }
+        sb.append("7");
+        System.out.println(sb.toString());
+        return;
+    }
+}

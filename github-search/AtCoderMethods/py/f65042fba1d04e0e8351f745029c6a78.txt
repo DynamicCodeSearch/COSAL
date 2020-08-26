@@ -1,0 +1,15 @@
+def dijk(self, start, n, tree):
+    cost = [self.big_number] * n
+    cost[start] = 0
+    stack = [[0, start]]
+    while len(stack):
+        c, index = heapq.heappop(stack)
+        try:
+            for key in tree[index]:
+                tmp_cost = c + tree[index][key]
+                if tmp_cost <= cost[key]:
+                    cost[key] = tmp_cost
+                    heapq.heappush(stack, [tmp_cost, key])
+        except KeyError:
+            pass
+    return np.array(cost)

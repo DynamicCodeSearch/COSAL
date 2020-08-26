@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    int[][] es = new int[n][n];
+    for (int i = 0; i < m; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        es[a][b]++;
+        es[b][a]++;
+    }
+    for (int i = 0; i < n; i++) {
+        int each = 0;
+        for (int j = 0; j < n; j++) {
+            if (es[i][j] != 0)
+                each += es[i][j];
+        }
+        System.out.println(each);
+    }
+}

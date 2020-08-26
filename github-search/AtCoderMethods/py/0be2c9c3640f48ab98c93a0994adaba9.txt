@@ -1,0 +1,17 @@
+def get_sum(self,array , i, K):
+
+    if 0 != i:
+        PartSum = self.OldPartSum
+        PartSum -= array[i - 1]
+        PartSum += array[i + K - 1]
+
+    else:
+        PartSum = 0
+        PartIndex = range(i, i + K)
+        for j in PartIndex:
+
+            PartSum += Array[j]
+
+    self.OldPartSum = PartSum
+
+    return PartSum

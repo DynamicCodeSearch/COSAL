@@ -1,0 +1,18 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    String str = input.readLine();
+    String[] list = str.split(" ");
+    double n = Double.parseDouble(list[0]);
+    double m = Double.parseDouble(list[1]);
+    n = n % 12;
+    double hour = (n * 60 + m) / 2;
+    double minute = m * 6;
+    double answer = hour - minute;
+    if (answer < 0) {
+        answer = -answer;
+    }
+    if (answer > 180) {
+        answer = 360 - answer;
+    }
+    System.out.println(answer);
+}

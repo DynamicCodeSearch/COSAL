@@ -1,0 +1,17 @@
+public static void main(String[] args) throws Exception {
+    IO io = new IO();
+    long A = io.nextLong();
+    int K = io.nextInt();
+    long r = A;
+    long c = 0;
+    if (K > 0) {
+        while (r < 2000000000000L) {
+            r = r + r * K + 1;
+            c++;
+        }
+    } else {
+        c = 2000000000000L - A;
+    }
+    io.write(String.valueOf(c));
+    io.flush();
+}

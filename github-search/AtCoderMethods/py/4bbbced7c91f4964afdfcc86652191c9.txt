@@ -1,0 +1,14 @@
+def main():
+    input()
+    rates = get_ln_int_inputs()
+
+    colors = [0] * 8
+    free_colors = 0
+    for rate in rates:
+        if rate >= 3200:
+            free_colors += 1
+        else:
+            colors[rate // 400] = 1
+    fixed_colors = sum(colors)
+
+    print(str(max(fixed_colors, 1)) + " " + str(max(fixed_colors + free_colors, 1)))

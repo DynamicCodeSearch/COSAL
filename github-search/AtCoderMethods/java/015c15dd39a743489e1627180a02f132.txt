@@ -1,0 +1,11 @@
+long factor(String sb) {
+    long res = 0;
+    if (index < sb.length() && sb.charAt(index) == '(') {
+        index++;
+        res = expression(sb);
+        index++;
+    } else {
+        res = number(sb);
+    }
+    return res;
+}

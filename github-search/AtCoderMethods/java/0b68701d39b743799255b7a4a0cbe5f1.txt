@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int H = sc.nextInt();
+    int W = sc.nextInt();
+    char[][] a = new char[H + 2][W + 2];
+    for (int w = 0; w <= W + 1; w++) {
+        a[0][w] = '#';
+    }
+    for (int w = 0; w <= W + 1; w++) {
+        a[H + 1][w] = '#';
+    }
+    for (int h = 0; h <= H + 1; h++) {
+        a[h][0] = '#';
+    }
+    for (int h = 0; h <= H + 1; h++) {
+        a[h][W + 1] = '#';
+    }
+    for (int h = 1; h < H + 1; h++) {
+        String str = sc.next();
+        for (int w = 1; w < W + 1; w++) {
+            a[h][w] = str.charAt(w - 1);
+        }
+    }
+    for (int h = 0; h <= H + 1; h++) {
+        for (int w = 0; w <= W + 1; w++) {
+            System.out.print(a[h][w]);
+        }
+        System.out.println();
+    }
+}

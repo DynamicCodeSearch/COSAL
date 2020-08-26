@@ -1,0 +1,23 @@
+void run() {
+    int n = ni();
+    long k = Long.parseLong(sc.next());
+    long cnt = 0;
+    int ans = 0;
+    ArrayList<Pair<Integer, Integer>> list = new ArrayList<>();
+    for (int i = 0; i < n; ++i) {
+        int a = ni();
+        int b = ni();
+        list.add(new Pair<>(a, b));
+    }
+    Collections.sort(list);
+    for (Pair<Integer, Integer> p : list) {
+        int a = p.f;
+        int b = p.s;
+        cnt += b;
+        if (cnt >= k) {
+            ans = a;
+            break;
+        }
+    }
+    System.out.println(ans);
+}

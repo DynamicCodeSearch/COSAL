@@ -1,0 +1,16 @@
+def main():
+    m, n = [int(x) for x in sys.stdin.readline().rstrip().split(" ")]
+    graph = defaultdict(set)
+    edges = []
+    for line in sys.stdin:
+        x, y = line.rstrip().split(" ")
+        graph[x].add(y)
+        graph[y].add(x)
+        edges.append((x, y))
+
+    count = 0
+    for edge in edges:
+        if not check(graph, edge):
+            count += 1
+
+    print(count)

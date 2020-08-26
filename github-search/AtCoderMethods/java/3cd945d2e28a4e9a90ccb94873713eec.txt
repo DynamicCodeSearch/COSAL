@@ -1,0 +1,41 @@
+public void solveD() {
+    int N = in.nextInt();
+    int M = in.nextInt();
+    int[][] graph = new int[N + 1][N + 1];
+    for (int i = 0; i <= N; i++) Arrays.fill(graph[i], Integer.MAX_VALUE);
+    for (int i = 0; i < M; i++) {
+        int a = in.nextInt();
+        int b = in.nextInt();
+        int y = in.nextInt();
+        if (graph[a][b] == Integer.MAX_VALUE && graph[a][b] > y) {
+            graph[a][b] = y;
+            graph[b][a] = y;
+        } else if (graph[a][b] != Integer.MAX_VALUE && graph[a][b] < y) {
+            graph[a][b] = y;
+            graph[b][a] = y;
+        }
+    }
+    int Q = in.nextInt();
+    for (int i = 0; i < Q; i++) {
+        int res = 1;
+        int v = in.nextInt();
+        int w = in.nextInt();
+        Set<Integer> set = new HashSet<Integer>();
+        Stack<Integer> stk = new Stack<Integer>();
+        set.add(v);
+        for (int j = 0; j <= N; j++) if (!set.contains(j) && graph[v][j] < Integer.MAX_VALUE && graph[v][j] > w) {
+            stk.add(j);
+            set.add(j);
+            res++;
+        }
+        while (!stk.isEmpty()) {
+            int vv = stk.pop();
+            for (int j = 0; j <= N; j++) if (!set.contains(j) && graph[vv][j] < Integer.MAX_VALUE && graph[vv][j] > w) {
+                stk.add(j);
+                set.add(j);
+                res++;
+            }
+        }
+        System.out.println(res);
+    }
+}

@@ -1,0 +1,26 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+    N = Integer.parseInt(in.readLine());
+    X = new double[N];
+    Y = new double[N];
+    C = new double[N];
+    for (int i = 0; i < N; i++) {
+        String[] s = in.readLine().split(" ");
+        X[i] = Double.parseDouble(s[0]) + 100000;
+        Y[i] = Double.parseDouble(s[1]) + 100000;
+        C[i] = Double.parseDouble(s[2]);
+    }
+    double ok = 1000 * 100000;
+    double ng = 0;
+    for (int i = 0; i < 100; i++) {
+        double mid = (ok + ng) / 2;
+        if (check(mid)) {
+            ok = mid;
+        } else {
+            ng = mid;
+        }
+    }
+    PrintWriter out = new PrintWriter(System.out);
+    out.println(ok);
+    out.flush();
+}

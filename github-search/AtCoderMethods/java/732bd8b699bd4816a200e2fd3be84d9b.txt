@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    
+    int N = sc.nextInt();
+    
+    int M = sc.nextInt();
+    int[] arrStudentsX = new int[N];
+    int[] arrStudentsY = new int[N];
+    for (int i = 0; i < N; i++) {
+        arrStudentsX[i] = sc.nextInt();
+        arrStudentsY[i] = sc.nextInt();
+    }
+    int[] arrCheckpointX = new int[M];
+    int[] arrCheckpointY = new int[M];
+    for (int i = 0; i < M; i++) {
+        arrCheckpointX[i] = sc.nextInt();
+        arrCheckpointY[i] = sc.nextInt();
+    }
+    int[] result = new int[N];
+    for (int i = 0; i < N; i++) {
+        int x = arrStudentsX[i];
+        int y = arrStudentsY[i];
+        int[] arr = measureDistance(x, y, arrCheckpointX, arrCheckpointY);
+        result[i] = indexOf(arr) + 1;
+    }
+    for (int i = 0; i < N; i++) {
+        System.out.println(result[i]);
+    }
+}

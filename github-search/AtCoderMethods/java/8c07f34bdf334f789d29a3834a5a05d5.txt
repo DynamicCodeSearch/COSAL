@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    Scanner scn = new Scanner(System.in);
+    int n = Integer.parseInt(scn.next());
+    int[] alphabet = new int[26];
+    for (int i = 0; i < 26; i++) {
+        
+        alphabet[i] = 51;
+    }
+    for (int i = 0; i < n; i++) {
+        String S = scn.next();
+        int[] alphabet2 = new int[26];
+        for (int j = 0; j < S.length(); j++) {
+            int index = S.charAt(j) - 'a';
+            alphabet2[index]++;
+        }
+        for (int j = 0; j < alphabet2.length; j++) {
+            if (alphabet[j] > alphabet2[j]) {
+                alphabet[j] = alphabet2[j];
+            }
+        }
+    }
+    for (int i = 0; i < alphabet.length; i++) {
+        for (int j = 0; j < alphabet[i]; j++) {
+            System.out.print((char) (i + 'a'));
+        }
+    }
+    System.out.println();
+}

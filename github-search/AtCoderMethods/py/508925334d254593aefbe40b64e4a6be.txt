@@ -1,0 +1,26 @@
+def main():
+    N,K,L=list(map(int,input().split()))
+
+    graph1=[[]for _ in range(N)]
+    graph2=[[]for _ in range(N)]
+    for _ in range(K):
+        p,q=list(map(int,input().split()))
+        p-=1
+        q-=1
+        graph1[p].append(q)
+        graph1[q].append(p)
+    for _ in range(L):
+        p,q=list(map(int,input().split()))
+        p-=1
+        q-=1
+        graph2[p].append(q)
+        graph2[q].append(p)
+
+    a=dfs(N,graph1)
+    b=dfs(N,graph2)
+
+    dict={}
+    for i in range(N):
+        dict[(a[i],b[i])]=dict.get((a[i],b[i]),0)+1
+    for i in range(N):
+        print(dict[(a[i],b[i])],end=' ')

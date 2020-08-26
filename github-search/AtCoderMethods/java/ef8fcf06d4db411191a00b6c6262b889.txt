@@ -1,0 +1,52 @@
+void solve() {
+    S = sc.next();
+    Sarray = S.toCharArray();
+    T = sc.nextInt();
+    for (int i = 0; i < S.length(); i++) {
+        if (Sarray[i] == 'L') {
+            x--;
+        } else if (Sarray[i] == 'R') {
+            x++;
+        } else if (Sarray[i] == 'U') {
+            y++;
+        } else if (Sarray[i] == 'D') {
+            y--;
+        } else {
+            Count++;
+        }
+    }
+    Dist = Math.abs(x) + Math.abs(y);
+    for (int i = 0; i < Count; i++) {
+        if (T == 1) {
+            if (Math.abs(x + 1) + Math.abs(y) > Dist) {
+                Dist = Math.abs(x + 1) + Math.abs(y);
+                x++;
+            } else if (Math.abs(x - 1) + Math.abs(y) > Dist) {
+                Dist = Math.abs(x - 1) + Math.abs(y);
+                x--;
+            }
+        } else {
+            if (x != 0) {
+                if (x > 0) {
+                    Dist = Math.abs(x - 1) + Math.abs(y);
+                    x--;
+                } else if (x < 0) {
+                    Dist = Math.abs(x + 1) + Math.abs(y);
+                    x++;
+                }
+            } else {
+                if (y > 0) {
+                    Dist = Math.abs(x) + Math.abs(y - 1);
+                    y--;
+                } else if (y < 0) {
+                    Dist = Math.abs(x) + Math.abs(y + 1);
+                    y++;
+                } else {
+                    Dist = Math.abs(x + 1) + Math.abs(y);
+                    x++;
+                }
+            }
+        }
+    }
+    System.out.println(Dist);
+}

@@ -1,0 +1,13 @@
+private static void dfs(Map<Integer, List<Integer>> G, int u, int v) {
+    pre[v - 1] = cnt++;
+    low[v - 1] = pre[v - 1];
+    for (int w : G.get(v)) {
+        if (pre[w - 1] == -1) {
+            dfs(G, v, w);
+            low[v - 1] = Math.min(low[v - 1], low[w - 1]);
+            if (low[w - 1] == pre[w - 1])
+                bridge++;
+        } else if (w != u)
+            low[v - 1] = Math.min(low[v - 1], pre[w - 1]);
+    }
+}

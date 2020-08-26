@@ -1,0 +1,15 @@
+public static void main(String[] args) throws IOException {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int K = sc.nextInt();
+    int ans;
+    String[] D = new String[K];
+    for (int i = 0; i <= K - 1; i++) {
+        D[i] = sc.next();
+    }
+    ans = N;
+    for (int i = 0; (Dis(D, N + i, K)); i++) {
+        ans += 1;
+    }
+    System.out.println(ans);
+}

@@ -1,0 +1,12 @@
+public static void main(String[] args) {
+    Scanner sn = new Scanner(System.in);
+    int N = sn.nextInt();
+    int K = sn.nextInt();
+    if (N > K) {
+        System.out.println(nCr(N + K - 1, K));
+        return;
+    }
+    int c = K % N;
+    int r = N - c;
+    System.out.println(nCr(N, r));
+}

@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    String[] s = sc.next().split("/");
+    int Y = Integer.parseInt(s[0]);
+    int M = Integer.parseInt(s[1]);
+    int D = Integer.parseInt(s[2]);
+    for (; ; Y++) {
+        int[] days = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+        if (uru(Y))
+            days[1]++;
+        for (int m = M - 1; m < 12; m++) {
+            for (int d = D - 1; d < days[m]; d++) {
+                if (Y % (m + 1) == 0 && Y / (m + 1) % (d + 1) == 0) {
+                    System.out.printf("%04d/%02d/%02d\n", Y, m + 1, d + 1);
+                    return;
+                }
+            }
+            D = 1;
+        }
+        M = 1;
+    }
+}

@@ -1,0 +1,29 @@
+
+
+
+
+public static void main(String[] args) throws Exception, IOException {
+    Reader sc = new Reader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    
+    int n = sc.nextInt();
+    
+    String s = sc.nextString(), l = "";
+    char[] c = s.toCharArray();
+    int balance = 0;
+    for (int i = 0; i < n; i++) {
+        if (c[i] == ')') {
+            balance--;
+        } else
+            balance++;
+        if (balance < 0) {
+            balance = 0;
+            l += "(";
+        }
+    }
+    for (int i = 0; i < balance; i++) {
+        s = s + ")";
+    }
+    out.println(l + s);
+    out.flush();
+}

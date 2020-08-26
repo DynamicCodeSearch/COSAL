@@ -1,0 +1,7 @@
+private boolean validate(double t) {
+    Rectangle lis = d[0].getRectangleEx(t);
+    for (int i = 1; i < d.length; ++i) {
+        lis.intersect(d[i].getRectangleEx(t));
+    }
+    return lis.hasArea();
+}

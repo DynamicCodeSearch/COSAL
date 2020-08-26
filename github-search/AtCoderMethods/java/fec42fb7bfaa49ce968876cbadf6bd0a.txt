@@ -1,0 +1,26 @@
+void solve() throws IOException {
+    int n = nextInt();
+    int c = nextInt();
+    int[] dp = new int[c + 1];
+    dp[0] = 1;
+    int[] low = new int[n];
+    int[] high = new int[n];
+    for (int i = 0; i < n; i++) {
+        low[i] = nextInt();
+    }
+    for (int i = 0; i < n; i++) {
+        high[i] = nextInt();
+    }
+    for (int i = 0; i < n; i++) {
+        int[] sums = getSums(low[i], high[i], c);
+        int[] nxt = new int[c + 1];
+        for (int from = 0; from <= c; from++) {
+            for (int to = from; to <= c; to++) {
+                nxt[to] += (int) ((long) dp[from] * sums[to - from] % P);
+                nxt[to] %= P;
+            }
+        }
+        dp = nxt;
+    }
+    out.println(dp[c]);
+}

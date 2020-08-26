@@ -1,0 +1,17 @@
+def dijkstra_dense(num_vs, adj_matrix, source, dest):
+    dist = [INF for _ in range(num_vs)]
+    visited = [False for _ in range(num_vs)]
+    dist[source] = 0
+    while True:
+        u = min((j for j in range(num_vs) if not visited[j]),
+                key=lambda i: dist[i], default=INVALID)
+        if u == INVALID or dist[u] == INF:
+            break
+        visited[u] = True
+        for v in range(num_vs):
+            w = adj_matrix[u][v]
+            if u != v and w < INF:
+                new_len = dist[u] + w
+                if new_len < dist[v]:
+                    dist[v] = new_len
+    return dist[dest]

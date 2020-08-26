@@ -1,0 +1,65 @@
+void run() {
+    Scanner sc = new Scanner();
+    n = sc.nextInt();
+    long[] fac = new long[n + 2];
+    long[] revfac = new long[n + 2];
+    long[] rev = new long[n + 2];
+    fac[0] = 1;
+    for (int i = 1; i < fac.length; ++i) {
+        fac[i] = (fac[i - 1] * i) % MODULO;
+    }
+    rev[1] = 1;
+    for (int i = 2; i < rev.length; ++i) {
+        rev[i] = (MODULO - rev[(int) MODULO % i] * (MODULO / i) % MODULO) % MODULO;
+    }
+    revfac[0] = 1;
+    for (int i = 1; i < revfac.length; ++i) {
+        revfac[i] = (revfac[i - 1] * rev[i]) % MODULO;
+    }
+    a = new int[n + 1];
+    int m = -1;
+    boolean[] f = new boolean[n];
+    for (int i = 0; i <= n; ++i) {
+        a[i] = sc.nextInt() - 1;
+        if (f[a[i]]) {
+            m = a[i];
+        } else {
+            f[a[i]] = true;
+        }
+    }
+    if (m == -1)
+        throw new AssertionError();
+    int k1 = 0, k2 = 0, k3 = 0;
+    int i;
+    for (i = 0; i < n; ++i) {
+        if (a[i] == m) {
+            break;
+        }
+        ++k1;
+    }
+    for (i = i + 1; i < n; ++i) {
+        if (a[i] == m) {
+            break;
+        }
+        ++k2;
+    }
+    StringBuilder sb = new StringBuilder();
+    k3 = n - 1 - (k1 + k2);
+    for (int len = 1; len <= n + 1; ++len) {
+        if (len == 1) {
+            sb.append(n + "\n");
+            continue;
+        }
+        long ans = 0;
+        
+        ans = comb(n - 1, len, fac, revfac);
+        
+        ans = (ans + comb(n - 1, len - 2, fac, revfac)) % MODULO;
+        
+        ans = (ans + 2 * comb(n - 1, len - 1, fac, revfac)) % MODULO;
+        
+        ans = (ans - comb(n - 1 - k2, len - 1, fac, revfac) + MODULO) % MODULO;
+        sb.append(ans + "\n");
+    }
+    System.out.print(sb);
+}

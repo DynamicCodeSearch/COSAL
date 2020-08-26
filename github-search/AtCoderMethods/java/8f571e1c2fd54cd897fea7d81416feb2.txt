@@ -1,0 +1,9 @@
+public String nextToken() {
+    int c = skipWhileSpace();
+    StringBuilder res = new StringBuilder();
+    do {
+        res.append((char) c);
+        c = next();
+    } while (!isSpaceChar(c));
+    return res.toString();
+}

@@ -1,0 +1,17 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) a[i] = sc.nextInt() + 1;
+    int[] count = new int[100002];
+    for (int i = 0; i < n; i++) {
+        count[a[i] - 1]++;
+        count[a[i]]++;
+        count[a[i] + 1]++;
+    }
+    int max = 0;
+    for (int i = 0; i < 100002; i++) {
+        max = Math.max(max, count[i]);
+    }
+    System.out.println(max);
+}

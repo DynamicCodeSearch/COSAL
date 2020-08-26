@@ -1,0 +1,6 @@
+public void add(int i, int v) {
+    d[size + i] = v;
+    for (int p = (size + i) / 2; p >= 1; p /= 2) {
+        d[p] = Math.max(d[p * 2], d[p * 2 + 1]);
+    }
+}

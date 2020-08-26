@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    
+    int N = sc.nextInt();
+    
+    int H;
+    
+    int W;
+    
+    int Amari;
+    
+    int Wa;
+    
+    int ANS = 100000;
+    for (int i = 1; i <= N; i++) {
+        H = i;
+        W = N / i;
+        Amari = N - H * W;
+        Wa = Math.abs(H - W) + Amari;
+        if (ANS > Wa) {
+            ANS = Wa;
+        }
+    }
+    System.out.println(ANS);
+}

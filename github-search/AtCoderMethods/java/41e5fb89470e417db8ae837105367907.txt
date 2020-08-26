@@ -1,0 +1,18 @@
+public void solve() {
+    N = nextInt();
+    M = nextInt();
+    connect = new int[N][N];
+    for (int i = 0; i < M; i++) {
+        int a = nextInt() - 1;
+        int b = nextInt() - 1;
+        connect[a][b]++;
+        connect[b][a]++;
+    }
+    for (int i = 0; i < N; i++) {
+        int sum = 0;
+        for (int j = 0; j < N; j++) {
+            sum += connect[i][j];
+        }
+        out.println(sum);
+    }
+}

@@ -1,0 +1,33 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    n = sc.nextInt();
+    k = sc.nextInt();
+    a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = sc.nextInt();
+    }
+    int count = 0;
+    for (int i = 0; i < n; i++) {
+        if (a[i] >= k) {
+            ++count;
+        }
+    }
+    int[] b = new int[n - count];
+    int m = 0;
+    for (int i = 0; i < n; i++) {
+        if (a[i] < k) {
+            b[m++] = a[i];
+        }
+    }
+    Arrays.sort(b);
+    int low = -1, high = m;
+    while (high - low > 1) {
+        int mid = (low + high) / 2;
+        if (!check(mid, b)) {
+            low = mid;
+        } else {
+            high = mid;
+        }
+    }
+    System.out.println(low + 1);
+}

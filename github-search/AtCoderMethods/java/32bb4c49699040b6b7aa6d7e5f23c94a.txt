@@ -1,0 +1,9 @@
+private void calcArrivalCost() {
+    if (isFirst()) {
+        arrivalCost = 0;
+    } else if (isSecound()) {
+        arrivalCost = stepCost();
+    } else {
+        arrivalCost = Math.min(beforePole.arrivalCost + stepCost(), twoBeforePole().arrivalCost + skipCost());
+    }
+}

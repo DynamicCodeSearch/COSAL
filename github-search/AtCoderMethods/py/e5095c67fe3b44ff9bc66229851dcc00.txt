@@ -1,0 +1,23 @@
+def solve(p):
+    total = 0
+    result = 0
+    for i in range(0, n):
+        x = l[i]
+        if p == 0:
+            if i%2 == 0:
+                goal = 1
+            else:
+                goal = -1
+        else:
+            if i%2 == 0:
+                goal = -1
+            else:
+                goal = 1
+        if (total+x)*goal > 0:
+            total += x
+        else:
+            newx = goal-total
+            diff = newx-x
+            result += abs(diff)
+            total += newx
+    return result

@@ -1,0 +1,27 @@
+void dfs(ArrayList<Integer>[] g, int i, boolean[] NG) {
+    S.addFirst(i);
+    dfsnum[i] = N;
+    N++;
+    low[i] = dfsnum[i];
+    for (int j : g[i]) {
+        if (NG[j] || used[j])
+            continue;
+        if (!T.contains(j)) {
+            T.add(j);
+            dfs(g, j, NG);
+            low[i] = Math.min(low[i], low[j]);
+        } else {
+            low[i] = Math.min(dfsnum[j], low[i]);
+        }
+    }
+    if (low[i] == dfsnum[i]) {
+        int v;
+        do {
+            v = S.removeFirst();
+            ret[v] = NOW;
+            used[v] = true;
+        } while (v != i);
+        NOW++;
+    }
+    return;
+}

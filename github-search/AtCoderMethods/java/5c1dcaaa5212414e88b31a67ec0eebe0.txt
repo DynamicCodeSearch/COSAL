@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int K = sc.nextInt();
+    long[] mult = new long[N + 1];
+    for (int i = 0; i <= N - K; i++) {
+        mult[i]++;
+        mult[i + K]--;
+    }
+    for (int i = 0; i < N; i++) {
+        mult[i + 1] += mult[i];
+    }
+    BigInteger sum = BigInteger.ZERO;
+    for (int i = 0; i < N; i++) {
+        int a = sc.nextInt();
+        sum = sum.add(BigInteger.valueOf(a * mult[i]));
+    }
+    System.out.println(sum.toString());
+    sc.close();
+}

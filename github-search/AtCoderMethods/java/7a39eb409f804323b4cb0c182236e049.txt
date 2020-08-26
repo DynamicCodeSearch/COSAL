@@ -1,0 +1,11 @@
+private static double v(int x, int r, int h, int a) {
+    if (a <= x) {
+        return Math.PI / 3 * r * r * h;
+    } else if (a >= x + h) {
+        return 0;
+    } else {
+        double hh = x + h - a;
+        double rr = (double) (x + h - a) / h * r;
+        return Math.PI / 3 * rr * rr * hh;
+    }
+}

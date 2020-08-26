@@ -1,0 +1,24 @@
+void solve() throws IOException {
+    int W = in.readInt();
+    int H = in.readInt();
+    int X = 0;
+    int Y = 0;
+    int n = in.readInt();
+    for (int i = 0; i < n; ++i) {
+        int x = in.readInt();
+        int y = in.readInt();
+        int a = in.readInt();
+        if (a == 1) {
+            X = Math.max(X, x);
+        } else if (a == 2) {
+            W = Math.min(W, x);
+        } else if (a == 3) {
+            Y = Math.max(Y, y);
+        } else {
+            H = Math.min(H, y);
+        }
+    }
+    int dx = Math.max(0, W - X);
+    int dy = Math.max(0, H - Y);
+    out.printLine(dx * dy);
+}

@@ -1,0 +1,38 @@
+public static void main(String[] args) throws NumberFormatException, IOException {
+    
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String s = br.readLine();
+    int t = Integer.parseInt(br.readLine());
+    int hPoint = 0;
+    int lPoint = 0;
+    int numOfQ = 0;
+    for (int i = 0; i < s.length(); i++) {
+        char c = s.charAt(i);
+        if (c == 'U') {
+            hPoint++;
+        } else if (c == 'L') {
+            lPoint++;
+        } else if (c == 'D') {
+            hPoint--;
+        } else if (c == 'R') {
+            lPoint--;
+        } else {
+            numOfQ++;
+        }
+    }
+    if (t == 1) {
+        int l = Math.abs(hPoint) + Math.abs(lPoint) + numOfQ;
+        System.out.println(l);
+    } else {
+        int l = Math.abs(hPoint) + Math.abs(lPoint) - numOfQ;
+        if (l < 0) {
+            if (Math.abs(l) % 2 == 0) {
+                System.out.println(0);
+            } else {
+                System.out.println(1);
+            }
+        } else {
+            System.out.println(l);
+        }
+    }
+}

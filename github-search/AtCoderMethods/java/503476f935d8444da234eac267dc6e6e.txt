@@ -1,0 +1,15 @@
+void propagate(int curL, int curR, int k) {
+    if (add1[k] != 0) {
+        final int curM = (curL + curR) / 2;
+        addSeries(curL, curR, 2 * k + 1, add1[k], curL, curM);
+        addSeries(curL, curR, 2 * k + 2, add1[k], curM, curR);
+        add(curL, curR, 2 * k + 2, add1[k] * (curM - curL), curM, curR);
+        add1[k] = 0;
+    }
+    if (add2[k] != 0) {
+        final int curM = (curL + curR) / 2;
+        add(curL, curR, 2 * k + 1, add2[k], curL, curM);
+        add(curL, curR, 2 * k + 2, add2[k], curM, curR);
+        add2[k] = 0;
+    }
+}

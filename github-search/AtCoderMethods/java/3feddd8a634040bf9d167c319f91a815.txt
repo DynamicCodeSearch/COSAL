@@ -1,0 +1,49 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int W = Integer.parseInt(scan.next());
+    int H = Integer.parseInt(scan.next());
+    int N = Integer.parseInt(scan.next());
+    int[] xs = new int[N];
+    int[] ys = new int[N];
+    int[] as = new int[N];
+    for (int n = 0; n < N; n++) {
+        xs[n] = Integer.parseInt(scan.next());
+        ys[n] = Integer.parseInt(scan.next());
+        as[n] = Integer.parseInt(scan.next());
+    }
+    scan.close();
+    int[] impoint = new int[4];
+    impoint[0] = 0;
+    impoint[1] = W;
+    impoint[2] = 0;
+    impoint[3] = H;
+    for (int i = 0; i < N; i++) {
+        switch(as[i]) {
+            case 
+            1:
+                if (xs[i] > impoint[0]) {
+                    impoint[0] = xs[i];
+                }
+                break;
+            case 
+            2:
+                if (xs[i] < impoint[1]) {
+                    impoint[1] = xs[i];
+                }
+                break;
+            case 
+            3:
+                if (ys[i] > impoint[2]) {
+                    impoint[2] = ys[i];
+                }
+                break;
+            case 
+            4:
+                if (ys[i] < impoint[3]) {
+                    impoint[3] = ys[i];
+                }
+                break;
+        }
+    }
+    System.out.println(Math.max(impoint[1] - impoint[0], 0) * Math.max(impoint[3] - impoint[2], 0));
+}

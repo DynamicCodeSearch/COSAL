@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int k = sc.nextInt();
+    ArrayList<Integer> array = new ArrayList<Integer>();
+    for (int a = 0; a < n; a++) {
+        array.add(sc.nextInt());
+    }
+    int count = 0;
+    for (int b = 0; b < n; b++) {
+        if (array.get(b) < k - array.get(b)) {
+            count += array.get(b) * 2;
+        } else {
+            count += (k - array.get(b)) * 2;
+        }
+    }
+    System.out.println(count);
+}

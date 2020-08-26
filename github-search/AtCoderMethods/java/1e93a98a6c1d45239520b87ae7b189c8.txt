@@ -1,0 +1,17 @@
+public void union(int x, int y) {
+    x = find(x);
+    y = find(y);
+    if (x == y) {
+        return;
+    }
+    --groupCount;
+    if (rank[x] < rank[y]) {
+        partition[y] += partition[x];
+        partition[x] = y;
+        ++rank[y];
+    } else {
+        partition[x] += partition[y];
+        partition[y] = x;
+        ++rank[x];
+    }
+}

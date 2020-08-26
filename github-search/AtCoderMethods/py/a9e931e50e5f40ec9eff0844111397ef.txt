@@ -1,0 +1,19 @@
+def main():
+    N, A, B = map(int, input().split())
+    v = sorted(map(int, input().split()))[::-1]
+    L = [[sum(v[:A]) / A, v[:A]]]
+    for i in range(A+1, B+1):
+        if sum(v[:i]) / i == L[0][0] : L += [[sum(v[:i]) / i, v[:i]]]
+    ans = 0
+    for i in L:
+        a = 1
+        for j in set(i[1]):
+            if i[1].count(j) == 1:
+                a *= v.count(j)
+            else:
+                x = v.count(j)
+                y = i[1].count(j)
+                a *= (math.factorial(x) // math.factorial(x-y)) // math.factorial(y)
+        ans += a
+    print(L[0][0])
+    print(ans)

@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    PrintWriter out = new PrintWriter(System.out);
+    while (sc.hasNext()) {
+        int n = (int) sc.nextLong();
+        int[] a = new int[n];
+        TreeMap<Integer, Integer> mp = new TreeMap<Integer, Integer>();
+        TreeSet<Integer> in = new TreeSet<Integer>();
+        for (int i = 0; i < n; i++) {
+            a[i] = (int) sc.nextLong();
+            in.add(a[i]);
+        }
+        int c = 0;
+        while (!in.isEmpty()) {
+            mp.put(in.pollFirst(), c);
+            c++;
+        }
+        for (int i = 0; i < n; i++) {
+            out.println(mp.get(a[i]));
+        }
+        out.flush();
+    }
+}

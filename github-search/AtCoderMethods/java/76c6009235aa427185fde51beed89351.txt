@@ -1,0 +1,13 @@
+public static void dfs(int s) {
+    visited[s] = true;
+    count++;
+    for (int i = 1; i < N + 1; i++) {
+        if (path[s][i] == 1 && !visited[i]) {
+            dfs(i);
+        }
+    }
+    if (count == N)
+        ans++;
+    visited[s] = false;
+    count--;
+}

@@ -1,0 +1,21 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    String[] firstLine = input.readLine().split(" ");
+    int H = Integer.parseInt(firstLine[0]);
+    int W = Integer.parseInt(firstLine[1]);
+    StringBuilder builder = new StringBuilder();
+    for (int i = 0; i < H; i++) {
+        String line = input.readLine();
+        if (i == 0) {
+            builder.append(line);
+            builder.append("\n");
+            builder.append(line);
+        } else {
+            builder.append("\n");
+            builder.append(line);
+            builder.append("\n");
+            builder.append(line);
+        }
+    }
+    System.out.println(builder.toString());
+}

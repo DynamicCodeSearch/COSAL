@@ -1,0 +1,28 @@
+void solve(FastScanner in, PrintWriter out) {
+    String S = in.next();
+    for (int i = 0; i < S.length(); i++) {
+        if (S.substring(i, i + 7).equals("WWBWBWW")) {
+            int now = 11;
+            while (i > 0) {
+                now--;
+                i--;
+            }
+            assert i >= 0;
+            if (now == 0)
+                out.println("Do");
+            if (now == 2)
+                out.println("Re");
+            if (now == 4)
+                out.println("Mi");
+            if (now == 5)
+                out.println("Fa");
+            if (now == 7)
+                out.println("So");
+            if (now == 9)
+                out.println("La");
+            if (now == 11)
+                out.println("Si");
+            return;
+        }
+    }
+}

@@ -1,0 +1,5 @@
+def sum_of_divs_of_fact(n, mod=P):
+    primes = sieve_of_eratosthenes(math.ceil(math.sqrt(n)) + 1)
+    ctr = sum_ctrs(factorize_fact(x, primes) for x in range(1, n + 1))
+    ans = prod_mod(v + 1 for v in ctr.values()) % mod
+    return ans

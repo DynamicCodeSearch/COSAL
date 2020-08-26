@@ -1,0 +1,11 @@
+public String next() {
+    if (!hasNext())
+        throw new NoSuchElementException();
+    StringBuilder sb = new StringBuilder();
+    byte b = readByte();
+    while (isPrintableChar(b)) {
+        sb.appendCodePoint(b);
+        b = readByte();
+    }
+    return sb.toString();
+}

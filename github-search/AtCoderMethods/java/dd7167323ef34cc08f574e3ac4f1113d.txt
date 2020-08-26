@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    String vv = "00";
+    Scanner sc = new Scanner(System.in);
+    int x = sc.nextInt();
+    if (x < 100) {
+    
+    } else if (100 <= x && x <= 5000) {
+        x = (x * 10 / 1000);
+        if (x < 10) {
+            vv = "0" + x;
+        } else {
+            vv = Integer.toString(x);
+        }
+    } else if (6000 <= x && x <= 30000) {
+        x = x / 1000 + 50;
+        vv = Integer.toString(x);
+    } else if (35000 <= x && x <= 70000) {
+        x = (x / 1000 - 30) / 5 + 80;
+        vv = Integer.toString(x);
+    } else if (x > 70000) {
+        vv = "89";
+    }
+    System.out.println(vv);
+}

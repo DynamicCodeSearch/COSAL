@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    final int N = sc.nextInt();
+    int cn = N;
+    long a, b;
+    int cnt = 1;
+    long sum = 0;
+    a = sc.nextLong();
+    for (int i = 1; i < N; i++) {
+        b = sc.nextLong();
+        if (a < b) {
+            cnt++;
+        } else if (cnt <= 1) {
+        } else {
+            cn -= cnt;
+            sum += (perm(cnt + 1, 2) / perm(2, 2));
+            cnt = 1;
+        }
+        a = b;
+    }
+    if (2 <= cnt) {
+        cn -= cnt;
+        sum += (perm(cnt + 1, 2) / perm(2, 2));
+    }
+    System.out.println(sum + cn);
+    a = 100000;
+    b = 2;
+
+}

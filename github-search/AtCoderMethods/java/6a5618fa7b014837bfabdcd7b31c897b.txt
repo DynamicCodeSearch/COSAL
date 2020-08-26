@@ -1,0 +1,30 @@
+void main() {
+    int INF = Integer.MAX_VALUE / 2;
+    int[][] dist = new int[N][N];
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            dist[i][j] = INF;
+            if (adj[i][j] > 0) {
+                dist[i][j] = adj[i][j];
+                dist[j][i] = adj[i][j];
+            }
+        }
+        dist[i][i] = 0;
+    }
+    for (int k = 0; k < N; k++) {
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                dist[i][j] = Math.min(dist[i][j], dist[i][k] + dist[k][j]);
+            }
+        }
+    }
+    int count = 0;
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            if (dist[i][j] < adj[i][j]) {
+                count++;
+            }
+        }
+    }
+    System.out.println(count / 2);
+}

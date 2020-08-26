@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int cnt = 0;
+    String str = "";
+    int N = Integer.parseInt(sc.next());
+    int Q = Integer.parseInt(sc.next());
+    int[] dp = new int[N];
+    
+    for (int s = 0; s < Q; s++) {
+        int L = Integer.parseInt(sc.next());
+        int R = Integer.parseInt(sc.next());
+        int T = Integer.parseInt(sc.next());
+        for (int i = L - 1; i < R; i++) dp[i] = T;
+    }
+    for (int s = 0; s < N; s++) {
+        System.out.println(dp[s]);
+    }
+    System.out.println();
+}

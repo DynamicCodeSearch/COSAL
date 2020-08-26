@@ -1,0 +1,9 @@
+private void dfsReject(int c, List<Integer>[] invertedCompEdges, boolean[] compIsTrue) {
+    if (!compIsTrue[c]) {
+        return;
+    }
+    compIsTrue[c] = false;
+    for (int p : invertedCompEdges[c]) {
+        dfsReject(p, invertedCompEdges, compIsTrue);
+    }
+}

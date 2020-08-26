@@ -1,0 +1,37 @@
+void solve() throws IOException {
+    int n = in.nextInt();
+    int ma = in.nextInt();
+    int mb = in.nextInt();
+    int dpsize = n * 10 + 1;
+    int[][] dp = new int[dpsize][dpsize];
+    int inf = Integer.MAX_VALUE / 2;
+    for (int i = 0; i < dpsize; i++) {
+        Arrays.fill(dp[i], inf);
+    }
+    dp[0][0] = 0;
+    for (int i = 0; i < n; i++) {
+        int a = in.nextInt();
+        int b = in.nextInt();
+        int c = in.nextInt();
+        for (int j = dpsize - 1; j >= 0; j--) {
+            for (int k = dpsize - 1; k >= 0; k--) {
+                if (dp[j][k] == inf)
+                    continue;
+                dp[j + a][k + b] = Math.min(dp[j + a][k + b], dp[j][k] + c);
+            }
+        }
+    }
+    int ans = inf;
+    for (int i = 1; i < dpsize; i++) {
+        if (i % ma != 0)
+            continue;
+        for (int j = 1; j < dpsize; j++) {
+            if (j % mb != 0 || j / mb != i / ma)
+                continue;
+            ans = Math.min(ans, dp[i][j]);
+        }
+    }
+    if (ans == inf)
+        ans = -1;
+    System.out.println(ans);
+}

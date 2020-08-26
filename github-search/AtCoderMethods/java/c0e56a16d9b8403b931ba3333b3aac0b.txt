@@ -1,0 +1,14 @@
+private static Pair al(int K) {
+    if (K == 1)
+        return new Pair(1, 1);
+    int c = 0;
+    int a = 1;
+    int b = 0;
+    while (c <= K) {
+        int tmp = b;
+        b = a;
+        a = tmp + a;
+        c++;
+    }
+    return new Pair(a, b);
+}

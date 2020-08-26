@@ -1,0 +1,18 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String str1 = br.readLine();
+    String[] array1 = str1.split(" ");
+    int a = Integer.parseInt(array1[0]);
+    int b = Integer.parseInt(array1[1]);
+    int c = Integer.parseInt(array1[2]);
+    int k = Integer.parseInt(array1[3]);
+    String str2 = br.readLine();
+    String[] array2 = str2.split(" ");
+    int s = Integer.parseInt(array2[0]);
+    int t = Integer.parseInt(array2[1]);
+    if (k <= (s + t)) {
+        System.out.println((a * s) + (b * t) - ((s + t) * c));
+    } else {
+        System.out.println((a * s) + (b * t));
+    }
+}

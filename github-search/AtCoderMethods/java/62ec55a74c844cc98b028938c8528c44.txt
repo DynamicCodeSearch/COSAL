@@ -1,0 +1,35 @@
+public static void main(String[] args) throws IOException {
+    Scanner scanner = new Scanner(System.in);
+    int n = scanner.nextInt();
+    int a = scanner.nextInt();
+    int b = scanner.nextInt();
+    int ans = 0;
+    for (int i = 0; i < n; i++) {
+        String string = scanner.next();
+        int d = scanner.nextInt();
+        if (string.equals("East")) {
+            if (d < a) {
+                ans += a;
+            } else if (d > b) {
+                ans += b;
+            } else {
+                ans += d;
+            }
+        } else {
+            if (d < a) {
+                ans -= a;
+            } else if (d > b) {
+                ans -= b;
+            } else {
+                ans -= d;
+            }
+        }
+    }
+    if (ans > 0) {
+        System.out.print("East ");
+    } else if (ans < 0) {
+        System.out.print("West ");
+        ans = ans * -1;
+    }
+    System.out.println(ans);
+}

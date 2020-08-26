@@ -1,0 +1,22 @@
+void solve() {
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    final int INF = 1 << 20;
+    int[][] g = new int[N][N];
+    for (int i = 0; i < N; i++) Arrays.fill(g[i], INF);
+    for (int i = 0; i < N; i++) g[i][i] = 0;
+    for (int i = 0; i < M; i++) {
+        int a = sc.nextInt() - 1;
+        int b = sc.nextInt() - 1;
+        int c = sc.nextInt();
+        g[a][b] = g[b][a] = c;
+    }
+    for (int k = 0; k < N; k++) for (int i = 0; i < N; i++) for (int j = 0; j < N; j++) g[i][j] = Math.min(g[i][j], g[i][k] + g[k][j]);
+    int ans = INF;
+    for (int i = 0; i < N; i++) {
+        int cur = 0;
+        for (int j = 0; j < N; j++) cur = Math.max(cur, g[i][j]);
+        ans = Math.min(ans, cur);
+    }
+    out.println(ans);
+}

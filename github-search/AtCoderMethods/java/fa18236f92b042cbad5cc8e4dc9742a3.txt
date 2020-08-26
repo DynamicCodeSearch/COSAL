@@ -1,0 +1,17 @@
+private static long solve(int n, int[] a) {
+    Arrays.sort(a);
+    int ans = 0;
+    int cnt = 1;
+    for (int i = 1; i < n; i++) {
+        if (a[i] != a[i - 1]) {
+            if (cnt % 2 == 1)
+                ans += 1;
+            cnt = 1;
+        } else {
+            cnt += 1;
+        }
+    }
+    if (cnt % 2 == 1)
+        ans += 1;
+    return ans;
+}

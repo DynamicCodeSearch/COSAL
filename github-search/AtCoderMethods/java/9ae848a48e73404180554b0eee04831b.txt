@@ -1,0 +1,26 @@
+void solve() {
+    Scanner in = new Scanner(System.in);
+    int N = in.nextInt(), M = in.nextInt(), X = in.nextInt(), Y = in.nextInt();
+    int[] a = new int[N], b = new int[M];
+    for (int i = 0; i < N; i++) {
+        a[i] = in.nextInt();
+    }
+    for (int i = 0; i < M; i++) {
+        b[i] = in.nextInt();
+    }
+    Arrays.sort(a);
+    Arrays.sort(b);
+    boolean go = true;
+    int ans = 0, time = 0;
+    while (true) {
+        int t = flight(time, go ? a : b);
+        if (t == -1) {
+            break;
+        }
+        time = go ? a[t] + X : b[t] + Y;
+        if (!go)
+            ans++;
+        go = !go;
+    }
+    System.out.println(ans);
+}

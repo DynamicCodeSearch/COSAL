@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    Scanner scn = new Scanner(System.in);
+    int n = scn.nextInt();
+    long k = scn.nextLong();
+    long sum = 0;
+    int[] as = new int[n];
+    int[] bs = new int[n];
+    for (int i = 0; i < n; i++) {
+        int a = Integer.parseInt(scn.next());
+        int b = Integer.parseInt(scn.next());
+        as[i] = a;
+        bs[i] = b;
+    }
+    Integer[] indexes = new Integer[as.length];
+    for (int i = 0; i < indexes.length; i++) {
+        indexes[i] = i;
+    }
+    Arrays.sort(indexes, new Comparator<Integer>() {
+
+        @Override
+        public int compare(Integer i1, Integer i2) {
+            return Double.compare(as[i1], as[i2]);
+        }
+    });
+    for (int i = 0; i < n; i++) {
+        sum += bs[indexes[i]];
+        if (sum >= k) {
+            System.out.println(as[indexes[i]]);
+            break;
+        }
+    }
+}

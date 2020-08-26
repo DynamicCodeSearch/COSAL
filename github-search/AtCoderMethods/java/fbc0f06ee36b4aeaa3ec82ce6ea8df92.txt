@@ -1,0 +1,49 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    int n = in.readInt();
+    int k = in.readInt();
+    int[] a = IOUtils.readIntArray(in, n);
+    boolean[] has = new boolean[k];
+    int[][] qty = new int[n + 1][k + 1];
+    for (int i = 1; i <= k; i++) {
+        qty[n][i] = 1;
+    }
+    has[0] = true;
+    for (int i = n - 1; i >= 0; i--) {
+        for (int j = k - 1; j >= a[i]; j--) {
+            if (has[j - a[i]]) {
+                has[j] = true;
+            }
+        }
+        for (int j = 0; j < k; j++) {
+            qty[i][j + 1] = qty[i][j] + (has[j] ? 1 : 0);
+        }
+    }
+    int answer = 0;
+    Arrays.fill(has, false);
+    has[0] = true;
+    for (int i = 0; i < n; i++) {
+        if (a[i] >= k) {
+            continue;
+        }
+        boolean found = false;
+        for (int j = 0; j < k; j++) {
+            if (has[j]) {
+                int start = Math.max(k - a[i] - j, 0);
+                int end = k - j;
+                if (qty[i + 1][end] != qty[i + 1][start]) {
+                    found = true;
+                    break;
+                }
+            }
+        }
+        if (!found) {
+            answer++;
+        }
+        for (int j = k - 1; j >= a[i]; j--) {
+            if (has[j - a[i]]) {
+                has[j] = true;
+            }
+        }
+    }
+    out.printLine(answer);
+}

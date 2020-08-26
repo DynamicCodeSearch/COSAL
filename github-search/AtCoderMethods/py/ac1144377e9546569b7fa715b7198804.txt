@@ -1,0 +1,12 @@
+def main():
+    n, q = map(int, input().split())
+    dp = [0] * (n + 1)
+    for _ in range(q):
+        l, r = map(int, input().split())
+        dp[l - 1] += 1
+        dp[r] -= 1
+
+    for i in range(len(dp) - 1):
+        dp[i + 1] += dp[i]
+
+    print(*[i % 2 for i in dp[:-1]], sep="")

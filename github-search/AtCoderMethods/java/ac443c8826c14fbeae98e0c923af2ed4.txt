@@ -1,0 +1,16 @@
+static void solve() {
+    int n = sc.nextInt();
+    int sum = 0;
+    int[] elements = new int[n];
+    for (int i = 0; i < n; i++) {
+        elements[i] = sc.nextInt();
+        sum += elements[i];
+    }
+    int res = sum / n;
+    res = ((double) sum / n <= (res + 0.5)) ? res : res + 1;
+    int cost = 0;
+    for (int i = 0; i < n; i++) {
+        cost += (elements[i] - res) * (elements[i] - res);
+    }
+    out.println(cost);
+}

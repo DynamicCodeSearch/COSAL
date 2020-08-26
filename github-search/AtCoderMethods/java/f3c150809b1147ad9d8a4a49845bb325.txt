@@ -1,0 +1,8 @@
+static long modPow(long x, long y, long M) {
+    if (y == 0)
+        return 1;
+    if (y % 2 == 0)
+        return modPow((x * x) % M, y / 2, M);
+    else
+        return (x * modPow((x * x) % M, (y - 1) / 2, M)) % M;
+}

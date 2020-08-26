@@ -1,0 +1,16 @@
+public static int[] kruskal(int[] one, int[] other, int[] w, int n) {
+    DisjointSet ds = new DisjointSet(n);
+    int p = one.length;
+    long[] ord = new long[p];
+    for (int i = 0; i < p; i++) ord[i] = (long) w[i] << 32 | i;
+    Arrays.sort(ord);
+    int d = 0;
+    for (int i = 0; i < ord.length; i++) {
+        int cur = (int) ord[i];
+        if (!ds.equiv(one[cur], other[cur])) {
+            ds.union(one[cur], other[cur]);
+            d += w[cur];
+        }
+    }
+    return new int[] { ds.count(), d };
+}

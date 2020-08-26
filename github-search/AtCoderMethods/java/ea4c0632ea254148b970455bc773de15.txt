@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    int[] play = sc.nextIntList(M);
+    int[] disk = new int[N + 1];
+    for (int i = 1; i <= N; i++) {
+        disk[i] = i;
+    }
+    int now = 0;
+    for (int d : play) {
+        disk[now] = disk[d];
+        disk[d] = 0;
+        now = d;
+    }
+    for (int i = 1; i <= N; i++) {
+        for (int j = 0; j <= N; j++) {
+            if (disk[j] == i) {
+                System.out.println(j);
+                break;
+            }
+        }
+    }
+}

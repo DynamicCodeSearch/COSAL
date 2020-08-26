@@ -1,0 +1,31 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    Map<Integer, Integer> indexCache = new HashMap<>();
+    int repeatingInt = -1;
+    int repeatingIdx = -1;
+    for (int i = 0; i < (n + 1); i++) {
+        int readInt = sc.nextInt();
+        if (indexCache.containsKey(readInt)) {
+            repeatingInt = readInt;
+            repeatingIdx = i;
+        } else {
+            indexCache.put(readInt, i);
+        }
+    }
+    ModCalculationsHelper h = new ModCalculationsHelper(1000000007, n + 1);
+    long numBeforeFirstAppearance = indexCache.get(repeatingInt);
+    long numAfterSecondAppearance = n - repeatingIdx;
+    long numOutsideRepeatBound = numBeforeFirstAppearance + numAfterSecondAppearance;
+    for (int k = 1; k <= n + 1; k++) {
+        if (k == 1) {
+            System.out.println(n);
+        } else if (k == (n + 1)) {
+            System.out.println(1);
+        } else {
+            long allPossibleWithLengthK = h.cNPickK(n + 1, k);
+            long repeats = h.cNPickK(numOutsideRepeatBound, k - 1);
+            System.out.println(h.subtractWithMod(allPossibleWithLengthK, repeats));
+        }
+    }
+}

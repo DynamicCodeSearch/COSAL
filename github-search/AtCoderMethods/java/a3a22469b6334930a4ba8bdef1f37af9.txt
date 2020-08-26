@@ -1,0 +1,11 @@
+void setRecursive(int i, int x1, int x2) {
+    if (min[i] <= x1 && x1 <= max[i])
+        min[i] = max[i] = x1;
+    else
+        min[i] = max[i] = x2;
+    for (Edge e : G.get(i)) {
+        if (e.to == p[i])
+            continue;
+        setRecursive(e.to, min[i] - 1, min[i] + 1);
+    }
+}

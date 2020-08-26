@@ -1,0 +1,29 @@
+public static void main(String[] args) throws Exception {
+    Scanner scan = new Scanner(System.in);
+    int answer = 0;
+    int N = scan.nextInt();
+    PriorityQueue pq = new PriorityQueue();
+    int s;
+    boolean allScoreIs10 = true;
+    for (int i = 0; i < N; i++) {
+        s = scan.nextInt();
+        answer += s;
+        pq.add(s);
+        if (s % 10 != 0) {
+            allScoreIs10 = false;
+        }
+    }
+    while (!pq.isEmpty()) {
+        if (answer % 10 != 0) {
+            break;
+        } else {
+            s = (int) pq.poll();
+            if (s % 10 != 0) {
+                answer -= s;
+            }
+        }
+    }
+    if (allScoreIs10)
+        answer = 0;
+    System.out.println(answer);
+}

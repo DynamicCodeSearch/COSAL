@@ -1,0 +1,7 @@
+T reduce(int i, Supplier<T> sup) {
+    T ret = sup.get();
+    for (int x = i; x > 0; x -= x & -x) {
+        ret = bif.apply(ret, bit.get(x));
+    }
+    return ret;
+}

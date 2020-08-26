@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int txa = sc.nextInt();
+    int tya = sc.nextInt();
+    int txb = sc.nextInt();
+    int tyb = sc.nextInt();
+    int T = sc.nextInt();
+    int V = sc.nextInt();
+    int n = sc.nextInt();
+    String ans = "NO";
+    for (int i = 0; i < n; i++) {
+        int x = sc.nextInt();
+        int y = sc.nextInt();
+        double a = Math.pow(x - txa, 2) + Math.pow(y - tya, 2);
+        double b = Math.pow(x - txb, 2) + Math.pow(y - tyb, 2);
+        if (Math.sqrt(a) + Math.sqrt(b) <= V * T) {
+            ans = "YES";
+            break;
+        }
+    }
+    System.out.println(ans);
+}

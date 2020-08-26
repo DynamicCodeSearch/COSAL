@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[] a = new int[n + 1];
+    for (int i = 1; i <= n; i++) {
+        a[i] = sc.nextInt();
+    }
+    
+    int count = 0;
+    boolean[] flag = new boolean[n + 1];
+    int pos = 1;
+    while (pos != 2 && !flag[pos]) {
+        flag[pos] = true;
+        pos = a[pos];
+        count++;
+    }
+    
+    if (pos == 2) {
+        System.out.println(count);
+    } else {
+        System.out.println(-1);
+    }
+}

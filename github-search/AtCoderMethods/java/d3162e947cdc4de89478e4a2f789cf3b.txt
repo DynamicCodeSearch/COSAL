@@ -1,0 +1,52 @@
+public static void main(String[] args) throws Exception {
+    build();
+    int n = sc.nextInt();
+    char[][] a = new char[2][n];
+    for (int i = 0; i < 2; i++) {
+        a[i] = sc.next().toCharArray();
+    }
+    int[] size = new int[maxn];
+    int ctr = 0;
+    for (int i = 0; i < n; ) {
+        if (a[0][i] == a[1][i]) {
+            size[ctr++] = 1;
+            i++;
+        } else {
+            size[ctr++] = 2;
+            i += 2;
+        }
+    }
+    long[][] dp = new long[9][ctr];
+    for (int i = 0; i < 9; i++) {
+        if (size[0] == 1 && i < 3) {
+            dp[i][0] = 1;
+        } else if (size[0] == 2 && i >= 3) {
+            dp[i][0] = 1;
+        }
+    }
+    int[] s = new int[ctr], e = new int[ctr];
+    for (int i = 0; i < ctr; i++) {
+        if (size[i] == 1) {
+            s[i] = 0;
+            e[i] = 3;
+        } else {
+            s[i] = 3;
+            e[i] = 9;
+        }
+    }
+    for (int i = 1; i < ctr; i++) {
+        for (int k = s[i]; k < e[i]; k++) {
+            for (int j = s[i - 1]; j < e[i - 1]; j++) {
+                if (v[j][k]) {
+                    dp[k][i] = (dp[k][i] + dp[j][i - 1]) % mod;
+                }
+            }
+        }
+    }
+    long res = 0;
+    for (int i = 0; i < 9; i++) {
+        res = (res + dp[i][ctr - 1]) % mod;
+    }
+    out.println(res);
+    out.close();
+}

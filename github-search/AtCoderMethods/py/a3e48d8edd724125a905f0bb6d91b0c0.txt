@@ -1,0 +1,19 @@
+def main(args):
+    N = int(input())
+    a = [int(input()) for _ in range(N)]
+    a.insert(0, '@')            
+
+
+    possible = False
+    next_btn = a[1]
+    visited = set([1])
+    while next_btn not in visited:
+        if next_btn == 2:
+            possible = True
+            break
+        visited.add(next_btn)
+        next_btn = a[next_btn]
+    if possible:
+        print(len(visited))
+    else:
+        print(-1)

@@ -1,0 +1,23 @@
+public void solve(int testNumber, Scanner in, PrintWriter out) {
+    int n = in.nextInt();
+    int x = in.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = in.nextInt();
+    }
+    long o = 0L;
+    for (int i = 0; i < n - 1; i++) {
+        int f = a[i];
+        int s = a[i + 1];
+        int sum = f + s;
+        if (sum > x) {
+            int delta = sum - x;
+            o += delta;
+            int m = Math.min(delta, s);
+            a[i + 1] = a[i + 1] - m;
+            int rem = delta - m;
+            a[i] = a[i] - rem;
+        }
+    }
+    out.println(o);
+}

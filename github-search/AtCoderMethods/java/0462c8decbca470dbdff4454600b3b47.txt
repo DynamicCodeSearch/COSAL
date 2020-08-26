@@ -1,0 +1,72 @@
+public static void main(String[] args) throws Exception {
+    Scanner scan = new Scanner(System.in);
+    float deg = scan.nextFloat();
+    deg /= 10;
+    float dis = scan.nextFloat();
+    dis /= 6;
+    int roundDis = Math.round(dis);
+    String dir = "";
+    int W = 0;
+    if (deg >= 11.25 && deg < 33.75) {
+        dir = "NNE";
+    } else if (deg >= 33.75 && deg < 56.25) {
+        dir = "NE";
+    } else if (deg >= 56.25 && deg < 78.75) {
+        dir = "ENE";
+    } else if (deg >= 78.75 && deg < 101.25) {
+        dir = "E";
+    } else if (deg >= 101.25 && deg < 123.75) {
+        dir = "ESE";
+    } else if (deg >= 123.75 && deg < 146.25) {
+        dir = "SE";
+    } else if (deg >= 146.25 && deg < 168.75) {
+        dir = "SSE";
+    } else if (deg >= 168.75 && deg < 191.25) {
+        dir = "S";
+    } else if (deg >= 191.25 && deg < 213.75) {
+        dir = "SSW";
+    } else if (deg >= 213.75 && deg < 236.25) {
+        dir = "SW";
+    } else if (deg >= 236.25 && deg < 258.75) {
+        dir = "WSW";
+    } else if (deg >= 258.75 && deg < 281.25) {
+        dir = "W";
+    } else if (deg >= 281.25 && deg < 303.75) {
+        dir = "WNW";
+    } else if (deg >= 303.75 && deg < 326.25) {
+        dir = "NW";
+    } else if (deg >= 326.25 && deg < 348.75) {
+        dir = "NNW";
+    } else {
+        dir = "N";
+    }
+    if (roundDis >= 0 && roundDis <= 2) {
+        W = 0;
+        dir = "C";
+    } else if (roundDis >= 3 && roundDis <= 15) {
+        W = 1;
+    } else if (roundDis >= 16 && roundDis <= 33) {
+        W = 2;
+    } else if (roundDis >= 34 && roundDis <= 54) {
+        W = 3;
+    } else if (roundDis >= 55 && roundDis <= 79) {
+        W = 4;
+    } else if (roundDis >= 80 && roundDis <= 107) {
+        W = 5;
+    } else if (roundDis >= 108 && roundDis <= 138) {
+        W = 6;
+    } else if (roundDis >= 139 && roundDis <= 171) {
+        W = 7;
+    } else if (roundDis >= 172 && roundDis <= 207) {
+        W = 8;
+    } else if (roundDis >= 208 && roundDis <= 244) {
+        W = 9;
+    } else if (roundDis >= 245 && roundDis <= 284) {
+        W = 10;
+    } else if (roundDis >= 285 && roundDis <= 326) {
+        W = 11;
+    } else if (roundDis >= 327) {
+        W = 12;
+    }
+    System.out.println(dir + " " + W);
+}

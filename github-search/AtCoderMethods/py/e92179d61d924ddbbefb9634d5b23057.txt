@@ -1,0 +1,9 @@
+def main():
+    n = int(input())
+    A, B = map(int, input().split())
+    for _ in range(n - 1):
+        t, a = map(int, input().split())
+        n = ceil(max(Fraction(A, t), Fraction(B, a)))
+        A, B = n * t, n * a
+
+    print(A + B)

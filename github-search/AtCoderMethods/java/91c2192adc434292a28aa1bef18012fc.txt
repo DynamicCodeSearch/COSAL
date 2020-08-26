@@ -1,0 +1,19 @@
+int[][] groups() {
+    int max = 0;
+    for (int nid : node_id) {
+        max = Math.max(max, nid + 1);
+    }
+    int[] gnum = new int[max];
+    for (int nid : node_id) {
+        gnum[nid]++;
+    }
+    int[][] groups = new int[max][];
+    for (int i = 0; i < max; i++) {
+        groups[i] = new int[gnum[i]];
+    }
+    for (int i = 0; i < n; i++) {
+        int nid = node_id[i];
+        groups[nid][--gnum[nid]] = i;
+    }
+    return groups;
+}

@@ -1,0 +1,10 @@
+static void solve() throws IOException {
+    int n = rI();
+    int sq = (int) Math.sqrt(n);
+    int min = Integer.MAX_VALUE;
+    for (int i = 1; i <= sq; i++) {
+        int j = n / i;
+        min = Math.min(min, j - i + n % i);
+    }
+    out.println(min);
+}

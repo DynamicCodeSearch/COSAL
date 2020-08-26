@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    String inp = sc.next();
+    for (int i = 0; i < inp.length(); i++) {
+        if (isNum(inp.charAt(i))) {
+            if ((i + 1) < inp.length()) {
+                
+                if (isNum(inp.charAt(i + 1))) {
+                    System.out.println(Integer.valueOf(inp.substring(i, i + 2)));
+                    return;
+                } else {
+                    System.out.println(Integer.valueOf(inp.substring(i, i + 1)));
+                    return;
+                }
+            } else {
+                
+                System.out.println(Integer.valueOf(inp.substring(i)));
+                return;
+            }
+        }
+    }
+}

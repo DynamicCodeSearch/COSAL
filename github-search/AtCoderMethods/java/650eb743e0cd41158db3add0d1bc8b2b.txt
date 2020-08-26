@@ -1,0 +1,23 @@
+static void solve(FastScanner sc, PrintWriter out) {
+    int N = sc.ni();
+    int M = sc.ni();
+    Point[] p = new Point[N + 1];
+    Point[] q = new Point[M + 1];
+    for (int i = 1; i <= N; i++) {
+        p[i] = new Point(sc.ni(), sc.ni());
+    }
+    for (int j = 1; j <= M; j++) {
+        q[j] = new Point(sc.ni(), sc.ni());
+    }
+    for (int i = 1; i <= N; i++) {
+        int index = -1;
+        int distance = Integer.MAX_VALUE;
+        for (int j = 1; j <= M; j++) {
+            if (Point.l1(p[i], q[j]) < distance) {
+                index = j;
+                distance = Point.l1(p[i], q[j]);
+            }
+        }
+        out.println(index);
+    }
+}

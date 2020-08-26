@@ -1,0 +1,39 @@
+public static void main(String[] args) {
+    int sum;
+    Scanner sc = new Scanner(System.in);
+    
+    
+    int a = sc.nextInt();
+    ArrayList<Integer> stateList = new ArrayList<Integer>();
+    int cnt4 = 0;
+    int cnt2 = 0;
+    int work = 0;
+    for (int i = 0; i < a; i++) {
+        stateList.add(sc.nextInt());
+        work = stateList.get(i) % 4;
+        if (work == 0) {
+            cnt4++;
+        } else {
+            work = stateList.get(i) % 2;
+            if (work == 0) {
+                cnt2++;
+            }
+        }
+    }
+    work = a / 2;
+    if (work <= cnt4) {
+        System.out.println("Yes");
+        return;
+    }
+    work = a - (cnt4 * 2);
+    if ((work == 0) | (cnt2 == 0)) {
+        System.out.println("No");
+        return;
+    }
+    if (work == cnt2) {
+        System.out.println("Yes");
+        return;
+    }
+    
+    System.out.println("No");
+}

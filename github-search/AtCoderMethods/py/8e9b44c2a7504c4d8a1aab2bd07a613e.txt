@@ -1,0 +1,23 @@
+def solve(n, a, b, v):
+    c = Counter(v)
+    res = 0
+    m = max(v)
+    if c[m] >= a:
+        for k in range(a, b + 1):
+            res += coef[c[m]][k]
+        mean = m
+        return mean, res
+    else:
+        values = sorted(set(v), reverse=True)
+        s = 0
+        r = a
+        for value in values:
+            if c[value] < r:
+                r -= c[value]
+                s += value * c[value]
+            else:
+                res = coef[c[value]][r]
+                s += value * r
+                break
+        mean = s / a
+        return mean, res

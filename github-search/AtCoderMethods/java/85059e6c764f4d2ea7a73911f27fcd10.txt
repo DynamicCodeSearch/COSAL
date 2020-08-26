@@ -1,0 +1,45 @@
+static void solve() {
+    int n = ni();
+    char[] s = ns(n);
+    Integer[] inds = new Integer[n];
+    for (int i = 0; i < n; i++) inds[i] = i;
+    int[] sa = sa(s);
+    int[] flcp = buildLCP(s, sa);
+    int[] isa = new int[n];
+    for (int i = 0; i < n; i++) isa[sa[i]] = i;
+    int[][] st = buildY(flcp);
+    Arrays.sort(inds, new Comparator<Integer>() {
+
+        public int compare(Integer a, Integer b) {
+            int rem1 = n - Math.max(a, b);
+            int l = Math.min(isa[a], isa[b]);
+            int r = Math.max(isa[a], isa[b]);
+            int lcp = rmq(st, flcp, l + 1, r + 1);
+            if (lcp < rem1) {
+                return isa[a] - isa[b];
+            }
+            int aa = a + rem1;
+            int bb = b + rem1;
+            if (aa >= n)
+                aa = b;
+            if (bb >= n)
+                bb = a;
+            int ll = Math.min(isa[aa], isa[bb]);
+            int rr = Math.max(isa[aa], isa[bb]);
+            int lcp2 = rmq(st, flcp, ll + 1, rr + 1);
+            if (lcp2 < Math.abs(a - b)) {
+                return isa[aa] - isa[bb];
+            }
+            int aaa = aa + Math.abs(a - b);
+            int bbb = bb + Math.abs(a - b);
+            if (aaa >= n)
+                aaa = b;
+            if (bbb >= n)
+                bbb = a;
+            return isa[aaa] - isa[bbb];
+        }
+    });
+    for (int i = 0; i < n; i++) {
+        out.println(inds[i] + 1);
+    }
+}

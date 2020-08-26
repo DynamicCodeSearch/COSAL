@@ -1,0 +1,48 @@
+public static void main(String[] args) {
+    FS r = new FS();
+    int n = r.nextInt();
+    int k = r.nextInt();
+    int l = r.nextInt();
+    int[] ans = new int[n];
+    boolean[] checked = new boolean[n];
+    UnionFind u1 = new UnionFind(n);
+    for (int i = 0; i < k; i++) {
+        int p = r.nextInt() - 1;
+        int q = r.nextInt() - 1;
+        u1.union(p, q);
+    }
+    UnionFind u2 = new UnionFind(n);
+    for (int i = 0; i < l; i++) {
+        int p = r.nextInt() - 1;
+        int q = r.nextInt() - 1;
+        u2.union(p, q);
+    }
+    HashMap<Integer, ArrayList<Integer>> g1 = u1.get();
+    for (int i = 0; i < n; i++) {
+        if (checked[i])
+            continue;
+        ArrayList<Integer> road = g1.get(u1.find(i));
+        HashMap<Integer, ArrayList<Integer>> rail = new HashMap<Integer, ArrayList<Integer>>();
+        for (int j : road) {
+            int pp = u2.find(j);
+            if (!rail.containsKey(pp)) {
+                rail.put(pp, new ArrayList<Integer>());
+            }
+            ArrayList<Integer> tmp = rail.get(pp);
+            tmp.add(j);
+            rail.put(pp, tmp);
+        }
+        for (Map.Entry<Integer, ArrayList<Integer>> e : rail.entrySet()) {
+            ArrayList<Integer> target = e.getValue();
+            for (int m : target) {
+                ans[m] = target.size();
+                checked[m] = true;
+            }
+        }
+    }
+    String[] ansPrint = new String[n];
+    for (int i = 0; i < n; i++) {
+        ansPrint[i] = String.valueOf(ans[i]);
+    }
+    System.out.println(String.join(" ", ansPrint));
+}

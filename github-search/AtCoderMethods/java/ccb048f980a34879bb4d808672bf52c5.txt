@@ -1,0 +1,24 @@
+public static void computez(int[] z, String s) {
+    int r = 0, l = 0;
+    for (int k = 1; k < s.length(); k++) {
+        if (k > r) {
+            int p = 0;
+            while (k + p < s.length() && s.charAt(p) == s.charAt(k + p)) p++;
+            if (p > 0) {
+                l = k;
+                r = k + p - 1;
+                z[k] = p;
+            }
+        } else if (z[k - l] <= r - k) {
+            z[k] = z[k - l];
+        } else {
+            int p = r - k + 1;
+            while (k + p < s.length() && s.charAt(p) == s.charAt(k + p)) p++;
+            if (p > 0) {
+                l = k;
+                r = k + p - 1;
+                z[k] = p;
+            }
+        }
+    }
+}

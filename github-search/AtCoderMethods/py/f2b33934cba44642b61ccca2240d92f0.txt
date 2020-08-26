@@ -1,0 +1,13 @@
+def main():
+    N = int(input())
+
+    n = []
+    mask = 0
+    while mask < N:
+        if N & 1<<mask:
+            n.append(1<<mask)
+        mask += 1
+
+    print(len(n))
+    for i in n:
+        print(i)

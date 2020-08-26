@@ -1,0 +1,18 @@
+static void solve() {
+    int n = in.nextInt();
+    int m = in.nextInt();
+    int source = in.nextInt() - 1;
+    int[] s = new int[m];
+    int[] t = new int[m];
+    for (int i = 0; i < m; i++) {
+        s[i] = in.nextInt() - 1;
+        t[i] = in.nextInt() - 1;
+    }
+    g = undirectedGraph(n, s, t);
+    int[] d = dijkstra(g, source);
+    for (int i = 0; i < n; i++) {
+        if (i == d[i]) {
+            out.println((i + 1));
+        }
+    }
+}

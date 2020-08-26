@@ -1,0 +1,11 @@
+static void solve() {
+    int h = ni(), w = ni(), a = ni(), b = ni();
+    int mod = 1000000007;
+    int[][] fif = enumFIF(300000, mod);
+    long ret = 0;
+    for (int i = b; i < w; i++) {
+        ret += C((h - a - 1) + i, h - a - 1, mod, fif) * C(w - 1 - i + a - 1, a - 1, mod, fif);
+        ret %= mod;
+    }
+    out.println(ret);
+}

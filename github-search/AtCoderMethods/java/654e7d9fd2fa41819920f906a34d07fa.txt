@@ -1,0 +1,71 @@
+public void solve(int testNumber, FastScanner in, PrintWriter out) {
+    n = in.nextInt();
+    adj = new List[n];
+    for (int i = 0; i < n; i++) {
+        adj[i] = new ArrayList<>();
+    }
+    for (int i = 0; i < n; i++) {
+        int a = in.nextInt() - 1;
+        int b = i;
+        adj[a].add(b);
+    }
+    int[] cycle = new SingleCycleFinder().findCycle(adj);
+    if (cycle == null) {
+        out.println("POSSIBLE");
+        return;
+    }
+    boolean[] onCycle = new boolean[n];
+    for (int v : cycle) {
+        onCycle[v] = true;
+    }
+    used = new boolean[n];
+    mex = new int[n];
+    for (int v : cycle) {
+        for (int u : adj[v]) {
+            if (!onCycle[u]) {
+                findMex(u);
+            }
+        }
+    }
+    int[] candCol = new int[2];
+    Arrays.fill(candCol, -1);
+    int s = cycle[0];
+    {
+        for (int u : adj[s]) {
+            if (!onCycle[u]) {
+                used[mex[u]] = true;
+            }
+        }
+        for (int i = 0; i < n; i++) {
+            if (used[i]) {
+                continue;
+            }
+            if (candCol[0] < 0) {
+                candCol[0] = i;
+            } else if (candCol[1] < 0) {
+                candCol[1] = i;
+            } else {
+                break;
+            }
+        }
+        for (int u : adj[s]) {
+            if (!onCycle[u]) {
+                used[mex[u]] = false;
+            }
+        }
+    }
+    for (int step = 0; step < 2; step++) {
+        mex[s] = candCol[step];
+        if (mex[s] < 0) {
+            continue;
+        }
+        for (int i = cycle.length - 1; i > 0; i--) {
+            calcMex(cycle[i]);
+        }
+        if (check()) {
+            out.println("POSSIBLE");
+            return;
+        }
+    }
+    out.println("IMPOSSIBLE");
+}

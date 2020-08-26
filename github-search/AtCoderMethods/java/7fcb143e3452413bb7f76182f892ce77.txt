@@ -1,0 +1,15 @@
+public static int secondSplit(int h, int w, int as) {
+    int[] vs = new int[4];
+    vs[0] = (int) Math.floor((double) h / 2.0) * w;
+    vs[1] = (int) Math.ceil((double) h / 2.0) * w;
+    vs[2] = (int) Math.floor((double) w / 2.0) * h;
+    vs[3] = (int) Math.ceil((double) w / 2.0) * h;
+    int minv = Integer.MAX_VALUE;
+    for (int ps : vs) {
+        int v = getValue(ps, h * w - ps, as);
+        if (minv > v) {
+            minv = v;
+        }
+    }
+    return minv;
+}

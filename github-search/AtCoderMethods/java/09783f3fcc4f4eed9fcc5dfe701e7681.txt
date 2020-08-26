@@ -1,0 +1,18 @@
+public void solve() {
+    int n = Integer.parseInt(io.readLine());
+    char[] c = io.readLine().toCharArray();
+    int[] a = new int[n];
+    N = n;
+    for (int i = 0; i < 4; i++) {
+        a[0] = i & 1;
+        a[1] = (i >> 1) & 1;
+        for (int j = 2; j < n; j++) {
+            a[j] = c[j - 1] == 'o' ? a[j - 2] ^ a[j - 1] : a[j - 2] ^ (1 - a[j - 1]);
+        }
+        if ((c[N - 1] == 'o' ? a[N - 2] ^ a[N - 1] : a[N - 2] ^ (1 - a[N - 1])) == a[0] && (c[0] == 'o' ? a[N - 1] ^ a[0] : a[N - 1] ^ (1 - a[0])) == a[1]) {
+            io.writeLine(getAns(a));
+            return;
+        }
+    }
+    io.writeLine("-1");
+}

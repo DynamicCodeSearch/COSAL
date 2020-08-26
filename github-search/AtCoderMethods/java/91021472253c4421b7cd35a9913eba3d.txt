@@ -1,0 +1,19 @@
+@Override
+public void readInput() throws IOException {
+    N = scanner.nextInt();
+    int M = scanner.nextInt();
+    G = new int[N][N];
+    for (int i = 0; i < M; i++) {
+        int a = scanner.nextInt();
+        int b = scanner.nextInt();
+        G[a - 1][b - 1] = 1;
+        G[b - 1][a - 1] = 1;
+    }
+    path = new int[N];
+    used = new boolean[N];
+    used[0] = true;
+    cntUsed = 1;
+    path[0] = 0;
+    dfs(0);
+    res = "" + cntPaths;
+}

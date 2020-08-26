@@ -1,0 +1,14 @@
+private void solve(long k) {
+    long[] a = construct(k);
+    if (!check(a.clone(), k)) {
+        throw new AssertionError("" + k);
+    }
+    out.println(a.length);
+    for (int i = 0; i < a.length; i++) {
+        if (i > 0) {
+            out.print(" ");
+        }
+        out.print(a[i]);
+    }
+    out.println();
+}

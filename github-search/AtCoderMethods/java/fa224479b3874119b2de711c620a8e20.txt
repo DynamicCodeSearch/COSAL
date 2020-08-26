@@ -1,0 +1,10 @@
+boolean dfs(String s, boolean first) {
+    for (int i = 1; i < s.length() - 1; i++) {
+        if (s.charAt(i - 1) == s.charAt(i + 1))
+            continue;
+        boolean result = dfs(s.substring(0, i) + s.substring(i + 1), !first);
+        if (first == result)
+            return first;
+    }
+    return !first;
+}

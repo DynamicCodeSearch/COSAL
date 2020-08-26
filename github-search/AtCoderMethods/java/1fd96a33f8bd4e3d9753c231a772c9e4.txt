@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    try {
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st;
+        double length;
+        double maxlength = 0;
+        int ln = Integer.parseInt(in.readLine());
+        int[] x = new int[ln];
+        int[] y = new int[ln];
+        String str;
+        int i, j;
+        for (i = 0; i < ln; i++) {
+            str = in.readLine();
+            st = new StringTokenizer(str, " ");
+            x[i] = Integer.parseInt(st.nextToken());
+            y[i] = Integer.parseInt(st.nextToken());
+        }
+        for (i = 0; i < ln; i++) {
+            for (j = 0; j < i; j++) {
+                length = Math.pow((Math.pow((x[i] - x[j]), 2) + Math.pow((y[i] - y[j]), 2)), 1.0 / 2.0);
+                if (maxlength < length) {
+                    maxlength = length;
+                }
+            }
+        }
+        System.out.println(maxlength);
+    } catch (IOException e) {
+    }
+}

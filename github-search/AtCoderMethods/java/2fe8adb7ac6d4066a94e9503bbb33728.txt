@@ -1,0 +1,22 @@
+void solve() {
+    int N = in.nextInt();
+    int[] a = new int[N];
+    for (int i = 0; i < N; i++) {
+        a[i] = in.nextInt();
+    }
+    int s = 0;
+    int e = 0;
+    int pre = 0;
+    long ans = 0;
+    while (e < N) {
+        if (pre < a[e]) {
+            ans += e - s + 1;
+            pre = a[e];
+            e++;
+        } else {
+            s = e;
+            pre = 0;
+        }
+    }
+    out.println(ans);
+}

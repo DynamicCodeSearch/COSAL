@@ -1,0 +1,13 @@
+private static void solve() {
+    int n = ni();
+    int[] a = na(n);
+    int[] count = new int[100010];
+    for (int v : a) {
+        count[v]++;
+    }
+    int max = 0;
+    for (int i = 1; i < count.length - 1; i++) {
+        max = Math.max(max, count[i] + count[i - 1] + count[i + 1]);
+    }
+    out.println(max);
+}

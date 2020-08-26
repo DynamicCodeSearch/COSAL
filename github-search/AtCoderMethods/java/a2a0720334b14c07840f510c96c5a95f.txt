@@ -1,0 +1,26 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    int n = in.nextInt(), k = in.nextInt();
+    boolean[] dislike = new boolean[10];
+    int i;
+    for (i = 0; i < k; i++) {
+        dislike[in.nextInt()] = true;
+    }
+    int rem;
+    boolean flag;
+    for (i = n; ; i++) {
+        int p = i;
+        flag = true;
+        while (p > 0) {
+            rem = p % 10;
+            if (dislike[rem]) {
+                flag = false;
+                break;
+            }
+            p /= 10;
+        }
+        if (flag) {
+            out.printLine(i);
+            return;
+        }
+    }
+}

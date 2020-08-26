@@ -1,0 +1,34 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    p = "WBWBWWBWBWBW".toCharArray();
+    k = new String[12];
+    k[0] = "Do";
+    k[1] = "Do";
+    k[2] = "Re";
+    k[3] = "Re";
+    k[4] = "Mi";
+    k[5] = "Fa";
+    k[6] = "Fa";
+    k[7] = "So";
+    k[8] = "So";
+    k[9] = "La";
+    k[10] = "La";
+    k[11] = "Si";
+    s = sc.next().toCharArray();
+    String ans = "";
+    int n = s.length;
+    for (int i = 0; i < 12; i++) {
+        boolean flag = true;
+        for (int j = 0; j < n; j++) {
+            if (s[j] != p[(i + j) % 12]) {
+                flag = false;
+                break;
+            }
+        }
+        if (flag) {
+            ans = k[i];
+            break;
+        }
+    }
+    System.out.println(ans);
+}

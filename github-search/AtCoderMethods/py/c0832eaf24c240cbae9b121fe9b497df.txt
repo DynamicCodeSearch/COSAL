@@ -1,0 +1,13 @@
+def fact(N, M):
+    a = min(N, M)
+    b = max(N, M)
+
+    fa = 1
+    for i in range(2, a + 1):
+        fa = (fa * i) % MOD
+
+    fb = fa
+    for i in range(a + 1, b + 1):
+        fb = (fb * i) % MOD
+
+    return (fa * fb) % MOD

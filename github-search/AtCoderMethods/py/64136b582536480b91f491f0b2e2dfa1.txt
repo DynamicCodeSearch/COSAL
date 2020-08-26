@@ -1,0 +1,31 @@
+def main():
+
+    N, M, R = map(int, sys.stdin.readline().split())
+    r = [i - 1 for i in map(int, sys.stdin.readline().split())]
+
+    d = [[float('inf')] * N for _ in range(N)]
+
+    for i in range(N):
+        d[i][i] = 0
+
+    for i in range(M):
+        a, b, c = map(int,sys.stdin.readline().split())
+        d[a-1][b-1] = c
+        d[b-1][a-1] = c
+
+    for k in range(N):
+        for i in range(N):
+            for j in range(N):
+                if d[i][j] > d[i][k] + d[k][j]:
+                    d[i][j] = d[i][k] + d[k][j]
+
+    ans = 10**12
+
+    for each in permutations(r):
+        t_dis = 0
+        for i in range(R-1):
+            t_dis += d[each[i]][each[i+1]]  
+
+        ans = min(ans, t_dis)
+
+    print(ans)

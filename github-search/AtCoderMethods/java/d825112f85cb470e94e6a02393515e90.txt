@@ -1,0 +1,19 @@
+static boolean check(int y, int x) {
+    for (int j = -1; j <= 1; j++) {
+        for (int i = -1; i <= 1; i++) {
+            if (j == 0 && i == 0)
+                continue;
+            int y0 = y, x0 = x;
+            while (true) {
+                y0 += j;
+                x0 += i;
+                if (!isOk(y0, x0))
+                    break;
+                if (board[y0][x0] == 'Q') {
+                    return false;
+                }
+            }
+        }
+    }
+    return true;
+}

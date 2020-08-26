@@ -1,0 +1,19 @@
+def isConnected(edges):
+    _p(edges)
+    nodes_from = []
+    for n in range(N):
+        nodes_from.append(
+            [e[1] if e[0] == n else e[0] for e in edges if n in e]
+        )
+    _p(nodes_from)
+
+    visited_nodes = set()
+    next_nodes = set([0])
+    while len(next_nodes) != 0:
+        visited_nodes |= set(next_nodes)
+        new_next_nodes = set()
+        for n in next_nodes:
+            new_next_nodes |= set(nodes_from[n])
+        next_nodes = new_next_nodes - visited_nodes
+    _p(visited_nodes)
+    return len(visited_nodes) == N

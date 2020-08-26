@@ -1,0 +1,51 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+public static final long modFact(long n, long p, long[] e) {
+    if (first[0]) {
+        first[0] = false;
+        fact[0] = 1;
+        for (int i = 1; i < fact.length; i++) {
+            
+            fact[i] = (int) ((i * fact[i - 1]) % p);
+        }
+    }
+    e[0] = 0;
+    if (n == 0) {
+        Utils.debug("modFact(long " + n + ", long " + p + ", long[] " + e[0] + ") = " + 1);
+        return 1;
+    }
+    long res = modFact(n / p, p, e);
+    e[0] += n / p;
+    if ((n / p) % 2 != 0) {
+        Utils.debug("modFact(long " + n + ", long " + p + ", long[] " + e[0] + ") = " + (res * (p - fact[(int) (n % p)]) % p));
+        return res * (p - fact[(int) (n % p)]) % p;
+    
+    }
+    Utils.debug("modFact(long " + n + ", long " + p + ", long[] " + e[0] + ") = " + (res * fact[(int) (n % p)] % p));
+    return res * fact[(int) (n % p)] % p;
+
+}

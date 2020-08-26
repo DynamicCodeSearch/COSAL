@@ -1,0 +1,20 @@
+public void solve() {
+    N = nextInt();
+    P[] ps = new P[N];
+    for (int i = 0; i < N; i++) {
+        int W = nextInt();
+        int H = nextInt();
+        
+        ps[i] = new P(W, -H);
+    }
+    Arrays.sort(ps);
+    SegmentTree segTree = new SegmentTree(MAX_H);
+    int ans = 0;
+    for (int i = 0; i < N; i++) {
+        int H = -ps[i].h;
+        int v = segTree.query(0, H, 0, 0, segTree.n) + 1;
+        ans = Math.max(ans, v);
+        segTree.update(H, v);
+    }
+    out.println(ans);
+}

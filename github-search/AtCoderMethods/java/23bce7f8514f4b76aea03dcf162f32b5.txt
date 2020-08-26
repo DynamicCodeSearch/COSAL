@@ -1,0 +1,22 @@
+public void solve() {
+    S = next();
+    int N = S.length();
+    String s = "WBWBWWBWBWBW";
+    ArrayList<String> sample = new ArrayList<String>();
+    for (int i = 0; i < N; i++) {
+        if (s.charAt(i % s.length()) == 'B')
+            continue;
+        StringBuilder sb = new StringBuilder();
+        for (int j = 0; j < N; j++) {
+            sb.append(s.charAt((i + j) % s.length()));
+        }
+        sample.add(sb.toString());
+    }
+    for (int i = 0; i < sample.size(); i++) {
+        if (S.equals(sample.get(i))) {
+            out.println(melo[i % melo.length]);
+            break;
+        }
+    
+    }
+}

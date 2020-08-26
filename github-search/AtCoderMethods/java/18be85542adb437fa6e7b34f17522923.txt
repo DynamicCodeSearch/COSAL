@@ -1,0 +1,18 @@
+static void solve() {
+    String[] s = new String[3];
+    for (int i = 0; i < 3; i++) {
+        s[i] = in.next();
+    }
+    int t = 0;
+    int[] i = new int[3];
+    String ans = "ABC";
+    while (true) {
+        if (i[t] == s[t].length()) {
+            out.println(ans.charAt(t));
+            break;
+        }
+        int nt = s[t].charAt(i[t]) - 'a';
+        i[t]++;
+        t = nt;
+    }
+}

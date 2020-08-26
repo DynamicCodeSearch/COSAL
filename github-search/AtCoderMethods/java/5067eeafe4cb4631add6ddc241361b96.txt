@@ -1,0 +1,25 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    String a = sc.next();
+    String[] pa = a.split("");
+    String b = sc.next();
+    String[] pb = b.split("");
+    if (pa.length == pb.length) {
+        for (int i = 0; i < pa.length; i++) {
+            if (Integer.parseInt(pa[i]) > Integer.parseInt(pb[i])) {
+                System.out.println("GREATER");
+                return;
+            } else if (Integer.parseInt(pa[i]) < Integer.parseInt(pb[i])) {
+                System.out.println("LESS");
+                return;
+            }
+        }
+        System.out.println("EQUAL");
+    } else if (pa.length > pb.length) {
+        System.out.println("GREATER");
+        return;
+    } else if (pa.length < pb.length) {
+        System.out.println("LESS");
+        return;
+    }
+}

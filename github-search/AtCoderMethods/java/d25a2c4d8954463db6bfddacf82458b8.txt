@@ -1,0 +1,31 @@
+private void solve() throws IOException {
+    TreeMap<Integer, Character> map = new TreeMap<>();
+    char[] s = in.next().toCharArray();
+    Queue<Integer> q = new ArrayDeque<>();
+    for (int i = 0; i < s.length; i++) {
+        map.put(i, s[i]);
+        if (i != 0 && i != s.length - 1) {
+            q.add(i);
+        }
+    }
+    boolean first = false;
+    while (!q.isEmpty()) {
+        int pos = q.poll();
+        Character cur = map.get(pos);
+        if (cur != null) {
+            Map.Entry<Integer, Character> lower = map.lowerEntry(pos);
+            Map.Entry<Integer, Character> upper = map.higherEntry(pos);
+            if (lower.getValue() != upper.getValue()) {
+                first = !first;
+                map.remove(pos);
+                if (lower.getKey() != 0) {
+                    q.add(lower.getKey());
+                }
+                if (upper.getKey() != s.length - 1) {
+                    q.add(upper.getKey());
+                }
+            }
+        }
+    }
+    out.println(first ? "First" : "Second");
+}

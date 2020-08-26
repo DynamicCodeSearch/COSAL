@@ -1,0 +1,10 @@
+static long sum(long a, long r, long n, long m) {
+    
+    if (n == 1)
+        return a % m;
+    long x = sum(a, r, n / 2, m);
+    long ret = (x + PowerMod(r, n / 2, m) * x) % m;
+    if ((n % 2) == 1)
+        ret = (a + r * ret) % m;
+    return ret;
+}

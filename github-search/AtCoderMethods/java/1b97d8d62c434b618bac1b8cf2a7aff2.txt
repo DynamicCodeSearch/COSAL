@@ -1,0 +1,13 @@
+public long inc(int[] ary, int n) {
+    long count = 0, res = 0;
+    for (int i = 0; i < n; i++) {
+        if (i == 0 || ary[i - 1] < ary[i]) {
+            count += 1;
+        } else {
+            res += count * (count + 1) * 0.5;
+            count = 1;
+        }
+    }
+    res += count * (count + 1) * 0.5;
+    return res;
+}

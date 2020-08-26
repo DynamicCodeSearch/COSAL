@@ -1,0 +1,12 @@
+public static boolean isConditionMet(HashMap<Integer, Integer> avoid, int n) {
+    while (n > 0) {
+        if (avoid.containsKey(n % 10)) {
+            return false;
+        }
+        if (n == 0) {
+            break;
+        }
+        n /= 10;
+    }
+    return true;
+}

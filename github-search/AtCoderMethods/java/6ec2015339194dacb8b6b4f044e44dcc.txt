@@ -1,0 +1,20 @@
+
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String str0 = sc.nextLine();
+    String[] array0 = str0.split(" ");
+    
+    int K = Integer.parseInt(array0[0]);
+    
+    int S = Integer.parseInt(array0[1]);
+    int result = 0;
+    for (int x = 0; x <= K; x++) {
+        for (int y = 0; y <= K; y++) {
+            if (0 <= S - x - y && S - x - y <= K) {
+                
+                result++;
+            }
+        }
+    }
+    System.out.println(result);
+}

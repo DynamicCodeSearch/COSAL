@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int n = scanner.nextInt();
+    int[] point = new int[n];
+    List<Integer> num = new ArrayList<>();
+    int sum = 0;
+    for (int i = 0; i < n; i++) {
+        point[i] = scanner.nextInt();
+        sum += point[i];
+        if (point[i] % 10 != 0) {
+            num.add(point[i]);
+        }
+    }
+    if (sum % 10 != 0) {
+        System.out.println(sum);
+    } else {
+        if (num.size() == 0) {
+            System.out.println(0);
+        } else {
+            int min = 101;
+            for (Integer i : num) {
+                if (i < min) {
+                    min = i;
+                }
+            }
+            System.out.println(sum - min);
+        }
+    }
+    scanner.close();
+}

@@ -1,0 +1,31 @@
+def tansaku(left,lst):
+
+    if left == 0:
+        return lst
+    else:
+
+        for idy in range(0,8,1):
+            if yoko[idy]==False:
+                tgt_y=idy
+                break
+
+        for idx in range(0,8,1):
+            if any([tate[idx],slash[idx+tgt_y],bkslash[idx-tgt_y+7]]):
+                pass
+            else:
+
+                yoko[tgt_y]=True
+                tate[idx]=True
+                slash[idx+tgt_y]=True
+                bkslash[idx-tgt_y+7]=True
+                kaeshi=tansaku(left-1,lst+[(idx,tgt_y)])
+                if kaeshi != None:
+                    return kaeshi
+                else:
+
+                    yoko[tgt_y]=False
+                    tate[idx]=False
+                    slash[idx+tgt_y]=False
+                    bkslash[idx-tgt_y+7]=False
+
+        return None

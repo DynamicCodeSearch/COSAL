@@ -1,0 +1,18 @@
+def main():
+    N = int(input())
+    a_list = list(map(int, input().split()))
+    total = sum(a_list)
+    if total % N != 0:
+        print(-1)
+        return
+    ave = total // N
+    ans, rest = 0, 0
+    for i, a in enumerate(a_list[:-1]):
+        if a < ave:
+            rest -= (ave - a)
+        elif a > ave:
+            rest += (a - ave)
+        if rest != 0:
+            ans += 1
+
+    print(ans)

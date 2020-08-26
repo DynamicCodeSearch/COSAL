@@ -1,0 +1,31 @@
+void main() {
+    Arrays.sort(values);
+    long sum = 0;
+    for (int i = N - 1; i >= N - A; i--) {
+        sum += values[i];
+    }
+    double average = sum / (double) A;
+    long lastNum = values[N - A];
+    int allRepetitionCount = 0;
+    int repetitionCountToA = 0;
+    for (int i = N - 1; i >= 0; i--) {
+        if (values[i] == lastNum) {
+            allRepetitionCount++;
+            if (i >= N - A) {
+                repetitionCountToA++;
+            }
+        }
+    }
+    PascalTriangle pascal = new PascalTriangle(N);
+    long count = 0;
+    int maxHand = Math.min(B, allRepetitionCount);
+    if (lastNum == values[N - 1]) {
+        for (int i = A; i <= maxHand; i++) {
+            count += pascal.combination(allRepetitionCount, i);
+        }
+    } else {
+        count = pascal.combination(allRepetitionCount, repetitionCountToA);
+    }
+    System.out.println(average);
+    System.out.println(count);
+}

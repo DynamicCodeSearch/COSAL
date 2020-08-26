@@ -1,0 +1,15 @@
+public void unite(int x, int y) {
+    x = find(x);
+    y = find(y);
+    if (x == y)
+        return;
+    if (x < y) {
+        uf[x] = y;
+        rank[x] += rank[y];
+        rank[y] = rank[x];
+    } else {
+        uf[y] = x;
+        rank[y] += rank[x];
+        rank[x] = rank[y];
+    }
+}

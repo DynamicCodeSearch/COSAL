@@ -1,0 +1,11 @@
+public int next(int pos) {
+    for (int i = 0; i < set.length && pos >>> 6 < set[i].length; i++, pos >>>= 6, pos++) {
+        int nex = next(set[i][pos >>> 6], pos & 63);
+        if (nex != -1) {
+            pos = pos >>> 6 << 6 | nex;
+            while (i > 0) pos = pos << 6 | Long.numberOfTrailingZeros(set[--i][pos]);
+            return pos;
+        }
+    }
+    return -1;
+}

@@ -1,0 +1,11 @@
+def uncompress(l):
+    ans = [["#"] * len(l[0]) for _ in range(len(l))]
+    for y in range(len(l)):
+        for x in range(len(l[0])):
+            if l[y][x] == ".":
+                for ny, nx in [(y + dy[i], x + dx[i]) for i in range(8)]:
+                    ans[y][x] = "."
+                    if 0 <= ny < len(l) and 0 <= nx < len(l[0]):
+                        ans[ny][nx] = "."
+
+    return ans

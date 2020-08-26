@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int txa = sc.nextInt(), tya = sc.nextInt();
+    int txb = sc.nextInt(), tyb = sc.nextInt();
+    int t = sc.nextInt(), v = sc.nextInt();
+    int n = sc.nextInt();
+    int[][] pos = new int[1][2];
+    double dis = 0, cm = t * v;
+    boolean f = false;
+    for (int i = 0; i < n; i++) {
+        pos[0][0] = sc.nextInt();
+        pos[0][1] = sc.nextInt();
+        dis += Math.sqrt(Math.pow(pos[0][0] - txa, 2) + Math.pow(pos[0][1] - tya, 2));
+        dis += Math.sqrt(Math.pow(pos[0][0] - txb, 2) + Math.pow(pos[0][1] - tyb, 2));
+        if (dis <= cm) {
+            f = true;
+            break;
+        }
+        dis = 0;
+    }
+    if (f)
+        System.out.println("YES");
+    else
+        System.out.println("NO");
+    sc.close();
+}

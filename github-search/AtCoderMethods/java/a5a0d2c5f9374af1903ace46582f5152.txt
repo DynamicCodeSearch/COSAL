@@ -1,0 +1,12 @@
+void solve() {
+    
+    long n = nl();
+    long ans = (long) 2e11;
+    for (long i = 1; i * i <= n; i++) {
+        if (n % i == 0) {
+            long a = i, b = n / i;
+            ans = Math.min(ans, Math.max(findLen(a), findLen(b)));
+        }
+    }
+    out.println(ans);
+}

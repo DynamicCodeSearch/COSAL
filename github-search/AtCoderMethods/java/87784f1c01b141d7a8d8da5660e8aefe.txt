@@ -1,0 +1,50 @@
+private static void solve() {
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = sc.nextInt();
+    }
+    int[] cumsum = new int[m + 1];
+    long[] xx = new long[m + 1];
+    for (int i = 0; i < n; i++) {
+        if (i > 0) {
+            if (a[i - 1] < a[i]) {
+                cumsum[a[i]]--;
+            }
+            xx[a[i]] += (a[i] - a[i - 1] + m) % m - 1;
+        }
+        if (i < n - 1) {
+            if (a[i + 1] > a[i]) {
+                cumsum[a[i] + 1]++;
+            } else {
+                cumsum[1]++;
+                cumsum[a[i + 1]]--;
+                if (a[i] < m) {
+                    cumsum[a[i] + 1]++;
+                }
+            }
+        }
+    }
+    for (int i = 1; i <= m; i++) {
+        cumsum[i] += cumsum[i - 1];
+    }
+    long tmp = 0;
+    for (int i = 1; i < n; i++) {
+        tmp += Math.min((a[i] - a[i - 1] + m) % m, (a[i] - 1 + m) % m + 1);
+    }
+    long min = tmp;
+    for (int x = 2; x <= m; x++) {
+        tmp -= cumsum[x - 1];
+        tmp += xx[x - 1];
+        min = Math.min(min, tmp);
+    }
+    pr.println(min);
+
+
+
+
+
+
+
+}

@@ -1,0 +1,9 @@
+
+public int getSum(int pos) {
+    int sum = 0;
+    while (pos >= 0) {
+        sum += arr[pos];
+        pos -= (pos + 1) & (-pos - 1);
+    }
+    return sum;
+}

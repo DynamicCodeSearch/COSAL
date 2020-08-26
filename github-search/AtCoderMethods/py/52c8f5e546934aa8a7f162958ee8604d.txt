@@ -1,0 +1,8 @@
+def check(n, a):
+    count = Counter(a)
+    if n % 2 == 1 and (0 not in count or count[0] != 1):
+        return False
+    for i in range(1 + (n % 2), n+1, 2):
+        if i not in count or count[i] !=2:
+            return False
+    return True

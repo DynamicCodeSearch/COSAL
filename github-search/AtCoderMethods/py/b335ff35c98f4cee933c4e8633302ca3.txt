@@ -1,0 +1,13 @@
+def main():
+    _ = input()
+    xs = Stdin.read_line(converter=int)
+    xs.sort(reverse=True)
+    ys = defaultdict(int)
+    while xs:
+        key = xs[-1]
+        cnt = count_and_del(xs)
+        ys[key] += cnt
+        ys[key-1] += cnt
+        ys[key+1] += cnt
+
+    print(max(ys.values()))

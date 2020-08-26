@@ -1,0 +1,30 @@
+private static long[] solve(int n, int[][] abcs, int q, int k, int[][] xys) {
+    List<List<int[]>> edges = new ArrayList<>();
+    for (int i = 0; i < n + 1; i++) edges.add(new ArrayList<>());
+    for (int[] abc : abcs) {
+        edges.get(abc[0]).add(new int[] { abc[1], abc[2] });
+        edges.get(abc[1]).add(new int[] { abc[0], abc[2] });
+    }
+    
+    
+    long[] dist = new long[n + 1];
+    Arrays.fill(dist, -1L);
+    PriorityQueue<long[]> pq = new PriorityQueue<>(Comparator.comparingLong(vals -> vals[1]));
+    pq.add(new long[] { k, 0 });
+    while (!pq.isEmpty()) {
+        long[] arg = pq.poll();
+        int v = (int) arg[0];
+        long c = arg[1];
+        if (dist[v] != -1)
+            continue;
+        dist[v] = c;
+        for (int[] e : edges.get(v)) {
+            int to = e[0];
+            if (dist[to] != -1)
+                continue;
+            pq.add(new long[] { to, c + e[1] });
+        }
+    }
+    long[] ans = Arrays.stream(xys).mapToLong(xy -> dist[xy[0]] + dist[xy[1]]).toArray();
+    return ans;
+}

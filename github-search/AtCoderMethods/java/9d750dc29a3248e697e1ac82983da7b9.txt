@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int N = scan.nextInt();
+    int h = N / 3600;
+    int remainder = N % 3600;
+    int m = remainder / 60;
+    int s = remainder % 60;
+    String hh = String.valueOf(h);
+    String mm = String.valueOf(m);
+    String ss = String.valueOf(s);
+    if (h < 10) {
+        hh = "0" + String.valueOf(h);
+    }
+    if (m < 10) {
+        mm = "0" + String.valueOf(m);
+    }
+    if (s < 10) {
+        ss = "0" + String.valueOf(s);
+    }
+    System.out.println(hh + ":" + mm + ":" + ss);
+}

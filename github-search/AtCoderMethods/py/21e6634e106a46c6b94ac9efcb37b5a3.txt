@@ -1,0 +1,25 @@
+def main():
+    n,m = LI()
+    x = LI()
+    y = LI()
+
+    a = 0
+    t = 0
+    for i in range(1,n):
+        sa = x[i] - x[i-1]
+        t += sa * i
+        t %= mod
+        a += t
+        a %= mod
+
+    b = 0
+    t = 0
+    for i in range(1,m):
+        sa = y[i] - y[i-1]
+        t += sa * i
+        t %= mod
+        b += t
+        b %= mod
+
+
+    return a * b % mod

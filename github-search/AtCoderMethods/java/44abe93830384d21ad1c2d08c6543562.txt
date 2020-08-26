@@ -1,0 +1,11 @@
+static void dfsSolve(int vertex) {
+    visited[vertex] = true;
+    for (int nextVertex = 1; nextVertex < adjMatrix[vertex].length; ++nextVertex) {
+        if (adjMatrix[vertex][nextVertex] && !visited[nextVertex]) {
+            dfsSolve(nextVertex);
+        }
+    }
+    if (visited_all())
+        res += 1;
+    visited[vertex] = false;
+}

@@ -1,0 +1,21 @@
+private void dijkstra(int u) {
+    int[] dist = new int[n + 1];
+    Arrays.fill(dist, 100000000);
+    dist[u] = 0;
+    PriorityQueue<Edge> pq = new PriorityQueue<>(new EdgeCompartor());
+    for (Edge e : edges[u]) {
+        pq.add(e);
+    }
+    while (!pq.isEmpty()) {
+        Edge e = pq.poll();
+        u = e.from;
+        int v = e.to;
+        if (dist[v] >= dist[u] + e.w) {
+            dist[v] = dist[u] + e.w;
+            mrk[e.idx] = true;
+            for (Edge f : edges[v]) {
+                pq.add(f);
+            }
+        }
+    }
+}

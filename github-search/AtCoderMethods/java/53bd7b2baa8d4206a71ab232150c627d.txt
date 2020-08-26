@@ -1,0 +1,15 @@
+
+public static long pow(long n, long k) {
+    long ans = 1;
+    long tmp = n;
+    while (true) {
+        if (k == 0) {
+            return ans;
+        }
+        if (k % 2 == 1) {
+            ans = (ans * tmp) % MOD;
+        }
+        tmp = (tmp * tmp) % MOD;
+        k /= 2;
+    }
+}

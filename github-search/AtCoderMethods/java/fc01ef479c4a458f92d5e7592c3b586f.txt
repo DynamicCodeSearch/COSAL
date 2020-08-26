@@ -1,0 +1,28 @@
+private static void solve() {
+    Scanner sc = new Scanner(System.in);
+    PrintWriter pr = new PrintWriter(System.out);
+    int N = sc.nextInt();
+    int[] a = new int[N];
+    for (int i = 0; i < N; i++) {
+        a[i] = sc.nextInt();
+    }
+    boolean[] b = new boolean[N];
+    long sum = N;
+    for (int l = 0; l < N - 1; l++) {
+        if (a[l] < a[l + 1]) {
+            b[l] = true;
+        }
+    }
+    long tmp = 0;
+    for (int k = 0; k < N; k++) {
+        if (b[k]) {
+            tmp++;
+        } else if (tmp != 0) {
+            sum += (tmp + 1) * tmp / 2;
+            tmp = 0;
+        }
+    }
+    pr.println(sum);
+    pr.flush();
+    sc.close();
+}

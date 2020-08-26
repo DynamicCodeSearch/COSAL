@@ -1,0 +1,27 @@
+public void solve(int testNumber, FastScanner in, PrintWriter out) {
+    int height = in.nextInt();
+    int width = in.nextInt();
+    char[][] s = new char[height][];
+    for (int r = 0; r < height; r++) {
+        s[r] = in.next().toCharArray();
+    }
+    boolean[][] a = new boolean[height - 1][width - 1];
+    for (int r = 1; r < height; r++) {
+        for (int c = 1; c < width; c++) {
+            int k = 0;
+            for (int dr = -1; dr <= 0; dr++) {
+                for (int dc = -1; dc <= 0; dc++) {
+                    if (s[r + dr][c + dc] == '.') {
+                        ++k;
+                    }
+                }
+            }
+            if (k % 2 == 0) {
+                a[r - 1][c - 1] = true;
+            }
+        }
+    }
+    int ans = Math.max(height, width);
+    ans = Math.max(ans, maxRectangleOfOnes(a));
+    out.println(ans);
+}

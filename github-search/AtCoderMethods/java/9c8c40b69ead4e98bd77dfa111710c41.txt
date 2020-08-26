@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt(), m = sc.nextInt();
+    ArrayList<HashSet<Integer>> adj = new ArrayList<HashSet<Integer>>();
+    for (int i = 0; i < n; i++) adj.add(new HashSet<Integer>());
+    for (int i = 0; i < m; i++) {
+        int x = sc.nextInt() - 1, y = sc.nextInt() - 1;
+        adj.get(x).add(y);
+    }
+    for (int x : adj.get(0)) {
+        if (adj.get(x).contains(n - 1)) {
+            System.out.println("POSSIBLE");
+            return;
+        }
+    }
+    System.out.println("IMPOSSIBLE");
+}

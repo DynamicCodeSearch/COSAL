@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    PrintWriter pw = new PrintWriter(System.out);
+    int N = sc.nextInt();
+    int K = sc.nextInt();
+    int L = sc.nextInt();
+    UnionFind ufRoad = new UnionFind(N);
+    for (int i = 0; i < K; i++) {
+        ufRoad.unite(sc.nextInt() - 1, sc.nextInt() - 1);
+    }
+    UnionFind ufRail = new UnionFind(N);
+    for (int i = 0; i < L; i++) {
+        ufRail.unite(sc.nextInt() - 1, sc.nextInt() - 1);
+    }
+    HashMap<Long, Integer> count = new HashMap<>();
+    for (int i = 0; i < N; i++) {
+        long key = ((long) ufRoad.getRoot(i)) << 20 | (long) ufRail.getRoot(i);
+        Integer value = count.get(key);
+        count.put(key, value == null ? 1 : value + 1);
+    }
+    for (int i = 0; i < N; i++) {
+        long key = ((long) ufRoad.getRoot(i)) << 20 | (long) ufRail.getRoot(i);
+        pw.print(count.get(key) + (i == N - 1 ? "\n" : " "));
+    }
+    sc.close();
+    pw.close();
+}

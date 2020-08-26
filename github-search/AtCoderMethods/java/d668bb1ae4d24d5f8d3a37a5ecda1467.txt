@@ -1,0 +1,32 @@
+private static void solve() {
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    int[] l = new int[n];
+    int[] r = new int[n];
+    List<Pair> lr = new ArrayList<>(n);
+    for (int i = 0; i < n; i++) {
+        l[i] = sc.nextInt();
+        r[i] = sc.nextInt();
+        lr.add(new Pair(r[i] - l[i] + 1, i));
+    }
+    Collections.sort(lr);
+    
+    pr.println(n);
+    int index = 0;
+    BIT bt = new BIT(m + 1);
+    for (int d = 2; d <= m; d++) {
+        while (index < n && lr.get(index).a < d) {
+            int ll = l[lr.get(index).b];
+            int rr = r[lr.get(index).b];
+            bt.update(ll, 1);
+            bt.update(rr + 1, -1);
+            index++;
+        }
+        int ret = 0;
+        for (int i = 1; d * i <= m; i++) {
+            ret += bt.sum(d * i);
+        }
+        ret += n - index;
+        pr.println(ret);
+    }
+}

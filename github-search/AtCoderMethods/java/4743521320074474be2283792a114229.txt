@@ -1,0 +1,21 @@
+static void solve() {
+    int n = ni(), K = ni();
+    int[] a = na(n);
+    int min = Integer.MAX_VALUE;
+    long gmax = 0;
+    for (int i = 0; i < n; i++) {
+        min = Math.min(min, a[i]);
+        gmax = Math.max(gmax, (long) a[i] - min);
+    }
+    min = Integer.MAX_VALUE;
+    int np = 0;
+    for (int i = 0; i < n; i++) {
+        if (a[i] < min) {
+            min = a[i];
+        }
+        if ((long) a[i] - min == gmax) {
+            np++;
+        }
+    }
+    out.println(np);
+}

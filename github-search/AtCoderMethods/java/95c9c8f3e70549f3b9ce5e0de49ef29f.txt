@@ -1,0 +1,34 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[] a = new int[n];
+    int temp = 0;
+    long count = 0;
+    long temp_count = 0;
+    for (int i = 0; i < n; i++) {
+        a[i] = sc.nextInt();
+    }
+    for (int i = 0; i < n; i++) {
+        temp = a[i];
+        temp_count = 0;
+        for (int j = i + 1; j < n; j++) {
+            if (a[j] > temp) {
+                temp_count++;
+                temp = a[j];
+            } else {
+                temp_count++;
+                count += temp_count * (temp_count + 1) / 2;
+                i = j - 1;
+                break;
+            }
+            if (j == n - 1) {
+                temp_count++;
+                count += temp_count * (temp_count + 1) / 2 - 1;
+                i = n;
+            }
+        }
+    }
+    count++;
+    System.out.printf("%d\n", count);
+    sc.close();
+}

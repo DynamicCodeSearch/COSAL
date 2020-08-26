@@ -1,0 +1,7 @@
+def main():
+    N = int(input())
+    c = Counter(map(int, input().split()))
+    ans = 0
+    for x in c:
+        ans = max(ans, c[x - 1] + c[x] + c[x + 1])
+    print(ans)

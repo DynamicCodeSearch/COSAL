@@ -1,0 +1,23 @@
+def main():
+    N, A, B = map(int, input().split())
+    v = sorted(map(int, input().split()))[::-1]
+    L = []
+    for i in range(A, B+1):
+        L += [[sum(v[:i]) / i, v[:i]]]
+    LMAX = []
+    x = L[0][0]
+    for i in L:
+        if i[0] == x : LMAX += [i]
+    ans = 0
+    for i in LMAX:
+        a = 1
+        for j in set(i[1]):
+            if i[1].count(j) == 1:
+                a *= v.count(j)
+            else:
+                x = v.count(j)
+                y = i[1].count(j)
+                a *= (math.factorial(x) // math.factorial(x-y)) // math.factorial(y)
+        ans += a
+    print(LMAX[0][0])
+    print(ans)

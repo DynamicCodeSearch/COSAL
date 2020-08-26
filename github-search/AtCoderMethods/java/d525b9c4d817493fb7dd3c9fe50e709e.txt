@@ -1,0 +1,32 @@
+public boolean dfs(int n) {
+    if (n == s.length()) {
+        return true;
+    }
+    if (n > s.length()) {
+        return false;
+    }
+    if (dp[n] != -1) {
+        return dp[n] == 0 ? false : true;
+    }
+    boolean ret = false;
+    if (n + 5 <= s.length()) {
+        String subStr = s.substring(n, n + 5);
+        if (subStr.equals("dream") || subStr.equals("erase")) {
+            ret |= dfs(n + 5);
+        }
+    }
+    if (n + 6 <= s.length()) {
+        String subStr = s.substring(n, n + 6);
+        if (subStr.equals("eraser")) {
+            ret |= dfs(n + 6);
+        }
+    }
+    if (n + 7 <= s.length()) {
+        String subStr = s.substring(n, n + 7);
+        if (subStr.equals("dreamer")) {
+            ret |= dfs(n + 7);
+        }
+    }
+    dp[n] = ret ? 1 : 0;
+    return ret;
+}

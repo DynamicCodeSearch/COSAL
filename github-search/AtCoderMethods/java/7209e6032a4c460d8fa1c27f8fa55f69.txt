@@ -1,0 +1,29 @@
+static void qsort(int[] a, int[] b, int left, int right) {
+    if (left >= right) {
+        return;
+    }
+    int p = a[(left + right) / 2];
+    int l = left;
+    int r = right;
+    int tmp;
+    while (l <= r) {
+        while (a[l] < p) {
+            l++;
+        }
+        while (a[r] > p) {
+            r--;
+        }
+        if (l <= r) {
+            tmp = a[l];
+            a[l] = a[r];
+            a[r] = tmp;
+            tmp = b[l];
+            b[l] = b[r];
+            b[r] = tmp;
+            l++;
+            r--;
+        }
+    }
+    qsort(a, b, left, r);
+    qsort(a, b, l, right);
+}

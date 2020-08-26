@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String[] alphabet = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
+    String w = sc.next();
+    String[] str = new String[w.length()];
+    int[] cnt = new int[26];
+    int no = 0;
+    for (int i = 0; i < w.length(); i++) {
+        str[i] = String.valueOf(w.charAt(i));
+    }
+    for (int i = 0; i < w.length(); i++) {
+        for (int k = 0; k < 26; k++) {
+            if (str[i].equals(alphabet[k])) {
+                cnt[k] = cnt[k] + 1;
+            }
+        }
+    }
+    for (int i = 0; i < 26; i++) {
+        if (cnt[i] % 2 != 0) {
+            no++;
+        }
+    }
+    if (no != 0)
+        System.out.print("No");
+    else
+        System.out.print("Yes");
+}

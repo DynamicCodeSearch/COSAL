@@ -1,0 +1,37 @@
+static void solve() {
+    int n = ni();
+    int[] p = na(n);
+    
+    
+    Node root0 = null;
+    Node root1 = null;
+    for (int i = 0; i < n / 2; i++) {
+        root0 = insert(root0, count(root0), new Node(p[2 * i]));
+        root1 = insert(root1, count(root1), new Node(p[2 * i + 1]));
+    }
+    PriorityQueue<NP> pq = new PriorityQueue<>((x, y) -> x.front - y.front);
+    pq.add(new NP(root0, root1, root0.arg.v));
+    for (int rep = 0; rep < n / 2; rep++) {
+        NP cur = pq.poll();
+        out.print(cur.front + " ");
+        Node argmin = cur.r0.arg;
+        int index = index(argmin);
+        
+        Node[] r0 = split(cur.r0, index);
+        Node[] r1 = split(cur.r1, index);
+        r0[1] = erase(r0[1], 0);
+        Node argmin2 = r1[1].arg;
+        out.print(argmin2.v + " ");
+        int index2 = index(argmin2);
+        Node[] rr1 = split(r1[1], index2);
+        rr1[1] = erase(rr1[1], 0);
+        Node[] rr0 = split(r0[1], index2);
+        if (r0[0] != null)
+            pq.add(new NP(r0[0], r1[0], r0[0].arg.v));
+        if (rr0[1] != null)
+            pq.add(new NP(rr0[1], rr1[1], rr0[1].arg.v));
+        if (rr1[0] != null)
+            pq.add(new NP(rr1[0], rr0[0], rr1[0].arg.v));
+    }
+    out.println();
+}

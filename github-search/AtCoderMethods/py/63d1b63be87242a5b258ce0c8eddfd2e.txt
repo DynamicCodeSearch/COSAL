@@ -1,0 +1,38 @@
+def main():
+    a, b, c, d, e, f = [int(i) for i in input().split()]
+
+
+    L_UNIT = 100
+    result_sw, result_s = 0, 0
+    ans = -10000.
+
+    water_list = []
+    sugar_list = []
+
+    for t_a in range( int( f / (a * L_UNIT) ) + 1 ):
+
+        for t_b in range( int( f / (b * L_UNIT) ) + 1 ):
+
+
+            if( (a * t_a * L_UNIT + b * t_b * L_UNIT) <= f ):
+                water_list.append(a * t_a * L_UNIT + b * t_b * L_UNIT)
+
+    for t_c in range( int( f / c ) + 1 ):
+
+        for t_d in range( int( f / d ) + 1 ):
+
+            if( (c * t_c + d * t_d) <= f):
+                sugar_list.append( c * t_c + d * t_d )
+
+    for water in water_list:
+        for sugar in sugar_list:
+            sugar_lim = e * (water / L_UNIT)
+            if( sugar <= sugar_lim  and 0 < (water + sugar) and (water + sugar) <= f):
+                noudo = 100 * sugar / (water + sugar)
+
+                if(ans < noudo):
+                    ans = noudo
+                    result_sw = sugar + water
+                    result_s = sugar
+
+    print( "{} {}".format(result_sw, result_s) )

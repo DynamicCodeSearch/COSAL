@@ -1,0 +1,13 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    String s = in.nextString();
+    int n = s.length();
+    for (int i = 1; i < n; i++) {
+        int len = n - i;
+        if (len % 2 == 1)
+            continue;
+        if (s.substring(0, len / 2).equals(s.substring(len / 2, len))) {
+            out.println(len);
+            return;
+        }
+    }
+}

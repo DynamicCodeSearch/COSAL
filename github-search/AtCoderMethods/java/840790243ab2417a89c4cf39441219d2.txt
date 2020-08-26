@@ -1,0 +1,13 @@
+int index(int len, int ci) {
+    int[] idx = chars[ci];
+    int low = -1, high = idx.length;
+    while (high - low > 1) {
+        int mid = (low + high) / 2;
+        if (idx[mid] < len)
+            low = mid;
+        else
+            high = mid;
+    }
+    return high == idx.length ? -1 : idx[high];
+
+}

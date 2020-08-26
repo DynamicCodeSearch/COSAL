@@ -1,0 +1,11 @@
+def saiki(node, count, judge):
+    node.visited = True
+    judge[node.id] = True
+    if(all(judge)):
+        count[0]+=1
+
+    for next in node.nexts:
+        if(not next.visited):
+            saiki(next, count, judge)
+    node.visited = False
+    judge[node.id] = False

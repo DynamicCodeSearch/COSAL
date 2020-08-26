@@ -1,0 +1,11 @@
+def dfs(i, g):
+    if i in memo:
+        return memo[i]
+
+    l = [dfs(b, g) for b in g[i]]
+    if len(l) == 0:
+        memo[i] = 1
+    else:
+        memo[i] = max(l) + min(l) + 1
+
+    return memo[i]

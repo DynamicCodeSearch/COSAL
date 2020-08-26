@@ -1,0 +1,21 @@
+def main():
+    W, H, N = map(int, input().split())
+    field = [[1] * W for _ in range(H)]
+    for _ in range(N):
+        x, y, a = map(int, input().split())
+        y_s, y_e = 0, H
+        x_s, x_e = 0, W
+        if a == 1:
+            x_s, x_e = 0, x
+        elif a == 2:
+            x_s, x_e = x, W
+        elif a == 3:
+            y_s, y_e = H - y, H
+        elif a == 4:
+            y_s, y_e = 0, H - y
+
+        for y in range(y_s, y_e):
+            for x in range(x_s, x_e):
+                field[y][x] = 0
+
+    print(sum([sum(line) for line in field]))

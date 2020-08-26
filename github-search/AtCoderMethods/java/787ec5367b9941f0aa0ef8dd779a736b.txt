@@ -1,0 +1,36 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    long H = sc.nextLong();
+    long W = sc.nextLong();
+    int N = sc.nextInt();
+    HashMap<Long, Integer> map = new HashMap<Long, Integer>();
+    for (int i = 0; i < N; i++) {
+        long a = sc.nextLong() - 1;
+        long b = sc.nextLong() - 1;
+        long n = a * W + b;
+        for (int k = 0; k < 3; k++) {
+            for (int l = 0; l < 3; l++) {
+                long s = n - k * W - l;
+                if (a - k >= 0 && b - l >= 0 && a - k < H - 2 && b - l < W - 2 && s >= 0) {
+                    if (map.containsKey(s)) {
+                        map.put(s, map.get(s) + 1);
+                    } else {
+                        map.put(s, 1);
+                    }
+                }
+            }
+        }
+    }
+    long[] num = new long[10];
+    for (long s : map.keySet()) {
+        num[map.get(s)]++;
+    }
+    long sum = 0;
+    for (int i = 1; i < 10; i++) {
+        sum += num[i];
+    }
+    num[0] = (H - 2) * (W - 2) - sum;
+    for (int i = 0; i < 10; i++) {
+        System.out.println(num[i]);
+    }
+}

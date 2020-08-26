@@ -1,0 +1,14 @@
+String next() throws IOException {
+    if (p < 0) {
+        String line = br.readLine();
+        while ("".equals(line)) line = br.readLine();
+        token = line.split(regex, 0);
+        p = 0;
+        return token[p++];
+    } else {
+        if (p < token.length)
+            return token[p++];
+        p = -1;
+        return null;
+    }
+}

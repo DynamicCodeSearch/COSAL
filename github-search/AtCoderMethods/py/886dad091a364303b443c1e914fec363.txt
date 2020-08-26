@@ -1,0 +1,15 @@
+def gen_points(self, num, width):
+
+    points = [0] * width
+    temp = num
+    i = 1
+    while True:
+        p = temp % 2 
+        if p == 1:
+            points[width - i] = 1
+        temp = temp >> 1
+        if temp == 0:
+            break
+        i += 1
+
+    return points

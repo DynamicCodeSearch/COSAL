@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    int Q = sc.nextInt();
+    double[][] en = new double[N][5];
+    for (int i = 0; i < N; i++) {
+        en[i][0] = sc.nextInt();
+        en[i][1] = sc.nextInt();
+        en[i][2] = sc.nextInt();
+        en[i][3] = en[i][1] * en[i][1] * Math.PI * en[i][2] / 3.0;
+    }
+    for (int i = 0; i < Q; i++) {
+        double now = 0;
+        double A = sc.nextInt();
+        double B = sc.nextInt();
+        for (int j = 0; j < N; j++) {
+            double X = en[j][0];
+            double H = en[j][2];
+            double a = Math.max(A, X);
+            double b = Math.min(B, X + H);
+            if (a < b) {
+                double r1 = (X + H - b) / H;
+                double r2 = (X + H - a) / H;
+                now += en[j][3] * ((r2 * r2 * r2) - (r1 * r1 * r1));
+            }
+        }
+        System.out.printf("%.10f\n", now);
+    }
+}

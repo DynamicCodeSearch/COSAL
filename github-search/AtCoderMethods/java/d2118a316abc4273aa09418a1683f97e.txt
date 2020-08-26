@@ -1,0 +1,15 @@
+
+long dfs(int u, int pre, int color) {
+    if (dp[u][color] != -1)
+        return dp[u][color];
+    long res = 1;
+    for (int v : g[u]) {
+        if (v == pre)
+            continue;
+        long next = dfs(v, u, 1);
+        if (color != 0)
+            next = (next + dfs(v, u, 0)) % MOD;
+        res = (res * next) % MOD;
+    }
+    return dp[u][color] = res;
+}

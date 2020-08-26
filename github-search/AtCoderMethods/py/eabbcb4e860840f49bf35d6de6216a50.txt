@@ -1,0 +1,9 @@
+def solve(path,i,cnt):
+    if cnt==n:return 1
+    path=list(path)
+    path[i]=True
+    ans=0
+    for v in V[i]:
+        if path[v]:continue        
+        ans+=solve(tuple(path),v,cnt+1)
+    return ans

@@ -1,0 +1,44 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    String str = in.next();
+    String[] moji = new String[str.length() + 1];
+    int[] mojinum = new int[str.length() + 1];
+    int kinds = 0;
+    int second = 0;
+    int one = 0;
+    int ans;
+    for (int i = 0; i < str.length(); i++) {
+        moji[i] = String.valueOf(str.charAt(i));
+    }
+    
+    moji[str.length()] = "あ";
+    Arrays.sort(moji);
+    mojinum[0] = 1;
+    for (int i = 0; i < str.length(); i++) {
+        if (moji[i + 1].equals(moji[i])) {
+            mojinum[kinds]++;
+        } else {
+            kinds++;
+            mojinum[kinds] = 1;
+        }
+    }
+    for (int i = 0; i < kinds; i++) {
+        if (mojinum[i] == 1)
+            one++;
+        while (mojinum[i] >= 2) {
+            second++;
+            mojinum[i] -= 2;
+            if (mojinum[i] == 1) {
+                one++;
+                break;
+            }
+        }
+    }
+    if (one > 0) {
+        ans = (second / one * 2) + 1;
+    } else {
+        ans = str.length();
+    }
+    System.out.println(ans);
+    in.close();
+}

@@ -1,0 +1,41 @@
+
+
+
+
+
+
+
+public static void main(String[] args) throws Exception, IOException {
+    Reader sc = new Reader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = sc.nextInt();
+    
+    long[] d = new long[n + 1];
+    d[0]++;
+    char[] c1 = sc.nextString().toCharArray();
+    char[] c2 = sc.nextString().toCharArray();
+    for (int i = 1, p = -1; i <= n; i++) {
+        if (c1[i - 1] == c2[i - 1]) {
+            if (p == 0)
+                d[i] = d[i - 1] * 2;
+            else if (p == 1)
+                d[i] = d[i - 1];
+            else
+                d[i] = 3;
+            d[i] = d[i] % mod;
+            p = 0;
+        } else {
+            i++;
+            if (p == 0)
+                d[i] = d[i - 2] * 2;
+            else if (p == 1)
+                d[i] = d[i - 2] * 3;
+            else
+                d[i] = 6;
+            d[i] = d[i] % mod;
+            p = 1;
+        }
+    }
+    out.println(d[n]);
+    out.flush();
+}

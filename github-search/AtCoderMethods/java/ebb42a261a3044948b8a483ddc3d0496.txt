@@ -1,0 +1,38 @@
+private void solveD() {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    Set<Edge> edgeSet = new HashSet<Edge>();
+    for (int i = 0; i < M; i++) {
+        Edge e = new Edge();
+        e.src = sc.nextInt();
+        e.dest = sc.nextInt();
+        e.cost = sc.nextLong();
+        edgeSet.add(e);
+    }
+    Map<Integer, Long> pointMap = new HashMap<>();
+    pointMap.put(1, 0L);
+    Long ans = null;
+    for (int calcNum = 1; calcNum < 2 * N; calcNum++) {
+        for (Edge e : edgeSet) {
+            if (pointMap.containsKey(e.src)) {
+                long destValue = Long.MIN_VALUE;
+                if (pointMap.containsKey(e.dest)) {
+                    destValue = pointMap.get(e.dest);
+                }
+                long nextValue = pointMap.get(e.src) + e.cost;
+                if (destValue < nextValue) {
+                    pointMap.put(e.dest, nextValue);
+                }
+            }
+        }
+        if (calcNum == N - 1) {
+            ans = pointMap.get(N);
+        }
+    }
+    if (ans.equals(pointMap.get(N))) {
+        System.out.println(ans);
+    } else {
+        System.out.println("inf");
+    }
+}

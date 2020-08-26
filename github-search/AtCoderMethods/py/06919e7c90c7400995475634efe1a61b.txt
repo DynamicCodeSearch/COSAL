@@ -1,0 +1,19 @@
+def dfs_visit(u):
+    start = u
+    rel = copy.deepcopy(relation)
+    s = []
+    color = [-1 for _ in range(N+1)]
+    s.append(u)
+    color[u] = 0
+    while(s != list()):
+        u = s[-1]
+        try:
+            v = rel[u].pop()
+        except IndexError:
+            dist[0 if start == 1 else 1][s[-1]] = len(s)
+            s.pop()
+            color[u] = 1
+            continue
+        if(color[v] == -1):
+            color[v] = 0
+            s.append(v)

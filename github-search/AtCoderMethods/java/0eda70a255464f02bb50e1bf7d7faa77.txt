@@ -1,0 +1,13 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int k = sc.nextInt();
+    int result = IntStream.range(0, n).map(i -> {
+        int a = sc.nextInt();
+        if (k - a < a) {
+            a = k - a;
+        }
+        return a * 2;
+    }).sum();
+    System.out.print(result);
+}

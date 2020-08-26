@@ -1,0 +1,9 @@
+static long dfs(int index, int prev, long count) {
+    if (index == n) {
+        return 0;
+    }
+    if (prev >= a[index]) {
+        return dfs(index + 1, a[index], 1) + 1;
+    }
+    return dfs(index + 1, a[index], count + 1) + 1 + count;
+}

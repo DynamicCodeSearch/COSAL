@@ -1,0 +1,20 @@
+void solve() throws IOException {
+    int n = in.nextInt();
+    boolean[] dp = new boolean[10001];
+    dp[0] = true;
+    for (int i = 0; i < n; i++) {
+        int s = in.nextInt();
+        for (int j = 10000 - s; j >= 0; j--) {
+            if (dp[j] == false)
+                continue;
+            dp[j + s] = true;
+        }
+    }
+    for (int i = 10000; i >= 0; i--) {
+        if (dp[i] && i % 10 != 0) {
+            System.out.println(i);
+            return;
+        }
+    }
+    System.out.println(0);
+}

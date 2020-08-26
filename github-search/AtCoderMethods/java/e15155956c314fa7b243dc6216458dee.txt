@@ -1,0 +1,16 @@
+int minPos(int a, int b, int node, int left, int right) {
+    if (a == left && right == b)
+        return minPos[node];
+    int mid = (left + right) >> 1;
+    if (a <= mid && b > mid) {
+        int p1 = minPos(a, Math.min(b, mid), 2 * node + 1, left, mid);
+        int p2 = minPos(Math.max(a, mid + 1), b, 2 * node + 2, mid + 1, right);
+        return depth[p1] < depth[p2] ? p1 : p2;
+    } else if (a <= mid) {
+        return minPos(a, Math.min(b, mid), 2 * node + 1, left, mid);
+    } else if (b > mid) {
+        return minPos(Math.max(a, mid + 1), b, 2 * node + 2, mid + 1, right);
+    } else {
+        throw new RuntimeException();
+    }
+}

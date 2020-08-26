@@ -1,0 +1,17 @@
+public static void main(String[] args) throws Exception {
+    Scanner scan = new Scanner(System.in);
+    float m = scan.nextFloat() / 1000;
+    int VV = 0;
+    if (m < 0.1) {
+        VV = 0;
+    } else if (m >= 0.1 && m <= 5) {
+        VV = (int) (m * 10);
+    } else if (m >= 6 && m <= 30) {
+        VV = (int) (m + 50);
+    } else if (m >= 35 && m <= 70) {
+        VV = (int) ((m - 30) / 5 + 80);
+    } else if (m >= 70) {
+        VV = 89;
+    }
+    System.out.println(String.format("%02d", VV));
+}

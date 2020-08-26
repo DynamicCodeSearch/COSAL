@@ -1,0 +1,50 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    String s = scan.nextLine();
+    int c = scan.nextInt();
+    char[] cs = s.toCharArray();
+    int U = 0;
+    int D = 0;
+    int L = 0;
+    int R = 0;
+    int X = 0;
+    for (int i = 0; i < cs.length; i++) {
+        switch(cs[i]) {
+            case 'U':
+                U++;
+                break;
+            case 'D':
+                D++;
+                break;
+            case 'L':
+                L++;
+                break;
+            case 'R':
+                R++;
+                break;
+            case '?':
+                X++;
+                break;
+        }
+    }
+    if (c == 1) {
+        
+        int hori = R - L;
+        int vert = U - D;
+        System.out.println(Math.abs(hori) + Math.abs(vert) + X);
+    }
+    if (c == 2) {
+        
+        int hori = R - L;
+        int vert = U - D;
+        if (Math.abs(hori) + Math.abs(vert) - X < 0) {
+            if ((Math.abs(hori) + Math.abs(vert) - X) % 2 == 0) {
+                System.out.println("0");
+            } else {
+                System.out.println("1");
+            }
+        } else {
+            System.out.println(Math.abs(hori) + Math.abs(vert) - X);
+        }
+    }
+}

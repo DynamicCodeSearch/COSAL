@@ -1,0 +1,36 @@
+def C_Sugar_Water(A, B, C, D, E, F):
+    import itertools
+    x = set()  
+    y = set()  
+    for i in range(F):
+        for j in range(F):
+            tmp = 100 * A * i + 100 * B * j
+            if tmp <= F:
+                x.add(tmp)
+    for i in range(F):
+        for j in range(F):
+            tmp = i * C + j * D
+            if tmp <= F:
+                y.add(tmp)
+
+    fill = list(itertools.product(x, y))
+    concentration = 0  
+    for k in fill:
+        water = k[0]
+        sugar = k[1]
+
+        if water == 0 and sugar == 0:
+
+            continue
+        elif E * (water // 100) < sugar:
+
+            continue
+        elif water + sugar > F:
+
+            continue
+        else:
+            if (100 * sugar) / (water + sugar) >= concentration:
+                concentration = (100 * sugar) / (water + sugar)
+                ans = (water + sugar, sugar)
+    print('{} {}'.format(ans[0], ans[1]))
+    return None

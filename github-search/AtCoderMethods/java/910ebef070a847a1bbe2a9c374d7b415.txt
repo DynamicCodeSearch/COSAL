@@ -1,0 +1,12 @@
+
+private static void openFile() throws IOException {
+    if (local) {
+        String inp = "C:/Users/ztrong/Desktop/AndroidStudioProjects/Java/src/main/java/input.txt";
+        String out = "C:/Users/ztrong/Desktop/AndroidStudioProjects/Java/src/main/java/output.txt";
+        br = new BufferedReader(new InputStreamReader(new FileInputStream(inp)));
+        output = new PrintWriter(new FileOutputStream(out));
+    } else {
+        br = new BufferedReader(new InputStreamReader(System.in));
+        output = new PrintWriter(System.out);
+    }
+}

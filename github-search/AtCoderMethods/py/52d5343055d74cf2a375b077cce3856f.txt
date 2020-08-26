@@ -1,0 +1,14 @@
+def main():
+    N, A, B = map(int, input().split())
+    h_list = list(sorted([int(input()) for _ in range(N)], reverse=True))
+
+    left, right = -1, 10 ** 10
+    ans = 0
+    while right - left > 1:
+        m = (left + right) // 2
+        if can_kill(m, A, B, h_list):
+            ans = m
+            right = m
+        else:
+            left = m
+    print(ans)

@@ -1,0 +1,41 @@
+public static long solve() {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[][] dist = new int[n][n];
+    boolean[][] path = new boolean[n][n];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            int item = sc.nextInt();
+            dist[i][j] = item;
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (i == j)
+                continue;
+            path[i][j] = true;
+        }
+    }
+    for (int k = 0; k < n; k++) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (i == j || k == i || k == j)
+                    continue;
+                if (dist[i][j] > dist[i][k] + dist[k][j]) {
+                    return -1;
+                }
+                if (dist[i][j] == dist[i][k] + dist[k][j]) {
+                    path[i][j] = path[j][i] = false;
+                }
+            }
+        }
+    }
+    long total = 0;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (path[i][j] == true)
+                total += dist[i][j];
+        }
+    }
+    return total / 2;
+}

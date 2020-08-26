@@ -1,0 +1,11 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    sc.close();
+    double rn = (double) (((n % 12) * 60 + m) * 360) / 720.0;
+    double rm = (double) (m * 360) / 60.0;
+    double b = Math.max(rn, rm);
+    double s = Math.min(rn, rm);
+    System.out.println(b - s <= 180 ? b - s : s - b + 360);
+}

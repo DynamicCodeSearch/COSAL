@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner io = new Scanner(System.in);
+    int N = io.nextInt();
+    int before = Integer.MAX_VALUE;
+    int seq = 0;
+    long ans = 0;
+    for (int i = 0; i < N; i++) {
+        int a = io.nextInt();
+        if (before >= a)
+            seq = 0;
+        seq++;
+        ans += seq;
+        before = a;
+    }
+    System.out.println(ans);
+}

@@ -1,0 +1,39 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int x1 = in.nextInt();
+    int y1 = in.nextInt();
+    int x2 = in.nextInt();
+    int y2 = in.nextInt();
+    
+    for (int i = y1; i < y2; i++) {
+        System.out.printf("U");
+    }
+    for (int i = x1; i < x2; i++) {
+        System.out.printf("R");
+    }
+    
+    for (int i = y2; i > y1; i--) {
+        System.out.printf("D");
+    }
+    for (int i = x2; i > x1; i--) {
+        System.out.printf("L");
+    }
+    
+    System.out.printf("L");
+    for (int i = y1; i < y2 + 1; i++) {
+        System.out.printf("U");
+    }
+    for (int i = x1 - 1; i < x2; i++) {
+        System.out.printf("R");
+    }
+    System.out.printf("D");
+    
+    System.out.printf("R");
+    for (int i = y2; i > y1 - 1; i--) {
+        System.out.printf("D");
+    }
+    for (int i = x2 + 1; i > x1; i--) {
+        System.out.printf("L");
+    }
+    System.out.printf("U\n");
+}

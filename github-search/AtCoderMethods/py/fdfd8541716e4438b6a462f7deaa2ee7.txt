@@ -1,0 +1,16 @@
+def solve():
+    X = int(input())
+
+    top = X
+    btm = 0
+
+    while top - btm > 1:
+        mid = (top + btm) // 2
+
+        if mid**4 >= X:
+            top = mid
+        else:
+            btm = mid
+
+    ans = top
+    print(ans)

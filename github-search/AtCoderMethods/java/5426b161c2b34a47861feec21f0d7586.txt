@@ -1,0 +1,28 @@
+private void solve(Scanner sc) {
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    int[] a = new int[N];
+    int[] b = new int[N];
+    for (int i = 0; i < N; ++i) {
+        a[i] = sc.nextInt();
+        b[i] = sc.nextInt();
+    }
+    int[] c = new int[M];
+    int[] d = new int[M];
+    for (int i = 0; i < M; ++i) {
+        c[i] = sc.nextInt();
+        d[i] = sc.nextInt();
+    }
+    for (int i = 0; i < N; ++i) {
+        int minIdx = -1;
+        long min = Long.MAX_VALUE;
+        for (int j = 0; j < M; ++j) {
+            long dist = mdist(a[i], b[i], c[j], d[j]);
+            if (dist < min) {
+                min = dist;
+                minIdx = j;
+            }
+        }
+        _out.println(minIdx + 1);
+    }
+}

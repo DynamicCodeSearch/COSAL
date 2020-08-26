@@ -1,0 +1,9 @@
+def solve():
+    N = int(input())
+    A = [int(i) for i in input().split()]
+    ans = float('inf')
+
+    for base in range(-100, 101):
+        ans = min(ans, sum((a - base)**2 for a in A))
+
+    print(ans)

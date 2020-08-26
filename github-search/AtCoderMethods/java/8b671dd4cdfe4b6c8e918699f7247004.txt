@@ -1,0 +1,12 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    String S = in.next();
+    int score = 0;
+    for (int i = 0; i < S.length(); i++) {
+        char my = i % 2 == 0 ? 'g' : 'p';
+        char his = S.charAt(i);
+        if (my != his) {
+            score += my == 'p' ? 1 : -1;
+        }
+    }
+    out.println(score);
+}

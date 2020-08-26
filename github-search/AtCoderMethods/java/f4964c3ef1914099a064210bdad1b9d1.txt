@@ -1,0 +1,25 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    N = sc.nextInt();
+    W = sc.nextLong();
+    a = new long[N];
+    b = new long[N];
+    long maxA = 0;
+    long maxB = 0;
+    for (int i = 0; i < N; i++) {
+        a[i] = sc.nextInt();
+        b[i] = sc.nextInt();
+        maxA = Math.max(a[i], maxA);
+        maxB = Math.max(b[i], maxB);
+    }
+    sc.close();
+    long ans = 0;
+    if (N <= 30) {
+        ans = dfs(0, W);
+    } else if (maxA <= 1000) {
+        ans = solve1();
+    } else {
+        ans = solve2();
+    }
+    System.out.println(ans);
+}

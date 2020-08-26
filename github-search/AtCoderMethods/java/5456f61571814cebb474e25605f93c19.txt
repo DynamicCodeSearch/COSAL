@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    sc.close();
+    int ans = Integer.MAX_VALUE;
+    int x = 1;
+    while (true) {
+        int y = n / x;
+        if (y < x) {
+            break;
+        }
+        int a = n % (x * y);
+        if (ans > y - x + a) {
+            ans = y - x + a;
+        }
+        x++;
+    }
+    System.out.println(ans);
+}

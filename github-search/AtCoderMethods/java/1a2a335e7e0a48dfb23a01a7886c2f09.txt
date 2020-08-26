@@ -1,0 +1,16 @@
+public void solve() {
+    Scanner sc = new Scanner(System.in);
+    int dim = Integer.parseInt(sc.nextLine());
+    List<char[]> list = new ArrayList<char[]>();
+    while (sc.hasNext()) {
+        char[] chars = sc.nextLine().toCharArray();
+        list.add(chars);
+    }
+    sc.close();
+    for (int i = 0; i < dim; i++) {
+        for (int j = dim - 1; j >= 0; j--) {
+            System.out.print(list.get(j)[i]);
+        }
+        System.out.println();
+    }
+}

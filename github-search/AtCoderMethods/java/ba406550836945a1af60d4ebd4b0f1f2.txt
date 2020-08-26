@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    TreeMap<Integer, Integer> m = new TreeMap<Integer, Integer>();
+    int[] a = new int[N];
+    for (int i = 0; i < N; i++) {
+        int temp = sc.nextInt();
+        a[i] = temp;
+        if (m.containsKey(temp)) {
+            ;
+        } else {
+            m.put(temp, 0);
+        }
+    }
+    int cnt = 0;
+    for (Map.Entry<Integer, Integer> e : m.entrySet()) {
+        int key = e.getKey();
+        m.put(key, cnt);
+        cnt++;
+    }
+    for (int i = 0; i < N; i++) {
+        System.out.println(m.get(a[i]));
+    }
+}

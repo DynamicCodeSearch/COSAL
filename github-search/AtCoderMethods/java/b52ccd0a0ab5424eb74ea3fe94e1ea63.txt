@@ -1,0 +1,16 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] str = br.readLine().split(" ");
+    long a = Long.parseLong(str[0]);
+    long k = Long.parseLong(str[1]);
+    if (k == 0) {
+        System.out.println((long) (2 * 1e12) - a);
+        System.exit(0);
+    }
+    long cnt = 0;
+    while (a < 2 * 1e12) {
+        a = a * (k + 1) + 1;
+        cnt++;
+    }
+    System.out.println(cnt);
+}

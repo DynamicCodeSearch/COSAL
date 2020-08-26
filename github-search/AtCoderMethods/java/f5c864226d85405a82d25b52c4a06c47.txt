@@ -1,0 +1,10 @@
+public String readLine() throws IOException {
+    StringBuilder sb = new StringBuilder();
+    if (c == -2)
+        c = reader.read();
+    while (c != -1 && c != '\n' && c != '\r') {
+        sb.appendCodePoint(c);
+        c = reader.read();
+    }
+    return sb.toString();
+}

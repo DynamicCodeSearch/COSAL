@@ -1,0 +1,40 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    Queue<Integer> q = new LinkedList<Integer>();
+    Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+    int a = sc.nextInt();
+    q.add(a);
+    map.put(a, 0);
+    int b = sc.nextInt();
+    while (!q.isEmpty()) {
+        int now = q.poll();
+        if (now == b) {
+            System.out.println(map.get(now));
+            break;
+        }
+        if (!map.containsKey(now + 1)) {
+            q.add(now + 1);
+            map.put(now + 1, map.get(now) + 1);
+        }
+        if (!map.containsKey(now + 5)) {
+            q.add(now + 5);
+            map.put(now + 5, map.get(now) + 1);
+        }
+        if (!map.containsKey(now + 10)) {
+            q.add(now + 10);
+            map.put(now + 10, map.get(now) + 1);
+        }
+        if (!map.containsKey(now - 1)) {
+            q.add(now - 1);
+            map.put(now - 1, map.get(now) + 1);
+        }
+        if (!map.containsKey(now - 5)) {
+            q.add(now - 5);
+            map.put(now - 5, map.get(now) + 1);
+        }
+        if (!map.containsKey(now - 10)) {
+            q.add(now - 10);
+            map.put(now - 10, map.get(now) + 1);
+        }
+    }
+}

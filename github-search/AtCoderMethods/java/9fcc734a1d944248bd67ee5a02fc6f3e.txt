@@ -1,0 +1,15 @@
+public static void solve() throws IOException {
+    
+    FastReader sc = new FastReader();
+    int n = sc.I();
+    HashSet<Long> h = new HashSet<>();
+    for (int i = 1; i <= n; i++) {
+        long a = sc.L();
+        if (h.contains(a))
+            h.remove(new Long(a));
+        else
+            h.add(a);
+    }
+    pw.println(h.size());
+    pw.close();
+}

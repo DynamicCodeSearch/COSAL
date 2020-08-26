@@ -1,0 +1,28 @@
+def main():
+    MOD = 10 ** 9 + 7
+    R, C = map(int, input().split())
+    X, Y = map(int, input().split())
+    D, L = map(int, input().split())
+
+    ans = calc(X * Y, D, L)
+
+    if D + L != X * Y:
+
+
+
+
+
+
+        ans -= calc((X - 1) * Y, D, L) * 2          
+        ans -= calc(X * (Y - 1), D, L) * 2          
+
+        ans += calc((X - 2) * Y, D, L)              
+        ans += calc(X * (Y - 2), D, L)              
+        ans += calc((X - 1) * (Y - 1), D, L) * 4    
+
+        ans -= calc((X - 2) * (Y - 1), D, L) * 2    
+        ans -= calc((X - 1) * (Y - 2), D, L) * 2    
+
+        ans += calc((X - 2) * (Y - 2), D, L)        
+
+    print((ans * (R - X + 1) * (C - Y + 1)) % MOD)

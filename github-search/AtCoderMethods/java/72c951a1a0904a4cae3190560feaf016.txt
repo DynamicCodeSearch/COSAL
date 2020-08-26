@@ -1,0 +1,14 @@
+static void solve(FastScanner sc, PrintWriter out) {
+    int N = sc.ni();
+    int K = sc.ni();
+    int X = sc.ni();
+    int Y = sc.ni();
+    long ans = 0;
+    if (N <= K) {
+        ans = X * N;
+    } else {
+        ans = X * K;
+        ans += Y * (N - K);
+    }
+    out.println(ans);
+}

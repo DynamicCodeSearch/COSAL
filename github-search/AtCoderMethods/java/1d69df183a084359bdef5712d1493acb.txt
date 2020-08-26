@@ -1,0 +1,44 @@
+public static void main(String[] args) {
+    StdIn in = new StdIn();
+    String A = in.next();
+    int[][] next = new int[A.length()][26];
+    Arrays.fill(next[A.length() - 1], A.length());
+    for (int i = A.length() - 2; i >= 0; --i) {
+        next[i] = Arrays.copyOf(next[i + 1], 26);
+        next[i][A.charAt(i + 1) - 'a'] = i + 1;
+    }
+    int[] dp = new int[A.length() + 1];
+    char[] nextChar = new char[A.length()];
+    dp[A.length()] = 0;
+    for (int i = A.length() - 1; i >= 0; --i) {
+        int min = Integer.MAX_VALUE;
+        char minC = 0;
+        for (char c = 'a'; c <= 'z'; ++c) {
+            if (dp[next[i][c - 'a']] < min) {
+                min = dp[next[i][c - 'a']];
+                minC = c;
+            }
+        }
+        dp[i] = min + 1;
+        nextChar[i] = minC;
+    }
+    int[] next2 = Arrays.copyOf(next[0], 26);
+    next2[A.charAt(0) - 'a'] = 0;
+    int min = Integer.MAX_VALUE;
+    char minC = 0;
+    for (char c = 'a'; c <= 'z'; ++c) {
+        if (dp[next2[c - 'a']] < min) {
+            min = dp[next2[c - 'a']];
+            minC = c;
+        }
+    }
+    int i = next2[minC - 'a'];
+    System.out.print(minC);
+    while (i < A.length()) {
+        System.out.print(nextChar[i]);
+        
+        
+        i = next[i][nextChar[i] - 'a'];
+    }
+    System.out.println();
+}

@@ -1,0 +1,9 @@
+public static String toString(Node a, String indent) {
+    if (a == null)
+        return "";
+    StringBuilder sb = new StringBuilder();
+    sb.append(toString(a.left, indent + "  "));
+    sb.append(indent).append(a).append("\n");
+    sb.append(toString(a.right, indent + "  "));
+    return sb.toString();
+}

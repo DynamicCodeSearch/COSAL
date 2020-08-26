@@ -1,0 +1,12 @@
+public BitVector or(BitVector o) {
+    BitVector ans = new BitVector(Math.max(n, o.n));
+    for (int i = 0; i < ans.m; i++) {
+        if (i < m) {
+            ans.bits[i] = bits[i];
+        }
+        if (i < o.m) {
+            ans.bits[i] |= o.bits[i];
+        }
+    }
+    return ans;
+}

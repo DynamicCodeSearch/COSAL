@@ -1,0 +1,29 @@
+void solve() throws IOException {
+    int n = in.nextInt();
+    int x = in.nextInt();
+    int y = in.nextInt();
+    int z = in.nextInt();
+    final int sz = 1 << x + y + z;
+    final int mask = sz - 1;
+    final int p_mask = 1 << x + y + z - 1 | 1 << y + z - 1 | 1 << z - 1;
+    int[][] dp = new int[n + 1][sz];
+    dp[0][0] = 1;
+    final int mod = 1000000007;
+    for (int i = 1; i <= n; i++) {
+        for (int j = 0; j < sz; j++) {
+            if (dp[i - 1][j] == 0)
+                continue;
+            for (int k = 0; k < 10; k++) {
+                int nxt = (j << 1 | 1) << k & mask;
+                if ((nxt & p_mask) == p_mask)
+                    continue;
+                dp[i][nxt] = (dp[i][nxt] + dp[i - 1][j]) % mod;
+            }
+        }
+    }
+    int ans = 0;
+    for (int i = 0; i < sz; i++) {
+        ans = (ans + dp[n][i]) % mod;
+    }
+    System.out.println((modpow(10, n, mod) + mod - ans) % mod);
+}

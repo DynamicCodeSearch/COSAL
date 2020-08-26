@@ -1,0 +1,15 @@
+private int read() {
+    if (num == -1)
+        throw new InputMismatchException();
+    if (cur >= num) {
+        cur = 0;
+        try {
+            num = stream.read(buf);
+        } catch (Exception e) {
+            throw new InputMismatchException();
+        }
+        if (num <= 0)
+            return -1;
+    }
+    return buf[cur++];
+}

@@ -1,0 +1,39 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] input = br.readLine().split(" ");
+    int n = Integer.parseInt(input[0]);
+    int a = Integer.parseInt(input[1]);
+    int b = Integer.parseInt(input[2]);
+    String s;
+    int d;
+    int point = 0;
+    for (int i = 0; i < n; i++) {
+        input = br.readLine().split(" ");
+        s = input[0];
+        d = Integer.parseInt(input[1]);
+        if (s.equals("East")) {
+            if (d < a) {
+                point += a;
+            } else if (d > b) {
+                point += b;
+            } else {
+                point += d;
+            }
+        } else {
+            if (d < a) {
+                point -= a;
+            } else if (d > b) {
+                point -= b;
+            } else {
+                point -= d;
+            }
+        }
+    }
+    if (point > 0) {
+        System.out.println("East " + String.valueOf(point));
+    } else if (point < 0) {
+        System.out.println("West " + String.valueOf(-1 * point));
+    } else {
+        System.out.println(0);
+    }
+}

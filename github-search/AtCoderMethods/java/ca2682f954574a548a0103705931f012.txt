@@ -1,0 +1,21 @@
+public static void main(String[] args) throws Exception {
+    String s = sc.next();
+    int[] count = new int[26];
+    for (int i = 0; i < s.length(); i++) {
+        count[s.charAt(i) - 'a']++;
+    }
+    int ca = 0, cb = 0;
+    for (int i = 0; i < 26; i++) {
+        ca += count[i] % 2;
+        cb += count[i] - count[i] % 2;
+    }
+    int result;
+    if (ca == 0) {
+        result = s.length();
+    } else {
+        result = (cb / 2 / ca) * 2 + 1;
+    }
+    StringBuilder sb = new StringBuilder();
+    sb.append(result);
+    System.out.println(sb.toString());
+}

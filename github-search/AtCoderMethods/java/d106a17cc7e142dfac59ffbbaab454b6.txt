@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String s = sc.next();
+    StringBuilder sb = new StringBuilder(s);
+    String t = "no";
+    do {
+        sb.reverse();
+        sb.deleteCharAt(0);
+        sb.reverse();
+        if (sb.substring(0, (sb.length() / 2)).equals(sb.substring(sb.length() / 2, (sb.length())))) {
+            System.out.println(sb.length());
+            t = "yes";
+        }
+    } while (t == "no");
+}

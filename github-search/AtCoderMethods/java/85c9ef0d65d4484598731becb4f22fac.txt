@@ -1,0 +1,21 @@
+public void solve() {
+    int N = nextInt();
+    Pair[] a = new Pair[N];
+    for (int i = 0; i < N; i++) {
+        a[i] = new Pair(i, nextInt());
+    }
+    Arrays.sort(a, (c1, c2) -> Integer.compare(c1.value, c2.value));
+    int b = -1;
+    int cur = -1;
+    for (int i = 0; i < N; i++) {
+        if (a[i].value > cur) {
+            b++;
+        }
+        cur = a[i].value;
+        a[i].n = b;
+    }
+    Arrays.sort(a, (c1, c2) -> Integer.compare(c1.idx, c2.idx));
+    for (int i = 0; i < N; i++) {
+        out.println(a[i].n);
+    }
+}

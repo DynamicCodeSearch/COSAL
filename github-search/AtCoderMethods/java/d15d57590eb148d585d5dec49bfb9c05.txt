@@ -1,0 +1,16 @@
+public boolean add(long x) {
+    int pos = h(x) & mask;
+    while (allocated[pos]) {
+        if (x == keys[pos])
+            return false;
+        pos = pos + 1 & mask;
+    }
+    if (size == rscale) {
+        resizeAndAdd(x);
+    } else {
+        keys[pos] = x;
+        allocated[pos] = true;
+    }
+    size++;
+    return true;
+}

@@ -1,0 +1,13 @@
+public String next() {
+    StringBuilder sb = new StringBuilder();
+    int b = ' ';
+    try {
+        for (; Character.isWhitespace(b); b = bis.read()) ;
+        for (; !Character.isWhitespace(b); b = bis.read()) {
+            sb.append((char) b);
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return sb.toString();
+}

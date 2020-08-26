@@ -1,0 +1,19 @@
+static int go(int ptn, int c) {
+    if (table[c][ptn] != -1) {
+        return table[c][ptn];
+    }
+    int result;
+    if ((ptn & (1 << x + y + z)) >= 1) {
+        result = 1 << x + y + z;
+    } else {
+        int tptn = ((ptn << c) | (1 << (c - 1))) & ((1 << x + y + z) - 1);
+        List<Integer> history = doit(decode(tptn));
+        if (history == null) {
+            result = 1 << x + y + z;
+        } else {
+            result = encode(history);
+        }
+    }
+    table[c][ptn] = result;
+    return result;
+}

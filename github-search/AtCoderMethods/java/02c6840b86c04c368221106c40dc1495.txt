@@ -1,0 +1,20 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    String S = sc.next();
+    long[] collect = S.chars().boxed().collect(Collectors.groupingBy(i -> i, Collectors.counting())).values().stream().mapToLong(Long::longValue).toArray();
+    long odd = 0;
+    long even = 0;
+    for (long count : collect) {
+        odd += count % 2;
+        even += count / 2;
+    }
+    if (odd == 0) {
+        System.out.println(even * 2);
+    } else if (odd > even) {
+        System.out.println(1);
+    } else if (odd == even) {
+        System.out.println(3);
+    } else {
+        System.out.println((even / odd) * 2 + 1);
+    }
+}

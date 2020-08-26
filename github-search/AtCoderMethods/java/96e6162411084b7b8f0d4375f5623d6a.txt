@@ -1,0 +1,13 @@
+public void solve(int testNumber, FastReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int ans = 1;
+    int ansCount = 0;
+    for (int i = 1; i <= n; i++) {
+        int count = getTwoCount(i);
+        if (count > ansCount) {
+            ans = i;
+            ansCount = count;
+        }
+    }
+    out.println(ans);
+}

@@ -1,0 +1,9 @@
+private void dfs(int node, int depth, boolean[] used) {
+    if (used[node])
+        return;
+    used[node] = true;
+    for (int i = 0; i < n; i++) {
+        if (es[node][i] && !used[i])
+            dfs(i, depth + 1, used);
+    }
+}

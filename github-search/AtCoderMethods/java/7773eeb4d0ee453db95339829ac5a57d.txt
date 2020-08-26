@@ -1,0 +1,44 @@
+void solve(int testNumber, InputReader in, PrintWriter out) {
+    n = in.nextInt();
+    t = new int[n];
+    a = new int[n];
+    for (int i = 0; i < n; ++i) {
+        t[i] = in.nextInt();
+        a[i] = in.nextInt();
+    }
+    long tv = 1, av = 1;
+    long total = tv + av;
+    for (int i = 0; i < n; ++i) {
+        if (tv <= t[i] && av > a[i]) {
+            long mult = (long) av / a[i];
+            if (av % a[i] != 0)
+                ++mult;
+            av = a[i] * mult;
+            tv = t[i] * mult;
+            continue;
+        }
+        if (tv > t[i] && av <= a[i]) {
+            long mult = (long) tv / t[i];
+            if (tv % t[i] != 0)
+                ++mult;
+            tv = t[i] * mult;
+            av = a[i] * mult;
+            continue;
+        }
+        if (tv > t[i] && av > a[i]) {
+            long amult = (long) av / a[i];
+            if (av % a[i] != 0)
+                ++amult;
+            long tmult = (long) tv / t[i];
+            if (tv % t[i] != 0)
+                ++tmult;
+            long mult = Math.max(amult, tmult);
+            tv = t[i] * mult;
+            av = a[i] * mult;
+            continue;
+        }
+        tv = t[i];
+        av = a[i];
+    }
+    out.println(tv + av);
+}

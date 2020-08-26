@@ -1,0 +1,10 @@
+static void Method(ArrayList<Integer> num, ArrayList<String> param) {
+    int answer = 0;
+    for (int i = 1; i < num.size(); i++) {
+        while ((num.get(i) - 2) % 3 == 0 || num.get(i) % 2 == 0) {
+            answer++;
+            num.set(i, num.get(i) - 1);
+        }
+    }
+    System.out.println(answer);
+}

@@ -1,0 +1,12 @@
+def main():
+    msg = input()
+    msg = msg[:-1]
+    if len(msg) % 2 != 0:
+        msg = msg[:-1]
+    while len(msg) >= 2:
+        before = msg[:int(len(msg) / 2)]
+        after = msg[int(len(msg) / 2):]
+        if before == after:
+            print(len(msg))
+            break
+        msg = msg[:-2]

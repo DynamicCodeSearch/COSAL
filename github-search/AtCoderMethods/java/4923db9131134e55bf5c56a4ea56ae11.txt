@@ -1,0 +1,13 @@
+void solve() throws IOException {
+    n = ni();
+    x = ni();
+    y = ni();
+    z = ni();
+    dp = new long[n][1 << (x + y + z - 1)];
+    mask = (1 << (x + y + z - 1)) - 1;
+    long pow10 = 1;
+    for (int i = 0; i < n; i++) {
+        pow10 = (pow10 * 10) % MOD;
+    }
+    out.println((pow10 - rec(0, 0) + MOD) % MOD);
+}

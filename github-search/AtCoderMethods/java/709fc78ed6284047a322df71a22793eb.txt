@@ -1,0 +1,9 @@
+public int compare_sa(Integer o1, Integer o2, int[] rank, int k, int n) {
+    if (rank[o1] != rank[o2])
+        return Integer.compare(rank[o1], rank[o2]);
+    else {
+        int ri = o1 + k <= n ? rank[o1 + k] : -1;
+        int rj = o2 + k <= n ? rank[o2 + k] : -1;
+        return Integer.compare(ri, rj);
+    }
+}

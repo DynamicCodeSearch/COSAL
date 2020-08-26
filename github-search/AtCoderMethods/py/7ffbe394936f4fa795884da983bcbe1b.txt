@@ -1,0 +1,12 @@
+def summer():
+  k = min(K, N-K+1)
+  if 2*K == N + 1:
+    yield a[K-1]
+    k = K - 1
+  yield sum(a[k:-k]) * k
+  c = sum(a[:k])
+  for i,j in zip(range(0,k), range(-k,0)):
+    yield c
+    c -= a[i]
+    c += a[j]
+  yield c

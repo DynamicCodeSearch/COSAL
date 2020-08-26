@@ -1,0 +1,13 @@
+def Q4(K):
+    N = 50
+    lst = list(range(N))
+    q, r = K // N, K % N
+    lst = list(map(lambda x: x + q, lst))
+    for i in range(r):
+        lst[i] += N
+        for j in range(N):
+            if i != j:
+                lst[j] -= 1
+    print(N)
+    for i in lst:
+        print(i, end=' ')

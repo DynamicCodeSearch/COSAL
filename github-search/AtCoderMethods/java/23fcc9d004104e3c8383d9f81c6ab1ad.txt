@@ -1,0 +1,20 @@
+public static void go(String num, String s, int sum, int i) {
+    if (i >= num.length()) {
+        int t = 0;
+        long rs = 0;
+        StringTokenizer st = new StringTokenizer(s, "+");
+        t = st.countTokens();
+        while (st.hasMoreTokens()) {
+            rs += Long.parseLong((String) st.nextToken());
+        }
+        if (rs == sum)
+            minPlus = Math.min(minPlus, t);
+    } else {
+        if (i == 0)
+            go(num, "" + num.charAt(i), sum, i + 1);
+        else {
+            go(num, s + "+" + num.charAt(i), sum, i + 1);
+            go(num, s + num.charAt(i), sum, i + 1);
+        }
+    }
+}

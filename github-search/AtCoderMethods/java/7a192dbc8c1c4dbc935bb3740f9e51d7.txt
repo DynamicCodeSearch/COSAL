@@ -1,0 +1,13 @@
+static int gcd(int a, int b) {
+    if (b == 0) {
+        xy[0] = 1;
+        xy[1] = 0;
+        return a;
+    } else {
+        int d = gcd(b, a % b);
+        int t = xy[0] - a / b * xy[1];
+        xy[0] = xy[1];
+        xy[1] = t;
+        return d;
+    }
+}

@@ -1,0 +1,23 @@
+
+void unite(int x, int y) {
+    
+    x = find(x);
+    y = find(y);
+    if (x == y) {
+        return;
+    }
+    
+    if (rank[x] < rank[y]) {
+        par[x] = y;
+        num[y] += num[x];
+        num[x] = 0;
+    } else {
+        par[y] = x;
+        num[x] += num[y];
+        num[y] = 0;
+        if (rank[x] == rank[y]) {
+            
+            rank[x]++;
+        }
+    }
+}

@@ -1,0 +1,13 @@
+def main():
+    km = int(input()) / 1000
+    if km < 0.1:
+        VV = "00"
+    elif 0.1 <= km <= 5:
+        VV = "{0:02d}".format(int(km * 10))
+    elif 6 <= km <= 30:
+        VV = "{0}".format(int(km) + 50)
+    elif 35 <= km <= 70:
+        VV = "{0}".format(int(km - 30) // 5 + 80)
+    else:
+        VV = "89"
+    print(VV)

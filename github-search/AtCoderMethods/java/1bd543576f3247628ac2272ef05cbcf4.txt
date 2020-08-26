@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    
+    
+    final String n;
+    
+    final int k;
+    
+    final String[] d;
+    try (Scanner scan = new Scanner(System.in)) {
+        
+        n = scan.next();
+        k = scan.nextInt();
+        d = new String[k];
+        for (int i = 0; i < k; i++) {
+            d[i] = scan.next();
+        }
+    }
+    
+    int result = IntStream.range(Integer.parseInt(n), 99999).filter(i -> Arrays.stream(d).noneMatch(s -> String.valueOf(i).indexOf(s) != -1)).findFirst().getAsInt();
+    
+    out.println(result);
+    out.flush();
+}

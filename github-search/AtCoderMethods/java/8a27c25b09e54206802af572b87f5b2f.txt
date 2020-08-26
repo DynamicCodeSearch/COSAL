@@ -1,0 +1,27 @@
+public void solve(int testNumber, FastReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int[] a = in.nextIntArray(n);
+    int[] ct = new int[n];
+    for (int i = 0; i < n; i++) {
+        int e = 0;
+        int temp = a[i];
+        while (temp % 2 == 0) {
+            temp /= 2;
+            e++;
+        }
+        ct[i] = Math.min(2, e);
+    }
+    int[] count = new int[3];
+    for (int cc : ct) {
+        count[cc] += 1;
+    }
+    if (count[0] == 0) {
+        out.println("Yes");
+    } else if (count[0] == count[2]) {
+        out.println("Yes");
+    } else if (count[1] == 0 && count[2] == count[0] - 1) {
+        out.println("Yes");
+    } else {
+        out.println("No");
+    }
+}

@@ -1,0 +1,13 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    char[] s = in.next().toCharArray();
+    int[] mp = new int[26];
+    Arrays.fill(mp, 0);
+    for (char c : s) {
+        if (mp[c - 'a'] > 0) {
+            out.printLine("no");
+            return;
+        }
+        mp[c - 'a']++;
+    }
+    out.printLine("yes");
+}

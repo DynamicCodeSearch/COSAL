@@ -1,0 +1,26 @@
+private final long[] dijkstra() {
+    boolean[] checked = new boolean[N];
+    checked[0] = true;
+    long[] cost = new long[N];
+    for (int i = 1; i < N; i++) {
+        cost[i] = INF;
+    }
+    Heap heap = new Heap(N);
+    int source = 0;
+    for (int step = 0; step < N - 1; step++) {
+        for (Edge edge : edgeList.get(source)) {
+            if (!checked[edge.target]) {
+                cost[edge.target] = Long.min(cost[edge.target], cost[source] + edge.cost);
+                heap.update(edge.target, cost[edge.target]);
+            }
+        }
+        Node node = heap.pop();
+        if (node == null)
+            return cost;
+        else {
+            checked[node.index] = true;
+            source = node.index;
+        }
+    }
+    return cost;
+}

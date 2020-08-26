@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    sc.close();
+    int[] ans = { -1, -1, -1 };
+    for (int i = 0; i <= N; i++) {
+        int a = i;
+        int b = 4 * N - M - 2 * a;
+        int c = a - 3 * N + M;
+        if (b >= 0 && c >= 0) {
+            ans[0] = a;
+            ans[1] = b;
+            ans[2] = c;
+        }
+        if (ans[0] > 0) {
+            break;
+        }
+    }
+    System.out.println(String.format("%d %d %d", ans[0], ans[1], ans[2]));
+}

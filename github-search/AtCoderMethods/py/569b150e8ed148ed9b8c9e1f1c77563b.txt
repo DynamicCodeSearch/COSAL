@@ -1,0 +1,15 @@
+def bfs(graph, n, start):
+    q = deque([start])
+
+    dists = [-1] * (n+1)
+    dists[start] = 0
+
+    while q:
+        cur = q.pop()
+
+        for neigh, d in graph[cur].items():
+            if dists[neigh] == -1:
+                q.appendleft(neigh)
+                dists[neigh] = dists[cur] + d
+
+    return dists

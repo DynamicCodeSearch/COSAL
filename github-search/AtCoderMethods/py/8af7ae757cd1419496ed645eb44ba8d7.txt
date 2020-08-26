@@ -1,0 +1,18 @@
+def solve():
+    n = read_int()
+    a = read_int_list()
+
+    c = Counter(a)
+    expected = Counter()
+    if n % 2 == 0:
+        for i in range(1, n, 2):
+            expected[i] = 2
+    else:
+        expected[0] = 1
+        for i in range(2, n, 2):
+            expected[i] = 2
+
+    if c == expected:
+        return 2 ** (n // 2) % M
+
+    return 0

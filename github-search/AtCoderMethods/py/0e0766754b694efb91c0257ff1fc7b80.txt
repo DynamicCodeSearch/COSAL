@@ -1,0 +1,15 @@
+def dijkstra(adj):
+    q = [(0, 0)]
+    dist = [float('inf')] * N
+    dist[0] = 0
+    while len(q) > 0:
+        cost, node = heapq.heappop(q)
+        if cost < dist[node]:
+            continue
+
+        for edge, c in adj[node]:
+            tmp = cost + c
+            if tmp < dist[edge]:
+                dist[edge] = tmp
+                heapq.heappush(q, (tmp, edge))
+    return dist

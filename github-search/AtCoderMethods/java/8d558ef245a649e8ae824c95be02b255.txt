@@ -1,0 +1,15 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    String str = input.readLine();
+    int n = Integer.parseInt(str);
+    int[] list = { 0, 0, 0, 0 };
+    int temp;
+    str = input.readLine();
+    String[] str2 = str.split("");
+    for (int i = 0; i < n; i++) {
+        temp = Integer.parseInt(str2[i]) - 1;
+        list[temp] = list[temp] + 1;
+    }
+    Arrays.sort(list);
+    System.out.println(list[3] + " " + list[0]);
+}

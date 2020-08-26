@@ -1,0 +1,25 @@
+public void solve(InputReader in, PrintWriter out) {
+    int w = in.nextInt(), h = in.nextInt(), n = in.nextInt();
+    int lx = 0, rx = w;
+    int ly = 0, ry = h;
+    int x, y, a;
+    for (int i = 0; i < n; ++i) {
+        x = in.nextInt();
+        y = in.nextInt();
+        a = in.nextInt();
+        if (a == 1) {
+            lx = Math.max(lx, x);
+        } else if (a == 2) {
+            rx = Math.min(rx, x);
+        } else if (a == 3) {
+            ly = Math.max(ly, y);
+        } else {
+            ry = Math.min(ry, y);
+        }
+    }
+    int ans = 0;
+    if (ly <= ry && lx <= rx) {
+        ans = (ry - ly) * (rx - lx);
+    }
+    out.println(ans);
+}

@@ -1,0 +1,10 @@
+void SetDestination(CheckPoint[] cpts) {
+    int mindist = Integer.MAX_VALUE;
+    for (CheckPoint c : cpts) {
+        int dist = Distance.Manhattan(this.Position, c.Position);
+        if (dist < mindist) {
+            Destination = c.Id;
+            mindist = dist;
+        }
+    }
+}

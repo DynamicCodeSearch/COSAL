@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    String S = sc.next();
+    int leftcount = 0;
+    int rightcount = 0;
+    for (int i = 0; i < S.length(); i++) {
+        char ch = S.charAt(i);
+        if (ch == '(') {
+            rightcount++;
+        } else {
+            if (rightcount > 0) {
+                rightcount--;
+            } else {
+                leftcount++;
+            }
+        }
+    }
+    String leftp = "";
+    String rightp = "";
+    for (int i = 0; i < leftcount; i++) {
+        rightp += "(";
+    }
+    for (int i = 0; i < rightcount; i++) {
+        leftp += ")";
+    }
+    System.out.println(rightp + S + leftp);
+}

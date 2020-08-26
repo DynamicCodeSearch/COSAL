@@ -1,0 +1,81 @@
+public void solve() {
+    N = nextInt();
+    M = nextInt();
+    T = nextInt();
+    A = new int[N];
+    for (int i = 0; i < N; i++) {
+        A[i] = nextInt();
+    }
+    V[] con1 = new V[N];
+    V[] con2 = new V[N];
+    for (int i = 0; i < N; i++) {
+        con1[i] = new V();
+        con2[i] = new V();
+    }
+    for (int i = 0; i < M; i++) {
+        int a = nextInt() - 1;
+        int b = nextInt() - 1;
+        int c = nextInt();
+        
+        con1[a].add(c, b);
+        
+        con2[b].add(c, a);
+    }
+    long[] cost1 = new long[N];
+    long[] cost2 = new long[N];
+    for (int i = 0; i < N; i++) {
+        
+        cost1[i] = INF;
+        cost2[i] = INF;
+    }
+    
+    PriorityQueue<D> pq = new PriorityQueue<D>();
+    pq.add(new D(0, 0));
+    while (pq.size() > 0) {
+        D d = pq.poll();
+        
+        if (d.cost >= cost1[d.num])
+            continue;
+        
+        cost1[d.num] = d.cost;
+        
+        for (int i = 0; i < con1[d.num].connect.size(); i++) {
+            
+            int next = con1[d.num].connect.get(i);
+            
+            long cost = con1[d.num].cost.get(i) + d.cost;
+            
+            if (cost1[next] < cost)
+                continue;
+            pq.add(new D(next, cost));
+        }
+    }
+    
+    pq = new PriorityQueue<D>();
+    pq.add(new D(0, 0));
+    while (pq.size() > 0) {
+        D d = pq.poll();
+        
+        if (d.cost >= cost2[d.num])
+            continue;
+        
+        cost2[d.num] = d.cost;
+        
+        for (int i = 0; i < con2[d.num].connect.size(); i++) {
+            
+            int next = con2[d.num].connect.get(i);
+            
+            long cost = con2[d.num].cost.get(i) + d.cost;
+            
+            if (cost2[next] < cost)
+                continue;
+            pq.add(new D(next, cost));
+        }
+    }
+    long ans = 0;
+    for (int i = 0; i < N; i++) {
+        
+        ans = Math.max(ans, A[i] * (T - cost1[i] - cost2[i]));
+    }
+    out.println(ans);
+}

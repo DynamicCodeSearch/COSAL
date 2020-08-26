@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int n = scan.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = scan.nextInt();
+    }
+    int[] b = new int[n];
+    b[n - 2] = Math.abs(a[n - 2] - a[n - 1]);
+    b[n - 1] = 0;
+    for (int i = n - 3; i >= 0; i--) {
+        int temp1 = Math.abs(a[i] - a[i + 2]) + b[i + 2];
+        int temp2 = Math.abs(a[i] - a[i + 1]) + b[i + 1];
+        if (temp1 > temp2) {
+            b[i] = temp2;
+        } else {
+            b[i] = temp1;
+        }
+    }
+    System.out.println(b[0]);
+}

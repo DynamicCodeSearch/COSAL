@@ -1,0 +1,11 @@
+public void solve() {
+    int N = nextInt();
+    Pair[] a = new Pair[N];
+    for (int i = 0; i < N; i++) {
+        a[i] = new Pair(i + 1, nextInt());
+    }
+    Arrays.sort(a, (aa, bb) -> Integer.compare(aa.b, bb.b));
+    for (int i = N - 1; i >= 0; i--) {
+        out.println(a[i].idx);
+    }
+}

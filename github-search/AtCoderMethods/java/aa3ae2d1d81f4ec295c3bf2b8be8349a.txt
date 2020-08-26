@@ -1,0 +1,20 @@
+private int[] bfs(int s, List<Integer>[] adj) {
+    int n = adj.length;
+    int[] q = new int[n];
+    int[] d = new int[n];
+    Arrays.fill(d, n);
+    d[s] = 0;
+    q[0] = s;
+    int qt = 0;
+    int qh = 1;
+    while (qt < qh) {
+        int i = q[qt++];
+        for (int j : adj[i]) {
+            if (d[j] > 1 + d[i]) {
+                d[j] = 1 + d[i];
+                q[qh++] = j;
+            }
+        }
+    }
+    return d;
+}

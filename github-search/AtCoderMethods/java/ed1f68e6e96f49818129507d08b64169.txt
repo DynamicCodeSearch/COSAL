@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    
+    Scanner s = new Scanner(System.in);
+    String[] str = s.nextLine().split(" ");
+    int n = Integer.parseInt(str[0]);
+    long t = Long.parseLong(str[1]);
+    String[] str2 = s.nextLine().split(" ");
+    long[] ti = new long[str2.length];
+    long ans = 0l;
+    for (int i = 0; i < n; i++) {
+        ti[i] = Long.parseLong(str2[i]);
+    }
+    for (int i = 0; i < n - 1; i++) {
+        if (ti[i + 1] - ti[i] >= t) {
+            ans += t;
+        } else {
+            ans += ti[i + 1] - ti[i];
+        }
+    }
+    ans += t;
+    System.out.println(ans);
+}

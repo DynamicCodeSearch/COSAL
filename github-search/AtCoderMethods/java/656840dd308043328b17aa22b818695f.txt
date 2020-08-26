@@ -1,0 +1,11 @@
+private static char[] simplify(char[] chseq) {
+    StringBuilder ret = new StringBuilder();
+    int i = 0;
+    while (i < chseq.length) {
+        char ch = chseq[i];
+        i++;
+        while (i < chseq.length && chseq[i] == ch) i++;
+        ret.append(ch);
+    }
+    return ret.toString().toCharArray();
+}

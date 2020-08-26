@@ -1,0 +1,24 @@
+private static boolean calcMaxFlow(int currentId, Set<Integer> visited) {
+    visited.add(currentId);
+    if (p.contains(currentId)) {
+        p.remove(currentId);
+        return true;
+    }
+    Integer[] neighbors = neighborsMap.get(currentId).toArray(new Integer[neighborsMap.get(currentId).size()]);
+    if (neighbors.length == 0) {
+        return false;
+    }
+    for (int n : neighbors) {
+        if (visited.contains(n)) {
+            continue;
+        }
+        neighborsMap.get(currentId).remove(n);
+        if (!calcMaxFlow(n, visited)) {
+            neighborsMap.get(currentId).add(n);
+        } else {
+            return true;
+        }
+    }
+    visited.remove(currentId);
+    return false;
+}

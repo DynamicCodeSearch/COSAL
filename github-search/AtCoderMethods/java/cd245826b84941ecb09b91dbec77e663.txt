@@ -1,0 +1,29 @@
+static void solve() {
+    int n = in.nextInt();
+    int m = in.nextInt();
+    int t = in.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = in.nextInt();
+    }
+    int[] from = new int[m];
+    int[] to = new int[m];
+    int[] cost = new int[m];
+    for (int i = 0; i < m; i++) {
+        from[i] = in.nextInt() - 1;
+        to[i] = in.nextInt() - 1;
+        cost[i] = in.nextInt();
+    }
+    int[][][] g = directedGraph(n, from, to, cost);
+    int[][][] gi = directedGraph(n, to, from, cost);
+    long[] d = dijkstra(g, 0);
+    long[] di = dijkstra(gi, 0);
+    long ans = (long) a[0] * t;
+    for (int i = 1; i < n; i++) {
+        long c = d[i] + di[i];
+        if (c > t)
+            continue;
+        ans = Math.max(ans, (t - c) * a[i]);
+    }
+    out.println(ans);
+}

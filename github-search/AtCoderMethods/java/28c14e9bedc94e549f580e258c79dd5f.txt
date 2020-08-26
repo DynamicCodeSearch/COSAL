@@ -1,0 +1,31 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    int n = in.nextInt(), k = 0;
+    ArrayList<Integer>[] l = new ArrayList[n + 1];
+    for (int i = 0; i <= n; i++) {
+        l[i] = new ArrayList<>();
+    }
+    int[] depth1 = new int[n + 1];
+    int[] depth2 = new int[n + 1];
+    while (k + 1 < n) {
+        int a = in.nextInt();
+        int b = in.nextInt();
+        l[a].add(b);
+        l[b].add(a);
+        k++;
+    }
+    int fennec = 0, snuke = 0;
+    dfs(l, depth1, 1, 0, -1);
+    dfs(l, depth2, n, 0, -1);
+    for (int i = 1; i <= n; i++) {
+        if (depth1[i] <= depth2[i]) {
+            fennec++;
+        } else {
+            snuke++;
+        }
+    }
+    if (fennec > snuke) {
+        out.print("Fennec");
+    } else {
+        out.print("Snuke");
+    }
+}

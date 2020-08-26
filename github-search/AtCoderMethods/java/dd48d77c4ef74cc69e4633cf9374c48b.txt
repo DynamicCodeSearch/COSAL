@@ -1,0 +1,28 @@
+public static long func(long n) {
+    if (n == 0)
+        return 0;
+    if (n < 10)
+        return 1;
+    
+    long d = 0;
+    
+    long num = 0;
+    for (int i = 8; i > 0; i--) {
+        if (n / (long) Math.pow(10, i) > 0) {
+            d = n / (long) Math.pow(10, i);
+            num = i + 1;
+            break;
+        }
+    }
+    
+    long a = n - d * (long) Math.pow(10, num - 1);
+    long b = func(a);
+    long e = (long) Math.pow(10, num - 2) * (num - 1);
+    if (d > 1) {
+        long f = (long) Math.pow(10, num - 1);
+        return b + d * e + f;
+    } else {
+        long c = a + 1;
+        return b + c + e;
+    }
+}

@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter w = new PrintWriter(System.out);
+    char[] ca = in.readString().toCharArray();
+    HashSet<Character> hs = new HashSet<>();
+    int i = 0;
+    for (; i < ca.length; i++) {
+        if (hs.contains(ca[i]))
+            break;
+        else
+            hs.add(ca[i]);
+    }
+    if (i == ca.length)
+        w.println("yes");
+    else
+        w.println("no");
+    w.close();
+}

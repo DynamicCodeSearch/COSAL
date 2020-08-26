@@ -1,0 +1,20 @@
+long f(long h, long w) {
+    long ans = INF;
+    for (long i = 1; i < h; i++) {
+        long j = w / 2;
+        if (i < h - i) {
+            long max = max(i * w, (h - i) * j, (h - i) * (w - j));
+            long min = min(i * w, (h - i) * j, (h - i) * (w - j));
+            ans = Math.min(ans, max - min);
+        } else {
+            long max = max(i * j, i * (w - j), (h - i) * w);
+            long min = min(i * j, i * (w - j), (h - i) * w);
+            ans = Math.min(ans, max - min);
+        }
+        long i2 = (h - i) / 2;
+        long max = max(i * w, i2 * w, (h - i - i2) * w);
+        long min = min(i * w, i2 * w, (h - i - i2) * w);
+        ans = Math.min(ans, max - min);
+    }
+    return ans;
+}

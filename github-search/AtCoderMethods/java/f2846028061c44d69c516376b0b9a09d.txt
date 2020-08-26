@@ -1,0 +1,56 @@
+void run() {
+    Scanner sc = new Scanner(System.in);
+    String A = sc.next();
+    int[][] next = new int[26][A.length()];
+    for (int i = 0; i < next.length; ++i) {
+        for (int j = 0; j < next[i].length; ++j) {
+            next[i][j] = -1;
+        }
+    }
+    int[] f = new int[A.length()];
+    boolean[][] ok = new boolean[26][A.length()];
+    Arrays.fill(f, Integer.MAX_VALUE >> 3);
+    for (int i = A.length() - 1; i >= 0; --i) {
+        for (int j = 0; j < 26; ++j) {
+            if (i + 1 < A.length())
+                next[j][i] = next[j][i + 1];
+        }
+        int c = (int) (A.charAt(i) - 'a');
+        next[c][i] = i;
+        for (int j = 0; j < 26; ++j) {
+            if (next[j][i] == -1) {
+                f[i] = 1;
+            } else {
+                f[i] = Math.min(f[i], (next[j][i] + 1 < A.length() ? f[next[j][i] + 1] : 1) + 1);
+            }
+        }
+    }
+    for (int i = A.length() - 1; i >= 0; --i) {
+        int c = (int) (A.charAt(i) - 'a');
+        next[c][i] = i;
+        for (int j = 0; j < 26; ++j) {
+            if (next[j][i] == -1) {
+                if (f[i] == 1) {
+                    ok[j][i] = true;
+                }
+            } else {
+                if (f[i] == (next[j][i] + 1 < A.length() ? f[next[j][i] + 1] : 1) + 1) {
+                    ok[j][i] = true;
+                }
+            }
+        }
+    }
+    int cur = 0;
+    int res = f[0];
+    while (res > 0) {
+        for (int i = 0; i < 26; ++i) {
+            if (ok[i][cur]) {
+                System.out.print((char) ('a' + i));
+                cur = next[i][cur] + 1;
+                --res;
+                break;
+            }
+        }
+    }
+    System.out.println();
+}

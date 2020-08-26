@@ -1,0 +1,31 @@
+public void solve(int testNumber, FastReader in, PrintWriter out) {
+    int h = in.nextInt();
+    int w = in.nextInt();
+    int n = in.nextInt();
+    int[] a = in.nextIntArray(n);
+    int r = 0, c = 0;
+    int[][] map = new int[h][w];
+    boolean right = true;
+    for (int i = 0; i < n; i++) {
+        while (a[i] != 0) {
+            if (right) {
+                map[r][c] = i + 1;
+                c++;
+            } else {
+                map[r][c] = i + 1;
+                c--;
+            }
+            if (c == -1) {
+                c = 0;
+                right = true;
+                r++;
+            } else if (c == w) {
+                c = w - 1;
+                right = false;
+                r++;
+            }
+            a[i] -= 1;
+        }
+    }
+    ArrayUtils.printMap(out, map);
+}

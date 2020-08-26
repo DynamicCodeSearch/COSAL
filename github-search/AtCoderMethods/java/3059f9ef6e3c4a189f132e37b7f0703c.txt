@@ -1,0 +1,32 @@
+public void solve() {
+    char[][] restored = new char[H][W];
+    for (int i = 0; i < H; i++) {
+        restored[i] = S[i].clone();
+    }
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            if (S[i][j] == '.')
+                toWhite(restored, H, W, i, j);
+        }
+    }
+    boolean ans = true;
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            if (S[i][j] == '#' && !seachAdjacentBlack(restored, H, W, i, j)) {
+                ans = false;
+                break;
+            }
+        }
+    }
+    if (ans) {
+        System.out.println("possible");
+        for (int i = 0; i < H; i++) {
+            for (int j = 0; j < W; j++) {
+                System.out.print(restored[i][j]);
+            }
+            System.out.println("");
+        }
+    } else {
+        System.out.println("impossible");
+    }
+}

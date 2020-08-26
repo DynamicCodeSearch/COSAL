@@ -1,0 +1,46 @@
+public static int maximumFlowFF(int[][][] cap, int source, int sink, int lim) {
+    int n = cap.length;
+    int[][] f = new int[n][n];
+    int ret = 0;
+    while (lim > 0) {
+        int[] path = new int[n + 1];
+        int[] next = new int[n + 1];
+        BitSet visited = new BitSet();
+        Arrays.fill(next, -1);
+        path[0] = source;
+        visited.set(source);
+        int pp = 1;
+        outer: while (pp > 0) {
+            int prev = path[pp - 1];
+            visited.set(prev);
+            while (++next[pp - 1] < cap[prev].length) {
+                int i = cap[prev][next[pp - 1]][0];
+                if ((cap[prev][next[pp - 1]][1] - f[prev][i] > 0 || f[i][prev] > 0) && !visited.get(i)) {
+                    path[pp] = i;
+                    next[pp] = -1;
+                    pp++;
+                    if (i == sink) {
+                        break outer;
+                    }
+                    continue outer;
+                }
+            }
+            pp--;
+        }
+        if (pp <= 0)
+            break;
+        int mincap = lim;
+        for (int i = 0; i < pp - 1; i++) {
+            mincap = Math.min(mincap, cap[path[i]][next[i]][1] - f[path[i]][path[i + 1]] > 0 ? cap[path[i]][next[i]][1] - f[path[i]][path[i + 1]] : f[path[i + 1]][path[i]]);
+        }
+        ret += mincap;
+        lim -= mincap;
+        for (int i = 0; i < pp - 1; i++) {
+            f[path[i]][path[i + 1]] += mincap;
+            f[path[i + 1]][path[i]] -= mincap;
+        }
+        if (mincap == 0)
+            throw new AssertionError(lim);
+    }
+    return ret;
+}

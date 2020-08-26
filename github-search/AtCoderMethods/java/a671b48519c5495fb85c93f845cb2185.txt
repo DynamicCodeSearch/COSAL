@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Deque<Integer> q = new ArrayDeque<Integer>();
+    Scanner scan = new Scanner(System.in);
+    String s = scan.next();
+    int n = scan.nextInt();
+    int[] index = new int[s.length()];
+    for (int i = 0; i < s.length(); i++) {
+        index[i] = i;
+    }
+    for (int i = 0; i < n; i++) {
+        int l = scan.nextInt();
+        int r = scan.nextInt();
+        for (int j = l - 1; j <= r - 1; j++) {
+            q.offerFirst(index[j]);
+        }
+        for (int j = l - 1; j <= r - 1; j++) {
+            index[j] = q.pollFirst();
+        }
+    }
+    for (int i = 0; i < s.length(); i++) {
+        System.out.print(s.charAt(index[i]));
+    }
+    System.out.println("");
+}

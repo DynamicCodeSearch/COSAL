@@ -1,0 +1,14 @@
+def calc(lst):
+    if len(lst) == 0:
+        return int(S)
+    elif len(lst) == 1:
+        return int(S[:lst[0] + 1]) + int(S[lst[0] + 1:])
+    else:
+        tmp = [S[:lst[0] + 1]]
+        for i in range(len(lst) - 1):
+            tmp.append(S[lst[i] + 1:lst[i+1] + 1])
+        tmp.append(S[lst[-1] + 1:])
+        ans = 0
+        for t in tmp:
+            ans += int(t)
+        return ans

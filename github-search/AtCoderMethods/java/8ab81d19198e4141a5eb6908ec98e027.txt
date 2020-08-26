@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    PrintWriter out = new PrintWriter(System.out);
+    long k = sc.nextLong();
+    long[] a = new long[50];
+    Arrays.fill(a, 49 + (k / 50));
+    int r = (int) (k % 50);
+    for (int i = 0; i < r; i++) {
+        a[i] += 50 - r;
+    }
+    for (int i = r; i < 50; i++) {
+        a[i] -= r;
+    }
+    out.println(50);
+    out.print(a[0]);
+    for (int i = 1; i < 50; i++) {
+        out.print(" " + a[i]);
+    }
+    out.flush();
+}

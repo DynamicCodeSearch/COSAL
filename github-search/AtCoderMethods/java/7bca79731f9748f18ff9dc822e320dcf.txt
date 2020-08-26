@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    Queue<Integer> queque = new LinkedList<Integer>();
+    HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+    int[] degree = { 1, -1, 5, -5, 10, -10 };
+    queque.add(a);
+    map.put(a, 0);
+    while (!queque.isEmpty() && !map.containsKey(b)) {
+        int now = queque.poll();
+        for (int i = 0; i < 6; i++) {
+            int newdeg = now + degree[i];
+            if (!map.containsKey(newdeg)) {
+                queque.add(newdeg);
+                map.put(newdeg, map.get(now) + 1);
+            }
+        }
+    }
+    System.out.println(map.get(b));
+}

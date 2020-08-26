@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    try (Scanner in = new Scanner(System.in)) {
+        long K = in.nextLong();
+        int N = 50;
+        long[] a = new long[N];
+        for (int i = 0; i < a.length; i++) {
+            a[i] = i;
+        }
+        long n = K / N;
+        for (int i = 0; i < a.length; i++) {
+            a[i] += n;
+        }
+        K %= N;
+        for (int i = 0; i < K; i++) {
+            a[i] += N;
+            for (int j = 0; j < a.length; j++) {
+                if (j == i) {
+                    continue;
+                }
+                a[j]--;
+            }
+        }
+        
+        print(N, a);
+    }
+}

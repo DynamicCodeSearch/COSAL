@@ -1,0 +1,33 @@
+static void solve() {
+    int n = ni(), m = ni();
+    char[][] map = nm(n, m);
+    int[][] imap = new int[n][m];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            imap[i][j] = map[i][j] == '#' ? 1 : 0;
+        }
+    }
+    int[][][] h = new int[2][n][m - 1];
+    for (int i = 0; i < m - 1; i++) {
+        for (int k = 0; k < 2; k++) {
+            int p = 0;
+            for (int j = 0; j < n; j++) {
+                if (imap[j][i] == (imap[j][i + 1] ^ k)) {
+                    p++;
+                } else {
+                    p = 0;
+                }
+                h[k][j][i] = p;
+            }
+        }
+    }
+    long ans = Math.max(n, m);
+    for (int i = 0; i < n; i++) {
+        int[] lcp = new int[m - 1];
+        for (int j = 0; j < m - 1; j++) {
+            lcp[j] = h[imap[i][j] ^ imap[i][j + 1]][i][j];
+        }
+        ans = Math.max(ans, maxRect(lcp));
+    }
+    out.println(ans);
+}

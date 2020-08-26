@@ -1,0 +1,18 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    int[] v = new int[n];
+    for (int i = 0; i < n; ++i) v[i] = in.nextInt();
+    Arrays.sort(v);
+    int[] res = new int[2];
+    int r = 0;
+    for (int i = n - 2; i >= 0; i--) {
+        if (r == 2)
+            continue;
+        if (v[i] == v[i + 1]) {
+            res[r] = v[i];
+            ++r;
+            --i;
+        }
+    }
+    out.println((long) res[0] * res[1]);
+}

@@ -1,0 +1,32 @@
+static void solve() {
+    int h = in.nextInt();
+    int w = in.nextInt();
+    int n = in.nextInt();
+    HashMap<Long, Integer> map = new HashMap<>();
+    int[] dx = { 0, 1, 1, 1, 0, -1, -1, -1, 0 };
+    int[] dy = { 1, 1, 0, -1, -1, -1, 0, 1, 0 };
+    for (int i = 0; i < n; i++) {
+        int y = in.nextInt() - 1;
+        int x = in.nextInt() - 1;
+        for (int k = 0; k < 9; k++) {
+            long ny = y + dy[k];
+            long nx = x + dx[k];
+            if (ny <= 0 || nx <= 0 || h <= ny + 1 || w <= nx + 1)
+                continue;
+            long p = ny * w + nx;
+            map.put(p, map.getOrDefault(p, 0) + 1);
+        }
+    }
+    long[] cnt = new long[10];
+    for (long p : map.keySet()) {
+        cnt[map.get(p)]++;
+    }
+    long sum = 0;
+    for (int i = 1; i < 10; i++) {
+        sum += cnt[i];
+    }
+    out.println((long) (h - 2) * (w - 2) - sum);
+    for (int i = 1; i < 10; i++) {
+        out.println(cnt[i]);
+    }
+}

@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    while (sc.hasNext()) {
+        int N = sc.nextInt();
+        String S = sc.next();
+        int x = 0;
+        int ans = 0;
+        for (int i = 0; i < N; i++) {
+            switch(S.charAt(i)) {
+                case 'I':
+                    x++;
+                    break;
+                case 'D':
+                    x--;
+                    break;
+            }
+            if (x > ans) {
+                ans = x;
+            }
+        }
+        System.out.println(ans);
+    }
+}

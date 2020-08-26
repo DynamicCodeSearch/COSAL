@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    try {
+        
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+        String[] strArr = br.readLine().split(" ");
+        double xa = Double.parseDouble(strArr[0]);
+        double ya = Double.parseDouble(strArr[1]);
+        double xb = Double.parseDouble(strArr[2]);
+        xb = xb - xa;
+        double yb = Double.parseDouble(strArr[3]);
+        yb = yb - ya;
+        double xc = Double.parseDouble(strArr[4]);
+        xc = xc - xa;
+        double yc = Double.parseDouble(strArr[5]);
+        yc = yc - ya;
+        System.out.println(Math.abs(xb * yc - yb * xc) / 2);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

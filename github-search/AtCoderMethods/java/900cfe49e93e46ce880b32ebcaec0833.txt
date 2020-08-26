@@ -1,0 +1,19 @@
+static boolean check(int y, int x, int m) {
+    int lx = x - 1;
+    int rx = x + 1;
+    int uy = y - 1;
+    int dy = y + 1;
+    if (lx >= 0 && rx < N) {
+        int ltmp = 0x1 << (lx + y * N);
+        int rtmp = 0x1 << (rx + y * N);
+        if ((m & ltmp) == 0 && (m & rtmp) > 0 || (m & ltmp) > 0 && (m & rtmp) == 0)
+            return false;
+    }
+    if (uy >= 0 && dy < N) {
+        int utmp = 0x1 << (x + uy * N);
+        int dtmp = 0x1 << (x + dy * N);
+        if ((m & utmp) == 0 && (m & dtmp) > 0 || (m & utmp) > 0 && (m & dtmp) == 0)
+            return false;
+    }
+    return true;
+}

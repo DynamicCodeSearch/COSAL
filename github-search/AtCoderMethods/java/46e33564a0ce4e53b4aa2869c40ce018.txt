@@ -1,0 +1,6 @@
+private static int binarySearch(int from, int to) {
+    if (from == to)
+        return from;
+    int index = (from + to) / 2;
+    return isNeeded(index) ? binarySearch(from, index) : binarySearch(index + 1, to);
+}

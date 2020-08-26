@@ -1,0 +1,39 @@
+static void run() {
+    Scanner scan = new Scanner(System.in);
+    String s = scan.next();
+    String tmp;
+    StringBuilder eraser = new StringBuilder();
+    String[] erasera = new String[10000];
+    erasera = s.split("eraser");
+    for (int i = 0; i < erasera.length; i++) {
+        eraser.append(erasera[i]);
+    }
+    StringBuilder dreamer = new StringBuilder();
+    String[] dreamera = new String[10000];
+    tmp = eraser.toString();
+    dreamera = tmp.split("erase");
+    for (int i = 0; i < dreamera.length; i++) {
+        dreamer.append(dreamera[i]);
+    }
+    StringBuilder erase = new StringBuilder();
+    String[] erasea = new String[10000];
+    tmp = dreamer.toString();
+    erasea = tmp.split("dreamer");
+    for (int i = 0; i < erasea.length; i++) {
+        erase.append(erasea[i]);
+    }
+    StringBuilder dream = new StringBuilder();
+    String[] dreama = new String[10000];
+    tmp = erase.toString();
+    dreama = tmp.split("dream");
+    for (int i = 0; i < dreama.length; i++) {
+        dream.append(dreama[i]);
+    }
+    dream.append("*");
+    tmp = dream.toString();
+    if (tmp.equals("*")) {
+        System.out.println("YES");
+    } else {
+        System.out.println("NO");
+    }
+}

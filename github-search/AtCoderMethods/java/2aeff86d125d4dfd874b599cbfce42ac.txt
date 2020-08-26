@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner stdIn = new Scanner(System.in);
+    int result = 0;
+    int now = 0;
+    int N = stdIn.nextInt();
+    int T = stdIn.nextInt();
+    int[] A = new int[N];
+    for (int i = 0; i < N; ++i) {
+        A[i] = stdIn.nextInt();
+    }
+    for (int i = 0; i < N; ++i) {
+        if (now < A[i]) {
+            result += T;
+        } else {
+            result += (A[i] + T) - now;
+        }
+        now = A[i] + T;
+    }
+    System.out.println(result);
+}

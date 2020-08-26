@@ -1,0 +1,27 @@
+void solve() {
+    int n = ni();
+    amp = (ArrayList<Integer>[]) new ArrayList[n];
+    for (int i = 0; i < n; i++) amp[i] = new ArrayList<>();
+    buildGraph(n - 1);
+    b = new boolean[n];
+    parent = new int[n];
+    dist = new int[n];
+    int temp = n - 1;
+    int cnt = 0;
+    dfs(0);
+    ArrayList<Integer> a = new ArrayList<>();
+    a.add(temp);
+    while (parent[temp] != 0) {
+        temp = parent[temp];
+        a.add(temp);
+    }
+    
+    
+    
+    cnt = dist[a.get(((a.size() - 1) / 2))];
+    
+    if (cnt >= (n - cnt)) {
+        System.out.println("Snuke");
+    } else
+        System.out.println("Fennec");
+}

@@ -1,0 +1,13 @@
+def main():
+    N = int(input())
+    S = input()
+
+    for a, b in [(1, 1), (1, -1), (-1, 1), (-1, -1)]:
+        ans = [None] * N
+        ans[0], ans[1] = a, b
+
+        if solve(S, ans):
+            print(*["S" if x == 1 else "W" for x in ans], sep="")
+            return
+
+    print(-1)

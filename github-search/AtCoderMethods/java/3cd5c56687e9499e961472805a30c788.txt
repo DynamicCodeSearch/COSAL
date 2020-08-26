@@ -1,0 +1,44 @@
+public static void main(String[] args) throws Exception {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    int Q = sc.nextInt();
+    long[] x = new long[N];
+    long[] h = new long[N];
+    long[] r = new long[N];
+    for (int i = 0; i < N; i++) {
+        x[i] = sc.nextInt();
+        r[i] = sc.nextInt();
+        h[i] = sc.nextInt();
+    }
+    for (int i = 0; i < Q; i++) {
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        double sum = 0;
+        for (int j = 0; j < N; j++) {
+            long end = x[j] + h[j];
+            if (end < a || b < x[j]) {
+            } else if (a <= x[j] && end <= b) {
+                
+                sum += r[j] * r[j] * h[j];
+            } else if (x[j] < a && b < end) {
+                
+                long tmphL = end - a;
+                double tmprL = r[j] * (double) tmphL / (double) h[j];
+                long tmphS = end - b;
+                double tmprS = r[j] * (double) tmphS / (double) h[j];
+                sum += (tmphL * tmprL * tmprL) - (tmphS * tmprS * tmprS);
+            } else if (a <= x[j] && b <= end) {
+                long tmph = end - b;
+                double tmpr = r[j] * (double) tmph / (double) h[j];
+                sum += r[j] * r[j] * h[j] - tmpr * tmpr * tmph;
+            } else if (x[j] <= a && end <= b) {
+                long tmph = end - a;
+                double tmpr = r[j] * (double) tmph / (double) h[j];
+                sum += tmpr * tmpr * tmph;
+            } else {
+                throw new Exception();
+            }
+        }
+        System.out.println(sum * Math.PI / 3);
+    }
+}

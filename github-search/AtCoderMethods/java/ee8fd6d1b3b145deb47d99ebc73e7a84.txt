@@ -1,0 +1,29 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[] x = new int[n - 1];
+    int[] y = new int[n - 1];
+    path = new ArrayList[n];
+    for (int i = 0; i < n; i++) {
+        path[i] = new ArrayList<Integer>();
+    }
+    for (int i = 0; i < n - 1; i++) {
+        x[i] = sc.nextInt() - 1;
+        y[i] = sc.nextInt() - 1;
+        path[x[i]].add(y[i]);
+        path[y[i]].add(x[i]);
+    }
+    int q = sc.nextInt();
+    int[] a = new int[q];
+    int[] b = new int[q];
+    for (int i = 0; i < q; i++) {
+        a[i] = sc.nextInt() - 1;
+        b[i] = sc.nextInt() - 1;
+    }
+    parent = new int[MAX_LOG][n];
+    depth = new int[n];
+    init(n);
+    for (int i = 0; i < q; i++) {
+        System.out.println(depth[a[i]] + depth[b[i]] - 2 * depth[lca(a[i], b[i])] + 1);
+    }
+}

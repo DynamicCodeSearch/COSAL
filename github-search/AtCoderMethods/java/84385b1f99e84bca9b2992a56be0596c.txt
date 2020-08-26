@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    long a = sc.nextInt();
+    long b = sc.nextInt();
+    long k = sc.nextInt();
+    long l = sc.nextInt();
+    if ((double) b / l > k) {
+        System.out.println(a * k);
+    } else {
+        long n = k / l;
+        long m = k - n * l;
+        long result1 = (n + 1) * b;
+        long result2 = n * b + m * a;
+        if (result1 >= result2) {
+            System.out.println(result2);
+        } else {
+            System.out.println(result1);
+        }
+    }
+}

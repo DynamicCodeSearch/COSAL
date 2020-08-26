@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int R = sc.nextInt();
+    int C = sc.nextInt();
+    String[] in = new String[R + 2];
+    in[0] = "...............................................................................................";
+    in[R + 1] = "...............................................................................................";
+    for (int i = 1; i <= R; i++) {
+        in[i] = "." + sc.next() + ".";
+    }
+    for (int i = 1; i <= R; i++) {
+        for (int j = 1; j <= C; j++) {
+            if (in[i].charAt(j) == '#')
+                System.out.print('#');
+            else {
+                int cnt = 0;
+                int[] dr = { 0, 0, 1, -1, -1, -1, 1, 1 };
+                int[] dc = { 1, -1, 0, 0, -1, 1, -1, 1 };
+                for (int k = 0; k < 8; k++) {
+                    cnt += (in[i + dr[k]].charAt(j + dc[k]) == '#') ? 1 : 0;
+                }
+                System.out.print(cnt);
+            }
+        }
+        System.out.println();
+    }
+    sc.close();
+}

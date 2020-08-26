@@ -1,0 +1,40 @@
+public static void main(String[] args) throws NumberFormatException, IOException {
+    
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String str = br.readLine();
+    int A = Integer.parseInt(str.substring(0, str.indexOf(" ")));
+    int B = Integer.parseInt(str.substring(str.indexOf(" ") + 1));
+    String[][] N = new String[A][A];
+    String[][] M = new String[B][B];
+    for (int i = 0; i < A; i++) {
+        str = br.readLine();
+        for (int j = 0; j < A; j++) {
+            N[i][j] = str.substring(j, j + 1);
+        }
+    }
+    for (int i = 0; i < B; i++) {
+        str = br.readLine();
+        for (int j = 0; j < B; j++) {
+            M[i][j] = str.substring(j, j + 1);
+        }
+    }
+    for (int i = 0; i < A; i++) {
+        for (int j = 0; j < A; j++) {
+            Ms: if (N[i][j].equals(M[0][0])) {
+                for (int i2 = 0; i2 < B; i2++) {
+                    for (int j2 = 0; j2 < B; j2++) {
+                        if (i + i2 >= A || j + j2 >= A)
+                            break Ms;
+                        else if (N[i + i2][j + j2].equals(M[i2][j2]))
+                            ;
+                        else
+                            break Ms;
+                    }
+                }
+                System.out.println("Yes");
+                System.exit(0);
+            }
+        }
+    }
+    System.out.println("No");
+}

@@ -1,0 +1,10 @@
+static int dp(int i, int msk) {
+    if (Integer.bitCount(msk) == r)
+        return 0;
+    if (mem[i][msk] != -1)
+        return mem[i][msk];
+    int ans = inf;
+    for (int j = 0; j < r; j++) if ((msk & (1 << j)) == 0)
+        ans = Math.min(ans, adj[a[i]][a[j]] + dp(j, msk | (1 << j)));
+    return mem[i][msk] = ans;
+}

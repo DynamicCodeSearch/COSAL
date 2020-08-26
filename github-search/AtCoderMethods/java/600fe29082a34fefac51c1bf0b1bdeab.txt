@@ -1,0 +1,23 @@
+public static long solve(long n, long s) {
+    long sqrtN = sqrtFloor(n);
+    for (long b = 2; b <= sqrtN; b++) {
+        if (f(b, n) == s) {
+            return b;
+        }
+    }
+    if (n < s) {
+        return -1;
+    }
+    if (n == s) {
+        return n + 1;
+    }
+    ArrayList<Long> divisors = divisors(n - s);
+    long min = Long.MAX_VALUE;
+    for (long d : divisors) {
+        long b = d + 1;
+        if (f(b, n) == s) {
+            min = Math.min(min, b);
+        }
+    }
+    return min == Long.MAX_VALUE ? -1 : min;
+}

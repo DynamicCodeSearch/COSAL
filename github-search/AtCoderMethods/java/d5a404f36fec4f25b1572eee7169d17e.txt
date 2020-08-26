@@ -1,0 +1,17 @@
+public int read() {
+    if (numChars == -1) {
+        throw new InputMismatchException();
+    }
+    if (curChar >= numChars) {
+        curChar = 0;
+        try {
+            numChars = stream.read(buf);
+        } catch (IOException e) {
+            throw new InputMismatchException();
+        }
+        if (numChars <= 0) {
+            return -1;
+        }
+    }
+    return buf[curChar++];
+}

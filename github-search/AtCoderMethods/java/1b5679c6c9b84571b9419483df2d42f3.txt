@@ -1,0 +1,33 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    boolean[][] friend = new boolean[N][N];
+    for (int i = 0; i < M; i++) {
+        int x = sc.nextInt() - 1;
+        int y = sc.nextInt() - 1;
+        friend[x][y] = true;
+        friend[y][x] = true;
+    }
+    int ans = 0;
+    for (int i = 1; i < (int) Math.pow(2, N); i++) {
+        boolean[] assemblyman = new boolean[N];
+        int member = 0;
+        for (int j = 0; j < N; j++) {
+            if ((i & (1 << j)) != 0) {
+                assemblyman[j] = true;
+                member++;
+            }
+        }
+        boolean flg = true;
+        for (int j = 0; j < N; j++) {
+            for (int k = j + 1; k < N; k++) {
+                if (assemblyman[j] && assemblyman[k] && !friend[j][k])
+                    flg = false;
+            }
+        }
+        if (flg)
+            ans = Math.max(ans, member);
+    }
+    System.out.println(ans);
+}

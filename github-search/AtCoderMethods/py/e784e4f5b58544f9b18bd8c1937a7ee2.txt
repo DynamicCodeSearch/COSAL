@@ -1,0 +1,25 @@
+def C_Make_a_Rectangle(lst):
+    N = lst[0]
+    A = lst[1:]
+
+    from collections import Counter, deque
+    c = sorted(Counter(A).items(), reverse=True)  
+
+
+    ans = deque([])
+    for k, v in c:
+        if v == 1:
+            continue
+        elif v == 2 or v == 3:
+            ans.append(k)
+            if len(ans) == 2:
+                break
+        else:
+            ans.append(k)
+            ans.append(k)
+            break
+
+    if len(ans) < 2:
+        return 0
+    else:
+        return ans[0] * ans[1]

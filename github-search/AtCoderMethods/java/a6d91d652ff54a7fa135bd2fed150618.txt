@@ -1,0 +1,19 @@
+public static void main(String[] args) throws FileNotFoundException {
+    Scanner sc = new Scanner(System.in);
+    int n = readI(sc);
+    int[] num = new int[n];
+    for (int i = 0; i < n; i++) {
+        num[i] = readI(sc) - 1;
+    }
+    int prev = 0;
+    int cur = num[0];
+    int cnt = 1;
+    while (cur != 1 && num[cur] != -1) {
+        prev = cur;
+        cur = num[cur];
+        num[prev] = -1;
+        cnt += 1;
+    }
+    puts(cur == 1 ? cnt : -1);
+    new Solver();
+}

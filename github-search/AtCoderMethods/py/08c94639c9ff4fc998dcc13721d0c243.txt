@@ -1,0 +1,13 @@
+def solve():
+    n = read_int()
+    a = read_int_list()
+    res = 2 * 10 ** 10
+    x = 0
+    y = sum(a)
+    for i in range(n - 1):
+        x += a[i]
+        y -= a[i]
+        d = abs(x-y)
+        if res > d:
+            res = d
+    return res

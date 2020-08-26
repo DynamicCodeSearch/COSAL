@@ -1,0 +1,13 @@
+public void solve(InputReader in, PrintWriter out) {
+    int k = in.nextInt(), s = in.nextInt();
+    int x, y, z;
+    int ans = 0;
+    for (x = 0; x <= k && x <= s; ++x) {
+        for (y = 0; y <= k && x + y <= s; ++y) {
+            z = s - (x + y);
+            if (z >= 0 && z <= k)
+                ++ans;
+        }
+    }
+    out.println(ans);
+}

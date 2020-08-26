@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    
+    Scanner sc = new Scanner(System.in);
+    long a = sc.nextLong();
+    long k = sc.nextLong();
+    long ans = a;
+    long b = 2000000000000L;
+    
+    int i = 1;
+    if (k == 0) {
+        System.out.println(2000000000000L - a);
+        System.exit(0);
+    }
+    if (ans >= 2000000000000L) {
+        System.out.println("0");
+    }
+    for (; ; i++) {
+        ans += ans * k + 1;
+        if (ans >= b) {
+            break;
+        }
+    }
+    System.out.println(i);
+}

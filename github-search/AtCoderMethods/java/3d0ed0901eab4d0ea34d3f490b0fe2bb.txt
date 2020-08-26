@@ -1,0 +1,9 @@
+public int currentRankOf(int i) {
+    int res = 0;
+    for (int p = size + i; p > 1; p /= 2) {
+        if (p % 2 == 1) {
+            res = Math.max(res, d[p - 1]);
+        }
+    }
+    return (res);
+}

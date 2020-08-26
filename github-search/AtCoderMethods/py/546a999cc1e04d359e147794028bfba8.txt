@@ -1,0 +1,15 @@
+def search(tansaku, next_list):
+    global count, stack
+    for node in next_list:
+        tmp_tansaku = dcopy(tansaku)
+        tmp_node = tmp_tansaku[0]
+        houmonzumi = tmp_tansaku[1]
+        if node in houmonzumi:
+            pass
+        else:
+            houmonzumi.append(node)
+            if len(houmonzumi) == N:
+                count += 1
+            else:
+                tmp_node.append(node)
+                stack.append([tmp_node, houmonzumi])

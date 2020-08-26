@@ -1,0 +1,39 @@
+private void doit() {
+    Scanner sc = new Scanner(System.in);
+    while (sc.hasNext()) {
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        int[][] data = new int[m][2];
+        for (int i = 0; i < m; i++) {
+            data[i][0] = sc.nextInt();
+            data[i][1] = sc.nextInt();
+        }
+        boolean[][] ans = new boolean[n + 1][2];
+        boolean flg = false;
+        for (int i = 0; i < m; i++) {
+            if (data[i][0] == 1) {
+                ans[data[i][1]][0] = true;
+            }
+            if (data[i][1] == 1) {
+                ans[data[i][0]][0] = true;
+            }
+            if (data[i][0] == n) {
+                ans[data[i][1]][1] = true;
+            }
+            if (data[i][1] == n) {
+                ans[data[i][0]][1] = true;
+            }
+        }
+        for (int i = 0; i < ans.length; i++) {
+            if (ans[i][0] && ans[i][1]) {
+                flg = true;
+                break;
+            }
+        }
+        if (flg) {
+            System.out.println("POSSIBLE");
+        } else {
+            System.out.println("IMPOSSIBLE");
+        }
+    }
+}

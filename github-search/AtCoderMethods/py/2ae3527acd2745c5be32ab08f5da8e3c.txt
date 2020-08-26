@@ -1,0 +1,7 @@
+def solve(N, a):
+  n4 = len([v for v in a if v % 4 == 0])                
+  n2 = len([v for v in a if v % 4 != 0 and v % 2 == 0]) 
+  n1 = len([v for v in a if v % 2 != 0])                
+  na = n4 + 1
+  if n2 > 0: na -= 1
+  return "Yes" if n1 <= na else "No"

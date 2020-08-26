@@ -1,0 +1,12 @@
+public static void main(String[] args) {
+    h = new int[N];
+    int hMax = 0;
+    for (int i = 0; i < N; i++) {
+        h[i] = Integer.parseInt(scan.next());
+        hMax = (h[i] > hMax ? h[i] : hMax);
+    }
+    int maxCount = (hMax % B == 0 ? hMax / B : hMax / B + 1);
+    int ans = binarySearch(1, maxCount);
+    System.out.println(ans);
+    scan.close();
+}

@@ -1,0 +1,12 @@
+@Override
+public int compareTo(Object o) {
+    Magic m = (Magic) o;
+    int ddc = Integer.compare(this.diffDir, m.diffDir);
+    if (ddc != 0) {
+        return ddc;
+    }
+    if (m.diffDir > 0) {
+        return -Long.compare(this.down, m.down);
+    }
+    return Long.compare(this.up, m.up);
+}

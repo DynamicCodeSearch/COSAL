@@ -1,0 +1,19 @@
+static void Method(ArrayList<Integer> num, ArrayList<String> param) {
+    int total = 0;
+    int count = 0;
+    int tyouka = 0;
+    for (int i = 1; i <= num.get(0); i++) {
+        total += num.get(i);
+    }
+    if (total % num.get(0) != 0) {
+        System.out.println(-1);
+        System.exit(0);
+    }
+    int bar = total / num.get(0);
+    for (int i = 1; i <= num.get(0); i++) {
+        tyouka = num.get(i) - bar + tyouka;
+        if (tyouka != 0)
+            count++;
+    }
+    System.out.println(count);
+}

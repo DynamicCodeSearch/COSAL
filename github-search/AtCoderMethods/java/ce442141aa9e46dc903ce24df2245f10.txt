@@ -1,0 +1,21 @@
+
+public void run() throws IOException {
+    
+    int TEST_CASE = 1;
+    while (TEST_CASE-- != 0) {
+        int h = io.nextInt();
+        int w = io.nextInt();
+        int hx = io.nextInt();
+        int wx = io.nextInt();
+        Combination comb = new Combination(2 * 100000 + 1000, mod);
+        long ans = 0;
+        for (int i = 0; i < h - hx; i++) {
+            long x = comb.get(i + wx, wx);
+            if (i > 0)
+                x -= comb.get(i - 1 + wx, wx);
+            x %= mod;
+            ans += x * comb.get(w + h - 2 - (i + wx), w - 1 - wx) % mod;
+        }
+        io.out.println((ans % mod + mod) % mod);
+    }
+}

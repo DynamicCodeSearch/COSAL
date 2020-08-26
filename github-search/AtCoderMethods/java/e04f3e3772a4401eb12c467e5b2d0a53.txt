@@ -1,0 +1,6 @@
+public static void main(String[] args) {
+    int n = s.nextInt();
+    Counter<String> c = new Counter<>(n);
+    for (int i = 0; i < n; i++) c.add(s.next());
+    System.out.println(c.map.entrySet().stream().max((o1, o2) -> o1.getValue() - o2.getValue()).get().getKey());
+}

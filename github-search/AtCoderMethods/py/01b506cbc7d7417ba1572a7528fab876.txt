@@ -1,0 +1,7 @@
+def ncr(n, r):
+    if n==r or r==0:
+        return 1
+    else:
+        numelator = factorial[n]
+        denominator = factorial_inv_rev[-r] * factorial_inv_rev[r-n]
+        return numelator * denominator % modulus

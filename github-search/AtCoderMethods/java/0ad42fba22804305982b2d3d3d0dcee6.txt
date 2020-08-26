@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int N = in.nextInt(), M = in.nextInt();
+    long[][] student = new long[N][2], check = new long[M][2];
+    int larger;
+    for (int x = 0; x < M + N; x++) {
+        if (x < N) {
+            student[x][0] = in.nextLong();
+            student[x][1] = in.nextLong();
+        } else {
+            check[x - N][0] = in.nextLong();
+            check[x - N][1] = in.nextLong();
+        }
+    }
+    for (int x = 0; x < N; x++) {
+        long cDist = 0;
+        int cCheck = 0;
+        for (int y = 0; y < M; y++) {
+            if (y == 0) {
+                cDist = Math.abs(student[x][0] - check[y][0]) + Math.abs(student[x][1] - check[y][1]);
+                cCheck = 0;
+                continue;
+            }
+            long distance = Math.abs(student[x][0] - check[y][0]) + Math.abs(student[x][1] - check[y][1]);
+            if (distance < cDist) {
+                cDist = distance;
+                cCheck = y;
+            }
+        }
+        System.out.println(cCheck + 1);
+    }
+}

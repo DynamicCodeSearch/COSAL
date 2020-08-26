@@ -1,0 +1,13 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String[] inputs = sc.nextLine().split(" ");
+    int W = Integer.parseInt(inputs[0]);
+    int a = Integer.parseInt(inputs[1]);
+    int b = Integer.parseInt(inputs[2]);
+    if ((a <= b && b <= a + W) || (a <= b + W && b + W <= a + W)) {
+        System.out.println(0);
+    } else {
+        int result = Math.min(Math.abs(b - a - W), Math.abs(b + W - a));
+        System.out.println(result);
+    }
+}

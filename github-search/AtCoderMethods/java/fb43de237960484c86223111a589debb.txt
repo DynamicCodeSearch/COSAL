@@ -1,0 +1,29 @@
+static long[][] go(int[] a, int[][] qs, int ind) {
+    int Q = qs.length;
+    int w = a.length;
+    long[] cum = new long[w + 1];
+    for (int i = 0; i < w; i++) {
+        cum[i + 1] = cum[i] + a[i];
+    }
+    Arrays.sort(qs, new Comparator<int[]>() {
+
+        public int compare(int[] a, int[] b) {
+            return a[ind] - b[ind];
+        }
+    });
+    long[] maxs = new long[w + 1];
+    Arrays.fill(maxs, -500000000);
+    maxs[0] = 0;
+    long[][] tw = new long[Q][];
+    int x = 0;
+    for (int i = 0; i < Q; i++) {
+        while (x <= qs[i][ind]) {
+            for (int j = 1; j <= x + 1; j++) {
+                maxs[j] = Math.max(maxs[j], cum[x + 1] - cum[x + 1 - j]);
+            }
+            x++;
+        }
+        tw[qs[i][2]] = Arrays.copyOf(maxs, w + 1);
+    }
+    return tw;
+}

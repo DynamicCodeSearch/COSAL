@@ -1,0 +1,32 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    try {
+        String str = br.readLine();
+        int N = Integer.parseInt(str);
+        str = br.readLine();
+        String[] s = str.split(" ", 0);
+        int[] a = new int[8];
+        for (int i = 0; i < 8; i++) {
+            a[i] = 0;
+        }
+        int count = 0;
+        int over = 0;
+        for (int i = 0; i < N; i++) {
+            int x = Integer.parseInt(s[i]);
+            if (x >= 3200) {
+                over++;
+            } else if (a[x / 400] == 0) {
+                count++;
+                a[x / 400]++;
+            }
+        }
+        int min = count;
+        if (min == 0)
+            min = 1;
+        int max = over + count;
+        System.out.println(min + " " + max);
+    
+    } catch (Exception e) {
+        System.exit(0);
+    }
+}

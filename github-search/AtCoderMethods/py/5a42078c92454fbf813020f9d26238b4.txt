@@ -1,0 +1,21 @@
+def solve():
+
+    c = Counter()
+    n = read_int()
+    a = read_int_list()
+    for x in a:
+        if x % 2 == 1:
+            c[0] += 1
+        elif x % 4 == 2:
+            c[1] += 1
+        else:
+            c[2] += 1
+    if c[0] > c[2] + 1:
+        return 'No'
+    elif c[0] == c[2] + 1:
+        if c[1] > 0:
+            return 'No'
+        else:
+            return 'Yes'
+    else:
+        return 'Yes'

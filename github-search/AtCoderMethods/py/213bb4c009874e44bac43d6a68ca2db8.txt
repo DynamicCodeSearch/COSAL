@@ -1,0 +1,17 @@
+def main():
+    TXa, TYa, TXb, TYb, T, V = map(int, input().split())
+    N = int(input())
+    XY = tuple(tuple(map(int, input().split())) for _ in range(N))
+
+    for i in range(N):
+        x = XY[i][0]
+        y = XY[i][1]
+        dist = math.sqrt((x - TXa) ** 2 + (y - TYa) ** 2)
+        dist += math.sqrt((TXb - x) ** 2 + (TYb - y) ** 2)
+        if dist <= T * V:
+            ans = 'YES'
+            break
+    else:
+        ans = 'NO'
+
+    print(ans)

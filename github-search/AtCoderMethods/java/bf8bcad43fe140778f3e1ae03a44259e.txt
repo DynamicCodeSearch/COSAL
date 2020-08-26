@@ -1,0 +1,37 @@
+private static long solve(int n, int r, int[] s, long[][] d) {
+    assert 0 == tr(d);
+    
+    for (int k = 0; k < n; k++) for (int i = 0; i < n; i++) for (int j = 0; j < n; j++) if (d[i][j] > d[i][k] + d[k][j])
+        d[i][j] = d[i][k] + d[k][j];
+    assert 0 == tr(d);
+    
+    ToLongFunction<Integer> minimize = new ToLongFunction<Integer>() {
+
+        @Override
+        public long applyAsLong(Integer k) {
+            if (k == n - 1) {
+                
+                long ans = 0;
+                for (int i = 1; i < r; i++) ans += d[s[i - 1]][s[i]];
+                return ans;
+            }
+            
+            long ans = Long.MAX_VALUE;
+            for (int i = k; i < r; i++) {
+                int t = s[i];
+                s[i] = s[k];
+                s[k] = t;
+                long subans = this.applyAsLong(k + 1);
+                ans = Math.min(ans, subans);
+                t = s[i];
+                s[i] = s[k];
+                s[k] = t;
+            }
+            return ans;
+        }
+    };
+    
+    
+    long min = dfs(0, new boolean[r], s, d, -1);
+    return min;
+}

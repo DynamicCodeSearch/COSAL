@@ -1,0 +1,25 @@
+def dfs(v, N, visited):
+    all_visited = True
+
+    for i in range(N):
+        if visited[i] == False:
+            all_visited = False
+
+    if all_visited:
+        return 1
+
+    ret = 0
+
+    for i in range(N):
+        if graph[v][i] == False:
+
+            continue
+        if visited[i] == True:
+
+            continue
+
+        visited[i] = True
+        ret += dfs(i, N, visited)
+        visited[i] = False
+
+    return ret

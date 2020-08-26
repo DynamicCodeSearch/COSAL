@@ -1,0 +1,9 @@
+public String nextToken() throws IOException {
+    StringBuilder sb = new StringBuilder();
+    while ((c = in.read()) != -1 && Character.isWhitespace(c)) ;
+    while (c != -1 && !Character.isWhitespace(c)) {
+        sb.append((char) c);
+        c = in.read();
+    }
+    return sb.toString();
+}

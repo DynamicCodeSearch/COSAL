@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    int N = sc.nextInt();
+    boolean[] flag = new boolean[9];
+    int color = 0;
+    int over3200 = 0;
+    for (int i = 0; i < N; i++) {
+        int a = sc.nextInt();
+        for (int j = 1; j <= 8; j++) {
+            if (a < 400 * j && a >= 400 * (j - 1) && !flag[j]) {
+                color++;
+                flag[j] = true;
+            }
+        }
+        if (a >= 3200) {
+            over3200++;
+        }
+    }
+    if (color != 0) {
+        System.out.print(color);
+    } else {
+        System.out.print(1);
+    }
+    System.out.print(" ");
+    System.out.println(color + over3200);
+}

@@ -1,0 +1,24 @@
+def dis2w(dis):
+    THRESHOLDS = tuple(60 * x for x in (
+         0,
+         0.25,
+         1.55,
+         3.35,
+         5.45,
+         7.95,
+        10.75,
+        13.85,
+        17.15,
+        20.75,
+        24.45,
+        28.45,
+        32.65
+    ))
+
+    for i in range(len(THRESHOLDS) - 1):
+        lower = THRESHOLDS[i]
+        upper = THRESHOLDS[i+1]
+        if lower <= dis < upper:
+            return i
+
+    return len(THRESHOLDS) - 1

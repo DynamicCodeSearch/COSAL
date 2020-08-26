@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int N = scanner.nextInt();
+    int[] a = new int[N];
+    int total = 0;
+    for (int i = 0; i < a.length; i++) {
+        a[i] = scanner.nextInt();
+        total += a[i];
+    }
+    ;
+    int ave = Math.round((float) total / (float) N);
+    long ans = 0;
+    for (int i = 0; i < a.length; i++) {
+        ans += (a[i] - ave) * (a[i] - ave);
+    }
+    System.out.println(ans);
+}

@@ -1,0 +1,24 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    
+    
+    
+    int N = Integer.parseInt(br.readLine());
+    int[] ii0 = new int[N + 1];
+    ii0[0] = 0;
+    for (int i = 1; i < N + 1; i++) {
+        ii0[i] = Integer.parseInt(br.readLine());
+    }
+    int i = 1;
+    int count = 0;
+    while (i != 2) {
+        i = ii0[i];
+        count += 1;
+        if (count > N + 1) {
+            System.out.println(-1);
+            return;
+        }
+    }
+    System.out.println(count);
+    return;
+}

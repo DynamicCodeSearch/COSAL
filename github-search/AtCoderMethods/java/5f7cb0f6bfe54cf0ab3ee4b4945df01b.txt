@@ -1,0 +1,39 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    long W = sc.nextInt();
+    ArrayList<ArrayList<Integer>> value = new ArrayList<>();
+    for (int i = 0; i < 4; i++) value.add(new ArrayList<>());
+    int w1 = sc.nextInt();
+    value.get(0).add(sc.nextInt());
+    for (int i = 1; i < N; i++) {
+        int w = sc.nextInt();
+        value.get(w - w1).add(sc.nextInt());
+    }
+    for (int i = 0; i < 4; i++) Collections.sort(value.get(i), Comparator.reverseOrder());
+    long ans = 0;
+    HashMap<Long, Integer> used = new HashMap<>();
+    used.put(0l, 0);
+    for (int i = 0; i < 4; i++) {
+        HashMap<Long, Integer> next = new HashMap<>();
+        Iterator<Long> it = used.keySet().iterator();
+        while (it.hasNext()) {
+            long w = it.next();
+            int v = used.get(w);
+            next.put(w, v);
+            for (int vv : value.get(i)) {
+                w += w1 + i;
+                if (w > W)
+                    break;
+                v += vv;
+                Integer check = next.get(w);
+                if (check == null || check < v)
+                    next.put(w, v);
+                ans = Math.max(ans, v);
+            }
+        }
+        used = next;
+    }
+    System.out.println(ans);
+    sc.close();
+}

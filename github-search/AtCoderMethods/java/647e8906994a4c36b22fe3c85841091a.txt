@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int n = scanner.nextInt();
+    int[] b = new int[n];
+    for (int i = 1; i < n; i++) {
+        b[i] = scanner.nextInt();
+    }
+    int[] pay = new int[n];
+    for (int i = n - 1; i >= 0; i--) {
+        int max = 0;
+        int min = Integer.MAX_VALUE;
+        boolean check = false;
+        for (int j = i + 1; j < n; j++) {
+            if (i == b[j] - 1) {
+                max = Math.max(max, pay[j]);
+                min = Math.min(min, pay[j]);
+                check = true;
+            }
+        }
+        if (check) {
+            pay[i] = max + min + 1;
+        } else {
+            pay[i] = 1;
+        }
+    }
+    System.out.println(pay[0]);
+}

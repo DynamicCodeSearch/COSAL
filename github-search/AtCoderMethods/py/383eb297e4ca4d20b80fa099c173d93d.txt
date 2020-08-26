@@ -1,0 +1,19 @@
+def dfs(g,s,e):
+    vis = []
+    q = []
+    vis.append(s)
+    for i in range(len(g[s])):
+        q.append(g[s][i])
+    while len(q):
+        ne = q.pop()
+        vis.append(ne)
+        if ne == e:
+            return 1
+        for i in range(len(g[ne])):
+            if g[ne][i] in vis:
+                continue
+            if g[ne][i] == e:
+                return 1
+            q.append(g[ne][i])
+            vis
+    return 0

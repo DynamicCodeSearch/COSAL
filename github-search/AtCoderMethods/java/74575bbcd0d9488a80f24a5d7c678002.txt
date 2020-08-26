@@ -1,0 +1,41 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String in1 = sc.nextLine();
+    String in2 = sc.nextLine();
+    sc.close();
+    if (in1.equals(in2)) {
+        System.out.println("You can win");
+        return;
+    }
+    if (in1.indexOf("@") == -1 && in2.indexOf("@") == -1) {
+        if (in1.equals(in2)) {
+            System.out.println("You can win");
+            return;
+        } else {
+            System.out.println("You will lose");
+            return;
+        }
+    }
+    char in1ToChar;
+    char in2ToChar;
+    for (int i = 0; i < in1.length(); i++) {
+        in1ToChar = in1.charAt(i);
+        in2ToChar = in2.charAt(i);
+        if (in1ToChar == '@' || in2ToChar == '@') {
+            if (!WILD_CARD.contains(in1ToChar)) {
+                System.out.println("You will lose");
+                return;
+            }
+            if (!WILD_CARD.contains(in2ToChar)) {
+                System.out.println("You will lose");
+                return;
+            }
+        } else {
+            if (in1ToChar != in2ToChar) {
+                System.out.println("You will lose");
+                return;
+            }
+        }
+    }
+    System.out.println("You can win");
+}

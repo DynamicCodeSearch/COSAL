@@ -1,0 +1,33 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    int n = in.nextInt();
+    int[][] arr = new int[n][n];
+    int[][] d = new int[n][n];
+    for (int i = 0; i < n; i++) {
+        arr[i] = in.readIntArray(n);
+        System.arraycopy(arr[i], 0, d[i], 0, n);
+    }
+    for (int k = 0; k < n; k++) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (d[i][j] > d[i][k] + d[k][j]) {
+                    out.println(-1);
+                    return;
+                }
+            }
+        }
+    }
+    long ans = 0;
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {
+            boolean eq = false;
+            for (int k = 0; k < n; k++) {
+                if (k != i && k != j && d[i][j] == d[i][k] + d[k][j]) {
+                    eq = true;
+                }
+            }
+            if (!eq)
+                ans += d[i][j];
+        }
+    }
+    out.println(ans);
+}

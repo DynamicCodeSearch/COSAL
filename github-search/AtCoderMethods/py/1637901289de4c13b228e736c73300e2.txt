@@ -1,0 +1,32 @@
+def main():
+
+    A, B, C, D, E, F = map(int, input().split())
+
+    ans_w = 0
+    ans_s = 0
+    for a, b, c in product(range(31),
+                           range(31),
+                           range(101)):
+        for d in range(101):
+            w = (100 * A * a) + (100 * B * b)
+            s = C * c + D * d
+
+            if w == 0 or (w + s) > F:
+                break
+
+
+            if s * 100 == w * E:
+                print(w + s, s)
+                return
+
+
+
+            if s * 100 > E * w:
+                break
+
+
+
+            if (ans_w, ans_s) == (0, 0) or                    s * ans_w > ans_s * w:
+                ans_w, ans_s = w, s
+
+    print(ans_w + ans_s, ans_s)

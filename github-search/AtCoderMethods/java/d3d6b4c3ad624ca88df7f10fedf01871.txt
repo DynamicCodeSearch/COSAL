@@ -1,0 +1,15 @@
+public static void main(String[] __) {
+    int n = getInt(), b[] = INS(n).toArray();
+    boolean[] sh = new boolean[n];
+    int i = 0, c = 0;
+    while (true) {
+        if (sh[i])
+            break;
+        sh[i] = true;
+        if (i == 1)
+            break;
+        i = b[i] - 1;
+        c++;
+    }
+    System.out.println(sh[1] ? c : -1);
+}

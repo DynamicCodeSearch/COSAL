@@ -1,0 +1,32 @@
+public void solve(InputReader in, PrintWriter out) {
+    String s = in.next();
+    int len = s.length(), n = len - 1;
+    char[] buf = s.toCharArray();
+    int[] a = new int[len];
+    long ans = 0, tmp, sum;
+    if (len == 1) {
+        out.println(s);
+        return;
+    }
+    for (int i = 0; i < len; ++i) a[i] = buf[i] - '0';
+    int mst = 1 << n;
+    for (int st = 0; st < mst; ++st) {
+        sum = 0;
+        tmp = a[0];
+        for (int j = 0; j < n; ++j) {
+            if ((st & (1 << j)) == 0) {
+                
+                tmp = 10 * tmp + a[j + 1];
+            } else {
+                
+                
+                sum += tmp;
+                tmp = a[j + 1];
+            }
+        }
+        sum += tmp;
+        
+        ans += sum;
+    }
+    out.println(ans);
+}

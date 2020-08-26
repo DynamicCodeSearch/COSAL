@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    long[] A = new long[N];
+    for (int i = 0; i < N; i++) {
+        A[i] = sc.nextLong();
+        if (i == 0)
+            continue;
+        A[i] += A[i - 1];
+    }
+    long ans = Long.MAX_VALUE;
+    for (int i = 0; i < N - 1; i++) {
+        ans = Math.min(ans, Math.abs(A[N - 1] - 2 * A[i]));
+    }
+    System.out.println(ans);
+}

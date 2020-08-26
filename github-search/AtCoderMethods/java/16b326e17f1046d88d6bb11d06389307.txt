@@ -1,0 +1,19 @@
+public static void main(String[] args) throws Exception {
+    String s = sc.next();
+    ArrayList<Integer> list = new ArrayList<Integer>();
+    for (int i = 0; i < s.length(); i++) {
+        if (s.charAt(i) == 'B' && list.size() != 0) {
+            int x = list.size();
+            list.remove(x - 1);
+        } else if (s.charAt(i) != 'B') {
+            list.add(i);
+        }
+    }
+    for (int i = 0; i < list.size(); i++) {
+        out.print(s.charAt(list.get(i)));
+    }
+    out.println();
+    out.flush();
+    sc.close();
+    out.close();
+}

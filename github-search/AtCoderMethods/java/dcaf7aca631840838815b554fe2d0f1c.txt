@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    StringBuilder sb = new StringBuilder();
+    int N = sc.nextInt();
+    int[] array = new int[N + 1];
+    int sum = 0;
+    for (int i = 1; i <= N; i++) {
+        array[i] = sc.nextInt();
+        sum += array[i];
+    }
+    int M = sc.nextInt();
+    for (int i = 1; i <= M; i++) {
+        sb.append(sum - array[sc.nextInt()] + sc.nextInt()).append("\n");
+    }
+    System.out.println(sb.toString());
+    sc.close();
+}

@@ -1,0 +1,29 @@
+void dfs(int u) {
+    for (int v : tree[u]) {
+        dfs(v);
+    }
+    for (int col = 0; col < 2; col++) {
+        Arrays.fill(buf, INF);
+        buf[0] = 0;
+        for (int v : tree[u]) {
+            int val1 = dp[v][col];
+            int val2 = dp[v][col ^ 1];
+            Arrays.fill(buf2, INF);
+            for (int i = 0; i <= MAX; i++) {
+                
+                if (i >= w[v]) {
+                    buf2[i] = Math.min(buf[i - w[v]] + val2, buf2[i]);
+                }
+                if (i >= val1) {
+                    buf2[i] = Math.min(buf[i - val1] + w[v], buf2[i]);
+                }
+            }
+            System.arraycopy(buf2, 0, buf, 0, buf.length);
+        }
+        int min = INF;
+        for (int i = 0; i <= w[u]; i++) {
+            min = Math.min(min, buf[i]);
+        }
+        dp[u][col] = min;
+    }
+}

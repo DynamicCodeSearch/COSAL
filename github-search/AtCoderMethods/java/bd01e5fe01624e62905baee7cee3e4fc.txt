@@ -1,0 +1,13 @@
+private void pointUpdate(Node u, int x, long v, int l, int r) {
+    if (l == r) {
+        u.val = v;
+    } else {
+        int m = (l + r) / 2;
+        if (x <= m) {
+            pointUpdate(u.l, x, v, l, m);
+        } else {
+            pointUpdate(u.r, x, v, m + 1, r);
+        }
+        u.val = Math.min(u.l.val, u.r.val);
+    }
+}

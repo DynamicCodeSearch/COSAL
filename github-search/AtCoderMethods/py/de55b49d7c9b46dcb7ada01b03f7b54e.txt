@@ -1,0 +1,9 @@
+def binary_search(max_attack_count):
+    l, r, m = 1, max_attack_count + 1, 0
+    while l < r:
+        m = (l + r) // 2
+        if can_exterminate(m):
+            r = m
+        else:
+            l = m + 1
+    return l

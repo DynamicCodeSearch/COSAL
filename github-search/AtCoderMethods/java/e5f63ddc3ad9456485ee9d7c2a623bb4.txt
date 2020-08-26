@@ -1,0 +1,15 @@
+public void solve(InputReader in, PrintWriter out) {
+    int w = in.nextInt(), a = in.nextInt(), b = in.nextInt();
+    if (b >= a && b <= a + w) {
+        out.println("0");
+    } else if (b + w >= a && b + w <= a + w) {
+        out.println("0");
+    } else {
+        int x1 = Math.abs(a - b), x2 = Math.abs(a + w - b);
+        int ans1 = Math.min(x1, x2);
+        int y1 = Math.abs(a - b - w), y2 = Math.abs(a + w - b - w);
+        int ans2 = Math.min(y1, y2);
+        int ans = Math.min(ans1, ans2);
+        out.println(ans);
+    }
+}

@@ -1,0 +1,12 @@
+static void findSegments(int ql, int qr, int idx, int fr, int to) {
+    if (qr <= fr || to <= ql) {
+        return;
+    }
+    if (ql <= fr && to <= qr) {
+        foundIds[fn++] = idx;
+        return;
+    }
+    int med = (fr + to) / 2;
+    findSegments(ql, qr, idx * 2 + 1, fr, med);
+    findSegments(ql, qr, idx * 2 + 2, med, to);
+}

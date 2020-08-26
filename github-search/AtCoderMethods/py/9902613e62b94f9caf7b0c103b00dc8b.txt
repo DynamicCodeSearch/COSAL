@@ -1,0 +1,19 @@
+def solve():
+    def binom(n, k):
+        return (((fact[n] * factinv[n - k]) % mod) * factinv[k]) % mod
+
+    mod = 10**9 + 7
+    fact = [1] * (2*10**5 + 1)
+    factinv = [1] * (2*10**5 + 1)
+
+    for i in range(2, 2*10**5 + 1):
+        fact[i] = (i * fact[i - 1]) % mod
+
+    factinv[2*10**5] = pow(fact[2*10**5], mod - 2, mod)
+
+    for i in range(2*10**5 - 1, 1, -1):
+        factinv[i] = ((i + 1) * factinv[i + 1]) % mod
+
+    W, H = map(int, input().split())
+
+    print(binom(W - 1 + H - 1, W - 1))

@@ -1,0 +1,10 @@
+public long hash(int i, int j) {
+    if (j >= n) {
+        j -= n;
+    }
+    if (i >= j) {
+        return hashRotate(i, j);
+    } else {
+        return hash(0, i, j) << 32 | hash(1, i, j);
+    }
+}

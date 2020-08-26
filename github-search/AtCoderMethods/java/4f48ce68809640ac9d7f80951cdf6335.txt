@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String str = sc.next();
+    int passwdLength = sc.nextInt();
+    Set<String> subStringSet = new HashSet<>();
+    if (passwdLength <= str.length()) {
+        for (int i = 0; i <= str.length() - passwdLength; i++) {
+            String substr = str.substring(i, i + passwdLength);
+            if (!subStringSet.contains(substr)) {
+                subStringSet.add(substr);
+            }
+        }
+    }
+    System.out.println(subStringSet.size());
+}

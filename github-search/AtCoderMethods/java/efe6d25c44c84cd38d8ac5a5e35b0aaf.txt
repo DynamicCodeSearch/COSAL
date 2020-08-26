@@ -1,0 +1,23 @@
+private static final void solve() {
+    try (Scanner cin = new Scanner(System.in)) {
+        while (cin.hasNext()) {
+            int N = cin.nextInt();
+            int max = 0;
+            int ans = 0;
+            for (int i = 1; i <= N; i++) {
+                int num = i;
+                int count = 0;
+                while ((num % 2) == 0) {
+                    num /= 2;
+                    count++;
+                }
+                if (count >= max) {
+                    max = count;
+                    ans = i;
+                }
+            }
+            System.out.println(ans);
+        }
+    } finally {
+    }
+}

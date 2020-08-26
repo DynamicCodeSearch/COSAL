@@ -1,0 +1,8 @@
+public static long[] factorialArray(int maxN, long mod) {
+    long[] fact = new long[maxN + 1];
+    fact[0] = 1 % mod;
+    for (int i = 1; i <= maxN; i++) {
+        fact[i] = fact[i - 1] * i % mod;
+    }
+    return fact;
+}

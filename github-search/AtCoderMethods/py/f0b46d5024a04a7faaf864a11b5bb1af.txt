@@ -1,0 +1,25 @@
+def solve():
+    N, M = map(int, input().split())
+    X, Y = map(int, input().split())
+    a = [int(i) for i in input().split()]
+    b = [int(i) for i in input().split()]
+
+    ct = -Y
+    ans = 0
+
+    al = 0
+    bl = 0
+
+    for i in range(al, N):
+        if ct + Y <= a[i]:
+            ct = a[i]
+            al = i + 1
+
+            for j in range(bl, M):
+                if ct + X <= b[j]:
+                    ct = b[j]
+                    bl = j + 1
+                    ans += 1
+                    break
+
+    print(ans)

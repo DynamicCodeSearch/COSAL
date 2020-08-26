@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    char[] s = in.nextToken().toCharArray();
+    int[] deg = new int[255];
+    for (int i = 0; i < s.length; i++) {
+        deg[s[i]]++;
+    }
+    int numcore = 0;
+    for (int i = 'a'; i <= 'z'; i++) {
+        numcore += deg[i] % 2;
+    }
+    if (numcore <= 1) {
+        out.println(s.length);
+    } else {
+        int wings = s.length - numcore;
+        int[] length = new int[numcore];
+        Arrays.fill(length, 1);
+        while (wings >= 2) {
+            for (int i = 0; wings >= 2 && i < numcore; i++) {
+                length[i] += 2;
+                wings -= 2;
+            }
+        }
+        int worst = Integer.MAX_VALUE;
+        for (int i = 0; i < numcore; i++) {
+            worst = Math.min(worst, length[i]);
+        }
+        out.println(worst);
+    }
+    out.flush();
+}

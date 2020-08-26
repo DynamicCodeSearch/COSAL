@@ -1,0 +1,12 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    String s = in.nextString();
+    HashSet<Character> set = new HashSet<>();
+    for (int i = 0; i < s.length(); i++) {
+        if (set.contains(s.charAt(i))) {
+            out.println("no");
+            return;
+        }
+        set.add(s.charAt(i));
+    }
+    out.println("yes");
+}

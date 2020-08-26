@@ -1,0 +1,37 @@
+public void solveC() {
+    String[] snd = { "Do", "Re", "Mi", "Fa", "So", "La", "Si" };
+    char[] S = in.next().toCharArray();
+    int wnum = 0;
+    int bnum = 0;
+    boolean isCount = false;
+    int index = 0;
+    int res = 0;
+    for (int i = 0; i < 20; i++) {
+        if (S[i] == 'W')
+            wnum++;
+        if (S[i] == 'B') {
+            wnum = 0;
+            if (isCount)
+                bnum++;
+        }
+        if (!isCount && wnum == 2) {
+            isCount = true;
+            wnum = 0;
+        }
+        if (isCount && wnum == 2) {
+            if (bnum == 2)
+                res = 3;
+            if (bnum == 3)
+                res = 0;
+            index = i;
+            break;
+        }
+    }
+    for (int i = index; i >= 1; i--) {
+        if (S[i] == 'W')
+            res--;
+        if (res < 0)
+            res = snd.length - 1;
+    }
+    System.out.println(snd[res]);
+}

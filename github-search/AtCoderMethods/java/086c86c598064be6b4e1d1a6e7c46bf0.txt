@@ -1,0 +1,104 @@
+static void solve() {
+    int n = ni();
+    int[] a = na(n);
+    int[] b = na(n);
+    for (int i = 0; i < n; i++) a[i]--;
+    for (int i = 0; i < n; i++) b[i]--;
+    int[][] pre = new int[n][4];
+    
+    int[][] cur = new int[n][4];
+    int[][] preh = new int[n][4];
+    
+    int[][] curh = new int[n][4];
+    int[][] presz = new int[n][4];
+    
+    int[][] cursz = new int[n][4];
+    int[] prep = new int[n];
+    int[] curp = new int[n];
+    pre[0][0] = 1;
+    prep[0] = 1;
+    presz[0][0] = 1;
+    int mod = 1000000007;
+    long[] temp = new long[10];
+    for (int i = 0; i < 2 * n - 2; i++) {
+        for (int j = 0; j < n; j++) {
+            for (int k = 0; k < curp[j]; k++) {
+                cur[j][k] = curh[j][k] = cursz[j][k] = 0;
+            }
+            curp[j] = 0;
+        }
+        for (int j = 0; j < n; j++) {
+            
+            for (int f = 0; f < prep[j]; f++) {
+                int p = 0;
+                for (int sh = 0, h = preh[j][f]; sh < presz[j][f]; sh++, h >>>= 16) {
+                    int r = h & 65535;
+                    int c = i - r;
+                    if (r < n - 1)
+                        temp[p++] = (long) b[c] << 32 | r + 1;
+                    if (c < n - 1)
+                        temp[p++] = (long) a[r] << 32 | r;
+                }
+                Arrays.sort(temp, 0, p);
+                for (int k = 0; k < p; ) {
+                    int l = k;
+                    while (l < p && temp[k] >>> 32 == temp[l] >>> 32) l++;
+                    
+                    int q = 0;
+                    int lh = 0;
+                    for (int u = k; u < l; u++) {
+                        if (u > k && temp[u] == temp[u - 1])
+                            continue;
+                        lh = lh << 16 | (int) temp[u];
+                        q++;
+                    }
+                    int nj = (int) (temp[k] >>> 32);
+                    boolean found = false;
+                    for (int g = 0; g < curp[nj]; g++) {
+                        if (curh[nj][g] == lh && cursz[nj][g] == q) {
+                            cur[nj][g] += pre[j][f];
+                            if (cur[nj][g] >= mod)
+                                cur[nj][g] -= mod;
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found) {
+                        cur[nj][curp[nj]] = pre[j][f];
+                        curh[nj][curp[nj]] = lh;
+                        cursz[nj][curp[nj]] = q;
+                        curp[nj]++;
+                    }
+                    k = l;
+                }
+            }
+        }
+        {
+            int[][] dum = pre;
+            pre = cur;
+            cur = dum;
+        }
+        {
+            int[][] dum = preh;
+            preh = curh;
+            curh = dum;
+        }
+        {
+            int[][] dum = presz;
+            presz = cursz;
+            cursz = dum;
+        }
+        {
+            int[] dum = prep;
+            prep = curp;
+            curp = dum;
+        }
+    }
+    long ret = 0;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < prep[i]; j++) {
+            ret += pre[i][j];
+        }
+    }
+    out.println(ret % mod);
+}

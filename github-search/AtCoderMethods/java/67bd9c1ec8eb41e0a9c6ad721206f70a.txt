@@ -1,0 +1,10 @@
+public static boolean canCreate(long n) {
+    long rLeast = R - n;
+    long bLeast = B - n;
+    if (rLeast < 0 || bLeast < 0) {
+        return false;
+    }
+    long rx = rLeast / (x - 1);
+    long bx = bLeast / (y - 1);
+    return rx + bx >= n;
+}

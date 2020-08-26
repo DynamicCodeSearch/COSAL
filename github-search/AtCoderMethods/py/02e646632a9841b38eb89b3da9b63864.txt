@@ -1,0 +1,19 @@
+def main():
+    N, M = map(int, input().split())
+    A, B = [], []
+    for _ in range(N):
+        A.append(input())
+    for _ in range(M):
+        B.append(input())
+
+    for y in range(N - M + 1):
+        for x in range(N - M + 1):
+            ok = True
+            for by in range(M):
+                for bx in range(M):
+                    if A[y + by][x + bx] != B[by][bx]:
+                        ok = False
+            if ok:
+                print("Yes")
+                return
+    print("No")

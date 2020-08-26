@@ -1,0 +1,34 @@
+@SuppressWarnings("unchecked")
+private static void solve(SScanner in) {
+    int N = in.nextInt(), M = in.nextInt();
+    int[] l = new int[N + 1], r = new int[N + 1];
+    List<Integer>[] nByLen = new List[M + 1];
+    for (int n = 1; n < N + 1; n++) {
+        
+        l[n] = in.nextInt();
+        r[n] = in.nextInt();
+        int len = r[n] - l[n] + 1;
+        if (nByLen[len] == null) {
+            nByLen[len] = new ArrayList<>();
+        }
+        nByLen[len].add(n);
+    }
+    int accum = N;
+    Fenwick F = new Fenwick(M);
+    StringBuilder ans = new StringBuilder();
+    for (int d = 1; d < M + 1; d++) {
+        int sum = accum;
+        for (int e = d; e < M + 1; e += d) {
+            sum += F.accum(e);
+        }
+        if (nByLen[d] != null) {
+            accum -= nByLen[d].size();
+            for (int n : nByLen[d]) {
+                F.add(l[n], 1);
+                F.add(r[n] + 1, -1);
+            }
+        }
+        ans.append(sum).append('\n');
+    }
+    System.out.println(ans);
+}

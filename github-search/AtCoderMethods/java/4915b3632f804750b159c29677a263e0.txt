@@ -1,0 +1,20 @@
+static void m_sort(long[] a, int s, int sz, long[] b) {
+    if (sz < 7) {
+        for (int i = s; i < s + sz; i++) for (int j = i; j > s && a[j - 1] > a[j]; j--) swap(a, j, j - 1);
+        return;
+    }
+    m_sort(a, s, sz / 2, b);
+    m_sort(a, s + sz / 2, sz - sz / 2, b);
+    int idx = s;
+    int l = s, r = s + sz / 2;
+    final int le = s + sz / 2, re = s + sz;
+    while (l < le && r < re) {
+        if (a[l] > a[r])
+            b[idx++] = a[r++];
+        else
+            b[idx++] = a[l++];
+    }
+    while (r < re) b[idx++] = a[r++];
+    while (l < le) b[idx++] = a[l++];
+    for (int i = s; i < s + sz; i++) a[i] = b[i];
+}

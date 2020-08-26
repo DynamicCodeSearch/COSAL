@@ -1,0 +1,16 @@
+void main() {
+    long min = Long.MAX_VALUE / 2;
+    if (N == 1) {
+        System.out.println(1);
+        return;
+    }
+    for (int i = 1; i <= Math.sqrt(N); i++) {
+        if (N % i == 0) {
+            long a = i;
+            long b = N / i;
+            long f = F(a, b);
+            min = Math.min(min, f);
+        }
+    }
+    System.out.println(min);
+}

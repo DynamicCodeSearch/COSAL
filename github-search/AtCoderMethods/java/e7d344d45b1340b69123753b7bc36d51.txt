@@ -1,0 +1,32 @@
+long[] bellman_ford(List<Edge>[] node, int n, int m) {
+    
+    int[] from = new int[m];
+    int[] to = new int[m];
+    long[] cost = new long[m];
+    int eid = 0;
+    for (int i = 0; i < n; i++) {
+        for (Edge e : node[i]) {
+            from[eid] = i;
+            to[eid] = e.to;
+            cost[eid] = e.cost;
+            eid++;
+        }
+    }
+    long[] res = new long[n];
+    final long inf = Long.MAX_VALUE / 2;
+    Arrays.fill(res, inf);
+    res[0] = 0;
+    boolean changed = true;
+    lastC = new int[n];
+    for (int j = 0; j < n && changed; j++) {
+        changed = false;
+        for (int i = 0; i < m; i++) {
+            if (res[to[i]] > res[from[i]] + cost[i]) {
+                lastC[to[i]] = j;
+                changed = true;
+                res[to[i]] = res[from[i]] + cost[i];
+            }
+        }
+    }
+    return res;
+}

@@ -1,0 +1,48 @@
+void solve() {
+    int cnt = 0;
+    long temp = 1;
+    while (cnt < 64) {
+        System.out.println("? " + temp);
+        System.out.flush();
+        String s = ns();
+        if (temp >= 10000000000L)
+            break;
+        if (s.equals("Y")) {
+            temp *= 10;
+            cnt++;
+            continue;
+        }
+        long l = temp, r = temp * 10;
+        long ans = 1;
+        while (l <= r) {
+            long mid = (l + r) / 2;
+            System.out.println("? " + mid);
+            System.out.flush();
+            String s1 = ns();
+            if (s1.equals("Y")) {
+                ans = mid;
+                r = mid - 1;
+            } else {
+                l = mid + 1;
+            }
+        }
+        System.out.println("! " + ans / 10);
+        System.out.flush();
+        return;
+    }
+    long temp1 = 10;
+    int g = 0;
+    while (g <= 12) {
+        g++;
+        System.out.println("? " + (temp1 - 1));
+        System.out.flush();
+        String s = ns();
+        if (s.equals("N")) {
+            temp1 *= 10;
+            continue;
+        } else {
+            System.out.println("! " + temp1 / 10);
+            return;
+        }
+    }
+}

@@ -1,0 +1,14 @@
+def solve(N, A, B, h):
+    right = max(h) // B + 1
+    left = min(h) // A + 1
+    dif_ab = A - B
+    while left != right:
+        mid = (left + right) // 2
+        dif = bool_exc(h, dif_ab, B, mid)
+        if dif >= 0:
+            right = mid
+        else:
+            left = mid + 1
+
+    ans = left
+    return ans

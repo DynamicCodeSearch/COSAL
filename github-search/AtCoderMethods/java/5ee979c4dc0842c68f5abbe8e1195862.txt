@@ -1,0 +1,16 @@
+void solve(BufferedReader br) throws Exception {
+    String line = br.readLine();
+    String[] flds = line.split(" ");
+    int a = Integer.parseInt(flds[0]);
+    int b = Integer.parseInt(flds[1]);
+    int c = Integer.parseInt(flds[2]);
+    int m = (int) Math.pow(10, 9) + 7;
+    BigInteger ba = BigInteger.valueOf(a);
+    BigInteger bb = BigInteger.valueOf(b);
+    BigInteger bc = BigInteger.valueOf(c);
+    BigInteger bm = BigInteger.valueOf(m);
+    BigInteger sum = ba.multiply(bb);
+    sum = sum.multiply(bc);
+    sum = sum.mod(bm);
+    pln(sum.intValue());
+}

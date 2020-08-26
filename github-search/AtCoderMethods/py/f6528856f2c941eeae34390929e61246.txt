@@ -1,0 +1,9 @@
+def main():
+    N = int(input())
+    a_list = list(map(int, input().split()))
+
+    ans = 10 ** 10
+    for m in range(min(a_list), max(a_list) + 1):
+        cost = sum((m - a) ** 2 for a in a_list)
+        ans = min(ans, cost)
+    print(ans)

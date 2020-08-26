@@ -1,0 +1,9 @@
+static long solve(int N, int M) {
+    if (Math.abs(N - M) >= 2) {
+        return 0;
+    }
+    if (Math.abs(N - M) == 1) {
+        return factorial(N) * factorial(M) % mod;
+    }
+    return 2 * factorial(N) * factorial(M) % mod;
+}

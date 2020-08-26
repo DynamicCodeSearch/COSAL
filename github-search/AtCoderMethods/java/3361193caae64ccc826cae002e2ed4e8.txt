@@ -1,0 +1,26 @@
+
+String f(int s, int t, String S) {
+    if (t - s == 1) {
+        return "()";
+    } else if (t - s < 1) {
+        return "";
+    }
+    if (!mem[s][t].equals("")) {
+        return mem[s][t];
+    }
+    String ans = "";
+    for (int m = s + 1; m < t; ++m) {
+        
+        ans = next(ans, f(s, m, S) + f(m, t, S));
+    }
+    if (S.charAt(s) == '(' && S.charAt(t - 1) == ')') {
+        ans = next(ans, "(" + f(s + 1, t - 1, S) + ")");
+    } else {
+        if (S.charAt(s) == '(')
+            ans = next(ans, "(" + f(s + 1, t, S) + ")");
+        if (S.charAt(t - 1) == ')') {
+            ans = next(ans, "(" + f(s, t - 1, S) + ")");
+        }
+    }
+    return mem[s][t] = ans;
+}

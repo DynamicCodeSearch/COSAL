@@ -1,0 +1,13 @@
+public void solve() {
+    int n = in.nextInt();
+    long K = in.nextLong();
+    long[] cnt = new long[MAX];
+    for (int i = 0; i < n; i++) {
+        int a = in.nextInt();
+        int b = in.nextInt();
+        cnt[a] += b;
+    }
+    int res = 0;
+    for (long i = 0; i + cnt[res] < K; res++) i += cnt[res];
+    System.out.println(res);
+}

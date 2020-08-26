@@ -1,0 +1,43 @@
+void recur(int x, int y, int p) {
+    int val = 0;
+    if (x > y || y < x)
+        return;
+    if (x > 0) {
+        if (p == 1) {
+            val = arr[x] - arr[x - 1];
+        }
+        if (p == 3) {
+            if (arr[x] - arr[x - 1] < K) {
+                recur(x + 1, y, 3);
+            } else
+                val = arr[x] - arr[x - 1];
+        }
+    }
+    if (y < N) {
+        if (p == 4) {
+            B += arr[y + 1] - arr[y];
+        }
+        if (p == 2) {
+            if (arr[y + 1] - arr[y] < K) {
+                recur(x, y - 1, 2);
+            } else
+                val = arr[y + 1] - arr[y];
+        }
+    }
+    B += val;
+    if (x == y) {
+        System.out.println(B + " " + a);
+        fa += B * a;
+    }
+    
+    a *= Q;
+    recur(x + 1, y, 1);
+    recur(x, y - 1, 2);
+    a /= Q;
+    a *= (1 - Q);
+    recur(x + 1, y, 3);
+    recur(x, y - 1, 4);
+    a /= (1 - Q);
+    B -= val;
+
+}

@@ -1,0 +1,21 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    StringBuilder sb = new StringBuilder();
+    int n = Integer.parseInt(br.readLine());
+    String[] str = br.readLine().split(" ");
+    long cnt = n;
+    long l = 0l, r = 1l;
+    int max = Integer.parseInt(str[0]), c;
+    for (String s : str) {
+        c = Integer.parseInt(s);
+        if (max >= c) {
+            cnt += (r - l) * (r - l - 1) / 2;
+            l = r;
+        }
+        r++;
+        max = c;
+    }
+    cnt += (r - l) * (r - l - 1) / 2;
+    sb.append(cnt);
+    System.out.println(sb);
+}

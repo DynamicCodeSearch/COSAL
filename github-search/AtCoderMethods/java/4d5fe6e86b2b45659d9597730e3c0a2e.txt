@@ -1,0 +1,77 @@
+static void solve() {
+    int n = in.nextInt();
+    int k = in.nextInt();
+    int l = in.nextInt();
+    DisjointSet clus = new DisjointSet(n);
+    for (int i = 0; i < k; i++) {
+        int p = in.nextInt() - 1;
+        int q = in.nextInt() - 1;
+        clus.unite(p, q);
+    }
+    DisjointSet clus2 = new DisjointSet(n);
+    HashMap<Integer, Integer> map = new HashMap<>();
+    int p = 0;
+    for (int i = 0; i < n; i++) {
+        if (map.containsKey(clus.find(i))) {
+        } else {
+            map.put(clus.find(i), p++);
+        }
+    }
+    int m = p;
+    int[] ss = new int[l];
+    int[] tt = new int[l];
+    for (int i = 0; i < l; i++) {
+        ss[i] = in.nextInt() - 1;
+        tt[i] = in.nextInt() - 1;
+        clus2.unite(ss[i], tt[i]);
+    }
+    HashMap<Integer, Integer> map2 = new HashMap<>();
+    p = 0;
+    for (int i = 0; i < n; i++) {
+        if (map2.containsKey(clus2.find(i))) {
+        } else {
+            map2.put(clus2.find(i), p++);
+        }
+    }
+    int m2 = p;
+    DisjointSet ans = new DisjointSet(n);
+    HashMap<Long, ArrayList<Integer>> lists = new HashMap<>();
+    for (int i = 0; i < l; i++) {
+        int s = ss[i];
+        int t = tt[i];
+        if (clus.same(s, t)) {
+            ans.unite(s, t);
+        } else {
+            long sid = map.get(clus.find(s));
+            long tid = map.get(clus.find(t));
+            long sid2 = map2.get(clus2.find(s));
+            long tid2 = map2.get(clus2.find(t));
+            if (lists.containsKey(sid * m2 + tid2)) {
+                lists.get(sid * m2 + tid2).add(s);
+            } else {
+                ArrayList<Integer> list = new ArrayList<>();
+                list.add(s);
+                lists.put(sid * m2 + tid2, list);
+            }
+            if (lists.containsKey(tid * m2 + sid2)) {
+                lists.get(tid * m2 + sid2).add(t);
+            } else {
+                ArrayList<Integer> list = new ArrayList<>();
+                list.add(t);
+                lists.put(tid * m2 + sid2, list);
+            }
+        }
+    }
+    for (Long key : lists.keySet()) {
+        ArrayList<Integer> list = lists.get(key);
+        for (int i = 0; i < list.size() - 1; i++) {
+            ans.unite(list.get(i), list.get(i + 1));
+        }
+    }
+    boolean f = false;
+    for (int i = 0; i < n; i++) {
+        out.print((f ? " " : "") + ans.size(i));
+        f = true;
+    }
+    out.println();
+}

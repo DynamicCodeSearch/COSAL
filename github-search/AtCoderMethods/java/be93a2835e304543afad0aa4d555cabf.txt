@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner stdIn = new Scanner(System.in);
+    String s = stdIn.next();
+    Outer: for (int i = 0; i < s.length() - 1; i++) {
+        for (int j = i + 1; j < s.length(); j++) {
+            if (s.charAt(i) == s.charAt(j))
+                break Outer;
+            if ((i == s.length() - 2) && (j == s.length() - 1)) {
+                System.out.println("yes");
+                return;
+            }
+        }
+    }
+    System.out.println("no");
+}

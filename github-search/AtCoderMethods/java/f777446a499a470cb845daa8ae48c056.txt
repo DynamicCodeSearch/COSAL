@@ -1,0 +1,11 @@
+void dfs(int r, int c, boolean[][] vis) {
+    if (vis[r][c])
+        return;
+    vis[r][c] = true;
+    for (int i = 0; i < H; i++) if (s[i][c] == 'o') {
+        dfs(i, c, vis);
+    }
+    for (int j = 0; j < W; j++) if (s[r][j] == 'o') {
+        dfs(r, j, vis);
+    }
+}

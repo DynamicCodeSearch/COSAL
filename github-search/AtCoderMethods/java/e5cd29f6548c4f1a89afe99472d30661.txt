@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int ans = 1;
+    int count = 0;
+    for (int i = n; i > 0; i--) {
+        int countA = 0;
+        int a = two(i);
+        while (a != -1) {
+            countA++;
+            a = two(a);
+        }
+        if (countA > count) {
+            ans = i;
+            count = countA;
+        }
+    }
+    System.out.println(ans);
+}

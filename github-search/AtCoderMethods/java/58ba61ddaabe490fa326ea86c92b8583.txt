@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    double m = (double) sc.nextInt() / 1000;
+    int vv = 0;
+    if (m < 0.1) {
+        vv = 0;
+    } else if (m <= 5) {
+        vv = (int) (m * 10);
+    } else if (m <= 30) {
+        vv = (int) (m + 50);
+    } else if (m <= 70) {
+        vv = (int) ((m - 30) / 5 + 80);
+    } else if (m > 70) {
+        vv = 89;
+    }
+    if (vv < 10) {
+        System.out.print(0);
+        System.out.println(vv);
+    } else {
+        System.out.println(vv);
+    }
+}

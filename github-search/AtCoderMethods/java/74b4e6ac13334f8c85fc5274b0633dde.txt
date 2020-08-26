@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int n = scanner.nextInt();
+    int[] num = new int[n];
+    for (int i = 0; i < num.length; i++) {
+        num[i] = scanner.nextInt();
+    }
+    boolean[] check = new boolean[n];
+    int i = 0;
+    int count = 0;
+    while (!check[i]) {
+        
+        count++;
+        check[i] = true;
+        i = num[i] - 1;
+        if (i == 1) {
+            System.out.println(count);
+            System.exit(0);
+        }
+    }
+    System.out.println("-1");
+    scanner.close();
+}

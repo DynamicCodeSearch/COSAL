@@ -1,0 +1,24 @@
+public static long[] bf(int[] from, int[] to, long[] w, int n, int start, boolean[] flg) {
+    long[] d = new long[n];
+    Arrays.fill(d, Long.MAX_VALUE / 100000);
+    d[start] = 0;
+    int m = from.length;
+    for (int r = 0; r < n - 1; r++) {
+        boolean updated = false;
+        for (int j = 0; j < m; j++) {
+            if (d[from[j]] + w[j] < d[to[j]]) {
+                d[to[j]] = d[from[j]] + w[j];
+                updated = true;
+            }
+        }
+        if (!updated)
+            break;
+    }
+    for (int i = 0; i < m; i++) {
+        if (d[from[i]] + w[i] < d[to[i]]) {
+            if (flg[to[i]])
+                return null;
+        }
+    }
+    return d;
+}

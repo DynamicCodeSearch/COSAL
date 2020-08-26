@@ -1,0 +1,11 @@
+public static void main(String[] $) {
+    Scanner s = new Scanner(System.in);
+    int[] a = new int[s.nextInt() + 1];
+    for (int q = s.nextInt(); q > 0; --q) {
+        ++a[s.nextInt() - 1];
+        --a[s.nextInt()];
+    }
+    Arrays.parallelPrefix(a, Integer::sum);
+    IntStream.range(0, a.length - 1).map(i -> a[i] % 2).forEach(System.out::print);
+    System.out.println();
+}

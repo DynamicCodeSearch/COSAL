@@ -1,0 +1,17 @@
+public static void main(String[] args) throws IOException {
+    Scanner scanner = new Scanner(System.in);
+    int n = scanner.nextInt();
+    int[] t = new int[n];
+    int total = 0;
+    for (int i = 0; i < n; i++) {
+        t[i] = scanner.nextInt();
+        total += t[i];
+    }
+    int m = scanner.nextInt();
+    for (int i = 0; i < m; i++) {
+        int p = scanner.nextInt();
+        int x = scanner.nextInt();
+        int sub = t[p - 1] - x;
+        System.out.println(total - sub);
+    }
+}

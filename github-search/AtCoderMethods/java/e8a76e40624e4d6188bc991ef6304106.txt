@@ -1,0 +1,17 @@
+public E pollHighest() {
+    if (root == null)
+        return null;
+    Node<E> x = root;
+    Node<E> y = null;
+    while (x.right != null) {
+        y = x;
+        x = x.right;
+    }
+    E res = x.value;
+    if (x == root) {
+        root = erase(root, res);
+    } else {
+        y.right = erase(y.right, res);
+    }
+    return res;
+}

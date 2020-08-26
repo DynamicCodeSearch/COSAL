@@ -1,0 +1,25 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String line = br.readLine();
+    char[] a = line.toCharArray();
+    char[] b = "ABCDEF".toCharArray();
+    int count = 0;
+    for (int i = 0; i < b.length; i++) {
+        if (i != 5) {
+            for (int j = 0; j < a.length; j++) {
+                if (b[i] == a[j]) {
+                    count++;
+                }
+            }
+            System.out.print(count + " ");
+            count = 0;
+        } else if (i == 5) {
+            for (int k = 0; k < a.length; k++) {
+                if (b[i] == a[k]) {
+                    count++;
+                }
+            }
+            System.out.println(count);
+        }
+    }
+}

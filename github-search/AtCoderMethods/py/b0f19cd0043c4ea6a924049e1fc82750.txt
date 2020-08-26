@@ -1,0 +1,11 @@
+def attempt():
+  order = [i for i in range(N)]
+  for i in range(K):
+    r1,r2 = rand2()
+    order[r1],order[r2] = order[r2],order[r1]
+  if rel[order[0]][order[N-1]]:
+    return 0
+  for i in range(0,N-1):
+    if rel[order[i]][order[i+1]]:
+      return 0
+  return 1

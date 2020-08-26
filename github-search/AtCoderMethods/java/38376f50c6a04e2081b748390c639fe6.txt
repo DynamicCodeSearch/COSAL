@@ -1,0 +1,14 @@
+public void solve() {
+    int N = nextInt();
+    nodes = new Node[N];
+    for (int i = 0; i < N; i++) {
+        nodes[i] = new Node(i);
+    }
+    for (int i = 0; i < N - 1; i++) {
+        int a = nextInt() - 1;
+        int b = nextInt() - 1;
+        nodes[a].add(nodes[b]);
+        nodes[b].add(nodes[a]);
+    }
+    out.println(recur(nodes[0], null, 1));
+}

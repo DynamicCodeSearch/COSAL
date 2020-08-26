@@ -1,0 +1,9 @@
+public void dfs(Node cur, int d, int c) {
+    cur.color = c;
+    cur.distance = d;
+    for (Node n : cur.next) {
+        if (n.distance > d + 1) {
+            dfs(n, d + 1, c);
+        }
+    }
+}

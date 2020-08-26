@@ -1,0 +1,5 @@
+def min_total_cost(xs):
+    def total_cost(target):
+        return sum(cost(x, target) for x in xs)
+    ans = min(total_cost(t) for t in range(min(xs), max(xs) + 1))
+    return ans

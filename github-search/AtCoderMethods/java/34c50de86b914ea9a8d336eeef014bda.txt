@@ -1,0 +1,28 @@
+public static double[] dijk(int[][] g, double[][] wg, int from) {
+    int n = g.length;
+    final double[] td = new double[n];
+    Arrays.fill(td, Double.MAX_VALUE);
+    TreeSet<Integer> q = new TreeSet<Integer>(new Comparator<Integer>() {
+
+        public int compare(Integer a, Integer b) {
+            if (td[a] - td[b] != 0)
+                return Double.compare(td[a], td[b]);
+            return a - b;
+        }
+    });
+    q.add(from);
+    td[from] = 0;
+    while (q.size() > 0) {
+        int cur = q.pollFirst();
+        for (int i = 0; i < g[cur].length; i++) {
+            int next = g[cur][i];
+            double nd = td[cur] + wg[cur][i];
+            if (nd < td[next]) {
+                q.remove(next);
+                td[next] = nd;
+                q.add(next);
+            }
+        }
+    }
+    return td;
+}

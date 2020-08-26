@@ -1,0 +1,14 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    char[] s = in.next().toCharArray();
+    int[] freq = new int[26];
+    for (int i = 0; i < s.length; i++) {
+        freq[s[i] - 'a']++;
+    }
+    for (int i = 0; i < 26; i++) {
+        if (freq[i] == 0) {
+            out.println((char) (i + 'a'));
+            return;
+        }
+    }
+    out.println("None");
+}

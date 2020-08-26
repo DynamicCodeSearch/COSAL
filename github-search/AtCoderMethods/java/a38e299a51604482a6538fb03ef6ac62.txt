@@ -1,0 +1,40 @@
+public static void main(String[] args) {
+    
+    
+    final String s;
+    try (Scanner scan = new Scanner(System.in)) {
+        s = scan.next();
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    int start = -1;
+    int end = -1;
+    for (int i = 0; i < s.length(); i++) {
+        if (i + 1 < s.length() && s.charAt(i) == s.charAt(i + 1)) {
+            
+            start = i + 1;
+            end = i + 1 + 1;
+            break;
+        } else if (i + 2 < s.length() && s.charAt(i) == s.charAt(i + 2)) {
+            start = i + 1;
+            end = i + 2 + 1;
+            break;
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    out.println(start + " " + end);
+    out.close();
+}

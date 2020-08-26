@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    PrintWriter out = new PrintWriter(System.out);
+    int n = sc.nextInt();
+    int t = sc.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = sc.nextInt();
+    }
+    int count = 0;
+    int maxDif = 0;
+    int max = 0;
+    for (int i = n - 1; i >= 0; i--) {
+        if (max < a[i]) {
+            max = a[i];
+        } else {
+            if (maxDif < max - a[i]) {
+                maxDif = max - a[i];
+                count = 1;
+            } else if (maxDif == max - a[i]) {
+                count++;
+            }
+        }
+    }
+    out.println(count);
+    out.flush();
+}

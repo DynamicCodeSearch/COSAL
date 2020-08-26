@@ -1,0 +1,51 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    N = sc.nextInt();
+    S = sc.next();
+    StringBuilder sx = new StringBuilder(S);
+    int t = 0;
+    while (t < sx.length()) {
+        if (sx.charAt(t) == '(') {
+            for (int j = t; j < sx.length(); j++) {
+                if (sx.charAt(j) == ')') {
+                    sx.delete(j, j + 1);
+                    sx.delete(t, t + 1);
+                    t--;
+                    break;
+                }
+            }
+        }
+        t++;
+    }
+    int s = sx.length() - 1;
+    while (s > 0) {
+        if (sx.charAt(s) == ')') {
+            for (int j = s - 1; j >= 0; j--) {
+                if (sx.charAt(s) == '(') {
+                    sx.delete(s, s + 1);
+                    sx.delete(j, j + 1);
+                    s--;
+                    break;
+                }
+            }
+        }
+        s--;
+    }
+    int cnt_a = 0;
+    int cnt_b = 0;
+    for (int i = 0; i < sx.length(); i++) {
+        if (sx.charAt(i) == '(')
+            cnt_a++;
+        else
+            cnt_b++;
+    }
+    String ans = "";
+    for (int i = 0; i < cnt_b; i++) {
+        ans += '(';
+    }
+    ans += S;
+    for (int i = 0; i < cnt_a; i++) {
+        ans += ')';
+    }
+    System.out.println(ans);
+}

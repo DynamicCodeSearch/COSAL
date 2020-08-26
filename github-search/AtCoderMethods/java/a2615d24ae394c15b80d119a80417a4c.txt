@@ -1,0 +1,28 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    char[] S1 = sc.next().toCharArray();
+    char[] S2 = sc.next().toCharArray();
+    long sum = S1[0] == S2[0] ? 3 : 6;
+    int start = S1[0] == S2[0] ? 1 : 2;
+    
+    boolean prev = S1[0] == S2[0];
+    for (int i = start; i < N; i++) {
+        int pow;
+        if (prev) {
+            pow = 2;
+        } else {
+            if (S1[i] == S2[i]) {
+                pow = 1;
+            } else {
+                pow = 3;
+            }
+        }
+        sum = ((sum % MOD) * pow) % MOD;
+        if (S1[i] != S2[i]) {
+            i++;
+        }
+        prev = S1[i] == S2[i];
+    }
+    System.out.println(sum);
+}

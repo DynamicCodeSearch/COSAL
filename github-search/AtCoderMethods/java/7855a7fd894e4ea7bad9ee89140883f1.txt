@@ -1,0 +1,9 @@
+private void recur(int[] grundy, Graph graph, int i) {
+    BitSet b = new BitSet();
+    for (Edge e : graph.edges(i)) {
+        if (grundy[e.to()] == -1)
+            recur(grundy, graph, e.to());
+        b.set(grundy[e.to()]);
+    }
+    grundy[i] = b.nextClearBit(0);
+}

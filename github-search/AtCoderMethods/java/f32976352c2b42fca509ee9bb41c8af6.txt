@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt(), count = 0;
+    int[] occ = new int[n];
+    boolean flag = true;
+    for (int i = 0; i < n; i++) {
+        int x = sc.nextInt();
+        occ[x]++;
+        if ((occ[0] == 1 && (n & 1) == 0) || occ[0] >= 2 || occ[x] > 2)
+            flag = false;
+        if ((x + (n - 1)) % 2 != 0)
+            flag = false;
+    }
+    
+    if (!flag)
+        System.out.println(0);
+    else {
+        for (int i = 0; i < n; i++) if (occ[i] == 2)
+            count++;
+        
+        System.out.println(BigInteger.valueOf(2).modPow(BigInteger.valueOf(count), BigInteger.valueOf(MOD)));
+    }
+}

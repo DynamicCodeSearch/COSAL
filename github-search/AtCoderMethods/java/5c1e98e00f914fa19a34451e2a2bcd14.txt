@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner s = new Scanner(System.in);
+    double p = s.nextDouble();
+    double xmax = p;
+    
+    double xmin = 0.0;
+    for (int i = 0; i < 512; i++) {
+        
+        double xmid1 = (xmax - xmin) / 3.0 + xmin;
+        double xmid2 = 2.0 * (xmax - xmin) / 3.0 + xmin;
+        if (f(xmid1, p) < f(xmid2, p)) {
+            xmax = xmid2;
+        } else {
+            xmin = xmid1;
+        }
+    }
+    System.out.printf("%.20f\n", f(xmax, p));
+}

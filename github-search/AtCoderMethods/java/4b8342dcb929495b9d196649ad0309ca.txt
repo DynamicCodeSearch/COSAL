@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int n = Integer.parseInt(scan.next());
+    scan.close();
+    int waru;
+    int max = 0;
+    int cnt = 0;
+    int max_num = 1;
+    while (n > 0) {
+        cnt = 0;
+        waru = n;
+        while (waru % 2 == 0) {
+            cnt++;
+            waru = waru / 2;
+        }
+        if (max < cnt) {
+            max = cnt;
+            max_num = n;
+        }
+        n--;
+    }
+    System.out.println(max_num);
+}

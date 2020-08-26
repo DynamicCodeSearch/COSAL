@@ -1,0 +1,26 @@
+public void solve() {
+    H = nextInt();
+    W = nextInt();
+    A = nextInt();
+    B = nextInt();
+    nCk = new long[H + W];
+    modInv = new long[H + W];
+    nCk[0] = 1;
+    modInv[0] = 1;
+    for (int i = 1; i < H + W; i++) {
+        nCk[i] = nCk[i - 1] * i % MOD;
+        modInv[i] = modpow(nCk[i], MOD - 2) % MOD;
+    }
+    long ans = 0;
+    for (int i = 0; i < H - A; i++) {
+        int n1 = B - 1 + i;
+        int k1 = i;
+        long comb1 = nCk[n1] * modInv[k1] % MOD * modInv[n1 - k1] % MOD;
+        int n2 = W - B - 1 + H - 1 - i;
+        int k2 = W - B - 1;
+        long comb2 = nCk[n2] * modInv[k2] % MOD * modInv[n2 - k2] % MOD;
+        ans += comb1 * comb2 % MOD;
+        ans %= MOD;
+    }
+    out.println(ans);
+}

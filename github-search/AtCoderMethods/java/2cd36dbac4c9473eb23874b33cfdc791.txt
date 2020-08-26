@@ -1,0 +1,11 @@
+public int query(int s, int t) {
+    
+    int d = t - s + 1;
+    
+    int k = log_table[d];
+    if (A[table[s][k]] < A[table[t - (1 << k) + 1][k]]) {
+        return table[s][k];
+    } else {
+        return table[t - (1 << k) + 1][k];
+    }
+}

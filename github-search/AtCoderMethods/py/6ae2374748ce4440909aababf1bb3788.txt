@@ -1,0 +1,9 @@
+def f1(s, x, y):
+    for i in range(3):
+        for j in range(3):
+            nx = x+i-1
+            ny = y+j-1
+            if (0 <= ny < len(s)) and (0 <= nx < len(s[ny])):
+                if s[ny][nx] != '#':
+                    return False
+    return True

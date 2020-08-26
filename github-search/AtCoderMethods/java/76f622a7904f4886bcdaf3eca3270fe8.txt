@@ -1,0 +1,25 @@
+void run() {
+    H = sc.nextInt();
+    W = sc.nextInt();
+    f = sc.nextCharField(H, W);
+    r = new char[H][W];
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            r[i][j] = '.';
+            if (check(i, j)) {
+                r[i][j] = '#';
+                paint(i, j);
+            }
+        }
+    }
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            if (f[i][j] == '#') {
+                System.out.println("impossible");
+                return;
+            }
+        }
+    }
+    System.out.println("possible");
+    debug2(r);
+}

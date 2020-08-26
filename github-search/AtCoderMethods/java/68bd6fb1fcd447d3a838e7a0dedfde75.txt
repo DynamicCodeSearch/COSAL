@@ -1,0 +1,17 @@
+static void bfs(int ny, int nx) {
+    Deque<Integer> qy = new ArrayDeque<Integer>();
+    Deque<Integer> qx = new ArrayDeque<Integer>();
+    qy.offer(ny);
+    qx.offer(nx);
+    while (!qy.isEmpty() && !qx.isEmpty()) {
+        int tempX = qx.poll();
+        int tempY = qy.poll();
+        for (int i = 0; i < 4; i++) {
+            if (m[tempY + y[i]][tempX + x[i]] == -1) {
+                m[tempY + y[i]][tempX + x[i]] = m[tempY][tempX] + 1;
+                qy.offer(tempY + y[i]);
+                qx.offer(tempX + x[i]);
+            }
+        }
+    }
+}

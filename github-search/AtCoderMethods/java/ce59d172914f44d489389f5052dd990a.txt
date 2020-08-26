@@ -1,0 +1,50 @@
+public void calc() {
+    int N = in.nextInt();
+    int[][] A = new int[N][N];
+    long[][] dist = new long[N][N];
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            A[i][j] = in.nextInt();
+            dist[i][j] = A[i][j];
+        }
+    }
+    long ans = 0;
+    boolean ok = true;
+    for (int k = 0; k < N; k++) {
+        if (!ok) {
+            break;
+        }
+        for (int i = 0; i < N; i++) {
+            if (!ok) {
+                break;
+            }
+            for (int j = 0; j < N; j++) {
+                if (dist[i][j] > dist[i][k] + dist[k][j]) {
+                    ok = false;
+                    break;
+                }
+            }
+        }
+    }
+    if (ok) {
+        for (int i = 0; i < N; i++) {
+            for (int j = i + 1; j < N; j++) {
+                boolean calc = false;
+                for (int k = 0; k < N; k++) {
+                    if (i != k && j != k) {
+                        if (dist[i][j] == dist[i][k] + dist[k][j]) {
+                            calc = true;
+                        }
+                    }
+                }
+                if (!calc) {
+                    ans += dist[i][j];
+                }
+            }
+        }
+    } else {
+        ans = -1;
+    }
+    out.println(ans);
+    out.close();
+}

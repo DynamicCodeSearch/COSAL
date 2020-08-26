@@ -1,0 +1,15 @@
+long dp(V v, V prev, int color) {
+    if (v.memo[color] != -1)
+        return v.memo[color];
+    long res = 1;
+    for (V child : v) if (child != prev) {
+        long c = 0;
+        if (color == 0)
+            c = dp(child, v, 0) + dp(child, v, 1);
+        if (color == 1)
+            c = dp(child, v, 0);
+        res = (res * (c % MOD)) % MOD;
+    }
+    v.memo[color] = res;
+    return res;
+}

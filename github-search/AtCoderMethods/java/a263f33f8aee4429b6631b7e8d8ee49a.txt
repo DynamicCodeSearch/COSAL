@@ -1,0 +1,27 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    char[] S = sc.next().toCharArray();
+    char[] T = sc.next().toCharArray();
+    Set<Character> set = new HashSet<>();
+    set.add('a');
+    set.add('t');
+    set.add('c');
+    set.add('o');
+    set.add('d');
+    set.add('e');
+    set.add('r');
+    for (int i = 0; i < S.length; i++) {
+        if (S[i] == T[i]) {
+            continue;
+        }
+        if (S[i] == '@' && set.contains(T[i])) {
+            continue;
+        }
+        if (set.contains(S[i]) && T[i] == '@') {
+            continue;
+        }
+        System.out.println("You will lose");
+        return;
+    }
+    System.out.println("You can win");
+}

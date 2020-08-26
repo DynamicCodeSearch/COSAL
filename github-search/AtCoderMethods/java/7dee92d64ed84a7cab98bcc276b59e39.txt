@@ -1,0 +1,28 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    String str = input.readLine();
+    String strt = input.readLine();
+    int t = Integer.parseInt(strt);
+    int ucount = str.length() - str.replace("U", "").length();
+    int dcount = str.length() - str.replace("D", "").length();
+    int rcount = str.length() - str.replace("R", "").length();
+    int lcount = str.length() - str.replace("L", "").length();
+    int qcount = str.length() - str.replace("?", "").length();
+    int x = Math.abs(ucount - dcount);
+    int y = Math.abs(rcount - lcount);
+    int answer = 0;
+    if (t == 1) {
+        answer = x + y + qcount;
+    } else {
+        if (x + y - qcount >= 0) {
+            answer = x + y - qcount;
+        } else {
+            if ((qcount - x - y) % 2 == 0) {
+                answer = 0;
+            } else {
+                answer = 1;
+            }
+        }
+    }
+    System.out.println(answer);
+}

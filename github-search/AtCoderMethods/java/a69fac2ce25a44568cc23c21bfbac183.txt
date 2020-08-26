@@ -1,0 +1,16 @@
+static void solve() {
+    int n = ni();
+    int[] a = na(n);
+    Arrays.sort(a);
+    int[] b = new int[n];
+    for (int i = 0; i < n; i++) {
+        b[i] = Math.abs(i - (n - i - 1));
+    }
+    Arrays.sort(b);
+    int mod = 1000000007;
+    if (Arrays.equals(a, b)) {
+        out.println(pow(2, n / 2, mod));
+    } else {
+        out.println(0);
+    }
+}

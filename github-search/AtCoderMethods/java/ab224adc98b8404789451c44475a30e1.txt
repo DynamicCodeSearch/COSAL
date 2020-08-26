@@ -1,0 +1,7 @@
+public int[] ssum(char[] s) {
+    int[] res = new int[s.length + 1];
+    for (int i = 1; i <= s.length; i++) {
+        res[i] = (res[i - 1] + (s[i - 1] == 'A' ? 1 : 2)) % 3;
+    }
+    return res;
+}

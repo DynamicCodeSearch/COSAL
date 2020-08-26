@@ -1,0 +1,37 @@
+@SuppressWarnings("unchecked")
+public void solve() {
+    N = nextInt();
+    graph = new ArrayList[N];
+    for (int i = 0; i < N; i++) {
+        graph[i] = new ArrayList<>();
+    }
+    for (int i = 0; i < N - 1; i++) {
+        int a = nextInt() - 1;
+        int b = nextInt() - 1;
+        int c = nextInt();
+        graph[a].add(new Edge(b, c));
+        graph[b].add(new Edge(a, c));
+    }
+    Q = nextInt();
+    K = nextInt() - 1;
+    ArrayDeque<Edge> q = new ArrayDeque<Edge>();
+    long[] dis = new long[N];
+    Arrays.fill(dis, -1);
+    q.add(new Edge(K, 0));
+    while (q.size() > 0) {
+        Edge e = q.poll();
+        if (dis[e.b] != -1)
+            continue;
+        dis[e.b] = e.c;
+        for (Edge next : graph[e.b]) {
+            if (dis[next.b] != -1)
+                continue;
+            q.add(new Edge(next.b, e.c + next.c));
+        }
+    }
+    for (int i = 0; i < Q; i++) {
+        int x = nextInt() - 1;
+        int y = nextInt() - 1;
+        out.println(dis[x] + dis[y]);
+    }
+}

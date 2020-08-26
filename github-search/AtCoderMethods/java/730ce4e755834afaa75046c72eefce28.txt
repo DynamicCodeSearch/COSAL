@@ -1,0 +1,12 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    int[] a = sc.nextIntList(N);
+    long[] dp = new long[N + 1];
+    dp[0] = 0;
+    dp[1] = Math.abs(a[0] - a[1]);
+    for (int i = 2; i < N; i++) {
+        dp[i] = Math.min(dp[i - 2] + Math.abs(a[i - 2] - a[i]), dp[i - 1] + Math.abs(a[i - 1] - a[i]));
+    }
+    System.out.println(dp[N - 1]);
+}

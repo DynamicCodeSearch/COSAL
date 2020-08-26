@@ -1,0 +1,31 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int target, num;
+    String str = br.readLine();
+    StringTokenizer st = new StringTokenizer(str);
+    target = Integer.parseInt(st.nextToken());
+    num = Integer.parseInt(st.nextToken());
+    boolean[] A = new boolean[200001];
+    boolean[] B = new boolean[200001];
+    Arrays.fill(A, false);
+    Arrays.fill(B, false);
+    for (int i = 0; i < num; i++) {
+        int tmp1, tmp2;
+        str = br.readLine();
+        st = new StringTokenizer(str);
+        tmp1 = Integer.parseInt(st.nextToken());
+        tmp2 = Integer.parseInt(st.nextToken());
+        if (tmp1 == 1) {
+            A[tmp2] = true;
+        } else if (tmp2 == target) {
+            B[tmp1] = true;
+        }
+    }
+    for (int i = 0; i <= 200000; i++) {
+        if (A[i] && B[i]) {
+            System.out.println("POSSIBLE");
+            return;
+        }
+    }
+    System.out.println("IMPOSSIBLE");
+}

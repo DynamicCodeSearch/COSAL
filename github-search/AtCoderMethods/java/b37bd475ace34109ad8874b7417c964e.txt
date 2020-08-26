@@ -1,0 +1,27 @@
+static char keisan(List a, List b, List c, Iterator ai, Iterator bi, Iterator ci, String next) {
+    String n = null;
+    switch(next) {
+        case "a":
+            if (ai.hasNext() == false) {
+                return 'A';
+            } else {
+                n = (String) ai.next();
+            }
+            break;
+        case "b":
+            if (bi.hasNext() == false) {
+                return 'B';
+            } else {
+                n = (String) bi.next();
+            }
+            break;
+        case "c":
+            if (ci.hasNext() == false) {
+                return 'C';
+            } else {
+                n = (String) ci.next();
+            }
+            break;
+    }
+    return keisan(a, b, c, ai, bi, ci, n);
+}

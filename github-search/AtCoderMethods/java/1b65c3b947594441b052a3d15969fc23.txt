@@ -1,0 +1,9 @@
+String readString(boolean skip, int LEN) throws java.io.IOException {
+    byte[] s = new byte[LEN];
+    byte c;
+    if (skip)
+        while ((c = read()) != '\n') ;
+    for (int i = 0; (c = read()) != '\n' && c != '\r' && c != 0; s[i++] = c) ;
+    read();
+    return new String(s);
+}

@@ -1,0 +1,21 @@
+public void solve() {
+    int n = Integer.parseInt(io.readLine());
+    int[][] map = new int[n][26];
+    for (int i = 0; i < n; i++) {
+        char[] c = io.readLine().toCharArray();
+        int[] v = map[i];
+        for (int j = 0; j < c.length; j++) {
+            v[c[j] - 'a']++;
+        }
+    }
+    StringBuilder res = new StringBuilder();
+    for (int i = 0; i < 26; i++) {
+        int min = 100;
+        for (int j = 0; j < n; j++) min = Math.min(min, map[j][i]);
+        while (min > 0) {
+            min--;
+            res.append((char) (i + 'a'));
+        }
+    }
+    io.writeLine(res.toString());
+}

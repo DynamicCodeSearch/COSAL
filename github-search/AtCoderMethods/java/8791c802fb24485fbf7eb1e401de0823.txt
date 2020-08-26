@@ -1,0 +1,27 @@
+public static void main(String[] args) throws Exception {
+    FastScanner fs = new FastScanner();
+    String s = fs.next();
+    
+    StringBuilder sb = new StringBuilder();
+    int[] z = new int[s.length()];
+    int[] z1 = new int[s.length()];
+    computez(z, s);
+    String s1 = new StringBuffer(s).reverse().toString();
+    computez(z1, s1);
+    long result = 0;
+    for (int i = s.length() / 2; i < s.length(); i++) {
+        int y = s.length() - i;
+        if (i <= y)
+            continue;
+        if (z[i] >= y)
+            z[i] = y - 1;
+        if (z1[y] >= y)
+            z1[y] = y - 1;
+        int co = z[i] + z1[y] - y;
+        if (co >= 0) {
+            result += co + 1;
+        }
+    }
+    sb.append(result);
+    System.out.println(sb.toString());
+}

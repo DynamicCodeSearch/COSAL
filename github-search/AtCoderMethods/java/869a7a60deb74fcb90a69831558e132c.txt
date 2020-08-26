@@ -1,0 +1,61 @@
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    
+    
+    
+    
+    
+    String[] ss0 = br.readLine().trim().split(" ", 0);
+    int N = Integer.parseInt(ss0[0]);
+    int K = Integer.parseInt(ss0[1]);
+    ss0 = br.readLine().trim().split(" ", 0);
+    Integer[] ii0 = new Integer[N];
+    for (int i = 0; i < N; i++) {
+        ii0[i] = Integer.parseInt(ss0[i]);
+    }
+    
+    
+    
+    
+    Arrays.sort(ii0, Collections.reverseOrder());
+    
+    
+    
+    
+    long sum = 0;
+    for (int i : ii0) {
+        sum += i;
+    }
+    if (sum < K) {
+        System.out.println(N);
+        return;
+    }
+    
+    int[] fuyou = new int[N];
+    for (int i = 0; i < N; i++) {
+        fuyou[i] = 1;
+    }
+    int j2 = 0;
+    for (int j = 0; j < N; j++) {
+        sum = 0;
+        j2 = j;
+        for (int i = j; i < N; i++) {
+            if (sum + ii0[i] >= K) {
+                setNeed(fuyou, j2, i);
+                j2 = i;
+            
+            } else {
+                sum += ii0[i];
+            }
+        }
+    }
+    int ans = 0;
+    for (int i : fuyou) {
+        ans += i;
+    }
+    
+    
+    
+    System.out.println(ans);
+    return;
+}

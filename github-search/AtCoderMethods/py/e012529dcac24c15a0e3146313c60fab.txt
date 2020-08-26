@@ -1,0 +1,21 @@
+def main():
+    b = []
+    line = input().split(" ")
+    H = int(line[0])
+    W = int(line[1])
+    for l in range(H):
+        b.append(input())
+
+    result = []
+    for i, line in enumerate(b):
+        result_row = ""
+        for j, c in enumerate(line):
+            if c == ".":
+                n = count(i, j, b, H, W)
+                result_row += str(n)
+            else:
+                result_row += b[i][j]
+        result.append(result_row)
+
+    for l in result:
+        print(l)

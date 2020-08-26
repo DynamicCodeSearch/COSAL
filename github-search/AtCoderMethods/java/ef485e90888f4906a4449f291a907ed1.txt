@@ -1,0 +1,22 @@
+static void solve() {
+    String s = in.next();
+    int n = s.length();
+    ArrayDeque<Integer> stack = new ArrayDeque<>();
+    for (int i = 0; i < n; i++) {
+        switch(s.charAt(i)) {
+            case '0':
+                stack.addLast(0);
+                break;
+            case '1':
+                stack.addLast(1);
+                break;
+            case 'B':
+                stack.pollLast();
+                break;
+        }
+    }
+    for (int i : stack) {
+        out.print(i);
+    }
+    out.println();
+}

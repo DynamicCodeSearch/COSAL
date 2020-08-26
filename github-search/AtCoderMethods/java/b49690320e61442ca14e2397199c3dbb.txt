@@ -1,0 +1,31 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    n = sc.nextInt();
+    a = new int[n + 1];
+    int left = 0, right = 0;
+    int[] count = new int[n + 1];
+    for (int i = 0; i <= n; i++) {
+        a[i] = sc.nextInt();
+        if (count[a[i]] == 1)
+            right = i;
+        count[a[i]]++;
+    }
+    for (int i = 0; i <= n; i++) {
+        if (count[a[i]] == 2) {
+            left = i;
+            break;
+        }
+    }
+    fact = new long[n + 2];
+    fact[0] = 1;
+    inverse = new long[n + 2];
+    inverse[0] = 1;
+    for (int i = 1; i <= n + 1; i++) {
+        fact[i] = (fact[i - 1] * (long) i) % mod;
+        inverse[i] = mod_pow(fact[i], mod - 2, mod);
+    }
+    for (int i = 1; i <= n + 1; i++) {
+        long ex = mod_comb(left + n - right, i - 1, mod) % mod;
+        System.out.println((mod_comb(n + 1, i, mod) - ex + mod) % mod);
+    }
+}

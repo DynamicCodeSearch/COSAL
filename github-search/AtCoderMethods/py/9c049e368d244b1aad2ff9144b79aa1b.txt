@@ -1,0 +1,28 @@
+def dfs(a, i, flag):
+    print('a={}, i={}, flag={}'.format(a, i, flag), file=sys.stderr)
+    if i == n:
+        return a
+
+    if a[i] in avail:
+        return dfs(a, i+1, flag)
+    else:
+        if flag:
+            a[i] = min(avail)
+            return dfs(a, i+1, flag)
+
+        arr = [val for val in avail if val > a[i]]
+        if arr:
+            a[i] = min(arr)
+            return dfs(a, i+1, True)
+        else:
+            if i > 0:
+                arr2 = [val for val in avail if val > a[i-1]]
+                if arr2:
+                    a[i-1] = min(arr2)
+                    a[i] = min(avail)
+                    return dfs(a, i+1, True)
+                else:
+                    raise Exception('not impl')
+            else:
+                a[i] = min(set(avail) - set([0])) * 10 + min(avail)
+                return dfs(a, i+1, True)

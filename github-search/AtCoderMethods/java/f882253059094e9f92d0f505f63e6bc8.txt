@@ -1,0 +1,11 @@
+public void fall(int i) {
+    if (i < H) {
+        if (2 * i < H) {
+            plus[2 * i] += plus[i];
+            plus[2 * i + 1] += plus[i];
+        }
+        st[2 * i] += plus[i];
+        st[2 * i + 1] += plus[i];
+        plus[i] = 0;
+    }
+}

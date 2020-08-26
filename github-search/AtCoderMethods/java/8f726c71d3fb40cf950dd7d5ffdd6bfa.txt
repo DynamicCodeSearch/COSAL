@@ -1,0 +1,12 @@
+private boolean send(String s) {
+    if (LOCAL_RUN) {
+        boolean u = Long.parseLong(s) <= Long.parseLong(N);
+        boolean v = s.compareTo(N) <= 0;
+        boolean res = (u && v) || (!u && !v);
+        System.out.println(s + " " + res);
+        return res;
+    }
+    out.println("? " + s);
+    out.flush();
+    return in.next().equals("Y");
+}

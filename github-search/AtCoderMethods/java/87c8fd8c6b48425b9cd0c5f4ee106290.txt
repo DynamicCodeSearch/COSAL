@@ -1,0 +1,14 @@
+public static void rec(int before, int bit, int sum) {
+    if (bit == (1 << k) - 1) {
+        if (sum < ans)
+            ans = sum;
+        return;
+    }
+    if (sum >= ans)
+        return;
+    for (int i = 0; i < k; i++) {
+        if ((bit >> i) % 2 == 0) {
+            rec(i, bit + (1 << i), sum + dist[r[before]][r[i]]);
+        }
+    }
+}

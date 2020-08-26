@@ -1,0 +1,28 @@
+def B_Minesweeper(H, W, S):
+
+    board = S.copy()
+
+    dx = (1, 0, -1, 0, 1, -1, -1, 1)
+    dy = (0, 1, 0, -1, 1, 1, -1, -1)
+
+    for i in range(H):
+        for j in range(W):
+            if board[i][j] == '#':
+                continue
+
+            num = 0  
+            for k in range(8):
+                y = i + dy[k]
+                x = j + dx[k]
+
+                if x < 0 or W <= x:
+                    continue
+                if y < 0 or H <= y:
+                    continue
+                if board[y][x] == '#':
+                    num += 1
+            board[i] = board[i][:j] + chr(ord('0') + num) + board[i][j+1:]
+
+    for s in board:
+        print(''.join(s))
+    return None

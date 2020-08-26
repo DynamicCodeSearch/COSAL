@@ -1,0 +1,13 @@
+def dijkstra(x, vertex):
+    d = [INF] * x
+    d[vertex] = 0
+    hq = [(0, vertex)] 
+
+    while hq:
+        u = heapq.heappop(hq)[1]
+        for (v, c) in Adj_list[u]:
+            if d[v] > d[u] + c:
+                d[v] = d[u] + c
+                heapq.heappush(hq, (d[u] + c, v))
+
+    return d

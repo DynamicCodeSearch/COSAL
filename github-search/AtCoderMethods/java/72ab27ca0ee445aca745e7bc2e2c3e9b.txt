@@ -1,0 +1,28 @@
+private void solve() {
+    int n = in.nextInt();
+    int m = in.nextInt();
+    int mod = (int) 1e9 + 7;
+    long[] a = new long[n + 1];
+    long[] b = new long[m + 1];
+    for (int i = 1; i <= n; i++) {
+        a[i] = in.nextLong();
+    }
+    for (int i = 1; i <= m; i++) {
+        b[i] = in.nextLong();
+    }
+    long areax = 0;
+    for (int i = 1; i <= n; i++) {
+        areax += (i - 1) * a[i] - (n - i) * a[i];
+        areax %= mod;
+    }
+    long areay = 0;
+    for (int i = 1; i <= m; i++) {
+        areay += (i - 1) * b[i] - (m - i) * b[i];
+        areay %= mod;
+    }
+    long area = (areax * areay) % mod;
+    if (area < 0) {
+        area += mod;
+    }
+    out.print(area);
+}

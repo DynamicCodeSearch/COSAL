@@ -1,0 +1,34 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] a = new int[N];
+    for (int i = 0; i < N; i++) {
+        a[i] = sc.nextInt();
+    }
+    int takahashiMax = -3000;
+    
+    for (int i = 0; i < N; i++) {
+        int aokiMax = -3000;
+        int max = -3000;
+        
+        for (int j = 0; j < N; j++) {
+            if (j != i) {
+                int takahashi = 0;
+                int aoki = 0;
+                for (int k = Math.min(i, j); k <= Math.max(i, j); k++) {
+                    if ((k - Math.min(i, j)) % 2 == 0) {
+                        takahashi += a[k];
+                    } else {
+                        aoki += a[k];
+                    }
+                }
+                if (aoki > aokiMax) {
+                    aokiMax = aoki;
+                    max = takahashi;
+                }
+            }
+        }
+        takahashiMax = Math.max(takahashiMax, max);
+    }
+    System.out.println(takahashiMax);
+}

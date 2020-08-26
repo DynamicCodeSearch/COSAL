@@ -1,0 +1,11 @@
+private static boolean check(String s, char[] ans, int i, int j, int k) {
+    int n = s.length();
+    if (s.charAt(j) == 'o' && ans[j] == 'S') {
+        return ans[i] == ans[k];
+    } else if (s.charAt(j) == 'o' && ans[j] == 'W') {
+        return ans[i] != ans[k];
+    } else if (s.charAt(j) == 'x' && ans[j] == 'S') {
+        return ans[i] != ans[k];
+    }
+    return ans[i] == ans[k];
+}

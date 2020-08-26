@@ -1,0 +1,24 @@
+def main():
+    N = int(input())
+    A = tuple([int(input()) for _ in range(N)])
+
+    a = list(A)
+    ans = 0
+    try:
+        idx = a.index(1)
+    except:
+        idx = 0
+        ans += 1
+
+    while True:
+        btn = a[idx]
+        if btn == 0:
+            ans = -1
+            break
+        elif btn == 2:
+            break
+        a[idx] = 0
+        idx = btn - 1
+        ans += 1
+
+    print(ans)

@@ -1,0 +1,13 @@
+static public int countPattern(int pos, Set<Integer> visited) {
+    if (visited.size() == n)
+        return 1;
+    int count = 0;
+    for (int i = 0; i < n; i++) {
+        if (connected[pos][i] && !visited.contains(i)) {
+            visited.add(i);
+            count += countPattern(i, visited);
+            visited.remove(i);
+        }
+    }
+    return count;
+}

@@ -1,0 +1,19 @@
+static boolean isPuttable(int x, int count, String[][] n) {
+    for (int vy = -1; vy <= 1; vy++) {
+        for (int vx = -1; vx <= 1; vx++) {
+            if (vy == 0 && vx == 0)
+                continue;
+            int ty = x;
+            int tx = count;
+            while (true) {
+                ty += vy;
+                tx += vx;
+                if (ty < 0 || ty >= 8 || tx < 0 || tx >= 8)
+                    break;
+                if (n[ty][tx].equals("Q"))
+                    return false;
+            }
+        }
+    }
+    return true;
+}

@@ -1,0 +1,10 @@
+public boolean equals(Object o) {
+    if (o instanceof Triple) {
+        Triple that = (Triple) o;
+        boolean res = (this.a == null && this.a == that.a || this.a != null && this.a.equals(that.a));
+        res = res & (this.b == null && this.b == that.b || this.b != null && this.b.equals(that.b));
+        res = res & (this.c == null && this.c == that.c || this.c != null && this.c.equals(that.c));
+        return res;
+    }
+    return false;
+}

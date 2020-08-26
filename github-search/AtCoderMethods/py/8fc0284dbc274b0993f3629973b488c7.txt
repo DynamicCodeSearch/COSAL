@@ -1,0 +1,26 @@
+def main():
+    N, M = list(map(int, input().split()))
+
+
+    M_minus_2N = M - 2 * N
+
+    candidates_x = []
+    candidates_y = []
+    candidates_z = []
+    for z in range(N + 1):
+        y = M_minus_2N - (2 * z)
+        x = N - y - z
+        if y >= 0 and x >= 0:
+            candidates_x.append(x)
+            candidates_y.append(y)
+            candidates_z.append(z)
+
+    for i in range(len(candidates_x)):
+        x = candidates_x[i]
+        y = candidates_y[i]
+        z = candidates_z[i]
+
+        if M == 2 * x + 3 * y + 4 * z:
+            print('%d %d %d' % (x,y,z))
+            return
+    print('-1 -1 -1')

@@ -1,0 +1,47 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    String[] S = new String[n];
+    for (int i = 0; i < n; i++) {
+        S[i] = sc.next();
+    }
+    boolean first = true;
+    TreeMap<String, Integer> map = new TreeMap<>();
+    for (String line : S) {
+        HashMap<String, Integer> tmp = new HashMap<>();
+        for (int i = 0; i < line.length(); i++) {
+            String ch = line.substring(i, i + 1);
+            if (tmp.containsKey(ch)) {
+                tmp.put(ch, tmp.get(ch) + 1);
+            } else {
+                tmp.put(ch, 1);
+            }
+        }
+        for (String ch : tmp.keySet()) {
+            if (map.containsKey(ch) && map.get(ch) > 0) {
+                if (tmp.get(ch) < map.get(ch)) {
+                    map.put(ch, tmp.get(ch));
+                }
+            } else {
+                if (first) {
+                    map.put(ch, tmp.get(ch));
+                } else {
+                    map.put(ch, 0);
+                }
+            }
+        }
+        for (String ch : map.keySet()) {
+            if (!tmp.containsKey(ch)) {
+                map.put(ch, 0);
+            }
+        }
+        first = false;
+    }
+    StringBuffer ans = new StringBuffer();
+    for (String ch : map.keySet()) {
+        for (int i = 0; i < map.get(ch); i++) {
+            ans.append(ch);
+        }
+    }
+    System.out.println(ans);
+}

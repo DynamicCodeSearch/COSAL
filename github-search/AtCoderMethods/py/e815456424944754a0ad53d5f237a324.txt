@@ -1,0 +1,8 @@
+def split_t(h, w):
+    ans = h*w
+    for i in range(h//5, (h+1)//2+1):
+        head = i*w
+        left = (h-i)*(w//2)
+        right = (h-i)*(w - w//2)
+        ans = min(ans, max(head, left, right)-min(head, left, right))
+    return ans

@@ -1,0 +1,10 @@
+static long[] unique_array(long[] d) {
+    
+    int id = 1;
+    for (int i = 1; i < d.length; i++) {
+        if (d[i] != d[id - 1]) {
+            d[id++] = d[i];
+        }
+    }
+    return copyOf(d, id);
+}

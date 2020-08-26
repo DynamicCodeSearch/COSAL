@@ -1,0 +1,19 @@
+void run() {
+    int n = sc.nextInt();
+    long b = 1;
+    long c = 1;
+    while (n-- > 0) {
+        long a = sc.nextLong();
+        long t = sc.nextLong();
+        long cmpA = b / a + (b % a == 0 ? 0 : 1);
+        long cmpT = c / t + (c % t == 0 ? 0 : 1);
+        if (cmpA * a >= b && cmpA * t >= c) {
+            b = cmpA * a;
+            c = cmpA * t;
+        } else {
+            b = cmpT * a;
+            c = cmpT * t;
+        }
+    }
+    System.out.println(b + c);
+}

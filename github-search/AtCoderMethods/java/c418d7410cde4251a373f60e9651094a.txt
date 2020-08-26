@@ -1,0 +1,11 @@
+void next(int l, int r) {
+    if (r - l == 0)
+        return;
+    int v;
+    if (l % 2 == 0) {
+        v = rmq0.Query(l, r - 1);
+    } else {
+        v = rmq1.Query(l, r - 1);
+    }
+    mp.put(v, new int[] { l, r });
+}

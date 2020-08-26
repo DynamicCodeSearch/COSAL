@@ -1,0 +1,17 @@
+public void solve() {
+    A = nextInt();
+    B = nextInt();
+    C = nextInt();
+    D = nextInt();
+    int ans = 0;
+    if (A <= C && D <= B) {
+        ans = D - C;
+    } else if (C <= A && B <= D) {
+        ans = B - A;
+    } else if (B <= C || D <= A) {
+        ans = 0;
+    } else {
+        ans = Math.min(B, D) - Math.max(A, C);
+    }
+    out.println(ans);
+}

@@ -1,0 +1,21 @@
+public static void main(String[] args) throws java.lang.Exception {
+    Scanner sc = new Scanner(System.in);
+    double a = sc.nextDouble();
+    String result = "";
+    a = a / 1000;
+    if (a < 0.1) {
+        result = "00";
+    } else if (a >= 0.1 && a <= 5) {
+        result = (int) (a * 10) + "";
+        if (result.length() == 1) {
+            result = "0" + result;
+        }
+    } else if (a >= 6 && a <= 30) {
+        result = (int) (a + 50) + "";
+    } else if (a >= 35 && a <= 70) {
+        result = (int) ((a - 30) / 5 + 80) + "";
+    } else if (a > 70) {
+        result = "89";
+    }
+    System.out.println(result);
+}

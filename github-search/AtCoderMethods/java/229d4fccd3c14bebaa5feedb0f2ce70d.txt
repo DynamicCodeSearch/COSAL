@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    String s = scanner.next();
+    int[] a = new int[26];
+    for (int i = 0; i < 26; i++) {
+        a[i] = 97 + i;
+    }
+    int j = 0;
+    int counter = 26;
+    for (int i = 0; i < s.length(); i++) {
+        j = s.charAt(i) - 97;
+        if (a[j] != 0) {
+            a[j] = 0;
+            counter--;
+            if (counter == 0) {
+                System.out.println("None");
+                return;
+            }
+        }
+    }
+    for (int i = 0; i < s.length(); i++) {
+        if (a[i] != 0) {
+            System.out.println((char) (i + 97));
+            return;
+        }
+    }
+    System.out.println("None");
+}

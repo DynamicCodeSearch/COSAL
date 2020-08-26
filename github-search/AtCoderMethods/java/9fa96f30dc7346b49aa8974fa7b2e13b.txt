@@ -1,0 +1,19 @@
+
+public void run() throws IOException {
+    
+    int TEST_CASE = 1;
+    while (TEST_CASE-- != 0) {
+        int n = io.nextInt();
+        int m = io.nextInt();
+        int[] x = io.nextIntArray(n);
+        int[] y = io.nextIntArray(m);
+        long v1 = 0, v2 = 0;
+        for (int i = 0; i < n - 1; i++) {
+            v1 += (i + 1L) * (x[i + 1] - x[i]) % mod * (n - 1 - i) % mod;
+        }
+        for (int i = 0; i < m - 1; i++) {
+            v2 += (i + 1L) * (y[i + 1] - y[i]) % mod * (m - 1 - i) % mod;
+        }
+        io.out.println(v1 % mod * (v2 % mod) % mod);
+    }
+}

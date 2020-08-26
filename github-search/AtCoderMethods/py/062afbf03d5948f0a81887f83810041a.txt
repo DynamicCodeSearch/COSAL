@@ -1,0 +1,18 @@
+def read_data():
+    R, C, N = map(int, input().split())
+    pairs = []
+    xys = []
+    idx = 0
+    for i in range(N):
+        x1, y1, x2, y2 = map(int, input().split())
+        xys.append((x1, y1))
+        xys.append((x2, y2))
+        if (x1 != 0 and x1 != R and y1 != 0 and y1 != C) or (x2 != 0 and x2 != R and y2 != 0 and y2 != C):
+            continue
+        a = calc_pos(x1, y1, R, C)
+        b = calc_pos(x2, y2, R, C)
+        pairs.append((a, idx))
+        pairs.append((b, idx))
+        idx += 1
+    pairs.sort()
+    return pairs, xys

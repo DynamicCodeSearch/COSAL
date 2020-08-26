@@ -1,0 +1,11 @@
+def solve():
+    num_odds = sum(1 for a in A if a % 2 == 1)
+    if num_odds == 0:
+        return len(S)
+
+    for i in range(len(A)):
+        if A[i] % 2 == 1:
+            A[i] -= 1
+
+    num_pairs = sum(A) // 2
+    return 2 * math.floor(num_pairs / num_odds) + 1

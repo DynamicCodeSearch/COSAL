@@ -1,0 +1,9 @@
+long get(long key) {
+    int id = hash(key);
+    for (int i = 0; i < list[id].size(); ++i) {
+        if (list[id].get(i).key == key) {
+            return list[id].get(i).value;
+        }
+    }
+    throw new AssertionError();
+}

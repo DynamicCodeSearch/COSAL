@@ -1,0 +1,27 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    char[] name = sc.next().toCharArray();
+    char[] kit = sc.next().toCharArray();
+    int[][] array = new int[2][26];
+    for (char c : name) {
+        array[0][c - 'A']++;
+    }
+    for (char c : kit) {
+        array[1][c - 'A']++;
+    }
+    int max = 0;
+    for (int i = 0; i < 26; i++) {
+        if (array[1][i] == 0) {
+            if (array[0][i] > 0) {
+                System.out.println(-1);
+                return;
+            } else {
+                continue;
+            }
+        }
+        max = Math.max(max, (array[0][i] + (array[1][i] - 1)) / array[1][i]);
+    }
+    System.out.println(max);
+}

@@ -1,0 +1,16 @@
+public final void answer() {
+    for (int i = 0; i < N; i++) {
+        Node node = nodes[i];
+        if (node.next.size() == 0) {
+            dpW[node.name] = dpB[node.name] = 1;
+        } else {
+            dpW[node.name] = 1;
+            dpB[node.name] = 1;
+            for (int tmp : node.next) {
+                dpW[node.name] = (dpW[tmp] + dpB[tmp]) % MOD * dpW[node.name] % MOD;
+                dpB[node.name] = dpW[tmp] * dpB[node.name] % MOD;
+            }
+        }
+    }
+    System.out.println((dpW[0] + dpB[0]) % MOD);
+}

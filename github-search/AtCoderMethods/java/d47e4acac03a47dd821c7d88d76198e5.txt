@@ -1,0 +1,29 @@
+public static void main(String[] args) throws Exception {
+    try {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String line;
+        String[] inputStr;
+        long[] num = { 0, 0, 0 };
+        long tmp, result;
+        int i, j;
+        while ((line = br.readLine()) != null) {
+            inputStr = line.split(" ");
+            num[0] = Long.parseLong(inputStr[0]);
+            num[1] = Long.parseLong(inputStr[1]);
+            num[2] = Long.parseLong(inputStr[2]);
+            for (i = 0; i < num.length - 1; i++) {
+                for (j = 1; j < num.length; j++) {
+                    if (num[i] > num[j]) {
+                        tmp = num[i];
+                        num[i] = num[j];
+                        num[j] = tmp;
+                        continue;
+                    }
+                }
+            }
+            result = num[0] + num[1];
+            System.out.println(result);
+        }
+    } catch (IOException e) {
+    }
+}

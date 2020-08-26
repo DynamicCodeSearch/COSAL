@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String X = sc.nextLine();
+    String answer = "YES";
+    while (!X.isEmpty()) {
+        char first = X.charAt(0);
+        int length = X.length();
+        if (first == 'o' || first == 'k' || first == 'u') {
+            X = X.substring(1);
+        } else if (length >= 2 && X.substring(0, 2).equals("ch")) {
+            X = X.substring(2);
+        } else {
+            answer = "NO";
+            break;
+        }
+    }
+    System.out.println(answer);
+}

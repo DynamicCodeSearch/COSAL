@@ -1,0 +1,13 @@
+def main():
+    n = int(input())
+    bal = [list(map(int,input().split())) for _ in range(n)]
+    nlist = [0]*n
+    lo = 0
+    hi = 10**16
+    while lo+1 < hi:
+        med = (lo+hi)//2
+        if is_clear(med,bal,n,nlist):
+            hi = med
+        else:
+            lo = med
+    print(hi)

@@ -1,0 +1,32 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    int n = Integer.parseInt(in.readLine());
+    Stack<Character> stack = new Stack<>();
+    StringBuilder output = new StringBuilder();
+    String prefix = "", suffix = "";
+    for (int i = 0; i < n; i++) {
+        char k = in.readCharacter();
+        if (k == '(') {
+            stack.push(k);
+            output.append(k);
+            continue;
+        }
+        if (k == ')') {
+            if (stack.isEmpty()) {
+                prefix += "(";
+                output.append(k);
+                continue;
+            }
+            char c = stack.pop();
+            if (c == '(') {
+                output.append(k);
+                continue;
+            }
+        }
+    }
+    if (!stack.isEmpty()) {
+        for (char k : stack) {
+            suffix += ")";
+        }
+    }
+    out.printLine(prefix + output.toString() + suffix);
+}

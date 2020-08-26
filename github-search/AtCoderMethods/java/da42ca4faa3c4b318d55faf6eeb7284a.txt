@@ -1,0 +1,18 @@
+public void solve(int testNumber, MyReader in, PrintWriter out) {
+    n = in.nextLong();
+    m = in.nextLong();
+    long lo = 0, hi = (long) 1E12 + 5L;
+    while (hi - lo > 1) {
+        long mid = (lo + hi) / 2;
+        if (ok(mid)) {
+            lo = mid;
+        } else {
+            hi = mid;
+        }
+    }
+    if (ok(hi)) {
+        out.println(hi);
+    } else {
+        out.println(lo);
+    }
+}

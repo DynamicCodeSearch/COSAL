@@ -1,0 +1,32 @@
+public void solve() {
+    int n = nextInt();
+    x = new int[n];
+    y = new int[n];
+    cost = new int[n];
+    for (int i = 0; i < n; i++) {
+        x[i] = nextInt();
+        y[i] = nextInt();
+        cost[i] = nextInt();
+    }
+    out.printf("%10f\n", lowerBound(0, 200000 * 1000, v -> {
+        double x1 = -100000;
+        double x2 = 100000;
+        double y1 = -100000;
+        double y2 = 100000;
+        for (int i = 0; i < n; i++) {
+            double move = v / cost[i];
+            double xx1 = x[i] - move;
+            double yy1 = y[i] - move;
+            double xx2 = x[i] + move;
+            double yy2 = y[i] + move;
+            x1 = Math.max(x1, xx1);
+            y1 = Math.max(y1, yy1);
+            x2 = Math.min(x2, xx2);
+            y2 = Math.min(y2, yy2);
+            if (x2 - x1 <= 0 || y2 - y1 <= 0) {
+                return false;
+            }
+        }
+        return true;
+    }));
+}

@@ -1,0 +1,16 @@
+public static void main(String[] args) throws IOException {
+    proconScan proScan = new proconScan(" ");
+    proScan.scan();
+    Long xInteger = proScan.nextLong();
+    Long buf = new Long(0);
+    Long ans = new Long(1);
+    while (true) {
+        buf += ans;
+        if (xInteger <= buf) {
+            break;
+        }
+        ans++;
+    }
+    System.out.println(ans);
+    proScan.proconEnd();
+}

@@ -1,0 +1,7 @@
+public static long nck(int n, int k) {
+    if (k < 0 || n < 1 || n < k) {
+        return 0;
+    } else {
+        return (fact[n] * power(fact[k], MOD - 2) % MOD) * power(fact[n - k], MOD - 2) % MOD;
+    }
+}

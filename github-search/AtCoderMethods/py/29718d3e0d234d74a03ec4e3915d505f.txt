@@ -1,0 +1,52 @@
+def Sugar_water():
+    key_list = ["wA", "wB", "sC", "sD", "dE", "tF"]
+
+    val = "17 19 22 26 55 2802"
+
+    if 'LOCAL_FLAG' in globals():
+        val_list = list(map(int, val.split()))
+    else:
+        val_list = list(map(int, input().split()))
+
+    var = dict(zip(key_list, val_list))
+    limit = var.copy()
+
+    m_density=0
+    m_sugar=0
+    m_water=0
+
+    limit_density=var['dE']/(100+var['dE'])
+    limit['wA'] = int(var['tF']/100/var['wA'])
+    limit['wB'] = int(var['tF']/100/var['wB'])
+
+    for A in range(0, limit['wA']+1):
+        for B in range(0, limit['wB']+1):
+            water = 100*var['wA']*A + 100*var['wB']*B
+            if(water > var['tF']):
+                break
+            elif((var['tF']-water)*m_density > (var['tF']-water)):
+                break
+            limit['sC'] = int(water/100*var['dE']/var['sC'])
+            limit['sD'] = int(water/100*var['dE']/var['sD'])
+
+            for C in range(0, limit['sC']+1):
+                for D in range(0, limit['sD']+1):
+                    sugar = var['sC']*C + var['sD']*D
+
+                    total = water + sugar
+                    density = sugar / total if total > 0 else 0
+
+                    if(total > var['tF']):
+                        break
+                    elif(density > limit_density):
+                        break
+                    elif(density > m_density):
+
+                        m_density=density
+                        m_sugar=sugar
+                        m_water=water
+
+
+    if(m_water == 0):
+        m_water = 100*var['wA']
+    print(m_sugar + m_water, " ", m_sugar)

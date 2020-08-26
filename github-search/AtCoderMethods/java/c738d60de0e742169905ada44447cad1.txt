@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner input = new Scanner(System.in);
+    while (input.hasNext()) {
+        String S = input.next();
+        int[] countAlphbet = new int[26];
+        for (int i = 0; i < S.length(); ++i) {
+            ++countAlphbet[S.charAt(i) - 'a'];
+        }
+        boolean allExist = true;
+        for (int i = 0; i < countAlphbet.length; ++i) {
+            if (countAlphbet[i] == 0) {
+                allExist = false;
+                System.out.println((char) ('a' + i));
+                break;
+            }
+        }
+        if (allExist) {
+            System.out.println("None");
+        }
+    }
+}

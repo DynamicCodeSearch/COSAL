@@ -1,0 +1,21 @@
+public static void main(String[] args) throws IOException {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    String[] W = new String[N];
+    for (int i = 0; i < W.length; i++) {
+        W[i] = sc.next();
+    }
+    Set<String> used = new HashSet<>();
+    String prev = W[0];
+    used.add(prev);
+    for (int i = 1; i < W.length; i++) {
+        String current = W[i];
+        if (prev.charAt(prev.length() - 1) != W[i].charAt(0) || used.contains(current)) {
+            System.out.println(i % 2 == 0 ? "LOSE" : "WIN");
+            return;
+        }
+        used.add(current);
+        prev = current;
+    }
+    System.out.println("DRAW");
+}

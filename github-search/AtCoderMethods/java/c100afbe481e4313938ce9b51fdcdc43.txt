@@ -1,0 +1,9 @@
+public void addRate(int rate) {
+    
+    for (Rate key : rateDispersion.keySet()) {
+        if (key.isInRange(rate)) {
+            rateDispersion.put(key, rateDispersion.get(key) + 1);
+            return;
+        }
+    }
+}

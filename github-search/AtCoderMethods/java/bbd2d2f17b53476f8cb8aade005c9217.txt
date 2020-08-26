@@ -1,0 +1,40 @@
+public static void main(String[] args) {
+    Scanner io = new Scanner(System.in);
+    int N = io.nextInt();
+    int A = io.nextInt();
+    int B = io.nextInt();
+    Long[] v = new Long[N];
+    for (int i = 0; i < N; i++) {
+        v[i] = io.nextLong();
+    }
+    Arrays.sort(v, Collections.reverseOrder());
+    long sum = 0;
+    long pair = 0;
+    long now = -1;
+    int seq = 0;
+    for (int i = 0; i < A; i++) {
+        sum += v[i];
+        if (now != v[i]) {
+            now = v[i];
+            seq = 1;
+        } else {
+            seq++;
+        }
+    }
+    int after = 0;
+    for (int i = A; i < N; i++) {
+        if (now != v[i])
+            break;
+        else
+            after++;
+    }
+    if (now != v[0]) {
+        pair = comp(seq + after, seq);
+    } else {
+        for (int i = A; i <= Math.min(B, seq + after); i++) {
+            pair += comp(seq + after, i);
+        }
+    }
+    System.out.println(sum / ((double) A));
+    System.out.println(pair);
+}

@@ -1,0 +1,42 @@
+private void doit() {
+    Scanner sc = new Scanner(System.in);
+    while (sc.hasNext()) {
+        int n = sc.nextInt();
+        int[] data = new int[n];
+        for (int i = 0; i < n; i++) {
+            data[i] = sc.nextInt();
+        }
+        HashMap<Integer, Integer> map = new HashMap<>();
+        ArrayList<Integer> keys = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            if (map.containsKey(data[i])) {
+                map.put(data[i], map.get(data[i]) + 1);
+            } else {
+                map.put(data[i], 1);
+                keys.add(data[i]);
+            }
+        }
+        Collections.sort(keys);
+        int max = 0;
+        int temp = map.get(keys.get(0));
+        if (keys.size() > 1 && keys.get(0) + 1 == keys.get(1)) {
+            temp += map.get(keys.get(1));
+        }
+        max = Math.max(max, temp);
+        max = Math.max(max, map.get(keys.get(keys.size() - 1)));
+        for (int i = 1; i < keys.size() - 1; i++) {
+            int prev = keys.get(i - 1);
+            int now = keys.get(i);
+            int next = keys.get(i + 1);
+            int value = map.get(keys.get(i));
+            if (now - 1 == prev) {
+                value += map.get(keys.get(i - 1));
+            }
+            if (now + 1 == next) {
+                value += map.get(keys.get(i + 1));
+            }
+            max = Math.max(value, max);
+        }
+        System.out.println(max);
+    }
+}

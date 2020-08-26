@@ -1,0 +1,36 @@
+def main():
+
+    N = int(input())
+    S1 = input()
+    S2 = input()
+
+    a = 1
+    before = "f"
+
+
+
+    i = 0
+    while i < N:
+        if S1[i] == S2[i]:
+
+            if before == "f":
+                a *= 3
+            elif before == "v":
+                a *= 2
+            else:
+                pass
+            before = "v"
+            i += 1
+        else:
+
+            if before == "f":
+
+                a *= 6
+            elif before == "v":
+                a *= 2
+            else:
+                a *= 3
+            before = "h"
+            i += 2
+
+    print(a % 1000000007)

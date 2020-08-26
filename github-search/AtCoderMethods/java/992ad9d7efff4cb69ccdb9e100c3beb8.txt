@@ -1,0 +1,24 @@
+long bitDP(int v, int mask) {
+    if (memo[v][mask] != -1)
+        return memo[v][mask];
+    if (mask == (1 << N) - 1)
+        return 1;
+    long cnt = 0;
+    for (int i = 0; i < N; i++) {
+        if ((mask & 1 << i) != 0)
+            continue;
+        boolean ok = true;
+        for (int j = 0; j < N; j++) {
+            if ((mask & 1 << j) > 0) {
+                if (order[i][j]) {
+                    ok = false;
+                    break;
+                }
+            }
+        }
+        if (ok) {
+            cnt += bitDP(i, mask | 1 << i);
+        }
+    }
+    return memo[v][mask] = cnt;
+}

@@ -1,0 +1,26 @@
+def main(argv):
+    line = sys.stdin.readline()
+    while line:
+        N = int(line)
+        a = map(lambda x: int(x), sys.stdin.readline().split(" "))
+
+        counters = [0, 0 ,0]
+        for i in a:
+            if i % 4 == 0:
+                counters[2] += 1
+            elif i % 2 == 0:
+                counters[1] += 1
+            else:
+                counters[0] += 1
+
+        if counters[0] > (counters[2] + 1):
+            print("No")
+        elif counters[0] == (counters[2] + 1):
+            if counters[1] > 0:
+                print("No")
+            else:
+                print("Yes")
+        else:
+            print("Yes")
+
+        line = sys.stdin.readline()

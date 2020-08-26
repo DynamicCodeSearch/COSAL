@@ -1,0 +1,41 @@
+private long combination(int n, int k) {
+    HashMap<Integer, Integer> factorization = new HashMap<Integer, Integer>();
+    
+    for (int i = k; i > 1; i--) {
+        int d = 2;
+        for (int j = i; j > 1; ) {
+            if (j % d == 0) {
+                if (factorization.containsKey(d))
+                    factorization.put(d, factorization.get(d) - 1);
+                else
+                    factorization.put(d, -1);
+                j /= d;
+            } else {
+                d++;
+            }
+        }
+    }
+    
+    for (int i = n; i > n - k; i--) {
+        int d = 2;
+        for (int j = i; j > 1; ) {
+            if (j % d == 0) {
+                if (factorization.containsKey(d))
+                    factorization.put(d, factorization.get(d) + 1);
+                else
+                    factorization.put(d, 1);
+                j /= d;
+            } else {
+                d++;
+            }
+        }
+    }
+    
+    long ans = 1L;
+    for (int d : factorization.keySet()) {
+        for (int i = 0; i < factorization.get(d); i++) {
+            ans *= d;
+        }
+    }
+    return ans;
+}

@@ -1,0 +1,23 @@
+List<Integer> find(int n, SegmentTree[] segmentTrees) {
+    
+    List<Integer> res = new ArrayList<>();
+    State initialState = findState(0, n - 1, segmentTrees);
+    PriorityQueue<State> pq = new PriorityQueue<>();
+    pq.add(initialState);
+    while (!pq.isEmpty()) {
+        State ns = pq.poll();
+        Pair pl = ns.pl, pr = ns.pr;
+        res.add(pl.val);
+        res.add(pr.val);
+        if (ns.l < pl.idx - 1) {
+            pq.add(findState(ns.l, pl.idx - 1, segmentTrees));
+        }
+        if (pl.idx + 1 < pr.idx - 1) {
+            pq.add(findState(pl.idx + 1, pr.idx - 1, segmentTrees));
+        }
+        if (pr.idx + 1 < ns.r) {
+            pq.add(findState(pr.idx + 1, ns.r, segmentTrees));
+        }
+    }
+    return res;
+}

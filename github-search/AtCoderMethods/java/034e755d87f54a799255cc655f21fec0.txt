@@ -1,0 +1,19 @@
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int t = sc.nextInt();
+    int prev = sc.nextInt();
+    long sum = 0;
+    for (int i = 1; i < n; i++) {
+        int next = sc.nextInt();
+        int diff = next - prev;
+        if (t < diff) {
+            sum += t;
+        } else {
+            sum += diff;
+        }
+        prev = next;
+    }
+    sum += t;
+    System.out.println(sum);
+}

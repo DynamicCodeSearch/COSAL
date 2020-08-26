@@ -1,0 +1,10 @@
+def main():
+    num = [int(x) for x in list(input())]
+    num.reverse()
+    tot = 0
+    N = len(num)
+
+    for m in range(N):
+        tot += ((2**(N-4)) * (5**(m) - 1) + (2**(N-m-1)) * (10**(m))) * num[m]
+
+    print(int(tot))

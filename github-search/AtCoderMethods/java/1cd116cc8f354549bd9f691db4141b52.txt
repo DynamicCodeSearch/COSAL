@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    long[] a = sc.nextLongList(N);
+    long count = 0;
+    boolean flg = true;
+    while (flg) {
+        long now = 0;
+        for (int i = 0; i < N; i++) {
+            if (a[i] >= N) {
+                long x = a[i] / N;
+                a[i] -= x * (N + 1);
+                now += x;
+            }
+        }
+        count += now;
+        flg = false;
+        for (int i = 0; i < N; i++) {
+            a[i] += now;
+            if (a[i] >= N) {
+                flg = true;
+            }
+        }
+    }
+    System.out.println(count);
+}

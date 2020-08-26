@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    PrintWriter out = new PrintWriter(System.out);
+    int l = sc.nextInt();
+    int x = sc.nextInt();
+    int y = sc.nextInt();
+    int s = sc.nextInt();
+    int d = sc.nextInt();
+    int dist = (l + d - s) % l;
+    double time = (double) dist / (x + y);
+    dist = (l + s - d) % l;
+    if (y - x > 0) {
+        time = Math.min(time, (double) dist / (y - x));
+    }
+    out.println(time);
+    out.flush();
+}

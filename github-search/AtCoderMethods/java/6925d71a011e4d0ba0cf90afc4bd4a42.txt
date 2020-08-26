@@ -1,0 +1,18 @@
+private void run() {
+    String O = sc.next();
+    String E = sc.next();
+    int fullsize = O.length() + E.length();
+    boolean isodd = false;
+    if (fullsize % 2 != 0) {
+        isodd = true;
+    }
+    String ans = "";
+    for (int i = 0; i < E.length(); i++) {
+        ans += O.charAt(i);
+        ans += E.charAt(i);
+    }
+    if (isodd) {
+        ans += O.charAt(O.length() - 1);
+    }
+    System.out.println(ans);
+}

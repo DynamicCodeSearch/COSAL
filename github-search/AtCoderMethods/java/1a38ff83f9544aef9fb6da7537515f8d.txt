@@ -1,0 +1,18 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    long n = sc.nextLong();
+    long h = sc.nextLong();
+    long a = sc.nextLong();
+    long b = sc.nextLong();
+    long c = sc.nextLong();
+    long d = sc.nextLong();
+    long e = sc.nextLong();
+    long cost = Long.MAX_VALUE / 2;
+    for (long i = 0; i <= n; i++) {
+        long j = 0;
+        if ((n - i) * e - h - b * i > 0)
+            j = ((n - i) * e - h - b * i) / (d + e) + 1;
+        cost = Math.min(cost, a * i + c * j);
+    }
+    System.out.println(cost);
+}

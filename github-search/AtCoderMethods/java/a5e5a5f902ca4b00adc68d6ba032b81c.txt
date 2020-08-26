@@ -1,0 +1,10 @@
+public String scanString() {
+    int c = scan();
+    while (isWhiteSpace(c)) c = scan();
+    StringBuilder res = new StringBuilder();
+    do {
+        res.appendCodePoint(c);
+        c = scan();
+    } while (!isWhiteSpace(c));
+    return res.toString();
+}

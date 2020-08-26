@@ -1,0 +1,68 @@
+private static String solve(int n, int m, int[][] abcs) {
+    final long UNREACHABLE = Long.MIN_VALUE;
+    final int MIN_C = (int) -1e9;
+    HashMap<Integer, ArrayList<int[]>> edge = new HashMap<>();
+    Arrays.sort(abcs, (abc1, abc2) -> Integer.compare(abc2[2], abc1[2]));
+    for (int[] abc : abcs) {
+        int from = abc[0] - 1;
+        if (!edge.containsKey(from))
+            edge.put(from, new ArrayList<>());
+        edge.get(from).add(new int[] { abc[1] - 1, -abc[2] - MIN_C });
+    }
+    long[][] pt = new long[n][n];
+    for (long[] p : pt) Arrays.fill(p, UNREACHABLE);
+    PriorityQueue<long[]> q = new PriorityQueue<long[]>((v, u) -> Long.compare(v[0], u[0]));
+    int[] vis = new int[n];
+    
+    for (int from = 0; from < n; from++) {
+        
+        
+        
+        q.clear();
+        q.add(new long[] { 0, from, 0 });
+        Arrays.fill(vis, 0);
+        while (!q.isEmpty()) {
+            long[] v = q.poll();
+            long cost = v[0];
+            int idx = (int) v[1];
+            long passedEdges = v[2];
+            vis[idx] = 1;
+            if (!edge.containsKey(idx))
+                continue;
+            for (int[] ed : edge.get(idx)) {
+                int to = ed[0];
+                long ct = cost + ed[1];
+                long ne = passedEdges + 1;
+                pt[from][to] = Math.max(pt[from][to], -ct - MIN_C * ne);
+                if (vis[to] != 0)
+                    continue;
+                q.add(new long[] { ct, to, ne });
+            }
+        }
+    }
+    if (pt[0][n - 1] == UNREACHABLE)
+        throw new IllegalArgumentException("violated: \"In the given graph, there exists a path from vertex 1 to vertex N.\"");
+    int[] positiveCirculted = new int[n];
+    for (int i = 1; i < n; i++) {
+        for (int j = 1; j < n; j++) {
+            if (pt[i][j] == UNREACHABLE)
+                continue;
+            if (pt[j][i] == UNREACHABLE)
+                continue;
+            if (pt[i][j] + pt[j][i] <= 0)
+                continue;
+            positiveCirculted[i] = 1;
+            positiveCirculted[j] = 1;
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        if (pt[0][i] == UNREACHABLE)
+            continue;
+        if (pt[i][n - 1] == UNREACHABLE)
+            continue;
+        if (positiveCirculted[i] == 1)
+            return "inf";
+    }
+    String ans = Long.toString(pt[0][n - 1]);
+    return ans;
+}

@@ -1,0 +1,8 @@
+void dfs(int to, int len, int[] dist) {
+    if (done[to]) {
+        return;
+    }
+    done[to] = true;
+    dist[to] += len;
+    treeList.get(to).forEach(next -> dfs(next, len + 1, dist));
+}

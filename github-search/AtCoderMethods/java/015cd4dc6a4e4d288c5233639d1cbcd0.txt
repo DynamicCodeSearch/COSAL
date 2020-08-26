@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    final int N = sc.nextInt();
+    final int G = sc.nextInt();
+    final int E = sc.nextInt();
+    for (int i = 0; i <= N; i++) neighborsMap.put(i, new HashSet<Integer>());
+    for (int i = 0; i < G; i++) p.add(sc.nextInt());
+    for (int i = 0; i < E; i++) {
+        int id1 = sc.nextInt();
+        int id2 = sc.nextInt();
+        neighborsMap.get(id1).add(id2);
+        neighborsMap.get(id2).add(id1);
+    }
+    sc.close();
+    int ans = 0;
+    while (p.size() > 0 && calcMaxFlow(0, new HashSet<Integer>())) {
+        ans++;
+    }
+    System.out.println(ans);
+}

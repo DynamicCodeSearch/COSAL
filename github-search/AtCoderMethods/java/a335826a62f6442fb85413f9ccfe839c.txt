@@ -1,0 +1,30 @@
+void solve() {
+    Scanner in = new Scanner(System.in);
+    int n = in.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = in.nextInt();
+    }
+    int ans = Integer.MIN_VALUE;
+    for (int i = 0; i < n; i++) {
+        int min = Integer.MAX_VALUE, max = Integer.MIN_VALUE;
+        for (int j = 0; j < n; j++) {
+            if (i == j) {
+                continue;
+            }
+            int tk = 0, ao = 0;
+            for (int k = Math.min(i, j); k <= Math.max(i, j); k++) {
+                if (k % 2 == Math.min(i, j) % 2)
+                    tk += a[k];
+                else
+                    ao += a[k];
+            }
+            if (ao > max) {
+                max = ao;
+                min = tk;
+            }
+        }
+        ans = Math.max(ans, min);
+    }
+    System.out.println(ans);
+}

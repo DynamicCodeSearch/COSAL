@@ -1,0 +1,21 @@
+void solve() {
+    long aa = in.nextLong();
+    long bb = in.nextLong();
+    long kk = in.nextLong();
+    long ll = in.nextLong();
+    long modkl = kk % ll;
+    long basebbcount = bb * ((kk - modkl) / ll);
+    if (modkl >= 1) {
+        long modunit = (aa * modkl);
+        if (bb > modunit) {
+            System.out.println(basebbcount + modunit);
+        } else if (basebbcount > 0) {
+            System.out.println(basebbcount + bb);
+        } else {
+            System.out.println(bb);
+        }
+    } else {
+        System.out.println(basebbcount);
+    }
+    return;
+}

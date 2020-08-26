@@ -1,0 +1,16 @@
+boolean next(long n) {
+    if (N > 0) {
+        if (n <= N && Long.toString(n).compareTo("" + N) <= 0 || n > N && Long.toString(n).compareTo("" + N) > 0)
+            return true;
+        return false;
+    }
+    try {
+        out.println("? " + n);
+        out.flush();
+        boolean ans = in.nextToken().equals("Y");
+        return ans;
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    return false;
+}

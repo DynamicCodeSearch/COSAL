@@ -1,0 +1,13 @@
+static int is_valid(String n) {
+    String[] arr = n.split("");
+    int i = 0;
+    for (String a : arr) {
+        if (a.equals("("))
+            i++;
+        if (a.equals(")"))
+            i--;
+        if (i < 0)
+            return -1;
+    }
+    return i;
+}

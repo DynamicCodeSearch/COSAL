@@ -1,0 +1,35 @@
+void solve() {
+    Scanner sc = new Scanner(System.in);
+    StringBuilder sb = new StringBuilder();
+    int n = sc.nextInt();
+    Pair[] p = new Pair[n];
+    for (int i = 0; i < n; i++) {
+        p[i] = new Pair(sc.nextInt(), i);
+    }
+    Arrays.sort(p, new Comparator<Pair>() {
+
+        public int compare(Pair x, Pair y) {
+            return x.a - y.a;
+        }
+    });
+    for (int i = 0; i < n; i++) {
+        if (i == 0) {
+            p[i].setB(0);
+            continue;
+        } else if (p[i - 1].a == p[i].a) {
+            p[i].setB(p[i - 1].b);
+        } else {
+            p[i].setB(p[i - 1].b + 1);
+        }
+    }
+    Arrays.sort(p, new Comparator<Pair>() {
+
+        public int compare(Pair x, Pair y) {
+            return x.i - y.i;
+        }
+    });
+    for (int i = 0; i < n; i++) {
+        sb.append(p[i].b + "\n");
+    }
+    System.out.println(sb.toString());
+}

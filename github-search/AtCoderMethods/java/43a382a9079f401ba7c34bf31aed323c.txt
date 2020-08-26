@@ -1,0 +1,11 @@
+long hash(int[] cs) {
+    long ret = Long.MAX_VALUE;
+    for (int i = 0; i < cs.length; ++i) {
+        long hash = 0;
+        for (int j = 0; j < cs.length; ++j) {
+            hash = hash * 1000 + cs[(i + j) % cs.length];
+        }
+        ret = Math.min(ret, hash);
+    }
+    return ret;
+}

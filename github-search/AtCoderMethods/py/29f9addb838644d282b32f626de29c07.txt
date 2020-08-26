@@ -1,0 +1,25 @@
+def main():
+    n,r = LI()
+    s = S()
+    if '.' not in s:
+        return 0
+    ri = s.rindex('.')
+    ei = ri - r + 1
+    if ei < 0:
+        return 1
+    t = 0
+    i = 0
+    while i < ei:
+        if s[i] == '.':
+            t += 1
+            if i+r >= ei:
+                t += ei-i
+                i = ei
+            else:
+                t += r
+                i += r
+            continue
+        i += 1
+        t += 1
+
+    return t + 1

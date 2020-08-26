@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int iN = sc.nextInt();
+    int[] ai = new int[iN];
+    double avg = 0;
+    for (int i = 0; i < iN; i++) {
+        ai[i] = sc.nextInt();
+        avg += ai[i];
+    }
+    int cost = 0;
+    
+    double avgd = avg / iN;
+    
+    
+    BigDecimal bd = new BigDecimal(avgd);
+    BigDecimal bd1 = bd.setScale(0, BigDecimal.ROUND_HALF_UP);
+    
+    for (int i = 0; i < iN; i++) {
+        
+        cost += Math.pow((ai[i] - bd1.intValue()), 2);
+    }
+    System.out.println(cost);
+    sc.close();
+}

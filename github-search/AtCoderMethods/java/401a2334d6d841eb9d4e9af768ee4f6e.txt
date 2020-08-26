@@ -1,0 +1,15 @@
+void run() {
+    int N = sc.nextInt();
+    int A = sc.nextInt();
+    int B = sc.nextInt();
+    long[] X = sc.nextLongArray(N);
+    long cost = 0;
+    long pos = X[0];
+    for (int i = 1; i < N; i++) {
+        long next = X[i];
+        long dis = next - pos;
+        cost += Math.min(dis * A, B);
+        pos = next;
+    }
+    System.out.println(cost);
+}

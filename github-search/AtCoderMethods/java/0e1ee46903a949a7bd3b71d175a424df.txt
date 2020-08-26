@@ -1,0 +1,12 @@
+int dfs(int x, int y) {
+    if (dp[y][x] != -1)
+        return dp[y][x];
+    int res = 1;
+    for (int d = 0; d < vx.length; d++) {
+        int nx = x + vx[d], ny = y + vy[d];
+        if (inside(nx, ny, W, H) && a[ny][nx] < a[y][x]) {
+            res = (res + dfs(nx, ny)) % MOD;
+        }
+    }
+    return dp[y][x] = res;
+}

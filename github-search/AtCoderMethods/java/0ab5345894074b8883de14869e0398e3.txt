@@ -1,0 +1,6 @@
+public static int shift(int h, int w, int x, int y, int xshift, int yshift, int[][] map, int[][] num) {
+    if (x + xshift >= 0 && x + xshift < h && y + yshift >= 0 && y + yshift < w && map[x + xshift][y + yshift] > map[x][y]) {
+        return search(h, w, x + xshift, y + yshift, map, num);
+    } else
+        return 0;
+}

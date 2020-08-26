@@ -1,0 +1,29 @@
+public final void answer() {
+    Arrays.sort(data, new Comparator<Data>() {
+
+        @Override
+        public int compare(Data o1, Data o2) {
+            return o1.a - o2.a;
+        }
+    });
+    int rank = 0;
+    for (int i = 1; i < N; i++) {
+        if (data[i].a > data[i - 1].a) {
+            rank++;
+        }
+        data[i].rank = rank;
+    }
+    Arrays.sort(data, new Comparator<Data>() {
+
+        @Override
+        public int compare(Data o1, Data o2) {
+            return o1.index - o2.index;
+        }
+    });
+    StringBuilder str = new StringBuilder();
+    for (int i = 0; i < N; i++) {
+        str.append(data[i].rank);
+        str.append('\n');
+    }
+    System.out.print(str.toString());
+}

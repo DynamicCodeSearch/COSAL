@@ -1,0 +1,46 @@
+private static final void solve() {
+    try (Scanner cin = new Scanner(System.in)) {
+        int A = cin.nextInt();
+        int B = cin.nextInt();
+        int C = cin.nextInt();
+        int D = cin.nextInt();
+        int E = cin.nextInt();
+        int F = cin.nextInt();
+        int sugar = 0;
+        int water = 0;
+        double rate = 0;
+        double rateMax = 0;
+        double rateLimit = 100 * E / (double) (100 + E);
+        int ans1 = 0;
+        int ans2 = 0;
+        int dx = -1;
+        for (int ax = 0; ax <= F / 100; ax++) {
+            for (int bx = 0; bx <= F / 100; bx++) {
+                if (ax + bx == 0) {
+                    continue;
+                }
+                for (int cx = 0; ; cx++) {
+                    for (dx = 0; ; dx++) {
+                        water = 100 * A * ax + 100 * B * bx;
+                        sugar = C * cx + D * dx;
+                        rate = sugar * 100 / (double) (water + sugar);
+                        if (sugar + water > F || rate > rateLimit) {
+                            break;
+                        }
+                        if (rate >= rateMax) {
+                            rateMax = rate;
+                            ans1 = water + sugar;
+                            ans2 = sugar;
+                        }
+                    }
+                    if (dx == 0) {
+                        dx = -1;
+                        break;
+                    }
+                }
+            }
+        }
+        System.out.println(ans1 + " " + ans2);
+    } finally {
+    }
+}

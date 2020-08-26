@@ -1,0 +1,10 @@
+def main():
+    N, K = (int(i) for i in input().split())
+    array = [[int(i) for i in input().split()] for i in range(N)]
+    array = sorted(array, key=lambda x:x[0])
+
+    for i in range(N):
+        K -= array[i][1]
+        if (K <= 0):
+            print(array[i][0])
+            break

@@ -1,0 +1,15 @@
+public long update(int ind, long x) {
+    int ret = imap[ind];
+    if (imap[ind] < 0) {
+        a[pos] = x;
+        map[pos] = ind;
+        imap[ind] = pos;
+        pos++;
+        up(pos - 1);
+    } else {
+        a[ret] = x;
+        up(ret);
+        down(ret);
+    }
+    return x;
+}

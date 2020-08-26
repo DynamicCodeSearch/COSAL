@@ -1,0 +1,54 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    int picks = 0;
+    int[] ratings = new int[8];
+    int n = in.readInt();
+    for (int i = 0; i < n; i++) {
+        int k = in.readInt();
+        if (k <= 399) {
+            ratings[0] = 1;
+            continue;
+        }
+        if (k <= 799) {
+            ratings[1] = 1;
+            continue;
+        }
+        if (k <= 1199) {
+            ratings[2] = 1;
+            continue;
+        }
+        if (k <= 1599) {
+            ratings[3] = 1;
+            continue;
+        }
+        if (k <= 1999) {
+            ratings[4] = 1;
+            continue;
+        }
+        if (k <= 2399) {
+            ratings[5] = 1;
+            continue;
+        }
+        if (k <= 2799) {
+            ratings[6] = 1;
+            continue;
+        }
+        if (k <= 3199) {
+            ratings[7] = 1;
+            continue;
+        }
+        picks++;
+    }
+    int counter = 0;
+    for (int i : ratings) {
+        if (i == 1) {
+            counter++;
+        }
+    }
+    if (counter == 0) {
+        out.print(1);
+    } else {
+        out.print(counter);
+    }
+    counter += picks;
+    out.print(" " + counter);
+}

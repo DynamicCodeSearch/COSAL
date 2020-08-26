@@ -1,0 +1,10 @@
+
+
+String readWord() throws java.io.IOException {
+    byte c;
+    while ((c = read()) == '\n' || c == ' ' || c == '\r') ;
+    StringBuilder s = new StringBuilder();
+    s.append((char) c);
+    for (; (c = read()) != '\n' && c != ' ' && c != '\r' && c != 0; s.append((char) c)) ;
+    return s.toString();
+}

@@ -1,0 +1,17 @@
+def print_max():
+    N = int(input())
+    S = [int(input()) for i in range(N)]
+
+    if sum(S)%10 != 0:
+             print(sum(S))
+             return
+    S.sort()
+    S_n = S[:]
+    for i in range(len(S)):
+             S_n.pop(i)
+             if sum(S_n)%10 != 0:
+                print(sum(S_n))
+                return
+             S_n = S[:]
+    print(0)
+    return

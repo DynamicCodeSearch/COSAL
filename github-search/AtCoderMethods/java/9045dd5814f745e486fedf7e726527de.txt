@@ -1,0 +1,17 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[] buttons = new int[n];
+    for (int i = 0; i < buttons.length; i++) buttons[i] = sc.nextInt() - 1;
+    int now = 0;
+    int tmp;
+    for (int i = 0; i < n; i++) {
+        tmp = buttons[now];
+        if (tmp == 1) {
+            System.out.println(i + 1);
+            System.exit(0);
+        } else
+            now = tmp;
+    }
+    System.out.println(-1);
+}

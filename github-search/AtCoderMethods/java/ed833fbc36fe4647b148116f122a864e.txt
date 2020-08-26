@@ -1,0 +1,16 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String line = br.readLine();
+    int n = Integer.parseInt(line);
+    line = br.readLine();
+    int m = Integer.parseInt(line);
+    int a = Math.abs(n - m);
+    int b = 0;
+    if (n > m) {
+        b = Math.abs(Math.abs(n - m) - 10);
+    }
+    if (m > n) {
+        b = Math.abs(Math.abs(m - n) - 10);
+    }
+    System.out.println(Math.min(a, b));
+}

@@ -1,0 +1,29 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    int N = Integer.parseInt(input.readLine());
+    int ng1 = Integer.parseInt(input.readLine());
+    int ng2 = Integer.parseInt(input.readLine());
+    int ng3 = Integer.parseInt(input.readLine());
+    int[] ngs = new int[] { ng1, ng2, ng3 };
+    int[] dp = new int[N + 1];
+    for (int i = 0; i < N; i++) {
+        dp[i] = Integer.MAX_VALUE / 2;
+    }
+    dp[N] = 0;
+    for (int i = N; i >= 0; i--) {
+        for (int j = 1; j <= 3; j++) {
+            if (isNG(i, ngs)) {
+                continue;
+            } else if ((i - j) < 0) {
+            } else {
+                dp[i - j] = Math.min(dp[i] + 1, dp[i - j]);
+            }
+        }
+    }
+    
+    if (dp[0] <= 100) {
+        System.out.println("YES");
+    } else {
+        System.out.println("NO");
+    }
+}

@@ -1,0 +1,12 @@
+def search(prev, start, stop):
+    global nodes, edges
+    for neigh in nodes[start]:
+        if neigh==prev:
+            continue
+        if neigh==stop:
+            return [stop,start]
+        res=search(start,neigh,stop)
+        if res!=False:
+            res.append(start)
+            return res
+    return False

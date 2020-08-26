@@ -1,0 +1,56 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int A = sc.nextInt();
+    int B = sc.nextInt();
+    double[] v = new double[N];
+    for (int i = 0; i < N; i++) {
+        v[i] = sc.nextDouble();
+    }
+    Arrays.sort(v);
+    double max = v[N - 1];
+    int k = 1;
+    for (int i = N - 2; i >= 0; i--) {
+        if (max > v[i]) {
+            break;
+        } else {
+            k++;
+        }
+    }
+    long[][] dp = new long[N + 1][N + 1];
+    dp[1][0] = 1;
+    dp[1][1] = 1;
+    for (int i = 2; i < N + 1; i++) {
+        dp[i][0] = 1;
+        for (int j = 1; j < N + 1; j++) {
+            dp[i][j] = dp[i - 1][j - 1] + dp[i - 1][j];
+        }
+    }
+    double maxAve = 0;
+    long num = 0;
+    if (A > k) {
+        double sum = 0;
+        for (int i = N - 1; i >= N - A; i--) {
+            sum += v[i];
+        }
+        maxAve = sum / (double) A;
+        int c = 0;
+        int d = 0;
+        for (int i = 0; i < N; i++) {
+            if (v[i] == v[N - A])
+                c++;
+        }
+        for (int i = N - 1; i >= N - A; i--) {
+            if (v[i] == v[N - A])
+                d++;
+        }
+        num = dp[c][d];
+    } else {
+        maxAve = (double) max;
+        for (int i = A; i <= Math.min(B, k); i++) {
+            num += dp[k][i];
+        }
+    }
+    System.out.println(maxAve);
+    System.out.println(num);
+}

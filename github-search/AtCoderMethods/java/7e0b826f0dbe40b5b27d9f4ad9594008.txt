@@ -1,0 +1,36 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    double[] angle = new double[16];
+    for (int i = 0; i < 16; i++) {
+        angle[i] = 11.25 + 22.5 * (double) i;
+    }
+    String[] orientation = { "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW" };
+    int deg = sc.nextInt();
+    double orient = (double) deg / (double) 10;
+    String dir = "";
+    for (int i = 0; i < 15; i++) {
+        if (orient >= angle[i] && orient < angle[i + 1]) {
+            dir = orientation[i];
+            break;
+        }
+    }
+    if (dir.equals(""))
+        dir = "N";
+    double[] speed = { 0.0, 0.3, 1.6, 3.4, 5.5, 8.0, 10.8, 13.9, 17.2, 20.8, 24.5, 28.5, 32.7 };
+    int W = 0;
+    int dis = sc.nextInt();
+    double sp = (double) dis / (double) 60;
+    sp += 0.001;
+    BigDecimal sp2 = new BigDecimal(sp);
+    sp2 = sp2.setScale(1, BigDecimal.ROUND_HALF_UP);
+    sp = sp2.doubleValue();
+    for (int i = 12; i >= 0; i--) {
+        if (sp >= speed[i]) {
+            W = i;
+            break;
+        }
+    }
+    if (W == 0)
+        dir = "C";
+    System.out.println(dir + " " + W);
+}

@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    final String S = sc.next();
+    sc.close();
+    int ans = 0;
+    for (String t : S.split("\\+")) {
+        boolean f = true;
+        for (String n : t.split("\\*")) {
+            if (Integer.valueOf(n) == 0) {
+                f = false;
+                break;
+            }
+        }
+        if (f)
+            ans++;
+    }
+    System.out.println(ans);
+}

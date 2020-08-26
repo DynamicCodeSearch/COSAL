@@ -1,0 +1,13 @@
+protected int calc() {
+    if (n < 0)
+        throw new IllegalArgumentException("value=" + n);
+    if (n == 0)
+        return 1;
+    if (n < Farray.length)
+        return Farray[n];
+    int ret = Farray[Farray.length - 1];
+    for (int i = Farray.length; i <= n; i++) {
+        ret = modInt.multiple(ret, i);
+    }
+    return ret;
+}

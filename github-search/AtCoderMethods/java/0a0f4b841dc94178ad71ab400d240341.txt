@@ -1,0 +1,14 @@
+public static void RecPerm(int[] perm, int[] key, boolean[] used, int k) {
+    if (k == perm.length) {
+        go(perm);
+    } else {
+        for (int i = 0; i < key.length; i++) {
+            if (!used[i]) {
+                perm[k] = key[i];
+                used[i] = true;
+                RecPerm(perm, key, used, k + 1);
+                used[i] = false;
+            }
+        }
+    }
+}

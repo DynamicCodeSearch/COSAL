@@ -1,0 +1,13 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int[] a = new int[1000000];
+    int MOD = 10007;
+    a[0] = 0;
+    a[1] = 0;
+    a[2] = 1;
+    for (int i = 3; i < 1000000; i++) {
+        a[i] = (a[i - 1] + a[i - 2] + a[i - 3]) % MOD;
+    }
+    int n = sc.nextInt();
+    System.out.println(a[n - 1]);
+}

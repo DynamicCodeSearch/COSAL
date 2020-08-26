@@ -1,0 +1,24 @@
+public void solve(int testNumber, InputReader in, OutputWriter out) {
+    int n = in.nextInt();
+    int[] a = new int[n];
+    long sum = 0;
+    for (int i = 0; i < n; i++) {
+        a[i] = in.nextInt();
+        sum += a[i];
+    }
+    if (sum % 10 != 0) {
+        out.printLine(sum);
+        return;
+    }
+    Arrays.sort(a);
+    for (int i = 0; i < n; i++) {
+        if (sum % 10 == 0) {
+            if (a[i] % 10 != 0)
+                sum -= a[i];
+            if (i == n - 1) {
+                sum = -1;
+            }
+        }
+    }
+    out.printLine(Math.max(0, sum));
+}

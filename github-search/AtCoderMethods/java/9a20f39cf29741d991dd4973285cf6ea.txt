@@ -1,0 +1,51 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int n = scanner.nextInt();
+    int k = scanner.nextInt();
+    int l = scanner.nextInt();
+    List<Node> nodes = new ArrayList<>();
+    for (int i = 0; i < n; i++) {
+        nodes.add(new Node(i));
+    }
+    for (int i = 0; i < k; i++) {
+        int pi = scanner.nextInt();
+        int qi = scanner.nextInt();
+        Node n1 = nodes.get(pi - 1);
+        Node n2 = nodes.get(qi - 1);
+        n1.union(n2);
+    }
+    int[] roads = new int[n];
+    for (int i = 0; i < n; i++) {
+        roads[i] = nodes.get(i).findParent().index;
+    }
+    nodes = new ArrayList<>();
+    for (int i = 0; i < n; i++) {
+        nodes.add(new Node(i));
+    }
+    for (int i = 0; i < l; i++) {
+        int ri = scanner.nextInt();
+        int si = scanner.nextInt();
+        Node n1 = nodes.get(ri - 1);
+        Node n2 = nodes.get(si - 1);
+        n1.union(n2);
+    }
+    int[] rails = new int[n];
+    for (int i = 0; i < n; i++) {
+        rails[i] = nodes.get(i).findParent().index;
+    }
+    Map<String, Integer> all = new HashMap<>();
+    for (int i = 0; i < n; i++) {
+        all.compute(roads[i] + "," + rails[i], (s, integer) -> {
+            if (integer == null) {
+                return 1;
+            } else {
+                return integer + 1;
+            }
+        });
+    }
+    StringJoiner joiner = new StringJoiner(" ");
+    for (int i = 0; i < n; i++) {
+        joiner.add(all.get(roads[i] + "," + rails[i]) + "");
+    }
+    System.out.println(joiner);
+}

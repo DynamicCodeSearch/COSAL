@@ -1,0 +1,17 @@
+def solve(N, a):
+    ans = 0
+    while True:
+        if check_a(N, a):
+            break
+
+        l_div, l_mod = [None] * N, [None] * N
+        for i, _a in enumerate(a):
+            l_div[i], l_mod[i] = divmod(_a, N)
+
+        sum_div = sum(l_div)
+        for i in range(N):
+            a[i] = l_mod[i] + sum_div - l_div[i]
+
+        ans += sum_div
+
+    return ans

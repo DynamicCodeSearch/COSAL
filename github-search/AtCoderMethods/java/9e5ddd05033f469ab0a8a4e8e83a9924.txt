@@ -1,0 +1,12 @@
+public static void search(int current, boolean[] history) {
+    history[current] = true;
+    if (finish(history)) {
+        cnt++;
+        return;
+    }
+    for (int next : g.getNeighbors(current)) {
+        if (history[next])
+            continue;
+        search(next, Arrays.copyOf(history, history.length));
+    }
+}

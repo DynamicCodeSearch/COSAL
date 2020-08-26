@@ -1,0 +1,11 @@
+def square_from_origin(x, y):
+    if x < 0 or y < 0:
+        return 0
+    if square_memo[x][y] == -1:
+        s = 0
+        s += square_from_origin(x-1, y)
+        s += square_from_origin(x, y-1)
+        s -= square_from_origin(x-1, y-1)
+        s += dss[x][y]
+        square_memo[x][y] = s
+    return square_memo[x][y]

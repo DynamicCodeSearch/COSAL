@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int m = sc.nextInt();
+    String W = "";
+    if (m < 100) {
+        W = "00";
+    } else if (m >= 100 && m <= 5000) {
+        if (m * 10 >= 10000) {
+            W = String.valueOf(m * 10 / 1000);
+        } else {
+            W = "0" + m * 10 / 1000;
+        }
+    } else if (m >= 6000 && m <= 30000) {
+        W = String.valueOf(m / 1000 + 50);
+    } else if (m >= 35000 && m <= 70000) {
+        W = String.valueOf(((m / 1000 - 30) / 5) + 80);
+    } else {
+        W = "89";
+    }
+    System.out.println(W);
+}

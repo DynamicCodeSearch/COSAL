@@ -1,0 +1,13 @@
+public static void main(String[] args) throws IOException {
+    Reader in = new Reader();
+    PrintWriter out = new PrintWriter(System.out);
+    int min = Integer.MAX_VALUE, max = Integer.MIN_VALUE;
+    int n = in.nextInt();
+    for (int i = 0; i < n; i++) {
+        int x = in.nextInt();
+        min = Math.min(x, min);
+        max = Math.max(x, max);
+    }
+    out.println((max - min));
+    out.close();
+}

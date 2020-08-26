@@ -1,0 +1,11 @@
+def check():
+    for i in range(n-m+1):
+        for j in range(n-m+1):
+            flag = True
+            for ii in range(m):
+                for jj in range(m):
+                    flag &= N[i+ii][j+jj] == M[ii][jj]
+                    if not flag: break
+                if not flag: break
+            if flag: return "Yes"
+    return "No"

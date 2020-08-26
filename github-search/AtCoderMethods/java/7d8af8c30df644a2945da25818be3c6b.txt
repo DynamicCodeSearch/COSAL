@@ -1,0 +1,38 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    int n = in.nextInt();
+    int[] flg = new int[n];
+    long[] num = new long[n];
+    for (int i = 0; i < n; i++) {
+        num[i] = in.nextInt();
+        if (i + 1 < n) {
+            flg[i + 1] = in.nextToken().toCharArray()[0] == '+' ? 1 : -1;
+        }
+    }
+    flg[0] = 1;
+    long[][] dp = new long[n + 1][3];
+    for (int i = 0; i <= n; i++) {
+        Arrays.fill(dp[i], -INF);
+    }
+    dp[0][0] = 0;
+    for (int i = 0; i < n; i++) {
+        for (int c = 0; c <= 2; c++) {
+            long base = dp[i][c];
+            if (base == -INF) {
+                continue;
+            }
+            long add = ((c % 2 == 0) ? 1 : -1) * flg[i] * num[i];
+            if (flg[i] == -1) {
+                for (int tc = c; tc <= Math.min(2, c + 1); tc++) {
+                    dp[i + 1][tc] = Math.max(dp[i + 1][tc], base + add);
+                }
+            }
+            for (int tc = c; tc >= 0; tc--) {
+                dp[i + 1][tc] = Math.max(dp[i + 1][tc], base + add);
+            }
+        }
+    }
+    out.println(dp[n][0]);
+    out.flush();
+}

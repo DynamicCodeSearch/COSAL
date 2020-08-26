@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    long[] x = sc.nextLongList(n);
+    long[] y = sc.nextLongList(m);
+    long mod = 1000000000 + 7;
+    long retx = 0;
+    for (int i = 1; i < n; i++) {
+        retx += (x[i] - x[i - 1]) * (n - i) * i;
+        retx %= mod;
+    }
+    long rety = 0;
+    for (int i = 1; i < m; i++) {
+        rety += (y[i] - y[i - 1]) * (m - i) * i;
+        rety %= mod;
+    }
+    System.out.println(retx * rety % mod);
+}

@@ -1,0 +1,10 @@
+def solve():
+    n = read_int()
+    p = read_int_list()
+    res = 0
+    for i in range(n):
+        if p[i] == i + 1:
+            res += 1
+            if i + 1 < n:
+                p[i + 1] = -1
+    return res

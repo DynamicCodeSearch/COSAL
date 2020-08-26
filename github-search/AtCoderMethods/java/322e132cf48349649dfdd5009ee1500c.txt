@@ -1,0 +1,13 @@
+long pow(long a, long r) {
+    long sum = 1;
+    while (r > 0) {
+        if ((r & 1) == 1) {
+            sum *= a;
+            sum %= MOD;
+        }
+        a *= a;
+        a %= MOD;
+        r >>= 1;
+    }
+    return sum;
+}

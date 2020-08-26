@@ -1,0 +1,11 @@
+def answer_solve(self):
+    S = sum(self.s)
+    if S % 10:
+        return S
+    smallest = float('inf')
+    for num in self.s:
+        if num % 10:
+            smallest = min(smallest, num)
+    if smallest != float('inf'):
+        return S - smallest
+    return 0

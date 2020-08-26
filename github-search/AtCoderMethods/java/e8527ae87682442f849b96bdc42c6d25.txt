@@ -1,0 +1,17 @@
+int getid(int src, int dst, int col) {
+    if (f.containsKey(Arrays.asList(src, col)) && f.containsKey(Arrays.asList(dst, col))) {
+        ds.setUnion(f.get(Arrays.asList(src, col)), f.get(Arrays.asList(dst, col)));
+        return ds.root(f.get(Arrays.asList(src, col)));
+    }
+    if (f.containsKey(Arrays.asList(src, col))) {
+        f.put(Arrays.asList(dst, col), f.get(Arrays.asList(src, col)));
+        return ds.root(f.get(Arrays.asList(src, col)));
+    }
+    if (f.containsKey(Arrays.asList(dst, col))) {
+        f.put(Arrays.asList(src, col), f.get(Arrays.asList(dst, col)));
+        return ds.root(f.get(Arrays.asList(dst, col)));
+    }
+    f.put(Arrays.asList(src, col), gen);
+    f.put(Arrays.asList(dst, col), gen);
+    return gen++;
+}

@@ -1,0 +1,63 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    n = sc.nextInt();
+    k = sc.nextInt();
+    l = sc.nextInt();
+    GL = new ArrayList<List<Integer>>(n);
+    GT = new ArrayList<List<Integer>>(n);
+    for (int i = 0; i < n; i++) {
+        GL.add(new ArrayList<Integer>());
+        GT.add(new ArrayList<Integer>());
+    }
+    for (int i = 0; i < k; i++) {
+        int v = sc.nextInt() - 1, w = sc.nextInt() - 1;
+        GL.get(v).add(w);
+        GL.get(w).add(v);
+    }
+    for (int i = 0; i < l; i++) {
+        int v = sc.nextInt() - 1, w = sc.nextInt() - 1;
+        GT.get(v).add(w);
+        GT.get(w).add(v);
+    }
+    int[] al = new int[n], bt = new int[n];
+    int count1 = 0, count2 = 0;
+    for (int v = 0; v < n; v++) {
+        if (al[v] == 0) {
+            dfs(v, al, ++count1, GL);
+        }
+        if (bt[v] == 0) {
+            dfs(v, bt, ++count2, GT);
+        }
+    }
+    Pair[] ps = new Pair[n];
+    for (int v = 0; v < n; v++) {
+        ps[v] = new Pair(al[v], bt[v], v);
+    }
+    Arrays.sort(ps);
+    Set<Integer> set = new TreeSet<Integer>();
+    int s = 0, t = 0, count = 0;
+    int[] ans = new int[n];
+    for (int i = 0; i < n; i++) {
+        if (s == ps[i].a && t == ps[i].b) {
+            ++count;
+            set.add(ps[i].i);
+        } else {
+            for (int j : set) {
+                ans[j] = count;
+            }
+            s = ps[i].a;
+            t = ps[i].b;
+            count = 1;
+            set.clear();
+            set.add(ps[i].i);
+        }
+    }
+    for (int j : set) {
+        ans[j] = count;
+    }
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < n; i++) {
+        sb.append(ans[i] + ((i == n - 1 ? System.lineSeparator() : " ")));
+    }
+    System.out.print(sb);
+}

@@ -1,0 +1,18 @@
+long[] dijkstra(List<Edge>[] city, int n) {
+    Queue<Pos> qu = new PriorityQueue<>();
+    BitSet used = new BitSet(n);
+    qu.add(new Pos(0, 0));
+    long[] dist = new long[n];
+    Arrays.fill(dist, Long.MAX_VALUE / 2);
+    while (!qu.isEmpty()) {
+        Pos pos = qu.poll();
+        if (used.get(pos.p))
+            continue;
+        used.set(pos.p);
+        dist[pos.p] = pos.cost;
+        for (Edge e : city[pos.p]) {
+            qu.add(new Pos(e.to, pos.cost + e.cost));
+        }
+    }
+    return dist;
+}

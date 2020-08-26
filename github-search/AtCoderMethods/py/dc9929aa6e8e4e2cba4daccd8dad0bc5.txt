@@ -1,0 +1,26 @@
+def Go(time):
+    global aM,M,am,m
+    if sign==1:
+        if m+time>X:
+            m = X
+            M = X
+            aM = am
+        elif M+time>X:
+            m += time
+            M = X
+            aM = am + M - m
+        else:
+            m += time
+            M += time
+    else:
+        if M-time<0:
+            m = 0
+            M = 0
+            am = aM
+        elif m-time<0:
+            m = 0
+            M -= time
+            am = aM + m - M
+        else:
+            m -= time
+            M -= time

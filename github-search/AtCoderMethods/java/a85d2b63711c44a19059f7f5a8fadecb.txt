@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int i = 0;
+    int tmp = 0;
+    String rtn;
+    int[] nums = new int[3];
+    for (i = 0; i < 3; i++) {
+        nums[i] = sc.nextInt();
+    }
+    while ((tmp = nums[0] % nums[1]) != 0) {
+        nums[0] = nums[1];
+        nums[1] = tmp;
+    }
+    if (nums[2] % nums[1] == 0)
+        rtn = "YES";
+    else
+        rtn = "NO";
+    System.out.println(rtn);
+}

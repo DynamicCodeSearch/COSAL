@@ -1,0 +1,15 @@
+void solve(FastScanner in, PrintWriter out) {
+    String S = in.next();
+    int N = S.length();
+    long ans = 0;
+    for (int bit = 0; bit < (1 << (N - 1)); bit++) {
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < N; i++) {
+            builder.append(S.charAt(i));
+            if ((bit & (1 << i)) != 0)
+                builder.append("+");
+        }
+        ans += eval(builder.toString());
+    }
+    out.println(ans);
+}

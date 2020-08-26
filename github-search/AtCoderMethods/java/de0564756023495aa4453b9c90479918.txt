@@ -1,0 +1,23 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int n = in.nextInt();
+    long a = in.nextLong();
+    long b = in.nextLong();
+    long[] h = in.nextLongArray(n);
+    long high = (long) 1e9;
+    long low = 0;
+    while (high - low > 1) {
+        long mid = (high + low) / 2;
+        long sum = 0;
+        for (int i = 0; i < n; i++) {
+            if (h[i] > mid * b) {
+                sum += (h[i] - mid * b + (a - b) - 1) / (a - b);
+            }
+        }
+        if (sum <= mid) {
+            high = mid;
+        } else {
+            low = mid;
+        }
+    }
+    out.println(high);
+}

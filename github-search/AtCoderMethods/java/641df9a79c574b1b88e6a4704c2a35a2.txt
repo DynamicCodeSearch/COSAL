@@ -1,0 +1,20 @@
+static void solve() {
+    int n = in.nextInt();
+    int[] a = new int[n];
+    int min = 101;
+    int max = -101;
+    for (int i = 0; i < n; i++) {
+        a[i] = in.nextInt();
+        min = Math.min(min, a[i]);
+        max = Math.max(max, a[i]);
+    }
+    int ans = Integer.MAX_VALUE / 2;
+    for (int i = min; i <= max; i++) {
+        int tmp = 0;
+        for (int j = 0; j < n; j++) {
+            tmp += (a[j] - i) * (a[j] - i);
+        }
+        ans = Math.min(ans, tmp);
+    }
+    out.println(ans);
+}

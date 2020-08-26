@@ -1,0 +1,32 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    String S = sc.next();
+    int a = 0;
+    int b = 0;
+    int c = 0;
+    int d = 0;
+    int f = 0;
+    for (int i = 0; i < N; i++) {
+        if (S.charAt(i) == 'A') {
+            a++;
+        }
+        if (S.charAt(i) == 'B') {
+            b++;
+        }
+        if (S.charAt(i) == 'C') {
+            c++;
+        }
+        if (S.charAt(i) == 'D') {
+            d++;
+        }
+        if (S.charAt(i) == 'F') {
+            f++;
+        }
+    }
+    if (f == N) {
+        System.out.println(0);
+        return;
+    }
+    System.out.println((double) (a * 4 + b * 3 + c * 2 + d * 1) / N);
+}

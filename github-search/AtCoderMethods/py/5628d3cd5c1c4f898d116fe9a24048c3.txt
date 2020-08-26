@@ -1,0 +1,16 @@
+def main():
+    N = int(input())
+    a_list = [int(input()) for _ in range(N)]
+    used = set()
+    now = 1
+    ans = 0
+    while True:
+        if now == 2:
+            print(ans)
+            return
+        now = a_list[now - 1]
+        if now in used:
+            print(-1)
+            return
+        used.add(now)
+        ans += 1

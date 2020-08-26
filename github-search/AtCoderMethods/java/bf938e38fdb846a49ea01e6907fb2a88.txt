@@ -1,0 +1,6 @@
+public long query(int K) {
+    K += 2;
+    long sum = 0;
+    for (int i = K; i > 0; i -= (i & -i)) sum += tree[i];
+    return sum;
+}

@@ -1,0 +1,30 @@
+int[][] generateGraphCut(int S, int T) {
+    final int n = g.head.length;
+    int[] q = new int[n];
+    final boolean[] used = new boolean[n];
+    used[S] = true;
+    int cnt = 0;
+    int s = 0, t = 0;
+    q[t++] = S;
+    while (s != t) {
+        final int v = q[s++];
+        cnt++;
+        for (int u = g.head[v]; u != -1; u = g.next[u]) {
+            final int to = g.to[u];
+            final int cap = g.cap[u];
+            if (cap != 0 && !used[to]) {
+                q[t++] = to;
+                used[to] = true;
+            }
+        }
+    }
+    final int[][] res = new int[2][];
+    final int[] len = new int[2];
+    res[0] = new int[cnt];
+    res[1] = new int[n - cnt];
+    for (int i = 0; i < n; i++) {
+        final int x = used[i] ? 0 : 1;
+        res[x][len[x]++] = i;
+    }
+    return res;
+}

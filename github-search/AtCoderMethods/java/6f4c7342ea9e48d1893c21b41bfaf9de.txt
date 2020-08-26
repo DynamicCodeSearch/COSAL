@@ -1,0 +1,43 @@
+public static void main(String[] args) {
+    MyInput in = new MyInput();
+    int N = in.nextInt();
+    double[] blcost = new double[N];
+    String str = new String();
+    long ans = 1;
+    str = in.next();
+    in.next();
+    String[] bls = str.split("");
+    String lastr = "";
+    int stin = 1;
+    boolean ty = false;
+    ans *= 3;
+    if (N > 1) {
+        if (N > 2) {
+            if (bls[0].equals(bls[1])) {
+                ans *= 2;
+                stin += 1;
+                ty = true;
+            }
+        }
+    }
+    for (int i = stin; i < N; i++) {
+        if (i != N - 1 && bls[i].equals(bls[i + 1])) {
+            ans *= 2;
+            if (ty) {
+                ans = ans * 3 / 2;
+            }
+            i++;
+            ty = true;
+        } else {
+            if (!ty) {
+                ans *= 2;
+            }
+            ty = false;
+        }
+        if (ans > 1000000007)
+            ans %= 1000000007;
+    }
+    if (ans > 1000000007)
+        ans %= 1000000007;
+    System.out.println(ans);
+}

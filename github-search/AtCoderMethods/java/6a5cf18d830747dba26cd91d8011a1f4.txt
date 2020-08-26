@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int m = sc.nextInt();
+    int vv;
+    String answer = "";
+    if (m < 100) {
+        answer = "00";
+    } else if ((100 <= m) && (m <= 5000)) {
+        float f = (float) m / 1000;
+        if (m < 1000) {
+            answer = "0" + Integer.toString((int) (m / 100));
+        } else {
+            answer = Integer.toString((m / 100));
+        }
+    } else if ((6000 <= m) && (m <= 30000)) {
+        vv = (m / 1000) + 50;
+        answer = Integer.toString(vv);
+    } else if ((35000 <= m) && (m <= 70000)) {
+        vv = ((m / 1000) - 30) / 5 + 80;
+        answer = Integer.toString(vv);
+    } else if ((70000 < m)) {
+        answer = "89";
+    }
+    System.out.println(answer);
+}

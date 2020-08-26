@@ -1,0 +1,10 @@
+private long go(int n, int lim) {
+    lim = Math.min(lim, n);
+    if (answer[n][lim] != -1) {
+        return answer[n][lim];
+    }
+    if (n == base) {
+        return answer[n][lim] = 1;
+    }
+    return answer[n][lim] = (go(n - 1, lim) + goSum(n - 1, lim - 1)) % MiscUtils.MOD7;
+}

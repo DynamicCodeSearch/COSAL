@@ -1,0 +1,37 @@
+def main():
+    N, M = map(int, input().split())
+
+    if N * 2 > M or N * 4 < M:
+        print('-1 -1 -1')
+        return
+
+    flag = False
+    for a in range(N + 1):
+        i = 0
+        min_ = 0
+        max_ = N - a
+        while i < 50:
+            mid = min_ + (max_ - min_) // 2
+            s = mid
+            b = N - a - s
+            legs = a * 2 + s * 3 + b * 4
+            if legs > M:
+                min_ = mid
+                if mid == 0:
+                    min_ = 1
+            elif legs < M:
+                max_ = mid
+            else:
+                ans = (a, s, b)
+                flag = True
+                break
+            if min_ == mid:
+                break
+            i += 1
+
+        if flag:
+            break
+    else:
+        ans = (-1, -1, -1)
+
+    print(*ans, sep=' ')

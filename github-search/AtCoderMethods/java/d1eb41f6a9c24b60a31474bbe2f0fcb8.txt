@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String str = sc.next();
+    char[] temp = new char[str.length()];
+    for (int i = 0; i < str.length(); i++) {
+        temp[i] = str.charAt(i);
+        for (int j = 0; j < i; j++) {
+            if (temp[j] == temp[i]) {
+                System.out.println("no");
+                return;
+            }
+        }
+    }
+    System.out.println("yes");
+}

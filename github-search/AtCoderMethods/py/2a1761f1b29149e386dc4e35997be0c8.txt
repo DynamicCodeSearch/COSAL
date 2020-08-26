@@ -1,0 +1,18 @@
+def calc_dist(K):
+
+    dist = [-1 for i in range(N)]
+    dist[-K] = 0
+
+
+    from collections import deque
+    stack = deque()
+    stack.append(K)
+
+    while stack:
+        v = stack.pop()
+        for nxt in adj[-v]:
+            if dist[-nxt] == -1:
+                dist[-nxt] = dist[-v] + 1
+                stack.append(nxt)
+
+    return dist

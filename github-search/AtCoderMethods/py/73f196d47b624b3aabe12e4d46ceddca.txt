@@ -1,0 +1,12 @@
+def main():
+    N = int(input())
+    min_f = 10
+    for i in range(1, N + 1):
+        if i ** 2 > N:
+            break
+        if N % i != 0:
+            continue
+        f_v = f(i, N // i)
+        if f_v < min_f:
+            min_f = f_v
+    print(min_f)

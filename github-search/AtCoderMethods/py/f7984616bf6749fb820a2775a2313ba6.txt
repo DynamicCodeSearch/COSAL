@@ -1,0 +1,20 @@
+def addPlus(s,n):
+    total = 0
+    ps = [s]
+    org = s
+    for i in range(1,len(org)):
+        ps.append(org[:i] + '+' + org[i:])
+
+    for i in range(1,n):
+        curr = ps[:]
+        for itm in curr:
+            for j in range(1,len(itm)):
+                pros = itm[:j] + '+' + itm[j:]
+                if pros not in ps:
+                    if '++' not in pros:
+                        ps.append(pros)
+
+    for itm in ps:
+        total += eval(itm)
+
+    print(total)

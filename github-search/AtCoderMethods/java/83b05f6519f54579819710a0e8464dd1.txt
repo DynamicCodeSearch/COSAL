@@ -1,0 +1,16 @@
+public void union(int v, int w) {
+    int vr = root(v), wr = root(w);
+    if (vr == wr) {
+        return;
+    }
+    int sum = child[vr] + child[wr];
+    child[vr] = child[wr] = sum;
+    if (rank[vr] < rank[wr]) {
+        root[vr] = wr;
+    } else {
+        root[wr] = vr;
+        if (rank[vr] == rank[wr]) {
+            ++rank[vr];
+        }
+    }
+}

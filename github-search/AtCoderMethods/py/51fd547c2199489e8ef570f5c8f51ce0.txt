@@ -1,0 +1,18 @@
+def bfs(e, G):
+
+    n = len(G)
+    visited = [False for i in range(n)]
+    q = deque([0])
+    visited[0] = True
+
+    while len(q) > 0:
+        cur = q.popleft()
+        for dst in G[cur]:
+            if sorted([cur,dst]) == sorted(e):
+                continue
+            if visited[dst]:
+                continue
+            q.append(dst)
+            visited[dst] = True
+
+    return sum(visited) != n

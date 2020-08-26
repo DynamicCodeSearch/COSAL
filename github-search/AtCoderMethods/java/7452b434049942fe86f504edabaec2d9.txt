@@ -1,0 +1,23 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int a = in.nextInt();
+    int b = in.nextInt();
+    int c = in.nextInt();
+    int d = in.nextInt();
+    if (a > c) {
+        int temp = a;
+        a = c;
+        c = temp;
+        temp = b;
+        b = d;
+        d = temp;
+    }
+    int intersection = 0;
+    if (b > c) {
+        if (b > d) {
+            intersection = d - c;
+        } else {
+            intersection = b - c;
+        }
+    }
+    out.println(intersection);
+}

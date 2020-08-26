@@ -1,0 +1,40 @@
+public static void main(String[] args) throws IOException {
+    InputStreamReader isr = new InputStreamReader(System.in);
+    BufferedReader reader = new BufferedReader(isr);
+    String[] str = reader.readLine().split(" ");
+    int h = Integer.valueOf(str[0]);
+    int w = Integer.valueOf(str[1]);
+    long res = 0;
+    int[][] map = new int[h][w];
+    int[][] hoge = new int[h][w];
+    ArrayList<Data> list = new ArrayList<Data>();
+    for (int i = 0; i < h; i++) {
+        str = reader.readLine().split(" ");
+        Arrays.fill(hoge[i], 1);
+        for (int j = 0; j < w; j++) {
+            map[i][j] = Integer.valueOf(str[j]);
+            list.add(new Data(j, i, map[i][j]));
+        }
+    }
+    Collections.sort(list);
+    int x, y;
+    int[] dx = new int[] { 1, 0, -1, 0 };
+    int[] dy = new int[] { 0, 1, 0, -1 };
+    for (int i = 0; i < list.size(); i++) {
+        Data d = list.get(i);
+        for (int j = 0; j < 4; j++) {
+            x = d.x + dx[j];
+            y = d.y + dy[j];
+            if (0 > x || x >= w || 0 > y || y >= h || map[y][x] >= map[d.y][d.x])
+                continue;
+            hoge[d.y][d.x] = (hoge[y][x] + hoge[d.y][d.x]) % 1000000007;
+        }
+    }
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            res = (res + hoge[i][j]) % 1000000007;
+        }
+    }
+    System.out.println(res);
+    reader.close();
+}

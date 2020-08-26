@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    
+    Scanner scan = new Scanner(System.in);
+    String money = scan.next();
+    int num = scan.nextInt();
+    String[] hate = new String[num];
+    for (int i = 0; i < hate.length; i++) {
+        hate[i] = scan.next();
+    }
+    while (check(money, hate)) {
+        Integer tmp = Integer.parseInt(money);
+        tmp++;
+        money = tmp.toString();
+    }
+    System.out.println(money);
+}

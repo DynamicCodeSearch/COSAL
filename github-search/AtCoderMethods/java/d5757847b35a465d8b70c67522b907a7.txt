@@ -1,0 +1,34 @@
+void run() throws FileNotFoundException {
+    Scanner sc = new Scanner(System.in);
+    int H = sc.nextInt();
+    int W = sc.nextInt();
+    char[][] a = new char[H][W];
+    for (int i = 0; i < H; ++i) {
+        a[i] = sc.next().toCharArray();
+    }
+    int o = Math.max(H, W);
+    MF mf = new MF(2 * o + 3);
+    int s = 2 * o + 1;
+    int t = 2 * o + 2;
+    int INF = 999999;
+    for (int i = 0; i < H; ++i) {
+        for (int j = 0; j < W; ++j) {
+            if (a[i][j] == 'S') {
+                mf.ae(s, i, INF);
+                mf.ae(s, o + j, INF);
+            } else if (a[i][j] == 'T') {
+                mf.ae(i, t, INF);
+                mf.ae(o + j, t, INF);
+            } else if (a[i][j] == 'o') {
+                mf.ae(i, o + j, 1);
+                mf.ae(o + j, i, 1);
+            }
+        }
+    }
+    int tot = mf.solve(s, t);
+    if (tot >= INF) {
+        System.out.println(-1);
+    } else {
+        System.out.println(tot);
+    }
+}

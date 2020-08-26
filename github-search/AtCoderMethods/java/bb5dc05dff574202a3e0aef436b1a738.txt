@@ -1,0 +1,45 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    int X = sc.nextInt();
+    int Y = sc.nextInt();
+    int[] AB = new int[N];
+    int[] BA = new int[M];
+    for (int i = 0; i < N; i++) {
+        AB[i] = sc.nextInt();
+    }
+    for (int i = 0; i < M; i++) {
+        BA[i] = sc.nextInt();
+    }
+    int t = 0, a = 0;
+    boolean ab = false;
+    boolean con = true;
+    while (con) {
+        if (ab) {
+            for (int i = 0; i < M; i++) {
+                if (t <= BA[i]) {
+                    t = BA[i];
+                    ab = false;
+                    a++;
+                    t += Y;
+                    break;
+                }
+            }
+            if (ab == true)
+                con = false;
+        } else {
+            for (int i = 0; i < N; i++) {
+                if (t <= AB[i]) {
+                    t = AB[i];
+                    ab = true;
+                    t += X;
+                    break;
+                }
+            }
+            if (ab != true)
+                con = false;
+        }
+    }
+    System.out.println(a);
+}

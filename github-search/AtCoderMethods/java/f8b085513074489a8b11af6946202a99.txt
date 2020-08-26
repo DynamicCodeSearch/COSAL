@@ -1,0 +1,18 @@
+private void createPrimeTable(int n) {
+    primeTable = new boolean[n + 1];
+    for (int i = 1; i <= n; i++) {
+        primeTable[i] = true;
+    }
+    for (int i = 2; i <= n; i++) {
+        if (primeTable[i]) {
+            int prime = i;
+            int index = i + 1;
+            while (index < n + 1) {
+                if (index % prime == 0) {
+                    primeTable[index] = false;
+                }
+                index++;
+            }
+        }
+    }
+}

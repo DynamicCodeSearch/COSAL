@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int x = in.nextInt();
+    int y = in.nextInt();
+    int[] largeArray = { 1, 3, 5, 7, 8, 10, 12 };
+    int[] smallArray = { 4, 6, 9, 11 };
+    String str = "Yes";
+    if (x == 2 || y == 2 || isNotIncludingSameArrays(x, y, smallArray)) {
+        str = "No";
+    }
+    if (isNotIncludingSameArrays(x, y, largeArray)) {
+        str = "No";
+    }
+    if (isNotIncludingSameArrays(x, y, smallArray)) {
+        str = "No";
+    }
+    System.out.println(str);
+}

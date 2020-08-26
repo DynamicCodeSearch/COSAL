@@ -1,0 +1,21 @@
+public static void main(String[] args) throws java.lang.Exception {
+    Scanner in = new Scanner(System.in);
+    h = in.nextInt();
+    w = in.nextInt();
+    t = in.nextInt();
+    map = new char[h][w];
+    for (int i = 0; i < h; i++) {
+        map[i] = in.next().toCharArray();
+        for (int j = 0; j < w; j++) {
+            if (map[i][j] == 'S') {
+                startr = i;
+                startc = j;
+            }
+            if (map[i][j] == 'G') {
+                goalr = i;
+                goalc = j;
+            }
+        }
+    }
+    System.out.println(binarysearch());
+}

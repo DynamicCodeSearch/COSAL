@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int H = scanner.nextInt();
+    int W = scanner.nextInt();
+    String[] a = new String[H];
+    for (int i = 0; i < H; i++) {
+        a[i] = scanner.next();
+    }
+    for (int h = 0; h < H + 2; h++) {
+        if (h == 0 || h == H + 1) {
+            for (int w = 0; w < W + 2; w++) {
+                System.out.print("#");
+            }
+            System.out.print("\n");
+            continue;
+        }
+        System.out.print("#");
+        System.out.print(a[h - 1]);
+        System.out.print("#\n");
+    }
+}

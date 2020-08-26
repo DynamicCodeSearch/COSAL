@@ -1,0 +1,39 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int amount = sc.nextInt();
+    int number = sc.nextInt();
+    boolean[] discard = new boolean[10];
+    int smallest = 0;
+    for (int i = 0; i < number; i++) {
+        int d = sc.nextInt();
+        discard[d] = true;
+        if (smallest == d)
+            smallest = d + 1;
+    }
+    String amountString = "" + amount;
+    boolean[] add = new boolean[amountString.length()];
+    for (int i = add.length - 1; i >= 0; i--) {
+        if (i == add.length - 1)
+            add[i] = discard[amountString.charAt(i) - '0'];
+        else
+            add[i] = (add[i + 1] || discard[amountString.charAt(i) - '0']);
+    }
+    int result = 0;
+    int remain = 0;
+    int base = 1;
+    int pos = 0;
+    while (amount != 0 || remain != 0) {
+        int digit = amount % 10 + remain;
+        int upDigit = digit + 9;
+        while ((digit <= upDigit) && discard[digit % 10]) digit++;
+        remain = digit / 10;
+        digit = digit % 10;
+        amount /= 10;
+        if ((pos + 1 < add.length) && add[pos + 1])
+            digit = smallest;
+        result += digit * base;
+        base *= 10;
+        pos++;
+    }
+    System.out.println(result);
+}

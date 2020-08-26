@@ -1,0 +1,28 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int H = sc.nextInt();
+    int W = sc.nextInt();
+    int N = sc.nextInt();
+    Map<Long, Integer> map = new HashMap<>();
+    for (int i = 0; i < N; i++) {
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        for (int h = Math.max(2, a - 1); h <= Math.min(H - 1, a + 1); h++) {
+            for (int w = Math.max(2, b - 1); w <= Math.min(W - 1, b + 1); w++) {
+                long hash = hash(h, w);
+                int v = map.containsKey(hash) ? map.get(hash) : 0;
+                map.put(hash, v + 1);
+            }
+        }
+    }
+    long[] ans = new long[10];
+    int total = 0;
+    for (int v : map.values()) {
+        ans[v]++;
+        total++;
+    }
+    ans[0] = (long) (H - 2) * (W - 2) - total;
+    for (long v : ans) {
+        System.out.println(v);
+    }
+}

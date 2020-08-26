@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    FastScanner sc = new FastScanner();
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    char[][] A = new char[N][N];
+    char[][] B = new char[M][M];
+    for (int i = 0; i < N; i++) {
+        A[i] = sc.next().toCharArray();
+    }
+    for (int i = 0; i < M; i++) {
+        B[i] = sc.next().toCharArray();
+    }
+    for (int i = 0; i < N - M + 1; i++) {
+        for (int j = 0; j < N - M + 1; j++) {
+            if (check(M, i, j, A, B)) {
+                System.out.println("Yes");
+                return;
+            }
+        }
+    }
+    System.out.println("No");
+}

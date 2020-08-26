@@ -1,0 +1,30 @@
+public static void main(String[] args) throws java.lang.Exception {
+    InputReader in = new InputReader(System.in);
+    PrintWriter w = new PrintWriter(System.out);
+    int n = in.nextInt();
+    TreeMap<Long, Integer> tm = new TreeMap<>(Collections.reverseOrder());
+    while (n-- > 0) {
+        long temp = in.nextLong();
+        if (!tm.containsKey(temp))
+            tm.put(temp, 0);
+        tm.put(temp, tm.get(temp) + 1);
+    }
+    long l = -1;
+    for (long x : tm.keySet()) {
+        if (tm.get(x) >= 4 && l == -1) {
+            w.println(x * x);
+            w.close();
+            return;
+        } else if (tm.get(x) >= 2) {
+            if (l == -1)
+                l = x;
+            else {
+                w.println(l * x);
+                w.close();
+                return;
+            }
+        }
+    }
+    w.println(0);
+    w.close();
+}

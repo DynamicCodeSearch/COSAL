@@ -1,0 +1,12 @@
+def solve(n):
+    ans = 100
+
+    for i in range(1, int(math.sqrt(n))+1):
+        if n % i == 0:
+            a = n / i
+            b = n / a
+            k = max(get_degit(a), get_degit(b))
+            if k < ans:
+                ans = k
+
+    return ans

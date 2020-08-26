@@ -1,0 +1,24 @@
+void run() {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int t = sc.nextInt();
+    int[] a = new int[n];
+    for (int i = 0; i < n; i++) {
+        a[i] = sc.nextInt();
+    }
+    int min = Integer.MAX_VALUE;
+    int max = 0;
+    for (int i = 0; i < n; i++) {
+        min = Math.min(min, a[i]);
+        max = Math.max(max, a[i] - min);
+    }
+    TreeSet<Integer> set = new TreeSet<Integer>();
+    int count = 0;
+    for (int i = 0; i < n; i++) {
+        set.add(a[i]);
+        if (set.contains(a[i] - max)) {
+            count++;
+        }
+    }
+    System.out.println(count);
+}

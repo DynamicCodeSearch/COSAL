@@ -1,0 +1,31 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int x = sc.nextInt();
+    int y = sc.nextInt();
+    String ans = "No";
+    if (x % 2 == 1) {
+        if (x < 9) {
+            if (y == 8 || y == 10 || y == 12)
+                ans = "Yes";
+            if (y % 2 == 1 && y < 9)
+                ans = "Yes";
+        }
+        if (x == 9) {
+            if (y == 11)
+                ans = "Yes";
+        }
+    }
+    if (x % 2 == 0) {
+        if (x > 2 && x < 8) {
+            if (y == 9 || y == 11)
+                ans = "Yes";
+            if (y % 2 == 0 && y < 8)
+                ans = "Yes";
+        }
+        if (x > 6 && x < 12) {
+            if (y % 2 == 0)
+                ans = "Yes";
+        }
+    }
+    System.out.println(ans);
+}

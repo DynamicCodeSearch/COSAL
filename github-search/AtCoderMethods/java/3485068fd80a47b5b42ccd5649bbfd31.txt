@@ -1,0 +1,11 @@
+static boolean check(long[] es, long t, long a, long b) {
+    int idx = 0;
+    long add = a - b;
+    long base = b * t;
+    while (idx < es.length && es[idx] <= base) idx++;
+    long count = 0;
+    for (; idx < es.length; idx++) {
+        count += (es[idx] - base + add - 1) / add;
+    }
+    return count <= t;
+}

@@ -1,0 +1,10 @@
+public static long binarytree(long startrange, long endrange, long A, long B, int N, long[] h) {
+    if (startrange > endrange)
+        return startrange;
+    long mid = (startrange + endrange) / 2;
+    if (kansuu(mid, A, B, N, h)) {
+        return binarytree(startrange, mid - 1, A, B, N, h);
+    } else {
+        return binarytree(mid + 1, endrange, A, B, N, h);
+    }
+}

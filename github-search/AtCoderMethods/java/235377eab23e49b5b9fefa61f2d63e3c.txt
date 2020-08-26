@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    InputReader in = new InputReader(System.in);
+    PrintWriter out = new PrintWriter(System.out);
+    BigInteger b0 = new BigInteger(in.nextToken());
+    BigInteger b1 = b0.add(BigInteger.ONE);
+    b0 = b0.multiply(b0);
+    b1 = b1.multiply(b1);
+    b1 = b1.subtract(BigInteger.ONE);
+    BigInteger upper = BigInteger.valueOf(99L);
+    BigInteger d100 = BigInteger.valueOf(100L);
+    while (true) {
+        BigInteger tb0 = b0.add(upper).divide(d100);
+        BigInteger tb1 = b1.divide(d100);
+        if (tb0.compareTo(tb1) <= 0) {
+            b0 = tb0;
+            b1 = tb1;
+            continue;
+        }
+        break;
+    }
+    out.println(b0.toString());
+    out.flush();
+}

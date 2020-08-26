@@ -1,0 +1,10 @@
+public static long calc(long a, long b, long p) {
+    if (b == 0)
+        return 1;
+    if (b % 2 == 0) {
+        long d = calc(a, b / 2, p);
+        return (d * d) % p;
+    } else {
+        return (a * calc(a, b - 1, p)) % p;
+    }
+}

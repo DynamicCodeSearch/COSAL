@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    Scanner cin = new Scanner(System.in);
+    int meter = Integer.parseInt(cin.nextLine());
+    if (meter < 100) {
+        System.out.printf("%02d\n", 0);
+    } else if (meter <= 5000) {
+        System.out.printf("%02d\n", meter / 100);
+    } else if (meter <= 30000) {
+        System.out.printf("%02d\n", meter / 1000 + 50);
+    } else if (meter <= 70000) {
+        System.out.printf("%02d\n", (meter / 1000 - 30) / 5 + 80);
+    } else {
+        System.out.printf("%02d\n", 89);
+    }
+    cin.close();
+}

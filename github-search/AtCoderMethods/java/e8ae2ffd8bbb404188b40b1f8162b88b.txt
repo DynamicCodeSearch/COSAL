@@ -1,0 +1,51 @@
+static void solve() {
+    long n = nl();
+    long s = nl();
+    
+    for (int b = 2; b <= 400000; b++) {
+        long m = n;
+        long ls = 0;
+        while (m > 0) {
+            ls += m % b;
+            m /= b;
+        }
+        if (ls == s) {
+            out.println(b);
+            return;
+        }
+    }
+    long u = n - s;
+    
+    if (u > 0) {
+        long bb;
+        for (bb = 1; bb * bb <= u; bb++) {
+            if (u % bb == 0) {
+                long b = bb + 1;
+                long x = u / bb;
+                long y = s - x;
+                if (b >= 2 && x >= 0 && y >= 0 && x < b && y < b) {
+                    out.println(b);
+                    return;
+                }
+            }
+        }
+        for (; bb >= 1; bb--) {
+            if (u % bb == 0) {
+                long b = u / bb + 1;
+                long x = bb;
+                long y = s - x;
+                if (b >= 2 && x >= 0 && y >= 0 && x < b && y < b) {
+                    out.println(b);
+                    return;
+                }
+            }
+        }
+    } else {
+        
+        if (n == s) {
+            out.println(Math.max(2, n + 1));
+            return;
+        }
+    }
+    out.println(-1);
+}

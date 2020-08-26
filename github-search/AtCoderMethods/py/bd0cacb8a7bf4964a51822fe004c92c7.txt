@@ -1,0 +1,11 @@
+def main():
+    N = int(input())
+
+    card = [1, 2, 3, 4, 5, 6]
+    n = N % 30
+    for i in range(n):
+        j = i % 5
+        k = j + 1
+        card[j], card[k] = card[k], card[j]
+
+    print(*card, sep='')

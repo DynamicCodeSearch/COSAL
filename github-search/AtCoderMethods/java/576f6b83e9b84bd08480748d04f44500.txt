@@ -1,0 +1,21 @@
+static Box pop(Box[] heap) {
+    Box ret = heap[0];
+    Box x = heap[--sz];
+    int i = 0;
+    while (i * 2 + 1 < sz) {
+        int a = i * 2 + 1, b = i * 2 + 2;
+        if (b < sz) {
+            if (heap[b].w < heap[a].w) {
+                a = b;
+            } else if (heap[b].w == heap[a].w && heap[b].h > heap[a].h) {
+                a = b;
+            }
+        }
+        if (heap[a].w >= x.w)
+            break;
+        heap[i] = heap[a];
+        i = a;
+    }
+    heap[i] = x;
+    return ret;
+}

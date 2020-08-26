@@ -1,0 +1,16 @@
+public static int[][] build(int[] a) {
+    int n = a.length;
+    int b = 32 - Integer.numberOfLeadingZeros(n);
+    int[][] ret = new int[b][];
+    for (int i = 0, l = 1; i < b; i++, l *= 2) {
+        if (i == 0) {
+            ret[i] = a;
+        } else {
+            ret[i] = new int[n - l + 1];
+            for (int j = 0; j < n - l + 1; j++) {
+                ret[i][j] = Math.min(ret[i - 1][j], ret[i - 1][j + l / 2]);
+            }
+        }
+    }
+    return ret;
+}

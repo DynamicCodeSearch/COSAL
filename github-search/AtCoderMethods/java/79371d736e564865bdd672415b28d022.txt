@@ -1,0 +1,26 @@
+public void solve(int testNumber, Scanner in, PrintWriter out) {
+    int h = in.nextInt();
+    int w = in.nextInt();
+    boolean[][] b = new boolean[h][w];
+    for (int i = 0; i < h; i++) {
+        String s = in.next();
+        for (int j = 0; j < w; j++) {
+            b[i][j] = s.charAt(j) == '#';
+        }
+    }
+    boolean[][] z = new boolean[h + 1][w + 1];
+    for (int i = 0; i < h - 1; i++) {
+        for (int j = 0; j < w - 1; j++) {
+            z[i + 1][j + 1] = b[i][j] ^ b[i + 1][j] ^ b[i][j + 1] ^ b[i + 1][j + 1];
+        }
+    }
+    int ans = solve1(h, w, z);
+    boolean[][] y = new boolean[w + 1][h + 1];
+    for (int i = 0; i < h + 1; i++) {
+        for (int j = 0; j < w + 1; j++) {
+            y[j][i] = z[i][j];
+        }
+    }
+    ans = Math.max(ans, solve1(w, h, y));
+    out.println(ans);
+}

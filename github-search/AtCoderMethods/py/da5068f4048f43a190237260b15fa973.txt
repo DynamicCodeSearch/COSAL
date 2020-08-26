@@ -1,0 +1,13 @@
+def up_t(ti, ai, stat_l, stat_r):
+    if ti >= stat_l and ai >= stat_r:
+        return  ti, ai
+
+    rate_left =  1+(stat_l-1)//ti
+    rate_right = 1+(stat_r-1)//ai
+
+    rate_min = max(rate_left, rate_right)
+
+    ret_ti = rate_min * ti
+    ret_ai = rate_min * ai
+
+    return  ret_ti, ret_ai

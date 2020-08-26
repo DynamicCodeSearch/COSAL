@@ -1,0 +1,15 @@
+long getAns(long h, long w) {
+    long res = Long.MAX_VALUE;
+    if (h >= 3) {
+        res = (h + 2) / 3 * w - h / 3 * w;
+    }
+    for (int h1 = 1; h1 + 1 <= h; h1++) {
+        long s1 = h1 * 1L * w;
+        long s2 = (h - h1) * 1L * (w / 2);
+        long s3 = (h - h1) * 1L * ((w + 1) / 2);
+        long sMax = Math.max(s1, s3);
+        long sMin = Math.min(s1, s2);
+        res = Math.min(res, sMax - sMin);
+    }
+    return res;
+}

@@ -1,0 +1,19 @@
+int[] getEq(char[] a, char[] b, boolean flag) {
+    int[] result = new int[a.length];
+    for (int i = 0; i < a.length; ) {
+        if ((a[i] == b[i]) != flag) {
+            result[i] = i;
+            i++;
+            continue;
+        }
+        int j = i;
+        while (j < a.length && ((a[j] == b[j]) == flag)) {
+            j++;
+        }
+        for (int t = i; t < j; t++) {
+            result[t] = j;
+        }
+        i = j;
+    }
+    return result;
+}

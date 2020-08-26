@@ -1,0 +1,14 @@
+void solve() throws IOException {
+    n = in.nextInt();
+    node = new List[n];
+    for (int i = 0; i < n; i++) node[i] = new ArrayList<>();
+    for (int i = 0; i < n - 1; i++) {
+        int a = in.nextInt() - 1;
+        int b = in.nextInt() - 1;
+        node[a].add(b);
+        node[b].add(a);
+    }
+    dfs(0, -1, 0);
+    int first = dfs2(s, ns);
+    System.out.println(n - first * 2 < 0 ? "Fennec" : "Snuke");
+}

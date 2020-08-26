@@ -1,0 +1,23 @@
+public static void main(String[] args) throws IOException {
+    final Scanner sc = new Scanner(System.in);
+    final int H = sc.nextInt();
+    final int W = sc.nextInt();
+    final int A = sc.nextInt();
+    final int B = sc.nextInt();
+    final long[] fact = new long[H + W + 1];
+    fact[0] = 1;
+    for (int i = 1; i < fact.length; i++) {
+        fact[i] = i * fact[i - 1];
+        fact[i] %= MOD;
+    }
+    
+    long answer = 0;
+    for (int i = B; i < W; i++) {
+        
+        
+        answer += (comb((H - A) + i - 1, i, fact) * comb((A - 1) + (W - i - 1), A - 1, fact)) % MOD;
+        
+        answer %= MOD;
+    }
+    System.out.println(answer);
+}

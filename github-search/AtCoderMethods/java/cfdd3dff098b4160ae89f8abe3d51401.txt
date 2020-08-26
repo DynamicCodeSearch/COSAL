@@ -1,0 +1,25 @@
+public void solve() {
+    N = nextInt();
+    a = new int[color.length + 1];
+    for (int i = 0; i < N; i++) {
+        int x = nextInt();
+        for (int j = 0; j < color.length; j++) {
+            if (x < color[j]) {
+                a[j]++;
+                break;
+            }
+        }
+    }
+    int count = 0;
+    for (int i = 0; i < color.length - 1; i++) {
+        if (a[i] > 0) {
+            count++;
+        }
+    }
+    int min = count;
+    int max = count + a[color.length - 1];
+    if (count == 0 && a[color.length - 1] > 0) {
+        min = 1;
+    }
+    out.println(min + " " + max);
+}

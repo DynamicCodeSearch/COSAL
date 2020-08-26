@@ -1,0 +1,30 @@
+public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    H = scan.nextInt();
+    W = scan.nextInt();
+    a = new int[H][W];
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            a[i][j] = scan.nextInt();
+        }
+    }
+    paths = new long[H][W];
+    for (int i = 0; i < H; i++) {
+        Arrays.fill(paths[i], 0);
+    }
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            if (paths[i][j] == 0) {
+                paths[i][j]++;
+                search(i, j);
+            }
+        }
+    }
+    long ans = 0;
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            ans += paths[i][j];
+        }
+    }
+    System.out.println(ans % mod);
+}

@@ -1,0 +1,22 @@
+public void solve() {
+    N = nextInt();
+    M = nextInt();
+    if (Math.abs(N - M) >= 2) {
+        out.println(0);
+        return;
+    }
+    long ans = 1;
+    for (int i = N; i >= 1; i--) {
+        ans *= i;
+        ans %= MOD;
+    }
+    for (int i = M; i >= 1; i--) {
+        ans *= i;
+        ans %= MOD;
+    }
+    if (N % 2 == M % 2) {
+        ans *= 2;
+        ans %= MOD;
+    }
+    out.println(ans);
+}

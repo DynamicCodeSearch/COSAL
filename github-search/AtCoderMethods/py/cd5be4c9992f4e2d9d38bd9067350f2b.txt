@@ -1,0 +1,17 @@
+def solve_mini():
+    def argmax():
+        Amax = max(As)
+        for j, value in enumerate(As):
+            if Amax == value:
+                return j
+
+    for i in range(10 ** 20):
+        if max(As) < N:
+            break
+        arg = argmax()
+        for j in range(N):
+            if j == arg:
+                As[j] -= N
+            else:
+                As[j] += 1
+    return i

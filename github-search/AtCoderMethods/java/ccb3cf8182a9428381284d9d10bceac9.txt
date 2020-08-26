@@ -1,0 +1,11 @@
+private boolean[] findValidAssign() {
+    doit();
+    boolean[] ret = new boolean[n];
+    for (int i = 0; i < n; i++) {
+        if (nodeId[i] == nodeId[i + n]) {
+            return null;
+        }
+        ret[i] = nodeId[i] > nodeId[i + n];
+    }
+    return ret;
+}

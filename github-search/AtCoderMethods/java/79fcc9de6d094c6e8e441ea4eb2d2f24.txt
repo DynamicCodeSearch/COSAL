@@ -1,0 +1,12 @@
+public static long solve(Pair p) {
+    r[p.i][p.j] = 1;
+    for (int k = 0; k < 4; ++k) {
+        int ix = p.j + dx[k], iy = p.i + dy[k];
+        if (ix < 0 || ix >= W || iy < 0 || iy >= H)
+            continue;
+        if (a[iy][ix] <= a[p.i][p.j])
+            continue;
+        r[p.i][p.j] += r[iy][ix] % M;
+    }
+    return r[p.i][p.j] % M;
+}

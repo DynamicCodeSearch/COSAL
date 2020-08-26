@@ -1,0 +1,12 @@
+void printPath1_aux(int begin, int end) {
+    if (via[begin][end] == begin) {
+        if (begin != end) {
+            
+            used[begin][end] = true;
+            used[end][begin] = true;
+        }
+        return;
+    }
+    printPath1_aux(begin, via[begin][end]);
+    printPath1_aux(via[begin][end], end);
+}

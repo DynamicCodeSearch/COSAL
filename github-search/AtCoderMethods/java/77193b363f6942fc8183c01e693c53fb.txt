@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int numbers = sc.nextInt();
+    int[] values = new int[numbers];
+    int sum = 0;
+    for (int i = 0; i < numbers; i++) {
+        values[i] = sc.nextInt();
+        sum += values[i];
+    }
+    
+    int averageCeil = (int) Math.ceil(sum * 1.0 / numbers);
+    int averageFloor = (int) Math.floor(sum * 1.0 / numbers);
+    
+    int totalcostceil = 0;
+    int totalcostfloor = 0;
+    for (int i = 0; i < numbers; i++) {
+        int ceil = (values[i] - averageCeil) * (values[i] - averageCeil);
+        int floor = (values[i] - averageFloor) * (values[i] - averageFloor);
+        totalcostceil += ceil;
+        totalcostfloor += floor;
+    }
+    System.out.println(Math.min(totalcostceil, totalcostfloor));
+}

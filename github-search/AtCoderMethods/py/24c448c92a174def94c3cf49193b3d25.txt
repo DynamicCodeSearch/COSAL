@@ -1,0 +1,21 @@
+def walk2(n, k = None):
+  if d[n] == "No":
+    print("No"); exit()
+  elif d[n] == "Any":
+    f[n] = k+1
+  else:
+    (a, b, p) = d[n]
+    if k == None:
+      if a % 2 == p:
+        f[n] = a
+      else:
+        f[n] = a + 1
+    else:
+      if a <= k-1 <= b:
+        f[n] = k-1
+      elif a <= k+1 <= b:
+        f[n] = k+1
+      else:
+        print("No"); exit()
+  for i in children[n]:
+    walk2(i, f[n])

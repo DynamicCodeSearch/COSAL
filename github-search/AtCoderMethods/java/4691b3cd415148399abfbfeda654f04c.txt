@@ -1,0 +1,17 @@
+void run() throws IOException {
+    InputStream input = System.in;
+    OutputStream output = System.out;
+    try {
+        File f = new File(filename + ".in");
+        if (f.exists() && f.canRead()) {
+            input = new FileInputStream(f);
+            output = new FileOutputStream(filename + ".out");
+        }
+    } catch (IOException e) {
+    }
+    in = new FastScanner(input);
+    out = new PrintWriter(new BufferedOutputStream(output));
+    solve();
+    in.close();
+    out.close();
+}

@@ -1,0 +1,19 @@
+def main():
+    n,k = LI()
+    a = LI()
+    b = [(a[i],i+1) for i in range(n)]
+    ra = sorted(b)
+    ii = [None] * (n+1)
+    for i in range(n):
+        ii[ra[i][1]] = i
+    ti = k-1
+    r = [ra[ti][1]]
+    for i in range(n-1,k-1,-1):
+        c = b[i][1]
+        if ii[c] <= ti:
+            ti += 1
+            while ra[ti][1] > c:
+                ti += 1
+        r.append(ra[ti][1])
+
+    return '\n'.join(map(str, r[::-1]))

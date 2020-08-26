@@ -1,0 +1,16 @@
+def bfs(n, edges, start):
+    dq = deque()
+    append, pop = dq.append, dq.popleft
+    distances = [None]*n
+    distances[start] = 0
+
+    append((start, 0))
+    while dq:
+        pos, cost = pop()
+        cost += 1
+        for dest in edges[pos]:
+            if distances[dest] is None:
+                distances[dest] = cost
+                append((dest, cost))
+
+    return distances

@@ -1,0 +1,46 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] n_m = br.readLine().split(" ");
+    int n = Integer.parseInt(n_m[0]);
+    int m = Integer.parseInt(n_m[1]);
+    List<edge>[] graph = new List[n + 1];
+    for (int i = 0; i < n + 1; i++) {
+        graph[i] = new ArrayList<>();
+    }
+    for (int i = 0; i < m; i++) {
+        String[] s = br.readLine().split(" ");
+        int from = Integer.parseInt(s[0]);
+        int to = Integer.parseInt(s[1]);
+        graph[from].add(new edge(from, to, 0));
+        graph[to].add(new edge(to, from, 0));
+    }
+    int[] count = new int[n + 1];
+    for (int i = 1; i <= n; i++) {
+        Deque<edge> dq = new ArrayDeque<>();
+        dq.offer(new edge(i, 0, 0));
+        boolean[] visited = new boolean[n + 1];
+        count[i] = 0;
+        while (!(dq.isEmpty())) {
+            edge e = dq.poll();
+            int from = e.from;
+            int to = e.to;
+            int d = e.d;
+            if (visited[from]) {
+                continue;
+            }
+            
+            visited[from] = true;
+            if (d >= 2) {
+                count[i]++;
+                continue;
+            }
+            for (edge ed : graph[from]) {
+                dq.offer(new edge(ed.to, 0, d + 1));
+            }
+        }
+    }
+    for (int k = 1; k <= n; k++) {
+        System.out.println(count[k]);
+    }
+
+}

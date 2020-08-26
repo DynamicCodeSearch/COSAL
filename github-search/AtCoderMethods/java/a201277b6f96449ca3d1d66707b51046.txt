@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int T = sc.nextInt();
+    int[] arrival = new int[N];
+    for (int i = 0; i < N; i++) {
+        arrival[i] = sc.nextInt();
+    }
+    sc.close();
+    int end = arrival[N - 1] + T;
+    int closing = 0;
+    closing += arrival[0];
+    for (int i = 1; i < N; i++) {
+        if (arrival[i] - arrival[i - 1] > T) {
+            closing += arrival[i] - (arrival[i - 1] + T);
+        }
+    }
+    System.out.println(end - closing);
+}

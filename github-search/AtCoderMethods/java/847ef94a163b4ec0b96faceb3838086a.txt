@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    s = sc.next();
+    int n = s.length();
+    List<List<Integer>> at = new ArrayList<List<Integer>>(26);
+    for (int i = 0; i < 26; i++) {
+        at.add(new ArrayList<Integer>());
+    }
+    for (int i = 0; i < n; i++) {
+        at.get(s.charAt(i) - 'a').add(i);
+    }
+    for (int i = 0; i < 26; i++) {
+        List<Integer> list = at.get(i);
+        for (int j = 0; j + 1 < list.size(); j++) {
+            int count = 1;
+            int l = list.get(j), m = list.get(j + 1);
+            ++count;
+            if (m - l >= 1 && 2 * count > m - l + 1) {
+                System.out.println((l + 1) + " " + (m + 1));
+                return;
+            }
+        }
+    }
+    System.out.println("-1 -1");
+}

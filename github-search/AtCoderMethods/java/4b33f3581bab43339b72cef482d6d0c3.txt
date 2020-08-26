@@ -1,0 +1,14 @@
+static void solve() {
+    String w = in.next();
+    boolean[] f = new boolean[26];
+    for (int i = 0; i < w.length(); i++) {
+        f[w.charAt(i) - 'a'] = !f[w.charAt(i) - 'a'];
+    }
+    for (int i = 0; i < 26; i++) {
+        if (f[i]) {
+            out.println("No");
+            return;
+        }
+    }
+    out.println("Yes");
+}

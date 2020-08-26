@@ -1,0 +1,13 @@
+long g(Node node) {
+    if (memoG[node.id] != 0) {
+        return memoG[node.id];
+    }
+    long white = 1;
+    for (Node c : node.list) {
+        white *= f(c);
+        white %= MOD;
+    }
+    
+    memoG[node.id] = white;
+    return white;
+}

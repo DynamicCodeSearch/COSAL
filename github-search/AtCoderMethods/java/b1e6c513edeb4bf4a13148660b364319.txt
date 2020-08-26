@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String N = sc.nextLine();
+    boolean isSame = false;
+    int current = Integer.parseInt(N.substring(0, 1));
+    for (int i = 1; i < N.length(); i++) {
+        int next = Integer.parseInt(N.substring(i, i + 1));
+        if (next == current) {
+            isSame = true;
+        } else {
+            isSame = false;
+            break;
+        }
+    }
+    if (isSame) {
+        System.out.println("SAME");
+    } else {
+        System.out.println("DIFFERENT");
+    }
+}

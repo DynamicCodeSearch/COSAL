@@ -1,0 +1,29 @@
+public void calc() {
+    sb = new StringBuilder();
+    IO sc = new IO();
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    char[][] a = new char[n][n];
+    char[][] b = new char[m][m];
+    for (int i = 0; i < n; i++) {
+        a[i] = sc.next().toCharArray();
+    }
+    for (int i = 0; i < m; i++) {
+        b[i] = sc.next().toCharArray();
+    }
+    String ans = "No";
+    LOOP: for (int x = 0; x < n - m + 1; x++) {
+        LOOP2: for (int y = 0; y < n - m + 1; y++) {
+            BLOOP: for (int bx = 0; bx < m; bx++) {
+                for (int by = 0; by < m; by++) {
+                    if (a[x + bx][y + by] != b[bx][by]) {
+                        continue LOOP2;
+                    }
+                }
+            }
+            ans = "Yes";
+            break LOOP;
+        }
+    }
+    System.out.println(ans);
+}

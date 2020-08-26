@@ -1,0 +1,14 @@
+public void solve(int testNumber, InputReader in, PrintWriter out) {
+    int[] ls = new int[26];
+    String s = in.nextLine();
+    for (int i = 0; i < s.length(); i++) {
+        ls[s.charAt(i) - 'a']++;
+    }
+    for (int i = 0; i < ls.length; i++) {
+        if (ls[i] == 0) {
+            out.println((char) ('a' + i));
+            return;
+        }
+    }
+    out.println("None");
+}

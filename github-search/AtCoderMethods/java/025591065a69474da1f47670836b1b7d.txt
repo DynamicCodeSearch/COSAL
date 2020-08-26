@@ -1,0 +1,27 @@
+public static void main(String[] args) throws Exception {
+    Scanner in = new Scanner(System.in);
+    int N, M;
+    N = in.nextInt();
+    M = in.nextInt();
+    int b = 0, o = 0, h = 0;
+    boolean clear = false;
+    for (o = 0; o <= N; o++) {
+        if (o * 3 > M)
+            break;
+        int m = M - o * 3;
+        if (m % 2 == 0) {
+            Ans a = solve(m, N - o);
+            if (a.x != -1 && a.y != -1) {
+                b = a.x;
+                h = a.y;
+                clear = true;
+                break;
+            }
+        }
+    }
+    if (clear) {
+        System.out.printf("%d %d %d\n", h, o, b);
+    } else {
+        System.out.println("-1 -1 -1");
+    }
+}

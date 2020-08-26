@@ -1,0 +1,66 @@
+public static void main(String[] args) throws Exception {
+    int h = sc.nextInt();
+    int w = sc.nextInt();
+    String[] s = new String[h];
+    for (int i = 0; i < h; i++) {
+        s[i] = sc.next();
+    }
+    int[][] map = new int[w][h];
+    int[] dx = { 1, 1, 0, -1, -1, -1, 0, 1 };
+    int[] dy = { 0, -1, -1, -1, 0, 1, 1, 1 };
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            if (s[i].charAt(j) == '#') {
+                boolean judge = true;
+                for (int k = 0; k < 8; k++) {
+                    if (i + dy[k] < 0 || i + dy[k] >= h || j + dx[k] < 0 || j + dx[k] >= w) {
+                        continue;
+                    }
+                    if (s[i + dy[k]].charAt(j + dx[k]) != '#') {
+                        judge = false;
+                    }
+                }
+                if (judge) {
+                    map[j][i] = 1;
+                    for (int k = 0; k < 8; k++) {
+                        if (i + dy[k] < 0 || i + dy[k] >= h || j + dx[k] < 0 || j + dx[k] >= w) {
+                            continue;
+                        }
+                        if (map[j + dx[k]][i + dy[k]] != 1) {
+                            map[j + dx[k]][i + dy[k]] = 2;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    boolean flag = true;
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            if (s[i].charAt(j) == '#' && map[j][i] == 0) {
+                flag = false;
+            }
+            if (s[i].charAt(j) == '.' && map[j][i] != 0) {
+                flag = false;
+            }
+        }
+    }
+    if (flag) {
+        out.println("possible");
+        for (int i = 0; i < h; i++) {
+            for (int j = 0; j < w; j++) {
+                if (map[j][i] == 1) {
+                    out.print("#");
+                } else {
+                    out.print(".");
+                }
+            }
+            out.println();
+        }
+    } else {
+        out.println("impossible");
+    }
+    out.flush();
+    sc.close();
+    out.close();
+}
