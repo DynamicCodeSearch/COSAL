@@ -4,7 +4,7 @@ import os
 sys.path.append(os.path.abspath("."))
 sys.dont_write_bytecode = True
 
-__author__ = "bigfatnoob"
+__author__ = "COSAL"
 
 
 from analysis.helpers import ast_utils, helper, execution_utils

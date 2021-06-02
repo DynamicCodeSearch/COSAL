@@ -5,7 +5,7 @@ import os
 sys.path.append(os.path.abspath("."))
 sys.dont_write_bytecode = True
 
-__author__ = "bigfatnoob"
+__author__ = "COSAL"
 
 import glob
 import json
@@ -27,13 +27,14 @@ def get_parent_folder(file_name):
   return None
 
 
-def read_file(file_name):
+def read_file(file_name, mode='r'):
   """
   Name of the file.
   :param file_name:
+  :param mode
   :return:
   """
-  with open(file_name, "r") as f:
+  with open(file_name, mode=mode) as f:
     return f.read()
 
 
@@ -77,7 +78,7 @@ def load_pickle(file_name, verbose=False):
       print("File %s does not exist" % file_name)
     return None
   try:
-    with open(file_name, "r") as f:
+    with open(file_name, "rb") as f:
       return c_pickle.load(f)
   except Exception:
     if verbose:
@@ -95,7 +96,7 @@ def save_pickle(file_name, obj):
   parent = get_parent_folder(file_name)
   if parent:
     mkdir(parent)
-  with open(file_name, "w") as f:
+  with open(file_name, "wb") as f:
     c_pickle.dump(obj, f, c_pickle.HIGHEST_PROTOCOL)
 
 

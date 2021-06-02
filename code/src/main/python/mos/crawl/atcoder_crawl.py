@@ -4,7 +4,7 @@ import os
 sys.path.append(os.path.abspath("."))
 sys.dont_write_bytecode = True
 
-__author__ = "bigfatnoob"
+__author__ = "COSAL"
 
 from mos.blocks import code_block, contest_meta_block
 from mos.helpers import contexter

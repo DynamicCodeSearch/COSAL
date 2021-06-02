@@ -350,7 +350,7 @@ class SnipFilterVisitor extends VoidVisitorAdapter {
             String variableName = n.getNameAsString();
             if (variableName.equals(returnVariableName)) {
                 if (!isVariableCreated) {
-                    throw new RuntimeException("@bigfatnoob: Variable is UPDATED before created. Check business logic!!!");
+                    throw new RuntimeException("@COSAL: Variable is UPDATED before created. Check business logic!!!");
                 }
                 isVariableUpdated = true;
             } else {
@@ -369,7 +369,7 @@ class SnipFilterVisitor extends VoidVisitorAdapter {
             String variableName = n.getNameAsString();
             if (variableName.equals(returnVariableName)) {
                 if (!isVariableCreated) {
-                    throw new RuntimeException("@bigfatnoob: Variable is UPDATED before created. Check business logic!!!");
+                    throw new RuntimeException("@COSAL: Variable is UPDATED before created. Check business logic!!!");
                 }
                 isVariableUpdated = true;
                 return;
@@ -383,7 +383,7 @@ class SnipFilterVisitor extends VoidVisitorAdapter {
         String variableName = nameExpr.getNameAsString();
         if (variableName.equals(returnVariableName)) {
             if (!isVariableCreated) {
-                throw new RuntimeException("@bigfatnoob: Variable is TOUCHED before created. Check business logic!!!");
+                throw new RuntimeException("@COSAL: Variable is TOUCHED before created. Check business logic!!!");
             }
             isVariableTouched = true;
         }

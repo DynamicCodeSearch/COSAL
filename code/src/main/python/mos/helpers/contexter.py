@@ -5,7 +5,7 @@ import os
 sys.path.append(os.path.abspath("."))
 sys.dont_write_bytecode = True
 
-__author__ = "bigfatnoob"
+__author__ = "COSAL"
 
 from analysis.helpers import ast_utils
 from utils import cache
@@ -13,7 +13,7 @@ import properties
 
 import javalang
 import re
-import StringIO
+import io
 import tokenize
 import nltk
 
@@ -73,7 +73,7 @@ def tokenize_string(token):
 
 
 def tokenize_func_body(func_body):
-  token_generator = tokenize.generate_tokens(StringIO.StringIO(func_body).readline)
+  token_generator = tokenize.generate_tokens(io.StringIO(func_body).readline)
   tokens = set()
   try:
     for token_num, token, start, end, line in token_generator:

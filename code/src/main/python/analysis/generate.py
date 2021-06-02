@@ -4,7 +4,7 @@ import os
 sys.path.append(os.path.abspath("."))
 sys.dont_write_bytecode = True
 
-__author__ = "bigfatnoob"
+__author__ = "COSAL"
 
 import ast
 
@@ -151,7 +151,7 @@ def check_type_validity(visitor, var_type):
         return is_valid
       return False
   else:
-    raise RuntimeError("@bigfatnoob: Invalid type '%s' for '%s'" % (type(var_type).__name__, var_type.name))
+    raise RuntimeError("@COSAL: Invalid type '%s' for '%s'" % (type(var_type).__name__, var_type.name))
 
 
 def validate_visitor_variables(visitor):
@@ -208,7 +208,7 @@ def check_and_cast_to_custom_type(visitor, var_type):
       var_type.val_types = [check_and_cast_to_custom_type(visitor, t) for t in var_type.val_types]
     return var_type
   else:
-    raise RuntimeError("@bigfatnoob: Unsupported data type '%s'" % type(var_type).__name__)
+    raise RuntimeError("@COSAL: Unsupported data type '%s'" % type(var_type).__name__)
 
 
 def create_variable_map(visitor):

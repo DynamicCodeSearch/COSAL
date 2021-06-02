@@ -4,7 +4,7 @@ import os
 sys.path.append(os.path.abspath("."))
 sys.dont_write_bytecode = True
 
-__author__ = "bigfatnoob"
+__author__ = "COSAL"
 
 from analysis.helpers import ast_utils
 from analysis.parsers import parser
@@ -194,7 +194,7 @@ class TreeVisitor(parser.Traveller):
   def visit_Assign(self, node, meta):
     assign_vertex = N(TYPES.ASSIGN)
     if node.targets:
-      # assert len(node.targets) == 1, "@bigfatnoob: We support only single var assignment"
+      # assert len(node.targets) == 1, "@COSAL: We support only single var assignment"
       for target in node.targets:
         assign_vertex.add_kid(self.visit(target))
     if node.value:

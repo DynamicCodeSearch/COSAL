@@ -17,7 +17,7 @@ public class CodeSeerProperties {
                 InputStream inputStream = CodeSeerProperties.class.getClassLoader().getResourceAsStream(PROP_FILE_NAME);
                 PROPERTIES.load(inputStream);
             } catch (IOException ignored) {
-                throw new RuntimeException(String.format("@bigfatnoob: Property file '%s' not found in classpath", name));
+                throw new RuntimeException(String.format("@COSAL: Property file '%s' not found in classpath", name));
             }
         }
         return PROPERTIES.getProperty(name);

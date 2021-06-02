@@ -471,7 +471,7 @@ public class ObjectTypeArguments {
             if (PackageManager.isClassFromJDK(methodOrConstructor.getDeclaringClass())) {
                 return JDKUtils.getParameterNames(methodOrConstructor);
             }
-            throw new RuntimeException("@bigfatnoob: Currently we support system parameter names only from JDK");
+            throw new RuntimeException("@COSAL: Currently we support system parameter names only from JDK");
         }
     }
 
@@ -502,7 +502,7 @@ public class ObjectTypeArguments {
             if (Primitive.isPrimitive(clazz)) {
                 return one.equals(two);
             } else if (FileHandler.isOutputClass(clazz.getName())) {
-                throw new RuntimeException("@bigfatnoob: Why have you not yet implemented output comparison for files??");
+                throw new RuntimeException("@COSAL: Why have you not yet implemented output comparison for files??");
             } else if (isValidClass(clazz, new HashSet<>())) {
                 JsonObject jsonObject = getValidClassAsJson(clazz);
                 if (jsonObject == null)

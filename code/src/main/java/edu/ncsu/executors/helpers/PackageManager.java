@@ -155,7 +155,7 @@ public class PackageManager {
             }
         } catch (IOException | ClassNotFoundException e) {
 //            LOGGER.severe(ExceptionUtils.getStackTrace(e));
-            LOGGER.severe("**Note from BigFatNoob**: Check the jar to check if it has .class files and not .java files. If not you might want to add the jar without the sources.");
+            LOGGER.severe("**Note from COSAL**: Check the jar to check if it has .class files and not .java files. If not you might want to add the jar without the sources.");
             throw new RuntimeException(e);
         }
         return null;

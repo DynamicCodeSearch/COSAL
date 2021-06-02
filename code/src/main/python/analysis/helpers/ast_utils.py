@@ -4,17 +4,18 @@ import os
 sys.path.append(os.path.abspath("."))
 sys.dont_write_bytecode = True
 
-__author__ = "bigfatnoob"
+__author__ = "COSAL"
 
 
 import ast
 import astor
 import astpretty
 import asttokens
-import cStringIO
 import keyword
 import textwrap
 import tokenize
+
+from io import StringIO
 
 
 __KEYWORDS = None
@@ -102,7 +103,7 @@ def get_func_node(func_obj, use_ast_tokens=False):
   elif type(func_obj) in [str, unicode]:
     return parse_function(func_obj, use_ast_tokens=use_ast_tokens)
   else:
-    raise RuntimeError("@bigfatnoob: Unsupported function type for function '%s'!!" % type(func_obj).__name__)
+    raise RuntimeError("@COSAL: Unsupported function type for function '%s'!!" % type(func_obj).__name__)
 
 
 def get_function_body_as_str(func_obj, as_lst=False, use_ast_tokens=False):
@@ -208,7 +209,7 @@ def remove_comments_and_docstrings(source):
   """
   Returns 'source' minus comments and docstrings.
   """
-  io_obj = cStringIO.StringIO(source.encode("utf-8"))
+  io_obj = StringIO(source.encode("utf-8"))
   out = ""
   prev_toktype = tokenize.INDENT
   last_lineno = -1
@@ -266,7 +267,7 @@ def get_comments(source_code):
   :param source_code: Source code as text
   :return: Comments in source code as a list
   """
-  io_obj = cStringIO.StringIO(source_code.encode("utf-8"))
+  io_obj = StringIO(source_code.encode("utf-8"))
   comments = []
   for tok in tokenize.generate_tokens(io_obj.readline):
     token_type = tok[0]

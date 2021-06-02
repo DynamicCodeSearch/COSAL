@@ -13,7 +13,7 @@ from pytype.pytd import pytd
 
 import properties
 
-__author__ = "bigfatnoob"
+__author__ = "COSAL"
 
 PYTHON_VERSION = (2, 7)
 
@@ -57,7 +57,7 @@ def get_data_types(py_class_type):
     elif py_class_type_type == pytd.NothingType:
         return None
     elif py_class_type_type == pytd.NamedType:
-        raise RuntimeError("@bigfatnoob: Unsupported class type: %s" % py_class_type)
+        raise RuntimeError("@COSAL: Unsupported class type: %s" % py_class_type)
     elif py_class_type_type == pytd.ClassType:
         splits = str(py_class_type).rsplit(".")
         name = splits[-1]
@@ -157,7 +157,7 @@ def get_data_types(py_class_type):
         return var_types
     else:
         # TODO: Implement rest
-        raise RuntimeError("@bigfatnoob: Unsupported class type: %s" % str(py_class_type))
+        raise RuntimeError("@COSAL: Unsupported class type: %s" % str(py_class_type))
 
 
 def annotate(src):

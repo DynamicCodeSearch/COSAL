@@ -4,7 +4,7 @@ import os
 sys.path.append(os.path.abspath("."))
 sys.dont_write_bytecode = True
 
-__author__ = "bigfatnoob"
+__author__ = "COSAL"
 
 
 from utils import cache
@@ -31,7 +31,7 @@ def convert_to_file_input(file_content, file_type, func_name, arg_index):
   if file_type == "__builtin__.file":
     f = open(file_path, "r+")
     return f
-  raise RuntimeError("@bigfatnoob: Unsupported file type '%s'" % file_type)
+  raise RuntimeError("@COSAL: Unsupported file type '%s'" % file_type)
 
 
 def convert_to_file_output(file_obj):
@@ -49,7 +49,7 @@ def convert_to_file_output(file_obj):
       return cache.read_file(file_obj.name)
     except Exception:
       return None
-  raise RuntimeError("@bigfatnoob: Unsupported file type '%s'" % file_type)
+  raise RuntimeError("@COSAL: Unsupported file type '%s'" % file_type)
 
 
 def delete_all_input_temp_files():

@@ -6,9 +6,9 @@ sys.dont_write_bytecode = True
 
 import config
 
-__author__ = "bigfatnoob"
+__author__ = "COSAL"
 
-CONFIG = config.AtCoderConfig()
+CONFIG = config.BigCloneBenchConfig()
 
 """
 File paths
@@ -46,3 +46,7 @@ Config
 """
 STORE = "mongo"  # Can be "json"/"mongo"
 CLUSTER_TYPE = "representative"  # Can be "representative"/"dbscan"
+
+if __name__ == "__main__":
+  import HaPy
+  print(HaPy)

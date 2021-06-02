@@ -4,7 +4,7 @@ import os
 sys.path.append(os.path.abspath("."))
 sys.dont_write_bytecode = True
 
-__author__ = "bigfatnoob"
+__author__ = "COSAL"
 
 CODE_SRC = os.path.join(os.getenv("HOME"), "Raise/ProgramRepair/CodeSeer/code/src/main")
 PROJECTS_SRC = os.path.join(os.getenv("HOME"), "Raise/ProgramRepair/CodeSeer/projects/src/main")

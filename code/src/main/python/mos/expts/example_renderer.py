@@ -4,7 +4,7 @@ import os
 sys.path.append(os.path.abspath("."))
 sys.dont_write_bytecode = True
 
-__author__ = "bigfatnoob"
+__author__ = "COSAL"
 
 from mos.search.tree import java_tree, py_tree
 from utils import cache, logger
@@ -207,6 +207,11 @@ def render_dot(root, file_name):
   DotExporter(root, options=["rankdir=LR;"],
               nodeattrfunc=lambda node: 'shape=none, margin=0, pad=0, fontsize=22, label="{}"'.format(node.label),
               edgeattrfunc=lambda node, child: 'arrowsize=0.5, margin=0, width=0.5, minlen=1').to_picture(file_name)
+
+
+def render_pptree(node):
+  import pptree
+  pptree.print_tree(node, nameattr='label')
 
 
 def render_variable_normalization():
@@ -416,5 +421,6 @@ def _main():
 
 
 if __name__ == "__main__":
-  tree_comp()
+  render_pptree(dot_java_filter_out_odds())
+  # tree_comp()
   # render_variable_normalization()

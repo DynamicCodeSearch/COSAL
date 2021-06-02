@@ -5,7 +5,7 @@ import os
 sys.path.append(os.path.abspath("."))
 sys.dont_write_bytecode = True
 
-__author__ = "bigfatnoob"
+__author__ = "COSAL"
 
 
 from utils.lib import O
@@ -87,10 +87,11 @@ class CodeBlock(O):
   @staticmethod
   def from_bson(bson):
     code = CodeBlock()
-    code.uid = bson["uid"]
-    code.language = bson["language"]
-    code.source_file = cache.get_absolute_path(bson["sourceFile"])
-    code.code = bson["code"]
+    code.uid = bson.get("uid", None)
+    code.language = bson.get("language", None)
+    if "sourceFile" in bson:
+      code.source_file = cache.get_absolute_path(bson["sourceFile"])
+    code.code = bson.get("code", None)
     code.comments = bson.get("comments", None)
     if "isStatic" in bson:
       code.is_static = bson["isStatic"]

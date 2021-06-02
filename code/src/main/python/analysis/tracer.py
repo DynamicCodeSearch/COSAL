@@ -9,7 +9,7 @@ from utils.lib import O
 from analysis.helpers import constants as a_consts
 from analysis.blocks import types
 
-__author__ = "bigfatnoob"
+__author__ = "COSAL"
 
 DEBUG = False
 

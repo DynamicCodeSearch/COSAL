@@ -10,14 +10,14 @@ public class ReflectionHelper {
         if (methodOrConstructor instanceof Method || methodOrConstructor instanceof Constructor) {
             parameters = methodOrConstructor.getParameters();
         } else {
-            throw new RuntimeException(String.format("@bigfatnoob: Object '%s' is neither method or constructor. Check its type!",  methodOrConstructor.toString()));
+            throw new RuntimeException(String.format("@COSAL: Object '%s' is neither method or constructor. Check its type!",  methodOrConstructor.toString()));
         }
         if (parameters == null || parameters.length == 0)
             return null;
         List<String> paramNames = new ArrayList<>();
         for (Parameter parameter: parameters) {
             if (!parameter.isNamePresent()) {
-                throw new ParameterNotFoundException(String.format("@bigfatnoob: Parameter names are not present for method '%s' from class '%s'. Try loading it form the AST",
+                throw new ParameterNotFoundException(String.format("@COSAL: Parameter names are not present for method '%s' from class '%s'. Try loading it form the AST",
                         methodOrConstructor.getName(),
                         methodOrConstructor.getDeclaringClass().getName()));
             }

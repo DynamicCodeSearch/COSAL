@@ -8,7 +8,7 @@ from rpy2.robjects.vectors import DataFrame, FloatVector, IntVector, StrVector, 
 import numpy
 from collections import OrderedDict
 
-__author__ = "bigfatnoob"
+__author__ = "COSAL"
 
 
 def is_bracket_balanced(expression):

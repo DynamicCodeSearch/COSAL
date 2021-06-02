@@ -165,7 +165,7 @@ public class MongoDriver {
         if (containsDocument(collection, query)) {
             UpdateResult result = collection.updateOne(query, update);
             if (!result.wasAcknowledged())
-                throw new RuntimeException("@bigfatnoob: Check why update failed!!");
+                throw new RuntimeException("@COSAL: Check why update failed!!");
         }
     }
 

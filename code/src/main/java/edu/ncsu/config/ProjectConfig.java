@@ -44,7 +44,7 @@ public class ProjectConfig {
             case "atcoder-methods":
                 return new AtCoderMethodConfig();
             default:
-                throw new RuntimeException(String.format("@bigfatnoob: Invalid configuration: '%s'", config));
+                throw new RuntimeException(String.format("@COSAL: Invalid configuration: '%s'", config));
         }
     }
 

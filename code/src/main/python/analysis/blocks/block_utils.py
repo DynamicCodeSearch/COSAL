@@ -4,7 +4,7 @@ import os
 sys.path.append(os.path.abspath("."))
 sys.dont_write_bytecode = True
 
-__author__ = "bigfatnoob"
+__author__ = "COSAL"
 
 from analysis.blocks import class_block
 from analysis.blocks import method as method_block
@@ -169,7 +169,7 @@ def convert_to_function_argument(arg_type, arg_name, name_arg_type_map, func_id,
     file_type = "%s.%s" % (arg_type.module, arg_type.name)
     return file_utils.convert_to_file_input(file_content, file_type, func_id, arg_index)
   else:
-    raise RuntimeError("@bigfatnoob: Complete this dodo!")
+    raise RuntimeError("@COSAL: Complete this dodo!")
 
 
 def convert_to_function_argument_from_value(value, arg_type, func_id, arg_index):
@@ -240,7 +240,7 @@ def convert_to_function_argument_from_value(value, arg_type, func_id, arg_index)
     file_type = "%s.%s" % (arg_type.module, arg_type.name)
     return file_utils.convert_to_file_input(value, file_type, func_id, arg_index)
   else:
-    raise RuntimeError("@bigfatnoob: Complete this dodo!")
+    raise RuntimeError("@COSAL: Complete this dodo!")
 
 
 def from_parameter_bson(bson_dict):
@@ -313,7 +313,7 @@ def from_types_bson(bson_dict):
   method_name = "from_%s_bson" % slacc_type
   method_to_call = getattr(sys.modules[__name__], method_name, None)
   if not method_to_call:
-    raise RuntimeError("@bigfatnoob: Invalid slacc_type: '%s'" % slacc_type)
+    raise RuntimeError("@COSAL: Invalid slacc_type: '%s'" % slacc_type)
   return method_to_call(bson_dict)
 
 

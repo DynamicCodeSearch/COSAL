@@ -4,7 +4,7 @@ import os
 sys.path.append(os.path.abspath("."))
 sys.dont_write_bytecode = True
 
-__author__ = "bigfatnoob"
+__author__ = "COSAL"
 
 from anytree import Node as DotNode
 from anytree.exporter import DotExporter
@@ -101,8 +101,9 @@ class OPERATORS:
   NOT_EQ = "not_eq"
   NOT_IN = "not_in"
   """
-  Assign
+  Instance
   """
+  INSTANCE_OF = "instance_of"
 
   def __init__(self): pass
 

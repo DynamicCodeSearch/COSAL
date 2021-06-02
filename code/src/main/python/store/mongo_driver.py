@@ -4,7 +4,7 @@ import os
 sys.path.append(os.path.abspath("."))
 sys.dont_write_bytecode = True
 
-__author__ = "bigfatnoob"
+__author__ = "COSAL"
 
 
 import pymongo
@@ -100,7 +100,9 @@ def get_document(collection, key, value):
 
 
 def contains_document(collection, key, value):
-  return get_document(collection, key, value) is not None
+  if collection is None:
+    return False
+  return collection.find_one({key: value}, {"_id": 1})
 
 
 def upsert_document(collection, query, document):
@@ -117,6 +119,14 @@ def delete_document(collection, key, value):
 
 def delete_document_with_query(collection, query):
   collection.delete_one(query)
+
+
+def delete_documents(collection, key, value):
+  collection.delete_many({key: value})
+
+
+def delete_documents_with_query(collection, query):
+  collection.delete_many(query)
 
 
 def drop_collection(collection):

@@ -4,7 +4,7 @@ import os
 sys.path.append(os.path.abspath("."))
 sys.dont_write_bytecode = True
 
-__author__ = "bigfatnoob"
+__author__ = "COSAL"
 
 
 from analysis.helpers import java_parse_utils, ast_utils
@@ -42,7 +42,7 @@ def save_files_for_index(language=None):
     body_parser = get_java_body
     docs = load_function_store().load_java_generated_functions()
   else:
-    raise RuntimeError("@bigfatnoob: Unsupported language: %s!" % language)
+    raise RuntimeError("@COSAL: Unsupported language: %s!" % language)
   LOGGER.info("Saving files for language: '%s' .... " % language)
   cleaned_hashes = {}
   folder = os.path.join(BASE_SEARCH_FOLDER, properties.CONFIG.get_dataset(), language)

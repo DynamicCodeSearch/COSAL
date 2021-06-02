@@ -70,7 +70,7 @@ public class JDKUtils {
                 JDK_CLASSES.add(clazz.getSimpleName());
             }
         } catch (IOException | ClassNotFoundException e) {
-            LOGGER.severe("**Note from BigFatNoob**: Check the jar to check if it has .class files and not .java files. If not you might want to add the jar without the sources.");
+            LOGGER.severe("**Note from COSAL**: Check the jar to check if it has .class files and not .java files. If not you might want to add the jar without the sources.");
             throw new RuntimeException(e);
         }
         return JDK_CLASSES;
@@ -166,7 +166,7 @@ public class JDKUtils {
             methodParamNames.addProperty("isValid", isValid);
             JDK_STORE.saveMethod(methodParamNames);
             if (!isValid)
-                throw new RuntimeException(String.format("@bigfatnoob: Method: '%s' is not valid.", key));
+                throw new RuntimeException(String.format("@COSAL: Method: '%s' is not valid.", key));
             if (paramNames.size() > 0){
                 return Arrays.asList(paramNames.toArray()).toArray(new String[0]);
             }

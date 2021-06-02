@@ -63,6 +63,12 @@
             <!--<scope>compile</scope>-->
         </dependency>
         <dependency>
+            <groupId>org.antlr</groupId>
+            <artifactId>antlr4-maven-plugin</artifactId>
+            <version>4.7.1</version>
+            <!--<scope>compile</scope>-->
+        </dependency>
+        <dependency>
             <groupId>fr.inria.gforge.spoon.labs</groupId>
             <artifactId>gumtree-spoon-ast-diff</artifactId>
             <version>1.20</version>
@@ -158,6 +164,27 @@
                                 <descriptorRef>jar-with-dependencies</descriptorRef>
                             </descriptorRefs>
                         </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.antlr</groupId>
+                <artifactId>antlr4-maven-plugin</artifactId>
+                <version>4.7.1</version>
+                <configuration>
+                    <sourceDirectory>src/main/antlr4</sourceDirectory>
+                    <includes>
+                        <include>HaskellLexer.g4</include>
+                        <include>HaskellParser.g4</include>
+                    </includes>
+                    <visitor>false</visitor>
+                    <listener>false</listener>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>antlr4</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>

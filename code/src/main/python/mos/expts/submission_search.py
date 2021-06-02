@@ -5,7 +5,7 @@ import os
 sys.path.append(os.path.abspath("."))
 sys.dont_write_bytecode = True
 
-__author__ = "bigfatnoob"
+__author__ = "COSAL"
 
 from mos.search.cacher import tfidf_cache
 from mos.search_store.code_store import CodeStore, ASTDistanceStore, ExecStore
@@ -188,15 +188,14 @@ def search_submission(code_block_db, search_params=["ast", "contextualTokens", "
     mo_betters["context"] = mo.more
     defaults["context"] = float("-inf")
   if "semantic" in search_params:
-    search_results["semantic"] = semantic_search(code_block_db["sourceFile"],properties.LANGUAGE_JAVA, search_limit)
+    search_results["semantic"] = semantic_search(code_block_db["sourceFile"], properties.LANGUAGE_JAVA, search_limit)
     mo_keys.append("semantic")
     mo_betters["ast"] = mo.more
     defaults["ast"] = float("-inf")
   clean_results, partial_results = merge_search_results(search_results, defaults)
   results = clean_results if len(clean_results) > 0 else partial_results
   sorted_results = mo.nsga(results, keys=mo_keys, betters=mo_betters, preferences=mo_preferences)
-  contests_meta = get_contest_meta(sorted_results)
-  return sorted_results, contests_meta
+  return sorted_results
 
 
 def rank_results(query_contest_meta, contests_meta):
@@ -230,12 +229,13 @@ def run_block(code_block_db, search_params, search_limit, index, n_code_blocks, 
   ast_computed_count = get_ast_distance_store().count_nodes_for_uid(uid)
   if ast_computed_count == 0:
     if index % 10 == 0:
-      LOGGER.info("@bigfatnoob: Looks like ast comparison has not been performed for this node.!!")
+      LOGGER.info("@COSAL: Looks like ast comparison has not been performed for this node.!!")
     return None
   if code_block_db.get("contestMeta", None) is None:
     return None
   query_contest_meta = ContestMeta.from_bson(code_block_db["contestMeta"])
-  search_results, contests_meta = search_submission(code_block_db, search_params, search_limit)
+  search_results = search_submission(code_block_db, search_params, search_limit)
+  contests_meta = get_contest_meta(search_results)
   rank_meta = rank_results(query_contest_meta, contests_meta)
   # if len(search_results) > save_n_top:
   #   search_results = search_results[:save_n_top]
@@ -286,7 +286,7 @@ def runner_parallel(search_params, save_file_prefix, search_limit=1000):
 #       LOGGER.info("Processing document %d/%d ... " % (index, n_code_blocks))
 #     ast_computed_count = get_ast_distance_store().count_nodes_for_uid(uid)
 #     if ast_computed_count == 0:
-#       LOGGER.info("@bigfatnoob: Looks like ast comparison has not been performed for this node.!!")
+#       LOGGER.info("@COSAL: Looks like ast comparison has not been performed for this node.!!")
 #       continue
 #     if code_block_db.get("contestMeta", None) is None:
 #       continue

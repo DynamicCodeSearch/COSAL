@@ -182,7 +182,7 @@ public class SSFixTokenizer {
                     statementsTokens.add(tokens);
             }
         } catch (IOException e) {
-            LOGGER.severe(String.format("@bigfatnoob: Error in tokenizing. '%s'", e.getMessage()));
+            LOGGER.severe(String.format("@COSAL: Error in tokenizing. '%s'", e.getMessage()));
             throw new RuntimeException(e);
         }
         return statementsTokens;

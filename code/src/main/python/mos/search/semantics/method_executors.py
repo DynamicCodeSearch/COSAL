@@ -4,7 +4,7 @@ import os
 sys.path.append(os.path.abspath("."))
 sys.dont_write_bytecode = True
 
-__author__ = "bigfatnoob"
+__author__ = "COSAL"
 
 
 from analysis import arguments as arg_analysis
@@ -177,7 +177,7 @@ class MethodExecutors(lib.O):
       module = __import__(python_name)
       return module
     except Exception as e:
-      LOGGER.info("@bigfatnoob: Error - %s" % e.message)
+      LOGGER.info("@COSAL: Error - %s" % e.message)
     finally:
       cache.delete_file(temp_file)
       sys.path.remove(properties.PYTHON_PROJECTS_HOME)

@@ -199,7 +199,7 @@ public class MethodExecutor {
                 else if (Settings.METHOD_EXECUTION_MODE.equals(Settings.BASH_EXECUTION))
                     executeAsBash(function, taskNumber);
                 else
-                    throw new RuntimeException(String.format("@bigfatnoob: Invalid execution mode: '%s'", Settings.METHOD_EXECUTION_MODE));
+                    throw new RuntimeException(String.format("@COSAL: Invalid execution mode: '%s'", Settings.METHOD_EXECUTION_MODE));
                 retMap.put("status", METHOD_EXECUTED);
             } catch (Exception e) {
                 retMap.put("status", e.getMessage());

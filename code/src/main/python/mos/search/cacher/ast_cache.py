@@ -4,13 +4,12 @@ import os
 sys.path.append(os.path.abspath("."))
 sys.dont_write_bytecode = True
 
-__author__ = "bigfatnoob"
+__author__ = "COSAL"
 
 from mos.search.tree import distances
 from mos.search_store.code_store import CodeStore, ASTDistanceStore, MetaStore
-from mos.blocks import code_block
+from mos.blocks import code_block, ast_distance_node
 from utils import logger
-from utils.lib import O
 import properties
 
 from joblib import Parallel, delayed
@@ -34,36 +33,6 @@ def is_code_block_too_big(cb):
   size = cb["contestMeta"]["codeSize"]
   return (lang == properties.LANGUAGE_PYTHON and size > 613) or \
          (lang == properties.LANGUAGE_JAVA and size > 3082.3)
-
-
-class ASTDistanceNode(O):
-  DELIMITER = "-"
-
-  def __init__(self, **kwargs):
-    O.__init__(self, **kwargs)
-    self.uid1 = None
-    self.uid2 = None
-    self.distance = None
-
-  def get_key(self):
-    return ASTDistanceNode.DELIMITER.join(sorted([self.uid1, self.uid2]))
-
-  def to_bson(self):
-    return {
-      "uid1": self.uid1,
-      "uid2": self.uid2,
-      "key": self.get_key(),
-      "distance": self.distance
-    }
-
-  @staticmethod
-  def from_bson(bson):
-    node = ASTDistanceNode()
-    splits = bson["key"].split(ASTDistanceNode.DELIMITER)
-    node.uid1 = splits[0]
-    node.uid2 = splits[1]
-    node.distance = bson["distance"]
-    return node
 
 
 def group_by_problems(code_blocks):
@@ -96,7 +65,7 @@ def get_competitive_group(code_blocks, key, only_negatives=False):
 def compute_ast_distance_node(one, two, index, total, lang):
   if index % 200 == 0:
     LOGGER.info("#### Processed %d/%d %s nodes" % (index, total, lang))
-  node = ASTDistanceNode()
+  node = ast_distance_node.ASTDistanceNode()
   node.uid1 = one.uid
   node.uid2 = two.uid
   node.distance = distances.apted_distance(one.ast, two.ast)

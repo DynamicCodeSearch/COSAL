@@ -4,7 +4,7 @@ import os
 sys.path.append(os.path.abspath("."))
 sys.dont_write_bytecode = True
 
-__author__ = "bigfatnoob"
+__author__ = "COSAL"
 
 
 from utils import cache
@@ -32,6 +32,22 @@ def is_numeric(s):
     return True
   except ValueError:
     return False
+
+
+class MethodVisitor(parser.JavaTraveller):
+  def __init__(self, source_code):
+    parser.JavaTraveller.__init__(self)
+    self.tree = parse_java(source_code, wrap_class=False)
+    self.method_count = 0
+
+  def visit_MethodDeclaration(self, node, meta):
+    self.method_count += 1
+    return None
+
+  def parse(self):
+    self.visit(self.tree)
+    return self.method_count
+
 
 
 class TreeVisitor(parser.JavaTraveller):
@@ -115,8 +131,10 @@ class TreeVisitor(parser.JavaTraveller):
       return N(TYPES.OPERATOR, value=OPERATORS.RSHIFT)
     elif op == ">>>":
       return N(TYPES.OPERATOR, value=OPERATORS.RSHIFT0)
+    elif op == "instanceof":
+      return N(TYPES.OPERATOR, value=OPERATORS.INSTANCE_OF)
     else:
-      raise RuntimeError("Unknown error!")
+      raise RuntimeError("Unknown operator: %s" % op)
 
   def parse(self):
     if self.tree:
@@ -172,8 +190,9 @@ class TreeVisitor(parser.JavaTraveller):
       args.add_kid(N(TYPES.VARIABLE))
     # print(node)
     body = N(TYPES.BODY)
-    for stmt in node.body:
-      body.add_kid(self.visit(stmt, meta))
+    if node.body:
+      for stmt in node.body:
+        body.add_kid(self.visit(stmt, meta))
     func = N(TYPES.FUNCTION_DEF)
     func.add_kid(args)
     func.add_kid(body)
@@ -514,10 +533,10 @@ def get_java_tree(source_code, wrap_class=False):
   return visitor.parse()
 
 
-def parse_file(file_path, override_output=False):
+def parse_file(file_path, override_output=False, wrap_class=True):
   try:
     contents = cache.read_file(file_path)
-    visitor = TreeVisitor(contents, wrap_class=True)
+    visitor = TreeVisitor(contents, wrap_class=wrap_class)
     vertex = visitor.parse()
     parsed = vertex.to_bson()
     if override_output:
@@ -552,7 +571,7 @@ def test():
 def _main():
   args = sys.argv
   message = """
-    python mos.search/tree/java_tree.py <path to java source code> <? override output>
+    python mos/search/tree/java_tree.py <path to java source code> <? override output>
     """
   if len(args) < 2:
     print("Error!")
@@ -560,9 +579,9 @@ def _main():
     exit(0)
   file_path = args[1]
   override_output = len(args) > 2 and args[2].lower().strip() == "true"
-  parse_file(file_path, override_output)
+  parse_file(file_path, override_output, wrap_class=True)
 
 
 if __name__ == "__main__":
-  test()
-  # _main()
+  # test()
+  _main()

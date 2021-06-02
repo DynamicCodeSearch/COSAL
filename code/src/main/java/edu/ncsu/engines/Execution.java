@@ -101,17 +101,17 @@ public class Execution {
             }
         }
         if (method == null) {
-            LOGGER.severe(String.format("@bigfatnoob: Failed to find method '%s' in compiled class. Most likely the method was not declared as 'static'!", methodName));
+            LOGGER.severe(String.format("@COSAL: Failed to find method '%s' in compiled class. Most likely the method was not declared as 'static'!", methodName));
             return null;
         }
         Function function = new Function(ProjectConfig.DATASET, method, ast, meta.get("filePath"));
         if (function.getArguments().size() == 0) {
-            LOGGER.severe(String.format("@bigfatnoob: Method '%s' has no arguments!", methodName));
+            LOGGER.severe(String.format("@COSAL: Method '%s' has no arguments!", methodName));
             return null;
         }
         List<List<FunctionVariable>> argsPermutation = SegmentUtils.expandFunctionVariables(function, ConstructorExpansion.OPTIMAL);
         if (argsPermutation == null)
-            throw new RuntimeException("@bigfatnoob: Failed to create permutation. Check the function");
+            throw new RuntimeException("@COSAL: Failed to create permutation. Check the function");
         function.setArguments(argsPermutation.get(0));
         JsonArray argsMetadata = new JsonArray();
         for (FunctionVariable arg: function.getArguments()) {
@@ -141,7 +141,7 @@ public class Execution {
         // 2. Load Arguments
         List<Object[]> arguments = ExecutionUtils.loadArguments(function, HyperParameters.FUZZ_ARGUMENT_SIZE);
         if (arguments == null || arguments.size() == 0)
-            throw new RuntimeException(String.format("@bigfatnoob: Unable to generate arguments for the function: %s", function.getName()));
+            throw new RuntimeException(String.format("@COSAL: Unable to generate arguments for the function: %s", function.getName()));
         // 3. Execute functions
         List<ExecutionResult> executionResults;
         try {

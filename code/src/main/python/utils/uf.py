@@ -41,7 +41,7 @@ Spanning Tree algorithm for graphs, but other uses have been found.
 Originally by Josiah Carlson on August 12, 2003 
 '''
 
-__author__ = "bigfatnoob"
+__author__ = "COSAL"
 
 from collections import defaultdict
 

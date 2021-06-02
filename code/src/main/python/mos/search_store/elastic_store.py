@@ -4,7 +4,7 @@ import os
 sys.path.append(os.path.abspath("."))
 sys.dont_write_bytecode = True
 
-__author__ = "bigfatnoob"
+__author__ = "COSAL"
 
 from utils.lib import O
 from utils import logger
@@ -18,7 +18,7 @@ LOGGER = logger.get_logger(os.path.basename(__file__.split(".")[0]))
 def get_connection():
   # TODO: Account for remote connection
   host_urls = ["http://127.0.0.1:9200"]
-  return Elasticsearch(host_urls)
+  return Elasticsearch(host_urls, timeout=30, max_retries=10, retry_on_timeout=True)
 
 
 class ContextStore(O):

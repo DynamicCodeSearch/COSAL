@@ -4,7 +4,7 @@ import os
 sys.path.append(os.path.abspath("."))
 sys.dont_write_bytecode = True
 
-__author__ = "bigfatnoob"
+__author__ = "COSAL"
 
 
 from utils.lib import O
@@ -110,6 +110,10 @@ class CodeStore(O):
     if cb:
       return cb["uid"]
     return None
+
+  def is_code_block_exists(self, uid):
+    collection = mongo_driver.get_collection(properties.CONFIG.get_dataset(), CodeStore.CODE_STORE_COLLECTION)
+    return mongo_driver.contains_document(collection, "uid", uid)
 
 
 class ASTDistanceStore(O):

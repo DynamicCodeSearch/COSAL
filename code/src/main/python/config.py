@@ -4,7 +4,7 @@ import os
 sys.path.append(os.path.abspath("."))
 sys.dont_write_bytecode = True
 
-__author__ = "bigfatnoob"
+__author__ = "COSAL"
 
 
 class BaseConfig:
@@ -171,6 +171,24 @@ class AtCoderMethodConfig(BaseConfig):
 
     def get_java_projects_home(self):
         return os.path.join(self.get_projects_home(), "src", "main", "java")
+
+
+class BigCloneBenchConfig(BaseConfig):
+    def get_project_name(self):
+        return "BigCloneBench"
+
+    def get_dataset(self):
+        return "BigCloneBench"
+
+    def get_projects_home(self):
+        return os.path.join(BaseConfig.ROOT_HOME, "BigCloneEval", "ijadataset", "bcb_reduced")
+
+    def get_python_projects_home(self):
+        # raise RuntimeError("BigCloneBench only supports Java!!!")
+        return None
+
+    def get_java_projects_home(self):
+        return self.get_projects_home()
 
 
 if __name__ == "__main__":

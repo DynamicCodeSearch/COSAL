@@ -4,7 +4,7 @@ import os
 sys.path.append(os.path.abspath("."))
 sys.dont_write_bytecode = True
 
-__author__ = "bigfatnoob"
+__author__ = "COSAL"
 
 
 from mos.helpers import contexter
@@ -58,16 +58,16 @@ def save_top_tfidf_tokens():
   docs = []
   n_code_blocks = get_code_store().count_code_blocks(language=None)
   index = 0
-  for code_block_db in get_code_store().get_code_blocks():
+  for code_block_db in get_code_store().get_code_blocks(fields=["contextualTokens"]):
     index += 1
-    if index % 100 == 0:
+    if index % 1000 == 0:
       LOGGER.info("Processing document %d/%d ... " % (index, n_code_blocks))
-    source_code = code_block_db["code"]
-    lang = code_block_db["language"]
-    tokens = []
-    for word in nltk.word_tokenize(source_code):
-      tokens += contexter.get_tokens(word, lang)
-    docs.append(" ".join(tokens))
+    tokens = code_block_db["contextualTokens"]
+    # tokens = []
+    # for word in nltk.word_tokenize(source_code):
+    #   tokens += contexter.get_tokens(word, lang)
+    if tokens:
+      docs.append(" ".join(tokens))
   LOGGER.info("Computing TFIDF .... ")
   tokens, scores = compute_tfidf(docs)
   cache.save_pickle(TFIDF_TOP_WORDS_PKL, tokens[:N_TOP_WORDS])
@@ -110,5 +110,6 @@ def process():
 
 
 if __name__ == "__main__":
-  process()
+  save_top_tfidf_tokens()
+  # process()
   # print(load_top_tfidf_tokens())

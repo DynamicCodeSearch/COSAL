@@ -19,7 +19,7 @@ public class MavenUtils {
         if (mavenHome == null)
             mavenHome = System.getenv("M2_HOME");
         if (mavenHome == null)
-            throw new RuntimeException("@bigfatnoob: Cannot find maven home. Configure the environment variable 'M2_HOME'");
+            throw new RuntimeException("@COSAL: Cannot find maven home. Configure the environment variable 'M2_HOME'");
         return mavenHome;
     }
 
@@ -33,7 +33,7 @@ public class MavenUtils {
         try {
             InvocationResult result =  invoker.execute(request);
             if (result.getExitCode() != 0) {
-                throw new RuntimeException(String.format("@bigfatnoob: Build failed for project '%s' !!!", ProjectConfig.PROJECT_NAME));
+                throw new RuntimeException(String.format("@COSAL: Build failed for project '%s' !!!", ProjectConfig.PROJECT_NAME));
             }
         } catch (MavenInvocationException e) {
             throw new RuntimeException(e);

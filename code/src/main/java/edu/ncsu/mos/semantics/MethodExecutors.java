@@ -150,17 +150,17 @@ public class MethodExecutors {
     public List<Function> permutateFunction(Function baseFunction, String key) {
         List<Function> functions = new ArrayList<>();
         if (baseFunction.getArguments().size() == 0) {
-            LOGGER.severe(String.format("@bigfatnoob: Method '%s' has no arguments!", baseFunction.getName()));
+            LOGGER.severe(String.format("@COSAL: Method '%s' has no arguments!", baseFunction.getName()));
             return null;
         }
         if (baseFunction.getArguments().size() > 3) {
-            LOGGER.severe(String.format("@bigfatnoob: Method '%s' has too many arguments!", baseFunction.getName()));
+            LOGGER.severe(String.format("@COSAL: Method '%s' has too many arguments!", baseFunction.getName()));
             return null;
         }
 
         List<List<FunctionVariable>> argsPermutation = SegmentUtils.expandFunctionVariables(baseFunction, ConstructorExpansion.OPTIMAL);
         if (argsPermutation == null)
-            throw new RuntimeException("@bigfatnoob: Failed to create permutation. Check the function");
+            throw new RuntimeException("@COSAL: Failed to create permutation. Check the function");
         for (List<FunctionVariable> args: argsPermutation) {
             JsonArray argsMetadata = new JsonArray();
             for (FunctionVariable arg: args)
@@ -240,7 +240,7 @@ public class MethodExecutors {
             // 1. Load Arguments
             List<Object[]> arguments = ExecutionUtils.loadArguments(function, HyperParameters.FUZZ_ARGUMENT_SIZE);
             if (arguments == null || arguments.size() == 0)
-                throw new RuntimeException(String.format("@bigfatnoob: Unable to generate arguments for the function: %s", function.getName()));
+                throw new RuntimeException(String.format("@COSAL: Unable to generate arguments for the function: %s", function.getName()));
             // 2. Execute functions
             List<ExecutionResult> executionResults;
             try {

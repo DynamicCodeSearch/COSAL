@@ -4,7 +4,7 @@ import os
 sys.path.append(os.path.abspath("."))
 sys.dont_write_bytecode = True
 
-__author__ = "bigfatnoob"
+__author__ = "COSAL"
 
 import ast
 import asttokens
@@ -202,7 +202,7 @@ class VariableVisitor(parser.Traveller):
     else:
       # TODO: Handle other non system libraries here
       return None
-      # raise RuntimeError("@bigfatnoob: Unsupported data type '%s'" % type(data_type).__name__)
+      # raise RuntimeError("@COSAL: Unsupported data type '%s'" % type(data_type).__name__)
 
   def visit_FunctionDef(self, node, meta):
     scope = self.create_scope(node.name)
