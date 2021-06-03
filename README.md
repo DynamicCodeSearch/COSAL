@@ -4,7 +4,7 @@ This code repository contains code for the COSAL tool which performs code search
 ### Contents
 * SourceCode - [code](code)
 * Dataset - [on zenodo](https://zenodo.org/record/4002869#.X0kXvhNKhUQ)
-* * Indexed files used for Github Search - [github-search](github-search)
+* Indexed files used for Github Search - [github-search](github-search)
 
 ### FAQ:
 #### 1. What are the requirements to run COSAL?
