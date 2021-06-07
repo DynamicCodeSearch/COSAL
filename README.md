@@ -1,5 +1,5 @@
 # COSAL: Cross-language code search using static and dynamic analyses
-This code repository contains code for the COSAL tool which performs code search across Java and Python. COSAL was conditionally accepted for FSE 2021. We are in the process of adding a docker image with the entire tool. You can check out our [preprint here](cosal.pdf)
+This code repository contains code for the COSAL tool which performs code search across Java and Python. COSAL was accepted for FSE 2021. We are in the process of adding a docker image with the entire tool. You can check out our [preprint here](cosal.pdf)
 
 ### Contents
 * SourceCode - [code](code)
